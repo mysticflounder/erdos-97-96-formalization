@@ -1,0 +1,14 @@
+# Lake build artifacts — oleans, generated C/IR, *.setup.json, *.c.hash,
+# the build lock, and the fetched dependency packages all live under .lake/.
+# Unanchored so it matches lean/.lake/ and any nested .lake/ dir.
+.lake/
+build/
+*.olean
+*.ilean
+
+# Build-only convenience symlink to a pre-fetched packages dir (never commit).
+/lean/.lake_packages_src
+
+# Editor / OS
+.DS_Store
+*.swp

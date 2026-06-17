@@ -1,0 +1,32 @@
+name = "Erdos9796"
+version = "0.1.0"
+keywords = ["math", "combinatorics", "erdos", "discrete-geometry"]
+defaultTargets = ["Erdos9796", "Erdos9796Proof"]
+# -M: per-module memory cap (MB) for the elaborator. Some of the discrete-
+#     geometry case-split files are heavy; this keeps a single module from
+#     running away. NOTE: moreLeanArgs is part of every module's build trace,
+#     so changing it invalidates all package oleans — don't touch casually.
+# -s: thread stack (bytes). The deeper case-split proofs need more than the
+#     default; 2 GB is the proven value on macOS (4 GB is silently rejected).
+moreLeanArgs = ["-M16384", "-s2097152"]
+
+[leanOptions]
+pp.unicode.fun = true # pretty-prints `fun a ↦ b`
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.27.0"
+
+[[require]]
+name = "formal_conjectures"
+git = "https://github.com/google-deepmind/formal-conjectures.git"
+rev = "main"
+
+[[lean_lib]]
+name = "Erdos9796"
+
+[[lean_lib]]
+name = "Erdos9796Proof"
