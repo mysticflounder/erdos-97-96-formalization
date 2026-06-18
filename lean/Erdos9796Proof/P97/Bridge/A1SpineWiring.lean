@@ -1,4 +1,4 @@
-import Erdos9796Proof.P97.N9EndpointN4e
+import Erdos9796Proof.P97.N9Endpoint.N4e
 
 /-!
 # A1 endpoint-shell bridge lemmas (public-extract trim)

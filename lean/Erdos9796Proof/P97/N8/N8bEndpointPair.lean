@@ -1,5 +1,5 @@
-import Erdos9796Proof.P97.N9EndpointN67
-import Erdos9796Proof.P97.U2OneHitBound
+import Erdos9796Proof.P97.N9Endpoint.N67
+import Erdos9796Proof.P97.U2.OneHitBound
 import Erdos9796Proof.P97.N8.N8aArcTwoCircle
 
 /-!

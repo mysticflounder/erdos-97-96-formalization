@@ -1,5 +1,5 @@
 import Erdos9796Proof.P97.Foundation
-import Erdos9796Proof.P97.CapArcInscribedAngle
+import Erdos9796Proof.P97.Cap.ArcInscribedAngle
 import Mathlib.Analysis.InnerProductSpace.Basic
 
 /-!

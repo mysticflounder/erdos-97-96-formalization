@@ -1,8 +1,8 @@
-import Erdos9796Proof.P97.CapStructure
-import Erdos9796Proof.P97.MoserTriangle
-import Erdos9796Proof.P97.MoserTriangleNonObtuse
-import Erdos9796Proof.P97.CapPartitionFromMEC
-import Erdos9796Proof.P97.CapArcInteriorPoints
+import Erdos9796Proof.P97.Cap.Structure
+import Erdos9796Proof.P97.Moser.Triangle
+import Erdos9796Proof.P97.Moser.TriangleNonObtuse
+import Erdos9796Proof.P97.Cap.PartitionFromMEC
+import Erdos9796Proof.P97.Cap.ArcInteriorPoints
 
 /-!
 # Circumscribed-MEC packet for the Dumitrescu lane

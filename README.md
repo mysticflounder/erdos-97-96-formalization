@@ -132,10 +132,21 @@ lean/
   Erdos9796.lean              -- root: re-exports upstream statements + the proofs
   Erdos9796Proof.lean         -- root: the two upstream-vocabulary bridge theorems
   Erdos9796Proof/
-    P97/                      -- Problem 97 proof library (90 files)
-      UpstreamBridge.lean     -- erdos97_rhs
+    P97/                      -- Problem 97 proof library (~90 files)
+      UpstreamBridge.lean       -- erdos97_rhs (the published theorem)
+      UniversalProblem97.lean   -- the strong-induction wrapper
+      Counting.lean             -- counting engine (forces |A| ≥ 9)
+      Descent.lean              -- descent engine (kills |A| > 9)
       RemovableVertexAxiom.lean -- the single open lemma (sorry)
-      ...
+      Foundation.lean           -- shared vocabulary + signed-area primitives
+      Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
+      CGN/                      -- cap-witness counting bridge (CGN … CGN8)
+      N4d/                      -- n=9 form-exclusion case analysis (20 files)
+      N9Endpoint/  N8/          -- n=9 base-case assembly
+      Cap/  MEC/  Moser/        -- cap structures, min-enclosing circle, Moser triangle
+      U2/                       -- similarity-normalization lane
+      ConvexCyclicOrder/        -- convex cyclic-order construction
+      ...                       -- other shared geometry kernels in the root
     P96/                      -- Problem 96 proof library (2 files)
       UpstreamBridge.lean     -- erdos96_rhs
       EuclideanPeeling.lean   -- the ≤ 3·n unit-distance bound
@@ -185,7 +196,7 @@ Read these in order; each line is the load-bearing declaration of its step.
    (the `counting` bound and the `descent` step) and calls the base case
    directly for `|A| = 9`.
 4. **Base case** `|A| = 9`:
-   [`FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint.lean#L71).
+   [`FiniteN9Closure`](lean/Erdos9796Proof/P97/N9Endpoint/Closure.lean#L71).
 5. **Counting engine** (`|A| ≥ 9`):
    [`counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95).
 6. **Descent engine** (`|A| > 9`):
@@ -204,11 +215,11 @@ The vocabulary and core geometric objects every cluster builds on:
   [`ConvexIndep`](lean/Erdos9796Proof/P97/Foundation.lean#L28),
   [`signedArea2`](lean/Erdos9796Proof/P97/Foundation.lean#L49),
   [`OnArcOpposite`](lean/Erdos9796Proof/P97/Foundation.lean#L57).
-- [`MinEnclosingCircle`](lean/Erdos9796Proof/P97/MEC.lean#L66) (existence +
-  uniqueness) and the [`MoserTriangle`](lean/Erdos9796Proof/P97/MoserTriangle.lean#L59)
+- [`MinEnclosingCircle`](lean/Erdos9796Proof/P97/MEC/Basic.lean#L66) (existence +
+  uniqueness) and the [`MoserTriangle`](lean/Erdos9796Proof/P97/Moser/Triangle.lean#L59)
   it determines — the three boundary vertices the whole analysis is framed
   around.
-- [`CapTriple`](lean/Erdos9796Proof/P97/CapStructure.lean#L161) — the
+- [`CapTriple`](lean/Erdos9796Proof/P97/Cap/Structure.lean#L161) — the
   decomposition of the point set into the three circular "caps" cut off by the
   Moser triangle.
 - [`IsRemovableVertex`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L25)
@@ -221,12 +232,13 @@ A Dumitrescu-style double count of isosceles configurations: a lower bound
 
 - [`iCount`](lean/Erdos9796Proof/P97/IsoscelesCount.lean#L39) — the isosceles
   count, defined in `IsoscelesCount.lean`.
-- `DumitrescuL2.lean … DumitrescuL10c.lean` — the lemma chain establishing the
-  lower bound (perpendicular-bisector, double-count, three-cap, Cauchy–Schwarz,
+- the [`Dumitrescu/`](lean/Erdos9796Proof/P97/Dumitrescu) dir (`L1.lean …
+  Lc3.lean`) — the lemma chain establishing the lower bound
+  (perpendicular-bisector, double-count, three-cap, Cauchy–Schwarz,
   Thales-angle, …).
-- [`CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN8.lean#L31)
-  — the matching cap-local upper bound (top of the `CGN`/`CGN4g`/`CGN6`/`CGN7`
-  counting-bridge stack).
+- [`CGN8_circumscribed_iCount_upper_bound`](lean/Erdos9796Proof/P97/CGN/CGN8.lean#L31)
+  — the matching cap-local upper bound (top of the
+  [`CGN/`](lean/Erdos9796Proof/P97/CGN) counting-bridge stack).
 - [`Counting.lean`](lean/Erdos9796Proof/P97/Counting.lean) combines the two with
   the arithmetic in `CountingArithmetic.lean`.
 
@@ -236,17 +248,17 @@ Most of the ~90 files implement the finite case analysis behind
 `FiniteN9Closure`. It threads a fixed 9-point shell through form exclusions and
 a final single-apex exhaustion:
 
-- [`FiniteEndpointShell`](lean/Erdos9796Proof/P97/N9EndpointShell.lean#L39) — the
-  structure packaging the fixed 9-point setup (`N9EndpointShell.lean`); the
-  closure is assembled in `N9Endpoint.lean`, with `N9EndpointN4e.lean` (cap
-  containment) and `N9EndpointN67.lean` (rigid common-radius packet).
-- **`N4d` form exclusions** — three geometric "forms" excluded at each of three
+- [`FiniteEndpointShell`](lean/Erdos9796Proof/P97/N9Endpoint/Shell.lean#L39) — the
+  structure packaging the fixed 9-point setup (`N9Endpoint/Shell.lean`); the
+  closure is assembled in `N9Endpoint/Closure.lean`, with `N9Endpoint/N4e.lean`
+  (cap containment) and `N9Endpoint/N67.lean` (rigid common-radius packet).
+- **`N4d/` form exclusions** — three geometric "forms" excluded at each of three
   apex relabellings:
-  [`N4dExcludesFormA_v1_proof`](lean/Erdos9796Proof/P97/N4dExcludesFormAv1.lean#L645),
-  [`…FormB…`](lean/Erdos9796Proof/P97/N4dExcludesFormBv1.lean#L742),
-  [`…FormC…`](lean/Erdos9796Proof/P97/N4dExcludesFormCv1.lean#L766), with the
-  `v₂`/`v₃` variants produced by `N4dCyclicTransport.lean` and the many other
-  `N4d*.lean` files supplying form-specific geometry.
+  [`N4dExcludesFormA_v1_proof`](lean/Erdos9796Proof/P97/N4d/ExcludesFormAv1.lean#L645),
+  [`…FormB…`](lean/Erdos9796Proof/P97/N4d/ExcludesFormBv1.lean#L742),
+  [`…FormC…`](lean/Erdos9796Proof/P97/N4d/ExcludesFormCv1.lean#L766), with the
+  `v₂`/`v₃` variants produced by `N4d/CyclicTransport.lean` and the many other
+  [`N4d/`](lean/Erdos9796Proof/P97/N4d) files supplying form-specific geometry.
 - **`N8` single-apex exhaustion** — the final contradiction, routed by
   [`N8k_single_apex_false`](lean/Erdos9796Proof/P97/N8/N8kDistribution.lean#L949)
   through the two-circle / endpoint-pair / reflection primitives in the
@@ -274,13 +286,14 @@ lifts to the asymptotic `O(n)` statement.
 
 These provide reusable geometric machinery imported throughout the above:
 
-- **`Cap*`** — cap partition, counts, and cone/arc containment
-  (`CapPartition*.lean`, `ArcPartitionCount.lean`, `CapArc*.lean`,
-  `CapConeContainment.lean`).
-- **`ConvexCyclicOrder*` / `SignedAreaOangle.lean` / `OangleBridge.lean`** —
-  cyclic-order construction and the bridge between the algebraic `signedArea2`
-  and Mathlib's oriented angle `oangle`.
-- **`U2*`** — similarity normalization and one-hit witness bounds.
+- **[`Cap/`](lean/Erdos9796Proof/P97/Cap)** — cap partition, structure, and
+  cone/arc containment (plus `ArcPartitionCount.lean` in the root).
+- **[`ConvexCyclicOrder/`](lean/Erdos9796Proof/P97/ConvexCyclicOrder) /
+  `SignedAreaOangle.lean` / `OangleBridge.lean`** — cyclic-order construction and
+  the bridge between the algebraic `signedArea2` and Mathlib's oriented angle
+  `oangle`.
+- **[`U2/`](lean/Erdos9796Proof/P97/U2)** — similarity normalization and one-hit
+  witness bounds.
 - **`A1*`** (incl. [`Bridge/A1SpineWiring.lean`](lean/Erdos9796Proof/P97/Bridge/A1SpineWiring.lean))
   — the row-layer context producers wiring shell facts into the endpoint forms.
 - **Geometry kernels** — `TwoCircleCrossing.lean`, `NoDiameterUnderK4.lean`,

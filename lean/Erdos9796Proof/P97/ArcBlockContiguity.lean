@@ -1,5 +1,5 @@
-import Erdos9796Proof.P97.ConvexCyclicOrder
-import Erdos9796Proof.P97.CapStructure
+import Erdos9796Proof.P97.ConvexCyclicOrder.Basic
+import Erdos9796Proof.P97.Cap.Structure
 
 /-!
 # Arc-block contiguity (the `glue` hard core for `U1n-b2b1c`)

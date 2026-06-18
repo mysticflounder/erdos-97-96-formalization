@@ -1,27 +1,13 @@
 import Erdos9796Proof.P97.N9Endpoint.N4e
 
 /-!
-# A1 row-layer context producers (H1–H7)
+# `N4d` Form-`b`, `p' = B` producer
 
-Producers for the seven spine-context facts `H1`–`H7` consumed by
-`a1Context_kill` (`A1ContextUniform.lean`); design table in
-`docs/n-lane/97-row-layer-nonadmissible-census-2026-06-05.md`.  Each
-producer is stated against the committed shell vocabulary
-(`FiniteEndpointShell` + `ZeroDefectCapLayout`) with the fixed-shell
-equidistance facts as explicit hypotheses, so the (uncommitted) spine
-wiring can instantiate them directly from its `A1FixedShellPacket`.
-
-This file currently ships **H1** (the radius-order producer
-`dist(a₂,v₁) ≠ dist(a₂,v₂)`, from `rv2 < rv1`): the `v₂`-shell radius is
-pinned by the interior witness `a₃ ∈ I₃`, which the cap order on `C₃`
-places strictly closer to `v₂` than the far endpoint `v₁`, while the
-`v₁`-shell radius equals `|v₁v₂|` itself.  `H2`–`H7` follow in this file
-as they land.
-
-The two cap-order lemmas are public copies of the `private` pair in
-`N4dFormBPEqBProducer.lean` (`v1_lt_v1v3_of_mem_I2` /
-`v2_lt_v2v1_of_mem_I3`); when the W3 gate lifts, that file can drop its
-privates and import these.
+This file exposes the theorem-facing producer for the escaped-form `N4d`
+Form-`b`, `x = a₂`, lower-side `p' = B` column. It mirrors the local packet
+shape used in `N9EndpointN4e.lean`, extracts the equilateral-apex data from the
+selector packets, and closes the row through the existing shell-level consumer
+`pEqB_row_impossible_of_equilateral`.
 -/
 
 open scoped EuclideanGeometry
@@ -31,10 +17,18 @@ namespace Problem97
 
 namespace FiniteEndpointShell
 
+/-- The `p' = B` row inside the forced `v₃` selector. The selector contains the
+whole lower witness pair `I₃`, meets `C₁` in the named point `v₂`, and meets
+`C₂` in one of the two upper witnesses. -/
+abbrev SelectorV3PeqBPacket
+    {A : Finset ℝ²} (S : FiniteEndpointShell A)
+    (Z : ZeroDefectCapLayout S) (r : ℝ) : Prop :=
+  FiniteEndpointShell.SelectorV3Pv2Packet S Z r
+
 /-- Any `I₂` vertex lies strictly before the far endpoint `v₃` in the
-`v₁`-radial order on support cap `C₂` (public copy of the `pEqB` producer's
-private lemma). -/
-theorem v1_dist_lt_v1v3_of_mem_I2
+`v₁`-radial order on support cap `C₂`. This is the local re-export needed to
+derive `|v₁v₂| < |v₁v₃|` in the separate producer module. -/
+private theorem v1_lt_v1v3_of_mem_I2
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {p : ℝ²}
     (hpI2 : p ∈ S.I2) :
     dist S.triangle.v1 p < dist S.triangle.v1 S.triangle.v3 := by
@@ -119,9 +113,8 @@ theorem v1_dist_lt_v1v3_of_mem_I2
       hi, hLastFirst.1, hLastFirst.2] using hlt
 
 /-- Any `I₃` vertex is strictly closer to `v₂` than the opposite endpoint
-`v₁` (public copy of the `pEqB` producer's private lemma).  This is the
-lower-cap order fact producing `|v₂v₃| < |v₁v₂|`. -/
-theorem v2_dist_lt_v2v1_of_mem_I3
+`v₁`. This is the lower-cap order fact used to produce `|v₂v₃| < |v₁v₂|`. -/
+private theorem v2_lt_v2v1_of_mem_I3
     {A : Finset ℝ²} (S : FiniteEndpointShell A) {q : ℝ²}
     (hqI3 : q ∈ S.I3) :
     dist S.triangle.v2 q < dist S.triangle.v2 S.triangle.v1 := by
@@ -210,31 +203,89 @@ theorem v2_dist_lt_v2v1_of_mem_I3
     simpa [Problem97.FiniteEndpoint.OrderedSideChain.ofOrderedCap_points,
       hi, hLastFirst.1, hLastFirst.2] using hlt
 
-/-- **H1 producer**: `dist(a₂,v₁) ≠ dist(a₂,v₂)`.
-
-In the A1 fixed-shell context the `v₁`-shell radius `r1` equals `|v₁v₂|`
-(`v₂` sits in the `v₁` class) while the `v₂`-shell radius `r2` is the
-distance to the interior witness `a₃ ∈ I₃`, which the cap order on `C₃`
-places strictly closer to `v₂` than `v₁`.  Hence `r2 < r1` and the two
-`a₂`-distances differ. -/
-theorem a1_context_h1_producer
+/-- The `p' = B` lower-side producer: extract the lower witness and the two
+equilateral radii from the selector packets, derive the shell-order inequalities
+`|v₂v₃| < |v₁v₂| < |v₁v₃|`, and hand the packet to the existing standalone
+equilateral-apex closer. -/
+theorem pEqB_column_impossible
     {A : Finset ℝ²} (S : FiniteEndpointShell A)
-    (Z : ZeroDefectCapLayout S) {r1 r2 : ℝ}
-    (hv1v2 : dist S.triangle.v1 S.triangle.v2 = r1)
-    (ha2v1 : dist S.triangle.v1 Z.a2 = r1)
-    (ha2v2 : dist S.triangle.v2 Z.a2 = r2)
-    (ha3v2 : dist S.triangle.v2 Z.a3 = r2) :
-    dist Z.a2 S.triangle.v1 ≠ dist Z.a2 S.triangle.v2 := by
-  have ha3I3 : Z.a3 ∈ S.I3 := by
-    rw [Z.hI3]
-    simp
-  have horder : dist S.triangle.v2 Z.a3 < dist S.triangle.v2 S.triangle.v1 :=
-    S.v2_dist_lt_v2v1_of_mem_I3 ha3I3
-  intro heq
-  rw [dist_comm Z.a2 S.triangle.v1, ha2v1,
-    dist_comm Z.a2 S.triangle.v2, ha2v2] at heq
-  rw [ha3v2, dist_comm S.triangle.v2 S.triangle.v1, hv1v2, heq] at horder
-  exact lt_irrefl _ horder
+    (Z : ZeroDefectCapLayout S) {r s t : ℝ}
+    (hB : S.IsFormB_v1 r)
+    (hlower : FormBv1A2SelectorV2LowerPacket S Z r s)
+    (hpacket3 : SelectorV3PeqBPacket S Z t) :
+    False := by
+  classical
+  rcases hlower with ⟨hA2, ha2eq, hTcard, hI2sub, hC1eq, hC3eq⟩
+  rcases hpacket3 with ⟨hI3sub, hpBeq, hqeqC2⟩
+  let T := S.witnessClassAt_v2 s
+  have hv3T : S.triangle.v3 ∈ T := by
+    have hmem : S.triangle.v3 ∈ ({S.triangle.v3} : Finset ℝ²) := by simp
+    rw [← hC1eq] at hmem
+    exact (Finset.mem_inter.mp hmem).1
+  have hq :
+      (Z.a3 : ℝ²) ∈ T ∩ S.CP.C3 ∨ (Z.b3 : ℝ²) ∈ T ∩ S.CP.C3 := by
+    rcases hC3eq with hqa3 | hqb3
+    · left
+      have hmem : Z.a3 ∈ ({Z.a3} : Finset ℝ²) := by simp
+      rw [← hqa3] at hmem
+      exact hmem
+    · right
+      have hmem : Z.b3 ∈ ({Z.b3} : Finset ℝ²) := by simp
+      rw [← hqb3] at hmem
+      exact hmem
+  obtain ⟨q, hqI3, hqT2⟩ : ∃ q : ℝ², q ∈ S.I3 ∧ q ∈ T := by
+    rcases hq with hqa3 | hqb3
+    · refine ⟨Z.a3, ?_, ?_⟩
+      · rw [Z.hI3]
+        simp
+      · exact (Finset.mem_inter.mp hqa3).1
+    · refine ⟨Z.b3, ?_, ?_⟩
+      · rw [Z.hI3]
+        simp
+      · exact (Finset.mem_inter.mp hqb3).1
+  have hv2T3 : S.triangle.v2 ∈ S.witnessClassAt_v3 t := by
+    have hmem : S.triangle.v2 ∈ ({S.triangle.v2} : Finset ℝ²) := by simp
+    rw [← hpBeq] at hmem
+    exact (Finset.mem_inter.mp hmem).1
+  have hqT3 : q ∈ S.witnessClassAt_v3 t := hI3sub hqI3
+  have hv3rad : dist S.triangle.v2 S.triangle.v3 = s := by
+    simpa using (Finset.mem_filter.mp hv3T).2
+  have hqrad2 : dist S.triangle.v2 q = s := by
+    simpa using (Finset.mem_filter.mp hqT2).2
+  have hv2rad3 : dist S.triangle.v3 S.triangle.v2 = t := by
+    simpa using (Finset.mem_filter.mp hv2T3).2
+  have hqrad3 : dist S.triangle.v3 q = t := by
+    simpa using (Finset.mem_filter.mp hqT3).2
+  have hBq : dist S.triangle.v2 q = dist S.triangle.v2 S.triangle.v3 := by
+    rw [hqrad2, hv3rad]
+  have hDq : dist S.triangle.v3 q = dist S.triangle.v2 S.triangle.v3 := by
+    rw [hqrad3, ← hv2rad3, dist_comm]
+  have hsmall : dist S.triangle.v2 S.triangle.v3 < dist S.triangle.v1 S.triangle.v2 := by
+    have hq_lt_base : dist S.triangle.v2 q < dist S.triangle.v2 S.triangle.v1 :=
+      S.v2_lt_v2v1_of_mem_I3 hqI3
+    calc
+      dist S.triangle.v2 S.triangle.v3 = dist S.triangle.v2 q := by rw [hBq]
+      _ < dist S.triangle.v2 S.triangle.v1 := hq_lt_base
+      _ = dist S.triangle.v1 S.triangle.v2 := by rw [dist_comm]
+  have hlong : dist S.triangle.v1 S.triangle.v2 < dist S.triangle.v1 S.triangle.v3 := by
+    have ha2T1 : Z.a2 ∈ S.witnessClassAt_v1 r := by
+      have ha2mem : Z.a2 ∈ ({Z.a2} : Finset ℝ²) := by simp
+      rw [← ha2eq] at ha2mem
+      exact (Finset.mem_inter.mp ha2mem).1
+    have hv2T1 : S.triangle.v2 ∈ S.witnessClassAt_v1 r := by
+      rcases hB with ⟨x, hxI2, hxeq, hv2eq⟩
+      have hv2mem : S.triangle.v2 ∈ ({S.triangle.v2} : Finset ℝ²) := by simp
+      rw [← hv2eq] at hv2mem
+      exact (Finset.mem_inter.mp hv2mem).1
+    have hbase_eq : dist S.triangle.v1 S.triangle.v2 = dist S.triangle.v1 Z.a2 := by
+      have hv2dist : dist S.triangle.v1 S.triangle.v2 = r := by
+        simpa using (Finset.mem_filter.mp hv2T1).2
+      have ha2dist : dist S.triangle.v1 Z.a2 = r := by
+        simpa using (Finset.mem_filter.mp ha2T1).2
+      rw [hv2dist, ha2dist]
+    have h := S.v1_lt_v1v3_of_mem_I2 (p := Z.a2) hA2
+    rwa [← hbase_eq] at h
+  exact S.pEqB_row_impossible_of_equilateral hqI3 hBq hDq hsmall hlong
 
 end FiniteEndpointShell
 

@@ -1,5 +1,5 @@
-import Erdos9796Proof.P97.N9EndpointN67
-import Erdos9796Proof.P97.U2OneHitRealization
+import Erdos9796Proof.P97.N9Endpoint.N67
+import Erdos9796Proof.P97.U2.OneHitRealization
 
 /-!
 # Section 3 N8a same-arc two-circle bound and N8a3 adjacent-cap one-hit

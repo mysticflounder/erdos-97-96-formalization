@@ -1,6 +1,6 @@
 import Erdos9796Proof.P97.N8.N8aArcTwoCircle
 import Erdos9796Proof.P97.N8.N8bEndpointPair
-import Erdos9796Proof.P97.U2SimilarityNormalization
+import Erdos9796Proof.P97.U2.SimilarityNormalization
 
 /-!
 # Interior-apex E3-L13 cap-coordinate normalization (the W8 / W10 convergent blocker)

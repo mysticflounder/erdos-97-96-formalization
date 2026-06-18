@@ -1,5 +1,5 @@
 import Erdos9796Proof.P97.Foundation
-import Erdos9796Proof.P97.N9Endpoint
+import Erdos9796Proof.P97.N9Endpoint.Closure
 
 /-!
 # Universal descent assembly for Erdős Problem 97 (Milestone 1)

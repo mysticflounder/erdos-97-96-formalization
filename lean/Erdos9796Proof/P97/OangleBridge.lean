@@ -1,6 +1,6 @@
 import Erdos9796Proof.P97.SignedAreaOangle
-import Erdos9796Proof.P97.CapPartitionFromMEC
-import Erdos9796Proof.P97.MoserNonDeg
+import Erdos9796Proof.P97.Cap.PartitionFromMEC
+import Erdos9796Proof.P97.Moser.NonDeg
 import Mathlib.Geometry.Euclidean.Angle.Sphere
 import Mathlib.Geometry.Euclidean.Angle.Oriented.RightAngle
 import Mathlib.Geometry.Euclidean.Simplex

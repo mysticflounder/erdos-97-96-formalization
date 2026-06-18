@@ -1,5 +1,5 @@
-import Erdos9796Proof.P97.MECArcAngle
-import Erdos9796Proof.P97.N9EndpointN67
+import Erdos9796Proof.P97.MEC.ArcAngle
+import Erdos9796Proof.P97.N9Endpoint.N67
 import Erdos9796Proof.P97.TwoCircleCrossing
 
 /-!

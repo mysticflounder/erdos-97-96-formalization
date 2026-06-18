@@ -2,7 +2,7 @@ import Erdos9796Proof.P97.N8.N8aArcTwoCircle       -- W7: N8a3_adjacent_one_hit
 import Erdos9796Proof.P97.N8.N8bEndpointPair       -- W8: N8b_endpoint_pair_split, N8e
 import Erdos9796Proof.P97.N8.N8hiSameCap           -- W9: N8h, N8i
 import Erdos9796Proof.P97.N8.N8CapCoordNorm        -- W10: interior-apex frame producers
-import Erdos9796Proof.P97.U2WitnessReflectionKernel -- angular exclusion: twoCircle_midpoint_collinear, signedArea2_reflection_neg
+import Erdos9796Proof.P97.U2.WitnessReflectionKernel -- angular exclusion: twoCircle_midpoint_collinear, signedArea2_reflection_neg
 
 /-!
 # W10 — N8k single-apex contradiction (distribution enumeration)

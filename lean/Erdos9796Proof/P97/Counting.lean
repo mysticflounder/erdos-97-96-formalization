@@ -2,7 +2,7 @@ import Erdos9796Proof.P97.IsoscelesCount
 import Erdos9796Proof.P97.CountingArithmetic
 import Erdos9796Proof.P97.ConvexIndepHelpers
 import Erdos9796Proof.P97.NoDiameterUnderK4
-import Erdos9796Proof.P97.CGN8
+import Erdos9796Proof.P97.CGN.CGN8
 
 /-!
 # Counting obstruction: `9 ≤ |A|` (Milestone 3)

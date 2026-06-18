@@ -1,4 +1,4 @@
-import Erdos9796Proof.P97.MoserTriangle
+import Erdos9796Proof.P97.Moser.Triangle
 import Erdos9796Proof.P97.ConvexIndepHelpers
 
 /-!

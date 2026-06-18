@@ -1,6 +1,6 @@
-import Erdos9796Proof.P97.CapPartitionFromMEC
+import Erdos9796Proof.P97.Cap.PartitionFromMEC
 import Erdos9796Proof.P97.ConvexIndepHelpers
-import Erdos9796Proof.P97.MoserNonDeg
+import Erdos9796Proof.P97.Moser.NonDeg
 import Mathlib.Analysis.Convex.Between
 import Mathlib.Analysis.Convex.Hull
 
