@@ -5,10 +5,12 @@ point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
 The proof is **complete except for a single named lemma**
-(`Problem97.RemovableVertexOfLarge`), which is left as a `sorry`. Everything
-else - including the full `n = 9` base case and the descent that consumes that
-lemma - is formalized and machine-checked. See **Proof status** below for the
-exact, kernel-reported state.
+(`Problem97.RemovableVertexOfLarge`), which is left as a `sorry` placeholder
+in this repo. Active work on that lemma is in the companion repo
+[`p97-rvol`](../p97-rvol), which imports this repo as a read-only path
+dependency and replaces the placeholder with an assembled U-lane proof. See
+**Proof status** below for the kernel-reported state of this repo, and
+`p97-rvol/docs/live-status.md` for the current RVOL frontier.
 
 ## What is formalized
 
@@ -274,80 +276,39 @@ a final single-apex exhaustion:
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) - packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-### Status of the open lemma: proof strategy and obstruction
+### Status of the open lemma: companion repo and current gates
 
-`RemovableVertexOfLarge` is the **only** open obligation on the whole spine. The
-other three descent inputs are closed and audited: the base case
-`FiniteN9Closure` (kernel-clean: `#print axioms` reports only
-`propext, Classical.choice, Quot.sound`), the cap-sum bridge
-(`|A| > 9 ⇒ some opposite cap is surplus`), and the counting bound
-`counterexample_card_ge_nine` (`|A| ≥ 9`). So all remaining mathematical risk is
-concentrated in this one lemma. It is genuinely open - a proof program in
-progress, not a proof. (Active off-repo work; this section summarizes its state.)
+`RemovableVertexOfLarge` is the **only** open obligation on the spine of this
+repo. The three other descent inputs are closed and kernel-audited: the base case
+`FiniteN9Closure` (axiom closure: `propext, Classical.choice, Quot.sound`), the
+cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`), and the counting bound
+`counterexample_card_ge_nine` (`|A| ≥ 9`).
 
-**Strategy (the "U-lane" deletion spine, U1–U6).** Structural induction on the
-surplus-cap size. Starting from a minimal strict-convex `PerVertexK4`
-counterexample with a surplus cap (`|Cᵢ| > 4`):
+**Active proof work is in the companion repo [`p97-rvol`](../p97-rvol).** That
+repo imports this one as a read-only path dependency and replaces the sorry
+placeholder with a real proof assembled from a U-lane spine
+(`lean/RVOL/P97/RVOLSpine.lean`). Its `Problem97.erdos97_rhs` has the same
+axiom closure as this repo's version; the `sorryAx` traces to three named leaves
+in the RVOL spine.
 
-1. **U1 - two-short-cap reduction:** reduce to a terminal `(m, 4, 4)` packet (one
-   surplus cap of size `m`, two exact-4 caps), or extract a removable vertex
-   directly.
-2. **U2 - equilateral-MEC / Apollonius caps:** force the two short caps onto the
-   equilateral min-enclosing-circle interface (their points lie on Apollonius
-   arcs).
-3. **U3 - short-cap saturation:** show the short caps are deletion-saturated, so a
-   failed deletion localizes to a specific dangerous packet rather than a global
-   obstruction.
-4. **U4 - large-cap mode dichotomy:** the surplus-apex witness radius splits into
-   Mode A (`r = d`, the apex radius) and Mode B (`r ≠ d`, the genuinely large-`n`
-   case).
-5. **U5 - Mode A deletion:** produce a removable vertex in the surplus cap.
-6. **U6 - Mode B exclusion or descent:** contradiction, reduction back to Mode A,
-   or export to the escaped-witness branch.
+**Current open gates in p97-rvol (as of 2026-06-27):**
 
-Many sub-lemmas are proven (MEC arc-angle parametrization, the two-circle
-crossing kernel, single-center cap-arc monotonicity, the U2 Apollonius-arc step,
-the U5 q-critical pattern kill over 16,181,520 patterns, and the finite-audit
-extinction). The program stops at one place.
+| Gate | Lean name | Role |
+|---|---|---|
+| U1.2 exactness from minimality | `Problem97.u1ExactnessFromMinimality_holds` | minimality drives U1 into (m,4,4) or produces removable vertex directly |
+| U2.B no strict adjacent-cap escape | `Problem97.noStrictAdjacentEscapeAtOppApex1_holds` | route-B geometric certificate at the first non-surplus apex |
+| U3 deletion-facing saturation | `Problem97.u3DeletionSaturation_holds` | every q-allowed four-class meets each short cap in at most two points |
 
-**The obstruction (`Obstruction OQ-1`, "same-circle export").** At the U5 Mode-A
-leaf, closing the deletion reduces to: after deleting the failed-deletion vertex
-`q`, the structure-selected fourth witness `u` still lies on the center's fixed
-circle - `dist(p, u) = r`, equivalently the cocircularity determinant `Δ = 0` -
-**without re-using `q`**. This metric equality is the conserved core of the lemma:
-it is selection-independent (the same `Δ = 0` reappears across replacement
-routes). Several routes to it are **proven dead**, for a structural reason rather
-than for lack of effort:
+The U-lane strategy is: reduce to a `(m, 4, 4)` terminal packet (U1), force
+the two short caps onto equilateral-MEC Apollonius arcs (U2), show short caps
+are deletion-saturated (U3), split on surplus-apex witness radius (U4: Mode A vs
+Mode B), produce a removable vertex in Mode A (U5), and exclude or descend in
+Mode B (U6). Many connective lemmas are fully proven; the three gates above are
+the live frontier.
 
-- a finite conjunction of cap-order / sign inequalities cannot imply the metric
-  equality `Δ = 0` (the selected `u` ranges over a positive-dimensional order
-  stratum on which `Δ` is not identically zero);
-- no closed-cone SOS / Positivstellensatz certificate for the cap-monotonicity
-  inequality exists at any degree (degenerate strata in the closure violate it);
-- Ptolemy-equality and the saturation-as-equality-source arguments are both
-  circular (each is equivalent to the conclusion `Δ = 0`);
-- multi-deletion collapses to a global blocker-hypergraph problem.
-
-The root cause is that the realization variety is `∃ℝ`-complete (Mnëv
-universality), which blocks general topological / incidence arguments from
-forcing `Δ = 0`.
-
-**Current frontier.** The live target is a narrowed row-specialized confinement
-statement (the `c5d3b` consumer payload). Finite SMT / `msolve` screens of the
-residual leaves are all UNSAT to date (a 525-open-leaf baseline; the exact
-346-family tail discharged by Gröbner certificates), but the *producer* theorem
-itself is still open. A recent statement refactor - stating the payload directly
-as an exact-two-overlap "vesica" exclusion, retiring the same/opposite-side split
-- awaits an opposite-side realizability falsification check before further proof
-effort is spent.
-
-**Independent route.** A rigidity / metric-variety programme attacks the
-underlying extremal statement directly (no U-lane structure). It has proven kills
-for small `n` (`n ≤ 12`, and the `n = 14` floor cell) but the uniform theorem for
-large `n` remains conjectured. Its unit-distance results do not by themselves
-discharge this lemma - the unit-distance → same-distance bridge has no valid
-form, so `RemovableVertexOfLarge` must be attacked in its native variable-radius
-form.
+See [`p97-rvol/docs/live-status.md`](../p97-rvol/docs/live-status.md) for the
+authoritative current state and proof-blueprint commands. Proven dead ends are
+catalogued in [`p97-rvol/docs/dead-ends.md`](../p97-rvol/docs/dead-ends.md).
 
 ### Problem 96
 
