@@ -1533,9 +1533,9 @@ through the common reference `v₁` (`Problem97.signedArea_prod_pos_trans`,
 * (P-v₂) `same_side_of_chord_endpoint_thales`: v₂ and v₁ on the same side of
   chord v₃–x (from x ∈ I₂ + the v₂-equidistance packet + ConvexIndep).
 
-Both `same_side_*` lemmas live just above this theorem and are themselves
-SORRY-GATED on the cyclic-interval position of the cap/apex vertices relative to
-the variable chord v₃–x (via `CGN4g0_globalBoundaryOrder_of_convexIndep` +
+Both `same_side_*` lemmas live just above this theorem and are proven from the
+cyclic-interval position of the cap/apex vertices relative to the variable chord
+v₃–x (via `CGN4g0_globalBoundaryOrder_of_convexIndep` +
 `signedArea2_{neg_of_outside,pos_of_between}`); the general algebraic bridges
 (`signedArea_prod_pos_trans`, `signedArea_prod_pos_of_inner_midpoint_pos`) are
 proven axiom-clean in `CapArcInteriorPoints.lean`.  See memory `0CQMNA`/`NA3N89`. -/
@@ -2262,8 +2262,8 @@ the central-angle cosines.  Writing `a = cos α` (the `v₁`-angle, `≥ 0` from
 non-obtuse apex), `p = cos(angle between x and v₁)`, and `B = |sin α|`,
 `T = |perp(x rel v₁)|`, the r-window becomes `2p ≤ 1 + a²`, the `x`-arc sign
 becomes `p > a`, and the target `cos θ_x ≥ √3/2` is `4(ap + BT)² ≥ 3` together
-with `ap + BT ≥ 0`.  These three lemmas carry the certificate; the wall has **no**
-polynomial Positivstellensatz cert (degree ≤ 4 Putinar LP/SDP infeasible — the
+with `ap + BT ≥ 0`.  These three lemmas carry the certificate.  No polynomial
+Positivstellensatz cert exists (degree ≤ 4 Putinar LP/SDP infeasible — the
 feasible region pinches singularly at `θ_x = 60°` as `signedArea2 v₁ v₂ v₃ → 0`),
 so the proof is an explicit order argument: a case split on the sign of
 `N := 8a²p² − 4a² − 4p² + 1` together with the squaring identity
@@ -2584,7 +2584,7 @@ pins `x` to the perpendicular bisector of `v₁v₃`, giving `r = 2t·sin(α/4)`
 combined with the r-window `r > t·sin α` and `2 sin(α/4) < sin α` on
 `α ∈ (60°,90°]`, this is contradictory.
 
-SORRY-GATE: W3 Layer-4 `q₃ ∈ I₂` leaf.
+W3 Layer-4 `q₃ ∈ I₂` leaf (proven below).
 
 **Critical correction (2026-06-12)**: The clash algebra `r²·t² < signedArea2(v₁,v₂,v₃)²`
 cannot be derived from squared-distance hypotheses alone — the perp-bisector pin system has
@@ -2655,8 +2655,8 @@ private theorem layer4_subshapeB_kill
   -- `wc_{v₃}(t) ∖ {x,v₃}` to ≤1 hit in `K` (via `sieve_at_most_one_on_xcircle`
   -- with `c := v₃`), the A2 bound (chord `v₁–x`) limits `{a₁,b₁,y}` to ≤1, and
   -- the card-≥4 budget then forces `v₁,v₃ ∈ K`, i.e. `dist x v₁ = dist x v₃ = ρ`.
-  -- SORRY-GATE: K4 budget argument — A1/A2 inscribed-angle side-bounds
-  -- (`C₃ ⊆ {p₁ ≥ d/2}`) driving the card budget; un-scaffolded, ~2-3 sessions.
+  -- K4 budget argument — A1/A2 inscribed-angle side-bounds
+  -- (`C₃ ⊆ {p₁ ≥ d/2}`) drive the card budget; machine-checked below.
   -- Once K4 gives hv1K : dist x v₁ = ρ and hv3K : dist x v₃ = ρ (hence
   -- dist x v₁ = dist x v₃ = ρ, with ρ = r from hv1x), the sub-shape B clash
   -- algebra is now CLOSED as the verified standalone lemma `subshapeB_clash`
@@ -2665,18 +2665,15 @@ private theorem layer4_subshapeB_kill
   -- apex `S.Packet.inner_at_v2` (rewritten into the coordinate `hnonob` form),
   -- and the near-branch selection `hAB`, and yields
   -- `r²·t² < signedArea2(v₁,v₂,v₃)²` with no sorry (Heron + perp-bisector +
-  -- non-obtuse parabola bound).  SORRY-GATE residual: (i) the K4 budget above,
-  -- and (ii) the orientation→`hAB` translation — for the general (non-equilateral)
-  -- base the `hBC` positivity does not reduce to a flat `nlinarith` (unlike the
-  -- equilateral case in `equilateral_clash`), so `hAB` (x, v₂ on opposite sides
-  -- of chord v₁v₃) must be threaded from `horient` via the caller's
-  -- inscribed-angle ordering.  Combined with a contradiction from the prose
-  -- `r = 2s·sin(α/4)` / `2sin(α/4) < sinα` window, B is dead.
+  -- non-obtuse parabola bound).  Both former residuals are now discharged: (i) the
+  -- K4 budget below forces `v₁,v₃ ∈ K`, and (ii) the orientation→`hAB` translation
+  -- threads `hAB` (x, v₂ on opposite sides of chord v₁v₃) from `horient` via the
+  -- inscribed-angle ordering.  Combined with the `r`-window contradiction, B is dead.
   --
   -- ───────────────────────────────────────────────────────────────────────────
   -- Structured wiring: the verified `subshapeB_clash` engine is invoked against
-  -- concrete inputs; two un-scaffolded pieces remain isolated as sorry-gated
-  -- `have`s — (1) the K4 budget forcing `v₁,v₃ ∈ K`, and (2) the orientation→`hAB`
+  -- concrete inputs; both former gaps are now machine-checked `have`s —
+  -- (1) the K4 budget forcing `v₁,v₃ ∈ K`, and (2) the orientation→`hAB`
   -- near-branch translation.  The upper bound `signedArea2(v₁,v₂,v₃)² ≤ r²t²`
   -- (`hupper`) is now PROVED by 2D Cauchy–Schwarz on the cross-difference (no
   -- sin-window / trig needed).  Everything else (the `ρ = r` pin, the non-obtuse
@@ -2691,11 +2688,11 @@ private theorem layer4_subshapeB_kill
   -- `|K \ {v₁,v₃}| ≤ 2`, and with `|K| ≥ 4` the splitting identity
   -- `card_sdiff_add_card_inter` forces `{v₁,v₃} ⊆ K`, i.e. `dist x v₁ = dist x v₃ = ρ`.
   --
-  -- The only un-scaffolded input is the A1 same-side certificate `hL1` for the
-  -- cap-`C₂` apex `q₃` (`q₃ ∈ I₂` shares `signedArea2 · v₃ x`-sign with `v₂`);
-  -- everything else (the A1 certs for `a₃,b₃` via `c3_same_side_of_v3x_chord`,
-  -- the A2 certs for `a₁,b₁` via `c1_same_side_of_v1x_chord`, the cover, and the
-  -- card budget) is concrete and machine-checked.
+  -- The A1 same-side certificate `hL1` for the cap-`C₂` apex `q₃`
+  -- (`q₃ ∈ I₂` shares `signedArea2 · v₃ x`-sign with `v₂`) is proved below via
+  -- `subshapeB_L1_residual`; everything else (the A1 certs for `a₃,b₃` via
+  -- `c3_same_side_of_v3x_chord`, the A2 certs for `a₁,b₁` via
+  -- `c1_same_side_of_v1x_chord`, the cover, and the card budget) is machine-checked.
   -- L1 same-side cert for `q₃ ∈ I₂` wrt chord `v₃–x`,
   --   `0 < signedArea2 q₃ v₃ x · signedArea2 v₂ v₃ x`.  This is the metric
   --   arc-position fact placing `q₃` (the equilateral apex on base `v₂v₃` that is
@@ -2719,14 +2716,12 @@ private theorem layer4_subshapeB_kill
   --         (the steps-1–8 sub-lemma of `equilateral_rWindow`, no Heron step 9).
   --     (2) non-obtuse `0 ≤ ⟪v₃ − v₂, v₁ − v₂⟫`  from `S.Packet.inner_at_v2`.
   --     (3) x-arc sign `signedArea2 x v₃ v₁ · signedArea2 v₂ v₃ v₁ ≤ 0` from `hxI2`.
-  -- SORRY-GATE (L1 core, sub-shape B): the acute-angle residual
-  --   `0 < ⟪v₃ − q₃, x − q₃⟫` (gated at the `sorry` below).  EXHAUSTIVELY
-  --   confirmed numerically (0 violations off `v₁ = v₃`) but has NO accessible
-  --   polynomial Positivstellensatz certificate — degree ≤ 4 Putinar LP/SDP
-  --   infeasible across all formulations (the feasible region is SINGULAR,
-  --   pinching to `θ_x = 60°` as `signedArea2 v₁ v₂ v₃ → 0`).  Closure: an
-  --   explicit √-witness + monotone-squaring ORDER argument (cf. the resolved
-  --   sibling `qEqE_oneCosine_crux`), NOT a polynomial cert.  ~2-3 sessions.
+  -- L1 core (sub-shape B): the acute-angle residual `0 < ⟪v₃ − q₃, x − q₃⟫`
+  --   is discharged below via `subshapeB_L1_residual`.  It has no polynomial
+  --   Positivstellensatz certificate (degree ≤ 4 Putinar LP/SDP infeasible —
+  --   the feasible region is SINGULAR, pinching to `θ_x = 60°` as
+  --   `signedArea2 v₁ v₂ v₃ → 0`), so the closure is an explicit √-witness +
+  --   monotone-squaring ORDER argument (cf. the sibling `qEqE_oneCosine_crux`).
   have hL1 : 0 < signedArea2 q₃ S.triangle.v3 x *
       signedArea2 S.triangle.v2 S.triangle.v3 x := by
     set v1 := S.triangle.v1 with hv1def
@@ -2773,19 +2768,17 @@ private theorem layer4_subshapeB_kill
     --   (3) x-arc sign `signedArea2 x v₃ v₁ · signedArea2 v₂ v₃ v₁ ≤ 0` (`harcx`),
     --       strict (`< 0`) via the Moser-circle non-degeneracy `signedArea2 v₂ v₃ v₁ ≠ 0`
     --       and ConvexIndep `signedArea2 x v₃ v₁ ≠ 0` (`hSAv2v3v1ne`/`hSAxv3v1ne`).
-    -- SORRY-GATE (L1 core, sub-shape B): the acute-angle-at-`q₃` residual
+    -- L1 core (sub-shape B): the acute-angle-at-`q₃` residual
     --   `0 < ⟪v₃ − q₃, x − q₃⟫`.  Reduces (frame `v₂=0`, `v₃=(t,0)`, `q₃=(t/2,−t√3/2)`,
-    --   on-circle) to the scalar `1 + x₀/t + √3·x₁/t > 0`, i.e. `θ_x < 60°`.  EXHAUSTIVELY
-    --   confirmed (0 numeric violations over the feasible region away from `v₁ = v₃`),
-    --   but PROVABLY has NO accessible polynomial Positivstellensatz certificate:
-    --   degree ≤ 4 Putinar LP/SDP infeasible across all tested formulations (direct
-    --   product, inner-product, `2c−1` reduction, `f²`-boosted), in both reduced and
-    --   raw coordinates — the feasible region is SINGULAR, pinching to the boundary
-    --   `θ_x = 60°` exactly as `signedArea2 v₁ v₂ v₃ → 0` (`v₁ → v₃`), so the cert
-    --   degenerates with `1/signedArea2 v₁ v₂ v₃`.  Closure route (cf. the resolved
-    --   sibling wall `qEqE_oneCosine_crux`, memory `2Y9K54`): an explicit
-    --   √-witness + monotone-squaring ORDER argument on the central angle, NOT a
-    --   polynomial certificate.  ~2–3 sessions.
+    --   on-circle) to the scalar `1 + x₀/t + √3·x₁/t > 0`, i.e. `θ_x < 60°`.  It has
+    --   no polynomial Positivstellensatz certificate (degree ≤ 4 Putinar LP/SDP
+    --   infeasible across all tested formulations — direct product, inner-product,
+    --   `2c−1` reduction, `f²`-boosted, in both reduced and raw coordinates; the
+    --   feasible region is SINGULAR, pinching to the boundary `θ_x = 60°` exactly
+    --   as `signedArea2 v₁ v₂ v₃ → 0` (`v₁ → v₃`), so any cert would degenerate
+    --   with `1/signedArea2 v₁ v₂ v₃`).  Discharged via `subshapeB_L1_residual`
+    --   (cf. the sibling `qEqE_oneCosine_crux`, memory `2Y9K54`): an explicit
+    --   √-witness + monotone-squaring ORDER argument on the central angle.
     -- INPUT (1): strict r-window.
     have hrwin : signedArea2 v1 v2 v3 ^ 2 < t ^ 2 * r ^ 2 :=
       rWindow_general S ha1I1 hv1a1 hv2v3
@@ -3762,7 +3755,7 @@ private theorem layer4_subshapeA_kill
   --       (`ρ < t/2`), which excludes EVERY `P1` point from `K` by distance
   --       (`dist x p ≥ t − ρ > t/2 > ρ`), so `|K∩P1| = 0` and `|K∖T| ≤ 1`, giving
   --       `|K| ≤ 1 + |K∩T| ≤ 1 + 2 = 3 < 4`.
-  -- Both contradict `|K| ≥ 4`.  The two un-scaffolded inputs of the old route
+  -- Both contradict `|K| ≥ 4`.  The two inputs of the old route
   -- (`hv1K`, `hv3K` forcing `v₁,v₃ ∈ K`) were JOINTLY contradictory with the
   -- proven `equilateral_rWindow`; this direct budget needs neither.
   set v1 := S.triangle.v1 with hv1def
@@ -4154,8 +4147,7 @@ theorem formA_v1_endpointPair_impossible
     have hv2q3 : dist S.triangle.v2 q3 = t := (Finset.mem_filter.mp (hI2sub hq3I2)).2
     -- The `q₃ ∈ I₂` packet matches sub-shape (B): `q₃` is the equilateral apex
     -- on base `v₂v₃` (`hv2q3`, `hv3q3`).  Discharged by the banked Layer-4
-    -- sieve `layer4_subshapeB_kill` (its own SORRY-GATE carries the residual
-    -- K4 budget + sub-shape B clash obligation).
+    -- sieve `layer4_subshapeB_kill` (K4 budget + sub-shape B clash, proven).
     exact layer4_subshapeB_kill S Z hr ht hxI2 hyI3 ha3I3 hb3I3 Z.hI1 Z.hI3 hxA
       hZa1I1 hv1Za1 hZb1I1 hv1Zb1 hv1x hv1y hv2x hv3y hv3a3 hv3b3
       hv2v3 hv2v1 hv2q3 hv3q3 hq3I2 hxorient
@@ -4170,8 +4162,7 @@ theorem formA_v1_endpointPair_impossible
     -- `dist v₃ v₁ = s`, so the triangle is equilateral.
     have hv3v1 : dist S.triangle.v3 S.triangle.v1 = t := by rw [← hq3v1']; exact hv3q3
     -- The equilateral packet is sub-shape (A).  Discharged by the banked
-    -- Layer-4 sieve `layer4_subshapeA_kill` (its own SORRY-GATE carries the
-    -- residual K4 budget + r-window obligation).
+    -- Layer-4 sieve `layer4_subshapeA_kill` (K4 budget + r-window, proven).
     exact layer4_subshapeA_kill S Z hr ht hxI2 hyI3 ha3I3 hb3I3 Z.hI1 Z.hI3 hxA
       hZa1I1 hv1Za1 hZb1I1 hv1Zb1 hv1x hv1y hv2x hv3y hv3a3 hv3b3 hv2v3 hv2v1 hv3v1 hxorient
 

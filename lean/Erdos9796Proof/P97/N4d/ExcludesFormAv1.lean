@@ -8,9 +8,10 @@ import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 This file packages the theorem-facing `v₁` Form-`a` exclusion required by
 `docs/n-lane/specs/W4-formA-v1-spec.md`.
 
-The endpoint-column branches are intentionally left as `SORRY-GATE`s against the
-separate Form-`b` / Form-`c` workstreams.  The interior-interior branch is the
-new geometry lane for this module.
+The interior-interior branch is handled here by the radical-axis reflection
+argument; the endpoint-column branches route to the proven
+`formA_v1_endpointPair_impossible` (and `N4dExcludesFormB_v2`).  All branches of
+`N4dExcludesFormA_v1_of_layout` are discharged — no open obligation remains.
 -/
 
 open scoped EuclideanGeometry
