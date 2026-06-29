@@ -291,13 +291,15 @@ placeholder with a real proof assembled from a U-lane spine
 axiom closure as this repo's version; the `sorryAx` traces to three named leaves
 in the RVOL spine.
 
-**Current open gates in p97-rvol (as of 2026-06-27):**
+**Current open gates in p97-rvol (as of 2026-06-29):**
 
 | Gate | Lean name | Role |
 |---|---|---|
 | U1.2 exactness from minimality | `Problem97.u1ExactnessFromMinimality_holds` | minimality drives U1 into (m,4,4) or produces removable vertex directly |
 | U2.B no strict adjacent-cap escape | `Problem97.noStrictAdjacentEscapeAtOppApex1_holds` | route-B geometric certificate at the first non-surplus apex |
-| U3 deletion-facing saturation | `Problem97.u3DeletionSaturation_holds` | every q-allowed four-class meets each short cap in at most two points |
+| U3 parent removable | `Problem97.u3ParentRemovable_holds` | from IsM44 + U2 + Minimal, produce a removable vertex |
+
+`Problem97.u3DeletionSaturation_holds` (q-deleted short-cap overlap bound) is now **proven** via `shortCapDeletionSaturation_of_u2`; `u3ParentRemovable_holds` is the new U3 gate directly above it.
 
 The U-lane strategy is: reduce to a `(m, 4, 4)` terminal packet (U1), force
 the two short caps onto equilateral-MEC Apollonius arcs (U2), show short caps
