@@ -198,6 +198,7 @@ moserCount <= 2                                      CLOSED assuming
                                                      no-strict-escape interface/wiring CLOSED;
                                                      endpoint-radius no-strict wrapper CLOSED;
                                                      endpoint-radius/no-strict equivalence CLOSED;
+                                                     private reflection kernel CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -374,6 +375,7 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep
+  Problem97.twoCircle_sameSide_reflection_false
   SurplusCapPacket.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
@@ -548,6 +550,15 @@ primitive-row metric exclusion                       OPEN
   four-point indexed cap under convexity.  This is useful bookkeeping, but it is
   not a closure: endpoint-radius production and no-strict escape are now known
   to be equivalent at this interface.
+
+  The reusable reflection-kernel part of the strict-escape residual is also
+  closed.  `twoCircle_sameSide_reflection_false` packages the clean rvol private
+  subcase: two distinct points on the same two centered circles cannot both lie
+  strictly on the same side of the chord joining the centers.  This is the
+  kernel used in the sibling `oppCap2_escape_private_false` and in the paired
+  surplus-apex-circle reflection kill.  It does not discharge the endpoint
+  escape or pinned surplus-family residuals; it only isolates the part that is
+  pure two-circle reflection geometry.
 
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
@@ -837,14 +848,25 @@ primitive-row metric exclusion                       OPEN
       the indexed-cap interface.  The equivalence sharpens the blocker; it does
       not remove it.
 
+    Reflection-kernel outcome:
+      The reusable same-side two-circle reflection contradiction is implemented
+      and built:
+
+        `Problem97.twoCircle_sameSide_reflection_false`
+
+      This matches the kernel-clean private subcase in `../p97-rvol`; the
+      remaining no-strict work is now specifically the endpoint escape and
+      pinned surplus-family residuals, not the reflection algebra.
+
     Remaining blocker:
       Prove the endpoint-radius production hypotheses for the two non-surplus
       short-cap indices, or separately prove the positive adjacent closed-cap
       counts plus one-hit upper bounds needed by the non-surplus selected-apex
       reducer.  The sibling `p97-rvol` search shows this as the route through
       `oppApex*_endpointRadiusWitness_*` and `NoStrictAdjacentEscapeAtOppApex*`;
-      its full closure there depends on additional geometric/certificate leaves,
-      so it should not be treated here as already solved.
+      its full closure there depends on the endpoint-escape and pinned
+      surplus-family residual leaves, so it should not be treated here as
+      already solved.
   ```
 
 ## Remaining Risk

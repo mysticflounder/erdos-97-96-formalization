@@ -189,6 +189,32 @@ theorem signedArea2_reflection_neg {q v2 y u : ℝ²}
   have h := signedArea2_apex_midpoint q v2 y u
   rw [hmid] at h; linarith
 
+/-- **Two-circle same-side reflection contradiction.**  Two distinct points on
+the same two centered circles cannot both lie strictly on the same side of the
+chord joining the two centers, expressed relative to a fixed test apex.
+
+The two-circle equal-radius hypotheses put the midpoint of `y` and `u` on the
+chord line `q v₂`; `signedArea2_reflection_neg` flips their signed areas, while
+the two strict same-side hypotheses force the products with the apex signed area
+to have the same positive sign. -/
+theorem twoCircle_sameSide_reflection_false {q v2 apex y u : ℝ²} {rq rv : ℝ}
+    (huq : dist u q = rq) (hyq : dist y q = rq)
+    (huv : dist u v2 = rv) (hyv : dist y v2 = rv)
+    (hne : u ≠ y)
+    (huside : 0 < signedArea2 u q v2 * signedArea2 apex q v2)
+    (hyside : 0 < signedArea2 y q v2 * signedArea2 apex q v2) :
+    False := by
+  have hmid : signedArea2 (midpoint ℝ y u) q v2 = 0 :=
+    twoCircle_midpoint_collinear huq hyq huv hyv hne
+  have hflip : signedArea2 u q v2 = - signedArea2 y q v2 :=
+    signedArea2_reflection_neg hmid
+  have hkey :
+      signedArea2 u q v2 * signedArea2 apex q v2 =
+        -(signedArea2 y q v2 * signedArea2 apex q v2) := by
+    rw [hflip]
+    ring
+  linarith [huside, hyside, hkey]
+
 /-- **`c5d2c0a` exact (convex-position core).**  In a CCW convex polygon `φ`,
 with chord endpoints `q = φ iq`, `v₂ = φ iv2`, `iq < iv2`, a short-cap witness
 `y = φ iy` (`int(C₂)`, index `> iv2`) and a large-cap witness `x = φ ix`
