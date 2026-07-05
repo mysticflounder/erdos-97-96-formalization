@@ -206,6 +206,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      classification CLOSED;
                                                      non-surplus other-cap
                                                      reduction CLOSED;
+                                                     residual assembly to
+                                                     containment CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -305,6 +307,20 @@ strictAdjacentEscapeAt_reduces_to_endpointEscapeData
 
   Status: OTHER-CAP NON-SURPLUS REDUCTION CLOSED; endpoint residual OPEN;
   surplus-side pinned-family residual OPEN.
+
+The endpoint/surplus split is now assembled into the Q-facing containment
+interface:
+
+```text
+IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals
+IsM44.nonSurplusMoserCapContainment_of_endpoint_surplus_residuals
+```
+
+Thus `NonSurplusMoserCapContainment` no longer needs a monolithic no-strict
+adjacent-escape theorem.  It follows from exactly four residual exclusions:
+endpoint-left at `oppIndex1`, endpoint-right at `oppIndex2`, the right
+surplus-adjacent side at `oppIndex1`, and the left surplus-adjacent side at
+`oppIndex2`.
 
 endpointEscapeAt_false
   The endpoint residual itself is impossible.
@@ -517,6 +533,8 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.IsM44.rightStrictEscape_oppIndex2_endpointData_elim
   SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
   SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
+  SurplusCapPacket.IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals
+  SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_endpoint_surplus_residuals
   SurplusCapPacket.leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
   SurplusCapPacket.rightAdjacentInteriorByIndex_surplusIdx_eq_oppInterior2
   SurplusCapPacket.IsM44.exists_surplusAdjacentInterior_pairs
@@ -1139,6 +1157,19 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
       escape at those indices is forced onto the surplus-adjacent side.  This is
       the formal separation between endpoint escape and the pinned surplus-family
       residual.
+
+    Residual assembly outcome:
+      The non-surplus containment interface now follows from the endpoint and
+      surplus-side residual exclusions:
+
+        `IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals`
+        `IsM44.nonSurplusMoserCapContainment_of_endpoint_surplus_residuals`
+
+      Concretely, the remaining hypotheses are endpoint-left at `oppIndex1`,
+      endpoint-right at `oppIndex2`, the right surplus-adjacent side at
+      `oppIndex1`, and the left surplus-adjacent side at `oppIndex2`.  This is
+      the current formal reduction of the Q-facing
+      `NonSurplusMoserCapContainment` obligation.
 
     Remaining blocker:
       Discharge `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` with a

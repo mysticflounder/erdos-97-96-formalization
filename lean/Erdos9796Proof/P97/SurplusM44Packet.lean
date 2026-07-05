@@ -2799,6 +2799,84 @@ theorem IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
         hradius hcard hxT hxRight
         (fun {rho} hres => hend (rho := rho) (x := x) hres))
 
+/-- Endpoint residuals plus the two surplus-side residuals exclude strict
+adjacent escape at both non-surplus cap indices. -/
+theorem IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    (hend1 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False)
+    (hend2 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+    (hsurplus1 :
+      ∀ {radius : ℝ} {x : ℝ²}, 0 < radius →
+        4 ≤ (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex1) radius).card →
+        x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius →
+        x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+          (S.capByIndex S.oppIndex1 ∪
+            S.leftAdjacentCapByIndex S.oppIndex1) →
+        False)
+    (hsurplus2 :
+      ∀ {radius : ℝ} {x : ℝ²}, 0 < radius →
+        4 ≤ (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex2) radius).card →
+        x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius →
+        x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+          (S.capByIndex S.oppIndex2 ∪
+            S.rightAdjacentCapByIndex S.oppIndex2) →
+        False) :
+    S.NonSurplusNoStrictAdjacentEscape := by
+  constructor
+  · intro radius hradius hcard hstrict
+    rcases hM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
+        hK4 hconv hradius hcard
+        (fun {rho} {x} hres =>
+          hend1 (radius := radius) (rho := rho) (x := x) hres)
+        hstrict with
+      ⟨x, hxT, hxSurplus⟩
+    exact hsurplus1 hradius hcard hxT hxSurplus
+  · intro radius hradius hcard hstrict
+    rcases hM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
+        hK4 hconv hradius hcard
+        (fun {rho} {x} hres =>
+          hend2 (radius := radius) (rho := rho) (x := x) hres)
+        hstrict with
+      ⟨x, hxT, hxSurplus⟩
+    exact hsurplus2 hradius hcard hxT hxSurplus
+
+/-- Endpoint residuals plus the two surplus-side residuals supply the
+non-surplus Moser-cap containment interface used by the Q-facing row. -/
+theorem IsM44.nonSurplusMoserCapContainment_of_endpoint_surplus_residuals
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    (hend1 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False)
+    (hend2 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+    (hsurplus1 :
+      ∀ {radius : ℝ} {x : ℝ²}, 0 < radius →
+        4 ≤ (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex1) radius).card →
+        x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius →
+        x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+          (S.capByIndex S.oppIndex1 ∪
+            S.leftAdjacentCapByIndex S.oppIndex1) →
+        False)
+    (hsurplus2 :
+      ∀ {radius : ℝ} {x : ℝ²}, 0 < radius →
+        4 ≤ (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex2) radius).card →
+        x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius →
+        x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+          (S.capByIndex S.oppIndex2 ∪
+            S.rightAdjacentCapByIndex S.oppIndex2) →
+        False) :
+    S.NonSurplusMoserCapContainment :=
+  hM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape hconv
+    (hM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals
+      hK4 hconv hend1 hend2 hsurplus1 hsurplus2)
+
 /-- At the surplus cap index, the left-adjacent interior is the first
 non-surplus opposite interior. -/
 theorem leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
