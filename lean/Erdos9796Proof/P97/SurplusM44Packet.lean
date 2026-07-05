@@ -480,6 +480,172 @@ theorem mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
     exact Finset.mem_erase.mpr
       ⟨hxne_left, Finset.mem_erase.mpr ⟨hxne_right, hxcap⟩⟩
 
+private theorem mem_triangle_verts_cases
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²}
+    (hx : x ∈ S.triangle.verts) :
+    x = S.triangle.v1 ∨ x = S.triangle.v2 ∨ x = S.triangle.v3 := by
+  simpa [MoserTriangle.verts] using hx
+
+/-- A point in the strict interior of an indexed cap is private to that cap:
+it is not in either adjacent closed cap. -/
+theorem capInteriorByIndex_mem_private
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    x ∈ S.capByIndex i \
+      (S.leftAdjacentCapByIndex i ∪ S.rightAdjacentCapByIndex i) := by
+  classical
+  fin_cases i
+  · simp only [capInteriorByIndex] at hxI
+    rw [Finset.mem_erase, Finset.mem_erase] at hxI
+    have hxC1 : x ∈ S.partition.C1 := hxI.2.2
+    have hxNonMoser : x ∉ S.triangle.verts := by
+      intro hxVerts
+      rcases mem_triangle_verts_cases hxVerts with rfl | rfl | rfl
+      · exact S.partition.v1_notin_C1 hxC1
+      · exact hxI.2.1 rfl
+      · exact hxI.1 rfl
+    have hxA : x ∈ A := S.partition.C1_subset hxC1
+    have hone := S.partition.nonmoser_in_one x hxA hxNonMoser
+    have hxNotC2 : x ∉ S.partition.C2 := by
+      intro hxC2
+      by_cases hxC3 : x ∈ S.partition.C3
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    have hxNotC3 : x ∉ S.partition.C3 := by
+      intro hxC3
+      by_cases hxC2 : x ∈ S.partition.C2
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [capByIndex] using hxC1, by
+        intro hxUnion
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion
+        exact hxUnion.elim hxNotC2 hxNotC3⟩
+  · simp only [capInteriorByIndex] at hxI
+    rw [Finset.mem_erase, Finset.mem_erase] at hxI
+    have hxC2 : x ∈ S.partition.C2 := hxI.2.2
+    have hxNonMoser : x ∉ S.triangle.verts := by
+      intro hxVerts
+      rcases mem_triangle_verts_cases hxVerts with rfl | rfl | rfl
+      · exact hxI.1 rfl
+      · exact S.partition.v2_notin_C2 hxC2
+      · exact hxI.2.1 rfl
+    have hxA : x ∈ A := S.partition.C2_subset hxC2
+    have hone := S.partition.nonmoser_in_one x hxA hxNonMoser
+    have hxNotC3 : x ∉ S.partition.C3 := by
+      intro hxC3
+      by_cases hxC1 : x ∈ S.partition.C1
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    have hxNotC1 : x ∉ S.partition.C1 := by
+      intro hxC1
+      by_cases hxC3 : x ∈ S.partition.C3
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [capByIndex] using hxC2, by
+        intro hxUnion
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion
+        exact hxUnion.elim hxNotC3 hxNotC1⟩
+  · simp only [capInteriorByIndex] at hxI
+    rw [Finset.mem_erase, Finset.mem_erase] at hxI
+    have hxC3 : x ∈ S.partition.C3 := hxI.2.2
+    have hxNonMoser : x ∉ S.triangle.verts := by
+      intro hxVerts
+      rcases mem_triangle_verts_cases hxVerts with rfl | rfl | rfl
+      · exact hxI.2.1 rfl
+      · exact hxI.1 rfl
+      · exact S.partition.v3_notin_C3 hxC3
+    have hxA : x ∈ A := S.partition.C3_subset hxC3
+    have hone := S.partition.nonmoser_in_one x hxA hxNonMoser
+    have hxNotC1 : x ∉ S.partition.C1 := by
+      intro hxC1
+      by_cases hxC2 : x ∈ S.partition.C2
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    have hxNotC2 : x ∉ S.partition.C2 := by
+      intro hxC2
+      by_cases hxC1 : x ∈ S.partition.C1
+      · simp [hxC1, hxC2, hxC3] at hone
+      · simp [hxC1, hxC2, hxC3] at hone
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [capByIndex] using hxC3, by
+        intro hxUnion
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion
+        exact hxUnion.elim hxNotC1 hxNotC2⟩
+
+/-- A point in the strict left-adjacent interior is a strict left-adjacent
+escape point relative to the indexed cap. -/
+theorem leftAdjacentInteriorByIndex_mem_strict
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
+    (hxI : x ∈ S.leftAdjacentInteriorByIndex i) :
+    x ∈ S.leftAdjacentCapByIndex i \
+      (S.capByIndex i ∪ S.rightAdjacentCapByIndex i) := by
+  fin_cases i
+  · have h := S.capInteriorByIndex_mem_private 1 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [leftAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion ⊢
+        exact hxUnion.elim Or.inr Or.inl⟩
+  · have h := S.capInteriorByIndex_mem_private 2 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [leftAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion ⊢
+        exact hxUnion.elim Or.inr Or.inl⟩
+  · have h := S.capInteriorByIndex_mem_private 0 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [leftAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simp only [leftAdjacentCapByIndex, rightAdjacentCapByIndex,
+          capByIndex, Finset.mem_union] at hxUnion ⊢
+        exact hxUnion.elim Or.inr Or.inl⟩
+
+/-- A point in the strict right-adjacent interior is a strict right-adjacent
+escape point relative to the indexed cap. -/
+theorem rightAdjacentInteriorByIndex_mem_strict
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
+    (hxI : x ∈ S.rightAdjacentInteriorByIndex i) :
+    x ∈ S.rightAdjacentCapByIndex i \
+      (S.capByIndex i ∪ S.leftAdjacentCapByIndex i) := by
+  fin_cases i
+  · have h := S.capInteriorByIndex_mem_private 2 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [rightAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simpa [leftAdjacentCapByIndex, rightAdjacentCapByIndex] using
+          hxUnion⟩
+  · have h := S.capInteriorByIndex_mem_private 0 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [rightAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simpa [leftAdjacentCapByIndex, rightAdjacentCapByIndex] using
+          hxUnion⟩
+  · have h := S.capInteriorByIndex_mem_private 1 hxI
+    rcases Finset.mem_sdiff.mp h with ⟨hxCap, hxNot⟩
+    exact Finset.mem_sdiff.mpr
+      ⟨by simpa [rightAdjacentCapByIndex] using hxCap, by
+        intro hxUnion
+        apply hxNot
+        simpa [leftAdjacentCapByIndex, rightAdjacentCapByIndex] using
+          hxUnion⟩
+
 /-- A selected point in the left-adjacent closed cap is in the strict
 left-adjacent interior unless it is the outer Moser endpoint. -/
 theorem mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer
@@ -1116,6 +1282,17 @@ def IsMoserCapFormCAt
     SelectedClass A (S.oppositeVertexByIndex i) radius ∩
         S.rightAdjacentCapByIndex i = ({y} : Finset ℝ²)
 
+/-- The strict adjacent-cap escape branch for a Moser-centered selected class
+at one cyclic cap index. -/
+def StrictAdjacentEscapeAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) (radius : ℝ) :
+    Prop :=
+  ∃ x, x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∧
+    (x ∈ S.leftAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.rightAdjacentCapByIndex i) ∨
+      x ∈ S.rightAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
+
 /-- Form `a` gives positive closed-cap hits on both adjacent sides. -/
 theorem isMoserCapFormAAt_adjacentClosedCounts_pos
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
@@ -1410,6 +1587,71 @@ theorem moserCapFormsAt_of_convexIndep
           i hradius (by simpa [T] using hyT) hyright hyouter
       exact Or.inl
         ⟨x, y, hxI, hyI, by simpa [T] using hxeq, by simpa [T] using hyeq⟩
+
+/-- The form trichotomy leaves only strict adjacent-cap escapes when
+containment in the indexed cap fails. -/
+theorem strictAdjacentEscapeAt_of_moserCapFormsAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {radius : ℝ}
+    (hforms : S.MoserCapFormsAt i)
+    (hradius : 0 < radius)
+    (hcard : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card)
+    (hesc : ¬ SelectedClass A (S.oppositeVertexByIndex i) radius ⊆
+      S.capByIndex i) :
+    S.StrictAdjacentEscapeAt i radius := by
+  rcases hforms hradius hcard hesc with hA | hB | hC
+  · rcases hA with ⟨x, _y, hxI, _hyI, hleft, _hright⟩
+    have hxInter :
+        x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+            S.leftAdjacentCapByIndex i := by
+      rw [hleft]
+      simp
+    exact ⟨x, Finset.mem_of_mem_inter_left hxInter,
+      Or.inl (S.leftAdjacentInteriorByIndex_mem_strict i hxI)⟩
+  · rcases hB with ⟨x, hxI, hleft, _hright⟩
+    have hxInter :
+        x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+            S.leftAdjacentCapByIndex i := by
+      rw [hleft]
+      simp
+    exact ⟨x, Finset.mem_of_mem_inter_left hxInter,
+      Or.inl (S.leftAdjacentInteriorByIndex_mem_strict i hxI)⟩
+  · rcases hC with ⟨y, hyI, _hleft, hright⟩
+    have hyInter :
+        y ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+            S.rightAdjacentCapByIndex i := by
+      rw [hright]
+      simp
+    exact ⟨y, Finset.mem_of_mem_inter_left hyInter,
+      Or.inr (S.rightAdjacentInteriorByIndex_mem_strict i hyI)⟩
+
+/-- Upstream placement split at one cyclic short cap: a Moser-centered
+four-class is either contained in the cap, or it has a strict adjacent-cap
+escape. -/
+theorem containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {radius : ℝ}
+    (hforms : S.MoserCapFormsAt i)
+    (hradius : 0 < radius)
+    (hcard : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card) :
+    SelectedClass A (S.oppositeVertexByIndex i) radius ⊆ S.capByIndex i ∨
+      S.StrictAdjacentEscapeAt i radius := by
+  by_cases hsub :
+      SelectedClass A (S.oppositeVertexByIndex i) radius ⊆ S.capByIndex i
+  · exact Or.inl hsub
+  · exact Or.inr
+      (S.strictAdjacentEscapeAt_of_moserCapFormsAt hforms hradius hcard hsub)
+
+/-- Convexity supplies the upstream placement split for any indexed cap of
+closed-cardinality four. -/
+theorem containment_or_strictAdjacentEscapeAt_of_convexIndep
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcap : (S.capByIndex i).card = 4)
+    (hcard : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card) :
+    SelectedClass A (S.oppositeVertexByIndex i) radius ⊆ S.capByIndex i ∨
+      S.StrictAdjacentEscapeAt i radius :=
+  S.containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
+    (S.moserCapFormsAt_of_convexIndep hconv i hcap) hradius hcard
 
 /-- `N4c`-style classifier at one cyclic cap index: if a Moser-centered
 four-class escapes the corresponding cap, it has one of the escaped forms. -/

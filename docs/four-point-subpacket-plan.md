@@ -194,6 +194,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      N4c/N4d assembly CLOSED;
                                                      form-level assembly CLOSED;
                                                      form trichotomy CLOSED;
+                                                     placement split CLOSED;
+                                                     no-strict-escape OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
 rightAdjCount <= 1                                   OPEN
@@ -298,6 +300,9 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.leftOuterVertexByIndex_mem_capByIndex
   SurplusCapPacket.rightOuterVertexByIndex_mem_capByIndex
   SurplusCapPacket.mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
+  SurplusCapPacket.capInteriorByIndex_mem_private
+  SurplusCapPacket.leftAdjacentInteriorByIndex_mem_strict
+  SurplusCapPacket.rightAdjacentInteriorByIndex_mem_strict
   SurplusCapPacket.mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer
   SurplusCapPacket.mem_rightAdjacentInteriorByIndex_of_mem_rightAdjacentCapByIndex_of_ne_outer
   SurplusCapPacket.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
@@ -316,6 +321,7 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.IsMoserCapFormAAt
   SurplusCapPacket.IsMoserCapFormBAt
   SurplusCapPacket.IsMoserCapFormCAt
+  SurplusCapPacket.StrictAdjacentEscapeAt
   SurplusCapPacket.isMoserCapFormAAt_left_named_split
   SurplusCapPacket.isMoserCapFormAAt_right_named_split
   SurplusCapPacket.isMoserCapFormBAt_left_named_split
@@ -350,6 +356,9 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_formC
   SurplusCapPacket.NonSurplusMoserCapExcludes
   SurplusCapPacket.NonSurplusMoserCapFormExcludes
+  SurplusCapPacket.strictAdjacentEscapeAt_of_moserCapFormsAt
+  SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
+  SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
   SurplusCapPacket.nonSurplusMoserCapExcludes_of_form_excludes
   SurplusCapPacket.nonSurplusMoserCapContainment_of_classifies_excludes
@@ -467,6 +476,26 @@ primitive-row metric exclusion                       OPEN
   hypothesis.  Consequently, an `IsM44` packet under `ConvexIndep A` supplies
   `NonSurplusMoserCapForms` automatically, and non-surplus Moser-cap containment
   now reduces to the six form-level exclusions.
+
+  The rvol-style upstream placement split is now closed in this repo in generic
+  indexed form.  `StrictAdjacentEscapeAt i radius` records the residual branch:
+  a selected point lies in one adjacent closed cap and in neither the indexed
+  cap nor the other adjacent cap.  The private-interior lemmas prove that any
+  strict adjacent interior point is such a residual point, and
+  `containment_or_strictAdjacentEscapeAt_of_convexIndep` proves:
+
+  ```text
+  SelectedClass A (S.oppositeVertexByIndex i) radius <= S.capByIndex i
+  or
+  S.StrictAdjacentEscapeAt i radius.
+  ```
+
+  This removes the missing placement-split blocker.  It does not rule out the
+  strict branch and it does not supply both adjacent lower bounds for the N8
+  two-side primitive reducer.  The next containment step is therefore a
+  no-strict-adjacent-escape theorem for the relevant non-surplus short-cap
+  indices, analogous to the `NoStrictAdjacentEscapeAtOppApex*` interface found
+  in `../p97-rvol`.
 
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
@@ -703,11 +732,26 @@ primitive-row metric exclusion                       OPEN
       `IsM44.exists_surplusSelectorNamedSplit_of_formB`
       `IsM44.exists_surplusSelectorNamedSplit_of_formC`
 
-    The remaining blocker is not the count extraction.  It is the upstream
-    placement theorem: prove that the relevant Q branch supplies either a
-    Form `a/b/c` row at `S.surplusIdx` or the equivalent positive adjacent
-    closed-cap counts plus the one-hit upper bounds needed by the
-    non-surplus selected-apex reducer.
+    Follow-up outcome:
+      The upstream placement split itself is now implemented and built in
+      `Erdos9796Proof.P97.SurplusM44Packet`:
+
+        `StrictAdjacentEscapeAt`
+        `strictAdjacentEscapeAt_of_moserCapFormsAt`
+        `containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt`
+        `containment_or_strictAdjacentEscapeAt_of_convexIndep`
+
+      Thus a failed short-cap containment branch is no longer an unstructured
+      Q placement hypothesis: it is exactly a strict adjacent-cap escape.
+
+    Remaining blocker:
+      Prove a no-strict-adjacent-escape theorem strong enough to turn the
+      placement split into `NonSurplusMoserCapContainment`, or separately prove
+      the positive adjacent closed-cap counts plus one-hit upper bounds needed
+      by the non-surplus selected-apex reducer.  The sibling `p97-rvol` search
+      shows this as the `NoStrictAdjacentEscapeAtOppApex*` layer; its full
+      closure there depends on additional geometric/certificate leaves, so it
+      should not be treated here as already solved.
   ```
 
 ## Remaining Risk
