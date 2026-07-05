@@ -86,26 +86,13 @@ theorem FiniteN9Closure : FiniteN9ClosureStatement := by
     S.n4eCapContainment_of_n4c_n4d
       S.n4cClassifies_v1 S.n4cClassifies_v2 S.n4cClassifies_v3
       hExcl1 hExcl2 hExcl3
-  -- N6/N7 — the rigid common-radius `d` packet (consumes the spine this far).
-  obtain ⟨d, hd_pos, hd_c1, hd_c2, hd_c3⟩ := S.n7_circle_placement hN4e
-  -- D3/D4 + W8 — route the radius-`d` packet through the N8 single-apex
-  -- exhaustion.  Cap interior `I1` is nonempty (card ≥ 2), so pick any apex
-  -- `x ∈ S.I1`; it is a genuine non-Moser cap-interior point.  The shell's
-  -- global `K4` hypothesis (`S.hK4`, specialized to `x ∈ A`) supplies a
-  -- selected `4`-class radius `r`; package these into the `N8SelectedApex S 0 x`
-  -- and discharge via `S.N8k_single_apex_false`.
+  -- D3/D4 + W8 — route a cap-interior apex through the K4-facing N8 single-apex
+  -- consumer.  Cap interior `I1` is nonempty (card ≥ 2), so pick any apex
+  -- `x ∈ S.I1`; the shell's global `K4` hypothesis supplies the selected
+  -- `4`-class, and W10 exhausts its distribution.
   classical
   -- An apex `x` in the first cap interior (nonempty: `I1.card ≥ 2 > 0`).
   obtain ⟨x, hxI1⟩ : S.I1.Nonempty := Finset.card_pos.mp (by have := S.I1_card_ge_two; omega)
-  -- `I1 ⊆ C1 ⊆ A`, so `x ∈ A` and `S.hK4` applies at `x`.
-  have hxC1 : x ∈ S.CP.C1 := Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hxI1)
-  have hxA : x ∈ A := S.CP.C1_subset hxC1
-  obtain ⟨r, hr_pos, hr_card⟩ := S.hK4 x hxA
-  -- Build the single-apex packet at cap index `0` (= `I1`) and close.
-  exact S.N8k_single_apex_false (i := 0) hN4e
-    { radius := r
-      radius_pos := hr_pos
-      cap_mem := hxI1
-      selected_card := hr_card }
+  exact S.N8k_capInterior_false_of_hasNEquidistantProperty (i := 0) hN4e S.hK4 hxI1
 
 end Problem97

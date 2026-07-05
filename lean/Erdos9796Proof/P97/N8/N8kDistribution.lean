@@ -1,8 +1,10 @@
 import Erdos9796Proof.P97.N8.N8aArcTwoCircle       -- W7: N8a3_adjacent_one_hit
 import Erdos9796Proof.P97.N8.N8bEndpointPair       -- W8: N8b_endpoint_pair_split, N8e
+import Erdos9796Proof.P97.N8.FourSubpacket         -- selected-class four-point subpackets
 import Erdos9796Proof.P97.N8.N8hiSameCap           -- W9: N8h, N8i
 import Erdos9796Proof.P97.N8.N8CapCoordNorm        -- W10: interior-apex frame producers
-import Erdos9796Proof.P97.U2.WitnessReflectionKernel -- angular exclusion: twoCircle_midpoint_collinear, signedArea2_reflection_neg
+import Erdos9796Proof.P97.U2.WitnessReflectionKernel
+  -- angular exclusion: twoCircle_midpoint_collinear, signedArea2_reflection_neg
 
 /-!
 # W10 — N8k single-apex contradiction (distribution enumeration)
@@ -391,6 +393,165 @@ noncomputable def leftAdjCount
 noncomputable def rightAdjCount
     {A : Finset ℝ²} (S : FiniteEndpointShell A) (i : Fin 3) (x : ℝ²) (radius : ℝ) : ℕ :=
   (SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i).card
+
+/-- Packet-local Moser count is bounded by the corresponding full selected-class count. -/
+theorem packetMoserCount_le_moserCount
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius) :
+    S.packetMoserCount T ≤ S.moserCount x radius := by
+  simpa [moserCount] using S.packetMoserCount_le_selected hTsub
+
+/-- Packet-local same-cap count is bounded by the corresponding full selected-class count. -/
+theorem packetSameCapCount_le_sameCapCount
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius) :
+    S.packetSameCapCount i x T ≤ S.sameCapCount i x radius := by
+  simpa [sameCapCount] using S.packetSameCapCount_le_selected i hTsub
+
+/-- Packet-local left-adjacent count is bounded by the corresponding full selected-class count. -/
+theorem packetLeftAdjCount_le_leftAdjCount
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius) :
+    S.packetLeftAdjCount i T ≤ S.leftAdjCount i x radius := by
+  simpa [leftAdjCount] using S.packetLeftAdjCount_le_selected i hTsub
+
+/-- Packet-local right-adjacent count is bounded by the corresponding full selected-class count. -/
+theorem packetRightAdjCount_le_rightAdjCount
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius) :
+    S.packetRightAdjCount i T ≤ S.rightAdjCount i x radius := by
+  simpa [rightAdjCount] using S.packetRightAdjCount_le_selected i hTsub
+
+/-- A packet same-cap hit is exactly one whenever the full selected class has
+the same-cap one-hit bound. -/
+theorem packetSameCapCount_eq_one_of_le_one
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius)
+    (hpacket : 1 ≤ S.packetSameCapCount i x T)
+    (hfull : S.sameCapCount i x radius ≤ 1) :
+    S.packetSameCapCount i x T = 1 := by
+  have hle : S.packetSameCapCount i x T ≤ 1 :=
+    le_trans (S.packetSameCapCount_le_sameCapCount (x := x) (radius := radius) i hTsub)
+      hfull
+  omega
+
+/-- A packet left-adjacent hit is exactly one whenever the full selected class
+has the left-adjacent one-hit bound. -/
+theorem packetLeftAdjCount_eq_one_of_le_one
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius)
+    (hpacket : 1 ≤ S.packetLeftAdjCount i T)
+    (hfull : S.leftAdjCount i x radius ≤ 1) :
+    S.packetLeftAdjCount i T = 1 := by
+  have hle : S.packetLeftAdjCount i T ≤ 1 :=
+    le_trans (S.packetLeftAdjCount_le_leftAdjCount (x := x) (radius := radius) i hTsub)
+      hfull
+  omega
+
+/-- A packet right-adjacent hit is exactly one whenever the full selected class
+has the right-adjacent one-hit bound. -/
+theorem packetRightAdjCount_eq_one_of_le_one
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) {x : ℝ²} {radius : ℝ}
+    (i : Fin 3) {T : Finset ℝ²} (hTsub : T ⊆ SelectedClass A x radius)
+    (hpacket : 1 ≤ S.packetRightAdjCount i T)
+    (hfull : S.rightAdjCount i x radius ≤ 1) :
+    S.packetRightAdjCount i T = 1 := by
+  have hle : S.packetRightAdjCount i T ≤ 1 :=
+    le_trans (S.packetRightAdjCount_le_rightAdjCount (x := x) (radius := radius) i hTsub)
+      hfull
+  omega
+
+/-- A selected class with chosen left and right adjacent witnesses has an exact
+four-point primitive packet.  Once the full selected class has the one-hit
+bounds on the same, left, and right rows, and the Moser row is bounded by `2`,
+the packet row is forced to be either `(1,1,1,1)` or `(2,0,1,1)`. -/
+theorem N8SelectedApex.exists_left_right_primitive_packet_cases
+    {A : Finset ℝ²} {S : FiniteEndpointShell A} {i : Fin 3}
+    {x pL pR : ℝ²}
+    (hx : N8SelectedApex S i x)
+    (hpL : pL ∈ SelectedClass A x hx.radius ∩ S.leftAdjacentInteriorByIndex i)
+    (hpR : pR ∈ SelectedClass A x hx.radius ∩ S.rightAdjacentInteriorByIndex i)
+    (hm : S.moserCount x hx.radius ≤ 2)
+    (hs : S.sameCapCount i x hx.radius ≤ 1)
+    (hl : S.leftAdjCount i x hx.radius ≤ 1)
+    (hr : S.rightAdjCount i x hx.radius ≤ 1) :
+    ∃ T : Finset ℝ²,
+      pL ∈ T ∧
+      pR ∈ T ∧
+      T ⊆ SelectedClass A x hx.radius ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount i x T = 1 ∧
+          S.packetLeftAdjCount i T = 1 ∧
+          S.packetRightAdjCount i T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount i x T = 0 ∧
+          S.packetLeftAdjCount i T = 1 ∧
+          S.packetRightAdjCount i T = 1)) := by
+  rcases N8SelectedApex.exists_fourSubpacket_preserving_left_right_points_with_packet_budget
+      hx hpL hpR with
+    ⟨T, hpLT, hpRT, hTsub, hTcard, hl_packet, hr_packet, hbudget⟩
+  have hm_packet : S.packetMoserCount T ≤ 2 :=
+    le_trans (S.packetMoserCount_le_moserCount (x := x) (radius := hx.radius) hTsub)
+      hm
+  have hs_packet : S.packetSameCapCount i x T ≤ 1 :=
+    le_trans
+      (S.packetSameCapCount_le_sameCapCount (x := x) (radius := hx.radius) i hTsub)
+      hs
+  have hl_packet_eq : S.packetLeftAdjCount i T = 1 :=
+    S.packetLeftAdjCount_eq_one_of_le_one (x := x) (radius := hx.radius) i hTsub
+      hl_packet hl
+  have hr_packet_eq : S.packetRightAdjCount i T = 1 :=
+    S.packetRightAdjCount_eq_one_of_le_one (x := x) (radius := hx.radius) i hTsub
+      hr_packet hr
+  have hcases :=
+    packet_left_right_primitive_cases S hbudget hm_packet hs_packet
+      hl_packet_eq hr_packet_eq
+  exact ⟨T, hpLT, hpRT, hTsub, hTcard, hcases⟩
+
+/-- Count-facing version of
+`N8SelectedApex.exists_left_right_primitive_packet_cases`.  Positive full
+left/right adjacent counts supply the witnesses automatically; the same
+full one-hit bounds still force the packet rows to the two primitive cases. -/
+theorem N8SelectedApex.exists_left_right_primitive_packet_cases_of_counts
+    {A : Finset ℝ²} {S : FiniteEndpointShell A} {i : Fin 3}
+    {x : ℝ²}
+    (hx : N8SelectedApex S i x)
+    (hl_pos : 1 ≤ S.leftAdjCount i x hx.radius)
+    (hr_pos : 1 ≤ S.rightAdjCount i x hx.radius)
+    (hm : S.moserCount x hx.radius ≤ 2)
+    (hs : S.sameCapCount i x hx.radius ≤ 1)
+    (hl : S.leftAdjCount i x hx.radius ≤ 1)
+    (hr : S.rightAdjCount i x hx.radius ≤ 1) :
+    ∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A x hx.radius ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount i x T = 1 ∧
+          S.packetLeftAdjCount i T = 1 ∧
+          S.packetRightAdjCount i T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount i x T = 0 ∧
+          S.packetLeftAdjCount i T = 1 ∧
+          S.packetRightAdjCount i T = 1)) := by
+  classical
+  have hLpos :
+      0 < (SelectedClass A x hx.radius ∩ S.leftAdjacentInteriorByIndex i).card := by
+    have h :
+        1 ≤ (SelectedClass A x hx.radius ∩ S.leftAdjacentInteriorByIndex i).card := by
+      simpa [FiniteEndpointShell.leftAdjCount] using hl_pos
+    omega
+  have hRpos :
+      0 < (SelectedClass A x hx.radius ∩ S.rightAdjacentInteriorByIndex i).card := by
+    have h :
+        1 ≤ (SelectedClass A x hx.radius ∩ S.rightAdjacentInteriorByIndex i).card := by
+      simpa [FiniteEndpointShell.rightAdjCount] using hr_pos
+    omega
+  rcases Finset.card_pos.mp hLpos with ⟨pL, hpL⟩
+  rcases Finset.card_pos.mp hRpos with ⟨pR, hpR⟩
+  rcases hx.exists_left_right_primitive_packet_cases hpL hpR hm hs hl hr with
+    ⟨T, _hpLT, _hpRT, hTsub, hTcard, hcases⟩
+  exact ⟨T, hTsub, hTcard, hcases⟩
 
 /-- **W10 GATE-1 — apex Moser vertex excluded.**  For any interior cap apex
 `x ∈ S.capInteriorByIndex i` and any selected radius `r`, the Moser count is at most two:
@@ -1828,6 +1989,20 @@ theorem N8k_single_apex_false
           have hr1geC : 1 ≤ (SelectedClass A x r ∩ S.rightAdjacentInteriorByIndex i).card := by
             simpa [hr_count_def, FiniteEndpointShell.rightAdjCount] using hr1ge
           exact S.m1_branch_false hN4e hx.cap_mem hx.radius_pos hmc hl1geC hr1geC
+
+/-- **K4-facing N8k consumer.**  A global `K4` hypothesis supplies the
+selected-apex packet at any cap-interior point, and the W10 single-apex
+exhaustion immediately contradicts it. -/
+theorem N8k_capInterior_false_of_hasNEquidistantProperty
+    {A : Finset ℝ²} (S : FiniteEndpointShell A)
+    (hN4e : S.N4eCapContainment)
+    (hK4 : HasNEquidistantProperty 4 A)
+    {x : ℝ²} {i : Fin 3}
+    (hxcap : x ∈ S.capInteriorByIndex i) :
+    False := by
+  rcases N8SelectedApex.nonempty_of_hasNEquidistantProperty
+      (S := S) (i := i) (x := x) hK4 hxcap with ⟨hx⟩
+  exact S.N8k_single_apex_false hN4e hx
 
 end FiniteEndpointShell
 

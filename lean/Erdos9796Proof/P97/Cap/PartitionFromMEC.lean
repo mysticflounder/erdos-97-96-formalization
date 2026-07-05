@@ -460,4 +460,119 @@ theorem SurplusCapPacket.IsM44.surplus_card_ge_five
   have h := S.surplus_card_gt_four
   omega
 
+namespace SurplusCapPacket
+
+/-- The cap selected by a cyclic cap index. -/
+@[reducible] def capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Finset ℝ² :=
+  match i.1 with
+  | 0 => S.partition.C1
+  | 1 => S.partition.C2
+  | _ => S.partition.C3
+
+/-- The open interior of the cap selected by a cyclic cap index. -/
+@[reducible] noncomputable def capInteriorByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Finset ℝ² :=
+  match i.1 with
+  | 0 => (S.partition.C1.erase S.triangle.v2).erase S.triangle.v3
+  | 1 => (S.partition.C2.erase S.triangle.v3).erase S.triangle.v1
+  | _ => (S.partition.C3.erase S.triangle.v1).erase S.triangle.v2
+
+/-- The strict interior selected by a cap index is contained in the ambient
+point set. -/
+theorem capInteriorByIndex_subset
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.capInteriorByIndex i ⊆ A := by
+  intro x hx
+  fin_cases i
+  · simp only [capInteriorByIndex] at hx
+    rw [Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.partition.C1_subset hx.2.2
+  · simp only [capInteriorByIndex] at hx
+    rw [Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.partition.C2_subset hx.2.2
+  · simp only [capInteriorByIndex] at hx
+    rw [Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.partition.C3_subset hx.2.2
+
+/-- A closed cap of cardinality four has exactly two strict interior points. -/
+theorem capInteriorByIndex_card_eq_two_of_cap_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (hcard : (S.capByIndex i).card = 4) :
+    (S.capInteriorByIndex i).card = 2 := by
+  fin_cases i
+  · simp only [capInteriorByIndex, capByIndex] at hcard ⊢
+    have hv3 : S.triangle.v3 ∈ S.partition.C1.erase S.triangle.v2 := by
+      exact Finset.mem_erase.mpr ⟨S.triangle.v23_ne.symm, S.partition.v3_mem_C1⟩
+    rw [Finset.card_erase_of_mem hv3,
+      Finset.card_erase_of_mem S.partition.v2_mem_C1, hcard]
+  · simp only [capInteriorByIndex, capByIndex] at hcard ⊢
+    have hv1 : S.triangle.v1 ∈ S.partition.C2.erase S.triangle.v3 := by
+      exact Finset.mem_erase.mpr ⟨S.triangle.v13_ne, S.partition.v1_mem_C2⟩
+    rw [Finset.card_erase_of_mem hv1,
+      Finset.card_erase_of_mem S.partition.v3_mem_C2, hcard]
+  · simp only [capInteriorByIndex, capByIndex] at hcard ⊢
+    have hv2 : S.triangle.v2 ∈ S.partition.C3.erase S.triangle.v1 := by
+      exact Finset.mem_erase.mpr ⟨S.triangle.v12_ne.symm, S.partition.v2_mem_C3⟩
+    rw [Finset.card_erase_of_mem hv2,
+      Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
+
+/-- The strict interior of the first non-surplus opposite cap. -/
+noncomputable def oppInterior1 {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    Finset ℝ² :=
+  match S.surplusIdx with
+  | ⟨0, _⟩ => S.capInteriorByIndex 1
+  | ⟨1, _⟩ => S.capInteriorByIndex 2
+  | _      => S.capInteriorByIndex 0
+
+/-- The strict interior of the second non-surplus opposite cap. -/
+noncomputable def oppInterior2 {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    Finset ℝ² :=
+  match S.surplusIdx with
+  | ⟨0, _⟩ => S.capInteriorByIndex 2
+  | ⟨1, _⟩ => S.capInteriorByIndex 0
+  | _      => S.capInteriorByIndex 1
+
+/-- Under `IsM44`, the first non-surplus opposite cap has exactly two strict
+interior points. -/
+theorem IsM44.oppInterior1_card_eq_two
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
+    S.oppInterior1.card = 2 := by
+  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+  interval_cases i
+  · have hcard : (S.capByIndex (1 : Fin 3)).card = 4 := by
+      simpa [oppCap1, capByIndex, hi] using hM44.1
+    simpa [oppInterior1, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (1 : Fin 3) hcard
+  · have hcard : (S.capByIndex (2 : Fin 3)).card = 4 := by
+      simpa [oppCap1, capByIndex, hi] using hM44.1
+    simpa [oppInterior1, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (2 : Fin 3) hcard
+  · have hcard : (S.capByIndex (0 : Fin 3)).card = 4 := by
+      simpa [oppCap1, capByIndex, hi] using hM44.1
+    simpa [oppInterior1, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (0 : Fin 3) hcard
+
+/-- Under `IsM44`, the second non-surplus opposite cap has exactly two strict
+interior points. -/
+theorem IsM44.oppInterior2_card_eq_two
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
+    S.oppInterior2.card = 2 := by
+  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+  interval_cases i
+  · have hcard : (S.capByIndex (2 : Fin 3)).card = 4 := by
+      simpa [oppCap2, capByIndex, hi] using hM44.2
+    simpa [oppInterior2, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (2 : Fin 3) hcard
+  · have hcard : (S.capByIndex (0 : Fin 3)).card = 4 := by
+      simpa [oppCap2, capByIndex, hi] using hM44.2
+    simpa [oppInterior2, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (0 : Fin 3) hcard
+  · have hcard : (S.capByIndex (1 : Fin 3)).card = 4 := by
+      simpa [oppCap2, capByIndex, hi] using hM44.2
+    simpa [oppInterior2, hi] using
+      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (1 : Fin 3) hcard
+
+end SurplusCapPacket
+
 end Problem97

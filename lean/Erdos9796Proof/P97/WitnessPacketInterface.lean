@@ -57,6 +57,23 @@ noncomputable def SelectedClass (A : Finset ℝ²) (s : ℝ²) (d : ℝ) : Finse
     q ∈ SelectedClass A s d ↔ q ∈ A ∧ dist s q = d := by
   simp [SelectedClass]
 
+/-- Extract the `SelectedClass` radius and cardinality bound from the upstream
+equidistant-points-at predicate. -/
+theorem exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+    {n : ℕ} {A : Finset ℝ²} {p : ℝ²}
+    (h : HasNEquidistantPointsAt n A p) :
+    ∃ r : ℝ, 0 < r ∧ n ≤ (SelectedClass A p r).card := by
+  rcases h with ⟨r, hr, hcard⟩
+  exact ⟨r, hr, by simpa [SelectedClass] using hcard⟩
+
+/-- A `K4` set supplies a positive selected radius with at least four selected
+classmates at every point of the set. -/
+theorem exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
+    {A : Finset ℝ²} {p : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hp : p ∈ A) :
+    ∃ r : ℝ, 0 < r ∧ 4 ≤ (SelectedClass A p r).card :=
+  exists_selectedClass_card_ge_of_hasNEquidistantPointsAt (hK4 p hp)
+
 /-- A member of the selected class centred at `s` of radius `d` lies on the
 sphere `⟨s, d⟩` — the bridge from the `K4` equidistance class to the `Sphere`
 vocabulary the kernel consumes (point-first `dist` orientation). -/

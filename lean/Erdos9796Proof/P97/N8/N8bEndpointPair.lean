@@ -48,6 +48,23 @@ inductive AdjacentSide where
   | 1 => S.I2
   | _ => S.I3
 
+/-- The strict interior selected by an N8 cap index is contained in the ambient
+point set. -/
+theorem capInteriorByIndex_subset
+    {A : Finset ℝ²} (S : FiniteEndpointShell A) (i : Fin 3) :
+    S.capInteriorByIndex i ⊆ A := by
+  intro x hx
+  fin_cases i
+  · simp only [capInteriorByIndex] at hx
+    rw [FiniteEndpointShell.I1, Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.CP.C1_subset hx.2.2
+  · simp only [capInteriorByIndex] at hx
+    rw [FiniteEndpointShell.I2, Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.CP.C2_subset hx.2.2
+  · simp only [capInteriorByIndex] at hx
+    rw [FiniteEndpointShell.I3, Finset.mem_erase, Finset.mem_erase] at hx
+    exact S.CP.C3_subset hx.2.2
+
 /-- One endpoint of the selected cap, in cyclic order. -/
 @[reducible] def ownLeftEndpointByIndex
     {A : Finset ℝ²} (S : FiniteEndpointShell A) (i : Fin 3) : ℝ² :=
@@ -98,6 +115,21 @@ structure N8SelectedApex
   radius_pos : 0 < radius
   cap_mem : x ∈ S.capInteriorByIndex i
   selected_card : 4 ≤ (SelectedClass A x radius).card
+
+/-- A global `K4` hypothesis supplies the selected-apex packet for any cap
+interior point of the endpoint shell. -/
+theorem N8SelectedApex.nonempty_of_hasNEquidistantProperty
+    {A : Finset ℝ²} {S : FiniteEndpointShell A} {i : Fin 3} {x : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hxcap : x ∈ S.capInteriorByIndex i) :
+    Nonempty (N8SelectedApex S i x) := by
+  have hxA : x ∈ A := S.capInteriorByIndex_subset i hxcap
+  rcases exists_selectedClass_card_ge_four_of_hasNEquidistantProperty hK4 hxA with
+    ⟨r, hr, hcard⟩
+  exact ⟨{ radius := r
+           radius_pos := hr
+           cap_mem := hxcap
+           selected_card := hcard }⟩
 
 /-- W8's "the class contains two Moser vertices" packet. **Frozen as canonical
 (Adam, 2026-06-12):** kept local rather than retyped onto a shared rigid-packet
