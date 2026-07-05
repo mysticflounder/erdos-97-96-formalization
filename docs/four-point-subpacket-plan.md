@@ -202,6 +202,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      indexed cap-side reflection bridge CLOSED;
                                                      endpoint escape residual
                                                      predicates/eliminators CLOSED;
+                                                     side-specific endpoint squeeze/
+                                                     classification CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -252,28 +254,41 @@ endpointEscapeData_elim
   Status: CLOSED.
 
 strictAdjacentEscapeAt_reduces_to_endpointEscapeData
-  For a raw strict adjacent escape, we still need the upstream squeeze/placement
-  theorem that supplies the second radius, puts the escape point and shared
-  endpoint on that radius, and classifies the selected-cap hit as either private
-  or the shared endpoint.  Once that data is available, the eliminators above
-  reduce the branch to `EndpointEscapeLeftAt` or `EndpointEscapeRightAt`.
+  For a raw strict adjacent escape, we still need the upstream orientation and
+  squeeze/placement theorem that supplies the second radius and puts the escape
+  point on that side-adjacent K4 circle.  Once the side-adjacent cap is known to
+  be a four-point cap and the second selected class has card at least four, the
+  selected-cap hit is now classified: a private hit is killed by reflection, and
+  a shared-endpoint hit is handed to the endpoint residual eliminator.
 
-  Current Lean progress: the cyclic adjacent-index dictionary and the first
-  squeeze bridge are CLOSED:
+  Current Lean progress: the cyclic adjacent-index dictionary, the first
+  squeeze bridge, and the side-specific unique-hit/reflection classification are
+  CLOSED:
 
   ```text
+  leftAdjacentCapByIndex_rightAdjacentIndex
+  rightAdjacentCapByIndex_leftAdjacentIndex
   leftStrictEscape_mem_secondSelectedClass
   rightStrictEscape_mem_secondSelectedClass
+  rightPrivateSecondHit_reflection_false
+  leftPrivateSecondHit_reflection_false
+  rightSecondSelectedClass_selectedCap_singleton
+  leftSecondSelectedClass_selectedCap_singleton
+  rightStrictEscape_endpointData_elim
+  leftStrictEscape_endpointData_elim
   ```
 
-  These prove that if the side-adjacent cap is itself a four-point cap and the
-  second K4 radius is supplied, then the strict escape point lies on that
-  side-adjacent K4 circle.  The remaining open substep is the unique-hit
-  classification for the same second selected class: its selected-cap hit must
-  be either private, giving the existing reflection branch, or the shared
-  endpoint, giving endpoint-structured data.
+  These prove the side-specific conditional reducer: if the escape side is an
+  adjacent four-point cap and the second K4 radius/card hypothesis is supplied,
+  then the branch reduces to the relevant
+  `EndpointEscapeRightAt`/`EndpointEscapeLeftAt` residual.  For an `(m,4,4)`
+  packet, this is the "other non-surplus cap" side at each non-surplus index.
+  The surplus side remains part of the pinned-family residual.
 
-  Status: OPEN.  This is not a consequence of `StrictAdjacentEscapeAt` alone.
+  Status: SIDE-SPECIFIC CONDITIONAL CLOSED; raw `StrictAdjacentEscapeAt`
+  reduction OPEN.  The next formal step is to instantiate the side-specific
+  reducer at `oppIndex1`/`oppIndex2` using the `IsM44` orientation lemmas and
+  the selected K4 radius for the other non-surplus cap.
 
 endpointEscapeAt_false
   The endpoint residual itself is impossible.
@@ -394,6 +409,8 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.rightAdjacentInteriorByIndex_eq_capInteriorByIndex
   SurplusCapPacket.leftAdjacentCapByIndex_eq_capByIndex
   SurplusCapPacket.rightAdjacentCapByIndex_eq_capByIndex
+  SurplusCapPacket.leftAdjacentCapByIndex_rightAdjacentIndex
+  SurplusCapPacket.rightAdjacentCapByIndex_leftAdjacentIndex
   SurplusCapPacket.leftAdjacentInteriorByIndex_subset_leftAdjacentCapByIndex
   SurplusCapPacket.rightAdjacentInteriorByIndex_subset_rightAdjacentCapByIndex
   SurplusCapPacket.moserCount
@@ -430,6 +447,8 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.MoserSelectorShapeAt
   SurplusCapPacket.MoserSubpacketSelectorShapeAt
   SurplusCapPacket.moserSelectorShapeAt_of_convexIndep
+  SurplusCapPacket.rightSecondSelectedClass_selectedCap_singleton
+  SurplusCapPacket.leftSecondSelectedClass_selectedCap_singleton
   SurplusCapPacket.exists_moserSubpacketSelectorShapeAt_preserving_adjacent
   SurplusCapPacket.exists_surplusMoserSubpacketSelectorShape_preserving_adjacent
   SurplusCapPacket.moserSubpacketSelectorShapeAt_adjacent_named_or_outer
@@ -446,8 +465,12 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.EndpointEscapeLeftAt
   SurplusCapPacket.rightEndpointOnFirstRadius_false
   SurplusCapPacket.leftEndpointOnFirstRadius_false
+  SurplusCapPacket.rightPrivateSecondHit_reflection_false
+  SurplusCapPacket.leftPrivateSecondHit_reflection_false
   SurplusCapPacket.rightEndpointEscapeData_elim
   SurplusCapPacket.leftEndpointEscapeData_elim
+  SurplusCapPacket.rightStrictEscape_endpointData_elim
+  SurplusCapPacket.leftStrictEscape_endpointData_elim
   SurplusCapPacket.EndpointRadiusAt
   SurplusCapPacket.NoStrictAdjacentEscapeAt
   SurplusCapPacket.NonSurplusNoStrictAdjacentEscape
@@ -1038,6 +1061,8 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
         `rightAdjacentInteriorByIndex_eq_capInteriorByIndex`
         `leftAdjacentCapByIndex_eq_capByIndex`
         `rightAdjacentCapByIndex_eq_capByIndex`
+        `leftAdjacentCapByIndex_rightAdjacentIndex`
+        `rightAdjacentCapByIndex_leftAdjacentIndex`
         `oppositeVertexByIndex_leftAdjacentIndex`
         `oppositeVertexByIndex_rightAdjacentIndex`
         `rightOuterVertexByIndex_leftAdjacentIndex`
@@ -1050,16 +1075,35 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
       These lemmas use `moserCapCoreSelectorAt` to port the first part of the
       rvol squeeze: if the side-adjacent cap is a four-point cap and the second
       K4 radius is available, then the strict escape point is on the
-      side-adjacent K4 circle.  What remains is the second selected class's
-      unique-hit classification against the original selected cap.
+      side-adjacent K4 circle.  The second selected class's unique-hit
+      classification against the original selected cap is handled in the
+      side-specific endpoint squeeze step below.
+
+    Side-specific endpoint squeeze outcome:
+      The unique-hit/shared-endpoint classification is now implemented for the
+      side-adjacent four-point cap case:
+
+        `rightSecondSelectedClass_selectedCap_singleton`
+        `leftSecondSelectedClass_selectedCap_singleton`
+        `rightPrivateSecondHit_reflection_false`
+        `leftPrivateSecondHit_reflection_false`
+        `rightStrictEscape_endpointData_elim`
+        `leftStrictEscape_endpointData_elim`
+
+      These lemmas close the branch where the escape side is the adjacent cap
+      with card four and a second K4 selected-radius/card hypothesis is
+      supplied.  The unique hit in the original cap is either private, in which
+      case the two-circle reflection lemma contradicts the strict escape, or it
+      is the shared endpoint, in which case the branch is exactly the
+      side-specific endpoint residual.  This does not close arbitrary
+      `StrictAdjacentEscapeAt`; it is the conditional reducer needed for the
+      non-surplus "other cap" side of an `(m,4,4)` packet.  The surplus side
+      remains part of the pinned-family residual.
 
     Remaining blocker:
-      Prove the endpoint-radius production hypotheses for the two non-surplus
-      short-cap indices, or separately prove the positive adjacent closed-cap
-      counts plus one-hit upper bounds needed by the non-surplus selected-apex
-      reducer.  The endpoint-radius route now has a sharper named subplan:
-      finish the unique-hit/shared-endpoint classification that turns a strict
-      adjacent escape into endpoint-structured data, then discharge
+      Instantiate the side-specific reducers at `oppIndex1`/`oppIndex2` using
+      the `IsM44` orientation lemmas and the K4 selected-radius data for the
+      other non-surplus cap.  Then discharge
       `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` with a committed
       117-pattern endpoint certificate artifact.  This remains separate from
       the pinned surplus-family residual, which endpoint escape work will not
