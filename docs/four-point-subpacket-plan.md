@@ -135,10 +135,78 @@ direct replay of the closed n = 9 endpoint.
    Iown(2) + surplus I + other I
    ```
 
+## Current Q-Facing Interface Target
+
+For a non-surplus cap apex `x` in an `(m,4,4)` frame, the packet reducer needs
+exactly these six full selected-class facts:
+
+```text
+1 <= leftAdjCount
+1 <= rightAdjCount
+moserCount <= 2
+sameCapCount <= 1
+leftAdjCount <= 1
+rightAdjCount <= 1
+```
+
+Once these are available, Lean can feed
+`N8SelectedApex.exists_left_right_primitive_packet_cases_of_counts` and reduce
+the selected class to the two primitive packet rows `(1,1,1,1)` and
+`(2,0,1,1)`.
+
+The expected proof sources are:
+
+```text
+sameCapCount <= 1
+  Structural in an `IsM44` short cap: its strict interior has cardinality 2,
+  and erasing the apex leaves cardinality 1.
+
+moserCount <= 2
+  Geometric port of the existing N8 apex-frame lemma: a strict cap-interior
+  apex cannot have all three Moser vertices at the same selected radius.  The
+  consumer is now formalized from an N4e-style
+  `NonSurplusMoserCapContainment` interface; proving that containment interface
+  for the two short caps in the general-`n` setting remains open.
+
+leftAdjCount <= 1, rightAdjCount <= 1
+  Adjacent-cap one-hit bounds.  These are not incidence consequences; they
+  require the monotonicity / ordered-chain geometry in the general-`n`
+  `SurplusCapPacket` setting.
+
+1 <= leftAdjCount, 1 <= rightAdjCount
+  Lower bounds from the Q escape hypothesis plus the `(m,4,4)` cover/placement
+  interface.  One side should be the surplus escape side; the other side must
+  be forced explicitly rather than assumed.
+```
+
+This is the live checklist.  Any future lemma should be judged by whether it
+proves one of these six facts, transports the selected-apex vocabulary needed
+to state them, or excludes one of the two primitive packet rows.  A reformulation
+that does not shrink this checklist is not proof progress.
+
+Current progress against the checklist:
+
+```text
+selected-apex vocabulary over SurplusCapPacket.IsM44  CLOSED
+sameCapCount <= 1                                    CLOSED
+moserCount <= 2                                      CLOSED assuming
+                                                     NonSurplusMoserCapContainment;
+                                                     N4c/N4d assembly CLOSED;
+                                                     form-level assembly CLOSED;
+                                                     form trichotomy CLOSED;
+                                                     form exclusions OPEN
+leftAdjCount <= 1                                    OPEN
+rightAdjCount <= 1                                   OPEN
+1 <= leftAdjCount                                    OPEN
+1 <= rightAdjCount                                   OPEN
+primitive-row metric exclusion                       OPEN
+```
+
 ## Execution Status
 
 - Started: `2026-07-05`.
 - Lean module added: `Erdos9796Proof.P97.N8.FourSubpacket`.
+- General-`n` module added: `Erdos9796Proof.P97.SurplusM44Packet`.
 - Implemented:
 
   ```text
@@ -184,14 +252,120 @@ direct replay of the closed n = 9 endpoint.
   FiniteEndpointShell.capInteriorByIndex_subset
   N8SelectedApex.nonempty_of_hasNEquidistantProperty
   FiniteEndpointShell.N8k_capInterior_false_of_hasNEquidistantProperty
+  SurplusCapPacket.triangleByIndex
+  SurplusCapPacket.circPacket
+  SurplusCapPacket.circPacket2
+  SurplusCapPacket.circPacket3
   SurplusCapPacket.capByIndex
+  SurplusCapPacket.capByIndex_subset
+  SurplusCapPacket.capInteriorByIndex_subset_capByIndex
+  SurplusCapPacket.exists_capInteriorByIndex_pair_of_cap_card_eq_four
+  SurplusCapPacket.capByIndex_arc_membership
+  SurplusCapPacket.triangleByIndex_v2_mem_capByIndex
+  SurplusCapPacket.triangleByIndex_v3_mem_capByIndex
+  SurplusCapPacket.capByIndex_sameRadius_at_v2_card_le_one_of_convexIndep
+  SurplusCapPacket.capByIndex_sameRadius_at_v3_card_le_one_of_convexIndep
   SurplusCapPacket.capInteriorByIndex
   SurplusCapPacket.capInteriorByIndex_subset
   SurplusCapPacket.capInteriorByIndex_card_eq_two_of_cap_card_eq_four
+  SurplusCapPacket.oppIndex1
+  SurplusCapPacket.oppIndex2
   SurplusCapPacket.oppInterior1
   SurplusCapPacket.oppInterior2
+  SurplusCapPacket.IsM44.oppIndex1_cap_card_eq_four
+  SurplusCapPacket.IsM44.oppIndex2_cap_card_eq_four
   SurplusCapPacket.IsM44.oppInterior1_card_eq_two
   SurplusCapPacket.IsM44.oppInterior2_card_eq_two
+  SurplusCapPacket.leftAdjacentInteriorByIndex
+  SurplusCapPacket.rightAdjacentInteriorByIndex
+  SurplusCapPacket.leftAdjacentCapByIndex
+  SurplusCapPacket.rightAdjacentCapByIndex
+  SurplusCapPacket.leftAdjacentInteriorByIndex_subset_leftAdjacentCapByIndex
+  SurplusCapPacket.rightAdjacentInteriorByIndex_subset_rightAdjacentCapByIndex
+  SurplusCapPacket.moserCount
+  SurplusCapPacket.sameCapCount
+  SurplusCapPacket.leftAdjCount
+  SurplusCapPacket.rightAdjCount
+  SurplusCapPacket.oppositeVertexByIndex
+  SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+  SurplusCapPacket.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+  SurplusCapPacket.leftAdjCount_at_opposite_le_one_of_convexIndep
+  SurplusCapPacket.rightAdjCount_at_opposite_le_one_of_convexIndep
+  SurplusCapPacket.leftOuterVertexByIndex
+  SurplusCapPacket.rightOuterVertexByIndex
+  SurplusCapPacket.leftOuterVertexByIndex_mem_leftAdjacentCapByIndex
+  SurplusCapPacket.rightOuterVertexByIndex_mem_rightAdjacentCapByIndex
+  SurplusCapPacket.leftOuterVertexByIndex_mem_capByIndex
+  SurplusCapPacket.rightOuterVertexByIndex_mem_capByIndex
+  SurplusCapPacket.mem_capInteriorByIndex_of_mem_capByIndex_of_ne_outer
+  SurplusCapPacket.mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer
+  SurplusCapPacket.mem_rightAdjacentInteriorByIndex_of_mem_rightAdjacentCapByIndex_of_ne_outer
+  SurplusCapPacket.selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
+  SurplusCapPacket.moserCapCoreSelectorAt
+  SurplusCapPacket.MoserSelectorShapeAt
+  SurplusCapPacket.MoserSubpacketSelectorShapeAt
+  SurplusCapPacket.moserSelectorShapeAt_of_convexIndep
+  SurplusCapPacket.exists_moserSubpacketSelectorShapeAt_preserving_adjacent
+  SurplusCapPacket.exists_surplusMoserSubpacketSelectorShape_preserving_adjacent
+  SurplusCapPacket.moserSubpacketSelectorShapeAt_adjacent_named_or_outer
+  SurplusCapPacket.MoserCapContainmentAt
+  SurplusCapPacket.MoserCapContainment
+  SurplusCapPacket.NonSurplusMoserCapContainment
+  SurplusCapPacket.nonSurplusMoserCapContainment_of_moserCapContainment
+  SurplusCapPacket.MoserCapEscapedForm
+  SurplusCapPacket.IsMoserCapFormAAt
+  SurplusCapPacket.IsMoserCapFormBAt
+  SurplusCapPacket.IsMoserCapFormCAt
+  SurplusCapPacket.isMoserCapFormAAt_left_named_split
+  SurplusCapPacket.isMoserCapFormAAt_right_named_split
+  SurplusCapPacket.isMoserCapFormBAt_left_named_split
+  SurplusCapPacket.isMoserCapFormCAt_right_named_split
+  SurplusCapPacket.MoserCapFormsAt
+  SurplusCapPacket.MoserCapClassifiesAt
+  SurplusCapPacket.MoserCapExcludesAt
+  SurplusCapPacket.MoserCapExcludesFormAAt
+  SurplusCapPacket.MoserCapExcludesFormBAt
+  SurplusCapPacket.MoserCapExcludesFormCAt
+  SurplusCapPacket.moserCapFormsAt_of_convexIndep
+  SurplusCapPacket.moserCapClassifiesAt_of_forms
+  SurplusCapPacket.moserCapExcludesAt_of_form_excludes
+  SurplusCapPacket.NonSurplusMoserCapClassifies
+  SurplusCapPacket.NonSurplusMoserCapForms
+  SurplusCapPacket.IsM44.nonSurplusMoserCapForms_of_convexIndep
+  SurplusCapPacket.IsM44.exists_oppInterior_pairs
+  SurplusCapPacket.leftAdjacentInteriorByIndex_oppIndex1_eq_oppInterior2
+  SurplusCapPacket.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior
+  SurplusCapPacket.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior
+  SurplusCapPacket.rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1
+  SurplusCapPacket.leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
+  SurplusCapPacket.rightAdjacentInteriorByIndex_surplusIdx_eq_oppInterior2
+  SurplusCapPacket.IsM44.exists_surplusAdjacentInterior_pairs
+  SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_selected_adjacent
+  SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
+  SurplusCapPacket.NonSurplusMoserCapExcludes
+  SurplusCapPacket.NonSurplusMoserCapFormExcludes
+  SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
+  SurplusCapPacket.nonSurplusMoserCapExcludes_of_form_excludes
+  SurplusCapPacket.nonSurplusMoserCapContainment_of_classifies_excludes
+  SurplusCapPacket.nonSurplusMoserCapContainment_of_forms_excludes
+  SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_convexIndep_form_excludes
+  SurplusCapPacket.oppositeVertexByIndex_mem
+  SurplusCapPacket.exists_moserSelectorShapeAt_of_hasNEquidistantProperty
+  SurplusCapPacket.IsM44.exists_nonSurplusMoserSelectorShapes
+  SurplusCapPacket.exact_cap_class_at_index_of_cap_card_eq_four
+  SurplusCapPacket.dist_opposite_eq_of_mem_capByIndex_of_exact
+  SurplusCapPacket.M44SelectedApex
+  SurplusCapPacket.M44SelectedApex.nonempty_of_hasNEquidistantProperty
+  SurplusCapPacket.M44SelectedApex.nonempty_oppIndex1_of_hasNEquidistantProperty
+  SurplusCapPacket.M44SelectedApex.nonempty_oppIndex2_of_hasNEquidistantProperty
+  SurplusCapPacket.sameCapCount_le_one_of_cap_card_eq_four
+  SurplusCapPacket.M44SelectedApex.sameCapCount_le_one
+  SurplusCapPacket.moserCount_le_two_of_opposite_vertex_at_side
+  SurplusCapPacket.IsM44.exists_oppInterior_side_placement_of_moserCapContainment
+  SurplusCapPacket.IsM44.moserCount_oppIndex1_le_two_of_moserCapContainment
+  SurplusCapPacket.IsM44.moserCount_oppIndex2_le_two_of_moserCapContainment
+  SurplusCapPacket.IsM44.sameCapCount_oppIndex1_le_one
+  SurplusCapPacket.IsM44.sameCapCount_oppIndex2_le_one
   ```
 
   The packet budget is now exact: for any positive-radius selected packet
@@ -264,6 +438,152 @@ direct replay of the closed n = 9 endpoint.
   cardinality `2`.  This keeps the general-`n` work out of
   `FiniteEndpointShell`, whose structure is explicitly tied to `A.card = 9`.
 
+  The support-cap bridge is also formalized.  A surplus packet now exposes the
+  cyclic Moser triangle at each cap index, the corresponding circumscribed MEC
+  packet, closed-cap membership/arc-membership, and the endpoint one-hit bounds
+  for a selected class centered at either support endpoint of that indexed cap.
+  This is the reusable input for the Moser-apex side bounds in the non-surplus
+  core selector.
+
+  The Moser-apex side one-hit bounds are now closed at both the closed-cap and
+  count-facing levels.  The endpoint core-selector route has also been ported
+  to a general indexed theorem, `moserCapCoreSelectorAt`: under `ConvexIndep A`,
+  positive radius, indexed short-cap cardinality `4`, and a selected class of
+  cardinality at least `4`, the selected class has exactly four points, contains
+  the two strict own-cap interior points, and hits each adjacent closed cap at
+  most once.  This is the proof-facing input for the escaped-form trichotomy.
+
+  The general indexed escaped-form trichotomy is now closed as
+  `moserCapFormsAt_of_convexIndep`.  The proof uses the core selector to force
+  the two adjacent closed-cap intersections to be singletons, splits each
+  singleton into strict-interior versus outer-Moser-endpoint cases, and rules
+  out the both-outer-endpoints case by contradicting the escaped-containment
+  hypothesis.  Consequently, an `IsM44` packet under `ConvexIndep A` supplies
+  `NonSurplusMoserCapForms` automatically, and non-surplus Moser-cap containment
+  now reduces to the six form-level exclusions.
+
+  `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
+  that seam.  It proves that global `K4` supplies a selected-apex packet in
+  either non-surplus cap, and it closes the structural same-cap one-hit fact
+  `sameCapCount <= 1` for those short caps.  It also proves the Moser-count
+  consumer `moserCount <= 2` from explicit equilateral side-length hypotheses
+  plus the fact that the selected cap-interior apex is at that side length from
+  the opposite Moser vertex.
+
+  The module now factors the side-distance producer through the weaker
+  `NonSurplusMoserCapContainment` interface, the two-short-cap analogue of the
+  N8/N9 `N4e` containment packet.  Under `HasNEquidistantProperty 4 A`, `IsM44`,
+  and `NonSurplusMoserCapContainment`, the two non-surplus short caps become exact
+  Moser-centered four-classes; this forces the Moser triangle side lengths to
+  agree and gives `moserCount <= 2` for either non-surplus cap interior.  The
+  remaining Moser-row obligation is therefore to prove non-surplus containment
+  upstream, not to redo the side-distance or circumradius contradiction.  This
+  deliberately avoids asking for a surplus-cap containment theorem.  The
+  adjacent rows are not closed by this module.
+
+  The non-surplus containment producer is now split in the same theorem-facing
+  shape as endpoint `N4e`: `MoserCapClassifiesAt` records the local escaped-form
+  classifier, `MoserCapExcludesAt` records the geometric exclusion of such an
+  escaped class, and
+  `nonSurplusMoserCapContainment_of_classifies_excludes` assembles the two
+  non-surplus short-cap classifiers/exclusions into
+  `NonSurplusMoserCapContainment`.  This closes only the packaging layer; the
+  actual escaped-form trichotomy and exclusions remain open.
+
+  The same module now exposes the general-`n` Form `a/b/c` predicates at a
+  cyclic cap index and proves the endpoint-style form assembly:
+  `MoserCapFormsAt` plus `MoserCapExcludesForm{A,B,C}At` gives
+  `MoserCapExcludesAt`; paired non-surplus form trichotomies and exclusions
+  give `NonSurplusMoserCapContainment` directly.  Since the form trichotomies
+  now follow from `IsM44` plus convexity, the remaining non-surplus containment
+  work is the corresponding Form `a/b/c` metric exclusions.
+
+  A follow-up audit of the endpoint `N4d` modules shows that those exclusions
+  are not direct corollaries of `MoserCapFormsAt`.  The endpoint proofs also
+  consume zero-defect names for the two strict interior points in each short cap
+  and forced selector packets at neighboring Moser vertices.  In a general
+  `(m,4,4)` surplus packet, one neighboring cap can be the surplus cap, so the
+  endpoint `FiniteEndpointShell` exclusions cannot be invoked wholesale.  The
+  next formal interface should isolate the selector data needed by the row
+  closers, using the four-point subpacket machinery on any surplus-side
+  selector before porting the metric contradictions.
+
+  The first piece of that selector interface is formalized: any indexed short
+  cap has two named strict-interior points, and an `IsM44` packet supplies such
+  pairs for both non-surplus caps.
+
+  The short-cap selector packet is also formalized.  `MoserSelectorShapeAt`
+  records the endpoint-style selector shape at a Moser vertex: a four-point
+  selected class, containment of the two strict interior points of the indexed
+  short cap, and singleton intersections with both adjacent closed caps.  Under
+  `ConvexIndep A`, global `K4`, and indexed cap cardinality `4`, Lean now
+  produces such a selector shape.  For an `IsM44` packet, this gives selector
+  shapes for the two non-surplus short caps.  The remaining selector-interface
+  work was therefore the surplus-side selector packet, where the cap itself is
+  not a short cap and the four-point subpacket extraction must preserve the
+  needed named witnesses.
+
+  The surplus-side selector packet is now formalized conditionally on honest
+  selected adjacent witnesses.  `MoserSubpacketSelectorShapeAt` records a
+  four-point packet `T <= SelectedClass A (oppositeVertexByIndex i) r` with
+  singleton left/right adjacent closed-cap rows, but without claiming that `T`
+  contains the whole own cap.  Under convexity, if one selected point from each
+  adjacent closed cap is supplied, Lean extracts such a four-point packet while
+  preserving both points.  The specialization
+  `exists_surplusMoserSubpacketSelectorShape_preserving_adjacent` applies this
+  directly at `S.surplusIdx`.  This is exactly the finite-subpacket replacement
+  for endpoint selector rows whose own cap is the surplus cap.
+
+  The first row-split wiring layer is also formalized.  Given a
+  `MoserSubpacketSelectorShapeAt` packet and named two-point adjacent interiors,
+  `moserSubpacketSelectorShapeAt_adjacent_named_or_outer` splits each adjacent
+  singleton into one of the two named interior points or the corresponding outer
+  Moser endpoint.  For an `IsM44` packet, the adjacent interiors of
+  `S.surplusIdx` are definitionally the two non-surplus interiors:
+  `leftAdjacentInteriorByIndex S.surplusIdx = oppInterior1` and
+  `rightAdjacentInteriorByIndex S.surplusIdx = oppInterior2`.  Thus
+  `IsM44.exists_surplusAdjacentInterior_pairs` supplies the named adjacent pairs
+  needed by the surplus-side selector split.
+
+  The selector-row split is now packaged in the endpoint-facing form:
+  `IsM44.exists_surplusSelectorNamedSplit_of_selected_adjacent` takes selected
+  witnesses in the two adjacent closed caps, extracts the surplus-side
+  four-point subpacket, and returns both singleton rows as elements of the
+  corresponding finite named sets
+
+  ```text
+  {left-interior-1, left-interior-2, left-outer-Moser-endpoint}
+  {right-interior-1, right-interior-2, right-outer-Moser-endpoint}.
+  ```
+
+  This closes the formal row-splitting step conditional on selected adjacent
+  witnesses.  The remaining upstream gap is to produce those witnesses from the
+  escaped-form branch data, then feed the resulting finite alternatives into
+  the Form `a/b/c` metric closers.
+
+  A count-facing version is also closed:
+  `IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts` replaces the
+  explicit selected witnesses by positive cardinality hypotheses for the two
+  adjacent closed-cap intersections.  Thus the surplus selector row no longer
+  needs manual witness choices; it needs the same kind of adjacent lower bounds
+  already tracked in the Q-facing checklist.
+
+  The cyclic orientation for the two non-surplus cap indices is now explicit:
+  at `oppIndex1`, the left-adjacent side is `oppInterior2` and the right side is
+  the surplus interior; at `oppIndex2`, the left side is the surplus interior
+  and the right-adjacent side is `oppInterior1`.  This is the general-`n`
+  replacement for endpoint code that could split all three adjacent interiors
+  using a zero-defect layout.
+
+  The general Form `a/b/c` row splitters are also formalized.  Whenever a left
+  or right adjacent strict interior is already named as a two-point set, the
+  corresponding Form row splits into the two named singleton alternatives:
+  Form `a` can split on either side, Form `b` splits on the left side, and Form
+  `c` splits on the right side.  In an `(m,4,4)` packet, these combine with the
+  non-surplus orientation lemmas above to recover the endpoint-style finite
+  row splits on the short adjacent side while leaving the surplus side as the
+  remaining explicit witness.
+
 - Used `nthdegree docs search --lean` to locate the mathlib finite-set lemma:
 
   ```text
@@ -276,6 +596,7 @@ direct replay of the closed n = 9 endpoint.
   ```bash
   cd lean && lake-build Erdos9796Proof.P97.WitnessPacketInterface
   cd lean && lake-build Erdos9796Proof.P97.Cap.PartitionFromMEC
+  cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet
   cd lean && lake-build Erdos9796Proof.P97.N8.FourSubpacket
   cd lean && lake-build Erdos9796Proof.P97.N8.N8bEndpointPair
   cd lean && lake-build Erdos9796Proof.P97.N8.N8kDistribution
@@ -283,11 +604,39 @@ direct replay of the closed n = 9 endpoint.
   ```
 
   These builds completed successfully.  The N8 distribution build still reports
-  pre-existing style warnings in older code.
+  pre-existing style warnings in older code.  The `SurplusM44Packet` build was
+  re-run successfully after adding the non-surplus `N4c/N4d` assembly layer and
+  again after adding the support-cap bridge, indexed endpoint one-hit bounds,
+  Moser-apex adjacent side bounds, the indexed core selector, and the general
+  indexed form trichotomy.  It was re-run again after adding the short-interior
+  pair extraction lemmas and the short-cap selector-shape interface.  The
+  current `SurplusM44Packet` build has no local warning in that file; remaining
+  warning output comes from imported older modules.
 
-- Next implementation target: build the upstream `(m,4,4)` interface that
-  supplies the selected left/right witnesses and the honest full one-hit bounds
-  needed by `N8SelectedApex.exists_left_right_primitive_packet_cases`.
+- Next implementation targets:
+
+  ```text
+  1. Wire the selector-packet interface into the Form `a/b/c` exclusions:
+       - connect the named non-surplus interior pairs to the row splitters used
+         by the Form `a/b/c` exclusions; this is now closed for the surplus
+         selector row itself;
+       - prove the positive adjacent closed-cap counts consumed by
+         `IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts`; these are
+         the count-level replacement for manually chosen surplus-side selected
+         witnesses;
+       - translate the short-cap `MoserSelectorShapeAt` and surplus-cap
+         `MoserSubpacketSelectorShapeAt` rows into the endpoint closer
+         hypotheses.
+  2. Prove the corresponding Form `a/b/c` metric exclusions, reusing the
+     existing N4d branch closers where their hypotheses are cap-local and do not
+     depend on `A.card = 9`.
+  3. Build the upstream `(m,4,4)` interface that supplies the selected
+     left/right witnesses and the honest full one-hit bounds needed by
+     `N8SelectedApex.exists_left_right_primitive_packet_cases`.
+     After the count-facing selector wrapper, this should be stated as positive
+     adjacent counts plus the corresponding one-hit upper bounds, not as manual
+     witness choices.
+  ```
 
 ## Remaining Risk
 

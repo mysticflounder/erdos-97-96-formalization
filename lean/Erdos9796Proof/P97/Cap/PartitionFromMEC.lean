@@ -517,61 +517,63 @@ theorem capInteriorByIndex_card_eq_two_of_cap_card_eq_four
     rw [Finset.card_erase_of_mem hv2,
       Finset.card_erase_of_mem S.partition.v1_mem_C3, hcard]
 
+/-- The first non-surplus opposite cap index. -/
+def oppIndex1 {A : Finset ℝ²} (S : SurplusCapPacket A) : Fin 3 :=
+  match S.surplusIdx with
+  | ⟨0, _⟩ => 1
+  | ⟨1, _⟩ => 2
+  | _      => 0
+
+/-- The second non-surplus opposite cap index. -/
+def oppIndex2 {A : Finset ℝ²} (S : SurplusCapPacket A) : Fin 3 :=
+  match S.surplusIdx with
+  | ⟨0, _⟩ => 2
+  | ⟨1, _⟩ => 0
+  | _      => 1
+
 /-- The strict interior of the first non-surplus opposite cap. -/
 noncomputable def oppInterior1 {A : Finset ℝ²} (S : SurplusCapPacket A) :
     Finset ℝ² :=
-  match S.surplusIdx with
-  | ⟨0, _⟩ => S.capInteriorByIndex 1
-  | ⟨1, _⟩ => S.capInteriorByIndex 2
-  | _      => S.capInteriorByIndex 0
+  S.capInteriorByIndex S.oppIndex1
 
 /-- The strict interior of the second non-surplus opposite cap. -/
 noncomputable def oppInterior2 {A : Finset ℝ²} (S : SurplusCapPacket A) :
     Finset ℝ² :=
-  match S.surplusIdx with
-  | ⟨0, _⟩ => S.capInteriorByIndex 2
-  | ⟨1, _⟩ => S.capInteriorByIndex 0
-  | _      => S.capInteriorByIndex 1
+  S.capInteriorByIndex S.oppIndex2
+
+/-- Under `IsM44`, the first non-surplus opposite cap has closed-cardinality
+four. -/
+theorem IsM44.oppIndex1_cap_card_eq_four
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
+    (S.capByIndex S.oppIndex1).card = 4 := by
+  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+  interval_cases i <;> simpa [oppIndex1, oppCap1, capByIndex, hi] using hM44.1
+
+/-- Under `IsM44`, the second non-surplus opposite cap has closed-cardinality
+four. -/
+theorem IsM44.oppIndex2_cap_card_eq_four
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
+    (S.capByIndex S.oppIndex2).card = 4 := by
+  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+  interval_cases i <;> simpa [oppIndex2, oppCap2, capByIndex, hi] using hM44.2
 
 /-- Under `IsM44`, the first non-surplus opposite cap has exactly two strict
 interior points. -/
 theorem IsM44.oppInterior1_card_eq_two
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
     S.oppInterior1.card = 2 := by
-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · have hcard : (S.capByIndex (1 : Fin 3)).card = 4 := by
-      simpa [oppCap1, capByIndex, hi] using hM44.1
-    simpa [oppInterior1, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (1 : Fin 3) hcard
-  · have hcard : (S.capByIndex (2 : Fin 3)).card = 4 := by
-      simpa [oppCap1, capByIndex, hi] using hM44.1
-    simpa [oppInterior1, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (2 : Fin 3) hcard
-  · have hcard : (S.capByIndex (0 : Fin 3)).card = 4 := by
-      simpa [oppCap1, capByIndex, hi] using hM44.1
-    simpa [oppInterior1, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (0 : Fin 3) hcard
+  simpa [oppInterior1] using
+    S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four S.oppIndex1
+      hM44.oppIndex1_cap_card_eq_four
 
 /-- Under `IsM44`, the second non-surplus opposite cap has exactly two strict
 interior points. -/
 theorem IsM44.oppInterior2_card_eq_two
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44) :
     S.oppInterior2.card = 2 := by
-  rcases hi : S.surplusIdx with ⟨i, hilt⟩
-  interval_cases i
-  · have hcard : (S.capByIndex (2 : Fin 3)).card = 4 := by
-      simpa [oppCap2, capByIndex, hi] using hM44.2
-    simpa [oppInterior2, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (2 : Fin 3) hcard
-  · have hcard : (S.capByIndex (0 : Fin 3)).card = 4 := by
-      simpa [oppCap2, capByIndex, hi] using hM44.2
-    simpa [oppInterior2, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (0 : Fin 3) hcard
-  · have hcard : (S.capByIndex (1 : Fin 3)).card = 4 := by
-      simpa [oppCap2, capByIndex, hi] using hM44.2
-    simpa [oppInterior2, hi] using
-      S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four (1 : Fin 3) hcard
+  simpa [oppInterior2] using
+    S.capInteriorByIndex_card_eq_two_of_cap_card_eq_four S.oppIndex2
+      hM44.oppIndex2_cap_card_eq_four
 
 end SurplusCapPacket
 
