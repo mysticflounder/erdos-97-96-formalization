@@ -61,6 +61,46 @@ n8Card = (p^3 + 21p^2 + 104p + 40) / 2.
 The difference is the same-cap-heavy branch.  In incidence terms, this is the
 branch where `l <= 1`, `r <= 1`, `m <= 1`, and `s >= 2`.
 
+## Branch Decomposition Of The N8 Surface
+
+The full N8 tuple surface splits into four disjoint covering branches.  Sizes
+computed over `n = 9..17` (`p = 0..8`):
+
+```text
+ p   total  adjacent-heavy  Moser-pair  same-cap-heavy  terminal  adj%
+ 0     27         22             4            0             1      81%
+ 1     84         71             8            4             1      85%
+ 2    170        146            12           11             1      86%
+ 3    284        248            16           19             1      87%
+ 4    428        380            20           27             1      89%
+ 8   1364       1268            36           59             1      93%
+```
+
+Over this range:
+
+- `adjacent-heavy` (`l >= 2` or `r >= 2`) carries 81% -> 93% of tuples, and its
+  share rises monotonically.  The total is cubic while the other three branches
+  are linear or constant, so the adjacent-heavy share rises toward `1`.
+- `Moser-pair` = `4(p + 1)` (linear fit over the computed range).
+- `same-cap-heavy` = `8p - 5` for `p >= 2` (linear fit over the computed range);
+  this is exactly the branch removed by the one-hit bound.
+- `terminal-1111` is exactly `1` for all `p`.  This is not merely a fit: the
+  terminal class forces `m, s, l, r <= 1` with sum `>= 4`, so its only member is
+  `(1, 1, 1, 1)`.
+
+Reading: escaped incidence mass concentrates almost entirely in the
+adjacent-heavy branch, where a selected class reaches one adjacent cap in two or
+more points.  Consequently an adjacent one-hit bound (`l <= 1` and `r <= 1`)
+removes the entire dominant branch; what survives is the linear Moser-pair and
+same-cap tail plus the single terminal row.  In the `(m,4,4)` Q frame with
+`s <= 1` and both adjacent hits forced, the survivors are exactly the two Q rows
+`(2,0,1,1)` (Moser-pair) and `(1,1,1,1)` (terminal) — see
+`four-point-subpacket-plan.md`.
+
+Scope: the `adjacent-heavy -> 1`, `4(p+1)`, and `8p-5` statements are empirical
+over `p = 0..8` and follow from the closed forms, which are themselves verified
+(not proven for all `n`) in `escape-census-bugcheck.md`.
+
 ## Candidate Lemma Directions
 
 ### 1. Parametric Moser Escape Classification

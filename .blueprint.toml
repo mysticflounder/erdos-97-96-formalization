@@ -1,0 +1,22 @@
+[project]
+name = "erdos-97-96-formalization"
+slug = "erdos-97-96-formalization"
+
+[paths]
+db          = "data/proof-blueprint.db"
+lean_lib    = "lean"
+
+[obligations]
+root_slug = "root"
+
+[publish]
+# P97 primary (carries the single open RemovableVertexOfLarge sorry); P96 is
+# the sibling publish target.
+target_symbol = ["Problem97.erdos97_rhs", "Problem96.erdos96_rhs"]
+state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
+
+[axioms]
+# Project-declared approved custom axioms (full FQ names). The Lean core
+# axioms (propext, Classical.choice, Quot.sound, Lean.ofReduceBool,
+# Lean.ofReduceNat) are always approved; do NOT list them here.
+approved = []

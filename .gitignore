@@ -12,3 +12,10 @@ build/
 # Editor / OS
 .DS_Store
 *.swp
+
+# proof-blueprint DB (build artifact; intent/ is the checked-in record)
+data/
+
+# tooling junk
+.nthdegree/
+scripts/__pycache__/
