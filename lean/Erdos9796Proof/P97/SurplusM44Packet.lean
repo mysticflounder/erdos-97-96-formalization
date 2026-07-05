@@ -10,6 +10,7 @@ import Erdos9796Proof.P97.WitnessPacketInterface
 import Erdos9796Proof.P97.N8.FourSubpacket
 import Erdos9796Proof.P97.N8.N8CapCoordNorm
 import Erdos9796Proof.P97.U2.SameDistanceArcContainment
+import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 
 /-!
 # General-n `(m,4,4)` selected-apex packets
@@ -140,6 +141,38 @@ theorem capByIndex_arc_membership
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).1
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).2.1
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).2.2
+
+/-- A carrier point outside an indexed closed cap lies strictly on the same
+side of that cap's chord as the opposite Moser vertex. -/
+theorem signedArea2_mul_pos_of_not_mem_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {x : ℝ²} (hxA : x ∈ A) (hx : x ∉ S.capByIndex i) :
+    0 < signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 *
+      signedArea2 (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 := by
+  rw [S.capByIndex_arc_membership i x hxA] at hx
+  unfold OnArcOpposite at hx
+  exact not_le.mp hx
+
+/-- Two carrier points outside the same indexed cap cannot lie on the same two
+endpoint-centered circles for that cap. -/
+theorem twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {rq rv : ℝ} {x y : ℝ²}
+    (hxA : x ∈ A) (hyA : y ∈ A)
+    (hx : x ∉ S.capByIndex i) (hy : y ∉ S.capByIndex i)
+    (hne : x ≠ y)
+    (hxq : dist x (S.triangleByIndex i).v2 = rq)
+    (hyq : dist y (S.triangleByIndex i).v2 = rq)
+    (hxv : dist x (S.triangleByIndex i).v3 = rv)
+    (hyv : dist y (S.triangleByIndex i).v3 = rv) :
+    False := by
+  exact Problem97.twoCircle_sameSide_reflection_false
+    (q := (S.triangleByIndex i).v2) (v2 := (S.triangleByIndex i).v3)
+    (apex := (S.triangleByIndex i).v1) (y := y) (u := x)
+    hxq hyq hxv hyv hne
+    (S.signedArea2_mul_pos_of_not_mem_capByIndex i hxA hx)
+    (S.signedArea2_mul_pos_of_not_mem_capByIndex i hyA hy)
 
 /-- The first support endpoint of an indexed cap lies in that cap. -/
 theorem triangleByIndex_v2_mem_capByIndex

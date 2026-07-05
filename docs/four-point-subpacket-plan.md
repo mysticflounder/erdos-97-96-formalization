@@ -199,6 +199,7 @@ moserCount <= 2                                      CLOSED assuming
                                                      endpoint-radius no-strict wrapper CLOSED;
                                                      endpoint-radius/no-strict equivalence CLOSED;
                                                      private reflection kernel CLOSED;
+                                                     indexed cap-side reflection bridge CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -267,6 +268,8 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.capInteriorByIndex_subset_capByIndex
   SurplusCapPacket.exists_capInteriorByIndex_pair_of_cap_card_eq_four
   SurplusCapPacket.capByIndex_arc_membership
+  SurplusCapPacket.signedArea2_mul_pos_of_not_mem_capByIndex
+  SurplusCapPacket.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
   SurplusCapPacket.triangleByIndex_v2_mem_capByIndex
   SurplusCapPacket.triangleByIndex_v3_mem_capByIndex
   SurplusCapPacket.capByIndex_sameRadius_at_v2_card_le_one_of_convexIndep
@@ -560,6 +563,18 @@ primitive-row metric exclusion                       OPEN
   escape or pinned surplus-family residuals; it only isolates the part that is
   pure two-circle reflection geometry.
 
+  The packet-side cap dictionary for that kernel is now closed as well.
+  `signedArea2_mul_pos_of_not_mem_capByIndex` ports the rvol same-side bridge
+  from surplus-cap membership to an arbitrary indexed closed cap:
+  a carrier point outside `S.capByIndex i` is strictly on the same side of the
+  support chord as `(S.triangleByIndex i).v1`.  Combining that with the pure
+  kernel gives
+  `twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`: two carrier
+  points outside the same indexed cap cannot also share both endpoint-centered
+  circle radii.  This is a genuine bridge from the cap vocabulary to the
+  reflection contradiction, but it still only closes the private two-circle
+  branch; endpoint escape and pinned surplus-family residuals remain open.
+
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
   either non-surplus cap, and it closes the structural same-cap one-hit fact
@@ -725,8 +740,9 @@ primitive-row metric exclusion                       OPEN
   pair extraction lemmas and the short-cap selector-shape interface.  The
   current `SurplusM44Packet` build was re-run again after adding the
   Form-row-to-count bridge and the `exists_surplusSelectorNamedSplit_of_form*`
-  consumers.  It has no local warning in that file; remaining warning output
-  comes from imported older modules.
+  consumers, and again after adding the indexed cap-side reflection bridge.
+  It has no local warning in that file; remaining warning output comes from
+  imported older modules.
 
 - Next implementation targets:
 
@@ -857,6 +873,18 @@ primitive-row metric exclusion                       OPEN
       This matches the kernel-clean private subcase in `../p97-rvol`; the
       remaining no-strict work is now specifically the endpoint escape and
       pinned surplus-family residuals, not the reflection algebra.
+
+    Indexed cap-side bridge outcome:
+      The same-side dictionary needed to use that kernel in
+      `SurplusCapPacket` is now implemented and built:
+
+        `signedArea2_mul_pos_of_not_mem_capByIndex`
+        `twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`
+
+      This ports the rvol `signedArea2_mul_pos_of_not_mem_surplusCap` step to
+      arbitrary indexed caps and immediately derives the packet-level private
+      reflection contradiction.  It does not prove no-strict escape; the open
+      residuals are still endpoint escape and pinned surplus-family cases.
 
     Remaining blocker:
       Prove the endpoint-radius production hypotheses for the two non-surplus
