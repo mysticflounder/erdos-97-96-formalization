@@ -288,6 +288,20 @@ theorem capByIndex_sameRadius_at_v3_card_le_one_of_convexIndep
     · intro x hx
       exact (mem_selectedClass.mp (Finset.mem_of_mem_inter_left hx)).2
 
+/-- The cyclic cap index immediately to the left of an indexed cap. -/
+@[reducible] def leftAdjacentIndex (i : Fin 3) : Fin 3 :=
+  match i.1 with
+  | 0 => 1
+  | 1 => 2
+  | _ => 0
+
+/-- The cyclic cap index immediately to the right of an indexed cap. -/
+@[reducible] def rightAdjacentIndex (i : Fin 3) : Fin 3 :=
+  match i.1 with
+  | 0 => 2
+  | 1 => 0
+  | _ => 1
+
 /-- The strict interior of the left-adjacent cap for a cyclic cap index. -/
 @[reducible] noncomputable def leftAdjacentInteriorByIndex
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Finset ℝ² :=
@@ -319,6 +333,28 @@ theorem capByIndex_sameRadius_at_v3_card_le_one_of_convexIndep
   | 0 => S.capByIndex 2
   | 1 => S.capByIndex 0
   | _ => S.capByIndex 1
+
+theorem leftAdjacentInteriorByIndex_eq_capInteriorByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.leftAdjacentInteriorByIndex i =
+      S.capInteriorByIndex (leftAdjacentIndex i) := by
+  fin_cases i <;> rfl
+
+theorem rightAdjacentInteriorByIndex_eq_capInteriorByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.rightAdjacentInteriorByIndex i =
+      S.capInteriorByIndex (rightAdjacentIndex i) := by
+  fin_cases i <;> rfl
+
+theorem leftAdjacentCapByIndex_eq_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.leftAdjacentCapByIndex i = S.capByIndex (leftAdjacentIndex i) := by
+  fin_cases i <;> rfl
+
+theorem rightAdjacentCapByIndex_eq_capByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.rightAdjacentCapByIndex i = S.capByIndex (rightAdjacentIndex i) := by
+  fin_cases i <;> rfl
 
 /-- The strict left-adjacent interior lies in the closed left-adjacent cap. -/
 theorem leftAdjacentInteriorByIndex_subset_leftAdjacentCapByIndex
@@ -454,6 +490,30 @@ Moser vertex for the selected cap. -/
   | 0 => S.triangle.v2
   | 1 => S.triangle.v3
   | _ => S.triangle.v1
+
+theorem oppositeVertexByIndex_leftAdjacentIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.oppositeVertexByIndex (leftAdjacentIndex i) =
+      S.rightOuterVertexByIndex i := by
+  fin_cases i <;> rfl
+
+theorem oppositeVertexByIndex_rightAdjacentIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.oppositeVertexByIndex (rightAdjacentIndex i) =
+      S.leftOuterVertexByIndex i := by
+  fin_cases i <;> rfl
+
+theorem rightOuterVertexByIndex_leftAdjacentIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.rightOuterVertexByIndex (leftAdjacentIndex i) =
+      S.leftOuterVertexByIndex i := by
+  fin_cases i <;> rfl
+
+theorem leftOuterVertexByIndex_rightAdjacentIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    S.leftOuterVertexByIndex (rightAdjacentIndex i) =
+      S.rightOuterVertexByIndex i := by
+  fin_cases i <;> rfl
 
 /-- The left outer Moser endpoint for an indexed cap lies in the closed
 left-adjacent cap. -/
@@ -740,6 +800,42 @@ theorem mem_rightAdjacentInteriorByIndex_of_mem_rightAdjacentCapByIndex_of_ne_ou
       (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex] using hxne_opp)
       (by simpa [leftOuterVertexByIndex, rightOuterVertexByIndex] using hxne_outer)
 
+theorem mem_leftAdjacentInteriorByIndex_of_left_strict_escape
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
+    {radius : ℝ} (hradius : 0 < radius)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.leftAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.rightAdjacentCapByIndex i)) :
+    x ∈ S.leftAdjacentInteriorByIndex i := by
+  rcases Finset.mem_sdiff.mp hxEsc with ⟨hxLeft, hxNotSelectedOrRight⟩
+  have hxNotSelected : x ∉ S.capByIndex i := by
+    intro hxSel
+    exact hxNotSelectedOrRight (Finset.mem_union.mpr (Or.inl hxSel))
+  have hxne_outer : x ≠ S.leftOuterVertexByIndex i := by
+    intro h
+    exact hxNotSelected (by
+      simpa [h] using S.leftOuterVertexByIndex_mem_capByIndex i)
+  exact S.mem_leftAdjacentInteriorByIndex_of_mem_leftAdjacentCapByIndex_of_ne_outer
+    i hradius hxT hxLeft hxne_outer
+
+theorem mem_rightAdjacentInteriorByIndex_of_right_strict_escape
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {x : ℝ²}
+    {radius : ℝ} (hradius : 0 < radius)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.rightAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.leftAdjacentCapByIndex i)) :
+    x ∈ S.rightAdjacentInteriorByIndex i := by
+  rcases Finset.mem_sdiff.mp hxEsc with ⟨hxRight, hxNotSelectedOrLeft⟩
+  have hxNotSelected : x ∉ S.capByIndex i := by
+    intro hxSel
+    exact hxNotSelectedOrLeft (Finset.mem_union.mpr (Or.inl hxSel))
+  have hxne_outer : x ≠ S.rightOuterVertexByIndex i := by
+    intro h
+    exact hxNotSelected (by
+      simpa [h] using S.rightOuterVertexByIndex_mem_capByIndex i)
+  exact S.mem_rightAdjacentInteriorByIndex_of_mem_rightAdjacentCapByIndex_of_ne_outer
+    i hradius hxT hxRight hxne_outer
+
 /-- A positive-radius Moser-centered selected class outside the indexed cap
 interior is covered by the two adjacent closed caps. -/
 theorem selectedClass_sdiff_capInteriorByIndex_subset_adjacentCaps
@@ -939,6 +1035,60 @@ theorem moserCapCoreSelectorAt
     by simpa [T] using hinter_sub,
     by simpa [T] using hleft_one,
     by simpa [T] using hright_one⟩
+
+theorem leftStrictEscape_mem_secondSelectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hradius : 0 < radius) (hρ : 0 < rho)
+    (hcap : (S.leftAdjacentCapByIndex i).card = 4)
+    (hρcard :
+      4 ≤ (SelectedClass A (S.rightOuterVertexByIndex i) rho).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.leftAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.rightAdjacentCapByIndex i)) :
+    x ∈ SelectedClass A (S.rightOuterVertexByIndex i) rho := by
+  have hxI := S.mem_leftAdjacentInteriorByIndex_of_left_strict_escape
+    i hradius hxT hxEsc
+  have hxI' : x ∈ S.capInteriorByIndex (leftAdjacentIndex i) := by
+    simpa [S.leftAdjacentInteriorByIndex_eq_capInteriorByIndex i] using hxI
+  have hcap' : (S.capByIndex (leftAdjacentIndex i)).card = 4 := by
+    simpa [S.leftAdjacentCapByIndex_eq_capByIndex i] using hcap
+  have hρcard' :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex (leftAdjacentIndex i)) rho).card := by
+    simpa [S.oppositeVertexByIndex_leftAdjacentIndex i] using hρcard
+  have hcore :=
+    S.moserCapCoreSelectorAt hconv (leftAdjacentIndex i) hρ hcap' hρcard'
+  exact by
+    simpa [S.oppositeVertexByIndex_leftAdjacentIndex i] using hcore.2.1 hxI'
+
+theorem rightStrictEscape_mem_secondSelectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hradius : 0 < radius) (hρ : 0 < rho)
+    (hcap : (S.rightAdjacentCapByIndex i).card = 4)
+    (hρcard :
+      4 ≤ (SelectedClass A (S.leftOuterVertexByIndex i) rho).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.rightAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.leftAdjacentCapByIndex i)) :
+    x ∈ SelectedClass A (S.leftOuterVertexByIndex i) rho := by
+  have hxI := S.mem_rightAdjacentInteriorByIndex_of_right_strict_escape
+    i hradius hxT hxEsc
+  have hxI' : x ∈ S.capInteriorByIndex (rightAdjacentIndex i) := by
+    simpa [S.rightAdjacentInteriorByIndex_eq_capInteriorByIndex i] using hxI
+  have hcap' : (S.capByIndex (rightAdjacentIndex i)).card = 4 := by
+    simpa [S.rightAdjacentCapByIndex_eq_capByIndex i] using hcap
+  have hρcard' :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex (rightAdjacentIndex i)) rho).card := by
+    simpa [S.oppositeVertexByIndex_rightAdjacentIndex i] using hρcard
+  have hcore :=
+    S.moserCapCoreSelectorAt hconv (rightAdjacentIndex i) hρ hcap' hρcard'
+  exact by
+    simpa [S.oppositeVertexByIndex_rightAdjacentIndex i] using hcore.2.1 hxI'
 
 /-- Endpoint-style selector packet at one cyclic Moser vertex: the selected
 class has four points, contains the two strict interior points of its own
