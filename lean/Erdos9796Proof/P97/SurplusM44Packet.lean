@@ -9,6 +9,7 @@ import Erdos9796Proof.P97.CircumscribedMECPacket
 import Erdos9796Proof.P97.WitnessPacketInterface
 import Erdos9796Proof.P97.N8.FourSubpacket
 import Erdos9796Proof.P97.N8.N8CapCoordNorm
+import Erdos9796Proof.P97.U2.SameDistanceArcContainment
 
 /-!
 # General-n `(m,4,4)` selected-apex packets
@@ -1293,6 +1294,16 @@ def StrictAdjacentEscapeAt
       x ∈ S.rightAdjacentCapByIndex i \
         (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
 
+/-- Endpoint-radius input at one indexed cap: any K4-sized exact-radius class
+around the opposite Moser vertex also contains both Moser endpoints of the
+indexed cap. -/
+def EndpointRadiusAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+  ∀ {radius : ℝ}, 0 < radius →
+    4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card →
+      dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius ∧
+        dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius
+
 /-- No strict adjacent-cap escape occurs for any K4-sized exact-radius class
 around the Moser vertex opposite an indexed cap. -/
 def NoStrictAdjacentEscapeAt
@@ -1306,6 +1317,116 @@ def NonSurplusNoStrictAdjacentEscape
     {A : Finset ℝ²} (S : SurplusCapPacket A) : Prop :=
   S.NoStrictAdjacentEscapeAt S.oppIndex1 ∧
     S.NoStrictAdjacentEscapeAt S.oppIndex2
+
+/-- If the two Moser endpoints of an indexed cap lie on the queried radius
+around the opposite Moser vertex, the whole selected class is contained in that
+indexed cap. -/
+theorem selectedClass_subset_capByIndex_of_endpointRadius
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hleft : dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+      radius)
+    (hright : dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+      radius) :
+    SelectedClass A (S.oppositeVertexByIndex i) radius ⊆ S.capByIndex i := by
+  intro x hxT
+  have hxA : x ∈ A := (mem_selectedClass.mp hxT).1
+  have hxDist : dist x (S.oppositeVertexByIndex i) = radius := by
+    rw [dist_comm]
+    exact (mem_selectedClass.mp hxT).2
+  fin_cases i
+  · have hxDisk : dist x S.circPacket.center ≤ S.circPacket.radius := by
+      simpa [dist_eq_norm] using S.circPacket.disk_contains_A x hxA
+    have hArc :
+        OnArcOpposite (S.triangleByIndex 0).v1
+          (S.triangleByIndex 0).v2 (S.triangleByIndex 0).v3 x := by
+      exact onArcOpposite_of_sameDist_apex_of_mem_mecDisk
+        (O := S.circPacket.center) (apex := S.triangle.v1)
+        (e₁ := S.triangle.v2) (e₂ := S.triangle.v3)
+        (p := x) (R := S.circPacket.radius) (d := radius)
+        S.circPacket.radius_pos hradius
+        (by simpa [dist_eq_norm] using S.circPacket.moser_on_boundary_1)
+        (by simpa [dist_eq_norm] using S.circPacket.moser_on_boundary_2)
+        (by simpa [dist_eq_norm] using S.circPacket.moser_on_boundary_3)
+        (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex] using hright)
+        (by simpa [leftOuterVertexByIndex, oppositeVertexByIndex] using hleft)
+        (by simpa [oppositeVertexByIndex] using hxDist)
+        hxDisk
+    exact (S.capByIndex_arc_membership 0 x hxA).mpr hArc
+  · have hxDisk : dist x S.circPacket2.center ≤ S.circPacket2.radius := by
+      simpa [dist_eq_norm] using S.circPacket2.disk_contains_A x hxA
+    have hArc :
+        OnArcOpposite (S.triangleByIndex 1).v1
+          (S.triangleByIndex 1).v2 (S.triangleByIndex 1).v3 x := by
+      exact onArcOpposite_of_sameDist_apex_of_mem_mecDisk
+        (O := S.circPacket2.center) (apex := (S.triangleByIndex 1).v1)
+        (e₁ := (S.triangleByIndex 1).v2) (e₂ := (S.triangleByIndex 1).v3)
+        (p := x) (R := S.circPacket2.radius) (d := radius)
+        S.circPacket2.radius_pos hradius
+        (by simpa [dist_eq_norm] using S.circPacket2.moser_on_boundary_1)
+        (by simpa [dist_eq_norm] using S.circPacket2.moser_on_boundary_2)
+        (by simpa [dist_eq_norm] using S.circPacket2.moser_on_boundary_3)
+        (by
+          simpa [triangleByIndex, rightOuterVertexByIndex, oppositeVertexByIndex]
+            using hright)
+        (by
+          simpa [triangleByIndex, leftOuterVertexByIndex, oppositeVertexByIndex]
+            using hleft)
+        (by simpa [triangleByIndex, oppositeVertexByIndex] using hxDist)
+        hxDisk
+    exact (S.capByIndex_arc_membership 1 x hxA).mpr hArc
+  · have hxDisk : dist x S.circPacket3.center ≤ S.circPacket3.radius := by
+      simpa [dist_eq_norm] using S.circPacket3.disk_contains_A x hxA
+    have hArc :
+        OnArcOpposite (S.triangleByIndex 2).v1
+          (S.triangleByIndex 2).v2 (S.triangleByIndex 2).v3 x := by
+      exact onArcOpposite_of_sameDist_apex_of_mem_mecDisk
+        (O := S.circPacket3.center) (apex := (S.triangleByIndex 2).v1)
+        (e₁ := (S.triangleByIndex 2).v2) (e₂ := (S.triangleByIndex 2).v3)
+        (p := x) (R := S.circPacket3.radius) (d := radius)
+        S.circPacket3.radius_pos hradius
+        (by simpa [dist_eq_norm] using S.circPacket3.moser_on_boundary_1)
+        (by simpa [dist_eq_norm] using S.circPacket3.moser_on_boundary_2)
+        (by simpa [dist_eq_norm] using S.circPacket3.moser_on_boundary_3)
+        (by
+          simpa [triangleByIndex, rightOuterVertexByIndex, oppositeVertexByIndex]
+            using hright)
+        (by
+          simpa [triangleByIndex, leftOuterVertexByIndex, oppositeVertexByIndex]
+            using hleft)
+        (by simpa [triangleByIndex, oppositeVertexByIndex] using hxDist)
+        hxDisk
+    exact (S.capByIndex_arc_membership 2 x hxA).mpr hArc
+
+/-- Endpoint-radius containment rules out the strict adjacent-cap escape
+branch at one indexed cap. -/
+theorem not_strictAdjacentEscapeAt_of_endpointRadius
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hleft : dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+      radius)
+    (hright : dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+      radius) :
+    ¬ S.StrictAdjacentEscapeAt i radius := by
+  intro hEsc
+  rcases hEsc with ⟨x, hxT, hxEsc⟩
+  have hxCap : x ∈ S.capByIndex i :=
+    S.selectedClass_subset_capByIndex_of_endpointRadius i hradius hleft hright hxT
+  rcases hxEsc with hxLeft | hxRight
+  · exact (Finset.mem_sdiff.mp hxLeft).2
+      (Finset.mem_union.mpr (Or.inl hxCap))
+  · exact (Finset.mem_sdiff.mp hxRight).2
+      (Finset.mem_union.mpr (Or.inl hxCap))
+
+/-- Endpoint-radius production for every K4-sized exact-radius class supplies
+the no-strict-adjacent-escape interface. -/
+theorem noStrictAdjacentEscapeAt_of_endpointRadiusAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (hend : S.EndpointRadiusAt i) :
+    S.NoStrictAdjacentEscapeAt i := by
+  intro radius hradius hcard
+  rcases hend hradius hcard with ⟨hleft, hright⟩
+  exact S.not_strictAdjacentEscapeAt_of_endpointRadius i hradius hleft hright
 
 /-- Form `a` gives positive closed-cap hits on both adjacent sides. -/
 theorem isMoserCapFormAAt_adjacentClosedCounts_pos

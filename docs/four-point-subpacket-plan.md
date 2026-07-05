@@ -196,7 +196,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      form trichotomy CLOSED;
                                                      placement split CLOSED;
                                                      no-strict-escape interface/wiring CLOSED;
-                                                     no-strict-escape proof OPEN;
+                                                     endpoint-radius no-strict wrapper CLOSED;
+                                                     endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
 rightAdjCount <= 1                                   OPEN
@@ -323,6 +324,7 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.IsMoserCapFormBAt
   SurplusCapPacket.IsMoserCapFormCAt
   SurplusCapPacket.StrictAdjacentEscapeAt
+  SurplusCapPacket.EndpointRadiusAt
   SurplusCapPacket.NoStrictAdjacentEscapeAt
   SurplusCapPacket.NonSurplusNoStrictAdjacentEscape
   SurplusCapPacket.isMoserCapFormAAt_left_named_split
@@ -362,6 +364,10 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.strictAdjacentEscapeAt_of_moserCapFormsAt
   SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
   SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_convexIndep
+  Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk
+  SurplusCapPacket.selectedClass_subset_capByIndex_of_endpointRadius
+  SurplusCapPacket.not_strictAdjacentEscapeAt_of_endpointRadius
+  SurplusCapPacket.noStrictAdjacentEscapeAt_of_endpointRadiusAt
   SurplusCapPacket.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
@@ -511,6 +517,19 @@ primitive-row metric exclusion                       OPEN
   proves that these two no-strict hypotheses imply
   `NonSurplusMoserCapContainment`.  The open work is now only the proof of the
   no-strict hypotheses themselves, not their wiring into containment.
+
+  The first no-strict proof layer is also formalized.  The local geometry lemma
+  `onArcOpposite_of_sameDist_apex_of_mem_mecDisk` has been ported into
+  `Erdos9796Proof.P97.U2.SameDistanceArcContainment`; it says that if the
+  opposite apex and both cap endpoints lie on the MEC boundary, and a selected
+  point in the MEC disk has the same distance from the apex as those endpoints,
+  then the point lies in the indexed closed cap.  `SurplusM44Packet` packages
+  this as `selectedClass_subset_capByIndex_of_endpointRadius`, then proves
+  `not_strictAdjacentEscapeAt_of_endpointRadius` and
+  `noStrictAdjacentEscapeAt_of_endpointRadiusAt`.  Thus strict adjacent escape is
+  closed once the two endpoint-radius equalities are available for the queried
+  selected class.  The remaining open work is to produce those endpoint-radius
+  equalities for every relevant K4-sized class.
 
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
@@ -771,13 +790,29 @@ primitive-row metric exclusion                       OPEN
       `S.NonSurplusNoStrictAdjacentEscape`; Lean will then produce
       `S.NonSurplusMoserCapContainment`.
 
+    Endpoint-radius wrapper outcome:
+      The first route-B no-strict layer is now implemented and built:
+
+        `Problem97.onArcOpposite_of_sameDist_apex_of_mem_mecDisk`
+        `EndpointRadiusAt`
+        `selectedClass_subset_capByIndex_of_endpointRadius`
+        `not_strictAdjacentEscapeAt_of_endpointRadius`
+        `noStrictAdjacentEscapeAt_of_endpointRadiusAt`
+
+      Therefore no-strict-adjacent-escape no longer has to be attacked directly.
+      It is enough to prove `EndpointRadiusAt` at the two non-surplus short-cap
+      indices; the endpoint-radius wrapper then gives
+      `NonSurplusNoStrictAdjacentEscape`, and the existing containment wiring
+      gives `NonSurplusMoserCapContainment`.
+
     Remaining blocker:
-      Prove the no-strict-adjacent-escape hypotheses themselves, or separately
-      prove the positive adjacent closed-cap counts plus one-hit upper bounds
-      needed by the non-surplus selected-apex reducer.  The sibling `p97-rvol`
-      search shows this as the `NoStrictAdjacentEscapeAtOppApex*` layer; its
-      full closure there depends on additional geometric/certificate leaves, so
-      it should not be treated here as already solved.
+      Prove the endpoint-radius production hypotheses for the two non-surplus
+      short-cap indices, or separately prove the positive adjacent closed-cap
+      counts plus one-hit upper bounds needed by the non-surplus selected-apex
+      reducer.  The sibling `p97-rvol` search shows this as the route through
+      `oppApex*_endpointRadiusWitness_*` and `NoStrictAdjacentEscapeAtOppApex*`;
+      its full closure there depends on additional geometric/certificate leaves,
+      so it should not be treated here as already solved.
   ```
 
 ## Remaining Risk
