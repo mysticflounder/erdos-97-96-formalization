@@ -145,13 +145,13 @@ def n8_tuples_for_apex(
 def n8_tuples_for_labeled_vector(
     e: tuple[int, int, int], *, same_one_hit: bool
 ) -> set[tuple[int, int, int, int]]:
-    interiors = [2 + x for x in e]
+    interiors = tuple(2 + x for x in e)
     out: set[tuple[int, int, int, int]] = set()
-    for i in range(3):
+    for own, left, right in labeled_permutations(interiors):
         out |= n8_tuples_for_apex(
-            interiors[i],
-            interiors[(i + 1) % 3],
-            interiors[(i + 2) % 3],
+            own,
+            left,
+            right,
             same_one_hit=same_one_hit,
         )
     return out

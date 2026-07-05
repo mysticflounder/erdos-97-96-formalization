@@ -209,6 +209,67 @@ rightAdjCount <= 1                                   OPEN
 primitive-row metric exclusion                       OPEN
 ```
 
+## Endpoint Escape Route
+
+Endpoint escape is a narrower residual than Q.  It is the strict adjacent-cap
+escape subcase left after the private two-circle reflection branch has been
+removed: the shared hit in the neighboring cap collapses to the shared Moser
+endpoint, but that endpoint is not on the original selected radius, so the
+reflection kernel has no second point on the first circle.
+
+The sibling `../p97-rvol` target is
+`U2NonSurplusSqueeze.oppCap2_endpointEscape_false`.  In current
+`SurplusCapPacket` vocabulary, the route should be split into these proof-facing
+targets:
+
+```text
+EndpointEscapeRightAt / EndpointEscapeLeftAt
+  Side-specific residual predicates for a strict adjacent escape at an indexed
+  short cap.  Data should include:
+    - first K4 radius r around S.oppositeVertexByIndex i;
+    - escape point x in the strict/private adjacent side;
+    - second K4 radius rho around the opposite vertex of that adjacent cap;
+    - x and the shared endpoint both on the second rho-circle;
+    - the shared endpoint off the first r-circle.
+
+strictAdjacentEscapeAt_reduces_to_endpointEscape
+  For a strict adjacent escape, the private branch dies by
+  twoCircle_sameSide_reflection_false_of_not_mem_capByIndex; the remaining
+  branch is exactly EndpointEscapeLeftAt or EndpointEscapeRightAt.
+
+endpointEscapeAt_false
+  The endpoint residual itself is impossible.
+```
+
+The finite-pattern part of the route is not yet in this repo.  The intended
+certificate target is the rvol endpoint-tier result: the residual's
+combinatorial shadow has 117 endpoint patterns, and the exact metric follow-up
+kills all of them.  To make that usable here, we need a committed artifact that
+states the endpoint patterns and a proof vehicle for their contradictions:
+
+```text
+Option A: Lean-checkable algebra certificates for the 117 patterns.
+Option B: a small verified checker over exact certificate data.
+Option C: hand-port the forced-collapse contradictions when the certificate
+          identifies a small geometric equality clash.
+```
+
+`docs/escape-census-bugcheck.md` is relevant hygiene for this step.  It verifies
+that the closed-form incidence counts used in the tables are correct, but it
+also found a latent under-enumeration bug in `n8_tuples_for_labeled_vector` for
+surplus `p >= 3`.  That script bug is now fixed by using all distinct labeled
+permutations rather than cyclic rotations.  Endpoint-pattern work must depend on
+explicit pattern/certificate data or the closed-form/corrected enumeration, not
+on the old cyclic tuple enumerator.
+
+This endpoint route does not address the pinned surplus-family residual.  The
+two residuals should stay separate in both docs and Lean names:
+
+```text
+endpoint escape         -> 117-pattern endpoint certificate route
+pinned surplus-family   -> separate residual, not closed by endpoint work
+```
+
 ## Execution Status
 
 - Started: `2026-07-05`.
@@ -747,7 +808,13 @@ primitive-row metric exclusion                       OPEN
 - Next implementation targets:
 
   ```text
-  1. Wire the selector-packet interface into the Form `a/b/c` exclusions:
+  1. Make endpoint escape proof-facing in this repo:
+       - add side-specific `EndpointEscapeLeftAt` / `EndpointEscapeRightAt`
+         predicates in `SurplusCapPacket` vocabulary;
+       - prove the strict-adjacent escape reduction whose private branch is
+         killed by `twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`;
+       - add or generate the 117-pattern endpoint certificate artifact.
+  2. Wire the selector-packet interface into the Form `a/b/c` exclusions:
        - connect the named non-surplus interior pairs to the row splitters used
          by the Form `a/b/c` exclusions; this is now closed for the surplus
          selector row itself;
@@ -756,10 +823,10 @@ primitive-row metric exclusion                       OPEN
        - translate the short-cap `MoserSelectorShapeAt` and surplus-cap
          `MoserSubpacketSelectorShapeAt` rows into the endpoint closer
          hypotheses.
-  2. Prove the corresponding Form `a/b/c` metric exclusions, reusing the
+  3. Prove the corresponding Form `a/b/c` metric exclusions, reusing the
      existing N4d branch closers where their hypotheses are cap-local and do not
      depend on `A.card = 9`.
-  3. Build the upstream `(m,4,4)` interface that supplies the selected
+  4. Build the upstream `(m,4,4)` interface that supplies the selected
      left/right witnesses and the honest full one-hit bounds needed by
      `N8SelectedApex.exists_left_right_primitive_packet_cases`.
      After the count-facing selector wrapper, this should be stated as positive
@@ -890,11 +957,12 @@ primitive-row metric exclusion                       OPEN
       Prove the endpoint-radius production hypotheses for the two non-surplus
       short-cap indices, or separately prove the positive adjacent closed-cap
       counts plus one-hit upper bounds needed by the non-surplus selected-apex
-      reducer.  The sibling `p97-rvol` search shows this as the route through
-      `oppApex*_endpointRadiusWitness_*` and `NoStrictAdjacentEscapeAtOppApex*`;
-      its full closure there depends on the endpoint-escape and pinned
-      surplus-family residual leaves, so it should not be treated here as
-      already solved.
+      reducer.  The endpoint-radius route now has a named subplan in the
+      "Endpoint Escape Route" section: reduce strict adjacent escape to the
+      side-specific endpoint residuals, then discharge those residuals with a
+      committed 117-pattern endpoint certificate artifact.  This remains
+      separate from the pinned surplus-family residual, which endpoint escape
+      work will not close.
   ```
 
 ## Remaining Risk
