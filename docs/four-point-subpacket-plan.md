@@ -197,6 +197,7 @@ moserCount <= 2                                      CLOSED assuming
                                                      placement split CLOSED;
                                                      no-strict-escape interface/wiring CLOSED;
                                                      endpoint-radius no-strict wrapper CLOSED;
+                                                     endpoint-radius/no-strict equivalence CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -368,6 +369,11 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.selectedClass_subset_capByIndex_of_endpointRadius
   SurplusCapPacket.not_strictAdjacentEscapeAt_of_endpointRadius
   SurplusCapPacket.noStrictAdjacentEscapeAt_of_endpointRadiusAt
+  SurplusCapPacket.endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four
+  SurplusCapPacket.endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four
+  SurplusCapPacket.endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep
+  SurplusCapPacket.endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+  SurplusCapPacket.endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
   SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
@@ -530,6 +536,18 @@ primitive-row metric exclusion                       OPEN
   closed once the two endpoint-radius equalities are available for the queried
   selected class.  The remaining open work is to produce those endpoint-radius
   equalities for every relevant K4-sized class.
+
+  The finite-set readout from containment is also formalized.  If a K4-sized
+  selected class is contained in a four-point indexed cap, then it equals that
+  cap, so the two Moser endpoints of the cap lie on the selected radius.  This
+  gives `endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four`
+  and `endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four`.  Combining
+  this with the placement split gives
+  `endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep`, and therefore
+  `endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep` for any
+  four-point indexed cap under convexity.  This is useful bookkeeping, but it is
+  not a closure: endpoint-radius production and no-strict escape are now known
+  to be equivalent at this interface.
 
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
@@ -804,6 +822,20 @@ primitive-row metric exclusion                       OPEN
       indices; the endpoint-radius wrapper then gives
       `NonSurplusNoStrictAdjacentEscape`, and the existing containment wiring
       gives `NonSurplusMoserCapContainment`.
+
+    Endpoint-radius equivalence outcome:
+      The containment-to-radius readout is now implemented and built:
+
+        `endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four`
+        `endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four`
+        `endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep`
+        `endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep`
+        `endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep`
+
+      This shows that, under convexity and four-point cap cardinality,
+      endpoint-radius production and no-strict-adjacent-escape are equivalent at
+      the indexed-cap interface.  The equivalence sharpens the blocker; it does
+      not remove it.
 
     Remaining blocker:
       Prove the endpoint-radius production hypotheses for the two non-surplus

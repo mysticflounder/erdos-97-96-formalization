@@ -2345,6 +2345,91 @@ theorem dist_opposite_eq_of_mem_capByIndex_of_exact
     exact hxcap
   exact (mem_selectedClass.mp hxsel).2
 
+/-- If a K4-sized selected class is contained in a four-point indexed cap, then
+the two Moser endpoints of the cap lie on the queried selected radius. -/
+theorem endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hsub : SelectedClass A (S.oppositeVertexByIndex i) radius ⊆
+      S.capByIndex i)
+    (hcap : (S.capByIndex i).card = 4)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card) :
+    dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius ∧
+      dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+        radius := by
+  have hcap_le : (S.capByIndex i).card ≤
+      (SelectedClass A (S.oppositeVertexByIndex i) radius).card := by
+    rw [hcap]
+    exact hcard
+  have hexact : SelectedClass A (S.oppositeVertexByIndex i) radius =
+      S.capByIndex i :=
+    Finset.eq_of_subset_of_card_le hsub hcap_le
+  constructor
+  · have hdist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact i hexact
+        (S.leftOuterVertexByIndex_mem_capByIndex i)
+    simpa [dist_comm] using hdist
+  · have hdist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact i hexact
+        (S.rightOuterVertexByIndex_mem_capByIndex i)
+    simpa [dist_comm] using hdist
+
+/-- Moser-cap containment at a four-point cap supplies endpoint-radius
+production at that indexed cap. -/
+theorem endpointRadiusAt_of_moserCapContainmentAt_of_cap_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (hcontain : S.MoserCapContainmentAt i)
+    (hcap : (S.capByIndex i).card = 4) :
+    S.EndpointRadiusAt i := by
+  intro radius hradius hcard
+  exact S.endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four
+    i (hcontain hradius hcard) hcap hcard
+
+/-- Under the placement split, a K4-sized selected class at a four-point cap
+either supplies endpoint-radius equalities or has a strict adjacent-cap escape. -/
+theorem endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcap : (S.capByIndex i).card = 4)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card) :
+    (dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius ∧
+      dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) =
+        radius) ∨
+      S.StrictAdjacentEscapeAt i radius := by
+  rcases S.containment_or_strictAdjacentEscapeAt_of_convexIndep
+      hconv i hradius hcap hcard with hsub | hstrict
+  · exact Or.inl
+      (S.endpointRadius_of_selectedClass_subset_capByIndex_of_cap_card_eq_four
+        i hsub hcap hcard)
+  · exact Or.inr hstrict
+
+/-- No strict adjacent-cap escape implies endpoint-radius production at a
+four-point indexed cap. -/
+theorem endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    (hcap : (S.capByIndex i).card = 4)
+    (hno : S.NoStrictAdjacentEscapeAt i) :
+    S.EndpointRadiusAt i := by
+  intro radius hradius hcard
+  rcases S.endpointRadius_or_strictAdjacentEscapeAt_of_convexIndep
+      hconv i hradius hcap hcard with hend | hstrict
+  · exact hend
+  · exact False.elim (hno hradius hcard hstrict)
+
+/-- For a four-point indexed cap under convexity, endpoint-radius production is
+equivalent to excluding the strict adjacent-cap escape branch. -/
+theorem endpointRadiusAt_iff_noStrictAdjacentEscapeAt_of_convexIndep
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    (hcap : (S.capByIndex i).card = 4) :
+    S.EndpointRadiusAt i ↔ S.NoStrictAdjacentEscapeAt i :=
+  ⟨S.noStrictAdjacentEscapeAt_of_endpointRadiusAt i,
+    S.endpointRadiusAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+      hconv i hcap⟩
+
 /-- A selected apex in a short cap of an `(m,4,4)` surplus packet.
 
 The `cap_card` field records the local short-cap fact needed for the same-cap
