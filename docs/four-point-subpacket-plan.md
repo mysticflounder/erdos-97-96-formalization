@@ -195,7 +195,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      form-level assembly CLOSED;
                                                      form trichotomy CLOSED;
                                                      placement split CLOSED;
-                                                     no-strict-escape OPEN;
+                                                     no-strict-escape interface/wiring CLOSED;
+                                                     no-strict-escape proof OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
 rightAdjCount <= 1                                   OPEN
@@ -322,6 +323,8 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.IsMoserCapFormBAt
   SurplusCapPacket.IsMoserCapFormCAt
   SurplusCapPacket.StrictAdjacentEscapeAt
+  SurplusCapPacket.NoStrictAdjacentEscapeAt
+  SurplusCapPacket.NonSurplusNoStrictAdjacentEscape
   SurplusCapPacket.isMoserCapFormAAt_left_named_split
   SurplusCapPacket.isMoserCapFormAAt_right_named_split
   SurplusCapPacket.isMoserCapFormBAt_left_named_split
@@ -359,6 +362,8 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.strictAdjacentEscapeAt_of_moserCapFormsAt
   SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
   SurplusCapPacket.containment_or_strictAdjacentEscapeAt_of_convexIndep
+  SurplusCapPacket.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+  SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
   SurplusCapPacket.nonSurplusMoserCapExcludes_of_form_excludes
   SurplusCapPacket.nonSurplusMoserCapContainment_of_classifies_excludes
@@ -496,6 +501,16 @@ primitive-row metric exclusion                       OPEN
   no-strict-adjacent-escape theorem for the relevant non-surplus short-cap
   indices, analogous to the `NoStrictAdjacentEscapeAtOppApex*` interface found
   in `../p97-rvol`.
+
+  The no-strict-escape interface and containment wiring are now formalized.
+  `NoStrictAdjacentEscapeAt i` states that every positive-radius K4-sized
+  selected class at index `i` avoids `StrictAdjacentEscapeAt i radius`.
+  `NonSurplusNoStrictAdjacentEscape` pairs this hypothesis at `oppIndex1` and
+  `oppIndex2`, and
+  `IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape`
+  proves that these two no-strict hypotheses imply
+  `NonSurplusMoserCapContainment`.  The open work is now only the proof of the
+  no-strict hypotheses themselves, not their wiring into containment.
 
   `SurplusM44Packet` now adds the selected-class/count vocabulary on top of
   that seam.  It proves that global `K4` supplies a selected-apex packet in
@@ -744,14 +759,25 @@ primitive-row metric exclusion                       OPEN
       Thus a failed short-cap containment branch is no longer an unstructured
       Q placement hypothesis: it is exactly a strict adjacent-cap escape.
 
+    Wiring outcome:
+      The no-strict-escape containment interface is now implemented and built:
+
+        `NoStrictAdjacentEscapeAt`
+        `NonSurplusNoStrictAdjacentEscape`
+        `moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep`
+        `IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape`
+
+      Therefore the next proof obligation can be stated directly as
+      `S.NonSurplusNoStrictAdjacentEscape`; Lean will then produce
+      `S.NonSurplusMoserCapContainment`.
+
     Remaining blocker:
-      Prove a no-strict-adjacent-escape theorem strong enough to turn the
-      placement split into `NonSurplusMoserCapContainment`, or separately prove
-      the positive adjacent closed-cap counts plus one-hit upper bounds needed
-      by the non-surplus selected-apex reducer.  The sibling `p97-rvol` search
-      shows this as the `NoStrictAdjacentEscapeAtOppApex*` layer; its full
-      closure there depends on additional geometric/certificate leaves, so it
-      should not be treated here as already solved.
+      Prove the no-strict-adjacent-escape hypotheses themselves, or separately
+      prove the positive adjacent closed-cap counts plus one-hit upper bounds
+      needed by the non-surplus selected-apex reducer.  The sibling `p97-rvol`
+      search shows this as the `NoStrictAdjacentEscapeAtOppApex*` layer; its
+      full closure there depends on additional geometric/certificate leaves, so
+      it should not be treated here as already solved.
   ```
 
 ## Remaining Risk

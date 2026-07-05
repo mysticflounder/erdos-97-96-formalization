@@ -1293,6 +1293,20 @@ def StrictAdjacentEscapeAt
       x ∈ S.rightAdjacentCapByIndex i \
         (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
 
+/-- No strict adjacent-cap escape occurs for any K4-sized exact-radius class
+around the Moser vertex opposite an indexed cap. -/
+def NoStrictAdjacentEscapeAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) : Prop :=
+  ∀ {radius : ℝ}, 0 < radius →
+    4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card →
+      ¬ S.StrictAdjacentEscapeAt i radius
+
+/-- No strict adjacent-cap escape occurs at either non-surplus short cap. -/
+def NonSurplusNoStrictAdjacentEscape
+    {A : Finset ℝ²} (S : SurplusCapPacket A) : Prop :=
+  S.NoStrictAdjacentEscapeAt S.oppIndex1 ∧
+    S.NoStrictAdjacentEscapeAt S.oppIndex2
+
 /-- Form `a` gives positive closed-cap hits on both adjacent sides. -/
 theorem isMoserCapFormAAt_adjacentClosedCounts_pos
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
@@ -1652,6 +1666,32 @@ theorem containment_or_strictAdjacentEscapeAt_of_convexIndep
       S.StrictAdjacentEscapeAt i radius :=
   S.containment_or_strictAdjacentEscapeAt_of_moserCapFormsAt
     (S.moserCapFormsAt_of_convexIndep hconv i hcap) hradius hcard
+
+/-- No strict adjacent-cap escape upgrades the placement split to containment
+at one indexed short cap. -/
+theorem moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3)
+    (hcap : (S.capByIndex i).card = 4)
+    (hno : S.NoStrictAdjacentEscapeAt i) :
+    S.MoserCapContainmentAt i := by
+  intro radius hradius hcard
+  rcases S.containment_or_strictAdjacentEscapeAt_of_convexIndep
+      hconv i hradius hcap hcard with hcontain | hstrict
+  · exact hcontain
+  · exact False.elim (hno hradius hcard hstrict)
+
+/-- No strict adjacent-cap escape at both non-surplus short caps supplies the
+non-surplus containment interface. -/
+theorem IsM44.nonSurplusMoserCapContainment_of_convexIndep_noStrictAdjacentEscape
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A)
+    (hno : S.NonSurplusNoStrictAdjacentEscape) :
+    S.NonSurplusMoserCapContainment :=
+  ⟨S.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+      hconv S.oppIndex1 hM44.oppIndex1_cap_card_eq_four hno.1,
+    S.moserCapContainmentAt_of_noStrictAdjacentEscapeAt_of_convexIndep
+      hconv S.oppIndex2 hM44.oppIndex2_cap_card_eq_four hno.2⟩
 
 /-- `N4c`-style classifier at one cyclic cap index: if a Moser-centered
 four-class escapes the corresponding cap, it has one of the escaped forms. -/
