@@ -1116,6 +1116,51 @@ def IsMoserCapFormCAt
     SelectedClass A (S.oppositeVertexByIndex i) radius ∩
         S.rightAdjacentCapByIndex i = ({y} : Finset ℝ²)
 
+/-- Form `a` gives positive closed-cap hits on both adjacent sides. -/
+theorem isMoserCapFormAAt_adjacentClosedCounts_pos
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hform : S.IsMoserCapFormAAt i radius) :
+    1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.leftAdjacentCapByIndex i).card ∧
+      1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.rightAdjacentCapByIndex i).card := by
+  rcases hform with ⟨_x, _y, _hx, _hy, hleft, hright⟩
+  constructor
+  · rw [hleft]
+    simp
+  · rw [hright]
+    simp
+
+/-- Form `b` gives positive closed-cap hits on both adjacent sides. -/
+theorem isMoserCapFormBAt_adjacentClosedCounts_pos
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hform : S.IsMoserCapFormBAt i radius) :
+    1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.leftAdjacentCapByIndex i).card ∧
+      1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.rightAdjacentCapByIndex i).card := by
+  rcases hform with ⟨_x, _hx, hleft, hright⟩
+  constructor
+  · rw [hleft]
+    simp
+  · rw [hright]
+    simp
+
+/-- Form `c` gives positive closed-cap hits on both adjacent sides. -/
+theorem isMoserCapFormCAt_adjacentClosedCounts_pos
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
+    (hform : S.IsMoserCapFormCAt i radius) :
+    1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.leftAdjacentCapByIndex i).card ∧
+      1 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius ∩
+        S.rightAdjacentCapByIndex i).card := by
+  rcases hform with ⟨_y, _hy, hleft, hright⟩
+  constructor
+  · rw [hleft]
+    simp
+  · rw [hright]
+    simp
+
 /-- If the left adjacent interior is named, Form `a` splits into the two named
 left-row alternatives while leaving the right-row witness explicit. -/
 theorem isMoserCapFormAAt_left_named_split
@@ -1655,6 +1700,96 @@ theorem IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
       hxyR, hrightPair, _hpLT, _hpRT, hshape, hrowL, hrowR, hrowLeq, hrowReq⟩
   exact ⟨T, xL, yL, xR, yR, rowL, rowR, hxyL, hleftPair, hxyR,
     hrightPair, hshape, hrowL, hrowR, hrowLeq, hrowReq⟩
+
+/-- Form `a` at the surplus cap index supplies the positive adjacent closed-cap
+counts needed for the surplus selector named split. -/
+theorem IsM44.exists_surplusSelectorNamedSplit_of_formA
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.surplusIdx) radius).card)
+    (hform : S.IsMoserCapFormAAt S.surplusIdx radius) :
+    ∃ T : Finset ℝ², ∃ xL yL xR yR rowL rowR : ℝ²,
+      xL ≠ yL ∧
+        S.leftAdjacentInteriorByIndex S.surplusIdx =
+          ({xL, yL} : Finset ℝ²) ∧
+      xR ≠ yR ∧
+        S.rightAdjacentInteriorByIndex S.surplusIdx =
+          ({xR, yR} : Finset ℝ²) ∧
+      S.MoserSubpacketSelectorShapeAt S.surplusIdx radius T ∧
+      rowL ∈
+        ({xL, yL, S.leftOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      rowR ∈
+        ({xR, yR, S.rightOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      T ∩ S.leftAdjacentCapByIndex S.surplusIdx =
+        ({rowL} : Finset ℝ²) ∧
+      T ∩ S.rightAdjacentCapByIndex S.surplusIdx =
+        ({rowR} : Finset ℝ²) := by
+  have hcounts :=
+    S.isMoserCapFormAAt_adjacentClosedCounts_pos S.surplusIdx hform
+  exact hM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
+    hconv hradius hcard hcounts.1 hcounts.2
+
+/-- Form `b` at the surplus cap index supplies the positive adjacent closed-cap
+counts needed for the surplus selector named split. -/
+theorem IsM44.exists_surplusSelectorNamedSplit_of_formB
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.surplusIdx) radius).card)
+    (hform : S.IsMoserCapFormBAt S.surplusIdx radius) :
+    ∃ T : Finset ℝ², ∃ xL yL xR yR rowL rowR : ℝ²,
+      xL ≠ yL ∧
+        S.leftAdjacentInteriorByIndex S.surplusIdx =
+          ({xL, yL} : Finset ℝ²) ∧
+      xR ≠ yR ∧
+        S.rightAdjacentInteriorByIndex S.surplusIdx =
+          ({xR, yR} : Finset ℝ²) ∧
+      S.MoserSubpacketSelectorShapeAt S.surplusIdx radius T ∧
+      rowL ∈
+        ({xL, yL, S.leftOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      rowR ∈
+        ({xR, yR, S.rightOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      T ∩ S.leftAdjacentCapByIndex S.surplusIdx =
+        ({rowL} : Finset ℝ²) ∧
+      T ∩ S.rightAdjacentCapByIndex S.surplusIdx =
+        ({rowR} : Finset ℝ²) := by
+  have hcounts :=
+    S.isMoserCapFormBAt_adjacentClosedCounts_pos S.surplusIdx hform
+  exact hM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
+    hconv hradius hcard hcounts.1 hcounts.2
+
+/-- Form `c` at the surplus cap index supplies the positive adjacent closed-cap
+counts needed for the surplus selector named split. -/
+theorem IsM44.exists_surplusSelectorNamedSplit_of_formC
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A) {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.surplusIdx) radius).card)
+    (hform : S.IsMoserCapFormCAt S.surplusIdx radius) :
+    ∃ T : Finset ℝ², ∃ xL yL xR yR rowL rowR : ℝ²,
+      xL ≠ yL ∧
+        S.leftAdjacentInteriorByIndex S.surplusIdx =
+          ({xL, yL} : Finset ℝ²) ∧
+      xR ≠ yR ∧
+        S.rightAdjacentInteriorByIndex S.surplusIdx =
+          ({xR, yR} : Finset ℝ²) ∧
+      S.MoserSubpacketSelectorShapeAt S.surplusIdx radius T ∧
+      rowL ∈
+        ({xL, yL, S.leftOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      rowR ∈
+        ({xR, yR, S.rightOuterVertexByIndex S.surplusIdx} : Finset ℝ²) ∧
+      T ∩ S.leftAdjacentCapByIndex S.surplusIdx =
+        ({rowL} : Finset ℝ²) ∧
+      T ∩ S.rightAdjacentCapByIndex S.surplusIdx =
+        ({rowR} : Finset ℝ²) := by
+  have hcounts :=
+    S.isMoserCapFormCAt_adjacentClosedCounts_pos S.surplusIdx hform
+  exact hM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
+    hconv hradius hcard hcounts.1 hcounts.2
 
 /-- The paired non-surplus exclusions needed by the Q-facing Moser row. -/
 abbrev NonSurplusMoserCapExcludes

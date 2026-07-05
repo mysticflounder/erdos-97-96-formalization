@@ -342,6 +342,12 @@ primitive-row metric exclusion                       OPEN
   SurplusCapPacket.IsM44.exists_surplusAdjacentInterior_pairs
   SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_selected_adjacent
   SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts
+  SurplusCapPacket.isMoserCapFormAAt_adjacentClosedCounts_pos
+  SurplusCapPacket.isMoserCapFormBAt_adjacentClosedCounts_pos
+  SurplusCapPacket.isMoserCapFormCAt_adjacentClosedCounts_pos
+  SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_formA
+  SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_formB
+  SurplusCapPacket.IsM44.exists_surplusSelectorNamedSplit_of_formC
   SurplusCapPacket.NonSurplusMoserCapExcludes
   SurplusCapPacket.NonSurplusMoserCapFormExcludes
   SurplusCapPacket.nonSurplusMoserCapClassifies_of_forms
@@ -568,6 +574,21 @@ primitive-row metric exclusion                       OPEN
   needs manual witness choices; it needs the same kind of adjacent lower bounds
   already tracked in the Q-facing checklist.
 
+  The Form-row-to-count bridge is now also closed.  Each indexed Form `a/b/c`
+  predicate implies positive left and right adjacent closed-cap counts, and at
+  `S.surplusIdx` those counts feed directly into the surplus selector named
+  split:
+
+  ```text
+  Form `a/b/c` row at `S.surplusIdx`
+    -> positive adjacent closed-cap counts
+    -> `IsM44.exists_surplusSelectorNamedSplit_of_formA/B/C`
+  ```
+
+  This removes the manual count hypotheses once a Form row is available.  It
+  does not prove that the Q escape placement supplies such a row; no existing
+  Lean declaration in this checkout states the full Q placement hypothesis.
+
   The cyclic orientation for the two non-surplus cap indices is now explicit:
   at `oppIndex1`, the left-adjacent side is `oppInterior2` and the right side is
   the surplus interior; at `oppIndex2`, the left side is the surplus interior
@@ -610,8 +631,10 @@ primitive-row metric exclusion                       OPEN
   Moser-apex adjacent side bounds, the indexed core selector, and the general
   indexed form trichotomy.  It was re-run again after adding the short-interior
   pair extraction lemmas and the short-cap selector-shape interface.  The
-  current `SurplusM44Packet` build has no local warning in that file; remaining
-  warning output comes from imported older modules.
+  current `SurplusM44Packet` build was re-run again after adding the
+  Form-row-to-count bridge and the `exists_surplusSelectorNamedSplit_of_form*`
+  consumers.  It has no local warning in that file; remaining warning output
+  comes from imported older modules.
 
 - Next implementation targets:
 
@@ -620,10 +643,8 @@ primitive-row metric exclusion                       OPEN
        - connect the named non-surplus interior pairs to the row splitters used
          by the Form `a/b/c` exclusions; this is now closed for the surplus
          selector row itself;
-       - prove the positive adjacent closed-cap counts consumed by
-         `IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts`; these are
-         the count-level replacement for manually chosen surplus-side selected
-         witnesses;
+       - use the new Form-row-to-count bridge when the surplus selector row is
+         already known to satisfy Form `a/b/c`;
        - translate the short-cap `MoserSelectorShapeAt` and surplus-cap
          `MoserSubpacketSelectorShapeAt` rows into the endpoint closer
          hypotheses.
@@ -636,6 +657,57 @@ primitive-row metric exclusion                       OPEN
      After the count-facing selector wrapper, this should be stated as positive
      adjacent counts plus the corresponding one-hit upper bounds, not as manual
      witness choices.
+  ```
+
+- Current attempt (`2026-07-05`):
+
+  ```text
+  Target A:
+    Try to derive the positive adjacent-count inputs for the surplus selector
+    and the non-surplus selected-apex reducer from an existing formal Q escape
+    placement interface.
+
+  Target B:
+    If no such formal placement interface exists yet, identify the exact
+    proposition that must be added and prove only tautological/count-facing
+    consumers from it, so the next proof step has a precise Lean target.
+
+  Success criterion:
+    A compiled Lean lemma that closes one of
+      1 <= leftAdjCount,
+      1 <= rightAdjCount,
+      positive adjacent closed-cap count for the surplus selector,
+    or a documented blocker naming the missing formal placement hypothesis.
+
+  Initial search result:
+    No existing Lean declaration was found that states the full Q escape
+    placement hypothesis for a non-surplus selected apex.  The present formal
+    branch data closest to that role is the indexed Form `a/b/c` row predicates.
+    The next bridge to try is therefore:
+
+      Form `a/b/c` row predicate at an index
+      -> positive left/right adjacent closed-cap counts
+      -> `IsM44.exists_surplusSelectorNamedSplit_of_adjacent_counts`
+
+    This does not prove that the Q placement exists; it removes the manual
+    count hypotheses once a row predicate is available.
+
+  Outcome:
+    The bridge above is now implemented and built in
+    `Erdos9796Proof.P97.SurplusM44Packet`:
+
+      `isMoserCapFormAAt_adjacentClosedCounts_pos`
+      `isMoserCapFormBAt_adjacentClosedCounts_pos`
+      `isMoserCapFormCAt_adjacentClosedCounts_pos`
+      `IsM44.exists_surplusSelectorNamedSplit_of_formA`
+      `IsM44.exists_surplusSelectorNamedSplit_of_formB`
+      `IsM44.exists_surplusSelectorNamedSplit_of_formC`
+
+    The remaining blocker is not the count extraction.  It is the upstream
+    placement theorem: prove that the relevant Q branch supplies either a
+    Form `a/b/c` row at `S.surplusIdx` or the equivalent positive adjacent
+    closed-cap counts plus the one-hit upper bounds needed by the
+    non-surplus selected-apex reducer.
   ```
 
 ## Remaining Risk
