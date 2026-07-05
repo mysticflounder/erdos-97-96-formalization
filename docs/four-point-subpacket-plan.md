@@ -204,6 +204,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      predicates/eliminators CLOSED;
                                                      side-specific endpoint squeeze/
                                                      classification CLOSED;
+                                                     non-surplus other-cap
+                                                     reduction CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -285,10 +287,24 @@ strictAdjacentEscapeAt_reduces_to_endpointEscapeData
   packet, this is the "other non-surplus cap" side at each non-surplus index.
   The surplus side remains part of the pinned-family residual.
 
-  Status: SIDE-SPECIFIC CONDITIONAL CLOSED; raw `StrictAdjacentEscapeAt`
-  reduction OPEN.  The next formal step is to instantiate the side-specific
-  reducer at `oppIndex1`/`oppIndex2` using the `IsM44` orientation lemmas and
-  the selected K4 radius for the other non-surplus cap.
+  The `IsM44` non-surplus instantiation is also CLOSED for the other-cap side:
+
+  ```text
+  leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2
+  rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1
+  IsM44.leftStrictEscape_oppIndex1_endpointData_elim
+  IsM44.rightStrictEscape_oppIndex2_endpointData_elim
+  IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
+  IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
+  ```
+
+  These show that, after the endpoint residual is excluded, a raw strict escape
+  at `oppIndex1` or `oppIndex2` can only remain on the surplus-adjacent side.
+  Thus the endpoint route now reduces the non-surplus other-cap escape to the
+  pinned surplus-family residual plus the endpoint certificate.
+
+  Status: OTHER-CAP NON-SURPLUS REDUCTION CLOSED; endpoint residual OPEN;
+  surplus-side pinned-family residual OPEN.
 
 endpointEscapeAt_false
   The endpoint residual itself is impossible.
@@ -495,6 +511,12 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior
   SurplusCapPacket.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior
   SurplusCapPacket.rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1
+  SurplusCapPacket.leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2
+  SurplusCapPacket.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1
+  SurplusCapPacket.IsM44.leftStrictEscape_oppIndex1_endpointData_elim
+  SurplusCapPacket.IsM44.rightStrictEscape_oppIndex2_endpointData_elim
+  SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
+  SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
   SurplusCapPacket.leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
   SurplusCapPacket.rightAdjacentInteriorByIndex_surplusIdx_eq_oppInterior2
   SurplusCapPacket.IsM44.exists_surplusAdjacentInterior_pairs
@@ -1100,14 +1122,30 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
       non-surplus "other cap" side of an `(m,4,4)` packet.  The surplus side
       remains part of the pinned-family residual.
 
+    Non-surplus endpoint-to-surplus reduction outcome:
+      The side-specific reducer is now instantiated at the two non-surplus
+      indices:
+
+        `leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2`
+        `rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1`
+        `IsM44.leftStrictEscape_oppIndex1_endpointData_elim`
+        `IsM44.rightStrictEscape_oppIndex2_endpointData_elim`
+        `IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus`
+        `IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus`
+
+      Under `IsM44`, global `K4`, and convexity, excluding the endpoint
+      residual eliminates the other non-surplus adjacent cap side of a strict
+      escape at `oppIndex1`/`oppIndex2`.  Therefore any remaining raw strict
+      escape at those indices is forced onto the surplus-adjacent side.  This is
+      the formal separation between endpoint escape and the pinned surplus-family
+      residual.
+
     Remaining blocker:
-      Instantiate the side-specific reducers at `oppIndex1`/`oppIndex2` using
-      the `IsM44` orientation lemmas and the K4 selected-radius data for the
-      other non-surplus cap.  Then discharge
-      `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` with a committed
-      117-pattern endpoint certificate artifact.  This remains separate from
-      the pinned surplus-family residual, which endpoint escape work will not
-      close.
+      Discharge `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` with a
+      committed 117-pattern endpoint certificate artifact, and separately prove
+      the pinned surplus-family residual.  Endpoint escape work now pushes all
+      non-surplus other-cap strict escapes into that two-part split; it does not
+      close the surplus-side residual.
   ```
 
 ## Remaining Risk

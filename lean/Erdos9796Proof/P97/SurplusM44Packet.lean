@@ -2671,6 +2671,134 @@ theorem rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1
   interval_cases idx <;>
     simp [rightAdjacentInteriorByIndex, oppInterior1, oppIndex1, oppIndex2, hi]
 
+/-- At the first non-surplus cap index, the left-adjacent closed cap is the
+second non-surplus cap. -/
+theorem leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.leftAdjacentCapByIndex S.oppIndex1 = S.capByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [leftAdjacentCapByIndex, oppIndex1, oppIndex2, hi]
+
+/-- At the second non-surplus cap index, the right-adjacent closed cap is the
+first non-surplus cap. -/
+theorem rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.rightAdjacentCapByIndex S.oppIndex2 = S.capByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [rightAdjacentCapByIndex, oppIndex1, oppIndex2, hi]
+
+/-- Endpoint-residual exclusion eliminates the left, other-non-surplus escape
+side at the first non-surplus cap index. -/
+theorem IsM44.leftStrictEscape_oppIndex1_endpointData_elim
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    {radius : ℝ} {x : ℝ²}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius)
+    (hxEsc : x ∈ S.leftAdjacentCapByIndex S.oppIndex1 \
+        (S.capByIndex S.oppIndex1 ∪ S.rightAdjacentCapByIndex S.oppIndex1))
+    (hend : ∀ {rho : ℝ},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) :
+    False := by
+  have hcapLeft : (S.leftAdjacentCapByIndex S.oppIndex1).card = 4 := by
+    rw [S.leftAdjacentCapByIndex_oppIndex1_eq_capByIndex_oppIndex2]
+    exact hM44.oppIndex2_cap_card_eq_four
+  have hcenterA : S.rightOuterVertexByIndex S.oppIndex1 ∈ A :=
+    S.capByIndex_subset S.oppIndex1
+      (S.rightOuterVertexByIndex_mem_capByIndex S.oppIndex1)
+  rcases exists_selectedClass_card_ge_four_of_hasNEquidistantProperty hK4
+      hcenterA with
+    ⟨rho, hρ, hρcard⟩
+  exact S.leftStrictEscape_endpointData_elim hconv S.oppIndex1
+    hradius hρ hM44.oppIndex1_cap_card_eq_four hcapLeft hcard hxT hxEsc
+    hρcard (by
+      intro hres
+      exact hend hres)
+
+/-- Endpoint-residual exclusion eliminates the right, other-non-surplus escape
+side at the second non-surplus cap index. -/
+theorem IsM44.rightStrictEscape_oppIndex2_endpointData_elim
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    {radius : ℝ} {x : ℝ²}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius)
+    (hxEsc : x ∈ S.rightAdjacentCapByIndex S.oppIndex2 \
+        (S.capByIndex S.oppIndex2 ∪ S.leftAdjacentCapByIndex S.oppIndex2))
+    (hend : ∀ {rho : ℝ},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False) :
+    False := by
+  have hcapRight : (S.rightAdjacentCapByIndex S.oppIndex2).card = 4 := by
+    rw [S.rightAdjacentCapByIndex_oppIndex2_eq_capByIndex_oppIndex1]
+    exact hM44.oppIndex1_cap_card_eq_four
+  have hcenterA : S.leftOuterVertexByIndex S.oppIndex2 ∈ A :=
+    S.capByIndex_subset S.oppIndex2
+      (S.leftOuterVertexByIndex_mem_capByIndex S.oppIndex2)
+  rcases exists_selectedClass_card_ge_four_of_hasNEquidistantProperty hK4
+      hcenterA with
+    ⟨rho, hρ, hρcard⟩
+  exact S.rightStrictEscape_endpointData_elim hconv S.oppIndex2
+    hradius hρ hM44.oppIndex2_cap_card_eq_four hcapRight hcard hxT hxEsc
+    hρcard (by
+      intro hres
+      exact hend hres)
+
+/-- If endpoint escape is excluded, strict escape at the first non-surplus cap
+can only remain on the surplus-adjacent side. -/
+theorem IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius).card)
+    (hend : ∀ {rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False)
+    (hstrict : S.StrictAdjacentEscapeAt S.oppIndex1 radius) :
+    ∃ x : ℝ²,
+      x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius ∧
+        x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+          (S.capByIndex S.oppIndex1 ∪
+            S.leftAdjacentCapByIndex S.oppIndex1) := by
+  rcases hstrict with ⟨x, hxT, hxSide⟩
+  rcases hxSide with hxLeft | hxRight
+  · exact False.elim
+      (hM44.leftStrictEscape_oppIndex1_endpointData_elim hK4 hconv
+        hradius hcard hxT hxLeft
+        (fun {rho} hres => hend (rho := rho) (x := x) hres))
+  · exact ⟨x, hxT, hxRight⟩
+
+/-- If endpoint escape is excluded, strict escape at the second non-surplus cap
+can only remain on the surplus-adjacent side. -/
+theorem IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A) (hconv : ConvexIndep A)
+    {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard :
+      4 ≤ (SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius).card)
+    (hend : ∀ {rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+    (hstrict : S.StrictAdjacentEscapeAt S.oppIndex2 radius) :
+    ∃ x : ℝ²,
+      x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius ∧
+        x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+          (S.capByIndex S.oppIndex2 ∪
+            S.rightAdjacentCapByIndex S.oppIndex2) := by
+  rcases hstrict with ⟨x, hxT, hxSide⟩
+  rcases hxSide with hxLeft | hxRight
+  · exact ⟨x, hxT, hxLeft⟩
+  · exact False.elim
+      (hM44.rightStrictEscape_oppIndex2_endpointData_elim hK4 hconv
+        hradius hcard hxT hxRight
+        (fun {rho} hres => hend (rho := rho) (x := x) hres))
+
 /-- At the surplus cap index, the left-adjacent interior is the first
 non-surplus opposite interior. -/
 theorem leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
