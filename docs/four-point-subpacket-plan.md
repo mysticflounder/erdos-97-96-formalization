@@ -200,6 +200,8 @@ moserCount <= 2                                      CLOSED assuming
                                                      endpoint-radius/no-strict equivalence CLOSED;
                                                      private reflection kernel CLOSED;
                                                      indexed cap-side reflection bridge CLOSED;
+                                                     endpoint escape residual
+                                                     predicates/eliminators CLOSED;
                                                      endpoint-radius production OPEN;
                                                      form exclusions OPEN
 leftAdjCount <= 1                                    OPEN
@@ -232,10 +234,32 @@ EndpointEscapeRightAt / EndpointEscapeLeftAt
     - x and the shared endpoint both on the second rho-circle;
     - the shared endpoint off the first r-circle.
 
-strictAdjacentEscapeAt_reduces_to_endpointEscape
-  For a strict adjacent escape, the private branch dies by
-  twoCircle_sameSide_reflection_false_of_not_mem_capByIndex; the remaining
-  branch is exactly EndpointEscapeLeftAt or EndpointEscapeRightAt.
+  Status: CLOSED in `SurplusM44Packet` as
+  `EndpointEscapeRightAt` and `EndpointEscapeLeftAt`.
+
+endpointEscapeData_elim
+  For side-specific endpoint-structured data, it is enough to refute the
+  endpoint residual.  If the shared endpoint is also on the first radius, the
+  side-specific reflection lemmas kill the branch immediately:
+
+  ```text
+  rightEndpointOnFirstRadius_false
+  leftEndpointOnFirstRadius_false
+  rightEndpointEscapeData_elim
+  leftEndpointEscapeData_elim
+  ```
+
+  Status: CLOSED.
+
+strictAdjacentEscapeAt_reduces_to_endpointEscapeData
+  For a raw strict adjacent escape, we still need the upstream squeeze/placement
+  theorem that supplies the second radius, puts the escape point and shared
+  endpoint on that radius, and classifies the selected-cap hit as either private
+  or the shared endpoint.  Once that data is available, the eliminators above
+  reduce the branch to `EndpointEscapeLeftAt` or `EndpointEscapeRightAt`.
+
+  Status: OPEN.  This is the next proof-facing target; it is not a consequence
+  of `StrictAdjacentEscapeAt` alone.
 
 endpointEscapeAt_false
   The endpoint residual itself is impossible.
@@ -390,6 +414,12 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.IsMoserCapFormBAt
   SurplusCapPacket.IsMoserCapFormCAt
   SurplusCapPacket.StrictAdjacentEscapeAt
+  SurplusCapPacket.EndpointEscapeRightAt
+  SurplusCapPacket.EndpointEscapeLeftAt
+  SurplusCapPacket.rightEndpointOnFirstRadius_false
+  SurplusCapPacket.leftEndpointOnFirstRadius_false
+  SurplusCapPacket.rightEndpointEscapeData_elim
+  SurplusCapPacket.leftEndpointEscapeData_elim
   SurplusCapPacket.EndpointRadiusAt
   SurplusCapPacket.NoStrictAdjacentEscapeAt
   SurplusCapPacket.NonSurplusNoStrictAdjacentEscape
@@ -808,11 +838,11 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
 - Next implementation targets:
 
   ```text
-  1. Make endpoint escape proof-facing in this repo:
-       - add side-specific `EndpointEscapeLeftAt` / `EndpointEscapeRightAt`
-         predicates in `SurplusCapPacket` vocabulary;
-       - prove the strict-adjacent escape reduction whose private branch is
-         killed by `twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`;
+  1. Continue the endpoint escape route:
+       - derive endpoint-structured data from a raw `StrictAdjacentEscapeAt`
+         using the upstream squeeze/placement theorem;
+       - reduce that endpoint-structured data through
+         `rightEndpointEscapeData_elim` / `leftEndpointEscapeData_elim`;
        - add or generate the 117-pattern endpoint certificate artifact.
   2. Wire the selector-packet interface into the Form `a/b/c` exclusions:
        - connect the named non-surplus interior pairs to the row splitters used
@@ -953,16 +983,34 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
       reflection contradiction.  It does not prove no-strict escape; the open
       residuals are still endpoint escape and pinned surplus-family cases.
 
+    Endpoint-data outcome:
+      The side-specific endpoint residual vocabulary and endpoint-data
+      eliminators are now implemented and built:
+
+        `EndpointEscapeRightAt`
+        `EndpointEscapeLeftAt`
+        `rightEndpointOnFirstRadius_false`
+        `leftEndpointOnFirstRadius_false`
+        `rightEndpointEscapeData_elim`
+        `leftEndpointEscapeData_elim`
+
+      The eliminators close the branch where the shared endpoint is also on the
+      first radius by the indexed reflection bridge, and otherwise hand off
+      exactly the endpoint residual.  This is downstream of the still-open
+      squeeze/placement theorem: `StrictAdjacentEscapeAt` alone does not supply
+      the second radius or the shared-endpoint classification.
+
     Remaining blocker:
       Prove the endpoint-radius production hypotheses for the two non-surplus
       short-cap indices, or separately prove the positive adjacent closed-cap
       counts plus one-hit upper bounds needed by the non-surplus selected-apex
-      reducer.  The endpoint-radius route now has a named subplan in the
-      "Endpoint Escape Route" section: reduce strict adjacent escape to the
-      side-specific endpoint residuals, then discharge those residuals with a
-      committed 117-pattern endpoint certificate artifact.  This remains
-      separate from the pinned surplus-family residual, which endpoint escape
-      work will not close.
+      reducer.  The endpoint-radius route now has a sharper named subplan:
+      first prove the squeeze/placement theorem that turns a strict adjacent
+      escape into endpoint-structured data, then discharge
+      `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` with a committed
+      117-pattern endpoint certificate artifact.  This remains separate from
+      the pinned surplus-family residual, which endpoint escape work will not
+      close.
   ```
 
 ## Remaining Risk

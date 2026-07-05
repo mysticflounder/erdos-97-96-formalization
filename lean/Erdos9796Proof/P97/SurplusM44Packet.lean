@@ -1327,6 +1327,235 @@ def StrictAdjacentEscapeAt
       x ∈ S.rightAdjacentCapByIndex i \
         (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
 
+/-- Right-adjacent endpoint residual for the local endpoint-escape reduction.
+
+The first radius is centered at the surplus/opposite vertex for `capByIndex i`.
+The second radius is centered at the opposite vertex of the right-adjacent cap,
+which is `leftOuterVertexByIndex i`. The shared endpoint between the selected
+cap and the right-adjacent cap is `rightOuterVertexByIndex i`; this residual is
+the branch where that shared endpoint is on the second radius but off the first
+radius. -/
+def EndpointEscapeRightAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (radius rho : ℝ) (x : ℝ²) : Prop :=
+  0 < radius ∧
+  0 < rho ∧
+  4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card ∧
+  x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∧
+  x ∈ S.rightAdjacentCapByIndex i \
+      (S.capByIndex i ∪ S.leftAdjacentCapByIndex i) ∧
+  4 ≤ (SelectedClass A (S.leftOuterVertexByIndex i) rho).card ∧
+  dist x (S.leftOuterVertexByIndex i) = rho ∧
+  dist (S.rightOuterVertexByIndex i) (S.leftOuterVertexByIndex i) = rho ∧
+  dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) ≠ radius
+
+/-- Left-adjacent endpoint residual for the local endpoint-escape reduction. -/
+def EndpointEscapeLeftAt
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (radius rho : ℝ) (x : ℝ²) : Prop :=
+  0 < radius ∧
+  0 < rho ∧
+  4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card ∧
+  x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius ∧
+  x ∈ S.leftAdjacentCapByIndex i \
+      (S.capByIndex i ∪ S.rightAdjacentCapByIndex i) ∧
+  4 ≤ (SelectedClass A (S.rightOuterVertexByIndex i) rho).card ∧
+  dist x (S.rightOuterVertexByIndex i) = rho ∧
+  dist (S.leftOuterVertexByIndex i) (S.rightOuterVertexByIndex i) = rho ∧
+  dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) ≠ radius
+
+theorem rightEndpointOnFirstRadius_false
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.rightAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
+    (hxρ : dist x (S.leftOuterVertexByIndex i) = rho)
+    (hsharedρ :
+      dist (S.rightOuterVertexByIndex i) (S.leftOuterVertexByIndex i) = rho)
+    (hsharedFirst :
+      dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius) :
+    False := by
+  have hxA : x ∈ A := (mem_selectedClass.mp hxT).1
+  have hxFirst : dist x (S.oppositeVertexByIndex i) = radius := by
+    simpa [dist_comm] using (mem_selectedClass.mp hxT).2
+  rcases Finset.mem_sdiff.mp hxEsc with ⟨_hxRight, hxNotSelectedOrLeft⟩
+  have hxNotSelected : x ∉ S.capByIndex i := by
+    intro hxSel
+    exact hxNotSelectedOrLeft (Finset.mem_union.mpr (Or.inl hxSel))
+  have hxNotLeft : x ∉ S.leftAdjacentCapByIndex i := by
+    intro hxLeft
+    exact hxNotSelectedOrLeft (Finset.mem_union.mpr (Or.inr hxLeft))
+  have hsharedA : S.rightOuterVertexByIndex i ∈ A :=
+    S.capByIndex_subset i (S.rightOuterVertexByIndex_mem_capByIndex i)
+  have hne : x ≠ S.rightOuterVertexByIndex i := by
+    intro h
+    exact hxNotSelected (by
+      simpa [h] using S.rightOuterVertexByIndex_mem_capByIndex i)
+  fin_cases i
+  · have hsharedNotLeft :
+        S.rightOuterVertexByIndex 0 ∉ S.leftAdjacentCapByIndex 0 := by
+      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
+        S.partition.v2_notin_C2
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (1 : Fin 3)
+      hxA hsharedA
+      (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
+      (by simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using hsharedNotLeft)
+      (by simpa [rightOuterVertexByIndex] using hne)
+      (by simpa [leftOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [rightOuterVertexByIndex, leftOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+  · have hsharedNotLeft :
+        S.rightOuterVertexByIndex 1 ∉ S.leftAdjacentCapByIndex 1 := by
+      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
+        S.partition.v3_notin_C3
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (2 : Fin 3)
+      hxA hsharedA
+      (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
+      (by simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using hsharedNotLeft)
+      (by simpa [rightOuterVertexByIndex] using hne)
+      (by simpa [leftOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [rightOuterVertexByIndex, leftOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+  · have hsharedNotLeft :
+        S.rightOuterVertexByIndex 2 ∉ S.leftAdjacentCapByIndex 2 := by
+      simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using
+        S.partition.v1_notin_C1
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (0 : Fin 3)
+      hxA hsharedA
+      (by simpa [leftAdjacentCapByIndex] using hxNotLeft)
+      (by simpa [rightOuterVertexByIndex, leftAdjacentCapByIndex] using hsharedNotLeft)
+      (by simpa [rightOuterVertexByIndex] using hne)
+      (by simpa [leftOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [rightOuterVertexByIndex, leftOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [rightOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+
+theorem leftEndpointOnFirstRadius_false
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.leftAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.rightAdjacentCapByIndex i))
+    (hxρ : dist x (S.rightOuterVertexByIndex i) = rho)
+    (hsharedρ :
+      dist (S.leftOuterVertexByIndex i) (S.rightOuterVertexByIndex i) = rho)
+    (hsharedFirst :
+      dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) = radius) :
+    False := by
+  have hxA : x ∈ A := (mem_selectedClass.mp hxT).1
+  have hxFirst : dist x (S.oppositeVertexByIndex i) = radius := by
+    simpa [dist_comm] using (mem_selectedClass.mp hxT).2
+  rcases Finset.mem_sdiff.mp hxEsc with ⟨_hxLeft, hxNotSelectedOrRight⟩
+  have hxNotSelected : x ∉ S.capByIndex i := by
+    intro hxSel
+    exact hxNotSelectedOrRight (Finset.mem_union.mpr (Or.inl hxSel))
+  have hxNotRight : x ∉ S.rightAdjacentCapByIndex i := by
+    intro hxRight
+    exact hxNotSelectedOrRight (Finset.mem_union.mpr (Or.inr hxRight))
+  have hsharedA : S.leftOuterVertexByIndex i ∈ A :=
+    S.capByIndex_subset i (S.leftOuterVertexByIndex_mem_capByIndex i)
+  have hne : x ≠ S.leftOuterVertexByIndex i := by
+    intro h
+    exact hxNotSelected (by
+      simpa [h] using S.leftOuterVertexByIndex_mem_capByIndex i)
+  fin_cases i
+  · have hsharedNotRight :
+        S.leftOuterVertexByIndex 0 ∉ S.rightAdjacentCapByIndex 0 := by
+      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
+        S.partition.v3_notin_C3
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (2 : Fin 3)
+      hxA hsharedA
+      (by simpa [rightAdjacentCapByIndex] using hxNotRight)
+      (by simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using hsharedNotRight)
+      (by simpa [leftOuterVertexByIndex] using hne)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [leftOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+      (by simpa [rightOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [leftOuterVertexByIndex, rightOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+  · have hsharedNotRight :
+        S.leftOuterVertexByIndex 1 ∉ S.rightAdjacentCapByIndex 1 := by
+      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
+        S.partition.v1_notin_C1
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (0 : Fin 3)
+      hxA hsharedA
+      (by simpa [rightAdjacentCapByIndex] using hxNotRight)
+      (by simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using hsharedNotRight)
+      (by simpa [leftOuterVertexByIndex] using hne)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [leftOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+      (by simpa [rightOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [leftOuterVertexByIndex, rightOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+  · have hsharedNotRight :
+        S.leftOuterVertexByIndex 2 ∉ S.rightAdjacentCapByIndex 2 := by
+      simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using
+        S.partition.v2_notin_C2
+    exact S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex (1 : Fin 3)
+      hxA hsharedA
+      (by simpa [rightAdjacentCapByIndex] using hxNotRight)
+      (by simpa [leftOuterVertexByIndex, rightAdjacentCapByIndex] using hsharedNotRight)
+      (by simpa [leftOuterVertexByIndex] using hne)
+      (by simpa [oppositeVertexByIndex, triangleByIndex] using hxFirst)
+      (by simpa [leftOuterVertexByIndex, oppositeVertexByIndex, triangleByIndex] using
+        hsharedFirst)
+      (by simpa [rightOuterVertexByIndex, triangleByIndex] using hxρ)
+      (by simpa [leftOuterVertexByIndex, rightOuterVertexByIndex, triangleByIndex] using
+        hsharedρ)
+
+theorem rightEndpointEscapeData_elim
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hradius : 0 < radius) (hρ : 0 < rho)
+    (hcard : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.rightAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.leftAdjacentCapByIndex i))
+    (hρcard : 4 ≤ (SelectedClass A (S.leftOuterVertexByIndex i) rho).card)
+    (hxρ : dist x (S.leftOuterVertexByIndex i) = rho)
+    (hsharedρ :
+      dist (S.rightOuterVertexByIndex i) (S.leftOuterVertexByIndex i) = rho)
+    (hend : S.EndpointEscapeRightAt i radius rho x → False) :
+    False := by
+  by_cases hsharedFirst :
+      dist (S.rightOuterVertexByIndex i) (S.oppositeVertexByIndex i) ≠ radius
+  · exact hend ⟨hradius, hρ, hcard, hxT, hxEsc, hρcard, hxρ, hsharedρ,
+      hsharedFirst⟩
+  · exact S.rightEndpointOnFirstRadius_false i hxT hxEsc hxρ hsharedρ
+      (not_not.mp hsharedFirst)
+
+theorem leftEndpointEscapeData_elim
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {radius rho : ℝ} {x : ℝ²}
+    (hradius : 0 < radius) (hρ : 0 < rho)
+    (hcard : 4 ≤ (SelectedClass A (S.oppositeVertexByIndex i) radius).card)
+    (hxT : x ∈ SelectedClass A (S.oppositeVertexByIndex i) radius)
+    (hxEsc : x ∈ S.leftAdjacentCapByIndex i \
+        (S.capByIndex i ∪ S.rightAdjacentCapByIndex i))
+    (hρcard : 4 ≤ (SelectedClass A (S.rightOuterVertexByIndex i) rho).card)
+    (hxρ : dist x (S.rightOuterVertexByIndex i) = rho)
+    (hsharedρ :
+      dist (S.leftOuterVertexByIndex i) (S.rightOuterVertexByIndex i) = rho)
+    (hend : S.EndpointEscapeLeftAt i radius rho x → False) :
+    False := by
+  by_cases hsharedFirst :
+      dist (S.leftOuterVertexByIndex i) (S.oppositeVertexByIndex i) ≠ radius
+  · exact hend ⟨hradius, hρ, hcard, hxT, hxEsc, hρcard, hxρ, hsharedρ,
+      hsharedFirst⟩
+  · exact S.leftEndpointOnFirstRadius_false i hxT hxEsc hxρ hsharedρ
+      (not_not.mp hsharedFirst)
+
 /-- Endpoint-radius input at one indexed cap: any K4-sized exact-radius class
 around the opposite Moser vertex also contains both Moser endpoints of the
 indexed cap. -/
