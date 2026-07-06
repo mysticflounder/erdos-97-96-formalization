@@ -311,6 +311,30 @@ IsM44NonSurplusContainmentErasedPinTripleResidualsExcluded
   It has to choose a surplus-interior eraser x and exclude these three-point
   residual circles for the surplus-opposite Moser vertex and the three strict
   cap-interior survivor families.
+
+  Current reduction state: the two opposite non-surplus cap families can be
+  fed into the local four-subpacket arithmetic.  With ordered-chain one-hit
+  upper bounds and the erased surplus point's forced adjacent-side placement,
+  the count split gives either a primitive packet row or a single one-sided
+  obstruction row.  The obstruction rows are now also named payloads:
+
+    right_one_sided_obstruction_payload
+    left_one_sided_obstruction_payload
+    IsM44.oppIndex1_surplusErasedPinTriple_payload_cases
+    IsM44.oppIndex2_surplusErasedPinTriple_payload_cases
+    IsM44.oppIndex1_surplusErasedPinTriple_payload_cases_chains
+    IsM44.oppIndex2_surplusErasedPinTriple_payload_cases_chains
+    IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases_chains
+    IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases_chains
+    AdjacentChainOneHitData
+    IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases_chainData
+    IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases_chainData
+
+  These identify the entire selected four-class as two Moser vertices, one
+  same-cap interior point, and exactly one adjacent-side point, with the other
+  adjacent side empty.  The next proof work is therefore geometric: exclude
+  those one-sided payloads, or route them into the endpoint/pinned residual
+  exclusions already available to this spine leaf.
 ```
 
 RVOL comparison:
@@ -1317,6 +1341,63 @@ external-certificate boundary.
     the erased surplus point placement; the next proof obligation is therefore
     to exclude these one-sided obstruction rows or to show they reduce to the
     endpoint/pinned residual families.
+  - `2026-07-06`: the one-sided obstruction rows now have concrete selected
+    four-class payloads.  `selectedClass_subset_groupUnion` factors the
+    positive-radius selected-class cover by Moser, same cap, left-adjacent, and
+    right-adjacent groups.  `right_one_sided_obstruction_payload` and
+    `left_one_sided_obstruction_payload` turn the two remaining count rows into
+    named points and prove the whole selected class is exactly the named
+    four-point set.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the erased-pin splitters now expose those named payloads
+    directly.  `RightOneSidedObstructionPayload` and
+    `LeftOneSidedObstructionPayload` are stable propositions for the two
+    residual one-sided rows, and the new
+    `IsM44.oppIndex1_surplusErasedPinTriple_payload_cases`,
+    `IsM44.oppIndex2_surplusErasedPinTriple_payload_cases`, plus their
+    ordered-chain variants return either a primitive packet row or the named
+    payload.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the opposite-cap erased-pin branches now also have consumer
+    lemmas.  `IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases`
+    and `IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases`, plus
+    their ordered-chain variants, refute an erased-pin triple once supplied
+    with exclusions for the primitive packet rows and the one-sided payload.
+    This makes the remaining inputs explicit rather than hidden in the count
+    split: construct the ordered-chain/support data, prove the primitive-row
+    exclusions, and exclude or reroute the one-sided payloads.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the ordered-chain input has been compressed to a single
+    proof-facing proposition.  `AdjacentChainOneHitData S i p r` packages the
+    two side chains, both `N8a3AdjacentCapDistanceStrict` monotonicity proofs,
+    and both selected-class support containments.  The new
+    `..._payload_cases_chainData` and
+    `..._false_of_payload_cases_chainData` wrappers consume this aggregate
+    target.  The next chain-production work is therefore no longer an
+    eight-argument plumbing problem: prove `AdjacentChainOneHitData` for
+    `S.oppIndex1` and `S.oppIndex2` at radius `dist p x`.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the one-sided payloads now split their two Moser hits into
+    the indexed cap's own endpoint pair or a branch where the selected class
+    contains the opposite Moser vertex.  The reusable finite enumeration is
+    `triangle_pair_own_or_opposite`; the payload projections are
+    `rightOneSidedObstructionPayload_own_or_opposite` and
+    `leftOneSidedObstructionPayload_own_or_opposite`.  This gives the next
+    residual decision a concrete fork: close the own-endpoint one-sided packet
+    directly, or route the opposite-Moser-present branch into the endpoint or
+    pinned residual interfaces.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the one-sided payloads now also have erased-pin refinements.
+    `RightOneSidedErasedPayload` and `LeftOneSidedErasedPayload` identify the
+    lone surplus-adjacent selected point as the erased surplus point `x`, not an
+    anonymous adjacent witness.  The new
+    `..._erasedPayload_cases_chainData` splitters and
+    `..._false_of_erasedPayload_cases_chainData` consumers let the residual
+    exclusion target the stronger pinned four-class directly.  This is the
+    handoff shape needed before deciding whether the one-sided branch closes by
+    a direct metric contradiction or by conversion into the endpoint/pinned
+    residual interfaces.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
 - Lean module added: `Erdos9796Proof.P97.N8.FourSubpacket`.
 - General-`n` module added: `Erdos9796Proof.P97.SurplusM44Packet`.
 - Implemented:
@@ -1936,6 +2017,13 @@ external-certificate boundary.
 - Next implementation targets:
 
   ```text
+  0. Continue the active erased-pin containment residual:
+       - use `right_one_sided_obstruction_payload` and
+         `left_one_sided_obstruction_payload` to derive a geometric
+         contradiction, or route these named payloads into the endpoint/pinned
+         residual exclusions;
+       - then feed the primitive packet alternatives into the already-planned
+         finite selector/certificate row exclusions.
   1. Finish the endpoint certificate route:
        - make the largest endpoint row (`EpQ1008`) build via internal
          certificate sharding;

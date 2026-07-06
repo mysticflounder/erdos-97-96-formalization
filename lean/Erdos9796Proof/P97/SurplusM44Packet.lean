@@ -750,6 +750,28 @@ theorem rightOuterVertexByIndex_mem_triangle_verts
     S.rightOuterVertexByIndex i ∈ S.triangle.verts := by
   fin_cases i <;> simp [rightOuterVertexByIndex, MoserTriangle.verts]
 
+/-- Any two distinct Moser vertices are either the two endpoints of the indexed
+cap, or one of them is the Moser vertex opposite that cap. -/
+theorem triangle_pair_own_or_opposite
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {m₁ m₂ : ℝ²}
+    (hm₁ : m₁ ∈ S.triangle.verts)
+    (hm₂ : m₂ ∈ S.triangle.verts)
+    (hne : m₁ ≠ m₂) :
+    ((m₁ = S.leftOuterVertexByIndex i ∧
+        m₂ = S.rightOuterVertexByIndex i) ∨
+      (m₁ = S.rightOuterVertexByIndex i ∧
+        m₂ = S.leftOuterVertexByIndex i)) ∨
+      (m₁ = S.oppositeVertexByIndex i ∨
+        m₂ = S.oppositeVertexByIndex i) := by
+  rcases mem_triangle_verts_cases hm₁ with rfl | rfl | rfl <;>
+    rcases mem_triangle_verts_cases hm₂ with rfl | rfl | rfl <;>
+    fin_cases i <;>
+    first
+    | exact False.elim (hne rfl)
+    | simp only [leftOuterVertexByIndex, rightOuterVertexByIndex,
+        oppositeVertexByIndex, true_and, and_true, true_or, or_true]
+
 /-- Every ambient point is either one of the three Moser vertices or belongs
 to the strict interior of one indexed cap. -/
 theorem mem_triangle_verts_or_exists_capInteriorByIndex_of_mem
@@ -5130,6 +5152,41 @@ theorem one_le_packetRightAdjCount_of_mem
   unfold packetRightAdjCount
   exact Finset.card_pos.mpr ⟨p, Finset.mem_inter.mpr ⟨hpT, hpI⟩⟩
 
+/-- A positive-radius selected class is covered by the Moser triangle, the
+same cap with the selected apex erased, and the two adjacent-cap interiors. -/
+theorem selectedClass_subset_groupUnion
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {x : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hradius_pos : 0 < radius) :
+    SelectedClass A x radius ⊆
+      S.triangle.verts ∪ (S.capInteriorByIndex i).erase x ∪
+        S.leftAdjacentInteriorByIndex i ∪ S.rightAdjacentInteriorByIndex i := by
+  classical
+  have hx_notin_selected : x ∉ SelectedClass A x radius := by
+    intro hh
+    have hdist : dist x x = radius := (mem_selectedClass.mp hh).2
+    rw [dist_self] at hdist
+    linarith
+  fin_cases i <;>
+  · intro q hqsel
+    have hqx : q ≠ x := fun h => hx_notin_selected (h ▸ hqsel)
+    have hqA : q ∈ A := (mem_selectedClass.mp hqsel).1
+    rcases S.mem_triangle_verts_or_exists_capInteriorByIndex_of_mem hqA with
+      hqv | ⟨j, hj⟩
+    · exact Finset.mem_union_left _ (Finset.mem_union_left _
+        (Finset.mem_union_left _ hqv))
+    · fin_cases j <;>
+      simp only [capInteriorByIndex, leftAdjacentInteriorByIndex,
+        rightAdjacentInteriorByIndex] at hj ⊢ <;>
+      first
+      | (refine Finset.mem_union_left _ (Finset.mem_union_left _
+            (Finset.mem_union_right _ ?_))
+         exact Finset.mem_erase.mpr ⟨hqx, hj⟩)
+      | (refine Finset.mem_union_left _ (Finset.mem_union_right _ ?_)
+         exact hj)
+      | (refine Finset.mem_union_right _ ?_
+         exact hj)
+
 /-- Packet-local disjoint-cover budget.  Any packet contained in a
 positive-radius selected class is covered by its Moser, same-cap,
 left-adjacent, and right-adjacent subfamilies. -/
@@ -5494,6 +5551,402 @@ theorem leftAdjCount_one_sided_count_cases
       S.rightAdjCount i x radius = 0) := by
   omega
 
+/-- Named payload for the one-sided row with no left-adjacent selected point. -/
+def RightOneSidedObstructionPayload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (i : Fin 3) (x : ℝ²) (radius : ℝ) : Prop :=
+  ∃ m₁ m₂ s r : ℝ²,
+    m₁ ≠ m₂ ∧
+    SelectedClass A x radius ∩ S.triangle.verts = ({m₁, m₂} : Finset ℝ²) ∧
+    SelectedClass A x radius ∩ (S.capInteriorByIndex i).erase x =
+      ({s} : Finset ℝ²) ∧
+    SelectedClass A x radius ∩ S.leftAdjacentInteriorByIndex i = ∅ ∧
+    SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i =
+      ({r} : Finset ℝ²) ∧
+    SelectedClass A x radius = ({m₁, m₂, s, r} : Finset ℝ²) ∧
+    ({m₁, m₂, s, r} : Finset ℝ²).card = 4
+
+/-- Named payload for the one-sided row with no right-adjacent selected point. -/
+def LeftOneSidedObstructionPayload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (i : Fin 3) (x : ℝ²) (radius : ℝ) : Prop :=
+  ∃ m₁ m₂ s l : ℝ²,
+    m₁ ≠ m₂ ∧
+    SelectedClass A x radius ∩ S.triangle.verts = ({m₁, m₂} : Finset ℝ²) ∧
+    SelectedClass A x radius ∩ (S.capInteriorByIndex i).erase x =
+      ({s} : Finset ℝ²) ∧
+    SelectedClass A x radius ∩ S.leftAdjacentInteriorByIndex i =
+      ({l} : Finset ℝ²) ∧
+    SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i = ∅ ∧
+    SelectedClass A x radius = ({m₁, m₂, s, l} : Finset ℝ²) ∧
+    ({m₁, m₂, s, l} : Finset ℝ²).card = 4
+
+/-- Right one-sided payload with the adjacent singleton identified as a
+specified erased point. -/
+def RightOneSidedErasedPayload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (i : Fin 3) (center erased : ℝ²) (radius : ℝ) : Prop :=
+  ∃ m₁ m₂ s : ℝ²,
+    m₁ ≠ m₂ ∧
+    SelectedClass A center radius ∩ S.triangle.verts =
+      ({m₁, m₂} : Finset ℝ²) ∧
+    SelectedClass A center radius ∩ (S.capInteriorByIndex i).erase center =
+      ({s} : Finset ℝ²) ∧
+    SelectedClass A center radius ∩ S.leftAdjacentInteriorByIndex i = ∅ ∧
+    SelectedClass A center radius ∩ S.rightAdjacentInteriorByIndex i =
+      ({erased} : Finset ℝ²) ∧
+    SelectedClass A center radius = ({m₁, m₂, s, erased} : Finset ℝ²) ∧
+    ({m₁, m₂, s, erased} : Finset ℝ²).card = 4
+
+/-- Left one-sided payload with the adjacent singleton identified as a
+specified erased point. -/
+def LeftOneSidedErasedPayload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (i : Fin 3) (center erased : ℝ²) (radius : ℝ) : Prop :=
+  ∃ m₁ m₂ s : ℝ²,
+    m₁ ≠ m₂ ∧
+    SelectedClass A center radius ∩ S.triangle.verts =
+      ({m₁, m₂} : Finset ℝ²) ∧
+    SelectedClass A center radius ∩ (S.capInteriorByIndex i).erase center =
+      ({s} : Finset ℝ²) ∧
+    SelectedClass A center radius ∩ S.leftAdjacentInteriorByIndex i =
+      ({erased} : Finset ℝ²) ∧
+    SelectedClass A center radius ∩ S.rightAdjacentInteriorByIndex i = ∅ ∧
+    SelectedClass A center radius = ({m₁, m₂, s, erased} : Finset ℝ²) ∧
+    ({m₁, m₂, s, erased} : Finset ℝ²).card = 4
+
+/-- The right-sided obstruction row names the whole four-point selected class:
+two Moser vertices, one same-cap point, no left-adjacent point, and one
+right-adjacent point. -/
+theorem right_one_sided_obstruction_payload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {x : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hcard : (SelectedClass A x radius).card = 4)
+    (hm : S.moserCount x radius = 2)
+    (hs : S.sameCapCount i x radius = 1)
+    (hl : S.leftAdjCount i x radius = 0)
+    (hr : S.rightAdjCount i x radius = 1) :
+    RightOneSidedObstructionPayload S i x radius := by
+  classical
+  let M := SelectedClass A x radius ∩ S.triangle.verts
+  let C := SelectedClass A x radius ∩ (S.capInteriorByIndex i).erase x
+  let L := SelectedClass A x radius ∩ S.leftAdjacentInteriorByIndex i
+  let R := SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i
+  have hMcard : M.card = 2 := by
+    simpa [M, moserCount] using hm
+  obtain ⟨m₁, m₂, hm12, hMeq⟩ := Finset.card_eq_two.mp hMcard
+  have hCcard : C.card = 1 := by
+    simpa [C, sameCapCount] using hs
+  obtain ⟨s, hCeq⟩ := Finset.card_eq_one.mp hCcard
+  have hLcard : L.card = 0 := by
+    simpa [L, leftAdjCount] using hl
+  have hLeq : L = ∅ := Finset.card_eq_zero.mp hLcard
+  have hRcard : R.card = 1 := by
+    simpa [R, rightAdjCount] using hr
+  obtain ⟨r, hReq⟩ := Finset.card_eq_one.mp hRcard
+  have hselCover : SelectedClass A x radius ⊆ M ∪ C ∪ L ∪ R := by
+    intro y hy
+    have hcover := S.selectedClass_subset_groupUnion i hradius_pos hy
+    simp only [Finset.mem_union] at hcover ⊢
+    rcases hcover with (((hyM | hyC) | hyL) | hyR)
+    · exact Or.inl (Or.inl (Or.inl (Finset.mem_inter.mpr ⟨hy, hyM⟩)))
+    · exact Or.inl (Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyC⟩)))
+    · exact Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyL⟩))
+    · exact Or.inr (Finset.mem_inter.mpr ⟨hy, hyR⟩)
+  have hselSubset :
+      SelectedClass A x radius ⊆ ({m₁, m₂, s, r} : Finset ℝ²) := by
+    intro y hy
+    have hycover := hselCover hy
+    simp [M, C, L, R, hMeq, hCeq, hLeq, hReq] at hycover
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    tauto
+  have hm₁Sel : m₁ ∈ SelectedClass A x radius := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).1
+  have hm₂Sel : m₂ ∈ SelectedClass A x radius := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).1
+  have hsSel : s ∈ SelectedClass A x radius := by
+    have hsC : s ∈ C := by
+      rw [hCeq]
+      simp
+    exact (Finset.mem_inter.mp hsC).1
+  have hrSel : r ∈ SelectedClass A x radius := by
+    have hrR : r ∈ R := by
+      rw [hReq]
+      simp
+    exact (Finset.mem_inter.mp hrR).1
+  have hselSuperset :
+      ({m₁, m₂, s, r} : Finset ℝ²) ⊆ SelectedClass A x radius := by
+    intro y hy
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hy
+    rcases hy with rfl | rfl | rfl | rfl
+    · exact hm₁Sel
+    · exact hm₂Sel
+    · exact hsSel
+    · exact hrSel
+  have hseleq :
+      SelectedClass A x radius = ({m₁, m₂, s, r} : Finset ℝ²) :=
+    Finset.Subset.antisymm hselSubset hselSuperset
+  have hnamedCard : ({m₁, m₂, s, r} : Finset ℝ²).card = 4 := by
+    rw [← hseleq]
+    exact hcard
+  exact ⟨m₁, m₂, s, r, hm12, hMeq, hCeq, hLeq, hReq, hseleq, hnamedCard⟩
+
+/-- The left-sided obstruction row names the whole four-point selected class:
+two Moser vertices, one same-cap point, one left-adjacent point, and no
+right-adjacent point. -/
+theorem left_one_sided_obstruction_payload
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {x : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hcard : (SelectedClass A x radius).card = 4)
+    (hm : S.moserCount x radius = 2)
+    (hs : S.sameCapCount i x radius = 1)
+    (hl : S.leftAdjCount i x radius = 1)
+    (hr : S.rightAdjCount i x radius = 0) :
+    LeftOneSidedObstructionPayload S i x radius := by
+  classical
+  let M := SelectedClass A x radius ∩ S.triangle.verts
+  let C := SelectedClass A x radius ∩ (S.capInteriorByIndex i).erase x
+  let L := SelectedClass A x radius ∩ S.leftAdjacentInteriorByIndex i
+  let R := SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i
+  have hMcard : M.card = 2 := by
+    simpa [M, moserCount] using hm
+  obtain ⟨m₁, m₂, hm12, hMeq⟩ := Finset.card_eq_two.mp hMcard
+  have hCcard : C.card = 1 := by
+    simpa [C, sameCapCount] using hs
+  obtain ⟨s, hCeq⟩ := Finset.card_eq_one.mp hCcard
+  have hLcard : L.card = 1 := by
+    simpa [L, leftAdjCount] using hl
+  obtain ⟨l, hLeq⟩ := Finset.card_eq_one.mp hLcard
+  have hRcard : R.card = 0 := by
+    simpa [R, rightAdjCount] using hr
+  have hReq : R = ∅ := Finset.card_eq_zero.mp hRcard
+  have hselCover : SelectedClass A x radius ⊆ M ∪ C ∪ L ∪ R := by
+    intro y hy
+    have hcover := S.selectedClass_subset_groupUnion i hradius_pos hy
+    simp only [Finset.mem_union] at hcover ⊢
+    rcases hcover with (((hyM | hyC) | hyL) | hyR)
+    · exact Or.inl (Or.inl (Or.inl (Finset.mem_inter.mpr ⟨hy, hyM⟩)))
+    · exact Or.inl (Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyC⟩)))
+    · exact Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyL⟩))
+    · exact Or.inr (Finset.mem_inter.mpr ⟨hy, hyR⟩)
+  have hselSubset :
+      SelectedClass A x radius ⊆ ({m₁, m₂, s, l} : Finset ℝ²) := by
+    intro y hy
+    have hycover := hselCover hy
+    simp [M, C, L, R, hMeq, hCeq, hLeq, hReq] at hycover
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    tauto
+  have hm₁Sel : m₁ ∈ SelectedClass A x radius := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).1
+  have hm₂Sel : m₂ ∈ SelectedClass A x radius := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).1
+  have hsSel : s ∈ SelectedClass A x radius := by
+    have hsC : s ∈ C := by
+      rw [hCeq]
+      simp
+    exact (Finset.mem_inter.mp hsC).1
+  have hlSel : l ∈ SelectedClass A x radius := by
+    have hlL : l ∈ L := by
+      rw [hLeq]
+      simp
+    exact (Finset.mem_inter.mp hlL).1
+  have hselSuperset :
+      ({m₁, m₂, s, l} : Finset ℝ²) ⊆ SelectedClass A x radius := by
+    intro y hy
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hy
+    rcases hy with rfl | rfl | rfl | rfl
+    · exact hm₁Sel
+    · exact hm₂Sel
+    · exact hsSel
+    · exact hlSel
+  have hseleq :
+      SelectedClass A x radius = ({m₁, m₂, s, l} : Finset ℝ²) :=
+    Finset.Subset.antisymm hselSubset hselSuperset
+  have hnamedCard : ({m₁, m₂, s, l} : Finset ℝ²).card = 4 := by
+    rw [← hseleq]
+    exact hcard
+  exact ⟨m₁, m₂, s, l, hm12, hMeq, hCeq, hLeq, hReq, hseleq, hnamedCard⟩
+
+/-- If the erased point belongs to the right-adjacent singleton of a right
+one-sided payload, the payload can be rewritten with that erased point as its
+named adjacent vertex. -/
+theorem rightOneSidedErasedPayload_of_payload_of_right_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {center erased : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hpayload : RightOneSidedObstructionPayload S i center radius)
+    (herased :
+      erased ∈ SelectedClass A center radius ∩
+        S.rightAdjacentInteriorByIndex i) :
+    RightOneSidedErasedPayload S i center erased radius := by
+  rcases hpayload with
+    ⟨m₁, m₂, s, r, hmne, hM, hC, hL, hR, hsel, hcard⟩
+  have her : erased = r := by
+    have herSingleton : erased ∈ ({r} : Finset ℝ²) := by
+      simpa [hR] using herased
+    simpa using herSingleton
+  exact ⟨m₁, m₂, s, hmne, hM, hC, hL,
+    by simpa [← her] using hR,
+    by simpa [← her] using hsel,
+    by simpa [← her] using hcard⟩
+
+/-- If the erased point belongs to the left-adjacent singleton of a left
+one-sided payload, the payload can be rewritten with that erased point as its
+named adjacent vertex. -/
+theorem leftOneSidedErasedPayload_of_payload_of_left_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {center erased : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hpayload : LeftOneSidedObstructionPayload S i center radius)
+    (herased :
+      erased ∈ SelectedClass A center radius ∩
+        S.leftAdjacentInteriorByIndex i) :
+    LeftOneSidedErasedPayload S i center erased radius := by
+  rcases hpayload with
+    ⟨m₁, m₂, s, l, hmne, hM, hC, hL, hR, hsel, hcard⟩
+  have hel : erased = l := by
+    have helSingleton : erased ∈ ({l} : Finset ℝ²) := by
+      simpa [hL] using herased
+    simpa using helSingleton
+  exact ⟨m₁, m₂, s, hmne, hM, hC,
+    by simpa [← hel] using hL, hR,
+    by simpa [← hel] using hsel,
+    by simpa [← hel] using hcard⟩
+
+/-- In the first non-surplus erased-pin branch, a right one-sided payload has
+the erased surplus point as its unique right-adjacent selected point. -/
+theorem rightOneSidedErasedPayload_of_oppIndex1_surplus_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {center erased : ℝ²}
+    (herasedSurplus : erased ∈ S.capInteriorByIndex S.surplusIdx)
+    (hpayload :
+      RightOneSidedObstructionPayload S S.oppIndex1 center
+        (dist center erased)) :
+    RightOneSidedErasedPayload S S.oppIndex1 center erased
+      (dist center erased) := by
+  have herasedA : erased ∈ A :=
+    S.capInteriorByIndex_subset S.surplusIdx herasedSurplus
+  have herasedSelected :
+      erased ∈ SelectedClass A center (dist center erased) :=
+    mem_selectedClass.mpr ⟨herasedA, rfl⟩
+  have herasedRight :
+      erased ∈ S.rightAdjacentInteriorByIndex S.oppIndex1 := by
+    simpa [S.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior]
+      using herasedSurplus
+  exact S.rightOneSidedErasedPayload_of_payload_of_right_mem
+    S.oppIndex1 hpayload
+    (Finset.mem_inter.mpr ⟨herasedSelected, herasedRight⟩)
+
+/-- In the second non-surplus erased-pin branch, a left one-sided payload has
+the erased surplus point as its unique left-adjacent selected point. -/
+theorem leftOneSidedErasedPayload_of_oppIndex2_surplus_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {center erased : ℝ²}
+    (herasedSurplus : erased ∈ S.capInteriorByIndex S.surplusIdx)
+    (hpayload :
+      LeftOneSidedObstructionPayload S S.oppIndex2 center
+        (dist center erased)) :
+    LeftOneSidedErasedPayload S S.oppIndex2 center erased
+      (dist center erased) := by
+  have herasedA : erased ∈ A :=
+    S.capInteriorByIndex_subset S.surplusIdx herasedSurplus
+  have herasedSelected :
+      erased ∈ SelectedClass A center (dist center erased) :=
+    mem_selectedClass.mpr ⟨herasedA, rfl⟩
+  have herasedLeft :
+      erased ∈ S.leftAdjacentInteriorByIndex S.oppIndex2 := by
+    simpa [S.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior]
+      using herasedSurplus
+  exact S.leftOneSidedErasedPayload_of_payload_of_left_mem
+    S.oppIndex2 hpayload
+    (Finset.mem_inter.mpr ⟨herasedSelected, herasedLeft⟩)
+
+/-- In a right-sided one-sided payload, the two Moser hits are either the
+indexed cap's own endpoints, or the selected class contains the opposite Moser
+vertex. -/
+theorem rightOneSidedObstructionPayload_own_or_opposite
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {x : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hpayload : RightOneSidedObstructionPayload S i x radius) :
+    ((S.leftOuterVertexByIndex i ∈ SelectedClass A x radius ∧
+        S.rightOuterVertexByIndex i ∈ SelectedClass A x radius) ∨
+      S.oppositeVertexByIndex i ∈ SelectedClass A x radius) := by
+  rcases hpayload with
+    ⟨m₁, m₂, _s, _r, hmne, hM, _hC, _hL, _hR, _hsel, _hcard⟩
+  have hm₁I : m₁ ∈ SelectedClass A x radius ∩ S.triangle.verts := by
+    rw [hM]
+    simp
+  have hm₂I : m₂ ∈ SelectedClass A x radius ∩ S.triangle.verts := by
+    rw [hM]
+    simp
+  have hm₁Sel : m₁ ∈ SelectedClass A x radius :=
+    (Finset.mem_inter.mp hm₁I).1
+  have hm₂Sel : m₂ ∈ SelectedClass A x radius :=
+    (Finset.mem_inter.mp hm₂I).1
+  have hm₁Verts : m₁ ∈ S.triangle.verts := (Finset.mem_inter.mp hm₁I).2
+  have hm₂Verts : m₂ ∈ S.triangle.verts := (Finset.mem_inter.mp hm₂I).2
+  rcases S.triangle_pair_own_or_opposite i hm₁Verts hm₂Verts hmne with
+    hown | hopp
+  · left
+    rcases hown with hown | hown
+    · exact ⟨by simpa [← hown.1] using hm₁Sel,
+        by simpa [← hown.2] using hm₂Sel⟩
+    · exact ⟨by simpa [← hown.2] using hm₂Sel,
+        by simpa [← hown.1] using hm₁Sel⟩
+  · right
+    rcases hopp with hopp | hopp
+    · simpa [← hopp] using hm₁Sel
+    · simpa [← hopp] using hm₂Sel
+
+/-- In a left-sided one-sided payload, the two Moser hits are either the
+indexed cap's own endpoints, or the selected class contains the opposite Moser
+vertex. -/
+theorem leftOneSidedObstructionPayload_own_or_opposite
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {x : ℝ²} (i : Fin 3) {radius : ℝ}
+    (hpayload : LeftOneSidedObstructionPayload S i x radius) :
+    ((S.leftOuterVertexByIndex i ∈ SelectedClass A x radius ∧
+        S.rightOuterVertexByIndex i ∈ SelectedClass A x radius) ∨
+      S.oppositeVertexByIndex i ∈ SelectedClass A x radius) := by
+  rcases hpayload with
+    ⟨m₁, m₂, _s, _l, hmne, hM, _hC, _hL, _hR, _hsel, _hcard⟩
+  have hm₁I : m₁ ∈ SelectedClass A x radius ∩ S.triangle.verts := by
+    rw [hM]
+    simp
+  have hm₂I : m₂ ∈ SelectedClass A x radius ∩ S.triangle.verts := by
+    rw [hM]
+    simp
+  have hm₁Sel : m₁ ∈ SelectedClass A x radius :=
+    (Finset.mem_inter.mp hm₁I).1
+  have hm₂Sel : m₂ ∈ SelectedClass A x radius :=
+    (Finset.mem_inter.mp hm₂I).1
+  have hm₁Verts : m₁ ∈ S.triangle.verts := (Finset.mem_inter.mp hm₁I).2
+  have hm₂Verts : m₂ ∈ S.triangle.verts := (Finset.mem_inter.mp hm₂I).2
+  rcases S.triangle_pair_own_or_opposite i hm₁Verts hm₂Verts hmne with
+    hown | hopp
+  · left
+    rcases hown with hown | hown
+    · exact ⟨by simpa [← hown.1] using hm₁Sel,
+        by simpa [← hown.2] using hm₂Sel⟩
+    · exact ⟨by simpa [← hown.2] using hm₂Sel,
+        by simpa [← hown.1] using hm₁Sel⟩
+  · right
+    rcases hopp with hopp | hopp
+    · simpa [← hopp] using hm₁Sel
+    · simpa [← hopp] using hm₂Sel
+
 /-- A selected class with chosen left and right adjacent witnesses has an exact
 four-point primitive packet. -/
 theorem M44SelectedApex.exists_left_right_primitive_packet_cases
@@ -5673,6 +6126,34 @@ theorem adjacentCount_le_one_of_adjacent_chains
   simpa [leftAdjCount, rightAdjCount] using
     u2_selectedClass_adjacentCaps_one_hit x radius L R
       hmonoL hmonoR hsubL hsubR
+
+/-- Aggregated ordered-chain data sufficient to prove both adjacent one-hit
+upper bounds for a selected class.  This is the proof target for the remaining
+N8a3 monotonicity/support realization work. -/
+def AdjacentChainOneHitData
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (x : ℝ²) (radius : ℝ) : Prop :=
+  ∃ mL mR : ℕ,
+    ∃ L : FiniteEndpoint.OrderedSideChain mL,
+    ∃ R : FiniteEndpoint.OrderedSideChain mR,
+      N8a3AdjacentCapDistanceStrict x L ∧
+      N8a3AdjacentCapDistanceStrict x R ∧
+      (SelectedClass A x radius ∩ S.leftAdjacentInteriorByIndex i) ⊆
+        L.support ∧
+      (SelectedClass A x radius ∩ S.rightAdjacentInteriorByIndex i) ⊆
+        R.support
+
+/-- Aggregated-chain version of `adjacentCount_le_one_of_adjacent_chains`. -/
+theorem adjacentCount_le_one_of_adjacent_chainData
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    (x : ℝ²) (radius : ℝ)
+    (hdata : S.AdjacentChainOneHitData i x radius) :
+    S.leftAdjCount i x radius ≤ 1 ∧
+      S.rightAdjCount i x radius ≤ 1 := by
+  rcases hdata with
+    ⟨mL, mR, L, R, hmonoL, hmonoR, hsubL, hsubR⟩
+  exact S.adjacentCount_le_one_of_adjacent_chains i x radius L R
+    hmonoL hmonoR hsubL hsubR
 
 /-- A surplus-interior erased point is automatically counted on the
 right-adjacent side of the first non-surplus cap. -/
@@ -6379,6 +6860,78 @@ theorem IsM44.oppIndex2_surplusErasedPinTriple_cases
   · right
     exact hobstruction
 
+/-- First non-surplus erased-pin split with the obstruction branch packaged as
+a named four-point selected-class payload. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_payload_cases
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (htriple : ErasedPinTriple A x p)
+    (hl : S.leftAdjCount S.oppIndex1 p (dist p x) ≤ 1)
+    (hr : S.rightAdjCount S.oppIndex1 p (dist p x) ≤ 1) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1))) ∨
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) := by
+  rcases hM44.oppIndex1_surplusErasedPinTriple_cases
+      hK4 hcontain hx hp htriple hl hr with
+    hprimitive | hobstruction
+  · exact Or.inl hprimitive
+  · right
+    have hxA : x ∈ A := S.capInteriorByIndex_subset S.surplusIdx hx
+    have hexact := exact_erased_pin_of_erasedPinTriple hxA htriple
+    exact S.right_one_sided_obstruction_payload S.oppIndex1
+      hexact.1 hexact.2.1
+      hobstruction.1 hobstruction.2.1 hobstruction.2.2.1
+      hobstruction.2.2.2
+
+/-- Second non-surplus erased-pin split with the obstruction branch packaged as
+a named four-point selected-class payload. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_payload_cases
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (htriple : ErasedPinTriple A x p)
+    (hl : S.leftAdjCount S.oppIndex2 p (dist p x) ≤ 1)
+    (hr : S.rightAdjCount S.oppIndex2 p (dist p x) ≤ 1) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1))) ∨
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) := by
+  rcases hM44.oppIndex2_surplusErasedPinTriple_cases
+      hK4 hcontain hx hp htriple hl hr with
+    hprimitive | hobstruction
+  · exact Or.inl hprimitive
+  · right
+    have hxA : x ∈ A := S.capInteriorByIndex_subset S.surplusIdx hx
+    have hexact := exact_erased_pin_of_erasedPinTriple hxA htriple
+    exact S.left_one_sided_obstruction_payload S.oppIndex2
+      hexact.1 hexact.2.1
+      hobstruction.1 hobstruction.2.1 hobstruction.2.2.1
+      hobstruction.2.2.2
+
 /-- Chain-facing first non-surplus-cap erased-pin reducer.  The ordered-chain
 inputs supply the adjacent one-hit upper bounds. -/
 theorem IsM44.exists_oppIndex1_primitive_packet_cases_of_erasedPinTriple_chains
@@ -6618,6 +7171,488 @@ theorem IsM44.oppIndex2_surplusErasedPinTriple_cases_chains
     ⟨hl, hr⟩
   exact hM44.oppIndex2_surplusErasedPinTriple_cases
     hK4 hcontain hx hp htriple hl hr
+
+/-- Chain-facing first non-surplus erased-pin split, returning a named
+one-sided payload instead of raw obstruction counts. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_payload_cases_chains
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²} {mL mR : ℕ}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (htriple : ErasedPinTriple A x p)
+    (L : FiniteEndpoint.OrderedSideChain mL)
+    (R : FiniteEndpoint.OrderedSideChain mR)
+    (hmonoL : N8a3AdjacentCapDistanceStrict p L)
+    (hmonoR : N8a3AdjacentCapDistanceStrict p R)
+    (hsubL :
+      (SelectedClass A p (dist p x) ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex1) ⊆ L.support)
+    (hsubR :
+      (SelectedClass A p (dist p x) ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex1) ⊆ R.support) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1))) ∨
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) := by
+  rcases S.adjacentCount_le_one_of_adjacent_chains
+      S.oppIndex1 p (dist p x) L R hmonoL hmonoR hsubL hsubR with
+    ⟨hl, hr⟩
+  exact hM44.oppIndex1_surplusErasedPinTriple_payload_cases
+    hK4 hcontain hx hp htriple hl hr
+
+/-- Chain-facing second non-surplus erased-pin split, returning a named
+one-sided payload instead of raw obstruction counts. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_payload_cases_chains
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²} {mL mR : ℕ}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (htriple : ErasedPinTriple A x p)
+    (L : FiniteEndpoint.OrderedSideChain mL)
+    (R : FiniteEndpoint.OrderedSideChain mR)
+    (hmonoL : N8a3AdjacentCapDistanceStrict p L)
+    (hmonoR : N8a3AdjacentCapDistanceStrict p R)
+    (hsubL :
+      (SelectedClass A p (dist p x) ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex2) ⊆ L.support)
+    (hsubR :
+      (SelectedClass A p (dist p x) ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex2) ⊆ R.support) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1))) ∨
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) := by
+  rcases S.adjacentCount_le_one_of_adjacent_chains
+      S.oppIndex2 p (dist p x) L R hmonoL hmonoR hsubL hsubR with
+    ⟨hl, hr⟩
+  exact hM44.oppIndex2_surplusErasedPinTriple_payload_cases
+    hK4 hcontain hx hp htriple hl hr
+
+/-- Aggregated-chain-data first non-surplus erased-pin split, returning a
+primitive row or the named one-sided payload. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_payload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (htriple : ErasedPinTriple A x p)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex1 p (dist p x)) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1))) ∨
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) := by
+  rcases hdata with
+    ⟨mL, mR, L, R, hmonoL, hmonoR, hsubL, hsubR⟩
+  exact hM44.oppIndex1_surplusErasedPinTriple_payload_cases_chains
+    hK4 hcontain hx hp htriple L R hmonoL hmonoR hsubL hsubR
+
+/-- Aggregated-chain-data second non-surplus erased-pin split, returning a
+primitive row or the named one-sided payload. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_payload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (htriple : ErasedPinTriple A x p)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex2 p (dist p x)) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1))) ∨
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) := by
+  rcases hdata with
+    ⟨mL, mR, L, R, hmonoL, hmonoR, hsubL, hsubR⟩
+  exact hM44.oppIndex2_surplusErasedPinTriple_payload_cases_chains
+    hK4 hcontain hx hp htriple L R hmonoL hmonoR hsubL hsubR
+
+/-- Aggregated-chain-data first non-surplus erased-pin split, returning a
+primitive row or the one-sided payload with the erased point identified as the
+right-adjacent singleton. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_erasedPayload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (htriple : ErasedPinTriple A x p)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex1 p (dist p x)) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex1 T = 1))) ∨
+      RightOneSidedErasedPayload S S.oppIndex1 p x (dist p x) := by
+  rcases hM44.oppIndex1_surplusErasedPinTriple_payload_cases_chainData
+      hK4 hcontain hx hp htriple hdata with
+    hprimitive | hpayload
+  · exact Or.inl hprimitive
+  · exact Or.inr
+      (S.rightOneSidedErasedPayload_of_oppIndex1_surplus_mem hx hpayload)
+
+/-- Aggregated-chain-data second non-surplus erased-pin split, returning a
+primitive row or the one-sided payload with the erased point identified as the
+left-adjacent singleton. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_erasedPayload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (htriple : ErasedPinTriple A x p)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex2 p (dist p x)) :
+    (∃ T : Finset ℝ²,
+      T ⊆ SelectedClass A p (dist p x) ∧
+      T.card = 4 ∧
+      ((S.packetMoserCount T = 1 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+        (S.packetMoserCount T = 2 ∧
+          S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+          S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+          S.packetRightAdjCount S.oppIndex2 T = 1))) ∨
+      LeftOneSidedErasedPayload S S.oppIndex2 p x (dist p x) := by
+  rcases hM44.oppIndex2_surplusErasedPinTriple_payload_cases_chainData
+      hK4 hcontain hx hp htriple hdata with
+    hprimitive | hpayload
+  · exact Or.inl hprimitive
+  · exact Or.inr
+      (S.leftOneSidedErasedPayload_of_oppIndex2_surplus_mem hx hpayload)
+
+/-- Consumer form for the first non-surplus erased-pin branch: primitive-row
+and one-sided-payload exclusions refute the erased-pin triple. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (hl : S.leftAdjCount S.oppIndex1 p (dist p x) ≤ 1)
+    (hr : S.rightAdjCount S.oppIndex1 p (dist p x) ≤ 1)
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1)) → False)
+    (hpayloadFalse :
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex1_surplusErasedPinTriple_payload_cases
+      hK4 hcontain hx hp htriple hl hr with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
+
+/-- Consumer form for the second non-surplus erased-pin branch: primitive-row
+and one-sided-payload exclusions refute the erased-pin triple. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (hl : S.leftAdjCount S.oppIndex2 p (dist p x) ≤ 1)
+    (hr : S.rightAdjCount S.oppIndex2 p (dist p x) ≤ 1)
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1)) → False)
+    (hpayloadFalse :
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex2_surplusErasedPinTriple_payload_cases
+      hK4 hcontain hx hp htriple hl hr with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
+
+/-- Chain-facing consumer form for the first non-surplus erased-pin branch. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases_chains
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²} {mL mR : ℕ}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (L : FiniteEndpoint.OrderedSideChain mL)
+    (R : FiniteEndpoint.OrderedSideChain mR)
+    (hmonoL : N8a3AdjacentCapDistanceStrict p L)
+    (hmonoR : N8a3AdjacentCapDistanceStrict p R)
+    (hsubL :
+      (SelectedClass A p (dist p x) ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex1) ⊆ L.support)
+    (hsubR :
+      (SelectedClass A p (dist p x) ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex1) ⊆ R.support)
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1)) → False)
+    (hpayloadFalse :
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex1_surplusErasedPinTriple_payload_cases_chains
+      hK4 hcontain hx hp htriple L R hmonoL hmonoR hsubL hsubR with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
+
+/-- Chain-facing consumer form for the second non-surplus erased-pin branch. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases_chains
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²} {mL mR : ℕ}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (L : FiniteEndpoint.OrderedSideChain mL)
+    (R : FiniteEndpoint.OrderedSideChain mR)
+    (hmonoL : N8a3AdjacentCapDistanceStrict p L)
+    (hmonoR : N8a3AdjacentCapDistanceStrict p R)
+    (hsubL :
+      (SelectedClass A p (dist p x) ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex2) ⊆ L.support)
+    (hsubR :
+      (SelectedClass A p (dist p x) ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex2) ⊆ R.support)
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1)) → False)
+    (hpayloadFalse :
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex2_surplusErasedPinTriple_payload_cases_chains
+      hK4 hcontain hx hp htriple L R hmonoL hmonoR hsubL hsubR with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
+
+/-- Aggregated-chain-data consumer form for the first non-surplus erased-pin
+branch. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex1 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1)) → False)
+    (hpayloadFalse :
+      RightOneSidedObstructionPayload S S.oppIndex1 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hdata with
+    ⟨mL, mR, L, R, hmonoL, hmonoR, hsubL, hsubR⟩
+  exact hM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases_chains
+    hK4 hcontain hx hp L R hmonoL hmonoR hsubL hsubR
+    hprimitiveFalse hpayloadFalse htriple
+
+/-- Aggregated-chain-data consumer form for the second non-surplus erased-pin
+branch. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex2 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1)) → False)
+    (hpayloadFalse :
+      LeftOneSidedObstructionPayload S S.oppIndex2 p (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hdata with
+    ⟨mL, mR, L, R, hmonoL, hmonoR, hsubL, hsubR⟩
+  exact hM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases_chains
+    hK4 hcontain hx hp L R hmonoL hmonoR hsubL hsubR
+    hprimitiveFalse hpayloadFalse htriple
+
+/-- Aggregated-chain-data consumer form for the first non-surplus erased-pin
+branch, using the stronger erased-point one-sided payload. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_false_of_erasedPayload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex1 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1)) → False)
+    (hpayloadFalse :
+      RightOneSidedErasedPayload S S.oppIndex1 p x (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex1_surplusErasedPinTriple_erasedPayload_cases_chainData
+      hK4 hcontain hx hp htriple hdata with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
+
+/-- Aggregated-chain-data consumer form for the second non-surplus erased-pin
+branch, using the stronger erased-point one-sided payload. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_cases_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex2 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1)) → False)
+    (hpayloadFalse :
+      LeftOneSidedErasedPayload S S.oppIndex2 p x (dist p x) → False)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  rcases hM44.oppIndex2_surplusErasedPinTriple_erasedPayload_cases_chainData
+      hK4 hcontain hx hp htriple hdata with
+    hprimitive | hpayload
+  · rcases hprimitive with ⟨T, hTsub, hTcard, hrows⟩
+    exact hprimitiveFalse hTsub hTcard hrows
+  · exact hpayloadFalse hpayload
 
 end SurplusCapPacket
 
