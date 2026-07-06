@@ -3,6 +3,8 @@ import Erdos9796Proof.P97.SurplusCOMPGBank
 import Erdos9796Proof.P97.SurplusCOMPGBankDFS
 import Erdos9796Proof.P97.SurplusCOMPGBankGeometry
 import Erdos9796Proof.P97.CapBridgeFromK4
+import Erdos9796Proof.P97.NoDiameterUnderK4
+import Erdos9796Proof.P97.U1LargeCapRouteBTail
 
 /-!
 # Removable-vertex existence for `|A| > 9`
@@ -462,10 +464,57 @@ theorem removableVertexOfLarge_of_isM44PinnedSurplus :
       isM44NonSurplusContainmentRemovable
 
 /-- Configurations with no `IsM44` surplus-cap packet close by descent.  This
-is a spine obligation consumed by
-`RemovableVertexOfLarge_from_threeWaySplit`. -/
+is a spine obligation consumed by `RemovableVertexOfLarge_from_threeWaySplit`.
+
+The proof is the copied p97-rvol U-lane route-B tail, reassembled at the
+configuration level.  A `CounterexampleData` is built on the carrier `A`;
+minimality (from the strong-induction IH) excludes removable vertices and
+supplies a critical shell system; the no-`IsM44` hypothesis discharges the
+exact-pair branch of the cap-triple split; the surplus (non-exact) branch is
+closed by `u1_largeCap_routeB_tail_false`.  The remaining open content is the
+two named residuals inside that tail —
+`u1_largeCap_routeB_tail_liveData_false` and
+`U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`
+(the two-large-cap DoubleApex kill). -/
 theorem removableVertexOfLarge_of_nonIsM44 :
-    NonIsM44DescentStatement := sorry
+    NonIsM44DescentStatement := by
+  classical
+  intro A hne hconv hK4 hgt hMin hNoM44
+  -- Build the counterexample datum on the carrier `A`.
+  obtain ⟨packet⟩ := MEC.nonempty_surplusCapPacket_of_K4 hne hconv hK4 hgt
+  let D : CounterexampleData := ⟨A, hne, hconv, hK4, packet⟩
+  have hDA : D.A = A := rfl
+  have hDcard : 9 < D.A.card := by rw [hDA]; exact hgt
+  -- Minimality of `D` from the strong-induction hypothesis.
+  have hmin : D.Minimal := by
+    intro B hBne hBconv hBK4
+    by_contra hlt
+    exact hMin B (not_le.mp hlt) hBne hBconv hBK4
+  -- No `IsM44` surplus-cap packet on `D.A = A`.
+  have hNoM44D : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44 := by rw [hDA]; exact hNoM44
+  -- Minimality excludes removable vertices and supplies a critical shell system.
+  have hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x :=
+    CounterexampleData.not_isRemovableVertex_of_minimal hmin
+  have hcritical : Nonempty (CriticalShellSystem D.A) :=
+    D.exists_criticalShellSystem_of_minimal hmin
+  -- The route-B tail derives `False`, closing the goal ex falso.
+  exfalso
+  have hncol : ¬ Collinear ℝ (D.A : Set ℝ²) :=
+    D.convex.not_collinear_of_card_ge_three (by omega)
+  have hcirc :
+      3 ≤ (D.A.filter fun p =>
+        dist p (MEC.mec D.A D.nonempty).center =
+          (MEC.mec D.A D.nonempty).radius).card :=
+    MEC.no_diameter_under_k4 D.nonempty hncol D.convex D.K4
+  rcases MEC.exists_capTriple_of_circumscribed D.nonempty hncol D.convex hcirc with
+    ⟨MT, hCirc, ⟨CP⟩⟩
+  rcases CP.exactPair_or_nonExactSurplusBranch_of_card_gt_nine hDcard with
+    hexact | hnonExact
+  · exact hNoM44D
+      (isM44Packet_of_capTriple_two_exact_of_card_gt_nine MT hCirc CP hDcard hexact)
+  · rcases hnonExact with ⟨i, hsurplus, hnotOppExact⟩
+    exact u1_largeCap_routeB_tail_false D hDcard hnoRem hcritical hNoM44D
+      MT hCirc CP rfl hsurplus hnotOppExact
 
 /-- Closed adapter from the three-way split to the existing removable-vertex
 spine node. -/
