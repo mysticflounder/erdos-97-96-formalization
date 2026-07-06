@@ -3644,6 +3644,40 @@ def PinnedLeftSurplusResidualAt
       dist p₁ (S.leftOuterVertexByIndex S.oppIndex2) ≠
         dist p₂ (S.leftOuterVertexByIndex S.oppIndex2)
 
+/-- The right-pinned residual exposes its private two-point cap and the two
+non-equidistance facts against the cap endpoints. -/
+theorem pinnedRightSurplusResidual_private_pair_nonEquidistant
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+    ∃ p₁ p₂ : ℝ²,
+      p₁ ≠ p₂ ∧
+        S.capInteriorByIndex S.oppIndex1 = ({p₁, p₂} : Finset ℝ²) ∧
+        dist p₁ (S.rightOuterVertexByIndex S.oppIndex1) ≠
+          dist p₂ (S.rightOuterVertexByIndex S.oppIndex1) ∧
+        dist p₁ (S.leftOuterVertexByIndex S.oppIndex1) ≠
+          dist p₂ (S.leftOuterVertexByIndex S.oppIndex1) := by
+  rcases hpinned with
+    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hleft, _hx, _hleftEq,
+      _hrightEq, hright_ne, hleft_ne⟩
+  exact ⟨p₁, p₂, hpne, hpair, hright_ne, hleft_ne⟩
+
+/-- The left-pinned residual exposes its private two-point cap and the two
+non-equidistance facts against the cap endpoints. -/
+theorem pinnedLeftSurplusResidual_private_pair_nonEquidistant
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+    ∃ p₁ p₂ : ℝ²,
+      p₁ ≠ p₂ ∧
+        S.capInteriorByIndex S.oppIndex2 = ({p₁, p₂} : Finset ℝ²) ∧
+        dist p₁ (S.rightOuterVertexByIndex S.oppIndex2) ≠
+          dist p₂ (S.rightOuterVertexByIndex S.oppIndex2) ∧
+        dist p₁ (S.leftOuterVertexByIndex S.oppIndex2) ≠
+          dist p₂ (S.leftOuterVertexByIndex S.oppIndex2) := by
+  rcases hpinned with
+    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hright, _hx, _hleftEq,
+      _hrightEq, hright_ne, hleft_ne⟩
+  exact ⟨p₁, p₂, hpne, hpair, hright_ne, hleft_ne⟩
+
 /-- The right-pinned residual payload identifies the whole selected class:
 there are no points beyond the two private cap-interior points, the other
 non-surplus shared endpoint, and the surplus-side escape point. -/
@@ -6025,6 +6059,90 @@ theorem leftOneSidedErasedPayload_false_of_own_or_opposite
   · exact hownFalse hown.1 hown.2
   · exact hoppositeFalse hopp
 
+/-- If the first non-surplus interior has been named as `{p₁, p₂}`, then a
+right one-sided erased payload centered at an arbitrary point of that interior
+is reduced to the two named center cases. -/
+theorem rightOneSidedErasedPayload_false_of_named_oppInterior1_pair
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ p x : ℝ²} {radius : ℝ}
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior1)
+    (hownPwFalse :
+      RightOneSidedErasedPayload S S.oppIndex1 p₁ x radius →
+        S.leftOuterVertexByIndex S.oppIndex1 ∈ SelectedClass A p₁ radius →
+        S.rightOuterVertexByIndex S.oppIndex1 ∈ SelectedClass A p₁ radius →
+        False)
+    (hownPuFalse :
+      RightOneSidedErasedPayload S S.oppIndex1 p₂ x radius →
+        S.leftOuterVertexByIndex S.oppIndex1 ∈ SelectedClass A p₂ radius →
+        S.rightOuterVertexByIndex S.oppIndex1 ∈ SelectedClass A p₂ radius →
+        False)
+    (hoppositePwFalse :
+      RightOneSidedErasedPayload S S.oppIndex1 p₁ x radius →
+        S.oppositeVertexByIndex S.oppIndex1 ∈ SelectedClass A p₁ radius →
+        False)
+    (hoppositePuFalse :
+      RightOneSidedErasedPayload S S.oppIndex1 p₂ x radius →
+        S.oppositeVertexByIndex S.oppIndex1 ∈ SelectedClass A p₂ radius →
+        False)
+    (hpayload : RightOneSidedErasedPayload S S.oppIndex1 p x radius) :
+    False := by
+  have hp_cases : p = p₁ ∨ p = p₂ := by
+    have hp' : p ∈ ({p₁, p₂} : Finset ℝ²) := by
+      simpa [hpair] using hp
+    simpa using hp'
+  rcases hp_cases with rfl | rfl
+  · exact S.rightOneSidedErasedPayload_false_of_own_or_opposite S.oppIndex1
+      (fun hleft hright => hownPwFalse hpayload hleft hright)
+      (fun hopposite => hoppositePwFalse hpayload hopposite)
+      hpayload
+  · exact S.rightOneSidedErasedPayload_false_of_own_or_opposite S.oppIndex1
+      (fun hleft hright => hownPuFalse hpayload hleft hright)
+      (fun hopposite => hoppositePuFalse hpayload hopposite)
+      hpayload
+
+/-- If the second non-surplus interior has been named as `{p₁, p₂}`, then a
+left one-sided erased payload centered at an arbitrary point of that interior is
+reduced to the two named center cases. -/
+theorem leftOneSidedErasedPayload_false_of_named_oppInterior2_pair
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ p x : ℝ²} {radius : ℝ}
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior2)
+    (hownPwFalse :
+      LeftOneSidedErasedPayload S S.oppIndex2 p₁ x radius →
+        S.leftOuterVertexByIndex S.oppIndex2 ∈ SelectedClass A p₁ radius →
+        S.rightOuterVertexByIndex S.oppIndex2 ∈ SelectedClass A p₁ radius →
+        False)
+    (hownPuFalse :
+      LeftOneSidedErasedPayload S S.oppIndex2 p₂ x radius →
+        S.leftOuterVertexByIndex S.oppIndex2 ∈ SelectedClass A p₂ radius →
+        S.rightOuterVertexByIndex S.oppIndex2 ∈ SelectedClass A p₂ radius →
+        False)
+    (hoppositePwFalse :
+      LeftOneSidedErasedPayload S S.oppIndex2 p₁ x radius →
+        S.oppositeVertexByIndex S.oppIndex2 ∈ SelectedClass A p₁ radius →
+        False)
+    (hoppositePuFalse :
+      LeftOneSidedErasedPayload S S.oppIndex2 p₂ x radius →
+        S.oppositeVertexByIndex S.oppIndex2 ∈ SelectedClass A p₂ radius →
+        False)
+    (hpayload : LeftOneSidedErasedPayload S S.oppIndex2 p x radius) :
+    False := by
+  have hp_cases : p = p₁ ∨ p = p₂ := by
+    have hp' : p ∈ ({p₁, p₂} : Finset ℝ²) := by
+      simpa [hpair] using hp
+    simpa using hp'
+  rcases hp_cases with rfl | rfl
+  · exact S.leftOneSidedErasedPayload_false_of_own_or_opposite S.oppIndex2
+      (fun hleft hright => hownPwFalse hpayload hleft hright)
+      (fun hopposite => hoppositePwFalse hpayload hopposite)
+      hpayload
+  · exact S.leftOneSidedErasedPayload_false_of_own_or_opposite S.oppIndex2
+      (fun hleft hright => hownPuFalse hpayload hleft hright)
+      (fun hopposite => hoppositePuFalse hpayload hopposite)
+      hpayload
+
 /-- In the first non-surplus erased branch, if the `p`-centered payload also
 selects the opposite Moser vertex, then its radius is exactly the
 Moser-centered exact-cap radius supplied by non-surplus containment. -/
@@ -7977,6 +8095,88 @@ theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_split_chai
     (fun hpayload =>
       S.leftOneSidedErasedPayload_false_of_own_or_opposite S.oppIndex2
         hownFalse hoppositeFalse hpayload)
+    htriple
+
+/-- Aggregated-chain-data consumer for the first non-surplus erased-pin branch,
+with the one-sided erased payload split into own-endpoint and exact-opposite
+cap-class subcases. -/
+theorem IsM44.oppIndex1_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior1)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex1 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex1 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex1 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex1 T = 1)) → False)
+    (hownFalse :
+      S.leftOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p (dist p x) →
+        S.rightOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p (dist p x) → False)
+    (hexactOppositeFalse :
+      SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) (dist p x) =
+        S.capByIndex S.oppIndex1 → False)
+    (htriple : ErasedPinTriple A x p) :
+    False :=
+  hM44.oppIndex1_surplusErasedPinTriple_false_of_erasedPayload_cases_chainData
+    hK4 hcontain hx hp hdata hprimitiveFalse
+    (fun hpayload =>
+      hM44.rightOneSidedErasedPayload_false_of_own_or_exactOpposite
+        hK4 hcontain hp hownFalse hexactOppositeFalse hpayload)
+    htriple
+
+/-- Aggregated-chain-data consumer for the second non-surplus erased-pin
+branch, with the one-sided erased payload split into own-endpoint and
+exact-opposite cap-class subcases. -/
+theorem IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.oppInterior2)
+    (hdata :
+      S.AdjacentChainOneHitData S.oppIndex2 p (dist p x))
+    (hprimitiveFalse :
+      ∀ {T : Finset ℝ²},
+        T ⊆ SelectedClass A p (dist p x) →
+        T.card = 4 →
+        ((S.packetMoserCount T = 1 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 1 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1) ∨
+          (S.packetMoserCount T = 2 ∧
+            S.packetSameCapCount S.oppIndex2 p T = 0 ∧
+            S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
+            S.packetRightAdjCount S.oppIndex2 T = 1)) → False)
+    (hownFalse :
+      S.leftOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p (dist p x) →
+        S.rightOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p (dist p x) → False)
+    (hexactOppositeFalse :
+      SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) (dist p x) =
+        S.capByIndex S.oppIndex2 → False)
+    (htriple : ErasedPinTriple A x p) :
+    False :=
+  hM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_cases_chainData
+    hK4 hcontain hx hp hdata hprimitiveFalse
+    (fun hpayload =>
+      hM44.leftOneSidedErasedPayload_false_of_own_or_exactOpposite
+        hK4 hcontain hp hownFalse hexactOppositeFalse hpayload)
     htriple
 
 end SurplusCapPacket

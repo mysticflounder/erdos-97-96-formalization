@@ -216,6 +216,9 @@ moserCount <= 2                                      CLOSED assuming
                                                      bank materialized CHECKED;
                                                      pinned surplus residual
                                                      payload extraction CLOSED;
+                                                     pinned private-pair
+                                                     non-equidistance
+                                                     accessors CLOSED;
                                                      payload-to-COMP-G shadow
                                                      constructor partial:
                                                      `hasTenMasks` and
@@ -239,6 +242,15 @@ moserCount <= 2                                      CLOSED assuming
                                                      private seed mask
                                                      card/no-self reduction
                                                      CLOSED;
+                                                     one-sided erased payload
+                                                     center split to named
+                                                     `Pw`/`Pu` cases CLOSED;
+                                                     one-sided seed
+                                                     candidate-mask assembler
+                                                     CLOSED;
+                                                     one-sided erased payload
+                                                     Boolean-no-three
+                                                     wrappers CLOSED;
                                                      remaining geometric
                                                      side-condition package OPEN
 leftAdjCount <= 1                                    OPEN
@@ -402,6 +414,40 @@ IsM44NonSurplusContainmentErasedPinTripleResidualsExcluded
       `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces`
       close the final package cases by splitting through the existing finite
       `oppositeU`/`oppositeW` mask adapters;
+    - arbitrary right/left one-sided erased payload centers now reduce to the
+      named private-center cases once the corresponding non-surplus interior is
+      named as a two-point set, via
+      `rightOneSidedErasedPayload_false_of_named_oppInterior1_pair` and
+      `leftOneSidedErasedPayload_false_of_named_oppInterior2_pair`;
+    - the right/left arbitrary-center split is now composed with the seeded
+      finite contradiction packages by
+      `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`
+      and
+      `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`;
+    - one-sided seed candidate-mask membership now assembles the local seeded
+      Boolean checks through
+      `isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates`;
+      its exact-mask variant
+      `isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candidates`
+      discharges the fixed `.v`, `.w`, and private-center candidate cases;
+    - the own-endpoint one-sided payload branches now have candidate-interface
+      wrappers:
+      `false_of_rightOwnPwErasedPayload_pointClasses_of_seed_candidates`,
+      `false_of_rightOwnPuErasedPayload_pointClasses_of_seed_candidates`,
+      `false_of_leftOwnPwErasedPayload_pointClasses_of_seed_candidates`, and
+      `false_of_leftOwnPuErasedPayload_pointClasses_of_seed_candidates`;
+    - the opposite-Moser one-sided payload branches now have candidate-interface
+      wrappers, with separate `oppositeU`/`oppositeW` candidate hypotheses:
+      `false_of_rightOppositePwErasedPayload_pointClasses_of_seed_candidates`,
+      `false_of_rightOppositePuErasedPayload_pointClasses_of_seed_candidates`,
+      `false_of_leftOppositePwErasedPayload_pointClasses_of_seed_candidates`,
+      and
+      `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_candidates`;
+    - the right/left arbitrary-center split is now also composed with the
+      seeded candidate interface by
+      `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`
+      and
+      `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`;
     - right and left orientations both have exact-cap adapters for the two
       non-surplus caps;
     - right and left orientations both have payload-to-private-mask adapters
@@ -443,10 +489,14 @@ IsM44NonSurplusContainmentErasedPinTripleResidualsExcluded
       the actual centers not covered by those exact masks, plus Boolean
       no-three, prefix pair-count, and separation/search-separation facts for
       the induced shadow;
-    - the seeded one-sided adapter still uses the exact-cap/private-mask
-      interface, so its local shape/no-self/one-hit/trigger facts remain the
-      explicit interface unless the seeded candidate-membership analogue is
-      added separately.
+    - the seeded one-sided adapter now has the same remaining boundary:
+      non-exact seeded candidate-mask membership, plus Boolean no-three,
+      prefix pair-count, and separation/search-separation facts for the
+      induced shadow.  The finite/filter part of non-fixed seeded candidate
+      membership is now packaged by
+      `oneSidedSeedCandidateRemainder_of_mask_interfaces`; the remaining work
+      is to produce its explicit geometric mask facts for the actual ten
+      classes.
 
   Once those facts are supplied for a branch, the exact-cap and private-mask
   adapters feed directly into the generic finite no-seed consumer.
@@ -1253,6 +1303,13 @@ external-certificate boundary.
     actual residual, discharges the `.v/.w` exact-mask candidate cases
     internally, and leaves only non-exact candidate membership plus the global
     no-three, prefix-count, separation, and search-separation checks.
+  - `2026-07-06`: the right/left pinned residual payloads now also expose the
+    private pair and the reflection-produced endpoint non-equidistance facts as
+    direct accessors:
+    `pinnedRightSurplusResidual_private_pair_nonEquidistant` and
+    `pinnedLeftSurplusResidual_private_pair_nonEquidistant`.  These facts match
+    the rvol pinned-family boundary inputs, but they do not yet prove the
+    induced shadow's no-three, candidate, or separation Booleans.
   - `2026-07-06`: the pinned candidate-mask/valid-fragment interface was
     weakened from the all-label proposition
     `∀ a b, pointPairClassCount ... a b <= 2` to the exact generated Boolean
@@ -1669,6 +1726,92 @@ external-certificate boundary.
     `oppIndex2` mirrors of the right-oriented private seed facts, using
     `LeftOneSidedErasedPayload`, `oppInterior2 = {p₁,p₂}`, and the left label
     map.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: arbitrary one-sided erased payload centers now reduce to the
+    named `Pw`/`Pu` private-center cases once the relevant non-surplus interior
+    has been named.  The new
+    `rightOneSidedErasedPayload_false_of_named_oppInterior1_pair` and
+    `leftOneSidedErasedPayload_false_of_named_oppInterior2_pair` lemmas split
+    `p ∈ S.oppInterior1` or `p ∈ S.oppInterior2` through the two-point
+    interior equality, then invoke the existing erased-payload own/opposite
+    consumers.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the named-center split is now composed with the seeded-shadow
+    finite contradiction packages.  The new right/left aggregate closers
+    `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`
+    and
+    `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`
+    consume an arbitrary right/left one-sided erased payload, the relevant
+    named non-surplus interior pair, the two possible private-center selected
+    classes, and the shared finite side-condition interface for the `.Pw` and
+    `.Pu` branches.  They close all own/opposite named subcases through the
+    eight existing seeded package lemmas.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the one-sided seeded path now has a candidate-mask assembler.
+    `oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks` and
+    `eq_fixedMask_of_mem_seed_candidateMasks` expose the finite meaning of
+    membership in `seed.candidateMasks`, and
+    `oneSidedSeed_fixedMask_privateCenter_eq_some_of_mem` identifies the
+    private fixed mask for listed seeds.  The geometry-facing theorem
+    `isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates`
+    turns candidate membership for every center into the local class-shape,
+    exact-mask, one-hit, w-squeeze, circumcenter, and trigger Booleans for
+    `isValidOneSidedSeedShadow`; the global no-three, pair-prefix, and
+    separation facts remain explicit.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the one-sided seeded candidate interface now reaches the
+    arbitrary-center erased payload boundary.  The right and left aggregate
+    wrappers
+    `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`
+    and
+    `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`
+    split the named two-point non-surplus interior into `.Pw`/`.Pu`, thread the
+    six own/opposite candidate-remainder hypotheses for the relevant seed masks,
+    and close all four named subbranches through the candidate-interface
+    branch wrappers.  The next Lean target is no longer aggregate routing; it is
+    the geometric production of the remaining non-exact candidate memberships
+    and the Boolean no-three, prefix-count, and separation facts for the induced
+    ten-class shadow.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the non-fixed one-sided seed candidate-membership obligation
+    now has a forward producer from explicit local mask facts.  The lemma
+    `mem_seed_candidateMasks_of_oneSidedSeedCandidateMaskOK_nonfixed` records
+    that centers other than `.v`, `.w`, and the seed's private center use the
+    generated seeded filter.  The aggregate producer
+    `oneSidedSeedCandidateRemainder_of_mask_interfaces` converts card/no-self,
+    `.u` one-hit bounds, non-Moser circumcenter exclusion, and the local trigger
+    interface into `OneSidedSeedCandidateRemainder`.  This does not close the
+    geometric side-condition package by itself; it removes the finite
+    list-membership step once those geometric facts are supplied for the actual
+    ten classes.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the arbitrary-center one-sided erased-payload wrappers now
+    have Boolean-no-three variants:
+    `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces`
+    and
+    `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces`.
+    These use `oneSidedSeedCandidateRemainder_of_mask_interfaces` to feed the
+    finite seed-candidate route and therefore require the generated
+    `noThreeOK ... = true` fact directly, rather than the older all-label
+    `pointPairClassCount ... <= 2` assumption.  The prefix-count and separation
+    Booleans remain separate open inputs.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the erased-pin triple chain-data consumers now have
+    exact-opposite variants:
+    `IsM44.oppIndex1_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData`
+    and
+    `IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData`.
+    These route the opposite-Moser payload branch through the existing
+    exact-cap-radius handoff (`right/leftOneSidedErasedPayload_false_of_own_or_exactOpposite`)
+    instead of exposing the weaker raw selected-opposite predicate.  This keeps
+    the next erased-pin closure target aligned with the exact-cap seeded
+    adapters.  Verification:
     `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
     succeeds.
 - Lean module added: `Erdos9796Proof.P97.N8.FourSubpacket`.
@@ -2326,14 +2469,59 @@ external-certificate boundary.
          `false_of_leftOppositePwErasedPayload_pointClasses_of_seed_interfaces`
          and
          `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces`;
+      - arbitrary one-sided erased payload center split CLOSED by
+        `rightOneSidedErasedPayload_false_of_named_oppInterior1_pair` and
+        `leftOneSidedErasedPayload_false_of_named_oppInterior2_pair`;
+      - arbitrary one-sided erased payload seeded package CLOSED by
+        `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`
+        and
+        `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces`;
+      - one-sided seed candidate-mask assembler CLOSED by
+        `isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates`;
+      - one-sided seed candidate-mask contradiction CLOSED by
+        `false_of_oneSidedSeedShadow_pointClasses_of_seed_candidates`;
+      - one-sided exact `.v/.w/private` seeded candidate wrapper CLOSED by
+        `isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candidates`
+        and
+        `false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates`;
+      - own-endpoint one-sided payload candidate wrappers CLOSED by
+        `false_of_rightOwnPwErasedPayload_pointClasses_of_seed_candidates`,
+        `false_of_rightOwnPuErasedPayload_pointClasses_of_seed_candidates`,
+        `false_of_leftOwnPwErasedPayload_pointClasses_of_seed_candidates`, and
+        `false_of_leftOwnPuErasedPayload_pointClasses_of_seed_candidates`;
+      - opposite-Moser one-sided payload candidate wrappers CLOSED by
+        `false_of_rightOppositePwErasedPayload_pointClasses_of_seed_candidates`,
+        `false_of_rightOppositePuErasedPayload_pointClasses_of_seed_candidates`,
+        `false_of_leftOppositePwErasedPayload_pointClasses_of_seed_candidates`,
+        and
+        `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_candidates`;
+      - right/left arbitrary-center one-sided payload aggregate candidate
+        wrappers CLOSED by
+        `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`
+        and
+        `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates`;
+      - non-fixed one-sided seed candidate membership from explicit local mask
+        facts CLOSED by
+        `mem_seed_candidateMasks_of_oneSidedSeedCandidateMaskOK_nonfixed` and
+        `oneSidedSeedCandidateRemainder_of_mask_interfaces`;
+      - right/left one-sided erased payload mask-interface wrappers now take
+        the generated `noThreeOK ... = true` Boolean directly instead of the
+        older all-label `pointPairClassCount ... <= 2` interface:
+        `false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces`
+        and
+        `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces`;
       - pinned candidate-mask assembler CLOSED by
         `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks`;
       - next, prove candidate-mask membership for the actual ten point
          classes and the remaining Boolean no-three, pair-count/prefix-count,
-         and separation/search-separation facts for the induced shadow;
+       and separation/search-separation facts for the induced shadow;
        - for the opposite-Moser-present branch, use the exact-cap-radius
          handoff (`...own_or_exactOpposite`) rather than the weaker raw
-         selected-opposite predicate;
+         selected-opposite predicate; triple-level exact-split consumers are
+         now CLOSED by
+         `IsM44.oppIndex1_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData`
+         and
+         `IsM44.oppIndex2_surplusErasedPinTriple_false_of_erasedPayload_exact_split_chainData`;
        - do not pursue the fully relaxed own-branch finite census as the next
          step unless the exact-cap-centered adapter fails: exact cap centers
          are separate classes and need not share the erased private radius;
@@ -2387,6 +2575,9 @@ external-certificate boundary.
         `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`
         and
         `pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces`;
+      - right/left residual-level private-pair non-equidistance accessors
+        CLOSED by `pinnedRightSurplusResidual_private_pair_nonEquidistant` and
+        `pinnedLeftSurplusResidual_private_pair_nonEquidistant`;
       - residual no-three interface WEAKENED to the generated Boolean
         `noThreeOK ... = true`, removing the previous surplus all-label
         `pointPairClassCount` obligation from the active pinned bridge;

@@ -434,6 +434,17 @@ private theorem oneSidedSeed_privateMask_no_moser_triple_of_mem
     decide
   exact (List.forall_iff_forall_mem.mp hall seed) hseed
 
+/-- For listed one-sided seeds, the private center is fixed to the private
+mask. -/
+theorem oneSidedSeed_fixedMask_privateCenter_eq_some_of_mem
+    {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
+    seed.fixedMask seed.privateCenter = some seed.privateMask := by
+  have hall : oneSidedSeeds.Forall
+      (fun seed : OneSidedSeed =>
+        seed.fixedMask seed.privateCenter = some seed.privateMask) := by
+    decide
+  exact (List.forall_iff_forall_mem.mp hall seed) hseed
+
 /-- An exact-four mask with no self-hit gives the generated shape Boolean for
 one center; normalization is automatic for `pointMask`. -/
 theorem classShapeOKAt_shadowOfPointClasses_of_maskCard_not_mem
@@ -821,6 +832,75 @@ theorem mem_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
   rw [hmask]
   exact oneSidedSeed_privateMask_mem_candidateMasks hseed
 
+/-- The first non-surplus exact-cap mask is the fixed seeded candidate at
+`.v` for every listed one-sided seed. -/
+theorem firstOppExactCapMask_mem_seed_candidateMasks_v
+    {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
+    firstOppExactCapMask ∈ seed.candidateMasks .v := by
+  have hall : oneSidedSeeds.Forall
+      (fun seed : OneSidedSeed =>
+        firstOppExactCapMask ∈ seed.candidateMasks .v) := by
+    decide
+  exact (List.forall_iff_forall_mem.mp hall seed) hseed
+
+/-- A geometric `.v` point-mask equality to the first exact cap supplies the
+seeded candidate-membership obligation at `.v`. -/
+theorem mem_seed_candidateMasks_v_of_pointMask_eq_firstOppExactCapMask
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask) :
+    pointMask pointOf (centerClass .v) ∈ seed.candidateMasks .v := by
+  rw [hv]
+  exact firstOppExactCapMask_mem_seed_candidateMasks_v hseed
+
+/-- The second non-surplus exact-cap mask is the fixed seeded candidate at
+`.w` for every listed one-sided seed. -/
+theorem secondOppExactCapMask_mem_seed_candidateMasks_w
+    {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
+    secondOppExactCapMask ∈ seed.candidateMasks .w := by
+  have hall : oneSidedSeeds.Forall
+      (fun seed : OneSidedSeed =>
+        secondOppExactCapMask ∈ seed.candidateMasks .w) := by
+    decide
+  exact (List.forall_iff_forall_mem.mp hall seed) hseed
+
+/-- A geometric `.w` point-mask equality to the second exact cap supplies the
+seeded candidate-membership obligation at `.w`. -/
+theorem mem_seed_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hw : pointMask pointOf (centerClass .w) = secondOppExactCapMask) :
+    pointMask pointOf (centerClass .w) ∈ seed.candidateMasks .w := by
+  rw [hw]
+  exact secondOppExactCapMask_mem_seed_candidateMasks_w hseed
+
+/-- A listed one-sided seed's private mask is the fixed seeded candidate at its
+private center. -/
+theorem oneSidedSeed_privateMask_mem_seed_candidateMasks_privateCenter
+    {seed : OneSidedSeed} (hseed : seed ∈ oneSidedSeeds) :
+    seed.privateMask ∈ seed.candidateMasks seed.privateCenter := by
+  have hall : oneSidedSeeds.Forall
+      (fun seed : OneSidedSeed =>
+        seed.privateMask ∈ seed.candidateMasks seed.privateCenter) := by
+    decide
+  exact (List.forall_iff_forall_mem.mp hall seed) hseed
+
+/-- A geometric private-center point-mask equality to a listed one-sided
+seed's private mask supplies the seeded candidate-membership obligation at the
+private center. -/
+theorem mem_seed_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hmask : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask) :
+    pointMask pointOf (centerClass seed.privateCenter) ∈
+      seed.candidateMasks seed.privateCenter := by
+  rw [hmask]
+  exact oneSidedSeed_privateMask_mem_seed_candidateMasks_privateCenter hseed
+
 private theorem localTriggerOKAt_of_candidateMaskOK
     {sstar center : Label} {mask : Nat}
     (h : candidateMaskOK sstar center mask = true) :
@@ -830,6 +910,16 @@ private theorem localTriggerOKAt_of_candidateMaskOK
   · have hlocalFalse : localTriggerOKAt sstar center mask = false := by
       cases hcase : localTriggerOKAt sstar center mask <;> simp_all
     simp [candidateMaskOK, hlocalFalse] at h
+
+private theorem localTriggerOKAt_of_oneSidedSeedCandidateMaskOK
+    {sstar center : Label} {mask : Nat}
+    (h : oneSidedSeedCandidateMaskOK sstar center mask = true) :
+    localTriggerOKAt sstar center mask = true := by
+  by_cases hlocal : localTriggerOKAt sstar center mask = true
+  · exact hlocal
+  · have hlocalFalse : localTriggerOKAt sstar center mask = false := by
+      cases hcase : localTriggerOKAt sstar center mask <;> simp_all
+    simp [oneSidedSeedCandidateMaskOK, hlocalFalse] at h
 
 private theorem trigger_condition_of_localTriggerOKAt
     {sstar center : Label} {mask : Nat}
@@ -1291,6 +1381,424 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces
         triggerPrivateOKAt_shadowOfPointClasses_of_mask_condition
           (htrigger center))
       hfinal)
+
+/-- Seed candidate-mask membership supplies all local Boolean checks for the
+induced one-sided seeded shadow.  The global no-three, prefix-count, and
+separation checks remain explicit geometric obligations. -/
+theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hs : isSurplusStar seed.sstar = true)
+    (hcandidate : ∀ center : Label,
+      pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    isValidOneSidedSeedShadow seed
+      (shadowOfPointClasses pointOf centerClass) = true := by
+  have hOK : ∀ center : Label,
+      oneSidedSeedCandidateMaskOK seed.sstar center
+        (pointMask pointOf (centerClass center)) = true := by
+    intro center
+    exact oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks
+      (hcandidate center)
+  have hv :
+      pointMask pointOf (centerClass .v) = firstOppExactCapMask :=
+    eq_fixedMask_of_mem_seed_candidateMasks
+      (seed := seed) (center := .v)
+      (fixed := firstOppExactCapMask)
+      (by simp [OneSidedSeed.fixedMask]) (hcandidate .v)
+  have hwMask :
+      pointMask pointOf (centerClass .w) = secondOppExactCapMask :=
+    eq_fixedMask_of_mem_seed_candidateMasks
+      (seed := seed) (center := .w)
+      (fixed := secondOppExactCapMask)
+      (by simp [OneSidedSeed.fixedMask]) (hcandidate .w)
+  have hprivate :
+      pointMask pointOf (centerClass seed.privateCenter) =
+        seed.privateMask :=
+    eq_fixedMask_of_mem_seed_candidateMasks
+      (oneSidedSeed_fixedMask_privateCenter_eq_some_of_mem hseed)
+      (hcandidate seed.privateCenter)
+  have hlocal : ∀ center : Label,
+      localTriggerOKAt seed.sstar center
+        (pointMask pointOf (centerClass center)) = true := by
+    intro center
+    exact localTriggerOKAt_of_oneSidedSeedCandidateMaskOK (hOK center)
+  exact isValidOneSidedSeedShadow_shadowOfPointClasses_of_components hs
+    (classesShapeOK_shadowOfPointClasses_of_maskCard_not_mem
+      (fun center => by
+        have h := hOK center
+        simp [oneSidedSeedCandidateMaskOK] at h
+        aesop)
+      (fun center => by
+        have h := hOK center
+        simp [oneSidedSeedCandidateMaskOK] at h
+        aesop))
+    hv hwMask hprivate
+    (wSqueezeOK_shadowOfPointClasses_of_mask_facts
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_has_Q1)
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_has_Q2)
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_cuNoW)
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_cvNoW))
+    (oneHitOK_shadowOfPointClasses_of_mask_bounds
+      (by
+        have h := hOK .u
+        simp [oneSidedSeedCandidateMaskOK] at h
+        aesop)
+      (by
+        have h := hOK .u
+        simp [oneSidedSeedCandidateMaskOK] at h
+        aesop)
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_cvNoW_le_one)
+      (by
+        rw [hwMask]
+        exact secondOppExactCapMask_cuNoW_le_one))
+    (circumcenterOK_shadowOfPointClasses_of_no_nonmoser_triple
+      (fun center hnonMoser => by
+        have h := hOK center
+        simp [oneSidedSeedCandidateMaskOK, hnonMoser] at h
+        aesop))
+    hno3
+    (searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts)
+    (separationOK_shadowOfPointClasses_of_sepOKFor hsep)
+    (searchSeparationOK_shadowOfPointClasses_of_crossSeparation hsearchSep)
+    (fragmentTriggersOK_shadowOfPointClasses_of_trigger_interfaces hs
+      (trigger_condition_of_localTriggerOKAt
+        (Or.inl rfl) (hlocal .u))
+      (trigger_condition_of_localTriggerOKAt
+        (Or.inr (Or.inl rfl)) (hlocal .Q1))
+      (trigger_condition_of_localTriggerOKAt
+        (Or.inr (Or.inr (Or.inl rfl))) (hlocal .Q2))
+      (by
+        intro center hmem
+        exact trigger_condition_of_localTriggerOKAt
+          (Or.inr (Or.inr (Or.inr hmem))) (hlocal center))
+      (final_trigger_bound_of_localTriggerOKAt hs (hlocal seed.sstar)))
+
+/-- Candidate-mask obligations that remain after a one-sided seed's fixed
+`.v`, `.w`, and private-center masks have been discharged geometrically. -/
+abbrev OneSidedSeedCandidateRemainder
+    {α : Type _} [DecidableEq α]
+    (pointOf : Label → α) (centerClass : Label → Finset α)
+    (seed : OneSidedSeed) : Prop :=
+  ∀ center : Label, center ≠ .v → center ≠ .w →
+    center ≠ seed.privateCenter →
+      pointMask pointOf (centerClass center) ∈ seed.candidateMasks center
+
+/-- At a center not fixed by a one-sided seed, the seed candidate list is just
+the generated filter, so the local candidate predicate gives membership. -/
+theorem mem_seed_candidateMasks_of_oneSidedSeedCandidateMaskOK_nonfixed
+    {seed : OneSidedSeed} {center : Label} {mask : Nat}
+    (hv : center ≠ .v) (hw : center ≠ .w)
+    (hprivate : center ≠ seed.privateCenter)
+    (hOK : oneSidedSeedCandidateMaskOK seed.sstar center mask = true) :
+    mask ∈ seed.candidateMasks center := by
+  have hfixed : seed.fixedMask center = none := by
+    simp [OneSidedSeed.fixedMask, hv, hw, hprivate]
+  unfold OneSidedSeed.candidateMasks
+  rw [hfixed]
+  exact mem_oneSidedSeedCandidateMasksByFilter_of_candidate hOK
+
+private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {sstar center : Label}
+    (hs : isSurplusStar sstar = true)
+    (htriggerU :
+      (maskHas (pointMask pointOf (centerClass .u)) sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas (pointMask pointOf (centerClass .Q1)) sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas (pointMask pointOf (centerClass .Q2)) sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters sstar →
+        (maskHas (pointMask pointOf (centerClass center)) sstar &&
+          decide
+            (1 <=
+              maskInterCard (pointMask pointOf (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard (pointMask pointOf (centerClass sstar))
+          uPwPuMask <= 1) :
+    localTriggerOKAt sstar center
+      (pointMask pointOf (centerClass center)) = true := by
+  cases sstar <;> simp [isSurplusStar] at hs
+  all_goals
+    cases center <;>
+      simp [localTriggerOKAt, previousSstarCenters, htriggerU, htriggerQ1,
+        htriggerQ2, hfinal, htriggerPrevious]
+
+private theorem oneSidedSeedCandidateMaskOK_pointMask_of_interfaces
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hs : isSurplusStar seed.sstar = true)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        maskHas (pointMask pointOf (centerClass center)) center = false)
+    (huv :
+      maskInterCard (pointMask pointOf (centerClass .u)) cvNoUMask <= 1)
+    (huw :
+      maskInterCard (pointMask pointOf (centerClass .u)) cwNoUMask <= 1)
+    (hcirc : ∀ center : Label,
+      isMoserLabel center = false → center ≠ seed.privateCenter →
+        (maskHas (pointMask pointOf (centerClass center)) .u &&
+          maskHas (pointMask pointOf (centerClass center)) .v &&
+          maskHas (pointMask pointOf (centerClass center)) .w) = false)
+    (htriggerU :
+      (maskHas (pointMask pointOf (centerClass .u)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas (pointMask pointOf (centerClass .Q1)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas (pointMask pointOf (centerClass .Q2)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters seed.sstar →
+        (maskHas (pointMask pointOf (centerClass center)) seed.sstar &&
+          decide
+            (1 <=
+              maskInterCard (pointMask pointOf (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard (pointMask pointOf (centerClass seed.sstar))
+          uPwPuMask <= 1)
+    {center : Label}
+    (hv : center ≠ .v) (hw : center ≠ .w)
+    (hprivate : center ≠ seed.privateCenter) :
+    oneSidedSeedCandidateMaskOK seed.sstar center
+      (pointMask pointOf (centerClass center)) = true := by
+  have hcardCenter := hcard center hv hw hprivate
+  have hselfCenter := hself center hv hw hprivate
+  have hlocal :
+      localTriggerOKAt seed.sstar center
+        (pointMask pointOf (centerClass center)) = true :=
+    localTriggerOKAt_pointMask_of_trigger_interfaces hs
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  cases center
+  · simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, huv, huw]
+  · simp at hv
+  · simp at hw
+  · have hnotTriple := hcirc .s1 (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .s2 (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .s3 (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .Pw (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .Pu (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .Q1 (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+  · have hnotTriple := hcirc .Q2 (by rfl) hprivate
+    simp [oneSidedSeedCandidateMaskOK, maskNormalized_pointMask, hcardCenter,
+      hselfCenter, hlocal, hnotTriple]
+
+/-- The explicit local mask facts used by the older one-sided interface also
+produce the candidate-remainder interface for non-fixed seed centers. -/
+theorem oneSidedSeedCandidateRemainder_of_mask_interfaces
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hs : isSurplusStar seed.sstar = true)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        maskHas (pointMask pointOf (centerClass center)) center = false)
+    (huv :
+      maskInterCard (pointMask pointOf (centerClass .u)) cvNoUMask <= 1)
+    (huw :
+      maskInterCard (pointMask pointOf (centerClass .u)) cwNoUMask <= 1)
+    (hcirc : ∀ center : Label,
+      isMoserLabel center = false → center ≠ seed.privateCenter →
+        (maskHas (pointMask pointOf (centerClass center)) .u &&
+          maskHas (pointMask pointOf (centerClass center)) .v &&
+          maskHas (pointMask pointOf (centerClass center)) .w) = false)
+    (htriggerU :
+      (maskHas (pointMask pointOf (centerClass .u)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas (pointMask pointOf (centerClass .Q1)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas (pointMask pointOf (centerClass .Q2)) seed.sstar &&
+        decide
+          (1 <=
+            maskInterCard (pointMask pointOf (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters seed.sstar →
+        (maskHas (pointMask pointOf (centerClass center)) seed.sstar &&
+          decide
+            (1 <=
+              maskInterCard (pointMask pointOf (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard (pointMask pointOf (centerClass seed.sstar))
+          uPwPuMask <= 1) :
+    OneSidedSeedCandidateRemainder pointOf centerClass seed := by
+  intro center hv hw hprivate
+  exact mem_seed_candidateMasks_of_oneSidedSeedCandidateMaskOK_nonfixed
+    hv hw hprivate
+    (oneSidedSeedCandidateMaskOK_pointMask_of_interfaces hs hcard hself
+      huv huw hcirc htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+      hv hw hprivate)
+
+/-- Variant of the one-sided seeded candidate assembler that discharges the
+fixed `.v`, `.w`, and private-center candidate memberships from exact
+geometric masks. -/
+theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candidates
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    isValidOneSidedSeedShadow seed
+      (shadowOfPointClasses pointOf centerClass) = true := by
+  have hs : isSurplusStar seed.sstar = true :=
+    isSurplusStar_oneSidedSeed_sstar_of_mem hseed
+  refine isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates
+    hseed hs ?_ hno3 hcounts hsep hsearchSep
+  intro center
+  by_cases hvCenter : center = .v
+  · subst center
+    exact mem_seed_candidateMasks_v_of_pointMask_eq_firstOppExactCapMask
+      hseed hv
+  · by_cases hwCenter : center = .w
+    · subst center
+      exact mem_seed_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask
+        hseed hwMask
+    · by_cases hprivateCenter : center = seed.privateCenter
+      · subst center
+        exact
+          mem_seed_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
+            hseed hprivate
+      · exact hcandidate center hvCenter hwCenter hprivateCenter
+
+/-- A listed seed cannot be realized by geometric point classes satisfying
+seeded candidate-mask membership and the global prefix/separation facts. -/
+theorem false_of_oneSidedSeedShadow_pointClasses_of_seed_candidates
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hs : isSurplusStar seed.sstar = true)
+    (hcandidate : ∀ center : Label,
+      pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  exact false_of_isValidOneSidedSeedShadow_of_mem_seed hseed
+    (isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates
+      hseed hs hcandidate hno3 hcounts hsep hsearchSep)
+
+/-- A listed seed cannot be realized once the fixed `.v`, `.w`, and
+private-center exact masks are supplied, the remaining centers satisfy seeded
+candidate-mask membership, and the global prefix/separation facts hold. -/
+theorem false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ oneSidedSeeds)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  exact false_of_isValidOneSidedSeedShadow_of_mem_seed hseed
+    (isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candidates
+      hseed hv hwMask hprivate hcandidate hno3 hcounts hsep hsearchSep)
 
 /-- A listed seed cannot be realized by geometric point classes satisfying the
 finite one-sided seeded mask interface. -/
@@ -3430,6 +3938,90 @@ theorem false_of_rightOwnPwErasedPayload_pointClasses_of_seed_interfaces
     huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
     htriggerQ2 htriggerPrevious hfinal
 
+/-- Right-oriented own-`Pw` erased payloads are refuted from the seeded
+candidate interface.  The exact `.v`, `.w`, and private-center masks are
+discharged internally from the named geometric payload. -/
+theorem false_of_rightOwnPwErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p₁ x radius)
+    (hown :
+      S.leftOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p₁ radius ∧
+        S.rightOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p₁ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivateClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+              privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  let seed : OneSidedSeed :=
+    { sstar := sstar, privateCenter := .Pw, kind := .own,
+      privateMask := maskOfLabels [.u, .w, sstar, .Pu] }
+  have hseed : seed ∈ oneSidedSeeds := ownPwSeed_mem_oneSidedSeeds hsstar
+  exact false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+    (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+    (centerClass := centerClass)
+    (seed := seed)
+    hseed
+    (by
+      rw [hvClass]
+      exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+        S hinj hpair)
+    (by
+      rw [hwClass]
+      exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+        S hinj hqpair)
+    (by
+      rw [hprivateClass]
+      exact rightOwnPwSeedPrivateMask_of_erasedPayload S hinj hsstar
+        hsstar_eq hp12 hpair hpayload hown)
+    hcandidate hno3 hcounts hsep hsearchSep
+
 /-- Right-oriented own-`Pu` erased payloads are refuted once the shared
 seeded-shadow side-condition interface is available.  The exact-cap and private
 payload mask equalities are discharged internally from the named geometric
@@ -3600,6 +4192,90 @@ theorem false_of_rightOwnPuErasedPayload_pointClasses_of_seed_interfaces
         hsstar_eq hp12 hpair hpayload hown)
     huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
     htriggerQ2 htriggerPrevious hfinal
+
+/-- Right-oriented own-`Pu` erased payloads are refuted from the seeded
+candidate interface.  The exact `.v`, `.w`, and private-center masks are
+discharged internally from the named geometric payload. -/
+theorem false_of_rightOwnPuErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p₂ x radius)
+    (hown :
+      S.leftOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p₂ radius ∧
+        S.rightOuterVertexByIndex S.oppIndex1 ∈
+          SelectedClass A p₂ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivateClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+              privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  let seed : OneSidedSeed :=
+    { sstar := sstar, privateCenter := .Pu, kind := .own,
+      privateMask := maskOfLabels [.u, .w, sstar, .Pw] }
+  have hseed : seed ∈ oneSidedSeeds := ownPuSeed_mem_oneSidedSeeds hsstar
+  exact false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+    (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+    (centerClass := centerClass)
+    (seed := seed)
+    hseed
+    (by
+      rw [hvClass]
+      exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+        S hinj hpair)
+    (by
+      rw [hwClass]
+      exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+        S hinj hqpair)
+    (by
+      rw [hprivateClass]
+      exact rightOwnPuSeedPrivateMask_of_erasedPayload S hinj hsstar
+        hsstar_eq hp12 hpair hpayload hown)
+    hcandidate hno3 hcounts hsep hsearchSep
 
 /-- Right-oriented opposite-Moser `Pw` erased payloads are refuted once the
 shared seeded-shadow side-condition interface is available.  The private mask
@@ -3989,6 +4665,238 @@ theorem false_of_rightOppositePuErasedPayload_pointClasses_of_seed_interfaces
       huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
       htriggerQ2 htriggerPrevious hfinal
 
+/-- Right-oriented opposite-Moser `Pw` erased payloads are refuted from the
+seeded candidate interface.  The private-mask adapter selects either the
+`oppositeU` or `oppositeW` seed, so both candidate branches are supplied. -/
+theorem false_of_rightOppositePwErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p₁ x radius)
+    (hopposite :
+      S.oppositeVertexByIndex S.oppIndex1 ∈ SelectedClass A p₁ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivateClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hcandidateU : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+              privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hcandidateW : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+              privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases rightOppositePwSeedPrivateMask_cases_of_erasedPayload S hinj hsstar
+      hsstar_eq hp12 hpair hpayload hopposite with
+    hprivate | hprivate
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pu] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeUPwSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateU hno3 hcounts hsep hsearchSep
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pu] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeWPwSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateW hno3 hcounts hsep hsearchSep
+
+/-- Right-oriented opposite-Moser `Pu` erased payloads are refuted from the
+seeded candidate interface.  The private-mask adapter selects either the
+`oppositeU` or `oppositeW` seed, so both candidate branches are supplied. -/
+theorem false_of_rightOppositePuErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p₂ x radius)
+    (hopposite :
+      S.oppositeVertexByIndex S.oppIndex1 ∈ SelectedClass A p₂ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivateClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidateU : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+              privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hcandidateW : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+              privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases rightOppositePuSeedPrivateMask_cases_of_erasedPayload S hinj hsstar
+      hsstar_eq hp12 hpair hpayload hopposite with
+    hprivate | hprivate
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pw] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeUPuSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateU hno3 hcounts hsep hsearchSep
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pw] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeWPuSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateW hno3 hcounts hsep hsearchSep
+
 /-- Left-oriented own-`Pw` erased payloads are refuted once the shared
 seeded-shadow side-condition interface is available.  The exact-cap and private
 payload mask equalities are discharged internally from the named geometric
@@ -4160,6 +5068,90 @@ theorem false_of_leftOwnPwErasedPayload_pointClasses_of_seed_interfaces
     huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
     htriggerQ2 htriggerPrevious hfinal
 
+/-- Left-oriented own-`Pw` erased payloads are refuted from the seeded
+candidate interface.  The exact `.v`, `.w`, and private-center masks are
+discharged internally from the named geometric payload. -/
+theorem false_of_leftOwnPwErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p₁ x radius)
+    (hown :
+      S.leftOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p₁ radius ∧
+        S.rightOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p₁ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivateClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+              privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  let seed : OneSidedSeed :=
+    { sstar := sstar, privateCenter := .Pw, kind := .own,
+      privateMask := maskOfLabels [.u, .w, sstar, .Pu] }
+  have hseed : seed ∈ oneSidedSeeds := ownPwSeed_mem_oneSidedSeeds hsstar
+  exact false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+    (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+    (centerClass := centerClass)
+    (seed := seed)
+    hseed
+    (by
+      rw [hvClass]
+      exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+        S hinj hpair)
+    (by
+      rw [hwClass]
+      exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+        S hinj hqpair)
+    (by
+      rw [hprivateClass]
+      exact leftOwnPwSeedPrivateMask_of_erasedPayload S hinj hsstar
+        hsstar_eq hp12 hpair hpayload hown)
+    hcandidate hno3 hcounts hsep hsearchSep
+
 /-- Left-oriented own-`Pu` erased payloads are refuted once the shared
 seeded-shadow side-condition interface is available.  The exact-cap and private
 payload mask equalities are discharged internally from the named geometric
@@ -4330,6 +5322,90 @@ theorem false_of_leftOwnPuErasedPayload_pointClasses_of_seed_interfaces
         hsstar_eq hp12 hpair hpayload hown)
     huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
     htriggerQ2 htriggerPrevious hfinal
+
+/-- Left-oriented own-`Pu` erased payloads are refuted from the seeded
+candidate interface.  The exact `.v`, `.w`, and private-center masks are
+discharged internally from the named geometric payload. -/
+theorem false_of_leftOwnPuErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p₂ x radius)
+    (hown :
+      S.leftOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p₂ radius ∧
+        S.rightOuterVertexByIndex S.oppIndex2 ∈
+          SelectedClass A p₂ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivateClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+              privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  let seed : OneSidedSeed :=
+    { sstar := sstar, privateCenter := .Pu, kind := .own,
+      privateMask := maskOfLabels [.u, .w, sstar, .Pw] }
+  have hseed : seed ∈ oneSidedSeeds := ownPuSeed_mem_oneSidedSeeds hsstar
+  exact false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+    (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+    (centerClass := centerClass)
+    (seed := seed)
+    hseed
+    (by
+      rw [hvClass]
+      exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+        S hinj hpair)
+    (by
+      rw [hwClass]
+      exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+        S hinj hqpair)
+    (by
+      rw [hprivateClass]
+      exact leftOwnPuSeedPrivateMask_of_erasedPayload S hinj hsstar
+        hsstar_eq hp12 hpair hpayload hown)
+    hcandidate hno3 hcounts hsep hsearchSep
 
 /-- Left-oriented opposite-Moser `Pw` erased payloads are refuted once the
 shared seeded-shadow side-condition interface is available.  The private mask
@@ -4718,6 +5794,1295 @@ theorem false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces
         exact hprivate)
       huv huw hcirc hno3 hcounts hsep hsearchSep htriggerU htriggerQ1
       htriggerQ2 htriggerPrevious hfinal
+
+/-- Left-oriented opposite-Moser `Pw` erased payloads are refuted from the
+seeded candidate interface.  The private-mask adapter selects either the
+`oppositeU` or `oppositeW` seed, so both candidate branches are supplied. -/
+theorem false_of_leftOppositePwErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p₁ x radius)
+    (hopposite :
+      S.oppositeVertexByIndex S.oppIndex2 ∈ SelectedClass A p₁ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivateClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hcandidateU : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+              privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hcandidateW : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pw →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+              privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases leftOppositePwSeedPrivateMask_cases_of_erasedPayload S hinj hsstar
+      hsstar_eq hp12 hpair hpayload hopposite with
+    hprivate | hprivate
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pu] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeUPwSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateU hno3 hcounts hsep hsearchSep
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pu] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeWPwSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateW hno3 hcounts hsep hsearchSep
+
+/-- Left-oriented opposite-Moser `Pu` erased payloads are refuted from the
+seeded candidate interface.  The private-mask adapter selects either the
+`oppositeU` or `oppositeW` seed, so both candidate branches are supplied. -/
+theorem false_of_leftOppositePuErasedPayload_pointClasses_of_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p₂ x radius)
+    (hopposite :
+      S.oppositeVertexByIndex S.oppIndex2 ∈ SelectedClass A p₂ radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivateClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidateU : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+              privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hcandidateW : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ .Pu →
+        pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center) ∈
+          ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+              privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+            OneSidedSeed).candidateMasks center)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases leftOppositePuSeedPrivateMask_cases_of_erasedPayload S hinj hsstar
+      hsstar_eq hp12 hpair hpayload hopposite with
+    hprivate | hprivate
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pw] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeUPuSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateU hno3 hcounts hsep hsearchSep
+  · let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pw] }
+    have hseed : seed ∈ oneSidedSeeds :=
+      oppositeWPuSeed_mem_oneSidedSeeds hsstar
+    exact
+      false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
+        (pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass := centerClass)
+        (seed := seed)
+        hseed
+        (by
+          rw [hvClass]
+          exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+            S hinj hpair)
+        (by
+          rw [hwClass]
+          exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+            S hinj hqpair)
+        (by
+          rw [hprivateClass]
+          exact hprivate)
+        hcandidateW hno3 hcounts hsep hsearchSep
+
+/-- A right one-sided erased payload centered at an arbitrary point of the
+first non-surplus interior is refuted by the seeded-shadow package once the
+interior has been named and the shared finite side-condition interface is
+available for both possible private centers. -/
+theorem false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior1)
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcard : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) = 4)
+    (hself : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) center = false)
+    (huv :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cvNoUMask <= 1)
+    (huw :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cwNoUMask <= 1)
+    (hcirc : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      isMoserLabel center = false → center ≠ priv →
+        (maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .u &&
+          maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .v &&
+          maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .w) = false)
+    (hno3 : ∀ a b : Label,
+      pointPairClassCount
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) a b <= 2)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true)
+    (htriggerU :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q1)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q2)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters sstar →
+        (maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) sstar &&
+          decide
+            (1 <=
+              maskInterCard
+                (pointMask
+                  (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                  (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass sstar))
+          uPwPuMask <= 1) :
+    False := by
+  exact S.rightOneSidedErasedPayload_false_of_named_oppInterior1_pair
+    hpair hp
+    (fun hpayload hleft hright =>
+      false_of_rightOwnPwErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePwClass
+        (fun center hv hw hpw =>
+          hcard .Pw center (Or.inl rfl) hv hw hpw)
+        (fun center hv hw hpw =>
+          hself .Pw center (Or.inl rfl) hv hw hpw)
+        huv huw
+        (fun center hmoser hpw =>
+          hcirc .Pw center (Or.inl rfl) hmoser hpw)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hleft hright =>
+      false_of_rightOwnPuErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePuClass
+        (fun center hv hw hpu =>
+          hcard .Pu center (Or.inr rfl) hv hw hpu)
+        (fun center hv hw hpu =>
+          hself .Pu center (Or.inr rfl) hv hw hpu)
+        huv huw
+        (fun center hmoser hpu =>
+          hcirc .Pu center (Or.inr rfl) hmoser hpu)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hopposite =>
+      false_of_rightOppositePwErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePwClass
+        (fun center hv hw hpw =>
+          hcard .Pw center (Or.inl rfl) hv hw hpw)
+        (fun center hv hw hpw =>
+          hself .Pw center (Or.inl rfl) hv hw hpw)
+        huv huw
+        (fun center hmoser hpw =>
+          hcirc .Pw center (Or.inl rfl) hmoser hpw)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hopposite =>
+      false_of_rightOppositePuErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePuClass
+        (fun center hv hw hpu =>
+          hcard .Pu center (Or.inr rfl) hv hw hpu)
+        (fun center hv hw hpu =>
+          hself .Pu center (Or.inr rfl) hv hw hpu)
+        huv huw
+        (fun center hmoser hpu =>
+          hcirc .Pu center (Or.inr rfl) hmoser hpu)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    hpayload
+
+/-- Right one-sided erased payloads with an arbitrary private center are
+refuted from the seeded candidate interface after the named non-surplus
+interior splits the center into the `Pw`/`Pu` cases. -/
+theorem false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior1)
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidateOwnPw :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+            privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOwnPu :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+            privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+          OneSidedSeed))
+    (hcandidateOppositePwU :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+            privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOppositePwW :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+            privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOppositePuU :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+            privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+          OneSidedSeed))
+    (hcandidateOppositePuW :
+      OneSidedSeedCandidateRemainder
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+            privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+          OneSidedSeed))
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  exact S.rightOneSidedErasedPayload_false_of_named_oppInterior1_pair
+    hpair hp
+    (fun hpayload hleft hright =>
+      false_of_rightOwnPwErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePwClass
+        hcandidateOwnPw hno3 hcounts hsep hsearchSep)
+    (fun hpayload hleft hright =>
+      false_of_rightOwnPuErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePuClass
+        hcandidateOwnPu hno3 hcounts hsep hsearchSep)
+    (fun hpayload hopposite =>
+      false_of_rightOppositePwErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePwClass
+        hcandidateOppositePwU hcandidateOppositePwW
+        hno3 hcounts hsep hsearchSep)
+    (fun hpayload hopposite =>
+      false_of_rightOppositePuErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePuClass
+        hcandidateOppositePuU hcandidateOppositePuW
+        hno3 hcounts hsep hsearchSep)
+    hpayload
+
+/-- Right one-sided erased payloads with an arbitrary private center are
+refuted from local seed-mask facts and the generated Boolean no-three
+interface.  Compared with the older all-label mask interface, this version
+packages the remaining candidate-mask obligations through
+`OneSidedSeedCandidateRemainder`. -/
+theorem false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior1)
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex1)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcard : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) = 4)
+    (hself : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) center = false)
+    (huv :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cvNoUMask <= 1)
+    (huw :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cwNoUMask <= 1)
+    (hcirc : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      isMoserLabel center = false → center ≠ priv →
+        (maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .u &&
+          maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .v &&
+          maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .w) = false)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true)
+    (htriggerU :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q1)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q2)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters sstar →
+        (maskHas
+            (pointMask
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) sstar &&
+          decide
+            (1 <=
+              maskInterCard
+                (pointMask
+                  (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                  (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass sstar))
+          uPwPuMask <= 1) :
+    False := by
+  refine
+    false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates
+      S hinj hsstar hsstar_eq hp12 hpair hqpair hp hpayload
+      hvClass hwClass hprivatePwClass hprivatePuClass ?_ ?_ ?_ ?_ ?_ ?_
+      hno3 hcounts hsep hsearchSep
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+
+/-- A left one-sided erased payload centered at an arbitrary point of the
+second non-surplus interior is refuted by the seeded-shadow package once the
+interior has been named and the shared finite side-condition interface is
+available for both possible private centers. -/
+theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_interfaces
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior2)
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcard : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) = 4)
+    (hself : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) center = false)
+    (huv :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cvNoUMask <= 1)
+    (huw :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cwNoUMask <= 1)
+    (hcirc : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      isMoserLabel center = false → center ≠ priv →
+        (maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .u &&
+          maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .v &&
+          maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .w) = false)
+    (hno3 : ∀ a b : Label,
+      pointPairClassCount
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) a b <= 2)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true)
+    (htriggerU :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q1)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q2)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters sstar →
+        (maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) sstar &&
+          decide
+            (1 <=
+              maskInterCard
+                (pointMask
+                  (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                  (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass sstar))
+          uPwPuMask <= 1) :
+    False := by
+  exact S.leftOneSidedErasedPayload_false_of_named_oppInterior2_pair
+    hpair hp
+    (fun hpayload hleft hright =>
+      false_of_leftOwnPwErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePwClass
+        (fun center hv hw hpw =>
+          hcard .Pw center (Or.inl rfl) hv hw hpw)
+        (fun center hv hw hpw =>
+          hself .Pw center (Or.inl rfl) hv hw hpw)
+        huv huw
+        (fun center hmoser hpw =>
+          hcirc .Pw center (Or.inl rfl) hmoser hpw)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hleft hright =>
+      false_of_leftOwnPuErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePuClass
+        (fun center hv hw hpu =>
+          hcard .Pu center (Or.inr rfl) hv hw hpu)
+        (fun center hv hw hpu =>
+          hself .Pu center (Or.inr rfl) hv hw hpu)
+        huv huw
+        (fun center hmoser hpu =>
+          hcirc .Pu center (Or.inr rfl) hmoser hpu)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hopposite =>
+      false_of_leftOppositePwErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePwClass
+        (fun center hv hw hpw =>
+          hcard .Pw center (Or.inl rfl) hv hw hpw)
+        (fun center hv hw hpw =>
+          hself .Pw center (Or.inl rfl) hv hw hpw)
+        huv huw
+        (fun center hmoser hpw =>
+          hcirc .Pw center (Or.inl rfl) hmoser hpw)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    (fun hpayload hopposite =>
+      false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePuClass
+        (fun center hv hw hpu =>
+          hcard .Pu center (Or.inr rfl) hv hw hpu)
+        (fun center hv hw hpu =>
+          hself .Pu center (Or.inr rfl) hv hw hpu)
+        huv huw
+        (fun center hmoser hpu =>
+          hcirc .Pu center (Or.inr rfl) hmoser hpu)
+        hno3 hcounts hsep hsearchSep htriggerU htriggerQ1 htriggerQ2
+        htriggerPrevious hfinal)
+    hpayload
+
+/-- Left one-sided erased payloads with an arbitrary private center are refuted
+from the seeded candidate interface after the named non-surplus interior splits
+the center into the `Pw`/`Pu` cases. -/
+theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior2)
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcandidateOwnPw :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+            privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOwnPu :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+            privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+          OneSidedSeed))
+    (hcandidateOppositePwU :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+            privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOppositePwW :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+            privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+          OneSidedSeed))
+    (hcandidateOppositePuU :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+            privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+          OneSidedSeed))
+    (hcandidateOppositePuW :
+      OneSidedSeedCandidateRemainder
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass
+        ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+            privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+          OneSidedSeed))
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  exact S.leftOneSidedErasedPayload_false_of_named_oppInterior2_pair
+    hpair hp
+    (fun hpayload hleft hright =>
+      false_of_leftOwnPwErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePwClass
+        hcandidateOwnPw hno3 hcounts hsep hsearchSep)
+    (fun hpayload hleft hright =>
+      false_of_leftOwnPuErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload
+        ⟨hleft, hright⟩ hvClass hwClass hprivatePuClass
+        hcandidateOwnPu hno3 hcounts hsep hsearchSep)
+    (fun hpayload hopposite =>
+      false_of_leftOppositePwErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePwClass
+        hcandidateOppositePwU hcandidateOppositePwW
+        hno3 hcounts hsep hsearchSep)
+    (fun hpayload hopposite =>
+      false_of_leftOppositePuErasedPayload_pointClasses_of_seed_candidates
+        S hinj hsstar hsstar_eq hp12 hpair hqpair hpayload hopposite
+        hvClass hwClass hprivatePuClass
+        hcandidateOppositePuU hcandidateOppositePuW
+        hno3 hcounts hsep hsearchSep)
+    hpayload
+
+/-- Left one-sided erased payloads with an arbitrary private center are
+refuted from local seed-mask facts and the generated Boolean no-three
+interface.  This is the mirror of the right-oriented Boolean-no-three wrapper
+for the one-sided seeded route. -/
+theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 p x : ℝ²} {radius : ℝ}
+    {centerClass : Label → Finset ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x)
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior2)
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p x radius)
+    (hvClass : centerClass .v = S.capByIndex S.oppIndex2)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1)
+    (hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius)
+    (hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius)
+    (hcard : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) = 4)
+    (hself : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      center ≠ .v → center ≠ .w → center ≠ priv →
+        maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass center)) center = false)
+    (huv :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cvNoUMask <= 1)
+    (huw :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u))
+          cwNoUMask <= 1)
+    (hcirc : ∀ priv center : Label,
+      priv = .Pw ∨ priv = .Pu →
+      isMoserLabel center = false → center ≠ priv →
+        (maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .u &&
+          maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .v &&
+          maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) .w) = false)
+    (hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true)
+    (hsep : ∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true)
+    (htriggerU :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .u)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .u))
+              uPwPuMask)) = false)
+    (htriggerQ1 :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q1)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q1))
+              uPwPuMask)) = false)
+    (htriggerQ2 :
+      (maskHas
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass .Q2)) sstar &&
+        decide
+          (1 <=
+            maskInterCard
+              (pointMask
+                (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                (centerClass .Q2))
+              uPwPuMask)) = false)
+    (htriggerPrevious : ∀ center : Label,
+      center ∈ previousSstarCenters sstar →
+        (maskHas
+            (pointMask
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (centerClass center)) sstar &&
+          decide
+            (1 <=
+              maskInterCard
+                (pointMask
+                  (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                  (centerClass center))
+                uPwPuMask)) = false)
+    (hfinal :
+      maskInterCard
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass sstar))
+          uPwPuMask <= 1) :
+    False := by
+  refine
+    false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candidates
+      S hinj hsstar hsstar_eq hp12 hpair hqpair hp hpayload
+      hvClass hwClass hprivatePwClass hprivatePuClass ?_ ?_ ?_ ?_ ?_ ?_
+      hno3 hcounts hsep hsearchSep
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpw =>
+        hcard .Pw center (Or.inl rfl) hv hw hpw)
+      (fun center hv hw hpw =>
+        hself .Pw center (Or.inl rfl) hv hw hpw)
+      huv huw
+      (fun center hmoser hpw =>
+        hcirc .Pw center (Or.inl rfl) hmoser hpw)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+  · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
+      (fun center hv hw hpu =>
+        hcard .Pu center (Or.inr rfl) hv hw hpu)
+      (fun center hv hw hpu =>
+        hself .Pu center (Or.inr rfl) hv hw hpu)
+      huv huw
+      (fun center hmoser hpu =>
+        hcirc .Pu center (Or.inr rfl) hmoser hpu)
+      htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
 
 /-- The right-surplus pinned residual determines the finite pinned mask for the
 generated `.v` class, after choosing a three-point surplus subpacket containing
