@@ -753,6 +753,8 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.EndpointCertificate.Checker
 
+set_option linter.style.longLine false
+
 /-!
 # Endpoint certificate {pid}, product shard {shard_index}
 
@@ -845,6 +847,8 @@ Authors: Adam McKenna
 
 {imports}
 
+set_option linter.style.longLine false
+
 /-!
 # Endpoint certificate {pid}
 
@@ -867,8 +871,12 @@ def {lean_name}_products : List Poly :=
 
 set_option linter.style.nativeDecide false in
 /-- Final checked product-sum identity for endpoint certificate `{pid}`. -/
-theorem {lean_name}_sum_valid : checkProductSum {lean_name}_products = true := by
+theorem {lean_name}_valid : checkProductSum {lean_name}_products = true := by
   native_decide
+
+/-- Alias for the checked product-sum identity for endpoint certificate `{pid}`. -/
+theorem {lean_name}_sum_valid : checkProductSum {lean_name}_products = true :=
+  {lean_name}_valid
 
 end Patterns
 
@@ -948,6 +956,8 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.EndpointCertificate.Checker
+
+set_option linter.style.longLine false
 
 /-!
 # Endpoint certificate {pid}, term block {gen_index}:{start}-{stop - 1}
@@ -1046,6 +1056,8 @@ Authors: Adam McKenna
 
 {import_text}
 
+set_option linter.style.longLine false
+
 /-!
 # Endpoint certificate {pid}
 
@@ -1068,8 +1080,12 @@ def {lean_name}_blocks : List Poly :=
 
 set_option linter.style.nativeDecide false in
 /-- Final checked block-sum identity for endpoint certificate `{pid}`. -/
-theorem {lean_name}_sum_valid : checkProductSum {lean_name}_blocks = true := by
+theorem {lean_name}_valid : checkProductSum {lean_name}_blocks = true := by
   native_decide
+
+/-- Alias for the checked block-sum identity for endpoint certificate `{pid}`. -/
+theorem {lean_name}_sum_valid : checkProductSum {lean_name}_blocks = true :=
+  {lean_name}_valid
 
 end Patterns
 

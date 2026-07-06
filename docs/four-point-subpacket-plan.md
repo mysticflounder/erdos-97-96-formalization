@@ -224,7 +224,23 @@ moserCount <= 2                                      CLOSED assuming
                                                      interface CLOSED;
                                                      component-to-valid
                                                      assembly CLOSED;
-                                                     remaining fragment rules OPEN
+                                                     exact cap masks for both
+                                                     orientations CLOSED;
+                                                     own/opposite private masks
+                                                     for both orientations
+                                                     CLOSED;
+                                                     finite no-seed consumer
+                                                     CLOSED;
+                                                     exact-cap no-seed
+                                                     specialization CLOSED;
+                                                     trigger interface narrowed
+                                                     to generated fragment
+                                                     centers CLOSED;
+                                                     private seed mask
+                                                     card/no-self reduction
+                                                     CLOSED;
+                                                     remaining geometric
+                                                     side-condition package OPEN
 leftAdjCount <= 1                                    OPEN
 rightAdjCount <= 1                                   OPEN
 1 <= leftAdjCount                                    OPEN
@@ -335,6 +351,105 @@ IsM44NonSurplusContainmentErasedPinTripleResidualsExcluded
   adjacent side empty.  The next proof work is therefore geometric: exclude
   those one-sided payloads, or route them into the endpoint/pinned residual
   exclusions already available to this spine leaf.
+
+  Current COMP-G seeded-shadow status:
+
+    - the finite one-sided seeded census is materialized in
+      `SurplusSeededShadow` and closed by
+      `false_of_isValidOneSidedSeedShadow_of_mem_seed`;
+    - `SurplusCOMPGBankGeometry` now has a generic point-class contradiction
+      consumer,
+      `false_of_oneSidedSeedShadow_pointClasses_of_mask_interfaces`;
+    - the exact-cap specialization
+      `false_of_oneSidedSeedShadow_pointClasses_of_exact_cap_interfaces`
+      removes the finite obligations attached to the fixed `.v` and `.w`
+      exact caps;
+    - the trigger-specialized consumer
+      `false_of_oneSidedSeedShadow_pointClasses_of_exact_cap_trigger_interfaces`
+      only asks for trigger facts at `.u`, `.Q1`, `.Q2`, previous surplus-star
+      labels, and the final surplus-star bound;
+    - the seed-facing consumer
+      `false_of_oneSidedSeedShadow_pointClasses_of_seed_interfaces`
+      also discharges finite card/no-self obligations for the private seed
+      center from `seed ∈ oneSidedSeeds`;
+    - the seed/circumcenter consumer
+      `false_of_oneSidedSeedShadow_pointClasses_of_seed_circ_interfaces`
+      also discharges the private seed center's no-three-Moser-labels fact
+      from the same finite seed table;
+    - the first branch-facing package theorem
+      `false_of_rightOwnPwErasedPayload_pointClasses_of_seed_interfaces`
+      now turns a right-oriented own-`Pw` erased payload plus the shared
+      seeded-shadow side-condition interface into the finite no-seed
+      contradiction;
+    - the right-oriented own-`Pu` package
+      `false_of_rightOwnPuErasedPayload_pointClasses_of_seed_interfaces`
+      closes the mirror private-center endpoint case with the same
+      side-condition interface;
+    - the right-oriented opposite-Moser packages
+      `false_of_rightOppositePwErasedPayload_pointClasses_of_seed_interfaces`
+      and
+      `false_of_rightOppositePuErasedPayload_pointClasses_of_seed_interfaces`
+      close the two right-oriented private-center opposite cases by splitting
+      through the existing finite `oppositeU`/`oppositeW` mask adapters;
+    - the left-oriented own-endpoint packages
+      `false_of_leftOwnPwErasedPayload_pointClasses_of_seed_interfaces`
+      and
+      `false_of_leftOwnPuErasedPayload_pointClasses_of_seed_interfaces`
+      close the mirror endpoint cases using the left exact-cap adapters;
+    - the left-oriented opposite-Moser packages
+      `false_of_leftOppositePwErasedPayload_pointClasses_of_seed_interfaces`
+      and
+      `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces`
+      close the final package cases by splitting through the existing finite
+      `oppositeU`/`oppositeW` mask adapters;
+    - right and left orientations both have exact-cap adapters for the two
+      non-surplus caps;
+    - right and left orientations both have payload-to-private-mask adapters
+      for own endpoint and opposite endpoint one-sided payloads.
+
+  The remaining bridge is not another finite enumeration.  It is the
+  geometric side-condition package needed to instantiate the generic consumer
+  for the actual ten point classes:
+
+    - for the pinned generated DFS path, the per-center local Boolean package
+      is now reduced to generated candidate-mask membership:
+      `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks` consumes
+      `pointMask pointOf (centerClass center) ∈ candidateMasks sstar center`
+      for every center;
+    - the exact-mask variants
+      `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates` and
+      `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_seed_candidates`
+      discharge the `.v`, `.w`, and listed seed-private candidate cases before
+      entering that generic candidate interface;
+    - the right/left pinned residual payloads now produce their own `.v/.w`
+      candidate-membership facts through
+      `pinnedRightSurplusResidual_exists_candidateMasks_vw` and
+      `pinnedLeftSurplusResidual_exists_candidateMasks_vw`, using the pinned
+      selected-class equality for `.v` and the exact non-surplus cap for `.w`;
+    - the right/left pinned residual payloads now also produce a generated valid
+      pinned fragment under exactly the remaining non-exact candidate/global
+      interface, via
+      `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`
+      and
+      `pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces`;
+      this interface now asks for the generated Boolean
+      `noThreeOK (shadowOfPointClasses pointOf centerClass) = true`, not the
+      stronger all-label `pointPairClassCount <= 2` proposition;
+    - `.v` candidate membership is closed from the pinned selected-class mask;
+      `.w` candidate membership is closed when the second opposite exact-cap
+      mask is supplied; and a listed one-sided seed's private center is closed
+      from its finite private mask;
+    - the remaining pinned obligations are candidate-mask membership facts for
+      the actual centers not covered by those exact masks, plus Boolean
+      no-three, prefix pair-count, and separation/search-separation facts for
+      the induced shadow;
+    - the seeded one-sided adapter still uses the exact-cap/private-mask
+      interface, so its local shape/no-self/one-hit/trigger facts remain the
+      explicit interface unless the seeded candidate-membership analogue is
+      added separately.
+
+  Once those facts are supplied for a branch, the exact-cap and private-mask
+  adapters feed directly into the generic finite no-seed consumer.
 ```
 
 RVOL comparison:
@@ -1094,6 +1209,63 @@ external-certificate boundary.
     `mem_candidateMasks_of_isValidPinnedFragment` show that a valid pinned
     fragment's actual center mask is present in the generated candidate list
     for every center.
+  - `2026-07-06`: `SurplusCOMPGBankGeometry` now proves the converse direction
+    needed by the geometry bridge:
+    `candidateMaskOK_of_mem_candidateMasks` turns generated candidate-table
+    membership into the local predicate, and
+    `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks` assembles
+    an induced geometric shadow into `isValidPinnedFragment` from candidate
+    membership plus the remaining Boolean no-three, prefix-count, and
+    separation/search-separation facts.  The `.v` candidate membership is also
+    reduced to the existing pinned-mask equality by
+    `pinnedMaskOf_mem_candidateMasks_v` and
+    `mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf`.
+  - `2026-07-06`: the exact-mask candidate-membership bridge now also covers
+    the generated `.w` class and the one-sided seed private center.  The lemmas
+    `secondOppExactCapMask_mem_candidateMasks_w` and
+    `mem_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask` close `.w`
+    from the second-opposite exact-cap mask.  The lemmas
+    `isSurplusStar_oneSidedSeed_sstar_of_mem`,
+    `oneSidedSeed_privateMask_mem_candidateMasks`, and
+    `mem_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed` close the
+    seed private center from `seed ∈ oneSidedSeeds` and the geometric
+    private-mask equality.
+  - `2026-07-06`: the candidate-mask assembler now has exact-mask variants.
+    `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates` removes
+    `.v` and `.w` from the remaining candidate-membership hypotheses, and
+    `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_seed_candidates`
+    also removes the listed one-sided seed private center.  The live geometric
+    bridge can now focus candidate-membership work on centers not covered by
+    the pinned, exact-cap, or seed-private mask equalities.
+  - `2026-07-06`: the actual right/left pinned residual payloads now expose
+    `.v/.w` candidate-membership producers:
+    `pinnedRightSurplusResidual_exists_candidateMasks_vw` and
+    `pinnedLeftSurplusResidual_exists_candidateMasks_vw`.  These combine the
+    residual's pinned `.v` mask with the appropriate exact non-surplus `.w`
+    cap after orientation relabelling, so the branch-level bridge does not need
+    to rediscover those two candidate cases.
+  - `2026-07-06`: the right/left pinned residual payloads now have
+    payload-to-valid-fragment implications:
+    `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`
+    and
+    `pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces`.
+    Each theorem chooses the bank surplus label and private pair from the
+    actual residual, discharges the `.v/.w` exact-mask candidate cases
+    internally, and leaves only non-exact candidate membership plus the global
+    no-three, prefix-count, separation, and search-separation checks.
+  - `2026-07-06`: the pinned candidate-mask/valid-fragment interface was
+    weakened from the all-label proposition
+    `∀ a b, pointPairClassCount ... a b <= 2` to the exact generated Boolean
+    `noThreeOK ... = true`.  This matches the finite bank predicate and avoids
+    carrying diagonal or ordered-pair count obligations that the generated DFS
+    does not consume.
+  - `2026-07-06`: deriving `noThreeOK` directly from the full prefix
+    `pairCountsOK (shadowPairCountsForAssigned ... fullFragmentSearchAssigned)`
+    is not a one-step simplification: the DFS count vector and
+    `pointPairClassCount` compute the same non-diagonal counts in different
+    center orders.  The next proof-facing route is a count-vector alignment
+    lemma, or a finite candidate-constrained lemma, rather than an expanded
+    symbolic `simp` proof over all 45 pair-count entries.
   - `2026-07-05`: the generated DFS finite-completeness bridge now closes the
     search-separation prefix invariant.  `searchSeparationOK` is part of
     `isValidPinnedFragment`, `crossSeparationOKForMasks` matches the Python DFS
@@ -1398,6 +1570,107 @@ external-certificate boundary.
     a direct metric contradiction or by conversion into the endpoint/pinned
     residual interfaces.  Verification:
     `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the erased one-sided payload now has an explicit second-stage
+    consumer split.  `rightOneSidedErasedPayload_own_or_opposite` and
+    `leftOneSidedErasedPayload_own_or_opposite` inherit the Moser-pair split for
+    erased payloads, while
+    `..._false_of_erasedPayload_split_chainData` reduces each opposite-cap
+    erased-pin triple to three concrete residual exclusions: the primitive
+    packet rows, the own-endpoint erased payload, and the
+    opposite-Moser-present erased payload.  The next proof work should target
+    those two one-sided subcases separately rather than the undifferentiated
+    payload.
+  - `2026-07-06`: the opposite-Moser-present erased payload has been
+    strengthened.  `IsM44.oppIndex1_exactCapClass_at_erasedPayload_oppositeRadius`
+    and its `oppIndex2` mirror prove that once the interior-centered erased
+    payload also selects the corresponding opposite Moser vertex, the radius
+    `dist p x` is exactly the non-surplus Moser-centered cap radius, so
+    `SelectedClass A (S.oppositeVertexByIndex S.oppIndex*) (dist p x)` is the
+    exact four-point non-surplus cap.  The new
+    `...ErasedPayload_own_or_exactOpposite` and
+    `...false_of_own_or_exactOpposite` consumers replace the raw
+    opposite-Moser branch with this exact-cap branch.  This does not close the
+    one-sided residual by itself; it sharpens the handoff target for the finite
+    or COMP-G bridge.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds.
+  - `2026-07-06`: the selected route for the erased one-sided residual is now
+    the finite seeded-shadow route, not the old pinned COMP-G bank.  The seed
+    fixes the two non-surplus exact-cap classes in bank labels as
+    `.v = {u,w,Pw,Pu}` and `.w = {u,v,Q1,Q2}`, then fixes the private-centered
+    one-sided class for each surplus-star label, private-center choice, and
+    own/opposite endpoint branch.  A scratch enumeration of the 18 seed
+    variants against the generated mask rules found zero surviving shadows.
+    The Lean module `Erdos9796Proof.P97.SurplusSeededShadow` now contains the
+    matching Boolean DFS and proves `oneSidedSeedSearchEntries_eq_nil` plus the
+    18-entry zero count table by `native_decide`.  It also proves the
+    exhaustiveness bridge
+    `false_of_isValidOneSidedSeedShadow_of_mem_seed`: any listed finite seed
+    whose induced shadow satisfies `isValidOneSidedSeedShadow` is contradictory.
+    The six seed-membership lemmas (`ownPw...`, `ownPu...`,
+    `oppositeUPw...`, `oppositeUPu...`, `oppositeWPw...`,
+    `oppositeWPu...`) cover the own-endpoint and opposite-endpoint private
+    center cases once the geometry adapter identifies the surplus-star label.
+    A kernel-only `decide` proof was attempted and does not reduce the search
+    far enough.  The native audit found no `unsafe`, `implemented_by`, or
+    `extern` in the seeded module or generated bank module; `#print axioms` for
+    the usable no-seed theorem reports `propext`, `Quot.sound`,
+    `Lean.ofReduceBool`, and `Lean.trustCompiler` on Lean 4.27.  The next
+    geometry-facing mask interface is also in place:
+    `isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces` in
+    `SurplusCOMPGBankGeometry` assembles explicit point-mask facts into the
+    seeded validity predicate.  The next geometry work is the adapter from
+    `...ErasedPayload_own_or_exactOpposite` into that mask interface for one of
+    these finite seeds.
+  - `2026-07-06`: the first geometry-to-seeded-mask adapters are now proved in
+    `SurplusCOMPGBankGeometry`.  The closed-cap reconstruction lemma
+    `capByIndex_eq_outer_vertices_insert_interior_pair` turns a named
+    two-point strict interior into the four-point closed cap consisting of the
+    two Moser endpoints plus that pair.  The point-mask normalization lemmas
+    `pointMask_eq_firstOppExactCapMask`,
+    `pointMask_eq_secondOppExactCapMask`, and the six
+    `pointMask_eq_*SeedPrivateMask` lemmas identify the generated finite masks
+    for exact non-surplus caps and for each one-sided private seed.  The
+    right-oriented cap corollaries
+    `rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair` and
+    `rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair` show that
+    the two non-surplus exact caps supply the fixed `.v`/`.w` seed masks once
+    `IsM44.exists_oppInterior_pairs` has named their interiors.  A scratch
+    attempt to enumerate the fully relaxed own-branch census was stopped after
+    it failed to reduce quickly; it is not the active route.  The active route
+    uses the separate exact cap center classes supplied by
+    `IsM44.exists_nonSurplus_exact_cap_classes_at_side_of_moserCapContainment`,
+    while the erased-payload selected class supplies only the private seed
+    mask.
+  - `2026-07-06`: the right-oriented own-endpoint private seed bridge is now
+    formalized.  `rightOwnPwSeedPrivateMask_of_erasedPayload` and
+    `rightOwnPuSeedPrivateMask_of_erasedPayload` consume a
+    `RightOneSidedErasedPayload`, the own-Moser endpoint branch, a named
+    `oppInterior1 = {p₁,p₂}` pair, and the surplus-star label for the erased
+    point, then identify the `Pw`/`Pu` centered selected class with the
+    generated private seed mask.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the right-oriented opposite-Moser private seed bridge is also
+    formalized.  The private helper
+    `triangle_pair_eq_opposite_left_or_opposite_right_of_mem` proves that a
+    two-point Moser intersection containing the indexed opposite Moser vertex
+    has the other Moser hit on one of the two own endpoints.
+    `rightOppositePwSeedPrivateMask_cases_of_erasedPayload` and
+    `rightOppositePuSeedPrivateMask_cases_of_erasedPayload` apply this to a
+    `RightOneSidedErasedPayload`, producing exactly the generated
+    opposite-`u` or opposite-`w` private seed masks.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
+  - `2026-07-06`: the left-oriented mirror private seed bridge is now
+    formalized too.  `leftOwnPwSeedPrivateMask_of_erasedPayload`,
+    `leftOwnPuSeedPrivateMask_of_erasedPayload`,
+    `leftOppositePwSeedPrivateMask_cases_of_erasedPayload`, and
+    `leftOppositePuSeedPrivateMask_cases_of_erasedPayload` provide the
+    `oppIndex2` mirrors of the right-oriented private seed facts, using
+    `LeftOneSidedErasedPayload`, `oppInterior2 = {p₁,p₂}`, and the left label
+    map.  Verification:
+    `cd lean && lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+    succeeds.
 - Lean module added: `Erdos9796Proof.P97.N8.FourSubpacket`.
 - General-`n` module added: `Erdos9796Proof.P97.SurplusM44Packet`.
 - Implemented:
@@ -2018,10 +2291,57 @@ external-certificate boundary.
 
   ```text
   0. Continue the active erased-pin containment residual:
-       - use `right_one_sided_obstruction_payload` and
-         `left_one_sided_obstruction_payload` to derive a geometric
-         contradiction, or route these named payloads into the endpoint/pinned
-         residual exclusions;
+       - prove the geometry-to-seeded-shadow adapter for the one-sided erased
+         payloads using `SurplusSeededShadow.oneSidedSeedSearchEntries_eq_nil`:
+         exact non-surplus cap masks for `.v`/`.w` are now available from
+         named opposite interiors and exact-cap containment; the remaining
+         local work is to finish the opposite-endpoint private seed masks and
+         then feed those masks plus the erased-payload private-centered
+         one-sided seed into
+         `isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces`;
+       - right-oriented own-endpoint private seed masks CLOSED by
+         `rightOwnPwSeedPrivateMask_of_erasedPayload` and
+         `rightOwnPuSeedPrivateMask_of_erasedPayload`;
+       - right-oriented opposite-Moser private seed masks CLOSED by
+         `rightOppositePwSeedPrivateMask_cases_of_erasedPayload` and
+         `rightOppositePuSeedPrivateMask_cases_of_erasedPayload`;
+       - left-oriented own/opposite private seed masks CLOSED by
+         `leftOwnPwSeedPrivateMask_of_erasedPayload`,
+         `leftOwnPuSeedPrivateMask_of_erasedPayload`,
+         `leftOppositePwSeedPrivateMask_cases_of_erasedPayload`, and
+         `leftOppositePuSeedPrivateMask_cases_of_erasedPayload`;
+       - right-oriented own-`Pw` packaging CLOSED by
+         `false_of_rightOwnPwErasedPayload_pointClasses_of_seed_interfaces`;
+       - right-oriented own-`Pu` packaging CLOSED by
+         `false_of_rightOwnPuErasedPayload_pointClasses_of_seed_interfaces`;
+       - right-oriented opposite-`Pw`/`Pu` packaging CLOSED by
+         `false_of_rightOppositePwErasedPayload_pointClasses_of_seed_interfaces`
+         and
+         `false_of_rightOppositePuErasedPayload_pointClasses_of_seed_interfaces`;
+       - left-oriented own-`Pw`/`Pu` packaging CLOSED by
+         `false_of_leftOwnPwErasedPayload_pointClasses_of_seed_interfaces`
+         and
+         `false_of_leftOwnPuErasedPayload_pointClasses_of_seed_interfaces`;
+       - left-oriented opposite-`Pw`/`Pu` packaging CLOSED by
+         `false_of_leftOppositePwErasedPayload_pointClasses_of_seed_interfaces`
+         and
+         `false_of_leftOppositePuErasedPayload_pointClasses_of_seed_interfaces`;
+      - pinned candidate-mask assembler CLOSED by
+        `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks`;
+      - next, prove candidate-mask membership for the actual ten point
+         classes and the remaining Boolean no-three, pair-count/prefix-count,
+         and separation/search-separation facts for the induced shadow;
+       - for the opposite-Moser-present branch, use the exact-cap-radius
+         handoff (`...own_or_exactOpposite`) rather than the weaker raw
+         selected-opposite predicate;
+       - do not pursue the fully relaxed own-branch finite census as the next
+         step unless the exact-cap-centered adapter fails: exact cap centers
+         are separate classes and need not share the erased private radius;
+       - do not import the N8 own-endpoint adjacent-empty proof blindly: its
+         adjacent-circle input comes from exact short-cap placement, while the
+         live side here is the surplus cap, so the missing theorem must either
+         be a surplus-side geometric argument or the seeded finite-shadow
+         bridge;
        - then feed the primitive packet alternatives into the already-planned
          finite selector/certificate row exclusions.
   1. Finish the endpoint certificate route:
@@ -2046,8 +2366,37 @@ external-certificate boundary.
          `SurplusCOMPGBank`;
        - ten finite-label pairwise distinctness CLOSED by
          `pinnedSurplusTenLabels_pairwise_of_mem`;
-       - construct the local `SurplusCOMPGBank.Shadow` and prove
-         `fragmentShadowAcceptedBySearch = true`.
+       - candidate-mask membership bridge CLOSED by
+         `candidateMaskOK_of_mem_candidateMasks` and
+         `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks`;
+      - `.v` candidate membership CLOSED from the generated pinned-mask
+        equality by `mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf`;
+      - `.w` candidate membership CLOSED when the exact second-opposite cap
+        mask is supplied by `mem_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask`;
+      - one-sided seed private-center candidate membership CLOSED when the
+        private mask equality is supplied by
+        `mem_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed`;
+      - exact-mask candidate assemblers CLOSED by
+        `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates`
+        and
+        `isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_seed_candidates`;
+      - right/left residual-level `.v/.w` candidate producers CLOSED by
+        `pinnedRightSurplusResidual_exists_candidateMasks_vw` and
+        `pinnedLeftSurplusResidual_exists_candidateMasks_vw`;
+      - right/left residual-level valid-fragment implications CLOSED by
+        `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`
+        and
+        `pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces`;
+      - residual no-three interface WEAKENED to the generated Boolean
+        `noThreeOK ... = true`, removing the previous surplus all-label
+        `pointPairClassCount` obligation from the active pinned bridge;
+      - to remove Boolean no-three as a separate assumption, first prove a
+        count-vector alignment lemma between `shadowPairCountsForAssigned` at
+        `fullFragmentSearchAssigned` and `pointPairClassCount` on `labelPairs`;
+      - construct the local `SurplusCOMPGBank.Shadow`, prove candidate-mask
+        membership for the actual centers not covered by those exact masks and
+        the Boolean no-three/prefix/separation facts, then prove
+        `fragmentShadowAcceptedBySearch = true`.
   3. Wire the selector-packet interface into the Form `a/b/c` exclusions:
        - connect the named non-surplus interior pairs to the row splitters used
          by the Form `a/b/c` exclusions; this is now closed for the surplus

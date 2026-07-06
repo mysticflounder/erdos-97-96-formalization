@@ -184,6 +184,8 @@ import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008
 import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008Block29_0400_0474
 import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1008TermShards.EpQ1008Block30_0000_0000
 
+set_option linter.style.longLine false
+
 /-!
 # Endpoint certificate ep_Q1_008
 
@@ -384,8 +386,12 @@ def ep_Q1_008_blocks : List Poly :=
 
 set_option linter.style.nativeDecide false in
 /-- Final checked block-sum identity for endpoint certificate `ep_Q1_008`. -/
-theorem ep_Q1_008_sum_valid : checkProductSum ep_Q1_008_blocks = true := by
+theorem ep_Q1_008_valid : checkProductSum ep_Q1_008_blocks = true := by
   native_decide
+
+/-- Alias for the checked block-sum identity for endpoint certificate `ep_Q1_008`. -/
+theorem ep_Q1_008_sum_valid : checkProductSum ep_Q1_008_blocks = true :=
+  ep_Q1_008_valid
 
 end Patterns
 

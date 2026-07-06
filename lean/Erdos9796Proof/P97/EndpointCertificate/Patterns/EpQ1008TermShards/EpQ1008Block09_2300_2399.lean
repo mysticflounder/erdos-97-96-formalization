@@ -6,6 +6,8 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.EndpointCertificate.Checker
 
+set_option linter.style.longLine false
+
 /-!
 # Endpoint certificate ep_Q1_008, term block 9:2300-2399
 
