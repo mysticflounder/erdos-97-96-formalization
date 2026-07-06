@@ -1,0 +1,2456 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.Checker
+
+set_option linter.style.longLine false
+
+/-!
+# Endpoint certificate ep_Q1_009, term block 9:1700-1799
+
+This generated module checks partial products for one block of the internally
+sharded endpoint certificate row `ep_Q1_009`.
+-/
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Patterns
+
+namespace EpQ1009TermShards
+
+/-- Generator polynomial 9 for endpoint certificate `ep_Q1_009`. -/
+def ep_Q1_009_generator_09_1700_1799 : Poly :=
+[
+  term (-1 : Rat) [],
+  term (2 : Rat) [(2, 1)]
+]
+
+/-- Coefficient term 1700 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1700 : Poly :=
+[
+  term ((-1179091783 : Rat) / 99021804) [(6, 1), (7, 1), (13, 1), (16, 1)]
+]
+
+/-- Partial product 1700 for generator 9. -/
+def ep_Q1_009_partial_09_1700 : Poly :=
+[
+  term ((-1179091783 : Rat) / 49510902) [(2, 1), (6, 1), (7, 1), (13, 1), (16, 1)],
+  term ((1179091783 : Rat) / 99021804) [(6, 1), (7, 1), (13, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1700 for generator 9. -/
+theorem ep_Q1_009_partial_09_1700_valid :
+    mulPoly ep_Q1_009_coefficient_09_1700
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1700 := by
+  native_decide
+
+/-- Coefficient term 1701 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1701 : Poly :=
+[
+  term ((-33963500299091372064333580411159781722064529169833124822179559797155245186869725822421264295668535 : Rat) / 853526722077579103442059816905849836158290472132044793602069297403277549864221353111007300642944) [(6, 1), (7, 1), (13, 2), (15, 1)]
+]
+
+/-- Partial product 1701 for generator 9. -/
+def ep_Q1_009_partial_09_1701 : Poly :=
+[
+  term ((-33963500299091372064333580411159781722064529169833124822179559797155245186869725822421264295668535 : Rat) / 426763361038789551721029908452924918079145236066022396801034648701638774932110676555503650321472) [(2, 1), (6, 1), (7, 1), (13, 2), (15, 1)],
+  term ((33963500299091372064333580411159781722064529169833124822179559797155245186869725822421264295668535 : Rat) / 853526722077579103442059816905849836158290472132044793602069297403277549864221353111007300642944) [(6, 1), (7, 1), (13, 2), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1701 for generator 9. -/
+theorem ep_Q1_009_partial_09_1701_valid :
+    mulPoly ep_Q1_009_coefficient_09_1701
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1701 := by
+  native_decide
+
+/-- Coefficient term 1702 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1702 : Poly :=
+[
+  term ((-7175375 : Rat) / 1178831) [(6, 1), (7, 1), (13, 2), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1702 for generator 9. -/
+def ep_Q1_009_partial_09_1702 : Poly :=
+[
+  term ((-14350750 : Rat) / 1178831) [(2, 1), (6, 1), (7, 1), (13, 2), (15, 1), (16, 1)],
+  term ((7175375 : Rat) / 1178831) [(6, 1), (7, 1), (13, 2), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1702 for generator 9. -/
+theorem ep_Q1_009_partial_09_1702_valid :
+    mulPoly ep_Q1_009_coefficient_09_1702
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1702 := by
+  native_decide
+
+/-- Coefficient term 1703 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1703 : Poly :=
+[
+  term ((9502085427709013204549212809935362627440393702074604582325012295358036559319789821696424495218345 : Rat) / 182898583302338379309012817908396393462490815456866741486157706586416617828047432809501564423488) [(6, 1), (7, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1703 for generator 9. -/
+def ep_Q1_009_partial_09_1703 : Poly :=
+[
+  term ((9502085427709013204549212809935362627440393702074604582325012295358036559319789821696424495218345 : Rat) / 91449291651169189654506408954198196731245407728433370743078853293208308914023716404750782211744) [(2, 1), (6, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-9502085427709013204549212809935362627440393702074604582325012295358036559319789821696424495218345 : Rat) / 182898583302338379309012817908396393462490815456866741486157706586416617828047432809501564423488) [(6, 1), (7, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1703 for generator 9. -/
+theorem ep_Q1_009_partial_09_1703_valid :
+    mulPoly ep_Q1_009_coefficient_09_1703
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1703 := by
+  native_decide
+
+/-- Coefficient term 1704 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1704 : Poly :=
+[
+  term ((28127470 : Rat) / 3536493) [(6, 1), (7, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1704 for generator 9. -/
+def ep_Q1_009_partial_09_1704 : Poly :=
+[
+  term ((56254940 : Rat) / 3536493) [(2, 1), (6, 1), (7, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-28127470 : Rat) / 3536493) [(6, 1), (7, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1704 for generator 9. -/
+theorem ep_Q1_009_partial_09_1704_valid :
+    mulPoly ep_Q1_009_coefficient_09_1704
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1704 := by
+  native_decide
+
+/-- Coefficient term 1705 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1705 : Poly :=
+[
+  term ((30300401488860568397026276500867940957448260486719872025440669012194744299100392991180038318386647 : Rat) / 11202538227268225732677035096889279099577562446733087916027159528418017841967905259581970820938640) [(6, 1), (7, 1), (15, 1)]
+]
+
+/-- Partial product 1705 for generator 9. -/
+def ep_Q1_009_partial_09_1705 : Poly :=
+[
+  term ((30300401488860568397026276500867940957448260486719872025440669012194744299100392991180038318386647 : Rat) / 5601269113634112866338517548444639549788781223366543958013579764209008920983952629790985410469320) [(2, 1), (6, 1), (7, 1), (15, 1)],
+  term ((-30300401488860568397026276500867940957448260486719872025440669012194744299100392991180038318386647 : Rat) / 11202538227268225732677035096889279099577562446733087916027159528418017841967905259581970820938640) [(6, 1), (7, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1705 for generator 9. -/
+theorem ep_Q1_009_partial_09_1705_valid :
+    mulPoly ep_Q1_009_coefficient_09_1705
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1705 := by
+  native_decide
+
+/-- Coefficient term 1706 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1706 : Poly :=
+[
+  term ((10562152 : Rat) / 24755451) [(6, 1), (7, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1706 for generator 9. -/
+def ep_Q1_009_partial_09_1706 : Poly :=
+[
+  term ((21124304 : Rat) / 24755451) [(2, 1), (6, 1), (7, 1), (15, 1), (16, 1)],
+  term ((-10562152 : Rat) / 24755451) [(6, 1), (7, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1706 for generator 9. -/
+theorem ep_Q1_009_partial_09_1706_valid :
+    mulPoly ep_Q1_009_coefficient_09_1706
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1706 := by
+  native_decide
+
+/-- Coefficient term 1707 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1707 : Poly :=
+[
+  term ((-557252208908276297845227778739634191785703743160753341655182777802980266574932856082899745329373817098714813807 : Rat) / 5837482455993753485177667102535005448628636079573073974309957855279747755846165778989191998485030689576537568) [(6, 1), (7, 1), (15, 3)]
+]
+
+/-- Partial product 1707 for generator 9. -/
+def ep_Q1_009_partial_09_1707 : Poly :=
+[
+  term ((-557252208908276297845227778739634191785703743160753341655182777802980266574932856082899745329373817098714813807 : Rat) / 2918741227996876742588833551267502724314318039786536987154978927639873877923082889494595999242515344788268784) [(2, 1), (6, 1), (7, 1), (15, 3)],
+  term ((557252208908276297845227778739634191785703743160753341655182777802980266574932856082899745329373817098714813807 : Rat) / 5837482455993753485177667102535005448628636079573073974309957855279747755846165778989191998485030689576537568) [(6, 1), (7, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1707 for generator 9. -/
+theorem ep_Q1_009_partial_09_1707_valid :
+    mulPoly ep_Q1_009_coefficient_09_1707
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1707 := by
+  native_decide
+
+/-- Coefficient term 1708 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1708 : Poly :=
+[
+  term ((-1409157355467247472796 : Rat) / 96747836051316104659) [(6, 1), (7, 1), (15, 3), (16, 1)]
+]
+
+/-- Partial product 1708 for generator 9. -/
+def ep_Q1_009_partial_09_1708 : Poly :=
+[
+  term ((-2818314710934494945592 : Rat) / 96747836051316104659) [(2, 1), (6, 1), (7, 1), (15, 3), (16, 1)],
+  term ((1409157355467247472796 : Rat) / 96747836051316104659) [(6, 1), (7, 1), (15, 3), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1708 for generator 9. -/
+theorem ep_Q1_009_partial_09_1708_valid :
+    mulPoly ep_Q1_009_coefficient_09_1708
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1708 := by
+  native_decide
+
+/-- Coefficient term 1709 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1709 : Poly :=
+[
+  term ((-73103670173685598970646552621979391061509339498506216475909834971339678567002841432968724561 : Rat) / 185834061356336465952007418243014613287144620422721182897159175158604110096121852476183785536) [(6, 1), (7, 2), (8, 1), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1709 for generator 9. -/
+def ep_Q1_009_partial_09_1709 : Poly :=
+[
+  term ((-73103670173685598970646552621979391061509339498506216475909834971339678567002841432968724561 : Rat) / 92917030678168232976003709121507306643572310211360591448579587579302055048060926238091892768) [(2, 1), (6, 1), (7, 2), (8, 1), (13, 1), (15, 1)],
+  term ((73103670173685598970646552621979391061509339498506216475909834971339678567002841432968724561 : Rat) / 185834061356336465952007418243014613287144620422721182897159175158604110096121852476183785536) [(6, 1), (7, 2), (8, 1), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1709 for generator 9. -/
+theorem ep_Q1_009_partial_09_1709_valid :
+    mulPoly ep_Q1_009_coefficient_09_1709
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1709 := by
+  native_decide
+
+/-- Coefficient term 1710 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1710 : Poly :=
+[
+  term ((56509410952730211447664397618195454152469574224789589164563298109108862856480676791346561 : Rat) / 395288984469371511586188861036364960556275781439386448197092400615694536422969488488197920) [(6, 1), (7, 2), (9, 1), (13, 1)]
+]
+
+/-- Partial product 1710 for generator 9. -/
+def ep_Q1_009_partial_09_1710 : Poly :=
+[
+  term ((56509410952730211447664397618195454152469574224789589164563298109108862856480676791346561 : Rat) / 197644492234685755793094430518182480278137890719693224098546200307847268211484744244098960) [(2, 1), (6, 1), (7, 2), (9, 1), (13, 1)],
+  term ((-56509410952730211447664397618195454152469574224789589164563298109108862856480676791346561 : Rat) / 395288984469371511586188861036364960556275781439386448197092400615694536422969488488197920) [(6, 1), (7, 2), (9, 1), (13, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1710 for generator 9. -/
+theorem ep_Q1_009_partial_09_1710_valid :
+    mulPoly ep_Q1_009_coefficient_09_1710
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1710 := by
+  native_decide
+
+/-- Coefficient term 1711 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1711 : Poly :=
+[
+  term ((-6873187447767770450892862943290496000 : Rat) / 714705621776938877770773029179031683713) [(6, 1), (7, 2), (9, 1), (13, 1), (15, 2)]
+]
+
+/-- Partial product 1711 for generator 9. -/
+def ep_Q1_009_partial_09_1711 : Poly :=
+[
+  term ((-13746374895535540901785725886580992000 : Rat) / 714705621776938877770773029179031683713) [(2, 1), (6, 1), (7, 2), (9, 1), (13, 1), (15, 2)],
+  term ((6873187447767770450892862943290496000 : Rat) / 714705621776938877770773029179031683713) [(6, 1), (7, 2), (9, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1711 for generator 9. -/
+theorem ep_Q1_009_partial_09_1711_valid :
+    mulPoly ep_Q1_009_coefficient_09_1711
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1711 := by
+  native_decide
+
+/-- Coefficient term 1712 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1712 : Poly :=
+[
+  term ((-1357440775387001886364173258562194661062913386010657797475001756479719508474255688813774927888335 : Rat) / 213381680519394775860514954226462459039572618033011198400517324350819387466055338277751825160736) [(6, 1), (7, 2), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1712 for generator 9. -/
+def ep_Q1_009_partial_09_1712 : Poly :=
+[
+  term ((-1357440775387001886364173258562194661062913386010657797475001756479719508474255688813774927888335 : Rat) / 106690840259697387930257477113231229519786309016505599200258662175409693733027669138875912580368) [(2, 1), (6, 1), (7, 2), (13, 1), (15, 1)],
+  term ((1357440775387001886364173258562194661062913386010657797475001756479719508474255688813774927888335 : Rat) / 213381680519394775860514954226462459039572618033011198400517324350819387466055338277751825160736) [(6, 1), (7, 2), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1712 for generator 9. -/
+theorem ep_Q1_009_partial_09_1712_valid :
+    mulPoly ep_Q1_009_coefficient_09_1712
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1712 := by
+  native_decide
+
+/-- Coefficient term 1713 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1713 : Poly :=
+[
+  term ((-1148060 : Rat) / 1178831) [(6, 1), (7, 2), (13, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1713 for generator 9. -/
+def ep_Q1_009_partial_09_1713 : Poly :=
+[
+  term ((-2296120 : Rat) / 1178831) [(2, 1), (6, 1), (7, 2), (13, 1), (15, 1), (16, 1)],
+  term ((1148060 : Rat) / 1178831) [(6, 1), (7, 2), (13, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1713 for generator 9. -/
+theorem ep_Q1_009_partial_09_1713_valid :
+    mulPoly ep_Q1_009_coefficient_09_1713
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1713 := by
+  native_decide
+
+/-- Coefficient term 1714 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1714 : Poly :=
+[
+  term ((449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1)]
+]
+
+/-- Partial product 1714 for generator 9. -/
+def ep_Q1_009_partial_09_1714 : Poly :=
+[
+  term ((449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(2, 1), (6, 1), (8, 1)],
+  term ((-449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1714 for generator 9. -/
+theorem ep_Q1_009_partial_09_1714_valid :
+    mulPoly ep_Q1_009_coefficient_09_1714
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1714 := by
+  native_decide
+
+/-- Coefficient term 1715 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1715 : Poly :=
+[
+  term ((88516020981370437777855664714930977407491414682892325194291842612604826081582522917451667291419 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (13, 1)]
+]
+
+/-- Partial product 1715 for generator 9. -/
+def ep_Q1_009_partial_09_1715 : Poly :=
+[
+  term ((88516020981370437777855664714930977407491414682892325194291842612604826081582522917451667291419 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(2, 1), (6, 1), (8, 1), (11, 1), (13, 1)],
+  term ((-88516020981370437777855664714930977407491414682892325194291842612604826081582522917451667291419 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (13, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1715 for generator 9. -/
+theorem ep_Q1_009_partial_09_1715_valid :
+    mulPoly ep_Q1_009_coefficient_09_1715
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1715 := by
+  native_decide
+
+/-- Coefficient term 1716 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1716 : Poly :=
+[
+  term ((2556264047432079283323745561211228 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (13, 1), (15, 2)]
+]
+
+/-- Partial product 1716 for generator 9. -/
+def ep_Q1_009_partial_09_1716 : Poly :=
+[
+  term ((5112528094864158566647491122422456 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (11, 1), (13, 1), (15, 2)],
+  term ((-2556264047432079283323745561211228 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1716 for generator 9. -/
+theorem ep_Q1_009_partial_09_1716_valid :
+    mulPoly ep_Q1_009_coefficient_09_1716
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1716 := by
+  native_decide
+
+/-- Coefficient term 1717 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1717 : Poly :=
+[
+  term ((-2332745824089091189416886543874293 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1717 for generator 9. -/
+def ep_Q1_009_partial_09_1717 : Poly :=
+[
+  term ((-4665491648178182378833773087748586 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (11, 1), (14, 1), (15, 1)],
+  term ((2332745824089091189416886543874293 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1717 for generator 9. -/
+theorem ep_Q1_009_partial_09_1717_valid :
+    mulPoly ep_Q1_009_coefficient_09_1717
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1717 := by
+  native_decide
+
+/-- Coefficient term 1718 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1718 : Poly :=
+[
+  term ((1780282568119076794317726106029385576368348274971414466048453176716320060062468659412557706560983 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (15, 1)]
+]
+
+/-- Partial product 1718 for generator 9. -/
+def ep_Q1_009_partial_09_1718 : Poly :=
+[
+  term ((1780282568119076794317726106029385576368348274971414466048453176716320060062468659412557706560983 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(2, 1), (6, 1), (8, 1), (11, 1), (15, 1)],
+  term ((-1780282568119076794317726106029385576368348274971414466048453176716320060062468659412557706560983 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1718 for generator 9. -/
+theorem ep_Q1_009_partial_09_1718_valid :
+    mulPoly ep_Q1_009_coefficient_09_1718
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1718 := by
+  native_decide
+
+/-- Coefficient term 1719 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1719 : Poly :=
+[
+  term ((-1306733195884922784465065042683076 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (11, 1), (15, 3)]
+]
+
+/-- Partial product 1719 for generator 9. -/
+def ep_Q1_009_partial_09_1719 : Poly :=
+[
+  term ((-2613466391769845568930130085366152 : Rat) / 10306817152083683685026217919314591) [(2, 1), (6, 1), (8, 1), (11, 1), (15, 3)],
+  term ((1306733195884922784465065042683076 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (11, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1719 for generator 9. -/
+theorem ep_Q1_009_partial_09_1719_valid :
+    mulPoly ep_Q1_009_coefficient_09_1719
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1719 := by
+  native_decide
+
+/-- Coefficient term 1720 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1720 : Poly :=
+[
+  term ((-449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1), (12, 1)]
+]
+
+/-- Partial product 1720 for generator 9. -/
+def ep_Q1_009_partial_09_1720 : Poly :=
+[
+  term ((-449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(2, 1), (6, 1), (8, 1), (12, 1)],
+  term ((449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1), (12, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1720 for generator 9. -/
+theorem ep_Q1_009_partial_09_1720_valid :
+    mulPoly ep_Q1_009_coefficient_09_1720
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1720 := by
+  native_decide
+
+/-- Coefficient term 1721 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1721 : Poly :=
+[
+  term ((-1488779700859413036970194632760856 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1721 for generator 9. -/
+def ep_Q1_009_partial_09_1721 : Poly :=
+[
+  term ((-2977559401718826073940389265521712 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((1488779700859413036970194632760856 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1721 for generator 9. -/
+theorem ep_Q1_009_partial_09_1721_valid :
+    mulPoly ep_Q1_009_coefficient_09_1721
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1721 := by
+  native_decide
+
+/-- Coefficient term 1722 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1722 : Poly :=
+[
+  term ((131298323060159447788224331575569831356450733724956936496904366969733063705270829221624336665495 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (12, 1), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1722 for generator 9. -/
+def ep_Q1_009_partial_09_1722 : Poly :=
+[
+  term ((131298323060159447788224331575569831356450733724956936496904366969733063705270829221624336665495 : Rat) / 7805030576966131569984311566206613758060074057754289681680685356661372624037117803999718992512) [(2, 1), (6, 1), (8, 1), (12, 1), (13, 1), (15, 1)],
+  term ((-131298323060159447788224331575569831356450733724956936496904366969733063705270829221624336665495 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (12, 1), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1722 for generator 9. -/
+theorem ep_Q1_009_partial_09_1722_valid :
+    mulPoly ep_Q1_009_coefficient_09_1722
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1722 := by
+  native_decide
+
+/-- Coefficient term 1723 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1723 : Poly :=
+[
+  term ((3687486922590734366305543911824540 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (14, 1), (15, 2)]
+]
+
+/-- Partial product 1723 for generator 9. -/
+def ep_Q1_009_partial_09_1723 : Poly :=
+[
+  term ((7374973845181468732611087823649080 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (12, 1), (14, 1), (15, 2)],
+  term ((-3687486922590734366305543911824540 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (14, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1723 for generator 9. -/
+theorem ep_Q1_009_partial_09_1723_valid :
+    mulPoly ep_Q1_009_coefficient_09_1723
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1723 := by
+  native_decide
+
+/-- Coefficient term 1724 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1724 : Poly :=
+[
+  term ((-255139815351700596519823489812055059796693086455783926069678988510255385902171525275692804184157 : Rat) / 5203353717977421046656207710804409172040049371836193121120456904440915082691411869333145995008) [(6, 1), (8, 1), (12, 1), (15, 2)]
+]
+
+/-- Partial product 1724 for generator 9. -/
+def ep_Q1_009_partial_09_1724 : Poly :=
+[
+  term ((-255139815351700596519823489812055059796693086455783926069678988510255385902171525275692804184157 : Rat) / 2601676858988710523328103855402204586020024685918096560560228452220457541345705934666572997504) [(2, 1), (6, 1), (8, 1), (12, 1), (15, 2)],
+  term ((255139815351700596519823489812055059796693086455783926069678988510255385902171525275692804184157 : Rat) / 5203353717977421046656207710804409172040049371836193121120456904440915082691411869333145995008) [(6, 1), (8, 1), (12, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1724 for generator 9. -/
+theorem ep_Q1_009_partial_09_1724_valid :
+    mulPoly ep_Q1_009_coefficient_09_1724
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1724 := by
+  native_decide
+
+/-- Coefficient term 1725 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1725 : Poly :=
+[
+  term ((3074756675550852738757151750407689161026000186597258019177028167722088081671637963146986959383 : Rat) / 54201601228931469236002163654212595542083847623293678345004759421259532111368873638886937448) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1725 for generator 9. -/
+def ep_Q1_009_partial_09_1725 : Poly :=
+[
+  term ((3074756675550852738757151750407689161026000186597258019177028167722088081671637963146986959383 : Rat) / 27100800614465734618001081827106297771041923811646839172502379710629766055684436819443468724) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-3074756675550852738757151750407689161026000186597258019177028167722088081671637963146986959383 : Rat) / 54201601228931469236002163654212595542083847623293678345004759421259532111368873638886937448) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1725 for generator 9. -/
+theorem ep_Q1_009_partial_09_1725_valid :
+    mulPoly ep_Q1_009_coefficient_09_1725
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1725 := by
+  native_decide
+
+/-- Coefficient term 1726 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1726 : Poly :=
+[
+  term ((-163715394419440490561306695216608 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 3)]
+]
+
+/-- Partial product 1726 for generator 9. -/
+def ep_Q1_009_partial_09_1726 : Poly :=
+[
+  term ((-327430788838880981122613390433216 : Rat) / 3435605717361227895008739306438197) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 1), (15, 3)],
+  term ((163715394419440490561306695216608 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1726 for generator 9. -/
+theorem ep_Q1_009_partial_09_1726_valid :
+    mulPoly ep_Q1_009_coefficient_09_1726
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1726 := by
+  native_decide
+
+/-- Coefficient term 1727 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1727 : Poly :=
+[
+  term ((-2678072291917084744997453026969652 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (14, 2), (15, 1)]
+]
+
+/-- Partial product 1727 for generator 9. -/
+def ep_Q1_009_partial_09_1727 : Poly :=
+[
+  term ((-5356144583834169489994906053939304 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 2), (15, 1)],
+  term ((2678072291917084744997453026969652 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (14, 2), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1727 for generator 9. -/
+theorem ep_Q1_009_partial_09_1727_valid :
+    mulPoly ep_Q1_009_coefficient_09_1727
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1727 := by
+  native_decide
+
+/-- Coefficient term 1728 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1728 : Poly :=
+[
+  term ((466660888185658870160252672224394209492286888525536096920214890496424643658240338485137710173315 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(6, 1), (8, 1), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1728 for generator 9. -/
+def ep_Q1_009_partial_09_1728 : Poly :=
+[
+  term ((466660888185658870160252672224394209492286888525536096920214890496424643658240338485137710173315 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(2, 1), (6, 1), (8, 1), (13, 1), (15, 1)],
+  term ((-466660888185658870160252672224394209492286888525536096920214890496424643658240338485137710173315 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(6, 1), (8, 1), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1728 for generator 9. -/
+theorem ep_Q1_009_partial_09_1728_valid :
+    mulPoly ep_Q1_009_coefficient_09_1728
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1728 := by
+  native_decide
+
+/-- Coefficient term 1729 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1729 : Poly :=
+[
+  term ((-1857318996708197549016887690208916 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (15, 3)]
+]
+
+/-- Partial product 1729 for generator 9. -/
+def ep_Q1_009_partial_09_1729 : Poly :=
+[
+  term ((-3714637993416395098033775380417832 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (13, 1), (15, 3)],
+  term ((1857318996708197549016887690208916 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1729 for generator 9. -/
+theorem ep_Q1_009_partial_09_1729_valid :
+    mulPoly ep_Q1_009_coefficient_09_1729
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1729 := by
+  native_decide
+
+/-- Coefficient term 1730 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1730 : Poly :=
+[
+  term ((265498149824194486463098233051122398488167049414160164868903755827998060586981057753445568174829 : Rat) / 20813414871909684186624830843217636688160197487344772484481827617763660330765647477332583980032) [(6, 1), (8, 1), (13, 2)]
+]
+
+/-- Partial product 1730 for generator 9. -/
+def ep_Q1_009_partial_09_1730 : Poly :=
+[
+  term ((265498149824194486463098233051122398488167049414160164868903755827998060586981057753445568174829 : Rat) / 10406707435954842093312415421608818344080098743672386242240913808881830165382823738666291990016) [(2, 1), (6, 1), (8, 1), (13, 2)],
+  term ((-265498149824194486463098233051122398488167049414160164868903755827998060586981057753445568174829 : Rat) / 20813414871909684186624830843217636688160197487344772484481827617763660330765647477332583980032) [(6, 1), (8, 1), (13, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1730 for generator 9. -/
+theorem ep_Q1_009_partial_09_1730_valid :
+    mulPoly ep_Q1_009_coefficient_09_1730
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1730 := by
+  native_decide
+
+/-- Coefficient term 1731 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1731 : Poly :=
+[
+  term ((222040574536872137851310347809396 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 2), (15, 2)]
+]
+
+/-- Partial product 1731 for generator 9. -/
+def ep_Q1_009_partial_09_1731 : Poly :=
+[
+  term ((444081149073744275702620695618792 : Rat) / 3435605717361227895008739306438197) [(2, 1), (6, 1), (8, 1), (13, 2), (15, 2)],
+  term ((-222040574536872137851310347809396 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 2), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1731 for generator 9. -/
+theorem ep_Q1_009_partial_09_1731_valid :
+    mulPoly ep_Q1_009_coefficient_09_1731
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1731 := by
+  native_decide
+
+/-- Coefficient term 1732 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1732 : Poly :=
+[
+  term ((434764210160466596057508443575270397855207759170749485348238208131283379732798420000935045145197 : Rat) / 13875609914606456124416553895478424458773464991563181656321218411842440220510431651555055986688) [(6, 1), (8, 1), (14, 1)]
+]
+
+/-- Partial product 1732 for generator 9. -/
+def ep_Q1_009_partial_09_1732 : Poly :=
+[
+  term ((434764210160466596057508443575270397855207759170749485348238208131283379732798420000935045145197 : Rat) / 6937804957303228062208276947739212229386732495781590828160609205921220110255215825777527993344) [(2, 1), (6, 1), (8, 1), (14, 1)],
+  term ((-434764210160466596057508443575270397855207759170749485348238208131283379732798420000935045145197 : Rat) / 13875609914606456124416553895478424458773464991563181656321218411842440220510431651555055986688) [(6, 1), (8, 1), (14, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1732 for generator 9. -/
+theorem ep_Q1_009_partial_09_1732_valid :
+    mulPoly ep_Q1_009_coefficient_09_1732
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1732 := by
+  native_decide
+
+/-- Coefficient term 1733 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1733 : Poly :=
+[
+  term ((-527886834107756744423334196719538002517059379873022433804744381871521721999130468999778225051703 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (14, 1), (15, 2)]
+]
+
+/-- Partial product 1733 for generator 9. -/
+def ep_Q1_009_partial_09_1733 : Poly :=
+[
+  term ((-527886834107756744423334196719538002517059379873022433804744381871521721999130468999778225051703 : Rat) / 7805030576966131569984311566206613758060074057754289681680685356661372624037117803999718992512) [(2, 1), (6, 1), (8, 1), (14, 1), (15, 2)],
+  term ((527886834107756744423334196719538002517059379873022433804744381871521721999130468999778225051703 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (14, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1733 for generator 9. -/
+theorem ep_Q1_009_partial_09_1733_valid :
+    mulPoly ep_Q1_009_coefficient_09_1733
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1733 := by
+  native_decide
+
+/-- Coefficient term 1734 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1734 : Poly :=
+[
+  term ((5193497788229046516335709879624196 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (14, 2), (15, 2)]
+]
+
+/-- Partial product 1734 for generator 9. -/
+def ep_Q1_009_partial_09_1734 : Poly :=
+[
+  term ((10386995576458093032671419759248392 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (14, 2), (15, 2)],
+  term ((-5193497788229046516335709879624196 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (14, 2), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1734 for generator 9. -/
+theorem ep_Q1_009_partial_09_1734_valid :
+    mulPoly ep_Q1_009_coefficient_09_1734
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1734 := by
+  native_decide
+
+/-- Coefficient term 1735 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1735 : Poly :=
+[
+  term ((-8536213062327834766074410630259070995884601501585567141686590226273674967083410972639568363949 : Rat) / 424763568814483350747445527412604830370616275251934132336363828933952251648278519945562938368) [(6, 1), (8, 1), (15, 2)]
+]
+
+/-- Partial product 1735 for generator 9. -/
+def ep_Q1_009_partial_09_1735 : Poly :=
+[
+  term ((-8536213062327834766074410630259070995884601501585567141686590226273674967083410972639568363949 : Rat) / 212381784407241675373722763706302415185308137625967066168181914466976125824139259972781469184) [(2, 1), (6, 1), (8, 1), (15, 2)],
+  term ((8536213062327834766074410630259070995884601501585567141686590226273674967083410972639568363949 : Rat) / 424763568814483350747445527412604830370616275251934132336363828933952251648278519945562938368) [(6, 1), (8, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1735 for generator 9. -/
+theorem ep_Q1_009_partial_09_1735_valid :
+    mulPoly ep_Q1_009_coefficient_09_1735
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1735 := by
+  native_decide
+
+/-- Coefficient term 1736 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1736 : Poly :=
+[
+  term ((313702413935632864209581646681692 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (15, 4)]
+]
+
+/-- Partial product 1736 for generator 9. -/
+def ep_Q1_009_partial_09_1736 : Poly :=
+[
+  term ((627404827871265728419163293363384 : Rat) / 10306817152083683685026217919314591) [(2, 1), (6, 1), (8, 1), (15, 4)],
+  term ((-313702413935632864209581646681692 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (15, 4)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1736 for generator 9. -/
+theorem ep_Q1_009_partial_09_1736_valid :
+    mulPoly ep_Q1_009_coefficient_09_1736
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1736 := by
+  native_decide
+
+/-- Coefficient term 1737 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1737 : Poly :=
+[
+  term ((383253308500450074592987468741180705219237251690855492080230492765636037144032600094330661572189421481709119802411 : Rat) / 9278771431193142178573725743269375621973507068874899658440898559111554144086159743267362069213166140521034833920) [(6, 1), (9, 1), (11, 1)]
+]
+
+/-- Partial product 1737 for generator 9. -/
+def ep_Q1_009_partial_09_1737 : Poly :=
+[
+  term ((383253308500450074592987468741180705219237251690855492080230492765636037144032600094330661572189421481709119802411 : Rat) / 4639385715596571089286862871634687810986753534437449829220449279555777072043079871633681034606583070260517416960) [(2, 1), (6, 1), (9, 1), (11, 1)],
+  term ((-383253308500450074592987468741180705219237251690855492080230492765636037144032600094330661572189421481709119802411 : Rat) / 9278771431193142178573725743269375621973507068874899658440898559111554144086159743267362069213166140521034833920) [(6, 1), (9, 1), (11, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1737 for generator 9. -/
+theorem ep_Q1_009_partial_09_1737_valid :
+    mulPoly ep_Q1_009_coefficient_09_1737
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1737 := by
+  native_decide
+
+/-- Coefficient term 1738 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1738 : Poly :=
+[
+  term ((159901595754272504066354992664004561346598538499549210501949049307945600452148967599600380867375248054597510986042567 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1738 for generator 9. -/
+def ep_Q1_009_partial_09_1738 : Poly :=
+[
+  term ((159901595754272504066354992664004561346598538499549210501949049307945600452148967599600380867375248054597510986042567 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (11, 1), (13, 1), (15, 1)],
+  term ((-159901595754272504066354992664004561346598538499549210501949049307945600452148967599600380867375248054597510986042567 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1738 for generator 9. -/
+theorem ep_Q1_009_partial_09_1738_valid :
+    mulPoly ep_Q1_009_coefficient_09_1738
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1738 := by
+  native_decide
+
+/-- Coefficient term 1739 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1739 : Poly :=
+[
+  term ((-23274932376326906775331 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1739 for generator 9. -/
+def ep_Q1_009_partial_09_1739 : Poly :=
+[
+  term ((-46549864752653813550662 : Rat) / 1558779625948348837707) [(2, 1), (6, 1), (9, 1), (11, 1), (13, 1), (15, 1), (16, 1)],
+  term ((23274932376326906775331 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1739 for generator 9. -/
+theorem ep_Q1_009_partial_09_1739_valid :
+    mulPoly ep_Q1_009_coefficient_09_1739
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1739 := by
+  native_decide
+
+/-- Coefficient term 1740 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1740 : Poly :=
+[
+  term ((-117283306522936956553750233179464979379491942247212709346858909469230676785132376220421200023174920811237195459047 : Rat) / 4639385715596571089286862871634687810986753534437449829220449279555777072043079871633681034606583070260517416960) [(6, 1), (9, 1), (11, 1), (14, 1)]
+]
+
+/-- Partial product 1740 for generator 9. -/
+def ep_Q1_009_partial_09_1740 : Poly :=
+[
+  term ((-117283306522936956553750233179464979379491942247212709346858909469230676785132376220421200023174920811237195459047 : Rat) / 2319692857798285544643431435817343905493376767218724914610224639777888536021539935816840517303291535130258708480) [(2, 1), (6, 1), (9, 1), (11, 1), (14, 1)],
+  term ((117283306522936956553750233179464979379491942247212709346858909469230676785132376220421200023174920811237195459047 : Rat) / 4639385715596571089286862871634687810986753534437449829220449279555777072043079871633681034606583070260517416960) [(6, 1), (9, 1), (11, 1), (14, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1740 for generator 9. -/
+theorem ep_Q1_009_partial_09_1740_valid :
+    mulPoly ep_Q1_009_coefficient_09_1740
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1740 := by
+  native_decide
+
+/-- Coefficient term 1741 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1741 : Poly :=
+[
+  term ((237656816706250445897783 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (11, 1), (14, 1), (16, 1)]
+]
+
+/-- Partial product 1741 for generator 9. -/
+def ep_Q1_009_partial_09_1741 : Poly :=
+[
+  term ((237656816706250445897783 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (11, 1), (14, 1), (16, 1)],
+  term ((-237656816706250445897783 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (11, 1), (14, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1741 for generator 9. -/
+theorem ep_Q1_009_partial_09_1741_valid :
+    mulPoly ep_Q1_009_coefficient_09_1741
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1741 := by
+  native_decide
+
+/-- Coefficient term 1742 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1742 : Poly :=
+[
+  term ((-50899034031237221418732984233463267963846959032621413774069526097270551626522236713254842766790372863770044522395509 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (11, 1), (15, 2)]
+]
+
+/-- Partial product 1742 for generator 9. -/
+def ep_Q1_009_partial_09_1742 : Poly :=
+[
+  term ((-50899034031237221418732984233463267963846959032621413774069526097270551626522236713254842766790372863770044522395509 : Rat) / 788502263913267228050046402224912149208956986123764910557925525471167278202655116516407705840010514316360439324160) [(2, 1), (6, 1), (9, 1), (11, 1), (15, 2)],
+  term ((50899034031237221418732984233463267963846959032621413774069526097270551626522236713254842766790372863770044522395509 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (11, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1742 for generator 9. -/
+theorem ep_Q1_009_partial_09_1742_valid :
+    mulPoly ep_Q1_009_coefficient_09_1742
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1742 := by
+  native_decide
+
+/-- Coefficient term 1743 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1743 : Poly :=
+[
+  term ((8737079234256169150601 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (11, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1743 for generator 9. -/
+def ep_Q1_009_partial_09_1743 : Poly :=
+[
+  term ((17474158468512338301202 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (11, 1), (15, 2), (16, 1)],
+  term ((-8737079234256169150601 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (11, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1743 for generator 9. -/
+theorem ep_Q1_009_partial_09_1743_valid :
+    mulPoly ep_Q1_009_coefficient_09_1743
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1743 := by
+  native_decide
+
+/-- Coefficient term 1744 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1744 : Poly :=
+[
+  term ((-804097384918378324117487 : Rat) / 37410711022760372104968) [(6, 1), (9, 1), (11, 1), (16, 1)]
+]
+
+/-- Partial product 1744 for generator 9. -/
+def ep_Q1_009_partial_09_1744 : Poly :=
+[
+  term ((-804097384918378324117487 : Rat) / 18705355511380186052484) [(2, 1), (6, 1), (9, 1), (11, 1), (16, 1)],
+  term ((804097384918378324117487 : Rat) / 37410711022760372104968) [(6, 1), (9, 1), (11, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1744 for generator 9. -/
+theorem ep_Q1_009_partial_09_1744_valid :
+    mulPoly ep_Q1_009_coefficient_09_1744
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1744 := by
+  native_decide
+
+/-- Coefficient term 1745 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1745 : Poly :=
+[
+  term ((-918453910475562078484728867568354345842453545841787261221833818411147240854293593230269474951881935733367820971 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (12, 1), (13, 1)]
+]
+
+/-- Partial product 1745 for generator 9. -/
+def ep_Q1_009_partial_09_1745 : Poly :=
+[
+  term ((-918453910475562078484728867568354345842453545841787261221833818411147240854293593230269474951881935733367820971 : Rat) / 115984642889914277232171571790867195274668838360936245730511231988894426801076996790842025865164576756512935424) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1)],
+  term ((918453910475562078484728867568354345842453545841787261221833818411147240854293593230269474951881935733367820971 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (12, 1), (13, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1745 for generator 9. -/
+theorem ep_Q1_009_partial_09_1745_valid :
+    mulPoly ep_Q1_009_coefficient_09_1745
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1745 := by
+  native_decide
+
+/-- Coefficient term 1746 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1746 : Poly :=
+[
+  term ((-10962630933198898498294677259744861740769320600812812333394029197160903250345949668367382347577927161818687169251 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1)]
+]
+
+/-- Partial product 1746 for generator 9. -/
+def ep_Q1_009_partial_09_1746 : Poly :=
+[
+  term ((-10962630933198898498294677259744861740769320600812812333394029197160903250345949668367382347577927161818687169251 : Rat) / 579923214449571386160857858954335976373344191804681228652556159944472134005384983954210129325822883782564677120) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (14, 1)],
+  term ((10962630933198898498294677259744861740769320600812812333394029197160903250345949668367382347577927161818687169251 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1746 for generator 9. -/
+theorem ep_Q1_009_partial_09_1746_valid :
+    mulPoly ep_Q1_009_coefficient_09_1746
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1746 := by
+  native_decide
+
+/-- Coefficient term 1747 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1747 : Poly :=
+[
+  term ((24880280697155794952639 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1), (16, 1)]
+]
+
+/-- Partial product 1747 for generator 9. -/
+def ep_Q1_009_partial_09_1747 : Poly :=
+[
+  term ((49760561394311589905278 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (14, 1), (16, 1)],
+  term ((-24880280697155794952639 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1747 for generator 9. -/
+theorem ep_Q1_009_partial_09_1747_valid :
+    mulPoly ep_Q1_009_coefficient_09_1747
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1747 := by
+  native_decide
+
+/-- Coefficient term 1748 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1748 : Poly :=
+[
+  term ((1599990399776891211459243956693449696000 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (13, 1), (15, 2)]
+]
+
+/-- Partial product 1748 for generator 9. -/
+def ep_Q1_009_partial_09_1748 : Poly :=
+[
+  term ((3199980799553782422918487913386899392000 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (15, 2)],
+  term ((-1599990399776891211459243956693449696000 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1748 for generator 9. -/
+theorem ep_Q1_009_partial_09_1748_valid :
+    mulPoly ep_Q1_009_coefficient_09_1748
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1748 := by
+  native_decide
+
+/-- Coefficient term 1749 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1749 : Poly :=
+[
+  term ((8650043352363116764333 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (16, 1)]
+]
+
+/-- Partial product 1749 for generator 9. -/
+def ep_Q1_009_partial_09_1749 : Poly :=
+[
+  term ((17300086704726233528666 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (16, 1)],
+  term ((-8650043352363116764333 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1749 for generator 9. -/
+theorem ep_Q1_009_partial_09_1749_valid :
+    mulPoly ep_Q1_009_coefficient_09_1749
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1749 := by
+  native_decide
+
+/-- Coefficient term 1750 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1750 : Poly :=
+[
+  term ((1714692261367085162679200362606484613992660014898241523732036857393723507176988550318344395946651196850773516973 : Rat) / 57992321444957138616085785895433597637334419180468122865255615994447213400538498395421012932582288378256467712) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1750 for generator 9. -/
+def ep_Q1_009_partial_09_1750 : Poly :=
+[
+  term ((1714692261367085162679200362606484613992660014898241523732036857393723507176988550318344395946651196850773516973 : Rat) / 28996160722478569308042892947716798818667209590234061432627807997223606700269249197710506466291144189128233856) [(2, 1), (6, 1), (9, 1), (12, 1), (14, 1), (15, 1)],
+  term ((-1714692261367085162679200362606484613992660014898241523732036857393723507176988550318344395946651196850773516973 : Rat) / 57992321444957138616085785895433597637334419180468122865255615994447213400538498395421012932582288378256467712) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1750 for generator 9. -/
+theorem ep_Q1_009_partial_09_1750_valid :
+    mulPoly ep_Q1_009_coefficient_09_1750
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1750 := by
+  native_decide
+
+/-- Coefficient term 1751 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1751 : Poly :=
+[
+  term ((-73350087848026117544728 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1751 for generator 9. -/
+def ep_Q1_009_partial_09_1751 : Poly :=
+[
+  term ((-146700175696052235089456 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (14, 1), (15, 1), (16, 1)],
+  term ((73350087848026117544728 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1751 for generator 9. -/
+theorem ep_Q1_009_partial_09_1751_valid :
+    mulPoly ep_Q1_009_coefficient_09_1751
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1751 := by
+  native_decide
+
+/-- Coefficient term 1752 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1752 : Poly :=
+[
+  term ((-51387535384559275349198614747704414235583250252005625365672340541814159257934013379311778038919722532945849071812239 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (12, 1), (15, 1)]
+]
+
+/-- Partial product 1752 for generator 9. -/
+def ep_Q1_009_partial_09_1752 : Poly :=
+[
+  term ((-51387535384559275349198614747704414235583250252005625365672340541814159257934013379311778038919722532945849071812239 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 1)],
+  term ((51387535384559275349198614747704414235583250252005625365672340541814159257934013379311778038919722532945849071812239 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (12, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1752 for generator 9. -/
+theorem ep_Q1_009_partial_09_1752_valid :
+    mulPoly ep_Q1_009_coefficient_09_1752
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1752 := by
+  native_decide
+
+/-- Coefficient term 1753 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1753 : Poly :=
+[
+  term ((36084090292658195936759 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1753 for generator 9. -/
+def ep_Q1_009_partial_09_1753 : Poly :=
+[
+  term ((72168180585316391873518 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 1), (16, 1)],
+  term ((-36084090292658195936759 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1753 for generator 9. -/
+theorem ep_Q1_009_partial_09_1753_valid :
+    mulPoly ep_Q1_009_coefficient_09_1753
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1753 := by
+  native_decide
+
+/-- Coefficient term 1754 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1754 : Poly :=
+[
+  term ((-10657189286821369686291752623593837126400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (15, 3)]
+]
+
+/-- Partial product 1754 for generator 9. -/
+def ep_Q1_009_partial_09_1754 : Poly :=
+[
+  term ((-21314378573642739372583505247187674252800 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 3)],
+  term ((10657189286821369686291752623593837126400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1754 for generator 9. -/
+theorem ep_Q1_009_partial_09_1754_valid :
+    mulPoly ep_Q1_009_coefficient_09_1754
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1754 := by
+  native_decide
+
+/-- Coefficient term 1755 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1755 : Poly :=
+[
+  term ((46285814552899961453254268135870452786595745749885249606284486128349531820184382871270630815521891031695617025109 : Rat) / 662769387942367298469551838804955401569536219205349975602921325650825296006154267376240147800940438608645345280) [(6, 1), (9, 1), (13, 1)]
+]
+
+/-- Partial product 1755 for generator 9. -/
+def ep_Q1_009_partial_09_1755 : Poly :=
+[
+  term ((46285814552899961453254268135870452786595745749885249606284486128349531820184382871270630815521891031695617025109 : Rat) / 331384693971183649234775919402477700784768109602674987801460662825412648003077133688120073900470219304322672640) [(2, 1), (6, 1), (9, 1), (13, 1)],
+  term ((-46285814552899961453254268135870452786595745749885249606284486128349531820184382871270630815521891031695617025109 : Rat) / 662769387942367298469551838804955401569536219205349975602921325650825296006154267376240147800940438608645345280) [(6, 1), (9, 1), (13, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1755 for generator 9. -/
+theorem ep_Q1_009_partial_09_1755_valid :
+    mulPoly ep_Q1_009_coefficient_09_1755
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1755 := by
+  native_decide
+
+/-- Coefficient term 1756 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1756 : Poly :=
+[
+  term ((-21379915036037710635600614218137204442854278123080743959110273305735735234718209626135159228022139309050452177999 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (13, 1), (14, 1)]
+]
+
+/-- Partial product 1756 for generator 9. -/
+def ep_Q1_009_partial_09_1756 : Poly :=
+[
+  term ((-21379915036037710635600614218137204442854278123080743959110273305735735234718209626135159228022139309050452177999 : Rat) / 115984642889914277232171571790867195274668838360936245730511231988894426801076996790842025865164576756512935424) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1)],
+  term ((21379915036037710635600614218137204442854278123080743959110273305735735234718209626135159228022139309050452177999 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (13, 1), (14, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1756 for generator 9. -/
+theorem ep_Q1_009_partial_09_1756_valid :
+    mulPoly ep_Q1_009_coefficient_09_1756
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1756 := by
+  native_decide
+
+/-- Coefficient term 1757 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1757 : Poly :=
+[
+  term ((-1904948345803529117182845781307490151529166290326409082893290262890286244838663724682648701390114977429537762937387 : Rat) / 197125565978316807012511600556228037302239246530941227639481381367791819550663779129101926460002628579090109831040) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2)]
+]
+
+/-- Partial product 1757 for generator 9. -/
+def ep_Q1_009_partial_09_1757 : Poly :=
+[
+  term ((-1904948345803529117182845781307490151529166290326409082893290262890286244838663724682648701390114977429537762937387 : Rat) / 98562782989158403506255800278114018651119623265470613819740690683895909775331889564550963230001314289545054915520) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (15, 2)],
+  term ((1904948345803529117182845781307490151529166290326409082893290262890286244838663724682648701390114977429537762937387 : Rat) / 197125565978316807012511600556228037302239246530941227639481381367791819550663779129101926460002628579090109831040) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1757 for generator 9. -/
+theorem ep_Q1_009_partial_09_1757_valid :
+    mulPoly ep_Q1_009_coefficient_09_1757
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1757 := by
+  native_decide
+
+/-- Coefficient term 1758 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1758 : Poly :=
+[
+  term ((8890284321793560101416 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1758 for generator 9. -/
+def ep_Q1_009_partial_09_1758 : Poly :=
+[
+  term ((17780568643587120202832 : Rat) / 1558779625948348837707) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (15, 2), (16, 1)],
+  term ((-8890284321793560101416 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1758 for generator 9. -/
+theorem ep_Q1_009_partial_09_1758_valid :
+    mulPoly ep_Q1_009_coefficient_09_1758
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1758 := by
+  native_decide
+
+/-- Coefficient term 1759 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1759 : Poly :=
+[
+  term ((1447004686654418549307 : Rat) / 30564306391144094857) [(6, 1), (9, 1), (13, 1), (14, 1), (16, 1)]
+]
+
+/-- Partial product 1759 for generator 9. -/
+def ep_Q1_009_partial_09_1759 : Poly :=
+[
+  term ((2894009373308837098614 : Rat) / 30564306391144094857) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (16, 1)],
+  term ((-1447004686654418549307 : Rat) / 30564306391144094857) [(6, 1), (9, 1), (13, 1), (14, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1759 for generator 9. -/
+theorem ep_Q1_009_partial_09_1759_valid :
+    mulPoly ep_Q1_009_coefficient_09_1759
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1759 := by
+  native_decide
+
+/-- Coefficient term 1760 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1760 : Poly :=
+[
+  term ((-283477577001274322963234517018030123028919717515841462402161092826090316331276965428869962138370261021826906403 : Rat) / 9746608646211283801022821158896402964257885576549264347101784200747430823619915696709413938249124097185960960) [(6, 1), (9, 1), (13, 1), (14, 2)]
+]
+
+/-- Partial product 1760 for generator 9. -/
+def ep_Q1_009_partial_09_1760 : Poly :=
+[
+  term ((-283477577001274322963234517018030123028919717515841462402161092826090316331276965428869962138370261021826906403 : Rat) / 4873304323105641900511410579448201482128942788274632173550892100373715411809957848354706969124562048592980480) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 2)],
+  term ((283477577001274322963234517018030123028919717515841462402161092826090316331276965428869962138370261021826906403 : Rat) / 9746608646211283801022821158896402964257885576549264347101784200747430823619915696709413938249124097185960960) [(6, 1), (9, 1), (13, 1), (14, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1760 for generator 9. -/
+theorem ep_Q1_009_partial_09_1760_valid :
+    mulPoly ep_Q1_009_coefficient_09_1760
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1760 := by
+  native_decide
+
+/-- Coefficient term 1761 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1761 : Poly :=
+[
+  term ((67786802612231901547037 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (14, 2), (16, 1)]
+]
+
+/-- Partial product 1761 for generator 9. -/
+def ep_Q1_009_partial_09_1761 : Poly :=
+[
+  term ((135573605224463803094074 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 2), (16, 1)],
+  term ((-67786802612231901547037 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (14, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1761 for generator 9. -/
+theorem ep_Q1_009_partial_09_1761_valid :
+    mulPoly ep_Q1_009_coefficient_09_1761
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1761 := by
+  native_decide
+
+/-- Coefficient term 1762 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1762 : Poly :=
+[
+  term ((-145930165294757630564655341142926960656042220729543586322625172542196048058102387645593147941381705719679755802944199 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (13, 1), (15, 2)]
+]
+
+/-- Partial product 1762 for generator 9. -/
+def ep_Q1_009_partial_09_1762 : Poly :=
+[
+  term ((-145930165294757630564655341142926960656042220729543586322625172542196048058102387645593147941381705719679755802944199 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (13, 1), (15, 2)],
+  term ((145930165294757630564655341142926960656042220729543586322625172542196048058102387645593147941381705719679755802944199 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1762 for generator 9. -/
+theorem ep_Q1_009_partial_09_1762_valid :
+    mulPoly ep_Q1_009_coefficient_09_1762
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1762 := by
+  native_decide
+
+/-- Coefficient term 1763 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1763 : Poly :=
+[
+  term ((60470493457448481492137 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1763 for generator 9. -/
+def ep_Q1_009_partial_09_1763 : Poly :=
+[
+  term ((120940986914896962984274 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (13, 1), (15, 2), (16, 1)],
+  term ((-60470493457448481492137 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1763 for generator 9. -/
+theorem ep_Q1_009_partial_09_1763_valid :
+    mulPoly ep_Q1_009_coefficient_09_1763
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1763 := by
+  native_decide
+
+/-- Coefficient term 1764 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1764 : Poly :=
+[
+  term ((-690846699823827456121199 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (13, 1), (16, 1)]
+]
+
+/-- Partial product 1764 for generator 9. -/
+def ep_Q1_009_partial_09_1764 : Poly :=
+[
+  term ((-690846699823827456121199 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (13, 1), (16, 1)],
+  term ((690846699823827456121199 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (13, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1764 for generator 9. -/
+theorem ep_Q1_009_partial_09_1764_valid :
+    mulPoly ep_Q1_009_coefficient_09_1764
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1764 := by
+  native_decide
+
+/-- Coefficient term 1765 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1765 : Poly :=
+[
+  term ((22202013362795019165197273421742613128774681096207408194046773837877218843107817696558950491542942709250783540533877 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (13, 2), (15, 1)]
+]
+
+/-- Partial product 1765 for generator 9. -/
+def ep_Q1_009_partial_09_1765 : Poly :=
+[
+  term ((22202013362795019165197273421742613128774681096207408194046773837877218843107817696558950491542942709250783540533877 : Rat) / 788502263913267228050046402224912149208956986123764910557925525471167278202655116516407705840010514316360439324160) [(2, 1), (6, 1), (9, 1), (13, 2), (15, 1)],
+  term ((-22202013362795019165197273421742613128774681096207408194046773837877218843107817696558950491542942709250783540533877 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (13, 2), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1765 for generator 9. -/
+theorem ep_Q1_009_partial_09_1765_valid :
+    mulPoly ep_Q1_009_coefficient_09_1765
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1765 := by
+  native_decide
+
+/-- Coefficient term 1766 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1766 : Poly :=
+[
+  term ((-3964010641462228068985 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (13, 2), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1766 for generator 9. -/
+def ep_Q1_009_partial_09_1766 : Poly :=
+[
+  term ((-7928021282924456137970 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (13, 2), (15, 1), (16, 1)],
+  term ((3964010641462228068985 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (13, 2), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1766 for generator 9. -/
+theorem ep_Q1_009_partial_09_1766_valid :
+    mulPoly ep_Q1_009_coefficient_09_1766
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1766 := by
+  native_decide
+
+/-- Coefficient term 1767 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1767 : Poly :=
+[
+  term ((-28373672900485705432651986401937765871473335683498137960847568910276370585822338422260956808405097112557908449776481 : Rat) / 210267270376871260813345707259976573122388529633003976148780140125644607520708031071042054890669470484362783819776) [(6, 1), (9, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1767 for generator 9. -/
+def ep_Q1_009_partial_09_1767 : Poly :=
+[
+  term ((-28373672900485705432651986401937765871473335683498137960847568910276370585822338422260956808405097112557908449776481 : Rat) / 105133635188435630406672853629988286561194264816501988074390070062822303760354015535521027445334735242181391909888) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 1)],
+  term ((28373672900485705432651986401937765871473335683498137960847568910276370585822338422260956808405097112557908449776481 : Rat) / 210267270376871260813345707259976573122388529633003976148780140125644607520708031071042054890669470484362783819776) [(6, 1), (9, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1767 for generator 9. -/
+theorem ep_Q1_009_partial_09_1767_valid :
+    mulPoly ep_Q1_009_coefficient_09_1767
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1767 := by
+  native_decide
+
+/-- Coefficient term 1768 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1768 : Poly :=
+[
+  term ((652929329971338379131419 : Rat) / 9352677755690093026242) [(6, 1), (9, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1768 for generator 9. -/
+def ep_Q1_009_partial_09_1768 : Poly :=
+[
+  term ((652929329971338379131419 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-652929329971338379131419 : Rat) / 9352677755690093026242) [(6, 1), (9, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1768 for generator 9. -/
+theorem ep_Q1_009_partial_09_1768_valid :
+    mulPoly ep_Q1_009_coefficient_09_1768
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1768 := by
+  native_decide
+
+/-- Coefficient term 1769 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1769 : Poly :=
+[
+  term ((-6775906243250962235111335921978676806400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (14, 1), (15, 3)]
+]
+
+/-- Partial product 1769 for generator 9. -/
+def ep_Q1_009_partial_09_1769 : Poly :=
+[
+  term ((-13551812486501924470222671843957353612800 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 3)],
+  term ((6775906243250962235111335921978676806400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (14, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1769 for generator 9. -/
+theorem ep_Q1_009_partial_09_1769_valid :
+    mulPoly ep_Q1_009_coefficient_09_1769
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1769 := by
+  native_decide
+
+/-- Coefficient term 1770 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1770 : Poly :=
+[
+  term ((86728337733013185152788133484391011637922168213464201096468980691320993711942024546321416997101961351678635836951 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (14, 2), (15, 1)]
+]
+
+/-- Partial product 1770 for generator 9. -/
+def ep_Q1_009_partial_09_1770 : Poly :=
+[
+  term ((86728337733013185152788133484391011637922168213464201096468980691320993711942024546321416997101961351678635836951 : Rat) / 579923214449571386160857858954335976373344191804681228652556159944472134005384983954210129325822883782564677120) [(2, 1), (6, 1), (9, 1), (14, 2), (15, 1)],
+  term ((-86728337733013185152788133484391011637922168213464201096468980691320993711942024546321416997101961351678635836951 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (14, 2), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1770 for generator 9. -/
+theorem ep_Q1_009_partial_09_1770_valid :
+    mulPoly ep_Q1_009_coefficient_09_1770
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1770 := by
+  native_decide
+
+/-- Coefficient term 1771 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1771 : Poly :=
+[
+  term ((-19944005768419667345151 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (14, 2), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1771 for generator 9. -/
+def ep_Q1_009_partial_09_1771 : Poly :=
+[
+  term ((-39888011536839334690302 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (14, 2), (15, 1), (16, 1)],
+  term ((19944005768419667345151 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (14, 2), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1771 for generator 9. -/
+theorem ep_Q1_009_partial_09_1771_valid :
+    mulPoly ep_Q1_009_coefficient_09_1771
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1771 := by
+  native_decide
+
+/-- Coefficient term 1772 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1772 : Poly :=
+[
+  term ((-49963888747665392614215431986924738353507222309489336243770837462018254411635430846804938896040471774599622320891723 : Rat) / 6308018111306137824400371217799297193671655888990119284463404203769338225621240932131261646720084114530883514593280) [(6, 1), (9, 1), (15, 1)]
+]
+
+/-- Partial product 1772 for generator 9. -/
+def ep_Q1_009_partial_09_1772 : Poly :=
+[
+  term ((-49963888747665392614215431986924738353507222309489336243770837462018254411635430846804938896040471774599622320891723 : Rat) / 3154009055653068912200185608899648596835827944495059642231702101884669112810620466065630823360042057265441757296640) [(2, 1), (6, 1), (9, 1), (15, 1)],
+  term ((49963888747665392614215431986924738353507222309489336243770837462018254411635430846804938896040471774599622320891723 : Rat) / 6308018111306137824400371217799297193671655888990119284463404203769338225621240932131261646720084114530883514593280) [(6, 1), (9, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1772 for generator 9. -/
+theorem ep_Q1_009_partial_09_1772_valid :
+    mulPoly ep_Q1_009_coefficient_09_1772
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1772 := by
+  native_decide
+
+/-- Coefficient term 1773 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1773 : Poly :=
+[
+  term ((65220740825203984518511 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1773 for generator 9. -/
+def ep_Q1_009_partial_09_1773 : Poly :=
+[
+  term ((65220740825203984518511 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (15, 1), (16, 1)],
+  term ((-65220740825203984518511 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1773 for generator 9. -/
+theorem ep_Q1_009_partial_09_1773_valid :
+    mulPoly ep_Q1_009_coefficient_09_1773
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1773 := by
+  native_decide
+
+/-- Coefficient term 1774 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1774 : Poly :=
+[
+  term ((-6963810873460211962870855344389666568446378046542033905057786935005570276975814110635134593014124228170912501828003 : Rat) / 675859083354229052614325487621353270750534559534655637621079021832429095602275814156920890720009012271166090849280) [(6, 1), (9, 1), (15, 3)]
+]
+
+/-- Partial product 1774 for generator 9. -/
+def ep_Q1_009_partial_09_1774 : Poly :=
+[
+  term ((-6963810873460211962870855344389666568446378046542033905057786935005570276975814110635134593014124228170912501828003 : Rat) / 337929541677114526307162743810676635375267279767327818810539510916214547801137907078460445360004506135583045424640) [(2, 1), (6, 1), (9, 1), (15, 3)],
+  term ((6963810873460211962870855344389666568446378046542033905057786935005570276975814110635134593014124228170912501828003 : Rat) / 675859083354229052614325487621353270750534559534655637621079021832429095602275814156920890720009012271166090849280) [(6, 1), (9, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1774 for generator 9. -/
+theorem ep_Q1_009_partial_09_1774_valid :
+    mulPoly ep_Q1_009_coefficient_09_1774
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1774 := by
+  native_decide
+
+/-- Coefficient term 1775 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1775 : Poly :=
+[
+  term ((8485096866388995932339 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (15, 3), (16, 1)]
+]
+
+/-- Partial product 1775 for generator 9. -/
+def ep_Q1_009_partial_09_1775 : Poly :=
+[
+  term ((16970193732777991864678 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (15, 3), (16, 1)],
+  term ((-8485096866388995932339 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (15, 3), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1775 for generator 9. -/
+theorem ep_Q1_009_partial_09_1775_valid :
+    mulPoly ep_Q1_009_coefficient_09_1775
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1775 := by
+  native_decide
+
+/-- Coefficient term 1776 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1776 : Poly :=
+[
+  term ((82787988786778017856908132954136281391680555559671387673584515936685113274470141341717815622806967 : Rat) / 1518988234205861116295191199578207335535940670743469547935886037751595639588868509773826551991680) [(6, 1), (11, 1), (13, 1)]
+]
+
+/-- Partial product 1776 for generator 9. -/
+def ep_Q1_009_partial_09_1776 : Poly :=
+[
+  term ((82787988786778017856908132954136281391680555559671387673584515936685113274470141341717815622806967 : Rat) / 759494117102930558147595599789103667767970335371734773967943018875797819794434254886913275995840) [(2, 1), (6, 1), (11, 1), (13, 1)],
+  term ((-82787988786778017856908132954136281391680555559671387673584515936685113274470141341717815622806967 : Rat) / 1518988234205861116295191199578207335535940670743469547935886037751595639588868509773826551991680) [(6, 1), (11, 1), (13, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1776 for generator 9. -/
+theorem ep_Q1_009_partial_09_1776_valid :
+    mulPoly ep_Q1_009_coefficient_09_1776
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1776 := by
+  native_decide
+
+/-- Coefficient term 1777 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1777 : Poly :=
+[
+  term ((179906237358006463997543819148809668701482481156999260782524247398313488902443015955996593782317015 : Rat) / 113023338989047897753957346088546581941680072300280788242158101419685286399994638830260328732343376) [(6, 1), (11, 1), (13, 1), (15, 2)]
+]
+
+/-- Partial product 1777 for generator 9. -/
+def ep_Q1_009_partial_09_1777 : Poly :=
+[
+  term ((179906237358006463997543819148809668701482481156999260782524247398313488902443015955996593782317015 : Rat) / 56511669494523948876978673044273290970840036150140394121079050709842643199997319415130164366171688) [(2, 1), (6, 1), (11, 1), (13, 1), (15, 2)],
+  term ((-179906237358006463997543819148809668701482481156999260782524247398313488902443015955996593782317015 : Rat) / 113023338989047897753957346088546581941680072300280788242158101419685286399994638830260328732343376) [(6, 1), (11, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1777 for generator 9. -/
+theorem ep_Q1_009_partial_09_1777_valid :
+    mulPoly ep_Q1_009_coefficient_09_1777
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1777 := by
+  native_decide
+
+/-- Coefficient term 1778 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1778 : Poly :=
+[
+  term ((-2455729787063631 : Rat) / 1395206957462413) [(6, 1), (11, 1), (13, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1778 for generator 9. -/
+def ep_Q1_009_partial_09_1778 : Poly :=
+[
+  term ((-4911459574127262 : Rat) / 1395206957462413) [(2, 1), (6, 1), (11, 1), (13, 1), (15, 2), (16, 1)],
+  term ((2455729787063631 : Rat) / 1395206957462413) [(6, 1), (11, 1), (13, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1778 for generator 9. -/
+theorem ep_Q1_009_partial_09_1778_valid :
+    mulPoly ep_Q1_009_coefficient_09_1778
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1778 := by
+  native_decide
+
+/-- Coefficient term 1779 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1779 : Poly :=
+[
+  term ((132584864 : Rat) / 24755451) [(6, 1), (11, 1), (13, 1), (16, 1)]
+]
+
+/-- Partial product 1779 for generator 9. -/
+def ep_Q1_009_partial_09_1779 : Poly :=
+[
+  term ((265169728 : Rat) / 24755451) [(2, 1), (6, 1), (11, 1), (13, 1), (16, 1)],
+  term ((-132584864 : Rat) / 24755451) [(6, 1), (11, 1), (13, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1779 for generator 9. -/
+theorem ep_Q1_009_partial_09_1779_valid :
+    mulPoly ep_Q1_009_coefficient_09_1779
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1779 := by
+  native_decide
+
+/-- Coefficient term 1780 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1780 : Poly :=
+[
+  term ((-2648605581030913867199356215284160 : Rat) / 24049240021528595265061175145067379) [(6, 1), (11, 1), (13, 2), (15, 1)]
+]
+
+/-- Partial product 1780 for generator 9. -/
+def ep_Q1_009_partial_09_1780 : Poly :=
+[
+  term ((-5297211162061827734398712430568320 : Rat) / 24049240021528595265061175145067379) [(2, 1), (6, 1), (11, 1), (13, 2), (15, 1)],
+  term ((2648605581030913867199356215284160 : Rat) / 24049240021528595265061175145067379) [(6, 1), (11, 1), (13, 2), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1780 for generator 9. -/
+theorem ep_Q1_009_partial_09_1780_valid :
+    mulPoly ep_Q1_009_coefficient_09_1780
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1780 := by
+  native_decide
+
+/-- Coefficient term 1781 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1781 : Poly :=
+[
+  term ((-3817624489429911942769709814591122835268377223751305553290718383573802487769065256849548229578270949 : Rat) / 4068840203605724319142464459187676949900482602810108376717691651108670310399806997889371834364361536) [(6, 1), (11, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1781 for generator 9. -/
+def ep_Q1_009_partial_09_1781 : Poly :=
+[
+  term ((-3817624489429911942769709814591122835268377223751305553290718383573802487769065256849548229578270949 : Rat) / 2034420101802862159571232229593838474950241301405054188358845825554335155199903498944685917182180768) [(2, 1), (6, 1), (11, 1), (14, 1), (15, 1)],
+  term ((3817624489429911942769709814591122835268377223751305553290718383573802487769065256849548229578270949 : Rat) / 4068840203605724319142464459187676949900482602810108376717691651108670310399806997889371834364361536) [(6, 1), (11, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1781 for generator 9. -/
+theorem ep_Q1_009_partial_09_1781_valid :
+    mulPoly ep_Q1_009_coefficient_09_1781
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1781 := by
+  native_decide
+
+/-- Coefficient term 1782 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1782 : Poly :=
+[
+  term ((6256116904540113 : Rat) / 5580827829849652) [(6, 1), (11, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1782 for generator 9. -/
+def ep_Q1_009_partial_09_1782 : Poly :=
+[
+  term ((6256116904540113 : Rat) / 2790413914924826) [(2, 1), (6, 1), (11, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-6256116904540113 : Rat) / 5580827829849652) [(6, 1), (11, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1782 for generator 9. -/
+theorem ep_Q1_009_partial_09_1782_valid :
+    mulPoly ep_Q1_009_coefficient_09_1782
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1782 := by
+  native_decide
+
+/-- Coefficient term 1783 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1783 : Poly :=
+[
+  term ((3244422083886575260793441440496516832154998444764058897674592115138658209723106775019989407589986224639378908786449 : Rat) / 3268990175356501951699493577419603051232036204560921425613576398956658743273852836233947519151617186162861038080) [(6, 1), (11, 1), (15, 1)]
+]
+
+/-- Partial product 1783 for generator 9. -/
+def ep_Q1_009_partial_09_1783 : Poly :=
+[
+  term ((3244422083886575260793441440496516832154998444764058897674592115138658209723106775019989407589986224639378908786449 : Rat) / 1634495087678250975849746788709801525616018102280460712806788199478329371636926418116973759575808593081430519040) [(2, 1), (6, 1), (11, 1), (15, 1)],
+  term ((-3244422083886575260793441440496516832154998444764058897674592115138658209723106775019989407589986224639378908786449 : Rat) / 3268990175356501951699493577419603051232036204560921425613576398956658743273852836233947519151617186162861038080) [(6, 1), (11, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1783 for generator 9. -/
+theorem ep_Q1_009_partial_09_1783_valid :
+    mulPoly ep_Q1_009_coefficient_09_1783
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1783 := by
+  native_decide
+
+/-- Coefficient term 1784 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1784 : Poly :=
+[
+  term ((529519568392675670719629 : Rat) / 5417878818873701860904) [(6, 1), (11, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1784 for generator 9. -/
+def ep_Q1_009_partial_09_1784 : Poly :=
+[
+  term ((529519568392675670719629 : Rat) / 2708939409436850930452) [(2, 1), (6, 1), (11, 1), (15, 1), (16, 1)],
+  term ((-529519568392675670719629 : Rat) / 5417878818873701860904) [(6, 1), (11, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1784 for generator 9. -/
+theorem ep_Q1_009_partial_09_1784_valid :
+    mulPoly ep_Q1_009_coefficient_09_1784
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1784 := by
+  native_decide
+
+/-- Coefficient term 1785 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1785 : Poly :=
+[
+  term ((-1501376853818961573064860407513452525000351692376094541111940104398431668259835128597372081020424891 : Rat) / 1017210050901431079785616114796919237475120650702527094179422912777167577599951749472342958591090384) [(6, 1), (11, 1), (15, 3)]
+]
+
+/-- Partial product 1785 for generator 9. -/
+def ep_Q1_009_partial_09_1785 : Poly :=
+[
+  term ((-1501376853818961573064860407513452525000351692376094541111940104398431668259835128597372081020424891 : Rat) / 508605025450715539892808057398459618737560325351263547089711456388583788799975874736171479295545192) [(2, 1), (6, 1), (11, 1), (15, 3)],
+  term ((1501376853818961573064860407513452525000351692376094541111940104398431668259835128597372081020424891 : Rat) / 1017210050901431079785616114796919237475120650702527094179422912777167577599951749472342958591090384) [(6, 1), (11, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1785 for generator 9. -/
+theorem ep_Q1_009_partial_09_1785_valid :
+    mulPoly ep_Q1_009_coefficient_09_1785
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1785 := by
+  native_decide
+
+/-- Coefficient term 1786 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1786 : Poly :=
+[
+  term ((2368475166034263 : Rat) / 1395206957462413) [(6, 1), (11, 1), (15, 3), (16, 1)]
+]
+
+/-- Partial product 1786 for generator 9. -/
+def ep_Q1_009_partial_09_1786 : Poly :=
+[
+  term ((4736950332068526 : Rat) / 1395206957462413) [(2, 1), (6, 1), (11, 1), (15, 3), (16, 1)],
+  term ((-2368475166034263 : Rat) / 1395206957462413) [(6, 1), (11, 1), (15, 3), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1786 for generator 9. -/
+theorem ep_Q1_009_partial_09_1786_valid :
+    mulPoly ep_Q1_009_coefficient_09_1786
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1786 := by
+  native_decide
+
+/-- Coefficient term 1787 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1787 : Poly :=
+[
+  term ((-233675872853102865241953694843427107626616874102926876756829193149063520463916393352852363572541127 : Rat) / 4050635291215629643453843198875219561429175121982585461162362767337588372236982692730204138644480) [(6, 1), (12, 1)]
+]
+
+/-- Partial product 1787 for generator 9. -/
+def ep_Q1_009_partial_09_1787 : Poly :=
+[
+  term ((-233675872853102865241953694843427107626616874102926876756829193149063520463916393352852363572541127 : Rat) / 2025317645607814821726921599437609780714587560991292730581181383668794186118491346365102069322240) [(2, 1), (6, 1), (12, 1)],
+  term ((233675872853102865241953694843427107626616874102926876756829193149063520463916393352852363572541127 : Rat) / 4050635291215629643453843198875219561429175121982585461162362767337588372236982692730204138644480) [(6, 1), (12, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1787 for generator 9. -/
+theorem ep_Q1_009_partial_09_1787_valid :
+    mulPoly ep_Q1_009_coefficient_09_1787
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1787 := by
+  native_decide
+
+/-- Coefficient term 1788 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1788 : Poly :=
+[
+  term ((-81273192491475592624744306117067112718519949209838179 : Rat) / 285071954829622879643311256928356724175362184887277392) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1788 for generator 9. -/
+def ep_Q1_009_partial_09_1788 : Poly :=
+[
+  term ((-81273192491475592624744306117067112718519949209838179 : Rat) / 142535977414811439821655628464178362087681092443638696) [(2, 1), (6, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((81273192491475592624744306117067112718519949209838179 : Rat) / 285071954829622879643311256928356724175362184887277392) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1788 for generator 9. -/
+theorem ep_Q1_009_partial_09_1788_valid :
+    mulPoly ep_Q1_009_coefficient_09_1788
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1788 := by
+  native_decide
+
+/-- Coefficient term 1789 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1789 : Poly :=
+[
+  term ((662786495307469 : Rat) / 1395206957462413) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1789 for generator 9. -/
+def ep_Q1_009_partial_09_1789 : Poly :=
+[
+  term ((1325572990614938 : Rat) / 1395206957462413) [(2, 1), (6, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-662786495307469 : Rat) / 1395206957462413) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1789 for generator 9. -/
+theorem ep_Q1_009_partial_09_1789_valid :
+    mulPoly ep_Q1_009_coefficient_09_1789
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1789 := by
+  native_decide
+
+/-- Coefficient term 1790 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1790 : Poly :=
+[
+  term ((30057758898562453261399474494397708947503638680828442512050469440805017139190942467607202598837539896900838120267 : Rat) / 204311885959781371981218348588725190702002262785057589100848524934791171454615802264621719946976074135178814880) [(6, 1), (12, 1), (13, 1), (15, 1)]
+]
+
+/-- Partial product 1790 for generator 9. -/
+def ep_Q1_009_partial_09_1790 : Poly :=
+[
+  term ((30057758898562453261399474494397708947503638680828442512050469440805017139190942467607202598837539896900838120267 : Rat) / 102155942979890685990609174294362595351001131392528794550424262467395585727307901132310859973488037067589407440) [(2, 1), (6, 1), (12, 1), (13, 1), (15, 1)],
+  term ((-30057758898562453261399474494397708947503638680828442512050469440805017139190942467607202598837539896900838120267 : Rat) / 204311885959781371981218348588725190702002262785057589100848524934791171454615802264621719946976074135178814880) [(6, 1), (12, 1), (13, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1790 for generator 9. -/
+theorem ep_Q1_009_partial_09_1790_valid :
+    mulPoly ep_Q1_009_coefficient_09_1790
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1790 := by
+  native_decide
+
+/-- Coefficient term 1791 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1791 : Poly :=
+[
+  term ((9561452382787866850549 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (13, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1791 for generator 9. -/
+def ep_Q1_009_partial_09_1791 : Poly :=
+[
+  term ((19122904765575733701098 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (12, 1), (13, 1), (15, 1), (16, 1)],
+  term ((-9561452382787866850549 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (13, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1791 for generator 9. -/
+theorem ep_Q1_009_partial_09_1791_valid :
+    mulPoly ep_Q1_009_coefficient_09_1791
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1791 := by
+  native_decide
+
+/-- Coefficient term 1792 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1792 : Poly :=
+[
+  term ((-662993486393098066241781954416324529220254799783649727278894270346409 : Rat) / 419092572628462544077625892622666637236212609105237184315552285644356848) [(6, 1), (12, 1), (13, 2)]
+]
+
+/-- Partial product 1792 for generator 9. -/
+def ep_Q1_009_partial_09_1792 : Poly :=
+[
+  term ((-662993486393098066241781954416324529220254799783649727278894270346409 : Rat) / 209546286314231272038812946311333318618106304552618592157776142822178424) [(2, 1), (6, 1), (12, 1), (13, 2)],
+  term ((662993486393098066241781954416324529220254799783649727278894270346409 : Rat) / 419092572628462544077625892622666637236212609105237184315552285644356848) [(6, 1), (12, 1), (13, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1792 for generator 9. -/
+theorem ep_Q1_009_partial_09_1792_valid :
+    mulPoly ep_Q1_009_coefficient_09_1792
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1792 := by
+  native_decide
+
+/-- Coefficient term 1793 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1793 : Poly :=
+[
+  term ((240288305598895558716027964628613680940699067407081 : Rat) / 232901923880410849381790242588526735437387405953658) [(6, 1), (12, 1), (14, 1), (15, 2)]
+]
+
+/-- Partial product 1793 for generator 9. -/
+def ep_Q1_009_partial_09_1793 : Poly :=
+[
+  term ((240288305598895558716027964628613680940699067407081 : Rat) / 116450961940205424690895121294263367718693702976829) [(2, 1), (6, 1), (12, 1), (14, 1), (15, 2)],
+  term ((-240288305598895558716027964628613680940699067407081 : Rat) / 232901923880410849381790242588526735437387405953658) [(6, 1), (12, 1), (14, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1793 for generator 9. -/
+theorem ep_Q1_009_partial_09_1793_valid :
+    mulPoly ep_Q1_009_coefficient_09_1793
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1793 := by
+  native_decide
+
+/-- Coefficient term 1794 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1794 : Poly :=
+[
+  term ((-1975738223120636 : Rat) / 1395206957462413) [(6, 1), (12, 1), (14, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1794 for generator 9. -/
+def ep_Q1_009_partial_09_1794 : Poly :=
+[
+  term ((-3951476446241272 : Rat) / 1395206957462413) [(2, 1), (6, 1), (12, 1), (14, 1), (15, 2), (16, 1)],
+  term ((1975738223120636 : Rat) / 1395206957462413) [(6, 1), (12, 1), (14, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1794 for generator 9. -/
+theorem ep_Q1_009_partial_09_1794_valid :
+    mulPoly ep_Q1_009_coefficient_09_1794
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1794 := by
+  native_decide
+
+/-- Coefficient term 1795 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1795 : Poly :=
+[
+  term ((-6364538586281905773115715204092519905700325469199054746531179978607187165337083721160132720934043088168697003371103 : Rat) / 7355227894552129391323860549194106865272081460262073207630546897652482172366168881526381918091138668866437335680) [(6, 1), (12, 1), (15, 2)]
+]
+
+/-- Partial product 1795 for generator 9. -/
+def ep_Q1_009_partial_09_1795 : Poly :=
+[
+  term ((-6364538586281905773115715204092519905700325469199054746531179978607187165337083721160132720934043088168697003371103 : Rat) / 3677613947276064695661930274597053432636040730131036603815273448826241086183084440763190959045569334433218667840) [(2, 1), (6, 1), (12, 1), (15, 2)],
+  term ((6364538586281905773115715204092519905700325469199054746531179978607187165337083721160132720934043088168697003371103 : Rat) / 7355227894552129391323860549194106865272081460262073207630546897652482172366168881526381918091138668866437335680) [(6, 1), (12, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1795 for generator 9. -/
+theorem ep_Q1_009_partial_09_1795_valid :
+    mulPoly ep_Q1_009_coefficient_09_1795
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1795 := by
+  native_decide
+
+/-- Coefficient term 1796 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1796 : Poly :=
+[
+  term ((-58118339254922157984628 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (15, 2), (16, 1)]
+]
+
+/-- Partial product 1796 for generator 9. -/
+def ep_Q1_009_partial_09_1796 : Poly :=
+[
+  term ((-116236678509844315969256 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (12, 1), (15, 2), (16, 1)],
+  term ((58118339254922157984628 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (15, 2), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1796 for generator 9. -/
+theorem ep_Q1_009_partial_09_1796_valid :
+    mulPoly ep_Q1_009_coefficient_09_1796
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1796 := by
+  native_decide
+
+/-- Coefficient term 1797 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1797 : Poly :=
+[
+  term ((-1179091783 : Rat) / 198043608) [(6, 1), (12, 1), (16, 1)]
+]
+
+/-- Partial product 1797 for generator 9. -/
+def ep_Q1_009_partial_09_1797 : Poly :=
+[
+  term ((-1179091783 : Rat) / 99021804) [(2, 1), (6, 1), (12, 1), (16, 1)],
+  term ((1179091783 : Rat) / 198043608) [(6, 1), (12, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1797 for generator 9. -/
+theorem ep_Q1_009_partial_09_1797_valid :
+    mulPoly ep_Q1_009_coefficient_09_1797
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1797 := by
+  native_decide
+
+/-- Coefficient term 1798 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1798 : Poly :=
+[
+  term ((499248675261344415043645020923668687684942350875761029434122280031944890701429977092044583148159964336084475828559 : Rat) / 490348526303475292754924036612940457684805430684138213842036459843498811491077925435092127872742577924429155712) [(6, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 1798 for generator 9. -/
+def ep_Q1_009_partial_09_1798 : Poly :=
+[
+  term ((499248675261344415043645020923668687684942350875761029434122280031944890701429977092044583148159964336084475828559 : Rat) / 245174263151737646377462018306470228842402715342069106921018229921749405745538962717546063936371288962214577856) [(2, 1), (6, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-499248675261344415043645020923668687684942350875761029434122280031944890701429977092044583148159964336084475828559 : Rat) / 490348526303475292754924036612940457684805430684138213842036459843498811491077925435092127872742577924429155712) [(6, 1), (13, 1), (14, 1), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1798 for generator 9. -/
+theorem ep_Q1_009_partial_09_1798_valid :
+    mulPoly ep_Q1_009_coefficient_09_1798
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1798 := by
+  native_decide
+
+/-- Coefficient term 1799 from coefficient polynomial 9. -/
+def ep_Q1_009_coefficient_09_1799 : Poly :=
+[
+  term ((72333075109503799494888 : Rat) / 677234852359212732613) [(6, 1), (13, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+/-- Partial product 1799 for generator 9. -/
+def ep_Q1_009_partial_09_1799 : Poly :=
+[
+  term ((144666150219007598989776 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (13, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-72333075109503799494888 : Rat) / 677234852359212732613) [(6, 1), (13, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1799 for generator 9. -/
+theorem ep_Q1_009_partial_09_1799_valid :
+    mulPoly ep_Q1_009_coefficient_09_1799
+        ep_Q1_009_generator_09_1700_1799 =
+      ep_Q1_009_partial_09_1799 := by
+  native_decide
+
+/-- Partial products in this block. -/
+def ep_Q1_009_partials_09_1700_1799 : List Poly :=
+[
+  ep_Q1_009_partial_09_1700,
+  ep_Q1_009_partial_09_1701,
+  ep_Q1_009_partial_09_1702,
+  ep_Q1_009_partial_09_1703,
+  ep_Q1_009_partial_09_1704,
+  ep_Q1_009_partial_09_1705,
+  ep_Q1_009_partial_09_1706,
+  ep_Q1_009_partial_09_1707,
+  ep_Q1_009_partial_09_1708,
+  ep_Q1_009_partial_09_1709,
+  ep_Q1_009_partial_09_1710,
+  ep_Q1_009_partial_09_1711,
+  ep_Q1_009_partial_09_1712,
+  ep_Q1_009_partial_09_1713,
+  ep_Q1_009_partial_09_1714,
+  ep_Q1_009_partial_09_1715,
+  ep_Q1_009_partial_09_1716,
+  ep_Q1_009_partial_09_1717,
+  ep_Q1_009_partial_09_1718,
+  ep_Q1_009_partial_09_1719,
+  ep_Q1_009_partial_09_1720,
+  ep_Q1_009_partial_09_1721,
+  ep_Q1_009_partial_09_1722,
+  ep_Q1_009_partial_09_1723,
+  ep_Q1_009_partial_09_1724,
+  ep_Q1_009_partial_09_1725,
+  ep_Q1_009_partial_09_1726,
+  ep_Q1_009_partial_09_1727,
+  ep_Q1_009_partial_09_1728,
+  ep_Q1_009_partial_09_1729,
+  ep_Q1_009_partial_09_1730,
+  ep_Q1_009_partial_09_1731,
+  ep_Q1_009_partial_09_1732,
+  ep_Q1_009_partial_09_1733,
+  ep_Q1_009_partial_09_1734,
+  ep_Q1_009_partial_09_1735,
+  ep_Q1_009_partial_09_1736,
+  ep_Q1_009_partial_09_1737,
+  ep_Q1_009_partial_09_1738,
+  ep_Q1_009_partial_09_1739,
+  ep_Q1_009_partial_09_1740,
+  ep_Q1_009_partial_09_1741,
+  ep_Q1_009_partial_09_1742,
+  ep_Q1_009_partial_09_1743,
+  ep_Q1_009_partial_09_1744,
+  ep_Q1_009_partial_09_1745,
+  ep_Q1_009_partial_09_1746,
+  ep_Q1_009_partial_09_1747,
+  ep_Q1_009_partial_09_1748,
+  ep_Q1_009_partial_09_1749,
+  ep_Q1_009_partial_09_1750,
+  ep_Q1_009_partial_09_1751,
+  ep_Q1_009_partial_09_1752,
+  ep_Q1_009_partial_09_1753,
+  ep_Q1_009_partial_09_1754,
+  ep_Q1_009_partial_09_1755,
+  ep_Q1_009_partial_09_1756,
+  ep_Q1_009_partial_09_1757,
+  ep_Q1_009_partial_09_1758,
+  ep_Q1_009_partial_09_1759,
+  ep_Q1_009_partial_09_1760,
+  ep_Q1_009_partial_09_1761,
+  ep_Q1_009_partial_09_1762,
+  ep_Q1_009_partial_09_1763,
+  ep_Q1_009_partial_09_1764,
+  ep_Q1_009_partial_09_1765,
+  ep_Q1_009_partial_09_1766,
+  ep_Q1_009_partial_09_1767,
+  ep_Q1_009_partial_09_1768,
+  ep_Q1_009_partial_09_1769,
+  ep_Q1_009_partial_09_1770,
+  ep_Q1_009_partial_09_1771,
+  ep_Q1_009_partial_09_1772,
+  ep_Q1_009_partial_09_1773,
+  ep_Q1_009_partial_09_1774,
+  ep_Q1_009_partial_09_1775,
+  ep_Q1_009_partial_09_1776,
+  ep_Q1_009_partial_09_1777,
+  ep_Q1_009_partial_09_1778,
+  ep_Q1_009_partial_09_1779,
+  ep_Q1_009_partial_09_1780,
+  ep_Q1_009_partial_09_1781,
+  ep_Q1_009_partial_09_1782,
+  ep_Q1_009_partial_09_1783,
+  ep_Q1_009_partial_09_1784,
+  ep_Q1_009_partial_09_1785,
+  ep_Q1_009_partial_09_1786,
+  ep_Q1_009_partial_09_1787,
+  ep_Q1_009_partial_09_1788,
+  ep_Q1_009_partial_09_1789,
+  ep_Q1_009_partial_09_1790,
+  ep_Q1_009_partial_09_1791,
+  ep_Q1_009_partial_09_1792,
+  ep_Q1_009_partial_09_1793,
+  ep_Q1_009_partial_09_1794,
+  ep_Q1_009_partial_09_1795,
+  ep_Q1_009_partial_09_1796,
+  ep_Q1_009_partial_09_1797,
+  ep_Q1_009_partial_09_1798,
+  ep_Q1_009_partial_09_1799
+]
+
+/-- Sum of partial products in this block. -/
+def ep_Q1_009_block_09_1700_1799 : Poly :=
+[
+  term ((-1179091783 : Rat) / 49510902) [(2, 1), (6, 1), (7, 1), (13, 1), (16, 1)],
+  term ((-33963500299091372064333580411159781722064529169833124822179559797155245186869725822421264295668535 : Rat) / 426763361038789551721029908452924918079145236066022396801034648701638774932110676555503650321472) [(2, 1), (6, 1), (7, 1), (13, 2), (15, 1)],
+  term ((-14350750 : Rat) / 1178831) [(2, 1), (6, 1), (7, 1), (13, 2), (15, 1), (16, 1)],
+  term ((9502085427709013204549212809935362627440393702074604582325012295358036559319789821696424495218345 : Rat) / 91449291651169189654506408954198196731245407728433370743078853293208308914023716404750782211744) [(2, 1), (6, 1), (7, 1), (14, 1), (15, 1)],
+  term ((56254940 : Rat) / 3536493) [(2, 1), (6, 1), (7, 1), (14, 1), (15, 1), (16, 1)],
+  term ((30300401488860568397026276500867940957448260486719872025440669012194744299100392991180038318386647 : Rat) / 5601269113634112866338517548444639549788781223366543958013579764209008920983952629790985410469320) [(2, 1), (6, 1), (7, 1), (15, 1)],
+  term ((21124304 : Rat) / 24755451) [(2, 1), (6, 1), (7, 1), (15, 1), (16, 1)],
+  term ((-557252208908276297845227778739634191785703743160753341655182777802980266574932856082899745329373817098714813807 : Rat) / 2918741227996876742588833551267502724314318039786536987154978927639873877923082889494595999242515344788268784) [(2, 1), (6, 1), (7, 1), (15, 3)],
+  term ((-2818314710934494945592 : Rat) / 96747836051316104659) [(2, 1), (6, 1), (7, 1), (15, 3), (16, 1)],
+  term ((-73103670173685598970646552621979391061509339498506216475909834971339678567002841432968724561 : Rat) / 92917030678168232976003709121507306643572310211360591448579587579302055048060926238091892768) [(2, 1), (6, 1), (7, 2), (8, 1), (13, 1), (15, 1)],
+  term ((56509410952730211447664397618195454152469574224789589164563298109108862856480676791346561 : Rat) / 197644492234685755793094430518182480278137890719693224098546200307847268211484744244098960) [(2, 1), (6, 1), (7, 2), (9, 1), (13, 1)],
+  term ((-13746374895535540901785725886580992000 : Rat) / 714705621776938877770773029179031683713) [(2, 1), (6, 1), (7, 2), (9, 1), (13, 1), (15, 2)],
+  term ((-1357440775387001886364173258562194661062913386010657797475001756479719508474255688813774927888335 : Rat) / 106690840259697387930257477113231229519786309016505599200258662175409693733027669138875912580368) [(2, 1), (6, 1), (7, 2), (13, 1), (15, 1)],
+  term ((-2296120 : Rat) / 1178831) [(2, 1), (6, 1), (7, 2), (13, 1), (15, 1), (16, 1)],
+  term ((449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(2, 1), (6, 1), (8, 1)],
+  term ((88516020981370437777855664714930977407491414682892325194291842612604826081582522917451667291419 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(2, 1), (6, 1), (8, 1), (11, 1), (13, 1)],
+  term ((5112528094864158566647491122422456 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (11, 1), (13, 1), (15, 2)],
+  term ((-4665491648178182378833773087748586 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (11, 1), (14, 1), (15, 1)],
+  term ((1780282568119076794317726106029385576368348274971414466048453176716320060062468659412557706560983 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(2, 1), (6, 1), (8, 1), (11, 1), (15, 1)],
+  term ((-2613466391769845568930130085366152 : Rat) / 10306817152083683685026217919314591) [(2, 1), (6, 1), (8, 1), (11, 1), (15, 3)],
+  term ((-449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(2, 1), (6, 1), (8, 1), (12, 1)],
+  term ((-2977559401718826073940389265521712 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((131298323060159447788224331575569831356450733724956936496904366969733063705270829221624336665495 : Rat) / 7805030576966131569984311566206613758060074057754289681680685356661372624037117803999718992512) [(2, 1), (6, 1), (8, 1), (12, 1), (13, 1), (15, 1)],
+  term ((7374973845181468732611087823649080 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (12, 1), (14, 1), (15, 2)],
+  term ((-255139815351700596519823489812055059796693086455783926069678988510255385902171525275692804184157 : Rat) / 2601676858988710523328103855402204586020024685918096560560228452220457541345705934666572997504) [(2, 1), (6, 1), (8, 1), (12, 1), (15, 2)],
+  term ((3074756675550852738757151750407689161026000186597258019177028167722088081671637963146986959383 : Rat) / 27100800614465734618001081827106297771041923811646839172502379710629766055684436819443468724) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-327430788838880981122613390433216 : Rat) / 3435605717361227895008739306438197) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 1), (15, 3)],
+  term ((-5356144583834169489994906053939304 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (13, 1), (14, 2), (15, 1)],
+  term ((466660888185658870160252672224394209492286888525536096920214890496424643658240338485137710173315 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(2, 1), (6, 1), (8, 1), (13, 1), (15, 1)],
+  term ((-3714637993416395098033775380417832 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (13, 1), (15, 3)],
+  term ((265498149824194486463098233051122398488167049414160164868903755827998060586981057753445568174829 : Rat) / 10406707435954842093312415421608818344080098743672386242240913808881830165382823738666291990016) [(2, 1), (6, 1), (8, 1), (13, 2)],
+  term ((444081149073744275702620695618792 : Rat) / 3435605717361227895008739306438197) [(2, 1), (6, 1), (8, 1), (13, 2), (15, 2)],
+  term ((434764210160466596057508443575270397855207759170749485348238208131283379732798420000935045145197 : Rat) / 6937804957303228062208276947739212229386732495781590828160609205921220110255215825777527993344) [(2, 1), (6, 1), (8, 1), (14, 1)],
+  term ((-527886834107756744423334196719538002517059379873022433804744381871521721999130468999778225051703 : Rat) / 7805030576966131569984311566206613758060074057754289681680685356661372624037117803999718992512) [(2, 1), (6, 1), (8, 1), (14, 1), (15, 2)],
+  term ((10386995576458093032671419759248392 : Rat) / 30920451456251051055078653757943773) [(2, 1), (6, 1), (8, 1), (14, 2), (15, 2)],
+  term ((-8536213062327834766074410630259070995884601501585567141686590226273674967083410972639568363949 : Rat) / 212381784407241675373722763706302415185308137625967066168181914466976125824139259972781469184) [(2, 1), (6, 1), (8, 1), (15, 2)],
+  term ((627404827871265728419163293363384 : Rat) / 10306817152083683685026217919314591) [(2, 1), (6, 1), (8, 1), (15, 4)],
+  term ((383253308500450074592987468741180705219237251690855492080230492765636037144032600094330661572189421481709119802411 : Rat) / 4639385715596571089286862871634687810986753534437449829220449279555777072043079871633681034606583070260517416960) [(2, 1), (6, 1), (9, 1), (11, 1)],
+  term ((159901595754272504066354992664004561346598538499549210501949049307945600452148967599600380867375248054597510986042567 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (11, 1), (13, 1), (15, 1)],
+  term ((-46549864752653813550662 : Rat) / 1558779625948348837707) [(2, 1), (6, 1), (9, 1), (11, 1), (13, 1), (15, 1), (16, 1)],
+  term ((-117283306522936956553750233179464979379491942247212709346858909469230676785132376220421200023174920811237195459047 : Rat) / 2319692857798285544643431435817343905493376767218724914610224639777888536021539935816840517303291535130258708480) [(2, 1), (6, 1), (9, 1), (11, 1), (14, 1)],
+  term ((237656816706250445897783 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (11, 1), (14, 1), (16, 1)],
+  term ((-50899034031237221418732984233463267963846959032621413774069526097270551626522236713254842766790372863770044522395509 : Rat) / 788502263913267228050046402224912149208956986123764910557925525471167278202655116516407705840010514316360439324160) [(2, 1), (6, 1), (9, 1), (11, 1), (15, 2)],
+  term ((17474158468512338301202 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (11, 1), (15, 2), (16, 1)],
+  term ((-804097384918378324117487 : Rat) / 18705355511380186052484) [(2, 1), (6, 1), (9, 1), (11, 1), (16, 1)],
+  term ((-918453910475562078484728867568354345842453545841787261221833818411147240854293593230269474951881935733367820971 : Rat) / 115984642889914277232171571790867195274668838360936245730511231988894426801076996790842025865164576756512935424) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1)],
+  term ((-10962630933198898498294677259744861740769320600812812333394029197160903250345949668367382347577927161818687169251 : Rat) / 579923214449571386160857858954335976373344191804681228652556159944472134005384983954210129325822883782564677120) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (14, 1)],
+  term ((49760561394311589905278 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (14, 1), (16, 1)],
+  term ((3199980799553782422918487913386899392000 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (15, 2)],
+  term ((17300086704726233528666 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (13, 1), (16, 1)],
+  term ((1714692261367085162679200362606484613992660014898241523732036857393723507176988550318344395946651196850773516973 : Rat) / 28996160722478569308042892947716798818667209590234061432627807997223606700269249197710506466291144189128233856) [(2, 1), (6, 1), (9, 1), (12, 1), (14, 1), (15, 1)],
+  term ((-146700175696052235089456 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-51387535384559275349198614747704414235583250252005625365672340541814159257934013379311778038919722532945849071812239 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 1)],
+  term ((72168180585316391873518 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 1), (16, 1)],
+  term ((-21314378573642739372583505247187674252800 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (12, 1), (15, 3)],
+  term ((46285814552899961453254268135870452786595745749885249606284486128349531820184382871270630815521891031695617025109 : Rat) / 331384693971183649234775919402477700784768109602674987801460662825412648003077133688120073900470219304322672640) [(2, 1), (6, 1), (9, 1), (13, 1)],
+  term ((-21379915036037710635600614218137204442854278123080743959110273305735735234718209626135159228022139309050452177999 : Rat) / 115984642889914277232171571790867195274668838360936245730511231988894426801076996790842025865164576756512935424) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1)],
+  term ((-1904948345803529117182845781307490151529166290326409082893290262890286244838663724682648701390114977429537762937387 : Rat) / 98562782989158403506255800278114018651119623265470613819740690683895909775331889564550963230001314289545054915520) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (15, 2)],
+  term ((17780568643587120202832 : Rat) / 1558779625948348837707) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (15, 2), (16, 1)],
+  term ((2894009373308837098614 : Rat) / 30564306391144094857) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 1), (16, 1)],
+  term ((-283477577001274322963234517018030123028919717515841462402161092826090316331276965428869962138370261021826906403 : Rat) / 4873304323105641900511410579448201482128942788274632173550892100373715411809957848354706969124562048592980480) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 2)],
+  term ((135573605224463803094074 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (13, 1), (14, 2), (16, 1)],
+  term ((-145930165294757630564655341142926960656042220729543586322625172542196048058102387645593147941381705719679755802944199 : Rat) / 2365506791739801684150139206674736447626870958371294731673776576413501834607965349549223117520031542949081317972480) [(2, 1), (6, 1), (9, 1), (13, 1), (15, 2)],
+  term ((120940986914896962984274 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (13, 1), (15, 2), (16, 1)],
+  term ((-690846699823827456121199 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (13, 1), (16, 1)],
+  term ((22202013362795019165197273421742613128774681096207408194046773837877218843107817696558950491542942709250783540533877 : Rat) / 788502263913267228050046402224912149208956986123764910557925525471167278202655116516407705840010514316360439324160) [(2, 1), (6, 1), (9, 1), (13, 2), (15, 1)],
+  term ((-7928021282924456137970 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (13, 2), (15, 1), (16, 1)],
+  term ((-28373672900485705432651986401937765871473335683498137960847568910276370585822338422260956808405097112557908449776481 : Rat) / 105133635188435630406672853629988286561194264816501988074390070062822303760354015535521027445334735242181391909888) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 1)],
+  term ((652929329971338379131419 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-13551812486501924470222671843957353612800 : Rat) / 15008818057315716433186233612759665357973) [(2, 1), (6, 1), (9, 1), (14, 1), (15, 3)],
+  term ((86728337733013185152788133484391011637922168213464201096468980691320993711942024546321416997101961351678635836951 : Rat) / 579923214449571386160857858954335976373344191804681228652556159944472134005384983954210129325822883782564677120) [(2, 1), (6, 1), (9, 1), (14, 2), (15, 1)],
+  term ((-39888011536839334690302 : Rat) / 519593208649449612569) [(2, 1), (6, 1), (9, 1), (14, 2), (15, 1), (16, 1)],
+  term ((-49963888747665392614215431986924738353507222309489336243770837462018254411635430846804938896040471774599622320891723 : Rat) / 3154009055653068912200185608899648596835827944495059642231702101884669112810620466065630823360042057265441757296640) [(2, 1), (6, 1), (9, 1), (15, 1)],
+  term ((65220740825203984518511 : Rat) / 9352677755690093026242) [(2, 1), (6, 1), (9, 1), (15, 1), (16, 1)],
+  term ((-6963810873460211962870855344389666568446378046542033905057786935005570276975814110635134593014124228170912501828003 : Rat) / 337929541677114526307162743810676635375267279767327818810539510916214547801137907078460445360004506135583045424640) [(2, 1), (6, 1), (9, 1), (15, 3)],
+  term ((16970193732777991864678 : Rat) / 4676338877845046513121) [(2, 1), (6, 1), (9, 1), (15, 3), (16, 1)],
+  term ((82787988786778017856908132954136281391680555559671387673584515936685113274470141341717815622806967 : Rat) / 759494117102930558147595599789103667767970335371734773967943018875797819794434254886913275995840) [(2, 1), (6, 1), (11, 1), (13, 1)],
+  term ((179906237358006463997543819148809668701482481156999260782524247398313488902443015955996593782317015 : Rat) / 56511669494523948876978673044273290970840036150140394121079050709842643199997319415130164366171688) [(2, 1), (6, 1), (11, 1), (13, 1), (15, 2)],
+  term ((-4911459574127262 : Rat) / 1395206957462413) [(2, 1), (6, 1), (11, 1), (13, 1), (15, 2), (16, 1)],
+  term ((265169728 : Rat) / 24755451) [(2, 1), (6, 1), (11, 1), (13, 1), (16, 1)],
+  term ((-5297211162061827734398712430568320 : Rat) / 24049240021528595265061175145067379) [(2, 1), (6, 1), (11, 1), (13, 2), (15, 1)],
+  term ((-3817624489429911942769709814591122835268377223751305553290718383573802487769065256849548229578270949 : Rat) / 2034420101802862159571232229593838474950241301405054188358845825554335155199903498944685917182180768) [(2, 1), (6, 1), (11, 1), (14, 1), (15, 1)],
+  term ((6256116904540113 : Rat) / 2790413914924826) [(2, 1), (6, 1), (11, 1), (14, 1), (15, 1), (16, 1)],
+  term ((3244422083886575260793441440496516832154998444764058897674592115138658209723106775019989407589986224639378908786449 : Rat) / 1634495087678250975849746788709801525616018102280460712806788199478329371636926418116973759575808593081430519040) [(2, 1), (6, 1), (11, 1), (15, 1)],
+  term ((529519568392675670719629 : Rat) / 2708939409436850930452) [(2, 1), (6, 1), (11, 1), (15, 1), (16, 1)],
+  term ((-1501376853818961573064860407513452525000351692376094541111940104398431668259835128597372081020424891 : Rat) / 508605025450715539892808057398459618737560325351263547089711456388583788799975874736171479295545192) [(2, 1), (6, 1), (11, 1), (15, 3)],
+  term ((4736950332068526 : Rat) / 1395206957462413) [(2, 1), (6, 1), (11, 1), (15, 3), (16, 1)],
+  term ((-233675872853102865241953694843427107626616874102926876756829193149063520463916393352852363572541127 : Rat) / 2025317645607814821726921599437609780714587560991292730581181383668794186118491346365102069322240) [(2, 1), (6, 1), (12, 1)],
+  term ((-81273192491475592624744306117067112718519949209838179 : Rat) / 142535977414811439821655628464178362087681092443638696) [(2, 1), (6, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((1325572990614938 : Rat) / 1395206957462413) [(2, 1), (6, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1)],
+  term ((30057758898562453261399474494397708947503638680828442512050469440805017139190942467607202598837539896900838120267 : Rat) / 102155942979890685990609174294362595351001131392528794550424262467395585727307901132310859973488037067589407440) [(2, 1), (6, 1), (12, 1), (13, 1), (15, 1)],
+  term ((19122904765575733701098 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (12, 1), (13, 1), (15, 1), (16, 1)],
+  term ((-662993486393098066241781954416324529220254799783649727278894270346409 : Rat) / 209546286314231272038812946311333318618106304552618592157776142822178424) [(2, 1), (6, 1), (12, 1), (13, 2)],
+  term ((240288305598895558716027964628613680940699067407081 : Rat) / 116450961940205424690895121294263367718693702976829) [(2, 1), (6, 1), (12, 1), (14, 1), (15, 2)],
+  term ((-3951476446241272 : Rat) / 1395206957462413) [(2, 1), (6, 1), (12, 1), (14, 1), (15, 2), (16, 1)],
+  term ((-6364538586281905773115715204092519905700325469199054746531179978607187165337083721160132720934043088168697003371103 : Rat) / 3677613947276064695661930274597053432636040730131036603815273448826241086183084440763190959045569334433218667840) [(2, 1), (6, 1), (12, 1), (15, 2)],
+  term ((-116236678509844315969256 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (12, 1), (15, 2), (16, 1)],
+  term ((-1179091783 : Rat) / 99021804) [(2, 1), (6, 1), (12, 1), (16, 1)],
+  term ((499248675261344415043645020923668687684942350875761029434122280031944890701429977092044583148159964336084475828559 : Rat) / 245174263151737646377462018306470228842402715342069106921018229921749405745538962717546063936371288962214577856) [(2, 1), (6, 1), (13, 1), (14, 1), (15, 1)],
+  term ((144666150219007598989776 : Rat) / 677234852359212732613) [(2, 1), (6, 1), (13, 1), (14, 1), (15, 1), (16, 1)],
+  term ((1179091783 : Rat) / 99021804) [(6, 1), (7, 1), (13, 1), (16, 1)],
+  term ((33963500299091372064333580411159781722064529169833124822179559797155245186869725822421264295668535 : Rat) / 853526722077579103442059816905849836158290472132044793602069297403277549864221353111007300642944) [(6, 1), (7, 1), (13, 2), (15, 1)],
+  term ((7175375 : Rat) / 1178831) [(6, 1), (7, 1), (13, 2), (15, 1), (16, 1)],
+  term ((-9502085427709013204549212809935362627440393702074604582325012295358036559319789821696424495218345 : Rat) / 182898583302338379309012817908396393462490815456866741486157706586416617828047432809501564423488) [(6, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-28127470 : Rat) / 3536493) [(6, 1), (7, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-30300401488860568397026276500867940957448260486719872025440669012194744299100392991180038318386647 : Rat) / 11202538227268225732677035096889279099577562446733087916027159528418017841967905259581970820938640) [(6, 1), (7, 1), (15, 1)],
+  term ((-10562152 : Rat) / 24755451) [(6, 1), (7, 1), (15, 1), (16, 1)],
+  term ((557252208908276297845227778739634191785703743160753341655182777802980266574932856082899745329373817098714813807 : Rat) / 5837482455993753485177667102535005448628636079573073974309957855279747755846165778989191998485030689576537568) [(6, 1), (7, 1), (15, 3)],
+  term ((1409157355467247472796 : Rat) / 96747836051316104659) [(6, 1), (7, 1), (15, 3), (16, 1)],
+  term ((73103670173685598970646552621979391061509339498506216475909834971339678567002841432968724561 : Rat) / 185834061356336465952007418243014613287144620422721182897159175158604110096121852476183785536) [(6, 1), (7, 2), (8, 1), (13, 1), (15, 1)],
+  term ((-56509410952730211447664397618195454152469574224789589164563298109108862856480676791346561 : Rat) / 395288984469371511586188861036364960556275781439386448197092400615694536422969488488197920) [(6, 1), (7, 2), (9, 1), (13, 1)],
+  term ((6873187447767770450892862943290496000 : Rat) / 714705621776938877770773029179031683713) [(6, 1), (7, 2), (9, 1), (13, 1), (15, 2)],
+  term ((1357440775387001886364173258562194661062913386010657797475001756479719508474255688813774927888335 : Rat) / 213381680519394775860514954226462459039572618033011198400517324350819387466055338277751825160736) [(6, 1), (7, 2), (13, 1), (15, 1)],
+  term ((1148060 : Rat) / 1178831) [(6, 1), (7, 2), (13, 1), (15, 1), (16, 1)],
+  term ((-449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1)],
+  term ((-88516020981370437777855664714930977407491414682892325194291842612604826081582522917451667291419 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (13, 1)],
+  term ((-2556264047432079283323745561211228 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (13, 1), (15, 2)],
+  term ((2332745824089091189416886543874293 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-1780282568119076794317726106029385576368348274971414466048453176716320060062468659412557706560983 : Rat) / 31220122307864526279937246264826455032240296231017158726722741426645490496148471215998875970048) [(6, 1), (8, 1), (11, 1), (15, 1)],
+  term ((1306733195884922784465065042683076 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (11, 1), (15, 3)],
+  term ((449130101129454428491796242000690653478090848365018915555828264158336271796856412593319377807901 : Rat) / 124880489231458105119748985059305820128961184924068634906890965706581961984593884863995503880192) [(6, 1), (8, 1), (12, 1)],
+  term ((1488779700859413036970194632760856 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-131298323060159447788224331575569831356450733724956936496904366969733063705270829221624336665495 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (12, 1), (13, 1), (15, 1)],
+  term ((-3687486922590734366305543911824540 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (12, 1), (14, 1), (15, 2)],
+  term ((255139815351700596519823489812055059796693086455783926069678988510255385902171525275692804184157 : Rat) / 5203353717977421046656207710804409172040049371836193121120456904440915082691411869333145995008) [(6, 1), (8, 1), (12, 1), (15, 2)],
+  term ((-3074756675550852738757151750407689161026000186597258019177028167722088081671637963146986959383 : Rat) / 54201601228931469236002163654212595542083847623293678345004759421259532111368873638886937448) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 1)],
+  term ((163715394419440490561306695216608 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 1), (14, 1), (15, 3)],
+  term ((2678072291917084744997453026969652 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (14, 2), (15, 1)],
+  term ((-466660888185658870160252672224394209492286888525536096920214890496424643658240338485137710173315 : Rat) / 62440244615729052559874492529652910064480592462034317453445482853290980992296942431997751940096) [(6, 1), (8, 1), (13, 1), (15, 1)],
+  term ((1857318996708197549016887690208916 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (13, 1), (15, 3)],
+  term ((-265498149824194486463098233051122398488167049414160164868903755827998060586981057753445568174829 : Rat) / 20813414871909684186624830843217636688160197487344772484481827617763660330765647477332583980032) [(6, 1), (8, 1), (13, 2)],
+  term ((-222040574536872137851310347809396 : Rat) / 3435605717361227895008739306438197) [(6, 1), (8, 1), (13, 2), (15, 2)],
+  term ((-434764210160466596057508443575270397855207759170749485348238208131283379732798420000935045145197 : Rat) / 13875609914606456124416553895478424458773464991563181656321218411842440220510431651555055986688) [(6, 1), (8, 1), (14, 1)],
+  term ((527886834107756744423334196719538002517059379873022433804744381871521721999130468999778225051703 : Rat) / 15610061153932263139968623132413227516120148115508579363361370713322745248074235607999437985024) [(6, 1), (8, 1), (14, 1), (15, 2)],
+  term ((-5193497788229046516335709879624196 : Rat) / 30920451456251051055078653757943773) [(6, 1), (8, 1), (14, 2), (15, 2)],
+  term ((8536213062327834766074410630259070995884601501585567141686590226273674967083410972639568363949 : Rat) / 424763568814483350747445527412604830370616275251934132336363828933952251648278519945562938368) [(6, 1), (8, 1), (15, 2)],
+  term ((-313702413935632864209581646681692 : Rat) / 10306817152083683685026217919314591) [(6, 1), (8, 1), (15, 4)],
+  term ((-383253308500450074592987468741180705219237251690855492080230492765636037144032600094330661572189421481709119802411 : Rat) / 9278771431193142178573725743269375621973507068874899658440898559111554144086159743267362069213166140521034833920) [(6, 1), (9, 1), (11, 1)],
+  term ((-159901595754272504066354992664004561346598538499549210501949049307945600452148967599600380867375248054597510986042567 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1)],
+  term ((23274932376326906775331 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (11, 1), (13, 1), (15, 1), (16, 1)],
+  term ((117283306522936956553750233179464979379491942247212709346858909469230676785132376220421200023174920811237195459047 : Rat) / 4639385715596571089286862871634687810986753534437449829220449279555777072043079871633681034606583070260517416960) [(6, 1), (9, 1), (11, 1), (14, 1)],
+  term ((-237656816706250445897783 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (11, 1), (14, 1), (16, 1)],
+  term ((50899034031237221418732984233463267963846959032621413774069526097270551626522236713254842766790372863770044522395509 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (11, 1), (15, 2)],
+  term ((-8737079234256169150601 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (11, 1), (15, 2), (16, 1)],
+  term ((804097384918378324117487 : Rat) / 37410711022760372104968) [(6, 1), (9, 1), (11, 1), (16, 1)],
+  term ((918453910475562078484728867568354345842453545841787261221833818411147240854293593230269474951881935733367820971 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (12, 1), (13, 1)],
+  term ((10962630933198898498294677259744861740769320600812812333394029197160903250345949668367382347577927161818687169251 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1)],
+  term ((-24880280697155794952639 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (14, 1), (16, 1)],
+  term ((-1599990399776891211459243956693449696000 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (13, 1), (15, 2)],
+  term ((-8650043352363116764333 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (13, 1), (16, 1)],
+  term ((-1714692261367085162679200362606484613992660014898241523732036857393723507176988550318344395946651196850773516973 : Rat) / 57992321444957138616085785895433597637334419180468122865255615994447213400538498395421012932582288378256467712) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1)],
+  term ((73350087848026117544728 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (14, 1), (15, 1), (16, 1)],
+  term ((51387535384559275349198614747704414235583250252005625365672340541814159257934013379311778038919722532945849071812239 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (12, 1), (15, 1)],
+  term ((-36084090292658195936759 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (12, 1), (15, 1), (16, 1)],
+  term ((10657189286821369686291752623593837126400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (12, 1), (15, 3)],
+  term ((-46285814552899961453254268135870452786595745749885249606284486128349531820184382871270630815521891031695617025109 : Rat) / 662769387942367298469551838804955401569536219205349975602921325650825296006154267376240147800940438608645345280) [(6, 1), (9, 1), (13, 1)],
+  term ((21379915036037710635600614218137204442854278123080743959110273305735735234718209626135159228022139309050452177999 : Rat) / 231969285779828554464343143581734390549337676721872491461022463977788853602153993581684051730329153513025870848) [(6, 1), (9, 1), (13, 1), (14, 1)],
+  term ((1904948345803529117182845781307490151529166290326409082893290262890286244838663724682648701390114977429537762937387 : Rat) / 197125565978316807012511600556228037302239246530941227639481381367791819550663779129101926460002628579090109831040) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2)],
+  term ((-8890284321793560101416 : Rat) / 1558779625948348837707) [(6, 1), (9, 1), (13, 1), (14, 1), (15, 2), (16, 1)],
+  term ((-1447004686654418549307 : Rat) / 30564306391144094857) [(6, 1), (9, 1), (13, 1), (14, 1), (16, 1)],
+  term ((283477577001274322963234517018030123028919717515841462402161092826090316331276965428869962138370261021826906403 : Rat) / 9746608646211283801022821158896402964257885576549264347101784200747430823619915696709413938249124097185960960) [(6, 1), (9, 1), (13, 1), (14, 2)],
+  term ((-67786802612231901547037 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (14, 2), (16, 1)],
+  term ((145930165294757630564655341142926960656042220729543586322625172542196048058102387645593147941381705719679755802944199 : Rat) / 4731013583479603368300278413349472895253741916742589463347553152827003669215930699098446235040063085898162635944960) [(6, 1), (9, 1), (13, 1), (15, 2)],
+  term ((-60470493457448481492137 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (13, 1), (15, 2), (16, 1)],
+  term ((690846699823827456121199 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (13, 1), (16, 1)],
+  term ((-22202013362795019165197273421742613128774681096207408194046773837877218843107817696558950491542942709250783540533877 : Rat) / 1577004527826534456100092804449824298417913972247529821115851050942334556405310233032815411680021028632720878648320) [(6, 1), (9, 1), (13, 2), (15, 1)],
+  term ((3964010641462228068985 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (13, 2), (15, 1), (16, 1)],
+  term ((28373672900485705432651986401937765871473335683498137960847568910276370585822338422260956808405097112557908449776481 : Rat) / 210267270376871260813345707259976573122388529633003976148780140125644607520708031071042054890669470484362783819776) [(6, 1), (9, 1), (14, 1), (15, 1)],
+  term ((-652929329971338379131419 : Rat) / 9352677755690093026242) [(6, 1), (9, 1), (14, 1), (15, 1), (16, 1)],
+  term ((6775906243250962235111335921978676806400 : Rat) / 15008818057315716433186233612759665357973) [(6, 1), (9, 1), (14, 1), (15, 3)],
+  term ((-86728337733013185152788133484391011637922168213464201096468980691320993711942024546321416997101961351678635836951 : Rat) / 1159846428899142772321715717908671952746688383609362457305112319888944268010769967908420258651645767565129354240) [(6, 1), (9, 1), (14, 2), (15, 1)],
+  term ((19944005768419667345151 : Rat) / 519593208649449612569) [(6, 1), (9, 1), (14, 2), (15, 1), (16, 1)],
+  term ((49963888747665392614215431986924738353507222309489336243770837462018254411635430846804938896040471774599622320891723 : Rat) / 6308018111306137824400371217799297193671655888990119284463404203769338225621240932131261646720084114530883514593280) [(6, 1), (9, 1), (15, 1)],
+  term ((-65220740825203984518511 : Rat) / 18705355511380186052484) [(6, 1), (9, 1), (15, 1), (16, 1)],
+  term ((6963810873460211962870855344389666568446378046542033905057786935005570276975814110635134593014124228170912501828003 : Rat) / 675859083354229052614325487621353270750534559534655637621079021832429095602275814156920890720009012271166090849280) [(6, 1), (9, 1), (15, 3)],
+  term ((-8485096866388995932339 : Rat) / 4676338877845046513121) [(6, 1), (9, 1), (15, 3), (16, 1)],
+  term ((-82787988786778017856908132954136281391680555559671387673584515936685113274470141341717815622806967 : Rat) / 1518988234205861116295191199578207335535940670743469547935886037751595639588868509773826551991680) [(6, 1), (11, 1), (13, 1)],
+  term ((-179906237358006463997543819148809668701482481156999260782524247398313488902443015955996593782317015 : Rat) / 113023338989047897753957346088546581941680072300280788242158101419685286399994638830260328732343376) [(6, 1), (11, 1), (13, 1), (15, 2)],
+  term ((2455729787063631 : Rat) / 1395206957462413) [(6, 1), (11, 1), (13, 1), (15, 2), (16, 1)],
+  term ((-132584864 : Rat) / 24755451) [(6, 1), (11, 1), (13, 1), (16, 1)],
+  term ((2648605581030913867199356215284160 : Rat) / 24049240021528595265061175145067379) [(6, 1), (11, 1), (13, 2), (15, 1)],
+  term ((3817624489429911942769709814591122835268377223751305553290718383573802487769065256849548229578270949 : Rat) / 4068840203605724319142464459187676949900482602810108376717691651108670310399806997889371834364361536) [(6, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-6256116904540113 : Rat) / 5580827829849652) [(6, 1), (11, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-3244422083886575260793441440496516832154998444764058897674592115138658209723106775019989407589986224639378908786449 : Rat) / 3268990175356501951699493577419603051232036204560921425613576398956658743273852836233947519151617186162861038080) [(6, 1), (11, 1), (15, 1)],
+  term ((-529519568392675670719629 : Rat) / 5417878818873701860904) [(6, 1), (11, 1), (15, 1), (16, 1)],
+  term ((1501376853818961573064860407513452525000351692376094541111940104398431668259835128597372081020424891 : Rat) / 1017210050901431079785616114796919237475120650702527094179422912777167577599951749472342958591090384) [(6, 1), (11, 1), (15, 3)],
+  term ((-2368475166034263 : Rat) / 1395206957462413) [(6, 1), (11, 1), (15, 3), (16, 1)],
+  term ((233675872853102865241953694843427107626616874102926876756829193149063520463916393352852363572541127 : Rat) / 4050635291215629643453843198875219561429175121982585461162362767337588372236982692730204138644480) [(6, 1), (12, 1)],
+  term ((81273192491475592624744306117067112718519949209838179 : Rat) / 285071954829622879643311256928356724175362184887277392) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-662786495307469 : Rat) / 1395206957462413) [(6, 1), (12, 1), (13, 1), (14, 1), (15, 1), (16, 1)],
+  term ((-30057758898562453261399474494397708947503638680828442512050469440805017139190942467607202598837539896900838120267 : Rat) / 204311885959781371981218348588725190702002262785057589100848524934791171454615802264621719946976074135178814880) [(6, 1), (12, 1), (13, 1), (15, 1)],
+  term ((-9561452382787866850549 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (13, 1), (15, 1), (16, 1)],
+  term ((662993486393098066241781954416324529220254799783649727278894270346409 : Rat) / 419092572628462544077625892622666637236212609105237184315552285644356848) [(6, 1), (12, 1), (13, 2)],
+  term ((-240288305598895558716027964628613680940699067407081 : Rat) / 232901923880410849381790242588526735437387405953658) [(6, 1), (12, 1), (14, 1), (15, 2)],
+  term ((1975738223120636 : Rat) / 1395206957462413) [(6, 1), (12, 1), (14, 1), (15, 2), (16, 1)],
+  term ((6364538586281905773115715204092519905700325469199054746531179978607187165337083721160132720934043088168697003371103 : Rat) / 7355227894552129391323860549194106865272081460262073207630546897652482172366168881526381918091138668866437335680) [(6, 1), (12, 1), (15, 2)],
+  term ((58118339254922157984628 : Rat) / 677234852359212732613) [(6, 1), (12, 1), (15, 2), (16, 1)],
+  term ((1179091783 : Rat) / 198043608) [(6, 1), (12, 1), (16, 1)],
+  term ((-499248675261344415043645020923668687684942350875761029434122280031944890701429977092044583148159964336084475828559 : Rat) / 490348526303475292754924036612940457684805430684138213842036459843498811491077925435092127872742577924429155712) [(6, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-72333075109503799494888 : Rat) / 677234852359212732613) [(6, 1), (13, 1), (14, 1), (15, 1), (16, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked block-sum identity for generator 9, terms 1700 through 1799. -/
+theorem ep_Q1_009_block_09_1700_1799_valid :
+    checkProductSumEq ep_Q1_009_partials_09_1700_1799
+      ep_Q1_009_block_09_1700_1799 = true := by
+  native_decide
+
+end EpQ1009TermShards
+
+end Patterns
+
+end EndpointCertificate
+
+end Problem97

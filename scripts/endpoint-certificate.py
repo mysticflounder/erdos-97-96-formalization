@@ -645,6 +645,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
 {entries}
 ]
 
+set_option linter.style.nativeDecide false in
 /-- The generated endpoint certificate aggregate contains 117 rows. -/
 theorem allEndpointCertificates_length : allEndpointCertificates.length = 117 := by
   native_decide

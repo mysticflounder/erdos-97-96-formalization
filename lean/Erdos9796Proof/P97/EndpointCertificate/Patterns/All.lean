@@ -154,7 +154,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q1_006", check := checkCertificate ep_Q1_006, valid := ep_Q1_006_valid },
   { id := "ep_Q1_007", check := checkCertificate ep_Q1_007, valid := ep_Q1_007_valid },
   { id := "ep_Q1_008", check := checkProductSum ep_Q1_008_blocks, valid := ep_Q1_008_valid },
-  { id := "ep_Q1_009", check := checkCertificate ep_Q1_009, valid := ep_Q1_009_valid },
+  { id := "ep_Q1_009", check := checkProductSum ep_Q1_009_blocks, valid := ep_Q1_009_valid },
   { id := "ep_Q1_010", check := checkCertificate ep_Q1_010, valid := ep_Q1_010_valid },
   { id := "ep_Q1_011", check := checkCertificate ep_Q1_011, valid := ep_Q1_011_valid },
   { id := "ep_Q1_012", check := checkCertificate ep_Q1_012, valid := ep_Q1_012_valid },
@@ -180,13 +180,13 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q1_032", check := checkCertificate ep_Q1_032, valid := ep_Q1_032_valid },
   { id := "ep_Q2_000", check := checkCertificate ep_Q2_000, valid := ep_Q2_000_valid },
   { id := "ep_Q2_001", check := checkCertificate ep_Q2_001, valid := ep_Q2_001_valid },
-  { id := "ep_Q2_002", check := checkCertificate ep_Q2_002, valid := ep_Q2_002_valid },
+  { id := "ep_Q2_002", check := checkProductSum ep_Q2_002_blocks, valid := ep_Q2_002_valid },
   { id := "ep_Q2_003", check := checkCertificate ep_Q2_003, valid := ep_Q2_003_valid },
   { id := "ep_Q2_004", check := checkCertificate ep_Q2_004, valid := ep_Q2_004_valid },
   { id := "ep_Q2_005", check := checkCertificate ep_Q2_005, valid := ep_Q2_005_valid },
   { id := "ep_Q2_006", check := checkCertificate ep_Q2_006, valid := ep_Q2_006_valid },
   { id := "ep_Q2_007", check := checkCertificate ep_Q2_007, valid := ep_Q2_007_valid },
-  { id := "ep_Q2_008", check := checkCertificate ep_Q2_008, valid := ep_Q2_008_valid },
+  { id := "ep_Q2_008", check := checkProductSum ep_Q2_008_blocks, valid := ep_Q2_008_valid },
   { id := "ep_Q2_009", check := checkCertificate ep_Q2_009, valid := ep_Q2_009_valid },
   { id := "ep_Q2_010", check := checkCertificate ep_Q2_010, valid := ep_Q2_010_valid },
   { id := "ep_Q2_011", check := checkCertificate ep_Q2_011, valid := ep_Q2_011_valid },
@@ -202,7 +202,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_021", check := checkCertificate ep_Q2_021, valid := ep_Q2_021_valid },
   { id := "ep_Q2_022", check := checkCertificate ep_Q2_022, valid := ep_Q2_022_valid },
   { id := "ep_Q2_023", check := checkCertificate ep_Q2_023, valid := ep_Q2_023_valid },
-  { id := "ep_Q2_024", check := checkCertificate ep_Q2_024, valid := ep_Q2_024_valid },
+  { id := "ep_Q2_024", check := checkProductSum ep_Q2_024_blocks, valid := ep_Q2_024_valid },
   { id := "ep_Q2_025", check := checkCertificate ep_Q2_025, valid := ep_Q2_025_valid },
   { id := "ep_Q2_026", check := checkCertificate ep_Q2_026, valid := ep_Q2_026_valid },
   { id := "ep_Q2_027", check := checkCertificate ep_Q2_027, valid := ep_Q2_027_valid },
@@ -219,7 +219,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_038", check := checkCertificate ep_Q2_038, valid := ep_Q2_038_valid },
   { id := "ep_Q2_039", check := checkCertificate ep_Q2_039, valid := ep_Q2_039_valid },
   { id := "ep_Q2_040", check := checkCertificate ep_Q2_040, valid := ep_Q2_040_valid },
-  { id := "ep_Q2_041", check := checkCertificate ep_Q2_041, valid := ep_Q2_041_valid },
+  { id := "ep_Q2_041", check := checkProductSum ep_Q2_041_blocks, valid := ep_Q2_041_valid },
   { id := "ep_Q2_042", check := checkCertificate ep_Q2_042, valid := ep_Q2_042_valid },
   { id := "ep_Q2_043", check := checkCertificate ep_Q2_043, valid := ep_Q2_043_valid },
   { id := "ep_Q2_044", check := checkCertificate ep_Q2_044, valid := ep_Q2_044_valid },
@@ -232,7 +232,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_051", check := checkCertificate ep_Q2_051, valid := ep_Q2_051_valid },
   { id := "ep_Q2_052", check := checkCertificate ep_Q2_052, valid := ep_Q2_052_valid },
   { id := "ep_Q2_053", check := checkCertificate ep_Q2_053, valid := ep_Q2_053_valid },
-  { id := "ep_Q2_054", check := checkCertificate ep_Q2_054, valid := ep_Q2_054_valid },
+  { id := "ep_Q2_054", check := checkProductSum ep_Q2_054_blocks, valid := ep_Q2_054_valid },
   { id := "ep_Q2_055", check := checkCertificate ep_Q2_055, valid := ep_Q2_055_valid },
   { id := "ep_Q2_056", check := checkCertificate ep_Q2_056, valid := ep_Q2_056_valid },
   { id := "ep_Q2_057", check := checkCertificate ep_Q2_057, valid := ep_Q2_057_valid },
@@ -242,7 +242,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_061", check := checkCertificate ep_Q2_061, valid := ep_Q2_061_valid },
   { id := "ep_Q2_062", check := checkCertificate ep_Q2_062, valid := ep_Q2_062_valid },
   { id := "ep_Q2_063", check := checkCertificate ep_Q2_063, valid := ep_Q2_063_valid },
-  { id := "ep_Q2_064", check := checkCertificate ep_Q2_064, valid := ep_Q2_064_valid },
+  { id := "ep_Q2_064", check := checkProductSum ep_Q2_064_blocks, valid := ep_Q2_064_valid },
   { id := "ep_Q2_065", check := checkCertificate ep_Q2_065, valid := ep_Q2_065_valid },
   { id := "ep_Q2_066", check := checkCertificate ep_Q2_066, valid := ep_Q2_066_valid },
   { id := "ep_Q2_067", check := checkCertificate ep_Q2_067, valid := ep_Q2_067_valid },
@@ -252,7 +252,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_071", check := checkCertificate ep_Q2_071, valid := ep_Q2_071_valid },
   { id := "ep_Q2_072", check := checkCertificate ep_Q2_072, valid := ep_Q2_072_valid },
   { id := "ep_Q2_073", check := checkCertificate ep_Q2_073, valid := ep_Q2_073_valid },
-  { id := "ep_Q2_074", check := checkCertificate ep_Q2_074, valid := ep_Q2_074_valid },
+  { id := "ep_Q2_074", check := checkProductSum ep_Q2_074_blocks, valid := ep_Q2_074_valid },
   { id := "ep_Q2_075", check := checkCertificate ep_Q2_075, valid := ep_Q2_075_valid },
   { id := "ep_Q2_076", check := checkCertificate ep_Q2_076, valid := ep_Q2_076_valid },
   { id := "ep_Q2_077", check := checkCertificate ep_Q2_077, valid := ep_Q2_077_valid },
@@ -264,6 +264,7 @@ def allEndpointCertificates : List VerifiedCertificate :=
   { id := "ep_Q2_083", check := checkCertificate ep_Q2_083, valid := ep_Q2_083_valid }
 ]
 
+set_option linter.style.nativeDecide false in
 /-- The generated endpoint certificate aggregate contains 117 rows. -/
 theorem allEndpointCertificates_length : allEndpointCertificates.length = 117 := by
   native_decide

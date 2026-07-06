@@ -196,6 +196,21 @@ Plan:
    endpoint patterns.
 3. Wire the bridge into `isM44EndpointResidualsExcluded`.
 
+Progress on 2026-07-06:
+
+- Step 1 is complete. `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.Patterns.All` succeeds.
+- The endpoint emitter now gives sharded rows the same `_valid` public theorem
+  shape as direct rows, with the theorem proving the row's `checkProductSum`
+  identity.
+- The aggregate uses `checkProductSum` for the term-sharded rows:
+  `ep_Q1_008`, `ep_Q1_009`, `ep_Q1_028`, `ep_Q2_002`, `ep_Q2_008`,
+  `ep_Q2_019`, `ep_Q2_020`, `ep_Q2_024`, `ep_Q2_041`, `ep_Q2_054`,
+  `ep_Q2_064`, and `ep_Q2_074`.
+- `lake-build Erdos9796Proof.P97.RemovableVertexAxiom` also succeeds after the
+  endpoint-row changes; remaining warnings are the pre-existing lint and `sorry`
+  warnings outside the endpoint aggregate.
+
 ### Pinned surplus residuals
 
 Target:
