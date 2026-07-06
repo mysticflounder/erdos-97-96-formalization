@@ -4,16 +4,26 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Author: Adam McKenna <adam@mysticflounder.ai>
 -->
 
-# Dead Ends — Erdős 97 RVOL (U-lane)
+# Dead Ends — Erdős 97 removable-vertex / U-lane
+
+> **Provenance (2026-07-06).** Copied from the historical companion repo
+> `p97-rvol` during the 2026-07-05 U-lane import; this file in
+> `erdos-97-96-formalization` is now the canonical copy. Entries were written
+> from p97-rvol's perspective: "this repo" in the body means p97-rvol
+> (`RVOL.P97.*`); most cited symbols now also exist here under
+> `Erdos9796Proof.P97.*`. The p97-rvol docs referenced below
+> (`live-status.md`, `upstream-closure.md`, `postmortems/`, `audits/` from
+> that repo) were not copied — consult `../p97-rvol/docs/` for the
+> historical record. The live frontier is tracked in this repo: see
+> `u-lane/97-slot3-certificate-closure-plan-2026-07-06.md` and
+> `four-point-subpacket-plan.md`.
 
 Don't-repeat log: the durable lessons from failed/closed routes, clustered by the
-obligation they attacked. This is not a status file — the canonical live frontier
-is [`live-status.md`](live-status.md) and the repo/upstream boundary is
-[`upstream-closure.md`](upstream-closure.md). Before citing any apex1 / U2.B
-solver result, read
-[`postmortems/2026-06-27-apex1-family-vacuity.md`](postmortems/2026-06-27-apex1-family-vacuity.md)
-and
-[`audits/2026-06-27-solver-verdict-encoding-implication-audit.md`](audits/2026-06-27-solver-verdict-encoding-implication-audit.md).
+obligation they attacked. This is not a status file. Before citing any apex1 /
+U2.B solver result, read p97-rvol's
+`docs/postmortems/2026-06-27-apex1-family-vacuity.md` and
+`docs/audits/2026-06-27-solver-verdict-encoding-implication-audit.md`
+(historical repo).
 
 ## Conventions (read once; entries reference these by tag)
 
@@ -54,9 +64,11 @@ concyclic ("every cap point equidistant from its opposite apex") IS U1.3
 
 ### (REF) — file:line references are indicative only
 Both repos were restructured into subdirectories, so filenames and line numbers
-drift; the **Lean symbol name is the stable handle**. This repo = `p97-rvol`
-(`lean/RVOL/P97/`); the read-only sibling dependency = `erdos-97-96-formalization`
-(`lean/Erdos9796Proof/P97/`, e.g. `N9EndpointN4e.lean` → `N9Endpoint/N4e.lean`).
+drift; the **Lean symbol name is the stable handle**. Entries were written when
+"this repo" = `p97-rvol` (`lean/RVOL/P97/`, now historical) and the sibling
+dependency = `erdos-97-96-formalization` (`lean/Erdos9796Proof/P97/`, e.g.
+`N9EndpointN4e.lean` → `N9Endpoint/N4e.lean`). Since the 2026-07-05 import,
+the route-B-tail closure modules exist here under `Erdos9796Proof.P97.*`.
 
 ---
 

@@ -4,13 +4,14 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The proof is **complete except for a single named lemma**
-(`Problem97.RemovableVertexOfLarge`), which is left as a `sorry` placeholder
-in this repo. Active work on that lemma is in the companion repo
-[`p97-rvol`](../p97-rvol), which imports this repo as a read-only path
-dependency and replaces the placeholder with an assembled U-lane proof. See
-**Proof status** below for the kernel-reported state of this repo, and
-`p97-rvol/docs/live-status.md` for the current RVOL frontier.
+The proof is **complete except for five named residual lemmas**, all
+descending from the removable-vertex core of the descent step
+(`Problem97.RemovableVertexOfLarge`, now assembled from a three-way split
+with the residuals as its remaining `sorry`-backed inputs). **This is the
+main repo where the proof is being closed.** The former companion repo
+`p97-rvol` is historical as of 2026-07-06: its U-lane route-B tail was
+imported here on 2026-07-05, and its status docs are superseded by this
+repo. See **Proof status** below for the kernel-reported state.
 
 ## What is formalized
 
@@ -54,32 +55,36 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both theorems are complete modulo one lemma.** The single open obligation -
-[`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L47) - is
+**Both theorems are complete modulo five named residual lemmas.** The hard
+core of the descent step —
+[`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
+(*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
+minimal under the strong-induction hypothesis contains a removable vertex*) —
+is assembled from a three-way split (surplus-cap packet extraction, the
+`IsM44` pinned-surplus branch, the non-`IsM44` descent branch). The
+`sorry`-backed obligations remaining under it, all on the publish spine:
 
-```lean
--- lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean
-theorem RemovableVertexOfLarge : RemovableVertexOfLargeStatement := sorry
-```
+| Obligation (`Problem97.*`) | File | Role |
+|---|---|---|
+| `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom.lean` | endpoint-escape exclusion against the 117 certified endpoint patterns |
+| `isM44PinnedSurplusResidualsExcluded` | `RemovableVertexAxiom.lean` | pinned surplus-family exclusion via the finite COMP-G bank |
+| `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom.lean` | erased-pin triple residuals for the containment branch |
+| `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean` | two-large-cap metric residual (imported U-lane route-B tail) |
+| `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean` | route-B live-data branch exclusion |
 
-> Every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
-> minimal under the strong-induction hypothesis contains a removable vertex.
+The Lean kernel reports the axiom closure of both published claims as the
+Lean core axioms plus:
 
-This is the hard core of the descent step (the uniform removability of a
-surplus-cap vertex). It is the **only** `sorry` reachable from either published
-theorem.
+- `sorryAx` — traces exactly to the five obligations above;
+- `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
+  generated finite-bank certificate shards (`SurplusCOMPGBank*`,
+  `EndpointCertificate/*`), allowed under the project's `native_decide`
+  policy (kernel-checked closure + the evaluated checkers are plain verified
+  Lean with no `unsafe` / `@[implemented_by]` / `@[extern]`).
 
-The Lean kernel reports the axiom closure of both claims as exactly the Lean
-core axioms plus `sorryAx` (which traces solely to `RemovableVertexOfLarge`):
-
-```
-'Problem97.erdos97_rhs' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
-'Problem96.erdos96_rhs' depends on axioms: [propext, sorryAx, Classical.choice, Quot.sound]
-```
-
-No `native_decide` (`Lean.ofReduceBool`) and no custom axioms appear. Once
-`RemovableVertexOfLarge` is replaced by a proof, `sorryAx` drops out and both
-closures become `[propext, Classical.choice, Quot.sound]`.
+Once the five obligations are proven, `sorryAx` drops out and both closures
+become the core axioms plus the two compiler axioms — the declared trust
+boundary of the certificate infrastructure.
 
 You can reproduce this check after building (see below):
 
@@ -117,8 +122,9 @@ lock so concurrent invocations serialize:
 ./scripts/lake-build.sh
 ```
 
-A successful build prints exactly one warning -
-`RemovableVertexAxiom.lean: declaration uses 'sorry'` - and nothing else of
+A successful build prints `declaration uses 'sorry'` warnings for the files
+carrying the open obligations (`RemovableVertexAxiom.lean`,
+`U1LargeCapRouteBTail.lean`, `U2OppCap2Escape.lean`) and nothing else of
 substance. (Lean's mathlib-style linters emit a handful of cosmetic
 style/`simp` hints; these are not errors.)
 
@@ -134,12 +140,13 @@ lean/
   Erdos9796.lean              -- root: re-exports upstream statements + the proofs
   Erdos9796Proof.lean         -- root: the two upstream-vocabulary bridge theorems
   Erdos9796Proof/
-    P97/                      -- Problem 97 proof library (~90 files)
+    P97/                      -- Problem 97 proof library
       UpstreamBridge.lean       -- erdos97_rhs (the published theorem)
       UniversalProblem97.lean   -- the strong-induction wrapper
       Counting.lean             -- counting engine (forces |A| ≥ 9)
       Descent.lean              -- descent engine (kills |A| > 9)
-      RemovableVertexAxiom.lean -- the single open lemma (sorry)
+      RemovableVertexAxiom.lean -- removable-vertex assembly + 3 residual sorries
+      U1LargeCapRouteBTail.lean -- imported U-lane route-B tail (2 residual sorries)
       Foundation.lean           -- shared vocabulary + signed-area primitives
       Dumitrescu/               -- isosceles-counting lemma chain (L1 … Lc3)
       CGN/                      -- cap-witness counting bridge (CGN … CGN8)
@@ -147,6 +154,11 @@ lean/
       N9Endpoint/  N8/          -- n=9 base-case assembly
       Cap/  MEC/  Moser/        -- cap structures, min-enclosing circle, Moser triangle
       U2/                       -- similarity-normalization lane
+      SurplusM44Packet.lean     -- (m,4,4) surplus-cap packet vocabulary
+      SurplusCOMPGBank*.lean    -- generated finite COMP-G bank + DFS bridge
+      EndpointCertificate/      -- generated polynomial-certificate corpus
+                                --   (Checker.lean + Patterns/*, native_decide)
+      U1*/U3*/U5*.lean          -- imported U-lane modules (2026-07-05)
       ConvexCyclicOrder/        -- convex cyclic-order construction
       ...                       -- other shared geometry kernels in the root
     P96/                      -- Problem 96 proof library (2 files)
@@ -155,14 +167,19 @@ lean/
   lakefile.toml               -- build config + dependency requires
   lake-manifest.json          -- pinned dependency revisions
   lean-toolchain              -- leanprover/lean4:v4.27.0
+certificates/                 -- JSON certificate banks (endpoint/, surplus/)
 scripts/
   lake-build.sh               -- locked build wrapper
+  endpoint-certificate.py     -- polynomial-certificate generator/emitter
+  escape-census.py            -- escape-census enumeration
+  surplus-compg-shadow.py     -- COMP-G shadow/bank generator
+docs/                         -- working plans, dead-ends log, audits
 ```
 
-This repository is a focused public extract: it contains exactly the
-import-closure of the two published theorems (92 proof files), with all
-proof-engineering scaffold, exploratory branches, and material downstream of
-the open `RemovableVertexOfLarge` lemma removed.
+The default `lake build` compiles the import closure of the two published
+theorems (~160 modules); the generated certificate corpus under
+`EndpointCertificate/Patterns/` builds only when targeted explicitly and is
+the input material for wiring the endpoint residual obligation.
 
 ## Proof architecture - where to look
 
@@ -203,9 +220,9 @@ Read these in order; each line is the load-bearing declaration of its step.
    [`counterexample_card_ge_nine`](lean/Erdos9796Proof/P97/Counting.lean#L95).
 6. **Descent engine** (`|A| > 9`):
    [`descent_contradicts_minimality`](lean/Erdos9796Proof/P97/Descent.lean#L27),
-   which consumes the one open lemma
-   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L47)
-   plus the glue
+   which consumes
+   [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
+   (assembled; carries the five residual obligations) plus the glue
    [`smaller_counterexample_of_removable`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean#L30).
 
 ### Shared foundations
@@ -246,7 +263,7 @@ A Dumitrescu-style double count of isosceles configurations: a lower bound
 
 ### The `n = 9` base case (the bulk of the files)
 
-Most of the ~90 files implement the finite case analysis behind
+Most of the hand-written P97 files implement the finite case analysis behind
 `FiniteN9Closure`. It threads a fixed 9-point shell through form exclusions and
 a final single-apex exhaustion:
 
@@ -266,57 +283,47 @@ a final single-apex exhaustion:
   through the two-circle / endpoint-pair / reflection primitives in the
   [`N8/`](lean/Erdos9796Proof/P97/N8) subdirectory.
 
-### The descent step and the single open lemma
+### The descent step and the removable-vertex lemma
 
 - [`RemovableVertexAxiom.lean`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean)
-  - the lone `sorry`: every minimal counterexample with `|A| > 9` has a
-  removable vertex.
+  - assembles `RemovableVertexOfLarge` (every minimal counterexample with
+  `|A| > 9` has a removable vertex) from the three-way split, and carries the
+  three slot-2 residual `sorry`s.
 - [`SmallerCounterexample.lean`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean)
   - turns a removable vertex into a strictly smaller counterexample.
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) - packages the two into
   the contradiction-with-minimality shape the induction wrapper consumes.
 
-### Status of the open lemma: companion repo and current gates
+### Status of the removable-vertex lemma: current residuals
 
-`RemovableVertexOfLarge` is the **only** open obligation on the spine of this
-repo. The three other descent inputs are closed and kernel-audited: the base case
-`FiniteN9Closure` (axiom closure: `propext, Classical.choice, Quot.sound`), the
-cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`), and the counting bound
-`counterexample_card_ge_nine` (`|A| ≥ 9`).
+The five obligations in the **Proof status** table are the open frontier;
+everything else on the descent path is closed and kernel-audited: the base
+case `FiniteN9Closure` (axiom closure: `propext, Classical.choice,
+Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`),
+the counting bound `counterexample_card_ge_nine` (`|A| ≥ 9`), the surplus-cap
+packet extraction (`largeK4SurplusCapPacket`), the pinned-surplus finite-bank
+handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
+(`removableVertexOfLarge_of_nonIsM44`).
 
-**Active proof work is in the companion repo [`p97-rvol`](../p97-rvol).** That
-repo imports this one as a read-only path dependency and replaces the sorry
-placeholder with a real proof assembled from a U-lane spine
-(`lean/RVOL/P97/RVOLSpine.lean`). Its `Problem97.erdos97_rhs` has the same
-axiom closure as this repo's version; the `sorryAx` traces to three named leaves
-in the RVOL spine.
+**Active work happens in this repo.** The live plans are
+[`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
+(the two slot-3 U-lane residuals) and
+[`docs/four-point-subpacket-plan.md`](docs/four-point-subpacket-plan.md)
+(the three slot-2 census residuals; status matrix + implemented-lemma
+ledger). Analysis snapshots live under [`docs/audits/`](docs/audits).
+[`docs/dead-ends.md`](docs/dead-ends.md) is the don't-repeat log for closed
+proof routes.
 
-**Current open gates in p97-rvol (as of 2026-06-29):**
+**Historical note.** The U-lane route-B tail was developed in the companion
+repo `p97-rvol` and imported here on 2026-07-05 (58 modules,
+`RVOL.P97.*` → `Erdos9796Proof.P97.*`). As of 2026-07-06, `p97-rvol` and the
+other companion repos are historical — frozen references, not live work
+targets; their status docs are superseded by this repo.
 
-| Gate | Lean name | Role |
-|---|---|---|
-| U1.2 exactness from minimality | `Problem97.u1ExactnessFromMinimality_holds` | minimality drives U1 into (m,4,4) or produces removable vertex directly |
-| U2.B no strict adjacent-cap escape | `Problem97.noStrictAdjacentEscapeAtOppApex1_holds` | route-B geometric certificate at the first non-surplus apex |
-| U3 parent removable | `Problem97.u3ParentRemovable_holds` | from IsM44 + U2 + Minimal, produce a removable vertex |
-
-`Problem97.u3DeletionSaturation_holds` (q-deleted short-cap overlap bound) is now **proven** via `shortCapDeletionSaturation_of_u2`; `u3ParentRemovable_holds` is the new U3 gate directly above it.
-
-The U-lane strategy is: reduce to a `(m, 4, 4)` terminal packet (U1), force
-the two short caps onto equilateral-MEC Apollonius arcs (U2), show short caps
-are deletion-saturated (U3), split on surplus-apex witness radius (U4: Mode A vs
-Mode B), produce a removable vertex in Mode A (U5), and exclude or descend in
-Mode B (U6). Many connective lemmas are fully proven; the three gates above are
-the live frontier.
-
-See [`p97-rvol/docs/live-status.md`](../p97-rvol/docs/live-status.md) for the
-authoritative current state and proof-blueprint commands. Proven dead ends are
-catalogued in [`p97-rvol/docs/dead-ends.md`](../p97-rvol/docs/dead-ends.md).
-
-**Reuse note (technique, not content).** p97-rvol's non-surplus swap is proven
-([`nonSurplusSwap_holds` + `noStrictAdjacentEscapeAtOppApex2_of_nonSurplusSwap`](../p97-rvol/lean/RVOL/P97/RVOLSpine.lean#L196)):
-it derives the *second*-apex adjacent-cap escape exclusion from the *first* for
-free. It closes nothing on its own, but halves any two-apex-symmetric escape
-residual — reuse it if an endpoint/adjacent-escape leaf here has that structure.
+Two additional `sorry`s in
+[`U2OppCap2Escape.lean`](lean/Erdos9796Proof/P97/U2OppCap2Escape.lean) are
+**off the publish spine** (not reachable from either published theorem); they
+become adapter work once the slot-2 obligations close.
 
 ### Problem 96
 
