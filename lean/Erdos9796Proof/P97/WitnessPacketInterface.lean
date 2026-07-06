@@ -57,6 +57,33 @@ noncomputable def SelectedClass (A : Finset ℝ²) (s : ℝ²) (d : ℝ) : Finse
     q ∈ SelectedClass A s d ↔ q ∈ A ∧ dist s q = d := by
   simp [SelectedClass]
 
+theorem selectedClass_erase_eq
+    (A : Finset ℝ²) (x s : ℝ²) (d : ℝ) :
+    SelectedClass (A.erase x) s d = (SelectedClass A s d).erase x := by
+  ext q
+  by_cases hqx : q = x
+  · simp [SelectedClass, hqx]
+  · simp [SelectedClass, hqx]
+
+/-- A selected class that avoids the erased point has unchanged cardinality. -/
+theorem selectedClass_erase_card_eq_of_not_mem
+    {A : Finset ℝ²} {x s : ℝ²} {d : ℝ}
+    (hx : x ∉ SelectedClass A s d) :
+    (SelectedClass (A.erase x) s d).card = (SelectedClass A s d).card := by
+  rw [selectedClass_erase_eq, Finset.erase_eq_self.mpr hx]
+
+/-- Erasing one ambient point can reduce a selected class by at most one. -/
+theorem selectedClass_erase_card_ge_of_succ_le
+    {A : Finset ℝ²} {x s : ℝ²} {d : ℝ} {n : ℕ}
+    (hcard : n + 1 ≤ (SelectedClass A s d).card) :
+    n ≤ (SelectedClass (A.erase x) s d).card := by
+  rw [selectedClass_erase_eq]
+  by_cases hx : x ∈ SelectedClass A s d
+  · rw [Finset.card_erase_of_mem hx]
+    omega
+  · rw [Finset.erase_eq_self.mpr hx]
+    omega
+
 /-- Extract the `SelectedClass` radius and cardinality bound from the upstream
 equidistant-points-at predicate. -/
 theorem exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
@@ -73,6 +100,152 @@ theorem exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
     (hK4 : HasNEquidistantProperty 4 A) (hp : p ∈ A) :
     ∃ r : ℝ, 0 < r ∧ 4 ≤ (SelectedClass A p r).card :=
   exists_selectedClass_card_ge_of_hasNEquidistantPointsAt (hK4 p hp)
+
+/-- If a global `K4` witness at `p` does not survive erasing `x`, then some
+selected class at `p` is an exact four-point class pinned through `x`. -/
+theorem selectedClass_erase_witness_or_exact_erased_pin
+    {A : Finset ℝ²} {x p : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hp : p ∈ A.erase x) :
+    (∃ radius : ℝ, 0 < radius ∧
+      4 ≤ (SelectedClass (A.erase x) p radius).card) ∨
+      ∃ radius : ℝ, 0 < radius ∧
+        (SelectedClass A p radius).card = 4 ∧
+        x ∈ SelectedClass A p radius := by
+  classical
+  have hpA : p ∈ A := (Finset.mem_erase.mp hp).2
+  rcases exists_selectedClass_card_ge_four_of_hasNEquidistantProperty hK4 hpA with
+    ⟨radius, hradius, hcard⟩
+  by_cases herase :
+      4 ≤ (SelectedClass (A.erase x) p radius).card
+  · exact Or.inl ⟨radius, hradius, herase⟩
+  · refine Or.inr ⟨radius, hradius, ?_, ?_⟩
+    · have hnot5 : ¬ 5 ≤ (SelectedClass A p radius).card := by
+        intro h5
+        exact herase
+          (selectedClass_erase_card_ge_of_succ_le
+            (A := A) (x := x) (s := p) (d := radius) (n := 4)
+            (by simpa using h5))
+      omega
+    · by_contra hxnot
+      have hsame :
+          (SelectedClass (A.erase x) p radius).card =
+            (SelectedClass A p radius).card :=
+        selectedClass_erase_card_eq_of_not_mem hxnot
+      exact herase (by
+        rw [hsame]
+        exact hcard)
+
+/-- Eliminator form of `selectedClass_erase_witness_or_exact_erased_pin`: to
+produce an erased selected-class witness, it is enough to rule out exact
+four-point classes through the erased point. -/
+theorem selectedClass_erase_witness_of_no_exact_erased_pin
+    {A : Finset ℝ²} {x p : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hp : p ∈ A.erase x)
+    (hpin : ∀ {radius : ℝ}, 0 < radius →
+      (SelectedClass A p radius).card = 4 →
+      x ∈ SelectedClass A p radius → False) :
+    ∃ radius : ℝ, 0 < radius ∧
+      4 ≤ (SelectedClass (A.erase x) p radius).card := by
+  rcases selectedClass_erase_witness_or_exact_erased_pin hK4 hp with
+    hwitness | ⟨radius, hradius, hcard, hxpin⟩
+  · exact hwitness
+  · exact False.elim (hpin hradius hcard hxpin)
+
+/-- Three-point residual circle left by an exact selected class through the
+erased point.  This is the generic, `Finset`-level version of the U5
+q-critical triple-circle shape. -/
+abbrev ErasedPinTriple (A : Finset ℝ²) (x p : ℝ²) : Prop :=
+  0 < dist p x ∧
+    (((A.erase x).erase p).filter
+      (fun y => dist p y = dist p x)).card = 3
+
+/-- An exact four-point selected class through the erased point leaves a
+three-point residual circle after erasing that point and the center. -/
+theorem erasedPinTriple_of_exact_erased_pin
+    {A : Finset ℝ²} {x p : ℝ²} {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard : (SelectedClass A p radius).card = 4)
+    (hxpin : x ∈ SelectedClass A p radius) :
+    ErasedPinTriple A x p := by
+  classical
+  have hdist : dist p x = radius := (mem_selectedClass.mp hxpin).2
+  have hxpin' : x ∈ SelectedClass A p (dist p x) := by
+    simpa [hdist] using hxpin
+  have hcard' : (SelectedClass A p (dist p x)).card = 4 := by
+    simpa [hdist] using hcard
+  have hradius' : 0 < dist p x := by
+    simpa [hdist] using hradius
+  have hfilter_eq :
+      (((A.erase x).erase p).filter
+          (fun y => dist p y = dist p x)) =
+        (SelectedClass A p (dist p x)).erase x := by
+    ext y
+    constructor
+    · intro hy
+      rcases Finset.mem_filter.mp hy with ⟨hyErase, hydist⟩
+      rcases Finset.mem_erase.mp hyErase with ⟨_hyp, hyEraseX⟩
+      rcases Finset.mem_erase.mp hyEraseX with ⟨hyx, hyA⟩
+      exact Finset.mem_erase.mpr
+        ⟨hyx, mem_selectedClass.mpr ⟨hyA, hydist⟩⟩
+    · intro hy
+      rcases Finset.mem_erase.mp hy with ⟨hyx, hySel⟩
+      rcases mem_selectedClass.mp hySel with ⟨hyA, hydist⟩
+      have hyp : y ≠ p := by
+        intro hyp
+        subst y
+        rw [dist_self] at hydist
+        exact hradius'.ne' hydist.symm
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_erase.mpr
+          ⟨hyp, Finset.mem_erase.mpr ⟨hyx, hyA⟩⟩,
+          hydist⟩
+  refine ⟨hradius', ?_⟩
+  rw [hfilter_eq, Finset.card_erase_of_mem hxpin', hcard']
+
+/-- Conversely, a three-point residual circle plus membership of the erased
+point reconstructs the exact four-point selected class through that point. -/
+theorem exact_erased_pin_of_erasedPinTriple
+    {A : Finset ℝ²} {x p : ℝ²}
+    (hxA : x ∈ A) (htriple : ErasedPinTriple A x p) :
+    0 < dist p x ∧
+      (SelectedClass A p (dist p x)).card = 4 ∧
+      x ∈ SelectedClass A p (dist p x) := by
+  classical
+  rcases htriple with ⟨hdist_pos, hcard⟩
+  have hxpin : x ∈ SelectedClass A p (dist p x) :=
+    mem_selectedClass.mpr ⟨hxA, rfl⟩
+  have hfilter_eq :
+      (((A.erase x).erase p).filter
+          (fun y => dist p y = dist p x)) =
+        (SelectedClass A p (dist p x)).erase x := by
+    ext y
+    constructor
+    · intro hy
+      rcases Finset.mem_filter.mp hy with ⟨hyErase, hydist⟩
+      rcases Finset.mem_erase.mp hyErase with ⟨_hyp, hyEraseX⟩
+      rcases Finset.mem_erase.mp hyEraseX with ⟨hyx, hyA⟩
+      exact Finset.mem_erase.mpr
+        ⟨hyx, mem_selectedClass.mpr ⟨hyA, hydist⟩⟩
+    · intro hy
+      rcases Finset.mem_erase.mp hy with ⟨hyx, hySel⟩
+      rcases mem_selectedClass.mp hySel with ⟨hyA, hydist⟩
+      have hyp : y ≠ p := by
+        intro hyp
+        subst y
+        rw [dist_self] at hydist
+        exact hdist_pos.ne' hydist.symm
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_erase.mpr
+          ⟨hyp, Finset.mem_erase.mpr ⟨hyx, hyA⟩⟩,
+          hydist⟩
+  have hcardErase :
+      ((SelectedClass A p (dist p x)).erase x).card = 3 := by
+    simpa [hfilter_eq] using hcard
+  have hcardSelected :
+      (SelectedClass A p (dist p x)).card = 4 := by
+    rw [Finset.card_erase_of_mem hxpin] at hcardErase
+    omega
+  exact ⟨hdist_pos, hcardSelected, hxpin⟩
 
 /-- A member of the selected class centred at `s` of radius `d` lies on the
 sphere `⟨s, d⟩` — the bridge from the `K4` equidistance class to the `Sphere`

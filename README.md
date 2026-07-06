@@ -312,6 +312,12 @@ See [`p97-rvol/docs/live-status.md`](../p97-rvol/docs/live-status.md) for the
 authoritative current state and proof-blueprint commands. Proven dead ends are
 catalogued in [`p97-rvol/docs/dead-ends.md`](../p97-rvol/docs/dead-ends.md).
 
+**Reuse note (technique, not content).** p97-rvol's non-surplus swap is proven
+([`nonSurplusSwap_holds` + `noStrictAdjacentEscapeAtOppApex2_of_nonSurplusSwap`](../p97-rvol/lean/RVOL/P97/RVOLSpine.lean#L196)):
+it derives the *second*-apex adjacent-cap escape exclusion from the *first* for
+free. It closes nothing on its own, but halves any two-apex-symmetric escape
+residual — reuse it if an endpoint/adjacent-escape leaf here has that structure.
+
 ### Problem 96
 
 Self-contained in the [`P96/`](lean/Erdos9796Proof/P96) directory and much

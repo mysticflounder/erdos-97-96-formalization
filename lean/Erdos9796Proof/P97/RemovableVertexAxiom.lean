@@ -26,8 +26,8 @@ decision-procedure trust boundary.
   The remaining proof is split into three explicit spine obligations: extracting
   a surplus-cap packet from the large convex `K4` hypotheses, closing the
   `IsM44` packet branch through its endpoint/pinned residual exclusions and
-  containment-to-removable step, and closing the non-`IsM44` packet branch by
-  descent.
+  containment-to-removable step, and closing the config-level no-`IsM44` branch
+  by descent.
 -/
 
 open scoped EuclideanGeometry
@@ -253,6 +253,35 @@ abbrev IsM44NonSurplusContainmentExactPinResidualsExcludedStatement : Prop :=
                   (SelectedClass A p radius).card = 4 →
                   x ∈ SelectedClass A p radius → False)
 
+/-- U5-style triple-circle residual exclusion for the categorized containment
+branch.  An exact pin through the erased point is converted into this
+three-point residual circle by `erasedPinTriple_of_exact_erased_pin`. -/
+abbrev IsM44NonSurplusContainmentErasedPinTripleResidualsExcludedStatement :
+    Prop :=
+    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
+      HasNEquidistantProperty 4 A → 9 < A.card →
+      (∀ B : Finset ℝ², B.card < A.card →
+        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
+      ∀ S : SurplusCapPacket A, S.IsM44 →
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) →
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False) →
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedRightSurplusResidualAt radius x → False) →
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedLeftSurplusResidualAt radius x → False) →
+        S.NonSurplusMoserCapContainment →
+          ∃ x : ℝ², x ∈ S.capInteriorByIndex S.surplusIdx ∧
+            (ErasedPinTriple A x
+              (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
+              p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+              p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+              p ∈ A.erase x → ErasedPinTriple A x p → False)
+
 /-- Adapter that closes the broad `IsM44` branch from the two residual
   exclusions plus the containment-to-removable extraction. -/
 abbrev IsM44PinnedSurplusBranchFromResidualSplitStatement : Prop :=
@@ -261,15 +290,15 @@ abbrev IsM44PinnedSurplusBranchFromResidualSplitStatement : Prop :=
       IsM44NonSurplusContainmentRemovableStatement →
         IsM44PinnedSurplusBranchStatement
   
-/-- The non-`IsM44` branch of the removable-vertex spine.  A parallel proof can
-  work only from the same top-level hypotheses, a surplus-cap packet, and the
-  fact that the packet is not in the `(m,4,4)` regime. -/
+/-- The non-`IsM44` branch of the removable-vertex spine.  The copied U-lane
+proof works at configuration level: there is no `IsM44` surplus-cap packet for
+the configuration. -/
 abbrev NonIsM44DescentStatement : Prop :=
     ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
     HasNEquidistantProperty 4 A → 9 < A.card →
     (∀ B : Finset ℝ², B.card < A.card →
       B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
-    ∀ S : SurplusCapPacket A, ¬ S.IsM44 →
+    (¬ ∃ S : SurplusCapPacket A, S.IsM44) →
       ∃ x : ℝ², IsRemovableVertex A x
 
 /-- Three-way adapter for the removable-vertex spine.  It separates packet
@@ -300,10 +329,34 @@ theorem isM44PinnedSurplusResidualsExcluded :
       IsM44PinnedSurplusResidualsExcludedStatement := sorry
   
 /-- Categorized residual concrete erasure-witness production for the `IsM44`
+containment branch reduced to U5-style erased-pin triple circles. -/
+theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
+      IsM44NonSurplusContainmentErasedPinTripleResidualsExcludedStatement :=
+  sorry
+
+/-- Categorized residual concrete erasure-witness production for the `IsM44`
 containment branch reduced to exact four-point selected-class pins through the
 erased surplus point. -/
 theorem isM44NonSurplusContainmentExactPinResidualsExcluded :
-      IsM44NonSurplusContainmentExactPinResidualsExcludedStatement := sorry
+      IsM44NonSurplusContainmentExactPinResidualsExcludedStatement := by
+    intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
+    rcases isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
+        A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain with
+      ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple,
+        hoppInterior1Triple, hoppInterior2Triple⟩
+    refine ⟨x, hxI, ?_, ?_, ?_, ?_⟩
+    · intro radius hradius hcard hxpin
+      exact hsurplusOppTriple
+        (erasedPinTriple_of_exact_erased_pin hradius hcard hxpin)
+    · intro p hpI hpErase radius hradius hcard hxpin
+      exact hsurplusInteriorTriple p hpI hpErase
+        (erasedPinTriple_of_exact_erased_pin hradius hcard hxpin)
+    · intro p hpI hpErase radius hradius hcard hxpin
+      exact hoppInterior1Triple p hpI hpErase
+        (erasedPinTriple_of_exact_erased_pin hradius hcard hxpin)
+    · intro p hpI hpErase radius hradius hcard hxpin
+      exact hoppInterior2Triple p hpI hpErase
+        (erasedPinTriple_of_exact_erased_pin hradius hcard hxpin)
   
 /-- Categorized residual concrete erasure-witness production for the `IsM44`
 containment branch after exact-cap survival handles the two non-surplus
@@ -408,8 +461,9 @@ theorem removableVertexOfLarge_of_isM44PinnedSurplus :
       isM44PinnedSurplusResidualsExcluded
       isM44NonSurplusContainmentRemovable
 
-/-- Non-`IsM44` surplus-cap packets close by descent.  This is a spine
-obligation consumed by `RemovableVertexOfLarge_from_threeWaySplit`. -/
+/-- Configurations with no `IsM44` surplus-cap packet close by descent.  This
+is a spine obligation consumed by
+`RemovableVertexOfLarge_from_threeWaySplit`. -/
 theorem removableVertexOfLarge_of_nonIsM44 :
     NonIsM44DescentStatement := sorry
 
@@ -417,11 +471,12 @@ theorem removableVertexOfLarge_of_nonIsM44 :
 spine node. -/
 theorem RemovableVertexOfLarge_from_threeWaySplit :
     RemovableVertexOfLargeFromThreeWaySplitStatement := by
-  intro hpacket hM44 hnonM44 hbridge A hne hconv hK4 hgt hMin
-  rcases hpacket A hne hconv hK4 hgt with ⟨S⟩
-  by_cases hS : S.IsM44
-  · exact hM44 hbridge A hne hconv hK4 hgt hMin S hS
-  · exact hnonM44 A hne hconv hK4 hgt hMin S hS
+  classical
+  intro _hpacket hM44 hnonM44 hbridge A hne hconv hK4 hgt hMin
+  by_cases h : ∃ S : SurplusCapPacket A, S.IsM44
+  · rcases h with ⟨S, hS⟩
+    exact hM44 hbridge A hne hconv hK4 hgt hMin S hS
+  · exact hnonM44 A hne hconv hK4 hgt hMin h
 
 /-- Remaining removable-vertex obligation with the finite pinned-surplus bank
 handoff available as a closed input.  It is now routed through the three-way

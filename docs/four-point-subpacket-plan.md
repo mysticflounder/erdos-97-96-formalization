@@ -209,12 +209,163 @@ moserCount <= 2                                      CLOSED assuming
                                                      residual assembly to
                                                      containment CLOSED;
                                                      endpoint-radius production OPEN;
-                                                     form exclusions OPEN
+                                                     form exclusions OPEN;
+                                                     surplus COMP-G shadow
+                                                     alignment CHECKED;
+                                                     local surplus COMP-G
+                                                     bank materialized CHECKED;
+                                                     pinned surplus residual
+                                                     payload extraction CLOSED;
+                                                     payload-to-COMP-G shadow
+                                                     constructor partial:
+                                                     `hasTenMasks` and
+                                                     `.v` pinnedClassOK CLOSED;
+                                                     classesShapeOK mask
+                                                     interface CLOSED;
+                                                     component-to-valid
+                                                     assembly CLOSED;
+                                                     remaining fragment rules OPEN
 leftAdjCount <= 1                                    OPEN
 rightAdjCount <= 1                                   OPEN
 1 <= leftAdjCount                                    OPEN
 1 <= rightAdjCount                                   OPEN
 primitive-row metric exclusion                       OPEN
+```
+
+Current spine refinement:
+
+```text
+IsM44NonSurplusContainmentErasureWitnesses
+  NOW CLOSED as an adapter except for the explicit residual theorem below.
+
+IsM44NonSurplusContainmentResidualErasureWitnesses
+  NOW CLOSED as an adapter from the exact-pin residual below.  It keeps the
+  upstream endpoint and pinned-surplus residual exclusions as explicit inputs,
+  instead of asking bare `S.NonSurplusMoserCapContainment` to produce every
+  survivor witness.  The statement chooses an erased point x in
+  S.capInteriorByIndex S.surplusIdx and provides erased selected-class
+  witnesses for the four residual survivor categories listed below.  The broad
+  erasure-witness theorem separately handles the two non-surplus opposite Moser
+  vertices by exact short-cap survival:
+
+    IsM44.exists_oppIndex1_erase_witness_of_surplusInterior
+    IsM44.exists_oppIndex2_erase_witness_of_surplusInterior
+
+  The U2-style exact-distance payload is also now packaged locally:
+
+    IsM44.exists_nonSurplus_exact_cap_classes_at_side_of_moserCapContainment
+
+  It proves that the two non-surplus short caps are exact selected classes at
+  the common Moser side length.  This is the `SurplusCapPacket` analogue of the
+  rvol `U2FullDistanceClasses` data used by the U3 parent-removable route.
+
+  The ambient survivor census is now available as a closed structural cover:
+
+    mem_triangle_verts_or_exists_capInteriorByIndex_of_mem
+    mem_triangle_verts_oppositeVertexByIndex_cases
+    index_eq_surplusIdx_or_oppIndex1_or_oppIndex2
+
+  Any `A`-point is either one of the three Moser vertices or lies in the strict
+  interior of one indexed cap.  Together with the two exact non-surplus
+  opposite-Moser cases in the broad erasure-witness adapter, this reduces the
+  active residual theorem to exactly these categories:
+
+    - the surplus-opposite Moser vertex;
+    - surplus-cap strict interior survivors other than the erased point;
+    - first non-surplus strict interior survivors;
+    - second non-surplus strict interior survivors.
+
+  This makes the remaining obstruction more precise:
+  `NonSurplusMoserCapContainment` is enough to preserve the two non-surplus
+  Moser-centered cap witnesses after deleting a surplus-interior point, while
+  the residual leaf still has the endpoint and pinned exclusions available to
+  produce witnesses for arbitrary surviving cap-interior centers and for the
+  surplus-opposite Moser vertex.
+
+IsM44NonSurplusContainmentExactPinResidualsExcluded
+  NOW CLOSED as an adapter from the erased-pin triple residual below.  The
+  generic selected-class erasure lemmas
+
+    selectedClass_erase_witness_or_exact_erased_pin
+    selectedClass_erase_witness_of_no_exact_erased_pin
+
+  prove that if a global K4 witness at a survivor p does not survive erasing x,
+  then p has an exact four-point selected class in A pinned through x.
+
+IsM44NonSurplusContainmentErasedPinTripleResidualsExcluded
+  OPEN.  This is now the active containment residual on the mined
+  `RemovableVertexOfLarge` spine.  `WitnessPacketInterface` defines
+  `ErasedPinTriple A x p` and proves
+
+    erasedPinTriple_of_exact_erased_pin
+    exact_erased_pin_of_erasedPinTriple
+
+  which converts an exact four-point selected class through the erased point
+  into the U5-style triple-circle normal form, and back again when the erased
+  point is known to belong to `A`:
+
+    0 < dist p x
+    (((A.erase x).erase p).filter (fun y => dist p y = dist p x)).card = 3
+
+  Thus the active residual no longer has to quantify over selected radii at all.
+  It has to choose a surplus-interior eraser x and exclude these three-point
+  residual circles for the surplus-opposite Moser vertex and the three strict
+  cap-interior survivor families.
+```
+
+RVOL comparison:
+
+```text
+The sibling `../p97-rvol` spine does not prove a direct
+containment-to-removable theorem.  Its `removable_of_isM44` route assembles U2
+full-distance-class squeeze data with U3 parent-removability.  In particular,
+the rvol branch preserves more structured information than bare
+`NonSurplusMoserCapContainment`.
+
+The local check against `U5ModeADeletion` / `U3ToU5DangerousTriple` confirms
+that those files are statement and work-package scaffolding for this residual
+shape, not an importable closer for
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.  The
+useful reusable payload is the data shape: triple-circle residuals should be
+fed back into exact selected-class interfaces by
+`exact_erased_pin_of_erasedPinTriple`, then into the selector/certificate
+machinery that already handles finite incidence shadows.
+
+Consequently the current local residual should be attacked in one of two ways:
+
+1. port/mirror the needed U2/U3 survivor-witness machinery into the current
+   `SurplusCapPacket` vocabulary; or
+2. keep endpoint/pinned residual exclusions available as inputs to the
+   erasure-witness production theorem instead of discarding them after deriving
+   `NonSurplusMoserCapContainment`.  DONE for the interface wiring:
+   `IsM44NonSurplusContainmentRemovableStatement`,
+   `IsM44NonSurplusContainmentErasureWitnessesStatement`, and
+   `IsM44NonSurplusContainmentResidualErasureWitnessesStatement` all consume
+   the two endpoint exclusions and the two pinned-surplus exclusions.
+
+The new residual split records that issue on the proof spine without reopening
+the two already-closed exact-cap survivor cases.
+
+Proposition E / n = 10 base-case note:
+
+  `../p97-rvol` has a kernel-clean card-10 contradiction
+
+    propositionE_n10 :
+      ∀ D : CounterexampleData, D.A.card = 10 →
+        D.IsM44 → U2Statement D → False
+
+  and uses it to close the `D.A.card = 10` branch of
+  `u3ParentRemovable_holds`.  The remaining RVOL leaf is the genuinely larger
+  `10 < D.A.card` branch (`u3ParentRemovable_card11plus`).  Porting
+  `propositionE_n10` into this repo is useful as a base-case branch if the
+  local IsM44 route is split into `A.card = 10` and `10 < A.card`, but it will
+  not close the current general-n residual by itself.
+
+  Do not add `../p97-rvol` as a Lake dependency here: `p97-rvol` imports this
+  repo, so a direct dependency would create a cycle.  The sane route is to copy
+  or port the minimal RVOL `CounterexampleData`/`U2Statement`/Proposition-E
+  surface, or write a local adapter from `SurplusCapPacket` data into that
+  surface and then copy the verified core.
 ```
 
 ## Endpoint Escape Route
@@ -326,17 +477,101 @@ endpointEscapeAt_false
   The endpoint residual itself is impossible.
 ```
 
-The finite-pattern part of the route is not yet in this repo.  The intended
-certificate target is the rvol endpoint-tier result: the residual's
-combinatorial shadow has 117 endpoint patterns, and the exact metric follow-up
-kills all of them.  To make that usable here, we need a committed artifact that
-states the endpoint patterns and a proof vehicle for their contradictions:
+The finite-pattern algebraic certificate data is now in this repo under
+`certificates/endpoint/`.  The intended certificate target is the rvol
+endpoint-tier result: the residual's combinatorial shadow has 117 endpoint
+patterns, and the exact metric follow-up kills all of them.  The chosen proof
+vehicle is a committed endpoint certificate set with one uniform
+Lean-checkable shape:
 
 ```text
-Option A: Lean-checkable algebra certificates for the 117 patterns.
-Option B: a small verified checker over exact certificate data.
-Option C: hand-port the forced-collapse contradictions when the certificate
-          identifies a small geometric equality clash.
+sum_i coeff_i * generator_i = 1
+```
+
+The certificate set has two kinds:
+
+```text
+base_empty
+  Direct Nullstellensatz certificates for the two endpoint patterns whose base
+  metric systems are already C-empty.
+
+forced_collapse
+  Rabinowitsch-augmented Nullstellensatz certificates for the remaining 115
+  endpoint patterns.  The checked-in certificates use the globally forced pair
+  s1 = s3: add `t * dist2(s1, s3) - 1` to the base generators and certify that
+  the augmented ideal contains 1.  This proves there is no base solution with
+  s1 != s3, so every base solution collapses the named distinct points and the
+  endpoint pattern is invalid.
+```
+
+The implementation route is:
+
+```text
+1. Vendor or regenerate the 117 endpoint pattern systems from the rvol endpoint
+   fragment artifact.  DONE: `certificates/endpoint/*.json` contains 117 rows.
+2. Use Singular over characteristic 0 to emit exact coefficient witnesses for
+   the two direct empty systems and the 115 Rabinowitsch-augmented systems.
+   DONE: `scripts/endpoint-certificate.py` extracts `lift(I, std(I))`.
+3. Add a small exact rational-polynomial checker that verifies the identity
+   data independently of Singular's transcript.  DONE for the Python checker:
+   `UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python
+   scripts/endpoint-certificate.py --check certificates/endpoint --quiet`
+   checked all 117 certificate files.
+4. Port that checker to Lean, or emit Lean data against the same checker, so the
+   endpoint residual can be closed by checked polynomial identities rather than
+   a trusted external solver result.
+5. Prove the faithfulness bridge from the formal `EndpointEscapeLeftAt` /
+   `EndpointEscapeRightAt` residuals to one of the 117 certified endpoint
+   patterns.
+```
+
+Lean vertical-slice status:
+
+```text
+Endpoint certificate Lean vertical slice
+  DONE.  `Erdos9796Proof.P97.EndpointCertificate.Checker` defines the pure
+  sparse rational-polynomial checker, and
+  `Erdos9796Proof.P97.EndpointCertificate.EpQ2000` emits the small base-empty
+  certificate `ep_Q2_000` as Lean data.
+
+  Verification:
+
+  - `lake-build Erdos9796Proof.P97.EndpointCertificate.EpQ2000` succeeds;
+  - `#print axioms Problem97.EndpointCertificate.ep_Q2_000_valid` reports
+    `[propext, Classical.choice, Lean.ofReduceBool, Lean.trustCompiler,
+    Quot.sound]`;
+  - the endpoint-certificate Lean directory has no actual `unsafe`, `extern`,
+    or `implemented_by` declarations; the only hits are audit prose;
+  - no endpoint-residual theorem is claimed closed until the 117-pattern
+    faithfulness bridge is proved.
+
+  Active scaling step:
+
+  - DONE: the certificate emitter can generate one Lean module per checked JSON
+    certificate under `EndpointCertificate.Patterns`;
+  - DONE: it also generates an aggregate module that imports every pattern module
+    and records a list of the 117 `checkCertificate ... = true` facts;
+  - DONE: a representative small row builds:
+    `lake-build Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2000`;
+  - OPEN: the largest row `EpQ1008` does not finish within the practical
+    generated-file budget as one monolithic `native_decide` theorem.  After a
+    checker fast-path optimization, it was still manually stopped after several
+    minutes with no result.  The next implementation step is therefore internal
+    certificate sharding for large rows:
+
+      1. emit per-generator product checks
+         `mulPoly coefficient_i generator_i = product_i`;
+      2. emit a final small sum check
+         `sum_i product_i = 1`;
+      3. split the product checks across per-row shard modules for large
+         certificates, then import those shards from the row coordinator.
+
+    The checker now exposes `checkProductSum` for step 2, so the remaining
+    implementation work is in the emitter: generate per-product data/theorems
+    and row coordinators for certificates above the one-module budget.
+
+  - only after the 117 Lean certificate facts build should the work move to the
+    formal faithfulness bridge from endpoint residuals to certified patterns.
 ```
 
 `docs/escape-census-bugcheck.md` is relevant hygiene for this step.  It verifies
@@ -355,9 +590,733 @@ endpoint escape         -> 117-pattern endpoint certificate route
 pinned surplus-family   -> separate residual, not closed by endpoint work
 ```
 
+## Pinned Surplus COMP-G Reduction Diagnostic
+
+Status on 2026-07-05: `scripts/surplus-compg-shadow.py` now checks the exact
+alignment between the rvol pinned surplus-shadow enumeration and the banked
+COMP-G algebraic verdicts, and emits a local versioned pattern bank at
+`certificates/surplus/pinned_surplus_comp_g_bank.json`.
+
+Reproduction:
+
+```bash
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python \
+  scripts/surplus-compg-shadow.py \
+    --emit-bank certificates/surplus/pinned_surplus_comp_g_bank.json
+
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python \
+  scripts/surplus-compg-shadow.py \
+    --check-bank certificates/surplus/pinned_surplus_comp_g_bank.json
+```
+
+Observed output:
+
+```text
+Pinned surplus COMP-G shadow check: PASS
+model rows: 135 {'s1': 41, 's2': 71, 's3': 23}
+pinned class: every row has K_v = {Pu, Pw, u, s*}
+COMP-G final verdicts: {'C_EMPTY': 2, 'NO_VALID_REAL': 133}
+final forced pairs: {'u=s1': 6, 'u=v': 127}
+pairscan forced pairs: {'u=s1': 6, 'u=v': 129}
+Singular flips: {False: 135}
+C-empty rows: s1_000, s1_001
+u=s1 forced-collapse rows: s2_030, s2_043, s2_044, s2_053, s2_061, s2_062
+emitted/checked bank: certificates/surplus/pinned_surplus_comp_g_bank.json
+```
+
+This establishes a useful target, not a finished Lean theorem:
+
+```text
+rvol pinned surplus shadow     CHECKED: 135 rows, ids stable
+K_v = {Pu, Pw, u, s*}          CHECKED in every row
+COMP-G verdict coverage        CHECKED: 2 C-empty + 133 no-distinct-real
+Singular revalidation          CHECKED: 0 flips
+local JSON bank                CHECKED: schema
+                                `pinned_surplus_comp_g_bank.v2`, source
+                                hashes, all ten classes per row, canonical
+                                bitset shadow signature
+Lean finite shadow bank        CHECKED: generated module
+                                `Erdos9796Proof.P97.SurplusCOMPGBank`
+local residual -> pinned class CHECKED in Lean
+local residual -> pinned payload
+  with separator facts        CHECKED in Lean by
+                                `PinnedRightSurplusResidualAt`,
+                                `PinnedLeftSurplusResidualAt`,
+                                `IsM44.oppIndex1_pinnedRightSurplusResidual_of_right_surplus`,
+                                `IsM44.oppIndex2_pinnedLeftSurplusResidual_of_left_surplus`,
+                                `IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_pinnedSurplusResiduals`,
+                                and
+                                `IsM44.nonSurplusMoserCapContainment_of_endpoint_pinnedSurplusResiduals`
+finite ten-label dictionary   CHECKED in Lean by
+                                `capInteriorByIndex_not_mem_capByIndex_of_ne`,
+                                `capInteriorByIndex_ne_of_mem_of_mem_ne`,
+                                `capInteriorByIndex_not_mem_triangle_verts`,
+                                `capInteriorByIndex_ne_oppositeVertexByIndex_of_mem`,
+                                `oppositeVertexByIndex_ne_of_ne`,
+                                `surplusIdx_ne_oppIndex1`,
+                                `surplusIdx_ne_oppIndex2`,
+                                `oppIndex1_ne_oppIndex2`, and
+                                `pinnedSurplusTenLabels_pairwise_of_mem`
+pinned fragment enumeration
+  -> 135-row bank              CHECKED in Lean by
+                                `shadowInBank_of_fragmentShadowInEnumeration`
+pinned fragment search
+  -> 135-row bank              CHECKED by the generated finite-search
+                                certificate:
+                                `candidate_masks_match_filter`,
+                                `raw_fragment_search_entries_length`,
+                                `raw_fragment_search_entries_all_valid`,
+                                `raw_fragment_search_shadow_keys_unique`,
+                                `fragment_search_entries_eq_validFragmentEntries`,
+                                and
+                                `shadowInBank_of_fragmentShadowAcceptedBySearch`
+geometric residual
+  -> pinned fragment row       OPEN
+```
+
+Consequently, if the current two surplus-adjacent residual hypotheses in
+`IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals` can be
+relabelled and strengthened to the rvol pinned family, no new surplus algebra is
+needed.  The remaining work is the faithfulness bridge:
+
+```text
+hsurplus1 / hsurplus2 local side residual
+  -> choose the rvol orientation
+  -> identify v = selected non-surplus apex,
+              u = surplus apex,
+              w = opposite non-surplus apex,
+              Pu/Pw = the two private interiors of the selected non-surplus cap,
+              s* = the surplus-side escape point
+  -> prove the selected class is exactly {u, Pu, Pw, s*}
+     (the `K_v` pin, using the IsM44 squeeze and endpoint/other-side exclusions)
+     DONE as an exact selected-class equality by:
+       `IsM44.oppIndex1_pin_of_right_surplus`
+       `IsM44.oppIndex2_pin_of_left_surplus`
+       `pinnedRightSurplusResidual_selectedClass_eq`
+       `pinnedLeftSurplusResidual_selectedClass_eq`
+  -> normalize the labelled pinned class to the generated bank's expected
+     `.v` mask
+     DONE by:
+       `IsM44.leftOuterVertexByIndex_oppIndex1_eq_oppositeVertexByIndex_surplusIdx`
+       `IsM44.rightOuterVertexByIndex_oppIndex1_eq_oppositeVertexByIndex_oppIndex2`
+       `IsM44.rightOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_surplusIdx`
+       `IsM44.leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1`
+       `IsM44.pinnedRightSurplusResidual_selectedClass_eq_surplusApex`
+       `IsM44.pinnedLeftSurplusResidual_selectedClass_eq_surplusApex`
+       `SurplusCOMPGBank.pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar`
+       `SurplusCOMPGBank.pinnedClassOK_of_centerMask_eq_pinnedMaskOf`
+  -> recover the chord-separated private pair data
+     (`hU1w` and `hU1u`, matching the rvol `sep_false` leaf)
+     DONE in generic indexed form by:
+       `capInterior_pair_dist_ne_rightOuter_of_selectedClass`
+       `capInterior_pair_dist_ne_leftOuter_of_selectedClass`
+  -> choose a three-point surplus-interior subpacket containing the actual
+     surplus-side escape point, so the general-`m` surplus cap can be labelled by
+     the finite-bank symbols `s1,s2,s3` without assuming `m = 5`
+     DONE by:
+       `IsM44.surplusInterior_card_ge_three`
+       `IsM44.exists_surplusInterior_triple_preserving`
+       `mem_surplusInterior_of_oppIndex1_right_surplus`
+       `mem_surplusInterior_of_oppIndex2_left_surplus`
+       `IsM44.exists_surplusInterior_triple_of_oppIndex1_right_surplus`
+       `IsM44.exists_surplusInterior_triple_of_oppIndex2_left_surplus`
+       `IsM44.oppIndex1_pinnedRightResidual_and_surplusTriple_of_right_surplus`
+       `IsM44.oppIndex2_pinnedLeftResidual_and_surplusTriple_of_left_surplus`
+  -> prove the ten finite-bank labels are geometrically distinct:
+       the three Moser vertices, the selected surplus triple, and the two
+       private pairs in the two non-surplus caps
+     DONE generically by:
+       `capInteriorByIndex_not_mem_capByIndex_of_ne`
+       `capInteriorByIndex_ne_of_mem_of_mem_ne`
+       `capInteriorByIndex_not_mem_triangle_verts`
+       `capInteriorByIndex_ne_oppositeVertexByIndex_of_mem`
+       `oppositeVertexByIndex_ne_of_ne`
+       `surplusIdx_ne_oppIndex1`
+       `surplusIdx_ne_oppIndex2`
+       `oppIndex1_ne_oppIndex2`
+       `pinnedSurplusTenLabels_pairwise_of_mem`
+  -> prove the resulting ten-class shadow lies in the checked fragment
+     enumeration
+  -> use the COMP-G forced-collapse/C-empty certificate for that row.
+```
+
+Lean bridge progress:
+
+```text
+IsM44.oppIndex1_pin_of_right_surplus
+  Under `IsM44`, global `K4`, convexity, endpoint-left exclusion, and a
+  right-surplus residual point at `oppIndex1`, the selected class has card 4,
+  contains the selected cap's two strict interiors, has the other-adjacent
+  singleton equal to the shared endpoint, and has the surplus-side singleton
+  equal to the residual point.
+
+IsM44.oppIndex2_pin_of_left_surplus
+  The reflected statement for `oppIndex2`: endpoint-right exclusion plus a
+  left-surplus residual point pins the selected class in the same way.
+
+PinnedRightSurplusResidualAt / PinnedLeftSurplusResidualAt
+  The proof-facing residual payloads for the two surplus-adjacent sides.  Each
+  payload packages the selected short-cap private pair, the pinned four-class,
+  the shared-endpoint and escape singleton intersections, and the two
+  reflection-produced private-pair non-equidistance facts.
+
+IsM44.oppIndex1_pinnedRightSurplusResidual_of_right_surplus
+IsM44.oppIndex2_pinnedLeftSurplusResidual_of_left_surplus
+  The side-specific extraction lemmas from an actual surplus-side residual
+  point to the corresponding pinned payload.
+
+IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_pinnedSurplusResiduals
+IsM44.nonSurplusMoserCapContainment_of_endpoint_pinnedSurplusResiduals
+  The Q-facing assembly can now consume endpoint residual exclusions plus the
+  two pinned-payload exclusions instead of the raw surplus-side impossibility
+  hypotheses.
+
+pinnedSurplusTenLabels_pairwise_of_mem
+  Once the two non-surplus private pairs and the three-point surplus subpacket
+  have been chosen, the ten labels used by the finite COMP-G bank are pairwise
+  geometrically distinct.  The proof uses strict-interior privacy across
+  indexed caps, the fact that strict interiors avoid all Moser vertices, and
+  the indexed dictionary identifying the surplus cap and the two opposite
+  non-surplus caps as distinct.
+
+Verification:
+  `lake-build Erdos9796Proof.P97.SurplusM44Packet`
+```
+
+Separator bridge progress:
+
+```text
+capInterior_pair_dist_ne_rightOuter_of_selectedClass
+  If two distinct strict-interior points of the selected cap are both in the
+  selected Moser-centered radius class, they cannot also be equidistant from
+  the right outer Moser endpoint.  This is the indexed form of the rvol
+  `hU1w` separator when the right outer endpoint is the other non-surplus apex.
+
+capInterior_pair_dist_ne_leftOuter_of_selectedClass
+  The reflected indexed form: the same private pair cannot also be equidistant
+  from the left outer Moser endpoint.  This supplies the rvol `hU1u` separator
+  when the left outer endpoint is the surplus apex.
+
+Verification:
+  `lake-build Erdos9796Proof.P97.SurplusM44Packet`
+```
+
+Local bank artifact:
+
+```text
+certificates/surplus/pinned_surplus_comp_g_bank.json
+  schema: pinned_surplus_comp_g_bank.v2
+  rows: 135
+  source hashes: rvol fragment, COMP-G patterns, pairscan, Singular recheck,
+                 COMP-G summary
+  row data: all ten K4 classes plus final verdict/forced-pair metadata
+  shadow signature: ten class bitsets over label order
+                    u, v, w, s1, s2, s3, Pw, Pu, Q1, Q2
+  unique shadow count: 135
+```
+
+Lean finite shadow module:
+
+```text
+lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean
+  generated from the v2 JSON bank
+  row masks: 135 ten-class shadows
+  fragment vocabulary:
+    `isValidPinnedFragment : Label -> Shadow -> Bool`
+    `validFragmentEntries : List (Label × List Nat)`
+    `validFragmentShadowKeys : List (List Nat)`
+    `fragmentShadowInEnumeration : Shadow -> Bool`
+    `fragmentShadowAcceptedBySearch : Shadow -> Bool`
+  generated finite-search certificate:
+    `candidateMasks` is checked against the normalized-mask filter by
+      `candidate_masks_match_filter`
+    `rawFragmentSearchEntries` is the emitted DFS census from the same finite
+      rules; it is checked for length 135, row validity, unique shadow keys, and
+      equality to `validFragmentEntries`
+  checked facts:
+    rows_length
+    rows_all_have_ten_masks
+    rows_all_pinned
+    rows_shadow_keys_unique
+    rows_all_valid_pinned_fragment
+    valid_fragment_entries_length
+    valid_fragment_entries_all_valid
+    candidate_masks_match_filter
+    Label.beq_eq_decide_eq
+    maskNormalized_of_candidateMaskOK
+    mem_allNormalizedMasks_of_maskNormalized
+    candidateMasks_eq_filter_of_isSurplusStar
+    mem_candidateMasks_of_candidateMaskOK
+    candidateMaskOK_of_isValidPinnedFragment
+    isSurplusStar_of_isValidPinnedFragment
+    mem_candidateMasks_of_isValidPinnedFragment
+    raw_fragment_search_entries_length
+    raw_fragment_search_entries_all_valid
+    raw_fragment_search_shadow_keys_unique
+    fragment_search_entries_eq_validFragmentEntries
+    fragment_search_shadow_keys_eq_validFragmentShadowKeys
+    valid_fragment_shadow_keys_unique
+    valid_fragment_shadow_keys_eq_rowShadowKeys
+    valid_fragment_shadow_keys_all_in_bank
+    fragment_search_shadow_keys_eq_rowShadowKeys
+    fragment_search_shadow_keys_all_in_bank
+    rows_c_empty_count
+    rows_no_valid_real_count
+    rows_forced_uv_count
+    rows_forced_us1_count
+    rows_s1_count
+    rows_s2_count
+    rows_s3_count
+    pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar
+    pinnedClassOK_of_centerMask_eq_pinnedMaskOf
+    fragmentShadowAcceptedBySearch_of_isValidPinnedFragment
+  proof-facing predicate:
+    `SurplusCOMPGBank.shadowInBank : Shadow -> Bool`
+  proof-facing bank bridge:
+    `SurplusCOMPGBank.shadowInBank_of_fragmentShadowInEnumeration`
+    `SurplusCOMPGBank.shadowInBank_of_fragmentShadowAcceptedBySearch`
+  spine consumer:
+    `Problem97.pinnedSurplusCOMPGBankBridge` now consumes
+    `isValidPinnedFragment sstar shadow = true`, not only an already accepted
+    search key.
+    `Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank`
+  axiom closure:
+    `proof-blueprint axioms Problem97.pinnedSurplusCOMPGBankBridge`
+    currently reports `propext`, `Lean.ofReduceBool`, and
+    `Lean.trustCompiler`.  The generated decision procedure has no `unsafe`,
+    `extern`, or `implemented_by` declarations in the generated module or
+    emitter, but blueprint still treats `Lean.trustCompiler` as a custom
+    unsanctioned axiom.  A future pure-kernel/sharded incidence certificate
+    would be needed to remove that trust surface.
+```
+
+Verification:
+
+```text
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python -m py_compile \
+  scripts/surplus-compg-shadow.py
+
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python \
+  scripts/surplus-compg-shadow.py \
+    --check-bank certificates/surplus/pinned_surplus_comp_g_bank.json
+
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint uv run python \
+  scripts/surplus-compg-shadow.py \
+    --emit-lean-shadow lean/Erdos9796Proof/P97/SurplusCOMPGBank.lean \
+    --check-bank certificates/surplus/pinned_surplus_comp_g_bank.json
+
+lake-build Erdos9796Proof.P97.SurplusCOMPGBank
+```
+
+The remaining risk is now narrower: the local residual can be pinned to the
+four-class shape, the finite target bank is local and Lean-checkable at the
+incidence-mask level, and the finite fragment search certificate now rewrites
+into bank membership in Lean.  The next exact Lean target is to construct a
+`SurplusCOMPGBank.Shadow` from the pinned geometric residual and prove:
+
+```text
+SurplusCOMPGBank.fragmentShadowAcceptedBySearch shadow = true
+```
+
+Then `SurplusCOMPGBank.shadowInBank_of_fragmentShadowAcceptedBySearch` gives
+`SurplusCOMPGBank.shadowInBank shadow = true`.  The open faithfulness bridge is
+now exactly the combination of two facts:
+
+```text
+geometric residual -> a ten-mask shadow satisfying the pinned fragment rules
+pinned fragment rules -> `fragmentShadowAcceptedBySearch = true`
+```
+
+The generated bank currently proves that every emitted row is valid and that the
+emitted DFS search rows match the 135-row bank.  It does not yet expose a
+generic completeness theorem of the form
+
+```text
+isValidPinnedFragment sstar shadow = true
+  -> fragmentShadowAcceptedBySearch shadow = true
+```
+
+Current finite-completeness progress:
+
+```text
+candidate-table completeness CLOSED.
+  From `isValidPinnedFragment sstar shadow = true`, Lean now proves
+  `shadow.centerMask center ∈ candidateMasks sstar center` for every center.
+  This is the first semantic input to the generated DFS completeness proof.
+
+search-separation prefix completeness CLOSED.
+  The generated bank now uses the same point-pair separation guard as the
+  Python DFS and includes `searchSeparationOK` in `isValidPinnedFragment`.
+  Lean proves:
+    1. `searchSeparationOK_of_isValidPinnedFragment`;
+    2. `crossSeparationOKForMasks_of_searchSeparationOK`;
+    3. `assignedSeparationOK_of_isValidPinnedFragment`.
+
+search-pair-count prefix interface CLOSED.
+  The generated bank now also exposes the DFS count vector following a shadow:
+  `shadowPairCountsForAssigned`.  `searchPairCountsOK` checks the exact fixed
+  assigned-prefix vectors used by the generated DFS, and
+  `pairCountsOK_shadowPairCountsForAssigned_of_isValidPinnedFragment` projects
+  the guard for any listed prefix.  The recurrence
+  `incrementPairCounts_eq_shadowPairCountsForAssigned_cons` rewrites one DFS
+  increment into the corresponding shadow-prefix count vector.
+
+fixed-order mask accumulation CLOSED.
+  The generated bank now exposes `shadowMasksForAssigned`, the mask vector
+  obtained by following a shadow's actual center masks through the same consed
+  assignment order used by the DFS.  Lean proves the one-step rewrite
+  `setCenterMask_eq_shadowMasksForAssigned_cons` and the terminal equality
+  `shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks`.
+
+literal accepted-key bridge CLOSED.
+  The generated invariants now cover the three DFS state checks: candidate
+  membership, separation, and pair-count/mask recurrence.
+  `shadow_mem_fragmentSearchAux_of_isValidPinnedFragment` proves that the
+  computed DFS can follow any valid shadow's own masks to a leaf, and the
+  generated companion module `SurplusCOMPGBankDFS` proves the emitted literal
+  key-list bridge:
+
+    `fragmentShadowAcceptedBySearch_of_isValidPinnedFragment`.
+
+  The certificate is sharded into three generated depth-2 modules, one per
+  surplus star, rather than one large `native_decide` recomputation.
+```
+
+The next proof-facing target is now explicit:
+
+```text
+geometric pinned residual payload
+  -> isValidPinnedFragment sstar shadow = true
+```
+
+This is the geometric payload-to-shadow faithfulness bridge.  After bank
+acceptance, the rvol redundancy assessment
+`../p97-rvol/docs/u-lane/97-u1-2-census-route-redundancy-assessment-2026-07-05.md`
+still applies: the pure incidence bank is not an independent closure route for
+the whole removable-vertex theorem.  Full closure still needs metric content
+wired to the spine, either through Lean-checkable COMP-G
+forced-collapse/C-empty certificates or an explicitly accepted
+external-certificate boundary.
+
 ## Execution Status
 
 - Started: `2026-07-05`.
+- `2026-07-05`: generated `SurplusCOMPGBank` now includes the Boolean pinned
+  fragment vocabulary, validates all 135 fragment entries against that
+  vocabulary, proves `validFragmentShadowKeys = rowShadowKeys`, and exposes
+  `shadowInBank_of_fragmentShadowInEnumeration`.
+- `2026-07-05`: the same generated module now includes the finite-search
+  certificate bridge.  The generator computes the DFS census from the local
+  candidate/separation/no-three rules, verifies that the result is the same
+  135 tagged rows as the bank before emission, and Lean checks the emitted
+  certificate via `candidate_masks_match_filter`,
+  `fragment_search_entries_eq_validFragmentEntries`, and
+  `shadowInBank_of_fragmentShadowAcceptedBySearch`.
+- `2026-07-05`: the finite bank bridge is now wired into the P97/P96 proof
+  spines through `Problem97.pinnedSurplusCOMPGBankBridge` and the open residual
+  `Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank`.  After
+  `proof-blueprint index --refresh` and `proof-blueprint refs --refresh`,
+  `proof-blueprint spine Problem97.erdos97_rhs --max-depth 12` and the
+  analogous P96 spine both show that residual, not an off-spine placeholder.
+  This residual has since been split into the three branch obligations recorded
+  below.
+  - `2026-07-05`: `SurplusM44Packet` now extracts the pinned surplus residual
+    payload on both non-surplus sides.  The new closed lemmas package the pinned
+    selected four-class and the two private-pair non-equidistance facts, matching
+    the rvol `surplusEscape_pinnedFamily_sep_false` boundary.  The remaining
+    surplus COMP-G bridge is the payload-to-`SurplusCOMPGBank.Shadow`
+    faithfulness theorem.
+  - `2026-07-05`: the surplus-side escape can now be relabelled into a
+    three-point surplus-interior subpacket in both orientations.  This closes the
+    general-`m` to `s1,s2,s3` finite-label step for the actual escape point:
+    `IsM44.exists_surplusInterior_triple_of_oppIndex1_right_surplus` and
+    `IsM44.exists_surplusInterior_triple_of_oppIndex2_left_surplus`.
+  - `2026-07-05`: the pinned residual payload now identifies the whole selected
+    four-class in both orientations:
+    `pinnedRightSurplusResidual_selectedClass_eq` and
+    `pinnedLeftSurplusResidual_selectedClass_eq`.  These lemmas turn the
+    containment/cardinality payload into the exact labelled class
+    `{private point 1, private point 2, shared endpoint, surplus escape}` needed
+    by the COMP-G shadow constructor.
+  - `2026-07-05`: `SurplusCOMPGBank` now has the finite pinned-mask
+    normalization helpers `pinnedMaskOf_eq_expectedPinnedMask_of_isSurplusStar`
+    and `pinnedClassOK_of_centerMask_eq_pinnedMaskOf`.  This closes the purely
+    finite part of the pinned `.v` class check once the geometric equality has
+    been transported to labels.
+  - `2026-07-05`: `SurplusM44Packet` now also transports the selected-class
+    equality into the generated bank labels.  The four orientation equalities
+    identify the selected non-surplus cap's shared endpoint with the surplus
+    apex `u` and the opposite non-surplus apex with `w`; the corollaries
+    `pinnedRightSurplusResidual_selectedClass_eq_surplusApex` and
+    `pinnedLeftSurplusResidual_selectedClass_eq_surplusApex` give the pinned
+    `.v` class as `{Pu, Pw, u, s*}` in bank notation.
+    The two combined producers
+    `IsM44.oppIndex1_pinnedRightResidual_and_surplusTriple_of_right_surplus`
+    and
+    `IsM44.oppIndex2_pinnedLeftResidual_and_surplusTriple_of_left_surplus`
+    are now the preferred input shape for the next shadow-construction lemma.
+  - `2026-07-05`: `SurplusM44Packet` now closes the finite ten-label
+    distinctness dictionary needed by the pinned surplus COMP-G shadow.  The
+    key theorem is `pinnedSurplusTenLabels_pairwise_of_mem`, supported by
+    indexed strict-interior privacy, strict-interior/Moser separation, Moser
+    endpoint distinctness, and the surplus/opposite-index dictionary.  The
+    remaining pinned bridge is still the construction of the ten center masks
+    and the proof that the resulting shadow is accepted by the generated
+    135-row fragment search.
+  - `2026-07-05`: finite completeness for the generated DFS is now started in
+    `SurplusCOMPGBank`.  The generated module proves candidate-table
+    completeness:
+    `candidateMaskOK_of_isValidPinnedFragment` and
+    `mem_candidateMasks_of_isValidPinnedFragment` show that a valid pinned
+    fragment's actual center mask is present in the generated candidate list
+    for every center.
+  - `2026-07-05`: the generated DFS finite-completeness bridge now closes the
+    search-separation prefix invariant.  `searchSeparationOK` is part of
+    `isValidPinnedFragment`, `crossSeparationOKForMasks` matches the Python DFS
+    point-pair guard, and `assignedSeparationOK_of_isValidPinnedFragment`
+    proves the recursive separation check for any assigned prefix whose masks
+    agree with the valid shadow.  At this checkpoint the pair-count/no-three
+    and final mask-accumulation invariants were still open; later entries below
+    close both.
+  - `2026-07-05`: the generated DFS bridge now also has a checked pair-count
+    prefix interface.  `searchPairCountsOK` is part of
+    `isValidPinnedFragment`, `shadowPairCountsForAssigned` follows the actual
+    recursive count vector, and the generated lemmas project `pairCountsOK` for
+    every fixed DFS prefix and rewrite one increment step into the next shadow
+    count vector.  At this checkpoint the fixed-order mask accumulation theorem
+    and final accepted-key bridge were still open; later entries below close
+    mask accumulation and computed DFS acceptance.
+  - `2026-07-05`: fixed-order mask accumulation is now kernel-checked.
+    `shadowMasksForAssigned` mirrors the DFS `setCenterMask` updates, and
+    `shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks` proves that
+    the full ten-step assignment reconstructs `shadow.masks`.  The only
+    remaining generated-DFS bridge is the final membership/certificate step
+    from the computed valid-shadow path to the literal accepted key list.
+  - `2026-07-05`: the computed DFS path is now kernel-checked.  The generated
+    theorem `shadow_mem_fragmentSearchAux_of_isValidPinnedFragment` chains the
+    fixed search order and proves that any `isValidPinnedFragment` shadow is a
+    member of the computed `fragmentSearchAux` result.  The remaining finite
+    task is only to certify that computed result against the emitted literal
+    `fragmentSearchShadowKeys`/bank key list.
+  - `2026-07-05`: computed DFS acceptance is now kernel-checked without a heavy
+    global `native_decide`.  `computedRawFragmentSearchEntries`,
+    `computedFragmentSearchShadowKeys`, and
+    `computedFragmentShadowAcceptedBySearch` expose the computed DFS key list,
+    and `computedFragmentShadowAcceptedBySearch_of_isValidPinnedFragment`
+    proves every valid pinned fragment is accepted by that computed list.  A
+    per-`sstar` raw computed-vs-literal equality was tested: `.s1` succeeds but
+    takes about 150 seconds in the LSP, while the all-`sstar` version timed out
+    at 300 seconds.  The next certificate should therefore be generated in a
+    smaller form instead of relying on one large recomputation.
+  - `2026-07-05`: the final finite DFS accepted-key bridge is now sharded and
+    wired to the spine.  The generator emits
+    `Erdos9796Proof.P97.SurplusCOMPGBankDFS` plus three depth-2 certificate
+    shards.  The coordinator proves
+    `SurplusCOMPGBank.fragmentShadowAcceptedBySearch_of_isValidPinnedFragment`,
+    and `RemovableVertexAxiom` now exposes
+    `Problem97.pinnedSurplusCOMPGBankBridge` as the closed handoff from
+    `isValidPinnedFragment` to `shadowInBank`.  Verification:
+    `lake-build Erdos9796Proof.P97.SurplusCOMPGBankDFS` succeeds; shard build
+    times were about 153s, 157s, and 163s, with the coordinator under one
+    second.  `lake-build Erdos9796Proof.P97.RemovableVertexAxiom` succeeds with
+    only the pre-existing spine `sorry`.
+  - `2026-07-05`: reviewed the rvol redundancy assessment at
+    `../p97-rvol/docs/u-lane/97-u1-2-census-route-redundancy-assessment-2026-07-05.md`.
+    Its warning still governs the full proof tree: this finite incidence/DFS
+    handoff is useful and now spine-wired, but it is not an independent closure
+    of the metric realizability core.  The remaining pinned-surplus work is the
+    geometric payload-to-shadow proof and the metric COMP-G verdict boundary.
+  - `2026-07-06`: `SurplusCOMPGBankGeometry` now exposes compiled finite
+    mask/prefix interfaces for all generated pinned-fragment component
+    Booleans: `wSqueezeOK`, `oneHitOK`, `circumcenterOK`, `noThreeOK`,
+    `searchPairCountsOK`, `separationOK`, `searchSeparationOK`, and
+    `fragmentTriggersOK`.  The aggregate theorem
+    `isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces` now turns
+    those explicit finite facts directly into `isValidPinnedFragment`.  The
+    bridge no longer has an opaque generated Boolean layer; the remaining
+    pinned-surplus work is to prove the geometric mask facts that feed this
+    interface and then use the closed DFS completeness handoff.
+  - `2026-07-06`: the pinned `.v` class-shape obligation is now discharged
+    from the pinned mask equality.  The finite facts
+    `maskNormalized_pinnedMaskOf_of_isSurplusStar`,
+    `maskCard_pinnedMaskOf_of_isSurplusStar`, and
+    `maskHas_pinnedMaskOf_v_eq_false_of_isSurplusStar` prove the generated
+    pinned mask is normalized, has cardinality four, and has no `.v` self-hit.
+    `classesShapeOK_shadowOfPointClasses_of_pinned_v_and_other_shapes` uses
+    those facts to remove `.v` from the geometric class-shape input list, and
+    `isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v`
+    is now the preferred aggregate interface for pinned residuals.
+  - `2026-07-06`: point-mask normalization is now closed for every geometric
+    mask induced by `shadowOfPointClasses`.  The lemmas
+    `pointMask_foldl_le_add_maskOfLabels`, `pointMask_le_maskOfLabels`, and
+    `maskNormalized_pointMask` prove that any `pointMask` only uses the ten
+    generated label bits.  Consequently the class-shape and aggregate
+    mask-interface lemmas no longer require normalization hypotheses; only
+    cardinality-four and no-self facts remain as geometric inputs.
+  - `2026-07-06`: the removable-vertex spine now has a three-way split in
+    `RemovableVertexAxiom`.  The adapter
+    `RemovableVertexOfLarge_from_threeWaySplit` is closed and immediately
+    consumed by `RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank`.  The
+    original split exposed packet extraction, the `IsM44` pinned-surplus
+    branch, and the parallel non-`IsM44` descent branch.  The non-`IsM44`
+    contract is now pinned at configuration level, matching the p97-rvol
+    U-lane import shape: `NonIsM44DescentStatement` takes the top-level
+    hypotheses plus `¬ ∃ S : SurplusCapPacket A, S.IsM44` and returns a
+    removable vertex.  The adapter branches on `∃ S, S.IsM44`; the witness is
+    passed to the `IsM44` branch, while the negated existence hypothesis is
+    passed to the U-lane-owned fallback.
+  - `2026-07-06`: the broad `IsM44` pinned-surplus branch has been split into
+    three narrower spine contracts.  The closed adapter
+    `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` uses
+    `IsM44.nonSurplusMoserCapContainment_of_endpoint_pinnedSurplusResiduals` to
+    reduce `removableVertexOfLarge_of_isM44PinnedSurplus` to:
+    `isM44EndpointResidualsExcluded` for the two endpoint-certificate residuals,
+    `isM44PinnedSurplusResidualsExcluded` for the pinned surplus-family
+    COMP-G/metric verdict boundary, and
+    `isM44NonSurplusContainmentRemovable` for the final extraction of a
+    removable vertex from non-surplus Moser-cap containment.  This confirms that
+    the finite bank handoff has not by itself closed Q; it is one input to the
+    pinned-residual exclusion branch.
+  - `2026-07-06`: the packet-extraction spine obligation
+    `largeK4SurplusCapPacket` is now closed by
+    `MEC.nonempty_surplusCapPacket_of_K4`.  After the config-level U-lane slot
+    restatement, it is retained as a harmless argument to the three-way adapter
+    for interface stability, but the adapter no longer needs it to route the
+    no-`IsM44` branch.  The containment-to-removable
+    branch has also been reduced one level further: the closed helper
+    `removableVertex_of_selectedClass_erase_witnesses` packages an erased-set
+    selected-class witness family as an `IsRemovableVertex`, and the adapter
+    `isM44NonSurplusContainmentRemovable` now depends only on
+    `isM44NonSurplusContainmentErasureWitnesses`.  The remaining pure
+    containment contract is therefore concrete: from
+    `S.NonSurplusMoserCapContainment`, produce some `x ∈ A` such that every
+    `p ∈ A.erase x` has a positive-radius selected class in `A.erase x` with
+    cardinality at least four.
+  - `2026-07-06`: the erased-set survival algebra has started.  In
+    `WitnessPacketInterface`, `selectedClass_erase_eq`,
+    `selectedClass_erase_card_eq_of_not_mem`, and
+    `selectedClass_erase_card_ge_of_succ_le` now prove that erasing one ambient
+    point is exactly erasing that point from the selected class, so a selected
+    class that avoids the erased point is unchanged and a five-point class
+    remains four-point.  In `SurplusM44Packet`, exact four-point short-cap
+    classes now survive erasing a strict interior point from another cap via
+    `selectedClass_erase_card_eq_of_exact_cap_of_capInterior_ne` and
+    `four_le_selectedClass_erase_of_exact_cap_of_capInterior_ne`.  The packaged
+    `IsM44` consequences
+    `IsM44.exists_oppIndex1_erase_witness_of_surplusInterior` and
+    `IsM44.exists_oppIndex2_erase_witness_of_surplusInterior` close the two
+    non-surplus opposite-Moser survivor subcases for any surplus-interior erase
+    candidate.  The remaining survivor cases are the surplus-opposite Moser
+    vertex and the non-Moser cap-interior points; those appear to require either
+    the generalized N8 adjacent one-hit/budget machinery or the endpoint/pinned
+    residual exclusions directly, not just the bare
+    `S.NonSurplusMoserCapContainment` interface.
+  - `2026-07-06`: the residual survivor census is now formalized on the spine.
+    `SurplusM44Packet` exposes
+    `mem_triangle_verts_oppositeVertexByIndex_cases` and
+    `index_eq_surplusIdx_or_oppIndex1_or_oppIndex2`; together with
+    `mem_triangle_verts_or_exists_capInteriorByIndex_of_mem`, these split any
+    residual survivor into the surplus-opposite Moser vertex or one of the
+    three strict cap-interior categories.  The generic residual theorem
+    `isM44NonSurplusContainmentResidualErasureWitnesses` now carries the
+    categorized residual statement directly, so it stayed on the mined proof
+    spine.  The broad erasure-witness theorem adapts from that residual plus
+    the two exact non-surplus opposite-Moser survivor lemmas.
+  - `2026-07-06`: survivor production was narrowed once more to exact pinned
+    four-classes.  `WitnessPacketInterface` now proves
+    `selectedClass_erase_witness_or_exact_erased_pin` and
+    `selectedClass_erase_witness_of_no_exact_erased_pin`: a failed erased-set
+    witness forces an exact size-four selected class through the erased point.
+    `Problem97.isM44NonSurplusContainmentResidualErasureWitnesses` is now a
+    closed adapter from
+    `Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded`.
+  - `2026-07-06`: the exact-pin residual was normalized to the U5-style
+    triple-circle form.  `WitnessPacketInterface` now defines
+    `ErasedPinTriple` and proves `erasedPinTriple_of_exact_erased_pin`.
+    `Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded` is now a
+    closed adapter from
+    `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`,
+    which is the current open spine leaf.
+  - `2026-07-06`: the U5-style triple bridge is now bidirectional at the
+    selected-class interface.  `exact_erased_pin_of_erasedPinTriple` proves
+    that `ErasedPinTriple A x p` plus `x ∈ A` reconstructs
+    `0 < dist p x`, exact selected-class cardinality four at radius
+    `dist p x`, and membership of the erased point in that selected class.
+    This gives the residual branch a finite-set path back into the existing
+    selector and certificate consumers whenever they require exact
+    selected-class data instead of the triple-circle normal form.
+  - `2026-07-06`: after the p97-rvol coordination-slot restatement, the active
+    GPT/formalization work remains on the `IsM44` containment branch, not on
+    the U-lane-owned no-`IsM44` slot.  The current target is
+    `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+    Its inputs are exactly the `IsM44` packet, endpoint residual exclusions,
+    pinned surplus-family residual exclusions, and
+    `S.NonSurplusMoserCapContainment`.  The next proof work is to inspect the
+    existing U5/N8 selected-apex and p97-rvol placement machinery, then derive
+    load-bearing local contradictions for the `ErasedPinTriple A x p` cases
+    consumed by this spine leaf.
+  - `2026-07-06`: the sibling p97-rvol U5 files have been checked as shape
+    references for this residual.  `U5ModeADeletion` and
+    `U3ToU5DangerousTriple` describe the right triple-circle and deletion
+    vocabulary, but they are not a direct closer for the local
+    `SurplusCapPacket` residual; the local route still needs to feed the
+    reconstructed exact selected-class data into the existing
+    selector/certificate machinery or port the minimal rvol payload.
+  - `2026-07-06`: the first local port of the N8 four-subpacket arithmetic is
+    now proved in `SurplusM44Packet`.  The surplus vocabulary has packet-local
+    Moser, same-cap, left-adjacent, and right-adjacent counts, the exact
+    positive-radius disjoint-cover budget
+    `packet_groupSum_eq_four_of_card`, and
+    `M44SelectedApex.exists_fourSubpacket_with_packet_budget`.  This is the
+    finite incidence bridge needed after an `ErasedPinTriple` is converted back
+    to exact selected-class data: the branch can now produce a four-point
+    `SurplusCapPacket` packet with an exact `(m,s,l,r)` row budget without
+    passing through `FiniteEndpointShell`.
+  - `2026-07-06`: the surplus packet arithmetic now includes the primitive row
+    extractor.  `M44SelectedApex.exists_left_right_primitive_packet_cases` and
+    the count-facing `_of_counts` version preserve chosen left/right adjacent
+    selected points, use the full one-hit bounds to force packet left/right
+    rows to singletons, and split the exact four-point budget into the two
+    primitive incidence rows `(1,1,1,1)` and `(2,0,1,1)`.  This is the local
+    `SurplusCapPacket` analogue of the N8 primitive packet interface needed to
+    feed reconstructed erased-pin selected classes into the finite
+    selector/certificate rows.
+  - `2026-07-06`: the erased-pin residual now has a non-surplus-cap packet
+    reducer.  `M44SelectedApex.of_erasedPinTriple` reconstructs the selected
+    apex from `ErasedPinTriple A x p`, and
+    `IsM44.exists_oppIndex1_primitive_packet_cases_of_erasedPinTriple` plus
+    the `oppIndex2` analogue automatically discharge the Moser and same-cap
+    upper bounds from `S.NonSurplusMoserCapContainment` and the `IsM44` short
+    cap facts.  For the two opposite-cap residual families, the remaining
+    inputs are now the adjacent lower/upper bounds and exclusion of the two
+    primitive packet rows.
+  - `2026-07-06`: the adjacent upper-bound input has also been reduced to the
+    existing U2 ordered-chain one-hit interface.  The new
+    `adjacentCount_le_one_of_adjacent_chains` wrapper consumes
+    `N8a3AdjacentCapDistanceStrict` plus support containment for the left and
+    right adjacent interiors, and the `..._erasedPinTriple_chains` wrappers feed
+    those bounds into the primitive packet reducer.  For the two opposite-cap
+    erased-pin residuals, the remaining proof-facing inputs are now adjacent
+    lower bounds, construction of the ordered chains/support containments, and
+    exclusion of the two primitive rows.
+  - `2026-07-06`: one adjacent lower bound is now closed directly from the
+    erased surplus point's placement.  If `x ∈ S.capInteriorByIndex
+    S.surplusIdx`, then `x` lies in the right-adjacent interior for
+    `S.oppIndex1` and in the left-adjacent interior for `S.oppIndex2`, so the
+    corresponding full selected-class adjacent counts are automatically at
+    least one at radius `dist p x`.  The surplus-aware erased-pin reducers
+    therefore remove `hxA` and one lower-bound hypothesis: for `oppIndex1`,
+    only the left-adjacent lower bound remains explicit; for `oppIndex2`, only
+    the right-adjacent lower bound remains explicit.
+  - `2026-07-06`: the missing adjacent lower bound has been isolated as a
+    one-sided count obstruction instead of a vague hypothesis.  The exact
+    full selected-class budget now splits the `oppIndex1` erased-pin branch
+    into primitive packet rows or the row `(m,s,l,r) = (2,1,0,1)`, and the
+    `oppIndex2` branch into primitive packet rows or `(2,1,1,0)`.  The
+    chain-facing split consumes only ordered-chain one-hit upper bounds plus
+    the erased surplus point placement; the next proof obligation is therefore
+    to exclude these one-sided obstruction rows or to show they reduce to the
+    endpoint/pinned residual families.
 - Lean module added: `Erdos9796Proof.P97.N8.FourSubpacket`.
 - General-`n` module added: `Erdos9796Proof.P97.SurplusM44Packet`.
 - Implemented:
@@ -385,6 +1344,52 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   packet_groupSum_eq_card
   four_le_packet_groupSum_of_card
   packet_groupSum_eq_four_of_card
+  SurplusCapPacket.exists_fourSubpacket_preserving_of_selected_card_ge_four
+  SurplusCapPacket.exists_fourSubpacket_preserving_point_of_selected_card_ge_four
+  SurplusCapPacket.M44SelectedApex.exists_fourSubpacket_preserving_point
+  SurplusCapPacket.packetMoserCount_le_moserCount
+  SurplusCapPacket.packetSameCapCount_le_sameCapCount
+  SurplusCapPacket.packetLeftAdjCount_le_leftAdjCount
+  SurplusCapPacket.packetRightAdjCount_le_rightAdjCount
+  SurplusCapPacket.packetSameCapCount_eq_one_of_le_one
+  SurplusCapPacket.packetLeftAdjCount_eq_one_of_le_one
+  SurplusCapPacket.packetRightAdjCount_eq_one_of_le_one
+  SurplusCapPacket.M44SelectedApex.
+    exists_fourSubpacket_preserving_point_with_packet_budget
+  SurplusCapPacket.M44SelectedApex.
+    exists_fourSubpacket_preserving_left_point_with_packet_budget
+  SurplusCapPacket.M44SelectedApex.
+    exists_fourSubpacket_preserving_right_point_with_packet_budget
+  SurplusCapPacket.M44SelectedApex.
+    exists_fourSubpacket_preserving_left_right_points_with_packet_budget
+  SurplusCapPacket.packet_left_right_primitive_cases
+  SurplusCapPacket.selectedCount_groupSum_eq_four_of_card
+  SurplusCapPacket.rightAdjCount_one_sided_count_cases
+  SurplusCapPacket.leftAdjCount_one_sided_count_cases
+  SurplusCapPacket.M44SelectedApex.exists_left_right_primitive_packet_cases
+  SurplusCapPacket.M44SelectedApex.exists_left_right_primitive_packet_cases_of_counts
+  SurplusCapPacket.M44SelectedApex.of_erasedPinTriple
+  SurplusCapPacket.exists_left_right_primitive_packet_cases_of_erasedPinTriple_counts
+  SurplusCapPacket.IsM44.exists_oppIndex1_primitive_packet_cases_of_erasedPinTriple
+  SurplusCapPacket.IsM44.exists_oppIndex2_primitive_packet_cases_of_erasedPinTriple
+  SurplusCapPacket.adjacentCount_le_one_of_adjacent_chains
+  SurplusCapPacket.one_le_rightAdjCount_oppIndex1_of_surplus_mem
+  SurplusCapPacket.one_le_leftAdjCount_oppIndex2_of_surplus_mem
+  SurplusCapPacket.exists_left_right_primitive_packet_cases_of_erasedPinTriple_chains
+  SurplusCapPacket.IsM44.exists_oppIndex1_primitive_packet_cases_of_erasedPinTriple_chains
+  SurplusCapPacket.IsM44.exists_oppIndex2_primitive_packet_cases_of_erasedPinTriple_chains
+  SurplusCapPacket.IsM44.
+    exists_oppIndex1_primitive_packet_cases_of_surplus_erasedPinTriple
+  SurplusCapPacket.IsM44.
+    exists_oppIndex2_primitive_packet_cases_of_surplus_erasedPinTriple
+  SurplusCapPacket.IsM44.
+    exists_oppIndex1_primitive_packet_cases_of_surplus_erasedPinTriple_chains
+  SurplusCapPacket.IsM44.
+    exists_oppIndex2_primitive_packet_cases_of_surplus_erasedPinTriple_chains
+  SurplusCapPacket.IsM44.oppIndex1_surplusErasedPinTriple_cases
+  SurplusCapPacket.IsM44.oppIndex2_surplusErasedPinTriple_cases
+  SurplusCapPacket.IsM44.oppIndex1_surplusErasedPinTriple_cases_chains
+  SurplusCapPacket.IsM44.oppIndex2_surplusErasedPinTriple_cases_chains
   N8SelectedApex.exists_fourSubpacket_with_packet_budget
   N8SelectedApex.exists_fourSubpacket_preserving_point_with_packet_budget
   N8SelectedApex.exists_fourSubpacket_preserving_left_point_with_packet_budget
@@ -533,6 +1538,8 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
   SurplusCapPacket.IsM44.rightStrictEscape_oppIndex2_endpointData_elim
   SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex1_reduces_to_right_surplus
   SurplusCapPacket.IsM44.strictAdjacentEscapeAt_oppIndex2_reduces_to_left_surplus
+  SurplusCapPacket.IsM44.oppIndex1_pin_of_right_surplus
+  SurplusCapPacket.IsM44.oppIndex2_pin_of_left_surplus
   SurplusCapPacket.IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals
   SurplusCapPacket.IsM44.nonSurplusMoserCapContainment_of_endpoint_surplus_residuals
   SurplusCapPacket.leftAdjacentInteriorByIndex_surplusIdx_eq_oppInterior1
@@ -929,13 +1936,31 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
 - Next implementation targets:
 
   ```text
-  1. Continue the endpoint escape route:
-       - derive endpoint-structured data from a raw `StrictAdjacentEscapeAt`
-         using the upstream squeeze/placement theorem;
-       - reduce that endpoint-structured data through
-         `rightEndpointEscapeData_elim` / `leftEndpointEscapeData_elim`;
-       - add or generate the 117-pattern endpoint certificate artifact.
-  2. Wire the selector-packet interface into the Form `a/b/c` exclusions:
+  1. Finish the endpoint certificate route:
+       - make the largest endpoint row (`EpQ1008`) build via internal
+         certificate sharding;
+       - after all 117 Lean certificate facts build, prove the formal
+         faithfulness bridge from `EndpointEscapeRightAt` /
+         `EndpointEscapeLeftAt` to one certified endpoint pattern.
+  2. Continue the pinned surplus COMP-G bridge:
+       - close the spine contract
+         `Problem97.isM44PinnedSurplusResidualsExcluded`;
+       - use the side-specific payload lemmas
+         `IsM44.oppIndex1_pinnedRightSurplusResidual_of_right_surplus` and
+         `IsM44.oppIndex2_pinnedLeftSurplusResidual_of_left_surplus` as the
+         local pinned-family boundary;
+       - surplus-interior subpacket selector CLOSED by
+         `IsM44.exists_surplusInterior_triple_preserving`;
+       - exact selected-class equality CLOSED by
+         `pinnedRightSurplusResidual_selectedClass_eq` and
+         `pinnedLeftSurplusResidual_selectedClass_eq`;
+       - pinned `.v` mask normalization CLOSED in `SurplusM44Packet` and
+         `SurplusCOMPGBank`;
+       - ten finite-label pairwise distinctness CLOSED by
+         `pinnedSurplusTenLabels_pairwise_of_mem`;
+       - construct the local `SurplusCOMPGBank.Shadow` and prove
+         `fragmentShadowAcceptedBySearch = true`.
+  3. Wire the selector-packet interface into the Form `a/b/c` exclusions:
        - connect the named non-surplus interior pairs to the row splitters used
          by the Form `a/b/c` exclusions; this is now closed for the surplus
          selector row itself;
@@ -944,38 +1969,151 @@ pinned surplus-family   -> separate residual, not closed by endpoint work
        - translate the short-cap `MoserSelectorShapeAt` and surplus-cap
          `MoserSubpacketSelectorShapeAt` rows into the endpoint closer
          hypotheses.
-  3. Prove the corresponding Form `a/b/c` metric exclusions, reusing the
+  4. Prove the corresponding Form `a/b/c` metric exclusions, reusing the
      existing N4d branch closers where their hypotheses are cap-local and do not
      depend on `A.card = 9`.
-  4. Build the upstream `(m,4,4)` interface that supplies the selected
+  5. Build the upstream `(m,4,4)` interface that supplies the selected
      left/right witnesses and the honest full one-hit bounds needed by
      `N8SelectedApex.exists_left_right_primitive_packet_cases`.
      After the count-facing selector wrapper, this should be stated as positive
      adjacent counts plus the corresponding one-hit upper bounds, not as manual
      witness choices.
+  6. Close
+     `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`:
+       - start from `S.NonSurplusMoserCapContainment` plus the threaded
+         endpoint and pinned-surplus residual exclusions;
+       - use the existing `IsM44` count/placement lemmas
+         `IsM44.exists_oppInterior_side_placement_of_moserCapContainment`,
+         `IsM44.moserCount_oppIndex1_le_two_of_moserCapContainment`,
+         `IsM44.moserCount_oppIndex2_le_two_of_moserCapContainment`,
+         `IsM44.sameCapCount_oppIndex1_le_one`, and
+         `IsM44.sameCapCount_oppIndex2_le_one`;
+       - choose an actual eraser
+         `x ∈ S.capInteriorByIndex S.surplusIdx`;
+       - exclude `ErasedPinTriple A x p` for the surplus-opposite Moser vertex,
+         surviving surplus-cap interior centers, and the two non-surplus
+         strict-interior families;
+       - let the closed adapters turn those triple-circle exclusions into
+         exact-pin exclusions and then erased-set selected-class witnesses for
+         every categorized survivor.
   ```
 
 - Current attempt (`2026-07-05`):
 
   ```text
   Target A:
-    Try to derive the positive adjacent-count inputs for the surplus selector
-    and the non-surplus selected-apex reducer from an existing formal Q escape
-    placement interface.
+    Finish the pinned surplus COMP-G shadow constructor.  The closed inputs are
+    now pinned residual payload extraction, exact selected-class equality for
+    the pinned `.v` class, surplus escape relabelling into a three-point
+    `s1/s2/s3` subpacket, orientation into the bank labels
+    `{u,w,Pu,Pw}`, finite `.v` mask normalization in `SurplusCOMPGBank`, and
+    pairwise geometric distinctness of the ten finite labels.
+
+    Progress (`2026-07-05`): added the hand-written bridge module
+    `Erdos9796Proof.P97.SurplusCOMPGBankGeometry`, imported by
+    `RemovableVertexAxiom`.  It keeps generated-bank code regenerable and
+    proves the first geometric-to-finite payload fact:
+
+      - `SurplusCOMPGBank.pointMask`: finite label mask induced by a geometric
+        selected class and a ten-label point map;
+      - `SurplusCOMPGBank.rightPinnedLabelPoint`: right-oriented geometric
+        interpretation of the bank labels, with `.v = S.oppIndex1`;
+      - `SurplusCOMPGBank.rightPinnedLabelPoint_injective_of_mem`: the existing
+        `pinnedSurplusTenLabels_pairwise_of_mem` theorem gives an injective
+        ten-label model;
+      - `SurplusCOMPGBank.pinnedRightSurplusResidual_exists_pinnedPointMask`:
+        a right-surplus pinned residual plus a surplus triple containing the
+        escape produces a surplus star `sstar` and proves that the geometric
+        selected class at `.v` has finite mask `pinnedMaskOf sstar`.
+      - `SurplusCOMPGBank.leftPinnedToRightLabel` and
+        `SurplusCOMPGBank.leftPinnedLabelPoint`: the mirror orientation is
+        reduced to the generated right-oriented bank convention by swapping
+        `.v/.w` and the private-pair labels;
+      - `SurplusCOMPGBank.pinnedLeftSurplusResidual_exists_pinnedPointMask`:
+        the left-surplus mirror residual now proves the same generated `.v`
+        pinned mask after relabelling.
+      - `SurplusCOMPGBank.shadowOfPointClasses`: constructs a generated
+        `SurplusCOMPGBank.Shadow` from ten geometric selected classes;
+      - `SurplusCOMPGBank.shadowOfPointClasses_hasTenMasks`: proves the
+        generated shadow always satisfies the ten-mask Boolean;
+      - `SurplusCOMPGBank.pinnedRightSurplusResidual_exists_pinnedClassOK` and
+        `SurplusCOMPGBank.pinnedLeftSurplusResidual_exists_pinnedClassOK`:
+        package the right/left residual point-mask facts into
+        `pinnedClassOK sstar (shadowOfPointClasses ...) = true`, once the
+        `.v` class is identified with the pinned selected class.
+      - `SurplusCOMPGBank.classShapeOKAt_shadowOfPointClasses_of_maskCard_not_mem`
+        and `SurplusCOMPGBank.classesShapeOK_shadowOfPointClasses_of_maskCard_not_mem`:
+        reduce the generated class-shape Boolean to two pointwise finite-mask
+        facts for each center: mask cardinality four and false self-bit.
+        Normalization is automatic for point masks via
+        `SurplusCOMPGBank.maskNormalized_pointMask`.
+      - `SurplusCOMPGBank.maskNormalized_pinnedMaskOf_of_isSurplusStar`,
+        `SurplusCOMPGBank.maskCard_pinnedMaskOf_of_isSurplusStar`, and
+        `SurplusCOMPGBank.maskHas_pinnedMaskOf_v_eq_false_of_isSurplusStar`:
+        close the finite pinned-mask normalization/cardinality/no-self facts.
+        `SurplusCOMPGBank.classesShapeOK_shadowOfPointClasses_of_pinned_v_and_other_shapes`
+        therefore leaves cardinality/no-self inputs only for the nine centers
+        other than `.v`.
+      - `SurplusCOMPGBank.isValidPinnedFragment_shadowOfPointClasses_of_components`:
+        assembles `isSurplusStar`, generated `hasTenMasks`, `classesShapeOK`,
+        `pinnedClassOK`, and the remaining component Booleans into the full
+        `isValidPinnedFragment` predicate consumed by the generated DFS
+        completeness theorem.
+      - The generated component Booleans now have compiled mask/prefix
+        interfaces in `SurplusCOMPGBankGeometry`:
+        `wSqueezeOK_shadowOfPointClasses_of_mask_facts`,
+        `oneHitOK_shadowOfPointClasses_of_mask_bounds`,
+        `circumcenterOK_shadowOfPointClasses_of_no_nonmoser_triple`,
+        `noThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two`,
+        `searchPairCountsOK_shadowOfPointClasses_of_prefixes`,
+        `separationOK_shadowOfPointClasses_of_sepOKFor`,
+        `searchSeparationOK_shadowOfPointClasses_of_crossSeparation`,
+        `triggerPrivateOKAt_shadowOfPointClasses_of_mask_condition`, and
+        `fragmentTriggersOK_shadowOfPointClasses_of_components`.
+      - `SurplusCOMPGBank.isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces`:
+        assembles those finite facts directly into
+        `isValidPinnedFragment`, so the next geometric proof only has to feed
+        one compiled mask/prefix interface.
+      - `SurplusCOMPGBank.isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v`:
+        strengthens the aggregate interface for pinned residuals by taking the
+        `.v` pinned-mask equality as input and discharging the `.v` class-shape
+        facts internally.
+
+    This closes the generated shadow constructor, `hasTenMasks`, and the `.v`
+    `pinnedClassOK` translation for both surplus-side residual orientations.
+    It also gives a compiled mask-level interface for `classesShapeOK`; for
+    pinned residuals the `.v` cardinality/no-self facts come from the pinned
+    mask equality, and normalization is automatic for every point mask.  The
+    remaining center masks still need geometric cardinality/no-self inputs.
+    The final Boolean conjunction assembly is closed, and every generated
+    component rule has a finite mask/prefix interface.  The aggregate
+    mask-interface theorem is also closed.  This does not yet prove the
+    geometric facts that supply those interfaces.
 
   Target B:
-    If no such formal placement interface exists yet, identify the exact
-    proposition that must be added and prove only tautological/count-facing
-    consumers from it, so the next proof step has a precise Lean target.
+    Add or identify the finite completeness step that turns a proved-valid
+    pinned fragment into `fragmentShadowAcceptedBySearch = true`.  The generated
+    module currently checks emitted-row soundness and row-bank agreement, but it
+    does not expose arbitrary-shadow completeness.  Do not replace this by a
+    wrapper that assumes `fragmentShadowAcceptedBySearch = true`.
+
+  Target C:
+    Prove or source the geometric facts that supply the finite component
+    interfaces, starting with the smallest local rule whose facts can be
+    obtained from existing cap/placement lemmas.  The current explicit
+    obligations are the `wSqueezeOK` mask hits/intersections, the `oneHitOK`
+    one-hit bounds, the non-Moser no-three-Moser-hit condition, pair-count and
+    separation prefix checks, and the private-trigger/final surplus-star
+    one-hit conditions.
 
   Success criterion:
-    A compiled Lean lemma that closes one of
-      1 <= leftAdjCount,
-      1 <= rightAdjCount,
-      positive adjacent closed-cap count for the surplus selector,
-    or a documented blocker naming the missing formal placement hypothesis.
+    A compiled Lean lemma that constructs the local
+    `SurplusCOMPGBank.Shadow`, proves the pinned fragment rules, and either
+    applies a generated finite completeness theorem or directly proves
+    `fragmentShadowAcceptedBySearch = true`; or a documented blocker naming the
+    exact missing finite-completeness or geometric rule.
 
-  Initial search result:
+  Previous count-placement search result:
     No existing Lean declaration was found that states the full Q escape
     placement hypothesis for a non-surplus selected apex.  The present formal
     branch data closest to that role is the indexed Form `a/b/c` row predicates.
