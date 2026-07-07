@@ -3294,24 +3294,91 @@ def write_relaxed_split_bank_row_zero_dispatch(
     _root, direct_root, product_root = relaxed_split_row_zero_roots(
         row_zero_module_root
     )
-    row_entries = ",\n".join(
-        "      certifiedRelaxedSplitRows.get "
-        f"(Fin.mk {row['row_index']} (by native_decide))"
-        for row in rows
+    def row_get_expr(row_index: object) -> str:
+        return (
+            "certifiedRelaxedSplitRows.get "
+            f"(Fin.mk {row_index} "
+            "(by rw [certifiedRelaxedSplitRows_length]; norm_num))"
+        )
+
+    def row_entries_for(chunk: list[dict[str, object]], indent: str) -> str:
+        return ",\n".join(
+            f"{indent}{row_get_expr(row['row_index'])}" for row in chunk
+        )
+
+    def branch_lines_for(chunk: list[dict[str, object]]) -> str:
+        branch_lines: list[str] = []
+        for row in chunk:
+            namespace = "Product" if row["payload_kind"] == "productSum" else "Direct"
+            branch_lines.extend(
+                [
+                    "  rcases List.mem_cons.mp hrowCert with rfl | hrowCert",
+                    f"  · exact ⟨{row['assignment']}, by",
+                    f"      exact {namespace}.{row['lean_name']}_evaluationZeros_of_metricShadow",
+                    "        hmetric hrow hmasks hpid⟩",
+                ]
+            )
+        branch_lines.append("  cases hrowCert")
+        return "\n".join(branch_lines)
+
+    chunk_size = 15
+    row_chunks = [
+        rows[start : start + chunk_size] for start in range(0, len(rows), chunk_size)
+    ]
+    range_names = [
+        f"certifiedRelaxedSplitRowsRange{chunk_index:02d}"
+        for chunk_index in range(len(row_chunks))
+    ]
+    range_defs = "\n\n".join(
+        f"""/-- Rows {chunk_index * chunk_size} through {chunk_index * chunk_size + len(chunk) - 1}
+of the generated singleton relaxed split row bank. -/
+private def {range_names[chunk_index]} : List (Row × Certificate) :=
+  [
+{row_entries_for(chunk, "    ")}
+  ]"""
+        for chunk_index, chunk in enumerate(row_chunks)
     )
-    branch_lines: list[str] = []
-    for row in rows:
-        namespace = "Product" if row["payload_kind"] == "productSum" else "Direct"
-        branch_lines.extend(
+    range_lemmas = "\n\n".join(
+        f"""/-- Rows in `{range_names[chunk_index]}` carry row-local zero-evaluation
+assignments for their algebraic certificate payloads. -/
+private theorem exists_payload_zeros_range{chunk_index:02d}
+    {{pointOf : SurplusCOMPGBank.Label → ℝ²}}
+    {{centerClass : SurplusCOMPGBank.Label → Finset ℝ²}}
+    (hmetric :
+      EndpointMetricShadow pointOf
+        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass))
+    (exactRow : SurplusCOMPGBank.Row)
+    (rowCert : Row × Certificate)
+    (hrow : exactRow ∈ SurplusCOMPGBank.rows)
+    (hmasks :
+      exactRow.masks =
+        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
+    (hrowCert : rowCert ∈ {range_names[chunk_index]})
+    (hpid : rowCert.1.exactPids = [exactRow.pid]) :
+    ∃ ν : Nat → ℝ, rowCert.2.payload.evaluationZeros ν := by
+{branch_lines_for(chunk)}"""
+        for chunk_index, chunk in enumerate(row_chunks)
+    )
+    range_append_expr = range_names[-1]
+    for range_name in reversed(range_names[:-1]):
+        range_append_expr = f"{range_name} ++ ({range_append_expr})"
+    dispatch_lines: list[str] = []
+    for chunk_index in range(len(row_chunks) - 1):
+        dispatch_lines.extend(
             [
-                "  rcases List.mem_cons.mp hrowCert with rfl | hrowCert",
-                f"  · exact ⟨{row['assignment']}, by",
-                f"      simpa using {namespace}.{row['lean_name']}_evaluationZeros_of_metricShadow",
-                "        hmetric hrow hmasks (by simpa using hpid)⟩",
+                "  rcases List.mem_append.mp hrowCert with hrowCert | hrowCert",
+                f"  · exact exists_payload_zeros_range{chunk_index:02d} hmetric exactRow",
+                "      rowCert hrow hmasks hrowCert hpid",
             ]
         )
-    branch_lines.append("  cases hrowCert")
-    branches = "\n".join(branch_lines)
+    last_chunk_index = len(row_chunks) - 1
+    dispatch_lines.extend(
+        [
+            f"  exact exists_payload_zeros_range{last_chunk_index:02d} hmetric exactRow",
+            "    rowCert hrow hmasks hrowCert hpid",
+        ]
+    )
+    dispatch = "\n".join(dispatch_lines)
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -3349,6 +3416,10 @@ namespace RowZeros
 open Problem97.EndpointCertificate
 open Problem97.EndpointCertificate.Variables
 
+{range_defs}
+
+{range_lemmas}
+
 /-- A certified singleton relaxed-split pinned-surplus row carries a row-local
 zero-evaluation assignment for its algebraic certificate payload. -/
 theorem exists_payload_zeros_of_certifiedRelaxedSplitRow
@@ -3367,10 +3438,8 @@ theorem exists_payload_zeros_of_certifiedRelaxedSplitRow
     (hpid : rowCert.1.exactPids = [exactRow.pid]) :
     ∃ ν : Nat → ℝ, rowCert.2.payload.evaluationZeros ν := by
   change rowCert ∈
-    [
-{row_entries}
-    ] at hrowCert
-{branches}
+    {range_append_expr} at hrowCert
+{dispatch}
 
 /-- Exact pinned-bank membership contradicts a metric interpretation of the
 matched shadow. -/

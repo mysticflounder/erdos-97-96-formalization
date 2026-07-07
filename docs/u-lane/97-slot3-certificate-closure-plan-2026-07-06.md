@@ -758,12 +758,17 @@ Existing artifacts:
 - `Erdos9796Proof.P97.SurplusCertificate.BankSoundness`
 - `Erdos9796Proof.P97.SurplusCertificate.ExactBridge`
 - `Erdos9796Proof.P97.SurplusCertificate.GeometryBridge`
+- `Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.All`
+- `Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.All`
+- `Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank` (verified by locked
+  single-file Lean compile after the range-dispatch split)
 
 Closed interfaces already available:
 
 - `pinnedRightSurplusResidual_exists_candidateMasks_vw`
 - `pinnedLeftSurplusResidual_exists_candidateMasks_vw`
 - `isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v`
+- `endpointMetricShadow_shadowOfPointClasses_of_sameRadius`
 - `pinnedSurplusCOMPGBankBridge`
 
 Plan:
@@ -888,12 +893,91 @@ one of the general-`m` faithfulness/confinement theorems just listed.
   `RowZeros/Bank.lean` now imports the direct/product aggregates and supplies
   the row-local `∃ ν, rowCert.2.payload.evaluationZeros ν` witness consumed by
   `false_of_shadowInBank_of_exists_payload_zeros`, producing
-  `RowZeros.false_of_shadowInBank_of_metricShadow`.  Remaining work: compile
-  or otherwise verify the full 135-row bank dispatcher, then call it from the
-  pinned-surplus leaf.  A broad `RowZeros.Bank` build currently triggers a
-  fresh rebuild of the full direct layer, so use focused row targets while
-  finishing the integration and compile-scaling pass.  The current bridge and
-  checked polynomial identities alone are not yet a geometric contradiction.
+  `RowZeros.false_of_shadowInBank_of_metricShadow`.  July 7 integration
+  history: a broad
+  `lake-build Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank` reached the
+  final `RowZeros.Bank` module after compiling the direct/product row-zero
+  dependencies, then failed only on deterministic heartbeat timeouts in the
+  135-row dispatch list.  The original timeout source was repeated
+  `Fin.mk n (by native_decide)` bounds, which re-evaluated the large
+  `certifiedRelaxedSplitRows` table once per row.  A second broad retry was
+  stopped at `14774/17183` after confirming that Lake can spend several minutes
+  in product coordinator modules before the bank dispatcher is checked; for
+  example `R014UeqvR014YY` and neighboring product modules emitted after about
+  400 seconds.  Treat that as dependency fanout cost and avoid repeating the
+  broad target for routine coordinator feedback.
+
+  The bank dispatcher is now range-split at the emitter level in
+  `scripts/pinned-surplus-certificate.py`: the generated file defines nine
+  15-row `certifiedRelaxedSplitRowsRangeXX` chunks, proves one private
+  zero-witness lemma per chunk, and keeps
+  `exists_payload_zeros_of_certifiedRelaxedSplitRow` as a thin membership
+  router.  The row-index bounds use
+  `rw [certifiedRelaxedSplitRows_length]; norm_num`, and branch proofs call the
+  direct/product row-zero theorems by `exact` rather than simplifying the full
+  payload expression.  Focused verification now succeeds:
+  `/usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384
+  Erdos9796Proof/P97/SurplusCertificate/RowZeros/Bank.lean -o
+  .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCertificate/RowZeros/Bank.olean
+  -i
+  .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCertificate/RowZeros/Bank.ilean`
+  exits 0 in about 13 seconds.  The 8 GB version fails with a Lean memory cap
+  exception, so keep the normal 16 GB cap for this coordinator check.  A broad
+  Lake rebuild has not been rerun after the split because the single-file check
+  is the intended feedback path for this generated-heavy module.
+
+  Compile-scaling guidance for this checkpoint: do not add more certificate
+  sharding for `RowZeros.Bank`.  For small edits to the bank coordinator, use
+  the locked single-file compile above.  Use a broad `lake-build
+  Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank` only when a final
+  Lake-scheduler confidence check is worth the known generated-dependency
+  fanout cost.
+
+  Proof-closure guidance for this checkpoint: once
+  `RowZeros.false_of_shadowInBank_of_metricShadow` builds, the certificate side
+  is no longer the main blocker for the exact `m = 5` route.  The fastest
+  closure path is to stay inside the publish-spine theorem
+  `isM44PinnedSurplusResidualsExcluded`, construct the exact ten-label
+  `shadowOfPointClasses` from a formal pinned residual, use the existing
+  candidate-mask interfaces to prove `isValidPinnedFragment`, apply
+  `pinnedSurplusCOMPGBankBridge`, and then feed the resulting `shadowInBank`
+  plus a metric-shadow proof to `RowZeros.false_of_shadowInBank_of_metricShadow`.
+
+  The metric-shadow side should use
+  `endpointMetricShadow_shadowOfPointClasses_of_sameRadius` in
+  `SurplusCOMPGBankGeometry.lean`.  The bridge reduces the metric obligation to
+  injectivity of the ten-label point model and same-radius facts for each
+  `centerClass center`.  Injectivity is already returned by
+  `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces` and
+  its left mirror.  Selected-class centers should not be treated as missing:
+  `SelectedClass` is a distance level set
+  (`WitnessPacketInterface.mem_selectedClass`), with
+  `dist_self_of_mem_selectedClass` available for the point-first orientation.
+  The remaining metric-shadow work is therefore to account for the cap-centered
+  exact `.v`/`.w` classes (`S.capByIndex ...`) and then thread these facts
+  through the existing right/left pinned candidate-interface handoffs.  There is
+  a useful existing shortcut for this when non-surplus Moser-cap containment is
+  available:
+  `SurplusCapPacket.exact_cap_class_at_index_of_cap_card_eq_four` produces
+  `SelectedClass A (S.oppositeVertexByIndex i) radius = S.capByIndex i`, and
+  `dist_opposite_eq_of_mem_capByIndex_of_exact` reads same-radius facts out of
+  that equality.  This should not be used circularly inside
+  `isM44PinnedSurplusResidualsExcluded`: the current statement does not take
+  `S.NonSurplusMoserCapContainment`, and the containment producers in this file
+  are downstream of endpoint/pinned residual exclusions.  Treat it as a speed
+  path only if containment can be supplied non-circularly or the spine is
+  explicitly refactored to make it an input.  Otherwise, if a full same-radius
+  proof for the cap-centered classes cannot be recovered from the current formal
+  residual surface, replace the broad pinned theorem by a named on-spine
+  residual that states exactly that missing metric-shadow producer; do not add
+  an off-spine wrapper around the bank theorem.  The current bridge and checked
+  polynomial identities alone are not yet a geometric contradiction.
+
+  July 7 speed check: `nthdegree docs search --lean` ranks
+  `endpointMetricShadow_shadowOfPointClasses_of_sameRadius` and the existing
+  finite pinned-fragment interface lemmas as the relevant Lean declarations.
+  This matches the source audit above and gives no evidence that more
+  certificate sharding is needed before attempting the on-spine proof wiring.
 
 ### Erased-pin triple residuals
 
