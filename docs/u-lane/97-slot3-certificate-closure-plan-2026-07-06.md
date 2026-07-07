@@ -1286,18 +1286,38 @@ Current routed-row/count-family boundary:
   private-center placement, surplus-triple placement, exact `.w` mask, and
   `hsearchSep` data long enough to call the row-specific finite-scaffold
   theorem.  Current finite-scaffold wrapper coverage for the cheap
-  cross-separation route is six of eight rows:
+  cross-separation route is now eight of eight rows:
   `rightNonSurplusRow0022Excluded_of_finiteScaffold`,
   `rightNonSurplusRow0121Excluded_of_finiteScaffold`,
   `rightNonSurplusRow1021Excluded_of_finiteScaffold`,
+  `rightNonSurplusRow2011Excluded_of_finiteScaffold`,
   `leftNonSurplusRow0022Excluded_of_finiteScaffold`,
-  `leftNonSurplusRow0112Excluded_of_finiteScaffold`, and
-  `leftNonSurplusRow1012Excluded_of_finiteScaffold`.  The two remaining cheap
-  wrappers are right `(2,0,1,1)` and left `(2,0,1,1)`; these are the `m = 2`
-  cases and need a small extra case split over the selected other-non-surplus
-  label paired with the two Moser labels.  After those, the producer surface
-  still has to pass the finite scaffold facts into the pruned left-right row
-  obligation.
+  `leftNonSurplusRow0112Excluded_of_finiteScaffold`,
+  `leftNonSurplusRow1012Excluded_of_finiteScaffold`, and
+  `leftNonSurplusRow2011Excluded_of_finiteScaffold`.  The final `m = 2`
+  cases use
+  `IsM44.right_row2011_selectedClass_eq_moserPair_oppInterior2_surplus`,
+  `IsM44.left_row2011_selectedClass_eq_moserPair_oppInterior1_surplus`,
+  the row seed/mask bridges
+  `right_row2011_exists_erasedPinRowSeed_privateMask` and
+  `left_row2011_exists_erasedPinRowSeed_privateMask`, and the finite fact
+  adapters `false_of_right_row2011_finiteCandidateFacts` /
+  `false_of_left_row2011_finiteCandidateFacts`.  The producer surface still
+  has to pass the finite scaffold facts into the pruned left-right row
+  obligation before that data is erased.
+
+  Fifth July 7 checkpoint: the right and left `(2,0,1,1)` finite-scaffold
+  bridges both compile.  Focused checks run from `lean/`:
+
+  ```bash
+  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/SurplusM44Packet.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/SurplusM44Packet.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/SurplusM44Packet.ilean
+  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.ilean
+  /usr/bin/lockf -k .lake/lake-build.lock lake env lean -M 16384 Erdos9796Proof/P97/RemovableVertexAxiom.lean -o .lake/build/lib/lean/Erdos9796Proof/P97/RemovableVertexAxiom.olean -i .lake/build/lib/lean/Erdos9796Proof/P97/RemovableVertexAxiom.ilean
+  ```
+
+  `RemovableVertexAxiom.lean` still reports the three expected live `sorry`
+  warnings.  The remaining closure risk is producer-surface wiring, not the
+  cheap finite-scaffold row wrapper proofs.
 
   Local artifact checkpoint: `certificates/surplus/relaxed_split/` contains the
   70 grouped relaxed-split certificate JSON files from the pre-singleton pass,
