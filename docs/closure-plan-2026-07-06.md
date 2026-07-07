@@ -163,9 +163,10 @@ two-large-cap case; there is no (5,5,3) slice.
    not interchangeable in the leaf (q ∈ capAt i). A symmetric
    canonicalization silently under-enumerates.
 2. Smoke-gate the encoding against the known sampled verdicts
-   (`u12_metric_sample100_verdicts.jsonl`, p97-rvol scratch — historical
-   repo, read-only; port the artifact into this repo first) before the
-   exhaustive run.
+   (`u12_metric_sample100_verdicts.jsonl`, 27 KB, plus `u12_metric.py` and
+   `certify_globalcount_table.py`, in
+   `../p97-rvol/scratch/u1_2_faithful/twolargecap_core/` — historical repo,
+   read-only; port with the §7 D2 batch) before the exhaustive run.
 3. Per-cube certificates in the existing checker format. Reuse
    `EndpointCertificate.Checker` iff the systems are equality-only; any
    ℝ-inequality content is a decision point, not a workaround (register U8).
@@ -223,8 +224,17 @@ patterns with all points distinct.
   and test for separation. Candidate invariants: Laman-style sparsity counts
   on the equidistance hypergraph, per-subframework over-determination
   profiles, circle-degree distributions. Data source: p97-rvol scratch census
-  artifacts — port the core/verdict files into this repo before running
-  ({{NEEDS_UPDATE}}: exact file list at port time). Verdicts: clean
+  artifacts (inventoried 2026-07-06; all under
+  `../p97-rvol/scratch/u1_2_faithful/twolargecap_core/`, ~1.4 MB total) —
+  port into `scratch/u12-census-port/` here before running: dead cores
+  `_u12_dead_555.jsonl` + `_u12_dead_654.jsonl`; realizable controls
+  `_u12_alive_654.jsonl` (no `_u12_alive_555.jsonl` exists — extract 555
+  controls from the census logs or re-derive; verify control coverage at
+  port time); uncovered-cube lists `_u12_pattern_miss_{555,654}.jsonl`;
+  summaries `_u12_census_654.json` + `_u12_census_{555,654}_full.log`;
+  generating scripts for parsing/provenance `_u12_census.py`,
+  `_u12_core_mine.py`, `_u12_distinct.py`, `_u12_resolve_distinct.py`,
+  `_u12_pattern_cover.py`, `_u12_verify_alive.py`. Verdicts: clean
   separation → a combinatorial criterion is plausible; formulate the lemma
   (D3). No separation → the criterion is not purely combinatorial; report
   with the data — the next escalation (semialgebraic invariants, or a
