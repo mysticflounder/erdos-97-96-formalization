@@ -44,7 +44,7 @@ build+mine will show 2 off-spine sorried decls (the U2 pair), not 3.
 | 1 | `isM44EndpointResidualsExcluded` | RemovableVertexAxiom.lean:391 | ON (slot 2) | 1 (`:= sorry`) | four-point lane |
 | 2 | `isM44PinnedSurplusResidualsExcluded` | RemovableVertexAxiom.lean:397 | ON (slot 2) | 1 (`:= sorry`) | four-point lane |
 | 3 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | RemovableVertexAxiom.lean:404 | ON (slot 2) | 1 (inline `have … := by sorry` at :408) | erased-pin session (anchor 019f300c) |
-| 4 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | U1LargeCapRouteBTail.lean:2383 | ON (slot 3) | 1 (at :2428) | census budget-partial + D probe landed 2026-07-07 (§2.4); census resume + Adam's C-split call |
+| 4 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | U1LargeCapRouteBTail.lean:2383 | ON (slot 3) | 1 (at :2428) | census budget-partial + D probe landed 2026-07-07 (§2.4); census resumed + C-split gated go 2026-07-07 — k=4 bank + n=12 gate dispatched |
 | 5 | `u1_largeCap_routeB_tail_liveData_false` | U1LargeCapRouteBTail.lean:3251 | ON (slot 3) | **79** (case leaves, :3518–:5613) | liveData session (anchor f1cc942b) |
 | 6 | `U2NonSurplusSqueeze.oppCap2_endpointEscape_false` | U2OppCap2Escape.lean:296 | OFF | 1 | unowned — decision needed (§2.6) |
 | 7 | `U2NonSurplusSqueeze.surplusEscape_pinnedFamily_sep_false` | U2OppCap2Escape.lean:393 | OFF | 1 | unowned — decision needed (§2.6) |
@@ -147,7 +147,10 @@ per-type route CLOSED: 13/19 classes REALIZED at the decorated minimal
 window with exact independently re-verified witnesses, obstruction D1
 CONFIRMED token-level at every n = 12–16; PROVEN extractions m ≤ 2,
 vertex-pair ⇒ s = 0 (2 unconditional kills), s = 2 ⇒ straddle-only;
-s ≥ 3 kills ride SUB2, CONJECTURED; C-split go/no-go returns to Adam —
+s ≥ 3 kills ride SUB2, CONJECTURED; C-split DECIDED 2026-07-07 (Adam):
+gated go — k=4 bank certification + n = 12 window-shape convergence gate
+dispatched (`scratch/k4-bank/`, `scratch/census-12-gate/`), full 12–14
+census pending the gate readout —
 `scratch/candidate-d-probe/report.md`). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
@@ -280,7 +283,7 @@ either wired the same session or not landed.
 | now | 5 | band-level consumers; reduce 79 → named residuals | liveData lane (in flight) |
 | next | 2 | m = 5 exact path + named general-m residual; then general-m per §2.2 (residue EMPTY — route confirmed) | four-point lane capacity |
 | ~~next~~ DONE | 6–7 | ~~execute (a)~~ atticked 2026-07-06 (Adam) | — |
-| dispatched | 4 | 2026-07-06 wave all landed: (5,5,4) census BUDGET-partial (1596 orbits verified, no ALIVE, resumable — plan §5) + D2/dichotomy/two-hit done + D probe landed (per-type route closed, §2.4) | census resume installments; Adam's C-split go/no-go |
+| dispatched | 4 | 2026-07-06 wave all landed: (5,5,4) census BUDGET-partial (1596 orbits verified, no ALIVE, resumable — plan §5) + D2/dichotomy/two-hit done + D probe landed (per-type route closed, §2.4) | census resumed 2026-07-07 (installments); C-split gated go — k=4 bank + n=12 convergence gate in flight |
 | last | — | ~~trustCompiler approval~~ approved 2026-07-06; final verify-publish ×2 | rows 1–5 |
 
 Rows 1, 2 (m = 5 slice), 3, and the 12-closed-leaf pattern of row 5 are
