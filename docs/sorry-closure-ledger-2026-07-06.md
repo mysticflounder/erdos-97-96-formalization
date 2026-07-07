@@ -142,7 +142,13 @@ split decision to Adam — plan §7 D3; RESOLVED 2026-07-07: Candidate D
 probe first — per-type convex-order exclusion over the 19 reflected
 primitive N8 tuples + composition test targeting obstruction D1,
 dispatched to `scratch/candidate-d-probe/`; C census extension deferred
-pending the probe verdict). Proposed
+pending the probe verdict; probe LANDED 2026-07-07, validated — pure
+per-type route CLOSED: 13/19 classes REALIZED at the decorated minimal
+window with exact independently re-verified witnesses, obstruction D1
+CONFIRMED token-level at every n = 12–16; PROVEN extractions m ≤ 2,
+vertex-pair ⇒ s = 0 (2 unconditional kills), s = 2 ⇒ straddle-only;
+s ≥ 3 kills ride SUB2, CONJECTURED; C-split go/no-go returns to Adam —
+`scratch/candidate-d-probe/report.md`). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route

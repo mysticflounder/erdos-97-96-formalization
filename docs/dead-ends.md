@@ -783,3 +783,29 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   carry exact-verified ρ+γ embeddings) kill every equality/separator-shaped
   statement, including row-decorated ones; do not re-dispatch pattern-level
   or ideal-theoretic uniform lemmas for the tail.
+- **doubleapex-card12up-per-type-window-kills (closed, 2026-07-07):** the
+  pure per-type route for the Card12Up tail — exclude each of the 19
+  reflected primitive N8 tuple classes at its convex-order-decorated
+  minimal window, then compose over the token census — is CLOSED on both
+  ends (Candidate-D probe, `scratch/candidate-d-probe/report.md`,
+  orchestrator-validated in independent exact arithmetic). (1) 13/19
+  classes are REALIZED at the decorated minimal window by exact rational
+  witnesses satisfying E-MEC/E-PKT/I-POS/I-DISK/I-OBT/strict-I-CAP/
+  full-I-ORD (`witnesses.json`) — no dead-type bank over single-center
+  windows covers the tail. (2) Composition fails independently: even
+  granting every conjectured kill, admissible token patterns avoiding all
+  killed types exist at every n = 12–16 (obstruction D1 confirmed;
+  `q2_results_{proven,plus}.json`). Survivors, PROVEN and leaf-implied
+  (kill_notes.md, hand-checked): m ≤ 2 per packet; vertex-pair packets
+  have s = 0 (kills (2,1,0,1), (2,2,0,0) unconditionally); s = 2 packets
+  straddle-only. SUB2 (7-var NRA, CONJECTURED-UNSAT, infimum-zero
+  boundary) would add s ≤ 2 — but Q2 already shows that doesn't close
+  composition either. **WARNING (do not re-derive):** the one-sided-sup
+  extension of the lens corner-max K-A is FALSE — explicit counterexample
+  in kill_notes.md; only the full-lens two-corner version is a theorem.
+  **Lesson:** do not re-dispatch per-type minimal-window exclusions for
+  the 13 realized classes, and do not build single-center window banks
+  for the tail; a viable Candidate D must couple ≥ 2 centers (the Q3
+  two-center window is the smallest such object, toolkit K-A/K-B/K-E);
+  bake the three proven constraints into every future pattern
+  enumeration as free admissibility.

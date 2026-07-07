@@ -1,0 +1,16 @@
+O0x,O0y,O2x,O2y,O8x,O8y,I2x,I2y,I7x,I7y,u0,u1,u2,u3,u4,u5,u6,u7,u8,u9
+0
+0,
+2*O0x*O2x - 2*O0x*O8x + 2*O0y*O2y - 2*O0y*O8y - O2x^2 - O2y^2 + O8x^2 + O8y^2,
+I2x^2 - 2*I2x*O0x + I2y^2 - 2*I2y*O0y + 2*O0x*O2x + 2*O0y*O2y - O2x^2 - O2y^2,
+I7x^2 - 2*I7x*O0x + I7y^2 - 2*I7y*O0y + 2*O0x*O2x + 2*O0y*O2y - O2x^2 - O2y^2,
+O0x^2*u0 - 2*O0x*O2x*u0 + O0y^2*u0 - 2*O0y*O2y*u0 + O2x^2*u0 + O2y^2*u0 - 1,
+O0x^2*u1 - 2*O0x*O8x*u1 + O0y^2*u1 - 2*O0y*O8y*u1 + O8x^2*u1 + O8y^2*u1 - 1,
+I2x^2*u2 - 2*I2x*O0x*u2 + I2y^2*u2 - 2*I2y*O0y*u2 + O0x^2*u2 + O0y^2*u2 - 1,
+I7x^2*u3 - 2*I7x*O0x*u3 + I7y^2*u3 - 2*I7y*O0y*u3 + O0x^2*u3 + O0y^2*u3 - 1,
+O2x^2*u4 - 2*O2x*O8x*u4 + O2y^2*u4 - 2*O2y*O8y*u4 + O8x^2*u4 + O8y^2*u4 - 1,
+I2x^2*u5 - 2*I2x*O2x*u5 + I2y^2*u5 - 2*I2y*O2y*u5 + O2x^2*u5 + O2y^2*u5 - 1,
+I7x^2*u6 - 2*I7x*O2x*u6 + I7y^2*u6 - 2*I7y*O2y*u6 + O2x^2*u6 + O2y^2*u6 - 1,
+I2x^2*u7 - 2*I2x*O8x*u7 + I2y^2*u7 - 2*I2y*O8y*u7 + O8x^2*u7 + O8y^2*u7 - 1,
+I7x^2*u8 - 2*I7x*O8x*u8 + I7y^2*u8 - 2*I7y*O8y*u8 + O8x^2*u8 + O8y^2*u8 - 1,
+I2x^2*u9 - 2*I2x*I7x*u9 + I2y^2*u9 - 2*I2y*I7y*u9 + I7x^2*u9 + I7y^2*u9 - 1

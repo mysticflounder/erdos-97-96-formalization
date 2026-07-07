@@ -1,0 +1,5 @@
+(0,3,0,1): no witness (pool-fails=4650 verify-fails=0 first_bad=[])
+(0,4,0,0): no witness (pool-fails=6090 verify-fails=0 first_bad=[])
+(1,1,1,1): REALIZED vc=['v2'] k=0
+(1,2,0,1): no witness (pool-fails=1305 verify-fails=0 first_bad=[])
+(1,3,0,0): no witness (pool-fails=1305 verify-fails=0 first_bad=[])

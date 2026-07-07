@@ -400,6 +400,23 @@ patterns with all points distinct.
   extension deferred pending the probe verdict** — a successful D would
   subsume the head (HEURISTIC), and a failed probe sharpens the
   card-≥15 residual definition either way.
+  **PROBE LANDED 2026-07-07, validated** (orchestrator re-verified all
+  13 witnesses + both Q2 banks in independent exact arithmetic;
+  `scratch/candidate-d-probe/report.md`). Verdict: the pure per-type
+  route for Card12Up is CLOSED — 13/19 reflected classes are REALIZED
+  at the decorated minimal window (exact rational witnesses), and Q2
+  confirms obstruction D1 token-level (admissible patterns avoiding
+  every killed type exist at every n = 12–16, even granting all
+  conjectured kills). Extracted structure, PROVEN and leaf-implied,
+  free to any successor route (C-split enumeration included):
+  m ≤ 2 per packet; vertex-pair packets have s = 0 (kills (2,1,0,1),
+  (2,2,0,0) unconditionally — kill mechanism K-A/K-B/K-C, hand-checked);
+  s = 2 packets occur only in straddle form. The s ≥ 3 kills ride SUB2
+  (one 7-variable NRA sentence, CONJECTURED-UNSAT with infimum-zero
+  boundary; z3/cvc5 time out; QEPCAD/Redlog or a collapse-limit hand
+  proof would decide it). A viable Candidate D must couple constraints
+  ACROSS centers — the Q3 two-center window (unprobed, budget) is the
+  smallest such object. **C-split go/no-go returns to Adam.**
 
 D1, D2, the dichotomy, the D3 formulation pass, and the Candidate B
 embedding test are done; together they bound the proof's largest
@@ -409,8 +426,13 @@ counting invariant decides, the mined-core kill mechanism is uniformly
 OR row-decorated — is FALSE at n ≥ 15 (explicit realizable witnesses with
 exact-verified ρ+γ embeddings). The ideal-theoretic route for the tail is
 closed; the split decision resolved 2026-07-07 (Adam): Candidate D probe
-first (dispatched, §7 D3), with the Candidate C head split deferred as the
-standing fallback pending the probe's verdict.
+first, with the Candidate C head split deferred as the standing fallback.
+The probe landed 2026-07-07 (§7 D3, validated): per-type kills cannot
+cover the tail — 13/19 classes realizable at the minimal window and D1
+confirmed token-level at every n = 12–16 — so any viable D couples
+constraints across centers; three unconditional leaf-implied constraints
+(m ≤ 2, vertex-pair ⇒ s = 0, s = 2 ⇒ straddle) were extracted for
+whatever route follows. The C-split go/no-go returns to Adam.
 
 ## 8. Global gates and hygiene
 
@@ -485,7 +507,7 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`scratch/candidate-d-probe/`, §7 D3); C head split deferred as standing fallback |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`scratch/candidate-d-probe/`, §7 D3); C head split deferred as standing fallback. **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). Live D shape = cross-center coupling (Q3, unprobed). **C-split go/no-go to Adam** |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
@@ -496,6 +518,7 @@ computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy+D3
 formulation+B embedding (all done) have bounded it from every side — no
 theorem transfers, no counting invariant decides, kill mechanism uniformly
 ℂ-ideal-theoretic at n=12, and every equality/separator-shaped uniform
-statement (pattern-level or row-decorated) is FALSE at n ≥ 15. U4's active
-lane is the Candidate D probe (dispatched 2026-07-07, §7 D3); the C head
-split is the standing fallback pending its verdict.
+statement (pattern-level or row-decorated) is FALSE at n ≥ 15, and the
+D probe (landed 2026-07-07, §7 D3) closed the pure per-type route while
+extracting three unconditional structural constraints. U4's next move is
+Adam's C-split go/no-go; the live D shape is cross-center coupling.
