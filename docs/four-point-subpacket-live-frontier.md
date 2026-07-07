@@ -158,12 +158,13 @@ Lean names:
 
 Checkpoint, 2026-07-07:
 
-Three finite-scaffold row bridges are now proved:
+Four finite-scaffold row bridges are now proved:
 
 ```text
 rightNonSurplusRow0022Excluded_of_finiteScaffold
 leftNonSurplusRow0022Excluded_of_finiteScaffold
 rightNonSurplusRow0121Excluded_of_finiteScaffold
+leftNonSurplusRow0112Excluded_of_finiteScaffold
 ```
 
 The row0022 bridges choose the named surplus triple around the row's own two
@@ -174,7 +175,11 @@ cross-separation contradiction through
 uses `IsM44.right_row0121_selectedClass_eq_oppInterior2_union_sameCap_surplus`
 to identify the selected class as the other non-surplus pair, the other
 same-cap private point, and one surplus-side singleton, then applies
-`false_of_right_row0121_finiteCandidateFacts`.
+`false_of_right_row0121_finiteCandidateFacts`.  The left mirror row
+`(0,1,1,2)` is also proved by
+`IsM44.left_row0112_selectedClass_eq_oppInterior1_union_sameCap_surplus`,
+`left_row0112_exists_erasedPinRowSeed_privateMask`, and
+`false_of_left_row0112_finiteCandidateFacts`.
 
 These are real producer bridges, but they do not by themselves delete the
 on-spine `hprunedRows` `sorry`, because the current pruned-row statement does
@@ -315,6 +320,15 @@ one of the generated `ep_right_m0_s1_l2_r1` seeds, and
 `rightNonSurplusRow0121Excluded_of_finiteScaffold` closes the row from the
 finite scaffold.
 
+Left row `(0,1,1,2)` is now proved by the mirror path.  The decomposition
+`SurplusCapPacket.IsM44.left_row0112_selectedClass_eq_oppInterior1_union_sameCap_surplus`
+identifies `.Q1/.Q2`, the other same-cap private point, and the
+surplus-side singleton.  The bridge
+`left_row0112_exists_erasedPinRowSeed_privateMask` translates that class into
+one of the generated `ep_left_m0_s1_l1_r2` seeds, and
+`leftNonSurplusRow0112Excluded_of_finiteScaffold` closes the row from the
+finite scaffold.
+
 July 7 checkpoint: the missing row validator fact has now been isolated and
 proved at the finite-mask layer.  In
 `SurplusCOMPGBankGeometry.lean`,
@@ -353,7 +367,8 @@ The erased-pin finite plan is therefore:
 2. Wire the corresponding geometric adapters into the pruned-row producer
    surface using the existing `hsearchSep`, exact `.w` mask, and private-mask
    placement interfaces.  Current geometric progress: right `(0,0,2,2)`, left
-   `(0,0,2,2)`, and right `(0,1,2,1)` are proved from the finite scaffold.
+   `(0,0,2,2)`, right `(0,1,2,1)`, and left `(0,1,1,2)` are proved from the
+   finite scaffold.
 3. Treat the other 18 finite ten-label rows as a separate residual requiring
    a stronger validator interface, partial row splitting, or the full
    fixed-seed DFS shadow route.
