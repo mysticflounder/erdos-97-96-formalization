@@ -1,0 +1,245 @@
+{
+  "gates": {
+    "G1_left_1012_mirror": "WITNESS-FOUND",
+    "G1_right_1021": "WITNESS-FOUND",
+    "G2_N1_moser3": "NO-WITNESS (expected; PROVEN impossible)",
+    "G2_N2_endpoint_two_hit": "NO-WITNESS (expected; PROVEN impossible)",
+    "G2_N3_cardinality_vacuous": "PASS (s2 assignments=0, l3 assignments=0)"
+  },
+  "rows": {
+    "ep_left_m0_s0_l1_r3": {
+      "reason": "r=3 hits needed in the 2-element oppIndex1 interior; closed by leftNonSurplusRightAdjacentThreeRowExcluded",
+      "searched": false,
+      "verdict": "STRUCTURALLY-IMPOSSIBLE (Lean-closed)"
+    },
+    "ep_left_m0_s0_l2_r2": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m0_s0_l2_r2",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s0_l2_r2.json"
+    },
+    "ep_left_m0_s0_l3_r1": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m0_s0_l1_r3",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s0_l3_r1.json"
+    },
+    "ep_left_m0_s0_l4_r0": {
+      "checks": "64/64",
+      "mirror_of": "ep_right_m0_s0_l0_r4",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s0_l4_r0.json"
+    },
+    "ep_left_m0_s1_l1_r2": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m0_s1_l2_r1",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s1_l1_r2.json"
+    },
+    "ep_left_m0_s1_l2_r1": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m0_s1_l1_r2",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s1_l2_r1.json"
+    },
+    "ep_left_m0_s1_l3_r0": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m0_s1_l0_r3",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m0_s1_l3_r0.json"
+    },
+    "ep_left_m1_s0_l1_r2": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m1_s0_l2_r1",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m1_s0_l1_r2.json"
+    },
+    "ep_left_m1_s0_l2_r1": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m1_s0_l1_r2",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m1_s0_l2_r1.json"
+    },
+    "ep_left_m1_s0_l3_r0": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m1_s0_l0_r3",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m1_s0_l3_r0.json"
+    },
+    "ep_left_m1_s1_l1_r1": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m1_s1_l1_r1",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m1_s1_l1_r1.json"
+    },
+    "ep_left_m1_s1_l2_r0": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m1_s1_l0_r2",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m1_s1_l2_r0.json"
+    },
+    "ep_left_m2_s0_l1_r1": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m2_s0_l1_r1",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m2_s0_l1_r1.json"
+    },
+    "ep_left_m2_s0_l2_r0": {
+      "checks": "59/59",
+      "mirror_of": "ep_right_m2_s0_l0_r2",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_left_m2_s0_l2_r0.json"
+    },
+    "ep_right_m0_s0_l0_r4": {
+      "assignment": "r0004_Pu_s1s2s3s4",
+      "checks": "64/64",
+      "model_n": 11,
+      "restart": 0,
+      "seconds": 0.4,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s0_l0_r4.json"
+    },
+    "ep_right_m0_s0_l1_r3": {
+      "assignment": "r0013_Pu_Q2s1s2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 4,
+      "seconds": 4.2,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s0_l1_r3.json"
+    },
+    "ep_right_m0_s0_l2_r2": {
+      "assignment": "r0022_Pu_Q1Q2s2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 2,
+      "seconds": 0.9,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s0_l2_r2.json"
+    },
+    "ep_right_m0_s0_l3_r1": {
+      "reason": "l=3 hits needed in the 2-element oppIndex2 interior; closed by rightNonSurplusLeftAdjacentThreeRowExcluded",
+      "searched": false,
+      "verdict": "STRUCTURALLY-IMPOSSIBLE (Lean-closed)"
+    },
+    "ep_right_m0_s1_l0_r3": {
+      "assignment": "r0103_Pu_Pws1s2s3_deep",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 17,
+      "seconds": 39.2,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s1_l0_r3.json"
+    },
+    "ep_right_m0_s1_l1_r2": {
+      "assignment": "r0112_Pu_PwQ1s2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 4,
+      "seconds": 1.4,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s1_l1_r2.json"
+    },
+    "ep_right_m0_s1_l2_r1": {
+      "assignment": "r0121_Pu_PwQ1Q2s2",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 0.3,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m0_s1_l2_r1.json"
+    },
+    "ep_right_m1_s0_l0_r3": {
+      "assignment": "r1003_Pu_ws1s2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 3.1,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m1_s0_l0_r3.json"
+    },
+    "ep_right_m1_s0_l1_r2": {
+      "assignment": "r1012_Pu_uQ1s2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 0.3,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m1_s0_l1_r2.json"
+    },
+    "ep_right_m1_s0_l2_r1": {
+      "assignment": "r1021_Pu_uQ1Q2s2",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 0.3,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m1_s0_l2_r1.json"
+    },
+    "ep_right_m1_s1_l0_r2": {
+      "assignment": "r1102_Pu_vPws2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 17.4,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m1_s1_l0_r2.json"
+    },
+    "ep_right_m1_s1_l1_r1": {
+      "assignment": "r1111_Pu_uPwQ1s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 1,
+      "seconds": 3.4,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m1_s1_l1_r1.json"
+    },
+    "ep_right_m2_s0_l0_r2": {
+      "assignment": "r2002_Pu_uws2s3",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 0.3,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m2_s0_l0_r2.json"
+    },
+    "ep_right_m2_s0_l1_r1": {
+      "assignment": "r2011_Pu_uwQ1s2",
+      "checks": "59/59",
+      "model_n": 10,
+      "restart": 0,
+      "seconds": 0.3,
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_ep_right_m2_s0_l1_r1.json"
+    }
+  },
+  "schema": "erased_pin_row_truth_results.v1",
+  "summary": {
+    "date": "2026-07-07",
+    "no_witness_at_budget": 0,
+    "non_terminal_rows_total": 28,
+    "scope": "witnesses satisfy every hypothesis of the routed-rows statement EXCEPT HasNEquidistantProperty 4 A (K4-everywhere); minimality holds unconditionally for the n=10 witnesses via the proven n<=9 endpoint, undecided for the single n=11 witness (row r=4/l=4). Realizability kills per-row local-geometric exclusion lemmas/certificates (incl. those drawing on the five ambient inputs); it does not by itself falsify the exists-x-shaped spine obligation.",
+    "structurally_impossible_lean_closed": 2,
+    "surplus_side_probes": {
+      "surplus_interior": "WITNESS-FOUND",
+      "surplus_opposite": "WITNESS-FOUND"
+    },
+    "unresolved": 0,
+    "witness_found": 26,
+    "witness_standard": "exact-rational full (m,4,4) packet configuration; all equalities exact by construction; all strict checks exact Fraction sign tests; independently re-verified by self-contained verify_rows.py (exit 0); ambient-input check: all five routed-rows exclusion/containment inputs decided exactly and HOLD on every witness (check_inputs.py)"
+  },
+  "surplus": {
+    "surplus_interior": {
+      "checks": "58/58",
+      "composition": "SI_c-s1_Q2vPu",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_surplus_interior_SI_c-s1_Q2vPu.json"
+    },
+    "surplus_opposite": {
+      "checks": "58/58",
+      "composition": "SO_t2_PuQ1",
+      "verdict": "WITNESS-FOUND",
+      "witness_file": "witness_surplus_opposite_SO_t2_PuQ1.json"
+    }
+  }
+}

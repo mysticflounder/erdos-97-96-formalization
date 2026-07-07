@@ -1,0 +1,67 @@
+== row ep_right_m0_s0_l2_r2 (and mirror ep_left_m0_s0_l2_r2) ==
+  6 label assignments
+    [r0022_Pu_Q1Q2s2s3] restart 2: float score 0.2273 -> EXACT WITNESS (59/59 checks)
+  ep_right_m0_s0_l2_r2: WITNESS-FOUND (r0022_Pu_Q1Q2s2s3) in 1s; mirror WITNESS-FOUND
+== row ep_right_m0_s0_l1_r3 (and mirror ep_left_m0_s0_l3_r1) ==
+  4 label assignments
+    [r0013_Pu_Q1s1s2s3] no witness at quick budget (best 0.0145 worst cvx[s1,s2,s3])
+    [r0013_Pu_Q2s1s2s3] restart 4: float score 0.0358 -> EXACT WITNESS (59/59 checks)
+  ep_right_m0_s0_l1_r3: WITNESS-FOUND (r0013_Pu_Q2s1s2s3) in 4s; mirror WITNESS-FOUND
+== row ep_right_m0_s1_l2_r1 (and mirror ep_left_m0_s1_l1_r2) ==
+  6 label assignments
+    [r0121_Pu_PwQ1Q2s2] restart 0: float score 0.0267 -> EXACT WITNESS (59/59 checks)
+  ep_right_m0_s1_l2_r1: WITNESS-FOUND (r0121_Pu_PwQ1Q2s2) in 0s; mirror WITNESS-FOUND
+== row ep_right_m0_s1_l1_r2 (and mirror ep_left_m0_s1_l2_r1) ==
+  12 label assignments
+    [r0112_Pu_PwQ1s2s3] restart 4: float score 0.2830 -> EXACT WITNESS (59/59 checks)
+  ep_right_m0_s1_l1_r2: WITNESS-FOUND (r0112_Pu_PwQ1s2s3) in 1s; mirror WITNESS-FOUND
+  ep_right_m1_s0_l2_r1: already done
+== row ep_right_m1_s0_l1_r2 (and mirror ep_left_m1_s0_l2_r1) ==
+  36 label assignments
+    [r1012_Pu_uQ1s2s3] restart 0: float score 0.0413 -> EXACT WITNESS (59/59 checks)
+  ep_right_m1_s0_l1_r2: WITNESS-FOUND (r1012_Pu_uQ1s2s3) in 0s; mirror WITNESS-FOUND
+== row ep_right_m1_s1_l1_r1 (and mirror ep_left_m1_s1_l1_r1) ==
+  36 label assignments
+    [r1111_Pu_uPwQ1s2] no witness at quick budget (best 0.0000 worst dist[u,Q1])
+    [r1111_Pu_uPwQ1s3] restart 1: float score 0.0470 -> EXACT WITNESS (59/59 checks)
+  ep_right_m1_s1_l1_r1: WITNESS-FOUND (r1111_Pu_uPwQ1s3) in 3s; mirror WITNESS-FOUND
+== row ep_right_m2_s0_l1_r1 (and mirror ep_left_m2_s0_l1_r1) ==
+  36 label assignments
+    [r2011_Pu_uwQ1s2] restart 0: float score 0.1143 -> EXACT WITNESS (59/59 checks)
+  ep_right_m2_s0_l1_r1: WITNESS-FOUND (r2011_Pu_uwQ1s2) in 0s; mirror WITNESS-FOUND
+== row ep_right_m0_s0_l0_r4 (and mirror ep_left_m0_s0_l4_r0) ==
+  2 label assignments
+    [r0004_Pu_s1s2s3s4] restart 0: float score 0.1320 -> EXACT WITNESS (64/64 checks)
+  ep_right_m0_s0_l0_r4: WITNESS-FOUND (r0004_Pu_s1s2s3s4) in 0s; mirror WITNESS-FOUND
+== row ep_right_m0_s1_l0_r3 (and mirror ep_left_m0_s1_l3_r0) ==
+  2 label assignments
+    [r0103_Pu_Pws1s2s3] no witness at quick budget (best -0.0007 worst cvx[v,s1,s2])
+    [r0103_Pw_Pus1s2s3] no witness at quick budget (best -0.0001 worst cvx[v,s1,s3])
+    [r0103_Pu_Pws1s2s3_deep] restart 17: float score 0.0399 -> EXACT WITNESS (59/59 checks)
+  ep_right_m0_s1_l0_r3: WITNESS-FOUND (r0103_Pu_Pws1s2s3_deep) in 39s; mirror WITNESS-FOUND
+== row ep_right_m1_s0_l0_r3 (and mirror ep_left_m1_s0_l3_r0) ==
+  6 label assignments
+    [r1003_Pu_us1s2s3] no witness at quick budget (best 0.0000 worst cvx[s1,s2,s3])
+    [r1003_Pu_ws1s2s3] restart 0: float score 0.0346 -> EXACT WITNESS (59/59 checks)
+  ep_right_m1_s0_l0_r3: WITNESS-FOUND (r1003_Pu_ws1s2s3) in 3s; mirror WITNESS-FOUND
+== row ep_right_m1_s1_l0_r2 (and mirror ep_left_m1_s1_l2_r0) ==
+  18 label assignments
+    [r1102_Pu_uPws2s3] no witness at quick budget (best -0.1184 worst disk[Pw])
+    [r1102_Pu_uPws1s2] no witness at quick budget (best -0.1239 worst disk[Pw])
+    [r1102_Pu_uPws1s3] no witness at quick budget (best -0.2717 worst disk[Pw])
+    [r1102_Pu_wPws2s3] no witness at quick budget (best -0.0001 worst disk[Pw])
+    [r1102_Pu_wPws1s2] no witness at quick budget (best -0.0000 worst disk[Pw])
+    [r1102_Pu_wPws1s3] no witness at quick budget (best -0.0007 worst disk[Pw])
+    [r1102_Pu_vPws2s3] restart 0: float score 0.1745 -> EXACT WITNESS (59/59 checks)
+  ep_right_m1_s1_l0_r2: WITNESS-FOUND (r1102_Pu_vPws2s3) in 17s; mirror WITNESS-FOUND
+== row ep_right_m2_s0_l0_r2 (and mirror ep_left_m2_s0_l2_r0) ==
+  18 label assignments
+    [r2002_Pu_uws2s3] restart 0: float score 0.0641 -> EXACT WITNESS (59/59 checks)
+  ep_right_m2_s0_l0_r2: WITNESS-FOUND (r2002_Pu_uws2s3) in 0s; mirror WITNESS-FOUND
+== surplus-opposite probe: center u ==
+    [SO_t2_PuQ1] restart 0: float score 0.0881 -> EXACT WITNESS (58/58 checks)
+== surplus-interior probe: center in surplus ints ==
+    [SI_c-s3_uQ1Pw] no witness (best -0.0432 worst acute[u])
+    [SI_c-s3_s1Q1u] no witness (best -0.0000 worst cvx[v,s1,s2])
+    [SI_c-s1_Q2vPu] restart 2: float score 0.0585 -> EXACT WITNESS (58/58 checks)
+DONE

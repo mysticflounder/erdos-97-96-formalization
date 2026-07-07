@@ -1,0 +1,1575 @@
+== verify witness_ep_left_m0_s0_l2_r2.json: center Q1, class ('Pu', 'Pw', 's2', 's1'), x s2, row (0, 0, 2, 2), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 8051488178802206027759823519/1772176698293381481918050401600)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 'Pw', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 2, 2) == row (0, 0, 2, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m0_s0_l3_r1.json: center Q1, class ('Pw', 's3', 's2', 's1'), x s3, row (0, 0, 3, 1), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 51763163295961472254895699/72076331055274085124941132800)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 's3', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 3, 1) == row (0, 0, 3, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m0_s0_l4_r0.json: center Q1, class ('s4', 's3', 's2', 's1'), x s4, row (0, 0, 4, 0), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 strictInDisk[s4]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 capSide[s4 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[s4 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[s4 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (165 triples)  (min sa2 3838510629292428249/1454663133880118202625)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 's3', 's4'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 4, 0) == row (0, 0, 4, 0)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m0_s1_l1_r2.json: center Q1, class ('Q2', 'Pu', 'Pw', 's2'), x s2, row (0, 1, 1, 2), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 7657274805393475301/13799769785078711588000)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 's2', 'Pw', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 1, 2) == row (0, 1, 1, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m0_s1_l2_r1.json: center Q1, class ('Q2', 'Pu', 's2', 's1'), x s2, row (0, 1, 2, 1), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 60824822217111345890395/10679085233980055047997688)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 's1', 's2', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 2, 1) == row (0, 1, 2, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m0_s1_l3_r0.json: center Q1, class ('Q2', 's3', 's2', 's1'), x s3, row (0, 1, 3, 0), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 2479090866242705536050101/3099595428077096093148929695)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 's1', 's2', 's3'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 3, 0) == row (0, 1, 3, 0)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m1_s0_l1_r2.json: center Q1, class ('u', 'Pu', 'Pw', 's2'), x s2, row (1, 0, 1, 2), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 2268910555694688732360064/202678823381707078705145055)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 's2', 'Pw', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 1, 2) == row (1, 0, 1, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m1_s0_l2_r1.json: center Q1, class ('u', 'Pu', 's2', 's1'), x s2, row (1, 0, 2, 1), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 255183196142169262418753189/309001352042525308121660341000)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 's1', 's2', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 2, 1) == row (1, 0, 2, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m1_s0_l3_r0.json: center Q1, class ('v', 's3', 's2', 's1'), x s3, row (1, 0, 3, 0), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 37069129778512/53529176232182735)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('v', 's1', 's2', 's3'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 3, 0) == row (1, 0, 3, 0)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m1_s1_l1_r1.json: center Q1, class ('u', 'Q2', 'Pu', 's1'), x s1, row (1, 1, 1, 1), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 968929539149228965/977714761292676943134)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'Q2', 's1', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 1, 1, 1) == row (1, 1, 1, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m1_s1_l2_r0.json: center Q1, class ('w', 'Q2', 's2', 's1'), x s2, row (1, 1, 2, 0), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 1317014/339574521)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 's1', 's2', 'w'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 1, 2, 0) == row (1, 1, 2, 0)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m2_s0_l1_r1.json: center Q1, class ('u', 'v', 'Pu', 's2'), x s2, row (2, 0, 1, 1), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 9077533309501/4022605132863668)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'v', 's2', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (2, 0, 1, 1) == row (2, 0, 1, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_left_m2_s0_l2_r0.json: center Q1, class ('u', 'v', 's2', 's1'), x s2, row (2, 0, 2, 0), side left ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 20844429523760161596365/16254217836682203248080938)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'v', 's1', 's2'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (2, 0, 2, 0) == row (2, 0, 2, 0)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s0_l0_r4.json: center Pu, class ('s1', 's2', 's3', 's4'), x s1, row (0, 0, 0, 4), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 strictInDisk[s4]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 capSide[s4 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[s4 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[s4 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (165 triples)  (min sa2 3838510629292428249/1454663133880118202625)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 's3', 's4'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 0, 4) == row (0, 0, 0, 4)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s0_l1_r3.json: center Pu, class ('Q2', 's1', 's2', 's3'), x s1, row (0, 0, 1, 3), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 51763163295961472254895699/72076331055274085124941132800)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 's1', 's2', 's3'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 1, 3) == row (0, 0, 1, 3)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s0_l2_r2.json: center Pu, class ('Q1', 'Q2', 's2', 's3'), x s2, row (0, 0, 2, 2), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 8051488178802206027759823519/1772176698293381481918050401600)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q1', 'Q2', 's2', 's3'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 0, 2, 2) == row (0, 0, 2, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s1_l0_r3.json: center Pu, class ('Pw', 's1', 's2', 's3'), x s1, row (0, 1, 0, 3), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 2479090866242705536050101/3099595428077096093148929695)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 's3', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 0, 3) == row (0, 1, 0, 3)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s1_l1_r2.json: center Pu, class ('Pw', 'Q1', 's2', 's3'), x s2, row (0, 1, 1, 2), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 60824822217111345890395/10679085233980055047997688)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q1', 's2', 's3', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 1, 2) == row (0, 1, 1, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m0_s1_l2_r1.json: center Pu, class ('Pw', 'Q1', 'Q2', 's2'), x s2, row (0, 1, 2, 1), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 7657274805393475301/13799769785078711588000)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q1', 'Q2', 's2', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (0, 1, 2, 1) == row (0, 1, 2, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m1_s0_l0_r3.json: center Pu, class ('w', 's1', 's2', 's3'), x s1, row (1, 0, 0, 3), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 37069129778512/53529176232182735)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('s1', 's2', 's3', 'w'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 0, 3) == row (1, 0, 0, 3)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m1_s0_l1_r2.json: center Pu, class ('u', 'Q1', 's2', 's3'), x s2, row (1, 0, 1, 2), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 255183196142169262418753189/309001352042525308121660341000)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'Q1', 's2', 's3'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 1, 2) == row (1, 0, 1, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m1_s0_l2_r1.json: center Pu, class ('u', 'Q1', 'Q2', 's2'), x s2, row (1, 0, 2, 1), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 2268910555694688732360064/202678823381707078705145055)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'Q1', 'Q2', 's2'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 0, 2, 1) == row (1, 0, 2, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m1_s1_l0_r2.json: center Pu, class ('v', 'Pw', 's2', 's3'), x s2, row (1, 1, 0, 2), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 1317014/339574521)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('v', 's2', 's3', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 1, 0, 2) == row (1, 1, 0, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m1_s1_l1_r1.json: center Pu, class ('u', 'Pw', 'Q1', 's3'), x s3, row (1, 1, 1, 1), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 968929539149228965/977714761292676943134)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'Q1', 's3', 'Pw'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (1, 1, 1, 1) == row (1, 1, 1, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m2_s0_l0_r2.json: center Pu, class ('u', 'w', 's2', 's3'), x s2, row (2, 0, 0, 2), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 20844429523760161596365/16254217836682203248080938)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 's2', 's3', 'w'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (2, 0, 0, 2) == row (2, 0, 0, 2)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_ep_right_m2_s0_l1_r1.json: center Pu, class ('u', 'w', 'Q1', 's2'), x s2, row (2, 0, 1, 1), side right ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 9077533309501/4022605132863668)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('u', 'Q1', 's2', 'w'))
+  [PASS] V8 class card 4
+  [PASS] V9 side matches center cap
+  [PASS] V9 counts (2, 0, 1, 1) == row (2, 0, 1, 1)
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_surplus_interior_SI_c-s1_Q2vPu.json: center s1, class ('s2', 'Q2', 'v', 'Pu'), x s2, row None, side None ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 1136825731/983256322400)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q2', 'v', 's2', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 center is a surplus interior
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+== verify witness_surplus_opposite_SO_t2_PuQ1.json: center u, class ('s2', 's3', 'Pu', 'Q1'), x s2, row None, side None ==
+  [PASS] V1 gauge v
+  [PASS] V1 gauge w
+  [PASS] V2 R2 = 1/4+k^2, Ox = 1/2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]
+  [PASS] V3 strictInDisk[Q2]
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]
+  [PASS] V3 strictInDisk[s2]
+  [PASS] V3 strictInDisk[s3]
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]
+  [PASS] V3 strictInDisk[Pu]
+  [PASS] V4 acuteAt[u]
+  [PASS] V4 acuteAt[v]
+  [PASS] V4 acuteAt[w]
+  [PASS] V5 chordRef[C_u] != 0
+  [PASS] V5 capSide[s1 in C_u]
+  [PASS] V5 capSide[s2 in C_u]
+  [PASS] V5 capSide[s3 in C_u]
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] != 0
+  [PASS] V5 capSide[Pw in C_v]
+  [PASS] V5 capSide[Pu in C_v]
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] != 0
+  [PASS] V5 capSide[Q1 in C_w]
+  [PASS] V5 capSide[Q2 in C_w]
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex (120 triples)  (min sa2 19650105582233157/11160476294568666637)
+  [PASS] V7 all pairs distinct
+  [PASS] V8 radius2 > 0
+  [PASS] V8 class recomputed == claimed  (recomputed ('Q1', 's2', 's3', 'Pu'))
+  [PASS] V8 class card 4
+  [PASS] V9 center u = surplus-opposite Moser vertex
+  [PASS] V10 x in class
+  [PASS] V10 x is surplus interior
+  [PASS] V10 x != center
+  [PASS] V10 residual triple card 3
+
+VERDICT: ALL WITNESSES VERIFIED (exact)
