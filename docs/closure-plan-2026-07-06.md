@@ -14,7 +14,11 @@ and the uncertainty register. The two lane plans —
 [`u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
 and [`four-point-subpacket-plan.md`](four-point-subpacket-plan.md) — own
 per-lane execution logs. Corrections they should fold in are in §11. Audit
-basis: the three 2026-07-06 audit docs under [`audits/`](audits/).
+basis: the three 2026-07-06 audit docs under [`audits/`](audits/). The
+sorry-level companion —
+[`sorry-closure-ledger-2026-07-06.md`](sorry-closure-ledger-2026-07-06.md) —
+enumerates every `sorry` in the tree (including in-proof case sorries and the
+off-spine pair) with a route and acceptance test each.
 
 Kernel state (fresh spine, 2026-07-06, post `[mining].skip` unblock):
 `Problem97.erdos97_rhs` 928/950 nodes closed; five sorry obligations open;
@@ -43,7 +47,7 @@ closed — no 96-specific work remains); two off-spine sorries in
 | 2 | `isM44PinnedSurplusResidualsExcluded` | `RemovableVertexAxiom.lean` | m-split: exact bank (m=5) + relaxed vocabulary (general m) | MEDIUM, enumerable (§3, U1) |
 | 3 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom.lean` | gated on the two-hit probe (§4) | MEDIUM → LOW after one solver-day |
 | 4 | `…MetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2383` | split: (5,5,4) census (\|A\|=11) + workstream D (\|A\|≥12) | \|A\|=11 MEDIUM; \|A\|≥12 HIGH (§7) |
-| 5 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3251` | parked; producer surface from D/census cores | HIGH, gated on §7 |
+| 5 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3251` | active in-tree branch split (ledger §2.5); COMP-1-blocked leaves still need a producer | HIGH on blocked leaves, gated on §7 |
 
 ## 2. Obligation 1 — endpoint residuals
 
@@ -99,13 +103,18 @@ commit must state the m-range each proved component covers.
 **Regime m ≥ 6 (the named residual's route).** The relaxed singleton
 vocabulary, not the exact masks:
 
-1. Per-row required-fact enumeration (zero solver cost): post-process
-   `certificates/surplus/relaxed_split_singleton/` + the census metadata into
-   the exact list of geometric submask facts each of the 135 rows needs.
-   Known composition per row: ~30 distance-equation generators (all seven
-   orientation families already covered by `GeometryBridge` adapters —
-   4050/4183 entries) + 1 Rabinowitsch separator on the 133 forced-collapse
-   rows.
+1. Per-row required-fact enumeration — **DONE 2026-07-06, residue EMPTY**
+   (`scripts/pinned-generalm-required-facts.py`;
+   `certificates/surplus/reports/pinned_surplus_generalm_required_facts.{json,md}`;
+   135/135 files pass validation, output byte-identical across runs). All
+   3041 nonzero-coefficient generators fall in exactly four fact categories:
+   exact v-center (269), exact w-center (338), Rabinowitsch separator (133 —
+   present and nonzero on every leaf that has one), erased-center facts with
+   both witnesses inside the leaf's `common_erased_masks` (2301). No fifth
+   category; zero residue instances. 72 distinct (center,witness) bits are
+   used; per-use classes: case_common 1782, path_entailed 2537, split_yes
+   283 (zero overlap) — split_path bits act as case hypotheses, confirming
+   the case-split reading.
 2. Separator transport: the separator zero-evaluation needs τ := 1/|u−v|²
    (resp. u,s1), i.e. exactly the pairwise distinctness the payload already
    has (`pinnedSurplusTenLabels_pairwise_of_mem`, closed). Mirror the
@@ -113,13 +122,13 @@ vocabulary, not the exact masks:
 3. Relaxed submask production at m ≥ 6: sub-mask facts are ⊆-monotone
    (one-hit/no-three survive relaxation), so the payload needs only its
    *labeled* witnesses in each class — the anonymous-witness gap the exact
-   masks had at `.u` does not arise by construction. Any fact in step 1's
-   list that is **not** derivable from the closed lemma families stays in the
-   named residual and is reported, not worked around. {{NEEDS_PROOF}} until
-   step 1's list is checked item-by-item (register U1).
+   masks had at `.u` does not arise by construction. Step 1's enumeration
+   confirms every needed fact is one of the four categories above, all of
+   which the closed lemma families cover by kind (register U1 RESOLVED).
 
-Uncertainty: MEDIUM but finite and enumerable — step 1 converts "does the
-relaxed route close general m" into a checklist with a per-item verdict.
+Uncertainty: LOW — the fact checklist is complete with an empty residue;
+what remains is Lean transport work (relaxed DFS completeness theorem +
+per-leaf application of the four fact kinds), not open enumeration.
 
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 
@@ -186,10 +195,15 @@ bank is empirically dead at |A| = 12, and bisector/radical-axis counting is
 fully spent in the existing kill (the 11-label no-collision table satisfies
 all incidence constraints).
 
-## 6. Obligation 5 — liveData (parked, with a tripwire)
+## 6. Obligation 5 — liveData (active branch split; tripwire stands)
 
-Correctly parked: the older equality leaves are SAT under the finite core
-vocabulary — no certificate exists to hunt. Progress requires a new producer:
+Status corrected 2026-07-06: the lane is no longer parked. The working tree
+carries an active ~2300-line f2CriticalRow branch split (84 fully-ordered
+label-assignment leaves; 12 closed by row consumers; 72 leaf + 7 terminal
+sorries open at snapshot) — anatomy, coordination requirements, and
+acceptance in ledger §2.5. Parking still applies to *certificate hunts*: the
+older equality leaves are SAT under the finite core vocabulary — no
+certificate exists to hunt. The COMP-1-blocked leaves need a new producer:
 a sixth critical row + consumer, a collision/no-collision producer, or a
 packet-label-centered surface avoiding the `hocc_f2_f1_0` incompatibility
 (proven in-file). Tripwire: the moment §5's census or §7's work yields any
@@ -212,12 +226,27 @@ Equidistance constraints are point-on-perpendicular-bisector incidences, so
 the target is a realizability criterion for near-critical bisector-incidence
 patterns with all points distinct.
 
-- **D1 — literature scan (research dispatch, independent):** bisector
-  arrangements; isosceles constraint systems; Euclidean incidence rigidity;
-  EDM completions with equality patterns (Cayley–Menger rank ≤ 4);
-  realizability of near-critical bisector-incidence patterns. Deliverable:
-  annotated lead list, each lead labeled PROVEN-in-literature / partial /
-  no-lead.
+- **D1 — literature scan: DONE 2026-07-06**
+  ([`d1-rigidity-literature-scan-2026-07-06.md`](d1-rigidity-literature-scan-2026-07-06.md);
+  verified-citations-only, 7 PROVEN-in-literature / 16 PARTIAL / 5 NO-LEAD /
+  0 unverified-memory). Headline: **no theorem transfers directly** — the
+  target class (near-critical equidistance frameworks, forced-coincidence
+  kills, δ = −1 infeasibles) is not characterized anywhere; two explicit
+  literature nulls recorded (EDM completion with equality patterns among
+  unspecified entries; any combinatorial criterion for the class). Ranked
+  adaptable leads with concrete next steps: (1) ℂ-vs-ℝ saturation dichotomy
+  (Wu 1986; Chou 1988) — classify each mined dead core as ℂ-dead vs
+  ℝ-only-dead from the existing kill artifacts; this one bit routes D3
+  between an ideal-theoretic lemma and a census-shaped route; (2)
+  coordinated edge motions (Schulze–Serocold–Theran, arXiv:1807.05376) —
+  coordination-class sparsity counts as a D2 invariant; (3) coincident
+  deletion–contraction rigidity (Fekete–Jordán–Kaszanitzky 2015;
+  Guler–Jackson arXiv:2106.06767) — pair-contracted rank profiles as a D2
+  invariant; (4) witness-configuration rank defects (Michelucci–Foufou
+  2006) for the δ = −1 cores; (5) EDM linear-section reformulation
+  (Alfakih 2018) as the clean restatement to pose D3 in. Leads (2)–(4) feed
+  D2's invariant menu directly; lead (1) is a new cheap dispatch on data we
+  already have.
 - **D2 — invariant separation test (solver dispatch, independent):** compute
   candidate combinatorial invariants over the mined dead cores vs
   known-realizable controls (the ALIVE sampled cubes from the same census)
@@ -307,10 +336,10 @@ Both: fold per the §8 doc-ownership rule.
 
 | ID | Unknown | Severity | Resolved by |
 |---|---|---|---|
-| U1 | Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families? | MEDIUM | the enumeration itself; leftovers land in the named residual |
+| U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | Two-hit configuration SAT or UNSAT? | MEDIUM | §4 probe (one solver-day) |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run (after smoke gates) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 lead or D2 separation signal; else honest OPEN report |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE: no direct transfer, 5 adaptable leads (§7) — leads 2–4 feed D2's invariant menu, lead 1 (ℂ-vs-ℝ dichotomy) is a new cheap dispatch; next signal = D2 separation or dichotomy classification; else honest OPEN report |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | trustCompiler approval | admin | {{NEEDS_ADAM_INPUT}} |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
