@@ -160,6 +160,29 @@ def run_ring(fname):
         check(at_r == K, f"{name}: class at {c} is not the FULL radius class")
         margin = min(abs(d2[c][z] - r2) for z in range(n) if z != c and z not in K)
         check(margin > mpf('1e-6'), f"{name}: exactness margin at {c} only {margin}")
+    # radius-multiplicity profile per point: exactly ONE cluster of size >= 4,
+    # of size exactly 4, equal to the committed class (decides the no_qfree /
+    # single-shell structure behind the Candidate B density claim); plus
+    # coverage totality (every point is a member of some class).
+    for c in range(n):
+        vals = sorted((d2[c][z], z) for z in range(n) if z != c)
+        clusters, cur = [], [vals[0]]
+        for v in vals[1:]:
+            if v[0] - cur[-1][0] < mpf('1e-30'):
+                cur.append(v)
+            else:
+                clusters.append(cur); cur = [v]
+        clusters.append(cur)
+        assert all(abs(cl[-1][0] - cl[0][0]) < mpf('1e-30') for cl in clusters)
+        big = [cl for cl in clusters if len(cl) >= 4]
+        check(len(big) == 1 and len(big[0]) == 4 and {z for _, z in big[0]} == classes[c],
+              f"{name}: point {c} multiplicity profile not single-exact-4 "
+              f"(big clusters: {[len(cl) for cl in big]})")
+    covered = set()
+    for K in classes.values():
+        covered |= K
+    check(covered == set(range(n)), f"{name}: shell coverage not total (missing {set(range(n)) - covered})")
+    print(f"  {name}: per-point profile single-mult-4 = committed class (no_qfree) ok; coverage total")
     # distinctness + general position
     mind2 = min(d2[i][j] for i in range(n) for j in range(i + 1, n))
     check(mind2 > mpf('0.1'), f"{name}: min pairwise d2 {mind2}")

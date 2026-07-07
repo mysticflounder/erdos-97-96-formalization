@@ -763,11 +763,23 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   (rings: inner ring strictly inside the outer polygon's inscribed circle;
   lattices: interior points) — the Lean leaf itself (ConvexIndep) is
   untouched; the tail's mathematical content is exactly the convex-position
-  coupling, per (Q)-flavor. Still open/supported: the n ∈ {12,13,14} head
-  (4460/4460 sampled patterns dead across seven cap profiles, kills localize
-  to ≤ 8-point windows) and the row-decorated remnant (Candidate B,
-  embedding test pending). **Lesson:** any future uniform |A| ≥ 12 proposal
-  must kill the banked falsifiers (W15/W16-tri/W16-sq in
-  `scratch/d3-formulation/t1_results.json` + the two-ring family,
-  `scratch/d3-formulation/t9_wit_*.json`) before dispatch; convexity-free
-  pattern abstractions cannot close the tail.
+  coupling, per (Q)-flavor. The row-decorated remnant (Candidate B — the
+  maximal ideal-theoretic statement extractable from the leaf, adding the
+  six named liveData points, the five critical rows, `no_qfree`, and the
+  shell system γ) is ALSO FALSE (settled 2026-07-07): the row fragment ρ
+  embeds in every ring witness, abundantly — every enumerated candidate
+  assignment is a solution (572/572, 572/572, 1020/1020; 220/220/360 with
+  q strictly in S ∖ {V,W}); equality conjuncts PROVEN by sympy
+  minimal-polynomial decisions, complete enumeration, empty near-miss
+  window; independently confirmed via the single-mult-4 radius-profile +
+  total-coverage structure (`scratch/d3-formulation/candidateB/`). With A
+  and B both falsified, the ideal-theoretic uniform shape for the Card12Up
+  tail is CLOSED; the surviving routes are the head split (n ∈ {12,13,14}:
+  4460/4460 sampled patterns dead, kills localize to ≤ 8-point windows) and
+  convexity-coupled forcing (Candidate D vocabulary). **Lesson:** any
+  future uniform |A| ≥ 12 proposal must be convexity-coupled — the banked
+  falsifiers (W15/W16-tri/W16-sq in `scratch/d3-formulation/t1_results.json`
+  + the two-ring family, `scratch/d3-formulation/t9_wit_*.json`, which now
+  carry exact-verified ρ+γ embeddings) kill every equality/separator-shaped
+  statement, including row-decorated ones; do not re-dispatch pattern-level
+  or ideal-theoretic uniform lemmas for the tail.

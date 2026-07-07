@@ -357,32 +357,42 @@ patterns with all points distinct.
   window at any size, so no dead-pattern bank covers the tail, regardless
   of proof technology. All witnesses are NON-convex (verified) — the Lean
   leaf itself (ConvexIndep) is untouched; the tail's mathematical content
-  is exactly the convex-position coupling ((Q)-flavored). Survivors:
-  **Candidate B** (row-decorated remnant — the maximal ideal-theoretic
-  statement extractable from the leaf, adding the six named liveData points
-  + critical-row equalities; UNTESTED, embedding test vs the witnesses
-  dispatched 2026-07-06, poor prognosis per obstructions B1–B3);
-  **Candidate C** (head closer, n ∈ {12,13,14}: 4460/4460 sampled patterns
-  dead across seven cap profiles, kills localize to ≤ 8-point windows —
-  would split Card12Up into census-closable card-12–14 + a named card-≥15
-  residual; covering leg open); **Candidate D** (synthetic convexity-coupled
-  forcing, Near-Enemy shared-bisector + M44-squeeze vocabulary — the only
-  shape not excluded for the tail; no forcing mechanism identified;
-  obstructions D1–D3 recorded). Report + banked falsifiers:
-  `scratch/d3-formulation/report.md` (+ `t9_wit_*.json` — mandatory
-  falsification targets for any future uniform proposal); dead-ends entry
+  is exactly the convex-position coupling ((Q)-flavored). **Candidate B
+  (row-decorated remnant) FALSIFIED 2026-07-07** — the embedding test found
+  the critical-row fragment ρ (six named liveData points, five rows,
+  no_qfree, shell system γ) embeds in EVERY ring witness, abundantly:
+  every enumerated candidate is a solution (572/572, 572/572, 1020/1020;
+  220/220/360 strict q ∈ S∖{V,W}); equalities PROVEN by sympy
+  minimal-polynomial decisions, complete enumeration, empty near-miss
+  window, smoke-gated (planted SAT + 4 mutilation controls); independently
+  confirmed by the orchestrator via the single-mult-4 radius-profile +
+  total-coverage structure (`independent_check.py` extended — ALL PASS).
+  **With A and B both falsified, the ideal-theoretic uniform shape for the
+  Card12Up tail is closed outright.** Remaining routes: **Candidate C**
+  (head closer, n ∈ {12,13,14}: 4460/4460 sampled patterns dead across
+  seven cap profiles, kills localize to ≤ 8-point windows — would split
+  Card12Up into census-closable card-12–14 + a named card-≥15 residual;
+  covering leg open); **Candidate D** (synthetic convexity-coupled forcing,
+  Near-Enemy shared-bisector + M44-squeeze vocabulary — the only shape not
+  excluded for the tail; no forcing mechanism identified; obstructions
+  D1–D3 recorded). Reports + banked falsifiers:
+  `scratch/d3-formulation/report.md`, `scratch/d3-formulation/candidateB/`
+  (+ `t9_wit_*.json` / `t1_results.json` — mandatory falsification targets,
+  now carrying exact-verified ρ+γ embeddings); dead-ends entry
   `doubleapex-card12up-uniform-pattern-lemma`. **Decision to Adam:**
   (a) head/tail split per Candidate C + optional D groundwork, vs
-  (b) holding Card12Up whole pending a D mechanism; the in-flight B
-  embedding result sharpens either branch.
+  (b) holding Card12Up whole pending a D mechanism.
 
-D1, D2, the dichotomy, and the D3 formulation pass are done; together they
-bound the proof's largest uncertainty (register U4) from all four sides: no
-theorem transfers, no counting invariant decides, the mined-core kill
-mechanism is uniformly ℂ-ideal-theoretic, and the uniform-n pattern-level
-extrapolation is FALSE at n ≥ 15 (explicit realizable witnesses). What
-remains on U4 is Adam's split decision (§7 D3) plus the pending Candidate B
-embedding result.
+D1, D2, the dichotomy, the D3 formulation pass, and the Candidate B
+embedding test are done; together they bound the proof's largest
+uncertainty (register U4) from every side: no theorem transfers, no
+counting invariant decides, the mined-core kill mechanism is uniformly
+ℂ-ideal-theoretic at n = 12, and the uniform-n statement — pattern-level
+OR row-decorated — is FALSE at n ≥ 15 (explicit realizable witnesses with
+exact-verified ρ+γ embeddings). The ideal-theoretic route for the tail is
+closed; what remains on U4 is Adam's split decision (§7 D3) between the
+Candidate C head split and holding Card12Up whole pending a Candidate D
+mechanism.
 
 ## 8. Global gates and hygiene
 
@@ -457,7 +467,7 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Survivors: B (row-decorated remnant, embedding test in flight), C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision to Adam** (§7 D3) |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision to Adam** (§7 D3) |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
@@ -465,8 +475,8 @@ Both: fold per the §8 doc-ownership rule.
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
 computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy+D3
-formulation (all done) have bounded it from every side — no theorem
-transfers, no counting invariant decides, kill mechanism uniformly
-ℂ-ideal-theoretic at n=12, and the uniform-n pattern-level shape is FALSE
-at n ≥ 15. The active moves on U4: the Candidate B embedding test (in
-flight) and Adam's head/tail split decision (§7 D3).
+formulation+B embedding (all done) have bounded it from every side — no
+theorem transfers, no counting invariant decides, kill mechanism uniformly
+ℂ-ideal-theoretic at n=12, and every equality/separator-shaped uniform
+statement (pattern-level or row-decorated) is FALSE at n ≥ 15. The one
+active move on U4 is Adam's head/tail split decision (§7 D3).

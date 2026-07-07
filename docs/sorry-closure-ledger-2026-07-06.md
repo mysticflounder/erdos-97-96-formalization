@@ -133,9 +133,12 @@ explicit realizable witnesses (lattice n=15; concentric-ring n=16, 16, 20,
 general-position/full-H1/fully-exact; independently verified,
 `scratch/d3-formulation/`), which also kill the pattern-level census
 fallback for the tail; witnesses are non-convex so the leaf itself stands;
-survivors: Candidate B row-decorated remnant (embedding test in flight),
-Candidate C head split n ∈ {12,13,14}, Candidate D convexity-coupled
-forcing (no mechanism); split decision to Adam — plan §7 D3). Proposed
+Candidate B row-decorated remnant FALSIFIED 2026-07-07 (ρ embeds in every
+ring witness, every enumerated candidate a solution, exact-verified —
+`scratch/d3-formulation/candidateB/`), so the ideal-theoretic uniform
+shape for the tail is CLOSED; remaining routes: Candidate C head split
+n ∈ {12,13,14}, Candidate D convexity-coupled forcing (no mechanism);
+split decision to Adam — plan §7 D3). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
