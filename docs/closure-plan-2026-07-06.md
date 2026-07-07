@@ -293,16 +293,42 @@ patterns with all points distinct.
   every kill is a forced gauge-pair collapse ("pattern forces u = v" — the
   Near Enemy shared-bisector vocabulary, per the D1 addendum), pointing D3 at
   ideal-theoretic/geometric certificates rather than counting criteria.
-- **D3 — lemma formulation + proof attempt:** D2's signal has arrived
-  (negative for counting invariants; positive shape = forced gauge-pair
-  collapse). Still out of scope pending the ℂ-vs-ℝ dichotomy result and a
-  direction decision (Adam) — per the D2 spec, the escalation is not
-  improvised.
+- **ℂ-vs-ℝ dichotomy classification (D1 lead 1): DONE 2026-07-06 — every
+  mined dead core is ℂ-dead; 0 are ℝ-only-dead**
+  (`scratch/u12-census-port/dichotomy/report.md`; 572/572 classified systems,
+  two independent exact char-0 engines — Singular reduced GB, msolve —
+  agreeing 572/572; smoke 16/16, ordering-independence 9/9). Coverage: Tier A
+  = 100% of the record's 266 core classes (verdicts extend to all 465
+  instances by the PROVEN class-invariance lemma); Tier B = 262 freshly mined
+  instances from the dead files (80 cubes, 43 new classes, all ℂ-dead); Tier
+  C = the COMPLETE abstract k=4 universe (44 classes: 10 dead / 34
+  saturated-alive, containing all 9 record k=4 classes). Consequence: **D3
+  poses ideal-theoretically** — per-core Nullstellensatz certificates
+  1 = Σλᵢgᵢ over ℚ exist, are extractable (Singular lift) and
+  kernel-checkable by polynomial-identity evaluation (endpoint-bank shape);
+  Wu/Chou saturation machinery applies as-is; SOS/Positivstellensatz and
+  real-root classification are NOT needed at the mined-core layer.
+  Lemma-design levers: 42% of record classes die from a single separator
+  (certificate width 1); 32% die with no separator beyond the gauge; the
+  Cempty/nodistinct mode split (85/181, pin-convention-dependent) correlates
+  exactly with δ≥1 vs δ≤0. New basis facts: a δ=3 record class exists (555,
+  k=4); the abstract k=4 universe reaches δ=4; no dead 3-core (PROVEN).
+  Precision note: D2's forced-gauge-pair statement concerns its
+  pinned-equality-minimal cores; the record's saturated-oracle classes split
+  85 Cempty / 181 nodistinct — different minimality notions, no conflict.
+  Tripwire hook: §6's bounded-forced-subsystem tripwire should test these
+  ℂ-dead cores as liveData producers.
+- **D3 — lemma formulation + proof attempt:** all three bounding signals are
+  in — D1 (no transfer), D2 (no counting criterion), dichotomy (uniformly
+  ℂ-dead ⇒ ideal-theoretic certificate shape, census-shaped with the
+  contraction-profile index key). Direction decision (Adam): certificate
+  census over cores (endpoint-stack shape) vs a uniform ideal-theoretic
+  lemma attempt. Out of scope until that decision.
 
-D1 and D2 are done; together they bound the proof's largest uncertainty
-(register U4) from both sides: no theorem transfers, and no counting
-invariant decides feasibility. The dichotomy classification (in flight) is
-the last cheap probe before D3 needs a direction decision.
+D1, D2, and the dichotomy are done; together they bound the proof's largest
+uncertainty (register U4) from all three cheap sides: no theorem transfers,
+no counting invariant decides, and the kill mechanism is uniformly
+ℂ-ideal-theoretic. What remains on U4 is the D3 direction decision.
 
 ## 8. Global gates and hygiene
 
@@ -333,10 +359,10 @@ census artifacts are ported to `scratch/u12-census-port/` with a sha256
 manifest. In flight on the Lean side: endpoint wiring (§2, anchored session),
 erased-pin reduction-inputs (§4 lane), liveData branch split (§6). Landed:
 D1 scan, §3 step-1 enumeration, trustCompiler approval, U2 attic, the
-two-hit probe (SAT — U2 closed), D2 separation (NO clean separation — §7);
-still in flight: (5,5,4) census CEGAR, ℂ-vs-ℝ dichotomy. §0 items 2–3 are
-done; §0 closure now reduces to the five obligations plus a fresh final
-mine.
+two-hit probe (SAT — U2 closed), D2 separation (NO clean separation — §7),
+ℂ-vs-ℝ dichotomy (all cores ℂ-dead — §7); still in flight: (5,5,4) census
+CEGAR. §0 items 2–3 are done; §0 closure now reduces to the five obligations
+plus a fresh final mine.
 
 ## 10. Solver-run ledger (supersedes the missed-angle table)
 
@@ -349,6 +375,7 @@ mine.
 | Two-hit probe (§4) | lemma-vs-census shape of the ≤1 bounds | DONE — SAT, exact witnesses (U2 closed) |
 | (5,5,4) exhaustive census (§5) | \|A\|=11 slice of obligation 4 | IN FLIGHT — smoke 99/99; pattern-bank CEGAR running |
 | D2 invariant separation (§7) | plausibility of a combinatorial rigidity criterion | DONE — NO clean separation (§7) |
+| ℂ-vs-ℝ dichotomy (§7, D1 lead 1) | ideal-theoretic vs real-geometric D3 shape | DONE — 572/572 where dead expected: ℂ-dead; 0 ℝ-only (§7) |
 | s1_030 lift-support timeout | (cleanliness only) | SUPERSEDED — singleton split covers it |
 
 Not proposed, with dead-end citations: SOS/Positivstellensatz hunts,
@@ -376,14 +403,14 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE (no direct transfer, 5 leads); D2 DONE 2026-07-06: **NO clean combinatorial separation** — solver-verified witness pairs close the counting route; positives = contraction-profile index key (430/540 unattained) + PROVEN forced gauge-pair collapse ("pattern forces u = v"). Next signal = ℂ-vs-ℝ dichotomy (in flight); then D3 direction decision (Adam) |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. Next = D3 direction decision (Adam) |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
 | U8 | ℝ-only content in census certificates (checker fit) | unknown until emit | census output inspection; decision point if present |
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
-computation away. U4 is the proof's genuine frontier; D1+D2 (both done) have
-bounded it from both sides — no theorem transfers, no counting invariant
-decides — leaving the dichotomy as the last cheap probe before a D3
-direction decision.
+computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy (all
+done) have bounded it from every cheap side — no theorem transfers, no
+counting invariant decides, kill mechanism uniformly ℂ-ideal-theoretic —
+leaving the D3 direction decision (Adam) as the next move on it.

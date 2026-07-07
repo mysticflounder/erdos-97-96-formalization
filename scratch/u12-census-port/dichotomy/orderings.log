@@ -1,0 +1,10 @@
+[orderings] 555 delta=-1: lp unit=True (68.693s), reversed-dp unit=True (0.022s) OK
+[orderings] 555 delta=0: lp unit=True (0.015s), reversed-dp unit=True (0.013s) OK
+[orderings] 555 delta=1: lp unit=True (0.012s), reversed-dp unit=True (0.012s) OK
+[orderings] 555 delta=2: lp unit=True (0.014s), reversed-dp unit=True (0.012s) OK
+[orderings] 555 delta=3: lp unit=True (0.013s), reversed-dp unit=True (0.011s) OK
+[orderings] 654 delta=-1: lp unit=True (0.038s), reversed-dp unit=True (0.012s) OK
+[orderings] 654 delta=0: lp unit=True (0.035s), reversed-dp unit=True (0.013s) OK
+[orderings] 654 delta=1: lp unit=True (0.013s), reversed-dp unit=True (0.013s) OK
+[orderings] 654 delta=2: lp unit=True (0.013s), reversed-dp unit=True (0.012s) OK
+[orderings] overall: PASS

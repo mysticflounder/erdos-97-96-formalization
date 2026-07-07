@@ -1,0 +1,17 @@
+# tierA: 266 class representatives
+  20/266 verdicts={'C_DEAD': 20} (2s)
+  40/266 verdicts={'C_DEAD': 40} (42s)
+  60/266 verdicts={'C_DEAD': 60} (42s)
+  80/266 verdicts={'C_DEAD': 80} (42s)
+  100/266 verdicts={'C_DEAD': 100} (42s)
+  120/266 verdicts={'C_DEAD': 120} (42s)
+  140/266 verdicts={'C_DEAD': 140} (42s)
+  160/266 verdicts={'C_DEAD': 160} (42s)
+  180/266 verdicts={'C_DEAD': 180} (42s)
+  200/266 verdicts={'C_DEAD': 200} (42s)
+  220/266 verdicts={'C_DEAD': 220} (42s)
+  240/266 verdicts={'C_DEAD': 240} (100s)
+  260/266 verdicts={'C_DEAD': 260} (100s)
+  266/266 verdicts={'C_DEAD': 266} (100s)
+# tierA canon-vs-record mismatches: 0
+# tierA DONE: {'C_DEAD': 266}; rows -> /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/u12-census-port/dichotomy/rows_tierA.jsonl

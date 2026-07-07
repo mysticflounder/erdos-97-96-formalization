@@ -124,7 +124,9 @@ caution and smoke gate) + §7 (workstream D for |A| ≥ 12; D1 DONE — 5 leads,
 no direct transfer; D2 DONE 2026-07-06 — NO clean combinatorial separation,
 so the |A| ≤ 11 slice stays census-shaped and D3 aims at
 ideal-theoretic/geometric certificates via the PROVEN forced gauge-pair
-collapse; dichotomy in flight). Proposed split residual
+collapse; dichotomy DONE 2026-07-06 — all mined dead cores ℂ-dead, so D3
+poses ideal-theoretically with ℚ-Nullstellensatz certificates in the
+endpoint-bank shape). Proposed split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
 has genuine open-strategy uncertainty (register U4). Census dispatched

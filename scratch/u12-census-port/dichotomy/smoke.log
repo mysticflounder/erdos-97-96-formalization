@@ -1,0 +1,17 @@
+[smoke] i.toy_linear: OK — <x-y, t(x-y)-1> reduced GB size=1 unit=True
+[smoke] i.toy_squared: OK — <x-y, t(x-y)^2-1> unit=True
+[smoke] i.toy_negative_control: OK — <x-y> alone unit=False (must be False)
+[smoke] R0.sample_determinism_654: OK — prefix-120 Cempty 59 (rec 59); percube mismatches 0
+[smoke] R0.sample_determinism_555: OK — prefix-60 Cempty 21 (rec 21); percube mismatches 0
+[smoke] R1.delta_654: OK — {-1: 6, 0: 56, 1: 79, 2: 5}
+[smoke] ii-eq.dead_654: OK — 3 dead cubes idx [23, 430, 129]: msolve [-1] [True, True, True]; Singular confirm/timeout/disagree = 3/0/0
+[smoke] ii-eq.dead_555: OK — 3 dead cubes idx [128, 843, 792]: msolve [-1] [True, True, True]; Singular confirm/timeout/disagree = 2/1/0
+[smoke] ii-eq.alive_654: OK — 3 alive cubes idx [5, 22, 60]: equality-only msolve nonempty = [True, True, True]
+[smoke] ii-eq.alive_555: OK — 3 C-alive sample cubes idx [0, 1, 2]: equality-only msolve nonempty = [True, True, True]
+[smoke] ii-wit.witness_valid: OK — square+center satisfies all 6 equalities, all 10 pairs separated (exact sympy)
+[smoke] ii-wit.full_encoding_alive: OK — full encoding: msolve=nonempty, Singular unit=False (gb_size=16) — must be nonempty/False
+[smoke] ii-consistency.alive_cube_saturated: OK — alive-654 cube idx 5 full saturation: msolve=empty in 0.086s (stage-2 record: distinct-DEAD; the literal task gate premise 'alive cube has a real solution' is contradicted by the record — substitution documented in report)
+[smoke] R2.remine_654_cube0: OK — k*=4(rec 4) n_cores=1(rec 1) classes match=True
+[smoke] R2.remine_654_cube1: OK — k*=4(rec 4) n_cores=2(rec 2) classes match=True
+[smoke] R2.remine_555_cube0: OK — k*=5(rec 5) n_cores=1(rec 1) classes match=True
+[smoke] overall: PASS

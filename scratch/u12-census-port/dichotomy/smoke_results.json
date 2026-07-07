@@ -1,0 +1,69 @@
+{
+  "pass": true,
+  "gates": {
+    "i.toy_linear": {
+      "ok": true,
+      "detail": "<x-y, t(x-y)-1> reduced GB size=1 unit=True"
+    },
+    "i.toy_squared": {
+      "ok": true,
+      "detail": "<x-y, t(x-y)^2-1> unit=True"
+    },
+    "i.toy_negative_control": {
+      "ok": true,
+      "detail": "<x-y> alone unit=False (must be False)"
+    },
+    "R0.sample_determinism_654": {
+      "ok": true,
+      "detail": "prefix-120 Cempty 59 (rec 59); percube mismatches 0"
+    },
+    "R0.sample_determinism_555": {
+      "ok": true,
+      "detail": "prefix-60 Cempty 21 (rec 21); percube mismatches 0"
+    },
+    "R1.delta_654": {
+      "ok": true,
+      "detail": "{-1: 6, 0: 56, 1: 79, 2: 5}"
+    },
+    "ii-eq.dead_654": {
+      "ok": true,
+      "detail": "3 dead cubes idx [23, 430, 129]: msolve [-1] [True, True, True]; Singular confirm/timeout/disagree = 3/0/0"
+    },
+    "ii-eq.dead_555": {
+      "ok": true,
+      "detail": "3 dead cubes idx [128, 843, 792]: msolve [-1] [True, True, True]; Singular confirm/timeout/disagree = 2/1/0"
+    },
+    "ii-eq.alive_654": {
+      "ok": true,
+      "detail": "3 alive cubes idx [5, 22, 60]: equality-only msolve nonempty = [True, True, True]"
+    },
+    "ii-eq.alive_555": {
+      "ok": true,
+      "detail": "3 C-alive sample cubes idx [0, 1, 2]: equality-only msolve nonempty = [True, True, True]"
+    },
+    "ii-wit.witness_valid": {
+      "ok": true,
+      "detail": "square+center satisfies all 6 equalities, all 10 pairs separated (exact sympy)"
+    },
+    "ii-wit.full_encoding_alive": {
+      "ok": true,
+      "detail": "full encoding: msolve=nonempty, Singular unit=False (gb_size=16) \u2014 must be nonempty/False"
+    },
+    "ii-consistency.alive_cube_saturated": {
+      "ok": true,
+      "detail": "alive-654 cube idx 5 full saturation: msolve=empty in 0.086s (stage-2 record: distinct-DEAD; the literal task gate premise 'alive cube has a real solution' is contradicted by the record \u2014 substitution documented in report)"
+    },
+    "R2.remine_654_cube0": {
+      "ok": true,
+      "detail": "k*=4(rec 4) n_cores=1(rec 1) classes match=True"
+    },
+    "R2.remine_654_cube1": {
+      "ok": true,
+      "detail": "k*=4(rec 4) n_cores=2(rec 2) classes match=True"
+    },
+    "R2.remine_555_cube0": {
+      "ok": true,
+      "detail": "k*=5(rec 5) n_cores=1(rec 1) classes match=True"
+    }
+  }
+}
