@@ -246,7 +246,14 @@ patterns with all points distinct.
   2006) for the δ = −1 cores; (5) EDM linear-section reformulation
   (Alfakih 2018) as the clean restatement to pose D3 in. Leads (2)–(4) feed
   D2's invariant menu directly; lead (1) is a new cheap dispatch on data we
-  already have.
+  already have. Post-scan addendum (Adam, 2026-07-06): the in-house **Near
+  Enemy Theorem** (`../lean-formalizations`, kernel-checked,
+  comparator-audited) gives the exact bisector-energy floor 2n(n−1) with
+  attainment — the minimization direction LSdZ don't address. Not a
+  realizability criterion, but its formalized supporting chain
+  (shared-bisector rigidity, per-constraint polynomial nonvanishing
+  witnesses, generic-projection engine) is the ℝ-side certificate shape for
+  lead 1 and the natural Lean vocabulary for D3 (D1 report addendum).
 - **D2 — invariant separation test (solver dispatch, independent):** compute
   candidate combinatorial invariants over the mined dead cores vs
   known-realizable controls (the ALIVE sampled cubes from the same census)

@@ -513,3 +513,53 @@ technique if D3 reaches lemma-formulation stage; its class does not contain the 
 - https://link.springer.com/article/10.1023/A:1006135322108 (Recio–Vélez)
 - https://www.cambridge.org/core/journals/acta-numerica/article/abs/numerical-algebraic-geometry-and-algebraic-kinematics/8A211CF0EA2F7B33CF4343229F0F1EC4
 - https://asmedigitalcollection.asme.org/mechanicaldesign/article-abstract/115/2/223/417510/ (Chase–Mirth)
+
+## Addendum (2026-07-06, post-scan): in-house Near Enemy Theorem
+
+Adam flagged after the scan: the bisector-energy area has an **in-house,
+kernel-checked** result the scan's NO-LEAD verdict did not account for — the
+**Near Enemy Theorem for Bisector Energy**
+(`../lean-formalizations/lean/LeanFormalizations/Geometry/Euclidean/NearEnemyTheorem.lean`;
+headline lemmas comparator-audited per that repo's `docs/AUDIT_MATRIX.md`).
+Label: **PROVEN-in-Lean** (stronger than PROVEN-in-literature).
+
+What it establishes (verified in source, 2026-07-06): with
+`bisectorEnergy P` = # ordered quadruples ((a,b),(c,d)), a ≠ b, c ≠ d, with
+perpBisector(a,b) = perpBisector(c,d):
+
+- **Universal floor (lower bound):** 2·n·(n−1) ≤ bisectorEnergy P for every
+  finite planar P (`two_mul_pairCount_le_bisectorEnergy`).
+- **Exact attainment:** every finite set in any Euclidean dimension with no
+  three collinear points admits ONE injective planar projection whose image
+  attains the floor exactly (all unordered pairs have pairwise distinct
+  bisectors), is in full general position, has zero rotational energy, and
+  transports distances (image distance count = upstairs ±difference-class
+  count). Direction vs Lund–Sheffer–de Zeeuw: LSdZ prove upper bounds on
+  bisector energy under non-degeneracy; the minimization direction, the
+  exact floor, and its attainment are the in-house contribution.
+
+Bearing on workstream D (honest assessment):
+
+- **Not a realizability criterion.** The theorem lives in the
+  anti-coincidence direction (produce configurations with NO bisector
+  degeneracies); the dead-core question is the forced-coincidence direction
+  (prescribed bisector incidences force point collapse). The scan's
+  strategic verdict (no direct theorem transfer) stands.
+- **Adjacent machinery, already formalized, directly reusable for D3/lead 1:**
+  (a) shared-bisector rigidity chain
+  (`sharedBisector_parallel_and_sum_orth`,
+  `nearEnemy_sharedBisector_forces_samePair`, bisector injectivity) — the
+  exact vocabulary a formalized dead-core lemma would be stated in
+  (equidistance constraint = point on a perpendicular bisector);
+  (b) the constraint-polynomial witness library (collinearity determinant,
+  concyclicity `circPoly` with per-quadruple nonvanishing, distance-class
+  polynomial, `MvPolynomial` master-product genericity engine,
+  `nearEnemy_offPair_not_both_vanish_of_rigid`) — per-constraint
+  polynomial-nonvanishing certificates, which is exactly the ℝ-side
+  certificate shape for lead 1's ℂ-vs-ℝ saturation dichotomy (ALIVE-side
+  witnesses = "coincidence polynomial does not vanish identically on the
+  constraint variety").
+- Wiring note: this repo does not currently depend on lean-formalizations
+  (checked `lakefile.toml`/`lake-manifest.json`); if D3 formalizes against
+  that library, add the dependency or port the supporting chain — a
+  decision at D3 time, not now.
