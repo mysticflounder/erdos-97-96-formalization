@@ -1,0 +1,126 @@
+# profile 654 caps=(6, 5, 4): sampled 2000 distinct constrained cubes (2095 attempts)
+# stage1 C-equidistance tally: {'DEAD': 958, 'ALIVE': 1042, 'TIMEOUT': 0, 'ERR': 0}
+#   stage2 10/1042: DEAD
+#   stage2 20/1042: DEAD
+#   stage2 30/1042: DEAD
+#   stage2 40/1042: DEAD
+#   stage2 50/1042: DEAD
+#   stage2 60/1042: DEAD
+#   stage2 70/1042: DEAD
+#   stage2 80/1042: DEAD
+#   stage2 90/1042: DEAD
+#   stage2 100/1042: DEAD
+#   stage2 110/1042: DEAD
+#   stage2 120/1042: DEAD
+#   stage2 130/1042: DEAD
+#   stage2 140/1042: DEAD
+#   stage2 150/1042: DEAD
+#   stage2 160/1042: DEAD
+#   stage2 170/1042: DEAD
+#   stage2 180/1042: DEAD
+#   stage2 190/1042: DEAD
+#   stage2 200/1042: DEAD
+#   stage2 210/1042: DEAD
+#   stage2 220/1042: DEAD
+#   stage2 230/1042: DEAD
+#   stage2 240/1042: DEAD
+#   stage2 250/1042: DEAD
+#   stage2 260/1042: DEAD
+#   stage2 270/1042: DEAD
+#   stage2 280/1042: DEAD
+#   stage2 290/1042: DEAD
+#   stage2 300/1042: DEAD
+#   stage2 310/1042: DEAD
+#   stage2 320/1042: DEAD
+#   stage2 330/1042: DEAD
+#   stage2 340/1042: DEAD
+#   stage2 350/1042: DEAD
+#   stage2 360/1042: DEAD
+#   stage2 370/1042: DEAD
+#   stage2 380/1042: DEAD
+#   stage2 390/1042: DEAD
+#   stage2 400/1042: DEAD
+#   stage2 410/1042: DEAD
+#   stage2 420/1042: DEAD
+#   stage2 430/1042: DEAD
+#   stage2 440/1042: DEAD
+#   stage2 450/1042: DEAD
+#   stage2 460/1042: DEAD
+#   stage2 470/1042: DEAD
+#   stage2 480/1042: DEAD
+#   stage2 490/1042: DEAD
+#   stage2 500/1042: DEAD
+#   stage2 510/1042: DEAD
+#   stage2 520/1042: DEAD
+#   stage2 530/1042: DEAD
+#   stage2 540/1042: DEAD
+#   stage2 550/1042: DEAD
+#   stage2 560/1042: DEAD
+#   stage2 570/1042: DEAD
+#   stage2 580/1042: DEAD
+#   stage2 590/1042: DEAD
+#   stage2 600/1042: DEAD
+#   stage2 610/1042: DEAD
+#   stage2 620/1042: DEAD
+#   stage2 630/1042: DEAD
+#   stage2 640/1042: DEAD
+#   stage2 650/1042: DEAD
+#   stage2 660/1042: DEAD
+#   stage2 670/1042: DEAD
+#   stage2 680/1042: DEAD
+#   stage2 690/1042: DEAD
+#   stage2 700/1042: DEAD
+#   stage2 710/1042: DEAD
+#   stage2 720/1042: DEAD
+#   stage2 730/1042: DEAD
+#   stage2 740/1042: DEAD
+#   stage2 750/1042: DEAD
+#   stage2 760/1042: DEAD
+#   stage2 770/1042: DEAD
+#   stage2 780/1042: DEAD
+#   stage2 790/1042: DEAD
+#   stage2 800/1042: DEAD
+#   stage2 810/1042: DEAD
+#   stage2 820/1042: DEAD
+#   stage2 830/1042: DEAD
+#   stage2 840/1042: DEAD
+#   stage2 850/1042: DEAD
+#   stage2 860/1042: DEAD
+#   stage2 870/1042: DEAD
+#   stage2 880/1042: DEAD
+#   stage2 890/1042: DEAD
+#   stage2 900/1042: DEAD
+#   stage2 910/1042: DEAD
+#   stage2 920/1042: DEAD
+#   stage2 930/1042: DEAD
+#   stage2 940/1042: DEAD
+#   stage2 950/1042: DEAD
+#   stage2 960/1042: DEAD
+#   stage2 970/1042: DEAD
+#   stage2 980/1042: DEAD
+#   stage2 990/1042: DEAD
+#   stage2 1000/1042: DEAD
+#   stage2 1010/1042: DEAD
+#   stage2 1020/1042: DEAD
+#   stage2 1030/1042: DEAD
+#   stage2 1040/1042: DEAD
+#   stage2 1042/1042: DEAD
+# stage2 distinctness-on-C-alive tally: {'DEAD': 1042, 'ALIVE': 0, 'TIMEOUT': 0, 'NONE': 0}
+# DEAD spot-confirm (Singular reduce(1,std)==0 on 25 sampled DEAD): {'confirmed_dead': 22, 'singular_timeout': 3, 'disagree': 0}
+Traceback (most recent call last):
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 376, in <module>
+    json.dump(out, f, indent=2)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 319, in census
+    elif r is None:
+     ^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 221, in comp_g_verdict
+    return DIST.adjudicate(cube, timeout=timeout)["verdict"]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_distinct.py", line 60, in adjudicate
+    dim, mems = comp_g_m.sing_dim_and_membership(vars_, eqs, pair_polys, _uniq_tag("u12dist"), timeout)
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/comp_g_m.py", line 129, in sing_dim_and_membership
+    assert dim is not None and len(mems) == len(pair_polys), out[-2000:]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

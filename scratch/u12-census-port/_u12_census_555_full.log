@@ -1,0 +1,153 @@
+# profile 555 caps=(5, 5, 5): sampled 2000 distinct constrained cubes (2004 attempts)
+# stage1 C-equidistance tally: {'DEAD': 924, 'ALIVE': 1076, 'TIMEOUT': 0, 'ERR': 0}
+#   stage2 10/1076: DEAD
+#   stage2 20/1076: DEAD
+#   stage2 30/1076: DEAD
+#   stage2 40/1076: DEAD
+#   stage2 50/1076: DEAD
+#   stage2 60/1076: DEAD
+#   stage2 70/1076: DEAD
+#   stage2 80/1076: DEAD
+#   stage2 90/1076: DEAD
+#   stage2 100/1076: DEAD
+#   stage2 110/1076: DEAD
+#   stage2 120/1076: DEAD
+#   stage2 130/1076: DEAD
+#   stage2 140/1076: DEAD
+#   stage2 150/1076: DEAD
+#   stage2 160/1076: DEAD
+#   stage2 170/1076: DEAD
+#   stage2 180/1076: DEAD
+#   stage2 190/1076: DEAD
+#   stage2 200/1076: DEAD
+#   stage2 210/1076: DEAD
+#   stage2 220/1076: DEAD
+#   stage2 230/1076: DEAD
+#   stage2 240/1076: DEAD
+#   stage2 250/1076: DEAD
+#   stage2 260/1076: DEAD
+#   stage2 270/1076: DEAD
+#   stage2 280/1076: DEAD
+#   stage2 290/1076: DEAD
+#   stage2 300/1076: DEAD
+#   stage2 310/1076: DEAD
+#   stage2 320/1076: DEAD
+#   stage2 330/1076: DEAD
+#   stage2 340/1076: DEAD
+#   stage2 350/1076: DEAD
+#   stage2 360/1076: DEAD
+#   stage2 370/1076: DEAD
+#   stage2 380/1076: DEAD
+#   stage2 390/1076: DEAD
+#   stage2 400/1076: DEAD
+#   stage2 410/1076: DEAD
+#   stage2 420/1076: DEAD
+#   stage2 430/1076: DEAD
+#   stage2 440/1076: DEAD
+#   stage2 450/1076: DEAD
+#   stage2 460/1076: DEAD
+#   stage2 470/1076: DEAD
+#   stage2 480/1076: DEAD
+#   stage2 490/1076: DEAD
+#   stage2 500/1076: DEAD
+#   stage2 510/1076: DEAD
+#   stage2 520/1076: DEAD
+#   stage2 530/1076: DEAD
+#   stage2 540/1076: DEAD
+#   stage2 550/1076: DEAD
+#   stage2 560/1076: DEAD
+#   stage2 570/1076: DEAD
+#   stage2 580/1076: DEAD
+#   stage2 590/1076: DEAD
+#   stage2 600/1076: DEAD
+#   stage2 610/1076: DEAD
+#   stage2 620/1076: DEAD
+#   stage2 630/1076: DEAD
+#   stage2 640/1076: DEAD
+#   stage2 650/1076: DEAD
+#   stage2 660/1076: DEAD
+#   stage2 670/1076: DEAD
+#   stage2 680/1076: DEAD
+#   stage2 690/1076: DEAD
+#   stage2 700/1076: DEAD
+#   stage2 710/1076: DEAD
+#   stage2 720/1076: DEAD
+#   stage2 730/1076: DEAD
+#   stage2 740/1076: DEAD
+#   stage2 750/1076: DEAD
+#   stage2 760/1076: DEAD
+#   stage2 770/1076: DEAD
+#   stage2 780/1076: DEAD
+#   stage2 790/1076: DEAD
+#   stage2 800/1076: DEAD
+#   stage2 810/1076: DEAD
+#   stage2 820/1076: DEAD
+#   stage2 830/1076: DEAD
+#   stage2 840/1076: DEAD
+#   stage2 850/1076: DEAD
+#   stage2 860/1076: DEAD
+#   stage2 870/1076: DEAD
+#   stage2 880/1076: DEAD
+#   stage2 890/1076: DEAD
+#   stage2 900/1076: DEAD
+#   stage2 910/1076: DEAD
+#   stage2 920/1076: DEAD
+#   stage2 930/1076: DEAD
+#   stage2 940/1076: DEAD
+#   stage2 950/1076: DEAD
+#   stage2 960/1076: DEAD
+#   stage2 970/1076: DEAD
+#   stage2 980/1076: DEAD
+#   stage2 990/1076: DEAD
+#   stage2 1000/1076: DEAD
+#   stage2 1010/1076: DEAD
+#   stage2 1020/1076: DEAD
+#   stage2 1030/1076: DEAD
+#   stage2 1040/1076: DEAD
+#   stage2 1050/1076: DEAD
+#   stage2 1060/1076: DEAD
+#   stage2 1070/1076: DEAD
+#   stage2 1076/1076: DEAD
+# stage2 distinctness-on-C-alive tally: {'DEAD': 1076, 'ALIVE': 0, 'TIMEOUT': 0, 'NONE': 0}
+# DEAD spot-confirm (Singular reduce(1,std)==0 on 25 sampled DEAD): {'confirmed_dead': 22, 'singular_timeout': 3, 'disagree': 0}
+Traceback (most recent call last):
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/comp_g_m.py", line 82, in run_singular
+    out = subprocess.run([SINGULAR, "-q", path], capture_output=True, text=True,
+          ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+                         timeout=timeout).stdout
+                         ^^^^^^^^^^^^^^^^
+  File "/Users/adam/.local/share/uv/python/cpython-3.13.13-macos-aarch64-none/lib/python3.13/subprocess.py", line 556, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/.local/share/uv/python/cpython-3.13.13-macos-aarch64-none/lib/python3.13/subprocess.py", line 1222, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/.local/share/uv/python/cpython-3.13.13-macos-aarch64-none/lib/python3.13/subprocess.py", line 2155, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/.local/share/uv/python/cpython-3.13.13-macos-aarch64-none/lib/python3.13/subprocess.py", line 1269, in _check_timeout
+    raise TimeoutExpired(
+    ...<2 lines>...
+            stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command '['/opt/homebrew/bin/Singular', '-q', '/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/_sing_u12dist_4.sing']' timed out after 300 seconds
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 376, in <module>
+    census(args.profile, args.n_cubes, args.seed, args.workers, args.timeout, args.dtimeout)
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 319, in census
+    av = comp_g_verdict(cube)   # comp_g_m verdict
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_census.py", line 221, in comp_g_verdict
+    return DIST.adjudicate(cube, timeout=timeout)["verdict"]
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u1_2_faithful/twolargecap_core/_u12_distinct.py", line 60, in adjudicate
+    dim, mems = comp_g_m.sing_dim_and_membership(vars_, eqs, pair_polys, _uniq_tag("u12dist"), timeout)
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/comp_g_m.py", line 117, in sing_dim_and_membership
+    out = run_singular("\n".join(lines), tag, timeout)
+  File "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/comp_g_m.py", line 85, in run_singular
+    os.unlink(path)
+    ~~~~~~~~~^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g_m6_metric/_sing_u12dist_4.sing'

@@ -10,8 +10,8 @@ lean_lib    = "lean"
 root_slug = "root"
 
 [publish]
-# P97 primary (carries the single open RemovableVertexOfLarge sorry); P96 is
-# the sibling publish target.
+# P97 primary; P96 is the sibling publish target. Both reach the same five
+# named sorry obligations (see docs/sorry-closure-ledger-2026-07-06.md).
 target_symbol = ["Problem97.erdos97_rhs", "Problem96.erdos96_rhs"]
 state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
 
@@ -19,7 +19,9 @@ state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry
 # Project-declared approved custom axioms (full FQ names). The Lean core
 # axioms (propext, Classical.choice, Quot.sound, Lean.ofReduceBool,
 # Lean.ofReduceNat) are always approved; do NOT list them here.
-approved = []
+# Lean.trustCompiler: native_decide certificate closure under the project's
+# bv_decide-standard policy (2026-06-05); approved by Adam 2026-07-06.
+approved = ["Lean.trustCompiler"]
 
 [mining]
 # Generated certificate subtrees (Erdos9796Proof.P97.{Endpoint,Surplus}Certificate.*)

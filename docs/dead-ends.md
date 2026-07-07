@@ -724,3 +724,19 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   **Lesson:** any identity-hunt candidate must be simultaneously per-vertex and
   radius-free or it falls into a dead sector; firewall methods do not reach
   removability.
+- **u2-oppcap2-escape-rvol-vocabulary (attic, 2026-07-06, Adam decision):** the
+  rvol-era escape-branch bundle (`SurplusEscapeExcludedAtOppApex1`, sorried
+  leaves `oppCap2_endpointEscape_false` + `surplusEscape_pinnedFamily_sep_false`,
+  and their discharge chain up to `noStrictAdjacentEscapeAtOppApex1_reduction`)
+  is moved whole-file to `attic/U2OppCap2Escape.lean` — off the publish spine
+  (kernel-verified: zero external references; `U1LargeCapRouteBTail` re-derives
+  its own `oppCap2_escape_gen` and keeps the transitive imports via
+  `U2NonSurplusOneHit` + `U2.WitnessReflectionKernel` directly). The two
+  residual STATEMENTS remain mathematically open in that vocabulary; the live
+  route is the four-point plan's re-derivation as
+  `EndpointEscapeRightAt`/`EndpointEscapeLeftAt` in `SurplusCapPacket`
+  vocabulary (endpoint case = finite, certificate-shaped, 117 endpoint
+  patterns; pinned-family case = 4-point exact-radius kill). Analysis:
+  `docs/u-lane/97-u2b-surplus-escape-branch-analysis-2026-07-01.md`.
+  **Lesson:** do not resurrect the attic statements as live obligations; if the
+  endpoint-escape content is needed, derive it in packet vocabulary on-spine.

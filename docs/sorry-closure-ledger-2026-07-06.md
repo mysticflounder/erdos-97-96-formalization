@@ -205,11 +205,16 @@ Decision routes:
   certificate-shaped: the endpoint case cites the validated 117-pattern
   enumeration; the pinned-family case is a 4-point exact-radius kill).
 
-{{NEEDS_ADAM_INPUT}} — (a) vs (b). Default if no direction: (a), executed by
-whichever session next touches the U2 lane, in coordination with the
-four-point lane owner.
+**EXECUTED 2026-07-06 — Adam chose (a), attic variant.** The whole file moved
+to `attic/U2OppCap2Escape.lean` (git history + attic preserve full text);
+`U1LargeCapRouteBTail`'s import swapped to `U2NonSurplusOneHit` (transitive
+surface unchanged; module rebuilds clean); dead-ends.md entry added. Rows 6–7
+are closed as tree obligations; the statements stay recorded as superseded
+rvol-vocabulary leaves.
 
-Acceptance: `spine` off-spine sorries section reports **none**.
+Acceptance: `spine` off-spine sorries section reports **none** — confirmed at
+next mine (the stale erased-pin `ReductionInputs` entry clears at that lane's
+next build).
 
 ## 3. Tree-level acceptance — the definition of "all sorries closed"
 
@@ -217,8 +222,9 @@ All four gates, kernel-side:
 
 1. `proof-blueprint verify-publish` passes on **both** targets
    (`Problem97.erdos97_rhs`, `Problem96.erdos96_rhs`) — requires rows 1–5
-   closed AND `Lean.trustCompiler` deliberately approved in
-   `.blueprint.toml [axioms].approved` ({{NEEDS_ADAM_INPUT}}, register U6).
+   closed AND `Lean.trustCompiler` approved in
+   `.blueprint.toml [axioms].approved` (**approved by Adam 2026-07-06** —
+   register U6 closed).
 2. `proof-blueprint symbols --with-sorry` reports **0 symbols**.
 3. `proof-blueprint spine`: off-spine sorries **none**; open obligations
    **0** on both targets.
@@ -237,9 +243,9 @@ either wired the same session or not landed.
 | now | 3 | produce reduction-inputs witness from splitter surface | erased-pin lane (in flight) |
 | now | 5 | band-level consumers; reduce 79 → named residuals | liveData lane (in flight) |
 | next | 2 | m = 5 exact path + named general-m residual; then general-m per §2.2 (residue EMPTY — route confirmed) | four-point lane capacity |
-| next | 6–7 | execute (a) delete-with-record unless Adam picks (b) | {{NEEDS_ADAM_INPUT}} |
-| gated | 4 | (5,5,4) census + workstream D | Adam dispatch (master plan §9) |
-| last | — | trustCompiler approval; final verify-publish ×2 | {{NEEDS_ADAM_INPUT}} (U6) |
+| ~~next~~ DONE | 6–7 | ~~execute (a)~~ atticked 2026-07-06 (Adam) | — |
+| dispatched | 4 | (5,5,4) census + D2 + dichotomy agents in flight (2026-07-06 wave, with the two-hit probe for row 3's gate) | agent results |
+| last | — | ~~trustCompiler approval~~ approved 2026-07-06; final verify-publish ×2 | rows 1–5 |
 
 Rows 1, 2 (m = 5 slice), 3, and the 12-closed-leaf pattern of row 5 are
 mechanical against already-built surfaces. Row 5's COMP-1-blocked leaves and

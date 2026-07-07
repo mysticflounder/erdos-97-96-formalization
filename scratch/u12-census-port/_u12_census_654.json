@@ -1,0 +1,104 @@
+{
+  "profile": "654",
+  "caps": [
+    6,
+    5,
+    4
+  ],
+  "sampled": 300,
+  "attempts": 315,
+  "stage1_C_equidistance": {
+    "DEAD": 136,
+    "ALIVE": 164,
+    "TIMEOUT": 0,
+    "ERR": 0
+  },
+  "stage2_distinctness_on_C_alive": {
+    "DEAD": 125,
+    "ALIVE": 0,
+    "TIMEOUT": 39,
+    "NONE": 0
+  },
+  "n_dead": 136,
+  "n_alive_C": 164,
+  "n_still_alive_distinct": 0,
+  "dead_spot_confirm_singular": {
+    "confirmed_dead": 23,
+    "singular_timeout": 2,
+    "disagree": 0
+  },
+  "first_alive_C": {
+    "0": [
+      3,
+      6,
+      7,
+      8
+    ],
+    "1": [
+      5,
+      7,
+      8,
+      9
+    ],
+    "2": [
+      1,
+      8,
+      10,
+      11
+    ],
+    "3": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "4": [
+      3,
+      6,
+      9,
+      11
+    ],
+    "5": [
+      0,
+      3,
+      8,
+      11
+    ],
+    "6": [
+      2,
+      3,
+      5,
+      10
+    ],
+    "7": [
+      0,
+      1,
+      5,
+      9
+    ],
+    "8": [
+      2,
+      5,
+      6,
+      7
+    ],
+    "9": [
+      0,
+      4,
+      8,
+      10
+    ],
+    "10": [
+      0,
+      2,
+      7,
+      9
+    ],
+    "11": [
+      0,
+      3,
+      4,
+      7
+    ]
+  }
+}

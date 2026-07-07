@@ -14,7 +14,7 @@ import Erdos9796Proof.P97.U1Depth5HrowRecord001PostAll8Manifest
 import Erdos9796Proof.P97.U1OppositeCapLowerBounds
 import Erdos9796Proof.P97.U3ToU5Terminal
 import Erdos9796Proof.P97.U2.WitnessReflectionKernel
-import Erdos9796Proof.P97.U2OppCap2Escape
+import Erdos9796Proof.P97.U2NonSurplusOneHit
 
 /-!
 # U1 large-cap Route-B tail

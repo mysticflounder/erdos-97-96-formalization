@@ -32,11 +32,12 @@ closed — no 96-specific work remains); two off-spine sorries in
 `proof-blueprint verify-publish` passes on both targets, meaning all of:
 
 1. Five obligations closed (§§2–6) — no `sorryAx` on either spine.
-2. `Lean.trustCompiler` approved in `.blueprint.toml [axioms]`
-   ({{NEEDS_ADAM_INPUT}}, §8) or eliminated (not recommended, §8).
-3. The two `U2OppCap2Escape.lean` sorries wired into the spine or deleted
-   (adapter work after slot-2 closes; they are the `D.packet`-vocabulary
-   twins of obligations 1–2).
+2. `Lean.trustCompiler` approved in `.blueprint.toml [axioms]` — **DONE
+   2026-07-06** (approved by Adam; §8).
+3. ~~The two `U2OppCap2Escape.lean` sorries wired or deleted~~ — **DONE
+   2026-07-06**: whole file atticked (`attic/U2OppCap2Escape.lean`) per
+   Adam; dead-ends.md entry; import surface preserved via
+   `U2NonSurplusOneHit` (ledger §2.6).
 4. Mined graph fresh at the final check.
 
 ## 1. Obligation map
@@ -284,7 +285,7 @@ proof's largest uncertainty (register U4) from both sides.
 
 ## 8. Global gates and hygiene
 
-- **`Lean.trustCompiler` approval** ({{NEEDS_ADAM_INPUT}}): add to
+- **`Lean.trustCompiler` approval** — **DONE 2026-07-06** (Adam): added to
   `.blueprint.toml [axioms].approved`. Sanctioned by the 2026-06-05
   native_decide policy (both conditions hold: kernel-checked closure
   reported; evaluated checkers are plain verified Lean — no `unsafe` /
@@ -304,13 +305,15 @@ proof's largest uncertainty (register U4) from both sides.
 
 ## 9. Sequencing
 
-Parallel now: (1) endpoint wiring (§2, in flight); (2) pinned m-split landing
-+ the §3 step-1 enumeration; (3) the two-hit probe (§4, one solver-day);
-(4) D1 + D2 (§7, independent dispatches). Next wave: (5,5,4) census encode +
-smoke (§5) as solver capacity frees; census exhaustive run after its smoke
-gates. liveData stays parked behind the §6 tripwire. The off-spine U2
-adapters and trustCompiler approval slot in at any point; both are required
-for §0.
+2026-07-06 wave (Adam GO) — all four dispatched as background agents: the
+two-hit probe (§4), the (5,5,4) census encode+smoke+run (§5), D2 invariant
+separation, and the ℂ-vs-ℝ dichotomy classification (§7, D1 lead 1); the D2
+census artifacts are ported to `scratch/u12-census-port/` with a sha256
+manifest. In flight on the Lean side: endpoint wiring (§2, anchored session),
+erased-pin reduction-inputs (§4 lane), liveData branch split (§6). Landed:
+D1 scan, §3 step-1 enumeration, trustCompiler approval, U2 attic — §0 items
+2–3 are done; §0 closure now reduces to the five obligations plus a fresh
+final mine.
 
 ## 10. Solver-run ledger (supersedes the missed-angle table)
 
@@ -344,11 +347,11 @@ Both: fold per the §8 doc-ownership rule.
 | ID | Unknown | Severity | Resolved by |
 |---|---|---|---|
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
-| U2 | Two-hit configuration SAT or UNSAT? | MEDIUM | §4 probe (one solver-day) |
-| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run (after smoke gates) |
+| U2 | Two-hit configuration SAT or UNSAT? | MEDIUM | §4 probe — **dispatched 2026-07-06** |
+| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
 | U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE: no direct transfer, 5 adaptable leads (§7) — leads 2–4 feed D2's invariant menu, lead 1 (ℂ-vs-ℝ dichotomy) is a new cheap dispatch; next signal = D2 separation or dichotomy classification; else honest OPEN report |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
-| U6 | trustCompiler approval | admin | {{NEEDS_ADAM_INPUT}} |
+| U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
 | U8 | ℝ-only content in census certificates (checker fit) | unknown until emit | census output inspection; decision point if present |
 
