@@ -56,7 +56,7 @@ def class_id(av, bv, aw, bw, io2, io1, isv):
     if io1:
         s += f"_o1{io1[0]}"
     if isv:
-        s += f"_s{isv[0]}"
+        s += f"_s{isv}"  # full word: 'shared'/'sep' must not collide
     return s
 
 

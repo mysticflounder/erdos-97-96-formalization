@@ -1,0 +1,811 @@
+{
+ "V00_W00": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "1921/2304",
+   "rw2": "1921/2304",
+   "p1x": "9545/11568",
+   "p1y": "377/964",
+   "p2x": "13/16",
+   "p2y": "5/12",
+   "p3x": "157145/196656",
+   "p3y": "7241/16388",
+   "p4x": "38617/49200",
+   "p4y": "1913/4100",
+   "q1x": "10583/49200",
+   "q1y": "1913/4100",
+   "q2x": "39511/196656",
+   "q2y": "7241/16388",
+   "q3x": "2023/11568",
+   "q3y": "377/964",
+   "q4x": "8023/49200",
+   "q4y": "1497/4100"
+  }
+ },
+ "V00_W0U": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "1921/2304",
+   "rw2": "13/16",
+   "p1x": "9545/11568",
+   "p1y": "377/964",
+   "p2x": "13/16",
+   "p2y": "5/12",
+   "p3x": "157145/196656",
+   "p3y": "7241/16388",
+   "p4x": "38617/49200",
+   "p4y": "1913/4100",
+   "q1x": "1141843/5425762",
+   "q1y": "4718957/10851524",
+   "q2x": "1057/5338",
+   "q2y": "4393/10676",
+   "q3x": "1026643/5508962",
+   "q3y": "4274157/11017924"
+  }
+ },
+ "V00_W0o1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V00_W0o1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V00_WV0": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "1921/2304",
+   "rw2": "1",
+   "p1x": "9545/11568",
+   "p1y": "377/964",
+   "p2x": "13/16",
+   "p2y": "5/12",
+   "p3x": "157145/196656",
+   "p3y": "7241/16388",
+   "p4x": "38617/49200",
+   "p4y": "1913/4100",
+   "q1x": "455058/3672265",
+   "q1y": "1770624/3672265",
+   "q2x": "49/445",
+   "q2y": "203/445",
+   "q3x": "351122/3620297",
+   "q3y": "1555328/3620297"
+  }
+ },
+ "V00_WVU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "9/17",
+   "v1y": "15/17",
+   "oy": "3/10",
+   "R2": "17/50",
+   "rv2": "24953/27200",
+   "rw2": "1",
+   "p1x": "2355147/2785960",
+   "p1y": "62723/139298",
+   "p2x": "113/136",
+   "p2y": "81/170",
+   "p3x": "133659/163880",
+   "p3y": "4115/8194",
+   "p4x": "557259/697000",
+   "p4y": "91903/174250",
+   "q1x": "169/1189",
+   "q1y": "611/1189",
+   "q2x": "1232450/9664289",
+   "q2y": "4722560/9664289"
+  }
+ },
+ "V00_WVo1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V00_WVo1_o1i": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": 3,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "1",
+   "oy": "3/8",
+   "R2": "25/64",
+   "rv2": "1682/1261",
+   "rw2": "1",
+   "p1x": "2339900351/2374544965",
+   "p1y": "1430314307/2374544965",
+   "p2x": "557177/576277",
+   "p2y": "364037/576277",
+   "p3x": "2223751871/2347428421",
+   "p3y": "1550828099/2347428421",
+   "p4x": "841/1261",
+   "p4y": "1189/1261",
+   "q1x": "392/2405",
+   "q1y": "1316/2405",
+   "q2x": "1441602/9768865",
+   "q2y": "5107584/9768865"
+  }
+ },
+ "V00_Ws0": {
+  "status": "no-witness-in-menu"
+ },
+ "V00_WsU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "1921/2304",
+   "rw2": "13/16",
+   "p1x": "9545/11568",
+   "p1y": "377/964",
+   "p2x": "13/16",
+   "p2y": "5/12",
+   "p3x": "157145/196656",
+   "p3y": "7241/16388",
+   "p4x": "38617/49200",
+   "p4y": "1913/4100",
+   "q1x": "1057/5338",
+   "q1y": "4393/10676",
+   "q2x": "1026643/5508962",
+   "q2y": "4274157/11017924",
+   "swx": "793/7666",
+   "swy": "-1429/15332"
+  }
+ },
+ "V00_Wso1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V00_Wso1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0U_W0U": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "1",
+   "oy": "3/8",
+   "R2": "25/64",
+   "rv2": "5/4",
+   "rw2": "5/4",
+   "p1x": "11561639/12131506",
+   "p1y": "3545959/6065753",
+   "p2x": "2749/2938",
+   "p2y": "899/1469",
+   "p3x": "10955431/11942066",
+   "p3y": "3815911/5971033",
+   "q1x": "986635/11942066",
+   "q1y": "3815911/5971033",
+   "q2x": "189/2938",
+   "q2y": "899/1469",
+   "q3x": "569867/12131506",
+   "q3y": "3545959/6065753"
+  }
+ },
+ "V0U_W0o1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0U_W0o1_o1i": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": 1,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "3/4",
+   "v1y": "5/3",
+   "oy": "373/480",
+   "R2": "196729/230400",
+   "rv2": "481/144",
+   "rw2": "63277721/28120464",
+   "p1x": "3492625075/3200265028",
+   "p1y": "3518745553/2400198771",
+   "p2x": "2448871/2343372",
+   "p2y": "292805/195281",
+   "p3x": "124515385011/120031419460",
+   "p3y": "135459862861/90023564595",
+   "q1x": "1868165651873/16320332275980",
+   "q1y": "1646741154923/1360027689665",
+   "q2x": "326439179/4023569724",
+   "q2y": "397567034/335297477",
+   "q3x": "812831712161/16647879440652",
+   "q3y": "1609237274795/1387323286721"
+  }
+ },
+ "V0U_WV0": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "1",
+   "oy": "3/8",
+   "R2": "25/64",
+   "rv2": "5/4",
+   "rw2": "1",
+   "p1x": "11561639/12131506",
+   "p1y": "3545959/6065753",
+   "p2x": "2749/2938",
+   "p2y": "899/1469",
+   "p3x": "10955431/11942066",
+   "p3y": "3815911/5971033",
+   "q1x": "1778498/9937313",
+   "q1y": "5673088/9937313",
+   "q2x": "392/2405",
+   "q2y": "1316/2405",
+   "q3x": "1441602/9768865",
+   "q3y": "5107584/9768865"
+  }
+ },
+ "V0U_WVU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "2/5",
+   "v1y": "4/5",
+   "oy": "1/4",
+   "R2": "5/16",
+   "rv2": "4/5",
+   "rw2": "1",
+   "p1x": "39009982/49686565",
+   "p1y": "21289084/49686565",
+   "p2x": "1858/2405",
+   "p2y": "1084/2405",
+   "p3x": "37084862/48844325",
+   "p3y": "23093884/48844325",
+   "q1x": "169/1597",
+   "q1y": "715/1597",
+   "q2x": "1207458/12994129",
+   "q2y": "5470080/12994129"
+  }
+ },
+ "V0U_WVo1_o1d": {
+  "status": "witness",
+  "sc": {
+   "pslot": 3,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "1",
+   "oy": "3/8",
+   "R2": "25/64",
+   "rv2": "5/4",
+   "rw2": "1",
+   "p1x": "11561639/12131506",
+   "p1y": "3545959/6065753",
+   "p2x": "2749/2938",
+   "p2y": "899/1469",
+   "p3x": "10955431/11942066",
+   "p3y": "3815911/5971033",
+   "wo1x": "841/1261",
+   "wo1y": "1189/1261",
+   "q1x": "392/2405",
+   "q1y": "1316/2405",
+   "q2x": "1441602/9768865",
+   "q2y": "5107584/9768865"
+  }
+ },
+ "V0U_WVo1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0U_Ws0": {
+  "status": "no-witness-in-menu"
+ },
+ "V0U_WsU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "13/16",
+   "rw2": "13/16",
+   "p1x": "4482319/5508962",
+   "p1y": "4274157/11017924",
+   "p2x": "4281/5338",
+   "p2y": "4393/10676",
+   "p3x": "4283919/5425762",
+   "p3y": "4718957/10851524",
+   "q1x": "1057/5338",
+   "q1y": "4393/10676",
+   "q2x": "1026643/5508962",
+   "q2y": "4274157/11017924",
+   "swx": "793/7666",
+   "swy": "-1429/15332"
+  }
+ },
+ "V0U_Wso1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0U_Wso1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_W0o1_o2d_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_W0o1_o2d_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_W0o1_o2i_o1i": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ },
+ "V0o2_WV0_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WV0_o2i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WVU_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WVU_o2i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WVo1_o2d_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WVo1_o2d_o1i": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": 2,
+   "qslot": 0,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "3/4",
+   "v1y": "7/6",
+   "oy": "169/336",
+   "R2": "56785/112896",
+   "rv2": "12544/6617",
+   "rw2": "1",
+   "p1x": "17355968/14855165",
+   "p1y": "10821776/14855165",
+   "p2x": "5341089152/4663271197",
+   "p2y": "3563333872/4663271197",
+   "p3x": "6272/6617",
+   "p3y": "6608/6617",
+   "q1x": "529/2005",
+   "q1y": "1357/2005",
+   "q2x": "3993138/16254745",
+   "q2y": "10670976/16254745",
+   "vo2x": "21440212864/29844476441",
+   "vo2y": "35054588464/29844476441"
+  }
+ },
+ "V0o2_WVo1_o2i_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WVo1_o2i_o1i": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ },
+ "V0o2_Ws0_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_Ws0_o2i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WsU_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_WsU_o2i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_Wso1_o2d_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_Wso1_o2d_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_Wso1_o2i_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "V0o2_Wso1_o2i_o1i": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ },
+ "VW0_WV0": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "1",
+   "oy": "3/8",
+   "R2": "25/64",
+   "rv2": "1",
+   "rw2": "1",
+   "p1x": "8327263/9768865",
+   "p1y": "5107584/9768865",
+   "p2x": "2013/2405",
+   "p2y": "1316/2405",
+   "p3x": "8158815/9937313",
+   "p3y": "5673088/9937313",
+   "q1x": "1778498/9937313",
+   "q1y": "5673088/9937313",
+   "q2x": "392/2405",
+   "q2y": "1316/2405",
+   "q3x": "1441602/9768865",
+   "q3y": "5107584/9768865"
+  }
+ },
+ "VW0_WVU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/5",
+   "v1y": "3/5",
+   "oy": "1/6",
+   "R2": "5/18",
+   "rv2": "1",
+   "rw2": "1",
+   "p1x": "3871/4321",
+   "p1y": "1920/4321",
+   "p2x": "15/17",
+   "p2y": "8/17",
+   "p3x": "3807/4385",
+   "p3y": "2176/4385",
+   "q1x": "72/1405",
+   "q1y": "444/1405",
+   "q2x": "240818/5727833",
+   "q2y": "1643392/5727833"
+  }
+ },
+ "VW0_WVo1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VW0_WVo1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VW0_Ws0": {
+  "status": "no-witness-in-menu"
+ },
+ "VW0_WsU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "1",
+   "rw2": "13/16",
+   "p1x": "3269175/3620297",
+   "p1y": "1555328/3620297",
+   "p2x": "396/445",
+   "p2y": "203/445",
+   "p3x": "3217207/3672265",
+   "p3y": "1770624/3672265",
+   "q1x": "1057/5338",
+   "q1y": "4393/10676",
+   "q2x": "1026643/5508962",
+   "q2y": "4274157/11017924",
+   "swx": "793/7666",
+   "swy": "-1429/15332"
+  }
+ },
+ "VW0_Wso1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VW0_Wso1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWU_WVU": {
+  "status": "NEEDS-SPECIAL"
+ },
+ "VWU_WVo1_o1d": {
+  "status": "witness",
+  "sc": {
+   "pslot": 2,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "8/17",
+   "v1y": "15/17",
+   "oy": "3/10",
+   "R2": "17/50",
+   "rv2": "1",
+   "rw2": "1",
+   "p1x": "1020/1189",
+   "p1y": "611/1189",
+   "p2x": "8275423/9820705",
+   "p2y": "5288064/9820705",
+   "wo1x": "221778/424489",
+   "wo1y": "372960/424489",
+   "q1x": "32/241",
+   "q1y": "120/241",
+   "q2x": "116162/979681",
+   "q2y": "462720/979681"
+  }
+ },
+ "VWU_WVo1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWU_Ws0": {
+  "status": "no-witness-in-menu"
+ },
+ "VWU_WsU": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "3/5",
+   "v1y": "4/5",
+   "oy": "1/4",
+   "R2": "5/16",
+   "rv2": "1",
+   "rw2": "4/5",
+   "p1x": "1428/1597",
+   "p1y": "715/1597",
+   "p2x": "11603631/13177169",
+   "p2y": "6244480/13177169",
+   "q1x": "547/2405",
+   "q1y": "1084/2405",
+   "q2x": "10676583/49686565",
+   "q2y": "21289084/49686565",
+   "swx": "709/6305",
+   "swy": "-698/6305"
+  }
+ },
+ "VWU_Wso1_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWU_Wso1_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_WVo1_o2d_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_WVo1_o2d_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_WVo1_o2i_o1i": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ },
+ "VWo2_Ws0_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_Ws0_o2i": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": 0,
+   "sord": null
+  },
+  "subs": {
+   "v1x": "7/12",
+   "v1y": "5/6",
+   "oy": "13/48",
+   "R2": "745/2304",
+   "rv2": "1",
+   "rw2": "1188100/1313089",
+   "p1x": "1748/1973",
+   "p1y": "915/1973",
+   "p2x": "14198775/16283657",
+   "p2y": "7971968/16283657",
+   "q1x": "719039/1313089",
+   "q1y": "1098720/1313089",
+   "q2x": "43392523/237669109",
+   "q2y": "115613248/237669109",
+   "q3x": "828642164123/4907561151113",
+   "q3y": "2270259412000/4907561151113",
+   "swx": "70681870451/1418410555601",
+   "swy": "-63326680480/1418410555601"
+  }
+ },
+ "VWo2_WsU_o2d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_WsU_o2i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_Wso1_o2d_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_Wso1_o2d_o1i": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_Wso1_o2i_o1d": {
+  "status": "no-witness-in-menu"
+ },
+ "VWo2_Wso1_o2i_o1i": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ },
+ "Vs0_Ws0_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_Ws0_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_WsU_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_WsU_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_Wso1_o1d_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_Wso1_o1d_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_Wso1_o1i_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vs0_Wso1_o1i_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "VsU_WsU_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "VsU_WsU_ssep": {
+  "status": "witness",
+  "sc": {
+   "pslot": null,
+   "pident": null,
+   "qslot": null,
+   "qident": null,
+   "sord": "wv"
+  },
+  "subs": {
+   "v1x": "1/2",
+   "v1y": "3/4",
+   "oy": "5/24",
+   "R2": "169/576",
+   "rv2": "13/16",
+   "rw2": "13/16",
+   "p1x": "4281/5338",
+   "p1y": "4393/10676",
+   "p2x": "4283919/5425762",
+   "p2y": "4718957/10851524",
+   "q1x": "1057/5338",
+   "q1y": "4393/10676",
+   "q2x": "1026643/5508962",
+   "q2y": "4274157/11017924",
+   "svx": "6873/7666",
+   "svy": "-1429/15332",
+   "swx": "793/7666",
+   "swy": "-1429/15332"
+  }
+ },
+ "VsU_Wso1_o1d_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "VsU_Wso1_o1d_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "VsU_Wso1_o1i_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "VsU_Wso1_o1i_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vso2_Wso1_o2d_o1d_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vso2_Wso1_o2d_o1d_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vso2_Wso1_o2d_o1i_sshared": {
+  "status": "no-witness-in-menu"
+ },
+ "Vso2_Wso1_o2d_o1i_ssep": {
+  "status": "no-witness-in-menu"
+ },
+ "Vso2_Wso1_o2i_o1i_ssep": {
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-1"
+ }
+}
