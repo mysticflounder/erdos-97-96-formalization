@@ -107,7 +107,11 @@ written; the single sorry is the inline
 reduction surface (chain / primitive-row / one-sided-payload splitters) as
 already landed above it. Route: the erased-pin session produces the
 reduction-inputs witness from that splitter surface — this is that lane's
-active work; no second owner. Ledger policy: if the witness production
+active work; no second owner. Probe input (2026-07-06, RESOLVED-SAT): the
+one-hit bounds `leftAdjCount ≤ 1` / `rightAdjCount ≤ 1` at interior centers
+are FALSE (exact witnesses, `scratch/two-hit-probe/report.md`) — the count
+facts route via seeded-census extension with the two-hit rows, not via
+`AdjacentChainOneHitData` (unproducible at interior centers). Ledger policy: if the witness production
 splits again, split into **named** residual theorems (house pattern), not
 additional naked inline sorries. Acceptance: row-3 obligation leaves the
 spine list; off-spine section stays clean (no re-orphaned ReductionInputs

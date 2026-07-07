@@ -1,0 +1,177 @@
+== independent verification: one_hit_gate (scratch/two-hit-probe/witness_one_hit.json) ==
+   center p = Pu, class = ('s3', 'Q1', 'u', 'w'), x = s3, claimed counts (m,s,l,r) = (2, 0, 1, 1)
+  [PASS] V1 gauge v=(0,0)
+  [PASS] V1 gauge w=(1,0)
+  [PASS] V2 R2 = 1/4 + k^2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]  (margin 212628/1749545)
+  [PASS] V3 strictInDisk[Q2]  (margin 153/700)
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]  (margin 5931/35000)
+  [PASS] V3 strictInDisk[s2]  (margin 9051/40000)
+  [PASS] V3 strictInDisk[s3]  (margin 29328/195895)
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]  (margin 547/7000)
+  [PASS] V3 strictInDisk[Pu]  (margin 8502/47285)
+  [PASS] V4 acuteAt[u]  (dot 4656/9457)
+  [PASS] V4 acuteAt[v]  (dot 97/193)
+  [PASS] V4 acuteAt[w]  (dot 96/193)
+  [PASS] V5 chordRef[C_u] nonzero
+  [PASS] V5 capSide[s1 in C_u]  (prod -873/33775)
+  [PASS] V5 capSide[s2 in C_u]  (prod -291/9650)
+  [PASS] V5 capSide[s3 in C_u]  (prod -5643072/264654145)
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] nonzero
+  [PASS] V5 capSide[Pw in C_v]  (prod -597132/9126005)
+  [PASS] V5 capSide[Pu in C_v]  (prod -1089504/12776407)
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] nonzero
+  [PASS] V5 capSide[Q1 in C_w]  (prod -52840944/2363635295)
+  [PASS] V5 capSide[Q2 in C_w]  (prod -169362/6518575)
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex position (120 cyclic triples all > 0)  (min sa2 = 654/168875 at ('s2', 's3', 'w'))
+  [PASS] V7 all 45 pairs distinct
+  [PASS] V8 radius2 > 0  (rho 12168/47285)
+  [PASS] V8 SelectedClass(A, p, r) == claimed class  (recomputed ('u', 'Q1', 's3', 'w'))
+  [PASS] V8 class card = 4
+  [PASS] V8 p itself not in class (dist 0 != r)
+  [PASS] V9 counts (moser, sameCap, leftAdj, rightAdj)  (recomputed (2, 0, 1, 1))
+  [PASS] V9 home cap of p is non-surplus  (home C_v)
+  [PASS] V10 x in class
+  [PASS] V10 x is a surplus interior
+  [PASS] V10 residual triple card 3
+
+VERDICT: WITNESS VERIFIED (all checks exact)
+
+== independent verification: two_hit_primary (scratch/two-hit-probe/witness_two_hit.json) ==
+   center p = Pu, class = ('s2', 'Q1', 'Q2', 'u'), x = s2, claimed counts (m,s,l,r) = (1, 0, 2, 1)
+  [PASS] V1 gauge v=(0,0)
+  [PASS] V1 gauge w=(1,0)
+  [PASS] V2 R2 = 1/4 + k^2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]  (margin 150372/2430449)
+  [PASS] V3 strictInDisk[Q2]  (margin 14400/122941)
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]  (margin 189573/1750000)
+  [PASS] V3 strictInDisk[s2]  (margin 177597/945893)
+  [PASS] V3 strictInDisk[s3]  (margin 1809/11200)
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]  (margin 57/2240)
+  [PASS] V3 strictInDisk[Pu]  (margin 1/8)
+  [PASS] V4 acuteAt[u]  (dot 4656/9457)
+  [PASS] V4 acuteAt[v]  (dot 97/193)
+  [PASS] V4 acuteAt[w]  (dot 96/193)
+  [PASS] V5 chordRef[C_u] nonzero
+  [PASS] V5 capSide[s1 in C_u]  (prod -9021/168875)
+  [PASS] V5 capSide[s2 in C_u]  (prod -3351990006/44726550505)
+  [PASS] V5 capSide[s3 in C_u]  (prod -873/13510)
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] nonzero
+  [PASS] V5 capSide[Pw in C_v]  (prod -5239746/45630025)
+  [PASS] V5 capSide[Pu in C_v]  (prod -206028/1825201)
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] nonzero
+  [PASS] V5 capSide[Q1 in C_w]  (prod -309537282/16417682995)
+  [PASS] V5 capSide[Q2 in C_w]  (prod -23880042/830466455)
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex position (120 cyclic triples all > 0)  (min sa2 = 27956/31595837 at ('u', 'Q1', 'Q2'))
+  [PASS] V7 all 45 pairs distinct
+  [PASS] V8 radius2 > 0  (rho 34945/75656)
+  [PASS] V8 SelectedClass(A, p, r) == claimed class  (recomputed ('u', 'Q1', 'Q2', 's2'))
+  [PASS] V8 class card = 4
+  [PASS] V8 p itself not in class (dist 0 != r)
+  [PASS] V9 counts (moser, sameCap, leftAdj, rightAdj)  (recomputed (1, 0, 2, 1))
+  [PASS] V9 home cap of p is non-surplus  (home C_v)
+  [PASS] V10 x in class
+  [PASS] V10 x is a surplus interior
+  [PASS] V10 residual triple card 3
+
+VERDICT: WITNESS VERIFIED (all checks exact)
+
+== independent verification: two_hit_mirror_right (scratch/two-hit-probe/witness_two_hit_mirror.json) ==
+   center p = Q1, class = ('s2', 'Pw', 'Pu', 'u'), x = s2, claimed counts (m,s,l,r) = (1, 0, 1, 2)
+  [PASS] V1 gauge v=(0,0)
+  [PASS] V1 gauge w=(1,0)
+  [PASS] V2 R2 = 1/4 + k^2
+  [PASS] V2 onMEC[u]
+  [PASS] V2 onMEC[v]
+  [PASS] V2 onMEC[w]
+  [PASS] V3 inDisk[u]
+  [PASS] V3 strictInDisk[Q1]  (margin 1/8)
+  [PASS] V3 strictInDisk[Q2]  (margin 57/2240)
+  [PASS] V3 inDisk[v]
+  [PASS] V3 strictInDisk[s1]  (margin 1809/11200)
+  [PASS] V3 strictInDisk[s2]  (margin 177597/945893)
+  [PASS] V3 strictInDisk[s3]  (margin 189573/1750000)
+  [PASS] V3 inDisk[w]
+  [PASS] V3 strictInDisk[Pw]  (margin 14400/122941)
+  [PASS] V3 strictInDisk[Pu]  (margin 150372/2430449)
+  [PASS] V4 acuteAt[u]  (dot 4656/9457)
+  [PASS] V4 acuteAt[v]  (dot 96/193)
+  [PASS] V4 acuteAt[w]  (dot 97/193)
+  [PASS] V5 chordRef[C_u] nonzero
+  [PASS] V5 capSide[s1 in C_u]  (prod -873/13510)
+  [PASS] V5 capSide[s2 in C_u]  (prod -3351990006/44726550505)
+  [PASS] V5 capSide[s3 in C_u]  (prod -9021/168875)
+  [PASS] V5 notInCap[Pw vs C_u]
+  [PASS] V5 notInCap[Pu vs C_u]
+  [PASS] V5 notInCap[Q1 vs C_u]
+  [PASS] V5 notInCap[Q2 vs C_u]
+  [PASS] V5 chordRef[C_v] nonzero
+  [PASS] V5 capSide[Pw in C_v]  (prod -23880042/830466455)
+  [PASS] V5 capSide[Pu in C_v]  (prod -309537282/16417682995)
+  [PASS] V5 notInCap[s1 vs C_v]
+  [PASS] V5 notInCap[s2 vs C_v]
+  [PASS] V5 notInCap[s3 vs C_v]
+  [PASS] V5 notInCap[Q1 vs C_v]
+  [PASS] V5 notInCap[Q2 vs C_v]
+  [PASS] V5 chordRef[C_w] nonzero
+  [PASS] V5 capSide[Q1 in C_w]  (prod -206028/1825201)
+  [PASS] V5 capSide[Q2 in C_w]  (prod -5239746/45630025)
+  [PASS] V5 notInCap[s1 vs C_w]
+  [PASS] V5 notInCap[s2 vs C_w]
+  [PASS] V5 notInCap[s3 vs C_w]
+  [PASS] V5 notInCap[Pw vs C_w]
+  [PASS] V5 notInCap[Pu vs C_w]
+  [PASS] V6 convex position (120 cyclic triples all > 0)  (min sa2 = 27956/31595837 at ('u', 'Pw', 'Pu'))
+  [PASS] V7 all 45 pairs distinct
+  [PASS] V8 radius2 > 0  (rho 34945/75656)
+  [PASS] V8 SelectedClass(A, p, r) == claimed class  (recomputed ('u', 's2', 'Pw', 'Pu'))
+  [PASS] V8 class card = 4
+  [PASS] V8 p itself not in class (dist 0 != r)
+  [PASS] V9 counts (moser, sameCap, leftAdj, rightAdj)  (recomputed (1, 0, 1, 2))
+  [PASS] V9 home cap of p is non-surplus  (home C_w)
+  [PASS] V10 x in class
+  [PASS] V10 x is a surplus interior
+  [PASS] V10 residual triple card 3
+
+VERDICT: WITNESS VERIFIED (all checks exact)
+

@@ -1,0 +1,22 @@
+== two-hit probe, smoke gate (ii): pinned-bank kill reproduction ==
+
+step 0: msolve verdict-parser micro-sanity
+  micro [unit ideal -> empty] expect empty got empty: PASS
+  micro [zero-dim, no real  ] expect zerodim0 got zerodim0: PASS
+  micro [positive-dim       ] expect posdim got posdim: PASS
+
+step 1: msolve on stored /Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g/inputs/s1_000.ms
+  verdict: {'kind': 'empty'}
+  PASS: stored s1_000 -> [-1] (C-empty), matching bank verdict
+
+step 2: rebuild s1_000 equations with probe_lib encoder, compare
+  PASS: 30 rebuilt generators == stored generators (canonical multiset equality)
+  msolve on rebuilt file: {'kind': 'empty'}
+  PASS: rebuilt s1_000 -> [-1]
+
+step 3: s1_002 (NO_VALID_REAL, forced pair u=v) + Rabinowitsch
+  Rabinowitsch generator: t*ux^2 + t*uy^2 - 1
+  Singular std unit-ideal test: unit
+  PASS: s1_002 + t*dist2(u,v)-1 -> unit ideal (the bank's kill certificate format)
+
+SMOKE GATE (ii): ALL PASS

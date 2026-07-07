@@ -1,0 +1,19 @@
+witness substitution into every skeleton generator:
+  [PASS] u_on_MEC -> 0
+  [PASS] pin[s2] -> 0
+  [PASS] pin[Q1] -> 0
+  [PASS] pin[Q2] -> 0
+  [PASS] rab[u!=s2] -> 0
+  [PASS] rab[u!=Q1] -> 0
+  [PASS] rab[u!=Q2] -> 0
+  [PASS] rab[u!=Pu] -> 0
+  [PASS] rab[s2!=Q1] -> 0
+  [PASS] rab[s2!=Q2] -> 0
+  [PASS] rab[s2!=Pu] -> 0
+  [PASS] rab[Q1!=Q2] -> 0
+  [PASS] rab[Q1!=Pu] -> 0
+  [PASS] rab[Q2!=Pu] -> 0
+
+msolve on /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/two-hit-probe/primary_skeleton.ms (21 vars, 14 eqs)
+  verdict: {'kind': 'posdim', 'nvars': 21}
+  consistent with the witness (posdim/zerodim expected; per (D-msolve) this tuple is not itself a real-SAT verdict)

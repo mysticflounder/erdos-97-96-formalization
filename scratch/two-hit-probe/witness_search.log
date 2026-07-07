@@ -1,0 +1,15 @@
+== witness construction (exact rational, no floats) ==
+
+GATE-I: one-hit configuration {s3, Q1, u, w} at p = Pu (row (2,0,1,1))
+[gate-i seed] 58/58 checks pass -> WITNESS
+    wrote /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/two-hit-probe/witness_one_hit.json
+
+PRIMARY: two-hit configuration {s2, Q1, Q2, u} at p = Pu (counts (1,0,2,1); leftAdjCount = 2)
+[primary seed] 58/58 checks pass -> WITNESS
+    wrote /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/two-hit-probe/witness_two_hit.json
+
+MIRROR: right-side two-hit {s2, Pw, Pu, u} at p = Q1 (counts (1,0,1,2); rightAdjCount = 2)
+[mirror] 58/58 checks pass -> WITNESS
+    wrote /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/two-hit-probe/witness_two_hit_mirror.json
+
+RESULTS: {'gate_i': 'SAT (exact witness)', 'primary': 'SAT (exact witness)', 'mirror': 'SAT (exact witness)'}

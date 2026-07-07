@@ -1,0 +1,55 @@
+two-hit probe master run log (2026-07-06)
+==========================================
+
+Task: closure-plan-2026-07-06.md S4, obligation 3 gate (register U2).
+Question: is the (two same-side adjacent-interior hits) configuration
+satisfiable under the full local pin?
+
+Sequence executed (all commands `uv run python` from the repo root):
+
+1. smoke_gate_bank_kill.py           -> smoke_gate_bank_kill.log
+   step 0  msolve verdict-parser micro-sanity (3 tiny systems)   PASS 3/3
+   step 1  stored s1_000.ms (bank C_EMPTY) -> msolve [-1]        PASS
+   step 2  s1_000 rebuilt with probe encoder: 30/30 generators
+           identical to stored (canonical multiset); msolve [-1] PASS
+   step 3  s1_002 (NO_VALID_REAL, forced u=v) + probe
+           Rabinowitsch t*dist2(u,v)-1 -> Singular unit ideal    PASS
+   SMOKE GATE (ii): PASS (known pinned-bank kill reproduced; encoding
+   conventions cross-validated against the stored rvol inputs)
+
+2. witness_search.py                 -> witness_search.log
+   GATE-I  one-hit class {s3,Q1,u,w} at p=Pu, counts (2,0,1,1):
+           58/58 exact checks -> WITNESS  witness_one_hit.json
+   SMOKE GATE (i): PASS (one-hit configuration SAT)
+   PRIMARY two-hit class {s2,Q1,Q2,u} at p=Pu, counts (1,0,2,1):
+           58/58 exact checks -> WITNESS  witness_two_hit.json
+   MIRROR  right-side two-hit {s2,Pw,Pu,u} at p=Q1, counts (1,0,1,2)
+           (reflection x -> 1-x + label permutation
+           (v w)(Pw Q2)(Pu Q1)(s1 s3)):
+           58/58 exact checks -> WITNESS  witness_two_hit_mirror.json
+
+3. verify_witness.py (all three JSONs) -> verify_witness.log
+   Independent re-verification from stored coordinate strings only
+   (inline predicates, no shared construction code):
+   one_hit_gate        VERIFIED  recomputed class ('u','Q1','s3','w'),
+                                 counts (2,0,1,1)
+   two_hit_primary     VERIFIED  recomputed class ('u','Q1','Q2','s2'),
+                                 counts (1,0,2,1)
+   two_hit_mirror      VERIFIED  recomputed class ('u','s2','Pw','Pu'),
+                                 counts (1,0,1,2)
+   exit code 0
+
+4. msolve_skeleton_crosscheck.py     -> msolve_skeleton_crosscheck.log
+   Primary equality skeleton (u-on-MEC + 3 pin equations + 10 per-pair
+   Rabinowitsch among {u,s2,Q1,Q2,Pu}; 21 vars, 14 eqs):
+   - witness substitution: 14/14 generators evaluate to exact 0
+   - msolve verdict: [1, 21, -1, []] positive-dimensional -- consistent
+     with the witness; per (D-msolve) NOT itself a real-SAT verdict.
+
+VERDICT: SAT (both sides).  The adjacency upper bounds
+leftAdjCount <= 1 and rightAdjCount <= 1 are NOT lemma-shaped at
+non-surplus interior centers.  See report.md.
+
+Solvers used: msolve 0.10.x (/opt/homebrew/bin/msolve),
+Singular (/opt/homebrew/bin/Singular).  All witness verdicts rest on
+exact Fraction arithmetic (no floats anywhere in any script).

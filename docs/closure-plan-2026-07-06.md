@@ -46,7 +46,7 @@ closed — no 96-specific work remains); two off-spine sorries in
 |---|---|---|---|---|
 | 1 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom.lean:324` | endpoint certificate stack (built), wiring remains | LOW |
 | 2 | `isM44PinnedSurplusResidualsExcluded` | `RemovableVertexAxiom.lean` | m-split: exact bank (m=5) + relaxed vocabulary (general m) | MEDIUM, enumerable (§3, U1) |
-| 3 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom.lean` | gated on the two-hit probe (§4) | MEDIUM → LOW after one solver-day |
+| 3 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom.lean` | probe RESOLVED-SAT → census extension (§4) | LOW — mechanical pipeline |
 | 4 | `…MetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2383` | split: (5,5,4) census (\|A\|=11) + workstream D (\|A\|≥12) | \|A\|=11 MEDIUM; \|A\|≥12 HIGH (§7) |
 | 5 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3251` | active in-tree branch split (ledger §2.5); COMP-1-blocked leaves still need a producer | HIGH on blocked leaves, gated on §7 |
 
@@ -151,16 +151,26 @@ probe (adopted in the lane plan; never dispatched). Dispatch-ready spec:
 - **Smoke gates (mandatory before the real run):** (i) drop the second
   adjacent hit → must be SAT (known-realizable one-hit configuration);
   (ii) reproduce one known kill from the pinned bank → must be UNSAT.
-- **Outcomes:** SAT with margin (expected, HEURISTIC) → the two-hit rows are
-  census-shaped: extend `SurplusSeededShadow`'s seeded family with the
-  two-hit rows, emit certificates through the existing emitter, reuse the
-  seeded consumers (already closed for the one-sided family). UNSAT →
-  extract the unsat core and prove the geometric one-hit lemma it exhibits.
-- Either outcome unblocks the four count facts; the lower bounds are already
-  routed into the seeded census and ride obligation 2's relaxed-vocabulary
-  treatment (same mask-hypothesis caveat).
+- **Outcome — RESOLVED 2026-07-06: SAT (PROVEN, constructive).** Both smoke
+  gates passed; exact rational witnesses for left two-hit (counts (1,0,2,1),
+  class {s2,Q1,Q2,u} at p = Pu) and right two-hit ((1,0,1,2), mirror),
+  independently re-verified. Full report + artifacts:
+  `scratch/two-hit-probe/report.md`. Consequences: `leftAdjCount ≤ 1` /
+  `rightAdjCount ≤ 1` at non-surplus strict-interior centers are FALSE as
+  stated — stop lemma attempts; the `hl`/`hr` hypotheses of
+  `exists_left_right_primitive_packet_cases_of_erasedPinTriple_counts`
+  (`SurplusM44Packet.lean:6429`) are not dischargeable by any one-hit lemma,
+  and `AdjacentChainOneHitData` is unproducible at interior centers
+  (Moser-vertex centers keep their closed one-hit bounds). Operative route:
+  extend `SurplusSeededShadow`'s seeded family with the two-hit rows
+  ((1,0,2,1), (1,0,1,2); unprobed census follow-ups (0,1,2,1), (0,0,2,2),
+  surplus-side ≥3-hit), emit through the existing emitter, reuse the seeded
+  consumers; the witnesses are ready-made emitter smoke anchors.
+- The lower bounds stay routed into the seeded census and ride obligation
+  2's relaxed-vocabulary treatment (same mask-hypothesis caveat).
 
-Uncertainty: MEDIUM; collapses to LOW after the probe (register U2).
+Uncertainty: LOW — the route is census extension, a known-shape mechanical
+pipeline (register U2 closed).
 
 ## 5. Obligation 4 — DoubleApex (|A|-split)
 
@@ -340,6 +350,10 @@ with the |A|=12 census consequence, the surplus-designation WLOG caution, and
 the smoke gate (§5); mark the `EpQ1008`/product-sum entries landed (tree
 evidence). Four-point plan: mark the `EpQ1008` "OPEN" paragraph superseded;
 adopt the named general-m residual (§3); point the audit gate at §4's spec.
+Probe stop-loss (2026-07-06, both plans): mark the `leftAdjCount ≤ 1` /
+`rightAdjCount ≤ 1` checklist lines CLOSED-NEGATIVE at interior centers
+citing `scratch/two-hit-probe/report.md`; retire `AdjacentChainOneHitData`
+for interior centers; the erased-pin count-facts route is census extension.
 Both: fold per the §8 doc-ownership rule.
 
 ## 12. Uncertainty register
@@ -347,7 +361,7 @@ Both: fold per the §8 doc-ownership rule.
 | ID | Unknown | Severity | Resolved by |
 |---|---|---|---|
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
-| U2 | Two-hit configuration SAT or UNSAT? | MEDIUM | §4 probe — **dispatched 2026-07-06** |
+| U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
 | U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE: no direct transfer, 5 adaptable leads (§7) — leads 2–4 feed D2's invariant menu, lead 1 (ℂ-vs-ℝ dichotomy) is a new cheap dispatch; next signal = D2 separation or dichotomy classification; else honest OPEN report |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
