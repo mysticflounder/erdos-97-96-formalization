@@ -1,0 +1,657 @@
+{
+  "case_id": "R009:u=v",
+  "certificate_id": "R009:u=v:R009NNYY",
+  "checks": {
+    "python_exact_polynomial": false,
+    "singular_lifted_column": true
+  },
+  "coefficients": [
+    "-4*puy^2*t+2*puy*q2y*t-1/2*t",
+    "-4*s2y*puy*t+4*puy^2*t-s2x*t+pux*t+t",
+    "4*s2y*puy*t-2*puy*q2y*t+s2x*t-pux*t+1/2*t",
+    "4*s2y*puy*q2x*t-4*puy^2*q2x*t-4*s2x*puy*q2y*t+4*pux*puy*q2y*t+2*s2y*puy*t+2*puy^2*t-2*puy*q2y*t+1/2*t",
+    "0",
+    "-4*s2y*puy*q2x*t+4*puy^2*q2x*t+4*s2x*puy*q2y*t-4*pux*puy*q2y*t-2*s2y*puy*t+2*puy^2*t",
+    "-1",
+    "0",
+    "-4*puy*q2y*t+t",
+    "4*puy*q2y*t-t",
+    "0",
+    "0",
+    "0",
+    "4*puy*q2y*t-t",
+    "t",
+    "-4*puy*q2y*t",
+    "0",
+    "0",
+    "-4*puy*q2y*t+t",
+    "8*s2y*pux*puy*t-8*s2x*puy^2*t-4*s2y*puy*q2x*t+4*puy^2*q2x*t+4*s2x*puy*q2y*t-4*pux*puy*q2y*t-2*s2y*puy*t-2*puy^2*t+2*puy*q2y*t-1/2*t",
+    "8*puy^2*t",
+    "4*s2y*puy*q2x*t-4*puy^2*q2x*t-4*s2x*puy*q2y*t+4*pux*puy*q2y*t-10*s2y*puy*t+6*puy^2*t-2*puy*q2y*t-s2x*t+pux*t+3/2*t",
+    "4*s2y*puy*t-2*puy*q2y*t-s2x*t+pux*t+1/2*t",
+    "-4*s2y*puy*q2x*t+4*puy^2*q2x*t+4*s2x*puy*q2y*t-4*pux*puy*q2y*t+2*s2y*puy*t-6*puy^2*t+2*puy*q2y*t+s2x*t-pux*t-3/2*t",
+    "4*s2y*puy*q2x*t-4*puy^2*q2x*t-4*s2x*puy*q2y*t+4*pux*puy*q2y*t-6*s2y*puy*t+6*puy^2*t+t",
+    "0",
+    "0",
+    "4*puy*q2y*t-t",
+    "0",
+    "-4*s2y*puy*q2x*t+4*puy^2*q2x*t+4*s2x*puy*q2y*t-4*pux*puy*q2y*t+6*s2y*puy*t-6*puy^2*t+4*puy*q2y*t-t",
+    "-4*puy*q2y*t+t"
+  ],
+  "common_erased_masks": {
+    "Pu": {
+      "mask": 581,
+      "members": [
+        "u",
+        "w",
+        "Pw",
+        "Q2"
+      ]
+    },
+    "Pw": {
+      "mask": 150,
+      "members": [
+        "v",
+        "w",
+        "s2",
+        "Pu"
+      ]
+    },
+    "Q1": {
+      "mask": 547,
+      "members": [
+        "u",
+        "v",
+        "s3",
+        "Q2"
+      ]
+    },
+    "Q2": {
+      "mask": 394,
+      "members": [
+        "v",
+        "s1",
+        "Pu",
+        "Q1"
+      ]
+    },
+    "s1": {
+      "mask": 306,
+      "members": [
+        "v",
+        "s2",
+        "s3",
+        "Q1"
+      ]
+    },
+    "s2": {
+      "mask": 680,
+      "members": [
+        "s1",
+        "s3",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "s3": {
+      "mask": 29,
+      "members": [
+        "u",
+        "w",
+        "s1",
+        "s2"
+      ]
+    },
+    "u": {
+      "mask": 300,
+      "members": [
+        "w",
+        "s1",
+        "s3",
+        "Q1"
+      ]
+    }
+  },
+  "exact_pids": [
+    "s2_018"
+  ],
+  "generator_metadata": [
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,s2)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+      "id": "exact:v:u=s2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pw)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:v:u=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pu)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+      "id": "exact:v:u=Pu",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pu"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Pw)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:w:s2=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Pw"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Q1)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+      "id": "exact:w:s2=Q1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Q1"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Q2)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+      "id": "exact:w:s2=Q2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Q2"
+      ]
+    },
+    {
+      "equation": "t * dist2(u,v) - 1",
+      "generator": "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+      "id": "separator:u=v",
+      "kind": "rabinowitsch_distinct",
+      "optional": false,
+      "pair": [
+        "u",
+        "v"
+      ],
+      "source": "separator"
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+      "id": "leaf:R009NNYY:u:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s3)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+      "id": "leaf:R009NNYY:u:w=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s3"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,Q1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+      "id": "leaf:R009NNYY:u:w=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,s2)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s2x))^2+((s1y)-(s2y))^2)",
+      "id": "leaf:R009NNYY:s1:v=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s2"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,s3)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+      "id": "leaf:R009NNYY:s1:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,Q1)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(q1x))^2+((s1y)-(q1y))^2)",
+      "id": "leaf:R009NNYY:s1:v=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,s3)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+      "id": "leaf:R009NNYY:s2:s1=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Pu)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+      "id": "leaf:R009NNYY:s2:s1=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Q2)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q2x))^2+((s2y)-(q2y))^2)",
+      "id": "leaf:R009NNYY:s2:s1=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,w)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+      "id": "leaf:R009NNYY:s3:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,s1)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+      "id": "leaf:R009NNYY:s3:u=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,s2)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s2x))^2+((s3y)-(s2y))^2)",
+      "id": "leaf:R009NNYY:s3:u=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,w)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(1))^2+((pwy)-(0))^2)",
+      "id": "leaf:R009NNYY:Pw:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s2)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+      "id": "leaf:R009NNYY:Pw:v=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Pu)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+      "id": "leaf:R009NNYY:Pw:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,w)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(1))^2+((puy)-(0))^2)",
+      "id": "leaf:R009NNYY:Pu:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Pw)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+      "id": "leaf:R009NNYY:Pu:u=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Q2)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q2x))^2+((puy)-(q2y))^2)",
+      "id": "leaf:R009NNYY:Pu:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,v)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(0))^2+((q1y)-(0))^2)",
+      "id": "leaf:R009NNYY:Q1:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,s3)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(s3x))^2+((q1y)-(s3y))^2)",
+      "id": "leaf:R009NNYY:Q1:u=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s3"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,Q2)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+      "id": "leaf:R009NNYY:Q1:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,s1)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+      "id": "leaf:R009NNYY:Q2:v=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s1"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,Pu)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(pux))^2+((q2y)-(puy))^2)",
+      "id": "leaf:R009NNYY:Q2:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,Q1)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)",
+      "id": "leaf:R009NNYY:Q2:v=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q1"
+      ]
+    }
+  ],
+  "generators": [
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+    "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s2x))^2+((s1y)-(s2y))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(q1x))^2+((s1y)-(q1y))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q2x))^2+((s2y)-(q2y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s2x))^2+((s3y)-(s2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(1))^2+((pwy)-(0))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(1))^2+((puy)-(0))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q2x))^2+((puy)-(q2y))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(0))^2+((q1y)-(0))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(s3x))^2+((q1y)-(s3y))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(pux))^2+((q2y)-(puy))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)"
+  ],
+  "leaf_id": "R009NNYY",
+  "minimize_optional": false,
+  "minimize_steps": [],
+  "relaxed_id": "R009",
+  "schema": "pinned_surplus_relaxed_split_certificate.v1",
+  "separator_pair": "u=v",
+  "split_path": [
+    {
+      "center": "Pw",
+      "decision": "no",
+      "label": "Q1"
+    },
+    {
+      "center": "s1",
+      "decision": "no",
+      "label": "w"
+    },
+    {
+      "center": "s3",
+      "decision": "yes",
+      "label": "u"
+    },
+    {
+      "center": "u",
+      "decision": "yes",
+      "label": "w"
+    }
+  ],
+  "sstar": "s2",
+  "support": {
+    "centers_used": [
+      "u",
+      "v",
+      "w",
+      "s2",
+      "s3",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonzero_count": 21,
+    "nonzero_indices": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      8,
+      9,
+      13,
+      14,
+      15,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      27,
+      29,
+      30
+    ],
+    "nonzero_optional_indices": [
+      1,
+      2,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      20,
+      22,
+      23
+    ]
+  },
+  "variables": [
+    "ux",
+    "uy",
+    "s1x",
+    "s1y",
+    "s2x",
+    "s2y",
+    "s3x",
+    "s3y",
+    "pwx",
+    "pwy",
+    "pux",
+    "puy",
+    "q1x",
+    "q1y",
+    "q2x",
+    "q2y",
+    "t"
+  ]
+}

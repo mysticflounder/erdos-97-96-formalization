@@ -19,6 +19,7 @@ forced-collapse rows the last generator is the Rabinowitsch equation
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -26,6 +27,7 @@ import subprocess
 import sys
 import tempfile
 from dataclasses import dataclass
+from functools import lru_cache
 from fractions import Fraction
 from pathlib import Path
 from typing import Iterable
@@ -34,6 +36,7 @@ from typing import Iterable
 POINTS = ("u", "v", "w", "s1", "s2", "s3", "Pw", "Pu", "Q1", "Q2")
 DEFAULT_PAIR = "s1=s3"
 SCHEMA = "endpoint_certificate.v1"
+FIXED_ENDPOINT_POINTS = {"v", "w"}
 
 
 Monomial = tuple[int, ...]
@@ -235,6 +238,290 @@ def check_identity(variables: list[str], generators: list[str], coefficients: li
     if total != expected:
         terms = sum(1 for _ in total)
         raise ValueError(f"certificate identity check failed; residual terms={terms}")
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def dist2_poly(a: str, b: str, variables: tuple[str, ...]) -> Poly:
+    return parse_poly(dist2_expr(a, b), list(variables))
+
+
+@lru_cache(maxsize=None)
+def canonical_distance_eqs(
+    variables: tuple[str, ...],
+) -> dict[tuple[tuple[Monomial, Fraction], ...], dict[str, object]]:
+    out: dict[tuple[tuple[Monomial, Fraction], ...], dict[str, object]] = {}
+    for center in POINTS:
+        witnesses = [point for point in POINTS if point != center]
+        for idx, left in enumerate(witnesses):
+            for right in witnesses[idx + 1 :]:
+                poly = sub_poly(
+                    dist2_poly(center, left, variables),
+                    dist2_poly(center, right, variables),
+                )
+                neg = neg_poly(poly)
+                payload = {
+                    "kind": "distance_eq",
+                    "center": center,
+                    "witnesses": [left, right],
+                    "equation": f"dist2({center},{left}) = dist2({center},{right})",
+                }
+                out[poly_key(poly)] = {**payload, "sign": 1}
+                out[poly_key(neg)] = {**payload, "sign": -1}
+    return out
+
+
+@lru_cache(maxsize=None)
+def canonical_rabinowitsch_generators(
+    variables: tuple[str, ...],
+) -> dict[tuple[tuple[Monomial, Fraction], ...], dict[str, object]]:
+    if "t" not in variables:
+        return {}
+    out: dict[tuple[tuple[Monomial, Fraction], ...], dict[str, object]] = {}
+    for idx, left in enumerate(POINTS):
+        for right in POINTS[idx + 1 :]:
+            poly = parse_poly(rabinowitsch_generator(f"{left}={right}"), list(variables))
+            out[poly_key(poly)] = {
+                "kind": "rabinowitsch_distinct",
+                "pair": [left, right],
+                "equation": f"t * dist2({left},{right}) - 1",
+                "sign": 1,
+            }
+    return out
+
+
+def poly_key(poly: Poly) -> tuple[tuple[Monomial, Fraction], ...]:
+    return tuple(sorted(clean(poly).items()))
+
+
+def classify_generator(expr: str, variables: list[str]) -> dict[str, object]:
+    poly = parse_poly(expr, variables)
+    key = poly_key(poly)
+    variable_key = tuple(variables)
+    distance_eqs = canonical_distance_eqs(variable_key)
+    if key in distance_eqs:
+        return distance_eqs[key]
+    rabinowitsch = canonical_rabinowitsch_generators(variable_key)
+    if key in rabinowitsch:
+        return rabinowitsch[key]
+    return {"kind": "unclassified"}
+
+
+def coefficient_string_is_nonzero(expr: str) -> bool:
+    return normalize_poly(expr).strip() not in {"", "0"}
+
+
+def validate_certificate_shape(path: Path) -> dict[str, object]:
+    cert = json.loads(path.read_text())
+    if cert.get("schema") != SCHEMA:
+        raise ValueError(f"{path}: unsupported schema {cert.get('schema')!r}")
+    variables = cert.get("variables")
+    generators = cert.get("generators")
+    coefficients = cert.get("coefficients")
+    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
+        raise ValueError(f"{path}: invalid variables")
+    if not isinstance(generators, list) or not all(isinstance(x, str) for x in generators):
+        raise ValueError(f"{path}: invalid generators")
+    if not isinstance(coefficients, list) or not all(isinstance(x, str) for x in coefficients):
+        raise ValueError(f"{path}: invalid coefficients")
+    if len(generators) != len(coefficients):
+        raise ValueError(f"{path}: generator/coefficient length mismatch")
+    return cert
+
+
+def endpoint_core_row(path: Path) -> dict[str, object]:
+    cert = validate_certificate_shape(path)
+    variables = cert["variables"]
+    generators = cert["generators"]
+    coefficients = cert["coefficients"]
+    assert isinstance(variables, list)
+    assert isinstance(generators, list)
+    assert isinstance(coefficients, list)
+
+    variable_names = [str(variable) for variable in variables]
+    classified = [classify_generator(str(generator), variable_names) for generator in generators]
+    nonzero_indices = [
+        index
+        for index, coefficient in enumerate(coefficients)
+        if coefficient_string_is_nonzero(str(coefficient))
+    ]
+    nonzero_index_set = set(nonzero_indices)
+    nonzero_generators: list[dict[str, object]] = []
+    centers_used: set[str] = set()
+    rabinowitsch_pairs: list[list[str]] = []
+    unclassified_indices: list[int] = []
+    for index in nonzero_indices:
+        classification = classified[index]
+        kind = classification.get("kind")
+        if kind == "distance_eq":
+            centers_used.add(str(classification["center"]))
+        elif kind == "rabinowitsch_distinct":
+            pair = classification.get("pair")
+            if isinstance(pair, list):
+                rabinowitsch_pairs.append([str(pair[0]), str(pair[1])])
+        else:
+            unclassified_indices.append(index)
+        nonzero_generators.append(
+            {
+                "index": index,
+                "generator": generators[index],
+                "classification": classification,
+            }
+        )
+
+    return {
+        "pid": cert["pid"],
+        "kind": cert["kind"],
+        "pair": cert.get("pair"),
+        "path": str(path),
+        "sha256": sha256_file(path),
+        "generator_count": len(generators),
+        "nonzero_count": len(nonzero_indices),
+        "zero_count": len(generators) - len(nonzero_indices),
+        "nonzero_indices": nonzero_indices,
+        "zero_indices": [
+            index for index in range(len(generators)) if index not in nonzero_index_set
+        ],
+        "centers_used": sorted(centers_used, key=POINTS.index),
+        "rabinowitsch_pairs": rabinowitsch_pairs,
+        "unclassified_nonzero_indices": unclassified_indices,
+        "stored_python_exact_check": bool(
+            cert.get("checks", {}).get("python_exact_polynomial")
+        ),
+        "nonzero_generators": nonzero_generators,
+    }
+
+
+def count_by(items: Iterable[object]) -> dict[str, int]:
+    counts: dict[str, int] = {}
+    for item in items:
+        key = str(item)
+        counts[key] = counts.get(key, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+def endpoint_core_census(paths: list[Path]) -> dict[str, object]:
+    files = certificate_files(paths)
+    if not files:
+        raise ValueError("no endpoint certificate JSON files to summarize")
+    rows = [endpoint_core_row(path) for path in files]
+    center_usage: dict[str, int] = {point: 0 for point in POINTS}
+    center_rows: dict[str, list[str]] = {point: [] for point in POINTS}
+    for row in rows:
+        for center in row["centers_used"]:
+            center_usage[str(center)] += 1
+            center_rows[str(center)].append(str(row["pid"]))
+
+    return {
+        "schema": "endpoint_core_census.v1",
+        "support_kind": "nonzero_lift_coefficients",
+        "source": {
+            "paths": [str(path) for path in files],
+            "count": len(files),
+        },
+        "summary": {
+            "row_count": len(rows),
+            "kind_counts": count_by(row["kind"] for row in rows),
+            "pair_counts": count_by(row["pair"] for row in rows),
+            "generator_count_distribution": count_by(row["generator_count"] for row in rows),
+            "nonzero_count_distribution": count_by(row["nonzero_count"] for row in rows),
+            "stored_python_exact_check_count": sum(
+                1 for row in rows if row["stored_python_exact_check"]
+            ),
+            "rows_with_unclassified_nonzero_generators": [
+                row["pid"] for row in rows if row["unclassified_nonzero_indices"]
+            ],
+            "center_usage_rows": {
+                center: count for center, count in center_usage.items() if count
+            },
+            "center_usage_pids": {
+                center: pids for center, pids in center_rows.items() if pids
+            },
+        },
+        "rows": rows,
+    }
+
+
+def write_endpoint_core_markdown(census: dict[str, object], out_path: Path) -> None:
+    summary = census["summary"]
+    assert isinstance(summary, dict)
+    lines = [
+        "<!--",
+        "Copyright (c) 2026 Adam McKenna. All rights reserved.",
+        "Released under Apache 2.0 license as described in the file LICENSE.",
+        "Author: Adam McKenna <adam@mysticflounder.ai>",
+        "-->",
+        "",
+        "# Endpoint Certificate Core Census",
+        "",
+        "This report records, for each endpoint certificate, which generators have",
+        "nonzero lift coefficients in the checked Nullstellensatz/Rabinowitsch",
+        "identity. It is generated by `scripts/endpoint-certificate.py` from the",
+        "checked JSON certificates under `certificates/endpoint/`.",
+        "",
+        "This is a lifted-column support census, not a minimal-core census: a",
+        "nonzero coefficient identifies a generator used by the emitted certificate,",
+        "but a smaller certificate may exist.",
+        "",
+        "## Summary",
+        "",
+        f"- rows: {summary['row_count']}",
+        f"- stored Python exact-check flags: {summary['stored_python_exact_check_count']}",
+        f"- kind counts: `{summary['kind_counts']}`",
+        f"- generator-count distribution: `{summary['generator_count_distribution']}`",
+        f"- nonzero-count distribution: `{summary['nonzero_count_distribution']}`",
+        "- rows with unclassified nonzero generators: "
+        f"`{summary['rows_with_unclassified_nonzero_generators']}`",
+        "",
+        "## Center Usage",
+        "",
+    ]
+    center_usage = summary["center_usage_rows"]
+    assert isinstance(center_usage, dict)
+    for center, count in center_usage.items():
+        lines.append(f"- `{center}`: {count} rows")
+    lines.extend(
+        [
+            "",
+            "## Per-Row Core",
+            "",
+            "| pid | kind | nonzero generators | centers | Rabinowitsch pairs |",
+            "|---|---:|---:|---|---|",
+        ]
+    )
+    rows = census["rows"]
+    assert isinstance(rows, list)
+    for row in rows:
+        assert isinstance(row, dict)
+        centers = ", ".join(f"`{center}`" for center in row["centers_used"])
+        pairs = ", ".join(
+            "`" + "=".join(str(part) for part in pair) + "`"
+            for pair in row["rabinowitsch_pairs"]
+        )
+        lines.append(
+            f"| `{row['pid']}` | `{row['kind']}` | {row['nonzero_count']}/{row['generator_count']} | "
+            f"{centers or '-'} | {pairs or '-'} |"
+        )
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text("\n".join(lines) + "\n")
+
+
+def write_endpoint_core_census(
+    paths: list[Path],
+    out_path: Path,
+    markdown_out: Path | None,
+) -> None:
+    census = endpoint_core_census(paths)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(census, indent=2, sort_keys=True) + "\n")
+    if markdown_out is not None:
+        write_endpoint_core_markdown(census, markdown_out)
 
 
 def read_ms(path: Path) -> tuple[list[str], list[str]]:
@@ -592,6 +879,797 @@ def lean_module_stem(pid: str) -> str:
     return f"Ep{parts[1]}{parts[2]}"
 
 
+def endpoint_row_expr(pid: str) -> str:
+    parts = pid.split("_")
+    if len(parts) != 3 or parts[0] != "ep":
+        raise ValueError(f"unsupported endpoint pid {pid!r}")
+    family = parts[1]
+    index = int(parts[2])
+    if family not in {"Q1", "Q2"}:
+        raise ValueError(f"unsupported endpoint row family {family!r}")
+    return f"ShadowBank.endpointRows{family}.get (Fin.mk {index} (by decide))"
+
+
+def lean_label(point: str) -> str:
+    if point not in POINTS:
+        raise ValueError(f"unknown endpoint point {point!r}")
+    return f".{point}"
+
+
+def point_is_variable(point: str) -> bool:
+    return point not in FIXED_ENDPOINT_POINTS
+
+
+def endpoint_var(point: str, axis: str) -> str:
+    if not point_is_variable(point):
+        raise ValueError(f"{point!r} is a fixed endpoint point, not a variable")
+    if axis not in {"x", "y"}:
+        raise ValueError(f"unsupported axis {axis!r}")
+    prefix = point.lower()
+    return f"EndpointVar.{prefix}{axis}"
+
+
+def endpoint_var_index(point: str, axis: str) -> str:
+    return f"{endpoint_var(point, axis)}.index"
+
+
+def endpoint_coord_simp() -> str:
+    return "(by simp [endpointS1S3Assignment, EndpointVar.eval])"
+
+
+def endpoint_normalization_zero(shape: str, proof: str) -> str:
+    return f"""exact evalPoly_eq_zero_of_normalizePoly_eq
+      (endpointS1S3Assignment pointOf) (q := {shape})
+      (by native_decide)
+      (by
+        exact {proof})"""
+
+
+def endpoint_generator_zero_proof(classification: dict[str, object]) -> str:
+    kind = classification.get("kind")
+    if kind == "rabinowitsch_distinct":
+        pair = classification.get("pair")
+        if pair != ["s1", "s3"]:
+            raise ValueError(f"unsupported endpoint Rabinowitsch pair {pair!r}")
+        shape = (
+            "rabinowitschSqDistPoly EndpointVar.tau.index "
+            "EndpointVar.s1x.index EndpointVar.s1y.index "
+            "EndpointVar.s3x.index EndpointVar.s3y.index"
+        )
+        proof = (
+            "evalPoly_endpointS1S3_rabinowitschSqDistPoly_eq_zero_of_metricShadow "
+            "hmetric"
+        )
+        return endpoint_normalization_zero(shape, proof)
+
+    if kind != "distance_eq":
+        raise ValueError(f"unsupported endpoint generator classification {classification!r}")
+
+    center = str(classification["center"])
+    left, right = [str(point) for point in classification["witnesses"]]
+    if classification.get("sign") == -1:
+        left, right = right, left
+
+    coord = endpoint_coord_simp()
+    if center == "v":
+        if point_is_variable(left) and point_is_variable(right):
+            shape = (
+                f"sqNormDiffPoly {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqNormDiffPoly_eq_zero_of_metricShadow
+          (a := {lean_label(left)}) (b := {lean_label(right)})
+          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
+          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if point_is_variable(left) and right == "w":
+            shape = (
+                f"sqNormMinusOnePoly {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqNormMinusOnePoly_eq_zero_of_metricShadow
+          (a := {lean_label(left)})
+          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
+          hmetric
+          {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if left == "w" and point_is_variable(right):
+            shape = (
+                f"oneMinusSqNormPoly {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_oneMinusSqNormPoly_eq_zero_of_metricShadow
+          (a := {lean_label(right)})
+          (ax := {endpoint_var(right, 'x')}) (ay := {endpoint_var(right, 'y')})
+          hmetric
+          {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+
+    if center == "w":
+        if point_is_variable(left) and point_is_variable(right):
+            shape = (
+                f"sqDistToUnitXDiffPoly {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistToUnitXDiffPoly_eq_zero_of_metricShadow
+          (a := {lean_label(left)}) (b := {lean_label(right)})
+          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
+          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if point_is_variable(left) and right == "v":
+            shape = (
+                f"sqDistToUnitXMinusOnePoly {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistToUnitXMinusOnePoly_eq_zero_of_metricShadow
+          (a := {lean_label(left)})
+          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
+          hmetric
+          {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+
+    if point_is_variable(center):
+        if point_is_variable(left) and point_is_variable(right):
+            shape = (
+                f"sqDistToCenterDiffPoly {endpoint_var_index(center, 'x')} "
+                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+          (center := {lean_label(center)}) (a := {lean_label(left)})
+          (b := {lean_label(right)})
+          (cx := {endpoint_var(center, 'x')}) (cy := {endpoint_var(center, 'y')})
+          (ax := {endpoint_var(left, 'x')}) (ay := {endpoint_var(left, 'y')})
+          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if left == "v" and point_is_variable(right):
+            shape = (
+                f"sqNormFirstMinusSqDistPoly {endpoint_var_index(center, 'x')} "
+                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+          (a := {lean_label(center)}) (b := {lean_label(right)})
+          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
+          (bx := {endpoint_var(right, 'x')}) (b_y := {endpoint_var(right, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if point_is_variable(left) and right == "v":
+            shape = (
+                f"sqDistMinusSqNormFirstPoly {endpoint_var_index(center, 'x')} "
+                f"{endpoint_var_index(center, 'y')} {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistMinusSqNormFirstPoly_eq_zero_of_metricShadow
+          (a := {lean_label(center)}) (b := {lean_label(left)})
+          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
+          (bx := {endpoint_var(left, 'x')}) (b_y := {endpoint_var(left, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if left == "w" and point_is_variable(right):
+            shape = (
+                f"sqDistUnitXToPointMinusCenterDistPoly {endpoint_var_index(right, 'x')} "
+                f"{endpoint_var_index(right, 'y')} {endpoint_var_index(center, 'x')} "
+                f"{endpoint_var_index(center, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistUnitXToPointMinusCenterDistPoly_eq_zero_of_metricShadow
+          (center := {lean_label(right)}) (a := {lean_label(center)})
+          (cx := {endpoint_var(right, 'x')}) (cy := {endpoint_var(right, 'y')})
+          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if point_is_variable(left) and right == "w":
+            shape = (
+                f"sqDistPointToUnitXDiffPoly {endpoint_var_index(left, 'x')} "
+                f"{endpoint_var_index(left, 'y')} {endpoint_var_index(center, 'x')} "
+                f"{endpoint_var_index(center, 'y')}"
+            )
+            proof = f"""evalPoly_endpoint_sqDistPointToUnitXDiffPoly_eq_zero_of_metricShadow
+          (center := {lean_label(left)}) (a := {lean_label(center)})
+          (cx := {endpoint_var(left, 'x')}) (cy := {endpoint_var(left, 'y')})
+          (ax := {endpoint_var(center, 'x')}) (ay := {endpoint_var(center, 'y')})
+          hmetric
+          {coord} {coord} {coord} {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+        if left == "v" and right == "w":
+            shape = f"twiceVarMinusOnePoly {endpoint_var_index(center, 'x')}"
+            proof = f"""evalPoly_endpoint_twiceVarMinusOnePoly_eq_zero_of_metricShadow
+          (a := {lean_label(center)}) (ax := {endpoint_var(center, 'x')})
+          hmetric
+          {coord}
+          (by decide) (by decide)"""
+            return endpoint_normalization_zero(shape, proof)
+
+    raise ValueError(
+        "unsupported endpoint generator shape "
+        f"center={center!r}, left={left!r}, right={right!r}, "
+        f"classification={classification!r}"
+    )
+
+
+PRODUCT_SUM_ENDPOINT_IDS = {
+    "ep_Q1_008",
+    "ep_Q1_009",
+    "ep_Q1_028",
+    "ep_Q2_002",
+    "ep_Q2_008",
+    "ep_Q2_019",
+    "ep_Q2_020",
+    "ep_Q2_024",
+    "ep_Q2_041",
+    "ep_Q2_054",
+    "ep_Q2_064",
+    "ep_Q2_074",
+}
+
+
+def emit_direct_row_zero_module(cert_path: Path, out_path: Path) -> str | None:
+    check_certificate_file(cert_path)
+    cert = json.loads(cert_path.read_text())
+    pid = str(cert["pid"])
+    if pid in PRODUCT_SUM_ENDPOINT_IDS:
+        return None
+
+    variables = cert["variables"]
+    generators = cert["generators"]
+    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
+        raise ValueError(f"{cert_path}: invalid variables")
+    if not isinstance(generators, list) or not all(isinstance(x, str) for x in generators):
+        raise ValueError(f"{cert_path}: invalid generators")
+
+    stem = lean_module_stem(pid)
+    row_name = f"{pid}_row"
+    row_expr = endpoint_row_expr(pid)
+    classifications = [
+        classify_generator(str(generator), [str(variable) for variable in variables])
+        for generator in generators
+    ]
+    proofs = [endpoint_generator_zero_proof(classification) for classification in classifications]
+    cases = "\n".join("  \u00b7 " + proof.replace("\n", "\n    ") for proof in proofs)
+    rcases_pattern = " | ".join("rfl" for _ in generators)
+    source = cert_path.as_posix()
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
+import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
+
+/-!
+# Endpoint row-zero certificate {pid}
+
+This generated module proves that the direct certificate payload for endpoint
+row `{pid}` vanishes under the endpoint normal-axis assignment attached to any
+metric interpretation of the row shadow.
+
+Source certificate: `{source}`.
+-/
+
+set_option linter.style.longLine false
+set_option linter.unusedSimpArgs false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+/-- Finite endpoint row paired with direct certificate `{pid}`. -/
+private def {row_name} : ShadowBank.EndpointRow :=
+  {row_expr}
+
+set_option linter.style.nativeDecide false in
+/-- Every generator in direct endpoint certificate `{pid}` evaluates to zero
+under a metric interpretation of its finite shadow. -/
+theorem {pid}_evaluationZeros_of_metricShadow
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    (hmetric : EndpointMetricShadow pointOf {row_name}.toShadow) :
+    Patterns.CertificatePayload.evaluationZeros (.direct Patterns.{pid})
+      (endpointS1S3Assignment pointOf) := by
+  dsimp [Patterns.CertificatePayload.evaluationZeros, Patterns.{pid}]
+  intro g hg
+  simp only [Patterns.{pid}_generators, List.mem_cons, List.not_mem_nil,
+    or_false] at hg
+  rcases hg with {rcases_pattern}
+{cases}
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+    return out_path.stem
+
+
+def emit_direct_row_zero_aggregate(
+    stems: list[str],
+    out_path: Path,
+    module_root: str,
+) -> None:
+    imports = "\n".join(f"import {module_root}.{stem}" for stem in stems)
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+{imports}
+
+/-!
+# Direct endpoint row-zero aggregate
+
+This generated module imports the direct endpoint row-zero facts.  Product-sum
+rows are handled separately because their payload zero condition is over checked
+block sums rather than the original generator list.
+-/
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+
+
+def emit_direct_row_zero_dir(
+    cert_paths: list[Path],
+    out_dir: Path,
+    aggregate_out: Path | None,
+    module_root: str,
+) -> None:
+    paths = certificate_files(cert_paths)
+    if not paths:
+        raise ValueError("no certificate JSON files for direct row-zero emission")
+    stems: list[str] = []
+    for cert_path in paths:
+        cert = json.loads(cert_path.read_text())
+        pid = str(cert["pid"])
+        stem = emit_direct_row_zero_module(cert_path, out_dir / f"{lean_module_stem(pid)}.lean")
+        if stem is not None:
+            stems.append(stem)
+    if aggregate_out is not None:
+        emit_direct_row_zero_aggregate(stems, aggregate_out, module_root)
+
+
+def product_block_zero_theorem_name(pid: str, gen_index: int, start: int, stop: int) -> str:
+    return f"{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_eval_zero"
+
+
+def product_block_zero_module(
+    cert_path: Path,
+    pid: str,
+    variables: list[str],
+    gen_index: int,
+    start: int,
+    stop: int,
+    generator_expr: str,
+    out_path: Path,
+) -> str:
+    stem = lean_module_stem(pid)
+    block_stem = block_module_stem(pid, gen_index, start, stop)
+    shard_namespace = f"Patterns.{stem}TermShards"
+    theorem_name = product_block_zero_theorem_name(pid, gen_index, start, stop)
+    row_expr = endpoint_row_expr(pid)
+    classification = classify_generator(generator_expr, variables)
+    generator_zero = endpoint_generator_zero_proof(classification)
+    partial_cases = []
+    for term_index in range(start, stop):
+        partial_cases.append(
+            "  \u00b7 exact evalPoly_eq_zero_of_mulPoly_eq_right_zero\n"
+            "      (endpointS1S3Assignment pointOf)\n"
+            f"      {shard_namespace}.{pid}_partial_{gen_index:02d}_{term_index:04d}_valid\n"
+            "      hgenerator"
+        )
+    partial_cases_text = "\n".join(partial_cases)
+    rcases_pattern = " | ".join("rfl" for _ in range(start, stop))
+    source = cert_path.as_posix()
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}TermShards.{block_stem}
+
+/-!
+# Endpoint product-row block zero {pid}, block {gen_index}:{start}-{stop - 1}
+
+This generated module proves semantic zero-evaluation for one checked block in
+the term-sharded product-sum endpoint certificate row `{pid}`.
+
+Source certificate: `{source}`.
+-/
+
+set_option linter.style.longLine false
+set_option linter.unusedSimpArgs false
+set_option linter.style.nativeDecide false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+namespace {stem}BlockZeros
+
+/-- Checked block `{gen_index}:{start}-{stop - 1}` in product-sum row `{pid}`
+evaluates to zero under a metric interpretation of the row shadow. -/
+theorem {theorem_name}
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    (hmetric : EndpointMetricShadow pointOf ({row_expr}).toShadow) :
+    evalPoly (endpointS1S3Assignment pointOf)
+      {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} = 0 := by
+  have hgenerator :
+      evalPoly (endpointS1S3Assignment pointOf)
+        {shard_namespace}.{pid}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} = 0 := by
+    {generator_zero.replace("\n", "\n    ")}
+  refine evalPoly_target_eq_zero_of_checkProductSumEq
+    (endpointS1S3Assignment pointOf)
+    {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_valid ?_
+  intro p hp
+  simp only [{shard_namespace}.{pid}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d},
+    List.mem_cons, List.not_mem_nil, or_false] at hp
+  rcases hp with {rcases_pattern}
+{partial_cases_text}
+
+end {stem}BlockZeros
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+    return out_path.stem
+
+
+def emit_product_row_zero_module(
+    cert_path: Path,
+    coordinator_out: Path,
+    block_out_dir: Path,
+    module_root: str,
+) -> str | None:
+    check_certificate_file(cert_path)
+    cert = json.loads(cert_path.read_text())
+    pid = str(cert["pid"])
+    if pid not in PRODUCT_SUM_ENDPOINT_IDS:
+        return None
+
+    variables = cert["variables"]
+    generator_exprs = cert["generators"]
+    coefficient_exprs = cert["coefficients"]
+    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
+        raise ValueError(f"{cert_path}: invalid variables")
+    if not isinstance(generator_exprs, list) or not all(isinstance(x, str) for x in generator_exprs):
+        raise ValueError(f"{cert_path}: invalid generators")
+    if not isinstance(coefficient_exprs, list) or not all(isinstance(x, str) for x in coefficient_exprs):
+        raise ValueError(f"{cert_path}: invalid coefficients")
+
+    variables_str = [str(variable) for variable in variables]
+    stem = lean_module_stem(pid)
+    shard_namespace = f"Patterns.{stem}TermShards"
+    block_refs: list[tuple[int, int, int, str]] = []
+    imports: list[str] = []
+    for gen_index, (generator_expr, coefficient_expr) in enumerate(
+        zip(generator_exprs, coefficient_exprs, strict=True)
+    ):
+        coeff_poly = parse_poly(str(coefficient_expr), variables_str)
+        terms = sorted_poly_terms(coeff_poly)
+        for start in range(0, len(terms), 100):
+            stop = min(start + 100, len(terms))
+            block_stem = product_block_zero_module(
+                cert_path,
+                pid,
+                variables_str,
+                gen_index,
+                start,
+                stop,
+                str(generator_expr),
+                block_out_dir / f"{block_module_stem(pid, gen_index, start, stop)}.lean",
+            )
+            imports.append(f"import {module_root}.{stem}BlockZeros.{block_stem}")
+            block_refs.append((gen_index, start, stop, block_stem))
+
+    row_expr = endpoint_row_expr(pid)
+    block_list_entries = []
+    block_cases = []
+    for gen_index, start, stop, _block_stem in block_refs:
+        block_list_entries.append(
+            f"      {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
+        )
+        block_cases.extend(
+            [
+                "  rcases List.mem_cons.mp hp with rfl | hp",
+                f"  \u00b7 exact {stem}BlockZeros."
+                f"{product_block_zero_theorem_name(pid, gen_index, start, stop)} hmetric",
+            ]
+        )
+    block_list_text = ",\n".join(block_list_entries)
+    block_cases.append("  cases hp")
+    block_cases_text = "\n".join(block_cases)
+    source = cert_path.as_posix()
+    import_text = "\n".join(imports)
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
+{import_text}
+
+/-!
+# Endpoint product row-zero certificate {pid}
+
+This generated module proves that every checked block in product-sum endpoint
+row `{pid}` vanishes under the endpoint normal-axis assignment attached to any
+metric interpretation of the row shadow.
+
+Source certificate: `{source}`.
+-/
+
+set_option linter.style.longLine false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+/-- Every block in product-sum endpoint certificate `{pid}` evaluates to zero
+under a metric interpretation of its finite shadow. -/
+theorem {pid}_evaluationZeros_of_metricShadow
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    (hmetric : EndpointMetricShadow pointOf ({row_expr}).toShadow) :
+    Patterns.CertificatePayload.evaluationZeros
+      (.productSum Patterns.{pid}_blocks)
+      (endpointS1S3Assignment pointOf) := by
+  dsimp [Patterns.CertificatePayload.evaluationZeros]
+  intro p hp
+  change p \u2208
+    [
+{block_list_text}
+    ] at hp
+{block_cases_text}
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    coordinator_out.parent.mkdir(parents=True, exist_ok=True)
+    coordinator_out.write_text(module)
+    return coordinator_out.stem
+
+
+def emit_product_row_zero_aggregate(
+    stems: list[str],
+    out_path: Path,
+    module_root: str,
+) -> None:
+    imports = "\n".join(f"import {module_root}.{stem}" for stem in stems)
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+{imports}
+
+/-!
+# Product-sum endpoint row-zero aggregate
+
+This generated module imports the product-sum endpoint row-zero facts.
+-/
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+
+
+def emit_product_row_zero_dir(
+    cert_paths: list[Path],
+    out_dir: Path,
+    aggregate_out: Path | None,
+    module_root: str,
+) -> None:
+    paths = certificate_files(cert_paths)
+    if not paths:
+        raise ValueError("no certificate JSON files for product row-zero emission")
+    stems: list[str] = []
+    for cert_path in paths:
+        cert = json.loads(cert_path.read_text())
+        pid = str(cert["pid"])
+        stem = lean_module_stem(pid)
+        row_stem = emit_product_row_zero_module(
+            cert_path,
+            out_dir / f"{stem}.lean",
+            out_dir / f"{stem}BlockZeros",
+            module_root,
+        )
+        if row_stem is not None:
+            stems.append(row_stem)
+    if aggregate_out is not None:
+        emit_product_row_zero_aggregate(stems, aggregate_out, module_root)
+
+
+def bank_payload(pid: str) -> str:
+    if pid in PRODUCT_SUM_ENDPOINT_IDS:
+        return f".productSum Patterns.{pid}_blocks"
+    return f".direct Patterns.{pid}"
+
+
+def emit_bank_row_zero_module(cert_paths: list[Path], out_path: Path) -> None:
+    paths = certificate_files(cert_paths)
+    if not paths:
+        raise ValueError("no certificate JSON files for bank row-zero emission")
+
+    row_entries: list[str] = []
+    row_cases: list[str] = []
+    for cert_path in paths:
+        cert = json.loads(cert_path.read_text())
+        pid = str(cert["pid"])
+        row_entries.append(
+            f"      ({endpoint_row_expr(pid)}, "
+            f"{{ id := {json.dumps(pid)}, payload := {bank_payload(pid)}, "
+            f"valid := Patterns.{pid}_valid }})"
+        )
+        row_cases.extend(
+            [
+                "  rcases List.mem_cons.mp hrowCert with rfl | hrowCert",
+                f"  \u00b7 exact {pid}_evaluationZeros_of_metricShadow",
+                "      (metricShadow_of_row_masks_eq hmetric hmasks)",
+            ]
+        )
+    row_list_text = ",\n".join(row_entries)
+    row_cases.append("  cases hrowCert")
+    row_cases_text = "\n".join(row_cases)
+
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.BankSoundness
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Direct.All
+import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.All
+
+/-!
+# Endpoint bank row-zero dispatch
+
+This generated module dispatches a matched finite endpoint-bank row to the
+corresponding generated direct or product-sum row-zero theorem.
+-/
+
+set_option linter.style.longLine false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+/-- A metric interpretation transports across equality of finite shadow masks. -/
+theorem metricShadow_of_row_masks_eq
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    {{row : ShadowBank.EndpointRow}} {{shadow : ShadowBank.Shadow}}
+    (hmetric : EndpointMetricShadow pointOf shadow)
+    (hmasks : row.masks = shadow.masks) :
+    EndpointMetricShadow pointOf row.toShadow := by
+  cases row with
+  | mk id escapee masks =>
+      cases shadow with
+      | mk shadowMasks =>
+          dsimp [ShadowBank.EndpointRow.toShadow] at hmasks \u22a2
+          subst shadowMasks
+          exact hmetric
+
+/-- A certified endpoint-bank row carries the zero-evaluation condition for its
+matched algebraic certificate payload. -/
+theorem payload_zeros_of_certifiedEndpointRow
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    {{shadow : ShadowBank.Shadow}}
+    (hmetric : EndpointMetricShadow pointOf shadow)
+    (rowCert : Bank.Row \u00d7 Bank.Certificate)
+    (hrowCert : rowCert \u2208 Bank.certifiedEndpointRows)
+    (hmasks : rowCert.1.masks = shadow.masks) :
+    rowCert.2.payload.evaluationZeros (endpointS1S3Assignment pointOf) := by
+  change rowCert \u2208
+    [
+{row_list_text}
+    ] at hrowCert
+{row_cases_text}
+
+/-- Endpoint row-bank membership contradicts a metric interpretation of the
+matched finite shadow. -/
+theorem false_of_endpointShadowInBank_of_metricShadow
+    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
+    {{escapee : ShadowBank.Label}} {{shadow : ShadowBank.Shadow}}
+    (hin : ShadowBank.endpointShadowInBank escapee shadow = true)
+    (hmetric : EndpointMetricShadow pointOf shadow) :
+    False := by
+  exact Bank.false_of_endpointShadowInBank_of_payload_zeros
+    (endpointS1S3Assignment pointOf) hin
+    (fun rowCert hrowCert _hescapee hmasks =>
+      payload_zeros_of_certifiedEndpointRow hmetric rowCert hrowCert hmasks)
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+
+
+def aggregate_payload(pid: str) -> str:
+    if pid in PRODUCT_SUM_ENDPOINT_IDS:
+        return f".productSum {pid}_blocks"
+    return f".direct {pid}"
+
+
 def emit_lean_aggregate(
     cert_paths: list[Path],
     out_path: Path,
@@ -608,7 +1686,7 @@ def emit_lean_aggregate(
     entries = ",\n".join(
         "  { id := "
         + json.dumps(pid)
-        + f", check := checkCertificate {pid}, valid := {pid}_valid }}"
+        + f", payload := {aggregate_payload(pid)}, valid := {pid}_valid }}"
         for pid, _ in rows
     )
     module = f"""/-
@@ -633,11 +1711,25 @@ namespace EndpointCertificate
 
 namespace {namespace_suffix}
 
+/-- Algebraic payload carried by a generated endpoint certificate row. -/
+inductive CertificatePayload where
+  | direct (cert : Certificate)
+  | productSum (products : List Poly)
+
+/-- Run the Boolean checker associated with a certificate payload. -/
+def CertificatePayload.check : CertificatePayload → Bool
+  | .direct cert => checkCertificate cert
+  | .productSum products => checkProductSum products
+
 /-- One checked endpoint certificate fact. -/
 structure VerifiedCertificate where
   id : String
-  check : Bool
-  valid : check = true
+  payload : CertificatePayload
+  valid : payload.check = true
+
+/-- Run the Boolean checker associated with a verified certificate. -/
+def VerifiedCertificate.check (cert : VerifiedCertificate) : Bool :=
+  cert.payload.check
 
 /-- The full checked endpoint certificate set. -/
 def allEndpointCertificates : List VerifiedCertificate :=
@@ -1152,6 +2244,39 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         type=Path,
         help="Emit one checked certificate JSON file as a term-block-sharded Lean row.",
     )
+    parser.add_argument(
+        "--emit-direct-row-zeros",
+        action="append",
+        type=Path,
+        help=(
+            "Emit semantic zero proofs for direct endpoint row certificates from "
+            "certificate JSON file(s) or directory."
+        ),
+    )
+    parser.add_argument(
+        "--emit-product-row-zeros",
+        action="append",
+        type=Path,
+        help=(
+            "Emit semantic zero proofs for product-sum endpoint row certificates "
+            "from certificate JSON file(s) or directory."
+        ),
+    )
+    parser.add_argument(
+        "--emit-bank-row-zeros",
+        action="append",
+        type=Path,
+        help=(
+            "Emit the finite endpoint-bank dispatch from row membership to "
+            "direct/product row-zero payload facts."
+        ),
+    )
+    parser.add_argument(
+        "--emit-core-census",
+        action="append",
+        type=Path,
+        help="Emit the nonzero-generator core census for certificate JSON file(s) or directory.",
+    )
     parser.add_argument("--lean-out", type=Path, help="Output path for --emit-lean.")
     parser.add_argument("--lean-out-dir", type=Path, help="Output directory for --emit-lean-dir.")
     parser.add_argument(
@@ -1188,6 +2313,41 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
         help="Nested namespace for --emit-lean-dir generated declarations.",
     )
     parser.add_argument(
+        "--row-zero-out-dir",
+        type=Path,
+        help="Output directory for --emit-direct-row-zeros.",
+    )
+    parser.add_argument(
+        "--row-zero-aggregate-out",
+        type=Path,
+        help="Optional aggregate import file for --emit-direct-row-zeros.",
+    )
+    parser.add_argument(
+        "--row-zero-module-root",
+        default="Erdos9796Proof.P97.EndpointCertificate.RowZeros.Direct",
+        help="Module root used in generated row-zero aggregate imports.",
+    )
+    parser.add_argument(
+        "--product-row-zero-out-dir",
+        type=Path,
+        help="Output directory for --emit-product-row-zeros.",
+    )
+    parser.add_argument(
+        "--product-row-zero-aggregate-out",
+        type=Path,
+        help="Optional aggregate import file for --emit-product-row-zeros.",
+    )
+    parser.add_argument(
+        "--product-row-zero-module-root",
+        default="Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product",
+        help="Module root used in generated product row-zero imports.",
+    )
+    parser.add_argument(
+        "--bank-row-zero-out",
+        type=Path,
+        help="Output Lean file for --emit-bank-row-zeros.",
+    )
+    parser.add_argument(
         "--fragment-dir",
         type=Path,
         default=default_fragment_dir(),
@@ -1202,6 +2362,16 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
     )
     parser.add_argument("--out", type=Path, help="Output path for a single certificate.")
     parser.add_argument("--out-dir", type=Path, help="Output directory for multiple certificates.")
+    parser.add_argument(
+        "--core-census-out",
+        type=Path,
+        help="JSON output path for --emit-core-census.",
+    )
+    parser.add_argument(
+        "--core-census-markdown-out",
+        type=Path,
+        help="Optional Markdown summary output path for --emit-core-census.",
+    )
     parser.add_argument("--timeout-s", type=int, default=900, help="Singular timeout per pattern.")
     parser.add_argument(
         "--no-python-check",
@@ -1214,6 +2384,66 @@ def parse_args(argv: Iterable[str]) -> argparse.Namespace:
 
 def main(argv: Iterable[str]) -> int:
     args = parse_args(argv)
+    if args.emit_core_census is not None:
+        if args.core_census_out is None:
+            raise SystemExit("--emit-core-census requires --core-census-out")
+        write_endpoint_core_census(
+            args.emit_core_census,
+            args.core_census_out,
+            args.core_census_markdown_out,
+        )
+        if not args.quiet:
+            print(f"wrote endpoint core census {args.core_census_out}")
+            if args.core_census_markdown_out is not None:
+                print(f"wrote endpoint core report {args.core_census_markdown_out}")
+        return 0
+
+    if args.emit_direct_row_zeros is not None:
+        if args.row_zero_out_dir is None:
+            raise SystemExit("--emit-direct-row-zeros requires --row-zero-out-dir")
+        emit_direct_row_zero_dir(
+            args.emit_direct_row_zeros,
+            args.row_zero_out_dir,
+            args.row_zero_aggregate_out,
+            args.row_zero_module_root,
+        )
+        if not args.quiet:
+            print(f"wrote direct row-zero modules under {args.row_zero_out_dir}")
+            if args.row_zero_aggregate_out is not None:
+                print(f"wrote row-zero aggregate {args.row_zero_aggregate_out}")
+        return 0
+
+    if args.emit_product_row_zeros is not None:
+        if args.product_row_zero_out_dir is None:
+            raise SystemExit(
+                "--emit-product-row-zeros requires --product-row-zero-out-dir"
+            )
+        emit_product_row_zero_dir(
+            args.emit_product_row_zeros,
+            args.product_row_zero_out_dir,
+            args.product_row_zero_aggregate_out,
+            args.product_row_zero_module_root,
+        )
+        if not args.quiet:
+            print(
+                "wrote product row-zero modules under "
+                f"{args.product_row_zero_out_dir}"
+            )
+            if args.product_row_zero_aggregate_out is not None:
+                print(
+                    "wrote product row-zero aggregate "
+                    f"{args.product_row_zero_aggregate_out}"
+                )
+        return 0
+
+    if args.emit_bank_row_zeros is not None:
+        if args.bank_row_zero_out is None:
+            raise SystemExit("--emit-bank-row-zeros requires --bank-row-zero-out")
+        emit_bank_row_zero_module(args.emit_bank_row_zeros, args.bank_row_zero_out)
+        if not args.quiet:
+            print(f"wrote bank row-zero dispatch {args.bank_row_zero_out}")
+        return 0
+
     if args.emit_lean is not None:
         if args.lean_out is None:
             raise SystemExit("--emit-lean requires --lean-out")

@@ -1,0 +1,626 @@
+{
+  "certificates": [
+    {
+      "case_id": "R003:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R003:u=v:R003YY",
+      "exact_pids": [
+        "s1_024"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R003YY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 28,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003YY.json",
+      "required_generator_count": 7,
+      "sha256": "fb0a3894dd8e00d55ccdbfd5ee288362e51f73eb6bf2c672db7c968a82eeafa7",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R003:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R003:u=v:R003YN",
+      "exact_pids": [
+        "s1_025"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R003YN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 21,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003YN.json",
+      "required_generator_count": 7,
+      "sha256": "ff386cd21816a7303b68427b9f0cbd53f1ff800ae38ef9400f1749f35b23c6b3",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R004:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s3",
+        "Pw",
+        "Q2"
+      ],
+      "certificate_id": "R004:u=v:R004NYY",
+      "exact_pids": [
+        "s1_029"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R004NYY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 14,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NYY.json",
+      "required_generator_count": 7,
+      "sha256": "d5000ea1ce1ef4ce60ae7d1e52e7da17094838cb9940e668ab500a31009c0567",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R004:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "s1",
+        "s2",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R004:u=v:R004NYN",
+      "exact_pids": [
+        "s1_030"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R004NYN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 18,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NYN.json",
+      "required_generator_count": 7,
+      "sha256": "e95e99e01d8730c544a05ff3116c8b08d116311d3850346170d979694e61aad0",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYYYY",
+      "exact_pids": [
+        "s2_040"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYYYY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 26,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYY.json",
+      "required_generator_count": 7,
+      "sha256": "1fcd27f082ae6527c53de6589737258c11f8c24da476286086f933c2f5defc86",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pu"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYYYNY",
+      "exact_pids": [
+        "s2_017"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYYYNY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 26,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYNY.json",
+      "required_generator_count": 7,
+      "sha256": "9121795ba89b73edf1edc1196837bd02514905a221cad97fa0ccfa96b4f3bc17",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "w"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYYYNN",
+      "exact_pids": [
+        "s2_022"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYYYNN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 21,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYNN.json",
+      "required_generator_count": 7,
+      "sha256": "e70d7cb91261298b8e69dabb796709ae0f19289c6dee18272f29105aac79fc5f",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "w"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYNYY",
+      "exact_pids": [
+        "s2_033"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYNYY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 23,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNYY.json",
+      "required_generator_count": 7,
+      "sha256": "f05c2adb8d72e7870c06301b9907ce9dd24ba60c2a5a2d5011665ad8a105db5f",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "u"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYNYN",
+      "exact_pids": [
+        "s2_050"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYNYN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 27,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNYN.json",
+      "required_generator_count": 7,
+      "sha256": "7f161273fed21906cb57fba0e0ccfcd5882e7a1f8b2763676f23544edcb3c6ed",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "u"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s1",
+        "s2",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYNNY",
+      "exact_pids": [
+        "s2_047"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYNNY",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 21,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNNY.json",
+      "required_generator_count": 7,
+      "sha256": "498708a82b9bc52ff83aa072b748916c7076d0ba33f1f561a598a5e1b66a466e",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "v"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "case_id": "R009:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s2",
+        "s3",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R009:u=v:R009NYNNN",
+      "exact_pids": [
+        "s2_048"
+      ],
+      "generator_count": 31,
+      "leaf_id": "R009NYNNN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 19,
+      "optional_generator_count": 24,
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNNN.json",
+      "required_generator_count": 7,
+      "sha256": "4bf6bb5446d6ae57af988754e6da94257f68d2a426dfe6fdc276cb5252687986",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "v"
+        }
+      ],
+      "status": "ok"
+    }
+  ],
+  "policy": {
+    "certificate_dir": "certificates/surplus/relaxed_split",
+    "exact_centers": [
+      "v",
+      "w"
+    ],
+    "minimize_optional": false,
+    "python_check": false,
+    "timeout_s": 180
+  },
+  "schema": "pinned_surplus_relaxed_split_certificate_census.v1",
+  "source": {
+    "relaxed_census": "certificates/surplus/reports/pinned_surplus_relaxed_incidence_census.json",
+    "relaxed_census_sha256": "e40369d58fa0f6e991a478de13a1d77f13daf64d92a8a3f17b65153eefab31ce",
+    "rvol_input_dir": "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g/inputs",
+    "split_probe": "/private/tmp/pinned_relaxed_split_singleton_hard.json",
+    "split_probe_sha256": "3a0022d580fd452a28e8dae6d6d2a968c590b803eec084b82f7927fa7bd35b56"
+  },
+  "summary": {
+    "center_usage_rows": {
+      "Pu": 10,
+      "Pw": 10,
+      "Q1": 10,
+      "Q2": 11,
+      "s1": 9,
+      "s2": 10,
+      "s3": 10,
+      "u": 11,
+      "v": 11,
+      "w": 10
+    },
+    "generator_count_distribution": {
+      "31": 11
+    },
+    "leaf_job_count": 11,
+    "minimize_dropped_count_distribution": {
+      "0": 11
+    },
+    "nonzero_count_distribution": {
+      "14": 1,
+      "18": 1,
+      "19": 1,
+      "21": 3,
+      "23": 1,
+      "26": 2,
+      "27": 1,
+      "28": 1
+    },
+    "status_counts": {
+      "ok": 11
+    },
+    "timeout_certificate_ids": []
+  },
+  "support_kind": "singular_lifted_column_certificates"
+}

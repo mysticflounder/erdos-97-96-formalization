@@ -329,6 +329,37 @@ theorem mem_oneSidedSeedCandidateMasksByFilter_of_candidate
     ⟨mem_allNormalizedMasks_of_maskNormalized
       (maskNormalized_of_oneSidedSeedCandidateMaskOK h), h⟩
 
+/-- Membership in a seed's candidate list implies the seeded local predicate. -/
+theorem oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks
+    {seed : OneSidedSeed} {center : Label} {mask : Nat}
+    (hmem : mask ∈ seed.candidateMasks center) :
+    oneSidedSeedCandidateMaskOK seed.sstar center mask = true := by
+  unfold OneSidedSeed.candidateMasks at hmem
+  rcases hfixed : seed.fixedMask center with _ | fixed
+  · rw [hfixed] at hmem
+    rw [oneSidedSeedCandidateMasksByFilter] at hmem
+    exact (List.mem_filter.mp hmem).2
+  · rw [hfixed] at hmem
+    by_cases hOK :
+        oneSidedSeedCandidateMaskOK seed.sstar center fixed = true
+    · simp [hOK] at hmem
+      subst mask
+      exact hOK
+    · simp [hOK] at hmem
+
+/-- Candidate membership at a fixed-mask center identifies that fixed mask. -/
+theorem eq_fixedMask_of_mem_seed_candidateMasks
+    {seed : OneSidedSeed} {center : Label} {mask fixed : Nat}
+    (hfixed : seed.fixedMask center = some fixed)
+    (hmem : mask ∈ seed.candidateMasks center) :
+    mask = fixed := by
+  unfold OneSidedSeed.candidateMasks at hmem
+  rw [hfixed] at hmem
+  by_cases hOK : oneSidedSeedCandidateMaskOK seed.sstar center fixed = true
+  · simp [hOK] at hmem
+    exact hmem
+  · simp [hOK] at hmem
+
 /-- A valid seeded shadow supplies a candidate mask at every search center. -/
 theorem mem_seed_candidateMasks_of_isValidOneSidedSeedShadow
     {seed : OneSidedSeed} {shadow : Shadow} {center : Label}

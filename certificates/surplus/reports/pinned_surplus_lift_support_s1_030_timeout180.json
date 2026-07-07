@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "centers_used": [],
+      "forced_pair": "u=v",
+      "generator_count": 31,
+      "input_sha256": "a0c8698496148033d9ff038855ce0645c2810b8f392a1c28ddb70a7a895b243f",
+      "kind": "forced_collapse",
+      "nonuniform_centers_used": [],
+      "nonzero_count": null,
+      "nonzero_generators": [],
+      "nonzero_indices": [],
+      "pid": "s1_030",
+      "python_exact_polynomial": false,
+      "rabinowitsch_pairs": [],
+      "singular_lifted_column": false,
+      "sstar": "s1",
+      "status": "timeout",
+      "timeout_s": 180,
+      "uses_nonuniform_center": null,
+      "zero_count": null
+    }
+  ],
+  "safe_exact_mask_centers": [
+    "v",
+    "w"
+  ],
+  "schema": "pinned_surplus_lift_support.v1",
+  "source": {
+    "bank": "certificates/surplus/pinned_surplus_comp_g_bank.json",
+    "bank_sha256": "a7c93a9c69a26271a8e75447d3b66c8f116fdde86c70c219380c5407d0f2457a",
+    "rvol_input_dir": "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g/inputs"
+  },
+  "summary": {
+    "center_usage_rows": {},
+    "forced_pair_counts": {
+      "u=v": 1
+    },
+    "kind_counts": {
+      "forced_collapse": 1
+    },
+    "nonzero_count_distribution": {},
+    "row_count": 1,
+    "rows_using_nonuniform_centers": [],
+    "rows_using_nonuniform_centers_count": 0,
+    "status_counts": {
+      "timeout": 1
+    },
+    "timeout_rows": [
+      "s1_030"
+    ]
+  },
+  "support_kind": "nonzero_lift_coefficients"
+}

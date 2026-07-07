@@ -1,0 +1,668 @@
+{
+  "case_id": "R004:u=v",
+  "certificate_id": "R004:u=v:R004YYY",
+  "checks": {
+    "python_exact_polynomial": false,
+    "singular_lifted_column": true
+  },
+  "coefficients": [
+    "48*s2y*q1y-24*q2y^2+6",
+    "36*s3y^2*pux*q2y^2*t-36*s3x*s3y*puy*q2y^2*t+36*s3x*s3y*q2y^3*t-512*s2x*s3x*pwy*pux*q1y+1024*s2x*pwx*pwy*pux*q1y+512*s2x*s3x*pwx*puy*q1y-1024*s2x*pwx^2*puy*q1y+128*s2x*s3x*pwx*q1y^2-256*s2x*pwx^2*q1y^2+128*s2x*s3x*pux*q1y^2-256*s2x*pwx*pux*q1y^2-1024*s2x*s3x*pwx*q1y*q2y+2048*s2x*pwx^2*q1y*q2y+192*s2x*s3x*pux*q1y*q2y-384*s2x*pwx*pux*q1y*q2y-144*s3y^2*pux*q2y^2+144*s3x*s3y*puy*q2y^2-144*s3x*s3y*q2y^3-64*s3x*pwy*pux*q2y*t+128*pwx*pwy*pux*q2y*t+64*s3x*pwx*puy*q2y*t-128*pwx^2*puy*q2y*t+16*s3x*pwx*q1y*q2y*t-32*pwx^2*q1y*q2y*t+16*s3x*pux*q1y*q2y*t-32*pwx*pux*q1y*q2y*t-18*s3y^2*q2y^2*t-128*s3x*pwx*q2y^2*t+256*pwx^2*q2y^2*t+24*s3x*pux*q2y^2*t-48*pwx*pux*q2y^2*t+36*s3y*puy*q2y^2*t-36*s3y*q2y^3*t-448*s2y*s3x*pwy*pux+896*s2y*pwx*pwy*pux+448*s2y*s3x*pwx*puy-896*s2y*pwx^2*puy+112*s2y*s3x*pwx*q1y-256*s2x*s3y*pwx*q1y-224*s2y*pwx^2*q1y+512*s2x*s3x*pwy*q1y-512*s2x*pwx*pwy*q1y+112*s2y*s3x*pux*q1y-32*s2x*s3y*pux*q1y-224*s2y*pwx*pux*q1y-256*s2x*pwy*pux*q1y-256*s3x*pwy*pux*q1y+512*pwx*pwy*pux*q1y-320*s2x*s3x*puy*q1y+960*s2x*pwx*puy*q1y+256*s3x*pwx*puy*q1y-512*pwx^2*puy*q1y-224*s2x*s3x*q1y^2+480*s2x*pwx*q1y^2+64*s3x*pwx*q1y^2-128*pwx^2*q1y^2+32*s2x*pux*q1y^2+64*s3x*pux*q1y^2-128*pwx*pux*q1y^2-896*s2y*s3x*pwx*q2y+1792*s2y*pwx^2*q2y+168*s2y*s3x*pux*q2y-336*s2y*pwx*pux*q2y+448*s2x*s3x*q1y*q2y-1648*s2x*pwx*q1y*q2y-512*s3x*pwx*q1y*q2y+1024*pwx^2*q1y*q2y+128*s2x*pux*q1y*q2y+96*s3x*pux*q1y*q2y-192*pwx*pux*q1y*q2y+72*s3y^2*q2y^2+24*s2x*pux*q2y^2-144*s3y*puy*q2y^2+144*s3y*q2y^3-32*s3y*pwx*q2y*t+64*s3x*pwy*q2y*t-64*pwx*pwy*q2y*t-7*s3y*pux*q2y*t-32*pwy*pux*q2y*t-37*s3x*puy*q2y*t+120*pwx*puy*q2y*t-28*s3x*q1y*q2y*t+60*pwx*q1y*q2y*t+4*pux*q1y*q2y*t+53*s3x*q2y^2*t-200*pwx*q2y^2*t+22*pux*q2y^2*t+48*s1y*s2y*s3x-48*s1x*s2y*s3y-224*s2y*s3y*pwx+448*s2y*s3x*pwy-448*s2y*pwx*pwy-4*s2y*s3y*pux-224*s2y*pwy*pux-304*s2y*s3x*puy+840*s2y*pwx*puy-196*s2y*s3x*q1y+208*s2x*s3y*q1y+480*s2y*pwx*q1y-128*s3y*pwx*q1y+256*s3x*pwy*q1y-256*pwx*pwy*q1y+88*s2y*pux*q1y-16*s3y*pux*q1y-128*pwy*pux*q1y-184*s2x*puy*q1y-160*s3x*puy*q1y+480*pwx*puy*q1y-56*s2x*q1y^2-112*s3x*q1y^2+240*pwx*q1y^2+16*pux*q1y^2+48*s1x*s2y*q2y-48*s1y*s3x*q2y+368*s2y*s3x*q2y+48*s1x*s3y*q2y-1400*s2y*pwx*q2y+124*s2y*pux*q2y-12*s3y*pux*q2y-12*s2x*puy*q2y+12*s3x*puy*q2y+268*s2x*q1y*q2y+224*s3x*q1y*q2y-896*pwx*q1y*q2y-8*pux*q1y*q2y-48*s1x*q2y^2-36*s2x*q2y^2+36*s3x*q2y^2+48*pux*q2y^2+55/2*s3y*q2y*t-26*puy*q2y*t-15*q1y*q2y*t+30*q2y^2*t-24*s1y*s2y+194*s2y*s3y-122*s2y*puy-210*s2y*q1y+104*s3y*q1y-92*puy*q1y-28*q1y^2+24*s1y*q2y+198*s2y*q2y-18*s3y*q2y-36*puy*q2y+260*q1y*q2y-36*q2y^2-4*s2x-2",
+    "-36*s3y^2*pux*q2y^2*t+36*s3x*s3y*puy*q2y^2*t-36*s3x*s3y*q2y^3*t+512*s2x*s3x*pwy*pux*q1y-1024*s2x*pwx*pwy*pux*q1y-512*s2x*s3x*pwx*puy*q1y+1024*s2x*pwx^2*puy*q1y-128*s2x*s3x*pwx*q1y^2+256*s2x*pwx^2*q1y^2+1024*s2x*s3x*pwx*q1y*q2y-2048*s2x*pwx^2*q1y*q2y-192*s2x*s3x*pux*q1y*q2y+384*s2x*pwx*pux*q1y*q2y+144*s3y^2*pux*q2y^2-144*s3x*s3y*puy*q2y^2+144*s3x*s3y*q2y^3+64*s3x*pwy*pux*q2y*t-128*pwx*pwy*pux*q2y*t-64*s3x*pwx*puy*q2y*t+128*pwx^2*puy*q2y*t-16*s3x*pwx*q1y*q2y*t+32*pwx^2*q1y*q2y*t+18*s3y^2*q2y^2*t+128*s3x*pwx*q2y^2*t-256*pwx^2*q2y^2*t-24*s3x*pux*q2y^2*t+48*pwx*pux*q2y^2*t-36*s3y*puy*q2y^2*t+36*s3y*q2y^3*t+448*s2y*s3x*pwy*pux-896*s2y*pwx*pwy*pux-448*s2y*s3x*pwx*puy+896*s2y*pwx^2*puy-112*s2y*s3x*pwx*q1y+256*s2x*s3y*pwx*q1y+224*s2y*pwx^2*q1y-512*s2x*s3x*pwy*q1y+512*s2x*pwx*pwy*q1y+32*s2x*s3y*pux*q1y+256*s2x*pwy*pux*q1y+256*s3x*pwy*pux*q1y-512*pwx*pwy*pux*q1y+384*s2x*s3x*puy*q1y-1088*s2x*pwx*puy*q1y-256*s3x*pwx*puy*q1y+512*pwx^2*puy*q1y+96*s2x*s3x*q1y^2-224*s2x*pwx*q1y^2-64*s3x*pwx*q1y^2+128*pwx^2*q1y^2+896*s2y*s3x*pwx*q2y-1792*s2y*pwx^2*q2y-168*s2y*s3x*pux*q2y+336*s2y*pwx*pux*q2y-448*s2x*s3x*q1y*q2y+1648*s2x*pwx*q1y*q2y+512*s3x*pwx*q1y*q2y-1024*pwx^2*q1y*q2y-176*s2x*pux*q1y*q2y-96*s3x*pux*q1y*q2y+192*pwx*pux*q1y*q2y-72*s3y^2*q2y^2-24*s2x*pux*q2y^2+144*s3y*puy*q2y^2-144*s3y*q2y^3+32*s3y*pwx*q2y*t-64*s3x*pwy*q2y*t+64*pwx*pwy*q2y*t+7*s3y*pux*q2y*t+32*pwy*pux*q2y*t+45*s3x*puy*q2y*t-136*pwx*puy*q2y*t+12*s3x*q1y*q2y*t-28*pwx*q1y*q2y*t-53*s3x*q2y^2*t+200*pwx*q2y^2*t-22*pux*q2y^2*t+224*s2y*s3y*pwx-448*s2y*s3x*pwy+448*s2y*pwx*pwy+4*s2y*s3y*pux+224*s2y*pwy*pux+360*s2y*s3x*puy-952*s2y*pwx*puy+84*s2y*s3x*q1y-208*s2x*s3y*q1y-256*s2y*pwx*q1y+128*s3y*pwx*q1y-256*s3x*pwy*q1y+256*pwx*pwy*q1y+16*s3y*pux*q1y+128*pwy*pux*q1y+200*s2x*puy*q1y+192*s3x*puy*q1y-544*pwx*puy*q1y+24*s2x*q1y^2+48*s3x*q1y^2-112*pwx*q1y^2-48*s1x*s2y*q2y-368*s2y*s3x*q2y+1400*s2y*pwx*q2y-124*s2y*pux*q2y+12*s3y*pux*q2y-12*s2x*puy*q2y-12*s3x*puy*q2y-220*s2x*q1y*q2y-224*s3x*q1y*q2y+896*pwx*q1y*q2y-88*pux*q1y*q2y+48*s1x*q2y^2+36*s2x*q2y^2-36*s3x*q2y^2-48*pux*q2y^2-55/2*s3y*q2y*t+28*puy*q2y*t+3*q1y*q2y*t-26*q2y^2*t-24*s1y*s2y-146*s2y*s3y+166*s2y*puy+66*s2y*q1y-104*s3y*q1y+100*puy*q1y+12*q1y^2+24*s1y*q2y-182*s2y*q2y-30*s3y*q2y-12*puy*q2y-164*q1y*q2y+60*q2y^2",
+    "-128*s2x*s3x*pux*q1y^2+256*s2x*pwx*pux*q1y^2-16*s3x*pux*q1y*q2y*t+32*pwx*pux*q1y*q2y*t-112*s2y*s3x*pux*q1y+224*s2y*pwx*pux*q1y+256*s2x*s3x*puy*q1y-512*s2x*pwx*puy*q1y+64*s2x*s3x*q1y^2-128*s2x*pwx*q1y^2-32*s2x*pux*q1y^2-64*s3x*pux*q1y^2+128*pwx*pux*q1y^2-512*s2x*s3x*q1y*q2y+1024*s2x*pwx*q1y*q2y+48*s2x*pux*q1y*q2y+32*s3x*puy*q2y*t-64*pwx*puy*q2y*t+8*s3x*q1y*q2y*t-16*pwx*q1y*q2y*t-4*pux*q1y*q2y*t-64*s3x*q2y^2*t+128*pwx*q2y^2*t-48*s1y*s2y*s3x+48*s1x*s2y*s3y+224*s2y*s3x*puy-448*s2y*pwx*puy+56*s2y*s3x*q1y-128*s2x*s3y*q1y-112*s2y*pwx*q1y-256*s2x*pwy*q1y-88*s2y*pux*q1y+64*s2x*puy*q1y+128*s3x*puy*q1y-256*pwx*puy*q1y+16*s2x*q1y^2+32*s3x*q1y^2-64*pwx*q1y^2-16*pux*q1y^2+48*s1y*s3x*q2y-448*s2y*s3x*q2y-48*s1x*s3y*q2y+896*s2y*pwx*q2y+136*s2x*q1y*q2y-256*s3x*q1y*q2y+512*pwx*q1y*q2y+96*pux*q1y*q2y+48*s2x*q2y^2-16*s3y*q2y*t-32*pwy*q2y*t+8*puy*q2y*t+10*q1y*q2y*t+16*q2y^2*t-112*s2y*s3y-224*s2y*pwy+56*s2y*puy+100*s2y*q1y-64*s3y*q1y-128*pwy*q1y+32*puy*q1y+8*q1y^2+112*s2y*q2y+32*q1y*q2y+24*q2y^2+4*s2x+2",
+    "-24*s3y*q1x*q2y^3*t-128*ux*s2x*s3x*puy*q1y+256*ux*s2x*pwx*puy*q1y+320*s2x*s3x*q1x*q1y*q2y-640*s2x*pwx*q1x*q1y*q2y+96*s3y*q1x*q2y^3-16*ux*s3x*puy*q2y*t+32*ux*pwx*puy*q2y*t-24*s3x*s3y*q1x*q2y*t+24*s3y^2*q1y*q2y*t+40*s3x*q1x*q2y^2*t-80*pwx*q1x*q2y^2*t-6*s3y*q2y^3*t-112*ux*s2y*s3x*puy+224*ux*s2y*pwx*puy-32*ux*s2x*puy*q1y-64*ux*s3x*puy*q1y+32*s2x*s3x*puy*q1y+128*ux*pwx*puy*q1y-64*s2x*pwx*puy*q1y-160*s2x*s3x*q1y^2+320*s2x*pwx*q1y^2+48*ux*s2x*puy*q2y+280*s2y*s3x*q1x*q2y+96*s3x*s3y*q1x*q2y-560*s2y*pwx*q1x*q2y+96*s2x*s3x*q1y*q2y-96*s3y^2*q1y*q2y-192*s2x*pwx*q1y*q2y+80*s2x*q1x*q1y*q2y+160*s3x*q1x*q1y*q2y-320*pwx*q1x*q1y*q2y-24*s2x*q1x*q2y^2+24*s3y*q2y^3-4*ux*puy*q2y*t+4*s3x*puy*q2y*t-8*pwx*puy*q2y*t+18*s3y*q1x*q2y*t-20*s3x*q1y*q2y*t+40*pwx*q1y*q2y*t+9*s3x*q2y^2*t-24*pwx*q2y^2*t+11*q1x*q2y^2*t-88*ux*s2y*puy+28*s2y*s3x*puy-56*s2y*pwx*puy-16*uy*s2y*q1x-64*s2x*pwx*q1x+16*ux*s2y*q1y-140*s2y*s3x*q1y+32*s2x*s3y*q1y+280*s2y*pwx*q1y-16*ux*puy*q1y+8*s2x*puy*q1y+16*s3x*puy*q1y-32*pwx*puy*q1y-40*s2x*q1y^2-80*s3x*q1y^2+160*pwx*q1y^2-32*ux*s2y*q2y+84*s2y*s3x*q2y-168*s2y*pwx*q2y+96*ux*puy*q2y-12*s2x*puy*q2y+100*s2y*q1x*q2y-72*s3y*q1x*q2y+20*s2x*q1y*q2y+48*s3x*q1y*q2y-96*pwx*q1y*q2y+40*q1x*q1y*q2y-12*s2x*q2y^2+12*s3x*q2y^2-36*q1x*q2y^2+s3y*q2y*t+puy*q2y*t-11/2*q1y*q2y*t+4*q2y^2*t-24*s1x*s2x+8*uy*s2y-24*s1y*s2y+28*s2y*s3y-16*s2x*pwx+22*s2y*puy+32*s2x*q1x-32*pwx*q1x-50*s2y*q1y+16*s3y*q1y+4*puy*q1y-20*q1y^2+38*s2y*q2y+12*s3y*q2y-24*puy*q2y+22*q1y*q2y-24*q2y^2+12*s2x-8*pwx+16*q1x+5",
+    "24*s3y*q1x*q2y^3*t+128*ux*s2x*s3x*puy*q1y-256*ux*s2x*pwx*puy*q1y+128*s2x*s3x*pux*q1y^2-256*s2x*pwx*pux*q1y^2-320*s2x*s3x*q1x*q1y*q2y+640*s2x*pwx*q1x*q1y*q2y-96*s3y*q1x*q2y^3+16*ux*s3x*puy*q2y*t-32*ux*pwx*puy*q2y*t+24*s3x*s3y*q1x*q2y*t-24*s3y^2*q1y*q2y*t+16*s3x*pux*q1y*q2y*t-32*pwx*pux*q1y*q2y*t+36*s3y*puy*q2y^2*t-40*s3x*q1x*q2y^2*t+80*pwx*q1x*q2y^2*t-30*s3y*q2y^3*t+112*ux*s2y*s3x*puy-224*ux*s2y*pwx*puy+112*s2y*s3x*pux*q1y-224*s2y*pwx*pux*q1y+32*ux*s2x*puy*q1y+64*ux*s3x*puy*q1y-288*s2x*s3x*puy*q1y-128*ux*pwx*puy*q1y+576*s2x*pwx*puy*q1y+96*s2x*s3x*q1y^2-192*s2x*pwx*q1y^2+32*s2x*pux*q1y^2+64*s3x*pux*q1y^2-128*pwx*pux*q1y^2-48*ux*s2x*puy*q2y-280*s2y*s3x*q1x*q2y-96*s3x*s3y*q1x*q2y+560*s2y*pwx*q1x*q2y+416*s2x*s3x*q1y*q2y+96*s3y^2*q1y*q2y-832*s2x*pwx*q1y*q2y-48*s2x*pux*q1y*q2y-80*s2x*q1x*q1y*q2y-160*s3x*q1x*q1y*q2y+320*pwx*q1x*q1y*q2y-144*s3y*puy*q2y^2+24*s2x*q1x*q2y^2+120*s3y*q2y^3+4*ux*puy*q2y*t-36*s3x*puy*q2y*t+72*pwx*puy*q2y*t-18*s3y*q1x*q2y*t+12*s3x*q1y*q2y*t-24*pwx*q1y*q2y*t+4*pux*q1y*q2y*t+55*s3x*q2y^2*t-104*pwx*q2y^2*t-11*q1x*q2y^2*t+48*s1y*s2y*s3x-48*s1x*s2y*s3y+88*ux*s2y*puy-252*s2y*s3x*puy+504*s2y*pwx*puy+16*uy*s2y*q1x+64*s2x*pwx*q1x-16*ux*s2y*q1y+84*s2y*s3x*q1y+96*s2x*s3y*q1y-168*s2y*pwx*q1y+88*s2y*pux*q1y+16*ux*puy*q1y-104*s2x*puy*q1y-144*s3x*puy*q1y+288*pwx*puy*q1y+24*s2x*q1y^2+48*s3x*q1y^2-96*pwx*q1y^2+16*pux*q1y^2+32*ux*s2y*q2y-48*s1y*s3x*q2y+364*s2y*s3x*q2y+48*s1x*s3y*q2y-728*s2y*pwx*q2y-96*ux*puy*q2y+12*s2x*puy*q2y-100*s2y*q1x*q2y+72*s3y*q1x*q2y+68*s2x*q1y*q2y+208*s3x*q1y*q2y-416*pwx*q1y*q2y-96*pux*q1y*q2y-40*q1x*q1y*q2y-36*s2x*q2y^2-12*s3x*q2y^2+36*q1x*q2y^2+15*s3y*q2y*t-16*puy*q2y*t+15/2*q1y*q2y*t+5*q2y^2*t+24*s1x*s2x-8*uy*s2y+72*s1y*s2y+84*s2y*s3y+16*s2x*pwx-82*s2y*puy-32*s2x*q1x+32*pwx*q1x-2*s2y*q1y+48*s3y*q1y-52*puy*q1y+12*q1y^2-48*s1y*q2y+70*s2y*q2y-12*s3y*q2y+12*puy*q2y+10*q1y*q2y-36*q2y^2-16*s2x+8*pwx-16*q1x-1",
+    "8*q1y*q2y-4*q2y^2",
+    "48*s2y*s3y-48*s3y*q2y",
+    "-24*s1x+16",
+    "-128*s2x*s3x*pux*q1y^2+256*s2x*pwx*pux*q1y^2-16*s3x*pux*q1y*q2y*t+32*pwx*pux*q1y*q2y*t-112*s2y*s3x*pux*q1y+224*s2y*pwx*pux*q1y+64*s2x*s3x*puy*q1y-128*s2x*pwx*puy*q1y-32*s2x*pux*q1y^2-64*s3x*pux*q1y^2+128*pwx*pux*q1y^2+48*s2x*pux*q1y*q2y+8*s3x*puy*q2y*t-16*pwx*puy*q2y*t-4*pux*q1y*q2y*t-48*s1y*s2y*s3x+48*s1x*s2y*s3y+56*s2y*s3x*puy-112*s2y*pwx*puy-88*s2y*pux*q1y+16*s2x*puy*q1y+32*s3x*puy*q1y-64*pwx*puy*q1y-16*pux*q1y^2+48*s1y*s3x*q2y-48*s1x*s3y*q2y-24*s2x*puy*q2y+96*pux*q1y*q2y+2*puy*q2y*t-48*s2y*s3y+44*s2y*puy-8*s2y*q1y+8*puy*q1y+16*s2y*q2y+48*s3y*q2y-48*puy*q2y+24*s1x+4*s2x-16",
+    "48*s2y*q1y-24*q2y^2+6",
+    "-48*s2y*q2y+48*q2y^2",
+    "-48*s2y*q1y+48*s2y*q2y-24*q2y^2+6",
+    "-24*s1x+12",
+    "0",
+    "0",
+    "-48*s3y*q1y^2*q2y*t+36*s3y*puy*q2y^2*t+24*s3y*q1y*q2y^2*t+192*s3y*q1y^2*q2y-144*s3y*puy*q2y^2-96*s3y*q1y*q2y^2-12*s3x*q1y*q2y*t+6*s3x*q2y^2*t+32*s2x*puy*q1y-64*s2x*q1y^2-32*s2x*q1y*q2y+48*s3x*q1y*q2y-24*s3x*q2y^2+6*s3y*q2y*t+puy*q2y*t+7*q1y*q2y*t-10*q2y^2*t+48*s1y*s2y+52*s2y*puy-8*s2y*q1y+16*puy*q1y-32*q1y^2-48*s1y*q2y-4*s2y*q2y-24*s3y*q2y-12*puy*q2y-76*q1y*q2y-24*q2y^2+6",
+    "-48*s2y*q1y+24*q2y^2-6",
+    "48*s3y*q1y^2*q2y*t-36*s3y*puy*q2y^2*t-24*s3y*q1y*q2y^2*t-192*s3y*q1y^2*q2y+144*s3y*puy*q2y^2+96*s3y*q1y*q2y^2+12*s3x*q1y*q2y*t-6*s3x*q2y^2*t-32*s2x*puy*q1y+64*s2x*q1y^2+32*s2x*q1y*q2y-48*s3x*q1y*q2y+24*s3x*q2y^2-6*s3y*q2y*t-puy*q2y*t-7*q1y*q2y*t+10*q2y^2*t-52*s2y*puy+56*s2y*q1y-16*puy*q1y+32*q1y^2+4*s2y*q2y+24*s3y*q2y+12*puy*q2y+76*q1y*q2y",
+    "-48*s2y*s3y+48*s3y*q2y",
+    "48*s1y*s2y-48*s1y*q2y",
+    "36*s3y^2*pux*q2y^2*t-36*s3x*s3y*puy*q2y^2*t+36*s3x*s3y*q2y^3*t-512*s2x*s3x*pwy*pux*q1y+1024*s2x*pwx*pwy*pux*q1y+512*s2x*s3x*pwx*puy*q1y-1024*s2x*pwx^2*puy*q1y+128*s2x*s3x*pwx*q1y^2-256*s2x*pwx^2*q1y^2-1024*s2x*s3x*pwx*q1y*q2y+2048*s2x*pwx^2*q1y*q2y+192*s2x*s3x*pux*q1y*q2y-384*s2x*pwx*pux*q1y*q2y-144*s3y^2*pux*q2y^2+144*s3x*s3y*puy*q2y^2-144*s3x*s3y*q2y^3-64*s3x*pwy*pux*q2y*t+128*pwx*pwy*pux*q2y*t+64*s3x*pwx*puy*q2y*t-128*pwx^2*puy*q2y*t+16*s3x*pwx*q1y*q2y*t-32*pwx^2*q1y*q2y*t-18*s3y^2*q2y^2*t-128*s3x*pwx*q2y^2*t+256*pwx^2*q2y^2*t+24*s3x*pux*q2y^2*t-48*pwx*pux*q2y^2*t+36*s3y*puy*q2y^2*t-36*s3y*q2y^3*t-448*s2y*s3x*pwy*pux+896*s2y*pwx*pwy*pux+448*s2y*s3x*pwx*puy-896*s2y*pwx^2*puy+112*s2y*s3x*pwx*q1y-256*s2x*s3y*pwx*q1y-224*s2y*pwx^2*q1y+512*s2x*s3x*pwy*q1y-512*s2x*pwx*pwy*q1y-32*s2x*s3y*pux*q1y-256*s2x*pwy*pux*q1y-256*s3x*pwy*pux*q1y+512*pwx*pwy*pux*q1y-576*s2x*s3x*puy*q1y+1472*s2x*pwx*puy*q1y+256*s3x*pwx*puy*q1y-512*pwx^2*puy*q1y-160*s2x*s3x*q1y^2+352*s2x*pwx*q1y^2+64*s3x*pwx*q1y^2-128*pwx^2*q1y^2-896*s2y*s3x*pwx*q2y+1792*s2y*pwx^2*q2y+168*s2y*s3x*pux*q2y-336*s2y*pwx*pux*q2y+960*s2x*s3x*q1y*q2y-2672*s2x*pwx*q1y*q2y-512*s3x*pwx*q1y*q2y+1024*pwx^2*q1y*q2y+176*s2x*pux*q1y*q2y+96*s3x*pux*q1y*q2y-192*pwx*pux*q1y*q2y+72*s3y^2*q2y^2+24*s2x*pux*q2y^2-144*s3y*puy*q2y^2+144*s3y*q2y^3-32*s3y*pwx*q2y*t+64*s3x*pwy*q2y*t-64*pwx*pwy*q2y*t-7*s3y*pux*q2y*t-32*pwy*pux*q2y*t-69*s3x*puy*q2y*t+184*pwx*puy*q2y*t-20*s3x*q1y*q2y*t+44*pwx*q1y*q2y*t+117*s3x*q2y^2*t-328*pwx*q2y^2*t+22*pux*q2y^2*t-224*s2y*s3y*pwx+448*s2y*s3x*pwy-448*s2y*pwx*pwy-4*s2y*s3y*pux-224*s2y*pwy*pux-528*s2y*s3x*puy+1288*s2y*pwx*puy-140*s2y*s3x*q1y+336*s2x*s3y*q1y+368*s2y*pwx*q1y-128*s3y*pwx*q1y-256*s2x*pwy*q1y+256*s3x*pwy*q1y-256*pwx*pwy*q1y-16*s3y*pux*q1y-128*pwy*pux*q1y-376*s2x*puy*q1y-288*s3x*puy*q1y+736*pwx*puy*q1y-40*s2x*q1y^2-80*s3x*q1y^2+176*pwx*q1y^2+48*s1x*s2y*q2y+816*s2y*s3x*q2y-2296*s2y*pwx*q2y+124*s2y*pux*q2y-12*s3y*pux*q2y-12*s2x*puy*q2y+12*s3x*puy*q2y+660*s2x*q1y*q2y+480*s3x*q1y*q2y-1408*pwx*q1y*q2y+88*pux*q1y*q2y-48*s1x*q2y^2+12*s2x*q2y^2+36*s3x*q2y^2+48*pux*q2y^2+87/2*s3y*q2y*t-32*pwy*q2y*t-50*puy*q2y*t-5*q1y*q2y*t+78*q2y^2*t-24*s1y*s2y+306*s2y*s3y-224*s2y*pwy-290*s2y*puy-110*s2y*q1y+168*s3y*q1y-128*pwy*q1y-188*puy*q1y-20*q1y^2+24*s1y*q2y+534*s2y*q2y-18*s3y*q2y-36*puy*q2y+420*q1y*q2y-12*q2y^2",
+    "36*s3y^2*pux*q2y^2*t-36*s3x*s3y*puy*q2y^2*t+36*s3x*s3y*q2y^3*t-512*s2x*s3x*pwy*pux*q1y+1024*s2x*pwx*pwy*pux*q1y+512*s2x*s3x*pwx*puy*q1y-1024*s2x*pwx^2*puy*q1y+128*s2x*s3x*pwx*q1y^2-256*s2x*pwx^2*q1y^2-1024*s2x*s3x*pwx*q1y*q2y+2048*s2x*pwx^2*q1y*q2y+192*s2x*s3x*pux*q1y*q2y-384*s2x*pwx*pux*q1y*q2y-144*s3y^2*pux*q2y^2+144*s3x*s3y*puy*q2y^2-144*s3x*s3y*q2y^3-64*s3x*pwy*pux*q2y*t+128*pwx*pwy*pux*q2y*t+64*s3x*pwx*puy*q2y*t-128*pwx^2*puy*q2y*t+16*s3x*pwx*q1y*q2y*t-32*pwx^2*q1y*q2y*t-18*s3y^2*q2y^2*t-128*s3x*pwx*q2y^2*t+256*pwx^2*q2y^2*t+24*s3x*pux*q2y^2*t-48*pwx*pux*q2y^2*t-448*s2y*s3x*pwy*pux+896*s2y*pwx*pwy*pux+448*s2y*s3x*pwx*puy-896*s2y*pwx^2*puy+112*s2y*s3x*pwx*q1y-256*s2x*s3y*pwx*q1y-224*s2y*pwx^2*q1y+512*s2x*s3x*pwy*q1y-512*s2x*pwx*pwy*q1y-32*s2x*s3y*pux*q1y-256*s2x*pwy*pux*q1y-256*s3x*pwy*pux*q1y+512*pwx*pwy*pux*q1y-64*s2x*s3x*puy*q1y+448*s2x*pwx*puy*q1y+256*s3x*pwx*puy*q1y-512*pwx^2*puy*q1y-32*s2x*s3x*q1y^2+96*s2x*pwx*q1y^2+64*s3x*pwx*q1y^2-128*pwx^2*q1y^2-896*s2y*s3x*pwx*q2y+1792*s2y*pwx^2*q2y+168*s2y*s3x*pux*q2y-336*s2y*pwx*pux*q2y-64*s2x*s3x*q1y*q2y-624*s2x*pwx*q1y*q2y-512*s3x*pwx*q1y*q2y+1024*pwx^2*q1y*q2y+176*s2x*pux*q1y*q2y+96*s3x*pux*q1y*q2y-192*pwx*pux*q1y*q2y+72*s3y^2*q2y^2+24*s2x*pux*q2y^2-32*s3y*pwx*q2y*t+64*s3x*pwy*q2y*t-64*pwx*pwy*q2y*t-7*s3y*pux*q2y*t-32*pwy*pux*q2y*t-5*s3x*puy*q2y*t+56*pwx*puy*q2y*t-4*s3x*q1y*q2y*t+12*pwx*q1y*q2y*t-11*s3x*q2y^2*t-72*pwx*q2y^2*t+22*pux*q2y^2*t-224*s2y*s3y*pwx+448*s2y*s3x*pwy-448*s2y*pwx*pwy-4*s2y*s3y*pux-224*s2y*pwy*pux-80*s2y*s3x*puy+392*s2y*pwx*puy-28*s2y*s3x*q1y+80*s2x*s3y*q1y+144*s2y*pwx*q1y-128*s3y*pwx*q1y+256*s3x*pwy*q1y-256*pwx*pwy*q1y-16*s3y*pux*q1y-128*pwy*pux*q1y-88*s2x*puy*q1y-32*s3x*puy*q1y+224*pwx*puy*q1y-8*s2x*q1y^2-16*s3x*q1y^2+48*pwx*q1y^2+48*s1x*s2y*q2y-80*s2y*s3x*q2y-504*s2y*pwx*q2y+124*s2y*pux*q2y-12*s3y*pux*q2y-12*s2x*puy*q2y+12*s3x*puy*q2y+132*s2x*q1y*q2y-32*s3x*q1y*q2y-384*pwx*q1y*q2y+88*pux*q1y*q2y-48*s1x*q2y^2+12*s2x*q2y^2+36*s3x*q2y^2+48*pux*q2y^2+23/2*s3y*q2y*t-11*puy*q2y*t-q1y*q2y*t+15*q2y^2*t-24*s1y*s2y+82*s2y*s3y-62*s2y*puy-22*s2y*q1y+40*s3y*q1y-44*puy*q1y-4*q1y^2+24*s1y*q2y+90*s2y*q2y-18*s3y*q2y-24*puy*q2y+84*q1y*q2y+24*q2y^2",
+    "36*s3y*puy*q2y^2*t-36*s3y*q2y^3*t-144*s3y*puy*q2y^2+144*s3y*q2y^3-256*s2x*pwy*q1y-32*s2x*puy*q1y+224*s2x*q1y*q2y-32*pwy*q2y*t-7*puy*q2y*t+31*q2y^2*t-224*s2y*pwy-4*s2y*puy-128*pwy*q1y-16*puy*q1y+220*s2y*q2y-12*puy*q2y+112*q1y*q2y-36*q2y^2",
+    "-36*s3y^2*pux*q2y^2*t+36*s3x*s3y*puy*q2y^2*t-36*s3x*s3y*q2y^3*t+512*s2x*s3x*pwy*pux*q1y-1024*s2x*pwx*pwy*pux*q1y-512*s2x*s3x*pwx*puy*q1y+1024*s2x*pwx^2*puy*q1y-128*s2x*s3x*pwx*q1y^2+256*s2x*pwx^2*q1y^2+1024*s2x*s3x*pwx*q1y*q2y-2048*s2x*pwx^2*q1y*q2y-192*s2x*s3x*pux*q1y*q2y+384*s2x*pwx*pux*q1y*q2y+144*s3y^2*pux*q2y^2-144*s3x*s3y*puy*q2y^2+144*s3x*s3y*q2y^3+64*s3x*pwy*pux*q2y*t-128*pwx*pwy*pux*q2y*t-64*s3x*pwx*puy*q2y*t+128*pwx^2*puy*q2y*t-16*s3x*pwx*q1y*q2y*t+32*pwx^2*q1y*q2y*t+18*s3y^2*q2y^2*t+128*s3x*pwx*q2y^2*t-256*pwx^2*q2y^2*t-24*s3x*pux*q2y^2*t+48*pwx*pux*q2y^2*t-36*s3y*puy*q2y^2*t+36*s3y*q2y^3*t+448*s2y*s3x*pwy*pux-896*s2y*pwx*pwy*pux-448*s2y*s3x*pwx*puy+896*s2y*pwx^2*puy-112*s2y*s3x*pwx*q1y+256*s2x*s3y*pwx*q1y+224*s2y*pwx^2*q1y-512*s2x*s3x*pwy*q1y+512*s2x*pwx*pwy*q1y+32*s2x*s3y*pux*q1y+256*s2x*pwy*pux*q1y+256*s3x*pwy*pux*q1y-512*pwx*pwy*pux*q1y+64*s2x*s3x*puy*q1y-448*s2x*pwx*puy*q1y-256*s3x*pwx*puy*q1y+512*pwx^2*puy*q1y+160*s2x*s3x*q1y^2-352*s2x*pwx*q1y^2-64*s3x*pwx*q1y^2+128*pwx^2*q1y^2+896*s2y*s3x*pwx*q2y-1792*s2y*pwx^2*q2y-168*s2y*s3x*pux*q2y+336*s2y*pwx*pux*q2y+64*s2x*s3x*q1y*q2y+624*s2x*pwx*q1y*q2y+512*s3x*pwx*q1y*q2y-1024*pwx^2*q1y*q2y-176*s2x*pux*q1y*q2y-96*s3x*pux*q1y*q2y+192*pwx*pux*q1y*q2y-72*s3y^2*q2y^2-24*s2x*pux*q2y^2+144*s3y*puy*q2y^2-144*s3y*q2y^3+32*s3y*pwx*q2y*t-64*s3x*pwy*q2y*t+64*pwx*pwy*q2y*t+7*s3y*pux*q2y*t+32*pwy*pux*q2y*t+5*s3x*puy*q2y*t-56*pwx*puy*q2y*t+20*s3x*q1y*q2y*t-44*pwx*q1y*q2y*t+11*s3x*q2y^2*t+72*pwx*q2y^2*t-22*pux*q2y^2*t+224*s2y*s3y*pwx-448*s2y*s3x*pwy+448*s2y*pwx*pwy+4*s2y*s3y*pux+224*s2y*pwy*pux+80*s2y*s3x*puy-392*s2y*pwx*puy+140*s2y*s3x*q1y-80*s2x*s3y*q1y-368*s2y*pwx*q1y+128*s3y*pwx*q1y+256*s2x*pwy*q1y-256*s3x*pwy*q1y+256*pwx*pwy*q1y+16*s3y*pux*q1y+128*pwy*pux*q1y+120*s2x*puy*q1y+32*s3x*puy*q1y-224*pwx*puy*q1y+40*s2x*q1y^2+80*s3x*q1y^2-176*pwx*q1y^2-48*s1x*s2y*q2y+80*s2y*s3x*q2y+504*s2y*pwx*q2y-124*s2y*pux*q2y+12*s3y*pux*q2y+12*s2x*puy*q2y-12*s3x*puy*q2y-404*s2x*q1y*q2y+32*s3x*q1y*q2y+384*pwx*q1y*q2y-88*pux*q1y*q2y+48*s1x*q2y^2-12*s2x*q2y^2-36*s3x*q2y^2-48*pux*q2y^2-23/2*s3y*q2y*t+32*pwy*q2y*t+18*puy*q2y*t+5*q1y*q2y*t-46*q2y^2*t+24*s1y*s2y-82*s2y*s3y+224*s2y*pwy+66*s2y*puy+110*s2y*q1y-40*s3y*q1y+128*pwy*q1y+60*puy*q1y+20*q1y^2-24*s1y*q2y-310*s2y*q2y+18*s3y*q2y+36*puy*q2y-292*q1y*q2y+12*q2y^2",
+    "24*s3y*q1x*q2y^3*t+128*ux*s2x*s3x*puy*q1y-256*ux*s2x*pwx*puy*q1y-320*s2x*s3x*q1x*q1y*q2y+640*s2x*pwx*q1x*q1y*q2y-96*s3y*q1x*q2y^3+16*ux*s3x*puy*q2y*t-32*ux*pwx*puy*q2y*t+24*s3x*s3y*q1x*q2y*t+24*s3y^2*q1y*q2y*t-40*s3x*q1x*q2y^2*t+80*pwx*q1x*q2y^2*t-30*s3y*q2y^3*t+112*ux*s2y*s3x*puy-224*ux*s2y*pwx*puy+32*ux*s2x*puy*q1y+64*ux*s3x*puy*q1y-96*s2x*s3x*puy*q1y-128*ux*pwx*puy*q1y+192*s2x*pwx*puy*q1y-160*s2x*s3x*q1y^2+320*s2x*pwx*q1y^2-48*ux*s2x*puy*q2y-280*s2y*s3x*q1x*q2y-96*s3x*s3y*q1x*q2y+560*s2y*pwx*q1x*q2y+416*s2x*s3x*q1y*q2y-96*s3y^2*q1y*q2y-832*s2x*pwx*q1y*q2y-80*s2x*q1x*q1y*q2y-160*s3x*q1x*q1y*q2y+320*pwx*q1x*q1y*q2y+24*s2x*q1x*q2y^2+120*s3y*q2y^3-24*s3x*s3y*q2y*t+4*ux*puy*q2y*t-12*s3x*puy*q2y*t+24*pwx*puy*q2y*t-18*s3y*q1x*q2y*t-20*s3x*q1y*q2y*t+40*pwx*q1y*q2y*t+49*s3x*q2y^2*t-104*pwx*q2y^2*t-11*q1x*q2y^2*t+88*ux*s2y*puy-84*s2y*s3x*puy+168*s2y*pwx*puy+16*uy*s2y*q1x+64*s2x*pwx*q1x-16*ux*s2y*q1y-140*s2y*s3x*q1y+32*s2x*s3y*q1y+280*s2y*pwx*q1y+16*ux*puy*q1y-24*s2x*puy*q1y-48*s3x*puy*q1y+96*pwx*puy*q1y-40*s2x*q1y^2-80*s3x*q1y^2+160*pwx*q1y^2+32*ux*s2y*q2y+364*s2y*s3x*q2y+96*s3x*s3y*q2y-728*s2y*pwx*q2y-96*ux*puy*q2y+36*s2x*puy*q2y-100*s2y*q1x*q2y+72*s3y*q1x*q2y+100*s2x*q1y*q2y+208*s3x*q1y*q2y-416*pwx*q1y*q2y-40*q1x*q1y*q2y-36*s2x*q2y^2+12*s3x*q2y^2+36*q1x*q2y^2+19*s3y*q2y*t-3*puy*q2y*t-11/2*q1y*q2y*t+15*q2y^2*t+24*s1x*s2x-8*uy*s2y-24*s1y*s2y+28*s2y*s3y-80*s2x*pwx-66*s2y*puy-32*s2x*q1x+32*pwx*q1x-34*s2y*q1y+16*s3y*q1y-12*puy*q1y-20*q1y^2+106*s2y*q2y-60*s3y*q2y+72*puy*q2y+62*q1y*q2y-60*q2y^2-24*s1x+36*s2x-40*pwx-16*q1x+25",
+    "24*s1x-4",
+    "-24*s3y*q1x*q2y^3*t-128*ux*s2x*s3x*puy*q1y+256*ux*s2x*pwx*puy*q1y-128*s2x*s3x*pux*q1y^2+256*s2x*pwx*pux*q1y^2+320*s2x*s3x*q1x*q1y*q2y-640*s2x*pwx*q1x*q1y*q2y+96*s3y*q1x*q2y^3-16*ux*s3x*puy*q2y*t+32*ux*pwx*puy*q2y*t-24*s3x*s3y*q1x*q2y*t-24*s3y^2*q1y*q2y*t-16*s3x*pux*q1y*q2y*t+32*pwx*pux*q1y*q2y*t+40*s3x*q1x*q2y^2*t-80*pwx*q1x*q2y^2*t+30*s3y*q2y^3*t-112*ux*s2y*s3x*puy+224*ux*s2y*pwx*puy-112*s2y*s3x*pux*q1y+224*s2y*pwx*pux*q1y-32*ux*s2x*puy*q1y-64*ux*s3x*puy*q1y+32*s2x*s3x*puy*q1y+128*ux*pwx*puy*q1y-64*s2x*pwx*puy*q1y+160*s2x*s3x*q1y^2-320*s2x*pwx*q1y^2-32*s2x*pux*q1y^2-64*s3x*pux*q1y^2+128*pwx*pux*q1y^2+48*ux*s2x*puy*q2y+280*s2y*s3x*q1x*q2y+96*s3x*s3y*q1x*q2y-560*s2y*pwx*q1x*q2y-416*s2x*s3x*q1y*q2y+96*s3y^2*q1y*q2y+832*s2x*pwx*q1y*q2y+48*s2x*pux*q1y*q2y+80*s2x*q1x*q1y*q2y+160*s3x*q1x*q1y*q2y-320*pwx*q1x*q1y*q2y-24*s2x*q1x*q2y^2-120*s3y*q2y^3+24*s3x*s3y*q2y*t-4*ux*puy*q2y*t+4*s3x*puy*q2y*t-8*pwx*puy*q2y*t+18*s3y*q1x*q2y*t+20*s3x*q1y*q2y*t-40*pwx*q1y*q2y*t-4*pux*q1y*q2y*t-49*s3x*q2y^2*t+104*pwx*q2y^2*t+11*q1x*q2y^2*t-48*s1y*s2y*s3x+48*s1x*s2y*s3y-88*ux*s2y*puy+28*s2y*s3x*puy-56*s2y*pwx*puy-16*uy*s2y*q1x-64*s2x*pwx*q1x+16*ux*s2y*q1y+140*s2y*s3x*q1y-32*s2x*s3y*q1y-280*s2y*pwx*q1y-88*s2y*pux*q1y-16*ux*puy*q1y+8*s2x*puy*q1y+16*s3x*puy*q1y-32*pwx*puy*q1y+40*s2x*q1y^2+80*s3x*q1y^2-160*pwx*q1y^2-16*pux*q1y^2-32*ux*s2y*q2y+48*s1y*s3x*q2y-364*s2y*s3x*q2y-48*s1x*s3y*q2y-96*s3x*s3y*q2y+728*s2y*pwx*q2y+96*ux*puy*q2y-12*s2x*puy*q2y+100*s2y*q1x*q2y-72*s3y*q1x*q2y-100*s2x*q1y*q2y-208*s3x*q1y*q2y+416*pwx*q1y*q2y+96*pux*q1y*q2y+40*q1x*q1y*q2y+36*s2x*q2y^2-12*s3x*q2y^2-36*q1x*q2y^2-19*s3y*q2y*t+puy*q2y*t+11/2*q1y*q2y*t-15*q2y^2*t-24*s1x*s2x+8*uy*s2y+24*s1y*s2y-76*s2y*s3y+80*s2x*pwx+22*s2y*puy+32*s2x*q1x-32*pwx*q1x+42*s2y*q1y-16*s3y*q1y+4*puy*q1y+20*q1y^2-122*s2y*q2y+108*s3y*q2y-24*puy*q2y-62*q1y*q2y+60*q2y^2+24*s1x-32*s2x+40*pwx+16*q1x-37",
+    "48*s3y^2*q1x*q1y*q2y*t-48*s3x*s3y*q1y^2*q2y*t-24*s3y^2*q1y*q2x*q2y*t+24*s3y*q1y^2*q2x*q2y*t-72*s3y^2*pux*q2y^2*t+36*s3x*s3y*puy*q2y^2*t+24*s3x*s3y*q1y*q2y^2*t-12*s3y*q1y*q2x*q2y^2*t-12*s3y*q1x*q2y^3*t+1024*s2x*s3x*pwy*pux*q1y-2048*s2x*pwx*pwy*pux*q1y-128*ux*s2x*s3x*puy*q1y+256*ux*s2x*pwx*puy*q1y-192*s2x*s3x*pux*puy*q1y+384*s2x*pwx*pux*puy*q1y+64*s2x*s3x*puy*q1x*q1y-128*s2x*pwx*puy*q1x*q1y-192*s2x*s3x*pux*q1y^2+384*s2x*pwx*pux*q1y^2-320*s2x*s3x*q1x*q1y^2+640*s2x*pwx*q1x*q1y^2-128*s2x*s3x*puy*q1y*q2x+256*s2x*pwx*puy*q1y*q2x+128*s2x*s3x*q1y^2*q2x-256*s2x*pwx*q1y^2*q2x+128*s2x*s3x*pux*q1y*q2y-256*s2x*pwx*pux*q1y*q2y+192*s2x*s3x*q1x*q1y*q2y-192*s3y^2*q1x*q1y*q2y-384*s2x*pwx*q1x*q1y*q2y+192*s3x*s3y*q1y^2*q2y+96*s3y^2*q1y*q2x*q2y-96*s3y*q1y^2*q2x*q2y+288*s3y^2*pux*q2y^2-144*s3x*s3y*puy*q2y^2-96*s3x*s3y*q1y*q2y^2+48*s3y*q1y*q2x*q2y^2+48*s3y*q1x*q2y^3+128*s3x*pwy*pux*q2y*t-256*pwx*pwy*pux*q2y*t-16*ux*s3x*puy*q2y*t+32*ux*pwx*puy*q2y*t-24*s3x*pux*puy*q2y*t+48*pwx*pux*puy*q2y*t+8*s3x*puy*q1x*q2y*t-16*pwx*puy*q1x*q2y*t-12*s3x^2*q1y*q2y*t+12*s3y^2*q1y*q2y*t-24*s3x*pux*q1y*q2y*t+48*pwx*pux*q1y*q2y*t-40*s3x*q1x*q1y*q2y*t+80*pwx*q1x*q1y*q2y*t+12*s3y*q1y^2*q2y*t+12*s3x*s3y*q2x*q2y*t-16*s3x*puy*q2x*q2y*t+32*pwx*puy*q2x*q2y*t+22*s3x*q1y*q2x*q2y*t-32*pwx*q1y*q2x*q2y*t+6*s3x^2*q2y^2*t+16*s3x*pux*q2y^2*t-32*pwx*pux*q2y^2*t-36*s3y*puy*q2y^2*t+18*s3x*q1x*q2y^2*t-48*pwx*q1x*q2y^2*t-6*s3y*q1y*q2y^2*t+30*s3y*q2y^3*t+896*s2y*s3x*pwy*pux-1792*s2y*pwx*pwy*pux-112*ux*s2y*s3x*puy+224*ux*s2y*pwx*puy-168*s2y*s3x*pux*puy+336*s2y*pwx*pux*puy+56*s2y*s3x*puy*q1x-112*s2y*pwx*puy*q1x-168*s2y*s3x*pux*q1y+192*s2x*s3y*pux*q1y+336*s2y*pwx*pux*q1y+256*s2x*pwy*pux*q1y+512*s3x*pwy*pux*q1y-1024*pwx*pwy*pux*q1y-32*ux*s2x*puy*q1y-64*ux*s3x*puy*q1y+256*s2x*s3x*puy*q1y+128*ux*pwx*puy*q1y-448*s2x*pwx*puy*q1y-176*s2x*pux*puy*q1y-96*s3x*pux*puy*q1y+192*pwx*pux*puy*q1y-280*s2y*s3x*q1x*q1y+64*s2x*s3y*q1x*q1y+560*s2y*pwx*q1x*q1y+16*s2x*puy*q1x*q1y+32*s3x*puy*q1x*q1y-64*pwx*puy*q1x*q1y-96*s2x*s3x*q1y^2+64*s2x*pwx*q1y^2-48*s2x*pux*q1y^2-96*s3x*pux*q1y^2+192*pwx*pux*q1y^2-80*s2x*q1x*q1y^2-160*s3x*q1x*q1y^2+320*pwx*q1x*q1y^2-112*s2y*s3x*puy*q2x+224*s2y*pwx*puy*q2x+112*s2y*s3x*q1y*q2x+32*s2x*s3y*q1y*q2x-224*s2y*pwx*q1y*q2x-64*s2x*puy*q1y*q2x-64*s3x*puy*q1y*q2x+128*pwx*puy*q1y*q2x+64*s2x*q1y^2*q2x+64*s3x*q1y^2*q2x-128*pwx*q1y^2*q2x+112*s2y*s3x*pux*q2y-224*s2y*pwx*pux*q2y+48*ux*s2x*puy*q2y-24*s2x*pux*puy*q2y+168*s2y*s3x*q1x*q2y-336*s2y*pwx*q1x*q2y-24*s2x*puy*q1x*q2y-448*s2x*s3x*q1y*q2y+48*s3x^2*q1y*q2y-48*s3y^2*q1y*q2y+832*s2x*pwx*q1y*q2y+136*s2x*pux*q1y*q2y+64*s3x*pux*q1y*q2y-128*pwx*pux*q1y*q2y+40*s2x*q1x*q1y*q2y+96*s3x*q1x*q1y*q2y-192*pwx*q1x*q1y*q2y-48*s3y*q1y^2*q2y-48*s3x*s3y*q2x*q2y-24*s3x*q1y*q2x*q2y-24*s3x^2*q2y^2+144*s3y*puy*q2y^2-24*s2x*q1x*q2y^2+24*s3x*q1x*q2y^2+24*s3y*q1y*q2y^2-120*s3y*q2y^3+12*s3x*s3y*q2y*t+30*s3y*pux*q2y*t+32*pwy*pux*q2y*t-4*ux*puy*q2y*t+29*s3x*puy*q2y*t-56*pwx*puy*q2y*t-22*pux*puy*q2y*t+2*s3y*q1x*q2y*t+2*puy*q1x*q2y*t+6*s3x*q1y*q2y*t+8*pwx*q1y*q2y*t-6*pux*q1y*q2y*t-11*q1x*q1y*q2y*t-5*s3y*q2x*q2y*t-8*puy*q2x*q2y*t+3*q1y*q2x*q2y*t-65*s3x*q2y^2*t+104*pwx*q2y^2*t+8*pux*q2y^2*t+8*q1x*q2y^2*t-48*s1y*s2y*s3x+48*s1x*s2y*s3y-48*s1y*s2y*pux+168*s2y*s3y*pux+224*s2y*pwy*pux-88*ux*s2y*puy+248*s2y*s3x*puy-392*s2y*pwx*puy-124*s2y*pux*puy+16*uy*s2y*q1x-48*s1y*s2y*q1x+56*s2y*s3y*q1x-32*s2x*pwx*q1x+44*s2y*puy*q1x+16*ux*s2y*q1y+48*s1x*s2y*q1y-84*s2y*s3x*q1y-80*s2x*s3y*q1y+56*s2y*pwx*q1y-132*s2y*pux*q1y+96*s3y*pux*q1y+128*pwy*pux*q1y-16*ux*puy*q1y+72*s2x*puy*q1y+128*s3x*puy*q1y-224*pwx*puy*q1y-88*pux*puy*q1y-100*s2y*q1x*q1y+32*s3y*q1x*q1y+8*puy*q1x*q1y+8*s2x*q1y^2-48*s3x*q1y^2+32*pwx*q1y^2-24*pux*q1y^2-40*q1x*q1y^2+48*s1y*s2y*q2x+4*s2y*s3y*q2x+48*s2x*pwx*q2x-56*s2y*puy*q2x+24*s2y*q1y*q2x+16*s3y*q1y*q2x-32*puy*q1y*q2x+32*q1y^2*q2x-32*ux*s2y*q2y-48*s1x*s2y*q2y+48*s1y*s3x*q2y-368*s2y*s3x*q2y-48*s1x*s3y*q2y-48*s3x*s3y*q2y+728*s2y*pwx*q2y+48*s1y*pux*q2y+56*s2y*pux*q2y-24*s3y*pux*q2y+96*ux*puy*q2y-12*s2x*puy*q2y-12*s3x*puy*q2y-48*pux*puy*q2y+76*s2y*q1x*q2y+24*s3y*q1x*q2y-48*puy*q1x*q2y-68*s2x*q1y*q2y-296*s3x*q1y*q2y+416*pwx*q1y*q2y+176*pux*q1y*q2y+44*q1x*q1y*q2y-24*s1y*q2x*q2y+60*s3y*q2x*q2y+12*q1y*q2x*q2y+24*s1x*q2y^2+36*s2x*q2y^2+12*s3x*q2y^2-48*q1x*q2y^2-35/2*s3y*q2y*t+12*puy*q2y*t-6*q1y*q2y*t-5*q2y^2*t-24*s1x*s2x+8*uy*s2y-48*s1y*s2y-82*s2y*s3y+8*s2x*pwx+54*s2y*puy+16*s2x*q1x-16*pwx*q1x+14*s2y*q1y-40*s3y*q1y+36*puy*q1y+4*q1y^2+12*s1x*q2x-24*s2x*q2x+24*pwx*q2x+36*s1y*q2y-70*s2y*q2y+42*s3y*q2y-12*puy*q2y-4*q1y*q2y+36*q2y^2+4*s2x+4*pwx+10*q1x-16*q2x-7",
+    "72*s3y^2*q2y^2*t-1024*s2x*s3x*pwy*q1y+2048*s2x*pwx*pwy*q1y+192*s2x*s3x*puy*q1y-384*s2x*pwx*puy*q1y+64*s2x*s3x*q1y^2-128*s2x*pwx*q1y^2-128*s2x*s3x*q1y*q2y+256*s2x*pwx*q1y*q2y-288*s3y^2*q2y^2-128*s3x*pwy*q2y*t+256*pwx*pwy*q2y*t+24*s3x*puy*q2y*t-48*pwx*puy*q2y*t+8*s3x*q1y*q2y*t-16*pwx*q1y*q2y*t-16*s3x*q2y^2*t+32*pwx*q2y^2*t-896*s2y*s3x*pwy+1792*s2y*pwx*pwy+168*s2y*s3x*puy-336*s2y*pwx*puy+56*s2y*s3x*q1y-192*s2x*s3y*q1y-112*s2y*pwx*q1y-256*s2x*pwy*q1y-512*s3x*pwy*q1y+1024*pwx*pwy*q1y+176*s2x*puy*q1y+96*s3x*puy*q1y-192*pwx*puy*q1y+16*s2x*q1y^2+32*s3x*q1y^2-64*pwx*q1y^2-112*s2y*s3x*q2y+224*s2y*pwx*q2y+24*s2x*puy*q2y-88*s2x*q1y*q2y-64*s3x*q1y*q2y+128*pwx*q1y*q2y-30*s3y*q2y*t-32*pwy*q2y*t+22*puy*q2y*t+2*q1y*q2y*t-8*q2y^2*t+48*s1y*s2y-168*s2y*s3y-224*s2y*pwy+124*s2y*puy+44*s2y*q1y-96*s3y*q1y-128*pwy*q1y+88*puy*q1y+8*q1y^2-48*s1y*q2y-56*s2y*q2y+24*s3y*q2y+48*puy*q2y-80*q1y*q2y",
+    "24*s3y*q1x*q2y^3*t+128*ux*s2x*s3x*puy*q1y-256*ux*s2x*pwx*puy*q1y+128*s2x*s3x*pux*q1y^2-256*s2x*pwx*pux*q1y^2-320*s2x*s3x*q1x*q1y*q2y+640*s2x*pwx*q1x*q1y*q2y-96*s3y*q1x*q2y^3+16*ux*s3x*puy*q2y*t-32*ux*pwx*puy*q2y*t+24*s3x*s3y*q1x*q2y*t-24*s3y^2*q1y*q2y*t+16*s3x*pux*q1y*q2y*t-32*pwx*pux*q1y*q2y*t-40*s3x*q1x*q2y^2*t+80*pwx*q1x*q2y^2*t-42*s3y*q2y^3*t+112*ux*s2y*s3x*puy-224*ux*s2y*pwx*puy+112*s2y*s3x*pux*q1y-224*s2y*pwx*pux*q1y+32*ux*s2x*puy*q1y+64*ux*s3x*puy*q1y-96*s2x*s3x*puy*q1y-128*ux*pwx*puy*q1y+192*s2x*pwx*puy*q1y+160*s2x*s3x*q1y^2-320*s2x*pwx*q1y^2+32*s2x*pux*q1y^2+64*s3x*pux*q1y^2-128*pwx*pux*q1y^2-48*ux*s2x*puy*q2y-280*s2y*s3x*q1x*q2y-96*s3x*s3y*q1x*q2y+560*s2y*pwx*q1x*q2y+544*s2x*s3x*q1y*q2y+96*s3y^2*q1y*q2y-1088*s2x*pwx*q1y*q2y-48*s2x*pux*q1y*q2y-80*s2x*q1x*q1y*q2y-160*s3x*q1x*q1y*q2y+320*pwx*q1x*q1y*q2y+24*s2x*q1x*q2y^2+168*s3y*q2y^3-48*s3x*s3y*q2y*t+4*ux*puy*q2y*t-12*s3x*puy*q2y*t+24*pwx*puy*q2y*t-18*s3y*q1x*q2y*t+20*s3x*q1y*q2y*t-40*pwx*q1y*q2y*t+4*pux*q1y*q2y*t+71*s3x*q2y^2*t-136*pwx*q2y^2*t-11*q1x*q2y^2*t+48*s1y*s2y*s3x-48*s1x*s2y*s3y+88*ux*s2y*puy-84*s2y*s3x*puy+168*s2y*pwx*puy+16*uy*s2y*q1x+64*s2x*pwx*q1x-16*ux*s2y*q1y+140*s2y*s3x*q1y-32*s2x*s3y*q1y-280*s2y*pwx*q1y+88*s2y*pux*q1y+16*ux*puy*q1y-24*s2x*puy*q1y-48*s3x*puy*q1y+96*pwx*puy*q1y+40*s2x*q1y^2+80*s3x*q1y^2-160*pwx*q1y^2+16*pux*q1y^2+32*ux*s2y*q2y-48*s1y*s3x*q2y+476*s2y*s3x*q2y+48*s1x*s3y*q2y+192*s3x*s3y*q2y-952*s2y*pwx*q2y-96*ux*puy*q2y+36*s2x*puy*q2y-100*s2y*q1x*q2y+72*s3y*q1x*q2y+140*s2x*q1y*q2y+272*s3x*q1y*q2y-544*pwx*q1y*q2y-96*pux*q1y*q2y-40*q1x*q1y*q2y-36*s2x*q2y^2-12*s3x*q2y^2+36*q1x*q2y^2+35*s3y*q2y*t-3*puy*q2y*t+11/2*q1y*q2y*t+18*q2y^2*t+24*s1x*s2x-40*uy*s2y+24*s1y*s2y+20*s2y*s3y-112*s2x*pwx-66*s2y*puy-32*s2x*q1x+32*pwx*q1x+58*s2y*q1y-16*s3y*q1y-12*puy*q1y+20*q1y^2+146*s2y*q2y-204*s3y*q2y+72*puy*q2y+58*q1y*q2y-48*q2y^2-24*s1x+48*s2x-56*pwx-16*q1x+43"
+  ],
+  "common_erased_masks": {
+    "Pu": {
+      "mask": 101,
+      "members": [
+        "u",
+        "w",
+        "s3",
+        "Pw"
+      ]
+    },
+    "Pw": {
+      "mask": 170,
+      "members": [
+        "v",
+        "s1",
+        "s3",
+        "Pu"
+      ]
+    },
+    "Q1": {
+      "mask": 531,
+      "members": [
+        "u",
+        "v",
+        "s2",
+        "Q2"
+      ]
+    },
+    "Q2": {
+      "mask": 390,
+      "members": [
+        "v",
+        "w",
+        "Pu",
+        "Q1"
+      ]
+    },
+    "s1": {
+      "mask": 688,
+      "members": [
+        "s2",
+        "s3",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "s2": {
+      "mask": 291,
+      "members": [
+        "u",
+        "v",
+        "s3",
+        "Q1"
+      ]
+    },
+    "s3": {
+      "mask": 525,
+      "members": [
+        "u",
+        "w",
+        "s1",
+        "Q2"
+      ]
+    },
+    "u": {
+      "mask": 284,
+      "members": [
+        "w",
+        "s1",
+        "s2",
+        "Q1"
+      ]
+    }
+  },
+  "exact_pids": [
+    "s1_031"
+  ],
+  "generator_metadata": [
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,s1)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s1x))^2+((0)-(s1y))^2)",
+      "id": "exact:v:u=s1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pw)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:v:u=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pu)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+      "id": "exact:v:u=Pu",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pu"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Pw)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:w:s3=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Pw"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q1)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+      "id": "exact:w:s3=Q1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q1"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q2)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+      "id": "exact:w:s3=Q2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q2"
+      ]
+    },
+    {
+      "equation": "t * dist2(u,v) - 1",
+      "generator": "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+      "id": "separator:u=v",
+      "kind": "rabinowitsch_distinct",
+      "optional": false,
+      "pair": [
+        "u",
+        "v"
+      ],
+      "source": "separator"
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+      "id": "leaf:R004YYY:u:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s2)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+      "id": "leaf:R004YYY:u:w=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s2"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,Q1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+      "id": "leaf:R004YYY:u:w=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,s2) = dist2(s1,s3)",
+      "generator": "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+      "id": "leaf:R004YYY:s1:s2=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s2",
+        "s3"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,s2) = dist2(s1,Pu)",
+      "generator": "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(pux))^2+((s1y)-(puy))^2)",
+      "id": "leaf:R004YYY:s1:s2=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s2",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,s2) = dist2(s1,Q2)",
+      "generator": "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+      "id": "leaf:R004YYY:s1:s2=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s2",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,u) = dist2(s2,v)",
+      "generator": "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(0))^2+((s2y)-(0))^2)",
+      "id": "leaf:R004YYY:s2:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,u) = dist2(s2,s3)",
+      "generator": "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+      "id": "leaf:R004YYY:s2:u=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s3"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,u) = dist2(s2,Q1)",
+      "generator": "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(q1x))^2+((s2y)-(q1y))^2)",
+      "id": "leaf:R004YYY:s2:u=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,w)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+      "id": "leaf:R004YYY:s3:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,s1)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+      "id": "leaf:R004YYY:s3:u=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,Q2)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+      "id": "leaf:R004YYY:s3:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s1)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s1x))^2+((pwy)-(s1y))^2)",
+      "id": "leaf:R004YYY:Pw:v=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s1"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s3)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+      "id": "leaf:R004YYY:Pw:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Pu)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+      "id": "leaf:R004YYY:Pw:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,w)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(1))^2+((puy)-(0))^2)",
+      "id": "leaf:R004YYY:Pu:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,s3)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s3x))^2+((puy)-(s3y))^2)",
+      "id": "leaf:R004YYY:Pu:u=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s3"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Pw)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+      "id": "leaf:R004YYY:Pu:u=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,v)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(0))^2+((q1y)-(0))^2)",
+      "id": "leaf:R004YYY:Q1:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,s2)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(s2x))^2+((q1y)-(s2y))^2)",
+      "id": "leaf:R004YYY:Q1:u=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,u) = dist2(Q1,Q2)",
+      "generator": "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+      "id": "leaf:R004YYY:Q1:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,w)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(1))^2+((q2y)-(0))^2)",
+      "id": "leaf:R004YYY:Q2:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,Pu)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(pux))^2+((q2y)-(puy))^2)",
+      "id": "leaf:R004YYY:Q2:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,v) = dist2(Q2,Q1)",
+      "generator": "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)",
+      "id": "leaf:R004YYY:Q2:v=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q1"
+      ]
+    }
+  ],
+  "generators": [
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s1x))^2+((0)-(s1y))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+    "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+    "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+    "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(pux))^2+((s1y)-(puy))^2)",
+    "((s1x)-(s2x))^2+((s1y)-(s2y))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+    "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(0))^2+((s2y)-(0))^2)",
+    "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+    "((s2x)-(ux))^2+((s2y)-(uy))^2-(((s2x)-(q1x))^2+((s2y)-(q1y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s1x))^2+((pwy)-(s1y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(1))^2+((puy)-(0))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s3x))^2+((puy)-(s3y))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(0))^2+((q1y)-(0))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(s2x))^2+((q1y)-(s2y))^2)",
+    "((q1x)-(ux))^2+((q1y)-(uy))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(1))^2+((q2y)-(0))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(pux))^2+((q2y)-(puy))^2)",
+    "((q2x)-(0))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)"
+  ],
+  "leaf_id": "R004YYY",
+  "minimize_optional": false,
+  "minimize_steps": [],
+  "relaxed_id": "R004",
+  "schema": "pinned_surplus_relaxed_split_certificate.v1",
+  "separator_pair": "u=v",
+  "split_path": [
+    {
+      "center": "Q2",
+      "decision": "yes",
+      "label": "Pu"
+    },
+    {
+      "center": "s2",
+      "decision": "yes",
+      "label": "Q1"
+    },
+    {
+      "center": "Q1",
+      "decision": "yes",
+      "label": "u"
+    }
+  ],
+  "sstar": "s1",
+  "support": {
+    "centers_used": [
+      "u",
+      "v",
+      "w",
+      "s1",
+      "s2",
+      "s3",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonzero_count": 29,
+    "nonzero_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "nonzero_optional_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "variables": [
+    "ux",
+    "uy",
+    "s1x",
+    "s1y",
+    "s2x",
+    "s2y",
+    "s3x",
+    "s3y",
+    "pwx",
+    "pwy",
+    "pux",
+    "puy",
+    "q1x",
+    "q1y",
+    "q2x",
+    "q2y",
+    "t"
+  ]
+}

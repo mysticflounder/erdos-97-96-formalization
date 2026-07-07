@@ -1,0 +1,1104 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.Checker
+
+set_option linter.style.longLine false
+
+/-!
+# Relaxed split surplus certificate R006:u=v:R006, term block 15:0-28
+
+This generated module checks partial products for one block of an internally
+sharded relaxed pinned-surplus split certificate.
+-/
+
+namespace Problem97
+
+namespace SurplusCertificate
+
+namespace RelaxedSplit
+
+open Problem97.EndpointCertificate
+
+namespace R006UeqvR006TermShards
+
+/-- Generator polynomial 15 for relaxed split surplus certificate `R006:u=v:R006`. -/
+def rs_R006_ueqv_R006_generator_15_0000_0028 : Poly :=
+[
+  term (-2 : Rat) [(2, 1), (4, 1)],
+  term (1 : Rat) [(2, 2)],
+  term (-2 : Rat) [(3, 1), (5, 1)],
+  term (1 : Rat) [(3, 2)],
+  term (2 : Rat) [(4, 1), (14, 1)],
+  term (2 : Rat) [(5, 1), (15, 1)],
+  term (-1 : Rat) [(14, 2)],
+  term (-1 : Rat) [(15, 2)]
+]
+
+/-- Coefficient term 0 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0000 : Poly :=
+[
+  term ((9 : Rat) / 5) []
+]
+
+/-- Partial product 0 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0000 : Poly :=
+[
+  term ((-18 : Rat) / 5) [(2, 1), (4, 1)],
+  term ((9 : Rat) / 5) [(2, 2)],
+  term ((-18 : Rat) / 5) [(3, 1), (5, 1)],
+  term ((9 : Rat) / 5) [(3, 2)],
+  term ((18 : Rat) / 5) [(4, 1), (14, 1)],
+  term ((18 : Rat) / 5) [(5, 1), (15, 1)],
+  term ((-9 : Rat) / 5) [(14, 2)],
+  term ((-9 : Rat) / 5) [(15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 0 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0000_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0000
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0000 := by
+  native_decide
+
+/-- Coefficient term 1 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0001 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(0, 1)]
+]
+
+/-- Partial product 1 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0001 : Poly :=
+[
+  term ((24 : Rat) / 5) [(0, 1), (2, 1), (4, 1)],
+  term ((-12 : Rat) / 5) [(0, 1), (2, 2)],
+  term ((24 : Rat) / 5) [(0, 1), (3, 1), (5, 1)],
+  term ((-12 : Rat) / 5) [(0, 1), (3, 2)],
+  term ((-24 : Rat) / 5) [(0, 1), (4, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(0, 1), (5, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(0, 1), (14, 2)],
+  term ((12 : Rat) / 5) [(0, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 1 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0001_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0001
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0001 := by
+  native_decide
+
+/-- Coefficient term 2 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0002 : Poly :=
+[
+  term ((24 : Rat) / 5) [(0, 1), (14, 1)]
+]
+
+/-- Partial product 2 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0002 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(0, 1), (2, 1), (4, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(0, 1), (2, 2), (14, 1)],
+  term ((-48 : Rat) / 5) [(0, 1), (3, 1), (5, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(0, 1), (3, 2), (14, 1)],
+  term ((48 : Rat) / 5) [(0, 1), (4, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(0, 1), (5, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(0, 1), (14, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(0, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 2 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0002_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0002
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0002 := by
+  native_decide
+
+/-- Coefficient term 3 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0003 : Poly :=
+[
+  term ((72 : Rat) / 35) [(1, 1), (8, 1), (13, 1)]
+]
+
+/-- Partial product 3 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0003 : Poly :=
+[
+  term ((-144 : Rat) / 35) [(1, 1), (2, 1), (4, 1), (8, 1), (13, 1)],
+  term ((72 : Rat) / 35) [(1, 1), (2, 2), (8, 1), (13, 1)],
+  term ((-144 : Rat) / 35) [(1, 1), (3, 1), (5, 1), (8, 1), (13, 1)],
+  term ((72 : Rat) / 35) [(1, 1), (3, 2), (8, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (4, 1), (8, 1), (13, 1), (14, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (5, 1), (8, 1), (13, 1), (15, 1)],
+  term ((-72 : Rat) / 35) [(1, 1), (8, 1), (13, 1), (14, 2)],
+  term ((-72 : Rat) / 35) [(1, 1), (8, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 3 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0003_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0003
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0003 := by
+  native_decide
+
+/-- Coefficient term 4 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0004 : Poly :=
+[
+  term ((144 : Rat) / 35) [(1, 1), (9, 1), (11, 1), (13, 1)]
+]
+
+/-- Partial product 4 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0004 : Poly :=
+[
+  term ((-288 : Rat) / 35) [(1, 1), (2, 1), (4, 1), (9, 1), (11, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (2, 2), (9, 1), (11, 1), (13, 1)],
+  term ((-288 : Rat) / 35) [(1, 1), (3, 1), (5, 1), (9, 1), (11, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (3, 2), (9, 1), (11, 1), (13, 1)],
+  term ((288 : Rat) / 35) [(1, 1), (4, 1), (9, 1), (11, 1), (13, 1), (14, 1)],
+  term ((288 : Rat) / 35) [(1, 1), (5, 1), (9, 1), (11, 1), (13, 1), (15, 1)],
+  term ((-144 : Rat) / 35) [(1, 1), (9, 1), (11, 1), (13, 1), (14, 2)],
+  term ((-144 : Rat) / 35) [(1, 1), (9, 1), (11, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 4 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0004_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0004
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0004 := by
+  native_decide
+
+/-- Coefficient term 5 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0005 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(1, 1), (11, 1)]
+]
+
+/-- Partial product 5 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0005 : Poly :=
+[
+  term ((48 : Rat) / 5) [(1, 1), (2, 1), (4, 1), (11, 1)],
+  term ((-24 : Rat) / 5) [(1, 1), (2, 2), (11, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (3, 1), (5, 1), (11, 1)],
+  term ((-24 : Rat) / 5) [(1, 1), (3, 2), (11, 1)],
+  term ((-48 : Rat) / 5) [(1, 1), (4, 1), (11, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(1, 1), (5, 1), (11, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(1, 1), (11, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(1, 1), (11, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 5 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0005_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0005
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0005 := by
+  native_decide
+
+/-- Coefficient term 6 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0006 : Poly :=
+[
+  term ((48 : Rat) / 5) [(1, 1), (11, 1), (14, 1)]
+]
+
+/-- Partial product 6 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0006 : Poly :=
+[
+  term ((-96 : Rat) / 5) [(1, 1), (2, 1), (4, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (2, 2), (11, 1), (14, 1)],
+  term ((-96 : Rat) / 5) [(1, 1), (3, 1), (5, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (3, 2), (11, 1), (14, 1)],
+  term ((96 : Rat) / 5) [(1, 1), (4, 1), (11, 1), (14, 2)],
+  term ((96 : Rat) / 5) [(1, 1), (5, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-48 : Rat) / 5) [(1, 1), (11, 1), (14, 1), (15, 2)],
+  term ((-48 : Rat) / 5) [(1, 1), (11, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 6 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0006_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0006
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0006 := by
+  native_decide
+
+/-- Coefficient term 7 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0007 : Poly :=
+[
+  term ((12 : Rat) / 5) [(3, 1), (7, 1)]
+]
+
+/-- Partial product 7 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0007 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (7, 1)],
+  term ((12 : Rat) / 5) [(2, 2), (3, 1), (7, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (4, 1), (7, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(3, 1), (7, 1), (14, 2)],
+  term ((-12 : Rat) / 5) [(3, 1), (7, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(3, 2), (5, 1), (7, 1)],
+  term ((12 : Rat) / 5) [(3, 3), (7, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 7 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0007_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0007
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0007 := by
+  native_decide
+
+/-- Coefficient term 8 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0008 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(3, 1), (7, 1), (14, 1)]
+]
+
+/-- Partial product 8 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0008 : Poly :=
+[
+  term ((48 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (7, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (3, 1), (7, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (4, 1), (7, 1), (14, 2)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (14, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (7, 1), (14, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(3, 1), (7, 1), (14, 3)],
+  term ((48 : Rat) / 5) [(3, 2), (5, 1), (7, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(3, 3), (7, 1), (14, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 8 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0008_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0008
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0008 := by
+  native_decide
+
+/-- Coefficient term 9 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0009 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(3, 1), (15, 1)]
+]
+
+/-- Partial product 9 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0009 : Poly :=
+[
+  term ((24 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (3, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (4, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (5, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(3, 1), (14, 2), (15, 1)],
+  term ((12 : Rat) / 5) [(3, 1), (15, 3)],
+  term ((24 : Rat) / 5) [(3, 2), (5, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(3, 3), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 9 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0009_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0009
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0009 := by
+  native_decide
+
+/-- Coefficient term 10 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0010 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(7, 1), (11, 1)]
+]
+
+/-- Partial product 10 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0010 : Poly :=
+[
+  term ((48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (11, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (7, 1), (11, 1)],
+  term ((48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (11, 1)],
+  term ((-24 : Rat) / 5) [(3, 2), (7, 1), (11, 1)],
+  term ((-48 : Rat) / 5) [(4, 1), (7, 1), (11, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(5, 1), (7, 1), (11, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(7, 1), (11, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(7, 1), (11, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 10 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0010_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0010
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0010 := by
+  native_decide
+
+/-- Coefficient term 11 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0011 : Poly :=
+[
+  term ((24 : Rat) / 5) [(7, 1), (11, 1), (14, 1)]
+]
+
+/-- Partial product 11 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0011 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (11, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (7, 1), (11, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (11, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (7, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (7, 1), (11, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(5, 1), (7, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(7, 1), (11, 1), (14, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(7, 1), (11, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 11 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0011_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0011
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0011 := by
+  native_decide
+
+/-- Coefficient term 12 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0012 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(7, 1), (13, 1)]
+]
+
+/-- Partial product 12 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0012 : Poly :=
+[
+  term ((48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (13, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (7, 1), (13, 1)],
+  term ((48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (13, 1)],
+  term ((-24 : Rat) / 5) [(3, 2), (7, 1), (13, 1)],
+  term ((-48 : Rat) / 5) [(4, 1), (7, 1), (13, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(5, 1), (7, 1), (13, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(7, 1), (13, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(7, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 12 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0012_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0012
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0012 := by
+  native_decide
+
+/-- Coefficient term 13 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0013 : Poly :=
+[
+  term ((24 : Rat) / 5) [(7, 1), (13, 1), (14, 1)]
+]
+
+/-- Partial product 13 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0013 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (13, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (7, 1), (13, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (13, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (7, 1), (13, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (7, 1), (13, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(5, 1), (7, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(7, 1), (13, 1), (14, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(7, 1), (13, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 13 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0013_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0013
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0013 := by
+  native_decide
+
+/-- Coefficient term 14 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0014 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(7, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 14 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0014 : Poly :=
+[
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (7, 1), (14, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (7, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(4, 1), (7, 1), (14, 2), (15, 1)],
+  term ((-24 : Rat) / 5) [(5, 1), (7, 1), (14, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(7, 1), (14, 1), (15, 3)],
+  term ((12 : Rat) / 5) [(7, 1), (14, 3), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 14 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0014_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0014
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0014 := by
+  native_decide
+
+/-- Coefficient term 15 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0015 : Poly :=
+[
+  term ((12 : Rat) / 5) [(7, 1), (15, 1)]
+]
+
+/-- Partial product 15 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0015 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(2, 2), (7, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(3, 2), (7, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(4, 1), (7, 1), (14, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(5, 1), (7, 1), (15, 2)],
+  term ((-12 : Rat) / 5) [(7, 1), (14, 2), (15, 1)],
+  term ((-12 : Rat) / 5) [(7, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 15 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0015_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0015
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0015 := by
+  native_decide
+
+/-- Coefficient term 16 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0016 : Poly :=
+[
+  term ((-72 : Rat) / 35) [(8, 1), (13, 2)]
+]
+
+/-- Partial product 16 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0016 : Poly :=
+[
+  term ((144 : Rat) / 35) [(2, 1), (4, 1), (8, 1), (13, 2)],
+  term ((-72 : Rat) / 35) [(2, 2), (8, 1), (13, 2)],
+  term ((144 : Rat) / 35) [(3, 1), (5, 1), (8, 1), (13, 2)],
+  term ((-72 : Rat) / 35) [(3, 2), (8, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(4, 1), (8, 1), (13, 2), (14, 1)],
+  term ((-144 : Rat) / 35) [(5, 1), (8, 1), (13, 2), (15, 1)],
+  term ((72 : Rat) / 35) [(8, 1), (13, 2), (14, 2)],
+  term ((72 : Rat) / 35) [(8, 1), (13, 2), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 16 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0016_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0016
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0016 := by
+  native_decide
+
+/-- Coefficient term 17 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0017 : Poly :=
+[
+  term ((-144 : Rat) / 35) [(9, 1), (11, 1), (13, 2)]
+]
+
+/-- Partial product 17 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0017 : Poly :=
+[
+  term ((288 : Rat) / 35) [(2, 1), (4, 1), (9, 1), (11, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(2, 2), (9, 1), (11, 1), (13, 2)],
+  term ((288 : Rat) / 35) [(3, 1), (5, 1), (9, 1), (11, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(3, 2), (9, 1), (11, 1), (13, 2)],
+  term ((-288 : Rat) / 35) [(4, 1), (9, 1), (11, 1), (13, 2), (14, 1)],
+  term ((-288 : Rat) / 35) [(5, 1), (9, 1), (11, 1), (13, 2), (15, 1)],
+  term ((144 : Rat) / 35) [(9, 1), (11, 1), (13, 2), (14, 2)],
+  term ((144 : Rat) / 35) [(9, 1), (11, 1), (13, 2), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 17 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0017_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0017
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0017 := by
+  native_decide
+
+/-- Coefficient term 18 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0018 : Poly :=
+[
+  term ((72 : Rat) / 35) [(9, 1), (13, 1)]
+]
+
+/-- Partial product 18 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0018 : Poly :=
+[
+  term ((-144 : Rat) / 35) [(2, 1), (4, 1), (9, 1), (13, 1)],
+  term ((72 : Rat) / 35) [(2, 2), (9, 1), (13, 1)],
+  term ((-144 : Rat) / 35) [(3, 1), (5, 1), (9, 1), (13, 1)],
+  term ((72 : Rat) / 35) [(3, 2), (9, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(4, 1), (9, 1), (13, 1), (14, 1)],
+  term ((144 : Rat) / 35) [(5, 1), (9, 1), (13, 1), (15, 1)],
+  term ((-72 : Rat) / 35) [(9, 1), (13, 1), (14, 2)],
+  term ((-72 : Rat) / 35) [(9, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 18 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0018_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0018
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0018 := by
+  native_decide
+
+/-- Coefficient term 19 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0019 : Poly :=
+[
+  term ((264 : Rat) / 35) [(11, 1), (13, 1)]
+]
+
+/-- Partial product 19 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0019 : Poly :=
+[
+  term ((-528 : Rat) / 35) [(2, 1), (4, 1), (11, 1), (13, 1)],
+  term ((264 : Rat) / 35) [(2, 2), (11, 1), (13, 1)],
+  term ((-528 : Rat) / 35) [(3, 1), (5, 1), (11, 1), (13, 1)],
+  term ((264 : Rat) / 35) [(3, 2), (11, 1), (13, 1)],
+  term ((528 : Rat) / 35) [(4, 1), (11, 1), (13, 1), (14, 1)],
+  term ((528 : Rat) / 35) [(5, 1), (11, 1), (13, 1), (15, 1)],
+  term ((-264 : Rat) / 35) [(11, 1), (13, 1), (14, 2)],
+  term ((-264 : Rat) / 35) [(11, 1), (13, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 19 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0019_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0019
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0019 := by
+  native_decide
+
+/-- Coefficient term 20 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0020 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(11, 1), (13, 1), (14, 1)]
+]
+
+/-- Partial product 20 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0020 : Poly :=
+[
+  term ((96 : Rat) / 5) [(2, 1), (4, 1), (11, 1), (13, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(2, 2), (11, 1), (13, 1), (14, 1)],
+  term ((96 : Rat) / 5) [(3, 1), (5, 1), (11, 1), (13, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 2), (11, 1), (13, 1), (14, 1)],
+  term ((-96 : Rat) / 5) [(4, 1), (11, 1), (13, 1), (14, 2)],
+  term ((-96 : Rat) / 5) [(5, 1), (11, 1), (13, 1), (14, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(11, 1), (13, 1), (14, 1), (15, 2)],
+  term ((48 : Rat) / 5) [(11, 1), (13, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 20 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0020_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0020
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0020 := by
+  native_decide
+
+/-- Coefficient term 21 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0021 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(12, 1)]
+]
+
+/-- Partial product 21 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0021 : Poly :=
+[
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (12, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (12, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (12, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (12, 1)],
+  term ((-24 : Rat) / 5) [(4, 1), (12, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(5, 1), (12, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(12, 1), (14, 2)],
+  term ((12 : Rat) / 5) [(12, 1), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 21 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0021_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0021
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0021 := by
+  native_decide
+
+/-- Coefficient term 22 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0022 : Poly :=
+[
+  term ((12 : Rat) / 5) [(12, 1), (14, 1)]
+]
+
+/-- Partial product 22 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0022 : Poly :=
+[
+  term ((-24 : Rat) / 5) [(2, 1), (4, 1), (12, 1), (14, 1)],
+  term ((12 : Rat) / 5) [(2, 2), (12, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (5, 1), (12, 1), (14, 1)],
+  term ((12 : Rat) / 5) [(3, 2), (12, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(4, 1), (12, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(5, 1), (12, 1), (14, 1), (15, 1)],
+  term ((-12 : Rat) / 5) [(12, 1), (14, 1), (15, 2)],
+  term ((-12 : Rat) / 5) [(12, 1), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 22 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0022_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0022
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0022 := by
+  native_decide
+
+/-- Coefficient term 23 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0023 : Poly :=
+[
+  term ((24 : Rat) / 5) [(13, 1), (14, 1), (15, 1)]
+]
+
+/-- Partial product 23 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0023 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (13, 1), (14, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (13, 1), (14, 1), (15, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (13, 1), (14, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (13, 1), (14, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (13, 1), (14, 2), (15, 1)],
+  term ((48 : Rat) / 5) [(5, 1), (13, 1), (14, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(13, 1), (14, 1), (15, 3)],
+  term ((-24 : Rat) / 5) [(13, 1), (14, 3), (15, 1)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 23 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0023_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0023
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0023 := by
+  native_decide
+
+/-- Coefficient term 24 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0024 : Poly :=
+[
+  term ((-36 : Rat) / 5) [(13, 1), (15, 1)]
+]
+
+/-- Partial product 24 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0024 : Poly :=
+[
+  term ((72 : Rat) / 5) [(2, 1), (4, 1), (13, 1), (15, 1)],
+  term ((-36 : Rat) / 5) [(2, 2), (13, 1), (15, 1)],
+  term ((72 : Rat) / 5) [(3, 1), (5, 1), (13, 1), (15, 1)],
+  term ((-36 : Rat) / 5) [(3, 2), (13, 1), (15, 1)],
+  term ((-72 : Rat) / 5) [(4, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-72 : Rat) / 5) [(5, 1), (13, 1), (15, 2)],
+  term ((36 : Rat) / 5) [(13, 1), (14, 2), (15, 1)],
+  term ((36 : Rat) / 5) [(13, 1), (15, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 24 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0024_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0024
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0024 := by
+  native_decide
+
+/-- Coefficient term 25 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0025 : Poly :=
+[
+  term ((48 : Rat) / 5) [(13, 2)]
+]
+
+/-- Partial product 25 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0025 : Poly :=
+[
+  term ((-96 : Rat) / 5) [(2, 1), (4, 1), (13, 2)],
+  term ((48 : Rat) / 5) [(2, 2), (13, 2)],
+  term ((-96 : Rat) / 5) [(3, 1), (5, 1), (13, 2)],
+  term ((48 : Rat) / 5) [(3, 2), (13, 2)],
+  term ((96 : Rat) / 5) [(4, 1), (13, 2), (14, 1)],
+  term ((96 : Rat) / 5) [(5, 1), (13, 2), (15, 1)],
+  term ((-48 : Rat) / 5) [(13, 2), (14, 2)],
+  term ((-48 : Rat) / 5) [(13, 2), (15, 2)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 25 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0025_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0025
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0025 := by
+  native_decide
+
+/-- Coefficient term 26 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0026 : Poly :=
+[
+  term ((-48 : Rat) / 5) [(13, 2), (14, 1)]
+]
+
+/-- Partial product 26 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0026 : Poly :=
+[
+  term ((96 : Rat) / 5) [(2, 1), (4, 1), (13, 2), (14, 1)],
+  term ((-48 : Rat) / 5) [(2, 2), (13, 2), (14, 1)],
+  term ((96 : Rat) / 5) [(3, 1), (5, 1), (13, 2), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 2), (13, 2), (14, 1)],
+  term ((-96 : Rat) / 5) [(4, 1), (13, 2), (14, 2)],
+  term ((-96 : Rat) / 5) [(5, 1), (13, 2), (14, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(13, 2), (14, 1), (15, 2)],
+  term ((48 : Rat) / 5) [(13, 2), (14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 26 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0026_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0026
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0026 := by
+  native_decide
+
+/-- Coefficient term 27 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0027 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(14, 1)]
+]
+
+/-- Partial product 27 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0027 : Poly :=
+[
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (14, 1)],
+  term ((-24 : Rat) / 5) [(4, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(5, 1), (14, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(14, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(14, 3)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 27 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0027_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0027
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0027 := by
+  native_decide
+
+/-- Coefficient term 28 from coefficient polynomial 15. -/
+def rs_R006_ueqv_R006_coefficient_15_0028 : Poly :=
+[
+  term ((6 : Rat) / 5) [(15, 2)]
+]
+
+/-- Partial product 28 for generator 15. -/
+def rs_R006_ueqv_R006_partial_15_0028 : Poly :=
+[
+  term ((-12 : Rat) / 5) [(2, 1), (4, 1), (15, 2)],
+  term ((6 : Rat) / 5) [(2, 2), (15, 2)],
+  term ((-12 : Rat) / 5) [(3, 1), (5, 1), (15, 2)],
+  term ((6 : Rat) / 5) [(3, 2), (15, 2)],
+  term ((12 : Rat) / 5) [(4, 1), (14, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(5, 1), (15, 3)],
+  term ((-6 : Rat) / 5) [(14, 2), (15, 2)],
+  term ((-6 : Rat) / 5) [(15, 4)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked partial-product identity 28 for generator 15. -/
+theorem rs_R006_ueqv_R006_partial_15_0028_valid :
+    mulPoly rs_R006_ueqv_R006_coefficient_15_0028
+        rs_R006_ueqv_R006_generator_15_0000_0028 =
+      rs_R006_ueqv_R006_partial_15_0028 := by
+  native_decide
+
+/-- Partial products in this block. -/
+def rs_R006_ueqv_R006_partials_15_0000_0028 : List Poly :=
+[
+  rs_R006_ueqv_R006_partial_15_0000,
+  rs_R006_ueqv_R006_partial_15_0001,
+  rs_R006_ueqv_R006_partial_15_0002,
+  rs_R006_ueqv_R006_partial_15_0003,
+  rs_R006_ueqv_R006_partial_15_0004,
+  rs_R006_ueqv_R006_partial_15_0005,
+  rs_R006_ueqv_R006_partial_15_0006,
+  rs_R006_ueqv_R006_partial_15_0007,
+  rs_R006_ueqv_R006_partial_15_0008,
+  rs_R006_ueqv_R006_partial_15_0009,
+  rs_R006_ueqv_R006_partial_15_0010,
+  rs_R006_ueqv_R006_partial_15_0011,
+  rs_R006_ueqv_R006_partial_15_0012,
+  rs_R006_ueqv_R006_partial_15_0013,
+  rs_R006_ueqv_R006_partial_15_0014,
+  rs_R006_ueqv_R006_partial_15_0015,
+  rs_R006_ueqv_R006_partial_15_0016,
+  rs_R006_ueqv_R006_partial_15_0017,
+  rs_R006_ueqv_R006_partial_15_0018,
+  rs_R006_ueqv_R006_partial_15_0019,
+  rs_R006_ueqv_R006_partial_15_0020,
+  rs_R006_ueqv_R006_partial_15_0021,
+  rs_R006_ueqv_R006_partial_15_0022,
+  rs_R006_ueqv_R006_partial_15_0023,
+  rs_R006_ueqv_R006_partial_15_0024,
+  rs_R006_ueqv_R006_partial_15_0025,
+  rs_R006_ueqv_R006_partial_15_0026,
+  rs_R006_ueqv_R006_partial_15_0027,
+  rs_R006_ueqv_R006_partial_15_0028
+]
+
+/-- Sum of partial products in this block. -/
+def rs_R006_ueqv_R006_block_15_0000_0028 : Poly :=
+[
+  term ((24 : Rat) / 5) [(0, 1), (2, 1), (4, 1)],
+  term ((-48 : Rat) / 5) [(0, 1), (2, 1), (4, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(0, 1), (2, 2)],
+  term ((24 : Rat) / 5) [(0, 1), (2, 2), (14, 1)],
+  term ((24 : Rat) / 5) [(0, 1), (3, 1), (5, 1)],
+  term ((-48 : Rat) / 5) [(0, 1), (3, 1), (5, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(0, 1), (3, 2)],
+  term ((24 : Rat) / 5) [(0, 1), (3, 2), (14, 1)],
+  term ((-24 : Rat) / 5) [(0, 1), (4, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(0, 1), (4, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(0, 1), (5, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(0, 1), (5, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(0, 1), (14, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(0, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(0, 1), (14, 3)],
+  term ((12 : Rat) / 5) [(0, 1), (15, 2)],
+  term ((-144 : Rat) / 35) [(1, 1), (2, 1), (4, 1), (8, 1), (13, 1)],
+  term ((-288 : Rat) / 35) [(1, 1), (2, 1), (4, 1), (9, 1), (11, 1), (13, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (2, 1), (4, 1), (11, 1)],
+  term ((-96 : Rat) / 5) [(1, 1), (2, 1), (4, 1), (11, 1), (14, 1)],
+  term ((72 : Rat) / 35) [(1, 1), (2, 2), (8, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (2, 2), (9, 1), (11, 1), (13, 1)],
+  term ((-24 : Rat) / 5) [(1, 1), (2, 2), (11, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (2, 2), (11, 1), (14, 1)],
+  term ((-144 : Rat) / 35) [(1, 1), (3, 1), (5, 1), (8, 1), (13, 1)],
+  term ((-288 : Rat) / 35) [(1, 1), (3, 1), (5, 1), (9, 1), (11, 1), (13, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (3, 1), (5, 1), (11, 1)],
+  term ((-96 : Rat) / 5) [(1, 1), (3, 1), (5, 1), (11, 1), (14, 1)],
+  term ((72 : Rat) / 35) [(1, 1), (3, 2), (8, 1), (13, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (3, 2), (9, 1), (11, 1), (13, 1)],
+  term ((-24 : Rat) / 5) [(1, 1), (3, 2), (11, 1)],
+  term ((48 : Rat) / 5) [(1, 1), (3, 2), (11, 1), (14, 1)],
+  term ((144 : Rat) / 35) [(1, 1), (4, 1), (8, 1), (13, 1), (14, 1)],
+  term ((288 : Rat) / 35) [(1, 1), (4, 1), (9, 1), (11, 1), (13, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(1, 1), (4, 1), (11, 1), (14, 1)],
+  term ((96 : Rat) / 5) [(1, 1), (4, 1), (11, 1), (14, 2)],
+  term ((144 : Rat) / 35) [(1, 1), (5, 1), (8, 1), (13, 1), (15, 1)],
+  term ((288 : Rat) / 35) [(1, 1), (5, 1), (9, 1), (11, 1), (13, 1), (15, 1)],
+  term ((96 : Rat) / 5) [(1, 1), (5, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-48 : Rat) / 5) [(1, 1), (5, 1), (11, 1), (15, 1)],
+  term ((-72 : Rat) / 35) [(1, 1), (8, 1), (13, 1), (14, 2)],
+  term ((-72 : Rat) / 35) [(1, 1), (8, 1), (13, 1), (15, 2)],
+  term ((-144 : Rat) / 35) [(1, 1), (9, 1), (11, 1), (13, 1), (14, 2)],
+  term ((-144 : Rat) / 35) [(1, 1), (9, 1), (11, 1), (13, 1), (15, 2)],
+  term ((-48 : Rat) / 5) [(1, 1), (11, 1), (14, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(1, 1), (11, 1), (14, 2)],
+  term ((-48 : Rat) / 5) [(1, 1), (11, 1), (14, 3)],
+  term ((24 : Rat) / 5) [(1, 1), (11, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (7, 1)],
+  term ((48 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (7, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 1), (3, 1), (4, 1), (15, 1)],
+  term ((-18 : Rat) / 5) [(2, 1), (4, 1)],
+  term ((48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (11, 1)],
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (13, 1)],
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (13, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(2, 1), (4, 1), (7, 1), (15, 1)],
+  term ((144 : Rat) / 35) [(2, 1), (4, 1), (8, 1), (13, 2)],
+  term ((288 : Rat) / 35) [(2, 1), (4, 1), (9, 1), (11, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(2, 1), (4, 1), (9, 1), (13, 1)],
+  term ((-528 : Rat) / 35) [(2, 1), (4, 1), (11, 1), (13, 1)],
+  term ((96 : Rat) / 5) [(2, 1), (4, 1), (11, 1), (13, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (12, 1)],
+  term ((-24 : Rat) / 5) [(2, 1), (4, 1), (12, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(2, 1), (4, 1), (13, 1), (14, 1), (15, 1)],
+  term ((72 : Rat) / 5) [(2, 1), (4, 1), (13, 1), (15, 1)],
+  term ((-96 : Rat) / 5) [(2, 1), (4, 1), (13, 2)],
+  term ((96 : Rat) / 5) [(2, 1), (4, 1), (13, 2), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 1), (4, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 1), (4, 1), (15, 2)],
+  term ((9 : Rat) / 5) [(2, 2)],
+  term ((12 : Rat) / 5) [(2, 2), (3, 1), (7, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (3, 1), (7, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (3, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (7, 1), (11, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (7, 1), (11, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(2, 2), (7, 1), (13, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (7, 1), (13, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (7, 1), (14, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(2, 2), (7, 1), (15, 1)],
+  term ((-72 : Rat) / 35) [(2, 2), (8, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(2, 2), (9, 1), (11, 1), (13, 2)],
+  term ((72 : Rat) / 35) [(2, 2), (9, 1), (13, 1)],
+  term ((264 : Rat) / 35) [(2, 2), (11, 1), (13, 1)],
+  term ((-48 : Rat) / 5) [(2, 2), (11, 1), (13, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (12, 1)],
+  term ((12 : Rat) / 5) [(2, 2), (12, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(2, 2), (13, 1), (14, 1), (15, 1)],
+  term ((-36 : Rat) / 5) [(2, 2), (13, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(2, 2), (13, 2)],
+  term ((-48 : Rat) / 5) [(2, 2), (13, 2), (14, 1)],
+  term ((-12 : Rat) / 5) [(2, 2), (14, 1)],
+  term ((6 : Rat) / 5) [(2, 2), (15, 2)],
+  term ((24 : Rat) / 5) [(3, 1), (4, 1), (7, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (4, 1), (7, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(3, 1), (4, 1), (14, 1), (15, 1)],
+  term ((-18 : Rat) / 5) [(3, 1), (5, 1)],
+  term ((48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (11, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (13, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (13, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (5, 1), (7, 1), (14, 1), (15, 1)],
+  term ((144 : Rat) / 35) [(3, 1), (5, 1), (8, 1), (13, 2)],
+  term ((288 : Rat) / 35) [(3, 1), (5, 1), (9, 1), (11, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(3, 1), (5, 1), (9, 1), (13, 1)],
+  term ((-528 : Rat) / 35) [(3, 1), (5, 1), (11, 1), (13, 1)],
+  term ((96 : Rat) / 5) [(3, 1), (5, 1), (11, 1), (13, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (12, 1)],
+  term ((-24 : Rat) / 5) [(3, 1), (5, 1), (12, 1), (14, 1)],
+  term ((-48 : Rat) / 5) [(3, 1), (5, 1), (13, 1), (14, 1), (15, 1)],
+  term ((72 : Rat) / 5) [(3, 1), (5, 1), (13, 1), (15, 1)],
+  term ((-96 : Rat) / 5) [(3, 1), (5, 1), (13, 2)],
+  term ((96 : Rat) / 5) [(3, 1), (5, 1), (13, 2), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 1), (5, 1), (14, 1)],
+  term ((-36 : Rat) / 5) [(3, 1), (5, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(3, 1), (7, 1), (14, 1), (15, 2)],
+  term ((-12 : Rat) / 5) [(3, 1), (7, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(3, 1), (7, 1), (14, 3)],
+  term ((-12 : Rat) / 5) [(3, 1), (7, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(3, 1), (14, 2), (15, 1)],
+  term ((12 : Rat) / 5) [(3, 1), (15, 3)],
+  term ((9 : Rat) / 5) [(3, 2)],
+  term ((-24 : Rat) / 5) [(3, 2), (5, 1), (7, 1)],
+  term ((48 : Rat) / 5) [(3, 2), (5, 1), (7, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (5, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(3, 2), (7, 1), (11, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (7, 1), (11, 1), (14, 1)],
+  term ((-24 : Rat) / 5) [(3, 2), (7, 1), (13, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (7, 1), (13, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (7, 1), (14, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(3, 2), (7, 1), (15, 1)],
+  term ((-72 : Rat) / 35) [(3, 2), (8, 1), (13, 2)],
+  term ((-144 : Rat) / 35) [(3, 2), (9, 1), (11, 1), (13, 2)],
+  term ((72 : Rat) / 35) [(3, 2), (9, 1), (13, 1)],
+  term ((264 : Rat) / 35) [(3, 2), (11, 1), (13, 1)],
+  term ((-48 : Rat) / 5) [(3, 2), (11, 1), (13, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (12, 1)],
+  term ((12 : Rat) / 5) [(3, 2), (12, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(3, 2), (13, 1), (14, 1), (15, 1)],
+  term ((-36 : Rat) / 5) [(3, 2), (13, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(3, 2), (13, 2)],
+  term ((-48 : Rat) / 5) [(3, 2), (13, 2), (14, 1)],
+  term ((-12 : Rat) / 5) [(3, 2), (14, 1)],
+  term ((6 : Rat) / 5) [(3, 2), (15, 2)],
+  term ((12 : Rat) / 5) [(3, 3), (7, 1)],
+  term ((-24 : Rat) / 5) [(3, 3), (7, 1), (14, 1)],
+  term ((-12 : Rat) / 5) [(3, 3), (15, 1)],
+  term ((-48 : Rat) / 5) [(4, 1), (7, 1), (11, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (7, 1), (11, 1), (14, 2)],
+  term ((-48 : Rat) / 5) [(4, 1), (7, 1), (13, 1), (14, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (7, 1), (13, 1), (14, 2)],
+  term ((24 : Rat) / 5) [(4, 1), (7, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(4, 1), (7, 1), (14, 2), (15, 1)],
+  term ((-144 : Rat) / 35) [(4, 1), (8, 1), (13, 2), (14, 1)],
+  term ((-288 : Rat) / 35) [(4, 1), (9, 1), (11, 1), (13, 2), (14, 1)],
+  term ((144 : Rat) / 35) [(4, 1), (9, 1), (13, 1), (14, 1)],
+  term ((528 : Rat) / 35) [(4, 1), (11, 1), (13, 1), (14, 1)],
+  term ((-96 : Rat) / 5) [(4, 1), (11, 1), (13, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(4, 1), (12, 1), (14, 1)],
+  term ((24 : Rat) / 5) [(4, 1), (12, 1), (14, 2)],
+  term ((-72 : Rat) / 5) [(4, 1), (13, 1), (14, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(4, 1), (13, 1), (14, 2), (15, 1)],
+  term ((96 : Rat) / 5) [(4, 1), (13, 2), (14, 1)],
+  term ((-96 : Rat) / 5) [(4, 1), (13, 2), (14, 2)],
+  term ((18 : Rat) / 5) [(4, 1), (14, 1)],
+  term ((12 : Rat) / 5) [(4, 1), (14, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(4, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(5, 1), (7, 1), (11, 1), (14, 1), (15, 1)],
+  term ((-48 : Rat) / 5) [(5, 1), (7, 1), (11, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(5, 1), (7, 1), (13, 1), (14, 1), (15, 1)],
+  term ((-48 : Rat) / 5) [(5, 1), (7, 1), (13, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(5, 1), (7, 1), (14, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(5, 1), (7, 1), (15, 2)],
+  term ((-144 : Rat) / 35) [(5, 1), (8, 1), (13, 2), (15, 1)],
+  term ((-288 : Rat) / 35) [(5, 1), (9, 1), (11, 1), (13, 2), (15, 1)],
+  term ((144 : Rat) / 35) [(5, 1), (9, 1), (13, 1), (15, 1)],
+  term ((-96 : Rat) / 5) [(5, 1), (11, 1), (13, 1), (14, 1), (15, 1)],
+  term ((528 : Rat) / 35) [(5, 1), (11, 1), (13, 1), (15, 1)],
+  term ((24 : Rat) / 5) [(5, 1), (12, 1), (14, 1), (15, 1)],
+  term ((-24 : Rat) / 5) [(5, 1), (12, 1), (15, 1)],
+  term ((48 : Rat) / 5) [(5, 1), (13, 1), (14, 1), (15, 2)],
+  term ((-72 : Rat) / 5) [(5, 1), (13, 1), (15, 2)],
+  term ((-96 : Rat) / 5) [(5, 1), (13, 2), (14, 1), (15, 1)],
+  term ((96 : Rat) / 5) [(5, 1), (13, 2), (15, 1)],
+  term ((-24 : Rat) / 5) [(5, 1), (14, 1), (15, 1)],
+  term ((18 : Rat) / 5) [(5, 1), (15, 1)],
+  term ((12 : Rat) / 5) [(5, 1), (15, 3)],
+  term ((-24 : Rat) / 5) [(7, 1), (11, 1), (14, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(7, 1), (11, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(7, 1), (11, 1), (14, 3)],
+  term ((24 : Rat) / 5) [(7, 1), (11, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(7, 1), (13, 1), (14, 1), (15, 2)],
+  term ((24 : Rat) / 5) [(7, 1), (13, 1), (14, 2)],
+  term ((-24 : Rat) / 5) [(7, 1), (13, 1), (14, 3)],
+  term ((24 : Rat) / 5) [(7, 1), (13, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(7, 1), (14, 1), (15, 3)],
+  term ((-12 : Rat) / 5) [(7, 1), (14, 2), (15, 1)],
+  term ((12 : Rat) / 5) [(7, 1), (14, 3), (15, 1)],
+  term ((-12 : Rat) / 5) [(7, 1), (15, 3)],
+  term ((72 : Rat) / 35) [(8, 1), (13, 2), (14, 2)],
+  term ((72 : Rat) / 35) [(8, 1), (13, 2), (15, 2)],
+  term ((144 : Rat) / 35) [(9, 1), (11, 1), (13, 2), (14, 2)],
+  term ((144 : Rat) / 35) [(9, 1), (11, 1), (13, 2), (15, 2)],
+  term ((-72 : Rat) / 35) [(9, 1), (13, 1), (14, 2)],
+  term ((-72 : Rat) / 35) [(9, 1), (13, 1), (15, 2)],
+  term ((48 : Rat) / 5) [(11, 1), (13, 1), (14, 1), (15, 2)],
+  term ((-264 : Rat) / 35) [(11, 1), (13, 1), (14, 2)],
+  term ((48 : Rat) / 5) [(11, 1), (13, 1), (14, 3)],
+  term ((-264 : Rat) / 35) [(11, 1), (13, 1), (15, 2)],
+  term ((-12 : Rat) / 5) [(12, 1), (14, 1), (15, 2)],
+  term ((12 : Rat) / 5) [(12, 1), (14, 2)],
+  term ((-12 : Rat) / 5) [(12, 1), (14, 3)],
+  term ((12 : Rat) / 5) [(12, 1), (15, 2)],
+  term ((-24 : Rat) / 5) [(13, 1), (14, 1), (15, 3)],
+  term ((36 : Rat) / 5) [(13, 1), (14, 2), (15, 1)],
+  term ((-24 : Rat) / 5) [(13, 1), (14, 3), (15, 1)],
+  term ((36 : Rat) / 5) [(13, 1), (15, 3)],
+  term ((48 : Rat) / 5) [(13, 2), (14, 1), (15, 2)],
+  term ((-48 : Rat) / 5) [(13, 2), (14, 2)],
+  term ((48 : Rat) / 5) [(13, 2), (14, 3)],
+  term ((-48 : Rat) / 5) [(13, 2), (15, 2)],
+  term ((12 : Rat) / 5) [(14, 1), (15, 2)],
+  term ((-9 : Rat) / 5) [(14, 2)],
+  term ((-6 : Rat) / 5) [(14, 2), (15, 2)],
+  term ((12 : Rat) / 5) [(14, 3)],
+  term ((-9 : Rat) / 5) [(15, 2)],
+  term ((-6 : Rat) / 5) [(15, 4)]
+]
+
+set_option linter.style.nativeDecide false in
+/-- Checked block-sum identity for generator 15, terms 0 through 28. -/
+theorem rs_R006_ueqv_R006_block_15_0000_0028_valid :
+    checkProductSumEq rs_R006_ueqv_R006_partials_15_0000_0028
+      rs_R006_ueqv_R006_block_15_0000_0028 = true := by
+  native_decide
+
+end R006UeqvR006TermShards
+
+end RelaxedSplit
+
+end SurplusCertificate
+
+end Problem97

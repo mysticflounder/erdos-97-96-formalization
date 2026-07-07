@@ -41,7 +41,7 @@ def term (coeff : Rat) (monom : List (Nat × Nat)) : Term :=
   { coeff, monom }
 
 /-- Insert or add one exponent into a sorted sparse monomial. -/
-private def addExponent (i e : Nat) : List (Nat × Nat) → List (Nat × Nat)
+def addExponent (i e : Nat) : List (Nat × Nat) → List (Nat × Nat)
   | [] => if e = 0 then [] else [(i, e)]
   | p :: ps =>
       match compare i p.1 with
@@ -52,22 +52,22 @@ private def addExponent (i e : Nat) : List (Nat × Nat) → List (Nat × Nat)
       | .gt => p :: addExponent i e ps
 
 /-- Canonicalize a sparse monomial. -/
-private def normalizeMonom : List (Nat × Nat) → List (Nat × Nat)
+def normalizeMonom : List (Nat × Nat) → List (Nat × Nat)
   | [] => []
   | p :: ps => addExponent p.1 p.2 (normalizeMonom ps)
 
 /-- Multiply sparse monomials. -/
-private def mulMonom (a b : List (Nat × Nat)) : List (Nat × Nat) :=
+def mulMonom (a b : List (Nat × Nat)) : List (Nat × Nat) :=
   b.foldl (fun acc p => addExponent p.1 p.2 acc) (normalizeMonom a)
 
 /-- Lexicographic comparison on sparse monomial entries. -/
-private def cmpPair (a b : Nat × Nat) : Ordering :=
+def cmpPair (a b : Nat × Nat) : Ordering :=
   match compare a.1 b.1 with
   | .eq => compare a.2 b.2
   | ord => ord
 
 /-- Lexicographic comparison on canonical sparse monomials. -/
-private def cmpMonom : List (Nat × Nat) → List (Nat × Nat) → Ordering
+def cmpMonom : List (Nat × Nat) → List (Nat × Nat) → Ordering
   | [], [] => .eq
   | [], _ :: _ => .lt
   | _ :: _, [] => .gt
@@ -77,7 +77,7 @@ private def cmpMonom : List (Nat × Nat) → List (Nat × Nat) → Ordering
       | ord => ord
 
 /-- Insert a canonical term into a canonical polynomial. -/
-private def insertTerm (t : Term) : Poly → Poly
+def insertTerm (t : Term) : Poly → Poly
   | [] => if t.coeff = 0 then [] else [t]
   | u :: us =>
       if t.coeff = 0 then
@@ -91,7 +91,7 @@ private def insertTerm (t : Term) : Poly → Poly
         | .gt => u :: insertTerm t us
 
 /-- Canonicalize a sparse term. -/
-private def normalizeTerm (t : Term) : Term :=
+def normalizeTerm (t : Term) : Term :=
   { coeff := t.coeff, monom := normalizeMonom t.monom }
 
 /-- Canonicalize a sparse polynomial by merging equal monomials and removing
@@ -100,14 +100,14 @@ def normalizePoly (p : Poly) : Poly :=
   p.foldl (fun acc t => insertTerm (normalizeTerm t) acc) []
 
 /-- Decide whether a sparse monomial is in canonical form. -/
-private def isNormalizedMonom : List (Nat × Nat) → Bool
+def isNormalizedMonom : List (Nat × Nat) → Bool
   | [] => true
   | p :: [] => p.2 != 0
   | p :: q :: ps =>
       p.2 != 0 && decide (compare p.1 q.1 = .lt) && isNormalizedMonom (q :: ps)
 
 /-- Decide whether a sparse polynomial is in canonical form. -/
-private def isNormalizedPoly : Poly → Bool
+def isNormalizedPoly : Poly → Bool
   | [] => true
   | t :: ts =>
       t.coeff != 0 && isNormalizedMonom t.monom &&
@@ -120,7 +120,7 @@ where
           decide (cmpMonom prev t.monom = .lt) && go t.monom ts
 
 /-- Merge canonical sparse rational polynomials. -/
-private def addCanon : Poly → Poly → Poly
+def addCanon : Poly → Poly → Poly
   | [], q => q
   | p, [] => p
   | a :: as, b :: bs =>
@@ -139,15 +139,15 @@ def addPoly (p q : Poly) : Poly :=
   addCanon (normalizePoly p) (normalizePoly q)
 
 /-- Multiply sparse terms. -/
-private def mulTerm (a b : Term) : Term :=
+def mulTerm (a b : Term) : Term :=
   { coeff := a.coeff * b.coeff, monom := mulMonom a.monom b.monom }
 
 /-- Multiply a canonical polynomial by one canonical term. -/
-private def mulTermPoly (a : Term) (q : Poly) : Poly :=
+def mulTermPoly (a : Term) (q : Poly) : Poly :=
   normalizePoly (q.map (fun b => mulTerm a b))
 
 /-- Multiply canonical sparse rational polynomials. -/
-private def mulCanon (p q : Poly) : Poly :=
+def mulCanon (p q : Poly) : Poly :=
   p.foldl (fun acc a => addCanon acc (mulTermPoly a q)) []
 
 /-- Multiply sparse rational polynomials. -/
@@ -155,7 +155,7 @@ def mulPoly (p q : Poly) : Poly :=
   mulCanon (normalizePoly p) (normalizePoly q)
 
 /-- Sum pairwise products of coefficient and generator polynomials. -/
-private def sumProductsCanon : List Poly → List Poly → Option Poly
+def sumProductsCanon : List Poly → List Poly → Option Poly
   | [], [] => some []
   | g :: gs, c :: cs =>
       match sumProductsCanon gs cs with
@@ -168,7 +168,7 @@ def onePoly : Poly :=
   [term 1 []]
 
 /-- Sum a list of canonical sparse rational polynomials. -/
-private def sumCanonProducts (products : List Poly) : Poly :=
+def sumCanonProducts (products : List Poly) : Poly :=
   products.foldl addCanon []
 
 /-- Check a list of emitted product polynomials sums to `1`.

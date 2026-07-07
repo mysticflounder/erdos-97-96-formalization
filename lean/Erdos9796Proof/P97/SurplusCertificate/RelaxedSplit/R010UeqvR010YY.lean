@@ -1,0 +1,123 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock00_0000_0026
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock02_0000_0033
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock03_0000_0063
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock04_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock04_0100_0116
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock05_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock05_0100_0119
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock06_0000_0000
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock07_0000_0060
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock08_0000_0007
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock09_0000_0085
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock10_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock10_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock10_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock10_0300_0343
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock11_0000_0066
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock12_0000_0052
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock13_0000_0028
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock14_0000_0003
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock15_0000_0012
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock17_0000_0028
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock18_0000_0044
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock19_0000_0007
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock20_0000_0016
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock21_0000_0043
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock22_0000_0052
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock23_0000_0043
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock24_0000_0044
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock25_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock25_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock25_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock25_0300_0361
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock26_0000_0036
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock27_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock27_0100_0120
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock28_0000_0086
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock29_0000_0039
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R010UeqvR010YYTermShards.R010UeqvR010YYBlock30_0000_0092
+
+set_option linter.style.longLine false
+
+/-!
+# Relaxed split surplus certificate R010:u=v:R010YY
+
+This generated coordinator checks the final block-sum identity for a
+term-sharded relaxed pinned-surplus split certificate.  The imported shard
+modules separately check each coefficient-term partial product and each block
+sum.
+
+Source certificate: `certificates/surplus/relaxed_split_singleton/R010_ueqv_R010YY.json`.
+-/
+
+namespace Problem97
+
+namespace SurplusCertificate
+
+namespace RelaxedSplit
+
+open Problem97.EndpointCertificate
+
+/-- Block sums for the term-sharded relaxed split surplus certificate `R010:u=v:R010YY`. -/
+def rs_R010_ueqv_R010YY_blocks : List Poly :=
+[
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_00_0000_0026,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_02_0000_0033,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_03_0000_0063,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_04_0000_0099,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_04_0100_0116,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_05_0000_0099,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_05_0100_0119,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_06_0000_0000,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_07_0000_0060,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_08_0000_0007,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_09_0000_0085,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_10_0000_0099,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_10_0100_0199,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_10_0200_0299,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_10_0300_0343,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_11_0000_0066,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_12_0000_0052,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_13_0000_0028,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_14_0000_0003,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_15_0000_0012,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_17_0000_0028,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_18_0000_0044,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_19_0000_0007,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_20_0000_0016,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_21_0000_0043,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_22_0000_0052,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_23_0000_0043,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_24_0000_0044,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_25_0000_0099,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_25_0100_0199,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_25_0200_0299,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_25_0300_0361,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_26_0000_0036,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_27_0000_0099,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_27_0100_0120,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_28_0000_0086,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_29_0000_0039,
+  R010UeqvR010YYTermShards.rs_R010_ueqv_R010YY_block_30_0000_0092
+]
+
+set_option linter.style.nativeDecide false in
+/-- Final checked block-sum identity for relaxed split surplus certificate `R010:u=v:R010YY`. -/
+theorem rs_R010_ueqv_R010YY_valid : checkProductSum rs_R010_ueqv_R010YY_blocks = true := by
+  native_decide
+
+/-- Alias for the checked block-sum identity for relaxed split surplus certificate `R010:u=v:R010YY`. -/
+theorem rs_R010_ueqv_R010YY_sum_valid : checkProductSum rs_R010_ueqv_R010YY_blocks = true :=
+  rs_R010_ueqv_R010YY_valid
+
+end RelaxedSplit
+
+end SurplusCertificate
+
+end Problem97

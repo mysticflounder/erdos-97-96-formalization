@@ -1,0 +1,719 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness
+import Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYN
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock00_0600_0677
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock01_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock01_0100_0132
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock02_0600_0662
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock03_0600_0626
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock04_1400_1455
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock05_1400_1452
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock06_0000_0000
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock07_0000_0015
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock08_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock08_0100_0116
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock09_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock09_0100_0127
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock10_0800_0801
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock11_0000_0023
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock12_0000_0065
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock13_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock13_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock13_0200_0257
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock14_0000_0065
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock15_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock15_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock16_0000_0015
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock17_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock17_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock17_0200_0259
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock18_0000_0076
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock19_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock19_0100_0176
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock20_0000_0057
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock21_0000_0072
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock22_0000_0009
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock23_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock24_0000_0052
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1400_1499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock25_1500_1531
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock26_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock26_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock26_0200_0231
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock27_1400_1456
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1400_1499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock28_1500_1530
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock29_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock29_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock29_0200_0253
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0000_0099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0100_0199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0200_0299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0300_0399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0400_0499
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0500_0599
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0600_0699
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0700_0799
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0800_0899
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_0900_0999
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_1000_1099
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_1100_1199
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_1200_1299
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_1300_1399
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R005UeqvR005NYNBlockZeros.R005UeqvR005NYNBlock30_1400_1456
+
+/-!
+# Product-sum row zeros for relaxed split surplus certificate R005:u=v:R005NYN
+
+This generated module proves that every checked block in product-sum relaxed
+split surplus row `R005:u=v:R005NYN` vanishes under the row-local normal-axis
+assignment supplied by its separator metadata.
+
+Source certificate: `certificates/surplus/relaxed_split_singleton/R005_ueqv_R005NYN.json`.
+-/
+
+set_option linter.style.longLine false
+set_option linter.style.nativeDecide false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace SurplusCertificate
+
+namespace RelaxedSplit
+
+namespace Bank
+
+namespace RowZeros
+
+namespace Product
+
+open Problem97.EndpointCertificate
+open Problem97.EndpointCertificate.Variables
+
+/-- Paired generated row/certificate metadata for `R005:u=v:R005NYN`. -/
+private def rs_R005_ueqv_R005NYN_rowCert : Row × Certificate :=
+  certifiedRelaxedSplitRows.get (Fin.mk 29 (by native_decide))
+
+set_option linter.style.nativeDecide false in
+/-- The generated row/certificate pair carries the expected exact pid. -/
+private theorem rs_R005_ueqv_R005NYN_rowCert_exactPids :
+    rs_R005_ueqv_R005NYN_rowCert.1.exactPids = ["s1_016"] := by
+  native_decide
+
+/-- The matched exact row has the generated singleton exact pid. -/
+private theorem rs_R005_ueqv_R005NYN_exactRow_pid_eq
+    {exactRow : SurplusCOMPGBank.Row}
+    (hpid : rs_R005_ueqv_R005NYN_rowCert.1.exactPids = [exactRow.pid]) :
+    exactRow.pid = "s1_016" := by
+  have hlist : [exactRow.pid] = ["s1_016"] := by
+    rw [← hpid, rs_R005_ueqv_R005NYN_rowCert_exactPids]
+  simpa using hlist
+
+/-- Every checked block in product-sum relaxed split surplus certificate
+`R005:u=v:R005NYN` evaluates to zero under the row-local normal-axis assignment. -/
+theorem rs_R005_ueqv_R005NYN_evaluationZeros_of_metricShadow
+    {pointOf : SurplusCOMPGBank.Label → ℝ²}
+    {centerClass : SurplusCOMPGBank.Label → Finset ℝ²}
+    {exactRow : SurplusCOMPGBank.Row}
+    (hmetric :
+      EndpointMetricShadow pointOf
+        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass))
+    (hrow : exactRow ∈ SurplusCOMPGBank.rows)
+    (hmasks :
+      exactRow.masks =
+        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
+    (hpid : rs_R005_ueqv_R005NYN_rowCert.1.exactPids = [exactRow.pid]) :
+    CertificatePayload.evaluationZeros
+      (.productSum Problem97.SurplusCertificate.RelaxedSplit.rs_R005_ueqv_R005NYN_blocks)
+      (endpointPairAssignment pointOf .u .v) := by
+  have hpidEq := rs_R005_ueqv_R005NYN_exactRow_pid_eq hpid
+  dsimp [CertificatePayload.evaluationZeros]
+  intro p hp
+  change p ∈
+    [
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_00_0600_0677,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_01_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_01_0100_0132,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_02_0600_0662,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_03_0600_0626,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_04_1400_1455,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_05_1400_1452,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_06_0000_0000,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_07_0000_0015,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_08_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_08_0100_0116,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_09_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_09_0100_0127,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_10_0800_0801,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_11_0000_0023,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_12_0000_0065,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_13_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_13_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_13_0200_0257,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_14_0000_0065,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_15_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_15_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_16_0000_0015,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_17_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_17_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_17_0200_0259,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_18_0000_0076,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_19_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_19_0100_0176,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_20_0000_0057,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_21_0000_0072,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_22_0000_0009,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_23_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_24_0000_0052,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1400_1499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_25_1500_1531,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_26_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_26_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_26_0200_0231,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_27_1400_1456,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1400_1499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_28_1500_1530,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_29_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_29_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_29_0200_0253,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0000_0099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0100_0199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0200_0299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0300_0399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0400_0499,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0500_0599,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0600_0699,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0700_0799,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0800_0899,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_0900_0999,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_1000_1099,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_1100_1199,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_1200_1299,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_1300_1399,
+      Problem97.SurplusCertificate.RelaxedSplit.R005UeqvR005NYNTermShards.rs_R005_ueqv_R005NYN_block_30_1400_1456
+    ] at hp
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_00_0600_0677_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_01_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_01_0100_0132_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_02_0600_0662_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_03_0600_0626_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_04_1400_1455_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_05_1400_1452_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_06_0000_0000_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_07_0000_0015_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_08_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_08_0100_0116_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_09_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_09_0100_0127_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_10_0800_0801_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_11_0000_0023_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_12_0000_0065_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_13_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_13_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_13_0200_0257_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_14_0000_0065_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_15_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_15_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_16_0000_0015_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_17_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_17_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_17_0200_0259_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_18_0000_0076_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_19_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_19_0100_0176_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_20_0000_0057_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_21_0000_0072_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_22_0000_0009_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_23_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_24_0000_0052_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1400_1499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_25_1500_1531_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_26_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_26_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_26_0200_0231_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_27_1400_1456_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1400_1499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_28_1500_1530_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_29_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_29_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_29_0200_0253_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0000_0099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0100_0199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0200_0299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0300_0399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0400_0499_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0500_0599_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0600_0699_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0700_0799_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0800_0899_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_0900_0999_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_1000_1099_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_1100_1199_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_1200_1299_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_1300_1399_eval_zero hmetric hrow hmasks hpidEq
+  rcases List.mem_cons.mp hp with rfl | hp
+  · exact rs_R005_ueqv_R005NYN_block_30_1400_1456_eval_zero hmetric hrow hmasks hpidEq
+  cases hp
+
+end Product
+
+end RowZeros
+
+end Bank
+
+end RelaxedSplit
+
+end SurplusCertificate
+
+end Problem97

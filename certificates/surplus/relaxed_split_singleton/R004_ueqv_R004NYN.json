@@ -1,0 +1,648 @@
+{
+  "case_id": "R004:u=v",
+  "certificate_id": "R004:u=v:R004NYN",
+  "checks": {
+    "python_exact_polynomial": false,
+    "singular_lifted_column": true
+  },
+  "coefficients": [
+    "0",
+    "-32*s2y^2*puy^2*t-32*s2y*puy^3*t+16*pwy*puy^3*t+128*s2y*puy^2*q1y*t-48*pwy*puy^2*q1y*t-192*s2y^2*puy*q1y-192*s2y*puy^2*q1y+96*pwy*puy^2*q1y+768*s2y*puy*q1y^2-288*pwy*puy*q1y^2+24*s2y^2*pux*t+24*s2y*pux*puy*t+4*pwy*pux*puy*t-32*s2x*puy^2*t-8*pux*puy^2*t+48*s2y^2*q1x*t-80*s2y*puy*q1x*t+40*pwy*puy*q1x*t-8*puy^2*q1x*t-12*pwy*pux*q1y*t-32*pux*puy*q1y*t-24*pwy*q1x*q1y*t+112/3*s2x*s2y^2+112/3*s2x*s2y*puy-56/3*s2x*pwy*puy+192*s2y^2*q1x-96*s2y*pwy*q1x+448/3*s2y*puy*q1x-224/3*pwy*puy*q1x-448/3*s2x*s2y*q1y+56*s2x*pwy*q1y+192*s2y*pux*q1y-192*s2x*puy*q1y-48*pux*puy*q1y-384*s2y*q1x*q1y+192*pwy*q1x*q1y-48*puy*q1x*q1y-192*pux*q1y^2-30*s2y^2*t+14*pux^2*t+10*s2y*puy*t-5*pwy*puy*t+32*puy^2*t+34*pux*q1x*t+12*q1x^2*t+15*pwy*q1y*t+16*puy*q1y*t+112/3*s2x^2+80/3*s2y^2+28/3*s2x*pux-64/3*s2y*puy+32/3*pwy*puy+28/3*s2x*q1x-256/3*s2y*q1y+16/3*pwy*q1y+400/3*puy*q1y+192*q1y^2-51/2*pux*t-47/2*q1x*t-112/3*s2x-16/3*pux+104/3*q1x+10*t-8",
+    "32*s2y^2*puy^2*t+32*s2y*puy^3*t-16*pwy*puy^3*t-128*s2y*puy^2*q1y*t+48*pwy*puy^2*q1y*t+192*s2y^2*puy*q1y+192*s2y*puy^2*q1y-96*pwy*puy^2*q1y-768*s2y*puy*q1y^2+288*pwy*puy*q1y^2-24*s2y^2*pux*t-24*s2y*pux*puy*t-4*pwy*pux*puy*t-16*s2x*puy^2*t-8*pux*puy^2*t-48*s2y^2*q1x*t+80*s2y*puy*q1x*t-40*pwy*puy*q1x*t+8*puy^2*q1x*t+12*pwy*pux*q1y*t+32*pux*puy*q1y*t+24*pwy*q1x*q1y*t-112/3*s2x*s2y^2-112/3*s2x*s2y*puy+56/3*s2x*pwy*puy-192*s2y^2*q1x+96*s2y*pwy*q1x-448/3*s2y*puy*q1x+224/3*pwy*puy*q1x+448/3*s2x*s2y*q1y-56*s2x*pwy*q1y-192*s2y*pux*q1y-96*s2x*puy*q1y-48*pux*puy*q1y+384*s2y*q1x*q1y-192*pwy*q1x*q1y+48*puy*q1x*q1y+192*pux*q1y^2+30*s2y^2*t-12*s2x*pux*t-2*pux^2*t-26*s2y*puy*t+21*pwy*puy*t-24*s2x*q1x*t-10*pux*q1x*t-12*q1x^2*t-15*pwy*q1y*t-16*puy*q1y*t+56/3*s2x^2+208/3*s2y^2-48*s2y*pwy+28/3*s2x*pux+96*s2y*puy-48*pwy*puy-28/3*s2x*q1x-32/3*s2y*q1y+272/3*pwy*q1y-112/3*puy*q1y-96*q1y^2+15*s2x*t+21/2*pux*t+47/2*q1x*t+104/3*s2x+40/3*pux-176/3*q1x-10*t+20",
+    "0",
+    "0",
+    "0",
+    "-16*pux^2-16*puy^2-32*pux*q1x+16*puy*q1y+24*pux+8*q1x-5",
+    "0",
+    "0",
+    "48*s2x*puy^2*t+16*pux*puy^2*t+288*s2x*puy*q1y+96*pux*puy*q1y+12*s2x*pux*t+4*pux^2*t+16*s2y*puy*t-16*pwy*puy*t-16*puy^2*t+24*s2x*q1x*t+8*pux*q1x*t-16*puy*q1y*t-56*s2x^2-96*s2y^2+48*s2y*pwy-56/3*s2x*pux-224/3*s2y*puy+112/3*pwy*puy+96*s2y*q1y-96*pwy*q1y-96*puy*q1y-96*q1y^2-15*s2x*t-9*pux*t-8*q1x*t+8/3*s2x-8*pux+24*q1x+5*t-12",
+    "0",
+    "16*s2x*puy^2*t+16*pux*puy^2*t+96*s2x*puy*q1y+96*pux*puy*q1y-12*s2x*pux*t+20*pux^2*t-16*pwy*puy*t-24*puy^2*t-24*s2x*q1x*t+40*pux*q1x*t+16*puy*q1y*t-56/3*s2x^2+48*s2y*pwy-56/3*s2x*pux-96*s2y*puy+112/3*pwy*puy-224/3*puy^2-96*pwy*q1y-144*puy*q1y+96*q1y^2+15*s2x*t-27*pux*t-4*q1x*t-28/3*s2x-80/3*pux+184/3*q1x+5/2*t-8/3",
+    "-16*s2x*puy^2*t-16*pux*puy^2*t-96*s2x*puy*q1y-96*pux*puy*q1y+12*s2x*pux*t-20*pux^2*t+16*pwy*puy*t+24*puy^2*t+24*s2x*q1x*t-40*pux*q1x*t-16*puy*q1y*t+56/3*s2x^2-48*s2y*pwy+56/3*s2x*pux+96*s2y*puy-112/3*pwy*puy+224/3*puy^2+96*pwy*q1y+144*puy*q1y-96*q1y^2-15*s2x*t+27*pux*t+4*q1x*t+28/3*s2x+80/3*pux-184/3*q1x-5/2*t+8/3",
+    "-16*s2x*puy^2*t-16*pux*puy^2*t-96*s2x*puy*q1y-96*pux*puy*q1y+12*s2x*pux*t-20*pux^2*t+16*pwy*puy*t+24*puy^2*t+24*s2x*q1x*t-40*pux*q1x*t-16*puy*q1y*t+56/3*s2x^2-48*s2y*pwy+56/3*s2x*pux+96*s2y*puy-112/3*pwy*puy+224/3*puy^2+96*pwy*q1y+144*puy*q1y-96*q1y^2-15*s2x*t+27*pux*t+4*q1x*t+28/3*s2x+80/3*pux-184/3*q1x-5/2*t+8/3",
+    "0",
+    "-16*s2y*pwy*puy^2*t+32*s2y*puy^3*t+32*puy^4*t+48*pwy*puy^2*q1y*t-128*puy^3*q1y*t-96*s2y*pwy*puy*q1y+192*s2y*puy^2*q1y+192*puy^3*q1y+288*pwy*puy*q1y^2-768*puy^2*q1y^2+12*s2y*pwy*pux*t-24*s2y*pux*puy*t-16*pwy*pux*puy*t+8*s2x*puy^2*t-24*pux*puy^2*t+24*s2y*pwy*q1x*t-48*s2y*puy*q1x*t-64*pwy*puy*q1x*t+88*puy^2*q1x*t+12*pwy*pux*q1y*t+32*pux*puy*q1y*t+24*pwy*q1x*q1y*t+56/3*s2x*s2y*pwy-112/3*s2x*s2y*puy-112/3*s2x*puy^2+96*s2y*pwy*q1x-192*s2y*puy*q1x+224/3*pwy*puy*q1x-448/3*puy^2*q1x-56*s2x*pwy*q1y+592/3*s2x*puy*q1y-192*pux*puy*q1y-192*pwy*q1x*q1y+432*puy*q1x*q1y+192*pux*q1y^2-15*s2y*pwy*t-6*s2x*pux*t+30*s2y*puy*t+20*pwy*puy*t-50*puy^2*t-12*s2x*q1x*t-6*pux*q1x*t-12*q1x^2*t-15*pwy*q1y*t-28/3*s2x^2-16/3*s2y*pwy-80/3*s2y*puy-16/3*pwy*puy+64/3*puy^2-28/3*s2x*q1x-32/3*s2y*q1y-160/3*pwy*q1y-544/3*puy*q1y+15/2*s2x*t+6*pux*t+39/2*q1x*t+12*s2x+8/3*q1x-15/2*t-8/3",
+    "0",
+    "0",
+    "0",
+    "-16*s2y^2*pwx*puy^2*t+16*s2x*s2y*pwy*puy^2*t+32*s2y^2*pux*puy^2*t-32*s2x*s2y*puy^3*t+32*s2y*pux*puy^3*t-16*pwy*pux*puy^3*t-32*s2x*puy^4*t+16*pwx*puy^4*t-16*s2y*pwy*puy^2*q1x*t+16*pwy*puy^3*q1x*t+64*s2y*pwx*puy^2*q1y*t-48*s2x*pwy*puy^2*q1y*t-128*s2y*pux*puy^2*q1y*t+48*pwy*pux*puy^2*q1y*t+128*s2x*puy^3*q1y*t-64*pwx*puy^3*q1y*t-96*s2y^2*pwx*puy*q1y+96*s2x*s2y*pwy*puy*q1y+192*s2y^2*pux*puy*q1y-192*s2x*s2y*puy^2*q1y+192*s2y*pux*puy^2*q1y-96*pwy*pux*puy^2*q1y-192*s2x*puy^3*q1y+96*pwx*puy^3*q1y-96*s2y*pwy*puy*q1x*q1y+96*pwy*puy^2*q1x*q1y+384*s2y*pwx*puy*q1y^2-288*s2x*pwy*puy*q1y^2-768*s2y*pux*puy*q1y^2+288*pwy*pux*puy*q1y^2+768*s2x*puy^2*q1y^2-384*pwx*puy^2*q1y^2+12*s2y^2*pwx*pux*t-12*s2x*s2y*pwy*pux*t-24*s2y^2*pux^2*t+24*s2x*s2y*pux*puy*t-16*s2y*pwx*pux*puy*t+16*s2x*pwy*pux*puy*t-24*s2y*pux^2*puy*t-4*pwy*pux^2*puy*t-8*s2x^2*puy^2*t-8*s2y^2*puy^2*t+24*s2x*pux*puy^2*t+4*pwx*pux*puy^2*t+8*pux^2*puy^2*t+8*puy^4*t+24*s2y^2*pwx*q1x*t-24*s2x*s2y*pwy*q1x*t-48*s2y^2*pux*q1x*t+12*s2y*pwy*pux*q1x*t+48*s2x*s2y*puy*q1x*t-64*s2y*pwx*puy*q1x*t+64*s2x*pwy*puy*q1x*t+112*s2y*pux*puy*q1x*t-52*pwy*pux*puy*q1x*t-64*s2x*puy^2*q1x*t+40*pwx*puy^2*q1x*t-48*pux*puy^2*q1x*t+24*s2y*pwy*q1x^2*t-24*pwy*puy*q1x^2*t-12*s2x*pwy*pux*q1y*t+12*pwy*pux^2*q1y*t-32*s2x*pux*puy*q1y*t+32*pux^2*puy*q1y*t+32*s2y*puy^2*q1y*t-32*puy^3*q1y*t-24*s2x*pwy*q1x*q1y*t+24*pwy*pux*q1x*q1y*t+56/3*s2x*s2y^2*pwx-56/3*s2x^2*s2y*pwy-112/3*s2x*s2y^2*pux+112/3*s2x^2*s2y*puy-112/3*s2x*s2y*pux*puy+56/3*s2x*pwy*pux*puy+112/3*s2x^2*puy^2-56/3*s2x*pwx*puy^2+96*s2y^2*pwx*q1x-232/3*s2x*s2y*pwy*q1x-192*s2y^2*pux*q1x+96*s2y*pwy*pux*q1x+192*s2x*s2y*puy*q1x-64/3*s2y*pwx*puy*q1x-280/3*s2x*pwy*puy*q1x-448/3*s2y*pux*puy*q1x+224/3*pwy*pux*puy*q1x+448/3*s2x*puy^2*q1x-224/3*pwx*puy^2*q1x-224/3*s2x*s2y*pwx*q1y+56*s2x^2*pwy*q1y+448/3*s2x*s2y*pux*q1y-56*s2x*pwy*pux*q1y-192*s2y*pux^2*q1y-592/3*s2x^2*puy*q1y-48*s2y^2*puy*q1y+224/3*s2x*pwx*puy*q1y+192*s2x*pux*puy*q1y+48*pux^2*puy*q1y+48*puy^3*q1y-192*s2y*pwx*q1x*q1y+192*s2x*pwy*q1x*q1y+576*s2y*pux*q1x*q1y-192*pwy*pux*q1x*q1y-288*s2x*puy*q1x*q1y+192*pwx*puy*q1x*q1y-288*pux*puy*q1x*q1y-192*s2x*pux*q1y^2+192*pux^2*q1y^2+192*s2y*puy*q1y^2-192*puy^2*q1y^2-15*s2y^2*pwx*t+15*s2x*s2y*pwy*t+6*s2x^2*pux*t+36*s2y^2*pux*t-8*s2x*pux^2*t+2*pux^3*t-30*s2x*s2y*puy*t+20*s2y*pwx*puy*t-20*s2x*pwy*puy*t-50*s2y*pux*puy*t+5*pwy*pux*puy*t+50*s2x*puy^2*t-5*pwx*puy^2*t-6*pux*puy^2*t+12*s2x^2*q1x*t+12*s2y^2*q1x*t-15*s2y*pwy*q1x*t-4*s2x*pux*q1x*t-8*pux^2*q1x*t-16*s2y*puy*q1x*t+15*pwy*puy*q1x*t+4*puy^2*q1x*t+24*s2x*q1x^2*t-24*pux*q1x^2*t+15*s2x*pwy*q1y*t-15*pwy*pux*q1y*t+28/3*s2x^3+28/3*s2x*s2y^2-16/3*s2y^2*pwx+16/3*s2x*s2y*pwy-80/3*s2y^2*pux-28/3*s2x*pux^2+80/3*s2x*s2y*puy-16/3*s2y*pwx*puy+16/3*s2x*pwy*puy+64/3*s2y*pux*puy-32/3*pwy*pux*puy-92/3*s2x*puy^2+32/3*pwx*puy^2-56/3*s2x^2*q1x-32/3*s2y^2*q1x-16/3*s2y*pwy*q1x+56/3*s2x*pux*q1x-80/3*s2y*puy*q1x+16/3*pwy*puy*q1x+112/3*puy^2*q1x-80/3*s2x*s2y*q1y-48*s2y*pwx*q1y+160/3*s2x*pwy*q1y-320/3*s2y*pux*q1y-16/3*pwy*pux*q1y+656/3*s2x*puy*q1y-256/3*pux*puy*q1y-48*pwy*q1x*q1y+48*pwx*q1y^2-15/2*s2x^2*t-15/2*s2y^2*t+4*s2x*pux*t+7/2*pux^2*t+10*s2y*puy*t-5/2*puy^2*t-27*s2x*q1x*t+27*pux*q1x*t-12*s2x^2-8/3*s2y^2+20/3*s2x*pux+16/3*pux^2-8/3*s2y*puy+16/3*puy^2-88/3*s2x*q1x+16/3*pux*q1x-24*q1x^2-24*s2y*q1y+24*q1y^2+15/2*s2x*t-15/2*pux*t+8/3*s2x-8/3*pux+24*q1x",
+    "-32*s2y^2*puy^2*t-32*s2y*puy^3*t+16*pwy*puy^3*t+128*s2y*puy^2*q1y*t-48*pwy*puy^2*q1y*t-192*s2y^2*puy*q1y-192*s2y*puy^2*q1y+96*pwy*puy^2*q1y+768*s2y*puy*q1y^2-288*pwy*puy*q1y^2+24*s2y^2*pux*t+24*s2y*pux*puy*t+4*pwy*pux*puy*t-8*pux*puy^2*t+48*s2y^2*q1x*t-80*s2y*puy*q1x*t+40*pwy*puy*q1x*t-8*puy^2*q1x*t-12*pwy*pux*q1y*t-32*pux*puy*q1y*t-24*pwy*q1x*q1y*t+112/3*s2x*s2y^2+112/3*s2x*s2y*puy-56/3*s2x*pwy*puy+192*s2y^2*q1x-96*s2y*pwy*q1x+448/3*s2y*puy*q1x-224/3*pwy*puy*q1x-448/3*s2x*s2y*q1y+56*s2x*pwy*q1y+192*s2y*pux*q1y-48*pux*puy*q1y-384*s2y*q1x*q1y+192*pwy*q1x*q1y-48*puy*q1x*q1y-192*pux*q1y^2-30*s2y^2*t+8*s2x*pux*t-2*pux^2*t+42*s2y*puy*t-5*pwy*puy*t+8*puy^2*t+16*s2x*q1x*t+2*pux*q1x*t+12*q1x^2*t+15*pwy*q1y*t+80/3*s2y^2+28/3*s2x*pux-64/3*s2y*puy+32/3*pwy*puy+28/3*s2x*q1x+320/3*s2y*q1y+16/3*pwy*q1y+256/3*puy*q1y-10*s2x*t-7/2*pux*t-39/2*q1x*t-20/3*s2x-16/3*pux-8/3*q1x+15/2*t+8/3",
+    "-48*s2x*puy^2*t+16*pux*puy^2*t-288*s2x*puy*q1y+96*pux*puy*q1y-12*s2x*pux*t+20*pux^2*t-16*s2y*puy*t+8*puy^2*t-24*s2x*q1x*t+40*pux*q1x*t+16*puy*q1y*t+56*s2x^2+96*s2y^2-56/3*s2x*pux-64/3*s2y*puy-224/3*puy^2-96*s2y*q1y+48*puy*q1y+96*q1y^2+15*s2x*t-27*pux*t-4*q1x*t+4/3*s2x-8*pux+184/3*q1x+5/2*t-104/3",
+    "0",
+    "-16*s2x*puy^2*t+16*pux*puy^2*t-96*s2x*puy*q1y+96*pux*puy*q1y+12*s2x*pux*t+4*pux^2*t+16*puy^2*t+24*s2x*q1x*t+8*pux*q1x*t-16*puy*q1y*t+56/3*s2x^2-56/3*s2x*pux+96*puy*q1y-96*q1y^2-15*s2x*t-9*pux*t-8*q1x*t+40/3*s2x+32/3*pux+24*q1x+5*t-20",
+    "64*s2x*puy^2*t+384*s2x*puy*q1y+16*s2y*puy*t-16*pwy*puy*t-32*puy^2*t-224/3*s2x^2-96*s2y^2+48*s2y*pwy-224/3*s2y*puy+112/3*pwy*puy+96*s2y*q1y-96*pwy*q1y-192*puy*q1y-32/3*s2x-56/3*pux+8",
+    "-64*pux*puy^2*t-384*pux*puy*q1y+16*pwy*puy*t+16*puy^2*t-48*s2y*pwy+224/3*s2x*pux+96*s2y*puy-112/3*pwy*puy+224/3*puy^2+96*pwy*q1y+96*puy*q1y-40/3*s2x+128/3*pux-12",
+    "16*s2y*pwy*puy^2*t-16*pwy*puy^3*t+96*s2y*pwy*puy*q1y-96*pwy*puy^2*q1y-12*s2y*pwy*pux*t-32*s2y*pux*puy*t+12*pwy*pux*puy*t+24*s2x*puy^2*t+40*pux*puy^2*t-24*s2y*pwy*q1x*t+24*pwy*puy*q1x*t-56/3*s2x*s2y*pwy+56/3*s2x*pwy*puy-192*s2y*pux*q1y+144*s2x*puy*q1y+240*pux*puy*q1y+15*s2y*pwy*t+6*s2x*pux*t-14*pux^2*t-15*pwy*puy*t+8*puy^2*t+12*s2x*q1x*t-28*pux*q1x*t-16*puy*q1y*t-28*s2x^2-112/3*s2y^2+16/3*s2y*pwy-28/3*s2x*pux+112/3*s2y*puy-16/3*pwy*puy+48*pwy*q1y+48*puy*q1y-96*q1y^2-15/2*s2x*t+39/2*pux*t+4*q1x*t+76/3*s2x+16/3*pux-112/3*q1x-5/2*t+32/3",
+    "16*s2x*puy^2*t+16*pux*puy^2*t+96*s2x*puy*q1y+96*pux*puy*q1y-12*s2x*pux*t+20*pux^2*t-16*pwy*puy*t-24*puy^2*t-24*s2x*q1x*t+40*pux*q1x*t+16*puy*q1y*t-56/3*s2x^2+48*s2y*pwy-56/3*s2x*pux-96*s2y*puy+112/3*pwy*puy-224/3*puy^2-96*pwy*q1y-144*puy*q1y+96*q1y^2+15*s2x*t-27*pux*t-4*q1x*t-28/3*s2x-80/3*pux+184/3*q1x+5/2*t-8/3",
+    "16*s2x*puy^2*t+16*pux*puy^2*t+96*s2x*puy*q1y+96*pux*puy*q1y-12*s2x*pux*t+20*pux^2*t-16*pwy*puy*t-24*puy^2*t-24*s2x*q1x*t+40*pux*q1x*t+16*puy*q1y*t-56/3*s2x^2+48*s2y*pwy-56/3*s2x*pux-96*s2y*puy+112/3*pwy*puy-224/3*puy^2-96*pwy*q1y-144*puy*q1y+96*q1y^2+15*s2x*t-27*pux*t-4*q1x*t-28/3*s2x-80/3*pux+184/3*q1x+5/2*t-8/3",
+    "0",
+    "-16*s2x*puy^2*t-16*pux*puy^2*t-96*s2x*puy*q1y-96*pux*puy*q1y+12*s2x*pux*t-20*pux^2*t+16*pwy*puy*t+24*puy^2*t+24*s2x*q1x*t-40*pux*q1x*t-16*puy*q1y*t+56/3*s2x^2-48*s2y*pwy+56/3*s2x*pux+96*s2y*puy-112/3*pwy*puy+224/3*puy^2+96*pwy*q1y+144*puy*q1y-96*q1y^2-15*s2x*t+27*pux*t+4*q1x*t+28/3*s2x+80/3*pux-184/3*q1x-5/2*t+8/3"
+  ],
+  "common_erased_masks": {
+    "Pu": {
+      "mask": 281,
+      "members": [
+        "u",
+        "s1",
+        "s2",
+        "Q1"
+      ]
+    },
+    "Pw": {
+      "mask": 390,
+      "members": [
+        "v",
+        "w",
+        "Pu",
+        "Q1"
+      ]
+    },
+    "Q1": {
+      "mask": 596,
+      "members": [
+        "w",
+        "s2",
+        "Pw",
+        "Q2"
+      ]
+    },
+    "Q2": {
+      "mask": 300,
+      "members": [
+        "w",
+        "s1",
+        "s3",
+        "Q1"
+      ]
+    },
+    "s1": {
+      "mask": 531,
+      "members": [
+        "u",
+        "v",
+        "s2",
+        "Q2"
+      ]
+    },
+    "s2": {
+      "mask": 106,
+      "members": [
+        "v",
+        "s1",
+        "s3",
+        "Pw"
+      ]
+    },
+    "s3": {
+      "mask": 652,
+      "members": [
+        "w",
+        "s1",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "u": {
+      "mask": 178,
+      "members": [
+        "v",
+        "s2",
+        "s3",
+        "Pu"
+      ]
+    }
+  },
+  "exact_pids": [
+    "s1_030"
+  ],
+  "generator_metadata": [
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,s1)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s1x))^2+((0)-(s1y))^2)",
+      "id": "exact:v:u=s1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pw)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:v:u=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pu)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+      "id": "exact:v:u=Pu",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pu"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Pw)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:w:s3=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Pw"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q1)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+      "id": "exact:w:s3=Q1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q1"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q2)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+      "id": "exact:w:s3=Q2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q2"
+      ]
+    },
+    {
+      "equation": "t * dist2(u,v) - 1",
+      "generator": "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+      "id": "separator:u=v",
+      "kind": "rabinowitsch_distinct",
+      "optional": false,
+      "pair": [
+        "u",
+        "v"
+      ],
+      "source": "separator"
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,v) = dist2(u,s2)",
+      "generator": "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+      "id": "leaf:R004NYN:u:v=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s2"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,v) = dist2(u,s3)",
+      "generator": "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+      "id": "leaf:R004NYN:u:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,v) = dist2(u,Pu)",
+      "generator": "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(pux))^2+((uy)-(puy))^2)",
+      "id": "leaf:R004NYN:u:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,v)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(0))^2+((s1y)-(0))^2)",
+      "id": "leaf:R004NYN:s1:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,s2)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(s2x))^2+((s1y)-(s2y))^2)",
+      "id": "leaf:R004NYN:s1:u=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,Q2)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+      "id": "leaf:R004NYN:s1:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,v) = dist2(s2,s1)",
+      "generator": "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(s1x))^2+((s2y)-(s1y))^2)",
+      "id": "leaf:R004NYN:s2:v=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s1"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,v) = dist2(s2,s3)",
+      "generator": "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+      "id": "leaf:R004NYN:s2:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,v) = dist2(s2,Pw)",
+      "generator": "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(pwx))^2+((s2y)-(pwy))^2)",
+      "id": "leaf:R004NYN:s2:v=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pw"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,w) = dist2(s3,s1)",
+      "generator": "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+      "id": "leaf:R004NYN:s3:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,w) = dist2(s3,Pu)",
+      "generator": "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(pux))^2+((s3y)-(puy))^2)",
+      "id": "leaf:R004NYN:s3:w=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,w) = dist2(s3,Q2)",
+      "generator": "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+      "id": "leaf:R004NYN:s3:w=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,w)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(1))^2+((pwy)-(0))^2)",
+      "id": "leaf:R004NYN:Pw:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Pu)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+      "id": "leaf:R004NYN:Pw:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Q1)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(q1x))^2+((pwy)-(q1y))^2)",
+      "id": "leaf:R004NYN:Pw:v=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q1"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,s1)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s1x))^2+((puy)-(s1y))^2)",
+      "id": "leaf:R004NYN:Pu:u=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,s2)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s2x))^2+((puy)-(s2y))^2)",
+      "id": "leaf:R004NYN:Pu:u=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Q1)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q1x))^2+((puy)-(q1y))^2)",
+      "id": "leaf:R004NYN:Pu:u=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q1"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,w) = dist2(Q1,s2)",
+      "generator": "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(s2x))^2+((q1y)-(s2y))^2)",
+      "id": "leaf:R004NYN:Q1:w=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s2"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,w) = dist2(Q1,Pw)",
+      "generator": "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(pwx))^2+((q1y)-(pwy))^2)",
+      "id": "leaf:R004NYN:Q1:w=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,w) = dist2(Q1,Q2)",
+      "generator": "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+      "id": "leaf:R004NYN:Q1:w=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,s1)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+      "id": "leaf:R004NYN:Q2:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,s3)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s3x))^2+((q2y)-(s3y))^2)",
+      "id": "leaf:R004NYN:Q2:w=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s3"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,Q1)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)",
+      "id": "leaf:R004NYN:Q2:w=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q1"
+      ]
+    }
+  ],
+  "generators": [
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s1x))^2+((0)-(s1y))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+    "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+    "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+    "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+    "((ux)-(0))^2+((uy)-(0))^2-(((ux)-(pux))^2+((uy)-(puy))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(0))^2+((s1y)-(0))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(s2x))^2+((s1y)-(s2y))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+    "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(s1x))^2+((s2y)-(s1y))^2)",
+    "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+    "((s2x)-(0))^2+((s2y)-(0))^2-(((s2x)-(pwx))^2+((s2y)-(pwy))^2)",
+    "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+    "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(pux))^2+((s3y)-(puy))^2)",
+    "((s3x)-(1))^2+((s3y)-(0))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(1))^2+((pwy)-(0))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(q1x))^2+((pwy)-(q1y))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s1x))^2+((puy)-(s1y))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s2x))^2+((puy)-(s2y))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q1x))^2+((puy)-(q1y))^2)",
+    "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(s2x))^2+((q1y)-(s2y))^2)",
+    "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(pwx))^2+((q1y)-(pwy))^2)",
+    "((q1x)-(1))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s3x))^2+((q2y)-(s3y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)"
+  ],
+  "leaf_id": "R004NYN",
+  "minimize_optional": false,
+  "minimize_steps": [],
+  "relaxed_id": "R004",
+  "schema": "pinned_surplus_relaxed_split_certificate.v1",
+  "separator_pair": "u=v",
+  "split_path": [
+    {
+      "center": "Q2",
+      "decision": "no",
+      "label": "Pu"
+    },
+    {
+      "center": "u",
+      "decision": "yes",
+      "label": "v"
+    },
+    {
+      "center": "u",
+      "decision": "no",
+      "label": "Pw"
+    }
+  ],
+  "sstar": "s1",
+  "support": {
+    "centers_used": [
+      "u",
+      "v",
+      "s1",
+      "s2",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonzero_count": 18,
+    "nonzero_indices": [
+      1,
+      2,
+      6,
+      9,
+      11,
+      12,
+      13,
+      15,
+      19,
+      20,
+      21,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      30
+    ],
+    "nonzero_optional_indices": [
+      2,
+      4,
+      5,
+      6,
+      8,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23
+    ]
+  },
+  "variables": [
+    "ux",
+    "uy",
+    "s1x",
+    "s1y",
+    "s2x",
+    "s2y",
+    "s3x",
+    "s3y",
+    "pwx",
+    "pwy",
+    "pux",
+    "puy",
+    "q1x",
+    "q1y",
+    "q2x",
+    "q2y",
+    "t"
+  ]
+}

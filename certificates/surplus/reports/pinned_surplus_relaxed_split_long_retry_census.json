@@ -1,0 +1,94 @@
+{
+  "certificates": [
+    {
+      "case_id": "R011:u=v",
+      "centers_used": [
+        "u",
+        "v",
+        "w",
+        "s3",
+        "Pw",
+        "Pu",
+        "Q1",
+        "Q2"
+      ],
+      "certificate_id": "R011:u=v:R011NNN",
+      "exact_pids": [
+        "s2_063",
+        "s2_064"
+      ],
+      "generator_count": 25,
+      "leaf_id": "R011NNN",
+      "minimize_dropped_count": 0,
+      "minimize_optional": false,
+      "nonzero_count": 24,
+      "optional_generator_count": 18,
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011NNN.json",
+      "required_generator_count": 7,
+      "sha256": "1b34d379f76ba1ec05efb62e5f23cb1fcf2f8249d7eecbd1eb3f211b1ef2d3d9",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ],
+      "status": "ok"
+    }
+  ],
+  "policy": {
+    "certificate_dir": "certificates/surplus/relaxed_split",
+    "exact_centers": [
+      "v",
+      "w"
+    ],
+    "minimize_optional": false,
+    "python_check": false,
+    "timeout_s": 300
+  },
+  "schema": "pinned_surplus_relaxed_split_certificate_census.v1",
+  "source": {
+    "relaxed_census": "certificates/surplus/reports/pinned_surplus_relaxed_incidence_census.json",
+    "relaxed_census_sha256": "e40369d58fa0f6e991a478de13a1d77f13daf64d92a8a3f17b65153eefab31ce",
+    "rvol_input_dir": "/Users/adam/projects/math-projects/p97-rvol/scratch/u2b_ssel_fragment/comp_g/inputs",
+    "split_probe": "certificates/surplus/reports/pinned_surplus_relaxed_split_probe.json",
+    "split_probe_sha256": "94bf8d7b02fc243b5a0b781fbceadc7e0a218db4d40a2b7935e324528d3685f7"
+  },
+  "summary": {
+    "center_usage_rows": {
+      "Pu": 1,
+      "Pw": 1,
+      "Q1": 1,
+      "Q2": 1,
+      "s3": 1,
+      "u": 1,
+      "v": 1,
+      "w": 1
+    },
+    "generator_count_distribution": {
+      "25": 1
+    },
+    "leaf_job_count": 1,
+    "minimize_dropped_count_distribution": {
+      "0": 1
+    },
+    "nonzero_count_distribution": {
+      "24": 1
+    },
+    "status_counts": {
+      "ok": 1
+    },
+    "timeout_certificate_ids": []
+  },
+  "support_kind": "singular_lifted_column_certificates"
+}

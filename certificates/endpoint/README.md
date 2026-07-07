@@ -39,6 +39,21 @@ UV_CACHE_DIR=/private/tmp/uv-cache-endpoint \
     --quiet
 ```
 
+Emit the lifted-column support census used to scope the endpoint bridge:
+
+```bash
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint \
+  uv run python scripts/endpoint-certificate.py \
+    --emit-core-census certificates/endpoint \
+    --core-census-out certificates/endpoint/reports/endpoint_core_census.json \
+    --core-census-markdown-out certificates/endpoint/reports/endpoint_core_census.md \
+    --quiet
+```
+
+The report records which certificate generators have nonzero lift
+coefficients.  It is not a minimal-core certificate: a smaller certificate
+support may exist.
+
 Emit the first Lean vertical-slice data module:
 
 ```bash

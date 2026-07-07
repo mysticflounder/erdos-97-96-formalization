@@ -1,0 +1,664 @@
+{
+  "case_id": "R010:u=v",
+  "certificate_id": "R010:u=v:R010YY",
+  "checks": {
+    "python_exact_polynomial": false,
+    "singular_lifted_column": true
+  },
+  "coefficients": [
+    "-1792/25*s1y*s3y*pwy*q2y*t+1792/25*s1y*pwy^2*q2y*t-1792/25*s1y*s3y*puy*q2y*t+1792/25*s1y*pwy*puy*q2y*t-896/25*s1y*s3x*q2y*t-28064/25*uy*pwx*q2y*t-896/25*s3y*pwx*q2y*t+28064/25*ux*pwy*q2y*t+1792/25*s3x*pwy*q2y*t-896/25*pwx*pwy*q2y*t-7036/25*s1y*pux*q2y*t+1792/25*s3y*pux*q2y*t-1792/25*pwy*pux*q2y*t+11436/25*ux*puy*q2y*t+3584/25*s3x*puy*q2y*t-1792/25*pwx*puy*q2y*t-7036/25*s1y*q2x*q2y*t-28064/25*pwy*q2x*q2y*t+2636/25*puy*q2x*q2y*t+28064/25*pwx*q2y^2*t+14072/25*pux*q2y^2*t+33782/25*uy*q2y*t+7484/25*s1y*q2y*t+896/25*s3y*q2y*t-896/25*pwy*q2y*t-458*puy*q2y*t-1492*q2y^2*t",
+    "0",
+    "1792/25*s1y*s3y*pwy*q2y*t-1792/25*s1y*pwy^2*q2y*t+1792/25*s1y*s3y*puy*q2y*t-1792/25*s1y*pwy*puy*q2y*t+4152/25*s1y*s3x*q2y*t+13684/25*uy*pwx*q2y*t-3312/25*s3y*pwx*q2y*t-28064/25*ux*pwy*q2y*t+2416/25*s3x*pwy*q2y*t+896/25*pwx*pwy*q2y*t+7036/25*s1y*pux*q2y*t-1792/25*s3y*pux*q2y*t+1792/25*pwy*pux*q2y*t-33452/25*ux*puy*q2y*t+6128/25*s3x*puy*q2y*t-2876/5*uy*q2x*q2y*t+3948/25*s1y*q2x*q2y*t+10696/25*s3y*q2x*q2y*t+12192/25*pwy*q2x*q2y*t+21828/25*puy*q2x*q2y*t+2876/5*ux*q2y^2*t-10696/25*s3x*q2y^2*t+4732/25*pwx*q2y^2*t-14072/25*pux*q2y^2*t-8*q2x^2*t-4644/5*uy*q2y*t-8452/25*s1y*q2y*t-36*s3y*q2y*t+2856/25*pwy*q2y*t+8154/25*puy*q2y*t+2786/25*q1y*q2y*t+3954/5*q2y^2*t+11*q2x*t-2*t",
+    "5752/5*uy^2*s3y*q2y*t+8416/25*uy*s3y^2*q2y*t-3584/25*uy*s3y*pwy*q2y*t+1792/25*s1y*s3y*pwy*q2y*t+1792/25*s1y*s3y*puy*q2y*t+3584/25*uy*pwy*puy*q2y*t+3584/25*uy*puy^2*q2y*t+54336/25*uy*pwy*q1y*q2y*t+46296/25*uy*puy*q1y*q2y*t+1792/25*pwy*puy*q1y*q2y*t+1792/25*puy^2*q1y*q2y*t-94352/25*uy*s3y*q2y^2*t-8416/25*s3y^2*q2y^2*t-3584/25*s2y*pwy*q2y^2*t-3584/25*s3y*pwy*q2y^2*t-3584/25*s2y*puy*q2y^2*t-7168/25*s3y*puy*q2y^2*t-85496/25*uy*q1y*q2y^2*t-52544/25*pwy*q1y*q2y^2*t-44504/25*puy*q1y*q2y^2*t+65592/25*s3y*q2y^3*t+85496/25*q1y*q2y^3*t+2688/25*s1y*s2x*q2y*t+9448/25*uy*s3x*q2y*t-10872/25*s1y*s3x*q2y*t-6768/25*s1y*pwx*q2y*t-896/25*s2y*pwx*q2y*t+3312/25*s3y*pwx*q2y*t-27168/25*ux*pwy*q2y*t-896/25*s2x*pwy*q2y*t-2416/25*s3x*pwy*q2y*t-8512/25*uy*pux*q2y*t+1792/25*s2y*pux*q2y*t+1792/25*s3y*pux*q2y*t-2748/5*ux*puy*q2y*t-3584/25*s2x*puy*q2y*t-6128/25*s3x*puy*q2y*t+2688/25*pwx*puy*q2y*t+2688/25*pux*puy*q2y*t+5256/25*pux*q1y*q2y*t-20148/25*uy*q2x*q2y*t+2384/25*s1y*q2x*q2y*t-10696/25*s3y*q2x*q2y*t+41248/25*pwy*q2x*q2y*t+37908/25*puy*q2x*q2y*t+896/5*q1y*q2x*q2y*t+61404/25*ux*q2y^2*t-2688/25*s2x*q2y^2*t+14688/25*s3x*q2y^2*t+11392/25*pwx*q2y^2*t+2056/5*pux*q2y^2*t-75544/25*q2x*q2y^2*t-2*s1y*s3y*t+8*q2x^2*t+19766/25*uy*q2y*t+6744/25*s1y*q2y*t+10812/25*s3y*q2y*t-10696/25*pwy*q2y*t-14324/25*puy*q2y*t-996/5*q1y*q2y*t-20014/25*q2y^2*t-s3x*t-10*q2x*t+2*t",
+    "-40264/15*uy^2*s3y*q2y*t+5752/5*uy*s1y*s3y*q2y*t+34312/25*uy*s3y^2*q2y*t-6488/25*s1y*s3y^2*q2y*t-12976/75*s3y^3*q2y*t+112256/25*uy*s2x*pwx*q2y*t-56128/25*uy*s3x*pwx*q2y*t+112256/25*uy*s2y*pwy*q2y*t-56128/25*s1y*s2y*pwy*q2y*t-35656/25*uy*s3y*pwy*q2y*t+13456/25*s1y*s3y*pwy*q2y*t+3584/25*s2y*s3y*pwy*q2y*t-32864/25*s3y^2*pwy*q2y*t-110464/25*s1y*pwy^2*q2y*t-3584/25*s2y*pwy^2*q2y*t-3584/25*s3y*pwy^2*q2y*t+44032/25*uy^2*puy*q2y*t+45744/25*uy*s2y*puy*q2y*t-22872/25*s1y*s2y*puy*q2y*t-108872/75*uy*s3y*puy*q2y*t+35456/25*s1y*s3y*puy*q2y*t+3584/25*s2y*s3y*puy*q2y*t-127952/75*s3y^2*puy*q2y*t-3584/25*uy*pwy*puy*q2y*t-94384/25*s1y*pwy*puy*q2y*t-3584/25*s2y*pwy*puy*q2y*t-7168/25*s3y*pwy*puy*q2y*t-3584/25*uy*puy^2*q2y*t-56128/25*s2x*pwx*q1y*q2y*t+28064/25*s3x*pwx*q1y*q2y*t+54336/25*uy*pwy*q1y*q2y*t+4856/5*uy*puy*q1y*q2y*t+1792/25*pwy*puy*q1y*q2y*t+1792/25*puy^2*q1y*q2y*t+13024/25*uy*s3x*q2x*q2y*t-6512/25*s1y*s3x*q2x*q2y*t+56128/25*uy*pwx*q2x*q2y*t-28064/25*pwx*q1y*q2x*q2y*t-12352/25*uy*q2x^2*q2y*t+6176/25*s1y*q2x^2*q2y*t-11504/15*uy^2*q2y^2*t+386656/75*uy*s3y*q2y^2*t-65576/25*s1y*s3y*q2y^2*t+6744/25*s3y^2*q2y^2*t-12848/25*uy*pwy*q2y^2*t+45424/5*s1y*pwy*q2y^2*t+110056/25*s3y*pwy*q2y^2*t+49736/75*uy*puy*q2y^2*t+22872/25*s1y*puy*q2y^2*t+80856/25*s3y*puy*q2y^2*t-71116/25*uy*q1y*q2y^2*t-5376/25*pwy*q1y*q2y^2*t-2176/25*puy*q1y*q2y^2*t-57208/75*uy*q2y^3*t-179096/75*s3y*q2y^3*t-16432/25*pwy*q2y^3*t-93112/75*puy*q2y^3*t-71116/25*q1y*q2y^3*t+104/25*q2y^4*t-56/3*uy*s3y*q2x*t+8*s1y*s3y*q2x*t+16/3*s3y^2*q2x*t+11436/25*uy*s2x*q2y*t+7036/25*s1y*s2x*q2y*t+37216/25*uy*s3x*q2y*t+3256/25*s1y*s3x*q2y*t-4228/25*ux*s3y*q2y*t+2688/25*s2x*s3y*q2y*t-22804/25*s3x*s3y*q2y*t-15812/5*uy*pwx*q2y*t-9008/25*s1y*pwx*q2y*t-28912/25*s3y*pwx*q2y*t-66696/25*ux*pwy*q2y*t-2688/25*s2x*pwy*q2y*t-5592/25*s3x*pwy*q2y*t+27264/25*pwx*pwy*q2y*t-3648/25*uy*pux*q2y*t-2168/25*s1y*pux*q2y*t+14072/25*s2y*pux*q2y*t+16128/25*pwy*pux*q2y*t-40644/25*ux*puy*q2y*t-2636/25*s2x*puy*q2y*t-5376/25*s3x*puy*q2y*t+4576/25*pwx*puy*q2y*t-896/25*pux*puy*q2y*t+3372/25*ux*q1y*q2y*t-11436/25*s2x*q1y*q2y*t-16504/25*s3x*q1y*q2y*t+37024/25*pwx*q1y*q2y*t-12108/25*pux*q1y*q2y*t-110128/75*uy*q2x*q2y*t+12*s1y*q2x*q2y*t+27364/25*s3y*q2x*q2y*t-40184/25*pwy*q2x*q2y*t-33124/25*puy*q2x*q2y*t+15004/25*q1y*q2x*q2y*t-15238/25*ux*q2y^2*t+9044/25*s3x*q2y^2*t-2876/5*pwx*q2y^2*t-12072/25*pux*q2y^2*t+259466/75*q2x*q2y^2*t+8/3*uy*s3y*t-4*s1y*s3y*t-4/3*s3y^2*t+8*s3y*pwy*t+12*ux*q2x*t-12*q2x^2*t-22412/75*uy*q2y*t-3518/25*s2y*q2y*t+7528/25*s3y*q2y*t+50424/25*pwy*q2y*t+46362/25*puy*q2y*t+6168/25*q1y*q2y*t-28616/75*q2y^2*t+6*s3x*t-4*pwx*t-q2x*t",
+    "-5752/15*uy^3*q2y*t+179048/75*uy^2*s3y*q2y*t-5752/5*uy*s1y*s3y*q2y*t-28232/15*uy*s3y^2*q2y*t+6488/25*s1y*s3y^2*q2y*t+12976/75*s3y^3*q2y*t-112256/25*uy*s2x*pwx*q2y*t+56128/25*uy*s3x*pwx*q2y*t+20016/25*uy^2*pwy*q2y*t-112256/25*uy*s2y*pwy*q2y*t+56128/25*s1y*s2y*pwy*q2y*t+7624/25*uy*s3y*pwy*q2y*t-11664/25*s1y*s3y*pwy*q2y*t-3584/25*s2y*s3y*pwy*q2y*t+32864/25*s3y^2*pwy*q2y*t+110464/25*s1y*pwy^2*q2y*t+3584/25*s2y*pwy^2*q2y*t+3584/25*s3y*pwy^2*q2y*t-28232/75*uy^2*puy*q2y*t-45744/25*uy*s2y*puy*q2y*t+22872/25*s1y*s2y*puy*q2y*t-13528/25*uy*s3y*puy*q2y*t-33664/25*s1y*s3y*puy*q2y*t-3584/25*s2y*s3y*puy*q2y*t+127952/75*s3y^2*puy*q2y*t+94384/25*s1y*pwy*puy*q2y*t+3584/25*s2y*pwy*puy*q2y*t+7168/25*s3y*pwy*puy*q2y*t+56128/25*s2x*pwx*q1y*q2y*t-28064/25*s3x*pwx*q1y*q2y*t-108672/25*uy*pwy*q1y*q2y*t-70576/25*uy*puy*q1y*q2y*t-3584/25*pwy*puy*q1y*q2y*t-3584/25*puy^2*q1y*q2y*t-13024/25*uy*s3x*q2x*q2y*t+6512/25*s1y*s3x*q2x*q2y*t-56128/25*uy*pwx*q2x*q2y*t+28064/25*pwx*q1y*q2x*q2y*t+12352/25*uy*q2x^2*q2y*t-6176/25*s1y*q2x^2*q2y*t+57208/75*uy^2*q2y^2*t-7424/3*uy*s3y*q2y^2*t+65576/25*s1y*s3y*q2y^2*t+17992/75*s3y^2*q2y^2*t+12848/25*uy*pwy*q2y^2*t-45424/5*s1y*pwy*q2y^2*t-82024/25*s3y*pwy*q2y^2*t-49736/75*uy*puy*q2y^2*t-22872/25*s1y*puy*q2y^2*t-93112/75*s3y*puy*q2y^2*t+156612/25*uy*q1y*q2y^2*t+11584/5*pwy*q1y*q2y^2*t+9336/5*puy*q1y*q2y^2*t+28656/25*uy*q2y^3*t+104/25*s3y*q2y^3*t-2876/5*q1y*q2y^3*t-8/3*uy^2*q2x*t+24*uy*s3y*q2x*t-8*s1y*s3y*q2x*t-16/3*s3y^2*q2x*t+2876/5*ux*uy*q2y*t-11436/25*uy*s2x*q2y*t-7036/25*s1y*s2x*q2y*t-12508/5*uy*s3x*q2y*t+4152/25*s1y*s3x*q2y*t+984/25*ux*s3y*q2y*t-2688/25*s2x*s3y*q2y*t+22804/25*s3x*s3y*q2y*t+65028/25*uy*pwx*q2y*t+3936/25*s1y*pwx*q2y*t+1024*s3y*pwx*q2y*t+96384/25*ux*pwy*q2y*t+2688/25*s2x*pwy*q2y*t+6216/25*s3x*pwy*q2y*t-4736/5*pwx*pwy*q2y*t+2432/5*uy*pux*q2y*t+2168/25*s1y*pux*q2y*t-14072/25*s2y*pux*q2y*t-1792/25*s3y*pux*q2y*t-16128/25*pwy*pux*q2y*t+72112/25*ux*puy*q2y*t+2636/25*s2x*puy*q2y*t+9712/25*s3x*puy*q2y*t-8912/25*pwx*puy*q2y*t-1792/25*pux*puy*q2y*t-3372/25*ux*q1y*q2y*t+11436/25*s2x*q1y*q2y*t+16504/25*s3x*q1y*q2y*t-37024/25*pwx*q1y*q2y*t+6852/25*pux*q1y*q2y*t+139984/75*uy*q2x*q2y*t+2932/25*s1y*q2x*q2y*t-40672/75*s3y*q2x*q2y*t-896/25*pwy*q2x*q2y*t-11904/25*puy*q2x*q2y*t-19484/25*q1y*q2x*q2y*t-84482/25*ux*q2y^2*t-928/25*s3x*q2y^2*t+46828/25*pwx*q2y^2*t+4102/25*q2x*q2y^2*t-16/3*uy^2*t+4*uy*s3y*t+2*s1y*s3y*t+4/3*s3y^2*t-8*s3y*pwy*t+2*puy*q1y*t-8*ux*q2x*t+824/75*uy*q2y*t-1616/25*s1y*q2y*t+3518/25*s2y*q2y*t-60116/75*s3y*q2y*t-39056/25*pwy*q2y*t-34726/25*puy*q2y*t-1238/25*q1y*q2y*t+1372/5*q2y^2*t-2*ux*t-3*s3x*t+pux*t+10*q2x*t+t",
+    "-1",
+    "5752/15*uy^2*s3y*q2y*t-21336/25*uy*s3y^2*q2y*t+12976/75*s3y^3*q2y*t+8744/25*uy*s3y*pwy*q2y*t+40032/25*s3y^2*pwy*q2y*t-3584/25*s3y*pwy^2*q2y*t-103864/75*uy*s3y*puy*q2y*t+149456/75*s3y^2*puy*q2y*t+3584/25*pwy^2*puy*q2y*t+3584/25*pwy*puy^2*q2y*t+5752/5*uy*s3y*q1y*q2y*t-6488/25*s3y^2*q1y*q2y*t-56128/25*s2y*pwy*q1y*q2y*t+13456/25*s3y*pwy*q1y*q2y*t-22872/25*s2y*puy*q1y*q2y*t+35456/25*s3y*puy*q1y*q2y*t+54336/25*pwy*puy*q1y*q2y*t+46296/25*puy^2*q1y*q2y*t-6512/25*s3x*q1y*q2x*q2y*t+6176/25*q1y*q2x^2*q2y*t+29072/75*uy*s3y*q2y^2*t+17992/75*s3y^2*q2y^2*t-85608/25*s3y*pwy*q2y^2*t-103864/75*s3y*puy*q2y^2*t-65576/25*s3y*q1y*q2y^2*t+1792/25*pwy*q1y*q2y^2*t-21784/5*puy*q1y*q2y^2*t+104/25*s3y*q2y^3*t+85496/25*q1y*q2y^3*t+8/3*uy*s3y*q2x*t-16/3*s3y^2*q2x*t+8*s3y*q1y*q2x*t+15876/25*s3x*s3y*q2y*t+28064/25*s2y*pwx*q2y*t-14032/25*s3y*pwx*q2y*t+13656/25*s3x*pwy*q2y*t-17024/25*pwy*pux*q2y*t-22016/25*ux*puy*q2y*t-11436/25*s2x*puy*q2y*t+4208/25*s3x*puy*q2y*t+5132/25*pwx*puy*q2y*t-7616/25*pux*puy*q2y*t+3088/25*pux*q1y*q2y*t-12352/75*s3y*q2x*q2y*t-31744/25*pwy*q2x*q2y*t+14944/25*puy*q2x*q2y*t-1152/25*q1y*q2x*q2y*t+22016/25*ux*q2y^2*t+11436/25*s2x*q2y^2*t-7464/25*s3x*q2y^2*t-33196/25*pwx*q2y^2*t+7616/25*pux*q2y^2*t-11856/25*q2x*q2y^2*t+16/3*uy*s3y*t-20/3*s3y^2*t-4*s3y*q1y*t+5718/25*s2y*q2y*t+12172/75*s3y*q2y*t-11464/25*pwy*q2y*t-15692/25*puy*q2y*t+10942/25*q2y^2*t",
+    "28064/25*pwx*q1y*q2y*t+56128/25*pwy*q2x*q2y*t+22872/25*puy*q2x*q2y*t-56128/25*pwx*q2y^2*t-14032/25*pwy*q2y*t-11436/25*puy*q2y*t+5718/25*q1y*q2y*t-5718/25*q2y^2*t",
+    "-5752/5*uy*s1y*s3y*q2y*t+6488/25*s1y*s3y^2*q2y*t+56128/25*s1y*s2y*pwy*q2y*t-13456/25*s1y*s3y*pwy*q2y*t+108672/25*s1y*pwy^2*q2y*t+22872/25*s1y*s2y*puy*q2y*t-35456/25*s1y*s3y*puy*q2y*t+92592/25*s1y*pwy*puy*q2y*t-5752/5*uy*s3y*q1y*q2y*t+6488/25*s3y^2*q1y*q2y*t+56128/25*s2x*pwx*q1y*q2y*t-28064/25*s3x*pwx*q1y*q2y*t+56128/25*s2y*pwy*q1y*q2y*t-13456/25*s3y*pwy*q1y*q2y*t+22016/25*uy*puy*q1y*q2y*t+22872/25*s2y*puy*q1y*q2y*t-35456/25*s3y*puy*q1y*q2y*t-56128/25*pwy*puy*q1y*q2y*t-48088/25*puy^2*q1y*q2y*t+6512/25*s1y*s3x*q2x*q2y*t+6512/25*s3x*q1y*q2x*q2y*t+28064/25*pwx*q1y*q2x*q2y*t-6176/25*s1y*q2x^2*q2y*t-6176/25*q1y*q2x^2*q2y*t-5752/15*uy^2*q2y^2*t+50096/25*uy*s3y*q2y^2*t+65576/25*s1y*s3y*q2y^2*t-77152/75*s3y^2*q2y^2*t-112256/25*s2x*pwx*q2y^2*t+56128/25*s3x*pwx*q2y^2*t+20016/25*uy*pwy*q2y^2*t-45424/5*s1y*pwy*q2y^2*t-112256/25*s2y*pwy*q2y^2*t-224/5*s3y*pwy*q2y^2*t-28232/75*uy*puy*q2y^2*t-22872/25*s1y*puy*q2y^2*t-45744/25*s2y*puy*q2y^2*t+12656/15*s3y*puy*q2y^2*t-2876/5*uy*q1y*q2y^2*t+65576/25*s3y*q1y*q2y^2*t-50752/25*pwy*q1y*q2y^2*t+2592*puy*q1y*q2y^2*t-13024/25*s3x*q2x*q2y^2*t-56128/25*pwx*q2x*q2y^2*t+12352/25*q2x^2*q2y^2*t+57208/75*uy*q2y^3*t-214672/75*s3y*q2y^3*t+12848/25*pwy*q2y^3*t-49736/75*puy*q2y^3*t+71116/25*q1y*q2y^3*t+28656/25*q2y^4*t-8*s1y*s3y*q2x*t-8*s3y*q1y*q2x*t-28064/25*s2y*pwx*q2y*t+14032/25*s3y*pwx*q2y*t-3088/25*s1y*pux*q2y*t+11008/25*ux*puy*q2y*t-4208/25*s3x*puy*q2y*t+13684/25*pwx*puy*q2y*t+8512/25*pux*puy*q2y*t-3372/25*ux*q1y*q2y*t+11436/25*s2x*q1y*q2y*t+16504/25*s3x*q1y*q2y*t-56128/25*pwx*q1y*q2y*t+1984/25*pux*q1y*q2y*t-8/3*uy*q2x*q2y*t+1152/25*s1y*q2x*q2y*t+64/3*s3y*q2x*q2y*t+54336/25*pwy*q2x*q2y*t+32504/25*puy*q2x*q2y*t-2296/5*q1y*q2x*q2y*t-446/25*ux*q2y^2*t-22872/25*s2x*q2y^2*t-45308/25*s3x*q2y^2*t+182764/25*pwx*q2y^2*t+4544/25*pux*q2y^2*t-87158/75*q2x*q2y^2*t+4*s1y*s3y*t+4*s3y*q1y*t+4658/75*uy*q2y*t-5718/25*s2y*q2y*t-24856/75*s3y*q2y*t-27168/25*pwy*q2y*t-13088/25*puy*q2y*t-11836/25*q1y*q2y*t+3274/15*q2y^2*t",
+    "5752/15*uy^3*s3x*q2y*t-5752/15*ux*uy^2*s3y*q2y*t-21336/25*uy^2*s3x*s3y*q2y*t+21336/25*ux*uy*s3y^2*q2y*t+12976/75*uy*s3x*s3y^2*q2y*t-12976/75*ux*s3y^3*q2y*t+5752/5*uy^2*s3y*pwx*q2y*t+8416/25*uy*s3y^2*pwx*q2y*t-20016/25*uy^2*s3x*pwy*q2y*t-8744/25*ux*uy*s3y*pwy*q2y*t-1792/25*s1y*s2x*s3y*pwy*q2y*t+1792/25*s1x*s2y*s3y*pwy*q2y*t+31616/25*uy*s3x*s3y*pwy*q2y*t-3584/25*s1y*s3x*s3y*pwy*q2y*t-40032/25*ux*s3y^2*pwy*q2y*t+3584/25*s1x*s3y^2*pwy*q2y*t-3584/25*uy*s3y*pwx*pwy*q2y*t+3584/25*s1y*s3y*pwx*pwy*q2y*t+1792/25*s1y*s2x*pwy^2*q2y*t-1792/25*s1x*s2y*pwy^2*q2y*t+3584/25*ux*s3y*pwy^2*q2y*t-3584/25*s1x*s3y*pwy^2*q2y*t-1792/25*s1y*pwy^2*pux*q2y*t-103864/75*uy^2*s3x*puy*q2y*t+103864/75*ux*uy*s3y*puy*q2y*t-1792/25*s1y*s2x*s3y*puy*q2y*t+1792/25*s1x*s2y*s3y*puy*q2y*t+149456/75*uy*s3x*s3y*puy*q2y*t-3584/25*s1y*s3x*s3y*puy*q2y*t-149456/75*ux*s3y^2*puy*q2y*t+3584/25*s1x*s3y^2*puy*q2y*t+3584/25*s1y*s3y*pwx*puy*q2y*t+1792/25*s1y*s2x*pwy*puy*q2y*t-1792/25*s1x*s2y*pwy*puy*q2y*t-3584/25*s1x*s3y*pwy*puy*q2y*t+3584/25*uy*pwx*pwy*puy*q2y*t-3584/25*ux*pwy^2*puy*q2y*t+1792/25*s1x*pwy^2*puy*q2y*t-1792/25*s1y*pwy*pux*puy*q2y*t+3584/25*uy*pwx*puy^2*q2y*t-3584/25*ux*pwy*puy^2*q2y*t+1792/25*s1x*pwy*puy^2*q2y*t-5752/5*ux*uy*s3y*q1y*q2y*t+6488/25*ux*s3y^2*q1y*q2y*t+56128/25*ux*s2y*pwy*q1y*q2y*t-13456/25*ux*s3y*pwy*q1y*q2y*t+108672/25*uy*pwx*pwy*q1y*q2y*t+54336/25*uy*pwy*pux*q1y*q2y*t+22872/25*ux*s2y*puy*q1y*q2y*t-35456/25*ux*s3y*puy*q1y*q2y*t+92592/25*uy*pwx*puy*q1y*q2y*t-54336/25*ux*pwy*puy*q1y*q2y*t+1792/25*pwx*pwy*puy*q1y*q2y*t+46296/25*uy*pux*puy*q1y*q2y*t-46296/25*ux*puy^2*q1y*q2y*t+1792/25*pwx*puy^2*q1y*q2y*t+5752/15*uy^2*s3y*q2x*q2y*t-21336/25*uy*s3y^2*q2x*q2y*t+12976/75*s3y^3*q2x*q2y*t+8744/25*uy*s3y*pwy*q2x*q2y*t+1792/25*s1y*s3y*pwy*q2x*q2y*t-3584/25*s2y*s3y*pwy*q2x*q2y*t+32864/25*s3y^2*pwy*q2x*q2y*t+3584/25*s2y*pwy^2*q2x*q2y*t+3584/25*s3y*pwy^2*q2x*q2y*t-103864/75*uy*s3y*puy*q2x*q2y*t+1792/25*s1y*s3y*puy*q2x*q2y*t-3584/25*s2y*s3y*puy*q2x*q2y*t+127952/75*s3y^2*puy*q2x*q2y*t+3584/25*s2y*pwy*puy*q2x*q2y*t+7168/25*s3y*pwy*puy*q2x*q2y*t+6512/25*ux*s3x*q1y*q2x*q2y*t+5752/5*uy*s3y*q1y*q2x*q2y*t-6488/25*s3y^2*q1y*q2x*q2y*t-54336/25*uy*pwy*q1y*q2x*q2y*t-56128/25*s2y*pwy*q1y*q2x*q2y*t+13456/25*s3y*pwy*q1y*q2x*q2y*t-46296/25*uy*puy*q1y*q2x*q2y*t-22872/25*s2y*puy*q1y*q2x*q2y*t+35456/25*s3y*puy*q1y*q2x*q2y*t+54336/25*pwy*puy*q1y*q2x*q2y*t+46296/25*puy^2*q1y*q2x*q2y*t-6176/25*ux*q1y*q2x^2*q2y*t-6512/25*s3x*q1y*q2x^2*q2y*t+6176/25*q1y*q2x^3*q2y*t+104/25*uy^2*s3x*q2y^2*t-29072/75*ux*uy*s3y*q2y^2*t+3280/3*uy*s3x*s3y*q2y^2*t-17992/75*ux*s3y^2*q2y^2*t-12976/75*s3x*s3y^2*q2y^2*t-94352/25*uy*s3y*pwx*q2y^2*t-8416/25*s3y^2*pwx*q2y^2*t+3584/25*s2y*s3x*pwy*q2y^2*t+85608/25*ux*s3y*pwy*q2y^2*t-1792/25*s1x*s3y*pwy*q2y^2*t-24448/25*s3x*s3y*pwy*q2y^2*t-3584/25*s2y*pwx*pwy*q2y^2*t-3584/25*s3y*pwx*pwy*q2y^2*t+3584/25*s2y*s3x*puy*q2y^2*t+103864/75*ux*s3y*puy*q2y^2*t-1792/25*s1x*s3y*puy*q2y^2*t-127952/75*s3x*s3y*puy*q2y^2*t-3584/25*s2y*pwx*puy*q2y^2*t-7168/25*s3y*pwx*puy*q2y^2*t+65576/25*ux*s3y*q1y*q2y^2*t-170992/25*uy*pwx*q1y*q2y^2*t-1792/25*ux*pwy*q1y*q2y^2*t-110464/25*pwx*pwy*q1y*q2y^2*t-85496/25*uy*pux*q1y*q2y^2*t-54336/25*pwy*pux*q1y*q2y^2*t+21784/5*ux*puy*q1y*q2y^2*t-94384/25*pwx*puy*q1y*q2y^2*t-46296/25*pux*puy*q1y*q2y^2*t+29072/75*uy*s3y*q2x*q2y^2*t+17992/75*s3y^2*q2x*q2y^2*t-82024/25*s3y*pwy*q2x*q2y^2*t-93112/75*s3y*puy*q2x*q2y^2*t+85496/25*uy*q1y*q2x*q2y^2*t-65576/25*s3y*q1y*q2x*q2y^2*t+56128/25*pwy*q1y*q2x*q2y^2*t-62624/25*puy*q1y*q2x*q2y^2*t-5752/15*uy*s3x*q2y^3*t-104/25*ux*s3y*q2y^3*t-17992/75*s3x*s3y*q2y^3*t+65592/25*s3y*pwx*q2y^3*t+16432/25*s3x*pwy*q2y^3*t+93112/75*s3x*puy*q2y^3*t-85496/25*ux*q1y*q2y^3*t+170992/25*pwx*q1y*q2y^3*t+85496/25*pux*q1y*q2y^3*t+104/25*s3y*q2x*q2y^3*t-104/25*s3x*q2y^4*t+8/3*uy^2*s3x*q2x*t-8/3*ux*uy*s3y*q2x*t-16/3*uy*s3x*s3y*q2x*t+16/3*ux*s3y^2*q2x*t-8*ux*s3y*q1y*q2x*t+8/3*uy*s3y*q2x^2*t-16/3*s3y^2*q2x^2*t+8*s3y*q1y*q2x^2*t+2876/5*ux*uy*s3x*q2y*t-3584/25*s1y*s2x*s3x*q2y*t+896/25*s1x*s2y*s3x*q2y*t+15876/25*uy*s3x^2*q2y*t+3464/25*s1y*s3x^2*q2y*t+2688/25*s1x*s2x*s3y*q2y*t-3824/5*ux*s3x*s3y*q2y*t-3464/25*s1x*s3x*s3y*q2y*t+28064/25*uy*s2x*pwx*q2y*t+2688/25*s1y*s2x*pwx*q2y*t-28064/25*ux*s2y*pwx*q2y*t-376/25*uy*s3x*pwx*q2y*t+1024/5*s1y*s3x*pwx*q2y*t+896/25*s2y*s3x*pwx*q2y*t+14032/25*ux*s3y*pwx*q2y*t-2368/5*s1x*s3y*pwx*q2y*t-896/25*s2x*s3y*pwx*q2y*t-2368/5*s1y*pwx^2*q2y*t-896/25*s2y*pwx^2*q2y*t-28064/25*ux*s2x*pwy*q2y*t-2688/25*s1x*s2x*pwy*q2y*t-6928/25*ux*s3x*pwy*q2y*t+1344/5*s1x*s3x*pwy*q2y*t+896/25*s2x*s3x*pwy*q2y*t-1792/25*s3x^2*pwy*q2y*t+896/25*s2y*s3y*pwy*q2y*t+1792/25*s3y^2*pwy*q2y*t-54336/25*ux*pwx*pwy*q2y*t+2368/5*s1x*pwx*pwy*q2y*t-896/25*s2y*pwy^2*q2y*t-1792/25*s3y*pwy^2*q2y*t-22016/25*ux*uy*pux*q2y*t-11436/25*uy*s2x*pux*q2y*t+7036/25*s1x*s2y*pux*q2y*t+4208/25*uy*s3x*pux*q2y*t-3584/25*s2y*s3x*pux*q2y*t+9712/25*ux*s3y*pux*q2y*t-896/25*s2x*s3y*pux*q2y*t-11892/25*uy*pwx*pux*q2y*t-9008/25*s1y*pwx*pux*q2y*t+1792/25*s2y*pwx*pux*q2y*t-5232/25*s3y*pwx*pux*q2y*t+17024/25*ux*pwy*pux*q2y*t+896/25*s2x*pwy*pux*q2y*t-7616/25*uy*pux^2*q2y*t-5256/25*s1y*pux^2*q2y*t-896/25*pwy*pux^2*q2y*t+22016/25*ux^2*puy*q2y*t-7036/25*s1x*s2x*puy*q2y*t+3808/25*ux*s3x*puy*q2y*t+5376/25*s2x*s3x*puy*q2y*t-1792/25*s3x^2*puy*q2y*t+896/25*s2y*s3y*puy*q2y*t+1792/25*s3y^2*puy*q2y*t-51428/25*ux*pwx*puy*q2y*t+9008/25*s1x*pwx*puy*q2y*t-3584/25*s2x*pwx*puy*q2y*t+5232/25*s3x*pwx*puy*q2y*t+1792/25*pwx^2*puy*q2y*t-896/25*s2y*pwy*puy*q2y*t-1792/25*s3y*pwy*puy*q2y*t+896/25*pwy^2*puy*q2y*t+7616/25*ux*pux*puy*q2y*t+5256/25*s1x*pux*puy*q2y*t+2688/25*pwx*pux*puy*q2y*t+896/25*pwy*puy^2*q2y*t-3088/25*ux*pux*q1y*q2y*t-5072/25*pwx*pux*q1y*q2y*t-7036/25*pux^2*q1y*q2y*t+22016/25*ux*uy*q2x*q2y*t+11436/25*uy*s2x*q2x*q2y*t-14072/25*s1y*s2x*q2x*q2y*t+7036/25*s1x*s2y*q2x*q2y*t-22772/25*uy*s3x*q2x*q2y*t-944/5*s1y*s3x*q2x*q2y*t-16784/75*ux*s3y*q2x*q2y*t+5616/25*s1x*s3y*q2x*q2y*t-2688/25*s2x*s3y*q2x*q2y*t+78544/75*s3x*s3y*q2x*q2y*t-12988/5*uy*pwx*q2x*q2y*t+17712/25*s1y*pwx*q2x*q2y*t+28064/25*s2y*pwx*q2x*q2y*t+15776/25*s3y*pwx*q2x*q2y*t+59808/25*ux*pwy*q2x*q2y*t-8704/25*s1x*pwy*q2x*q2y*t+30752/25*s2x*pwy*q2x*q2y*t-5616/25*s3x*pwy*q2x*q2y*t+32448/25*pwx*pwy*q2x*q2y*t+4512/5*uy*pux*q2x*q2y*t+16832/25*s1y*pux*q2x*q2y*t-28144/25*s2y*pux*q2x*q2y*t-3584/25*s3y*pux*q2x*q2y*t-28672/25*pwy*pux*q2x*q2y*t-25524/25*ux*puy*q2x*q2y*t-908/5*s1x*puy*q2x*q2y*t+28144/25*s2x*puy*q2x*q2y*t-12624/25*s3x*puy*q2x*q2y*t+48644/25*pwx*puy*q2x*q2y*t-18128/25*pux*puy*q2x*q2y*t+1152/25*ux*q1y*q2x*q2y*t+5072/25*pwx*q1y*q2x*q2y*t+12496/25*pux*q1y*q2x*q2y*t-14944/25*uy*q2x^2*q2y*t+2496/25*s1y*q2x^2*q2y*t-40672/75*s3y*q2x^2*q2y*t-28064/25*pwy*q2x^2*q2y*t-1484/25*puy*q2x^2*q2y*t-3524/25*q1y*q2x^2*q2y*t-22016/25*ux^2*q2y^2*t-11436/25*ux*s2x*q2y^2*t+7036/25*s1x*s2x*q2y^2*t-15612/25*ux*s3x*q2y^2*t-896/25*s1x*s3x*q2y^2*t+2688/25*s2x*s3x*q2y^2*t-22804/25*s3x^2*q2y^2*t+118692/25*ux*pwx*q2y^2*t-9008/25*s1x*pwx*q2y^2*t-30752/25*s2x*pwx*q2y^2*t-15992/25*s3x*pwx*q2y^2*t+22784/25*pwx^2*q2y^2*t-896/25*s3y*pwy*q2y^2*t+576*ux*pux*q2y^2*t-12292/25*s1x*pux*q2y^2*t+11436/25*s2x*pux*q2y^2*t-624/25*s3x*pux*q2y^2*t+5444/5*pwx*pux*q2y^2*t+18128/25*pux^2*q2y^2*t-896/25*s3y*puy*q2y^2*t+11856/25*ux*q2x*q2y^2*t-2496/25*s1x*q2x*q2y^2*t+129268/75*s3x*q2x*q2y^2*t-85496/25*pwx*q2x*q2y^2*t-9952/25*pux*q2x*q2y^2*t+3088/25*q2x^2*q2y^2*t+16/3*uy^2*s3x*t-16/3*ux*uy*s3y*t-20/3*uy*s3x*s3y*t+4*s1y*s3x*s3y*t+20/3*ux*s3y^2*t-4*s1x*s3y^2*t-4*s1y*s3y*pwx*t+4*s1x*s3y*pwy*t+4*ux*s3y*q1y*t-2*s3x*puy*q1y*t+4*ux*s3x*q2x*t+16/3*uy*s3y*q2x*t+4/3*s3y^2*q2x*t-8*s3y*pwy*q2x*t-4*s3y*q1y*q2x*t-4*s3x*q2x^2*t+5718/25*uy*s2x*q2y*t+7036/25*s1y*s2x*q2y*t-5718/25*ux*s2y*q2y*t-7036/25*s1x*s2y*q2y*t+3924/25*uy*s3x*q2y*t-280*s1y*s3x*q2y*t-12172/75*ux*s3y*q2y*t+280*s1x*s3y*q2y*t+2688/25*s2x*s3y*q2y*t-10492/75*s3x*s3y*q2y*t-11464/25*uy*pwx*q2y*t+896/5*s1y*pwx*q2y*t-7488/25*s3y*pwx*q2y*t+11464/25*ux*pwy*q2y*t-896/5*s1x*pwy*q2y*t-2688/25*s2x*pwy*q2y*t+1344/5*s3x*pwy*q2y*t+5872/25*pwx*pwy*q2y*t-17236/25*uy*pux*q2y*t-576/25*s1y*pux*q2y*t+14072/25*s2y*pux*q2y*t+6896/25*pwy*pux*q2y*t+15692/25*ux*puy*q2y*t+576/25*s1x*puy*q2y*t-14072/25*s2x*puy*q2y*t-5256/25*pwx*puy*q2y*t+3518/25*pux*puy*q2y*t+2*s3x*q1y*q2y*t+936/5*pux*q1y*q2y*t+11518/25*uy*q2x*q2y*t-1292/5*s1y*q2x*q2y*t+12754/25*s2y*q2x*q2y*t-25436/75*s3y*q2x*q2y*t-12408/25*pwy*q2x*q2y*t-378*puy*q2x*q2y*t-936/5*q1y*q2x*q2y*t-10942/25*ux*q2y^2*t+1292/5*s1x*q2y^2*t-5718/25*s2x*q2y^2*t+29828/75*s3x*q2y^2*t+3552/25*pwx*q2y^2*t+1034/25*pux*q2y^2*t-234/5*q2x*q2y^2*t-2*ux*s3x*t+2*s3x^2*t-2*s3y^2*t+2*s3y*pwy*t-s3x*pux*t+s3x*q2x*t-3518/25*s2y*q2y*t+140*s3y*q2y*t-448/5*pwy*q2y*t+288/25*puy*q2y*t+646/5*q2y^2*t",
+    "-5752/15*uy^3*q2y*t+21336/25*uy^2*s3y*q2y*t-12976/75*uy*s3y^2*q2y*t+20016/25*uy^2*pwy*q2y*t-31616/25*uy*s3y*pwy*q2y*t+3584/25*s1y*s3y*pwy*q2y*t+103864/75*uy^2*puy*q2y*t-149456/75*uy*s3y*puy*q2y*t+3584/25*s1y*s3y*puy*q2y*t-104/25*uy^2*q2y^2*t-3280/3*uy*s3y*q2y^2*t+12976/75*s3y^2*q2y^2*t-3584/25*s2y*pwy*q2y^2*t+24448/25*s3y*pwy*q2y^2*t-3584/25*s2y*puy*q2y^2*t+127952/75*s3y*puy*q2y^2*t+5752/15*uy*q2y^3*t+17992/75*s3y*q2y^3*t-16432/25*pwy*q2y^3*t-93112/75*puy*q2y^3*t+104/25*q2y^4*t-8/3*uy^2*q2x*t+16/3*uy*s3y*q2x*t-2876/5*ux*uy*q2y*t+2688/25*s1y*s2x*q2y*t-15876/25*uy*s3x*q2y*t-3464/25*s1y*s3x*q2y*t+3244/25*ux*s3y*q2y*t+14032/25*uy*pwx*q2y*t-2368/5*s1y*pwx*q2y*t-896/25*s2y*pwx*q2y*t-6728/25*ux*pwy*q2y*t-896/25*s2x*pwy*q2y*t+1792/25*s3x*pwy*q2y*t+1792/25*s2y*pux*q2y*t-8016/25*ux*puy*q2y*t-3584/25*s2x*puy*q2y*t+1792/25*s3x*puy*q2y*t-5232/25*pwx*puy*q2y*t+18564/25*uy*q2x*q2y*t+5616/25*s1y*q2x*q2y*t-10132/75*s3y*q2x*q2y*t+5832/25*pwy*q2x*q2y*t+3008/5*puy*q2x*q2y*t+23076/25*ux*q2y^2*t-2688/25*s2x*q2y^2*t+22804/25*s3x*q2y^2*t+15776/25*pwx*q2y^2*t-1792/25*pux*q2y^2*t-139036/75*q2x*q2y^2*t-16/3*uy^2*t+20/3*uy*s3y*t-4*s1y*s3y*t+2*puy*q1y*t-4*ux*q2x*t+4*q2x^2*t-3924/25*uy*q2y*t+280*s1y*q2y*t+448/25*s2y*q2y*t+5296/75*s3y*q2y*t-672/5*pwy*q2y*t-2*q1y*q2y*t-31172/75*q2y^2*t+2*ux*t-2*s3x*t+pux*t-q2x*t",
+    "-5752/5*uy^2*s3y*q2y*t-8416/25*uy*s3y^2*q2y*t+3584/25*uy*s3y*pwy*q2y*t-3584/25*s1y*s3y*pwy*q2y*t-3584/25*s1y*s3y*puy*q2y*t-3584/25*uy*pwy*puy*q2y*t-3584/25*uy*puy^2*q2y*t-108672/25*uy*pwy*q1y*q2y*t-92592/25*uy*puy*q1y*q2y*t-1792/25*pwy*puy*q1y*q2y*t-1792/25*puy^2*q1y*q2y*t+94352/25*uy*s3y*q2y^2*t+8416/25*s3y^2*q2y^2*t+3584/25*s2y*pwy*q2y^2*t+3584/25*s3y*pwy*q2y^2*t+3584/25*s2y*puy*q2y^2*t+7168/25*s3y*puy*q2y^2*t+170992/25*uy*q1y*q2y^2*t+110464/25*pwy*q1y*q2y^2*t+94384/25*puy*q1y*q2y^2*t-65592/25*s3y*q2y^3*t-170992/25*q1y*q2y^3*t-2688/25*s1y*s2x*q2y*t-13656/25*uy*s3x*q2y*t+1344/5*s1y*s3x*q2y*t+2368/5*s1y*pwx*q2y*t+896/25*s2y*pwx*q2y*t+54336/25*ux*pwy*q2y*t+896/25*s2x*pwy*q2y*t+17024/25*uy*pux*q2y*t-1792/25*s2y*pux*q2y*t-1792/25*pwy*pux*q2y*t+46296/25*ux*puy*q2y*t+3584/25*s2x*puy*q2y*t-1792/25*pwx*puy*q2y*t-2688/25*pux*puy*q2y*t+31744/25*uy*q2x*q2y*t-8704/25*s1y*q2x*q2y*t-55232/25*pwy*q2x*q2y*t-61528/25*puy*q2x*q2y*t-85496/25*ux*q2y^2*t+2688/25*s2x*q2y^2*t+216/25*s3x*q2y^2*t-22784/25*pwx*q2y^2*t-14336/25*pux*q2y^2*t+85496/25*q2x*q2y^2*t+4*s1y*s3y*t+11464/25*uy*q2y*t-896/5*s1y*q2y*t+1568/25*s3y*q2y*t+48/25*pwy*q2y*t+1952/5*puy*q2y*t-8056/25*q2y^2*t",
+    "-1792/25*s1y*s3y*pwy*q2y*t+1792/25*s1y*pwy^2*q2y*t-1792/25*s1y*s3y*puy*q2y*t+1792/25*s1y*pwy*puy*q2y*t-896/25*s1y*s3x*q2y*t-28064/25*uy*pwx*q2y*t-896/25*s3y*pwx*q2y*t+28064/25*ux*pwy*q2y*t+1792/25*s3x*pwy*q2y*t-896/25*pwx*pwy*q2y*t-7036/25*s1y*pux*q2y*t+1792/25*s3y*pux*q2y*t-1792/25*pwy*pux*q2y*t+11436/25*ux*puy*q2y*t+3584/25*s3x*puy*q2y*t-1792/25*pwx*puy*q2y*t+28064/25*pwx*q1y*q2y*t-7036/25*s1y*q2x*q2y*t+28064/25*pwy*q2x*q2y*t+25508/25*puy*q2x*q2y*t-28064/25*pwx*q2y^2*t+14072/25*pux*q2y^2*t+5718/25*uy*q2y*t+7036/25*s1y*q2y*t+448/25*s3y*q2y*t-2896/5*pwy*q2y*t-4398/5*puy*q2y*t+5718/25*q1y*q2y*t-14954/25*q2y^2*t",
+    "-5718/25*uy*q2y*t-448/25*s3y*q2y*t+448/25*pwy*q2y*t+5718/25*q2y^2*t",
+    "56128/25*uy*pwx*q2y*t-56128/25*ux*pwy*q2y*t-1792/25*s3x*pwy*q2y*t+1792/25*pwx*pwy*q2y*t-22872/25*ux*puy*q2y*t-1792/25*s3x*puy*q2y*t+1792/25*pwx*puy*q2y*t-28064/25*pwx*q1y*q2y*t+5718/25*uy*q2y*t+1344/25*s3y*q2y*t+12688/25*pwy*q2y*t+11436/25*puy*q2y*t-5718/25*q1y*q2y*t",
+    "0",
+    "1792/25*s1y*s3y*pwy*q2y*t-1792/25*s1y*pwy^2*q2y*t+1792/25*s1y*s3y*puy*q2y*t-1792/25*s1y*pwy*puy*q2y*t+896/25*s1y*s3x*q2y*t+28064/25*uy*pwx*q2y*t+896/25*s3y*pwx*q2y*t-28064/25*ux*pwy*q2y*t-1792/25*s3x*pwy*q2y*t+896/25*pwx*pwy*q2y*t+7036/25*s1y*pux*q2y*t-1792/25*s3y*pux*q2y*t+1792/25*pwy*pux*q2y*t-11436/25*ux*puy*q2y*t-3584/25*s3x*puy*q2y*t+1792/25*pwx*puy*q2y*t-28064/25*pwx*q1y*q2y*t+7036/25*s1y*q2x*q2y*t-26272/25*pwy*q2x*q2y*t-23716/25*puy*q2x*q2y*t+28064/25*pwx*q2y^2*t-14072/25*pux*q2y^2*t-5718/25*uy*q2y*t-1228/5*s1y*q2y*t-448/25*s3y*q2y*t+14032/25*pwy*q2y*t+21094/25*puy*q2y*t-5718/25*q1y*q2y*t+2722/5*q2y^2*t",
+    "-1792/25*s1y*s3y*pwy*q2y*t+1792/25*s1y*pwy^2*q2y*t-1792/25*s1y*s3y*puy*q2y*t+1792/25*s1y*pwy*puy*q2y*t-2876/15*ux*uy*q2y*t-5752/15*uy*s3x*q2y*t-896/25*s1y*s3x*q2y*t+3244/75*ux*s3y*q2y*t+6488/75*s3x*s3y*q2y*t-13684/25*uy*pwx*q2y*t+3312/25*s3y*pwx*q2y*t+38072/25*ux*pwy*q2y*t+704*s3x*pwy*q2y*t-2688/25*pwx*pwy*q2y*t-7036/25*s1y*pux*q2y*t+1792/25*s3y*pux*q2y*t-1792/25*pwy*pux*q2y*t+17248/15*ux*puy*q2y*t+17096/15*s3x*puy*q2y*t-1792/25*pwx*puy*q2y*t+42096/25*pwx*q1y*q2y*t+5752/5*uy*q2x*q2y*t-7036/25*s1y*q2x*q2y*t-2788/5*s3y*q2x*q2y*t+15704/25*pwy*q2x*q2y*t+16952/25*puy*q2x*q2y*t-52/25*ux*q2y^2*t+816/5*s3x*q2y^2*t-88924/25*pwx*q2y^2*t+14072/25*pux*q2y^2*t-36808/25*q2x*q2y^2*t-4/3*ux*q2x*t-8/3*s3x*q2x*t+12*q2x^2*t-15852/25*uy*q2y*t+1228/5*s1y*q2y*t-2624/25*s3y*q2y*t-26744/25*pwy*q2y*t-8566/5*puy*q2y*t-2534/25*q1y*q2y*t+12526/5*q2y^2*t-8/3*ux*t-10/3*s3x*t-4*q2x*t+3*t",
+    "-1792/25*pwy*q2x*q2y*t-1792/25*puy*q2x*q2y*t-28064/25*uy*q2y*t-1344/25*s1y*q2y*t-448/25*s3y*q2y*t+896/25*pwy*q2y*t+1792/25*puy*q2y*t+29408/25*q2y^2*t",
+    "2876/5*ux*uy*q2y*t+4208/25*ux*s3y*q2y*t-1792/25*ux*pwy*q2y*t-2876/5*uy*q2x*q2y*t-4208/25*s3y*q2x*q2y*t-1792/25*pwy*q2x*q2y*t-3584/25*puy*q2x*q2y*t-32796/25*ux*q2y^2*t+32796/25*q2x*q2y^2*t-524/5*uy*q2y*t+1592/25*s1y*q2y*t-448/25*s2y*q2y*t+240*pwy*q2y*t+7096/25*puy*q2y*t+108/25*q2y^2*t+4*q2x*t-3*t",
+    "-1792/25*s1y*s3y*pwy*q2y*t-1792/25*s1y*s3y*puy*q2y*t-54336/25*uy*pwy*q1y*q2y*t-46296/25*uy*puy*q1y*q2y*t+85496/25*uy*q1y*q2y^2*t+11584/5*pwy*q1y*q2y^2*t+9976/5*puy*q1y*q2y^2*t-85496/25*q1y*q2y^3*t-4208/25*uy*s3x*q2y*t-4152/25*s1y*s3x*q2y*t+5072/25*s1y*pwx*q2y*t+3312/25*s3y*pwx*q2y*t+5792/5*ux*pwy*q2y*t-2416/25*s3x*pwy*q2y*t+8512/25*uy*pux*q2y*t+1792/25*s3y*pux*q2y*t-1792/25*pwy*pux*q2y*t+34348/25*ux*puy*q2y*t-6128/25*s3x*puy*q2y*t+896/25*pwx*puy*q2y*t+5256/25*pux*q1y*q2y*t+11596/25*uy*q2x*q2y*t-1264/5*s1y*q2x*q2y*t-10696/25*s3y*q2x*q2y*t-13984/25*pwy*q2x*q2y*t-4724/5*puy*q2x*q2y*t+896/5*q1y*q2x*q2y*t-24092/25*ux*q2y^2*t+14904/25*s3x*q2y^2*t-11392/25*pwx*q2y^2*t-4056/25*pux*q2y^2*t+9952/25*q2x*q2y^2*t+2*s1y*s3y*t+8*q2x^2*t+40638/25*uy*q2y*t+1992/25*s1y*q2y*t+1348/25*s3y*q2y*t-408*pwy*q2y*t-9044/25*puy*q2y*t-12772/25*q1y*q2y*t-5614/5*q2y^2*t-s3x*t-10*q2x*t+2*t",
+    "-1792/25*s1y*s3y*pwy*q2y*t-1792/25*s1y*pwy^2*q2y*t-1792/25*s1y*s3y*puy*q2y*t-1792/25*s1y*pwy*puy*q2y*t+3584/25*pwy*q1y*q2y^2*t+3584/25*puy*q1y*q2y^2*t-22016/25*ux*uy*q2y*t-11436/25*uy*s2x*q2y*t+7036/25*s1y*s2x*q2y*t-4152/25*s1y*s3x*q2y*t-1792/25*s2y*s3x*q2y*t+9712/25*ux*s3y*q2y*t-2688/25*s2x*s3y*q2y*t+5132/25*uy*pwx*q2y*t-3936/25*s1y*pwx*q2y*t-384/5*s3y*pwx*q2y*t+27168/25*ux*pwy*q2y*t+2688/25*s2x*pwy*q2y*t-2416/25*s3x*pwy*q2y*t+896/25*uy*pux*q2y*t-5256/25*s1y*pux*q2y*t+1792/25*s3y*pux*q2y*t-2688/25*pwy*pux*q2y*t+32556/25*ux*puy*q2y*t-6128/25*s3x*puy*q2y*t+2688/25*pwx*puy*q2y*t-5072/25*pwx*q1y*q2y*t-356/5*pux*q1y*q2y*t+5308/5*uy*q2x*q2y*t-356/5*s1y*q2x*q2y*t-14072/25*s2y*q2x*q2y*t-12488/25*s3y*q2x*q2y*t-5664/5*pwy*q2x*q2y*t-4724/5*puy*q2x*q2y*t+6852/25*q1y*q2x*q2y*t-2076/25*ux*q2y^2*t-2636/25*s2x*q2y^2*t+12488/25*s3x*q2y^2*t+1492/25*pwx*q2y^2*t+14072/25*pux*q2y^2*t+2*s1y*s3y*t+8*q2x^2*t+25002/25*uy*q2y*t+4928/25*s1y*q2y*t+458*s2y*q2y*t+36*s3y*q2y*t+4312/25*pwy*q2y*t-8154/25*puy*q2y*t-2836/25*q1y*q2y*t-33122/25*q2y^2*t-s3x*t-10*q2x*t+2*t",
+    "1792/25*s1y*pwy^2*q2y*t+1792/25*s1y*pwy*puy*q2y*t-54336/25*uy*pwy*q1y*q2y*t-46296/25*uy*puy*q1y*q2y*t+85496/25*uy*q1y*q2y^2*t+54336/25*pwy*q1y*q2y^2*t+46296/25*puy*q1y*q2y^2*t-85496/25*q1y*q2y^3*t+22016/25*ux*uy*q2y*t+11436/25*uy*s2x*q2y*t-7036/25*s1y*s2x*q2y*t-4208/25*uy*s3x*q2y*t+1792/25*s2y*s3x*q2y*t-9712/25*ux*s3y*q2y*t+2688/25*s2x*s3y*q2y*t-5132/25*uy*pwx*q2y*t+9008/25*s1y*pwx*q2y*t+5232/25*s3y*pwx*q2y*t-2688/25*s2x*pwy*q2y*t+1792/25*pwx*pwy*q2y*t+7616/25*uy*pux*q2y*t+5256/25*s1y*pux*q2y*t+896/25*pwy*pux*q2y*t+5072/25*pwx*q1y*q2y*t+7036/25*pux*q1y*q2y*t-14944/25*uy*q2x*q2y*t-908/5*s1y*q2x*q2y*t+14072/25*s2y*q2x*q2y*t+1792/25*s3y*q2x*q2y*t+14336/25*pwy*q2x*q2y*t-2372/25*q1y*q2x*q2y*t-22016/25*ux*q2y^2*t+2636/25*s2x*q2y^2*t+2416/25*s3x*q2y^2*t-12884/25*pwx*q2y^2*t-18128/25*pux*q2y^2*t+9952/25*q2x*q2y^2*t+17236/25*uy*q2y*t+576/25*s1y*q2y*t-10554/25*s2y*q2y*t-6896/25*pwy*q2y*t-178/5*puy*q2y*t-936/5*q1y*q2y*t-1436/5*q2y^2*t",
+    "1792/25*s1y*s3y*pwy*q2y*t+1792/25*s1y*s3y*puy*q2y*t+54336/25*uy*pwy*q1y*q2y*t+46296/25*uy*puy*q1y*q2y*t-85496/25*uy*q1y*q2y^2*t-11584/5*pwy*q1y*q2y^2*t-9976/5*puy*q1y*q2y^2*t+85496/25*q1y*q2y^3*t+4208/25*uy*s3x*q2y*t+4152/25*s1y*s3x*q2y*t-5072/25*s1y*pwx*q2y*t-3312/25*s3y*pwx*q2y*t-27168/25*ux*pwy*q2y*t+2416/25*s3x*pwy*q2y*t-8512/25*uy*pux*q2y*t-1792/25*s3y*pux*q2y*t+1792/25*pwy*pux*q2y*t-32556/25*ux*puy*q2y*t+6128/25*s3x*puy*q2y*t-896/25*pwx*puy*q2y*t-5256/25*pux*q1y*q2y*t-11596/25*uy*q2x*q2y*t+1264/5*s1y*q2x*q2y*t+10696/25*s3y*q2x*q2y*t+13984/25*pwy*q2x*q2y*t+4724/5*puy*q2x*q2y*t-896/5*q1y*q2x*q2y*t+24092/25*ux*q2y^2*t-14904/25*s3x*q2y^2*t+11392/25*pwx*q2y^2*t+4056/25*pux*q2y^2*t-9952/25*q2x*q2y^2*t-2*s1y*s3y*t-8*q2x^2*t-6246/5*uy*q2y*t-792/5*s1y*q2y*t-896/25*s2y*q2y*t-5756/25*s3y*q2y*t+10648/25*pwy*q2y*t+8148/25*puy*q2y*t+996/5*q1y*q2y*t+5614/5*q2y^2*t+s3x*t+10*q2x*t-2*t",
+    "5752/5*ux*uy*s1y*s3y*q2y*t-6488/25*ux*s1y*s3y^2*q2y*t-56128/25*ux*s1y*s2y*pwy*q2y*t+13456/25*ux*s1y*s3y*pwy*q2y*t-108672/25*ux*s1y*pwy^2*q2y*t-1792/25*s1y*pwy^2*pux*q2y*t-22872/25*ux*s1y*s2y*puy*q2y*t+35456/25*ux*s1y*s3y*puy*q2y*t-92592/25*ux*s1y*pwy*puy*q2y*t-1792/25*s1y*pwy*pux*puy*q2y*t-5752/5*uy^2*s3y*q1x*q2y*t+6488/25*uy*s3y^2*q1x*q2y*t+56128/25*uy*s2x*pwx*q1x*q2y*t-28064/25*uy*s3x*pwx*q1x*q2y*t+56128/25*uy*s2y*pwy*q1x*q2y*t-13456/25*uy*s3y*pwy*q1x*q2y*t+22016/25*uy^2*puy*q1x*q2y*t+22872/25*uy*s2y*puy*q1x*q2y*t-35456/25*uy*s3y*puy*q1x*q2y*t-1792/25*uy*pwy*puy*q1x*q2y*t-1792/25*uy*puy^2*q1x*q2y*t+5752/5*ux*uy*s3y*q1y*q2y*t-6488/25*ux*s3y^2*q1y*q2y*t-56128/25*ux*s2x*pwx*q1y*q2y*t+28064/25*ux*s3x*pwx*q1y*q2y*t-56128/25*ux*s2y*pwy*q1y*q2y*t+13456/25*ux*s3y*pwy*q1y*q2y*t-54336/25*uy*pwy*pux*q1y*q2y*t-22016/25*ux*uy*puy*q1y*q2y*t-22872/25*ux*s2y*puy*q1y*q2y*t+35456/25*ux*s3y*puy*q1y*q2y*t+56128/25*ux*pwy*puy*q1y*q2y*t-46296/25*uy*pux*puy*q1y*q2y*t+48088/25*ux*puy^2*q1y*q2y*t-5752/15*uy^3*q2x*q2y*t-6512/25*ux*s1y*s3x*q2x*q2y*t+50096/25*uy^2*s3y*q2x*q2y*t-5752/5*uy*s1y*s3y*q2x*q2y*t-77152/75*uy*s3y^2*q2x*q2y*t+6488/25*s1y*s3y^2*q2x*q2y*t-112256/25*uy*s2x*pwx*q2x*q2y*t+56128/25*uy*s3x*pwx*q2x*q2y*t+20016/25*uy^2*pwy*q2x*q2y*t-112256/25*uy*s2y*pwy*q2x*q2y*t+56128/25*s1y*s2y*pwy*q2x*q2y*t-224/5*uy*s3y*pwy*q2x*q2y*t-13456/25*s1y*s3y*pwy*q2x*q2y*t+110464/25*s1y*pwy^2*q2x*q2y*t-28232/75*uy^2*puy*q2x*q2y*t-45744/25*uy*s2y*puy*q2x*q2y*t+22872/25*s1y*s2y*puy*q2x*q2y*t+12656/15*uy*s3y*puy*q2x*q2y*t-35456/25*s1y*s3y*puy*q2x*q2y*t+94384/25*s1y*pwy*puy*q2x*q2y*t+6512/25*uy*s3x*q1x*q2x*q2y*t+28064/25*uy*pwx*q1x*q2x*q2y*t-6512/25*ux*s3x*q1y*q2x*q2y*t-5752/5*uy*s3y*q1y*q2x*q2y*t+6488/25*s3y^2*q1y*q2x*q2y*t-28064/25*ux*pwx*q1y*q2x*q2y*t+56128/25*s2x*pwx*q1y*q2x*q2y*t-28064/25*s3x*pwx*q1y*q2x*q2y*t-54336/25*uy*pwy*q1y*q2x*q2y*t+56128/25*s2y*pwy*q1y*q2x*q2y*t-13456/25*s3y*pwy*q1y*q2x*q2y*t-4856/5*uy*puy*q1y*q2x*q2y*t+22872/25*s2y*puy*q1y*q2x*q2y*t-35456/25*s3y*puy*q1y*q2x*q2y*t-11584/5*pwy*puy*q1y*q2x*q2y*t-9976/5*puy^2*q1y*q2x*q2y*t+6176/25*ux*s1y*q2x^2*q2y*t-13024/25*uy*s3x*q2x^2*q2y*t+6512/25*s1y*s3x*q2x^2*q2y*t-56128/25*uy*pwx*q2x^2*q2y*t-6176/25*uy*q1x*q2x^2*q2y*t+6176/25*ux*q1y*q2x^2*q2y*t+6512/25*s3x*q1y*q2x^2*q2y*t+28064/25*pwx*q1y*q2x^2*q2y*t+12352/25*uy*q2x^3*q2y*t-6176/25*s1y*q2x^3*q2y*t-6176/25*q1y*q2x^3*q2y*t+5752/15*ux*uy^2*q2y^2*t-50096/25*ux*uy*s3y*q2y^2*t-65576/25*ux*s1y*s3y*q2y^2*t+77152/75*ux*s3y^2*q2y^2*t+112256/25*ux*s2x*pwx*q2y^2*t-56128/25*ux*s3x*pwx*q2y^2*t-20016/25*ux*uy*pwy*q2y^2*t+45424/5*ux*s1y*pwy*q2y^2*t+112256/25*ux*s2y*pwy*q2y^2*t+224/5*ux*s3y*pwy*q2y^2*t+28232/75*ux*uy*puy*q2y^2*t+22872/25*ux*s1y*puy*q2y^2*t+45744/25*ux*s2y*puy*q2y^2*t-12656/15*ux*s3y*puy*q2y^2*t-2876/5*uy^2*q1x*q2y^2*t+94336/25*uy*s3y*q1x*q2y^2*t-6488/25*s3y^2*q1x*q2y^2*t-56128/25*s2x*pwx*q1x*q2y^2*t+28064/25*s3x*pwx*q1x*q2y^2*t+3584/25*uy*pwy*q1x*q2y^2*t-56128/25*s2y*pwy*q1x*q2y^2*t+13456/25*s3y*pwy*q1x*q2y^2*t+3584/25*uy*puy*q1x*q2y^2*t-22872/25*s2y*puy*q1x*q2y^2*t+35456/25*s3y*puy*q1x*q2y^2*t+2876/5*ux*uy*q1y*q2y^2*t-65576/25*ux*s3y*q1y*q2y^2*t+50752/25*ux*pwy*q1y*q2y^2*t+85496/25*uy*pux*q1y*q2y^2*t+11584/5*pwy*pux*q1y*q2y^2*t-2592*ux*puy*q1y*q2y^2*t+9976/5*pux*puy*q1y*q2y^2*t+57208/75*uy^2*q2x*q2y^2*t+13024/25*ux*s3x*q2x*q2y^2*t-214672/75*uy*s3y*q2x*q2y^2*t+65576/25*s1y*s3y*q2x*q2y^2*t+56128/25*ux*pwx*q2x*q2y^2*t+12848/25*uy*pwy*q2x*q2y^2*t-45424/5*s1y*pwy*q2x*q2y^2*t-49736/75*uy*puy*q2x*q2y^2*t-22872/25*s1y*puy*q2x*q2y^2*t-6512/25*s3x*q1x*q2x*q2y^2*t-28064/25*pwx*q1x*q2x*q2y^2*t+71116/25*uy*q1y*q2x*q2y^2*t+65576/25*s3y*q1y*q2x*q2y^2*t+1792/25*pwy*q1y*q2x*q2y^2*t+109304/25*puy*q1y*q2x*q2y^2*t-12352/25*ux*q2x^2*q2y^2*t+6176/25*q1x*q2x^2*q2y^2*t-57208/75*ux*uy*q2y^3*t+214672/75*ux*s3y*q2y^3*t-12848/25*ux*pwy*q2y^3*t+49736/75*ux*puy*q2y^3*t-65576/25*s3y*q1x*q2y^3*t-1792/25*pwy*q1x*q2y^3*t-23808/25*puy*q1x*q2y^3*t-71116/25*ux*q1y*q2y^3*t-85496/25*pux*q1y*q2y^3*t+28656/25*uy*q2x*q2y^3*t-2876/5*q1y*q2x*q2y^3*t-28656/25*ux*q2y^4*t+2876/5*q1x*q2y^4*t+8*ux*s1y*s3y*q2x*t-8*uy*s3y*q1x*q2x*t+8*ux*s3y*q1y*q2x*t-8/3*uy^2*q2x^2*t+64/3*uy*s3y*q2x^2*t-8*s1y*s3y*q2x^2*t-8*s3y*q1y*q2x^2*t+31636/15*uy^2*s3y*q2y*t-5752/5*uy*s1y*s3y*q2y*t-31068/25*uy*s3y^2*q2y*t+6488/25*s1y*s3y^2*q2y*t+12976/75*s3y^3*q2y*t-84192/25*uy*s2x*pwx*q2y*t+28064/25*ux*s2y*pwx*q2y*t+42096/25*uy*s3x*pwx*q2y*t-14032/25*ux*s3y*pwx*q2y*t-84192/25*uy*s2y*pwy*q2y*t+56128/25*s1y*s2y*pwy*q2y*t+28928/25*uy*s3y*pwy*q2y*t-13456/25*s1y*s3y*pwy*q2y*t-3584/25*s2y*s3y*pwy*q2y*t+32864/25*s3y^2*pwy*q2y*t+110464/25*s1y*pwy^2*q2y*t+3584/25*s2y*pwy^2*q2y*t+3584/25*s3y*pwy^2*q2y*t+3088/25*ux*s1y*pux*q2y*t-4208/25*uy*s3x*pux*q2y*t+13684/25*uy*pwx*pux*q2y*t+5072/25*s1y*pwx*pux*q2y*t+896/25*ux*pwy*pux*q2y*t+896/25*pwx*pwy*pux*q2y*t+8512/25*uy*pux^2*q2y*t+7036/25*s1y*pux^2*q2y*t-11008/25*ux^2*puy*q2y*t-33024/25*uy^2*puy*q2y*t-34308/25*uy*s2y*puy*q2y*t+22872/25*s1y*s2y*puy*q2y*t+4208/25*ux*s3x*puy*q2y*t+55688/75*uy*s3y*puy*q2y*t-35456/25*s1y*s3y*puy*q2y*t-3584/25*s2y*s3y*puy*q2y*t+127952/75*s3y^2*puy*q2y*t-13684/25*ux*pwx*puy*q2y*t+2688/25*uy*pwy*puy*q2y*t+94384/25*s1y*pwy*puy*q2y*t+3584/25*s2y*pwy*puy*q2y*t+7168/25*s3y*pwy*puy*q2y*t-7616/25*ux*pux*puy*q2y*t+896/25*pwx*pux*puy*q2y*t+2688/25*uy*puy^2*q2y*t-3372/25*ux*uy*q1x*q2y*t+11436/25*uy*s2x*q1x*q2y*t+16504/25*uy*s3x*q1x*q2y*t-56128/25*uy*pwx*q1x*q2y*t+1984/25*uy*pux*q1x*q2y*t-5256/25*pux*puy*q1x*q2y*t+3372/25*ux^2*q1y*q2y*t-11436/25*ux*s2x*q1y*q2y*t-16504/25*ux*s3x*q1y*q2y*t+56128/25*ux*pwx*q1y*q2y*t+56128/25*s2x*pwx*q1y*q2y*t-28064/25*s3x*pwx*q1y*q2y*t-54336/25*uy*pwy*q1y*q2y*t-1984/25*ux*pux*q1y*q2y*t+5256/25*pux^2*q1y*q2y*t-4856/5*uy*puy*q1y*q2y*t-1792/25*pwy*puy*q1y*q2y*t-1792/25*puy^2*q1y*q2y*t+20432/75*ux*uy*q2x*q2y*t-1152/25*ux*s1y*q2x*q2y*t-22872/25*uy*s2x*q2x*q2y*t-55076/25*uy*s3x*q2x*q2y*t+6512/25*s1y*s3x*q2x*q2y*t-64/3*ux*s3y*q2x*q2y*t+6188*uy*pwx*q2x*q2y*t-5072/25*s1y*pwx*q2x*q2y*t-28064/25*s2y*pwx*q2x*q2y*t+14032/25*s3y*pwx*q2x*q2y*t-29856/25*ux*pwy*q2x*q2y*t+2688/25*pwx*pwy*q2x*q2y*t+352/5*uy*pux*q2x*q2y*t-12496/25*s1y*pux*q2x*q2y*t-3584/25*pwy*pux*q2x*q2y*t-732/25*ux*puy*q2x*q2y*t-4208/25*s3x*puy*q2x*q2y*t+9348/25*pwx*puy*q2x*q2y*t+14544/25*pux*puy*q2x*q2y*t-2296/5*uy*q1x*q2x*q2y*t+8*s3y*q1x*q2x*q2y*t-896/5*puy*q1x*q2x*q2y*t+8108/25*ux*q1y*q2x*q2y*t+11436/25*s2x*q1y*q2x*q2y*t+16504/25*s3x*q1y*q2x*q2y*t-42096/25*pwx*q1y*q2x*q2y*t+1208/25*pux*q1y*q2x*q2y*t+175552/75*uy*q2x^2*q2y*t-2652/25*s1y*q2x^2*q2y*t+5792/5*pwy*q2x^2*q2y*t+13388/25*puy*q2x^2*q2y*t-3192/5*q1y*q2x^2*q2y*t+446/25*ux^2*q2y^2*t+1438/3*uy^2*q2y^2*t+22872/25*ux*s2x*q2y^2*t+45308/25*ux*s3x*q2y^2*t-245152/75*uy*s3y*q2y^2*t+65576/25*s1y*s3y*q2y^2*t-9988/25*s3y^2*q2y^2*t-182764/25*ux*pwx*q2y^2*t-28064/25*s2x*pwx*q2y^2*t+14032/25*s3x*pwx*q2y^2*t+2928/5*uy*pwy*q2y^2*t-45424/5*s1y*pwy*q2y^2*t-28064/25*s2y*pwy*q2y^2*t-103328/25*s3y*pwy*q2y^2*t-14256/25*ux*pux*q2y^2*t+4208/25*s3x*pux*q2y^2*t-1332/5*pwx*pux*q2y^2*t-18128/25*pux^2*q2y^2*t-8872/15*uy*puy*q2y^2*t-22872/25*s1y*puy*q2y^2*t-11436/25*s2y*puy*q2y^2*t-63128/25*s3y*puy*q2y^2*t+3372/25*ux*q1x*q2y^2*t-11436/25*s2x*q1x*q2y^2*t-16504/25*s3x*q1x*q2y^2*t+14032/5*pwx*q1x*q2y^2*t+3272/25*pux*q1x*q2y^2*t+71116/25*uy*q1y*q2y^2*t+5376/25*pwy*q1y*q2y^2*t+2176/25*puy*q1y*q2y^2*t-29552/15*ux*q2x*q2y^2*t-3256/25*s3x*q2x*q2y^2*t-28064/25*pwx*q2x*q2y^2*t+9952/25*pux*q2x*q2y^2*t+3192/5*q1x*q2x*q2y^2*t-4102/25*q2x^2*q2y^2*t+57208/75*uy*q2y^3*t+80732/75*s3y*q2y^3*t+15536/25*pwy*q2y^3*t+2296/3*puy*q2y^3*t+71116/25*q1y*q2y^3*t+7086/25*q2y^4*t-4*ux*s1y*s3y*t+2*s1y*s3y*pux*t+4*uy*s3y*q1x*t-4*ux*s3y*q1y*t-16/3*uy^2*q2x*t+40/3*uy*s3y*q2x*t-6*s1y*s3y*q2x*t-16/3*s3y^2*q2x*t+4*s3y*q1y*q2x*t+2*puy*q1y*q2x*t-9716/75*ux*uy*q2y*t-5718/25*uy*s2x*q2y*t-7036/25*s1y*s2x*q2y*t+5718/25*ux*s2y*q2y*t-28964/25*uy*s3x*q2y*t-3256/25*s1y*s3x*q2y*t+7508/15*ux*s3y*q2y*t-2688/25*s2x*s3y*q2y*t+22804/25*s3x*s3y*q2y*t+50996/25*uy*pwx*q2y*t+9008/25*s1y*pwx*q2y*t+28912/25*s3y*pwx*q2y*t+93864/25*ux*pwy*q2y*t+2688/25*s2x*pwy*q2y*t+5592/25*s3x*pwy*q2y*t-27264/25*pwx*pwy*q2y*t+17236/25*uy*pux*q2y*t-2512/25*s1y*pux*q2y*t-14072/25*s2y*pux*q2y*t-4784/5*pwy*pux*q2y*t+53732/25*ux*puy*q2y*t+2636/25*s2x*puy*q2y*t+5376/25*s3x*puy*q2y*t-4576/25*pwx*puy*q2y*t-2622/25*pux*puy*q2y*t-11836/25*uy*q1x*q2y*t-4*s3y*q1x*q2y*t+11716/25*puy*q1x*q2y*t+8464/25*ux*q1y*q2y*t+11436/25*s2x*q1y*q2y*t+16504/25*s3x*q1y*q2y*t-37024/25*pwx*q1y*q2y*t+342/25*pux*q1y*q2y*t-10952/25*uy*q2x*q2y*t+876/5*s1y*q2x*q2y*t-5718/25*s2y*q2x*q2y*t-35516/25*s3y*q2x*q2y*t+13016/25*pwy*q2x*q2y*t+10318/25*puy*q2x*q2y*t-10678/25*q1y*q2x*q2y*t+34402/75*ux*q2y^2*t-5718/25*s2x*q2y^2*t-17296/25*s3x*q2y^2*t+9892/5*pwx*q2y^2*t+11126/25*pux*q2y^2*t-4326/25*q1x*q2y^2*t-78056/75*q2x*q2y^2*t-2/3*uy*s3y*t+4*s1y*s3y*t+4/3*s3y^2*t-8*s3y*pwy*t-s3x*pux*t-4*ux*q2x*t+s3x*q2x*t-20*pwx*q2x*t+2*pux*q2x*t+17*q2x^2*t+4658/75*uy*q2y*t+3518/25*s2y*q2y*t-7578/25*s3y*q2y*t-50424/25*pwy*q2y*t-40504/25*puy*q2y*t-6168/25*q1y*q2y*t+22127/75*q2y^2*t-6*s3x*t+4*pwx*t+2*q2x*t",
+    "1792/25*s1y*pwy^2*q2y*t+1792/25*s1y*pwy*puy*q2y*t+54336/25*uy*pwy*q1y*q2y*t+46296/25*uy*puy*q1y*q2y*t-85496/25*uy*q1y*q2y^2*t-11584/5*pwy*q1y*q2y^2*t-9976/5*puy*q1y*q2y^2*t+85496/25*q1y*q2y^3*t+4208/25*uy*s3x*q2y*t-13684/25*uy*pwx*q2y*t-5072/25*s1y*pwx*q2y*t-896/25*ux*pwy*q2y*t-896/25*pwx*pwy*q2y*t-8512/25*uy*pux*q2y*t-7036/25*s1y*pux*q2y*t-896/25*ux*puy*q2y*t-896/25*pwx*puy*q2y*t-5256/25*pux*q1y*q2y*t+2784/25*uy*q2x*q2y*t+2372/25*s1y*q2x*q2y*t+1792/25*pwy*q2x*q2y*t+1792/25*puy*q2x*q2y*t-896/5*q1y*q2x*q2y*t+9712/25*ux*q2y^2*t-4208/25*s3x*q2y^2*t+1332/5*pwx*q2y^2*t+18128/25*pux*q2y^2*t-9952/25*q2x*q2y^2*t-2*s1y*s3y*t-12596/25*uy*q2y*t+936/5*s1y*q2y*t+7792/25*pwy*q2y*t+178/5*puy*q2y*t+11766/25*q1y*q2y*t+2582/25*q2y^2*t+s3x*t-q2x*t",
+    "5752/15*uy^3*q2y*t-179048/75*uy^2*s3y*q2y*t+5752/5*uy*s1y*s3y*q2y*t+28232/15*uy*s3y^2*q2y*t-6488/25*s1y*s3y^2*q2y*t-12976/75*s3y^3*q2y*t+112256/25*uy*s2x*pwx*q2y*t-56128/25*uy*s3x*pwx*q2y*t-20016/25*uy^2*pwy*q2y*t+112256/25*uy*s2y*pwy*q2y*t-56128/25*s1y*s2y*pwy*q2y*t-7624/25*uy*s3y*pwy*q2y*t+13456/25*s1y*s3y*pwy*q2y*t+3584/25*s2y*s3y*pwy*q2y*t-32864/25*s3y^2*pwy*q2y*t-112256/25*s1y*pwy^2*q2y*t-3584/25*s2y*pwy^2*q2y*t-3584/25*s3y*pwy^2*q2y*t+28232/75*uy^2*puy*q2y*t+45744/25*uy*s2y*puy*q2y*t-22872/25*s1y*s2y*puy*q2y*t+13528/25*uy*s3y*puy*q2y*t+35456/25*s1y*s3y*puy*q2y*t+3584/25*s2y*s3y*puy*q2y*t-127952/75*s3y^2*puy*q2y*t-96176/25*s1y*pwy*puy*q2y*t-3584/25*s2y*pwy*puy*q2y*t-7168/25*s3y*pwy*puy*q2y*t-56128/25*s2x*pwx*q1y*q2y*t+28064/25*s3x*pwx*q1y*q2y*t+108672/25*uy*pwy*q1y*q2y*t+70576/25*uy*puy*q1y*q2y*t+3584/25*pwy*puy*q1y*q2y*t+3584/25*puy^2*q1y*q2y*t+13024/25*uy*s3x*q2x*q2y*t-6512/25*s1y*s3x*q2x*q2y*t+56128/25*uy*pwx*q2x*q2y*t-28064/25*pwx*q1y*q2x*q2y*t-12352/25*uy*q2x^2*q2y*t+6176/25*s1y*q2x^2*q2y*t-57208/75*uy^2*q2y^2*t+7424/3*uy*s3y*q2y^2*t-65576/25*s1y*s3y*q2y^2*t-17992/75*s3y^2*q2y^2*t-12848/25*uy*pwy*q2y^2*t+45424/5*s1y*pwy*q2y^2*t+82024/25*s3y*pwy*q2y^2*t+49736/75*uy*puy*q2y^2*t+22872/25*s1y*puy*q2y^2*t+93112/75*s3y*puy*q2y^2*t-156612/25*uy*q1y*q2y^2*t-11584/5*pwy*q1y*q2y^2*t-9336/5*puy*q1y*q2y^2*t-28656/25*uy*q2y^3*t-104/25*s3y*q2y^3*t+2876/5*q1y*q2y^3*t+8/3*uy^2*q2x*t-24*uy*s3y*q2x*t+8*s1y*s3y*q2x*t+16/3*s3y^2*q2x*t+11436/25*uy*s2x*q2y*t+7036/25*s1y*s2x*q2y*t+49516/25*uy*s3x*q2y*t+3256/25*s1y*s3x*q2y*t-4228/25*ux*s3y*q2y*t+2688/25*s2x*s3y*q2y*t-22804/25*s3x*s3y*q2y*t-6544*uy*pwx*q2y*t-3936/25*s1y*pwx*q2y*t-28912/25*s3y*pwx*q2y*t-91176/25*ux*pwy*q2y*t-2688/25*s2x*pwy*q2y*t-5592/25*s3x*pwy*q2y*t+24576/25*pwx*pwy*q2y*t-2432/5*uy*pux*q2y*t+4868/25*s1y*pux*q2y*t+14072/25*s2y*pux*q2y*t+3584/5*pwy*pux*q2y*t-61408/25*ux*puy*q2y*t-2636/25*s2x*puy*q2y*t-5376/25*s3x*puy*q2y*t+8912/25*pwx*puy*q2y*t+1792/25*pux*puy*q2y*t+3372/25*ux*q1y*q2y*t-11436/25*s2x*q1y*q2y*t-16504/25*s3x*q1y*q2y*t+51056/25*pwx*q1y*q2y*t-6852/25*pux*q1y*q2y*t-189208/75*uy*q2x*q2y*t-2072/25*s1y*q2x*q2y*t+82492/75*s3y*q2x*q2y*t-14808/25*pwy*q2x*q2y*t-5048/25*puy*q2x*q2y*t+19484/25*q1y*q2x*q2y*t+55878/25*ux*q2y^2*t-3256/25*s3x*q2y^2*t+42096/25*pwx*q2y^2*t-14072/25*pux*q2y^2*t+32706/25*q2x*q2y^2*t+16/3*uy^2*t-4*uy*s3y*t-2*s1y*s3y*t-4/3*s3y^2*t+8*s3y*pwy*t-2*puy*q1y*t+12*ux*q2x*t-12*q2x^2*t+179026/75*uy*q2y*t-936/5*s1y*q2y*t-3518/25*s2y*q2y*t+23084/75*s3y*q2y*t+50424/25*pwy*q2y*t+30408/25*puy*q2y*t-9994/25*q1y*q2y*t-9584/5*q2y^2*t-8*ux*t+5*s3x*t+16*pwx*t-pux*t-6*q2x*t-t",
+    "-5752/15*uy^2*s3y*q2y*t+21336/25*uy*s3y^2*q2y*t-12976/75*s3y^3*q2y*t-8744/25*uy*s3y*pwy*q2y*t-1792/25*s1y*s3y*pwy*q2y*t+3584/25*s2y*s3y*pwy*q2y*t-32864/25*s3y^2*pwy*q2y*t-3584/25*s2y*pwy^2*q2y*t-3584/25*s3y*pwy^2*q2y*t+103864/75*uy*s3y*puy*q2y*t-1792/25*s1y*s3y*puy*q2y*t+3584/25*s2y*s3y*puy*q2y*t-127952/75*s3y^2*puy*q2y*t-3584/25*s2y*pwy*puy*q2y*t-7168/25*s3y*pwy*puy*q2y*t-5752/5*uy*s3y*q1y*q2y*t+6488/25*s3y^2*q1y*q2y*t+54336/25*uy*pwy*q1y*q2y*t+56128/25*s2y*pwy*q1y*q2y*t-13456/25*s3y*pwy*q1y*q2y*t+46296/25*uy*puy*q1y*q2y*t+22872/25*s2y*puy*q1y*q2y*t-35456/25*s3y*puy*q1y*q2y*t-54336/25*pwy*puy*q1y*q2y*t-46296/25*puy^2*q1y*q2y*t+6512/25*s3x*q1y*q2x*q2y*t-6176/25*q1y*q2x^2*q2y*t-29072/75*uy*s3y*q2y^2*t-17992/75*s3y^2*q2y^2*t+82024/25*s3y*pwy*q2y^2*t+93112/75*s3y*puy*q2y^2*t-85496/25*uy*q1y*q2y^2*t+65576/25*s3y*q1y*q2y^2*t-56128/25*pwy*q1y*q2y^2*t+62624/25*puy*q1y*q2y^2*t-104/25*s3y*q2y^3*t-8/3*uy*s3y*q2x*t+16/3*s3y^2*q2x*t-8*s3y*q1y*q2x*t-22016/25*ux*uy*q2y*t-11436/25*uy*s2x*q2y*t+7036/25*s1y*s2x*q2y*t+4208/25*uy*s3x*q2y*t-896/25*s1y*s3x*q2y*t+9712/25*ux*s3y*q2y*t+2688/25*s2x*s3y*q2y*t-22804/25*s3x*s3y*q2y*t+33196/25*uy*pwx*q2y*t-9008/25*s1y*pwx*q2y*t-28064/25*s2y*pwx*q2y*t-15776/25*s3y*pwx*q2y*t-28064/25*ux*pwy*q2y*t-2688/25*s2x*pwy*q2y*t-216/25*s3x*pwy*q2y*t+22784/25*pwx*pwy*q2y*t-7616/25*uy*pux*q2y*t-12292/25*s1y*pux*q2y*t+14072/25*s2y*pux*q2y*t+1792/25*s3y*pux*q2y*t+14336/25*pwy*pux*q2y*t+2116/5*ux*puy*q2y*t-2636/25*s2x*puy*q2y*t-2416/25*s3x*puy*q2y*t+12884/25*pwx*puy*q2y*t+18128/25*pux*puy*q2y*t-5072/25*pwx*q1y*q2y*t-10124/25*pux*q1y*q2y*t+14944/25*uy*q2x*q2y*t-2496/25*s1y*q2x*q2y*t+40672/75*s3y*q2x*q2y*t+28064/25*pwy*q2x*q2y*t+1484/25*puy*q2x*q2y*t+3524/25*q1y*q2x*q2y*t+3256/25*s3x*q2y^2*t-3088/25*q2x*q2y^2*t-16/3*uy*s3y*t-4/3*s3y^2*t+8*s3y*pwy*t+4*s3y*q1y*t-11518/25*uy*q2y*t+1292/5*s1y*q2y*t-9236/25*s2y*q2y*t+6772/15*s3y*q2y*t+8056/25*pwy*q2y*t+1436/5*puy*q2y*t+936/5*q1y*q2y*t-78/25*q2y^2*t",
+    "1792/25*s1y*s3y*pwy*q2y*t-1792/25*s1y*pwy^2*q2y*t+1792/25*s1y*s3y*puy*q2y*t-1792/25*s1y*pwy*puy*q2y*t+20132/15*ux*uy*q2y*t+896/25*s1y*s3x*q2y*t-45064/75*ux*s3y*q2y*t+896/25*s3y*pwx*q2y*t-9728/5*ux*pwy*q2y*t-5376/25*s3x*pwy*q2y*t+896/5*pwx*pwy*q2y*t+7036/25*s1y*pux*q2y*t-1792/25*s3y*pux*q2y*t+1792/25*pwy*pux*q2y*t-106532/75*ux*puy*q2y*t-7168/25*s3x*puy*q2y*t+5376/25*pwx*puy*q2y*t-28064/25*pwx*q1y*q2y*t-20132/15*uy*q2x*q2y*t+7036/25*s1y*q2x*q2y*t+45064/75*s3y*q2x*q2y*t-7488/25*pwy*q2x*q2y*t-172/3*puy*q2x*q2y*t-36756/25*ux*q2y^2*t+56128/25*pwx*q2y^2*t-14072/25*pux*q2y^2*t+36756/25*q2x*q2y^2*t+40/3*ux*q2x*t-40/3*q2x^2*t+29272/25*uy*q2y*t-7036/25*s1y*q2y*t-3912/25*s3y*q2y*t+17888/25*pwy*q2y*t+17582/25*puy*q2y*t-5718/25*q1y*q2y*t-4052/5*q2y^2*t+8/3*ux*t+4*s3x*t-4*pwx*t-8/3*q2x*t",
+    "5752/15*uy^2*s3y*q2y*t-21336/25*uy*s3y^2*q2y*t+12976/75*s3y^3*q2y*t+8744/25*uy*s3y*pwy*q2y*t-3584/25*s2y*s3y*pwy*q2y*t+32864/25*s3y^2*pwy*q2y*t+1792/25*s1y*pwy^2*q2y*t+3584/25*s2y*pwy^2*q2y*t+3584/25*s3y*pwy^2*q2y*t-103864/75*uy*s3y*puy*q2y*t-3584/25*s2y*s3y*puy*q2y*t+127952/75*s3y^2*puy*q2y*t+1792/25*s1y*pwy*puy*q2y*t+3584/25*s2y*pwy*puy*q2y*t+7168/25*s3y*pwy*puy*q2y*t+5752/5*uy*s3y*q1y*q2y*t-6488/25*s3y^2*q1y*q2y*t-54336/25*uy*pwy*q1y*q2y*t-56128/25*s2y*pwy*q1y*q2y*t+13456/25*s3y*pwy*q1y*q2y*t-46296/25*uy*puy*q1y*q2y*t-22872/25*s2y*puy*q1y*q2y*t+35456/25*s3y*puy*q1y*q2y*t+54336/25*pwy*puy*q1y*q2y*t+46296/25*puy^2*q1y*q2y*t-6512/25*s3x*q1y*q2x*q2y*t+6176/25*q1y*q2x^2*q2y*t+29072/75*uy*s3y*q2y^2*t+17992/75*s3y^2*q2y^2*t-82024/25*s3y*pwy*q2y^2*t-93112/75*s3y*puy*q2y^2*t+85496/25*uy*q1y*q2y^2*t-65576/25*s3y*q1y*q2y^2*t+56128/25*pwy*q1y*q2y^2*t-62624/25*puy*q1y*q2y^2*t+104/25*s3y*q2y^3*t+8/3*uy*s3y*q2x*t-16/3*s3y^2*q2x*t+8*s3y*q1y*q2x*t-6744/25*ux*uy*q2y*t+11436/25*uy*s2x*q2y*t-7036/25*s1y*s2x*q2y*t-4208/25*uy*s3x*q2y*t-3256/25*s1y*s3x*q2y*t+4228/25*ux*s3y*q2y*t-2688/25*s2x*s3y*q2y*t+22804/25*s3x*s3y*q2y*t-33196/25*uy*pwx*q2y*t+9008/25*s1y*pwx*q2y*t+28064/25*s2y*pwx*q2y*t+2976/5*s3y*pwx*q2y*t+66696/25*ux*pwy*q2y*t+2688/25*s2x*pwy*q2y*t+5592/25*s3x*pwy*q2y*t-27264/25*pwx*pwy*q2y*t+7616/25*uy*pux*q2y*t+5256/25*s1y*pux*q2y*t-14072/25*s2y*pux*q2y*t-16128/25*pwy*pux*q2y*t+29636/25*ux*puy*q2y*t+2636/25*s2x*puy*q2y*t+9584/25*s3x*puy*q2y*t-3652/5*pwx*puy*q2y*t-18128/25*pux*puy*q2y*t+19104/25*pwx*q1y*q2y*t+10124/25*pux*q1y*q2y*t+13816/25*uy*q2x*q2y*t-1452/25*s1y*q2x*q2y*t-82492/75*s3y*q2x*q2y*t-14152/25*pwy*q2x*q2y*t-1668/5*puy*q2x*q2y*t-3524/25*q1y*q2x*q2y*t+22428/25*ux*q2y^2*t+3256/25*s3x*q2y^2*t-28064/25*pwx*q2y^2*t+14072/25*pux*q2y^2*t-25516/25*q2x*q2y^2*t+16/3*uy*s3y*t+4/3*s3y^2*t-8*s3y*pwy*t-4*s3y*q1y*t-12*ux*q2x*t+12*q2x^2*t-17754/25*uy*q2y*t+9236/25*s2y*q2y*t+1672/75*s3y*q2y*t-23256/25*pwy*q2y*t-9842/25*puy*q2y*t+5668/25*q1y*q2y*t-914/5*q2y^2*t-6*s3x*t+4*pwx*t+q2x*t"
+  ],
+  "common_erased_masks": {
+    "Pu": {
+      "mask": 75,
+      "members": [
+        "u",
+        "v",
+        "s1",
+        "Pw"
+      ]
+    },
+    "Pw": {
+      "mask": 178,
+      "members": [
+        "v",
+        "s2",
+        "s3",
+        "Pu"
+      ]
+    },
+    "Q1": {
+      "mask": 646,
+      "members": [
+        "v",
+        "w",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "Q2": {
+      "mask": 297,
+      "members": [
+        "u",
+        "s1",
+        "s3",
+        "Q1"
+      ]
+    },
+    "s1": {
+      "mask": 102,
+      "members": [
+        "v",
+        "w",
+        "s3",
+        "Pw"
+      ]
+    },
+    "s2": {
+      "mask": 680,
+      "members": [
+        "s1",
+        "s3",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "s3": {
+      "mask": 533,
+      "members": [
+        "u",
+        "w",
+        "s2",
+        "Q2"
+      ]
+    },
+    "u": {
+      "mask": 284,
+      "members": [
+        "w",
+        "s1",
+        "s2",
+        "Q1"
+      ]
+    }
+  },
+  "exact_pids": [
+    "s2_067"
+  ],
+  "generator_metadata": [
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,s2)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+      "id": "exact:v:u=s2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pw)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:v:u=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pu)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+      "id": "exact:v:u=Pu",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pu"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Pw)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:w:s3=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Pw"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q1)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+      "id": "exact:w:s3=Q1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q1"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s3) = dist2(w,Q2)",
+      "generator": "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+      "id": "exact:w:s3=Q2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s3",
+        "Q2"
+      ]
+    },
+    {
+      "equation": "t * dist2(u,v) - 1",
+      "generator": "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+      "id": "separator:u=v",
+      "kind": "rabinowitsch_distinct",
+      "optional": false,
+      "pair": [
+        "u",
+        "v"
+      ],
+      "source": "separator"
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+      "id": "leaf:R010YY:u:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,s2)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+      "id": "leaf:R010YY:u:w=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s2"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,w) = dist2(u,Q1)",
+      "generator": "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+      "id": "leaf:R010YY:u:w=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,w)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(1))^2+((s1y)-(0))^2)",
+      "id": "leaf:R010YY:s1:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,s3)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+      "id": "leaf:R010YY:s1:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,v) = dist2(s1,Pw)",
+      "generator": "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(pwx))^2+((s1y)-(pwy))^2)",
+      "id": "leaf:R010YY:s1:v=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pw"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,s3)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+      "id": "leaf:R010YY:s2:s1=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Pu)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+      "id": "leaf:R010YY:s2:s1=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Q2)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q2x))^2+((s2y)-(q2y))^2)",
+      "id": "leaf:R010YY:s2:s1=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,w)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+      "id": "leaf:R010YY:s3:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,s2)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s2x))^2+((s3y)-(s2y))^2)",
+      "id": "leaf:R010YY:s3:u=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,u) = dist2(s3,Q2)",
+      "generator": "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+      "id": "leaf:R010YY:s3:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s2)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+      "id": "leaf:R010YY:Pw:v=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s3)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+      "id": "leaf:R010YY:Pw:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Pu)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+      "id": "leaf:R010YY:Pw:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,v)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(0))^2+((puy)-(0))^2)",
+      "id": "leaf:R010YY:Pu:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,s1)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s1x))^2+((puy)-(s1y))^2)",
+      "id": "leaf:R010YY:Pu:u=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Pw)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+      "id": "leaf:R010YY:Pu:u=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,w)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(1))^2+((q1y)-(0))^2)",
+      "id": "leaf:R010YY:Q1:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,Pu)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(pux))^2+((q1y)-(puy))^2)",
+      "id": "leaf:R010YY:Q1:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,Q2)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+      "id": "leaf:R010YY:Q1:v=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,u) = dist2(Q2,s1)",
+      "generator": "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+      "id": "leaf:R010YY:Q2:u=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s1"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,u) = dist2(Q2,s3)",
+      "generator": "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(s3x))^2+((q2y)-(s3y))^2)",
+      "id": "leaf:R010YY:Q2:u=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s3"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,u) = dist2(Q2,Q1)",
+      "generator": "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)",
+      "id": "leaf:R010YY:Q2:u=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q1"
+      ]
+    }
+  ],
+  "generators": [
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+    "((1)-(s3x))^2+((0)-(s3y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+    "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s1x))^2+((uy)-(s1y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(s2x))^2+((uy)-(s2y))^2)",
+    "((ux)-(1))^2+((uy)-(0))^2-(((ux)-(q1x))^2+((uy)-(q1y))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(1))^2+((s1y)-(0))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+    "((s1x)-(0))^2+((s1y)-(0))^2-(((s1x)-(pwx))^2+((s1y)-(pwy))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q2x))^2+((s2y)-(q2y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(s2x))^2+((s3y)-(s2y))^2)",
+    "((s3x)-(ux))^2+((s3y)-(uy))^2-(((s3x)-(q2x))^2+((s3y)-(q2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(0))^2+((puy)-(0))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(s1x))^2+((puy)-(s1y))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(1))^2+((q1y)-(0))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(pux))^2+((q1y)-(puy))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+    "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+    "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(s3x))^2+((q2y)-(s3y))^2)",
+    "((q2x)-(ux))^2+((q2y)-(uy))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)"
+  ],
+  "leaf_id": "R010YY",
+  "minimize_optional": false,
+  "minimize_steps": [],
+  "relaxed_id": "R010",
+  "schema": "pinned_surplus_relaxed_split_certificate.v1",
+  "separator_pair": "u=v",
+  "split_path": [
+    {
+      "center": "Q2",
+      "decision": "yes",
+      "label": "u"
+    },
+    {
+      "center": "s1",
+      "decision": "yes",
+      "label": "Pw"
+    }
+  ],
+  "sstar": "s2",
+  "support": {
+    "centers_used": [
+      "u",
+      "v",
+      "w",
+      "s1",
+      "s2",
+      "s3",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonzero_count": 29,
+    "nonzero_indices": [
+      0,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "nonzero_optional_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "variables": [
+    "ux",
+    "uy",
+    "s1x",
+    "s1y",
+    "s2x",
+    "s2y",
+    "s3x",
+    "s3y",
+    "pwx",
+    "pwy",
+    "pux",
+    "puy",
+    "q1x",
+    "q1y",
+    "q2x",
+    "q2y",
+    "t"
+  ]
+}

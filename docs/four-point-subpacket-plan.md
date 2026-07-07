@@ -9,6 +9,12 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 This plan turns the incidence deduplication observation into proof-facing Lean
 infrastructure.
 
+Live status owner: use `docs/four-point-subpacket-live-frontier.md` for the
+current agent-facing frontier.  This file is now the append-only design and
+execution log; it contains stale historical "next step" text that is preserved
+for provenance.  When status differs, the live frontier plus proof-blueprint
+output wins.
+
 Scope: the reduction is a normalization lemma inside the existing convex-shell
 framework.  The incidence census does not independently encode convexity; it
 assumes the cap/Moser/cyclic setup already produced from `ConvexIndep A`.  This
@@ -251,6 +257,9 @@ moserCount <= 2                                      CLOSED assuming
                                                      one-sided erased payload
                                                      Boolean-no-three
                                                      wrappers CLOSED;
+                                                     finite-shadow
+                                                     m-uniformity/
+                                                     confinement audit OPEN;
                                                      remaining geometric
                                                      side-condition package OPEN
 leftAdjCount <= 1                                    OPEN
@@ -259,6 +268,15 @@ rightAdjCount <= 1                                   OPEN
 1 <= rightAdjCount                                   OPEN
 primitive-row metric exclusion                       OPEN
 ```
+
+Audit gate: the two adjacent upper bounds for interior non-surplus centers are
+not yet lemma-shaped.  Before trying to prove `leftAdjCount <= 1` and
+`rightAdjCount <= 1`, run the exact-rational two-hit falsifiability probe
+described in `docs/audits/2026-07-06-frontier-missed-angle-analysis.md`.  If
+the full local pin with two same-side adjacent-interior hits is satisfiable,
+the two-hit rows must be added to the seeded finite-census family; if it is
+unsatisfiable, extract the mechanism and prove the actual geometric one-hit
+lemma.
 
 Current spine refinement:
 
@@ -759,8 +777,24 @@ Endpoint certificate Lean vertical slice
     implementation work is in the emitter: generate per-product data/theorems
     and row coordinators for certificates above the one-module budget.
 
+  - DONE: coefficient/support extraction over the 117 checked JSON
+    certificates is recorded at
+    `certificates/endpoint/reports/endpoint_core_census.json`, with a readable
+    table at `certificates/endpoint/reports/endpoint_core_census.md`.  The pass
+    lists the generators with nonzero lift coefficients in each pattern and
+    classifies all of them as distance equalities or the Rabinowitsch
+    distinctness generator.  This is lifted-column support, not a minimal-core
+    certificate; the observed support is broad, with many rows using center
+    equations outside the two endpoint payload classes.
+
   - only after the 117 Lean certificate facts build should the work move to the
     formal faithfulness bridge from endpoint residuals to certified patterns.
+    The preferred bridge shape is now the same generated-bank/completeness
+    architecture used by the pinned DFS route: endpoint fragment rules, a
+    117-row endpoint bank, a completeness theorem, then per-row metric
+    certificates.  The broad lifted support means the bridge either has to
+    transport the broader endpoint-row vocabulary or run a true
+    minimal-support/minimal-core pass before fixing the final interface.
 ```
 
 `docs/escape-census-bugcheck.md` is relevant hygiene for this step.  It verifies
@@ -863,10 +897,159 @@ geometric residual
   -> pinned fragment row       OPEN
 ```
 
-Consequently, if the current two surplus-adjacent residual hypotheses in
+Audit update from
+`docs/audits/2026-07-06-frontier-missed-angle-analysis.md`: the open
+geometric residual-to-fragment step is not merely a missing local
+candidate-membership proof.  The generated predicate `candidateMaskOK` requires
+`maskCard mask == 4`, and `pointMask` only records witnesses among the ten
+chosen labels.  Therefore the current `candidateMasks` interface requires each
+geometric selected class to have all four witnesses inside the ten-label
+subconfiguration.  This is automatic only in the label-complete `m = 5`
+case.  For `m >= 6`, `.u` and surplus-interior centers may have anonymous
+surplus witnesses outside the ten labels, so exact-mask faithfulness is a real
+uniformity/confinement gate.
+
+The pinned-135 lifted-support experiment has now been run:
+
+```text
+Input:
+  certificates/surplus/pinned_surplus_comp_g_bank.json
+
+Question:
+  For each of the 135 rows, which center-class equations have nonzero lift
+  coefficients in the emitted COMP-G certificate support?
+
+Artifact:
+  certificates/surplus/reports/pinned_surplus_lift_support.json
+  certificates/surplus/reports/pinned_surplus_lift_support.md
+
+Result:
+  134 rows solved by Singular lifted-column support extraction with a
+  20-second per-row timeout; all 134 solved rows use at least one center
+  outside the exact-mask-safe pair `{v,w}`.  The remaining row `s1_030`
+  timed out; a separate 180-second single-row probe is recorded at
+  `certificates/surplus/reports/pinned_surplus_lift_support_s1_030_timeout180.json`
+  and also timed out.
+
+Interpretation:
+  This is lifted-column support, not a true minimal-core certificate.  It is
+  nevertheless enough to rule out the optimistic route "the existing emitted
+  certificates only use uniformly faithful centers."  To rescue the exact-bank
+  route for general `m`, we would need a true minimal-support/minimal-core
+  pass or regenerated certificates constrained away from nonuniform centers.
+
+Follow-up constrained-support test:
+  `certificates/surplus/reports/pinned_surplus_uniform_center_test.json`
+  tests whether the exact-mask-safe centers `{v,w}` plus each row's forced-pair
+  separator already generate the unit ideal.  Result: `nonunit` for all 135
+  rows.  Therefore simply regenerating the pinned certificates with support
+  restricted to `{v,w}` cannot close the general-`m` route.  A general-`n`
+  proof needs a real relaxed/sub-mask faithfulness theorem, a confinement
+  theorem that makes more centers faithful, or an explicit split leaving a
+  named general-`m` residual.
+
+Relaxed incidence projection census:
+  `certificates/surplus/reports/pinned_surplus_relaxed_incidence_census.json`
+  and `.md` project the exact 135-row pinned bank to the currently
+  geometry-safe `{v,w}` mask vocabulary, erasing every other center to the
+  empty guaranteed submask.  This collapses the exact bank to 15 relaxed
+  incidence rows: 8 for `s1`, 4 for `s2`, and 3 for `s3`.  Twelve relaxed rows
+  have multiple exact completions, with a largest completion fiber of 36 rows.
+  The report records exact completion pids, final-verdict counts, COMP-G
+  forced-pair counts, separator-pair counts, and intersection/union masks for
+  erased centers.  The erased-center intersections
+  are useful leads, but they are conditional on the exact-bank completion
+  hypothesis; they are not automatically geometric facts for the general-`m`
+  payload.
+
+Decisions:
+  - if a later minimal-core/refined-certificate pass avoids unconfinable
+    centers, regenerate a relaxed/sub-mask fragment vocabulary and rerun the
+    DFS/Singular pass;
+  - the first refined-certificate test, `{v,w}` plus forced-pair separators,
+    fails for all 135 rows, so the next general-`n` step should not be more
+    exact-mask certificate generation; it should be a relaxed/sub-mask
+    vocabulary theorem or a confinement theorem;
+  - the immediate relaxed-bank test is now a 15-row support-mining pass:
+    build `certificates/surplus/reports/pinned_surplus_relaxed_certificate_probe.json`
+    from the relaxed incidence census, test each relaxed row with exact `.v`,
+    exact `.w`, the row separator case, and candidate erased-center common
+    submask facts, then greedily delete optional facts while preserving a
+    Singular `UNIT` verdict.  The result should be read as the proof shopping
+    list for geometric submask lemmas.  If a relaxed row does not become
+    `UNIT` even with all common erased-center incidences, the `{v,w}` projection
+    is too coarse and the next finite object must be a true relaxed DFS over
+    observed submasks rather than another projection of the exact 135-row bank;
+  - first execution of that probe is recorded at
+    `certificates/surplus/reports/pinned_surplus_relaxed_certificate_probe.json`
+    and `.md`.  The 15 relaxed rows split into 17 separator cases.  Exact
+    `.v/.w` plus the branch separator is `nonunit` for all 17.  Adding all
+    branch-common erased-center submask equations gives `unit` for 5 cases,
+    `nonunit` for 5 cases, and timeout for 7 cases at 20 seconds.  Therefore
+    the common-intersection `{v,w}` projection is not sufficient as the
+    complete general-`m` route.  The next finite computation should split the
+    variable erased-center submask choices, beginning with the five definite
+    `nonunit` cases, and only then repeat the algebraic support probe;
+  - recursive variable-incidence splitting is recorded at
+    `certificates/surplus/reports/pinned_surplus_relaxed_split_probe.json`
+    and `.md`.  It closes all 17 separator cases as 63 `unit` leaves with no
+    unresolved leaves.  Coefficient witnesses are emitted under
+    `certificates/surplus/relaxed_split`: the first certificate pass emits 58
+    of 63 leaves, `R011:u=v:R011NNN` is recovered by the long-retry report, and
+    the four remaining hard grouped leaves are replaced by 11 singleton-leaf
+    certificates from
+    `pinned_surplus_relaxed_split_singleton_replacement_census.{json,md}`.
+    That 70-file grouped pass is retained as the support-mining artifact, but
+    it has been superseded as the Lean ingestion target by the fully singleton
+    split;
+  - the Lean-ingested singleton split is recorded at
+    `certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_probe.{json,md}`
+    and
+    `certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_certificate_census.{json,md}`.
+    It has 135 singleton leaves, all `unit`; the source certificate directory
+    `certificates/surplus/relaxed_split_singleton` contains 135 JSON
+    certificates, and the reports/certificates parse cleanly with `jq`.
+    The generated Lean bank is
+    `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All`: 136 top-level
+    Lean modules including `All.lean`, 34 term-sharded certificate directories,
+    and 2729 shard modules.  `lake-build
+    Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All` succeeds; the last
+    recorded clean aggregate build took 15m03s.  The aggregate now carries
+    proof-facing payloads, and
+    `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Bank` builds, recording
+    the 135 singleton row ids/case ids/leaf ids/split paths/exact completion
+    pids/common erased masks and proving row-id/certificate-id alignment plus
+    `exists_certifiedRelaxedSplitRow_of_rowIdInBank`.
+    `Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness` builds,
+    exposing `false_of_verifiedCertificate` for checked relaxed split payloads
+    under zero-evaluation hypotheses.
+    `Erdos9796Proof.P97.SurplusCertificate.BankSoundness` builds and exposes
+    `false_of_relaxedSplitRowIdInBank_of_payload_zeros`, the current target
+    surface for row-id based geometric work.
+    `Erdos9796Proof.P97.SurplusCertificate.ExactBridge` builds and exposes
+    `false_of_shadowInBank_of_payload_zeros`, which maps exact
+    `SurplusCOMPGBank.shadowInBank` membership to the matching singleton
+    relaxed split certificate by exact pid.
+    `Erdos9796Proof.P97.SurplusCertificate.GeometryBridge` builds and covers
+    all relaxed singleton generator shapes, including the separator
+    Rabinowitsch families.  The direct row-zero emitter now generates 116 row
+    coordinators plus exact-mask, shape-fact, and per-generator zero shards; a
+    representative regenerated generator shard target
+    `Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R001NoSeparatorR001N.G00`
+    builds.  The row/coordinator aggregate remains a compile-scaling target,
+    and term-sharded product-sum row-zero lifting is still open.  The next
+    proof step is geometric payload zero-evaluation for the exact-shadow
+    certificate row, not more certificate generation;
+  - absent such a theorem, split the pinned residual into the closed `m = 5`
+    bank case and a genuine general-`m` Q-shaped residual.
+```
+
+Subject to that core-mining gate, if the current two surplus-adjacent residual
+hypotheses in
 `IsM44.nonSurplusNoStrictAdjacentEscape_of_endpoint_surplus_residuals` can be
-relabelled and strengthened to the rvol pinned family, no new surplus algebra is
-needed.  The remaining work is the faithfulness bridge:
+relabelled and strengthened to the rvol pinned family, no new surplus algebra
+may be needed.  The remaining bridge shape, in the exact ten-label case or in a
+relaxed vocabulary that survives the audit, is:
 
 ```text
 hsurplus1 / hsurplus2 local side residual
@@ -1171,14 +1354,20 @@ literal accepted-key bridge CLOSED.
   surplus star, rather than one large `native_decide` recomputation.
 ```
 
-The next proof-facing target is now explicit:
+The next proof-facing target was previously:
 
 ```text
 geometric pinned residual payload
   -> isValidPinnedFragment sstar shadow = true
 ```
 
-This is the geometric payload-to-shadow faithfulness bridge.  After bank
+After the 2026-07-06 missed-angle audit, this target is conditional: it is the
+right bridge only for center masks whose four witnesses are all faithfully
+captured by the ten labels, or for a regenerated relaxed/sub-mask vocabulary.
+The pinned-135 core-mining experiment decides which version is sound for
+general `m`.
+
+This is still the geometric payload-to-shadow faithfulness bridge.  After bank
 acceptance, the rvol redundancy assessment
 `../p97-rvol/docs/u-lane/97-u1-2-census-route-redundancy-assessment-2026-07-05.md`
 still applies: the pure incidence bank is not an independent closure route for
@@ -1190,6 +1379,65 @@ external-certificate boundary.
 ## Execution Status
 
 - Started: `2026-07-05`.
+- `2026-07-07`: endpoint exact-mask coverage check DONE (orchestrator de-risk
+  probe; commit `5ad47df`, artifacts in `scratch/endpoint-mask-coverage/`).
+  Of the 32 demandable `(xLabel, aLabel, bLabel)` triples at the two endpoint
+  residual sorries, the 117-row bank covers 12.  The 20 gaps — all 8 triples
+  with `bLabel = v`, 7 of 8 with `aLabel = w`, and seven s-inversions — are
+  contract-level unsatisfiability, since
+  `endpointShadowInBank_of_endpointShadowOK` is unconditional: no valid
+  shadow carries those masks.  The exact-mask producer sorries as then stated
+  are unprovable for the gap triples unless each is refuted from ambient
+  geometric hypotheses.  Quantified table and pivot anatomy are in the live
+  frontier's endpoint section.
+- `2026-07-07`: erased-pin row-truth probe DONE (orchestrator de-risk probe;
+  commit `d9a0b94`, artifacts in `scratch/erased-pin-row-truth/`).  All 26
+  non-Lean-closed erased-pin rows plus both direct surplus-side
+  ErasedPinTriple obligations have exact-rational witnesses satisfying all
+  five ambient inputs, so per-row certificates over the local five-input
+  surface are impossible.  The r = 3 witnesses at card 10 falsify the
+  routed/count-rows/count-family surface minus the K4-everywhere hypothesis
+  (PROVEN modulo the standard-MEC prose bridge); the exclusion argument must
+  consume global `HasNEquidistantProperty 4` structure.  Details in the live
+  frontier's erased-pin sections.
+- `2026-07-06`: adopted the missed-angle audit gate from
+  `docs/audits/2026-07-06-frontier-missed-angle-analysis.md`.  The current
+  pinned/seeded finite-shadow bridge work is now classified as routing
+  progress, not as full general-`m` closure, until exact ten-label mask
+  faithfulness is justified or replaced by a relaxed/sub-mask vocabulary.
+  Required before further exact-mask bridge wiring:
+  endpoint coefficient/core extraction, pinned-135 minimal-core mining with
+  `.u`/anonymous-center classification, and an erased-pin interior-center
+  two-hit falsifiability probe for the adjacent one-hit upper bounds.
+- `2026-07-06`: endpoint lifted-support extraction DONE.  The reproducible
+  artifact is `certificates/endpoint/reports/endpoint_core_census.json`, with a
+  Markdown table at `certificates/endpoint/reports/endpoint_core_census.md`.
+  All 117 rows keep their stored Python exact-check flag, and every nonzero
+  generator is classified.  The result does not collapse to only the endpoint
+  payload classes: support is broad across centers, so endpoint bridge design
+  must either transport that broader vocabulary or first run a true
+  minimal-support/minimal-core refinement.
+- `2026-07-06`: pinned surplus lifted-support extraction DONE for the current
+  emitted certificates, with one timeout.  The report is
+  `certificates/surplus/reports/pinned_surplus_lift_support.json`; the readable
+  table is `certificates/surplus/reports/pinned_surplus_lift_support.md`.
+  Singular solved 134 of 135 lifted-column support extractions under a
+  20-second row timeout, and all 134 solved rows use at least one center outside
+  the exact-mask-safe pair `{v,w}`.  The unresolved row `s1_030` also timed out
+  in the separate 180-second probe recorded at
+  `certificates/surplus/reports/pinned_surplus_lift_support_s1_030_timeout180.json`.
+  This rules out the optimistic existing-certificate route; only a true
+  minimal-support/refined-certificate pass could still show that the pinned
+  metric kill avoids nonuniform centers.
+- `2026-07-06`: pinned exact-mask-safe center restriction tested.  The report is
+  `certificates/surplus/reports/pinned_surplus_uniform_center_test.json`, with a
+  readable table at
+  `certificates/surplus/reports/pinned_surplus_uniform_center_test.md`.
+  Singular reports `nonunit` for all 135 rows when restricted to center
+  equations at `{v,w}` plus the row forced-pair separator.  Thus the
+  general-`n` pinned route cannot be closed by merely regenerating certificates
+  over the currently exact-mask-safe centers; it needs a relaxed/sub-mask
+  bridge, a stronger confinement theorem, or a named general-`m` residual.
 - `2026-07-05`: generated `SurplusCOMPGBank` now includes the Boolean pinned
   fragment vocabulary, validates all 135 fragment entries against that
   vocabulary, proves `validFragmentShadowKeys = rowShadowKeys`, and exposes
@@ -2433,7 +2681,39 @@ external-certificate boundary.
 - Next implementation targets:
 
   ```text
-  0. Continue the active erased-pin containment residual:
+  Gate. Apply the 2026-07-06 frontier missed-angle audit before more
+        proof-facing bridge wiring:
+       - endpoint coefficient/support extraction first: DONE at
+         `certificates/endpoint/reports/endpoint_core_census.json`.  It lists
+         the nonzero certificate generators for each of the 117 endpoint rows;
+         the observed lifted support is broad, so a minimal-support refinement
+         remains optional before final endpoint bridge design;
+       - pinned-135 lifted-support mining second: DONE for the current emitted
+         certificates at
+         `certificates/surplus/reports/pinned_surplus_lift_support.json`.
+         The solved rows use nonuniform centers, so the exact-mask route now
+         needs a true minimal-support/refined-certificate pass or an explicit
+         m=5 vs m>=6 split;
+       - exact-mask-safe `{v,w}` regeneration test: DONE at
+         `certificates/surplus/reports/pinned_surplus_uniform_center_test.json`.
+         It is `nonunit` for all 135 rows, so the next general-`n` step is not
+         another `{v,w}`-supported certificate pass;
+       - relaxed `{v,w}` incidence projection census: DONE at
+         `certificates/surplus/reports/pinned_surplus_relaxed_incidence_census.json`.
+         The 135 exact rows collapse to 15 relaxed projection rows, but the
+         erased-center common incidences in the report are only exact-bank
+         completion consequences until a relaxed/sub-mask bridge proves that
+         completion hypothesis for the geometric payload;
+       - erased-pin interior-center two-hit falsifiability probe before
+         proving adjacent one-hit upper bounds: if the two-hit local pin is
+         SAT, fold those rows into the seeded finite census instead of trying
+         to prove a false `leftAdjCount <= 1` / `rightAdjCount <= 1` lemma;
+       - treat the current pinned/seeded wrappers as routing progress only.
+         They do not close the m-uniform exact-mask/confinement issue because
+         `candidateMaskOK` still requires four labeled witnesses.
+  0. Continue the active erased-pin containment residual only after the
+     interior-center two-hit probe determines whether the adjacent one-hit
+     upper bounds are lemma-shaped:
        - prove the geometry-to-seeded-shadow adapter for the one-sided erased
          payloads using `SurplusSeededShadow.oneSidedSeedSearchEntries_eq_nil`:
          exact non-surplus cap masks for `.v`/`.w` are now available from
@@ -2512,9 +2792,17 @@ external-certificate boundary.
         `false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces`;
       - pinned candidate-mask assembler CLOSED by
         `isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks`;
-      - next, prove candidate-mask membership for the actual ten point
-         classes and the remaining Boolean no-three, pair-count/prefix-count,
-       and separation/search-separation facts for the induced shadow;
+      - next, after the two-hit falsifiability probe, either prove the
+        adjacent one-hit upper bounds and then prove candidate-mask membership
+        for the actual ten point classes, or add the surviving two-hit rows to
+        the seeded finite-census family;
+      - any exact candidate-mask membership proof remains gated by the same
+        m-uniformity/confinement issue as the pinned bridge: exact
+        `candidateMaskOK` membership requires four labeled witnesses, not just
+        absence of a forbidden row;
+      - the remaining Boolean no-three, pair-count/prefix-count, and
+        separation/search-separation facts for the induced shadow are still
+        open after the current routing wrappers;
        - for the opposite-Moser-present branch, use the exact-cap-radius
          handoff (`...own_or_exactOpposite`) rather than the weaker raw
          selected-opposite predicate; triple-level exact-split consumers are
@@ -2533,12 +2821,86 @@ external-certificate boundary.
        - then feed the primitive packet alternatives into the already-planned
          finite selector/certificate row exclusions.
   1. Finish the endpoint certificate route:
+       - coefficient/support extraction over the 117 checked endpoint JSON
+         certificates CLOSED by
+         `certificates/endpoint/reports/endpoint_core_census.json`;
+       - decide whether to accept the broad lifted-support vocabulary for the
+         endpoint fragment interface or run a true minimal-support/minimal-core
+         pass before the final bridge;
        - make the largest endpoint row (`EpQ1008`) build via internal
          certificate sharding;
-       - after all 117 Lean certificate facts build, prove the formal
-         faithfulness bridge from `EndpointEscapeRightAt` /
-         `EndpointEscapeLeftAt` to one certified endpoint pattern.
+       - generate endpoint fragment rules plus a 117-row bank/completeness
+         artifact in the pinned DFS style, so the faithfulness bridge targets
+         a checked endpoint fragment rather than every raw pattern generator;
+       - after all 117 Lean certificate facts build and the core vocabulary is
+         recorded, prove the formal faithfulness bridge from
+         `EndpointEscapeRightAt` / `EndpointEscapeLeftAt` to one certified
+         endpoint pattern.
   2. Continue the pinned surplus COMP-G bridge:
+       - do not add more exact ten-label bridge obligations based on the
+         current emitted metric certificates: their lifted support uses
+         nonuniform centers in every solved row;
+       - decide whether to run a true minimal-support/refined-certificate pass
+         constrained away from nonuniform centers;
+       - note that the first constrained test, using only `{v,w}` center
+         equations plus forced-pair separators, failed for every row; a useful
+         refined pass must either use a relaxed/sub-mask vocabulary or be paired
+         with a new confinement theorem that makes additional centers faithful;
+       - relaxed `{v,w}` incidence projection now exists as a 15-row report.
+         Next useful test is `pinned_surplus_relaxed_certificate_probe.json`:
+         for each of the 15 relaxed rows, run a Singular support-mining pass
+         over exact `.v`, exact `.w`, the separator case, and optional
+         erased-center common submask facts; greedily delete optional facts
+         while preserving `UNIT`; record the remaining facts as the geometric
+         submask proof shopping list.  If any row is `NONUNIT` with all common
+         erased incidences included, replace the projection route with a true
+         relaxed DFS over observed submasks;
+       - relaxed certificate probe over common erased-center intersections:
+         DONE at
+         `certificates/surplus/reports/pinned_surplus_relaxed_certificate_probe.json`.
+         Result: 17 separator cases, required-only `nonunit` for all 17,
+         all-common optional facts `unit` for 5, `nonunit` for 5, and timeout
+         for 7 under 20 seconds.  This triggers the failure branch above: the
+         next finite computation must split variable erased-center submask
+         choices, starting with the five definite `nonunit` cases
+         `R002:u=v`, `R003:u=v`, `R004:u=v`, `R009:u=v`, and `R011:u=v`;
+       - recursive split probe over variable erased-center incidences: DONE at
+         `certificates/surplus/reports/pinned_surplus_relaxed_split_probe.json`.
+         It produces 63 `unit` leaves across all 17 separator cases with no
+         unresolved cases;
+       - relaxed split coefficient certificates: DONE as generated JSON under
+         `certificates/surplus/relaxed_split`.  The direct pass records 58/63
+         certificates at
+         `pinned_surplus_relaxed_split_certificate_census.{json,md}`; the
+         `R011:u=v:R011NNN` timeout is recovered by
+         `pinned_surplus_relaxed_split_long_retry_census.{json,md}`; and the
+         four remaining hard grouped leaves are replaced by 11 singleton
+         certificates recorded in
+         `pinned_surplus_relaxed_split_singleton_replacement_census.{json,md}`.
+         There are now 70 certificate JSON files covering the refined relaxed
+         split obligations.  The Lean-ingested route now uses the fully
+         singleton split: `RelaxedSplit.All`, `RelaxedSplit.Bank`,
+         `AggregateSoundness`, `BankSoundness`, and `ExactBridge` all build.
+         `ExactBridge` maps exact `SurplusCOMPGBank.shadowInBank` membership to
+         the matching singleton relaxed split certificate row and proves the
+         finite common-mask/member alignment.  `GeometryBridge` composes this
+         with `shadowOfPointClasses`, proving that matched relaxed common-mask
+         members appear as bits/classes in the induced geometric shadow.  It
+         also proves the metric normal-axis squared-distance equality and
+         zero-evaluation bridge adapters for every distance-equation generator
+         family found in the relaxed singleton metadata:
+         common-center/two-ordinary, common-center fixed `.v` member,
+         common-center fixed `.w` member, common-center `.v`/`.w` frame,
+         exact `.v` center, exact `.w` center, and exact `.w` center
+         unit-radius shapes.  The bridge now also covers separator
+         Rabinowitsch shapes, using the pair-distance adapter for
+         variable-variable separators and `rabinowitschSqNormPoly` for fixed
+         `.v` separators.  The relaxed singleton generator metadata is now
+         fully classified at the shape level.  Next work: compile-scale the
+         generated direct row-zero layer, then add product-sum/block lifting
+         for term-sharded payloads;
+       - absent that refinement, split this branch into the closed `m = 5`
+         bank case and a genuine general-`m` residual;
        - close the spine contract
          `Problem97.isM44PinnedSurplusResidualsExcluded`;
        - use the side-specific payload lemmas
@@ -2587,7 +2949,12 @@ external-certificate boundary.
       - construct the local `SurplusCOMPGBank.Shadow`, prove candidate-mask
         membership for the actual centers not covered by those exact masks and
         the Boolean no-three/prefix/separation facts, then prove
-        `fragmentShadowAcceptedBySearch = true`.
+        `fragmentShadowAcceptedBySearch = true`;
+      - after exact `shadowInBank` is available, use
+        `SurplusCertificate.GeometryBridge` to transport matched relaxed
+        common-mask members into the induced point masks, then prove the
+        analytic selected-class/distance-equality facts that satisfy
+        `false_of_shadowInBank_of_payload_zeros`.
   3. Wire the selector-packet interface into the Form `a/b/c` exclusions:
        - connect the named non-surplus interior pairs to the row splitters used
          by the Form `a/b/c` exclusions; this is now closed for the surplus

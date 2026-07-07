@@ -258,6 +258,19 @@ def crossSeparationOKForMasks
       else
         true)
 
+/-- Pointwise separation over the finite label-pair list gives the cross-mask
+separation checker for one ordered center pair. -/
+theorem crossSeparationOKForMasks_of_sepOKFor
+    {shadow : Shadow} {c cp : Label}
+    (hsep : ∀ x y : Label,
+      (x, y) ∈ labelPairs → sepOKFor shadow c cp x y = true) :
+    crossSeparationOKForMasks c (shadow.centerMask c) cp
+      (shadow.centerMask cp) = true := by
+  unfold crossSeparationOKForMasks
+  rw [List.all_eq_true]
+  intro pair hpair
+  simpa [sepOKFor, Shadow.classHas] using hsep pair.1 pair.2 hpair
+
 def separationOK (shadow : Shadow) : Bool :=
   labelPairs.all
     (fun centerPair =>
@@ -1680,6 +1693,148 @@ theorem assignedSeparationOK_of_isValidPinnedFragment
     assignedSeparationOK center (shadow.centerMask center) assigned masks = true := by
   exact assignedSeparationOK_of_searchSeparationOK
     (searchSeparationOK_of_isValidPinnedFragment hvalid) hmask hne
+
+private def pointPairAssignedCount (shadow : Shadow)
+    (assigned : List Label) (pointPair : Label × Label) : Nat :=
+  List.countP
+    (fun center => pointPairHitByCenterMask center (shadow.centerMask center) pointPair)
+    assigned
+
+private theorem incrementPairCountsAux_map_pointPairAssignedCount
+    (shadow : Shadow) (center : Label) (assigned : List Label) :
+    ∀ pairs : List (Label × Label),
+      incrementPairCountsAux center (shadow.centerMask center)
+        (pairs.map (pointPairAssignedCount shadow assigned)) pairs =
+      pairs.map (pointPairAssignedCount shadow (center :: assigned)) := by
+  intro pairs
+  induction pairs with
+  | nil => simp [incrementPairCountsAux]
+  | cons pair rest ih =>
+      by_cases hhit :
+        pointPairHitByCenterMask center (shadow.centerMask center) pair = true
+      · simp [incrementPairCountsAux, pointPairAssignedCount, ih, hhit,
+          Nat.add_comm]
+      · simp [incrementPairCountsAux, pointPairAssignedCount, ih, hhit]
+
+private theorem shadowPairCountsForAssigned_eq_map_pointPairAssignedCount
+    (shadow : Shadow) :
+    ∀ assigned : List Label,
+      shadowPairCountsForAssigned shadow assigned =
+        labelPairs.map (pointPairAssignedCount shadow assigned) := by
+  intro assigned
+  induction assigned with
+  | nil => simp [shadowPairCountsForAssigned, emptyPairCounts,
+      pointPairAssignedCount]
+  | cons center assigned ih =>
+      simp [shadowPairCountsForAssigned, ih, incrementPairCounts,
+        incrementPairCountsAux_map_pointPairAssignedCount]
+
+private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
+    ∀ (items : List α) (acc : Nat),
+      items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
+        acc + List.countP p items := by
+  intro items
+  induction items with
+  | nil => intro acc; simp
+  | cons item rest ih =>
+      intro acc
+      by_cases h : p item = true
+      · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
+      · simp [h, ih]
+
+private theorem pointPairClassCount_eq_countP (shadow : Shadow) (x y : Label) :
+    pointPairClassCount shadow x y =
+      List.countP
+        (fun center =>
+          pointPairHitByCenterMask center (shadow.centerMask center) (x, y))
+        allLabels := by
+  unfold pointPairClassCount
+  have hfun :
+      (fun acc center =>
+        if center == x || center == y then
+          acc
+        else if shadow.classHas center x && shadow.classHas center y then
+          acc + 1
+        else
+          acc) =
+        (fun acc center =>
+          if pointPairHitByCenterMask center (shadow.centerMask center) (x, y) then
+            acc + 1
+          else
+            acc) := by
+    funext acc center
+    by_cases hx : center = x
+    · simp [pointPairHitByCenterMask, hx]
+    · by_cases hy : center = y
+      · simp [pointPairHitByCenterMask, hy]
+      · simp [pointPairHitByCenterMask, Shadow.classHas, hx, hy]
+  rw [hfun, foldl_countP_add]
+  simp
+
+private theorem countP_le_allLabels_of_perm_sublist
+    {p : Label → Bool} {assigned sorted : List Label}
+    (hperm : assigned.Perm sorted) (hsub : sorted.Sublist allLabels) :
+    List.countP p assigned <= List.countP p allLabels := by
+  rw [hperm.countP_eq]
+  exact hsub.countP_le
+
+private theorem countP_le_allLabels_of_fragment_prefix
+    {p : Label → Bool} {assigned : List Label}
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
+    List.countP p assigned <= List.countP p allLabels := by
+  simp only [fragmentSearchAssignedPrefixes, List.mem_cons, List.not_mem_nil,
+    or_false] at hprefix
+  rcases hprefix with
+    rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := []) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.v]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.v, .w]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw]) (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu, .Q1])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .s1, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := [.u, .v, .w, .s1, .s2, .Pw, .Pu, .Q1, .Q2])
+      (by native_decide) (by native_decide)
+  · exact countP_le_allLabels_of_perm_sublist
+      (sorted := allLabels) (by native_decide) (by native_decide)
+
+/-- Full point-pair no-three bounds imply the prefix pair-count checker used
+by the generated fragment search. -/
+theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
+    {shadow : Shadow} {assigned : List Label}
+    (hcount : ∀ x y : Label,
+      (x, y) ∈ labelPairs → pointPairClassCount shadow x y <= 2)
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
+    pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true := by
+  rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+  unfold pairCountsOK
+  rw [List.all_eq_true]
+  intro count hmem
+  rcases List.mem_map.mp hmem with ⟨pointPair, hpair, rfl⟩
+  apply decide_eq_true
+  have hleAll :
+      pointPairAssignedCount shadow assigned pointPair <=
+        pointPairClassCount shadow pointPair.fst pointPair.snd := by
+    unfold pointPairAssignedCount
+    rw [pointPairClassCount_eq_countP]
+    exact countP_le_allLabels_of_fragment_prefix hprefix
+  exact Nat.le_trans hleAll (hcount pointPair.fst pointPair.snd hpair)
 
 theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     {shadow : Shadow} {assigned : List Label}

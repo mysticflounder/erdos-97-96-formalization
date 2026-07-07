@@ -1,0 +1,678 @@
+{
+  "case_id": "R009:u=v",
+  "certificate_id": "R009:u=v:R009NYYNY",
+  "checks": {
+    "python_exact_polynomial": false,
+    "singular_lifted_column": true
+  },
+  "coefficients": [
+    "-16*uy*s1x*s2x*pwy*pux+32/3*s1x*s1y*s2x*pwy*pux-18*s2x*pwy*pux^2*puy-16/3*s1x*s2x*pwy*pux*q1y+32*uy*s1x*pux^2*q1y-64/3*s1x*s1y*pux^2*q1y+12*s2x*pwy*pux^2*q1y+36*pux^3*puy*q1y+32/3*s1x*pux^2*q1y^2-24*pux^3*q1y^2-160*uy*s2x*pwy*pux*q2x-24*s1y*s2x*pwy*pux*q2x+320*uy*pux^2*q1y*q2x+48*s1y*pux^2*q1y*q2x+104/3*s1x*s2x*pwy*pux*q2y-12*s2x*pwy*pux^2*q2y-208/3*s1x*pux^2*q1y*q2y+24*pux^3*q1y*q2y-80*s2x*pwy*pux*q2x*q2y+160*pux^2*q1y*q2x*q2y+24*uy*s2x*pwy*q2x*t+12*uy*pwy*pux*q2x*t-12*uy*pux*q1y*q2x*t-21/2*s2x*pwy*pux*q2y*t-9/2*pwy*pux^2*q2y*t+15/2*pux^2*q1y*q2y*t+16*uy*s1x*s2x*pwy-32/3*s1x*s1y*s2x*pwy-8*uy*s1x*s2y*pux+16/3*s1x*s1y*s2y*pux+16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux+88*uy*s2x*pwy*pux+20/3*s1y*s2x*pwy*pux+16*uy*s1x*pux*puy-32/3*s1x*s1y*pux*puy+96*s2x*pwy*pux*puy-9*s2y*pux^2*puy+9*pwy*pux^2*puy+18*pux^2*puy^2+16/3*s1x*s2x*pwy*q1y-40*uy*s1x*pux*q1y+80/3*s1x*s1y*pux*q1y-8/3*s1x*s2y*pux*q1y+16/3*s1x*pwy*pux*q1y-54*s2x*pwy*pux*q1y-176*uy*pux^2*q1y-40/3*s1y*pux^2*q1y+6*s2y*pux^2*q1y-3*pwy*pux^2*q1y+16/3*s1x*pux*puy*q1y-216*pux^2*puy*q1y-40/3*s1x*pux*q1y^2+117*pux^2*q1y^2+48*uy*s2x*pwy*q2x+16*s1y*s2x*pwy*q2x-80*uy*s2y*pux*q2x-12*s1y*s2y*pux*q2x+40*uy*pwy*pux*q2x+12*s1y*pwy*pux*q2x+160*uy*pux*puy*q2x+24*s1y*pux*puy*q2x-280*uy*pux*q1y*q2x-48*s1y*pux*q1y*q2x-104/3*s1x*s2x*pwy*q2y+52/3*s1x*s2y*pux*q2y-104/3*s1x*pwy*pux*q2y+215/3*s2x*pwy*pux*q2y-6*s2y*pux^2*q2y+21*pwy*pux^2*q2y-104/3*s1x*pux*puy*q2y+12*pux^2*puy*q2y+260/3*s1x*pux*q1y*q2y-367/3*pux^2*q1y*q2y+208/3*s2x*pwy*q2x*q2y-40*s2y*pux*q2x*q2y+40*pwy*pux*q2x*q2y+80*pux*puy*q2x*q2y-160*pux*q1y*q2x*q2y-12*uy*s2x*pwy*t-6*uy*pwy*pux*t+6*uy*pux*q1y*t+12*uy*s2y*q2x*t-36*uy*pwy*q2x*t+12*uy*q1y*q2x*t+15*s2x*pwy*q2y*t-21/4*s2y*pux*q2y*t+177/8*pwy*pux*q2y*t+3/2*pux*puy*q2y*t-111/8*pux*q1y*q2y*t+8*uy*s1x*s2y-16/3*s1x*s1y*s2y-4*uy*s1x*s3y+8/3*s1x*s1y*s3y-20*uy*s1x*pwy+40/3*s1x*s1y*pwy-32*uy*s2x*pwy-2/3*s1y*s2x*pwy+44*uy*s2y*pux+10/3*s1y*s2y*pux-32*uy*pwy*pux-2/3*s1y*pwy*pux-4*uy*s1x*puy+8/3*s1x*s1y*puy-55*s2x*pwy*puy-88*uy*pux*puy-20/3*s1y*pux*puy+48*s2y*pux*puy-105/2*pwy*pux*puy-177/2*pux*puy^2+16*uy*s1x*q1y-32/3*s1x*s1y*q1y+8/3*s1x*s2y*q1y-8*s1x*pwy*q1y+68/3*s2x*pwy*q1y+164*uy*pux*q1y+32/3*s1y*pux*q1y-27*s2y*pux*q1y+12*pwy*pux*q1y-4/3*s1x*puy*q1y+447/2*pux*puy*q1y+4*s1x*q1y^2-81*pux*q1y^2+24*uy*s2y*q2x+8*s1y*s2y*q2x-16*uy*pwy*q2x-19*s1y*pwy*q2x-40*uy*puy*q2x-6*s1y*puy*q2x+32*uy*q1y*q2x+10*s1y*q1y*q2x-4/3*pwy*q1y*q2x-52/3*s1x*s2y*q2y+3*s1x*s3y*q2y+130/3*s1x*pwy*q2y-127/2*s2x*pwy*q2y+215/6*s2y*pux*q2y-941/12*pwy*pux*q2y+26/3*s1x*puy*q2y-134/3*pux*puy*q2y-79/3*s1x*q1y*q2y+1331/12*pux*q1y*q2y+104/3*s2y*q2x*q2y-184/3*pwy*q2x*q2y-20*puy*q2x*q2y+112/3*q1y*q2x*q2y-6*uy*s2y*t+18*uy*pwy*t-6*uy*q1y*t+15/2*s2y*q2y*t-183/8*pwy*q2y*t+3/8*puy*q2y*t+57/8*q1y*q2y*t-16*uy*s2y-1/3*s1y*s2y+2*uy*s3y-4/3*s1y*s3y+26*uy*pwy+7/3*s1y*pwy+3/2*pux^2+22*uy*puy+5/3*s1y*puy-55/2*s2y*puy+97/2*pwy*puy+21*puy^2-24*uy*q1y+4/3*s1y*q1y+34/3*s2y*q1y-19/3*pwy*q1y-69/2*puy*q1y-8/3*q1y^2-4/3*s1x*q2x-8*uy*q2y-5/2*s1y*q2y-127/4*s2y*q2y-3/2*s3y*q2y+443/6*pwy*q2y+89/12*puy*q2y-97/3*q1y*q2y+8/3*q2y^2+s1x-29/4*pux+4/3*q2x+9/4",
+    "0",
+    "16*uy*s1x*s2x*pwy*pux-32/3*s1x*s1y*s2x*pwy*pux+18*s2x*pwy*pux^2*puy+16/3*s1x*s2x*pwy*pux*q1y-32*uy*s1x*pux^2*q1y+64/3*s1x*s1y*pux^2*q1y-12*s2x*pwy*pux^2*q1y-36*pux^3*puy*q1y-32/3*s1x*pux^2*q1y^2+24*pux^3*q1y^2+160*uy*s2x*pwy*pux*q2x+24*s1y*s2x*pwy*pux*q2x-320*uy*pux^2*q1y*q2x-48*s1y*pux^2*q1y*q2x-104/3*s1x*s2x*pwy*pux*q2y+12*s2x*pwy*pux^2*q2y+208/3*s1x*pux^2*q1y*q2y-24*pux^3*q1y*q2y+80*s2x*pwy*pux*q2x*q2y-160*pux^2*q1y*q2x*q2y-24*uy*s2x*pwy*q2x*t-12*uy*pwy*pux*q2x*t+12*uy*pux*q1y*q2x*t+21/2*s2x*pwy*pux*q2y*t+9/2*pwy*pux^2*q2y*t-15/2*pux^2*q1y*q2y*t-16*uy*s1x*s2x*pwy+32/3*s1x*s1y*s2x*pwy+8*uy*s1x*s2y*pux-16/3*s1x*s1y*s2y*pux-16*uy*s1x*pwy*pux+32/3*s1x*s1y*pwy*pux-88*uy*s2x*pwy*pux-20/3*s1y*s2x*pwy*pux-16*uy*s1x*pux*puy+32/3*s1x*s1y*pux*puy-96*s2x*pwy*pux*puy+9*s2y*pux^2*puy-9*pwy*pux^2*puy-18*pux^2*puy^2-16/3*s1x*s2x*pwy*q1y+40*uy*s1x*pux*q1y-80/3*s1x*s1y*pux*q1y+8/3*s1x*s2y*pux*q1y-16/3*s1x*pwy*pux*q1y+54*s2x*pwy*pux*q1y+176*uy*pux^2*q1y+40/3*s1y*pux^2*q1y-6*s2y*pux^2*q1y+3*pwy*pux^2*q1y-16/3*s1x*pux*puy*q1y+216*pux^2*puy*q1y+40/3*s1x*pux*q1y^2-117*pux^2*q1y^2-48*uy*s2x*pwy*q2x-16*s1y*s2x*pwy*q2x+80*uy*s2y*pux*q2x+12*s1y*s2y*pux*q2x-40*uy*pwy*pux*q2x-12*s1y*pwy*pux*q2x-160*uy*pux*puy*q2x-24*s1y*pux*puy*q2x+280*uy*pux*q1y*q2x+48*s1y*pux*q1y*q2x+104/3*s1x*s2x*pwy*q2y-52/3*s1x*s2y*pux*q2y+104/3*s1x*pwy*pux*q2y-215/3*s2x*pwy*pux*q2y+6*s2y*pux^2*q2y-21*pwy*pux^2*q2y+104/3*s1x*pux*puy*q2y-12*pux^2*puy*q2y-260/3*s1x*pux*q1y*q2y+367/3*pux^2*q1y*q2y-208/3*s2x*pwy*q2x*q2y+40*s2y*pux*q2x*q2y-40*pwy*pux*q2x*q2y-80*pux*puy*q2x*q2y+160*pux*q1y*q2x*q2y+12*uy*s2x*pwy*t+6*uy*pwy*pux*t-6*uy*pux*q1y*t-12*uy*s2y*q2x*t+8*uy*s3y*q2x*t+20*uy*pwy*q2x*t-12*uy*q1y*q2x*t-15*s2x*pwy*q2y*t+21/4*s2y*pux*q2y*t-3*s3y*pux*q2y*t-129/8*pwy*pux*q2y*t-3/2*pux*puy*q2y*t+111/8*pux*q1y*q2y*t-8*uy*s1x*s2y+16/3*s1x*s1y*s2y+4*uy*s1x*s3y-8/3*s1x*s1y*s3y+20*uy*s1x*pwy-40/3*s1x*s1y*pwy+32*uy*s2x*pwy+2/3*s1y*s2x*pwy-44*uy*s2y*pux-10/3*s1y*s2y*pux+32*uy*pwy*pux+2/3*s1y*pwy*pux+4*uy*s1x*puy-8/3*s1x*s1y*puy+55*s2x*pwy*puy+88*uy*pux*puy+20/3*s1y*pux*puy-48*s2y*pux*puy+105/2*pwy*pux*puy+177/2*pux*puy^2-16*uy*s1x*q1y+32/3*s1x*s1y*q1y-8/3*s1x*s2y*q1y+8*s1x*pwy*q1y-68/3*s2x*pwy*q1y-164*uy*pux*q1y-32/3*s1y*pux*q1y+27*s2y*pux*q1y-12*pwy*pux*q1y+4/3*s1x*puy*q1y-447/2*pux*puy*q1y-4*s1x*q1y^2+81*pux*q1y^2-24*uy*s2y*q2x-8*s1y*s2y*q2x+2*s1y*s3y*q2x+16*uy*pwy*q2x+15*s1y*pwy*q2x+40*uy*puy*q2x+6*s1y*puy*q2x-32*uy*q1y*q2x-10*s1y*q1y*q2x+4/3*pwy*q1y*q2x+52/3*s1x*s2y*q2y-3*s1x*s3y*q2y-130/3*s1x*pwy*q2y+127/2*s2x*pwy*q2y-215/6*s2y*pux*q2y+941/12*pwy*pux*q2y-26/3*s1x*puy*q2y+134/3*pux*puy*q2y+79/3*s1x*q1y*q2y-1331/12*pux*q1y*q2y-104/3*s2y*q2x*q2y-8*s3y*q2x*q2y+232/3*pwy*q2x*q2y+20*puy*q2x*q2y-112/3*q1y*q2x*q2y+6*uy*s2y*t-4*uy*s3y*t-10*uy*pwy*t+6*uy*q1y*t-15/2*s2y*q2y*t+19/4*s3y*q2y*t+107/8*pwy*q2y*t-15/8*puy*q2y*t-51/8*q1y*q2y*t+16*uy*s2y+1/3*s1y*s2y-2*uy*s3y+1/3*s1y*s3y-18*uy*pwy-1/3*s1y*pwy-3/2*pux^2-22*uy*puy-5/3*s1y*puy+55/2*s2y*puy-97/2*pwy*puy-27*puy^2+24*uy*q1y-4/3*s1y*q1y-34/3*s2y*q1y+19/3*pwy*q1y+69/2*puy*q1y+8/3*q1y^2+4/3*s1x*q2x+8*uy*q2y+3/2*s1y*q2y+127/4*s2y*q2y+11/2*s3y*q2y-509/6*pwy*q2y-89/12*puy*q2y+97/3*q1y*q2y+4/3*q2y^2-4*ux-1/2*s1x+17/4*pux+1/6*q2x+3/4",
+    "-16*uy*s1x*s2x*s2y*pux+32/3*s1x*s1y*s2x*s2y*pux+32*uy*s1x*s2y*pwx*pux-64/3*s1x*s1y*s2y*pwx*pux-32*uy*s1x*s2x*pwy*pux+64/3*s1x*s1y*s2x*pwy*pux-32*uy*s1x*s2y*pux^2+64/3*s1x*s1y*s2y*pux^2+32*uy*s1x*s2x*pux*puy-64/3*s1x*s1y*s2x*pux*puy-18*s2x*s2y*pux^2*puy+36*s2y*pwx*pux^2*puy-36*s2x*pwy*pux^2*puy-36*s2y*pux^3*puy+36*s2x*pux^2*puy^2-16*uy*s1x*s2x*pux*q1y+32/3*s1x*s1y*s2x*pux*q1y-16/3*s1x*s2x*s2y*pux*q1y+32/3*s1x*s2y*pwx*pux*q1y-32/3*s1x*s2x*pwy*pux*q1y-32/3*s1x*s2y*pux^2*q1y+12*s2x*s2y*pux^2*q1y-24*s2y*pwx*pux^2*q1y+24*s2x*pwy*pux^2*q1y+24*s2y*pux^3*q1y+32/3*s1x*s2x*pux*puy*q1y-42*s2x*pux^2*puy*q1y-16/3*s1x*s2x*pux*q1y^2+12*s2x*pux^2*q1y^2-160*uy*s2x*s2y*pux*q2x-24*s1y*s2x*s2y*pux*q2x+320*uy*s2y*pwx*pux*q2x+48*s1y*s2y*pwx*pux*q2x-320*uy*s2x*pwy*pux*q2x-48*s1y*s2x*pwy*pux*q2x-320*uy*s2y*pux^2*q2x-48*s1y*s2y*pux^2*q2x+320*uy*s2x*pux*puy*q2x+48*s1y*s2x*pux*puy*q2x-160*uy*s2x*pux*q1y*q2x-24*s1y*s2x*pux*q1y*q2x+104/3*s1x*s2x*s2y*pux*q2y-208/3*s1x*s2y*pwx*pux*q2y+208/3*s1x*s2x*pwy*pux*q2y+208/3*s1x*s2y*pux^2*q2y-12*s2x*s2y*pux^2*q2y+24*s2y*pwx*pux^2*q2y-24*s2x*pwy*pux^2*q2y-24*s2y*pux^3*q2y-208/3*s1x*s2x*pux*puy*q2y+24*s2x*pux^2*puy*q2y+104/3*s1x*s2x*pux*q1y*q2y-12*s2x*pux^2*q1y*q2y-80*s2x*s2y*pux*q2x*q2y+160*s2y*pwx*pux*q2x*q2y-160*s2x*pwy*pux*q2x*q2y-160*s2y*pux^2*q2x*q2y+160*s2x*pux*puy*q2x*q2y-80*s2x*pux*q1y*q2x*q2y+24*uy*s2x*s2y*q2x*t-12*uy*s2y*pwx*q2x*t+8*uy*s3y*pwx*q2x*t+12*uy*s2x*pwy*q2x*t+12*uy*s2y*pux*q2x*t+12*uy*pwy*pux*q2x*t-12*uy*pwx*puy*q2x*t+12*uy*s2x*q1y*q2x*t-21/2*s2x*s2y*pux*q2y*t+15/2*s2y*pwx*pux*q2y*t-3*s3y*pwx*pux*q2y*t-15/2*s2x*pwy*pux*q2y*t-15/2*s2y*pux^2*q2y*t-9/2*pwy*pux^2*q2y*t+3*s2x*pux*puy*q2y*t+9/2*pwx*pux*puy*q2y*t-6*s2x*pux*q1y*q2y*t+16*uy*s1x*s2x*s2y-32/3*s1x*s1y*s2x*s2y-16*uy*s1x*s2y*pwx+32/3*s1x*s1y*s2y*pwx+16*uy*s1x*s2x*pwy-32/3*s1x*s1y*s2x*pwy+40*uy*s1x*s2y*pux-80/3*s1x*s1y*s2y*pux+88*uy*s2x*s2y*pux+20/3*s1y*s2x*s2y*pux-176*uy*s2y*pwx*pux-40/3*s1y*s2y*pwx*pux+16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux+176*uy*s2x*pwy*pux+40/3*s1y*s2x*pwy*pux+176*uy*s2y*pux^2+40/3*s1y*s2y*pux^2-8*uy*s1x*s2x*puy+16/3*s1x*s1y*s2x*puy-16*uy*s1x*pwx*puy+32/3*s1x*s1y*pwx*puy-176*uy*s2x*pux*puy-40/3*s1y*s2x*pux*puy+96*s2x*s2y*pux*puy-183*s2y*pwx*pux*puy+183*s2x*pwy*pux*puy+204*s2y*pux^2*puy+9*pwy*pux^2*puy-177*s2x*pux*puy^2-9*pwx*pux*puy^2+8*uy*s1x*s2x*q1y-16/3*s1x*s1y*s2x*q1y+16/3*s1x*s2x*s2y*q1y-16/3*s1x*s2y*pwx*q1y+16/3*s1x*s2x*pwy*q1y+88*uy*s2x*pux*q1y+20/3*s1y*s2x*pux*q1y+40/3*s1x*s2y*pux*q1y-54*s2x*s2y*pux*q1y+105*s2y*pwx*pux*q1y+16/3*s1x*pwy*pux*q1y-105*s2x*pwy*pux*q1y-117*s2y*pux^2*q1y-3*pwy*pux^2*q1y-8/3*s1x*s2x*puy*q1y-16/3*s1x*pwx*puy*q1y+186*s2x*pux*puy*q1y+3*pwx*pux*puy*q1y+8/3*s1x*s2x*q1y^2-45*s2x*pux*q1y^2+48*uy*s2x*s2y*q2x+16*s1y*s2x*s2y*q2x-104*uy*s2y*pwx*q2x-20*s1y*s2y*pwx*q2x-16*uy*s3y*pwx*q2x+104*uy*s2x*pwy*q2x+20*s1y*s2x*pwy*q2x+280*uy*s2y*pux*q2x+48*s1y*s2y*pux*q2x+40*uy*pwy*pux*q2x+12*s1y*pwy*pux*q2x-80*uy*s2x*puy*q2x-12*s1y*s2x*puy*q2x-40*uy*pwx*puy*q2x-12*s1y*pwx*puy*q2x-40*uy*s2x*q1y*q2x-104/3*s1x*s2x*s2y*q2y+104/3*s1x*s2y*pwx*q2y-104/3*s1x*s2x*pwy*q2y-260/3*s1x*s2y*pux*q2y+215/3*s2x*s2y*pux*q2y-313/3*s2y*pwx*pux*q2y+6*s3y*pwx*pux*q2y-104/3*s1x*pwy*pux*q2y+313/3*s2x*pwy*pux*q2y+367/3*s2y*pux^2*q2y+21*pwy*pux^2*q2y+52/3*s1x*s2x*puy*q2y+104/3*s1x*pwx*puy*q2y-268/3*s2x*pux*puy*q2y-21*pwx*pux*puy*q2y-52/3*s1x*s2x*q1y*q2y+170/3*s2x*pux*q1y*q2y+208/3*s2x*s2y*q2x*q2y-224/3*s2y*pwx*q2x*q2y+8*s3y*pwx*q2x*q2y+224/3*s2x*pwy*q2x*q2y+160*s2y*pux*q2x*q2y+40*pwy*pux*q2x*q2y-40*s2x*puy*q2x*q2y-40*pwx*puy*q2x*q2y-12*uy*s2x*s2y*t+6*uy*s2y*pwx*t-4*uy*s3y*pwx*t-6*uy*s2x*pwy*t-6*uy*s2y*pux*t-6*uy*pwy*pux*t+6*uy*pwx*puy*t-6*uy*s2x*q1y*t-18*uy*s2y*q2x*t-4*uy*pwy*q2x*t-6*uy*puy*q2x*t+15*s2x*s2y*q2y*t-57/8*s2y*pwx*q2y*t+19/4*s3y*pwx*q2y*t+57/8*s2x*pwy*q2y*t+129/8*s2y*pux*q2y*t+81/8*pwy*pux*q2y*t+3/4*s2x*puy*q2y*t-69/8*pwx*puy*q2y*t+9/4*pux*puy*q2y*t+57/8*s2x*q1y*q2y*t-16*ux*uy*s1y-16*uy*s1x*s2y+32/3*s1x*s1y*s2y-32*uy*s2x*s2y-2/3*s1y*s2x*s2y+4*ux*uy*s3y-4*uy^2*pwx+64*uy*s2y*pwx+14/3*s1y*s2y*pwx+8*uy*s3y*pwx-1/3*s1y*s3y*pwx+4*ux*uy*pwy-64*uy*s2x*pwy-14/3*s1y*s2x*pwy-164*uy*s2y*pux-32/3*s1y*s2y*pux-32*uy*pwy*pux-2/3*s1y*pwy*pux-8*uy*s1x*puy+16/3*s1x*s1y*puy+44*uy*s2x*puy+10/3*s1y*s2x*puy-55*s2x*s2y*puy+38*uy*pwx*puy+2/3*s1y*pwx*puy+68*s2y*pwx*puy-6*ux*pwy*puy-68*s2x*pwy*puy-6*uy*pux*puy-351/2*s2y*pux*puy-42*pwy*pux*puy+6*ux*puy^2+42*s2x*puy^2+42*pwx*puy^2-9/2*pux*puy^2+52*uy*s2x*q1y+26/3*s1y*s2x*q1y-16/3*s1x*s2y*q1y+68/3*s2x*s2y*q1y-35*s2y*pwx*q1y+109/3*s2x*pwy*q1y+165/2*s2y*pux*q1y+9*pwy*pux*q1y-8/3*s1x*puy*q1y-27*s2x*puy*q1y-9*pwx*puy*q1y+3/2*pux*puy*q1y-43/3*s2x*q1y^2-2*uy*s1y*q2x-12*uy*s2y*q2x-10*s1y*s2y*q2x+8*uy*s3y*q2x+s1y*s3y*q2x+8*uy*pwy*q2x-20*uy*puy*q2x-6*s1y*puy*q2x+14*ux*s1y*q2y-16*uy*s2x*q2y-5*s1y*s2x*q2y+104/3*s1x*s2y*q2y-127/2*s2x*s2y*q2y-3*ux*s3y*q2y+191/4*s2y*pwx*q2y-27/2*s3y*pwx*q2y-191/4*s2x*pwy*q2y-1421/12*s2y*pux*q2y-3*s3y*pux*q2y-473/12*pwy*pux*q2y+52/3*s1x*puy*q2y+89/6*s2x*puy*q2y+437/12*pwx*puy*q2y-21/2*pux*puy*q2y+1/12*s2x*q1y*q2y+8/3*pwx*q1y*q2y+8*uy*q2x*q2y-112/3*s2y*q2x*q2y-8*s3y*q2x*q2y-4*pwy*q2x*q2y-20*puy*q2x*q2y-8*ux*q2y^2+16/3*s2x*q2y^2+9*uy*s2y*t+2*uy*pwy*t+3*uy*puy*t-177/16*s2y*q2y*t-19/8*pwy*q2y*t-69/16*puy*q2y*t+2*ux^2+8*uy^2+2*ux*s1x+4*uy*s1y+4/3*s1y^2-2/3*s1x*s2x-10/3*s1y*s2y-6*uy*s3y-5/3*s1y*s3y+4/3*s1x*pwx-4*uy*pwy-7/6*s1y*pwy-2/3*s2y*pwy-3/4*pux^2+16*uy*puy+1/3*s1y*puy+71/2*s2y*puy+21*puy^2-17/6*s2y*q1y-9/2*puy*q1y-4/3*pwx*q2x-9/2*uy*q2y-5/3*s1y*q2y+743/24*s2y*q2y+41/4*s3y*q2y+27/4*pwy*q2y+437/24*puy*q2y+4/3*q1y*q2y-2*ux+2/3*s1x+2/3*s2x+13/4*pux-2/3*q2x",
+    "0",
+    "16*uy*s1x*s2x*s2y*pux-32/3*s1x*s1y*s2x*s2y*pux-32*uy*s1x*s2y*pwx*pux+64/3*s1x*s1y*s2y*pwx*pux+16*uy*s1x*s2x*pwy*pux-32/3*s1x*s1y*s2x*pwy*pux+32*uy*s1x*s2y*pux^2-64/3*s1x*s1y*s2y*pux^2-32*uy*s1x*s2x*pux*puy+64/3*s1x*s1y*s2x*pux*puy+18*s2x*s2y*pux^2*puy-36*s2y*pwx*pux^2*puy+18*s2x*pwy*pux^2*puy+36*s2y*pux^3*puy-36*s2x*pux^2*puy^2+16*uy*s1x*s2x*pux*q1y-32/3*s1x*s1y*s2x*pux*q1y+16/3*s1x*s2x*s2y*pux*q1y-32/3*s1x*s2y*pwx*pux*q1y+16/3*s1x*s2x*pwy*pux*q1y+32*uy*s1x*pux^2*q1y-64/3*s1x*s1y*pux^2*q1y+32/3*s1x*s2y*pux^2*q1y-12*s2x*s2y*pux^2*q1y+24*s2y*pwx*pux^2*q1y-12*s2x*pwy*pux^2*q1y-24*s2y*pux^3*q1y-32/3*s1x*s2x*pux*puy*q1y+42*s2x*pux^2*puy*q1y+36*pux^3*puy*q1y+16/3*s1x*s2x*pux*q1y^2+32/3*s1x*pux^2*q1y^2-12*s2x*pux^2*q1y^2-24*pux^3*q1y^2+160*uy*s2x*s2y*pux*q2x+24*s1y*s2x*s2y*pux*q2x-320*uy*s2y*pwx*pux*q2x-48*s1y*s2y*pwx*pux*q2x+160*uy*s2x*pwy*pux*q2x+24*s1y*s2x*pwy*pux*q2x+320*uy*s2y*pux^2*q2x+48*s1y*s2y*pux^2*q2x-320*uy*s2x*pux*puy*q2x-48*s1y*s2x*pux*puy*q2x+160*uy*s2x*pux*q1y*q2x+24*s1y*s2x*pux*q1y*q2x+320*uy*pux^2*q1y*q2x+48*s1y*pux^2*q1y*q2x-104/3*s1x*s2x*s2y*pux*q2y+208/3*s1x*s2y*pwx*pux*q2y-104/3*s1x*s2x*pwy*pux*q2y-208/3*s1x*s2y*pux^2*q2y+12*s2x*s2y*pux^2*q2y-24*s2y*pwx*pux^2*q2y+12*s2x*pwy*pux^2*q2y+24*s2y*pux^3*q2y+208/3*s1x*s2x*pux*puy*q2y-24*s2x*pux^2*puy*q2y-104/3*s1x*s2x*pux*q1y*q2y-208/3*s1x*pux^2*q1y*q2y+12*s2x*pux^2*q1y*q2y+24*pux^3*q1y*q2y+80*s2x*s2y*pux*q2x*q2y-160*s2y*pwx*pux*q2x*q2y+80*s2x*pwy*pux*q2x*q2y+160*s2y*pux^2*q2x*q2y-160*s2x*pux*puy*q2x*q2y+80*s2x*pux*q1y*q2x*q2y+160*pux^2*q1y*q2x*q2y-24*uy*s2x*s2y*q2x*t+12*uy*s2y*pwx*q2x*t-8*uy*s3y*pwx*q2x*t+12*uy*s2x*pwy*q2x*t-12*uy*s2y*pux*q2x*t+12*uy*pwx*puy*q2x*t-12*uy*s2x*q1y*q2x*t-12*uy*pux*q1y*q2x*t+21/2*s2x*s2y*pux*q2y*t-15/2*s2y*pwx*pux*q2y*t+3*s3y*pwx*pux*q2y*t-3*s2x*pwy*pux*q2y*t+15/2*s2y*pux^2*q2y*t-3*s2x*pux*puy*q2y*t-9/2*pwx*pux*puy*q2y*t+6*s2x*pux*q1y*q2y*t+15/2*pux^2*q1y*q2y*t-16*uy*s1x*s2x*s2y+32/3*s1x*s1y*s2x*s2y+16*uy*s1x*s2y*pwx-32/3*s1x*s1y*s2y*pwx-32*uy*s1x*s2y*pux+64/3*s1x*s1y*s2y*pux-88*uy*s2x*s2y*pux-20/3*s1y*s2x*s2y*pux+176*uy*s2y*pwx*pux+40/3*s1y*s2y*pwx*pux-88*uy*s2x*pwy*pux-20/3*s1y*s2x*pwy*pux-176*uy*s2y*pux^2-40/3*s1y*s2y*pux^2+8*uy*s1x*s2x*puy-16/3*s1x*s1y*s2x*puy+16*uy*s1x*pwx*puy-32/3*s1x*s1y*pwx*puy-16*uy*s1x*pux*puy+32/3*s1x*s1y*pux*puy+176*uy*s2x*pux*puy+40/3*s1y*s2x*pux*puy-96*s2x*s2y*pux*puy+183*s2y*pwx*pux*puy-87*s2x*pwy*pux*puy-195*s2y*pux^2*puy+177*s2x*pux*puy^2+9*pwx*pux*puy^2-18*pux^2*puy^2-8*uy*s1x*s2x*q1y+16/3*s1x*s1y*s2x*q1y-16/3*s1x*s2x*s2y*q1y+16/3*s1x*s2y*pwx*q1y-24*uy*s1x*pux*q1y+16*s1x*s1y*pux*q1y-88*uy*s2x*pux*q1y-20/3*s1y*s2x*pux*q1y-32/3*s1x*s2y*pux*q1y+54*s2x*s2y*pux*q1y-105*s2y*pwx*pux*q1y+51*s2x*pwy*pux*q1y-176*uy*pux^2*q1y-40/3*s1y*pux^2*q1y+111*s2y*pux^2*q1y+8/3*s1x*s2x*puy*q1y+16/3*s1x*pwx*puy*q1y-16/3*s1x*pux*puy*q1y-186*s2x*pux*puy*q1y-3*pwx*pux*puy*q1y-174*pux^2*puy*q1y-8/3*s1x*s2x*q1y^2-8*s1x*pux*q1y^2+45*s2x*pux*q1y^2+105*pux^2*q1y^2-48*uy*s2x*s2y*q2x-16*s1y*s2x*s2y*q2x+104*uy*s2y*pwx*q2x+20*s1y*s2y*pwx*q2x+16*uy*s3y*pwx*q2x-56*uy*s2x*pwy*q2x-4*s1y*s2x*pwy*q2x-200*uy*s2y*pux*q2x-36*s1y*s2y*pux*q2x+80*uy*s2x*puy*q2x+12*s1y*s2x*puy*q2x+40*uy*pwx*puy*q2x+12*s1y*pwx*puy*q2x-160*uy*pux*puy*q2x-24*s1y*pux*puy*q2x+40*uy*s2x*q1y*q2x-120*uy*pux*q1y*q2x-24*s1y*pux*q1y*q2x+104/3*s1x*s2x*s2y*q2y-104/3*s1x*s2y*pwx*q2y+208/3*s1x*s2y*pux*q2y-215/3*s2x*s2y*pux*q2y+313/3*s2y*pwx*pux*q2y-6*s3y*pwx*pux*q2y-98/3*s2x*pwy*pux*q2y-349/3*s2y*pux^2*q2y-52/3*s1x*s2x*puy*q2y-104/3*s1x*pwx*puy*q2y+104/3*s1x*pux*puy*q2y+268/3*s2x*pux*puy*q2y+21*pwx*pux*puy*q2y-12*pux^2*puy*q2y+52/3*s1x*s2x*q1y*q2y+52*s1x*pux*q1y*q2y-170/3*s2x*pux*q1y*q2y-331/3*pux^2*q1y*q2y-208/3*s2x*s2y*q2x*q2y+224/3*s2y*pwx*q2x*q2y-8*s3y*pwx*q2x*q2y-16/3*s2x*pwy*q2x*q2y-120*s2y*pux*q2x*q2y+40*s2x*puy*q2x*q2y+40*pwx*puy*q2x*q2y-80*pux*puy*q2x*q2y-80*pux*q1y*q2x*q2y+12*uy*s2x*s2y*t-6*uy*s2y*pwx*t+4*uy*s3y*pwx*t-6*uy*s2x*pwy*t+6*uy*s2y*pux*t-6*uy*pwx*puy*t+6*uy*s2x*q1y*t+6*uy*pux*q1y*t+6*uy*s2y*q2x*t+4*uy*pwy*q2x*t+6*uy*puy*q2x*t-15*s2x*s2y*q2y*t+57/8*s2y*pwx*q2y*t-19/4*s3y*pwx*q2y*t+63/8*s2x*pwy*q2y*t-87/8*s2y*pux*q2y*t-3/2*pwy*pux*q2y*t-3/4*s2x*puy*q2y*t+69/8*pwx*puy*q2y*t-15/4*pux*puy*q2y*t-57/8*s2x*q1y*q2y*t-63/8*pux*q1y*q2y*t+16*ux*uy*s1y+8*uy*s1x*s2y-16/3*s1x*s1y*s2y+32*uy*s2x*s2y+2/3*s1y*s2x*s2y-4*ux*uy*s3y-4*uy*s1x*s3y+8/3*s1x*s1y*s3y+4*uy^2*pwx-64*uy*s2y*pwx-14/3*s1y*s2y*pwx-8*uy*s3y*pwx+1/3*s1y*s3y*pwx-4*ux*uy*pwy-4*uy*s1x*pwy+8/3*s1x*s1y*pwy+32*uy*s2x*pwy+4*s1y*s2x*pwy+120*uy*s2y*pux+22/3*s1y*s2y*pux+12*uy*s1x*puy-8*s1x*s1y*puy-44*uy*s2x*puy-10/3*s1y*s2x*puy+55*s2x*s2y*puy-38*uy*pwx*puy-2/3*s1y*pwx*puy-68*s2y*pwx*puy+6*ux*pwy*puy+13*s2x*pwy*puy+94*uy*pux*puy+20/3*s1y*pux*puy+255/2*s2y*pux*puy-3/2*pwy*pux*puy-6*ux*puy^2-42*s2x*puy^2-42*pwx*puy^2+93*pux*puy^2+8*uy*s1x*q1y-16/3*s1x*s1y*q1y-52*uy*s2x*q1y-26/3*s1y*s2x*q1y+8/3*s1x*s2y*q1y-68/3*s2x*s2y*q1y+35*s2y*pwx*q1y-8/3*s1x*pwy*q1y-41/3*s2x*pwy*q1y+76*uy*pux*q1y+4*s1y*pux*q1y-111/2*s2y*pux*q1y+4*s1x*puy*q1y+27*s2x*puy*q1y+9*pwx*puy*q1y+36*pux*puy*q1y+4/3*s1x*q1y^2+43/3*s2x*q1y^2-36*pux*q1y^2+2*uy*s1y*q2x-12*uy*s2y*q2x+2*s1y*s2y*q2x-8*uy*s3y*q2x-s1y*s3y*q2x-32*uy*pwy*q2x-7*s1y*pwy*q2x+60*uy*puy*q2x+12*s1y*puy*q2x+72*uy*q1y*q2x+10*s1y*q1y*q2x-4/3*pwy*q1y*q2x-14*ux*s1y*q2y+16*uy*s2x*q2y+5*s1y*s2x*q2y-52/3*s1x*s2y*q2y+127/2*s2x*s2y*q2y+3*ux*s3y*q2y+3*s1x*s3y*q2y-191/4*s2y*pwx*q2y+27/2*s3y*pwx*q2y+26/3*s1x*pwy*q2y-63/4*s2x*pwy*q2y+991/12*s2y*pux*q2y+3*s3y*pux*q2y-26*s1x*puy*q2y-89/6*s2x*puy*q2y-437/12*pwx*puy*q2y+331/6*pux*puy*q2y-9*s1x*q1y*q2y-1/12*s2x*q1y*q2y-8/3*pwx*q1y*q2y+217/4*pux*q1y*q2y-8*uy*q2x*q2y+8/3*s2y*q2x*q2y+8*s3y*q2x*q2y+20/3*pwy*q2x*q2y+40*puy*q2x*q2y+112/3*q1y*q2x*q2y+8*ux*q2y^2-16/3*s2x*q2y^2-3*uy*s2y*t-2*uy*pwy*t-3*uy*puy*t+57/16*s2y*q2y*t+19/8*pwy*q2y*t+63/16*puy*q2y*t-2*ux^2-8*uy^2-2*ux*s1x-4*uy*s1y-4/3*s1y^2+2/3*s1x*s2x+16*uy*s2y+11/3*s1y*s2y+8*uy*s3y+1/3*s1y*s3y-4/3*s1x*pwx+14*uy*pwy+11/6*s1y*pwy+2/3*s2y*pwy+9/4*pux^2-38*uy*puy-2*s1y*puy-8*s2y*puy+13/2*pwy*puy-42*puy^2-44*uy*q1y-10/3*s1y*q1y-17/2*s2y*q1y+4/3*pwy*q1y-3*puy*q1y+35/3*q1y^2-4/3*s1x*q2x+4/3*pwx*q2x+25/2*uy*q2y+25/6*s1y*q2y+19/24*s2y*q2y-47/4*s3y*q2y-41/6*pwy*q2y-205/8*puy*q2y-197/12*q1y*q2y-8/3*q2y^2+2*ux-1/3*s1x-2/3*s2x-21/2*pux+2*q2x+35/12",
+    "-8*uy*s3y*q2x+16*uy*pwy*q2x+3*s3y*pux*q2y-6*pwy*pux*q2y+4*uy*s3y-8*uy*pwy-19/4*s3y*q2y+19/2*pwy*q2y+3/2*puy*q2y-3/4*q1y*q2y",
+    "2*s1y*s3y*q2x-4*s1y*pwy*q2x-8*s3y*q2x*q2y+16*pwy*q2x*q2y-8*uy*s1y-4*uy*s3y+20*uy*pwy-6*pwy*puy+7*s1y*q2y+3*s3y*q2y-9*pwy*q2y-4*q2y^2",
+    "8*uy*s1y-4*uy*pwy+6*pwy*puy-6*puy^2-8*s1y*q2y+8*q2y^2-2*ux-2*s1x+2",
+    "-s1y*s3y+2*s1y*pwy+4*s3y*q2y-8*pwy*q2y-3/2*s1x+2*q2x-2",
+    "-8*ux*uy*s3y+16*ux*uy*pwy+6*ux*s3y*q2y-12*ux*pwy*q2y-4*uy^2+4*uy*s3y-8/3*s1y*pwy-4/3*s2y*pwy+8/3*pwy^2-4*uy*q1y+8/3*s1y*q1y+4/3*pwy*q1y+4/3*s1x*q2x-2*q2x^2+3*uy*q2y-4/3*s1y*q2y+8/3*s2y*q2y-3*s3y*q2y-8/3*pwy*q2y+1/3*q1y*q2y+2/3*q2y^2-4/3*s1x+11/3*q2x-7/6",
+    "0",
+    "8*ux*uy*s3y-16*ux*uy*pwy-2*s1y*s3y*q2x+4*s1y*pwy*q2x-6*ux*s3y*q2y+12*ux*pwy*q2y+8*s3y*q2x*q2y-16*pwy*q2x*q2y+4*uy^2-4*uy*s3y+s1y*s3y-8*uy*pwy+2/3*s1y*pwy+4/3*s2y*pwy-8/3*pwy^2+6*puy^2+4*uy*q1y-8/3*s1y*q1y-4/3*pwy*q1y-4/3*s1x*q2x+2*q2x^2-3*uy*q2y+7/3*s1y*q2y-8/3*s2y*q2y-s3y*q2y+41/3*pwy*q2y-1/3*q1y*q2y-14/3*q2y^2+4*ux+29/6*s1x-31/6*q2x+1/6",
+    "16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux+18*pwy*pux^2*puy+16/3*s1x*pwy*pux*q1y-12*pwy*pux^2*q1y+160*uy*pwy*pux*q2x+24*s1y*pwy*pux*q2x-104/3*s1x*pwy*pux*q2y+12*pwy*pux^2*q2y+80*pwy*pux*q2x*q2y-24*uy*pwy*q2x*t+21/2*pwy*pux*q2y*t-16*uy*s1x*pwy+32/3*s1x*s1y*pwy-88*uy*pwy*pux-20/3*s1y*pwy*pux-84*pwy*pux*puy-16/3*s1x*pwy*q1y+42*pwy*pux*q1y+80*uy*pwy*q2x+104/3*s1x*pwy*q2y-215/3*pwy*pux*q2y+12*uy*pwy*t-15*pwy*q2y*t+4*uy*s1y-8/3*s1y^2-64*uy*pwy-38/3*s1y*pwy-4/3*pwy^2+3*pwy*puy-4*uy*q1y+8/3*s1y*q1y+88/3*pwy*q1y-1/3*s1y*q2y+85/6*pwy*q2y+3*q1y*q2y",
+    "32*uy*s1x*pux*q1y-64/3*s1x*s1y*pux*q1y+36*pux^2*puy*q1y+32/3*s1x*pux*q1y^2-24*pux^2*q1y^2+320*uy*pux*q1y*q2x+48*s1y*pux*q1y*q2x-208/3*s1x*pux*q1y*q2y+24*pux^2*q1y*q2y+160*pux*q1y*q2x*q2y+12*uy*pwy*q2x*t-12*uy*q1y*q2x*t-9/2*pwy*pux*q2y*t+15/2*pux*q1y*q2y*t+8*uy*s1x*pwy-16/3*s1x*s1y*pwy-16*uy*s1x*q1y+32/3*s1x*s1y*q1y+8/3*s1x*pwy*q1y-176*uy*pux*q1y-40/3*s1y*pux*q1y+3*pwy*pux*q1y-177*pux*puy*q1y-16/3*s1x*q1y^2+99*pux*q1y^2-40*uy*pwy*q2x-40*uy*q1y*q2x-12*s1y*q1y*q2x-52/3*s1x*pwy*q2y+15*pwy*pux*q2y+104/3*s1x*q1y*q2y-313/3*pux*q1y*q2y-40*q1y*q2x*q2y-6*uy*pwy*t+6*uy*q1y*t+63/8*pwy*q2y*t-57/8*q1y*q2y*t+12*uy*pwy+8/3*s1y*pwy+32*uy*q1y+2/3*s1y*q1y-15*pwy*q1y+42*puy*q1y-9*q1y^2-187/12*pwy*q2y+365/12*q1y*q2y+3/2*pux-13/2",
+    "-16*uy*s1x*pwy*pux+32/3*s1x*s1y*pwy*pux-18*pwy*pux^2*puy-32*uy*s1x*pux*q1y+64/3*s1x*s1y*pux*q1y-16/3*s1x*pwy*pux*q1y+12*pwy*pux^2*q1y-36*pux^2*puy*q1y-32/3*s1x*pux*q1y^2+24*pux^2*q1y^2-160*uy*pwy*pux*q2x-24*s1y*pwy*pux*q2x-320*uy*pux*q1y*q2x-48*s1y*pux*q1y*q2x+104/3*s1x*pwy*pux*q2y-12*pwy*pux^2*q2y+208/3*s1x*pux*q1y*q2y-24*pux^2*q1y*q2y-80*pwy*pux*q2x*q2y-160*pux*q1y*q2x*q2y+12*uy*pwy*q2x*t+12*uy*q1y*q2x*t-6*pwy*pux*q2y*t-15/2*pux*q1y*q2y*t+8*uy*s1x*pwy-16/3*s1x*s1y*pwy+88*uy*pwy*pux+20/3*s1y*pwy*pux+84*pwy*pux*puy+16*uy*s1x*q1y-32/3*s1x*s1y*q1y+8/3*s1x*pwy*q1y+176*uy*pux*q1y+40/3*s1y*pux*q1y-45*pwy*pux*q1y+177*pux*puy*q1y+16/3*s1x*q1y^2-99*pux*q1y^2-40*uy*pwy*q2x+40*uy*q1y*q2x+12*s1y*q1y*q2x-52/3*s1x*pwy*q2y+170/3*pwy*pux*q2y-104/3*s1x*q1y*q2y+313/3*pux*q1y*q2y+40*q1y*q2x*q2y-6*uy*pwy*t-6*uy*q1y*t+57/8*pwy*q2y*t+57/8*q1y*q2y*t-4*uy*s1y+8/3*s1y^2+4*uy*s3y-8/3*s1y*s3y+52*uy*pwy+10*s1y*pwy+4/3*pwy^2-3*pwy*puy-32*uy*q1y-2/3*s1y*q1y-13*pwy*q1y-42*puy*q1y+9*q1y^2+1/3*s1y*q2y-3*s3y*q2y+17/12*pwy*q2y-397/12*q1y*q2y-3/2*pux+13/2",
+    "16*uy*s1x*s2y*pwx*pux-32/3*s1x*s1y*s2y*pwx*pux-16*uy*s1x*s2x*pwy*pux+32/3*s1x*s1y*s2x*pwy*pux+18*s2y*pwx*pux^2*puy-18*s2x*pwy*pux^2*puy+16/3*s1x*s2y*pwx*pux*q1y-16/3*s1x*s2x*pwy*pux*q1y-12*s2y*pwx*pux^2*q1y+12*s2x*pwy*pux^2*q1y+160*uy*s2y*pwx*pux*q2x+24*s1y*s2y*pwx*pux*q2x-160*uy*s2x*pwy*pux*q2x-24*s1y*s2x*pwy*pux*q2x-104/3*s1x*s2y*pwx*pux*q2y+104/3*s1x*s2x*pwy*pux*q2y+12*s2y*pwx*pux^2*q2y-12*s2x*pwy*pux^2*q2y+80*s2y*pwx*pux*q2x*q2y-80*s2x*pwy*pux*q2x*q2y-24*uy*s2y*pwx*q2x*t-8*uy*s3y*pwx*q2x*t+24*uy*s2x*pwy*q2x*t+8*uy*s3x*pwy*q2x*t-8*uy*pwx*pwy*q2x*t+21/2*s2y*pwx*pux*q2y*t+3*s3y*pwx*pux*q2y*t-21/2*s2x*pwy*pux*q2y*t-3*s3x*pwy*pux*q2y*t+3*pwx*pwy*pux*q2y*t+8*ux*uy*s1y*s3x-8*ux*uy*s1x*s3y-16*ux*uy*s1y*pwx-16*uy*s1x*s2y*pwx+32/3*s1x*s1y*s2y*pwx+8*ux*uy*s3y*pwx+16*ux*uy*s1x*pwy+16*uy*s1x*s2x*pwy-32/3*s1x*s1y*s2x*pwy-8*ux*uy*s3x*pwy-88*uy*s2y*pwx*pux-20/3*s1y*s2y*pwx*pux+88*uy*s2x*pwy*pux+20/3*s1y*s2x*pwy*pux-84*s2y*pwx*pux*puy+84*s2x*pwy*pux*puy-16/3*s1x*s2y*pwx*q1y+16/3*s1x*s2x*pwy*q1y+42*s2y*pwx*pux*q1y-42*s2x*pwy*pux*q1y+2*uy*s1y*s3x*q2x-2*ux*s1y*s3y*q2x-4*uy*s1y*pwx*q2x+80*uy*s2y*pwx*q2x+32*uy*s3y*pwx*q2x+2*s1y*s3y*pwx*q2x+4*ux*s1y*pwy*q2x-80*uy*s2x*pwy*q2x-32*uy*s3x*pwy*q2x-2*s1y*s3x*pwy*q2x+16*uy*pwx*pwy*q2x-6*ux*s1y*s3x*q2y+6*ux*s1x*s3y*q2y+12*ux*s1y*pwx*q2y+104/3*s1x*s2y*pwx*q2y-6*ux*s3y*pwx*q2y-12*ux*s1x*pwy*q2y-104/3*s1x*s2x*pwy*q2y+6*ux*s3x*pwy*q2y-215/3*s2y*pwx*pux*q2y-12*s3y*pwx*pux*q2y+215/3*s2x*pwy*pux*q2y+12*s3x*pwy*pux*q2y-6*pwx*pwy*pux*q2y-8*uy*s3x*q2x*q2y+8*ux*s3y*q2x*q2y+16*uy*pwx*q2x*q2y-24*s3y*pwx*q2x*q2y-16*ux*pwy*q2x*q2y+24*s3x*pwy*q2x*q2y-8*pwx*pwy*q2x*q2y+12*uy*s2y*pwx*t+4*uy*s3y*pwx*t-12*uy*s2x*pwy*t-4*uy*s3x*pwy*t+4*uy*pwx*pwy*t+4*uy*pwy*q2x*t-15*s2y*pwx*q2y*t-19/4*s3y*pwx*q2y*t+15*s2x*pwy*q2y*t+19/4*s3x*pwy*q2y*t-19/4*pwx*pwy*q2y*t-3/2*pwy*pux*q2y*t-4*uy^2*s1x+12*ux*uy*s1y-4*uy*s1y*s2x+8/3*s1y^2*s2x-4*uy^2*s3x-4*uy*s1y*s3x-8/3*s1y^2*s3x+4*ux*uy*s3y+4*uy*s1x*s3y+8/3*s1x*s1y*s3y+20*uy^2*pwx+8*uy*s1y*pwx+8/3*s1y^2*pwx-64*uy*s2y*pwx-34/3*s1y*s2y*pwx-20*uy*s3y*pwx-3*s1y*s3y*pwx-24*ux*uy*pwy-8*uy*s1x*pwy-8/3*s1x*s1y*pwy+64*uy*s2x*pwy+38/3*s1y*s2x*pwy-4/3*s1x*s2y*pwy+20*uy*s3x*pwy+3*s1y*s3x*pwy-8*uy*pwx*pwy-7/3*s1y*pwx*pwy-4/3*s2y*pwx*pwy+8/3*s1x*pwy^2+4/3*s2x*pwy^2-6*uy*pwx*puy+3*s2y*pwx*puy+6*ux*pwy*puy-3*s2x*pwy*puy+4*uy*s2x*q1y-8/3*s1y*s2x*q1y+88/3*s2y*pwx*q1y-88/3*s2x*pwy*q1y+uy*s1y*q2x-16*uy*pwy*q2x-s1y*pwy*q2x+3*uy*s1x*q2y-10*ux*s1y*q2y+1/3*s1y*s2x*q2y+8/3*s1x*s2y*q2y+3*uy*s3x*q2y+3*s1y*s3x*q2y-3*ux*s3y*q2y-3*s1x*s3y*q2y-9*uy*pwx*q2y-10/3*s1y*pwx*q2y+85/6*s2y*pwx*q2y+34*s3y*pwx*q2y+12*ux*pwy*q2y+10/3*s1x*pwy*q2y-85/6*s2x*pwy*q2y-34*s3x*pwy*q2y+27/2*pwx*pwy*q2y+6*pwy*pux*q2y-3*s2x*q1y*q2y-4*uy*q2x*q2y+12*pwy*q2x*q2y+4*ux*q2y^2-2*uy*pwy*t+19/8*pwy*q2y*t-2*uy^2-2*uy*s1y-4/3*s1y^2+10*uy*pwy+3/2*s1y*pwy+1/2*s1x*q2x+3/2*uy*q2y+3/2*s1y*q2y-17*pwy*q2y-1/3*s1x",
+    "8*ux*uy*s3y-16*ux*uy*pwy-6*ux*s3y*q2y+12*ux*pwy*q2y+4*uy^2-4*uy*s3y-8/3*s1y*s3y+8*uy*pwy+8/3*s1y*pwy+4/3*s2y*pwy-8/3*pwy^2-3*uy*q2y-8/3*s2y*q2y+3*s3y*q2y-10/3*pwy*q2y-1/2*q2x+1/3",
+    "-16*uy*s1x*s2y*pux+32/3*s1x*s1y*s2y*pux+16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux-18*s2y*pux^2*puy+18*pwy*pux^2*puy-16/3*s1x*s2y*pux*q1y+16/3*s1x*pwy*pux*q1y+12*s2y*pux^2*q1y-12*pwy*pux^2*q1y-160*uy*s2y*pux*q2x-24*s1y*s2y*pux*q2x+160*uy*pwy*pux*q2x+24*s1y*pwy*pux*q2x+104/3*s1x*s2y*pux*q2y-104/3*s1x*pwy*pux*q2y-12*s2y*pux^2*q2y+12*pwy*pux^2*q2y-80*s2y*pux*q2x*q2y+80*pwy*pux*q2x*q2y+24*uy*s2y*q2x*t+8*uy*s3y*q2x*t-32*uy*pwy*q2x*t-21/2*s2y*pux*q2y*t-3*s3y*pux*q2y*t+27/2*pwy*pux*q2y*t+16*uy*s1x*s2y-32/3*s1x*s1y*s2y-8*ux*uy*s3y+16*ux*uy*pwy-16*uy*s1x*pwy+32/3*s1x*s1y*pwy+88*uy*s2y*pux+20/3*s1y*s2y*pux-88*uy*pwy*pux-20/3*s1y*pwy*pux+84*s2y*pux*puy-84*pwy*pux*puy+16/3*s1x*s2y*q1y-16/3*s1x*pwy*q1y-42*s2y*pux*q1y+42*pwy*pux*q1y-80*uy*s2y*q2x-32*uy*s3y*q2x+128*uy*pwy*q2x-104/3*s1x*s2y*q2y+6*ux*s3y*q2y-12*ux*pwy*q2y+104/3*s1x*pwy*q2y+215/3*s2y*pux*q2y+12*s3y*pux*q2y-269/3*pwy*pux*q2y+16*s3y*q2x*q2y-24*pwy*q2x*q2y-12*uy*s2y*t-4*uy*s3y*t+16*uy*pwy*t+15*s2y*q2y*t+19/4*s3y*q2y*t-79/4*pwy*q2y*t-12*uy^2-4*uy*s1y+64*uy*s2y+34/3*s1y*s2y+16*uy*s3y+3*s1y*s3y-76*uy*pwy-49/3*s1y*pwy+4/3*s2y*pwy-4/3*pwy^2+6*uy*puy-3*s2y*puy-3*pwy*puy-4*uy*q1y+8/3*s1y*q1y-88/3*s2y*q1y+88/3*pwy*q1y+3*uy*q2y+4*s1y*q2y-85/6*s2y*q2y-31*s3y*q2y+179/3*pwy*q2y+3*q1y*q2y-4*q2y^2",
+    "16*uy*s1x*s2y*pux-32/3*s1x*s1y*s2y*pux+32*uy*s1x*pwy*pux-64/3*s1x*s1y*pwy*pux-32*uy*s1x*pux*puy+64/3*s1x*s1y*pux*puy+18*s2y*pux^2*puy+36*pwy*pux^2*puy-36*pux^2*puy^2+16*uy*s1x*pux*q1y-32/3*s1x*s1y*pux*q1y+16/3*s1x*s2y*pux*q1y+32/3*s1x*pwy*pux*q1y-12*s2y*pux^2*q1y-24*pwy*pux^2*q1y-32/3*s1x*pux*puy*q1y+42*pux^2*puy*q1y+16/3*s1x*pux*q1y^2-12*pux^2*q1y^2+160*uy*s2y*pux*q2x+24*s1y*s2y*pux*q2x+320*uy*pwy*pux*q2x+48*s1y*pwy*pux*q2x-320*uy*pux*puy*q2x-48*s1y*pux*puy*q2x+160*uy*pux*q1y*q2x+24*s1y*pux*q1y*q2x-104/3*s1x*s2y*pux*q2y-208/3*s1x*pwy*pux*q2y+12*s2y*pux^2*q2y+24*pwy*pux^2*q2y+208/3*s1x*pux*puy*q2y-24*pux^2*puy*q2y-104/3*s1x*pux*q1y*q2y+12*pux^2*q1y*q2y+80*s2y*pux*q2x*q2y+160*pwy*pux*q2x*q2y-160*pux*puy*q2x*q2y+80*pux*q1y*q2x*q2y-24*uy*s2y*q2x*t-12*uy*pwy*q2x*t-12*uy*q1y*q2x*t+21/2*s2y*pux*q2y*t+15/2*pwy*pux*q2y*t-3*pux*puy*q2y*t+6*pux*q1y*q2y*t-16*uy*s1x*s2y+32/3*s1x*s1y*s2y-16*uy*s1x*pwy+32/3*s1x*s1y*pwy-88*uy*s2y*pux-20/3*s1y*s2y*pux-176*uy*pwy*pux-40/3*s1y*pwy*pux+8*uy*s1x*puy-16/3*s1x*s1y*puy+176*uy*pux*puy+40/3*s1y*pux*puy-96*s2y*pux*puy-183*pwy*pux*puy+177*pux*puy^2-8*uy*s1x*q1y+16/3*s1x*s1y*q1y-16/3*s1x*s2y*q1y-16/3*s1x*pwy*q1y-88*uy*pux*q1y-20/3*s1y*pux*q1y+54*s2y*pux*q1y+105*pwy*pux*q1y+8/3*s1x*puy*q1y-186*pux*puy*q1y-8/3*s1x*q1y^2+45*pux*q1y^2-48*uy*s2y*q2x-16*s1y*s2y*q2x-104*uy*pwy*q2x-20*s1y*pwy*q2x+80*uy*puy*q2x+12*s1y*puy*q2x+40*uy*q1y*q2x+104/3*s1x*s2y*q2y+104/3*s1x*pwy*q2y-215/3*s2y*pux*q2y-313/3*pwy*pux*q2y-52/3*s1x*puy*q2y+268/3*pux*puy*q2y+52/3*s1x*q1y*q2y-170/3*pux*q1y*q2y-208/3*s2y*q2x*q2y-224/3*pwy*q2x*q2y+40*puy*q2x*q2y+12*uy*s2y*t+6*uy*pwy*t+6*uy*q1y*t-15*s2y*q2y*t-57/8*pwy*q2y*t-3/4*puy*q2y*t-57/8*q1y*q2y*t+32*uy*s2y+2/3*s1y*s2y+64*uy*pwy+14/3*s1y*pwy-44*uy*puy-10/3*s1y*puy+55*s2y*puy+68*pwy*puy-42*puy^2-52*uy*q1y-26/3*s1y*q1y-68/3*s2y*q1y-109/3*pwy*q1y+27*puy*q1y+43/3*q1y^2+16*uy*q2y+5*s1y*q2y+127/2*s2y*q2y+191/4*pwy*q2y-89/6*puy*q2y-1/12*q1y*q2y-16/3*q2y^2+2/3*s1x-2/3",
+    "-16*uy*s1x*pwy*pux+32/3*s1x*s1y*pwy*pux-18*pwy*pux^2*puy-16/3*s1x*pwy*pux*q1y+12*pwy*pux^2*q1y-160*uy*pwy*pux*q2x-24*s1y*pwy*pux*q2x+104/3*s1x*pwy*pux*q2y-12*pwy*pux^2*q2y-80*pwy*pux*q2x*q2y+40*uy*pwy*q2x*t-33/2*pwy*pux*q2y*t+16*ux*uy*s1y-16*ux*uy*pwy+16*uy*s1x*pwy-32/3*s1x*s1y*pwy+88*uy*pwy*pux+20/3*s1y*pwy*pux+84*pwy*pux*puy+16/3*s1x*pwy*q1y-42*pwy*pux*q1y+4*uy*s1y*q2x-2*s1y*s3y*q2x-144*uy*pwy*q2x-12*ux*s1y*q2y+12*ux*pwy*q2y-104/3*s1x*pwy*q2y+287/3*pwy*pux*q2y-16*uy*q2x*q2y+8*s3y*q2x*q2y+32*pwy*q2x*q2y-20*uy*pwy*t+49/2*pwy*q2y*t-8*uy^2-4*uy*s1y-8/3*s1y^2+4*uy*s3y+84*uy*pwy+56/3*s1y*pwy+4/3*pwy^2+3*pwy*puy+4*uy*q1y-8/3*s1y*q1y-88/3*pwy*q1y+6*uy*q2y-2/3*s1y*q2y-3*s3y*q2y-439/6*pwy*q2y-3*q1y*q2y+4*q2y^2",
+    "-16*uy*s1x*s2x*s2y*pux+32/3*s1x*s1y*s2x*s2y*pux+32*uy*s1x*s2y*pwx*pux-64/3*s1x*s1y*s2y*pwx*pux-32*uy*s1x*s2x*pwy*pux+64/3*s1x*s1y*s2x*pwy*pux-32*uy*s1x*s2y*pux^2+64/3*s1x*s1y*s2y*pux^2+32*uy*s1x*s2x*pux*puy-64/3*s1x*s1y*s2x*pux*puy-18*s2x*s2y*pux^2*puy+36*s2y*pwx*pux^2*puy-36*s2x*pwy*pux^2*puy-36*s2y*pux^3*puy+36*s2x*pux^2*puy^2-16*uy*s1x*s2x*pux*q1y+32/3*s1x*s1y*s2x*pux*q1y-16/3*s1x*s2x*s2y*pux*q1y+32/3*s1x*s2y*pwx*pux*q1y-32/3*s1x*s2x*pwy*pux*q1y-32/3*s1x*s2y*pux^2*q1y+12*s2x*s2y*pux^2*q1y-24*s2y*pwx*pux^2*q1y+24*s2x*pwy*pux^2*q1y+24*s2y*pux^3*q1y+32/3*s1x*s2x*pux*puy*q1y-42*s2x*pux^2*puy*q1y-16/3*s1x*s2x*pux*q1y^2+12*s2x*pux^2*q1y^2-160*uy*s2x*s2y*pux*q2x-24*s1y*s2x*s2y*pux*q2x+320*uy*s2y*pwx*pux*q2x+48*s1y*s2y*pwx*pux*q2x-320*uy*s2x*pwy*pux*q2x-48*s1y*s2x*pwy*pux*q2x-320*uy*s2y*pux^2*q2x-48*s1y*s2y*pux^2*q2x+320*uy*s2x*pux*puy*q2x+48*s1y*s2x*pux*puy*q2x-160*uy*s2x*pux*q1y*q2x-24*s1y*s2x*pux*q1y*q2x+104/3*s1x*s2x*s2y*pux*q2y-208/3*s1x*s2y*pwx*pux*q2y+208/3*s1x*s2x*pwy*pux*q2y+208/3*s1x*s2y*pux^2*q2y-12*s2x*s2y*pux^2*q2y+24*s2y*pwx*pux^2*q2y-24*s2x*pwy*pux^2*q2y-24*s2y*pux^3*q2y-208/3*s1x*s2x*pux*puy*q2y+24*s2x*pux^2*puy*q2y+104/3*s1x*s2x*pux*q1y*q2y-12*s2x*pux^2*q1y*q2y-80*s2x*s2y*pux*q2x*q2y+160*s2y*pwx*pux*q2x*q2y-160*s2x*pwy*pux*q2x*q2y-160*s2y*pux^2*q2x*q2y+160*s2x*pux*puy*q2x*q2y-80*s2x*pux*q1y*q2x*q2y+24*uy*s2x*s2y*q2x*t-12*uy*s2y*pwx*q2x*t+8*uy*s3y*pwx*q2x*t+12*uy*s2x*pwy*q2x*t+12*uy*s2y*pux*q2x*t+12*uy*pwy*pux*q2x*t-12*uy*pwx*puy*q2x*t+12*uy*s2x*q1y*q2x*t-21/2*s2x*s2y*pux*q2y*t+15/2*s2y*pwx*pux*q2y*t-3*s3y*pwx*pux*q2y*t-15/2*s2x*pwy*pux*q2y*t-15/2*s2y*pux^2*q2y*t-9/2*pwy*pux^2*q2y*t+3*s2x*pux*puy*q2y*t+9/2*pwx*pux*puy*q2y*t-6*s2x*pux*q1y*q2y*t+16*uy*s1x*s2x*s2y-32/3*s1x*s1y*s2x*s2y-16*uy*s1x*s2y*pwx+32/3*s1x*s1y*s2y*pwx+16*uy*s1x*s2x*pwy-32/3*s1x*s1y*s2x*pwy-8*uy*s1x*s2y*pux+16/3*s1x*s1y*s2y*pux+88*uy*s2x*s2y*pux+20/3*s1y*s2x*s2y*pux-176*uy*s2y*pwx*pux-40/3*s1y*s2y*pwx*pux+32*uy*s1x*pwy*pux-64/3*s1x*s1y*pwy*pux+176*uy*s2x*pwy*pux+40/3*s1y*s2x*pwy*pux+176*uy*s2y*pux^2+40/3*s1y*s2y*pux^2-8*uy*s1x*s2x*puy+16/3*s1x*s1y*s2x*puy-16*uy*s1x*pwx*puy+32/3*s1x*s1y*pwx*puy-176*uy*s2x*pux*puy-40/3*s1y*s2x*pux*puy+96*s2x*s2y*pux*puy-183*s2y*pwx*pux*puy+183*s2x*pwy*pux*puy+150*s2y*pux^2*puy+27*pwy*pux^2*puy-177*s2x*pux*puy^2-9*pwx*pux*puy^2+8*uy*s1x*s2x*q1y-16/3*s1x*s1y*s2x*q1y+16/3*s1x*s2x*s2y*q1y-16/3*s1x*s2y*pwx*q1y+16/3*s1x*s2x*pwy*q1y+88*uy*s2x*pux*q1y+20/3*s1y*s2x*pux*q1y-8/3*s1x*s2y*pux*q1y-54*s2x*s2y*pux*q1y+105*s2y*pwx*pux*q1y+32/3*s1x*pwy*pux*q1y-105*s2x*pwy*pux*q1y-81*s2y*pux^2*q1y-15*pwy*pux^2*q1y-8/3*s1x*s2x*puy*q1y-16/3*s1x*pwx*puy*q1y+186*s2x*pux*puy*q1y+3*pwx*pux*puy*q1y+8/3*s1x*s2x*q1y^2-45*s2x*pux*q1y^2+48*uy*s2x*s2y*q2x+16*s1y*s2x*s2y*q2x-104*uy*s2y*pwx*q2x-20*s1y*s2y*pwx*q2x-16*uy*s3y*pwx*q2x+104*uy*s2x*pwy*q2x+20*s1y*s2x*pwy*q2x-200*uy*s2y*pux*q2x-24*s1y*s2y*pux*q2x+200*uy*pwy*pux*q2x+36*s1y*pwy*pux*q2x-80*uy*s2x*puy*q2x-12*s1y*s2x*puy*q2x-40*uy*pwx*puy*q2x-12*s1y*pwx*puy*q2x-40*uy*s2x*q1y*q2x-104/3*s1x*s2x*s2y*q2y+104/3*s1x*s2y*pwx*q2y-104/3*s1x*s2x*pwy*q2y+52/3*s1x*s2y*pux*q2y+215/3*s2x*s2y*pux*q2y-313/3*s2y*pwx*pux*q2y+6*s3y*pwx*pux*q2y-208/3*s1x*pwy*pux*q2y+313/3*s2x*pwy*pux*q2y+259/3*s2y*pux^2*q2y+33*pwy*pux^2*q2y+52/3*s1x*s2x*puy*q2y+104/3*s1x*pwx*puy*q2y-268/3*s2x*pux*puy*q2y-21*pwx*pux*puy*q2y-52/3*s1x*s2x*q1y*q2y+170/3*s2x*pux*q1y*q2y+208/3*s2x*s2y*q2x*q2y-224/3*s2y*pwx*q2x*q2y+8*s3y*pwx*q2x*q2y+224/3*s2x*pwy*q2x*q2y-80*s2y*pux*q2x*q2y+120*pwy*pux*q2x*q2y-40*s2x*puy*q2x*q2y-40*pwx*puy*q2x*q2y-12*uy*s2x*s2y*t+6*uy*s2y*pwx*t-4*uy*s3y*pwx*t-6*uy*s2x*pwy*t-6*uy*s2y*pux*t-6*uy*pwy*pux*t+6*uy*pwx*puy*t-6*uy*s2x*q1y*t+18*uy*s2y*q2x*t-8*uy*s3y*q2x*t-48*uy*pwy*q2x*t+18*uy*puy*q2x*t+15*s2x*s2y*q2y*t-57/8*s2y*pwx*q2y*t+19/4*s3y*pwx*q2y*t+57/8*s2x*pwy*q2y*t-15/8*s2y*pux*q2y*t+3*s3y*pux*q2y*t+225/8*pwy*pux*q2y*t+3/4*s2x*puy*q2y*t-69/8*pwx*puy*q2y*t-27/4*pux*puy*q2y*t+57/8*s2x*q1y*q2y*t-16*ux*uy*s1y+16*uy*s1x*s2y-32/3*s1x*s1y*s2y-32*uy*s2x*s2y-2/3*s1y*s2x*s2y-4*ux*uy*s3y-4*uy^2*pwx+64*uy*s2y*pwx+14/3*s1y*s2y*pwx+8*uy*s3y*pwx-1/3*s1y*s3y*pwx+20*ux*uy*pwy-32*uy*s1x*pwy+64/3*s1x*s1y*pwy-64*uy*s2x*pwy-14/3*s1y*s2x*pwy+100*uy*s2y*pux+28/3*s1y*s2y*pux-120*uy*pwy*pux-22/3*s1y*pwy*pux+24*uy*s1x*puy-16*s1x*s1y*puy+44*uy*s2x*puy+10/3*s1y*s2x*puy-55*s2x*s2y*puy+38*uy*pwx*puy+2/3*s1y*pwx*puy+68*s2y*pwx*puy-6*ux*pwy*puy-68*s2x*pwy*puy-6*uy*pux*puy+195/2*s2y*pux*puy-135*pwy*pux*puy+6*ux*puy^2+42*s2x*puy^2+42*pwx*puy^2+27/2*pux*puy^2+52*uy*s2x*q1y+26/3*s1y*s2x*q1y+16/3*s1x*s2y*q1y+68/3*s2x*s2y*q1y-35*s2y*pwx*q1y-32/3*s1x*pwy*q1y+109/3*s2x*pwy*q1y-141/2*s2y*pux*q1y+54*pwy*pux*q1y+8*s1x*puy*q1y-27*s2x*puy*q1y-9*pwx*puy*q1y-9/2*pux*puy*q1y-43/3*s2x*q1y^2-2*uy*s1y*q2x+76*uy*s2y*q2x+18*s1y*s2y*q2x+8*uy*s3y*q2x+s1y*s3y*q2x+96*uy*pwy*q2x-12*s1y*pwy*q2x+60*uy*puy*q2x+18*s1y*puy*q2x+14*ux*s1y*q2y-16*uy*s2x*q2y-5*s1y*s2x*q2y-104/3*s1x*s2y*q2y-127/2*s2x*s2y*q2y+3*ux*s3y*q2y+191/4*s2y*pwx*q2y-27/2*s3y*pwx*q2y-12*ux*pwy*q2y+208/3*s1x*pwy*q2y-191/4*s2x*pwy*q2y+691/12*s2y*pux*q2y-3*s3y*pux*q2y-1801/12*pwy*pux*q2y-52*s1x*puy*q2y+89/6*s2x*puy*q2y+437/12*pwx*puy*q2y+63/2*pux*puy*q2y+1/12*s2x*q1y*q2y+8/3*pwx*q1y*q2y+8*uy*q2x*q2y+72*s2y*q2x*q2y-8*s3y*q2x*q2y-68*pwy*q2x*q2y+60*puy*q2x*q2y-8*ux*q2y^2+16/3*s2x*q2y^2-9*uy*s2y*t+4*uy*s3y*t+24*uy*pwy*t-9*uy*puy*t+177/16*s2y*q2y*t-19/4*s3y*q2y*t-123/4*pwy*q2y*t+207/16*puy*q2y*t+2*ux^2+4*uy^2+2*ux*s1x+8*uy*s1y+4/3*s1y^2-2/3*s1x*s2x-32*uy*s2y-2/3*s1y*s2y-6*uy*s3y+2*s1y*s3y+4/3*s1x*pwx-52*uy*pwy-101/6*s1y*pwy+2/3*s2y*pwy-4/3*pwy^2-3/4*pux^2-48*uy*puy-s1y*puy-123/2*s2y*puy+45*pwy*puy-69*puy^2-4*uy*q1y+8/3*s1y*q1y+173/6*s2y*q1y+61/3*pwy*q1y+27/2*puy*q1y-4/3*pwx*q2x-3/2*uy*q2y-17/3*s1y*q2y-1159/24*s2y*q2y+25/4*s3y*q2y+617/6*pwy*q2y-437/8*puy*q2y-q1y*q2y+4*q2y^2-4*ux-4*s1x+2/3*s2x+4*pux+2*q2x-5/4",
+    "-16*uy*s1x*s2x*pwy*pux+32/3*s1x*s1y*s2x*pwy*pux-18*s2x*pwy*pux^2*puy-16/3*s1x*s2x*pwy*pux*q1y+32*uy*s1x*pux^2*q1y-64/3*s1x*s1y*pux^2*q1y+12*s2x*pwy*pux^2*q1y+36*pux^3*puy*q1y+32/3*s1x*pux^2*q1y^2-24*pux^3*q1y^2-160*uy*s2x*pwy*pux*q2x-24*s1y*s2x*pwy*pux*q2x+320*uy*pux^2*q1y*q2x+48*s1y*pux^2*q1y*q2x+104/3*s1x*s2x*pwy*pux*q2y-12*s2x*pwy*pux^2*q2y-208/3*s1x*pux^2*q1y*q2y+24*pux^3*q1y*q2y-80*s2x*pwy*pux*q2x*q2y+160*pux^2*q1y*q2x*q2y+24*uy*s2x*pwy*q2x*t+12*uy*pwy*pux*q2x*t-12*uy*pux*q1y*q2x*t-21/2*s2x*pwy*pux*q2y*t-9/2*pwy*pux^2*q2y*t+15/2*pux^2*q1y*q2y*t+16*uy*s1x*s2x*pwy-32/3*s1x*s1y*s2x*pwy-8*uy*s1x*s2y*pux+16/3*s1x*s1y*s2y*pux+16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux+88*uy*s2x*pwy*pux+20/3*s1y*s2x*pwy*pux+16*uy*s1x*pux*puy-32/3*s1x*s1y*pux*puy+96*s2x*pwy*pux*puy-9*s2y*pux^2*puy+9*pwy*pux^2*puy+18*pux^2*puy^2+16/3*s1x*s2x*pwy*q1y-56*uy*s1x*pux*q1y+112/3*s1x*s1y*pux*q1y-8/3*s1x*s2y*pux*q1y+16/3*s1x*pwy*pux*q1y-54*s2x*pwy*pux*q1y-176*uy*pux^2*q1y-40/3*s1y*pux^2*q1y+6*s2y*pux^2*q1y-3*pwy*pux^2*q1y+16/3*s1x*pux*puy*q1y-234*pux^2*puy*q1y-56/3*s1x*pux*q1y^2+129*pux^2*q1y^2+48*uy*s2x*pwy*q2x+16*s1y*s2x*pwy*q2x-80*uy*s2y*pux*q2x-12*s1y*s2y*pux*q2x+40*uy*pwy*pux*q2x+12*s1y*pwy*pux*q2x+160*uy*pux*puy*q2x+24*s1y*pux*puy*q2x-440*uy*pux*q1y*q2x-72*s1y*pux*q1y*q2x-104/3*s1x*s2x*pwy*q2y+52/3*s1x*s2y*pux*q2y-104/3*s1x*pwy*pux*q2y+215/3*s2x*pwy*pux*q2y-6*s2y*pux^2*q2y+21*pwy*pux^2*q2y-104/3*s1x*pux*puy*q2y+12*pux^2*puy*q2y+364/3*s1x*pux*q1y*q2y-403/3*pux^2*q1y*q2y+208/3*s2x*pwy*q2x*q2y-40*s2y*pux*q2x*q2y+40*pwy*pux*q2x*q2y+80*pux*puy*q2x*q2y-240*pux*q1y*q2x*q2y-12*uy*s2x*pwy*t-6*uy*pwy*pux*t+6*uy*pux*q1y*t+12*uy*s2y*q2x*t-8*uy*s3y*q2x*t-20*uy*pwy*q2x*t+12*uy*q1y*q2x*t+15*s2x*pwy*q2y*t-21/4*s2y*pux*q2y*t+3*s3y*pux*q2y*t+129/8*pwy*pux*q2y*t+3/2*pux*puy*q2y*t-123/8*pux*q1y*q2y*t+8*uy*s1x*s2y-16/3*s1x*s1y*s2y-4*uy*s1x*s3y+8/3*s1x*s1y*s3y-12*uy*s1x*pwy+8*s1x*s1y*pwy-32*uy*s2x*pwy-2/3*s1y*s2x*pwy+44*uy*s2y*pux+10/3*s1y*s2y*pux-32*uy*pwy*pux-2/3*s1y*pwy*pux-12*uy*s1x*puy+8*s1x*s1y*puy-55*s2x*pwy*puy-88*uy*pux*puy-20/3*s1y*pux*puy+48*s2y*pux*puy-87/2*pwy*pux*puy-195/2*pux*puy^2+24*uy*s1x*q1y-16*s1x*s1y*q1y+8/3*s1x*s2y*q1y-16/3*s1x*pwy*q1y+68/3*s2x*pwy*q1y+252*uy*pux*q1y+52/3*s1y*pux*q1y-27*s2y*pux*q1y+6*pwy*pux*q1y-4*s1x*puy*q1y+645/2*pux*puy*q1y+20/3*s1x*q1y^2-135*pux*q1y^2+24*uy*s2y*q2x+8*s1y*s2y*q2x-2*s1y*s3y*q2x+64*uy*pwy*q2x-3*s1y*pwy*q2x-120*uy*puy*q2x-18*s1y*puy*q2x+112*uy*q1y*q2x+22*s1y*q1y*q2x-4/3*pwy*q1y*q2x-52/3*s1x*s2y*q2y+3*s1x*s3y*q2y+26*s1x*pwy*q2y-127/2*s2x*pwy*q2y+215/6*s2y*pux*q2y-869/12*pwy*pux*q2y+26*s1x*puy*q2y-152/3*pux*puy*q2y-131/3*s1x*q1y*q2y+1903/12*pux*q1y*q2y+104/3*s2y*q2x*q2y+8*s3y*q2x*q2y-112/3*pwy*q2x*q2y-60*puy*q2x*q2y+232/3*q1y*q2x*q2y-6*uy*s2y*t+4*uy*s3y*t+10*uy*pwy*t-6*uy*q1y*t+15/2*s2y*q2y*t-19/4*s3y*q2y*t-101/8*pwy*q2y*t+9/8*puy*q2y*t+57/8*q1y*q2y*t-16*uy*s2y-1/3*s1y*s2y+2*uy*s3y-1/3*s1y*s3y-26*uy*pwy-3*s1y*pwy+3/2*pux^2+60*uy*puy+5*s1y*puy-55/2*s2y*puy+13/2*pwy*puy+69*puy^2-68*uy*q1y-2*s1y*q1y+34/3*s2y*q1y+53/3*pwy*q1y-195/2*puy*q1y+64/3*q1y^2-4/3*s1x*q2x-8*uy*q2y-3/2*s1y*q2y-127/4*s2y*q2y-11/2*s3y*q2y+64*pwy*q2y+113/4*puy*q2y-301/6*q1y*q2y-4/3*q2y^2-2*ux+1/2*s1x-11/4*pux-1/6*q2x+3/4",
+    "16*uy*s1x*s2x*s2y*pux-32/3*s1x*s1y*s2x*s2y*pux-32*uy*s1x*s2y*pwx*pux+64/3*s1x*s1y*s2y*pwx*pux+32*uy*s1x*s2x*pwy*pux-64/3*s1x*s1y*s2x*pwy*pux+32*uy*s1x*s2y*pux^2-64/3*s1x*s1y*s2y*pux^2-32*uy*s1x*s2x*pux*puy+64/3*s1x*s1y*s2x*pux*puy+18*s2x*s2y*pux^2*puy-36*s2y*pwx*pux^2*puy+36*s2x*pwy*pux^2*puy+36*s2y*pux^3*puy-36*s2x*pux^2*puy^2+16*uy*s1x*s2x*pux*q1y-32/3*s1x*s1y*s2x*pux*q1y+16/3*s1x*s2x*s2y*pux*q1y-32/3*s1x*s2y*pwx*pux*q1y+32/3*s1x*s2x*pwy*pux*q1y+32/3*s1x*s2y*pux^2*q1y-12*s2x*s2y*pux^2*q1y+24*s2y*pwx*pux^2*q1y-24*s2x*pwy*pux^2*q1y-24*s2y*pux^3*q1y-32/3*s1x*s2x*pux*puy*q1y+42*s2x*pux^2*puy*q1y+16/3*s1x*s2x*pux*q1y^2-12*s2x*pux^2*q1y^2+160*uy*s2x*s2y*pux*q2x+24*s1y*s2x*s2y*pux*q2x-320*uy*s2y*pwx*pux*q2x-48*s1y*s2y*pwx*pux*q2x+320*uy*s2x*pwy*pux*q2x+48*s1y*s2x*pwy*pux*q2x+320*uy*s2y*pux^2*q2x+48*s1y*s2y*pux^2*q2x-320*uy*s2x*pux*puy*q2x-48*s1y*s2x*pux*puy*q2x+160*uy*s2x*pux*q1y*q2x+24*s1y*s2x*pux*q1y*q2x-104/3*s1x*s2x*s2y*pux*q2y+208/3*s1x*s2y*pwx*pux*q2y-208/3*s1x*s2x*pwy*pux*q2y-208/3*s1x*s2y*pux^2*q2y+12*s2x*s2y*pux^2*q2y-24*s2y*pwx*pux^2*q2y+24*s2x*pwy*pux^2*q2y+24*s2y*pux^3*q2y+208/3*s1x*s2x*pux*puy*q2y-24*s2x*pux^2*puy*q2y-104/3*s1x*s2x*pux*q1y*q2y+12*s2x*pux^2*q1y*q2y+80*s2x*s2y*pux*q2x*q2y-160*s2y*pwx*pux*q2x*q2y+160*s2x*pwy*pux*q2x*q2y+160*s2y*pux^2*q2x*q2y-160*s2x*pux*puy*q2x*q2y+80*s2x*pux*q1y*q2x*q2y-24*uy*s2x*s2y*q2x*t+12*uy*s2y*pwx*q2x*t-8*uy*s3y*pwx*q2x*t-12*uy*s2x*pwy*q2x*t-12*uy*s2y*pux*q2x*t-12*uy*pwy*pux*q2x*t+12*uy*pwx*puy*q2x*t-12*uy*s2x*q1y*q2x*t+21/2*s2x*s2y*pux*q2y*t-15/2*s2y*pwx*pux*q2y*t+3*s3y*pwx*pux*q2y*t+15/2*s2x*pwy*pux*q2y*t+15/2*s2y*pux^2*q2y*t+9/2*pwy*pux^2*q2y*t-3*s2x*pux*puy*q2y*t-9/2*pwx*pux*puy*q2y*t+6*s2x*pux*q1y*q2y*t-16*uy*s1x*s2x*s2y+32/3*s1x*s1y*s2x*s2y+16*uy*s1x*s2y*pwx-32/3*s1x*s1y*s2y*pwx-16*uy*s1x*s2x*pwy+32/3*s1x*s1y*s2x*pwy+40*uy*s1x*s2y*pux-80/3*s1x*s1y*s2y*pux-88*uy*s2x*s2y*pux-20/3*s1y*s2x*s2y*pux+176*uy*s2y*pwx*pux+40/3*s1y*s2y*pwx*pux-32*uy*s1x*pwy*pux+64/3*s1x*s1y*pwy*pux-176*uy*s2x*pwy*pux-40/3*s1y*s2x*pwy*pux-176*uy*s2y*pux^2-40/3*s1y*s2y*pux^2+8*uy*s1x*s2x*puy-16/3*s1x*s1y*s2x*puy+16*uy*s1x*pwx*puy-32/3*s1x*s1y*pwx*puy+176*uy*s2x*pux*puy+40/3*s1y*s2x*pux*puy-96*s2x*s2y*pux*puy+183*s2y*pwx*pux*puy-183*s2x*pwy*pux*puy-114*s2y*pux^2*puy-27*pwy*pux^2*puy+177*s2x*pux*puy^2+9*pwx*pux*puy^2-8*uy*s1x*s2x*q1y+16/3*s1x*s1y*s2x*q1y-16/3*s1x*s2x*s2y*q1y+16/3*s1x*s2y*pwx*q1y-16/3*s1x*s2x*pwy*q1y-88*uy*s2x*pux*q1y-20/3*s1y*s2x*pux*q1y+40/3*s1x*s2y*pux*q1y+54*s2x*s2y*pux*q1y-105*s2y*pwx*pux*q1y-32/3*s1x*pwy*pux*q1y+105*s2x*pwy*pux*q1y+57*s2y*pux^2*q1y+15*pwy*pux^2*q1y+8/3*s1x*s2x*puy*q1y+16/3*s1x*pwx*puy*q1y-186*s2x*pux*puy*q1y-3*pwx*pux*puy*q1y-8/3*s1x*s2x*q1y^2+45*s2x*pux*q1y^2-48*uy*s2x*s2y*q2x-16*s1y*s2x*s2y*q2x+104*uy*s2y*pwx*q2x+20*s1y*s2y*pwx*q2x+16*uy*s3y*pwx*q2x-104*uy*s2x*pwy*q2x-20*s1y*s2x*pwy*q2x+520*uy*s2y*pux*q2x+72*s1y*s2y*pux*q2x-200*uy*pwy*pux*q2x-36*s1y*pwy*pux*q2x+80*uy*s2x*puy*q2x+12*s1y*s2x*puy*q2x+40*uy*pwx*puy*q2x+12*s1y*pwx*puy*q2x+40*uy*s2x*q1y*q2x+104/3*s1x*s2x*s2y*q2y-104/3*s1x*s2y*pwx*q2y+104/3*s1x*s2x*pwy*q2y-260/3*s1x*s2y*pux*q2y-215/3*s2x*s2y*pux*q2y+313/3*s2y*pwx*pux*q2y-6*s3y*pwx*pux*q2y+208/3*s1x*pwy*pux*q2y-313/3*s2x*pwy*pux*q2y-187/3*s2y*pux^2*q2y-33*pwy*pux^2*q2y-52/3*s1x*s2x*puy*q2y-104/3*s1x*pwx*puy*q2y+268/3*s2x*pux*puy*q2y+21*pwx*pux*puy*q2y+52/3*s1x*s2x*q1y*q2y-170/3*s2x*pux*q1y*q2y-208/3*s2x*s2y*q2x*q2y+224/3*s2y*pwx*q2x*q2y-8*s3y*pwx*q2x*q2y-224/3*s2x*pwy*q2x*q2y+240*s2y*pux*q2x*q2y-120*pwy*pux*q2x*q2y+40*s2x*puy*q2x*q2y+40*pwx*puy*q2x*q2y+12*uy*s2x*s2y*t-6*uy*s2y*pwx*t+4*uy*s3y*pwx*t+6*uy*s2x*pwy*t+6*uy*s2y*pux*t+6*uy*pwy*pux*t-6*uy*pwx*puy*t+6*uy*s2x*q1y*t-30*uy*s2y*q2x*t+8*uy*s3y*q2x*t+36*uy*pwy*q2x*t-18*uy*puy*q2x*t-15*s2x*s2y*q2y*t+57/8*s2y*pwx*q2y*t-19/4*s3y*pwx*q2y*t-57/8*s2x*pwy*q2y*t+75/8*s2y*pux*q2y*t-3*s3y*pux*q2y*t-189/8*pwy*pux*q2y*t-3/4*s2x*puy*q2y*t+69/8*pwx*puy*q2y*t+27/4*pux*puy*q2y*t-57/8*s2x*q1y*q2y*t+16*ux*uy*s1y-32*uy*s1x*s2y+64/3*s1x*s1y*s2y+32*uy*s2x*s2y+2/3*s1y*s2x*s2y+4*ux*uy*s3y+4*uy^2*pwx-64*uy*s2y*pwx-14/3*s1y*s2y*pwx-8*uy*s3y*pwx+1/3*s1y*s3y*pwx-20*ux*uy*pwy+16*uy*s1x*pwy-32/3*s1x*s1y*pwy+64*uy*s2x*pwy+14/3*s1y*s2x*pwy-276*uy*s2y*pux-68/3*s1y*s2y*pux+120*uy*pwy*pux+22/3*s1y*pwy*pux-24*uy*s1x*puy+16*s1x*s1y*puy-44*uy*s2x*puy-10/3*s1y*s2x*puy+55*s2x*s2y*puy-38*uy*pwx*puy-2/3*s1y*pwx*puy-68*s2y*pwx*puy+6*ux*pwy*puy+68*s2x*pwy*puy+6*uy*pux*puy-549/2*s2y*pux*puy+126*pwy*pux*puy-6*ux*puy^2-42*s2x*puy^2-42*pwx*puy^2-27/2*pux*puy^2-52*uy*s2x*q1y-26/3*s1y*s2x*q1y-32/3*s1x*s2y*q1y-68/3*s2x*s2y*q1y+35*s2y*pwx*q1y+16/3*s1x*pwy*q1y-109/3*s2x*pwy*q1y+339/2*s2y*pux*q1y-51*pwy*pux*q1y-8*s1x*puy*q1y+27*s2x*puy*q1y+9*pwx*puy*q1y+9/2*pux*puy*q1y+43/3*s2x*q1y^2+2*uy*s1y*q2x-116*uy*s2y*q2x-30*s1y*s2y*q2x-8*uy*s3y*q2x-s1y*s3y*q2x-136*uy*pwy*q2x-60*uy*puy*q2x-18*s1y*puy*q2x-14*ux*s1y*q2y+16*uy*s2x*q2y+5*s1y*s2x*q2y+208/3*s1x*s2y*q2y+127/2*s2x*s2y*q2y-3*ux*s3y*q2y-191/4*s2y*pwx*q2y+27/2*s3y*pwx*q2y+12*ux*pwy*q2y-104/3*s1x*pwy*q2y+191/4*s2x*pwy*q2y-1943/12*s2y*pux*q2y+3*s3y*pux*q2y+1549/12*pwy*pux*q2y+52*s1x*puy*q2y-89/6*s2x*puy*q2y-437/12*pwx*puy*q2y-63/2*pux*puy*q2y-1/12*s2x*q1y*q2y-8/3*pwx*q1y*q2y-8*uy*q2x*q2y-112*s2y*q2x*q2y+8*s3y*q2x*q2y+28*pwy*q2x*q2y-60*puy*q2x*q2y+8*ux*q2y^2-16/3*s2x*q2y^2+15*uy*s2y*t-4*uy*s3y*t-18*uy*pwy*t+9*uy*puy*t-291/16*s2y*q2y*t+19/4*s3y*q2y*t+177/8*pwy*q2y*t-207/16*puy*q2y*t-2*ux^2-4*uy^2-2*ux*s1x-8*uy*s1y-4/3*s1y^2+2/3*s1x*s2x+64*uy*s2y+4/3*s1y*s2y+6*uy*s3y-2*s1y*s3y-4/3*s1x*pwx+84*uy*pwy+35/2*s1y*pwy-2/3*s2y*pwy+4/3*pwy^2+3/4*pux^2+54*uy*puy+s1y*puy+207/2*s2y*puy-3*pwy*puy+69*puy^2+4*uy*q1y-8/3*s1y*q1y-227/6*s2y*q1y-88/3*pwy*q1y-27/2*puy*q1y+4/3*pwx*q2x+3/2*uy*q2y+17/3*s1y*q2y+1889/24*s2y*q2y-25/4*s3y*q2y-797/12*pwy*q2y+437/8*puy*q2y+q1y*q2y-4*q2y^2+4*ux+4*s1x-2/3*s2x-13/4*pux-2*q2x-2",
+    "-16*uy*s1x*s2x*s2y*pux+32/3*s1x*s1y*s2x*s2y*pux+32*uy*s1x*s2y*pwx*pux-64/3*s1x*s1y*s2y*pwx*pux-16*uy*s1x*s2x*pwy*pux+32/3*s1x*s1y*s2x*pwy*pux-32*uy*s1x*s2y*pux^2+64/3*s1x*s1y*s2y*pux^2+32*uy*s1x*s2x*pux*puy-64/3*s1x*s1y*s2x*pux*puy-18*s2x*s2y*pux^2*puy+36*s2y*pwx*pux^2*puy-18*s2x*pwy*pux^2*puy-36*s2y*pux^3*puy+36*s2x*pux^2*puy^2-16*uy*s1x*s2x*pux*q1y+32/3*s1x*s1y*s2x*pux*q1y-16/3*s1x*s2x*s2y*pux*q1y+32/3*s1x*s2y*pwx*pux*q1y-16/3*s1x*s2x*pwy*pux*q1y-32*uy*s1x*pux^2*q1y+64/3*s1x*s1y*pux^2*q1y-32/3*s1x*s2y*pux^2*q1y+12*s2x*s2y*pux^2*q1y-24*s2y*pwx*pux^2*q1y+12*s2x*pwy*pux^2*q1y+24*s2y*pux^3*q1y+32/3*s1x*s2x*pux*puy*q1y-42*s2x*pux^2*puy*q1y-36*pux^3*puy*q1y-16/3*s1x*s2x*pux*q1y^2-32/3*s1x*pux^2*q1y^2+12*s2x*pux^2*q1y^2+24*pux^3*q1y^2-160*uy*s2x*s2y*pux*q2x-24*s1y*s2x*s2y*pux*q2x+320*uy*s2y*pwx*pux*q2x+48*s1y*s2y*pwx*pux*q2x-160*uy*s2x*pwy*pux*q2x-24*s1y*s2x*pwy*pux*q2x-320*uy*s2y*pux^2*q2x-48*s1y*s2y*pux^2*q2x+320*uy*s2x*pux*puy*q2x+48*s1y*s2x*pux*puy*q2x-160*uy*s2x*pux*q1y*q2x-24*s1y*s2x*pux*q1y*q2x-320*uy*pux^2*q1y*q2x-48*s1y*pux^2*q1y*q2x+104/3*s1x*s2x*s2y*pux*q2y-208/3*s1x*s2y*pwx*pux*q2y+104/3*s1x*s2x*pwy*pux*q2y+208/3*s1x*s2y*pux^2*q2y-12*s2x*s2y*pux^2*q2y+24*s2y*pwx*pux^2*q2y-12*s2x*pwy*pux^2*q2y-24*s2y*pux^3*q2y-208/3*s1x*s2x*pux*puy*q2y+24*s2x*pux^2*puy*q2y+104/3*s1x*s2x*pux*q1y*q2y+208/3*s1x*pux^2*q1y*q2y-12*s2x*pux^2*q1y*q2y-24*pux^3*q1y*q2y-80*s2x*s2y*pux*q2x*q2y+160*s2y*pwx*pux*q2x*q2y-80*s2x*pwy*pux*q2x*q2y-160*s2y*pux^2*q2x*q2y+160*s2x*pux*puy*q2x*q2y-80*s2x*pux*q1y*q2x*q2y-160*pux^2*q1y*q2x*q2y+24*uy*s2x*s2y*q2x*t-12*uy*s2y*pwx*q2x*t+8*uy*s3y*pwx*q2x*t-12*uy*s2x*pwy*q2x*t+12*uy*s2y*pux*q2x*t-12*uy*pwx*puy*q2x*t+12*uy*s2x*q1y*q2x*t+12*uy*pux*q1y*q2x*t-21/2*s2x*s2y*pux*q2y*t+15/2*s2y*pwx*pux*q2y*t-3*s3y*pwx*pux*q2y*t+3*s2x*pwy*pux*q2y*t-15/2*s2y*pux^2*q2y*t+3*s2x*pux*puy*q2y*t+9/2*pwx*pux*puy*q2y*t-6*s2x*pux*q1y*q2y*t-15/2*pux^2*q1y*q2y*t+16*uy*s1x*s2x*s2y-32/3*s1x*s1y*s2x*s2y-16*uy*s1x*s2y*pwx+32/3*s1x*s1y*s2y*pwx-32*uy*s1x*s2y*pux+64/3*s1x*s1y*s2y*pux+88*uy*s2x*s2y*pux+20/3*s1y*s2x*s2y*pux-176*uy*s2y*pwx*pux-40/3*s1y*s2y*pwx*pux+16*uy*s1x*pwy*pux-32/3*s1x*s1y*pwy*pux+88*uy*s2x*pwy*pux+20/3*s1y*s2x*pwy*pux+176*uy*s2y*pux^2+40/3*s1y*s2y*pux^2-8*uy*s1x*s2x*puy+16/3*s1x*s1y*s2x*puy-16*uy*s1x*pwx*puy+32/3*s1x*s1y*pwx*puy-16*uy*s1x*pux*puy+32/3*s1x*s1y*pux*puy-176*uy*s2x*pux*puy-40/3*s1y*s2x*pux*puy+96*s2x*s2y*pux*puy-183*s2y*pwx*pux*puy+87*s2x*pwy*pux*puy+123*s2y*pux^2*puy+18*pwy*pux^2*puy-177*s2x*pux*puy^2-9*pwx*pux*puy^2-18*pux^2*puy^2+8*uy*s1x*s2x*q1y-16/3*s1x*s1y*s2x*q1y+16/3*s1x*s2x*s2y*q1y-16/3*s1x*s2y*pwx*q1y+56*uy*s1x*pux*q1y-112/3*s1x*s1y*pux*q1y+88*uy*s2x*pux*q1y+20/3*s1y*s2x*pux*q1y-32/3*s1x*s2y*pux*q1y-54*s2x*s2y*pux*q1y+105*s2y*pwx*pux*q1y+16/3*s1x*pwy*pux*q1y-51*s2x*pwy*pux*q1y+176*uy*pux^2*q1y+40/3*s1y*pux^2*q1y-63*s2y*pux^2*q1y-12*pwy*pux^2*q1y-8/3*s1x*s2x*puy*q1y-16/3*s1x*pwx*puy*q1y-16/3*s1x*pux*puy*q1y+186*s2x*pux*puy*q1y+3*pwx*pux*puy*q1y+234*pux^2*puy*q1y+8/3*s1x*s2x*q1y^2+56/3*s1x*pux*q1y^2-45*s2x*pux*q1y^2-129*pux^2*q1y^2+48*uy*s2x*s2y*q2x+16*s1y*s2x*s2y*q2x-104*uy*s2y*pwx*q2x-20*s1y*s2y*pwx*q2x-16*uy*s3y*pwx*q2x+56*uy*s2x*pwy*q2x+4*s1y*s2x*pwy*q2x-440*uy*s2y*pux*q2x-60*s1y*s2y*pux*q2x+160*uy*pwy*pux*q2x+24*s1y*pwy*pux*q2x-80*uy*s2x*puy*q2x-12*s1y*s2x*puy*q2x-40*uy*pwx*puy*q2x-12*s1y*pwx*puy*q2x-160*uy*pux*puy*q2x-24*s1y*pux*puy*q2x-40*uy*s2x*q1y*q2x+440*uy*pux*q1y*q2x+72*s1y*pux*q1y*q2x-104/3*s1x*s2x*s2y*q2y+104/3*s1x*s2y*pwx*q2y+208/3*s1x*s2y*pux*q2y+215/3*s2x*s2y*pux*q2y-313/3*s2y*pwx*pux*q2y+6*s3y*pwx*pux*q2y-104/3*s1x*pwy*pux*q2y+98/3*s2x*pwy*pux*q2y+205/3*s2y*pux^2*q2y+12*pwy*pux^2*q2y+52/3*s1x*s2x*puy*q2y+104/3*s1x*pwx*puy*q2y+104/3*s1x*pux*puy*q2y-268/3*s2x*pux*puy*q2y-21*pwx*pux*puy*q2y-12*pux^2*puy*q2y-52/3*s1x*s2x*q1y*q2y-364/3*s1x*pux*q1y*q2y+170/3*s2x*pux*q1y*q2y+403/3*pux^2*q1y*q2y+208/3*s2x*s2y*q2x*q2y-224/3*s2y*pwx*q2x*q2y+8*s3y*pwx*q2x*q2y+16/3*s2x*pwy*q2x*q2y-200*s2y*pux*q2x*q2y+80*pwy*pux*q2x*q2y-40*s2x*puy*q2x*q2y-40*pwx*puy*q2x*q2y-80*pux*puy*q2x*q2y+240*pux*q1y*q2x*q2y-12*uy*s2x*s2y*t+6*uy*s2y*pwx*t-4*uy*s3y*pwx*t+6*uy*s2x*pwy*t-6*uy*s2y*pux*t+6*uy*pwx*puy*t-6*uy*s2x*q1y*t-6*uy*pux*q1y*t+18*uy*s2y*q2x*t-16*uy*pwy*q2x*t+18*uy*puy*q2x*t-12*uy*q1y*q2x*t+15*s2x*s2y*q2y*t-57/8*s2y*pwx*q2y*t+19/4*s3y*pwx*q2y*t-63/8*s2x*pwy*q2y*t-33/8*s2y*pux*q2y*t+15/2*pwy*pux*q2y*t+3/4*s2x*puy*q2y*t-69/8*pwx*puy*q2y*t-33/4*pux*puy*q2y*t+57/8*s2x*q1y*q2y*t+123/8*pux*q1y*q2y*t-16*ux*uy*s1y+24*uy*s1x*s2y-16*s1x*s1y*s2y-32*uy*s2x*s2y-2/3*s1y*s2x*s2y-4*ux*uy*s3y+4*uy*s1x*s3y-8/3*s1x*s1y*s3y-4*uy^2*pwx+64*uy*s2y*pwx+14/3*s1y*s2y*pwx+8*uy*s3y*pwx-1/3*s1y*s3y*pwx+20*ux*uy*pwy-4*uy*s1x*pwy+8/3*s1x*s1y*pwy-32*uy*s2x*pwy-4*s1y*s2x*pwy+232*uy*s2y*pux+58/3*s1y*s2y*pux-88*uy*pwy*pux-20/3*s1y*pwy*pux+36*uy*s1x*puy-24*s1x*s1y*puy+44*uy*s2x*puy+10/3*s1y*s2x*puy-55*s2x*s2y*puy+38*uy*pwx*puy+2/3*s1y*pwx*puy+68*s2y*pwx*puy-6*ux*pwy*puy-13*s2x*pwy*puy+82*uy*pux*puy+20/3*s1y*pux*puy+453/2*s2y*pux*puy-165/2*pwy*pux*puy+6*ux*puy^2+42*s2x*puy^2+42*pwx*puy^2+111*pux*puy^2-24*uy*s1x*q1y+16*s1x*s1y*q1y+52*uy*s2x*q1y+26/3*s1y*s2x*q1y+8*s1x*s2y*q1y+68/3*s2x*s2y*q1y-35*s2y*pwx*q1y+41/3*s2x*pwy*q1y-252*uy*pux*q1y-52/3*s1y*pux*q1y-285/2*s2y*pux*q1y+45*pwy*pux*q1y+12*s1x*puy*q1y-27*s2x*puy*q1y-9*pwx*puy*q1y-327*pux*puy*q1y-20/3*s1x*q1y^2-43/3*s2x*q1y^2+135*pux*q1y^2-2*uy*s1y*q2x+92*uy*s2y*q2x+22*s1y*s2y*q2x+8*uy*s3y*q2x+3*s1y*s3y*q2x+72*uy*pwy*q2x+3*s1y*pwy*q2x+180*uy*puy*q2x+36*s1y*puy*q2x-112*uy*q1y*q2x-22*s1y*q1y*q2x+4/3*pwy*q1y*q2x+14*ux*s1y*q2y-16*uy*s2x*q2y-5*s1y*s2x*q2y-52*s1x*s2y*q2y-127/2*s2x*s2y*q2y+3*ux*s3y*q2y-3*s1x*s3y*q2y+191/4*s2y*pwx*q2y-27/2*s3y*pwx*q2y-12*ux*pwy*q2y+26/3*s1x*pwy*q2y+63/4*s2x*pwy*q2y+1513/12*s2y*pux*q2y-3*s3y*pux*q2y-170/3*pwy*pux*q2y-78*s1x*puy*q2y+89/6*s2x*puy*q2y+437/12*pwx*puy*q2y+493/6*pux*puy*q2y+131/3*s1x*q1y*q2y+1/12*s2x*q1y*q2y+8/3*pwx*q1y*q2y-1903/12*pux*q1y*q2y+8*uy*q2x*q2y+232/3*s2y*q2x*q2y-16*s3y*q2x*q2y+28/3*pwy*q2x*q2y+120*puy*q2x*q2y-232/3*q1y*q2x*q2y-8*ux*q2y^2+16/3*s2x*q2y^2-9*uy*s2y*t+8*uy*pwy*t-9*uy*puy*t+6*uy*q1y*t+171/16*s2y*q2y*t-19/2*pwy*q2y*t+189/16*puy*q2y*t-57/8*q1y*q2y*t+2*ux^2+4*uy^2+2*ux*s1x+8*uy*s1y+4/3*s1y^2-2/3*s1x*s2x-48*uy*s2y-s1y*s2y-8*uy*s3y+7/3*s1y*s3y+4/3*s1x*pwx-58*uy*pwy-29/2*s1y*pwy+2/3*s2y*pwy-4/3*pwy^2-9/4*pux^2-114*uy*puy-6*s1y*puy-76*s2y*puy-7/2*pwy*puy-138*puy^2+64*uy*q1y+14/3*s1y*q1y+53/2*s2y*q1y+35/3*pwy*q1y+111*puy*q1y-64/3*q1y^2+4/3*s1x*q2x-4/3*pwx*q2x+13/2*uy*q2y-25/6*s1y*q2y-1127/24*s2y*q2y+47/4*s3y*q2y+29/12*pwy*q2y-663/8*puy*q2y+295/6*q1y*q2y+16/3*q2y^2-2*ux-9/2*s1x+2/3*s2x+9*pux+13/6*q2x+5/4",
+    "16*uy*s1x*s2x*pwy*pux-32/3*s1x*s1y*s2x*pwy*pux+32*uy*s1x*s2y*pux^2-64/3*s1x*s1y*s2y*pux^2+18*s2x*pwy*pux^2*puy+36*s2y*pux^3*puy-32*uy*s1x*s2y*pux*q1x+64/3*s1x*s1y*s2y*pux*q1x-16*uy*s1x*pux*puy*q1x+32/3*s1x*s1y*pux*puy*q1x-36*s2y*pux^2*puy*q1x-18*pux^2*puy^2*q1x+32*uy*s1x*s2x*pux*q1y-64/3*s1x*s1y*s2x*pux*q1y+16/3*s1x*s2x*pwy*pux*q1y+16*uy*s1x*pux^2*q1y-32/3*s1x*s1y*pux^2*q1y+32/3*s1x*s2y*pux^2*q1y-12*s2x*pwy*pux^2*q1y-24*s2y*pux^3*q1y+36*s2x*pux^2*puy*q1y+18*pux^3*puy*q1y-32/3*s1x*s2y*pux*q1x*q1y+24*s2y*pux^2*q1x*q1y-16/3*s1x*pux*puy*q1x*q1y+12*pux^2*puy*q1x*q1y+32/3*s1x*s2x*pux*q1y^2+16/3*s1x*pux^2*q1y^2-24*s2x*pux^2*q1y^2-12*pux^3*q1y^2+160*uy*s2x*pwy*pux*q2x+24*s1y*s2x*pwy*pux*q2x+320*uy*s2y*pux^2*q2x+48*s1y*s2y*pux^2*q2x-320*uy*s2y*pux*q1x*q2x-48*s1y*s2y*pux*q1x*q2x-160*uy*pux*puy*q1x*q2x-24*s1y*pux*puy*q1x*q2x+320*uy*s2x*pux*q1y*q2x+48*s1y*s2x*pux*q1y*q2x+160*uy*pux^2*q1y*q2x+24*s1y*pux^2*q1y*q2x-104/3*s1x*s2x*pwy*pux*q2y-208/3*s1x*s2y*pux^2*q2y+12*s2x*pwy*pux^2*q2y+24*s2y*pux^3*q2y+208/3*s1x*s2y*pux*q1x*q2y-24*s2y*pux^2*q1x*q2y+104/3*s1x*pux*puy*q1x*q2y-12*pux^2*puy*q1x*q2y-208/3*s1x*s2x*pux*q1y*q2y-104/3*s1x*pux^2*q1y*q2y+24*s2x*pux^2*q1y*q2y+12*pux^3*q1y*q2y+80*s2x*pwy*pux*q2x*q2y+160*s2y*pux^2*q2x*q2y-160*s2y*pux*q1x*q2x*q2y-80*pux*puy*q1x*q2x*q2y+160*s2x*pux*q1y*q2x*q2y+80*pux^2*q1y*q2x*q2y-12*uy*s2x*pwy*q2x*t-12*uy*s2y*pux*q2x*t+12*uy*s2y*q1x*q2x*t+12*uy*puy*q1x*q2x*t-12*uy*s2x*q1y*q2x*t-12*uy*pux*q1y*q2x*t+6*s2x*pwy*pux*q2y*t+15/2*s2y*pux^2*q2y*t-15/2*s2y*pux*q1x*q2y*t-6*pux*puy*q1x*q2y*t+15/2*s2x*pux*q1y*q2y*t+6*pux^2*q1y*q2y*t-8*uy*s1x*s2x*pwy+16/3*s1x*s1y*s2x*pwy-32*uy*s1x*s2y*pux+64/3*s1x*s1y*s2y*pux-88*uy*s2x*pwy*pux-20/3*s1y*s2x*pwy*pux-176*uy*s2y*pux^2-40/3*s1y*s2y*pux^2-16*uy*s1x*pux*puy+32/3*s1x*s1y*pux*puy-84*s2x*pwy*pux*puy-195*s2y*pux^2*puy-18*pux^2*puy^2+16*uy*s1x*s2y*q1x-32/3*s1x*s1y*s2y*q1x+176*uy*s2y*pux*q1x+40/3*s1y*s2y*pux*q1x+24*uy*s1x*puy*q1x-16*s1x*s1y*puy*q1x+88*uy*pux*puy*q1x+20/3*s1y*pux*puy*q1x+177*s2y*pux*puy*q1x+102*pux*puy^2*q1x-16*uy*s1x*s2x*q1y+32/3*s1x*s1y*s2x*q1y-8/3*s1x*s2x*pwy*q1y-24*uy*s1x*pux*q1y+16*s1x*s1y*pux*q1y-176*uy*s2x*pux*q1y-40/3*s1y*s2x*pux*q1y-32/3*s1x*s2y*pux*q1y+45*s2x*pwy*pux*q1y-88*uy*pux^2*q1y-20/3*s1y*pux^2*q1y+111*s2y*pux^2*q1y-16/3*s1x*pux*puy*q1y-177*s2x*pux*puy*q1y-90*pux^2*puy*q1y+16/3*s1x*s2y*q1x*q1y-99*s2y*pux*q1x*q1y+8*s1x*puy*q1x*q1y-57*pux*puy*q1x*q1y-16/3*s1x*s2x*q1y^2-8*s1x*pux*q1y^2+99*s2x*pux*q1y^2+57*pux^2*q1y^2+40*uy*s2x*pwy*q2x-200*uy*s2y*pux*q2x-36*s1y*s2y*pux*q2x-160*uy*pux*puy*q2x-24*s1y*pux*puy*q2x+40*uy*s2y*q1x*q2x+12*s1y*s2y*q1x*q2x+120*uy*puy*q1x*q2x+24*s1y*puy*q1x*q2x-40*uy*s2x*q1y*q2x-12*s1y*s2x*q1y*q2x-120*uy*pux*q1y*q2x-24*s1y*pux*q1y*q2x+52/3*s1x*s2x*pwy*q2y+208/3*s1x*s2y*pux*q2y-170/3*s2x*pwy*pux*q2y-349/3*s2y*pux^2*q2y+104/3*s1x*pux*puy*q2y-12*pux^2*puy*q2y-104/3*s1x*s2y*q1x*q2y+313/3*s2y*pux*q1x*q2y-52*s1x*puy*q1x*q2y+206/3*pux*puy*q1x*q2y+104/3*s1x*s2x*q1y*q2y+52*s1x*pux*q1y*q2y-313/3*s2x*pux*q1y*q2y-206/3*pux^2*q1y*q2y-120*s2y*pux*q2x*q2y-80*pux*puy*q2x*q2y+40*s2y*q1x*q2x*q2y+80*puy*q1x*q2x*q2y-40*s2x*q1y*q2x*q2y-80*pux*q1y*q2x*q2y+6*uy*s2x*pwy*t+6*uy*s2y*pux*t-6*uy*s2y*q1x*t-6*uy*puy*q1x*t+6*uy*s2x*q1y*t+6*uy*pux*q1y*t+6*uy*s2y*q2x*t+6*uy*puy*q2x*t-57/8*s2x*pwy*q2y*t-87/8*s2y*pux*q2y*t-15/4*pux*puy*q2y*t+57/8*s2y*q1x*q2y*t+63/8*puy*q1x*q2y*t-57/8*s2x*q1y*q2y*t-63/8*pux*q1y*q2y*t+4*uy*s1y*s2x-8/3*s1y^2*s2x+8*uy*s1x*s2y-16/3*s1x*s1y*s2y-4*uy*s2x*s3y+8/3*s1y*s2x*s3y-52*uy*s2x*pwy-10*s1y*s2x*pwy-4/3*s2x*pwy^2+120*uy*s2y*pux+22/3*s1y*s2y*pux+12*uy*s1x*puy-8*s1x*s1y*puy+3*s2x*pwy*puy+88*uy*pux*puy+20/3*s1y*pux*puy+261/2*s2y*pux*puy+93*pux*puy^2-32*uy*s2y*q1x-2/3*s1y*s2y*q1x+4/3*s2y*pwy*q1x-76*uy*puy*q1x-4*s1y*puy*q1x-42*s2y*puy*q1x-87*puy^2*q1x+32*uy*s2x*q1y+2/3*s1y*s2x*q1y+8/3*s1x*s2y*q1y+13*s2x*pwy*q1y+76*uy*pux*q1y+4*s1y*pux*q1y-117/2*s2y*pux*q1y+4*s1x*puy*q1y+42*s2x*puy*q1y+69/2*pux*puy*q1y+9*s2y*q1x*q1y+33*puy*q1x*q1y-9*s2x*q1y^2-33*pux*q1y^2+52*uy*s2y*q2x+10*s1y*s2y*q2x-8/3*pwy^2*q2x+60*uy*puy*q2x+12*s1y*puy*q2x-8*uy*q1y*q2x-2*s1y*q1y*q2x-4/3*pwy*q1y*q2x-2/3*q1y^2*q2x+2*q2x^3-1/3*s1y*s2x*q2y-52/3*s1x*s2y*q2y+3*s2x*s3y*q2y-17/12*s2x*pwy*q2y+991/12*s2y*pux*q2y-26*s1x*puy*q2y+331/6*pux*puy*q2y+8*uy*q1x*q2y+2*s1y*q1x*q2y-397/12*s2y*q1x*q2y+4/3*pwy*q1x*q2y-217/4*puy*q1x*q2y+397/12*s2x*q1y*q2y+217/4*pux*q1y*q2y+2/3*q1x*q1y*q2y+112/3*s2y*q2x*q2y+40*puy*q2x*q2y+2*q1y*q2x*q2y-2*q1x*q2y^2+2*q2x*q2y^2-3*uy*s2y*t-3*uy*puy*t+57/16*s2y*q2y*t+63/16*puy*q2y*t-16*uy*s2y-1/3*s1y*s2y+2/3*s2y*pwy+3/2*s2x*pux+3/4*pux^2-38*uy*puy-2*s1y*puy-21*s2y*puy-87/2*puy^2+2/3*s1x*q1x-3/2*pux*q1x+9/2*s2y*q1y+33/2*puy*q1y-25/6*s1x*q2x-1/3*q1x*q2x-5/3*q2x^2+4*uy*q2y+s1y*q2y-397/24*s2y*q2y+2/3*pwy*q2y-217/8*puy*q2y+1/3*q1y*q2y-q2y^2+1/3*s1x-13/2*s2x-21/2*pux+37/6*q1x+4/3*q2x+37/12",
+    "16*uy*s1x*s2x*s2y*pux-32/3*s1x*s1y*s2x*s2y*pux-32*uy*s1x*s2y*pwx*pux+64/3*s1x*s1y*s2y*pwx*pux+16*uy*s1x*s2x*pwy*pux-32/3*s1x*s1y*s2x*pwy*pux+32*uy*s1x*s2y*pux^2-64/3*s1x*s1y*s2y*pux^2-32*uy*s1x*s2x*pux*puy+64/3*s1x*s1y*s2x*pux*puy+18*s2x*s2y*pux^2*puy-36*s2y*pwx*pux^2*puy+18*s2x*pwy*pux^2*puy+36*s2y*pux^3*puy-36*s2x*pux^2*puy^2+16*uy*s1x*s2x*pux*q1y-32/3*s1x*s1y*s2x*pux*q1y+16/3*s1x*s2x*s2y*pux*q1y-32/3*s1x*s2y*pwx*pux*q1y+16/3*s1x*s2x*pwy*pux*q1y+32*uy*s1x*pux^2*q1y-64/3*s1x*s1y*pux^2*q1y+32/3*s1x*s2y*pux^2*q1y-12*s2x*s2y*pux^2*q1y+24*s2y*pwx*pux^2*q1y-12*s2x*pwy*pux^2*q1y-24*s2y*pux^3*q1y-32/3*s1x*s2x*pux*puy*q1y+42*s2x*pux^2*puy*q1y+36*pux^3*puy*q1y+16/3*s1x*s2x*pux*q1y^2+32/3*s1x*pux^2*q1y^2-12*s2x*pux^2*q1y^2-24*pux^3*q1y^2+160*uy*s2x*s2y*pux*q2x+24*s1y*s2x*s2y*pux*q2x-320*uy*s2y*pwx*pux*q2x-48*s1y*s2y*pwx*pux*q2x+160*uy*s2x*pwy*pux*q2x+24*s1y*s2x*pwy*pux*q2x+320*uy*s2y*pux^2*q2x+48*s1y*s2y*pux^2*q2x-320*uy*s2x*pux*puy*q2x-48*s1y*s2x*pux*puy*q2x+160*uy*s2x*pux*q1y*q2x+24*s1y*s2x*pux*q1y*q2x+320*uy*pux^2*q1y*q2x+48*s1y*pux^2*q1y*q2x-104/3*s1x*s2x*s2y*pux*q2y+208/3*s1x*s2y*pwx*pux*q2y-104/3*s1x*s2x*pwy*pux*q2y-208/3*s1x*s2y*pux^2*q2y+12*s2x*s2y*pux^2*q2y-24*s2y*pwx*pux^2*q2y+12*s2x*pwy*pux^2*q2y+24*s2y*pux^3*q2y+208/3*s1x*s2x*pux*puy*q2y-24*s2x*pux^2*puy*q2y-104/3*s1x*s2x*pux*q1y*q2y-208/3*s1x*pux^2*q1y*q2y+12*s2x*pux^2*q1y*q2y+24*pux^3*q1y*q2y+80*s2x*s2y*pux*q2x*q2y-160*s2y*pwx*pux*q2x*q2y+80*s2x*pwy*pux*q2x*q2y+160*s2y*pux^2*q2x*q2y-160*s2x*pux*puy*q2x*q2y+80*s2x*pux*q1y*q2x*q2y+160*pux^2*q1y*q2x*q2y-24*uy*s2x*s2y*q2x*t+12*uy*s2y*pwx*q2x*t-8*uy*s3y*pwx*q2x*t+12*uy*s2x*pwy*q2x*t-12*uy*s2y*pux*q2x*t+12*uy*pwx*puy*q2x*t-12*uy*s2x*q1y*q2x*t-12*uy*pux*q1y*q2x*t+21/2*s2x*s2y*pux*q2y*t-15/2*s2y*pwx*pux*q2y*t+3*s3y*pwx*pux*q2y*t-3*s2x*pwy*pux*q2y*t+15/2*s2y*pux^2*q2y*t-3*s2x*pux*puy*q2y*t-9/2*pwx*pux*puy*q2y*t+6*s2x*pux*q1y*q2y*t+15/2*pux^2*q1y*q2y*t-16*uy*s1x*s2x*s2y+32/3*s1x*s1y*s2x*s2y+16*uy*s1x*s2y*pwx-32/3*s1x*s1y*s2y*pwx-88*uy*s2x*s2y*pux-20/3*s1y*s2x*s2y*pux+176*uy*s2y*pwx*pux+40/3*s1y*s2y*pwx*pux-16*uy*s1x*pwy*pux+32/3*s1x*s1y*pwy*pux-88*uy*s2x*pwy*pux-20/3*s1y*s2x*pwy*pux-176*uy*s2y*pux^2-40/3*s1y*s2y*pux^2+8*uy*s1x*s2x*puy-16/3*s1x*s1y*s2x*puy+16*uy*s1x*pwx*puy-32/3*s1x*s1y*pwx*puy+16*uy*s1x*pux*puy-32/3*s1x*s1y*pux*puy+176*uy*s2x*pux*puy+40/3*s1y*s2x*pux*puy-96*s2x*s2y*pux*puy+183*s2y*pwx*pux*puy-87*s2x*pwy*pux*puy-159*s2y*pux^2*puy-18*pwy*pux^2*puy+177*s2x*pux*puy^2+9*pwx*pux*puy^2+18*pux^2*puy^2-8*uy*s1x*s2x*q1y+16/3*s1x*s1y*s2x*q1y-16/3*s1x*s2x*s2y*q1y+16/3*s1x*s2y*pwx*q1y-72*uy*s1x*pux*q1y+48*s1x*s1y*pux*q1y-88*uy*s2x*pux*q1y-20/3*s1y*s2x*pux*q1y+54*s2x*s2y*pux*q1y-105*s2y*pwx*pux*q1y-16/3*s1x*pwy*pux*q1y+51*s2x*pwy*pux*q1y-176*uy*pux^2*q1y-40/3*s1y*pux^2*q1y+87*s2y*pux^2*q1y+12*pwy*pux^2*q1y+8/3*s1x*s2x*puy*q1y+16/3*s1x*pwx*puy*q1y+16/3*s1x*pux*puy*q1y-186*s2x*pux*puy*q1y-3*pwx*pux*puy*q1y-252*pux^2*puy*q1y-8/3*s1x*s2x*q1y^2-24*s1x*pux*q1y^2+45*s2x*pux*q1y^2+141*pux^2*q1y^2-48*uy*s2x*s2y*q2x-16*s1y*s2x*s2y*q2x+104*uy*s2y*pwx*q2x+20*s1y*s2y*pwx*q2x+16*uy*s3y*pwx*q2x-56*uy*s2x*pwy*q2x-4*s1y*s2x*pwy*q2x+120*uy*s2y*pux*q2x+12*s1y*s2y*pux*q2x-160*uy*pwy*pux*q2x-24*s1y*pwy*pux*q2x+80*uy*s2x*puy*q2x+12*s1y*s2x*puy*q2x+40*uy*pwx*puy*q2x+12*s1y*pwx*puy*q2x+160*uy*pux*puy*q2x+24*s1y*pux*puy*q2x+40*uy*s2x*q1y*q2x-600*uy*pux*q1y*q2x-96*s1y*pux*q1y*q2x+104/3*s1x*s2x*s2y*q2y-104/3*s1x*s2y*pwx*q2y-215/3*s2x*s2y*pux*q2y+313/3*s2y*pwx*pux*q2y-6*s3y*pwx*pux*q2y+104/3*s1x*pwy*pux*q2y-98/3*s2x*pwy*pux*q2y-277/3*s2y*pux^2*q2y-12*pwy*pux^2*q2y-52/3*s1x*s2x*puy*q2y-104/3*s1x*pwx*puy*q2y-104/3*s1x*pux*puy*q2y+268/3*s2x*pux*puy*q2y+21*pwx*pux*puy*q2y+12*pux^2*puy*q2y+52/3*s1x*s2x*q1y*q2y+156*s1x*pux*q1y*q2y-170/3*s2x*pux*q1y*q2y-439/3*pux^2*q1y*q2y-208/3*s2x*s2y*q2x*q2y+224/3*s2y*pwx*q2x*q2y-8*s3y*pwx*q2x*q2y-16/3*s2x*pwy*q2x*q2y+40*s2y*pux*q2x*q2y-80*pwy*pux*q2x*q2y+40*s2x*puy*q2x*q2y+40*pwx*puy*q2x*q2y+80*pux*puy*q2x*q2y-320*pux*q1y*q2x*q2y+12*uy*s2x*s2y*t-6*uy*s2y*pwx*t+4*uy*s3y*pwx*t-6*uy*s2x*pwy*t+6*uy*s2y*pux*t-6*uy*pwx*puy*t+6*uy*s2x*q1y*t+6*uy*pux*q1y*t-6*uy*s2y*q2x*t+16*uy*pwy*q2x*t-18*uy*puy*q2x*t+24*uy*q1y*q2x*t-15*s2x*s2y*q2y*t+57/8*s2y*pwx*q2y*t-19/4*s3y*pwx*q2y*t+63/8*s2x*pwy*q2y*t-27/8*s2y*pux*q2y*t-15/2*pwy*pux*q2y*t-3/4*s2x*puy*q2y*t+69/8*pwx*puy*q2y*t+33/4*pux*puy*q2y*t-57/8*s2x*q1y*q2y*t-171/8*pux*q1y*q2y*t+16*ux*uy*s1y-8*uy*s1x*s2y+16/3*s1x*s1y*s2y+32*uy*s2x*s2y+2/3*s1y*s2x*s2y+4*ux*uy*s3y-4*uy*s1x*s3y+8/3*s1x*s1y*s3y+4*uy^2*pwx-64*uy*s2y*pwx-14/3*s1y*s2y*pwx-8*uy*s3y*pwx+1/3*s1y*s3y*pwx-20*ux*uy*pwy+4*uy*s1x*pwy-8/3*s1x*s1y*pwy+32*uy*s2x*pwy+4*s1y*s2x*pwy-56*uy*s2y*pux-6*s1y*s2y*pux+88*uy*pwy*pux+20/3*s1y*pwy*pux-28*uy*s1x*puy+56/3*s1x*s1y*puy-44*uy*s2x*puy-10/3*s1y*s2x*puy+55*s2x*s2y*puy-38*uy*pwx*puy-2/3*s1y*pwx*puy-68*s2y*pwx*puy+6*ux*pwy*puy+13*s2x*pwy*puy-82*uy*pux*puy-20/3*s1y*pux*puy-99/2*s2y*pux*puy+165/2*pwy*pux*puy-6*ux*puy^2-42*s2x*puy^2-42*pwx*puy^2-102*pux*puy^2+48*uy*s1x*q1y-32*s1x*s1y*q1y-52*uy*s2x*q1y-26/3*s1y*s2x*q1y-8/3*s1x*s2y*q1y-68/3*s2x*s2y*q1y+35*s2y*pwx*q1y-41/3*s2x*pwy*q1y+340*uy*pux*q1y+24*s1y*pux*q1y+87/2*s2y*pux*q1y-45*pwy*pux*q1y-28/3*s1x*puy*q1y+27*s2x*puy*q1y+9*pwx*puy*q1y+423*pux*puy*q1y+44/3*s1x*q1y^2+43/3*s2x*q1y^2-192*pux*q1y^2+2*uy*s1y*q2x-52*uy*s2y*q2x-10*s1y*s2y*q2x-8*uy*s3y*q2x-3*s1y*s3y*q2x-72*uy*pwy*q2x-3*s1y*pwy*q2x-100*uy*puy*q2x-24*s1y*puy*q2x+232*uy*q1y*q2x+46*s1y*q1y*q2x-4/3*pwy*q1y*q2x-14*ux*s1y*q2y+16*uy*s2x*q2y+5*s1y*s2x*q2y+52/3*s1x*s2y*q2y+127/2*s2x*s2y*q2y-3*ux*s3y*q2y+3*s1x*s3y*q2y-191/4*s2y*pwx*q2y+27/2*s3y*pwx*q2y+12*ux*pwy*q2y-26/3*s1x*pwy*q2y-63/4*s2x*pwy*q2y-87/4*s2y*pux*q2y+3*s3y*pux*q2y+170/3*pwy*pux*q2y+182/3*s1x*puy*q2y-89/6*s2x*puy*q2y-437/12*pwx*puy*q2y-457/6*pux*puy*q2y-287/3*s1x*q1y*q2y-1/12*s2x*q1y*q2y-8/3*pwx*q1y*q2y+909/4*pux*q1y*q2y-8*uy*q2x*q2y-112/3*s2y*q2x*q2y+16*s3y*q2x*q2y-28/3*pwy*q2x*q2y-80*puy*q2x*q2y+472/3*q1y*q2x*q2y+8*ux*q2y^2-16/3*s2x*q2y^2+3*uy*s2y*t-8*uy*pwy*t+9*uy*puy*t-12*uy*q1y*t-57/16*s2y*q2y*t+19/2*pwy*q2y*t-177/16*puy*q2y*t+15*q1y*q2y*t-2*ux^2-4*uy^2-2*ux*s1x-8*uy*s1y-4/3*s1y^2+2/3*s1x*s2x+16*uy*s2y+1/3*s1y*s2y+8*uy*s3y-7/3*s1y*s3y-4/3*s1x*pwx+58*uy*pwy+29/2*s1y*pwy-2/3*s2y*pwy+4/3*pwy^2+9/4*pux^2+70*uy*puy+8/3*s1y*puy+34*s2y*puy+7/2*pwy*puy+96*puy^2-140*uy*q1y-26/3*s1y*q1y-35/2*s2y*q1y-35/3*pwy*q1y-174*puy*q1y+163/3*q1y^2-4/3*s1x*q2x+4/3*pwx*q2x-13/2*uy*q2y+25/6*s1y*q2y+397/24*s2y*q2y-47/4*s3y*q2y-29/12*pwy*q2y+1489/24*puy*q2y-1241/12*q1y*q2y-16/3*q2y^2+2*ux+9/2*s1x-2/3*s2x-39/4*pux-13/6*q2x+17/2",
+    "-16*uy*s1x*s2x*s2y*pux+32/3*s1x*s1y*s2x*s2y*pux+32*uy*s1x*s2y*pwx*pux-64/3*s1x*s1y*s2y*pwx*pux-16*uy*s1x*s2x*pwy*pux+32/3*s1x*s1y*s2x*pwy*pux-32*uy*s1x*s2y*pux^2+64/3*s1x*s1y*s2y*pux^2+32*uy*s1x*s2x*pux*puy-64/3*s1x*s1y*s2x*pux*puy-18*s2x*s2y*pux^2*puy+36*s2y*pwx*pux^2*puy-18*s2x*pwy*pux^2*puy-36*s2y*pux^3*puy+36*s2x*pux^2*puy^2-16*uy*s1x*s2x*pux*q1y+32/3*s1x*s1y*s2x*pux*q1y-16/3*s1x*s2x*s2y*pux*q1y+32/3*s1x*s2y*pwx*pux*q1y-16/3*s1x*s2x*pwy*pux*q1y-32*uy*s1x*pux^2*q1y+64/3*s1x*s1y*pux^2*q1y-32/3*s1x*s2y*pux^2*q1y+12*s2x*s2y*pux^2*q1y-24*s2y*pwx*pux^2*q1y+12*s2x*pwy*pux^2*q1y+24*s2y*pux^3*q1y+32/3*s1x*s2x*pux*puy*q1y-42*s2x*pux^2*puy*q1y-36*pux^3*puy*q1y-16/3*s1x*s2x*pux*q1y^2-32/3*s1x*pux^2*q1y^2+12*s2x*pux^2*q1y^2+24*pux^3*q1y^2-160*uy*s2x*s2y*pux*q2x-24*s1y*s2x*s2y*pux*q2x+320*uy*s2y*pwx*pux*q2x+48*s1y*s2y*pwx*pux*q2x-160*uy*s2x*pwy*pux*q2x-24*s1y*s2x*pwy*pux*q2x-320*uy*s2y*pux^2*q2x-48*s1y*s2y*pux^2*q2x+320*uy*s2x*pux*puy*q2x+48*s1y*s2x*pux*puy*q2x-160*uy*s2x*pux*q1y*q2x-24*s1y*s2x*pux*q1y*q2x-320*uy*pux^2*q1y*q2x-48*s1y*pux^2*q1y*q2x+104/3*s1x*s2x*s2y*pux*q2y-208/3*s1x*s2y*pwx*pux*q2y+104/3*s1x*s2x*pwy*pux*q2y+208/3*s1x*s2y*pux^2*q2y-12*s2x*s2y*pux^2*q2y+24*s2y*pwx*pux^2*q2y-12*s2x*pwy*pux^2*q2y-24*s2y*pux^3*q2y-208/3*s1x*s2x*pux*puy*q2y+24*s2x*pux^2*puy*q2y+104/3*s1x*s2x*pux*q1y*q2y+208/3*s1x*pux^2*q1y*q2y-12*s2x*pux^2*q1y*q2y-24*pux^3*q1y*q2y-80*s2x*s2y*pux*q2x*q2y+160*s2y*pwx*pux*q2x*q2y-80*s2x*pwy*pux*q2x*q2y-160*s2y*pux^2*q2x*q2y+160*s2x*pux*puy*q2x*q2y-80*s2x*pux*q1y*q2x*q2y-160*pux^2*q1y*q2x*q2y+24*uy*s2x*s2y*q2x*t-12*uy*s2y*pwx*q2x*t+8*uy*s3y*pwx*q2x*t-12*uy*s2x*pwy*q2x*t+12*uy*s2y*pux*q2x*t-12*uy*pwx*puy*q2x*t+12*uy*s2x*q1y*q2x*t+12*uy*pux*q1y*q2x*t-21/2*s2x*s2y*pux*q2y*t+15/2*s2y*pwx*pux*q2y*t-3*s3y*pwx*pux*q2y*t+3*s2x*pwy*pux*q2y*t-15/2*s2y*pux^2*q2y*t+3*s2x*pux*puy*q2y*t+9/2*pwx*pux*puy*q2y*t-6*s2x*pux*q1y*q2y*t-15/2*pux^2*q1y*q2y*t+16*uy*s1x*s2x*s2y-32/3*s1x*s1y*s2x*s2y-16*uy*s1x*s2y*pwx+32/3*s1x*s1y*s2y*pwx+32*uy*s1x*s2y*pux-64/3*s1x*s1y*s2y*pux+88*uy*s2x*s2y*pux+20/3*s1y*s2x*s2y*pux-176*uy*s2y*pwx*pux-40/3*s1y*s2y*pwx*pux+88*uy*s2x*pwy*pux+20/3*s1y*s2x*pwy*pux+176*uy*s2y*pux^2+40/3*s1y*s2y*pux^2-8*uy*s1x*s2x*puy+16/3*s1x*s1y*s2x*puy-16*uy*s1x*pwx*puy+32/3*s1x*s1y*pwx*puy+16*uy*s1x*pux*puy-32/3*s1x*s1y*pux*puy-176*uy*s2x*pux*puy-40/3*s1y*s2x*pux*puy+96*s2x*s2y*pux*puy-183*s2y*pwx*pux*puy+87*s2x*pwy*pux*puy+195*s2y*pux^2*puy-177*s2x*pux*puy^2-9*pwx*pux*puy^2+18*pux^2*puy^2+8*uy*s1x*s2x*q1y-16/3*s1x*s1y*s2x*q1y+16/3*s1x*s2x*s2y*q1y-16/3*s1x*s2y*pwx*q1y+24*uy*s1x*pux*q1y-16*s1x*s1y*pux*q1y+88*uy*s2x*pux*q1y+20/3*s1y*s2x*pux*q1y+32/3*s1x*s2y*pux*q1y-54*s2x*s2y*pux*q1y+105*s2y*pwx*pux*q1y-51*s2x*pwy*pux*q1y+176*uy*pux^2*q1y+40/3*s1y*pux^2*q1y-111*s2y*pux^2*q1y-8/3*s1x*s2x*puy*q1y-16/3*s1x*pwx*puy*q1y+16/3*s1x*pux*puy*q1y+186*s2x*pux*puy*q1y+3*pwx*pux*puy*q1y+174*pux^2*puy*q1y+8/3*s1x*s2x*q1y^2+8*s1x*pux*q1y^2-45*s2x*pux*q1y^2-105*pux^2*q1y^2+48*uy*s2x*s2y*q2x+16*s1y*s2x*s2y*q2x-104*uy*s2y*pwx*q2x-20*s1y*s2y*pwx*q2x-16*uy*s3y*pwx*q2x+56*uy*s2x*pwy*q2x+4*s1y*s2x*pwy*q2x+200*uy*s2y*pux*q2x+36*s1y*s2y*pux*q2x-80*uy*s2x*puy*q2x-12*s1y*s2x*puy*q2x-40*uy*pwx*puy*q2x-12*s1y*pwx*puy*q2x+160*uy*pux*puy*q2x+24*s1y*pux*puy*q2x-40*uy*s2x*q1y*q2x+120*uy*pux*q1y*q2x+24*s1y*pux*q1y*q2x-104/3*s1x*s2x*s2y*q2y+104/3*s1x*s2y*pwx*q2y-208/3*s1x*s2y*pux*q2y+215/3*s2x*s2y*pux*q2y-313/3*s2y*pwx*pux*q2y+6*s3y*pwx*pux*q2y+98/3*s2x*pwy*pux*q2y+349/3*s2y*pux^2*q2y+52/3*s1x*s2x*puy*q2y+104/3*s1x*pwx*puy*q2y-104/3*s1x*pux*puy*q2y-268/3*s2x*pux*puy*q2y-21*pwx*pux*puy*q2y+12*pux^2*puy*q2y-52/3*s1x*s2x*q1y*q2y-52*s1x*pux*q1y*q2y+170/3*s2x*pux*q1y*q2y+331/3*pux^2*q1y*q2y+208/3*s2x*s2y*q2x*q2y-224/3*s2y*pwx*q2x*q2y+8*s3y*pwx*q2x*q2y+16/3*s2x*pwy*q2x*q2y+120*s2y*pux*q2x*q2y-40*s2x*puy*q2x*q2y-40*pwx*puy*q2x*q2y+80*pux*puy*q2x*q2y+80*pux*q1y*q2x*q2y-12*uy*s2x*s2y*t+6*uy*s2y*pwx*t-4*uy*s3y*pwx*t+6*uy*s2x*pwy*t-6*uy*s2y*pux*t+6*uy*pwx*puy*t-6*uy*s2x*q1y*t-6*uy*pux*q1y*t-6*uy*s2y*q2x*t-4*uy*pwy*q2x*t-6*uy*puy*q2x*t+15*s2x*s2y*q2y*t-57/8*s2y*pwx*q2y*t+19/4*s3y*pwx*q2y*t-63/8*s2x*pwy*q2y*t+87/8*s2y*pux*q2y*t+3/2*pwy*pux*q2y*t+3/4*s2x*puy*q2y*t-69/8*pwx*puy*q2y*t+15/4*pux*puy*q2y*t+57/8*s2x*q1y*q2y*t+63/8*pux*q1y*q2y*t-16*ux*uy*s1y-8*uy*s1x*s2y+16/3*s1x*s1y*s2y-32*uy*s2x*s2y-2/3*s1y*s2x*s2y-4*ux*uy*s3y+4*uy*s1x*s3y-8/3*s1x*s1y*s3y-4*uy^2*pwx+64*uy*s2y*pwx+14/3*s1y*s2y*pwx+8*uy*s3y*pwx-1/3*s1y*s3y*pwx+20*ux*uy*pwy+4*uy*s1x*pwy-8/3*s1x*s1y*pwy-32*uy*s2x*pwy-4*s1y*s2x*pwy-120*uy*s2y*pux-22/3*s1y*s2y*pux-12*uy*s1x*puy+8*s1x*s1y*puy+44*uy*s2x*puy+10/3*s1y*s2x*puy-55*s2x*s2y*puy+38*uy*pwx*puy+2/3*s1y*pwx*puy+68*s2y*pwx*puy-6*ux*pwy*puy-13*s2x*pwy*puy-94*uy*pux*puy-20/3*s1y*pux*puy-255/2*s2y*pux*puy+3/2*pwy*pux*puy+6*ux*puy^2+42*s2x*puy^2+42*pwx*puy^2-93*pux*puy^2-8*uy*s1x*q1y+16/3*s1x*s1y*q1y+52*uy*s2x*q1y+26/3*s1y*s2x*q1y-8/3*s1x*s2y*q1y+68/3*s2x*s2y*q1y-35*s2y*pwx*q1y+8/3*s1x*pwy*q1y+41/3*s2x*pwy*q1y-76*uy*pux*q1y-4*s1y*pux*q1y+111/2*s2y*pux*q1y-4*s1x*puy*q1y-27*s2x*puy*q1y-9*pwx*puy*q1y-36*pux*puy*q1y-4/3*s1x*q1y^2-43/3*s2x*q1y^2+36*pux*q1y^2-2*uy*s1y*q2x+12*uy*s2y*q2x-2*s1y*s2y*q2x+8*uy*s3y*q2x+3*s1y*s3y*q2x+32*uy*pwy*q2x+3*s1y*pwy*q2x-60*uy*puy*q2x-12*s1y*puy*q2x-72*uy*q1y*q2x-10*s1y*q1y*q2x+4/3*pwy*q1y*q2x+14*ux*s1y*q2y-16*uy*s2x*q2y-5*s1y*s2x*q2y+52/3*s1x*s2y*q2y-127/2*s2x*s2y*q2y+3*ux*s3y*q2y-3*s1x*s3y*q2y+191/4*s2y*pwx*q2y-27/2*s3y*pwx*q2y-12*ux*pwy*q2y-26/3*s1x*pwy*q2y+63/4*s2x*pwy*q2y-991/12*s2y*pux*q2y-3*s3y*pux*q2y+26*s1x*puy*q2y+89/6*s2x*puy*q2y+437/12*pwx*puy*q2y-331/6*pux*puy*q2y+9*s1x*q1y*q2y+1/12*s2x*q1y*q2y+8/3*pwx*q1y*q2y-217/4*pux*q1y*q2y+8*uy*q2x*q2y-8/3*s2y*q2x*q2y-16*s3y*q2x*q2y+28/3*pwy*q2x*q2y-40*puy*q2x*q2y-112/3*q1y*q2x*q2y-8*ux*q2y^2+16/3*s2x*q2y^2+3*uy*s2y*t+2*uy*pwy*t+3*uy*puy*t-57/16*s2y*q2y*t-19/8*pwy*q2y*t-63/16*puy*q2y*t+2*ux^2+4*uy^2+2*ux*s1x+4*uy*s1y+4*s1y^2-2/3*s1x*s2x-16*uy*s2y-11/3*s1y*s2y-4*uy*s3y-1/3*s1y*s3y+4/3*s1x*pwx-6*uy*pwy-9/2*s1y*pwy-2*s2y*pwy+8/3*pwy^2-9/4*pux^2+38*uy*puy+2*s1y*puy+8*s2y*puy-13/2*pwy*puy+36*puy^2+40*uy*q1y+6*s1y*q1y+17/2*s2y*q1y+3*puy*q1y-35/3*q1y^2+4/3*s1x*q2x-4/3*pwx*q2x-2*q2x^2-19/2*uy*q2y-47/6*s1y*q2y+15/8*s2y*q2y+35/4*s3y*q2y+7/6*pwy*q2y+205/8*puy*q2y+51/4*q1y*q2y+22/3*q2y^2-2*ux-5/3*s1x+2/3*s2x+21/2*pux+9/2*q2x-73/12",
+    "-8*ux*uy*s3y+16*ux*uy*pwy+2*s1y*s3y*q2x-4*s1y*pwy*q2x+6*ux*s3y*q2y-12*ux*pwy*q2y-8*s3y*q2x*q2y+16*pwy*q2x*q2y-4*uy^2+4*uy*s3y-s1y*s3y+8*uy*pwy-2/3*s1y*pwy-4/3*s2y*pwy+8/3*pwy^2-6*puy^2-4*uy*q1y+8/3*s1y*q1y+4/3*pwy*q1y-8/3*q2x^2+3*uy*q2y-s1y*q2y+8/3*s2y*q2y+s3y*q2y-41/3*pwy*q2y+1/3*q1y*q2y+4*q2y^2-2*ux-7/2*s1x+47/6*q2x-3",
+    "-16*uy*pwy-5*s1y*pwy+32*uy*q1y+4*s1y*q1y-4/3*pwy*q1y+16/3*pwy*q2y+52/3*q1y*q2y-4/3*s1x+4/3",
+    "16*uy*s1x*s2x*s2y*pux-32/3*s1x*s1y*s2x*s2y*pux-32*uy*s1x*s2y*pwx*pux+64/3*s1x*s1y*s2y*pwx*pux+16*uy*s1x*s2x*pwy*pux-32/3*s1x*s1y*s2x*pwy*pux+32*uy*s1x*s2y*pux^2-64/3*s1x*s1y*s2y*pux^2-32*uy*s1x*s2x*pux*puy+64/3*s1x*s1y*s2x*pux*puy+18*s2x*s2y*pux^2*puy-36*s2y*pwx*pux^2*puy+18*s2x*pwy*pux^2*puy+36*s2y*pux^3*puy-36*s2x*pux^2*puy^2+16*uy*s1x*s2x*pux*q1y-32/3*s1x*s1y*s2x*pux*q1y+16/3*s1x*s2x*s2y*pux*q1y-32/3*s1x*s2y*pwx*pux*q1y+16/3*s1x*s2x*pwy*pux*q1y+32*uy*s1x*pux^2*q1y-64/3*s1x*s1y*pux^2*q1y+32/3*s1x*s2y*pux^2*q1y-12*s2x*s2y*pux^2*q1y+24*s2y*pwx*pux^2*q1y-12*s2x*pwy*pux^2*q1y-24*s2y*pux^3*q1y-32/3*s1x*s2x*pux*puy*q1y+42*s2x*pux^2*puy*q1y+36*pux^3*puy*q1y+16/3*s1x*s2x*pux*q1y^2+32/3*s1x*pux^2*q1y^2-12*s2x*pux^2*q1y^2-24*pux^3*q1y^2+160*uy*s2x*s2y*pux*q2x+24*s1y*s2x*s2y*pux*q2x-320*uy*s2y*pwx*pux*q2x-48*s1y*s2y*pwx*pux*q2x+160*uy*s2x*pwy*pux*q2x+24*s1y*s2x*pwy*pux*q2x+320*uy*s2y*pux^2*q2x+48*s1y*s2y*pux^2*q2x-320*uy*s2x*pux*puy*q2x-48*s1y*s2x*pux*puy*q2x+160*uy*s2x*pux*q1y*q2x+24*s1y*s2x*pux*q1y*q2x+320*uy*pux^2*q1y*q2x+48*s1y*pux^2*q1y*q2x-104/3*s1x*s2x*s2y*pux*q2y+208/3*s1x*s2y*pwx*pux*q2y-104/3*s1x*s2x*pwy*pux*q2y-208/3*s1x*s2y*pux^2*q2y+12*s2x*s2y*pux^2*q2y-24*s2y*pwx*pux^2*q2y+12*s2x*pwy*pux^2*q2y+24*s2y*pux^3*q2y+208/3*s1x*s2x*pux*puy*q2y-24*s2x*pux^2*puy*q2y-104/3*s1x*s2x*pux*q1y*q2y-208/3*s1x*pux^2*q1y*q2y+12*s2x*pux^2*q1y*q2y+24*pux^3*q1y*q2y+80*s2x*s2y*pux*q2x*q2y-160*s2y*pwx*pux*q2x*q2y+80*s2x*pwy*pux*q2x*q2y+160*s2y*pux^2*q2x*q2y-160*s2x*pux*puy*q2x*q2y+80*s2x*pux*q1y*q2x*q2y+160*pux^2*q1y*q2x*q2y-24*uy*s2x*s2y*q2x*t+12*uy*s2y*pwx*q2x*t-8*uy*s3y*pwx*q2x*t+12*uy*s2x*pwy*q2x*t-12*uy*s2y*pux*q2x*t+12*uy*pwx*puy*q2x*t-12*uy*s2x*q1y*q2x*t-12*uy*pux*q1y*q2x*t+21/2*s2x*s2y*pux*q2y*t-15/2*s2y*pwx*pux*q2y*t+3*s3y*pwx*pux*q2y*t-3*s2x*pwy*pux*q2y*t+15/2*s2y*pux^2*q2y*t-3*s2x*pux*puy*q2y*t-9/2*pwx*pux*puy*q2y*t+6*s2x*pux*q1y*q2y*t+15/2*pux^2*q1y*q2y*t-16*uy*s1x*s2x*s2y+32/3*s1x*s1y*s2x*s2y+16*uy*s1x*s2y*pwx-32/3*s1x*s1y*s2y*pwx-32*uy*s1x*s2y*pux+64/3*s1x*s1y*s2y*pux-88*uy*s2x*s2y*pux-20/3*s1y*s2x*s2y*pux+176*uy*s2y*pwx*pux+40/3*s1y*s2y*pwx*pux-88*uy*s2x*pwy*pux-20/3*s1y*s2x*pwy*pux-176*uy*s2y*pux^2-40/3*s1y*s2y*pux^2+8*uy*s1x*s2x*puy-16/3*s1x*s1y*s2x*puy+16*uy*s1x*pwx*puy-32/3*s1x*s1y*pwx*puy-16*uy*s1x*pux*puy+32/3*s1x*s1y*pux*puy+176*uy*s2x*pux*puy+40/3*s1y*s2x*pux*puy-96*s2x*s2y*pux*puy+183*s2y*pwx*pux*puy-87*s2x*pwy*pux*puy-195*s2y*pux^2*puy+177*s2x*pux*puy^2+9*pwx*pux*puy^2-18*pux^2*puy^2-8*uy*s1x*s2x*q1y+16/3*s1x*s1y*s2x*q1y-16/3*s1x*s2x*s2y*q1y+16/3*s1x*s2y*pwx*q1y-24*uy*s1x*pux*q1y+16*s1x*s1y*pux*q1y-88*uy*s2x*pux*q1y-20/3*s1y*s2x*pux*q1y-32/3*s1x*s2y*pux*q1y+54*s2x*s2y*pux*q1y-105*s2y*pwx*pux*q1y+51*s2x*pwy*pux*q1y-176*uy*pux^2*q1y-40/3*s1y*pux^2*q1y+111*s2y*pux^2*q1y+8/3*s1x*s2x*puy*q1y+16/3*s1x*pwx*puy*q1y-16/3*s1x*pux*puy*q1y-186*s2x*pux*puy*q1y-3*pwx*pux*puy*q1y-174*pux^2*puy*q1y-8/3*s1x*s2x*q1y^2-8*s1x*pux*q1y^2+45*s2x*pux*q1y^2+105*pux^2*q1y^2-48*uy*s2x*s2y*q2x-16*s1y*s2x*s2y*q2x+104*uy*s2y*pwx*q2x+20*s1y*s2y*pwx*q2x+16*uy*s3y*pwx*q2x-56*uy*s2x*pwy*q2x-4*s1y*s2x*pwy*q2x-200*uy*s2y*pux*q2x-36*s1y*s2y*pux*q2x+80*uy*s2x*puy*q2x+12*s1y*s2x*puy*q2x+40*uy*pwx*puy*q2x+12*s1y*pwx*puy*q2x-160*uy*pux*puy*q2x-24*s1y*pux*puy*q2x+40*uy*s2x*q1y*q2x-120*uy*pux*q1y*q2x-24*s1y*pux*q1y*q2x+104/3*s1x*s2x*s2y*q2y-104/3*s1x*s2y*pwx*q2y+208/3*s1x*s2y*pux*q2y-215/3*s2x*s2y*pux*q2y+313/3*s2y*pwx*pux*q2y-6*s3y*pwx*pux*q2y-98/3*s2x*pwy*pux*q2y-349/3*s2y*pux^2*q2y-52/3*s1x*s2x*puy*q2y-104/3*s1x*pwx*puy*q2y+104/3*s1x*pux*puy*q2y+268/3*s2x*pux*puy*q2y+21*pwx*pux*puy*q2y-12*pux^2*puy*q2y+52/3*s1x*s2x*q1y*q2y+52*s1x*pux*q1y*q2y-170/3*s2x*pux*q1y*q2y-331/3*pux^2*q1y*q2y-208/3*s2x*s2y*q2x*q2y+224/3*s2y*pwx*q2x*q2y-8*s3y*pwx*q2x*q2y-16/3*s2x*pwy*q2x*q2y-120*s2y*pux*q2x*q2y+40*s2x*puy*q2x*q2y+40*pwx*puy*q2x*q2y-80*pux*puy*q2x*q2y-80*pux*q1y*q2x*q2y+12*uy*s2x*s2y*t-6*uy*s2y*pwx*t+4*uy*s3y*pwx*t-6*uy*s2x*pwy*t+6*uy*s2y*pux*t-6*uy*pwx*puy*t+6*uy*s2x*q1y*t+6*uy*pux*q1y*t+6*uy*s2y*q2x*t+4*uy*pwy*q2x*t+6*uy*puy*q2x*t-15*s2x*s2y*q2y*t+57/8*s2y*pwx*q2y*t-19/4*s3y*pwx*q2y*t+63/8*s2x*pwy*q2y*t-87/8*s2y*pux*q2y*t-3/2*pwy*pux*q2y*t-3/4*s2x*puy*q2y*t+69/8*pwx*puy*q2y*t-15/4*pux*puy*q2y*t-57/8*s2x*q1y*q2y*t-63/8*pux*q1y*q2y*t+16*ux*uy*s1y+8*uy*s1x*s2y-16/3*s1x*s1y*s2y+32*uy*s2x*s2y+2/3*s1y*s2x*s2y+4*ux*uy*s3y-4*uy*s1x*s3y+8/3*s1x*s1y*s3y+4*uy^2*pwx-64*uy*s2y*pwx-14/3*s1y*s2y*pwx-8*uy*s3y*pwx+1/3*s1y*s3y*pwx-20*ux*uy*pwy-4*uy*s1x*pwy+8/3*s1x*s1y*pwy+32*uy*s2x*pwy+4*s1y*s2x*pwy+120*uy*s2y*pux+22/3*s1y*s2y*pux+12*uy*s1x*puy-8*s1x*s1y*puy-44*uy*s2x*puy-10/3*s1y*s2x*puy+55*s2x*s2y*puy-38*uy*pwx*puy-2/3*s1y*pwx*puy-68*s2y*pwx*puy+6*ux*pwy*puy+13*s2x*pwy*puy+94*uy*pux*puy+20/3*s1y*pux*puy+255/2*s2y*pux*puy-3/2*pwy*pux*puy-6*ux*puy^2-42*s2x*puy^2-42*pwx*puy^2+93*pux*puy^2+8*uy*s1x*q1y-16/3*s1x*s1y*q1y-52*uy*s2x*q1y-26/3*s1y*s2x*q1y+8/3*s1x*s2y*q1y-68/3*s2x*s2y*q1y+35*s2y*pwx*q1y-8/3*s1x*pwy*q1y-41/3*s2x*pwy*q1y+76*uy*pux*q1y+4*s1y*pux*q1y-111/2*s2y*pux*q1y+4*s1x*puy*q1y+27*s2x*puy*q1y+9*pwx*puy*q1y+36*pux*puy*q1y+4/3*s1x*q1y^2+43/3*s2x*q1y^2-36*pux*q1y^2+2*uy*s1y*q2x-12*uy*s2y*q2x+2*s1y*s2y*q2x-8*uy*s3y*q2x-3*s1y*s3y*q2x-32*uy*pwy*q2x-3*s1y*pwy*q2x+60*uy*puy*q2x+12*s1y*puy*q2x+72*uy*q1y*q2x+10*s1y*q1y*q2x-4/3*pwy*q1y*q2x-14*ux*s1y*q2y+16*uy*s2x*q2y+5*s1y*s2x*q2y-52/3*s1x*s2y*q2y+127/2*s2x*s2y*q2y-3*ux*s3y*q2y+3*s1x*s3y*q2y-191/4*s2y*pwx*q2y+27/2*s3y*pwx*q2y+12*ux*pwy*q2y+26/3*s1x*pwy*q2y-63/4*s2x*pwy*q2y+991/12*s2y*pux*q2y+3*s3y*pux*q2y-26*s1x*puy*q2y-89/6*s2x*puy*q2y-437/12*pwx*puy*q2y+331/6*pux*puy*q2y-9*s1x*q1y*q2y-1/12*s2x*q1y*q2y-8/3*pwx*q1y*q2y+217/4*pux*q1y*q2y-8*uy*q2x*q2y+8/3*s2y*q2x*q2y+16*s3y*q2x*q2y-28/3*pwy*q2x*q2y+40*puy*q2x*q2y+112/3*q1y*q2x*q2y+8*ux*q2y^2-16/3*s2x*q2y^2-3*uy*s2y*t-2*uy*pwy*t-3*uy*puy*t+57/16*s2y*q2y*t+19/8*pwy*q2y*t+63/16*puy*q2y*t-2*ux^2-4*uy^2-2*ux*s1x-4*uy*s1y-4*s1y^2+2/3*s1x*s2x-16*uy*s2y-1/3*s1y*s2y+4*uy*s3y+1/3*s1y*s3y-4/3*s1x*pwx+6*uy*pwy+9/2*s1y*pwy+2*s2y*pwy+9/4*pux^2-38*uy*puy-2*s1y*puy-8*s2y*puy+13/2*pwy*puy-36*puy^2-32*uy*q1y-4*s1y*q1y-17/2*s2y*q1y+4/3*pwy*q1y-3*puy*q1y+37/3*q1y^2-4/3*s1x*q2x+4/3*pwx*q2x+19/2*uy*q2y+47/6*s1y*q2y-461/24*s2y*q2y-35/4*s3y*q2y-7/6*pwy*q2y-205/8*puy*q2y-59/4*q1y*q2y-28/3*q2y^2+2*ux+35/6*s1x-2/3*s2x-21/2*pux-17/6*q2x+55/12"
+  ],
+  "common_erased_masks": {
+    "Pu": {
+      "mask": 323,
+      "members": [
+        "u",
+        "v",
+        "Pw",
+        "Q1"
+      ]
+    },
+    "Pw": {
+      "mask": 178,
+      "members": [
+        "v",
+        "s2",
+        "s3",
+        "Pu"
+      ]
+    },
+    "Q1": {
+      "mask": 646,
+      "members": [
+        "v",
+        "w",
+        "Pu",
+        "Q2"
+      ]
+    },
+    "Q2": {
+      "mask": 284,
+      "members": [
+        "w",
+        "s1",
+        "s2",
+        "Q1"
+      ]
+    },
+    "s1": {
+      "mask": 549,
+      "members": [
+        "u",
+        "w",
+        "s3",
+        "Q2"
+      ]
+    },
+    "s2": {
+      "mask": 424,
+      "members": [
+        "s1",
+        "s3",
+        "Pu",
+        "Q1"
+      ]
+    },
+    "s3": {
+      "mask": 78,
+      "members": [
+        "v",
+        "w",
+        "s1",
+        "Pw"
+      ]
+    },
+    "u": {
+      "mask": 616,
+      "members": [
+        "s1",
+        "s3",
+        "Pw",
+        "Q2"
+      ]
+    }
+  },
+  "exact_pids": [
+    "s2_032"
+  ],
+  "generator_metadata": [
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,s2)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+      "id": "exact:v:u=s2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "s2"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pw)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:v:u=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "v",
+      "equation": "dist2(v,u) = dist2(v,Pu)",
+      "generator": "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+      "id": "exact:v:u=Pu",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "u",
+        "Pu"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Pw)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+      "id": "exact:w:s2=Pw",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Pw"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Q1)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+      "id": "exact:w:s2=Q1",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Q1"
+      ]
+    },
+    {
+      "center": "w",
+      "equation": "dist2(w,s2) = dist2(w,Q2)",
+      "generator": "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+      "id": "exact:w:s2=Q2",
+      "kind": "distance_eq",
+      "optional": false,
+      "source": "exact_center",
+      "witnesses": [
+        "s2",
+        "Q2"
+      ]
+    },
+    {
+      "equation": "t * dist2(u,v) - 1",
+      "generator": "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+      "id": "separator:u=v",
+      "kind": "rabinowitsch_distinct",
+      "optional": false,
+      "pair": [
+        "u",
+        "v"
+      ],
+      "source": "separator"
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,s1) = dist2(u,s3)",
+      "generator": "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+      "id": "leaf:R009NYYNY:u:s1=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,s1) = dist2(u,Pw)",
+      "generator": "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(pwx))^2+((uy)-(pwy))^2)",
+      "id": "leaf:R009NYYNY:u:s1=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Pw"
+      ]
+    },
+    {
+      "center": "u",
+      "equation": "dist2(u,s1) = dist2(u,Q2)",
+      "generator": "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(q2x))^2+((uy)-(q2y))^2)",
+      "id": "leaf:R009NYYNY:u:s1=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,w)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(1))^2+((s1y)-(0))^2)",
+      "id": "leaf:R009NYYNY:s1:u=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "w"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,s3)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+      "id": "leaf:R009NYYNY:s1:u=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "s3"
+      ]
+    },
+    {
+      "center": "s1",
+      "equation": "dist2(s1,u) = dist2(s1,Q2)",
+      "generator": "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+      "id": "leaf:R009NYYNY:s1:u=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q2"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,s3)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+      "id": "leaf:R009NYYNY:s2:s1=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "s3"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Pu)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+      "id": "leaf:R009NYYNY:s2:s1=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Pu"
+      ]
+    },
+    {
+      "center": "s2",
+      "equation": "dist2(s2,s1) = dist2(s2,Q1)",
+      "generator": "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q1x))^2+((s2y)-(q1y))^2)",
+      "id": "leaf:R009NYYNY:s2:s1=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "s1",
+        "Q1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,v) = dist2(s3,w)",
+      "generator": "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+      "id": "leaf:R009NYYNY:s3:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,v) = dist2(s3,s1)",
+      "generator": "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+      "id": "leaf:R009NYYNY:s3:v=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s1"
+      ]
+    },
+    {
+      "center": "s3",
+      "equation": "dist2(s3,v) = dist2(s3,Pw)",
+      "generator": "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(pwx))^2+((s3y)-(pwy))^2)",
+      "id": "leaf:R009NYYNY:s3:v=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s2)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+      "id": "leaf:R009NYYNY:Pw:v=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s2"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,s3)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+      "id": "leaf:R009NYYNY:Pw:v=s3",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "s3"
+      ]
+    },
+    {
+      "center": "Pw",
+      "equation": "dist2(Pw,v) = dist2(Pw,Pu)",
+      "generator": "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+      "id": "leaf:R009NYYNY:Pw:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,v)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(0))^2+((puy)-(0))^2)",
+      "id": "leaf:R009NYYNY:Pu:u=v",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "v"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Pw)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+      "id": "leaf:R009NYYNY:Pu:u=Pw",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Pw"
+      ]
+    },
+    {
+      "center": "Pu",
+      "equation": "dist2(Pu,u) = dist2(Pu,Q1)",
+      "generator": "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q1x))^2+((puy)-(q1y))^2)",
+      "id": "leaf:R009NYYNY:Pu:u=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "u",
+        "Q1"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,w)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(1))^2+((q1y)-(0))^2)",
+      "id": "leaf:R009NYYNY:Q1:v=w",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "w"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,Pu)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(pux))^2+((q1y)-(puy))^2)",
+      "id": "leaf:R009NYYNY:Q1:v=Pu",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Pu"
+      ]
+    },
+    {
+      "center": "Q1",
+      "equation": "dist2(Q1,v) = dist2(Q1,Q2)",
+      "generator": "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+      "id": "leaf:R009NYYNY:Q1:v=Q2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "v",
+        "Q2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,s1)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+      "id": "leaf:R009NYYNY:Q2:w=s1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s1"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,s2)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s2x))^2+((q2y)-(s2y))^2)",
+      "id": "leaf:R009NYYNY:Q2:w=s2",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "s2"
+      ]
+    },
+    {
+      "center": "Q2",
+      "equation": "dist2(Q2,w) = dist2(Q2,Q1)",
+      "generator": "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)",
+      "id": "leaf:R009NYYNY:Q2:w=Q1",
+      "kind": "distance_eq",
+      "optional": true,
+      "source": "leaf_common_submask",
+      "witnesses": [
+        "w",
+        "Q1"
+      ]
+    }
+  ],
+  "generators": [
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(s2x))^2+((0)-(s2y))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pwx))^2+((0)-(pwy))^2)",
+    "((0)-(ux))^2+((0)-(uy))^2-(((0)-(pux))^2+((0)-(puy))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(pwx))^2+((0)-(pwy))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q1x))^2+((0)-(q1y))^2)",
+    "((1)-(s2x))^2+((0)-(s2y))^2-(((1)-(q2x))^2+((0)-(q2y))^2)",
+    "t*(((ux)-(0))^2+((uy)-(0))^2)-1",
+    "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(s3x))^2+((uy)-(s3y))^2)",
+    "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(pwx))^2+((uy)-(pwy))^2)",
+    "((ux)-(s1x))^2+((uy)-(s1y))^2-(((ux)-(q2x))^2+((uy)-(q2y))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(1))^2+((s1y)-(0))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(s3x))^2+((s1y)-(s3y))^2)",
+    "((s1x)-(ux))^2+((s1y)-(uy))^2-(((s1x)-(q2x))^2+((s1y)-(q2y))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(s3x))^2+((s2y)-(s3y))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(pux))^2+((s2y)-(puy))^2)",
+    "((s2x)-(s1x))^2+((s2y)-(s1y))^2-(((s2x)-(q1x))^2+((s2y)-(q1y))^2)",
+    "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(1))^2+((s3y)-(0))^2)",
+    "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(s1x))^2+((s3y)-(s1y))^2)",
+    "((s3x)-(0))^2+((s3y)-(0))^2-(((s3x)-(pwx))^2+((s3y)-(pwy))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s2x))^2+((pwy)-(s2y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(s3x))^2+((pwy)-(s3y))^2)",
+    "((pwx)-(0))^2+((pwy)-(0))^2-(((pwx)-(pux))^2+((pwy)-(puy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(0))^2+((puy)-(0))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(pwx))^2+((puy)-(pwy))^2)",
+    "((pux)-(ux))^2+((puy)-(uy))^2-(((pux)-(q1x))^2+((puy)-(q1y))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(1))^2+((q1y)-(0))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(pux))^2+((q1y)-(puy))^2)",
+    "((q1x)-(0))^2+((q1y)-(0))^2-(((q1x)-(q2x))^2+((q1y)-(q2y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s1x))^2+((q2y)-(s1y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(s2x))^2+((q2y)-(s2y))^2)",
+    "((q2x)-(1))^2+((q2y)-(0))^2-(((q2x)-(q1x))^2+((q2y)-(q1y))^2)"
+  ],
+  "leaf_id": "R009NYYNY",
+  "minimize_optional": false,
+  "minimize_steps": [],
+  "relaxed_id": "R009",
+  "schema": "pinned_surplus_relaxed_split_certificate.v1",
+  "separator_pair": "u=v",
+  "split_path": [
+    {
+      "center": "Pw",
+      "decision": "no",
+      "label": "Q1"
+    },
+    {
+      "center": "s1",
+      "decision": "yes",
+      "label": "w"
+    },
+    {
+      "center": "Pw",
+      "decision": "yes",
+      "label": "s2"
+    },
+    {
+      "center": "u",
+      "decision": "no",
+      "label": "Q1"
+    },
+    {
+      "center": "u",
+      "decision": "yes",
+      "label": "Pw"
+    }
+  ],
+  "sstar": "s2",
+  "support": {
+    "centers_used": [
+      "u",
+      "v",
+      "w",
+      "s1",
+      "s2",
+      "s3",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonzero_count": 28,
+    "nonzero_indices": [
+      0,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "nonzero_optional_indices": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ]
+  },
+  "variables": [
+    "ux",
+    "uy",
+    "s1x",
+    "s1y",
+    "s2x",
+    "s2y",
+    "s3x",
+    "s3y",
+    "pwx",
+    "pwy",
+    "pux",
+    "puy",
+    "q1x",
+    "q1y",
+    "q2x",
+    "q2y",
+    "t"
+  ]
+}

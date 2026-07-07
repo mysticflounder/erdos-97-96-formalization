@@ -1,0 +1,349 @@
+{
+  "description": "Finite exact-count row target for erased-pin non-surplus interiors. This is a row-spec census, not a metric certificate.",
+  "family_counts": {
+    "adjacent-heavy": 24,
+    "moser-pair": 4,
+    "terminal-1111": 2
+  },
+  "left_count": 15,
+  "right_count": 15,
+  "route_counts": {
+    "left-right-subpacket": 18,
+    "one-sided-terminal": 2,
+    "same-side-heavy": 10
+  },
+  "rows": [
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s0_l3_r1",
+      "l": 3,
+      "m": 0,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s0_l2_r2",
+      "l": 2,
+      "m": 0,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s0_l1_r3",
+      "l": 1,
+      "m": 0,
+      "r": 3,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s0_l0_r4",
+      "l": 0,
+      "m": 0,
+      "r": 4,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "right",
+      "support_needed": 2
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s1_l2_r1",
+      "l": 2,
+      "m": 0,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s1_l1_r2",
+      "l": 1,
+      "m": 0,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m0_s1_l0_r3",
+      "l": 0,
+      "m": 0,
+      "r": 3,
+      "route": "same-side-heavy",
+      "s": 1,
+      "side": "right",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m1_s0_l2_r1",
+      "l": 2,
+      "m": 1,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m1_s0_l1_r2",
+      "l": 1,
+      "m": 1,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m1_s0_l0_r3",
+      "l": 0,
+      "m": 1,
+      "r": 3,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "right",
+      "support_needed": 1
+    },
+    {
+      "family": "terminal-1111",
+      "id": "ep_right_m1_s1_l1_r1",
+      "l": 1,
+      "m": 1,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m1_s1_l0_r2",
+      "l": 0,
+      "m": 1,
+      "r": 2,
+      "route": "same-side-heavy",
+      "s": 1,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "moser-pair",
+      "id": "ep_right_m2_s0_l1_r1",
+      "l": 1,
+      "m": 2,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_right_m2_s0_l0_r2",
+      "l": 0,
+      "m": 2,
+      "r": 2,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "moser-pair",
+      "id": "ep_right_m2_s1_l0_r1",
+      "l": 0,
+      "m": 2,
+      "r": 1,
+      "route": "one-sided-terminal",
+      "s": 1,
+      "side": "right",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s0_l1_r3",
+      "l": 1,
+      "m": 0,
+      "r": 3,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s0_l2_r2",
+      "l": 2,
+      "m": 0,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s0_l3_r1",
+      "l": 3,
+      "m": 0,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s0_l4_r0",
+      "l": 4,
+      "m": 0,
+      "r": 0,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "left",
+      "support_needed": 2
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s1_l1_r2",
+      "l": 1,
+      "m": 0,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s1_l2_r1",
+      "l": 2,
+      "m": 0,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m0_s1_l3_r0",
+      "l": 3,
+      "m": 0,
+      "r": 0,
+      "route": "same-side-heavy",
+      "s": 1,
+      "side": "left",
+      "support_needed": 1
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m1_s0_l1_r2",
+      "l": 1,
+      "m": 1,
+      "r": 2,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m1_s0_l2_r1",
+      "l": 2,
+      "m": 1,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m1_s0_l3_r0",
+      "l": 3,
+      "m": 1,
+      "r": 0,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "left",
+      "support_needed": 1
+    },
+    {
+      "family": "terminal-1111",
+      "id": "ep_left_m1_s1_l1_r1",
+      "l": 1,
+      "m": 1,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 1,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m1_s1_l2_r0",
+      "l": 2,
+      "m": 1,
+      "r": 0,
+      "route": "same-side-heavy",
+      "s": 1,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "moser-pair",
+      "id": "ep_left_m2_s0_l1_r1",
+      "l": 1,
+      "m": 2,
+      "r": 1,
+      "route": "left-right-subpacket",
+      "s": 0,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "adjacent-heavy",
+      "id": "ep_left_m2_s0_l2_r0",
+      "l": 2,
+      "m": 2,
+      "r": 0,
+      "route": "same-side-heavy",
+      "s": 0,
+      "side": "left",
+      "support_needed": 0
+    },
+    {
+      "family": "moser-pair",
+      "id": "ep_left_m2_s1_l1_r0",
+      "l": 1,
+      "m": 2,
+      "r": 0,
+      "route": "one-sided-terminal",
+      "s": 1,
+      "side": "left",
+      "support_needed": 0
+    }
+  ],
+  "schema": "p97.erased_pin_count_rows.v1",
+  "total_count": 30
+}

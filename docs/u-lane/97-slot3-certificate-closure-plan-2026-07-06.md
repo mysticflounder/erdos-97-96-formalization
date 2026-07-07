@@ -11,6 +11,20 @@ p97-rvol U1 route-B tail work.  The goal is not to extend the imported local
 case split.  The goal is to consume the certificate/metric closure surfaces that
 actually sit on the `Problem97.erdos97_rhs` spine.
 
+Audit correction, 2026-07-06:
+
+- This plan is not, by itself, a full closure route until the large-cardinality
+  double-apex obstruction produces a uniform theorem and the live-data branch
+  gets a real producer surface or a strictly narrower on-spine residual.
+- Workstream C is the sibling slot-2 certificate track.  Its live frontier is
+  owned by `docs/four-point-subpacket-live-frontier.md`; the detailed logs in
+  this file are historical checkpoints and must not be treated as the source of
+  truth when they disagree with the live frontier or the proof-blueprint spine.
+- The pinned-surplus route is split by regime.  Exact ten-mask bank consumers
+  are sound without extra faithfulness only in the label-complete `m = 5` case.
+  The general-`m` route must use a relaxed/sub-mask bridge, a confinement
+  theorem, or leave an explicit on-spine general-`m` residual.
+
 ## Current state
 
 The p97-rvol route-B tail import has already landed in this repo.  The two
@@ -36,17 +50,83 @@ obligations:
 1. `Problem97.u1_largeCap_routeB_tail_liveData_false`
 2. `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`
 
-`proof-blueprint spine Problem97.erdos97_rhs --max-depth 6` reports the publish
-spine open through those two slot-3 obligations plus the three slot-2
+`proof-blueprint spine Problem97.erdos97_rhs --max-depth 6` now reports the
+publish spine open through those two slot-3 obligations plus three slot-2
 certificate/census obligations in `RemovableVertexAxiom.lean`:
 
 1. `Problem97.isM44EndpointResidualsExcluded`
 2. `Problem97.isM44PinnedSurplusResidualsExcluded`
 3. `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
 
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
+open as a publish-spine theorem.  Its broad erased-pin triple surface is being
+reduced inside the theorem to the local route-grouped seed-row surface
+`IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement`.
+Closed adapters first recover
+`IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement`, then the
+raw count-row statement,
+`IsM44NonSurplusContainmentErasedPinTripleCountFamilyFactsStatement`, and the
+existing erased-pin triple exclusions.  The older finite/named/candidate
+adapters remain compiled support, but the two-hit probe makes the
+`AdjacentChainOneHitData` route non-operative for this branch.  The
+proof-facing local obligation must ask for the route-grouped row exclusions and
+the two terminal generated seed-candidate inputs.  The erased one-sided
+terminal payload exclusions are now closed from those seed-candidate inputs by
+the `false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.  There
+is no
+separate top-level
+`Problem97.isM44NonSurplusContainmentErasedPinTripleReductionInputs` theorem.
+The row/route census has now been generated, but it is only a row-spec work
+queue, not a metric exclusion certificate:
+
+```text
+scripts/erased-pin-row-census.py
+certificates/surplus/erased_pin_count_rows.json
+certificates/surplus/reports/erased_pin_count_rows.md
+lean/Erdos9796Proof/P97/ErasedPinCountRows.lean
+```
+
+`Erdos9796Proof.P97.ErasedPinCountRows` builds and checks 15 right rows, 15
+left rows, and the route split `18 left-right-subpacket / 10 same-side-heavy /
+2 one-sided-terminal`.  The next generator step is to attach these row ids to
+the seeded-shadow consumers or to a new adjacent-heavy bridge.
 The two `U2OppCap2Escape.lean` sorries remain off the current publish spine and
-must not be treated as live slot-3 closure work unless they are explicitly wired
-back into the spine.
+must not be treated as live slot-3 closure work unless they are explicitly
+wired back into the spine.
+
+## Q Closure Gate
+
+The current certificate work is useful infrastructure, but it does not by
+itself close Q.  The live gate status on the `Problem97.erdos97_rhs` spine is:
+
+```text
+slot-2 endpoint residual                         OPEN
+slot-2 pinned surplus residual, m = 5            OPEN as part of the publish
+                                                  theorem
+slot-2 pinned surplus residual, general m >= 6   OPEN or replaced by a
+                                                  named on-spine residual
+slot-2 erased-pin triple residual                OPEN
+slot-3 double-apex, (5,5,4) finite slice         OPEN
+slot-3 double-apex, |A| > 11 / uniform tail      OPEN
+slot-3 liveData branch count                     OPEN or replaced by a
+                                                  strictly narrower residual
+```
+
+Q should be considered closed only when every row above has been promoted to
+`CLOSED`, or to the explicitly named replacement residual state shown in the
+row.
+
+Consequences:
+
+- A successful generated certificate build counts as infrastructure only until
+  a consuming theorem appears on the proof spine.
+- The exact pinned bank can close only the label-complete `m = 5` regime unless
+  a separate relaxed/sub-mask or confinement theorem justifies general `m`.
+- The finite `(5,5,4)` double-apex census cannot be extrapolated to the
+  large-cardinality tail without the uniform-rigidity workstream below.
+- If the liveData branch remains SAT under the finite core vocabulary, progress
+  must come from a new geometric producer, not another wrapper around the same
+  equality split.
 
 ## What is already closed
 
@@ -115,7 +195,11 @@ Concrete plan:
    `u12_metric_sample100_verdicts.jsonl`/global-count certificate outputs.
 2. Build the exact constrained census for the `(5,5,4)` two-large-cap slice.
    The needed result is an exhaustive canonical family, not another sampled
-   verdict.
+   verdict.  Canonicalization must preserve the designated surplus cap: the two
+   5-caps are not interchangeable at this leaf because the surplus cap is the
+   one containing the escaped point.  Before trusting a full run, smoke-test the
+   encoding against the known sampled `(5,5,4)` verdicts and verify that no
+   symmetry quotient erases the surplus designation.
 3. For each canonical no-double-apex cube, emit a Lean-checkable certificate in
    the existing polynomial-certificate style.  Reuse the
    `EndpointCertificate.Checker` schema only if the generated systems match its
@@ -165,11 +249,44 @@ Acceptable progress in this workstream is narrowly defined:
 Do not add a helper theorem unless the same change wires it into
 `u1_largeCap_routeB_tail_liveData_false`.
 
+## Closure workstream D: uniform-rigidity for the large-cardinality tail
+
+Target:
+
+```lean
+Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair
+```
+
+This workstream owns the part of workstream A that the finite `(5,5,4)` census
+does not cover.  The `|A| = 12` minimal-core census recorded in
+`docs/audits/2026-07-06-frontier-missed-angle-analysis.md` makes a pure finite
+bank extension unattractive: at and above `|A| = 12` the mined core families do
+not collapse to the `(5,5,4)` slice.  Therefore full closure needs a uniform
+metric-rigidity argument, not just more row generation.
+
+First tasks:
+
+1. Run a focused literature/proof search for the missing uniform rigidity
+   principle: two large caps plus the route-B tail hypotheses should force the
+   off-surplus shared-radius pair or an earlier contradiction.
+2. Run the sparsity-invariant separation test over the mined large-cardinality
+   cores from the missed-angle analysis.  The goal is to identify an invariant
+   that separates the real leaf hypotheses from the non-flattening finite
+   cores, or to prove that the proposed invariant is not the right one.
+3. Only after one of those tasks produces a named theorem surface should it be
+   wired into `DoubleApexOffSurplusSharedRadiusPair`.  Until then, the plan's
+   full-closure endpoint is conditional on this workstream, not on workstream C.
+
 ## Closure workstream C: sibling certificate-bank obligations
 
 These are not inside the current U1 anchor, but they are on the same
 `erdos97_rhs` publish spine and use the certificate infrastructure already in
 this repo.
+
+Status owner: `docs/four-point-subpacket-live-frontier.md` is the live
+slot-2/certificate frontier.  This section records historical checkpoints and
+high-level dependencies only; before executing endpoint, pinned-surplus, or
+erased-pin work, read the live frontier and proof-blueprint spine state.
 
 ### Endpoint residuals
 
@@ -210,6 +327,412 @@ Progress on 2026-07-06:
 - `lake-build Erdos9796Proof.P97.RemovableVertexAxiom` also succeeds after the
   endpoint-row changes; remaining warnings are the pre-existing lint and `sorry`
   warnings outside the endpoint aggregate.
+- Added `Erdos9796Proof.P97.EndpointCertificate.ShadowBank`, a finite
+  shadow-bank surface for the 117 endpoint rows.  It records the endpoint
+  `Q1`/`Q2` escape labels, the endpoint-specific `.v`/`.w` shape checks, and
+  `allEndpointRows_valid`.
+- Extended `Erdos9796Proof.P97.EndpointCertificate.Geometry` with the geometric
+  endpoint-shadow bridge.  A left or right endpoint residual now produces the
+  induced finite endpoint shadow and discharges the endpoint-specific `.v`/`.w`
+  Boolean shape checks, leaving only the generic finite-bank checks and row
+  coverage/soundness surface explicit.
+- Added `Erdos9796Proof.P97.EndpointCertificate.Bank`, which pairs the finite
+  shadow rows with the generated algebraic certificate aggregate and proves the
+  two lists are id-aligned.  This module imports the full endpoint aggregate and
+  is intentionally kept out of the main spine until the certificate soundness
+  bridge consumes it.
+- Extended `Bank` with `certifiedEndpointRows_entries` and
+  `exists_certifiedEndpointRow_of_endpointShadowInBank`.  Boolean endpoint
+  row-bank membership now yields an actual paired row/certificate entry whose
+  checker Boolean is proved true.  This is still only the finite lookup and
+  checker-identity layer; it does not yet assert the Nullstellensatz/geometric
+  soundness theorem needed for contradiction.
+- Extended `Bank` again with
+  `exists_alignedCertifiedEndpointRow_of_endpointShadowInBank`, so the same
+  membership hypothesis now returns a checked row/certificate pair whose row id
+  is proved equal to the generated certificate id.  This removes another lookup
+  obligation from the later row-data bridge.
+- Added `Erdos9796Proof.P97.EndpointCertificate.Soundness`, a theorem-facing
+  semantic layer for the endpoint checker.  It defines real-valued evaluation
+  for endpoint sparse monomials/terms/polynomials and proves that checker
+  normalization, addition, multiplication, product sums, and certificate
+  cofactor sums preserve evaluation.  The public contradiction surfaces are
+  `false_of_checkCertificate` for direct rows and `false_of_checkProductSum`
+  for sharded product-sum rows, under the corresponding zero-evaluation
+  hypotheses.  It also includes the reusable sharded-row bridge lemmas
+  `evalPoly_eq_zero_of_mulPoly_eq_right_zero` and
+  `evalPoly_target_eq_zero_of_checkProductSumEq`, which turn generated
+  partial-product identities and checked block sums into zero-evaluation facts.
+  To support this without importing `Mathlib` into every generated row,
+  `Checker` now exposes its polynomial helper definitions while the proofs live
+  in the separate `Soundness` module.
+- Extended the generated certificate aggregate so each checked row now carries
+  its algebraic payload: direct rows carry the full `Certificate`, and
+  term-sharded rows carry the checked block list.  The endpoint emitter was
+  updated to preserve this `CertificatePayload` surface on regeneration.
+- Added `Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness`, connecting
+  checked aggregate payloads to `Soundness` through
+  `false_of_verifiedDirectCertificate`, `false_of_verifiedProductSum`, and the
+  unified `false_of_verifiedCertificate` theorem.
+- Added `Erdos9796Proof.P97.EndpointCertificate.BankSoundness`, which composes
+  finite row-bank membership with aggregate payload soundness:
+  `false_of_endpointShadowInBank_of_payload_zeros` turns
+  `endpointShadowInBank` into `False` once the matching row payload has its
+  semantic zero-evaluation condition.
+- Added `Erdos9796Proof.P97.EndpointCertificate.Variables`, recording the
+  17-column endpoint certificate variable order
+  `ux, uy, s1x, s1y, s2x, s2y, s3x, s3y, pwx, pwy, pux, puy, q1x, q1y,
+  q2x, q2y, tau` and the corresponding geometric real assignment.
+- Added `Erdos9796Proof.P97.EndpointCertificate.PolynomialGeometry`, with
+  reusable evaluation lemmas for the recurring endpoint generator shapes:
+  squared-distance differences to a common center, squared-distance differences
+  to `(1,0)`, squared-norm differences, point-to-`(1,0)` distance differences,
+  and the frame equation `2 * X - 1`.
+- Added `Erdos9796Proof.P97.EndpointCertificate.ShadowSearch`, isolated from
+  the geometry imports.  It contains the endpoint DFS reachability bridge:
+  every shadow satisfying `endpointShadowOK` is accepted by the computed
+  endpoint search.
+- A raw depth-2 endpoint subtree check is too coarse: a single `.Q1/.v/.w`
+  branch took about 62 seconds.  Splitting one level deeper to fixed
+  `.Q1/.v/.w/.u` subtrees brings an individual branch certificate under one
+  second, while regrouping the 33 `.u` branches under one `.v/.w` pair again
+  crossed a minute.  The remaining coverage work should generate sharded
+  depth-3 certificates rather than hand-writing grouped depth-2 checks.
+- Added generated depth-3 endpoint search shards under
+  `Erdos9796Proof.P97.EndpointCertificate.ShadowSearchShards`.  The shard
+  predicate is deliberately guarded: each fixed `.Q1`/`.Q2`, `.v`, `.w`, `.u`
+  subtree proves that every `endpointShadowOK` leaf in the relaxed DFS is
+  present in `endpointRowEntries`.  The unguarded raw predicate is too strong,
+  because the relaxed DFS also reaches endpoint-shaped completions that fail the
+  full endpoint shadow contract.
+- `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.ShadowSearchShards.All` succeeds.  The
+  worst eight-mask chunks are slow, with the longest observed shard around 228
+  seconds; if this area is edited often, split those chunks further before
+  expanding the certificate surface.
+- Added `Erdos9796Proof.P97.EndpointCertificate.ShadowSearchCoverage`, proving
+  `ShadowBank.Search.endpointShadowInBank_of_endpointShadowOK`.  Thus the finite
+  endpoint incidence bridge is now closed at the shadow-bank layer:
+  `endpointShadowOK` implies membership in the 117-row endpoint bank.
+- Added `Erdos9796Proof.P97.EndpointCertificate.GeometryCoverage`, which keeps
+  the generated-search imports out of lightweight `Geometry` while composing the
+  left/right endpoint residual geometry bridge with
+  `endpointShadowInBank_of_endpointShadowOK`.  The new left/right theorems reach
+  `ShadowBank.endpointShadowInBank` once the generic finite-shadow component
+  checks from `Geometry` are supplied.
+- Extended `GeometryCoverage` with endpoint-specific adapters from finite
+  point-mask interfaces to the generic COMP-G shadow checks.  The left/right
+  residual bridge now also has finite-interface entry points:
+  `endpointLeft_residual_exists_endpointShadowInBank_of_mask_interfaces` and
+  `endpointRight_residual_exists_endpointShadowInBank_of_mask_interfaces`.
+  These discharge the endpoint `.v`/`.w` shape checks geometrically and reduce
+  the remaining incidence work to exact mask-cardinality, no-self, one-hit,
+  circumcenter, no-three, pair-count, and separation facts for the induced
+  ten-label shadow.
+- The finite coverage source is
+  `../p97-rvol/scratch/u2b_oppcap2_endpoint/fragment/`: `frag_ep.py` is the Z3
+  Boolean encoder, `indep_ep.py` is the independent pure-Python DFS,
+  `gen_json.py` emits `endpoint_fragment_models_20260701.json`, and
+  `finalcheck.py` reloads and checks the 117-model JSON.  The corresponding
+  finite-shadow coverage is now represented as Lean theorems in this repo.
+- `lake-build Erdos9796Proof.P97.EndpointCertificate.Soundness` succeeds.
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.Patterns.All`,
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.Bank`,
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness`, and
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.BankSoundness`,
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.Variables`, and
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.PolynomialGeometry` also
+  succeed.  One full downstream Bank rebuild took 12m02s because the `Checker`
+  helper visibility change invalidated the generated row cache; the later
+  payload-surface rebuilds completed under two minutes.
+- Proof-blueprint is runnable again as of 2026-07-06.  After
+  `proof-blueprint index --refresh`, `proof-blueprint spine
+  Problem97.erdos97_rhs --max-depth 6` reports the P97 publish spine open at
+  six obligations: the five live `sorry` symbols
+  `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`,
+  `Problem97.isM44EndpointResidualsExcluded`,
+  `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`,
+  `Problem97.isM44PinnedSurplusResidualsExcluded`,
+  `Problem97.u1_largeCap_routeB_tail_liveData_false`, plus the corresponding
+  `sorryAx` closure.  `Lean.trustCompiler` is approved in `.blueprint.toml`
+  under the project's native-decision policy; `sorryAx` remains the unapproved
+  axiom closure while these spine sorries are open.  The
+  current `proof-blueprint anchor` checkpoint points at
+  `Problem97.isM44EndpointResidualsExcluded`.  The non-surplus containment
+  erased-pin theorem is open on the publish spine; its reduced-input `sorry` is
+  local and load-bearing inside that theorem.  After the count-family rewire,
+  `proof-blueprint axioms
+  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
+  reports only core axioms plus `sorryAx`.  The publish target still reaches
+  `Lean.trustCompiler` through other generated/native certificate paths.
+- The remaining endpoint work is now narrower: connect each generated row's
+  algebraic data to the row payload `evaluationZeros` condition using the new
+  variable and polynomial-geometry surfaces, prove the row-specific geometric
+  zero-evaluation facts for the induced residual shadow's finite-mask
+  interface, and wire
+  `BankSoundness.false_of_endpointShadowInBank_of_payload_zeros` into
+  `isM44EndpointResidualsExcluded`.
+- July 7 support audit: the coefficient-aware endpoint surface is not, by
+  itself, a payload-only bridge.  A read-only pass over the exact endpoint bank
+  found no row whose active nonzero distance support is covered only by the
+  residual `.v`/`.w` payload classes, and a bounded Singular check on the
+  smallest exact rows found no alternative payload-only certificate.  The
+  smallest minimized concrete support found so far is `ep_Q2_023`.  Its
+  minimized certificate still uses the residual `.v` equations, non-payload
+  equations centered at `s3`, `Pw`, and `Pu`, and the forced `s1 != s3`
+  Rabinowitsch separator.  The K4 fallback route does not supply these facts:
+  `HasNEquidistantProperty 4` gives four ambient classmates at each carrier
+  point, but `S.IsM44` does not confine the surplus cap to the ten endpoint
+  labels.  The next endpoint work must therefore produce those row-specific
+  geometric facts, add a real residual relation that rules out unsupported
+  cases, or regenerate a certificate over a strictly smaller residual
+  vocabulary; adding more weighted dispatch wrappers does not close the leaf.
+- `PolynomialGeometry` now also proves zero-evaluation consequences for the
+  reusable generator shapes: equal squared distances to a variable center,
+  equal squared distances to `(1,0)`, equal squared norms, equal point-to-center
+  and point-to-`(1,0)` distances, the forced-collapse Rabinowitsch polynomial
+  `tau * |a - b|^2 - 1`, and the frame equation `ν x = 1 / 2`.
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.PolynomialGeometry`
+  succeeds with these lemmas.
+- `PolynomialGeometry` and `GeneratorZeros` now also cover the two
+  opposite-orientation generator shapes found by the endpoint census:
+  `1 - |a|^2` and `|b - a|^2 - |a|^2`.  The metric-shadow wrapper layer covers
+  every classified endpoint distance-generator orientation: variable-center
+  two-witness equations, `.v` and `.w` center equations, `.v`/`.w` unit-radius
+  equations, variable-center equations with one endpoint anchor, and the
+  `.v`/`.w` frame equation `2 * x - 1`.
+- The endpoint certificate generator family is classified: a read-only check
+  over the 117 JSON certificates found 3510 distance-equation generators and
+  115 Rabinowitsch distinctness generators, with no unclassified generators.
+  The saved nonzero-support census already reports no unclassified active
+  generators.
+- Added `Erdos9796Proof.P97.EndpointCertificate.NormalAxisVariables`, which
+  packages the endpoint certificate assignment obtained from
+  `normalAxis (pointOf .v) (pointOf .w)` and proves the endpoint versions of
+  the normal-axis distance-equality, unit-radius, and nonzero coordinate
+  squared-distance facts.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.NormalAxisVariables` succeeds; the
+  only warnings are pre-existing lints in imported cap modules.
+- Added `Erdos9796Proof.P97.EndpointCertificate.MetricShadow`, a theorem-facing
+  semantic wrapper for endpoint finite shadows.  It records injectivity of the
+  label interpretation and the same-radius meaning of finite selected classes,
+  then exposes the corresponding endpoint normal-axis squared-distance and
+  unit-radius equalities.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.MetricShadow` succeeds.
+- Added `Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros`, which
+  specializes the forced-collapse `s1 = s3` Rabinowitsch generator to the
+  endpoint normal-axis assignment and derives all reusable endpoint generator
+  zeros from `EndpointMetricShadow`.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros` succeeds.
+- Extended `scripts/endpoint-certificate.py` with a direct-row zero emitter.
+  It classifies each direct-row generator from the source JSON, reduces it to
+  one of the reusable `GeneratorZeros` shapes, and uses
+  `evalPoly_eq_zero_of_normalizePoly_eq` plus `native_decide` to transfer from
+  the generated sparse-polynomial literal to the reusable shape.
+- Generated direct endpoint row-zero modules under
+  `Erdos9796Proof.P97.EndpointCertificate.RowZeros.Direct`.  These prove
+  `Patterns.CertificatePayload.evaluationZeros (.direct Patterns.ep_...)` for
+  each non-product-sum endpoint row from `EndpointMetricShadow pointOf
+  row.toShadow`.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.RowZeros.Direct.All` succeeds.  The
+  only warnings in the run were the pre-existing cap-module lints.
+- Extended `scripts/endpoint-certificate.py` with a product-sum row-zero
+  emitter for the twelve sharded endpoint rows.  It emits per-block zero
+  modules using `evalPoly_eq_zero_of_mulPoly_eq_right_zero` and
+  `evalPoly_target_eq_zero_of_checkProductSumEq`, then emits one row
+  coordinator per product-sum certificate.
+- The product row coordinators avoid simplifying the entire generated block
+  list.  Large rows such as `ep_Q1_008` and `ep_Q2_041` hit Lean's recursion
+  limit when the coordinator used `simp` to expand `List.mem`; the emitter now
+  unfolds the concrete block list with `change` and peels membership with
+  `List.mem_cons.mp` one block at a time.
+- Generated product endpoint row-zero modules under
+  `Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product`.  These prove
+  `Patterns.CertificatePayload.evaluationZeros (.productSum Patterns.ep_..._blocks)`
+  for each product-sum endpoint row from `EndpointMetricShadow pointOf
+  row.toShadow`.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.All` succeeds.  The
+  only warnings in the confirming run were the pre-existing cap-module lints.
+- Added `Erdos9796Proof.P97.EndpointCertificate.RowZeros.Bank`, the bank-level
+  row-zero dispatcher.  It proves that a matched
+  `rowCert ∈ Bank.certifiedEndpointRows` carries the required
+  `rowCert.2.payload.evaluationZeros` condition by transporting
+  `EndpointMetricShadow` across the matched finite-mask equality and dispatching
+  to the generated direct or product-sum row-zero theorem.  It also exposes the
+  public contradiction surface
+  `false_of_endpointShadowInBank_of_metricShadow`, which feeds those row-zero
+  facts into `BankSoundness.false_of_endpointShadowInBank_of_payload_zeros`.
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.RowZeros.Bank` succeeds.
+- The direct row-zero generator now suppresses `linter.unusedSimpArgs` in the
+  generated direct files.  This removes the warning flood from the repeated
+  `simp [endpointS1S3Assignment, EndpointVar.eval]` proofs while keeping the
+  suppression scoped to regenerated certificate rows.
+- `RowZeros.Bank.false_of_endpointShadowInBank_of_metricShadow` has been wired
+  through the endpoint residual stack.  The remaining work is the formal
+  residual bridge: from the endpoint residual hypotheses, build the induced
+  finite endpoint shadow, prove `EndpointMetricShadow pointOf shadow`, and
+  obtain `ShadowBank.endpointShadowInBank` using the existing `GeometryCoverage`
+  mask-interface entry points plus the needed mask-cardinality/no-self/one-hit/
+  circumcenter/no-three/pair-count/separation facts.
+- Added `Erdos9796Proof.P97.EndpointCertificate.ResidualSoundness`, composing
+  the residual geometry bridge, endpoint row-bank coverage, and generated
+  row-zero dispatch.  The new left/right theorems
+  `endpointLeft_residual_exists_false_of_mask_interfaces` and
+  `endpointRight_residual_exists_false_of_mask_interfaces` show that each
+  residual is contradictory once the induced shadow is supplied with
+  `EndpointMetricShadow` and the generic finite-mask interfaces.
+  `lake-build Erdos9796Proof.P97.EndpointCertificate.ResidualSoundness`
+  succeeds.
+- `ResidualSoundness` now also exposes
+  `endpointMetricShadow_of_selectedClass_interfaces`: injective endpoint labels,
+  a selected-class choice for every center, and a bit-to-class membership
+  interface imply `EndpointMetricShadow`.  This moves the metric part of the
+  endpoint leaf from a raw semantic assumption to concrete selected-class and
+  membership obligations.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.ResidualSoundness` succeeds after this
+  bridge.
+- The same module also exposes
+  `endpointMetricShadow_of_endpointPointMask_selectedClass_interfaces`, the
+  induced-shadow version of that bridge.  `Geometry` now proves
+  `endpointPointMask_maskHas_mem`, so the point-mask bit-to-class membership
+  step is closed generically rather than left as a caller-supplied interface.
+- `ResidualSoundness` now also exposes
+  `false_of_endpointShadowInBank_of_selectedClass_interfaces`, composing
+  endpoint row-bank membership with those selected-class interfaces directly.
+  This removes the raw `EndpointMetricShadow` premise from the next endpoint
+  wiring layer; the remaining semantic obligations are the selected-class
+  choices for the induced point masks.
+- Added the left/right selected-class residual continuations
+  `endpointLeft_residual_exists_false_of_selectedClass_interfaces` and
+  `endpointRight_residual_exists_false_of_selectedClass_interfaces`.  These are
+  the broad proof-facing handoff for `isM44EndpointResidualsExcluded`: they
+  retain the finite mask-cardinality, no-self, one-hit, circumcenter, no-three,
+  pair-count, and separation obligations, but replace the raw metric-shadow
+  assumption with selected-class choices.
+- Added the finite endpoint mask facts
+  `endpointVMask_card_of_v_mask`, `endpointVMask_not_self_of_v_mask`,
+  `endpointWMask_card_of_w_mask`, `endpointWMask_not_self_of_w_mask`,
+  `endpointWMask_cvNoW_le_one_of_w_mask`, and
+  `endpointWMask_cuNoW_le_one_of_w_mask`, plus the left/right core handoffs
+  `endpointLeft_residual_exists_false_of_selectedClass_core_interfaces` and
+  `endpointRight_residual_exists_false_of_selectedClass_core_interfaces`.
+  These discharge the residual-controlled `.v`/`.w` mask-cardinality,
+  no-self, and `.w` one-hit facts internally.  `lake-build
+  Erdos9796Proof.P97.EndpointCertificate.ResidualSoundness` succeeds after
+  both core handoffs.
+- Added `Erdos9796Proof.P97.EndpointCertificate.ResidualCoreData`, first
+  exposing the data-first selected-class handoffs
+  `endpointLeft_residual_exists_false_of_selectedClass_core_data` and
+  `endpointRight_residual_exists_false_of_selectedClass_core_data`, then the
+  finite-shadow handoffs
+  `endpointLeft_residual_exists_false_of_metric_shadow_data` and
+  `endpointRight_residual_exists_false_of_metric_shadow_data`.
+  The on-spine theorem `isM44EndpointResidualsExcluded` now consumes the
+  finite-shadow handoffs directly.  Its old broad top-level `sorry` has been
+  narrowed to two local producers, one for each endpoint orientation, of
+  finite endpoint row-bank membership plus an `EndpointMetricShadow`:
+  `∃ shadow, endpointShadowInBank xLabel shadow = true ∧
+  EndpointMetricShadow pointOf shadow`.  The handoff now exposes the residual
+  `aLabel`/`bLabel` payload labels and exact `.v`/`.w` selected-class masks as
+  data, but those exact row-mask equalities are no longer part of the local
+  `hshadow` target.  A producer may still use them when choosing a compatible
+  row.  `lake-build
+  Erdos9796Proof.P97.RemovableVertexAxiom` succeeds after this refactor.
+- `ResidualCoreData` now also exports
+  `∀ center, pointOf center ∈ A` from each endpoint data handoff.  The endpoint
+  theorem no longer tries to manufacture the non-payload selected classes with
+  arbitrary `Classical.choose` radii from `hK4`.  The previous
+  `EndpointSelectedClassFiniteBundle` surface has been removed from the live
+  Lean interface because exact selected-class identities for all ten endpoint
+  labels are stronger than the row-zero consumer needs and are not supplied by
+  the current residual geometry.
+- `ResidualCoreData` now derives the `.u` one-hit bounds internally as well.
+  `Geometry` provides
+  `endpointPointMask_cvNoUMask_le_one_of_inter_card` and
+  `endpointPointMask_cwNoUMask_le_one_of_inter_card`, which convert adjacent-cap
+  intersection card bounds for the three relevant endpoint labels into the
+  finite `cvNoUMask`/`cwNoUMask` mask-intersection checks.  The left/right
+  endpoint data handoffs apply these bridge lemmas using the adjacent-cap
+  one-hit lemmas from `SurplusM44Packet.lean`.  The remaining local endpoint
+  `sorry`s are the two finite row-bank metric-shadow producers described
+  above.  The selected-class core-data handoffs now also derive non-`.v`/`.w`
+  no-self facts from selected-class radius positivity using
+  `endpointPointMask_maskHas_self_false_of_selectedClass`; they no longer take
+  a separate finite no-self premise for those centers.  The still-open
+  producer content is the non-`.v`/`.w` mask-cardinality, circumcenter,
+  no-three, pair-count, and separation side of a genuine induced endpoint
+  shadow, or a replacement relaxed/submask endpoint vocabulary.
+- Added coefficient-aware direct certificate soundness through
+  `Soundness`, `AggregateSoundness`, `BankSoundness`, and `RowZeros.Bank`.
+  The public bank-level surface is
+  `false_of_endpointShadowInBank_of_weighted_metricShadow`.  This is a useful
+  compatibility checkpoint, but the current implementation still reuses the
+  full row-zero dispatch rather than a minimized lifted-support bridge.
+- The current endpoint leaf boundary is no longer algebraic certificate
+  soundness, fallback-radius plumbing, or an all-label selected-class bundle.
+  The remaining endpoint work is the genuine general-`n` producer for finite
+  endpoint row-bank metric shadows using the residual's exposed exact `.v`/`.w`
+  payload masks where they are actually justified, or a relaxed/submask
+  endpoint bridge that consumes only label incidences supplied by the residual
+  geometry.  Do not spend proof effort
+  trying to prove exact ten-label masks for arbitrary `Classical.choose`
+  fallback classes; that fallback producer has been removed from the live
+  branch.
+- July 7 check: the exact-row producer cannot be treated as a universal
+  finite-table lookup from the currently exposed residual predicates.  The row
+  bank has uncovered syntactic payload triples, and a matching row would still
+  need full `EndpointMetricShadow` same-radius facts for all incident row bits.
+  Continuing the leaf now means either strengthening the residual data with a
+  real payload relation and full metric producer, or replacing the endpoint
+  consumer with a relaxed/submask row-zero bridge.
+- July 7 execution note: the existing cap/reflection lemmas do not eliminate
+  the neighboring-apex payload cases.  In the left endpoint orientation,
+  `aLabel = .w` asserts the `.v`-centered selected class contains the shared
+  `.w` Moser endpoint; the endpoint residual's final inequality rules out the
+  `.u`-to-`.v` first-radius equality, not this `.v`-to-`.w` equality.  The
+  mirror/right orientation has the analogous live `bLabel = .v` case.  Thus
+  canonicalizing the three surplus-interior labels is insufficient; the next
+  proof-producing step must either prove new geometric relations for those
+  live cases or mine a certificate vocabulary that does not require them.
+- July 7 targeted support probe: for `ep_Q2_023`, using the actual finite
+  row's residual-supplied `.v`/`.w` equations plus the `s1 != s3`
+  Rabinowitsch separator gives base indices `[3,4,5,6,7,8,30]`, whose Singular
+  standard basis starts with
+  `q1x^2+q1y^2-q2x^2-q2y^2-2*q1x+2*q2x`, not `1`.  The minimal unit extension
+  inside the stored nonzero support has size six:
+  `[15,16,17,18,19,21]`, namely
+  `dist2(s3,v)=dist2(s3,w)`,
+  `dist2(s3,v)=dist2(s3,s1)`,
+  `dist2(s3,v)=dist2(s3,Pu)`,
+  `dist2(Pw,w)=dist2(Pw,s3)`,
+  `dist2(Pw,w)=dist2(Pw,Pu)`, and
+  `dist2(Pu,v)=dist2(Pu,w)`.  The stored active equation
+  `dist2(Pu,v)=dist2(Pu,Pw)` is not needed for this minimized row, but the
+  remaining six equations are still centered at non-residual labels and are not
+  supplied by the current cap/selected-class residual data.  The existing
+  weighted bank surface also does not solve this: its generated dispatch still
+  obtains weighted zeros from full `EndpointMetricShadow`, so it is only a
+  future call-site for support-minimized row proofs, not a closure mechanism by
+  itself.
+- `proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4`
+  re-mined `RemovableVertexAxiom` after the metric-shadow refactor and reports
+  42/43 project nodes closed.  The only open project symbol in this target is
+  `Problem97.isM44EndpointResidualsExcluded`, through the two direct local
+  finite row-bank metric-shadow producer `sorry`s.  The residual handoff
+  exposes exact `.v`/`.w` selected-class masks, but the local `hshadow`
+  obligations are just bank membership plus `EndpointMetricShadow`.
+  `sorryAx` remains the unapproved axiom closure.  The endpoint certificate
+  subtrees excluded by `[mining].skip` remain covered by the `#print axioms`
+  gate.
+- July 7 build checkpoint: `ErasedPinFixedSeedDFS` now records the generated
+  erased-pin seed mask audits as Boolean `List.all` facts and
+  `SurplusCOMPGBankGeometry` extracts the membership-shaped consequences via
+  `List.all_eq_true`.  This removes the recursion-depth failure from the three
+  erased-pin seed private-mask checks.  `lake-build
+  Erdos9796Proof.P97.ErasedPinFixedSeedDFS`,
+  `lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`, and
+  `lake-build Erdos9796Proof.P97.RemovableVertexAxiom` all succeed; the
+  remaining warnings are pre-existing lints plus the live spine `sorry`s.
 
 ### Pinned surplus residuals
 
@@ -222,9 +745,19 @@ Problem97.isM44PinnedSurplusResidualsExcluded
 Existing artifacts:
 
 - `certificates/surplus/pinned_surplus_comp_g_bank.json`
+- `certificates/surplus/relaxed_split_singleton/*.json` (135 singleton
+  relaxed split coefficient certificates)
+- `certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_probe.{json,md}`
+- `certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_certificate_census.{json,md}`
 - `Erdos9796Proof.P97.SurplusCOMPGBank`
 - `Erdos9796Proof.P97.SurplusCOMPGBankDFS`
 - `Erdos9796Proof.P97.SurplusCOMPGBankGeometry`
+- `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All`
+- `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Bank`
+- `Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness`
+- `Erdos9796Proof.P97.SurplusCertificate.BankSoundness`
+- `Erdos9796Proof.P97.SurplusCertificate.ExactBridge`
+- `Erdos9796Proof.P97.SurplusCertificate.GeometryBridge`
 
 Closed interfaces already available:
 
@@ -235,37 +768,428 @@ Closed interfaces already available:
 
 Plan:
 
+Regime split:
+
+- `m = 5`: the exact ten-label shadow is faithful.  The existing exact-bank
+  consumers may be used: construct the exact `shadowOfPointClasses`, prove
+  `isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v`,
+  apply `pinnedSurplusCOMPGBankBridge`, and then discharge the matching relaxed
+  singleton certificate row through the exact-pid bridge.
+- `m >= 6`: do not treat exact ten-mask bank membership as closure.  This route
+  must either prove a relaxed/sub-mask faithfulness theorem that maps the
+  formal payload directly to a relaxed singleton split row, prove a confinement
+  theorem that makes the needed non-`{v,w}` centers faithful, or introduce a
+  named on-spine general-`m` pinned-surplus residual.  A wiring commit for
+  `isM44PinnedSurplusResidualsExcluded` must state which regime it closes.
+
+The implementation items below are therefore not one linear general-`m` recipe:
+items 1, 3, and 4 are exact-bank work for the `m = 5` regime unless preceded by
+one of the general-`m` faithfulness/confinement theorems just listed.
+
 1. From each formal pinned residual, construct the ten-label geometric model and
    `shadowOfPointClasses`.
 2. Prove the remaining geometric mask/prefix facts for centers not already
-   covered by the pinned `.v` and exact `.w` mask equalities.
-3. Apply
+   covered by the pinned `.v` and exact `.w` mask equalities.  For the
+   general-`m` route this should target the relaxed singleton split vocabulary,
+   not the exact 135-row completion masks.
+3. In the exact `m = 5` route, apply
    `isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v`.
-4. Apply `pinnedSurplusCOMPGBankBridge`.
-5. Add the COMP-G metric verdict boundary: either Lean-checkable certificates
-   for the bank rows, or a deliberately documented external-certificate
-   boundary.  The current incidence bank alone is not a metric contradiction.
+4. In the exact `m = 5` route, apply `pinnedSurplusCOMPGBankBridge`.
+5. Add the relaxed split metric verdict boundary.  The algebraic side is no
+   longer blocked on certificate generation: the fully singleton relaxed split
+   has 135 `unit` leaves, all 135 certificate JSON files parse cleanly, and
+   `lake-build Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All`
+   succeeds.  The generated aggregate has 136 top-level Lean modules including
+   `All.lean`, 34 term-sharded certificate directories, and 2729 shard modules;
+   the last recorded clean aggregate build took 15m03s.  The aggregate now
+   carries proof-facing payloads.
+   `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Bank` builds, recording
+   the 135 singleton row ids/case ids/leaf ids/split paths/exact completion
+   pids/common erased masks and proving row-id/certificate-id alignment plus
+   `exists_certifiedRelaxedSplitRow_of_rowIdInBank`.
+   `Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness` builds, exposing
+   `false_of_verifiedCertificate` for a checked relaxed split payload plus its
+   zero-evaluation hypotheses.
+   `Erdos9796Proof.P97.SurplusCertificate.BankSoundness` builds and exposes
+   `false_of_relaxedSplitRowIdInBank_of_payload_zeros`, which composes row-id
+   membership with the aggregate soundness theorem.
+   `Erdos9796Proof.P97.SurplusCertificate.ExactBridge` builds and exposes
+   `false_of_shadowInBank_of_payload_zeros`, which maps exact
+   `SurplusCOMPGBank.shadowInBank` membership to the matching singleton
+   relaxed split certificate row by exact pid.  It now also proves that the
+   matched relaxed row's common masks and stored member strings agree with the
+   corresponding exact row masks.
+   `Erdos9796Proof.P97.SurplusCertificate.GeometryBridge` builds and composes
+   that finite alignment with `shadowOfPointClasses`: stored common-mask
+   members in the matched relaxed row are now proved to appear as bits/classes
+   in the induced geometric shadow.  Under `EndpointMetricShadow`, the bridge
+   also proves equal normal-axis coordinate squared distances and zero
+   evaluation for every distance-equation generator family found in the relaxed
+   singleton metadata: common-center/two-ordinary, common-center fixed `.v`
+   member, common-center fixed `.w` member, common-center `.v`/`.w` frame,
+   exact `.v` center, exact `.w` center, and exact `.w` center unit-radius
+   shapes.  It now also covers the relaxed separator Rabinowitsch generators:
+   variable-variable separators such as `u=s1` use the pair-distance
+   Rabinowitsch adapter, and fixed-`.v` separators such as `u=v` use the
+   new `rabinowitschSqNormPoly` adapter.  At the generator-shape level, the
+   relaxed singleton metadata is fully classified.
+6. For the exact `m = 5` route, build the proof-facing bridge from a formal
+   pinned residual to one of the exact pinned-bank shadows, then supply the
+   remaining zero-evaluation facts needed by
+   `false_of_shadowInBank_of_payload_zeros`.  For the general-`m` route, replace
+   this with a relaxed row-id bridge or leave the named residual described
+   above.  Current checkpoint:
+  `scripts/pinned-surplus-certificate.py` has an
+  `--emit-relaxed-split-direct-row-zeros` mode and now derives the direct vs.
+  product split from the emitted Lean certificate coordinators (`_generators`
+  vs. `_blocks`) instead of from the older source-size threshold.  With the
+  current emitted certificate layer this gives 101 direct relaxed singleton
+  row-zero coordinators under
+  `Erdos9796Proof/P97/SurplusCertificate/RowZeros/Direct`, plus an aggregate
+  import file.  The generated direct layer is now sharded into:
+   exact-pid mask-bit fact modules under `RowZeros/ExactMaskBits`, per-row
+   polynomial shape facts under `RowZeros/ShapeFacts`, and per-generator
+   geometric zero proofs under `RowZeros/Direct/GeneratorZeros`.
+   A representative regenerated shard target,
+   `lake-build
+   Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R001NoSeparatorR001N.G00`,
+   succeeds; that target also rebuilt the `R001` exact-mask and shape-fact
+   shards.  Broad row/coordinator and aggregate builds remain too expensive for
+   routine feedback because Lake fans out through all generator shards; use
+   narrow shard targets while finishing compile-scaling.  The row coordinator
+   has been reduced to an index-based dispatcher over `List.get_of_mem`, with
+   no polynomial list-membership comparison.  July 7 focused verification:
+  `lake-build
+  Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.R001NoSeparatorR001N`
+  succeeds; after the imported generator-zero shards are warm, the final row
+  coordinator elaboration took 83s.  Product-sum row-zero lifting for the
+  term-sharded payloads is now emitted for every product-sum coordinator in the
+  singleton relaxed-split certificate layer: the same script has an
+  `--emit-relaxed-split-product-row-zeros` mode that generated 34 row
+  coordinators under `RowZeros/Product`, plus the `RowZeros/Product/All.lean`
+  aggregate with `productSumRowZeroCertificateIds.length = 34`.  Focused
+  verification:
+  `lake-build
+  Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R006UeqvR006`
+  succeeds; after warm imports its final row coordinator took 98s.  Focused
+  verification of the largest product row,
+  `lake-build
+  Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R013UeqvR013YYNYN`,
+  also succeeds across 182 block-zero modules; after warm imports its final
+  row coordinator took 96s.  Focused verification of a newly reclassified
+  product row,
+  `lake-build
+  Erdos9796Proof.P97.SurplusCertificate.RowZeros.Product.R003UeqvR003NN`,
+  succeeds across its generated block-zero modules; the final row coordinator
+  took 97s.  The generated block files prove each product block zero from the
+  existing geometric generator metadata and checked partial-product identities,
+  and the row coordinators prove
+  `CertificatePayload.evaluationZeros (.productSum ...)`.  A generated
+  `RowZeros/Bank.lean` now imports the direct/product aggregates and supplies
+  the row-local `∃ ν, rowCert.2.payload.evaluationZeros ν` witness consumed by
+  `false_of_shadowInBank_of_exists_payload_zeros`, producing
+  `RowZeros.false_of_shadowInBank_of_metricShadow`.  Remaining work: compile
+  or otherwise verify the full 135-row bank dispatcher, then call it from the
+  pinned-surplus leaf.  A broad `RowZeros.Bank` build currently triggers a
+  fresh rebuild of the full direct layer, so use focused row targets while
+  finishing the integration and compile-scaling pass.  The current bridge and
+  checked polynomial identities alone are not yet a geometric contradiction.
 
 ### Erased-pin triple residuals
 
-Target:
+Publish-spine theorem:
 
 ```lean
 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
 ```
 
-Plan:
+This theorem is open in the current proof-blueprint spine.  The remaining
+erased-pin work is the local reduced-input proof inside that theorem, not a
+parked off-spine theorem.
+
+Current Lean boundary:
 
 1. Use the existing exact-pin adapters in `RemovableVertexAxiom.lean`; do not
    bypass them.
-2. Prove the U5-style three-point residual exclusions for the categorized
-   survivors:
-   - surplus-opposite Moser vertex;
-   - surplus-cap strict interiors;
-   - both non-surplus strict-interior families.
-3. Let the closed adapters convert triple residual exclusions into exact-pin
+2. The remaining routed-row input asks for:
+   - surplus-opposite Moser vertex direct `ErasedPinTriple` exclusion;
+   - surplus-cap strict-interior direct `ErasedPinTriple` exclusions;
+   - `oppIndex1` non-surplus strict interiors:
+     `RightNonSurplusRoutedSeedRowsExcluded S x p`, i.e. the 9 left-right
+     subpacket rows, the 5 same-side-heavy rows, and generated seed-candidate
+     inputs for the terminal row `(2,1,0,1)`;
+   - `oppIndex2` non-surplus strict interiors:
+     `LeftNonSurplusRoutedSeedRowsExcluded S x p`, i.e. the 9 left-right
+     subpacket rows, the 5 same-side-heavy rows, and generated seed-candidate
+     inputs for the terminal row `(2,1,1,0)`.
+3. Closed arithmetic adapters turn the finite rows into the universal family
+   predicates:
+   `rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded`,
+   `leftNonSurplusExactCountRowsExcluded_of_routedRowsExcluded`,
+   `countRowsFactsStatement_of_routedRowsFactsStatement`,
+   `rightNonSurplusExactCountFamilyExcluded_of_rowsExcluded`,
+   `leftNonSurplusExactCountFamilyExcluded_of_rowsExcluded`, and
+   `countFamilyFactsStatement_of_countRowsFactsStatement`.
+4. The closed count-budget bridge turns an erased-pin triple into one of those
+   exact selected-count family rows using:
+   `selectedCount_groupSum_eq_four_of_card`,
+   `moserCount_oppIndex*_le_two_of_moserCapContainment`,
+   `sameCapCount_oppIndex*_le_one`, and the surplus-side adjacent lower bound.
+5. Let the closed adapters convert triple residual exclusions into exact-pin
    exclusions, erased-set selected-class witnesses, and finally
    `IsRemovableVertex`.
+
+Correction after the two-hit probe: the old finite-facts statement passed
+through the legacy `AdjacentChainOneHitData` reducer, but
+`scratch/two-hit-probe/report.md` proves the adjacent one-hit upper bounds
+false at non-surplus strict-interior centers.  Do not try to prove
+`AdjacentChainOneHitData` for this branch.  The current Lean branch has been
+rewired to the seeded-census/count-family shape that admits the verified
+two-hit rows `(1,0,2,1)` and `(1,0,1,2)` and checks the remaining follow-up row
+families `(0,1,2,1)`, `(0,0,2,2)`, and surplus-side at-least-three hits.
+
+Current routed-row/count-family boundary:
+
+- The local on-spine `sorry` proves
+  `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement`.
+  The raw `IsM44NonSurplusContainmentErasedPinTripleCountRowsFactsStatement`
+  is recovered by the closed seed-row and routed-row adapters.
+- `RightNonSurplusExactCountRowsExcluded S x p` and
+  `LeftNonSurplusExactCountRowsExcluded S x p` enumerate the 15 concrete rows
+  per side.  Their closed adapters recover
+  `RightNonSurplusExactCountFamilyExcluded S x p` and
+  `LeftNonSurplusExactCountFamilyExcluded S x p`.
+- Generated row/route artifacts are present in
+  `certificates/surplus/erased_pin_count_rows.json`,
+  `certificates/surplus/reports/erased_pin_count_rows.md`, and
+  `lean/Erdos9796Proof/P97/ErasedPinCountRows.lean`.  They are generated by
+  `scripts/erased-pin-row-census.py` and verified by:
+  `LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.ErasedPinCountRows`.
+- The generated route census splits the 30 rows into:
+  `18` left-right subpacket rows, `10` same-side-heavy rows, and `2`
+  one-sided terminal rows.  The Lean routed surface now consumes this split:
+  the two terminal rows reduce to generated seed-candidate inputs and then, by
+  closed adapter, to erased one-sided payload exclusions.  The other 28 rows
+  were row-exclusion targets before the structural row pruning below.
+- Two generated rows are now closed structurally in Lean and removed from the
+  local proof-facing obligation: right `(0,0,3,1)` and left `(0,0,1,3)`.
+  Both require three hits in the other non-surplus strict interior, which has
+  cardinality two in an `IsM44` packet.  The closing lemmas are
+  `rightNonSurplusLeftAdjacentThreeRowExcluded` and
+  `leftNonSurplusRightAdjacentThreeRowExcluded`, wired through
+  `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement`.
+- The terminal reduction is closed in Lean.  The strict cap-interior placement
+  proves `dist p x > 0`; `selectedClass_card_eq_groupSum` turns the terminal
+  count sum into a four-point selected class; then the existing one-sided
+  obstruction constructors produce the erased payloads.  Therefore the terminal
+  route now needs seed-candidate inputs, not row certificates or arbitrary
+  payload-exclusion assumptions.
+- `RightNonSurplusExactCountFamilyExcluded S x p` and
+  `LeftNonSurplusExactCountFamilyExcluded S x p` are deliberately row-family
+  predicates, not one-hit chain predicates.  They include the verified two-hit
+  rows `(1,0,2,1)` and `(1,0,1,2)` rather than trying to prove them away.
+- Existing one-sided chain/payload reducers in `SurplusM44Packet.lean` require
+  adjacent upper bounds (`leftAdjCount <= 1` and `rightAdjCount <= 1`).  They may
+  help for row-specific one-hit subcases after a census certificate supplies
+  those bounds, but they do not replace the finite-row surface globally.
+- The older finite/named/candidate/seed-mask inputs remain useful compiled
+  support for the previous seeded-shadow route, but they are no longer the
+  expected proof-facing local obligation for this theorem.
+- The remaining local `sorry` is boundary-specified but not
+  producer-complete.  Its concrete producer obligations are:
+  `surplus-opposite` direct `ErasedPinTriple` exclusion; surplus-cap
+  strict-interior direct `ErasedPinTriple` exclusions; 8 right and 8 left
+  left-right-subpacket row exclusions; 5 right and 5 left same-side-heavy row
+  exclusions; and the right/left terminal seed-candidate input producers.  It
+  no longer has to construct arbitrary one-sided payload exclusions or
+  `AdjacentChainOneHitData`.
+- The erased-pin producer census is now generated by
+  `scripts/erased-pin-producer-census.py`.  It writes
+  `certificates/surplus/erased_pin_producer_census.json` and
+  `certificates/surplus/reports/erased_pin_producer_census.md`.  The census
+  expands each exact-count row into oriented ten-label selected-class masks and
+  now runs the generalized one-sided fixed-seed DFS by default.  After the two
+  already-closed pair-overflow rows, 28 proof-facing rows remain: 26 have
+  finite ten-label masks and two rows require a surplus-extra bridge because
+  they ask for four selected surplus-side hits inside a three-label surplus
+  subpacket: right `(0,0,0,4)` and left `(0,0,4,0)`.
+- July 7 producer result: the 26 finite rows have 660 named finite masks,
+  deduplicating to 330 fixed seeds `(sstar, privateCenter, privateMask)` for
+  the exact `.v/.w` cap-mask seeded search.  The generated DFS census finds
+  zero completions for all 330 distinct seeds and zero completions for all 660
+  named masks.  The Lean module
+  `Erdos9796Proof.P97.ErasedPinFixedSeedDFS` emits and proves the fixed-seed
+  zero theorem, and `Erdos9796Proof.P97.SurplusCOMPGBankGeometry` exposes the
+  bridge
+  `false_of_erasedPinFixedSeedShadow_pointClasses_of_seed_circ_interfaces` for
+  point-class geometry with exact `.v/.w` cap masks and a generated private
+  mask.
+- Further Lean surface reshaping does not count as progress unless its adapter
+  proves and removes one of those producer obligations.  The next proof step is
+  to specialize one finite row family to a generated fixed seed and consume the
+  bridge above, then repeat across the 13 oriented signatures; or prove the
+  surplus-extra bridge for the two non-finite rows.  Deleting a direct
+  surplus-side exclusion remains valid only if an existing theorem supplies it
+  directly.
+- Producer-plan correction, July 7: the previous sentence names the boundary
+  but not the full producer theorem shape.  A finite-row producer is not just a
+  row id plus a generated DFS seed; it must prove the geometric-to-finite
+  translation:
+
+  ```text
+  exact count row
+    -> named ten-label selected-class mask for the private center
+    -> generated fixed-seed membership
+    -> exact `.v/.w` cap masks and non-fixed candidate remainder
+    -> generated DFS contradiction
+  ```
+
+  The first acceptable Lean target is one concrete theorem of shape
+  `RightNonSurplusExactCountRowExcluded S x p m s l r` or its left mirror that
+  consumes `false_of_erasedPinFixedSeedShadow_pointClasses_of_exact_vw_private_candidates`.
+  A terminal producer may instead prove
+  `RightNonSurplusOneSidedTerminalSeedInputs S x p` or
+  `LeftNonSurplusOneSidedTerminalSeedInputs S x p`, because those are already
+  consumed by the terminal payload adapters.  The same-side pure surplus-extra
+  rows `(0,0,0,4)` and `(0,0,4,0)` are explicitly not covered by the ten-label
+  fixed-seed ladder.
+- Producer artifact update, July 7: `ErasedPinFixedSeedDFS.lean` now includes
+  generated row and oriented-signature seed lists.  Each finite row/signature
+  has a candidate seed list, a filtered fixed-bank seed list, a structural
+  subset theorem into `erasedPinFixedSeeds`, an equality theorem showing the
+  fixed-bank filter recovers exactly the candidate list, a direct
+  candidate-list subset theorem, and a no-valid-shadow theorem for any seed in
+  that row/signature candidate list.  The length theorem is now only the audit
+  count; downstream proofs should use the equality/subset/no-valid facts
+  instead of unfolding the generated bank.  Verified by:
+
+  ```bash
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.ErasedPinFixedSeedDFS
+  ```
+
+  This is not a row closure theorem yet; it is the finite-data handoff the
+  first row producer should consume after it proves the geometric selected
+  class lands in one of the listed row/signature seeds.
+- Producer kind-normalization update, July 7: the fixed-bank list deduplicates
+  generated seeds with `kind := .own`, while some proof payload branches still
+  carry `.own`, `.oppositeU`, or `.oppositeW`.  Since the seeded validator and
+  candidate masks ignore the kind tag, `ErasedPinFixedSeedDFS.lean` now emits
+  `erasedPinCanonicalSeed`, `erasedPinCanonicalSeed_candidateMasks`,
+  `isValidOneSidedSeedShadow_erasedPinCanonicalSeed`, and
+  `false_of_isValidOneSidedSeedShadow_of_mem_erasedPinCanonicalSeed`.  This
+  lets a producer enter the deduplicated fixed bank through the canonical
+  `.own` seed without expanding the bank to three copies per seed.  Verified by:
+
+  ```bash
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.ErasedPinFixedSeedDFS
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+  ```
+- Upstream surplus-placement update, July 7:
+  `SurplusCapPacket.IsM44.exists_surplusInterior_triple_preserving_subset`
+  now embeds any surplus-interior subset of cardinality at most three into the
+  named `s1/s2/s3` surplus labels.  This is the placement theorem needed by
+  finite exact-row producers: the chosen three-label surplus subpacket can be
+  selected after the row identifies all surplus-side selected hits, not merely
+  after the erased point `x` is known.  Verified by:
+
+  ```bash
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusM44Packet
+  ```
+- First finite-row specialization update, July 7:
+  `SurplusCOMPGBankGeometry.lean` now proves the row-level adapter for
+  `ep_right_m0_s0_l2_r2`:
+  `erasedPinRow_ep_right_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair`
+  turns two distinct surplus labels plus `.Q1/.Q2` and a `.Pw/.Pu` private
+  center into membership in the generated 12-seed row list, and
+  `false_of_erasedPinRow_ep_right_m0_s0_l2_r2_seedShadow_pointClasses`
+  closes any point-class shadow using such a listed row seed via the generated
+  row no-survivor theorem.  `SurplusM44Packet.lean` now also proves
+  `SurplusCapPacket.IsM44.right_row0022_selectedClass_eq_oppInterior2_union_surplusPair`:
+  the exact count equalities `(0,0,2,2)` force the selected class at
+  `oppIndex1` to be the named `oppInterior2` pair together with a two-point
+  surplus-interior pair.  `SurplusCOMPGBankGeometry.lean` now also proves
+  `right_row0022_exists_erasedPinRowSeed_privateMask`: after the two selected
+  surplus-side points are embedded in the named `s1/s2/s3` triple, the row
+  produces a generated row seed and the exact private-center mask needed by
+  the row point-class contradiction.
+  A later July 7 checkpoint narrows the row further:
+  `erasedPinRow_ep_right_m0_s0_l2_r2_seed_private_w_crossSeparation_false`
+  proves every generated `(0,0,2,2)` row seed fails cross-separation against
+  the exact `.w` cap mask, and
+  `false_of_right_row0022_private_w_crossSeparation` composes this finite fact
+  with the exact row placement theorem.  The row can now close from the exact
+  `.w` mask, the private-mask placement, and the geometric `hsearchSep`
+  interface without building a complete ten-mask DFS shadow.
+  Follow-up census scan, July 7: this cheap route applies to eight finite
+  erased-pin rows, not only the proved right `(0,0,2,2)` row:
+  `ep_right_m0_s0_l2_r2`, `ep_right_m0_s1_l2_r1`,
+  `ep_right_m1_s0_l2_r1`, `ep_right_m2_s0_l1_r1`,
+  `ep_left_m0_s0_l2_r2`, `ep_left_m0_s1_l1_r2`,
+  `ep_left_m1_s0_l1_r2`, and `ep_left_m2_s0_l1_r1`.  The finite erased-pin
+  row plan is now split into eight cross-separation-only rows, eighteen
+  remaining finite ten-label rows needing a stronger validator or full
+  fixed-seed DFS route, and two surplus-extra rows needing a separate
+  surplus-extra bridge.
+  Implementation update, July 7: `scripts/erased-pin-producer-census.py` now
+  records private-`.v`/private-`.w` cross-separation incidence in the
+  JSON/report output, and generated module `ErasedPinFixedSeedDFS.lean`
+  exposes all eight row-wide
+  `erasedPinRow_*_seed_private_w_crossSeparation_false` facts.  The hand
+  geometry row0022 adapter now consumes the generated fact rather than owning a
+  local duplicate.
+  Second-pass scan of the eighteen residual finite rows found no local-mask or
+  fixed-pair-count row kill.  It did find that every residual seed dies from
+  the exact `.v/.w/private` masks plus at most three additional center labels;
+  six mirrored rows have a uniform one-extra-center kill, while the other
+  twelve need small mask-orbit splits.  The lowest-risk implementation is to
+  emit shorter prefix no-survivor facts for the existing
+  `oneSidedSeedSearchAux` order.  The faster geometric implementation is a new
+  small-fragment adapter that consumes only the selected extra centers'
+  `hsearchSep`/pair-count facts.
+  Third July 7 checkpoint: `RemovableVertexAxiom.lean` now proves
+  `false_of_right_row0022_finiteCandidateFacts`.  This closes the right
+  exact row `(0,0,2,2)` from the finite point-class packet, the exact row
+  counts, the `.w` mask, and the geometric `hsearchSep` table, by splitting
+  the named opposite pair into the `.Pw`/`.Pu` private-center cases and then
+  applying `false_of_right_row0022_private_w_crossSeparation`.
+  This is still not a proof of
+  `RightNonSurplusExactCountRowExcluded S x p 0 0 2 2`.  The row-truth relay
+  found realizations for the non-closed left-right rows under the current
+  ambient inputs, and the current `RightNonSurplusLeftRightSubpacketPrunedRowsExcluded`
+  surface keeps only four count equalities.  It has already discarded the
+  finite masks, named private-center placement, surplus-triple placement, and
+  `hsearchSep` table needed by the generated contradiction.  The remaining row
+  work is therefore to refine the on-spine producer surface so row0022 is
+  consumed before that data is erased, not to assert bare row impossibility.
+  Verified by:
+
+  ```bash
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusM44Packet
+  LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+  lake-build Erdos9796Proof.P97.RemovableVertexAxiom
+  ```
+- Boundary check: the existing endpoint/pinned-surplus reducers in
+  `SurplusM44Packet.lean` do not directly close the direct surplus-side
+  erased triples in this count-family statement.  They reduce selected classes
+  centered at the two non-surplus opposite vertices.  The minimality/exact-pin
+  route is circular here, because exact erased pins are first converted to
+  `ErasedPinTriple`s and only after all such triples are excluded do we obtain
+  the erased-set `K4` witness.
+- Verification after this rewire:
+  `LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+  succeeds;
+  `proof-blueprint spine
+  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
+  --max-depth 3` reports 92/93 nodes closed, with only the theorem's local
+  source-level spine `sorry` open, reported in kernel axiom closure as
+  `sorryAx`; `proof-blueprint spine
+  Problem97.erdos97_rhs --max-depth 6` reports 976/998 nodes closed and
+  still has the five live publish source-level `sorry`s, which appear in
+  kernel axiom closure as `sorryAx`.  `proof-blueprint axioms
+  Problem97.erdos97_rhs`
+  currently reports both `sorryAx` and `Lean.trustCompiler` as unsanctioned,
+  although `.blueprint.toml` lists `Lean.trustCompiler` as approved and spine
+  views list it in the approved axiom set.
 
 ## Verification checklist
 
@@ -277,6 +1201,25 @@ proof-blueprint spine Problem97.u1_largeCap_routeB_tail_liveData_false --max-dep
 proof-blueprint spine Problem97.erdos97_rhs --max-depth 6
 proof-blueprint axioms Problem97.erdos97_rhs
 ```
+
+Proof-blueprint is part of the active verification path again.  If the index or
+mined graph is stale, refresh it before reading open-obligation counts.
+
+Blueprint caveats:
+
+- Generated certificate subtrees may be skipped by the miner to keep the graph
+  tractable.  That makes proof-blueprint usable for spine shape, but it does
+  not by itself approve the trust cost of generated/native certificate leaves.
+- `proof-blueprint axioms Problem97.erdos97_rhs` remains the live gate for
+  native/generated trust boundaries and `sorryAx`.  As of this checkpoint, the
+  axiom command flags both `sorryAx` and `Lean.trustCompiler` on the publish
+  target, while `.blueprint.toml` deliberately approves `Lean.trustCompiler`
+  and spine views list it as approved.  Resolve that command/config discrepancy
+  before treating the publish gate as final; source-level `sorry`s remain
+  unproved and appear as `sorryAx` until the spine obligations close.
+- A certificate module building is not the same as being on the proof spine.
+  Wiring claims should cite a consuming spine theorem or a proof-blueprint diff,
+  not just an olean or `lake-build` result.
 
 Expected endpoint before full closure:
 
