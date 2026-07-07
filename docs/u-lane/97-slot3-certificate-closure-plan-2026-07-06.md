@@ -277,6 +277,18 @@ First tasks:
    wired into `DoubleApexOffSurplusSharedRadiusPair`.  Until then, the plan's
    full-closure endpoint is conditional on this workstream, not on workstream C.
 
+July 7 acceleration probes:
+
+- `scratch/q3-two-center/` records the formulation and encoder library for the
+  smallest cross-center window around the two chord-sharing vertices.  It is a
+  verdict-table probe only, not Lean production; any UNSAT result still needs an
+  exact certificate or a theorem surface before it can close the
+  `DoubleApexOffSurplusSharedRadiusPair` tail.
+- `scratch/u12-census-port/gen_singular_shadow.py` and `_min_core_sound.py`
+  are small Singular/msolve probes for fixed center-K4 shadows.  They are useful
+  for finding candidate infeasible cores, but they do not replace the uniform
+  metric-rigidity theorem required by this workstream.
+
 ## Closure workstream C: sibling certificate-bank obligations
 
 These are not inside the current U1 anchor, but they are on the same
@@ -1236,15 +1248,17 @@ Current routed-row/count-family boundary:
   counts, the `.w` mask, and the geometric `hsearchSep` table, by splitting
   the named opposite pair into the `.Pw`/`.Pu` private-center cases and then
   applying `false_of_right_row0022_private_w_crossSeparation`.
-  This is still not a proof of
-  `RightNonSurplusExactCountRowExcluded S x p 0 0 2 2`.  The row-truth relay
-  found realizations for the non-closed left-right rows under the current
-  ambient inputs, and the current `RightNonSurplusLeftRightSubpacketPrunedRowsExcluded`
-  surface keeps only four count equalities.  It has already discarded the
-  finite masks, named private-center placement, surplus-triple placement, and
-  `hsearchSep` table needed by the generated contradiction.  The remaining row
-  work is therefore to refine the on-spine producer surface so row0022 is
-  consumed before that data is erased, not to assert bare row impossibility.
+  The finite-scaffold wrapper
+  `rightNonSurplusRow0022Excluded_of_finiteScaffold` closes
+  `RightNonSurplusExactCountRowExcluded S x p 0 0 2 2` once the scaffold facts
+  are available.  The row-truth relay found realizations for the non-closed
+  left-right rows under the current ambient inputs, and the current
+  `RightNonSurplusLeftRightSubpacketPrunedRowsExcluded` surface keeps only four
+  count equalities.  It has already discarded the finite masks, named
+  private-center placement, surplus-triple placement, and `hsearchSep` table
+  needed by the generated contradiction.  The remaining row work is therefore
+  to refine the on-spine producer surface so row0022 is consumed before that
+  data is erased, not to assert bare row impossibility.
   Verified by:
 
   ```bash
@@ -1252,6 +1266,50 @@ Current routed-row/count-family boundary:
   LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
   lake-build Erdos9796Proof.P97.RemovableVertexAxiom
   ```
+
+  Fourth July 7 checkpoint: the right `(1,0,2,1)` finite row now follows the
+  same exact-`.w` cross-separation route.  `SurplusM44Packet.lean` proves
+  `IsM44.right_row1021_selectedClass_eq_moser_oppInterior2_surplus`, naming the
+  selected class as the `oppInterior2` pair, one Moser-triangle vertex, and one
+  surplus-interior point.  `SurplusCOMPGBankGeometry.lean` adds
+  `exists_moserLabel_rightPinnedLabelPoint_eq_of_mem_triangle`,
+  `pointMask_eq_QQSurplusMoserMask` and its swapped form, the generated seed
+  membership lemma
+  `erasedPinRow_ep_right_m1_s0_l2_r1_seed_mem_candidates_of_moser`, and the row
+  seed contradiction
+  `false_of_erasedPinRow_ep_right_m1_s0_l2_r1_seed_private_w_crossSeparation`.
+  `RemovableVertexAxiom.lean` consumes those facts through
+  `false_of_right_row1021_finiteCandidateFacts` and
+  `rightNonSurplusRow1021Excluded_of_finiteScaffold`, so the local row exclusion
+  is now closed once the finite scaffold facts are available.  The remaining
+  on-spine producer work is to preserve that finite selected-class payload,
+  private-center placement, surplus-triple placement, exact `.w` mask, and
+  `hsearchSep` data long enough to call the row-specific finite-scaffold
+  theorem.  Current finite-scaffold wrapper coverage for the cheap
+  cross-separation route is five of eight rows:
+  `rightNonSurplusRow0022Excluded_of_finiteScaffold`,
+  `rightNonSurplusRow0121Excluded_of_finiteScaffold`,
+  `rightNonSurplusRow1021Excluded_of_finiteScaffold`,
+  `leftNonSurplusRow0022Excluded_of_finiteScaffold`, and
+  `leftNonSurplusRow0112Excluded_of_finiteScaffold`.  The three remaining cheap
+  wrappers are right `(2,0,1,1)`, left `(1,0,1,2)`, and left `(2,0,1,1)`;
+  after those, the producer surface still has to pass the finite scaffold facts
+  into the pruned left-right row obligation.
+
+  Local artifact checkpoint: `certificates/surplus/relaxed_split/` contains the
+  70 grouped relaxed-split certificate JSON files from the pre-singleton pass,
+  while `certificates/surplus/relaxed_split_singleton/` remains the 135-row
+  source for the verified `RowZeros.Bank` dispatcher.  The grouped relaxed-split
+  directory and `scratch/census-12-gate/` are large local artifacts and are
+  intentionally ignored rather than committed.  The `scratch/census-12-gate/`
+  state records the |A| = 12 window-shape CEGAR measurement for profile 654: 52
+  banked certificates, 13 failed witnesses, and the state file classifies the
+  result as a heuristic convergence gate, not a proof.
+  `scratch/erased-pin-row-truth/` records the exact-rational row-truth probe:
+  all searchable erased-pin rows and the two surplus-side probes have
+  constructive local witnesses; the row exclusions therefore must be routed
+  through the proof-facing finite-mask/cross-separation interfaces rather than
+  asserted as local geometric impossibilities.
 - Boundary check: the existing endpoint/pinned-surplus reducers in
   `SurplusM44Packet.lean` do not directly close the direct surplus-side
   erased triples in this count-family statement.  They reduce selected classes
@@ -1259,21 +1317,21 @@ Current routed-row/count-family boundary:
   route is circular here, because exact erased pins are first converted to
   `ErasedPinTriple`s and only after all such triples are excluded do we obtain
   the erased-set `K4` witness.
-- Verification after this rewire:
-  `LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
-  succeeds;
+- Verification after this rewire: focused `lake env lean -M 16384` checks
+  succeed for `Erdos9796Proof/P97/SurplusM44Packet.lean`,
+  `Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean`, and
+  `Erdos9796Proof/P97/RemovableVertexAxiom.lean`; the last still reports the
+  three expected live `sorry` warnings.
   `proof-blueprint spine
   Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
-  --max-depth 3` reports 92/93 nodes closed, with only the theorem's local
+  --max-depth 3` reports 340/341 nodes closed, with only the theorem's local
   source-level spine `sorry` open, reported in kernel axiom closure as
   `sorryAx`; `proof-blueprint spine
-  Problem97.erdos97_rhs --max-depth 6` reports 976/998 nodes closed and
+  Problem97.erdos97_rhs --max-depth 6` reports 1155/1177 nodes closed and
   still has the five live publish source-level `sorry`s, which appear in
   kernel axiom closure as `sorryAx`.  `proof-blueprint axioms
-  Problem97.erdos97_rhs`
-  currently reports both `sorryAx` and `Lean.trustCompiler` as unsanctioned,
-  although `.blueprint.toml` lists `Lean.trustCompiler` as approved and spine
-  views list it in the approved axiom set.
+  Problem97.erdos97_rhs` currently reports `Lean.trustCompiler` as an approved
+  custom axiom and `sorryAx` as the only unapproved custom axiom.
 
 ## Verification checklist
 
@@ -1295,12 +1353,10 @@ Blueprint caveats:
   tractable.  That makes proof-blueprint usable for spine shape, but it does
   not by itself approve the trust cost of generated/native certificate leaves.
 - `proof-blueprint axioms Problem97.erdos97_rhs` remains the live gate for
-  native/generated trust boundaries and `sorryAx`.  As of this checkpoint, the
-  axiom command flags both `sorryAx` and `Lean.trustCompiler` on the publish
-  target, while `.blueprint.toml` deliberately approves `Lean.trustCompiler`
-  and spine views list it as approved.  Resolve that command/config discrepancy
-  before treating the publish gate as final; source-level `sorry`s remain
-  unproved and appear as `sorryAx` until the spine obligations close.
+  native/generated trust boundaries and `sorryAx`.  As of this checkpoint,
+  `Lean.trustCompiler` is reported as an approved custom axiom; source-level
+  `sorry`s remain unproved and appear as unapproved `sorryAx` until the spine
+  obligations close.
 - A certificate module building is not the same as being on the proof spine.
   Wiring claims should cite a consuming spine theorem or a proof-blueprint diff,
   not just an olean or `lake-build` result.

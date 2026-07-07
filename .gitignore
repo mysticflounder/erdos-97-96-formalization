@@ -19,3 +19,13 @@ data/
 # tooling junk
 .nthdegree/
 scripts/__pycache__/
+__pycache__/
+*.pyc
+
+# Local heavy proof-search and generated certificate artifacts.
+/certificates/surplus/relaxed_split/
+/scratch/census-12-gate/
+
+# Local solver output from scratch probes.
+/scratch/q3-two-center/runs/
+/scratch/q3-two-center/smoke_results.json

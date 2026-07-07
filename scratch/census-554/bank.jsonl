@@ -1595,3 +1595,428 @@
 {"pid": "pat_01594", "pattern": {"2": [9, 10], "3": [6, 8], "6": [2, 8, 10], "8": [3, 10], "9": [3, 6, 10], "10": [2, 3, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 23, "cert": "certs/pat_01594.json"}
 {"pid": "pat_01595", "pattern": {"2": [4, 10], "4": [6, 9], "6": [2, 10], "7": [4, 6, 9], "9": [2, 6, 10], "10": [2, 7, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 23, "cert": "certs/pat_01595.json"}
 {"pid": "pat_01596", "pattern": {"3": [6, 8], "6": [8, 10], "7": [6, 9], "8": [3, 7, 10], "9": [3, 6, 10], "10": [3, 7, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 23, "cert": "certs/pat_01596.json"}
+{"pid": "pat_01597", "pattern": {"3": [4, 6, 8], "6": [7, 8], "7": [3, 4, 6], "8": [3, 4, 7]}, "kill": "pair:7-8", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01597.json"}
+{"pid": "pat_01598", "pattern": {"0": [5, 8], "3": [4, 5, 8], "4": [0, 1, 8], "5": [1, 8], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01598.json"}
+{"pid": "pat_01599", "pattern": {"2": [4, 10], "3": [4, 8], "4": [8, 9], "8": [3, 4], "9": [2, 3, 10], "10": [2, 3, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01599.json"}
+{"pid": "pat_01600", "pattern": {"3": [5, 6, 8], "5": [4, 8], "6": [4, 5, 7], "7": [3, 4, 6], "8": [3, 4, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01600.json"}
+{"pid": "pat_01601", "pattern": {"0": [5, 8], "3": [4, 5, 6, 8], "4": [0, 8], "5": [4, 8], "6": [0, 4, 5], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01601.json"}
+{"pid": "pat_01602", "pattern": {"0": [8, 9, 10], "2": [0, 4, 10], "4": [0, 8, 9], "8": [4, 10], "9": [2, 10], "10": [2, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01602.json"}
+{"pid": "pat_01603", "pattern": {"3": [4, 8], "4": [8, 9], "7": [3, 4, 9], "8": [3, 7, 10], "9": [3, 10], "10": [3, 7, 9]}, "kill": "pair:9-10", "n_orbit": 72, "k": 6, "iter": 1, "cert": "certs/pat_01603.json"}
+{"pid": "pat_01604", "pattern": {"0": [5, 8], "3": [5, 6, 8], "5": [0, 6], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01604.json"}
+{"pid": "pat_01605", "pattern": {"0": [5, 8, 9], "5": [0, 6, 8, 9], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01605.json"}
+{"pid": "pat_01606", "pattern": {"0": [5, 9], "5": [0, 6, 9], "6": [0, 5, 7], "7": [6, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01606.json"}
+{"pid": "pat_01607", "pattern": {"3": [5, 6], "5": [6, 9], "6": [5, 7], "7": [3, 6, 9], "9": [3, 6]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 2, "cert": "certs/pat_01607.json"}
+{"pid": "pat_01608", "pattern": {"0": [1, 5], "1": [0, 6], "4": [0, 1, 5], "5": [0, 6], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 2, "cert": "certs/pat_01608.json"}
+{"pid": "pat_01609", "pattern": {"0": [1, 5], "1": [0, 6], "4": [0, 1, 5], "6": [0, 4, 5]}, "kill": "pair:1-5", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_01609.json"}
+{"pid": "pat_01610", "pattern": {"0": [1, 6, 9], "1": [0, 7], "6": [0, 7], "7": [6, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 4, "cert": "certs/pat_01610.json"}
+{"pid": "pat_01611", "pattern": {"0": [1, 6], "1": [0, 6], "4": [0, 1, 5], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01611.json"}
+{"pid": "pat_01612", "pattern": {"0": [1, 6], "1": [0, 6, 7], "4": [0, 1], "6": [0, 7], "7": [4, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01612.json"}
+{"pid": "pat_01613", "pattern": {"0": [1, 7], "1": [0, 6, 7], "4": [0, 1], "6": [0, 4, 7], "7": [4, 6]}, "kill": "base", "n_orbit": 18, "k": 5, "iter": 5, "cert": "certs/pat_01613.json"}
+{"pid": "pat_01614", "pattern": {"0": [5, 8], "3": [5, 6, 8], "5": [0, 3, 8], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 6, "cert": "certs/pat_01614.json"}
+{"pid": "pat_01615", "pattern": {"0": [5, 8], "3": [4, 5, 8], "4": [0, 5], "5": [0, 3, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 6, "cert": "certs/pat_01615.json"}
+{"pid": "pat_01616", "pattern": {"0": [5, 9], "4": [0, 5], "5": [0, 9], "6": [0, 5], "7": [4, 6, 9]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 7, "cert": "certs/pat_01616.json"}
+{"pid": "pat_01617", "pattern": {"0": [5, 8], "4": [0, 5], "5": [0, 8], "6": [0, 4, 5, 7], "8": [4, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 7, "cert": "certs/pat_01617.json"}
+{"pid": "pat_01618", "pattern": {"0": [5, 8], "3": [4, 5, 8], "4": [0, 1, 5], "5": [0, 1, 8], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 7, "cert": "certs/pat_01618.json"}
+{"pid": "pat_01619", "pattern": {"0": [5, 8, 9], "3": [5, 6, 8], "5": [0, 8, 9], "6": [0, 5], "9": [3, 6]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 7, "cert": "certs/pat_01619.json"}
+{"pid": "pat_01620", "pattern": {"0": [5, 8], "3": [5, 6, 8], "4": [0, 5], "5": [0, 8], "6": [0, 4, 5], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 7, "cert": "certs/pat_01620.json"}
+{"pid": "pat_01621", "pattern": {"1": [0, 6, 7], "4": [0, 1, 5], "5": [0, 1], "6": [0, 4, 5, 7], "7": [4, 6]}, "kill": "pair:6-7", "n_orbit": 36, "k": 6, "iter": 7, "cert": "certs/pat_01621.json"}
+{"pid": "pat_01622", "pattern": {"0": [5, 9, 10], "2": [0, 4, 10], "4": [0, 5, 10], "5": [0, 9], "9": [2, 10], "10": [2, 9]}, "kill": "pair:9-10", "n_orbit": 12, "k": 6, "iter": 7, "cert": "certs/pat_01622.json"}
+{"pid": "pat_01623", "pattern": {"1": [0, 6, 7], "4": [0, 1, 5], "5": [1, 7], "6": [0, 4, 5, 7], "7": [4, 6]}, "kill": "pair:6-7", "n_orbit": 36, "k": 6, "iter": 0, "cert": "certs/pat_01623.json"}
+{"pid": "pat_01624", "pattern": {"3": [4, 5, 6], "5": [7, 9], "6": [4, 5, 7], "7": [3, 4, 6, 9], "9": [3, 6]}, "kill": "pair:7-9", "n_orbit": 72, "k": 6, "iter": 0, "cert": "certs/pat_01624.json"}
+{"pid": "pat_01625", "pattern": {"3": [5, 6, 8], "5": [7, 8], "6": [4, 5, 7], "7": [3, 4, 6], "8": [3, 4, 7]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 0, "cert": "certs/pat_01625.json"}
+{"pid": "pat_01626", "pattern": {"1": [6, 7], "3": [4, 5, 6], "4": [1, 5], "5": [1, 7], "6": [4, 5, 7], "7": [3, 4, 6]}, "kill": "pair:6-7", "n_orbit": 36, "k": 6, "iter": 0, "cert": "certs/pat_01626.json"}
+{"pid": "pat_01627", "pattern": {"3": [4, 5, 8], "4": [5, 10], "5": [7, 8], "7": [3, 4], "8": [3, 4, 7, 10], "10": [3, 7]}, "kill": "pair:8-10", "n_orbit": 72, "k": 6, "iter": 0, "cert": "certs/pat_01627.json"}
+{"pid": "pat_01628", "pattern": {"3": [5, 6, 8], "5": [7, 8, 9], "6": [5, 7], "7": [3, 6, 9], "8": [3, 7], "9": [3, 6]}, "kill": "pair:7-9", "n_orbit": 72, "k": 6, "iter": 0, "cert": "certs/pat_01628.json"}
+{"pid": "pat_01629", "pattern": {"3": [5, 6], "5": [7, 9], "6": [5, 7], "7": [3, 6, 9], "9": [3, 6, 10], "10": [3, 7, 9]}, "kill": "pair:9-10", "n_orbit": 72, "k": 6, "iter": 0, "cert": "certs/pat_01629.json"}
+{"pid": "pat_01630", "pattern": {"3": [5, 8], "5": [7, 8, 9], "7": [3, 9], "8": [3, 7, 10], "9": [3, 10], "10": [3, 7, 9]}, "kill": "pair:9-10", "n_orbit": 72, "k": 6, "iter": 0, "cert": "certs/pat_01630.json"}
+{"pid": "pat_01631", "pattern": {"0": [7, 9], "2": [0, 4, 10], "7": [4, 9], "9": [2, 10], "10": [2, 7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01631.json"}
+{"pid": "pat_01632", "pattern": {"0": [7, 8, 9, 10], "8": [3, 7, 10], "9": [3, 10], "10": [3, 7, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01632.json"}
+{"pid": "pat_01633", "pattern": {"0": [7, 9, 10], "6": [0, 7], "7": [3, 6, 9], "9": [3, 6, 10], "10": [3, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01633.json"}
+{"pid": "pat_01634", "pattern": {"0": [7, 9], "1": [0, 6, 7], "4": [0, 1, 9], "6": [0, 4, 7], "7": [4, 6, 9]}, "kill": "pair:7-9", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01634.json"}
+{"pid": "pat_01635", "pattern": {"3": [4, 5, 6], "4": [5, 9], "6": [4, 5, 7], "7": [3, 4, 6, 9], "9": [3, 6]}, "kill": "pair:7-9", "n_orbit": 72, "k": 6, "iter": 1, "cert": "certs/pat_01635.json"}
+{"pid": "pat_01636", "pattern": {"0": [7, 9], "2": [0, 4, 9], "4": [0, 9], "6": [0, 4, 7], "7": [4, 6, 9], "9": [2, 6]}, "kill": "pair:7-9", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01636.json"}
+{"pid": "pat_01637", "pattern": {"0": [7, 9], "3": [4, 6], "4": [0, 9], "6": [0, 4, 7], "7": [3, 4, 6, 9], "9": [3, 6]}, "kill": "pair:7-9", "n_orbit": 72, "k": 6, "iter": 1, "cert": "certs/pat_01637.json"}
+{"pid": "pat_01638", "pattern": {"0": [7, 9, 10], "4": [0, 9], "6": [0, 4, 7], "7": [4, 6, 9], "9": [6, 10], "10": [7, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01638.json"}
+{"pid": "pat_01639", "pattern": {"0": [7, 9, 10], "2": [0, 10], "6": [0, 7], "7": [6, 9], "9": [2, 6, 10], "10": [2, 7, 9]}, "kill": "pair:9-10", "n_orbit": 12, "k": 6, "iter": 1, "cert": "certs/pat_01639.json"}
+{"pid": "pat_01640", "pattern": {"0": [1, 4, 5], "4": [0, 1], "5": [0, 1], "10": [0, 4, 5]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 2, "cert": "certs/pat_01640.json"}
+{"pid": "pat_01641", "pattern": {"1": [3, 6, 8], "3": [4, 6], "6": [3, 4, 8], "8": [4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01641.json"}
+{"pid": "pat_01642", "pattern": {"3": [4, 6], "6": [3, 4, 8], "7": [3, 6], "8": [4, 6, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01642.json"}
+{"pid": "pat_01643", "pattern": {"4": [7, 9], "6": [4, 8, 9], "7": [6, 9], "8": [4, 6, 7, 9]}, "kill": "pair:8-9", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01643.json"}
+{"pid": "pat_01644", "pattern": {"3": [4, 6], "4": [7, 9], "6": [3, 4, 9], "7": [3, 6, 9], "9": [3, 7]}, "kill": "pair:7-9", "n_orbit": 72, "k": 5, "iter": 2, "cert": "certs/pat_01644.json"}
+{"pid": "pat_01645", "pattern": {"0": [1, 4], "4": [0, 5], "5": [1, 4, 6], "6": [0, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_01645.json"}
+{"pid": "pat_01646", "pattern": {"0": [1, 4], "2": [0, 4], "4": [0, 1, 5], "5": [1, 2, 4]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 3, "cert": "certs/pat_01646.json"}
+{"pid": "pat_01647", "pattern": {"1": [3, 6, 8], "5": [1, 6], "6": [3, 5], "8": [3, 5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01647.json"}
+{"pid": "pat_01648", "pattern": {"3": [9, 10], "6": [3, 10], "8": [3, 6, 9], "9": [8, 10], "10": [3, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01648.json"}
+{"pid": "pat_01649", "pattern": {"0": [2, 4], "2": [0, 10], "4": [0, 5, 10], "5": [2, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 4, "cert": "certs/pat_01649.json"}
+{"pid": "pat_01650", "pattern": {"0": [2, 4, 7], "2": [0, 10], "4": [0, 10], "10": [2, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01650.json"}
+{"pid": "pat_01651", "pattern": {"0": [2, 4, 7], "2": [0, 4], "4": [0, 5], "5": [2, 4], "7": [4, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01651.json"}
+{"pid": "pat_01652", "pattern": {"1": [6, 7], "4": [1, 5], "5": [1, 4], "6": [4, 5, 7], "7": [4, 5, 6]}, "kill": "multi_pair", "n_orbit": 9, "k": 5, "iter": 4, "cert": "certs/pat_01652.json"}
+{"pid": "pat_01653", "pattern": {"1": [6, 7, 8], "5": [1, 8], "7": [5, 6, 8], "8": [5, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01653.json"}
+{"pid": "pat_01654", "pattern": {"1": [6, 7, 8], "3": [6, 7, 9], "8": [3, 9], "9": [3, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01654.json"}
+{"pid": "pat_01655", "pattern": {"1": [6, 7], "4": [0, 1], "5": [0, 1], "6": [4, 5, 7], "7": [4, 5, 6]}, "kill": "multi_pair", "n_orbit": 9, "k": 6, "iter": 1, "cert": "certs/pat_01655.json"}
+{"pid": "pat_01656", "pattern": {"0": [1, 4], "2": [0, 4, 10], "4": [0, 1, 5, 10], "5": [0, 1, 2]}, "kill": "multi_pair", "n_orbit": 12, "k": 6, "iter": 1, "cert": "certs/pat_01656.json"}
+{"pid": "pat_01657", "pattern": {"3": [6, 7, 10], "4": [5, 10], "6": [4, 5, 7, 10], "7": [4, 5, 6]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 1, "cert": "certs/pat_01657.json"}
+{"pid": "pat_01658", "pattern": {"0": [1, 4, 7], "1": [6, 7, 8], "4": [0, 1], "6": [4, 7], "7": [4, 6, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01658.json"}
+{"pid": "pat_01659", "pattern": {"1": [3, 7, 8], "3": [7, 10], "8": [3, 9], "9": [3, 8, 10], "10": [3, 7, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01659.json"}
+{"pid": "pat_01660", "pattern": {"3": [7, 10], "6": [7, 10], "7": [6, 8], "8": [3, 6, 9], "9": [3, 8, 10], "10": [3, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01660.json"}
+{"pid": "pat_01661", "pattern": {"0": [1, 4, 7, 8], "1": [7, 8], "4": [0, 1, 5], "5": [0, 1], "7": [4, 5, 8]}, "kill": "base", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01661.json"}
+{"pid": "pat_01662", "pattern": {"0": [4, 7, 8], "4": [0, 5], "6": [4, 5, 7], "7": [4, 5, 6, 8], "8": [5, 6]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01662.json"}
+{"pid": "pat_01663", "pattern": {"1": [6, 7, 8], "4": [1, 5], "6": [4, 5, 7], "7": [4, 5, 6, 8], "8": [5, 6]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01663.json"}
+{"pid": "pat_01664", "pattern": {"0": [1, 7, 8], "1": [6, 7, 8], "5": [0, 1], "6": [5, 7], "7": [5, 6, 8], "8": [5, 6]}, "kill": "pair:7-8", "n_orbit": 18, "k": 6, "iter": 1, "cert": "certs/pat_01664.json"}
+{"pid": "pat_01665", "pattern": {"1": [3, 6, 7], "3": [6, 7, 10], "4": [1, 10], "6": [4, 7, 10], "7": [4, 6], "10": [3, 7]}, "kill": "pair:7-10", "n_orbit": 72, "k": 6, "iter": 1, "cert": "certs/pat_01665.json"}
+{"pid": "pat_01666", "pattern": {"1": [3, 6, 7, 8], "3": [6, 7, 10], "6": [7, 10], "7": [6, 8], "8": [3, 6], "10": [3, 7]}, "kill": "pair:7-10", "n_orbit": 36, "k": 6, "iter": 1, "cert": "certs/pat_01666.json"}
+{"pid": "pat_01667", "pattern": {"1": [3, 6, 7], "3": [5, 7], "5": [1, 6, 7], "6": [3, 7], "7": [5, 6]}, "kill": "pair:6-7", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01667.json"}
+{"pid": "pat_01668", "pattern": {"3": [5, 7], "5": [6, 7], "6": [3, 7, 10], "7": [5, 6, 10], "10": [3, 5]}, "kill": "pair:7-10", "n_orbit": 72, "k": 5, "iter": 0, "cert": "certs/pat_01668.json"}
+{"pid": "pat_01669", "pattern": {"2": [9, 10], "3": [2, 8], "8": [3, 9, 10], "9": [2, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 1, "cert": "certs/pat_01669.json"}
+{"pid": "pat_01670", "pattern": {"0": [1, 5, 6], "1": [6, 7], "5": [0, 6, 7], "7": [5, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 1, "cert": "certs/pat_01670.json"}
+{"pid": "pat_01671", "pattern": {"3": [7, 8], "6": [3, 7, 10], "7": [6, 8, 10], "8": [3, 6, 10]}, "kill": "pair:8-10", "n_orbit": 36, "k": 5, "iter": 1, "cert": "certs/pat_01671.json"}
+{"pid": "pat_01672", "pattern": {"4": [7, 10], "5": [6, 7], "6": [4, 7, 10], "7": [5, 6, 10], "10": [4, 5]}, "kill": "pair:7-10", "n_orbit": 72, "k": 5, "iter": 1, "cert": "certs/pat_01672.json"}
+{"pid": "pat_01673", "pattern": {"5": [8, 9], "8": [3, 9], "9": [5, 8], "10": [3, 5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01673.json"}
+{"pid": "pat_01674", "pattern": {"1": [3, 8], "5": [1, 8, 9], "8": [3, 9], "9": [3, 5, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01674.json"}
+{"pid": "pat_01675", "pattern": {"5": [7, 8, 9], "7": [5, 8, 10], "9": [5, 8], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01675.json"}
+{"pid": "pat_01676", "pattern": {"1": [3, 6, 7, 8], "3": [1, 7], "6": [3, 7], "7": [6, 8], "8": [3, 6]}, "kill": "pair:7-8", "n_orbit": 18, "k": 5, "iter": 2, "cert": "certs/pat_01676.json"}
+{"pid": "pat_01677", "pattern": {"1": [3, 7, 8], "3": [1, 2, 5], "5": [1, 2, 7, 8], "7": [5, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01677.json"}
+{"pid": "pat_01678", "pattern": {"1": [3, 6, 7, 8], "6": [3, 7, 10], "7": [6, 10], "8": [3, 6, 10]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01678.json"}
+{"pid": "pat_01679", "pattern": {"2": [4, 9], "4": [5, 7, 9], "5": [2, 7, 8], "7": [5, 8], "9": [2, 5, 8]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 3, "cert": "certs/pat_01679.json"}
+{"pid": "pat_01680", "pattern": {"6": [3, 7, 10], "7": [6, 8, 10], "8": [3, 9, 10], "9": [3, 8], "10": [3, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01680.json"}
+{"pid": "pat_01681", "pattern": {"1": [3, 8], "3": [1, 2, 5], "5": [1, 2, 8], "8": [3, 9], "9": [2, 3, 5, 8]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01681.json"}
+{"pid": "pat_01682", "pattern": {"5": [7, 8], "7": [5, 8, 10], "8": [3, 9, 10], "9": [3, 5, 8], "10": [3, 5, 9]}, "kill": "pair:8-10", "n_orbit": 72, "k": 6, "iter": 3, "cert": "certs/pat_01682.json"}
+{"pid": "pat_01683", "pattern": {"0": [1, 6, 7], "1": [3, 6, 7], "3": [0, 1, 5], "5": [1, 7], "6": [3, 7], "7": [5, 6]}, "kill": "pair:6-7", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01683.json"}
+{"pid": "pat_01684", "pattern": {"0": [1, 6, 7], "1": [3, 6, 7, 8], "3": [0, 1], "6": [3, 7], "7": [6, 8], "8": [3, 6]}, "kill": "pair:3-7", "n_orbit": 18, "k": 6, "iter": 3, "cert": "certs/pat_01684.json"}
+{"pid": "pat_01685", "pattern": {"1": [3, 8], "3": [1, 5], "5": [1, 8], "8": [3, 9, 10], "9": [3, 5, 8], "10": [3, 5, 9]}, "kill": "pair:8-10", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01685.json"}
+{"pid": "pat_01686", "pattern": {"2": [4, 9, 10], "4": [5, 7, 9], "5": [2, 7], "7": [5, 10], "9": [2, 5], "10": [4, 5, 9]}, "kill": "pair:7-10", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01686.json"}
+{"pid": "pat_01687", "pattern": {"2": [4, 9, 10], "4": [5, 9], "5": [2, 8], "8": [9, 10], "9": [2, 5, 8], "10": [4, 5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01687.json"}
+{"pid": "pat_01688", "pattern": {"2": [9, 10], "5": [2, 7, 8], "7": [5, 8, 10], "8": [9, 10], "9": [2, 5, 8], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01688.json"}
+{"pid": "pat_01689", "pattern": {"5": [7, 8], "6": [7, 10], "7": [5, 6, 8, 10], "8": [6, 9, 10], "9": [5, 8], "10": [5, 9]}, "kill": "pair:7-10", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01689.json"}
+{"pid": "pat_01690", "pattern": {"1": [3, 7, 8], "3": [1, 5], "5": [1, 7, 8], "6": [3, 7], "7": [5, 6, 8], "8": [3, 6]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01690.json"}
+{"pid": "pat_01691", "pattern": {"2": [9, 10], "3": [2, 5], "5": [2, 8], "8": [3, 9, 10], "9": [3, 5, 8], "10": [3, 5, 9]}, "kill": "pair:8-10", "n_orbit": 36, "k": 6, "iter": 3, "cert": "certs/pat_01691.json"}
+{"pid": "pat_01692", "pattern": {"0": [1, 7], "1": [7, 8], "5": [0, 1, 7], "7": [5, 8], "8": [0, 1, 5]}, "kill": "pair:7-8", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01692.json"}
+{"pid": "pat_01693", "pattern": {"2": [4, 9, 10], "4": [2, 3, 6], "6": [3, 4, 10], "9": [2, 3], "10": [4, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01693.json"}
+{"pid": "pat_01694", "pattern": {"0": [6, 10], "3": [0, 7], "5": [0, 7], "6": [3, 7, 10], "7": [5, 6, 10], "10": [3, 5]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 5, "cert": "certs/pat_01694.json"}
+{"pid": "pat_01695", "pattern": {"1": [3, 7, 8], "3": [0, 7, 8], "5": [0, 1, 7], "7": [5, 8], "8": [0, 1, 5]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01695.json"}
+{"pid": "pat_01696", "pattern": {"0": [6, 7, 10], "5": [0, 4, 7], "6": [4, 7, 10], "7": [5, 6, 10], "10": [4, 5]}, "kill": "pair:7-10", "n_orbit": 72, "k": 6, "iter": 5, "cert": "certs/pat_01696.json"}
+{"pid": "pat_01697", "pattern": {"1": [3, 6, 7, 8], "3": [7, 8], "4": [1, 3, 6], "6": [3, 4, 7], "7": [6, 8]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01697.json"}
+{"pid": "pat_01698", "pattern": {"0": [6, 7], "1": [3, 6, 7, 8], "3": [0, 7, 8], "6": [3, 7], "7": [6, 8], "8": [0, 1]}, "kill": "pair:7-8", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01698.json"}
+{"pid": "pat_01699", "pattern": {"0": [6, 10], "2": [0, 4, 10], "3": [0, 2], "4": [2, 3, 6], "6": [3, 4, 10], "10": [3, 4]}, "kill": "pair:6-10", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01699.json"}
+{"pid": "pat_01700", "pattern": {"0": [9, 10], "2": [0, 4, 9, 10], "3": [0, 2], "4": [2, 3], "9": [2, 3], "10": [3, 4, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 6, "iter": 5, "cert": "certs/pat_01700.json"}
+{"pid": "pat_01701", "pattern": {"0": [9, 10], "2": [0, 9, 10], "3": [0, 2, 8], "8": [0, 2], "9": [2, 3, 8], "10": [3, 9]}, "kill": "pair:8-9", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01701.json"}
+{"pid": "pat_01702", "pattern": {"0": [6, 7, 10], "3": [0, 7], "4": [3, 6], "6": [3, 4, 7, 10], "7": [6, 10], "10": [3, 4]}, "kill": "pair:7-10", "n_orbit": 72, "k": 6, "iter": 5, "cert": "certs/pat_01702.json"}
+{"pid": "pat_01703", "pattern": {"1": [3, 6, 7, 8], "3": [7, 8], "5": [1, 7], "6": [3, 7], "7": [5, 6, 8], "8": [1, 5]}, "kill": "pair:7-8", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01703.json"}
+{"pid": "pat_01704", "pattern": {"3": [5, 9], "5": [3, 4], "9": [3, 5], "10": [3, 4, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 0, "cert": "certs/pat_01704.json"}
+{"pid": "pat_01705", "pattern": {"3": [5, 6], "5": [0, 3], "6": [0, 3, 7], "7": [5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01705.json"}
+{"pid": "pat_01706", "pattern": {"0": [1, 6], "1": [3, 7], "3": [1, 6], "6": [0, 3, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01706.json"}
+{"pid": "pat_01707", "pattern": {"1": [3, 6], "3": [1, 6], "5": [0, 1, 3], "6": [0, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01707.json"}
+{"pid": "pat_01708", "pattern": {"1": [3, 7], "3": [1, 5, 6], "6": [3, 7], "7": [5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01708.json"}
+{"pid": "pat_01709", "pattern": {"1": [3, 8], "3": [1, 5], "5": [1, 3], "9": [3, 5, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01709.json"}
+{"pid": "pat_01710", "pattern": {"0": [2, 6, 7], "2": [0, 4], "4": [0, 7], "6": [0, 2, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01710.json"}
+{"pid": "pat_01711", "pattern": {"0": [2, 6, 7], "6": [0, 2, 7], "7": [6, 8], "8": [0, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 0, "cert": "certs/pat_01711.json"}
+{"pid": "pat_01712", "pattern": {"0": [2, 6, 7], "2": [0, 10], "6": [0, 2, 7], "7": [6, 10]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 0, "cert": "certs/pat_01712.json"}
+{"pid": "pat_01713", "pattern": {"0": [1, 6, 7], "1": [6, 7, 8], "6": [0, 7], "7": [6, 8], "8": [0, 1]}, "kill": "base", "n_orbit": 6, "k": 5, "iter": 0, "cert": "certs/pat_01713.json"}
+{"pid": "pat_01714", "pattern": {"3": [7, 9, 10], "7": [3, 9], "10": [3, 7, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 4, "iter": 1, "cert": "certs/pat_01714.json"}
+{"pid": "pat_01715", "pattern": {"0": [5, 9], "2": [0, 9], "5": [0, 2], "9": [0, 2, 5]}, "kill": "pair:5-9", "n_orbit": 6, "k": 4, "iter": 1, "cert": "certs/pat_01715.json"}
+{"pid": "pat_01716", "pattern": {"3": [5, 9], "5": [7, 9], "7": [3, 5, 9], "9": [3, 5]}, "kill": "pair:7-9", "n_orbit": 36, "k": 4, "iter": 2, "cert": "certs/pat_01716.json"}
+{"pid": "pat_01717", "pattern": {"0": [8, 9], "3": [0, 9], "7": [3, 8, 9], "9": [0, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01717.json"}
+{"pid": "pat_01718", "pattern": {"2": [6, 10], "4": [2, 8], "6": [4, 8, 10], "8": [4, 6, 10]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01718.json"}
+{"pid": "pat_01719", "pattern": {"4": [5, 8], "5": [4, 7], "6": [4, 7, 8], "7": [5, 8], "8": [4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01719.json"}
+{"pid": "pat_01720", "pattern": {"1": [3, 6], "6": [1, 10], "8": [3, 6, 10], "10": [1, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 4, "cert": "certs/pat_01720.json"}
+{"pid": "pat_01721", "pattern": {"1": [6, 8], "3": [4, 6, 8], "4": [1, 3], "8": [3, 4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 4, "cert": "certs/pat_01721.json"}
+{"pid": "pat_01722", "pattern": {"1": [3, 7, 8], "3": [4, 8], "4": [1, 3], "7": [3, 4, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 4, "cert": "certs/pat_01722.json"}
+{"pid": "pat_01723", "pattern": {"1": [3, 8], "3": [4, 5, 8], "4": [1, 3, 5], "5": [1, 8], "8": [3, 4]}, "kill": "pair:4-8", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01723.json"}
+{"pid": "pat_01724", "pattern": {"3": [4, 5, 8], "4": [3, 5], "5": [7, 8], "7": [3, 4, 8], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 4, "cert": "certs/pat_01724.json"}
+{"pid": "pat_01725", "pattern": {"1": [3, 7, 8], "4": [1, 3, 7], "7": [3, 4, 8], "8": [3, 4]}, "kill": "pair:7-8", "n_orbit": 36, "k": 5, "iter": 5, "cert": "certs/pat_01725.json"}
+{"pid": "pat_01726", "pattern": {"4": [7, 9], "5": [4, 7, 8], "7": [4, 9], "9": [4, 8]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 6, "cert": "certs/pat_01726.json"}
+{"pid": "pat_01727", "pattern": {"1": [6, 7], "4": [1, 7, 9], "7": [4, 6, 9], "9": [4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 6, "cert": "certs/pat_01727.json"}
+{"pid": "pat_01728", "pattern": {"0": [6, 9], "4": [0, 7, 9], "7": [4, 6, 9], "9": [4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 6, "cert": "certs/pat_01728.json"}
+{"pid": "pat_01729", "pattern": {"4": [7, 9], "5": [4, 7], "6": [5, 9], "7": [4, 6, 9], "9": [4, 6]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 6, "cert": "certs/pat_01729.json"}
+{"pid": "pat_01730", "pattern": {"5": [7, 8], "6": [5, 8, 9], "7": [6, 9], "8": [5, 7], "9": [5, 6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 6, "cert": "certs/pat_01730.json"}
+{"pid": "pat_01731", "pattern": {"0": [1, 2], "2": [0, 9], "5": [0, 1, 2], "9": [0, 1, 5]}, "kill": "pair:1-2", "n_orbit": 6, "k": 5, "iter": 7, "cert": "certs/pat_01731.json"}
+{"pid": "pat_01732", "pattern": {"4": [1, 9, 10], "7": [4, 9], "9": [1, 7], "10": [1, 7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 7, "cert": "certs/pat_01732.json"}
+{"pid": "pat_01733", "pattern": {"2": [4, 9, 10], "4": [9, 10], "7": [4, 9], "9": [2, 7], "10": [7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 8, "cert": "certs/pat_01733.json"}
+{"pid": "pat_01734", "pattern": {"4": [1, 9], "7": [4, 9], "9": [4, 7], "10": [1, 7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 9, "cert": "certs/pat_01734.json"}
+{"pid": "pat_01735", "pattern": {"1": [6, 8], "4": [1, 8, 9], "6": [8, 9], "9": [4, 6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01735.json"}
+{"pid": "pat_01736", "pattern": {"4": [8, 9], "6": [8, 9], "7": [4, 6, 9], "9": [4, 6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01736.json"}
+{"pid": "pat_01737", "pattern": {"4": [9, 10], "7": [4, 6, 9], "9": [4, 6], "10": [6, 7, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01737.json"}
+{"pid": "pat_01738", "pattern": {"4": [8, 9, 10], "6": [8, 9], "9": [4, 6, 8], "10": [6, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01738.json"}
+{"pid": "pat_01739", "pattern": {"0": [2, 3, 10], "2": [0, 10], "3": [0, 2, 10]}, "kill": "pair:3-10", "n_orbit": 6, "k": 4, "iter": 11, "cert": "certs/pat_01739.json"}
+{"pid": "pat_01740", "pattern": {"0": [4, 9], "2": [0, 4, 10], "4": [0, 10], "9": [2, 4, 10]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 12, "cert": "certs/pat_01740.json"}
+{"pid": "pat_01741", "pattern": {"0": [1, 9], "1": [2, 9], "2": [0, 9], "3": [0, 1, 9], "9": [2, 3]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 12, "cert": "certs/pat_01741.json"}
+{"pid": "pat_01742", "pattern": {"0": [3, 8], "3": [0, 8, 9], "8": [3, 9], "9": [0, 3]}, "kill": "pair:8-9", "n_orbit": 18, "k": 4, "iter": 13, "cert": "certs/pat_01742.json"}
+{"pid": "pat_01743", "pattern": {"0": [3, 8], "3": [0, 8], "5": [0, 3, 7], "8": [3, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 14, "cert": "certs/pat_01743.json"}
+{"pid": "pat_01744", "pattern": {"0": [3, 8], "3": [0, 8], "8": [3, 5], "10": [0, 3, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 14, "cert": "certs/pat_01744.json"}
+{"pid": "pat_01745", "pattern": {"4": [0, 7], "5": [0, 4, 7], "6": [0, 5], "7": [4, 5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 14, "cert": "certs/pat_01745.json"}
+{"pid": "pat_01746", "pattern": {"4": [7, 10], "5": [4, 7], "7": [4, 5, 8], "8": [5, 7], "10": [5, 8]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 14, "cert": "certs/pat_01746.json"}
+{"pid": "pat_01747", "pattern": {"0": [3, 8], "2": [0, 9], "3": [0, 8, 9], "8": [3, 9], "9": [2, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 14, "cert": "certs/pat_01747.json"}
+{"pid": "pat_01748", "pattern": {"0": [3, 8], "3": [0, 8, 9], "8": [3, 9], "9": [3, 10], "10": [0, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 14, "cert": "certs/pat_01748.json"}
+{"pid": "pat_01749", "pattern": {"4": [7, 8], "5": [4, 8], "7": [4, 5, 8], "8": [5, 7]}, "kill": "pair:7-8", "n_orbit": 36, "k": 4, "iter": 15, "cert": "certs/pat_01749.json"}
+{"pid": "pat_01750", "pattern": {"1": [6, 9], "2": [6, 9], "6": [0, 1, 2], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 16, "cert": "certs/pat_01750.json"}
+{"pid": "pat_01751", "pattern": {"0": [1, 7, 8], "5": [1, 7], "7": [5, 8], "8": [5, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 16, "cert": "certs/pat_01751.json"}
+{"pid": "pat_01752", "pattern": {"0": [1, 5, 7], "5": [1, 7], "6": [0, 1, 5], "7": [5, 6]}, "kill": "pair:1-7", "n_orbit": 18, "k": 5, "iter": 16, "cert": "certs/pat_01752.json"}
+{"pid": "pat_01753", "pattern": {"1": [2, 6, 9], "2": [6, 9], "4": [2, 6], "6": [1, 2], "9": [2, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 16, "cert": "certs/pat_01753.json"}
+{"pid": "pat_01754", "pattern": {"1": [2, 6, 9], "2": [6, 9], "3": [1, 6], "6": [1, 2], "9": [2, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 16, "cert": "certs/pat_01754.json"}
+{"pid": "pat_01755", "pattern": {"1": [2, 6, 7], "5": [1, 2, 7], "6": [1, 2, 5], "7": [5, 6]}, "kill": "pair:6-7", "n_orbit": 18, "k": 5, "iter": 16, "cert": "certs/pat_01755.json"}
+{"pid": "pat_01756", "pattern": {"0": [3, 4], "3": [0, 8], "4": [0, 8, 10], "10": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 17, "cert": "certs/pat_01756.json"}
+{"pid": "pat_01757", "pattern": {"4": [0, 7, 8], "5": [0, 7], "7": [5, 8], "8": [5, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 17, "cert": "certs/pat_01757.json"}
+{"pid": "pat_01758", "pattern": {"4": [0, 7, 10], "5": [0, 7], "7": [4, 5], "10": [4, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 17, "cert": "certs/pat_01758.json"}
+{"pid": "pat_01759", "pattern": {"3": [6, 8], "5": [3, 7], "7": [5, 6, 8], "8": [3, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 17, "cert": "certs/pat_01759.json"}
+{"pid": "pat_01760", "pattern": {"0": [2, 3], "3": [0, 6], "5": [0, 2, 3], "6": [0, 2, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 17, "cert": "certs/pat_01760.json"}
+{"pid": "pat_01761", "pattern": {"4": [7, 8, 10], "7": [4, 5, 8], "8": [5, 7], "10": [4, 5]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 17, "cert": "certs/pat_01761.json"}
+{"pid": "pat_01762", "pattern": {"0": [1, 2], "1": [2, 6, 9], "6": [1, 2], "9": [0, 1, 6]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 17, "cert": "certs/pat_01762.json"}
+{"pid": "pat_01763", "pattern": {"0": [3, 4], "3": [0, 9], "4": [0, 10], "9": [0, 4], "10": [0, 3, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 17, "cert": "certs/pat_01763.json"}
+{"pid": "pat_01764", "pattern": {"2": [4, 8], "4": [7, 8], "5": [2, 7], "7": [4, 5, 8], "8": [5, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 17, "cert": "certs/pat_01764.json"}
+{"pid": "pat_01765", "pattern": {"0": [1, 3], "1": [6, 9], "3": [0, 6, 9], "6": [0, 1], "9": [0, 1, 6]}, "kill": "base", "n_orbit": 18, "k": 5, "iter": 17, "cert": "certs/pat_01765.json"}
+{"pid": "pat_01766", "pattern": {"0": [4, 5, 9], "5": [0, 7], "7": [4, 5], "9": [0, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 18, "cert": "certs/pat_01766.json"}
+{"pid": "pat_01767", "pattern": {"1": [6, 9], "2": [6, 9], "6": [0, 1, 2], "9": [0, 1]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 18, "cert": "certs/pat_01767.json"}
+{"pid": "pat_01768", "pattern": {"0": [1, 4], "3": [1, 10], "4": [1, 3, 10], "10": [0, 3, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 18, "cert": "certs/pat_01768.json"}
+{"pid": "pat_01769", "pattern": {"0": [1, 5, 9], "1": [7, 9], "5": [0, 7], "9": [0, 1, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 18, "cert": "certs/pat_01769.json"}
+{"pid": "pat_01770", "pattern": {"0": [5, 9], "5": [0, 7], "7": [5, 8], "8": [5, 7, 9], "9": [0, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 18, "cert": "certs/pat_01770.json"}
+{"pid": "pat_01771", "pattern": {"3": [5, 10], "4": [5, 10], "5": [0, 3], "10": [0, 3, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 19, "cert": "certs/pat_01771.json"}
+{"pid": "pat_01772", "pattern": {"2": [3, 8, 9], "3": [5, 9], "5": [2, 3], "8": [3, 5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 19, "cert": "certs/pat_01772.json"}
+{"pid": "pat_01773", "pattern": {"0": [2, 3], "2": [3, 10], "3": [5, 10], "5": [0, 2, 3], "10": [0, 3]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 19, "cert": "certs/pat_01773.json"}
+{"pid": "pat_01774", "pattern": {"0": [1, 2], "2": [0, 5], "5": [0, 2], "6": [1, 2, 5]}, "kill": "multi_pair", "n_orbit": 9, "k": 5, "iter": 20, "cert": "certs/pat_01774.json"}
+{"pid": "pat_01775", "pattern": {"0": [2, 3], "2": [0, 5, 10], "5": [0, 2, 3], "10": [0, 3]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 20, "cert": "certs/pat_01775.json"}
+{"pid": "pat_01776", "pattern": {"0": [1, 2], "1": [2, 6, 9], "2": [0, 9], "6": [0, 1, 2], "9": [0, 1]}, "kill": "base", "n_orbit": 6, "k": 5, "iter": 20, "cert": "certs/pat_01776.json"}
+{"pid": "pat_01777", "pattern": {"0": [2, 4], "2": [0, 5, 10], "4": [2, 5, 10], "5": [0, 2], "10": [0, 4]}, "kill": "pair:4-10", "n_orbit": 12, "k": 5, "iter": 20, "cert": "certs/pat_01777.json"}
+{"pid": "pat_01778", "pattern": {"3": [6, 8], "5": [6, 7, 8], "7": [3, 5], "8": [3, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 21, "cert": "certs/pat_01778.json"}
+{"pid": "pat_01779", "pattern": {"0": [1, 4], "4": [0, 1, 7], "7": [1, 4], "9": [0, 4, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 21, "cert": "certs/pat_01779.json"}
+{"pid": "pat_01780", "pattern": {"0": [2, 8], "3": [0, 2, 6, 8], "5": [6, 8], "6": [0, 2, 5], "8": [3, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01780.json"}
+{"pid": "pat_01781", "pattern": {"0": [1, 2, 4], "1": [2, 6], "3": [0, 2, 6], "4": [0, 1, 3], "6": [0, 1, 2]}, "kill": "base", "n_orbit": 18, "k": 6, "iter": 22, "cert": "certs/pat_01781.json"}
+{"pid": "pat_01782", "pattern": {"0": [2, 4, 8], "2": [4, 8, 10], "3": [0, 2, 8], "4": [0, 3], "10": [0, 3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01782.json"}
+{"pid": "pat_01783", "pattern": {"0": [1, 2, 4], "1": [2, 6, 9], "2": [4, 9], "4": [0, 1], "6": [0, 1, 2], "9": [0, 4]}, "kill": "base", "n_orbit": 18, "k": 6, "iter": 22, "cert": "certs/pat_01783.json"}
+{"pid": "pat_01784", "pattern": {"0": [1, 2, 4], "1": [2, 6], "2": [4, 10], "4": [0, 1], "6": [0, 1, 2], "10": [0, 4, 6]}, "kill": "base", "n_orbit": 18, "k": 6, "iter": 22, "cert": "certs/pat_01784.json"}
+{"pid": "pat_01785", "pattern": {"0": [2, 4], "2": [4, 10], "3": [0, 2, 6], "4": [0, 3], "6": [0, 2], "10": [0, 3, 4, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01785.json"}
+{"pid": "pat_01786", "pattern": {"0": [2, 4], "2": [4, 9], "3": [0, 2], "4": [0, 3, 7], "7": [2, 3, 9], "9": [0, 4, 7]}, "kill": "pair:7-9", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01786.json"}
+{"pid": "pat_01787", "pattern": {"0": [2, 4], "2": [4, 10], "3": [0, 2], "4": [0, 3, 7], "7": [2, 3, 10], "10": [0, 3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01787.json"}
+{"pid": "pat_01788", "pattern": {"0": [2, 4, 8], "2": [4, 8, 9], "3": [0, 2, 8], "4": [0, 3], "8": [3, 9], "9": [0, 4]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01788.json"}
+{"pid": "pat_01789", "pattern": {"0": [2, 8], "2": [8, 9], "3": [0, 2, 8], "7": [2, 3, 9], "8": [3, 7, 9], "9": [0, 7]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01789.json"}
+{"pid": "pat_01790", "pattern": {"0": [2, 4, 8], "2": [4, 8, 9], "4": [0, 7], "7": [2, 9], "8": [7, 9], "9": [0, 4, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 22, "cert": "certs/pat_01790.json"}
+{"pid": "pat_01791", "pattern": {"0": [2, 4], "2": [4, 9, 10], "4": [0, 7], "7": [2, 9, 10], "9": [0, 4, 7], "10": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 22, "cert": "certs/pat_01791.json"}
+{"pid": "pat_01792", "pattern": {"0": [4, 8], "3": [0, 8], "4": [0, 3, 7], "7": [3, 9], "8": [3, 7, 9], "9": [0, 4, 7]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 22, "cert": "certs/pat_01792.json"}
+{"pid": "pat_01793", "pattern": {"2": [4, 8, 9], "3": [2, 8], "4": [3, 7], "7": [2, 3, 9], "8": [3, 7, 9], "9": [4, 7]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 22, "cert": "certs/pat_01793.json"}
+{"pid": "pat_01794", "pattern": {"2": [8, 9], "3": [2, 8], "5": [7, 8], "7": [2, 3, 9], "8": [3, 5, 7, 9], "9": [5, 7]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 22, "cert": "certs/pat_01794.json"}
+{"pid": "pat_01795", "pattern": {"0": [2, 4], "1": [2, 7, 9], "2": [4, 9], "4": [0, 1, 7], "7": [2, 9], "9": [0, 4, 7]}, "kill": "pair:7-9", "n_orbit": 18, "k": 6, "iter": 22, "cert": "certs/pat_01795.json"}
+{"pid": "pat_01796", "pattern": {"0": [1, 2], "2": [0, 4, 9], "4": [1, 2], "9": [0, 2, 4]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 23, "cert": "certs/pat_01796.json"}
+{"pid": "pat_01797", "pattern": {"0": [2, 8], "2": [0, 4, 9], "8": [4, 9], "9": [0, 2, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 23, "cert": "certs/pat_01797.json"}
+{"pid": "pat_01798", "pattern": {"2": [0, 4, 9], "3": [0, 2], "4": [2, 3], "9": [0, 2, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 23, "cert": "certs/pat_01798.json"}
+{"pid": "pat_01799", "pattern": {"2": [4, 9, 10], "3": [2, 10], "4": [2, 10], "9": [2, 3, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 23, "cert": "certs/pat_01799.json"}
+{"pid": "pat_01800", "pattern": {"3": [5, 10], "6": [3, 5], "7": [3, 5, 6, 10], "10": [5, 6, 7]}, "kill": "pair:7-10", "n_orbit": 72, "k": 5, "iter": 23, "cert": "certs/pat_01800.json"}
+{"pid": "pat_01801", "pattern": {"2": [4, 9], "3": [0, 2, 4], "4": [0, 2, 3], "9": [0, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 24, "cert": "certs/pat_01801.json"}
+{"pid": "pat_01802", "pattern": {"0": [5, 7, 9], "5": [0, 7], "6": [5, 9], "7": [5, 6], "9": [0, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 24, "cert": "certs/pat_01802.json"}
+{"pid": "pat_01803", "pattern": {"1": [3, 6, 8], "6": [3, 8, 9], "8": [1, 3, 9], "9": [1, 6]}, "kill": "pair:8-9", "n_orbit": 36, "k": 5, "iter": 24, "cert": "certs/pat_01803.json"}
+{"pid": "pat_01804", "pattern": {"0": [5, 7, 10], "5": [0, 10], "7": [5, 10], "10": [5, 7]}, "kill": "pair:7-10", "n_orbit": 18, "k": 4, "iter": 25, "cert": "certs/pat_01804.json"}
+{"pid": "pat_01805", "pattern": {"0": [5, 10], "3": [0, 4, 5], "5": [0, 10], "10": [4, 5]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 26, "cert": "certs/pat_01805.json"}
+{"pid": "pat_01806", "pattern": {"1": [6, 8], "2": [1, 8, 9], "6": [8, 9], "8": [1, 2, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 26, "cert": "certs/pat_01806.json"}
+{"pid": "pat_01807", "pattern": {"0": [5, 9, 10], "5": [0, 10], "6": [5, 9], "9": [0, 6], "10": [5, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 26, "cert": "certs/pat_01807.json"}
+{"pid": "pat_01808", "pattern": {"0": [5, 10], "3": [0, 5], "5": [0, 10], "7": [3, 5, 10], "10": [5, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 26, "cert": "certs/pat_01808.json"}
+{"pid": "pat_01809", "pattern": {"0": [2, 4, 6], "2": [4, 6], "6": [0, 2, 7], "7": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 27, "cert": "certs/pat_01809.json"}
+{"pid": "pat_01810", "pattern": {"0": [2, 4, 6], "2": [4, 6], "4": [5, 6], "5": [0, 2, 6], "6": [0, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 27, "cert": "certs/pat_01810.json"}
+{"pid": "pat_01811", "pattern": {"0": [2, 4, 6], "2": [4, 6], "4": [0, 2, 6]}, "kill": "pair:4-6", "n_orbit": 9, "k": 4, "iter": 28, "cert": "certs/pat_01811.json"}
+{"pid": "pat_01812", "pattern": {"0": [4, 6], "4": [0, 6, 8], "6": [4, 8], "8": [0, 4]}, "kill": "pair:6-8", "n_orbit": 18, "k": 4, "iter": 28, "cert": "certs/pat_01812.json"}
+{"pid": "pat_01813", "pattern": {"2": [4, 6, 9], "4": [6, 8], "6": [4, 8], "8": [4, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 29, "cert": "certs/pat_01813.json"}
+{"pid": "pat_01814", "pattern": {"0": [7, 9], "3": [7, 8, 9], "8": [0, 3], "9": [0, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 29, "cert": "certs/pat_01814.json"}
+{"pid": "pat_01815", "pattern": {"0": [2, 9], "2": [4, 9], "8": [0, 4, 9], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 29, "cert": "certs/pat_01815.json"}
+{"pid": "pat_01816", "pattern": {"4": [0, 6, 8], "6": [4, 7, 8], "7": [0, 4], "8": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 29, "cert": "certs/pat_01816.json"}
+{"pid": "pat_01817", "pattern": {"4": [0, 6, 8], "5": [0, 8], "6": [4, 5, 8], "8": [0, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 29, "cert": "certs/pat_01817.json"}
+{"pid": "pat_01818", "pattern": {"1": [6, 7, 10], "6": [4, 7], "7": [4, 10], "10": [1, 4, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 29, "cert": "certs/pat_01818.json"}
+{"pid": "pat_01819", "pattern": {"0": [8, 10], "3": [8, 9, 10], "8": [0, 3], "9": [0, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 30, "cert": "certs/pat_01819.json"}
+{"pid": "pat_01820", "pattern": {"0": [1, 6, 7], "1": [6, 7], "4": [1, 7], "6": [4, 7], "7": [0, 4]}, "kill": "pair:0-4", "n_orbit": 18, "k": 5, "iter": 31, "cert": "certs/pat_01820.json"}
+{"pid": "pat_01821", "pattern": {"0": [6, 7], "4": [5, 7], "5": [0, 6], "6": [4, 5, 7], "7": [0, 4, 5]}, "kill": "pair:6-7", "n_orbit": 36, "k": 5, "iter": 31, "cert": "certs/pat_01821.json"}
+{"pid": "pat_01822", "pattern": {"2": [4, 9], "4": [0, 2, 8], "8": [4, 9], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 32, "cert": "certs/pat_01822.json"}
+{"pid": "pat_01823", "pattern": {"3": [8, 9, 10], "8": [0, 3, 9], "9": [0, 3], "10": [0, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 32, "cert": "certs/pat_01823.json"}
+{"pid": "pat_01824", "pattern": {"4": [5, 8], "5": [3, 4, 6], "6": [5, 8], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 33, "cert": "certs/pat_01824.json"}
+{"pid": "pat_01825", "pattern": {"3": [8, 9], "4": [5, 8, 9], "5": [3, 4], "8": [3, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 33, "cert": "certs/pat_01825.json"}
+{"pid": "pat_01826", "pattern": {"3": [8, 9], "4": [8, 9], "8": [0, 3, 4], "9": [0, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 33, "cert": "certs/pat_01826.json"}
+{"pid": "pat_01827", "pattern": {"1": [6, 8], "4": [5, 8], "5": [1, 4, 6], "6": [4, 5, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 33, "cert": "certs/pat_01827.json"}
+{"pid": "pat_01828", "pattern": {"0": [6, 7], "4": [0, 5], "5": [4, 6], "6": [4, 5, 7], "7": [0, 4, 5]}, "kill": "pair:6-7", "n_orbit": 36, "k": 5, "iter": 33, "cert": "certs/pat_01828.json"}
+{"pid": "pat_01829", "pattern": {"1": [3, 8, 10], "3": [8, 9, 10], "8": [3, 9], "9": [1, 3], "10": [1, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 5, "iter": 33, "cert": "certs/pat_01829.json"}
+{"pid": "pat_01830", "pattern": {"0": [1, 8], "4": [1, 7, 8], "7": [0, 4], "8": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 34, "cert": "certs/pat_01830.json"}
+{"pid": "pat_01831", "pattern": {"2": [4, 9], "4": [1, 2, 8], "8": [4, 9], "9": [1, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 34, "cert": "certs/pat_01831.json"}
+{"pid": "pat_01832", "pattern": {"0": [1, 8, 9], "4": [1, 8], "8": [0, 4, 9], "9": [0, 1]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 34, "cert": "certs/pat_01832.json"}
+{"pid": "pat_01833", "pattern": {"2": [4, 6], "3": [2, 5, 6], "5": [3, 4, 6], "6": [4, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 34, "cert": "certs/pat_01833.json"}
+{"pid": "pat_01834", "pattern": {"1": [6, 7], "4": [1, 7], "5": [1, 4, 6], "6": [4, 5, 7], "7": [4, 5]}, "kill": "pair:6-7", "n_orbit": 36, "k": 5, "iter": 34, "cert": "certs/pat_01834.json"}
+{"pid": "pat_01835", "pattern": {"0": [4, 10], "6": [0, 4, 10], "10": [0, 4, 6]}, "kill": "pair:6-10", "n_orbit": 18, "k": 4, "iter": 35, "cert": "certs/pat_01835.json"}
+{"pid": "pat_01836", "pattern": {"0": [5, 10], "3": [0, 8, 9, 10], "8": [0, 3, 5, 9], "10": [5, 8, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01836.json"}
+{"pid": "pat_01837", "pattern": {"3": [0, 8, 9, 10], "6": [0, 3, 10], "8": [0, 3, 9], "9": [0, 6], "10": [8, 9]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01837.json"}
+{"pid": "pat_01838", "pattern": {"2": [3, 9, 10], "3": [8, 9, 10], "5": [2, 3], "8": [3, 5, 9], "10": [5, 8, 9]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01838.json"}
+{"pid": "pat_01839", "pattern": {"0": [1, 4, 5], "1": [3, 8], "3": [0, 8], "4": [1, 8], "5": [1, 3, 4], "8": [0, 3, 5]}, "kill": "pair:5-8", "n_orbit": 18, "k": 6, "iter": 36, "cert": "certs/pat_01839.json"}
+{"pid": "pat_01840", "pattern": {"0": [1, 5, 10], "1": [3, 8], "3": [0, 8, 10], "5": [1, 3], "8": [0, 3, 5], "10": [5, 8]}, "kill": "pair:8-10", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01840.json"}
+{"pid": "pat_01841", "pattern": {"0": [4, 5, 10], "3": [0, 8, 10], "4": [8, 10], "5": [3, 4], "8": [0, 3, 5], "10": [5, 8]}, "kill": "pair:5-8", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01841.json"}
+{"pid": "pat_01842", "pattern": {"0": [4, 10], "3": [0, 8, 9, 10], "4": [8, 10], "8": [0, 3, 9], "9": [0, 4], "10": [8, 9]}, "kill": "pair:8-9", "n_orbit": 36, "k": 6, "iter": 36, "cert": "certs/pat_01842.json"}
+{"pid": "pat_01843", "pattern": {"3": [0, 9], "7": [0, 3, 9], "9": [0, 3, 7]}, "kill": "pair:7-9", "n_orbit": 18, "k": 4, "iter": 37, "cert": "certs/pat_01843.json"}
+{"pid": "pat_01844", "pattern": {"0": [1, 7], "4": [0, 9], "7": [0, 9], "9": [1, 4, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 38, "cert": "certs/pat_01844.json"}
+{"pid": "pat_01845", "pattern": {"2": [4, 8, 9], "4": [0, 2, 9], "8": [0, 4], "9": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 38, "cert": "certs/pat_01845.json"}
+{"pid": "pat_01846", "pattern": {"0": [2, 10], "2": [4, 9, 10], "4": [2, 9, 10], "9": [0, 4]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 38, "cert": "certs/pat_01846.json"}
+{"pid": "pat_01847", "pattern": {"4": [0, 9, 10], "7": [0, 9], "9": [0, 4, 7], "10": [7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 38, "cert": "certs/pat_01847.json"}
+{"pid": "pat_01848", "pattern": {"0": [2, 7], "2": [4, 9], "4": [0, 2, 9], "7": [0, 9], "9": [4, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 38, "cert": "certs/pat_01848.json"}
+{"pid": "pat_01849", "pattern": {"0": [2, 10], "2": [4, 8, 10], "4": [0, 2, 10], "8": [0, 4, 10]}, "kill": "pair:4-10", "n_orbit": 18, "k": 5, "iter": 38, "cert": "certs/pat_01849.json"}
+{"pid": "pat_01850", "pattern": {"0": [7, 9, 10], "9": [7, 10], "10": [0, 7, 9]}, "kill": "pair:9-10", "n_orbit": 6, "k": 4, "iter": 39, "cert": "certs/pat_01850.json"}
+{"pid": "pat_01851", "pattern": {"1": [6, 7], "7": [1, 10], "9": [6, 7, 10], "10": [1, 7]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 40, "cert": "certs/pat_01851.json"}
+{"pid": "pat_01852", "pattern": {"2": [1, 9, 10], "7": [1, 10], "9": [7, 10], "10": [7, 9]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 40, "cert": "certs/pat_01852.json"}
+{"pid": "pat_01853", "pattern": {"2": [6, 9], "5": [2, 6, 9], "6": [5, 7], "7": [2, 6], "9": [6, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 41, "cert": "certs/pat_01853.json"}
+{"pid": "pat_01854", "pattern": {"0": [4, 10], "4": [0, 1], "9": [4, 10], "10": [0, 1, 9]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 42, "cert": "certs/pat_01854.json"}
+{"pid": "pat_01855", "pattern": {"0": [1, 4, 10], "2": [1, 10], "4": [0, 1, 2], "10": [0, 1]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 42, "cert": "certs/pat_01855.json"}
+{"pid": "pat_01856", "pattern": {"1": [3, 7], "2": [3, 7], "3": [1, 9], "7": [1, 2, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 43, "cert": "certs/pat_01856.json"}
+{"pid": "pat_01857", "pattern": {"1": [3, 6, 7], "3": [1, 9], "7": [1, 9], "9": [6, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 43, "cert": "certs/pat_01857.json"}
+{"pid": "pat_01858", "pattern": {"2": [7, 10], "7": [2, 8, 9], "9": [7, 10], "10": [8, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 43, "cert": "certs/pat_01858.json"}
+{"pid": "pat_01859", "pattern": {"4": [6, 10], "6": [4, 8], "9": [6, 10], "10": [4, 8, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 43, "cert": "certs/pat_01859.json"}
+{"pid": "pat_01860", "pattern": {"1": [3, 7], "3": [1, 5, 9], "5": [1, 3], "7": [1, 9], "9": [5, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 43, "cert": "certs/pat_01860.json"}
+{"pid": "pat_01861", "pattern": {"1": [3, 6, 8], "3": [1, 5, 6], "5": [1, 3], "6": [5, 8], "8": [3, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 43, "cert": "certs/pat_01861.json"}
+{"pid": "pat_01862", "pattern": {"0": [1, 7], "1": [0, 7], "5": [0, 1, 2], "7": [1, 2]}, "kill": "multi_pair", "n_orbit": 9, "k": 5, "iter": 44, "cert": "certs/pat_01862.json"}
+{"pid": "pat_01863", "pattern": {"0": [1, 5], "1": [0, 3], "5": [0, 1], "8": [0, 3, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 44, "cert": "certs/pat_01863.json"}
+{"pid": "pat_01864", "pattern": {"0": [1, 5, 7], "1": [0, 7], "5": [0, 1, 10], "10": [0, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 44, "cert": "certs/pat_01864.json"}
+{"pid": "pat_01865", "pattern": {"0": [1, 6, 7], "1": [0, 7, 8], "6": [7, 8], "7": [1, 8]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 44, "cert": "certs/pat_01865.json"}
+{"pid": "pat_01866", "pattern": {"3": [4, 8, 9], "4": [5, 9], "8": [3, 5, 9], "9": [5, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 44, "cert": "certs/pat_01866.json"}
+{"pid": "pat_01867", "pattern": {"3": [6, 8, 9], "6": [5, 8], "8": [3, 5, 9], "9": [5, 8]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 44, "cert": "certs/pat_01867.json"}
+{"pid": "pat_01868", "pattern": {"0": [1, 5, 7], "1": [0, 7], "5": [0, 1], "7": [1, 8], "8": [0, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 44, "cert": "certs/pat_01868.json"}
+{"pid": "pat_01869", "pattern": {"1": [0, 3, 8], "3": [8, 9], "8": [3, 9], "9": [0, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 45, "cert": "certs/pat_01869.json"}
+{"pid": "pat_01870", "pattern": {"4": [5, 9, 10], "5": [0, 10], "9": [0, 10], "10": [0, 4, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 45, "cert": "certs/pat_01870.json"}
+{"pid": "pat_01871", "pattern": {"5": [0, 10], "8": [0, 5, 9], "9": [0, 8, 10], "10": [0, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 45, "cert": "certs/pat_01871.json"}
+{"pid": "pat_01872", "pattern": {"7": [8, 9], "8": [0, 9], "9": [0, 8, 10], "10": [0, 7, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 45, "cert": "certs/pat_01872.json"}
+{"pid": "pat_01873", "pattern": {"0": [3, 6], "3": [6, 8, 9], "8": [0, 3, 9], "9": [6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 45, "cert": "certs/pat_01873.json"}
+{"pid": "pat_01874", "pattern": {"0": [1, 10], "4": [1, 5, 10], "5": [0, 4], "10": [0, 4]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 0, "cert": "certs/pat_01874.json"}
+{"pid": "pat_01875", "pattern": {"4": [5, 10], "5": [0, 4], "9": [5, 10], "10": [0, 4, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 0, "cert": "certs/pat_01875.json"}
+{"pid": "pat_01876", "pattern": {"3": [4, 6, 9], "4": [5, 9], "5": [3, 4], "6": [4, 5], "9": [4, 5, 6]}, "kill": "pair:6-9", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01876.json"}
+{"pid": "pat_01877", "pattern": {"0": [1, 10], "1": [0, 6], "4": [1, 10], "10": [0, 4, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 1, "cert": "certs/pat_01877.json"}
+{"pid": "pat_01878", "pattern": {"3": [4, 8], "5": [3, 8], "6": [4, 5, 8], "8": [3, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 1, "cert": "certs/pat_01878.json"}
+{"pid": "pat_01879", "pattern": {"2": [3, 9], "3": [8, 9], "5": [2, 3, 8], "8": [3, 5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 1, "cert": "certs/pat_01879.json"}
+{"pid": "pat_01880", "pattern": {"3": [6, 8, 9], "5": [3, 8], "6": [5, 8], "8": [3, 5, 9], "9": [5, 6]}, "kill": "pair:8-9", "n_orbit": 72, "k": 5, "iter": 1, "cert": "certs/pat_01880.json"}
+{"pid": "pat_01881", "pattern": {"3": [0, 4, 6], "4": [0, 3, 8], "6": [4, 8], "8": [0, 4]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01881.json"}
+{"pid": "pat_01882", "pattern": {"0": [7, 9, 10], "2": [0, 9, 10], "7": [2, 9], "9": [7, 10]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 2, "cert": "certs/pat_01882.json"}
+{"pid": "pat_01883", "pattern": {"1": [4, 6, 8], "4": [1, 8], "5": [1, 6], "6": [4, 5, 8], "8": [4, 5]}, "kill": "pair:6-8", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_01883.json"}
+{"pid": "pat_01884", "pattern": {"1": [3, 7, 10], "2": [3, 10], "7": [1, 2], "10": [1, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_01884.json"}
+{"pid": "pat_01885", "pattern": {"0": [1, 5], "5": [0, 10], "6": [0, 1, 5], "10": [0, 1, 6]}, "kill": "pair:1-5", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_01885.json"}
+{"pid": "pat_01886", "pattern": {"2": [3, 9], "4": [2, 3], "8": [3, 4, 9], "9": [2, 3, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01886.json"}
+{"pid": "pat_01887", "pattern": {"2": [3, 9], "7": [2, 8, 9], "8": [3, 9], "9": [2, 3, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01887.json"}
+{"pid": "pat_01888", "pattern": {"5": [0, 8, 9], "6": [0, 5, 8], "8": [0, 9], "9": [6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01888.json"}
+{"pid": "pat_01889", "pattern": {"0": [7, 10], "1": [7, 10], "7": [1, 2], "10": [0, 1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 4, "cert": "certs/pat_01889.json"}
+{"pid": "pat_01890", "pattern": {"1": [2, 10], "2": [3, 10], "9": [1, 3, 10], "10": [1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 4, "cert": "certs/pat_01890.json"}
+{"pid": "pat_01891", "pattern": {"1": [2, 7, 10], "7": [1, 2, 9], "9": [1, 10], "10": [1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 4, "cert": "certs/pat_01891.json"}
+{"pid": "pat_01892", "pattern": {"2": [3, 6, 10], "3": [0, 4, 6], "4": [0, 2, 3], "10": [0, 2, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01892.json"}
+{"pid": "pat_01893", "pattern": {"1": [2, 6, 7, 9], "2": [6, 9], "6": [1, 8], "7": [1, 2, 8, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 6, "iter": 5, "cert": "certs/pat_01893.json"}
+{"pid": "pat_01894", "pattern": {"1": [6, 7, 9], "2": [6, 9, 10], "7": [1, 2, 9], "10": [1, 2, 6]}, "kill": "multi_pair", "n_orbit": 12, "k": 6, "iter": 5, "cert": "certs/pat_01894.json"}
+{"pid": "pat_01895", "pattern": {"1": [2, 7, 9], "2": [3, 9], "7": [1, 2, 8, 9], "8": [3, 9], "9": [3, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01895.json"}
+{"pid": "pat_01896", "pattern": {"1": [6, 7, 9], "3": [6, 7], "6": [1, 8], "7": [1, 8, 9], "8": [3, 9], "9": [3, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01896.json"}
+{"pid": "pat_01897", "pattern": {"0": [5, 7, 9, 10], "1": [7, 9], "5": [1, 7], "7": [1, 9], "9": [5, 10], "10": [0, 1]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01897.json"}
+{"pid": "pat_01898", "pattern": {"2": [3, 9], "3": [4, 7], "4": [3, 7], "7": [2, 8, 9], "8": [3, 4, 9], "9": [3, 8]}, "kill": "multi_pair", "n_orbit": 72, "k": 6, "iter": 5, "cert": "certs/pat_01898.json"}
+{"pid": "pat_01899", "pattern": {"0": [7, 9, 10], "1": [2, 7, 9], "2": [9, 10], "7": [1, 2, 9], "10": [0, 1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 6, "iter": 5, "cert": "certs/pat_01899.json"}
+{"pid": "pat_01900", "pattern": {"0": [5, 7, 10], "1": [6, 7], "5": [1, 7, 10], "6": [0, 1, 5], "10": [0, 1, 6]}, "kill": "pair:7-10", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_01900.json"}
+{"pid": "pat_01901", "pattern": {"0": [5, 10], "1": [2, 6], "2": [6, 10], "5": [1, 10], "6": [0, 1, 5], "10": [0, 1, 2, 6]}, "kill": "pair:6-10", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01901.json"}
+{"pid": "pat_01902", "pattern": {"0": [5, 9, 10], "1": [6, 9], "5": [1, 10], "6": [0, 1, 5], "9": [5, 10], "10": [0, 1, 6]}, "kill": "pair:6-10", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01902.json"}
+{"pid": "pat_01903", "pattern": {"1": [2, 6, 9], "2": [6, 9, 10], "5": [1, 10], "6": [1, 5], "9": [5, 10], "10": [1, 2, 6]}, "kill": "pair:6-10", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_01903.json"}
+{"pid": "pat_01904", "pattern": {"0": [7, 9], "3": [0, 4, 7], "4": [0, 3, 7], "7": [8, 9], "8": [3, 4, 9], "9": [3, 8]}, "kill": "pair:4-7", "n_orbit": 72, "k": 6, "iter": 5, "cert": "certs/pat_01904.json"}
+{"pid": "pat_01905", "pattern": {"0": [5, 9], "5": [0, 9], "7": [0, 5, 10], "9": [7, 10], "10": [0, 5, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01905.json"}
+{"pid": "pat_01906", "pattern": {"1": [3, 6], "2": [3, 6], "3": [1, 2, 5], "5": [1, 2, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 1, "cert": "certs/pat_01906.json"}
+{"pid": "pat_01907", "pattern": {"2": [6, 9, 10], "4": [2, 9, 10], "6": [4, 9], "9": [6, 10]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 1, "cert": "certs/pat_01907.json"}
+{"pid": "pat_01908", "pattern": {"0": [4, 6, 9], "6": [0, 4, 9], "8": [4, 6], "9": [6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 1, "cert": "certs/pat_01908.json"}
+{"pid": "pat_01909", "pattern": {"0": [1, 3], "1": [0, 3, 6], "3": [1, 6], "6": [0, 3]}, "kill": "base", "n_orbit": 9, "k": 4, "iter": 2, "cert": "certs/pat_01909.json"}
+{"pid": "pat_01910", "pattern": {"5": [7, 10], "7": [5, 8], "8": [5, 10], "10": [5, 7, 8]}, "kill": "pair:8-10", "n_orbit": 36, "k": 4, "iter": 2, "cert": "certs/pat_01910.json"}
+{"pid": "pat_01911", "pattern": {"0": [3, 5, 7], "5": [6, 7], "6": [3, 5], "7": [5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 3, "cert": "certs/pat_01911.json"}
+{"pid": "pat_01912", "pattern": {"1": [0, 6], "2": [0, 1, 9], "6": [0, 9], "9": [0, 2, 6]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 3, "cert": "certs/pat_01912.json"}
+{"pid": "pat_01913", "pattern": {"4": [5, 10], "5": [7, 10], "7": [4, 5, 8], "8": [4, 5, 10], "10": [7, 8]}, "kill": "pair:8-10", "n_orbit": 72, "k": 5, "iter": 3, "cert": "certs/pat_01913.json"}
+{"pid": "pat_01914", "pattern": {"1": [8, 10], "2": [0, 1, 10], "8": [0, 10], "10": [1, 8]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 4, "cert": "certs/pat_01914.json"}
+{"pid": "pat_01915", "pattern": {"2": [0, 9], "5": [0, 2], "6": [0, 5, 9], "9": [0, 2, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01915.json"}
+{"pid": "pat_01916", "pattern": {"0": [9, 10], "2": [0, 1, 9], "9": [0, 1, 2], "10": [1, 9]}, "kill": "pair:2-10", "n_orbit": 2, "k": 5, "iter": 4, "cert": "certs/pat_01916.json"}
+{"pid": "pat_01917", "pattern": {"3": [6, 7], "4": [3, 5, 6], "6": [3, 5], "7": [4, 5, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 4, "cert": "certs/pat_01917.json"}
+{"pid": "pat_01918", "pattern": {"1": [3, 10], "3": [1, 6, 10], "6": [3, 9], "9": [1, 6], "10": [1, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 4, "cert": "certs/pat_01918.json"}
+{"pid": "pat_01919", "pattern": {"0": [8, 10], "1": [0, 7, 8], "8": [0, 10], "10": [7, 8]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 5, "cert": "certs/pat_01919.json"}
+{"pid": "pat_01920", "pattern": {"0": [3, 6], "1": [0, 3], "6": [0, 3, 9], "9": [0, 1, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 5, "cert": "certs/pat_01920.json"}
+{"pid": "pat_01921", "pattern": {"0": [3, 8, 10], "1": [0, 3, 8], "3": [1, 10], "8": [0, 10], "10": [1, 8]}, "kill": "base", "n_orbit": 18, "k": 5, "iter": 5, "cert": "certs/pat_01921.json"}
+{"pid": "pat_01922", "pattern": {"0": [1, 3], "1": [0, 3], "2": [0, 1, 10], "3": [1, 10]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 6, "cert": "certs/pat_01922.json"}
+{"pid": "pat_01923", "pattern": {"0": [1, 8], "1": [0, 8], "2": [0, 1, 10], "8": [0, 10]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 6, "cert": "certs/pat_01923.json"}
+{"pid": "pat_01924", "pattern": {"0": [1, 3], "1": [0, 3], "3": [1, 2], "9": [0, 1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 6, "cert": "certs/pat_01924.json"}
+{"pid": "pat_01925", "pattern": {"0": [1, 4, 8], "1": [0, 7, 8], "7": [4, 8], "8": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 6, "cert": "certs/pat_01925.json"}
+{"pid": "pat_01926", "pattern": {"0": [1, 8], "1": [0, 8], "8": [0, 10], "9": [0, 1], "10": [1, 8, 9]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 6, "cert": "certs/pat_01926.json"}
+{"pid": "pat_01927", "pattern": {"0": [1, 3, 8], "1": [0, 8], "3": [1, 10], "8": [0, 10], "10": [1, 8]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 6, "cert": "certs/pat_01927.json"}
+{"pid": "pat_01928", "pattern": {"3": [7, 9], "5": [3, 6, 7], "6": [3, 5, 9], "7": [5, 6], "9": [5, 7]}, "kill": "pair:6-9", "n_orbit": 72, "k": 5, "iter": 7, "cert": "certs/pat_01928.json"}
+{"pid": "pat_01929", "pattern": {"5": [7, 10], "7": [5, 8], "8": [5, 10], "9": [5, 7, 8, 10], "10": [7, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 5, "iter": 7, "cert": "certs/pat_01929.json"}
+{"pid": "pat_01930", "pattern": {"5": [7, 10], "6": [5, 9], "7": [5, 6], "9": [5, 7, 10], "10": [6, 7, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 5, "iter": 7, "cert": "certs/pat_01930.json"}
+{"pid": "pat_01931", "pattern": {"2": [6, 9, 10], "6": [2, 9, 10], "10": [6, 9]}, "kill": "pair:9-10", "n_orbit": 6, "k": 4, "iter": 8, "cert": "certs/pat_01931.json"}
+{"pid": "pat_01932", "pattern": {"0": [5, 7], "3": [0, 5], "5": [0, 3, 7], "7": [0, 3]}, "kill": "pair:5-7", "n_orbit": 18, "k": 4, "iter": 8, "cert": "certs/pat_01932.json"}
+{"pid": "pat_01933", "pattern": {"4": [6, 10], "6": [9, 10], "9": [4, 10], "10": [4, 6, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 4, "iter": 8, "cert": "certs/pat_01933.json"}
+{"pid": "pat_01934", "pattern": {"2": [3, 6, 10], "3": [6, 10], "6": [2, 10], "10": [2, 3]}, "kill": "pair:6-10", "n_orbit": 18, "k": 4, "iter": 9, "cert": "certs/pat_01934.json"}
+{"pid": "pat_01935", "pattern": {"2": [6, 10], "4": [0, 2, 6], "6": [2, 10], "10": [0, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 10, "cert": "certs/pat_01935.json"}
+{"pid": "pat_01936", "pattern": {"2": [3, 10], "3": [1, 10], "6": [1, 2, 10], "10": [2, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 10, "cert": "certs/pat_01936.json"}
+{"pid": "pat_01937", "pattern": {"2": [9, 10], "4": [0, 2, 10], "9": [0, 4, 10], "10": [0, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 10, "cert": "certs/pat_01937.json"}
+{"pid": "pat_01938", "pattern": {"2": [3, 6, 10], "3": [8, 10], "6": [2, 10], "8": [3, 6], "10": [2, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01938.json"}
+{"pid": "pat_01939", "pattern": {"2": [3, 6, 10], "3": [4, 10], "4": [6, 10], "6": [2, 10], "10": [2, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 10, "cert": "certs/pat_01939.json"}
+{"pid": "pat_01940", "pattern": {"2": [6, 9, 10], "4": [2, 6, 10], "6": [2, 9, 10], "9": [4, 10]}, "kill": "pair:6-10", "n_orbit": 18, "k": 5, "iter": 10, "cert": "certs/pat_01940.json"}
+{"pid": "pat_01941", "pattern": {"0": [6, 9], "2": [6, 9], "6": [1, 2], "9": [0, 1, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 11, "cert": "certs/pat_01941.json"}
+{"pid": "pat_01942", "pattern": {"1": [5, 7, 8], "5": [7, 10], "8": [5, 7, 10], "10": [1, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 11, "cert": "certs/pat_01942.json"}
+{"pid": "pat_01943", "pattern": {"0": [8, 9], "3": [0, 8, 9], "7": [3, 9], "8": [0, 7], "9": [0, 3]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 11, "cert": "certs/pat_01943.json"}
+{"pid": "pat_01944", "pattern": {"0": [6, 9], "2": [6, 9], "3": [0, 2, 9], "6": [2, 9], "9": [2, 3]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 11, "cert": "certs/pat_01944.json"}
+{"pid": "pat_01945", "pattern": {"1": [5, 6], "4": [1, 6, 10], "5": [4, 10], "6": [1, 10], "10": [1, 4, 5]}, "kill": "pair:6-10", "n_orbit": 36, "k": 5, "iter": 11, "cert": "certs/pat_01945.json"}
+{"pid": "pat_01946", "pattern": {"2": [3, 6, 10], "3": [2, 6, 10], "6": [2, 10]}, "kill": "pair:6-10", "n_orbit": 18, "k": 4, "iter": 12, "cert": "certs/pat_01946.json"}
+{"pid": "pat_01947", "pattern": {"1": [5, 6], "5": [1, 6, 10], "6": [1, 10], "10": [1, 5]}, "kill": "pair:6-10", "n_orbit": 18, "k": 4, "iter": 13, "cert": "certs/pat_01947.json"}
+{"pid": "pat_01948", "pattern": {"0": [2, 7, 9], "2": [3, 7, 9], "3": [0, 2], "7": [0, 3, 9]}, "kill": "pair:7-9", "n_orbit": 18, "k": 5, "iter": 14, "cert": "certs/pat_01948.json"}
+{"pid": "pat_01949", "pattern": {"0": [2, 7, 9], "2": [7, 9, 10], "7": [0, 9], "9": [0, 10], "10": [0, 7]}, "kill": "pair:9-10", "n_orbit": 6, "k": 5, "iter": 14, "cert": "certs/pat_01949.json"}
+{"pid": "pat_01950", "pattern": {"1": [5, 6], "4": [1, 5, 6], "5": [4, 6, 10], "6": [1, 10], "10": [1, 5]}, "kill": "pair:6-10", "n_orbit": 36, "k": 5, "iter": 14, "cert": "certs/pat_01950.json"}
+{"pid": "pat_01951", "pattern": {"1": [5, 7], "2": [7, 10], "5": [2, 6, 10], "6": [1, 2, 10], "10": [1, 5, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 15, "cert": "certs/pat_01951.json"}
+{"pid": "pat_01952", "pattern": {"0": [5, 9], "1": [5, 6], "5": [6, 10], "6": [1, 9, 10], "9": [0, 6, 10], "10": [0, 1, 5]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 15, "cert": "certs/pat_01952.json"}
+{"pid": "pat_01953", "pattern": {"0": [2, 5], "2": [3, 7, 10], "3": [0, 2], "5": [2, 3, 10], "7": [0, 3], "10": [0, 5, 7]}, "kill": "pair:7-10", "n_orbit": 36, "k": 6, "iter": 15, "cert": "certs/pat_01953.json"}
+{"pid": "pat_01954", "pattern": {"0": [2, 5, 9], "2": [3, 9, 10], "3": [0, 2], "5": [2, 3, 10], "9": [0, 10], "10": [0, 5]}, "kill": "pair:9-10", "n_orbit": 12, "k": 6, "iter": 15, "cert": "certs/pat_01954.json"}
+{"pid": "pat_01955", "pattern": {"0": [2, 9], "2": [3, 7, 9, 10], "3": [0, 2], "7": [0, 3, 9], "9": [0, 10], "10": [0, 7]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 15, "cert": "certs/pat_01955.json"}
+{"pid": "pat_01956", "pattern": {"0": [2, 5, 9], "2": [7, 9, 10], "5": [2, 10], "7": [0, 9], "9": [0, 10], "10": [0, 5, 7]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 15, "cert": "certs/pat_01956.json"}
+{"pid": "pat_01957", "pattern": {"0": [2, 9], "2": [7, 9, 10], "6": [2, 9, 10], "7": [0, 9], "9": [0, 6, 10], "10": [0, 7]}, "kill": "pair:9-10", "n_orbit": 12, "k": 6, "iter": 15, "cert": "certs/pat_01957.json"}
+{"pid": "pat_01958", "pattern": {"1": [5, 6], "2": [9, 10], "5": [2, 6, 10], "6": [1, 2, 9, 10], "9": [6, 10], "10": [1, 5]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 15, "cert": "certs/pat_01958.json"}
+{"pid": "pat_01959", "pattern": {"1": [5, 6], "4": [1, 5, 6, 9], "5": [6, 10], "6": [1, 9, 10], "9": [6, 10], "10": [1, 5]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 15, "cert": "certs/pat_01959.json"}
+{"pid": "pat_01960", "pattern": {"1": [6, 7, 8], "4": [1, 6, 9], "6": [1, 9], "7": [4, 9], "8": [4, 6, 7], "9": [6, 8]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 15, "cert": "certs/pat_01960.json"}
+{"pid": "pat_01961", "pattern": {"0": [5, 9], "2": [9, 10], "5": [2, 6, 10], "6": [2, 9, 10], "9": [0, 6, 10], "10": [0, 5]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 15, "cert": "certs/pat_01961.json"}
+{"pid": "pat_01962", "pattern": {"3": [6, 9, 10], "9": [3, 6, 10], "10": [6, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 4, "iter": 16, "cert": "certs/pat_01962.json"}
+{"pid": "pat_01963", "pattern": {"5": [0, 8, 10], "8": [0, 10], "10": [0, 5, 8]}, "kill": "pair:8-10", "n_orbit": 18, "k": 4, "iter": 17, "cert": "certs/pat_01963.json"}
+{"pid": "pat_01964", "pattern": {"1": [3, 6, 7], "3": [7, 9], "7": [3, 9], "9": [3, 6]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 18, "cert": "certs/pat_01964.json"}
+{"pid": "pat_01965", "pattern": {"3": [7, 9], "4": [7, 9], "7": [3, 5], "9": [3, 4, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 18, "cert": "certs/pat_01965.json"}
+{"pid": "pat_01966", "pattern": {"3": [6, 7, 9], "6": [5, 7], "7": [3, 5, 9], "9": [3, 5]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 18, "cert": "certs/pat_01966.json"}
+{"pid": "pat_01967", "pattern": {"3": [6, 7, 9], "4": [7, 9], "6": [4, 7], "7": [3, 9], "9": [3, 4]}, "kill": "multi_pair", "n_orbit": 72, "k": 5, "iter": 18, "cert": "certs/pat_01967.json"}
+{"pid": "pat_01968", "pattern": {"0": [7, 10], "5": [0, 8], "7": [0, 5, 9], "8": [0, 10], "9": [0, 8], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01968.json"}
+{"pid": "pat_01969", "pattern": {"0": [7, 10], "3": [7, 9, 10], "5": [0, 10], "7": [0, 3, 5, 9], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01969.json"}
+{"pid": "pat_01970", "pattern": {"0": [2, 7, 10], "2": [4, 9, 10], "4": [0, 2, 7, 9], "7": [0, 9], "10": [4, 9]}, "kill": "pair:7-9", "n_orbit": 18, "k": 6, "iter": 19, "cert": "certs/pat_01970.json"}
+{"pid": "pat_01971", "pattern": {"4": [0, 9], "5": [0, 8, 10], "8": [0, 4, 10], "9": [0, 5, 8], "10": [4, 5, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01971.json"}
+{"pid": "pat_01972", "pattern": {"5": [0, 8, 10], "6": [5, 8], "8": [0, 10], "9": [0, 5, 6, 8], "10": [5, 6, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01972.json"}
+{"pid": "pat_01973", "pattern": {"2": [4, 8, 10], "5": [2, 8, 10], "6": [4, 5, 8], "8": [4, 10], "10": [4, 5, 6]}, "kill": "pair:6-10", "n_orbit": 72, "k": 6, "iter": 19, "cert": "certs/pat_01973.json"}
+{"pid": "pat_01974", "pattern": {"2": [8, 9, 10], "5": [2, 8, 10], "6": [5, 8], "9": [5, 6, 8], "10": [5, 6, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01974.json"}
+{"pid": "pat_01975", "pattern": {"3": [6, 7, 9, 10], "6": [5, 7], "7": [3, 5, 9], "9": [5, 6], "10": [5, 6, 9]}, "kill": "pair:7-9", "n_orbit": 72, "k": 6, "iter": 19, "cert": "certs/pat_01975.json"}
+{"pid": "pat_01976", "pattern": {"5": [8, 10], "6": [4, 5, 8], "8": [4, 10], "9": [5, 6, 8], "10": [4, 5, 6, 9]}, "kill": "pair:9-10", "n_orbit": 72, "k": 6, "iter": 19, "cert": "certs/pat_01976.json"}
+{"pid": "pat_01977", "pattern": {"0": [2, 7], "2": [4, 9], "4": [0, 2, 7, 9], "5": [0, 2], "7": [0, 5, 9], "9": [0, 5]}, "kill": "pair:7-9", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01977.json"}
+{"pid": "pat_01978", "pattern": {"0": [2, 7, 10], "2": [4, 10], "4": [0, 2, 7], "5": [0, 2, 10], "7": [0, 5], "10": [4, 5]}, "kill": "pair:5-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01978.json"}
+{"pid": "pat_01979", "pattern": {"0": [2, 7], "2": [4, 8, 9], "4": [0, 2, 7, 9], "7": [0, 9], "8": [0, 4], "9": [0, 8]}, "kill": "pair:7-9", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01979.json"}
+{"pid": "pat_01980", "pattern": {"0": [2, 7, 10], "2": [9, 10], "5": [0, 2, 10], "7": [0, 5, 9], "9": [0, 5], "10": [5, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 19, "cert": "certs/pat_01980.json"}
+{"pid": "pat_01981", "pattern": {"0": [7, 10], "4": [0, 7, 9], "5": [0, 10], "7": [0, 5, 9], "9": [0, 5], "10": [4, 5, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01981.json"}
+{"pid": "pat_01982", "pattern": {"0": [7, 10], "5": [0, 10], "6": [5, 7], "7": [0, 5, 9], "9": [0, 5, 6], "10": [5, 6, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01982.json"}
+{"pid": "pat_01983", "pattern": {"2": [4, 9, 10], "4": [2, 9], "5": [2, 10], "6": [4, 5], "9": [5, 6], "10": [4, 5, 6, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01983.json"}
+{"pid": "pat_01984", "pattern": {"3": [6, 9, 10], "5": [8, 10], "6": [5, 8], "8": [3, 10], "9": [5, 6, 8], "10": [5, 6, 9]}, "kill": "pair:9-10", "n_orbit": 72, "k": 6, "iter": 19, "cert": "certs/pat_01984.json"}
+{"pid": "pat_01985", "pattern": {"0": [2, 10], "2": [4, 8, 10], "4": [0, 2], "5": [2, 8, 10], "8": [0, 4, 10], "10": [4, 5]}, "kill": "pair:5-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01985.json"}
+{"pid": "pat_01986", "pattern": {"0": [2, 10], "2": [9, 10], "4": [0, 2, 9], "5": [0, 2, 10], "9": [0, 5], "10": [4, 5, 9]}, "kill": "pair:9-10", "n_orbit": 12, "k": 6, "iter": 19, "cert": "certs/pat_01986.json"}
+{"pid": "pat_01987", "pattern": {"0": [2, 10], "2": [8, 9, 10], "4": [0, 2, 9], "8": [0, 4, 10], "9": [0, 8], "10": [4, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 6, "iter": 19, "cert": "certs/pat_01987.json"}
+{"pid": "pat_01988", "pattern": {"0": [2, 10], "2": [8, 9, 10], "5": [2, 8, 10], "8": [0, 10], "9": [0, 5, 8], "10": [5, 9]}, "kill": "pair:9-10", "n_orbit": 18, "k": 6, "iter": 19, "cert": "certs/pat_01988.json"}
+{"pid": "pat_01989", "pattern": {"2": [8, 9, 10], "4": [2, 9], "5": [2, 8, 10], "8": [4, 10], "9": [5, 8], "10": [4, 5, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 19, "cert": "certs/pat_01989.json"}
+{"pid": "pat_01990", "pattern": {"0": [2, 4], "2": [4, 10], "4": [0, 2], "7": [0, 4, 10]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01990.json"}
+{"pid": "pat_01991", "pattern": {"3": [6, 8], "4": [6, 8], "6": [4, 5], "8": [3, 4, 5]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01991.json"}
+{"pid": "pat_01992", "pattern": {"3": [6, 9], "7": [3, 10], "9": [3, 10], "10": [6, 7, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01992.json"}
+{"pid": "pat_01993", "pattern": {"5": [2, 10], "8": [5, 9], "9": [2, 8, 10], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01993.json"}
+{"pid": "pat_01994", "pattern": {"2": [7, 9], "5": [2, 10], "9": [2, 10], "10": [5, 7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01994.json"}
+{"pid": "pat_01995", "pattern": {"3": [9, 10], "8": [3, 5, 9], "9": [3, 10], "10": [5, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 0, "cert": "certs/pat_01995.json"}
+{"pid": "pat_01996", "pattern": {"0": [2, 4, 6], "4": [0, 2, 6], "5": [0, 2], "6": [4, 5]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01996.json"}
+{"pid": "pat_01997", "pattern": {"0": [1, 4, 6], "1": [0, 6, 7], "4": [0, 6], "7": [0, 4]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01997.json"}
+{"pid": "pat_01998", "pattern": {"0": [2, 4, 6], "2": [4, 7], "4": [0, 2, 6], "6": [4, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01998.json"}
+{"pid": "pat_01999", "pattern": {"2": [7, 10], "3": [9, 10], "7": [3, 10], "9": [2, 3, 10], "10": [7, 9]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 0, "cert": "certs/pat_01999.json"}
+{"pid": "pat_02000", "pattern": {"2": [5, 9, 10], "9": [2, 5, 10], "10": [5, 9]}, "kill": "pair:9-10", "n_orbit": 6, "k": 4, "iter": 1, "cert": "certs/pat_02000.json"}
+{"pid": "pat_02001", "pattern": {"0": [1, 9], "2": [0, 9], "6": [1, 2, 9], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 2, "cert": "certs/pat_02001.json"}
+{"pid": "pat_02002", "pattern": {"0": [4, 9], "4": [0, 9], "5": [0, 4, 7], "9": [0, 7]}, "kill": "multi_pair", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_02002.json"}
+{"pid": "pat_02003", "pattern": {"1": [6, 7, 8], "3": [6, 7], "6": [1, 7], "8": [1, 3, 6]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 2, "cert": "certs/pat_02003.json"}
+{"pid": "pat_02004", "pattern": {"0": [4, 9], "2": [0, 9], "4": [0, 6, 9], "6": [2, 9], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 2, "cert": "certs/pat_02004.json"}
+{"pid": "pat_02005", "pattern": {"0": [4, 9], "2": [0, 9, 10], "4": [0, 9], "9": [0, 2], "10": [4, 9]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 2, "cert": "certs/pat_02005.json"}
+{"pid": "pat_02006", "pattern": {"0": [4, 9], "2": [0, 5, 9], "4": [0, 9], "5": [0, 4], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 12, "k": 5, "iter": 2, "cert": "certs/pat_02006.json"}
+{"pid": "pat_02007", "pattern": {"0": [3, 4, 9], "3": [7, 9], "4": [0, 9], "7": [0, 3, 4], "9": [0, 7]}, "kill": "pair:7-9", "n_orbit": 36, "k": 5, "iter": 2, "cert": "certs/pat_02007.json"}
+{"pid": "pat_02008", "pattern": {"0": [1, 2], "2": [0, 9], "6": [1, 2, 9], "9": [0, 2]}, "kill": "multi_pair", "n_orbit": 6, "k": 5, "iter": 3, "cert": "certs/pat_02008.json"}
+{"pid": "pat_02009", "pattern": {"1": [6, 7, 8], "3": [6, 7], "6": [1, 7], "8": [1, 3, 7]}, "kill": "multi_pair", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_02009.json"}
+{"pid": "pat_02010", "pattern": {"0": [1, 3, 6], "1": [3, 6, 7], "3": [6, 7], "7": [0, 3]}, "kill": "pair:6-7", "n_orbit": 18, "k": 5, "iter": 3, "cert": "certs/pat_02010.json"}
+{"pid": "pat_02011", "pattern": {"2": [9, 10], "6": [2, 9, 10], "9": [2, 10], "10": [6, 9]}, "kill": "pair:9-10", "n_orbit": 6, "k": 4, "iter": 4, "cert": "certs/pat_02011.json"}
+{"pid": "pat_02012", "pattern": {"0": [1, 10], "1": [0, 7], "6": [1, 9, 10], "9": [0, 7, 10], "10": [6, 9]}, "kill": "multi_pair", "n_orbit": 12, "k": 6, "iter": 5, "cert": "certs/pat_02012.json"}
+{"pid": "pat_02013", "pattern": {"2": [7, 10], "4": [2, 9], "6": [2, 10], "7": [4, 6], "9": [6, 7, 10], "10": [4, 6, 9]}, "kill": "multi_pair", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02013.json"}
+{"pid": "pat_02014", "pattern": {"0": [3, 4, 10], "4": [3, 8, 9], "8": [0, 3, 10], "9": [0, 10], "10": [3, 4, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02014.json"}
+{"pid": "pat_02015", "pattern": {"0": [1, 3, 4], "1": [0, 8], "3": [1, 4, 5], "4": [3, 8], "5": [0, 8], "8": [0, 3, 5]}, "kill": "pair:1-4", "n_orbit": 18, "k": 6, "iter": 5, "cert": "certs/pat_02015.json"}
+{"pid": "pat_02016", "pattern": {"0": [1, 3, 4], "1": [0, 7, 8], "3": [1, 4, 7], "4": [3, 8], "7": [4, 8], "8": [0, 3]}, "kill": "base", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02016.json"}
+{"pid": "pat_02017", "pattern": {"0": [1, 3, 4, 10], "1": [0, 8], "3": [1, 4], "4": [3, 8], "8": [0, 3, 10], "10": [3, 4]}, "kill": "base", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02017.json"}
+{"pid": "pat_02018", "pattern": {"0": [1, 3], "1": [0, 7, 8], "3": [1, 5, 7], "5": [0, 8], "7": [5, 8], "8": [0, 3, 5]}, "kill": "pair:0-7", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02018.json"}
+{"pid": "pat_02019", "pattern": {"0": [3, 4], "3": [4, 5, 7], "4": [3, 8], "5": [0, 8], "7": [4, 5, 8], "8": [0, 3, 5]}, "kill": "pair:5-8", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02019.json"}
+{"pid": "pat_02020", "pattern": {"0": [3, 4, 10], "3": [4, 5], "4": [3, 8], "5": [0, 8], "8": [0, 3, 5, 10], "10": [3, 4]}, "kill": "pair:8-10", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02020.json"}
+{"pid": "pat_02021", "pattern": {"2": [5, 7, 9, 10], "5": [6, 9], "6": [2, 10], "7": [5, 6], "9": [6, 7, 10], "10": [6, 9]}, "kill": "pair:9-10", "n_orbit": 36, "k": 6, "iter": 5, "cert": "certs/pat_02021.json"}

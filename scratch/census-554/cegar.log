@@ -855,3 +855,238 @@
 [03:54:52]     certify FAILED on mined pattern {3: [4, 6, 8], 4: [6, 9], 7: [3, 4, 6, 9], 8: [3, 4, 7], 9: [3, 6]}
 [03:54:53] iter 23: src=miner k=6 banked=15 (skip=0 blk=0 fail=3) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:7-8', 'pair:8-10', 'pair:9-10', 'pair:9-10', 'base', 'pair:9-10', 'pair:8-10', 'pair:9-10', 'pair:9-10', 'pair:9-10', 'pair:9-10'] orbits=[18, 18, 18, 36, 36, 72, 72, 18, 18, 72, 72, 36, 36, 36, 36] bank=1597 inst=40560 [sat 0.8s mine 114.0s cert 497.9s]
 [03:54:53] wall budget reached: session iters=24, bank=1597 orbits (40560 instances)
+[11:12:56] resume: 1597 banked orbits (40560 instances), 52 blacklisted fail-patterns
+[11:12:59]       point-support hit at k=5 (1/85 dead)
+[11:13:00] iter 0: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-8'] orbits=[36] bank=1598 inst=40596 [sat 0.8s mine 2.3s cert 0.8s]
+[11:14:04]       point-support hit at k=6 (9/178 dead)
+[11:25:04]     certify FAILED on mined pattern {3: [4, 6], 6: [4, 7], 7: [3, 4, 6], 9: [3, 6, 10], 10: [3, 7, 9]}
+[11:25:04]     certify FAILED on mined pattern {2: [4, 10], 4: [8, 9], 7: [4, 9], 8: [4, 7, 10], 9: [2, 10], 10: [2, 7, 9]}
+[11:25:04]     certify FAILED on mined pattern {3: [4, 8], 4: [8, 9], 6: [4, 7], 7: [3, 6, 9], 8: [3, 4, 7], 9: [3, 6]}
+[11:25:04] iter 1: src=miner k=6 banked=6 (skip=0 blk=0 fail=3) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:9-10', 'pair:9-10'] orbits=[18, 36, 36, 36, 18, 72] bank=1604 inst=40812 [sat 0.7s mine 232.9s cert 490.4s]
+[11:25:07]       point-support hit at k=5 (5/91 dead)
+[11:25:13] iter 2: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 36, 72, 18] bank=1609 inst=41010 [sat 0.7s mine 7.1s cert 0.4s]
+[11:25:15]       point-support hit at k=5 (1/78 dead)
+[11:25:15] iter 3: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['pair:1-5'] orbits=[18] bank=1610 inst=41028 [sat 0.7s mine 1.9s cert 0.1s]
+[11:25:18]       point-support hit at k=5 (3/88 dead)
+[11:25:19] iter 4: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair'] orbits=[12, 18, 18] bank=1613 inst=41076 [sat 0.7s mine 2.7s cert 0.2s]
+[11:25:22]       point-support hit at k=5 (1/88 dead)
+[11:25:22] iter 5: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['base'] orbits=[18] bank=1614 inst=41094 [sat 0.7s mine 2.8s cert 0.0s]
+[11:25:26]       point-support hit at k=5 (2/83 dead)
+[11:25:27] iter 6: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[36, 18] bank=1616 inst=41148 [sat 0.7s mine 3.3s cert 0.4s]
+[11:26:33]       point-support hit at k=6 (10/189 dead)
+[11:39:33]     certify FAILED on mined pattern {0: [5, 8, 10], 3: [4, 5, 8], 4: [0, 5, 10], 5: [0, 8], 8: [3, 10]}
+[11:39:33] iter 7: src=miner k=6 banked=7 (skip=0 blk=2 fail=1) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:6-7', 'pair:9-10'] orbits=[72, 36, 18, 72, 36, 36, 12] bank=1623 inst=41430 [sat 0.8s mine 329.6s cert 515.9s]
+[11:39:33] wall budget reached: session iters=8, bank=1623 orbits (41430 instances)
+[11:39:34] resume: 1623 banked orbits (41430 instances), 56 blacklisted fail-patterns
+[11:40:45]       point-support hit at k=6 (10/183 dead)
+[11:45:31] iter 0: src=miner k=6 banked=8 (skip=0 blk=2 fail=0) kills=['pair:6-7', 'pair:7-9', 'pair:7-8', 'pair:6-7', 'pair:8-10', 'pair:7-9', 'pair:9-10', 'pair:9-10'] orbits=[36, 72, 36, 36, 72, 72, 72, 72] bank=1631 inst=41898 [sat 0.8s mine 126.8s cert 229.9s]
+[11:46:37]       point-support hit at k=6 (11/165 dead)
+[11:59:02] iter 1: src=miner k=6 banked=9 (skip=0 blk=2 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'pair:7-9', 'pair:7-9', 'pair:7-9', 'pair:7-9', 'pair:9-10', 'pair:9-10'] orbits=[18, 36, 36, 36, 72, 36, 72, 36, 12] bank=1640 inst=42252 [sat 0.8s mine 259.1s cert 551.0s]
+[11:59:06]       point-support hit at k=5 (5/85 dead)
+[11:59:09] iter 2: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'pair:8-9', 'pair:7-9'] orbits=[6, 36, 36, 36, 72] bank=1645 inst=42438 [sat 0.7s mine 4.2s cert 1.5s]
+[11:59:16]       point-support hit at k=5 (4/93 dead)
+[11:59:25] iter 3: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 6, 36, 36] bank=1649 inst=42534 [sat 0.7s mine 11.8s cert 3.4s]
+[11:59:32]       point-support hit at k=5 (4/102 dead)
+[11:59:35] iter 4: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[12, 18, 18, 9] bank=1653 inst=42591 [sat 0.7s mine 8.3s cert 1.0s]
+[11:59:35] wall budget reached: session iters=5, bank=1653 orbits (42591 instances)
+[11:59:35] resume: 1653 banked orbits (42591 instances), 56 blacklisted fail-patterns
+[11:59:39]       point-support hit at k=5 (1/98 dead)
+[11:59:43] iter 0: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[18] bank=1654 inst=42609 [sat 0.7s mine 3.1s cert 4.0s]
+[12:00:27]       point-support hit at k=6 (14/169 dead)
+[12:13:15]     certify FAILED on mined pattern {1: [6, 7, 8], 3: [6, 7], 6: [5, 7], 7: [5, 6], 8: [3, 5, 6]}
+[12:13:15] iter 1: src=miner k=6 banked=13 (skip=0 blk=0 fail=1) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'base', 'pair:7-8', 'pair:7-8', 'pair:7-8', 'pair:7-10', 'pair:7-10'] orbits=[18, 9, 12, 72, 18, 36, 36, 36, 36, 36, 18, 72, 36] bank=1667 inst=43044 [sat 0.7s mine 329.4s cert 481.9s]
+[12:13:15] wall budget reached: session iters=2, bank=1667 orbits (43044 instances)
+[13:08:14] resume: 1667 banked orbits (43044 instances), 57 blacklisted fail-patterns
+[13:08:17]       point-support hit at k=5 (2/72 dead)
+[13:08:18] iter 0: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['pair:6-7', 'pair:7-10'] orbits=[36, 72] bank=1669 inst=43152 [sat 0.9s mine 2.4s cert 0.6s]
+[13:08:21]       point-support hit at k=5 (4/87 dead)
+[13:08:25] iter 1: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:8-10', 'pair:7-10'] orbits=[18, 18, 36, 72] bank=1673 inst=43296 [sat 0.9s mine 5.1s cert 0.7s]
+[13:08:27]       point-support hit at k=5 (4/90 dead)
+[13:08:38] iter 2: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'pair:7-8'] orbits=[36, 36, 36, 18] bank=1677 inst=43422 [sat 0.9s mine 9.4s cert 3.2s]
+[13:09:41]       point-support hit at k=6 (19/183 dead)
+[13:20:50]     certify FAILED on mined pattern {2: [4, 9, 10], 3: [2, 5], 4: [5, 9], 9: [2, 3, 5], 10: [3, 4, 9]}
+[13:20:50]     certify FAILED on mined pattern {1: [3, 7, 8], 3: [1, 5], 5: [1, 7, 8], 7: [5, 8], 8: [3, 9], 9: [3, 5, 8]}
+[13:20:50]     certify FAILED on mined pattern {1: [3, 7, 8], 3: [1, 5], 5: [1, 7, 8], 7: [5, 8, 10], 8: [3, 10], 10: [3, 5]}
+[13:20:50]     certify FAILED on mined pattern {4: [5, 7, 9], 5: [7, 8], 7: [5, 8, 10], 8: [9, 10], 9: [5, 8], 10: [4, 5, 9]}
+[13:20:51] iter 3: src=miner k=6 banked=15 (skip=0 blk=0 fail=4) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:8-9', 'pair:8-10', 'pair:6-7', 'pair:3-7', 'pair:8-10', 'pair:7-10', 'multi_pair', 'multi_pair', 'pair:7-10', 'pair:7-8', 'pair:8-10'] orbits=[36, 36, 72, 36, 36, 72, 36, 18, 36, 36, 36, 36, 36, 36, 36] bank=1692 inst=44016 [sat 0.9s mine 150.3s cert 581.3s]
+[13:20:54]       point-support hit at k=5 (1/75 dead)
+[13:20:55] iter 4: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-8'] orbits=[18] bank=1693 inst=44034 [sat 1.0s mine 2.8s cert 0.6s]
+[13:22:10]       point-support hit at k=6 (12/176 dead)
+[13:31:17]     certify FAILED on mined pattern {1: [6, 8], 4: [1, 6], 5: [1, 4, 7], 6: [4, 7], 7: [5, 6, 8], 8: [1, 5]}
+[13:31:17] iter 5: src=miner k=6 banked=11 (skip=0 blk=0 fail=1) kills=['multi_pair', 'multi_pair', 'pair:7-8', 'pair:7-10', 'pair:7-8', 'pair:7-8', 'pair:6-10', 'multi_pair', 'pair:8-9', 'pair:7-10', 'pair:7-8'] orbits=[36, 72, 36, 72, 36, 18, 36, 12, 18, 72, 36] bank=1704 inst=44478 [sat 1.0s mine 136.1s cert 485.0s]
+[13:31:17] wall budget reached: session iters=6, bank=1704 orbits (44478 instances)
+[13:31:18] resume: 1704 banked orbits (44478 instances), 62 blacklisted fail-patterns
+[13:31:20]       point-support hit at k=5 (10/96 dead)
+[13:31:33] iter 0: src=miner k=5 banked=10 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'base'] orbits=[12, 36, 18, 18, 36, 36, 18, 6, 12, 6] bank=1714 inst=44676 [sat 0.9s mine 10.3s cert 3.9s]
+[13:31:34]       point-support hit at k=4 (2/55 dead)
+[13:31:35] iter 1: src=miner k=4 banked=2 (skip=0 blk=0 fail=0) kills=['pair:9-10', 'pair:5-9'] orbits=[18, 6] bank=1716 inst=44700 [sat 0.9s mine 0.6s cert 0.4s]
+[13:31:36]       point-support hit at k=4 (1/48 dead)
+[13:31:37] iter 2: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-9'] orbits=[36] bank=1717 inst=44736 [sat 0.9s mine 0.5s cert 0.3s]
+[13:31:48]       point-support hit at k=5 (3/88 dead)
+[13:31:53] iter 3: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 36] bank=1720 inst=44844 [sat 0.9s mine 14.5s cert 0.9s]
+[13:31:56]       point-support hit at k=5 (5/84 dead)
+[13:32:03] iter 4: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'pair:4-8', 'multi_pair'] orbits=[36, 36, 36, 18, 36] bank=1725 inst=45006 [sat 1.0s mine 7.1s cert 2.4s]
+[13:32:06]       point-support hit at k=5 (1/73 dead)
+[13:32:07] iter 5: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-8'] orbits=[36] bank=1726 inst=45042 [sat 1.0s mine 2.0s cert 0.5s]
+[13:32:09]       point-support hit at k=5 (5/98 dead)
+[13:32:41] iter 6: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[72, 36, 36, 72, 36] bank=1731 inst=45294 [sat 0.9s mine 30.7s cert 2.0s]
+[13:32:43]       point-support hit at k=5 (2/70 dead)
+[13:32:45] iter 7: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['pair:1-2', 'multi_pair'] orbits=[6, 18] bank=1733 inst=45318 [sat 0.9s mine 2.6s cert 0.6s]
+[13:32:47]       point-support hit at k=5 (1/75 dead)
+[13:32:58] iter 8: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[18] bank=1734 inst=45336 [sat 0.9s mine 3.4s cert 9.0s]
+[13:33:01]       point-support hit at k=5 (1/74 dead)
+[13:33:10] iter 9: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[18] bank=1735 inst=45354 [sat 1.1s mine 9.9s cert 0.6s]
+[13:33:12]       point-support hit at k=5 (4/84 dead)
+[13:33:16] iter 10: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 36, 36] bank=1739 inst=45498 [sat 0.9s mine 3.3s cert 2.1s]
+[13:33:17]       point-support hit at k=4 (1/47 dead)
+[13:33:18] iter 11: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:3-10'] orbits=[6] bank=1740 inst=45504 [sat 0.9s mine 0.5s cert 0.3s]
+[13:33:20]       point-support hit at k=5 (2/92 dead)
+[13:33:21] iter 12: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[6, 6] bank=1742 inst=45516 [sat 0.9s mine 2.2s cert 0.5s]
+[13:33:23]       point-support hit at k=4 (1/52 dead)
+[13:33:23] iter 13: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:8-9'] orbits=[18] bank=1743 inst=45534 [sat 1.1s mine 0.6s cert 0.2s]
+[13:33:25]       point-support hit at k=5 (6/97 dead)
+[13:33:32] iter 14: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 36, 72, 18, 18] bank=1749 inst=45750 [sat 1.0s mine 6.0s cert 1.6s]
+[13:33:33]       point-support hit at k=4 (1/50 dead)
+[13:33:33] iter 15: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-8'] orbits=[36] bank=1750 inst=45786 [sat 0.9s mine 0.6s cert 0.3s]
+[13:33:36]       point-support hit at k=5 (6/72 dead)
+[13:33:38] iter 16: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:1-7', 'multi_pair', 'multi_pair', 'pair:6-7'] orbits=[6, 18, 18, 18, 18, 18] bank=1756 inst=45882 [sat 0.9s mine 2.7s cert 1.0s]
+[13:33:40]       point-support hit at k=5 (10/96 dead)
+[13:33:51] iter 17: src=miner k=5 banked=10 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'base'] orbits=[36, 36, 36, 36, 18, 72, 6, 12, 36, 18] bank=1766 inst=46188 [sat 0.9s mine 6.2s cert 5.3s]
+[13:33:53]       point-support hit at k=5 (5/95 dead)
+[13:33:56] iter 18: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 6, 12, 18, 36] bank=1771 inst=46296 [sat 1.0s mine 3.5s cert 0.6s]
+[13:33:59]       point-support hit at k=5 (3/90 dead)
+[13:34:02] iter 19: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair'] orbits=[12, 36, 12] bank=1774 inst=46356 [sat 1.0s mine 4.5s cert 0.6s]
+[13:34:04]       point-support hit at k=5 (4/89 dead)
+[13:34:06] iter 20: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'base', 'pair:4-10'] orbits=[9, 12, 6, 12] bank=1778 inst=46395 [sat 0.9s mine 2.4s cert 0.6s]
+[13:34:08]       point-support hit at k=5 (2/87 dead)
+[13:34:11] iter 21: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[36, 18] bank=1780 inst=46449 [sat 1.0s mine 4.0s cert 0.6s]
+[13:35:18]       point-support hit at k=6 (18/188 dead)
+[13:45:30]     certify FAILED on mined pattern {3: [2, 6, 8], 5: [6, 7, 8], 6: [2, 5], 7: [2, 3], 8: [3, 5, 7]}
+[13:45:30]     certify FAILED on mined pattern {2: [8, 10], 3: [2, 6, 8], 5: [6, 8, 10], 6: [2, 5], 8: [3, 5], 10: [3, 6]}
+[13:45:30] iter 22: src=miner k=6 banked=16 (skip=0 blk=0 fail=2) kills=['multi_pair', 'base', 'multi_pair', 'base', 'base', 'multi_pair', 'pair:7-9', 'multi_pair', 'pair:8-9', 'pair:8-9', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:7-9'] orbits=[36, 18, 36, 18, 18, 36, 36, 36, 36, 36, 36, 18, 72, 72, 72, 18] bank=1796 inst=47043 [sat 0.9s mine 193.5s cert 484.7s]
+[13:45:34]       point-support hit at k=5 (5/78 dead)
+[13:45:40] iter 23: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:7-10'] orbits=[6, 18, 12, 12, 72] bank=1801 inst=47163 [sat 1.2s mine 4.9s cert 3.8s]
+[13:45:47]       point-support hit at k=5 (3/93 dead)
+[13:45:48] iter 24: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:8-9'] orbits=[12, 36, 36] bank=1804 inst=47247 [sat 1.0s mine 6.3s cert 0.9s]
+[13:45:50]       point-support hit at k=4 (1/50 dead)
+[13:45:51] iter 25: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-10'] orbits=[18] bank=1805 inst=47265 [sat 1.0s mine 1.3s cert 0.2s]
+[13:45:58]       point-support hit at k=5 (4/79 dead)
+[13:46:02] iter 26: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[12, 12, 18, 36] bank=1809 inst=47343 [sat 1.0s mine 9.0s cert 1.2s]
+[13:46:06]       point-support hit at k=5 (2/82 dead)
+[13:46:08] iter 27: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[18, 18] bank=1811 inst=47379 [sat 1.0s mine 3.8s cert 1.0s]
+[13:46:10]       point-support hit at k=4 (2/43 dead)
+[13:46:10] iter 28: src=miner k=4 banked=2 (skip=0 blk=0 fail=0) kills=['pair:4-6', 'pair:6-8'] orbits=[9, 18] bank=1813 inst=47406 [sat 1.0s mine 1.1s cert 0.4s]
+[13:46:14]       point-support hit at k=5 (6/104 dead)
+[13:46:46] iter 29: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 18, 18, 36, 36] bank=1819 inst=47586 [sat 1.1s mine 32.1s cert 2.0s]
+[13:46:50]       point-support hit at k=5 (1/77 dead)
+[13:46:53] iter 30: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[18] bank=1820 inst=47604 [sat 1.1s mine 5.8s cert 0.4s]
+[13:46:56]       point-support hit at k=5 (2/79 dead)
+[13:46:57] iter 31: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['pair:0-4', 'pair:6-7'] orbits=[18, 36] bank=1822 inst=47658 [sat 1.1s mine 2.8s cert 0.6s]
+[13:47:01]       point-support hit at k=5 (2/83 dead)
+[13:47:05] iter 32: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[18, 18] bank=1824 inst=47694 [sat 1.1s mine 5.8s cert 0.6s]
+[13:47:08]       point-support hit at k=5 (6/84 dead)
+[13:47:16] iter 33: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:6-7', 'pair:9-10'] orbits=[36, 36, 36, 36, 36, 18] bank=1830 inst=47892 [sat 1.2s mine 8.2s cert 1.5s]
+[13:47:19]       point-support hit at k=5 (5/87 dead)
+[13:47:26] iter 34: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:6-7'] orbits=[18, 18, 18, 18, 36] bank=1835 inst=48000 [sat 1.0s mine 7.3s cert 2.3s]
+[13:47:28]       point-support hit at k=4 (1/36 dead)
+[13:47:28] iter 35: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:6-10'] orbits=[18] bank=1836 inst=48018 [sat 1.0s mine 0.9s cert 0.2s]
+[13:48:51]       point-support hit at k=6 (7/184 dead)
+[13:50:17] iter 36: src=miner k=6 banked=7 (skip=0 blk=0 fail=0) kills=['multi_pair', 'pair:8-9', 'pair:8-9', 'pair:5-8', 'pair:8-10', 'pair:5-8', 'pair:8-9'] orbits=[36, 36, 36, 18, 36, 36, 36] bank=1843 inst=48252 [sat 1.0s mine 93.2s cert 74.4s]
+[13:50:19]       point-support hit at k=4 (1/44 dead)
+[13:50:19] iter 37: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:7-9'] orbits=[18] bank=1844 inst=48270 [sat 1.1s mine 0.9s cert 0.3s]
+[13:50:23]       point-support hit at k=5 (6/77 dead)
+[13:50:27] iter 38: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:4-10'] orbits=[18, 18, 6, 18, 18, 18] bank=1850 inst=48366 [sat 1.1s mine 4.2s cert 2.0s]
+[13:50:29]       point-support hit at k=4 (1/47 dead)
+[13:50:29] iter 39: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:9-10'] orbits=[6] bank=1851 inst=48372 [sat 1.0s mine 1.0s cert 0.3s]
+[13:50:32]       point-support hit at k=5 (2/83 dead)
+[13:50:38] iter 40: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[12, 6] bank=1853 inst=48390 [sat 1.0s mine 7.1s cert 0.7s]
+[13:50:41]       point-support hit at k=5 (1/86 dead)
+[13:50:46] iter 41: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[36] bank=1854 inst=48426 [sat 1.0s mine 4.0s cert 3.2s]
+[13:50:50]       point-support hit at k=5 (2/89 dead)
+[13:50:51] iter 42: src=miner k=5 banked=2 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair'] orbits=[6, 6] bank=1856 inst=48438 [sat 1.0s mine 3.0s cert 0.6s]
+[13:50:55]       point-support hit at k=5 (6/97 dead)
+[13:51:00] iter 43: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 36, 12, 36, 36, 36] bank=1862 inst=48612 [sat 0.9s mine 7.3s cert 1.6s]
+[13:51:04]       point-support hit at k=5 (7/93 dead)
+[13:51:14] iter 44: src=miner k=5 banked=7 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[9, 18, 18, 6, 36, 72, 18] bank=1869 inst=48789 [sat 1.0s mine 4.9s cert 8.2s]
+[13:51:18]       point-support hit at k=5 (5/88 dead)
+[13:51:22] iter 45: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 12, 18, 12, 36] bank=1874 inst=48885 [sat 1.1s mine 4.3s cert 2.0s]
+[13:51:22] wall budget reached: session iters=46, bank=1874 orbits (48885 instances)
+[13:51:23] resume: 1874 banked orbits (48885 instances), 64 blacklisted fail-patterns
+[13:51:34]       point-support hit at k=5 (3/84 dead)
+[13:51:37] iter 0: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:6-9'] orbits=[12, 12, 36] bank=1877 inst=48945 [sat 1.1s mine 13.0s cert 0.6s]
+[13:51:40]       point-support hit at k=5 (4/78 dead)
+[13:51:48] iter 1: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'pair:8-9'] orbits=[18, 36, 36, 72] bank=1881 inst=49107 [sat 1.0s mine 8.5s cert 0.9s]
+[13:51:50]       point-support hit at k=5 (3/90 dead)
+[13:51:52] iter 2: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:6-8'] orbits=[36, 6, 36] bank=1884 inst=49185 [sat 0.9s mine 2.5s cert 0.8s]
+[13:51:55]       point-support hit at k=5 (5/105 dead)
+[13:51:58] iter 3: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'pair:1-5', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 18, 36, 36, 36] bank=1889 inst=49329 [sat 1.0s mine 3.7s cert 1.0s]
+[13:52:00]       point-support hit at k=5 (3/76 dead)
+[13:52:06] iter 4: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair'] orbits=[6, 6, 6] bank=1892 inst=49347 [sat 1.1s mine 6.3s cert 1.1s]
+[13:52:55]       point-support hit at k=6 (16/193 dead)
+[14:02:11]     certify FAILED on mined pattern {1: [6, 7, 9], 5: [1, 7], 6: [1, 5, 8], 7: [1, 8, 9], 9: [5, 8]}
+[14:02:11]     certify FAILED on mined pattern {1: [2, 7, 9], 5: [1, 7, 10], 7: [1, 2, 9], 9: [5, 10], 10: [1, 2]}
+[14:02:11]     certify FAILED on mined pattern {3: [4, 7], 4: [3, 7], 5: [4, 7], 7: [8, 9], 8: [3, 4, 9], 9: [3, 5, 8]}
+[14:02:11] iter 5: src=miner k=6 banked=13 (skip=0 blk=0 fail=3) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:7-10', 'pair:6-10', 'pair:6-10', 'pair:6-10', 'pair:4-7'] orbits=[36, 12, 12, 36, 36, 18, 72, 6, 36, 18, 18, 18, 72] bank=1905 inst=49737 [sat 1.1s mine 118.2s cert 485.7s]
+[14:02:11] wall budget reached: session iters=6, bank=1905 orbits (49737 instances)
+[14:10:00] resume: 1905 banked orbits (49737 instances), 67 blacklisted fail-patterns
+[14:10:03]       point-support hit at k=5 (1/71 dead)
+[14:10:04] iter 0: src=miner k=5 banked=1 (skip=0 blk=0 fail=0) kills=['multi_pair'] orbits=[18] bank=1906 inst=49755 [sat 1.1s mine 2.5s cert 0.4s]
+[14:10:06]       point-support hit at k=5 (3/86 dead)
+[14:10:08] iter 1: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 18, 36] bank=1909 inst=49827 [sat 1.0s mine 2.3s cert 0.9s]
+[14:10:09]       point-support hit at k=4 (2/55 dead)
+[14:10:10] iter 2: src=miner k=4 banked=2 (skip=0 blk=0 fail=0) kills=['base', 'pair:8-10'] orbits=[9, 36] bank=1911 inst=49872 [sat 1.0s mine 0.6s cert 0.3s]
+[14:10:12]       point-support hit at k=5 (3/82 dead)
+[14:10:17] iter 3: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:8-10'] orbits=[36, 6, 72] bank=1914 inst=49986 [sat 1.0s mine 5.4s cert 0.7s]
+[14:10:19]       point-support hit at k=5 (5/97 dead)
+[14:10:25] iter 4: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:2-10', 'multi_pair', 'multi_pair'] orbits=[6, 18, 2, 36, 18] bank=1919 inst=50066 [sat 1.0s mine 2.9s cert 4.3s]
+[14:10:28]       point-support hit at k=5 (3/90 dead)
+[14:10:29] iter 5: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'base'] orbits=[12, 18, 18] bank=1922 inst=50114 [sat 1.0s mine 2.1s cert 0.5s]
+[14:10:31]       point-support hit at k=5 (6/84 dead)
+[14:10:33] iter 6: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[6, 6, 6, 18, 6, 18] bank=1928 inst=50174 [sat 1.0s mine 2.2s cert 0.6s]
+[14:10:35]       point-support hit at k=5 (3/82 dead)
+[14:10:37] iter 7: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['pair:6-9', 'pair:9-10', 'pair:9-10'] orbits=[72, 36, 36] bank=1931 inst=50318 [sat 1.1s mine 2.8s cert 0.7s]
+[14:10:39]       point-support hit at k=4 (3/54 dead)
+[14:10:39] iter 8: src=miner k=4 banked=3 (skip=0 blk=0 fail=0) kills=['pair:9-10', 'pair:5-7', 'pair:9-10'] orbits=[6, 18, 18] bank=1934 inst=50360 [sat 1.1s mine 0.6s cert 0.3s]
+[14:10:40]       point-support hit at k=4 (1/46 dead)
+[14:10:41] iter 9: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:6-10'] orbits=[18] bank=1935 inst=50378 [sat 1.1s mine 0.5s cert 0.3s]
+[14:10:44]       point-support hit at k=5 (6/94 dead)
+[14:10:54] iter 10: src=miner k=5 banked=6 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:6-10'] orbits=[18, 18, 6, 36, 36, 18] bank=1941 inst=50510 [sat 1.1s mine 9.4s cert 2.4s]
+[14:11:11]       point-support hit at k=5 (5/98 dead)
+[14:11:15] iter 11: src=miner k=5 banked=5 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:6-10'] orbits=[6, 36, 36, 18, 36] bank=1946 inst=50642 [sat 1.1s mine 17.1s cert 3.3s]
+[14:11:17]       point-support hit at k=4 (1/48 dead)
+[14:11:17] iter 12: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:6-10'] orbits=[18] bank=1947 inst=50660 [sat 1.1s mine 0.5s cert 0.2s]
+[14:11:19]       point-support hit at k=4 (1/45 dead)
+[14:11:19] iter 13: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:6-10'] orbits=[18] bank=1948 inst=50678 [sat 1.2s mine 0.6s cert 0.2s]
+[14:11:22]       point-support hit at k=5 (3/76 dead)
+[14:11:23] iter 14: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['pair:7-9', 'pair:9-10', 'pair:6-10'] orbits=[18, 6, 36] bank=1951 inst=50738 [sat 1.2s mine 2.5s cert 0.5s]
+[14:12:46]       point-support hit at k=6 (13/179 dead)
+[14:23:11]     certify FAILED on mined pattern {1: [5, 6], 2: [3, 10], 3: [1, 2], 5: [3, 6, 10], 6: [1, 2, 10], 10: [1, 5]}
+[14:23:11]     certify FAILED on mined pattern {0: [2, 8, 9], 2: [3, 7, 9], 3: [0, 2], 7: [0, 3, 9], 8: [3, 7], 9: [0, 8]}
+[14:23:11] iter 15: src=miner k=6 banked=11 (skip=0 blk=0 fail=2) kills=['multi_pair', 'pair:9-10', 'pair:7-10', 'pair:9-10', 'pair:9-10', 'pair:9-10', 'pair:9-10', 'pair:9-10', 'pair:9-10', 'multi_pair', 'pair:9-10'] orbits=[36, 18, 36, 12, 18, 18, 12, 18, 36, 36, 18] bank=1962 inst=50996 [sat 1.1s mine 221.0s cert 485.6s]
+[14:23:13]       point-support hit at k=4 (1/49 dead)
+[14:23:13] iter 16: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:9-10'] orbits=[18] bank=1963 inst=51014 [sat 1.0s mine 0.5s cert 0.3s]
+[14:23:14]       point-support hit at k=4 (1/47 dead)
+[14:23:15] iter 17: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:8-10'] orbits=[18] bank=1964 inst=51032 [sat 1.0s mine 0.5s cert 0.3s]
+[14:23:18]       point-support hit at k=5 (4/82 dead)
+[14:23:29] iter 18: src=miner k=5 banked=4 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[36, 36, 72, 72] bank=1968 inst=51248 [sat 1.1s mine 9.7s cert 3.2s]
+[14:24:41]       point-support hit at k=6 (23/194 dead)
+[14:36:43]     certify FAILED on mined pattern {2: [4, 8, 9, 10], 4: [2, 9], 6: [4, 8], 8: [4, 10], 9: [6, 8], 10: [4, 6, 9]}
+[14:36:43] iter 19: src=miner k=6 banked=22 (skip=0 blk=0 fail=1) kills=['multi_pair', 'multi_pair', 'pair:7-9', 'pair:9-10', 'pair:9-10', 'pair:6-10', 'pair:9-10', 'pair:7-9', 'pair:9-10', 'pair:7-9', 'pair:5-10', 'pair:7-9', 'pair:9-10', 'pair:9-10', 'multi_pair', 'pair:9-10', 'pair:9-10', 'pair:5-10', 'pair:9-10', 'multi_pair', 'pair:9-10', 'pair:9-10'] orbits=[36, 36, 18, 36, 36, 72, 36, 72, 72, 36, 36, 36, 18, 36, 36, 36, 72, 36, 12, 18, 18, 36] bank=1990 inst=52088 [sat 1.0s mine 276.7s cert 516.6s]
+[14:36:43] wall budget reached: session iters=20, bank=1990 orbits (52088 instances)
+[14:36:44] resume: 1990 banked orbits (52088 instances), 70 blacklisted fail-patterns
+[14:36:55]       point-support hit at k=5 (10/111 dead)
+[14:37:09] iter 0: src=miner k=5 banked=10 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair'] orbits=[18, 36, 36, 18, 18, 36, 18, 18, 18, 18] bank=2000 inst=52322 [sat 1.2s mine 21.0s cert 2.6s]
+[14:37:10]       point-support hit at k=4 (1/49 dead)
+[14:37:11] iter 1: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:9-10'] orbits=[6] bank=2001 inst=52328 [sat 1.2s mine 0.5s cert 0.3s]
+[14:37:14]       point-support hit at k=5 (7/89 dead)
+[14:37:20] iter 2: src=miner k=5 banked=7 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'multi_pair', 'pair:7-9'] orbits=[6, 36, 18, 18, 6, 12, 36] bank=2008 inst=52460 [sat 1.1s mine 5.2s cert 2.3s]
+[14:37:22]       point-support hit at k=5 (3/92 dead)
+[14:37:24] iter 3: src=miner k=5 banked=3 (skip=0 blk=0 fail=0) kills=['multi_pair', 'multi_pair', 'pair:6-7'] orbits=[6, 18, 18] bank=2011 inst=52502 [sat 1.0s mine 2.6s cert 0.6s]
+[14:37:25]       point-support hit at k=4 (1/44 dead)
+[14:37:26] iter 4: src=miner k=4 banked=1 (skip=0 blk=0 fail=0) kills=['pair:9-10'] orbits=[6] bank=2012 inst=52508 [sat 1.1s mine 0.5s cert 0.3s]
+[14:38:49]       point-support hit at k=6 (13/166 dead)
+[14:49:47]     certify FAILED on mined pattern {5: [0, 6, 8, 9], 8: [0, 5, 10], 9: [0, 10], 10: [6, 9]}
+[14:49:47]     certify FAILED on mined pattern {3: [4, 5], 4: [3, 8, 9], 5: [8, 9], 8: [3, 5, 10], 10: [3, 4, 9]}
+[14:49:47]     certify FAILED on mined pattern {3: [4, 7], 4: [3, 9], 6: [9, 10], 7: [4, 6], 9: [6, 7, 10], 10: [3, 4, 9]}
+[14:49:47] iter 5: src=miner k=6 banked=10 (skip=0 blk=0 fail=3) kills=['multi_pair', 'multi_pair', 'pair:9-10', 'pair:1-4', 'base', 'base', 'pair:0-7', 'pair:5-8', 'pair:8-10', 'pair:9-10'] orbits=[12, 36, 36, 18, 36, 36, 36, 36, 36, 36] bank=2022 inst=52826 [sat 1.1s mine 231.7s cert 508.5s]
+[14:53:48]       point-support hit at k=7 (99/290 dead)
