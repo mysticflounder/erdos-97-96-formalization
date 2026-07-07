@@ -1286,15 +1286,18 @@ Current routed-row/count-family boundary:
   private-center placement, surplus-triple placement, exact `.w` mask, and
   `hsearchSep` data long enough to call the row-specific finite-scaffold
   theorem.  Current finite-scaffold wrapper coverage for the cheap
-  cross-separation route is five of eight rows:
+  cross-separation route is six of eight rows:
   `rightNonSurplusRow0022Excluded_of_finiteScaffold`,
   `rightNonSurplusRow0121Excluded_of_finiteScaffold`,
   `rightNonSurplusRow1021Excluded_of_finiteScaffold`,
-  `leftNonSurplusRow0022Excluded_of_finiteScaffold`, and
-  `leftNonSurplusRow0112Excluded_of_finiteScaffold`.  The three remaining cheap
-  wrappers are right `(2,0,1,1)`, left `(1,0,1,2)`, and left `(2,0,1,1)`;
-  after those, the producer surface still has to pass the finite scaffold facts
-  into the pruned left-right row obligation.
+  `leftNonSurplusRow0022Excluded_of_finiteScaffold`,
+  `leftNonSurplusRow0112Excluded_of_finiteScaffold`, and
+  `leftNonSurplusRow1012Excluded_of_finiteScaffold`.  The two remaining cheap
+  wrappers are right `(2,0,1,1)` and left `(2,0,1,1)`; these are the `m = 2`
+  cases and need a small extra case split over the selected other-non-surplus
+  label paired with the two Moser labels.  After those, the producer surface
+  still has to pass the finite scaffold facts into the pruned left-right row
+  obligation.
 
   Local artifact checkpoint: `certificates/surplus/relaxed_split/` contains the
   70 grouped relaxed-split certificate JSON files from the pre-singleton pass,
