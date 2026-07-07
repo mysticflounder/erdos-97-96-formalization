@@ -148,9 +148,10 @@ window with exact independently re-verified witnesses, obstruction D1
 CONFIRMED token-level at every n = 12–16; PROVEN extractions m ≤ 2,
 vertex-pair ⇒ s = 0 (2 unconditional kills), s = 2 ⇒ straddle-only;
 s ≥ 3 kills ride SUB2, CONJECTURED; C-split DECIDED 2026-07-07 (Adam):
-gated go — k=4 bank certification + n = 12 window-shape convergence gate
-dispatched (`scratch/k4-bank/`, `scratch/census-12-gate/`), full 12–14
-census pending the gate readout —
+gated go — k=4 bank LANDED 2026-07-07 validated (10 dead classes
+confirmed, certificates kernel-checked in `K4WindowBank.lean`, unimported;
+plan §7 D3), n = 12 window-shape convergence gate in flight
+(`scratch/census-12-gate/`), full 12–14 census pending the gate readout —
 `scratch/candidate-d-probe/report.md`). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable

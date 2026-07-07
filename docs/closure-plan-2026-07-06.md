@@ -453,6 +453,17 @@ patterns with all points distinct.
   census commitment waits on the n = 12 convergence readout; the resumed
   (5,5,4) run (§5) is the |A| = 11 bellwether. The D lane items (SUB2-H,
   Q3) remain open successor work, independent of the census compute.
+  **Gate item (1) LANDED 2026-07-07 (validated).** 44 admissible k=4
+  classes (exhaustive brute-S₄ — PROVEN), exactly 10 dead CONFIRMED
+  (dichotomy Tier C match 10/10; completeness rides the 34 msolve-alive
+  verdicts, EMPIRICALLY VERIFIED); all 10 kills are base/equality-only
+  with tiny certificates (≤8 generators, degree ≤3), exact-verified twice
+  (agent + orchestrator-independent re-derivation incl. generator
+  fidelity); `K4WindowBank.lean` sorry-free, builds clean, kernel axiom
+  closure exactly core + `Lean.ofReduceBool` + `Lean.trustCompiler`
+  (native_decide forced by `Rat`/`Nat.gcd` kernel non-reduction — same
+  shape as the EpQ pattern files). Unimported by design pending a
+  covering consumer. `scratch/k4-bank/report.md`.
 
 D1, D2, the dichotomy, the D3 formulation pass, and the Candidate B
 embedding test are done; together they bound the proof's largest
