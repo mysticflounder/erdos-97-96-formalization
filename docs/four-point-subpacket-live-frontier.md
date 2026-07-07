@@ -158,18 +158,27 @@ Lean names:
 
 Checkpoint, 2026-07-07:
 
-The right row `(0,0,2,2)` now has a proved finite-scaffold bridge:
-`rightNonSurplusRow0022Excluded_of_finiteScaffold`.  It chooses the named
-surplus triple around the row's own two surplus-side selected hits, then
-applies `false_of_right_row0022_finiteCandidateFacts`.  This is a real
-producer bridge, but it does not by itself delete the on-spine `hprunedRows`
-`sorry`, because the current pruned-row statement does not expose the
-finite-scaffold payload as an input.
+Three finite-scaffold row bridges are now proved:
 
-The mirror selected-class decomposition also landed:
-`IsM44.left_row0022_selectedClass_eq_oppInterior1_union_surplusPair`.  The next
-left-row step is the mirror finite-scaffold bridge from that decomposition to
-`LeftNonSurplusExactCountRowExcluded S x p 0 0 2 2`.
+```text
+rightNonSurplusRow0022Excluded_of_finiteScaffold
+leftNonSurplusRow0022Excluded_of_finiteScaffold
+rightNonSurplusRow0121Excluded_of_finiteScaffold
+```
+
+The row0022 bridges choose the named surplus triple around the row's own two
+surplus-side selected hits, then apply the generated private-`.w`
+cross-separation contradiction through
+`false_of_right_row0022_finiteCandidateFacts` /
+`false_of_left_row0022_finiteCandidateFacts`.  The right row `(0,1,2,1)` bridge
+uses `IsM44.right_row0121_selectedClass_eq_oppInterior2_union_sameCap_surplus`
+to identify the selected class as the other non-surplus pair, the other
+same-cap private point, and one surplus-side singleton, then applies
+`false_of_right_row0121_finiteCandidateFacts`.
+
+These are real producer bridges, but they do not by themselves delete the
+on-spine `hprunedRows` `sorry`, because the current pruned-row statement does
+not expose the finite-scaffold payload as an input.
 
 Producer census update, 2026-07-07:
 
@@ -276,8 +285,8 @@ The surplus-label placement needed by these row proofs is now available as
 selected surplus-side subset of size at most three can be embedded in the
 named `s1/s2/s3` subpacket before entering the ten-label bank.
 
-The first row-level finite adapter is also available for right row
-`(m,s,l,r)=(0,0,2,2)`: 
+The first row-level finite adapters are also available.  For right row
+`(m,s,l,r)=(0,0,2,2)`,
 `erasedPinRow_ep_right_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair` proves
 that `.Q1/.Q2` plus two distinct surplus labels produce one of the 12 generated
 row seeds, and
@@ -292,6 +301,19 @@ step is now also proved by
 two-point surplus-side selected subset in the named `s1/s2/s3` triple, the
 selected private center yields one of the generated row seeds and its exact
 private mask.
+The mirror left row `(0,0,2,2)` has the corresponding
+`left_row0022_exists_erasedPinRowSeed_privateMask` and
+`leftNonSurplusRow0022Excluded_of_finiteScaffold` bridge.
+
+Right row `(0,1,2,1)` is now also proved through the cheap row-wide validator.
+The new decomposition
+`SurplusCapPacket.IsM44.right_row0121_selectedClass_eq_oppInterior2_union_sameCap_surplus`
+identifies the selected class as `.Q1/.Q2`, the other same-cap private point,
+and the surplus-side singleton.  The bridge
+`right_row0121_exists_erasedPinRowSeed_privateMask` translates that class into
+one of the generated `ep_right_m0_s1_l2_r1` seeds, and
+`rightNonSurplusRow0121Excluded_of_finiteScaffold` closes the row from the
+finite scaffold.
 
 July 7 checkpoint: the missing row validator fact has now been isolated and
 proved at the finite-mask layer.  In
@@ -330,7 +352,8 @@ The erased-pin finite plan is therefore:
    contradictions.
 2. Wire the corresponding geometric adapters into the pruned-row producer
    surface using the existing `hsearchSep`, exact `.w` mask, and private-mask
-   placement interfaces.
+   placement interfaces.  Current geometric progress: right `(0,0,2,2)`, left
+   `(0,0,2,2)`, and right `(0,1,2,1)` are proved from the finite scaffold.
 3. Treat the other 18 finite ten-label rows as a separate residual requiring
    a stronger validator interface, partial row splitting, or the full
    fixed-seed DFS shadow route.

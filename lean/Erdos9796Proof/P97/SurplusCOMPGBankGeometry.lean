@@ -213,6 +213,26 @@ theorem exists_surplusStar_leftPinnedLabelPoint_eq_of_mem_triple
   · exact ⟨.s2, rfl, rfl⟩
   · exact ⟨.s3, rfl, rfl⟩
 
+/-- A second distinct surplus-triple point determines a different surplus-star
+label in the left-oriented COMP-G label map. -/
+theorem exists_otherSurplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) {x y : ℝ²} {sstar : Label}
+    (hy : y ∈ ({s1, s2, s3} : Finset ℝ²))
+    (hyx : y ≠ x)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x) :
+    ∃ other : Label,
+      isSurplusStar other = true ∧ other ≠ sstar ∧
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 other = y := by
+  rcases exists_surplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+      S p₁ p₂ q₁ q₂ s1 s2 s3 hy with
+    ⟨other, hother, hother_eq⟩
+  refine ⟨other, hother, ?_, hother_eq⟩
+  intro hsame
+  exact hyx (by
+    rw [← hother_eq, hsame, hsstar_eq])
+
 /-- The finite incidence mask induced by a geometric selected class and an
 injectively labelled copy of the ten COMP-G points. -/
 def pointMask {α : Type _} [DecidableEq α]
@@ -2808,6 +2828,44 @@ theorem pointMask_eq_QQSurplusPairMask_swap
     · simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
         Label.index]
 
+/-- A one-surplus, two-`.Q`, one-private row class has the generated mask. -/
+theorem pointMask_eq_QQSurplusPrivateMask
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    (hinj : Function.Injective pointOf) {sstar otherPrivate : Label}
+    (hs : isSurplusStar sstar = true)
+    (hother : otherPrivate = .Pw ∨ otherPrivate = .Pu) :
+    pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf sstar,
+            pointOf otherPrivate} : Finset α) =
+      maskOfLabels [.Q1, .Q2, sstar, otherPrivate] := by
+  have hpoint_eq : ∀ a b : Label, pointOf a = pointOf b ↔ a = b := by
+    intro a b
+    exact ⟨fun h => hinj h, fun h => by simp [h]⟩
+  cases sstar <;> simp [isSurplusStar] at hs
+  all_goals
+    rcases hother with rfl | rfl <;>
+      simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
+        Label.index]
+
+/-- Swapped set-order form of `pointMask_eq_QQSurplusPrivateMask`. -/
+theorem pointMask_eq_QQSurplusPrivateMask_swap
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    (hinj : Function.Injective pointOf) {sstar otherPrivate : Label}
+    (hs : isSurplusStar sstar = true)
+    (hother : otherPrivate = .Pw ∨ otherPrivate = .Pu) :
+    pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf otherPrivate,
+            pointOf sstar} : Finset α) =
+      maskOfLabels [.Q1, .Q2, sstar, otherPrivate] := by
+  have hpoint_eq : ∀ a b : Label, pointOf a = pointOf b ↔ a = b := by
+    intro a b
+    exact ⟨fun h => hinj h, fun h => by simp [h]⟩
+  cases sstar <;> simp [isSurplusStar] at hs
+  all_goals
+    rcases hother with rfl | rfl <;>
+      simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
+        Label.index]
+
 /-- In row `ep_right_m0_s0_l2_r2`, the private selected class consists of the
 two `.Q` labels and two distinct surplus labels, one of which is the erased
 surplus star. -/
@@ -2844,6 +2902,61 @@ theorem erasedPinRow_ep_right_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair
         simp [erasedPinRow_ep_right_m0_s0_l2_r2_seeds_candidates,
           maskOfLabels, Label.bit, Label.index]
 
+/-- In row `ep_left_m0_s0_l2_r2`, the private selected class consists of the
+two `.Q` labels and two distinct surplus labels, one of which is the erased
+surplus star. -/
+theorem erasedPinRow_ep_left_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair
+    {sstar other privateCenter : Label}
+    (hs : isSurplusStar sstar = true)
+    (hother : isSurplusStar other = true)
+    (hne : other ≠ sstar)
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu) :
+    ({ sstar := sstar, privateCenter := privateCenter, kind := .own,
+        privateMask := maskOfLabels [.Q1, .Q2, sstar, other] } :
+      OneSidedSeed) ∈
+        erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates := by
+  cases sstar <;> simp [isSurplusStar] at hs
+  · cases other <;> simp [isSurplusStar] at hother hne
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+  · cases other <;> simp [isSurplusStar] at hother hne
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+  · cases other <;> simp [isSurplusStar] at hother hne
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+    · rcases hpriv with rfl | rfl <;>
+        simp [erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates,
+          maskOfLabels, Label.bit, Label.index]
+
+/-- In row `ep_right_m0_s1_l2_r1`, the private selected class consists of the
+two `.Q` labels, the erased surplus star, and the other private point in the
+same non-surplus cap. -/
+theorem erasedPinRow_ep_right_m0_s1_l2_r1_seed_mem_candidates_of_same_pair
+    {sstar privateCenter otherPrivate : Label}
+    (hs : isSurplusStar sstar = true)
+    (hpriv :
+      (privateCenter = .Pw ∧ otherPrivate = .Pu) ∨
+        (privateCenter = .Pu ∧ otherPrivate = .Pw)) :
+    ({ sstar := sstar, privateCenter := privateCenter, kind := .own,
+        privateMask := maskOfLabels [.Q1, .Q2, sstar, otherPrivate] } :
+      OneSidedSeed) ∈
+        erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates := by
+  cases sstar <;> simp [isSurplusStar] at hs
+  all_goals
+    rcases hpriv with ⟨rfl, rfl⟩ | ⟨rfl, rfl⟩ <;>
+      simp [erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates,
+        maskOfLabels, Label.bit, Label.index]
+
 /-- If a point-class shadow realizes a generated row `ep_right_m0_s0_l2_r2`
 seed, its private class cannot be cross-separated from the exact `.w` cap. -/
 theorem false_of_erasedPinRow_ep_right_m0_s0_l2_r2_seed_private_w_crossSeparation
@@ -2861,6 +2974,48 @@ theorem false_of_erasedPinRow_ep_right_m0_s0_l2_r2_seed_private_w_crossSeparatio
   rw [hprivate, hwMask] at htrue
   have hfalse :=
     erasedPinRow_ep_right_m0_s0_l2_r2_seed_private_w_crossSeparation_false
+      hseed
+  rw [hfalse] at htrue
+  exact Bool.false_ne_true htrue
+
+/-- If a point-class shadow realizes a generated row `ep_left_m0_s0_l2_r2`
+seed, its private class cannot be cross-separated from the exact `.w` cap. -/
+theorem false_of_erasedPinRow_ep_left_m0_s0_l2_r2_seed_private_w_crossSeparation
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  have htrue := hsearchSep seed.privateCenter .w
+  rw [hprivate, hwMask] at htrue
+  have hfalse :=
+    erasedPinRow_ep_left_m0_s0_l2_r2_seed_private_w_crossSeparation_false
+      hseed
+  rw [hfalse] at htrue
+  exact Bool.false_ne_true htrue
+
+/-- If a point-class shadow realizes a generated row `ep_right_m0_s1_l2_r1`
+seed, its private class cannot be cross-separated from the exact `.w` cap. -/
+theorem false_of_erasedPinRow_ep_right_m0_s1_l2_r1_seed_private_w_crossSeparation
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  have htrue := hsearchSep seed.privateCenter .w
+  rw [hprivate, hwMask] at htrue
+  have hfalse :=
+    erasedPinRow_ep_right_m0_s1_l2_r1_seed_private_w_crossSeparation_false
       hseed
   rw [hfalse] at htrue
   exact Bool.false_ne_true htrue
@@ -3020,6 +3175,336 @@ theorem false_of_right_row0022_private_w_crossSeparation
       hprivateClass with
     ⟨seed, hseed, _hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
   exact false_of_erasedPinRow_ep_right_m0_s0_l2_r2_seed_private_w_crossSeparation
+    hseed hwMask hprivate hsearchSep
+
+/-- Exact right row `(0,1,2,1)` produces one of the generated row seeds once
+the surplus-side singleton is embedded in the named surplus triple.  The
+same-cap singleton is the other named private point. -/
+theorem right_row0121_exists_erasedPinRowSeed_privateMask
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+    {center x : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 0)
+    (hs : S.sameCapCount S.oppIndex1 center radius = 1)
+    (hl : S.leftAdjCount S.oppIndex1 center radius = 2)
+    (hr : S.rightAdjCount S.oppIndex1 center radius = 1)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²))
+    (hxR : x ∈ SelectedClass A center radius ∩
+        S.rightAdjacentInteriorByIndex S.oppIndex1)
+    {privateCenter otherPrivate : Label}
+    (hcenter :
+      (center = p₁ ∧ privateCenter = .Pw ∧ otherPrivate = .Pu) ∨
+        (center = p₂ ∧ privateCenter = .Pu ∧ otherPrivate = .Pw))
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius) :
+    ∃ seed : OneSidedSeed,
+      seed ∈ erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates ∧
+      isSurplusStar seed.sstar = true ∧
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 seed.sstar = x ∧
+      seed.privateCenter = privateCenter ∧
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass seed.privateCenter) = seed.privateMask := by
+  classical
+  rcases hM44.right_row0121_selectedClass_eq_oppInterior2_union_sameCap_surplus
+      hradius_pos hm hs hl hr hqpair with
+    ⟨c, r, hCeq, hReq, _hrSurplus, hseleq⟩
+  rcases exists_surplusStar_rightPinnedLabelPoint_eq_of_mem_triple
+      S p₁ p₂ q₁ q₂ s1 s2 s3 hxTriple with
+    ⟨sstar, hsstar, hsstar_eq⟩
+  have hx_eq_r : x = r := by
+    have hxR' : x ∈ ({r} : Finset ℝ²) := by
+      rw [← hReq]
+      exact hxR
+    simpa using hxR'
+  let seed : OneSidedSeed :=
+    { sstar := sstar, privateCenter := privateCenter, kind := .own,
+      privateMask := maskOfLabels [.Q1, .Q2, sstar, otherPrivate] }
+  have hseedMem :
+      seed ∈ erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates := by
+    exact
+      erasedPinRow_ep_right_m0_s1_l2_r1_seed_mem_candidates_of_same_pair
+        hsstar
+        (by
+          rcases hcenter with ⟨_, hpriv, hother⟩ | ⟨_, hpriv, hother⟩
+          · exact Or.inl ⟨hpriv, hother⟩
+          · exact Or.inr ⟨hpriv, hother⟩)
+  refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+  let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  rcases hcenter with ⟨rfl, rfl, rfl⟩ | ⟨rfl, rfl, rfl⟩
+  · have hcap :
+        S.capInteriorByIndex S.oppIndex1 = ({center, p₂} : Finset ℝ²) := by
+      simpa [SurplusCapPacket.oppInterior1] using hpair
+    have herase :
+        (S.capInteriorByIndex S.oppIndex1).erase center =
+          ({p₂} : Finset ℝ²) := by
+      rw [hcap]
+      simp [hp12]
+    have hc_eq : c = p₂ := by
+      have hcC : c ∈ SelectedClass A center radius ∩
+          (S.capInteriorByIndex S.oppIndex1).erase center := by
+        rw [hCeq]
+        simp
+      have hcErase :
+          c ∈ (S.capInteriorByIndex S.oppIndex1).erase center :=
+        (Finset.mem_inter.mp hcC).2
+      simpa [herase] using hcErase
+    change pointMask pointOf (centerClass .Pw) =
+      maskOfLabels [.Q1, .Q2, sstar, .Pu]
+    rw [hprivateClass, hseleq, hc_eq, ← hx_eq_r, ← hsstar_eq]
+    change pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf .Pu, pointOf sstar} :
+          Finset ℝ²) =
+      maskOfLabels [.Q1, .Q2, sstar, .Pu]
+    exact pointMask_eq_QQSurplusPrivateMask_swap
+      (pointOf := pointOf) hinj hsstar (Or.inr rfl)
+  · have hcap :
+        S.capInteriorByIndex S.oppIndex1 = ({p₁, center} : Finset ℝ²) := by
+      simpa [SurplusCapPacket.oppInterior1] using hpair
+    have herase :
+        (S.capInteriorByIndex S.oppIndex1).erase center =
+          ({p₁} : Finset ℝ²) := by
+      rw [hcap]
+      ext y
+      constructor
+      · intro hy
+        simp only [Finset.mem_erase, Finset.mem_insert,
+          Finset.mem_singleton] at hy
+        rcases hy with ⟨hyne, hypair⟩
+        rcases hypair with h | h
+        · simp [h]
+        · exact False.elim (hyne h)
+      · intro hy
+        have hyEq : y = p₁ := by
+          simpa using hy
+        simp only [Finset.mem_erase, Finset.mem_insert,
+          Finset.mem_singleton]
+        exact ⟨by simpa [hyEq] using hp12, Or.inl hyEq⟩
+    have hc_eq : c = p₁ := by
+      have hcC : c ∈ SelectedClass A center radius ∩
+          (S.capInteriorByIndex S.oppIndex1).erase center := by
+        rw [hCeq]
+        simp
+      have hcErase :
+          c ∈ (S.capInteriorByIndex S.oppIndex1).erase center :=
+        (Finset.mem_inter.mp hcC).2
+      simpa [herase] using hcErase
+    change pointMask pointOf (centerClass .Pu) =
+      maskOfLabels [.Q1, .Q2, sstar, .Pw]
+    rw [hprivateClass, hseleq, hc_eq, ← hx_eq_r, ← hsstar_eq]
+    change pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf .Pw, pointOf sstar} :
+          Finset ℝ²) =
+      maskOfLabels [.Q1, .Q2, sstar, .Pw]
+    exact pointMask_eq_QQSurplusPrivateMask_swap
+      (pointOf := pointOf) hinj hsstar (Or.inl rfl)
+
+/-- Exact right row `(0,1,2,1)` is incompatible with the finite
+cross-separation interface once the private center is one of the two named
+opposite-cap interior labels. -/
+theorem false_of_right_row0121_private_w_crossSeparation
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+    {center x : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 0)
+    (hs : S.sameCapCount S.oppIndex1 center radius = 1)
+    (hl : S.leftAdjCount S.oppIndex1 center radius = 2)
+    (hr : S.rightAdjCount S.oppIndex1 center radius = 1)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²))
+    (hxR : x ∈ SelectedClass A center radius ∩
+        S.rightAdjacentInteriorByIndex S.oppIndex1)
+    {privateCenter otherPrivate : Label}
+    (hcenter :
+      (center = p₁ ∧ privateCenter = .Pw ∧ otherPrivate = .Pu) ∨
+        (center = p₂ ∧ privateCenter = .Pu ∧ otherPrivate = .Pw))
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius)
+    (hwMask :
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .w) =
+        secondOppExactCapMask)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases right_row0121_exists_erasedPinRowSeed_privateMask S hM44
+      hradius_pos hm hs hl hr hinj hp12 hpair hqpair hxTriple hxR
+      hcenter hprivateClass with
+    ⟨seed, hseed, _hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+  exact false_of_erasedPinRow_ep_right_m0_s1_l2_r1_seed_private_w_crossSeparation
+    hseed hwMask hprivate hsearchSep
+
+/-- Exact left row `(0,0,2,2)` produces one of the generated row seeds once
+the two surplus-side selected points are embedded in the named surplus triple.
+This records the private-center mask equality needed by the row-level seeded
+shadow contradiction. -/
+theorem left_row0022_exists_erasedPinRowSeed_privateMask
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+    {center x : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 0)
+    (hs : S.sameCapCount S.oppIndex2 center radius = 0)
+    (hl : S.leftAdjCount S.oppIndex2 center radius = 2)
+    (hr : S.rightAdjCount S.oppIndex2 center radius = 2)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hLtriple : SelectedClass A center radius ∩
+        S.leftAdjacentInteriorByIndex S.oppIndex2 ⊆
+      ({s1, s2, s3} : Finset ℝ²))
+    (hxL : x ∈ SelectedClass A center radius ∩
+        S.leftAdjacentInteriorByIndex S.oppIndex2)
+    {privateCenter : Label}
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius) :
+    ∃ seed : OneSidedSeed,
+      seed ∈ erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates ∧
+      isSurplusStar seed.sstar = true ∧
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 seed.sstar = x ∧
+      seed.privateCenter = privateCenter ∧
+      pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass seed.privateCenter) = seed.privateMask := by
+  classical
+  rcases hM44.left_row0022_selectedClass_eq_oppInterior1_union_surplusPair
+      hradius_pos hm hs hl hr hqpair with
+    ⟨l₁, l₂, hl12, hLeq, _hLsub, hseleq⟩
+  have hxPair : x ∈ ({l₁, l₂} : Finset ℝ²) := by
+    rw [← hLeq]
+    exact hxL
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hxPair
+  rcases hxPair with hx_eq | hx_eq
+  · subst x
+    have hl₁Triple : l₁ ∈ ({s1, s2, s3} : Finset ℝ²) := by
+      apply hLtriple
+      rw [hLeq]
+      simp
+    have hl₂Triple : l₂ ∈ ({s1, s2, s3} : Finset ℝ²) := by
+      apply hLtriple
+      rw [hLeq]
+      simp
+    rcases exists_surplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+        S p₁ p₂ q₁ q₂ s1 s2 s3 hl₁Triple with
+      ⟨sstar, hsstar, hsstar_eq⟩
+    rcases exists_otherSurplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+        S p₁ p₂ q₁ q₂ s1 s2 s3 hl₂Triple (Ne.symm hl12)
+        hsstar_eq with
+      ⟨other, hother, hother_ne, hother_eq⟩
+    let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := privateCenter, kind := .own,
+        privateMask := maskOfLabels [.Q1, .Q2, sstar, other] }
+    have hseedMem :
+        seed ∈ erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates := by
+      exact
+        erasedPinRow_ep_left_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair
+          hsstar hother hother_ne hpriv
+    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+    let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+    change pointMask pointOf (centerClass privateCenter) =
+      maskOfLabels [.Q1, .Q2, sstar, other]
+    rw [hprivateClass, hseleq]
+    rw [← hsstar_eq, ← hother_eq]
+    change pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf sstar, pointOf other} :
+          Finset ℝ²) =
+      maskOfLabels [.Q1, .Q2, sstar, other]
+    exact pointMask_eq_QQSurplusPairMask (pointOf := pointOf) hinj hsstar
+      hother hother_ne
+  · subst x
+    have hl₁Triple : l₁ ∈ ({s1, s2, s3} : Finset ℝ²) := by
+      apply hLtriple
+      rw [hLeq]
+      simp
+    have hl₂Triple : l₂ ∈ ({s1, s2, s3} : Finset ℝ²) := by
+      apply hLtriple
+      rw [hLeq]
+      simp
+    rcases exists_surplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+        S p₁ p₂ q₁ q₂ s1 s2 s3 hl₂Triple with
+      ⟨sstar, hsstar, hsstar_eq⟩
+    rcases exists_otherSurplusStar_leftPinnedLabelPoint_eq_of_mem_triple
+        S p₁ p₂ q₁ q₂ s1 s2 s3 hl₁Triple hl12 hsstar_eq with
+      ⟨other, hother, hother_ne, hother_eq⟩
+    let seed : OneSidedSeed :=
+      { sstar := sstar, privateCenter := privateCenter, kind := .own,
+        privateMask := maskOfLabels [.Q1, .Q2, sstar, other] }
+    have hseedMem :
+        seed ∈ erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates := by
+      exact
+        erasedPinRow_ep_left_m0_s0_l2_r2_seed_mem_candidates_of_surplus_pair
+          hsstar hother hother_ne hpriv
+    refine ⟨seed, hseedMem, hsstar, hsstar_eq, rfl, ?_⟩
+    let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+    change pointMask pointOf (centerClass privateCenter) =
+      maskOfLabels [.Q1, .Q2, sstar, other]
+    rw [hprivateClass, hseleq]
+    rw [← hother_eq, ← hsstar_eq]
+    change pointMask pointOf
+        ({pointOf .Q1, pointOf .Q2, pointOf other, pointOf sstar} :
+          Finset ℝ²) =
+      maskOfLabels [.Q1, .Q2, sstar, other]
+    exact pointMask_eq_QQSurplusPairMask_swap (pointOf := pointOf) hinj
+      hsstar hother hother_ne
+
+/-- Exact left row `(0,0,2,2)` is incompatible with the finite
+cross-separation interface once the private center is one of the two named
+opposite-cap interior labels. -/
+theorem false_of_left_row0022_private_w_crossSeparation
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+    {center x : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 0)
+    (hs : S.sameCapCount S.oppIndex2 center radius = 0)
+    (hl : S.leftAdjCount S.oppIndex2 center radius = 2)
+    (hr : S.rightAdjCount S.oppIndex2 center radius = 2)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hLtriple : SelectedClass A center radius ∩
+        S.leftAdjacentInteriorByIndex S.oppIndex2 ⊆
+      ({s1, s2, s3} : Finset ℝ²))
+    (hxL : x ∈ SelectedClass A center radius ∩
+        S.leftAdjacentInteriorByIndex S.oppIndex2)
+    {privateCenter : Label}
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius)
+    (hwMask :
+      pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .w) =
+        secondOppExactCapMask)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c
+        (pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass c)) cp
+        (pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass cp)) = true) :
+    False := by
+  rcases left_row0022_exists_erasedPinRowSeed_privateMask S hM44
+      hradius_pos hm hs hl hr hinj hqpair hLtriple hxL hpriv
+      hprivateClass with
+    ⟨seed, hseed, _hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+  exact false_of_erasedPinRow_ep_left_m0_s0_l2_r2_seed_private_w_crossSeparation
     hseed hwMask hprivate hsearchSep
 
 /-- Row-specific point-class contradiction for the erased-pin finite row
