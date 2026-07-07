@@ -740,3 +740,30 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   `docs/u-lane/97-u2b-surplus-escape-branch-analysis-2026-07-01.md`.
   **Lesson:** do not resurrect the attic statements as live obligations; if the
   endpoint-escape content is needed, derive it in packet vocabulary on-spine.
+- **doubleapex-card12up-uniform-pattern-lemma (falsified, 2026-07-06):** the
+  uniform ideal-theoretic lemma for the |A| ≥ 12 DoubleApex residual — "every
+  admissible double-apex constraint pattern (C1 exact-4 classes, C2, C4, H1,
+  caps ≥ 4 with two ≥ 5) of order n ≥ 12 is ℂ-dead under
+  equality-plus-separator saturation" — is FALSE at every separator level for
+  n ≥ 15. Explicit falsifiers (independently verified, exact-integer /
+  50-digit; `scratch/d3-formulation/`): W15 = 15-point triangular-lattice
+  subset (census-H1) kills the Δ-saturated census-level statement; two
+  concentric-regular-octagon configurations (n=16, b = cos(kπ/8)+√(cos²+1))
+  and the decagon pair with b = 1/φ (n=20) are general-position, full-H1,
+  fully-exact-4 and kill every leaf-extractable strengthening (+ full H1,
+  + noncollinearity Γ, + exactness E) simultaneously. Consequence: the
+  per-pattern certificate bank/covering (the census-fallback shape) also
+  cannot close the n ≥ 15 tail — the admissible pattern family contains
+  ℝ-realizable members, so no dead-pattern bank covers it; any uniform-in-n
+  pattern-level statement dies regardless of proof technology (Wu/Chou,
+  characteristic sets, resultants, syzygies). All witnesses are NON-convex
+  (rings: inner ring strictly inside the outer polygon's inscribed circle;
+  lattices: interior points) — the Lean leaf itself (ConvexIndep) is
+  untouched; the tail's mathematical content is exactly the convex-position
+  coupling, per (Q)-flavor. Still open/supported: the n ∈ {12,13,14} head
+  (4460/4460 sampled patterns dead across seven cap profiles, kills localize
+  to ≤ 8-point windows) and the row-decorated remnant (Candidate B,
+  embedding test pending). **Lesson:** any future uniform |A| ≥ 12 proposal
+  must kill the banked falsifiers (W15 + the two-ring family,
+  `scratch/d3-formulation/t9_wit_*.json`) before dispatch; convexity-free
+  pattern abstractions cannot close the tail.

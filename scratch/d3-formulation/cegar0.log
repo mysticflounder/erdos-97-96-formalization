@@ -1,0 +1,3 @@
+[tri6x6 n=15] caps_ok=True C1/C2/C4/equid OK H1(V,W)=True H1(U)=False UVW_collinear=False collinear_triples=33/455 exact_centers=10/15 exact_covered=15/15
+  round0: adding 33 witness-collinear-triple separators (+105 pair separators)
+  CEGAR round0 verdict: DEAD

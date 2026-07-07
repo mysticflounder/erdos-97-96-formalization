@@ -1,0 +1,16 @@
+{
+  "profile": "854",
+  "n": 14,
+  "sampled": 80,
+  "stage1": {
+    "DEAD": 30,
+    "ALIVE": 50,
+    "TIMEOUT": 0
+  },
+  "stage2_on_alive": {
+    "DEAD": 50,
+    "ALIVE": 0,
+    "TIMEOUT": 0
+  },
+  "distinct_alive": 0
+}

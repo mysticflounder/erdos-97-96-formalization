@@ -337,11 +337,49 @@ patterns with all points distinct.
   a proof-attack sketch. Fallback trigger (presented to Adam, who decides
   the pivot): every candidate dies under falsification, or a formulated
   lemma's attack hits a named obstruction with no repair route.
+  **Formulation pass DONE 2026-07-06 — the decided shape is FALSIFIED at
+  the tail; the fallback trigger fired, in a stronger form than
+  anticipated.** Candidate A (uniform saturated-emptiness of admissible
+  double-apex patterns, at every separator level L0–L3: Δ / +full-H1 / +Γ
+  noncollinearity / +E exactness) is refuted by explicit witnesses: W15
+  (15-point triangular-lattice subset, exact integers, census-admissible,
+  ℝ-realized by its own points) kills L0; two concentric-regular-octagon
+  configurations (n=16) and the decagon pair with inner radius b = 1/φ
+  (n=20) — general-position, full-H1, fully-exact-4, class structure
+  PROVEN via shared-quadratic/φ-identities — kill L1–L3 simultaneously.
+  Independently verified by the orchestrator (exact-integer + 50-digit
+  re-derivation from scratch, `scratch/d3-formulation/independent_check.py`
+  — ALL PASS). The same witnesses kill the pattern-level certificate-census
+  fallback for n ≥ 15: a realizable admissible pattern contains no dead
+  window at any size, so no dead-pattern bank covers the tail, regardless
+  of proof technology. All witnesses are NON-convex (verified) — the Lean
+  leaf itself (ConvexIndep) is untouched; the tail's mathematical content
+  is exactly the convex-position coupling ((Q)-flavored). Survivors:
+  **Candidate B** (row-decorated remnant — the maximal ideal-theoretic
+  statement extractable from the leaf, adding the six named liveData points
+  + critical-row equalities; UNTESTED, embedding test vs the witnesses
+  dispatched 2026-07-06, poor prognosis per obstructions B1–B3);
+  **Candidate C** (head closer, n ∈ {12,13,14}: 4460/4460 sampled patterns
+  dead across seven cap profiles, kills localize to ≤ 8-point windows —
+  would split Card12Up into census-closable card-12–14 + a named card-≥15
+  residual; covering leg open); **Candidate D** (synthetic convexity-coupled
+  forcing, Near-Enemy shared-bisector + M44-squeeze vocabulary — the only
+  shape not excluded for the tail; no forcing mechanism identified;
+  obstructions D1–D3 recorded). Report + banked falsifiers:
+  `scratch/d3-formulation/report.md` (+ `t9_wit_*.json` — mandatory
+  falsification targets for any future uniform proposal); dead-ends entry
+  `doubleapex-card12up-uniform-pattern-lemma`. **Decision to Adam:**
+  (a) head/tail split per Candidate C + optional D groundwork, vs
+  (b) holding Card12Up whole pending a D mechanism; the in-flight B
+  embedding result sharpens either branch.
 
-D1, D2, and the dichotomy are done; together they bound the proof's largest
-uncertainty (register U4) from all three cheap sides: no theorem transfers,
-no counting invariant decides, and the kill mechanism is uniformly
-ℂ-ideal-theoretic. What remains on U4 is the D3 direction decision.
+D1, D2, the dichotomy, and the D3 formulation pass are done; together they
+bound the proof's largest uncertainty (register U4) from all four sides: no
+theorem transfers, no counting invariant decides, the mined-core kill
+mechanism is uniformly ℂ-ideal-theoretic, and the uniform-n pattern-level
+extrapolation is FALSE at n ≥ 15 (explicit realizable witnesses). What
+remains on U4 is Adam's split decision (§7 D3) plus the pending Candidate B
+embedding result.
 
 ## 8. Global gates and hygiene
 
@@ -416,15 +454,16 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback — formulation dispatch in flight |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Survivors: B (row-decorated remnant, embedding test in flight), C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision to Adam** (§7 D3) |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
 | U8 | ℝ-only content in census certificates (checker fit) | unknown until emit | census output inspection; decision point if present |
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
-computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy (all
-done) have bounded it from every cheap side — no theorem transfers, no
-counting invariant decides, kill mechanism uniformly ℂ-ideal-theoretic.
-D3 direction is decided (uniform lemma first, census fallback); the
-formulation pass is the active move on U4.
+computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy+D3
+formulation (all done) have bounded it from every side — no theorem
+transfers, no counting invariant decides, kill mechanism uniformly
+ℂ-ideal-theoretic at n=12, and the uniform-n pattern-level shape is FALSE
+at n ≥ 15. The active moves on U4: the Candidate B embedding test (in
+flight) and Adam's head/tail split decision (§7 D3).

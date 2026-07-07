@@ -1,0 +1,6 @@
+# n=13 profile 965 caps=(9, 6, 5): sampled 40 (40 attempts)
+# stage1 tally: {'DEAD': 12, 'ALIVE': 19, 'TIMEOUT': 9}
+#   stage2 10/19: {'DEAD': 10, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 19/19: {'DEAD': 18, 'ALIVE': 0, 'TIMEOUT': 1}
+# stage2 tally: {'DEAD': 18, 'ALIVE': 0, 'TIMEOUT': 1}
+{"profile": "965", "n": 17, "sampled": 40, "stage1": {"DEAD": 12, "ALIVE": 19, "TIMEOUT": 9}, "stage2_on_alive": {"DEAD": 18, "ALIVE": 0, "TIMEOUT": 1}, "distinct_alive": 0}

@@ -1,0 +1,30 @@
+# stage-2 cube 654[0] (C-alive, distinctness-dead per census logs)
+    k=3: checked 9 induced subsystems, dead: 0
+    k=4: checked 175 induced subsystems, dead: 1
+  -> saturated k* = 4; n_cores_at_kstar = 1
+     core P=(0, 3, 5, 7) R=5
+# stage-2 cube 654[1] (C-alive, distinctness-dead per census logs)
+    k=3: checked 9 induced subsystems, dead: 0
+    k=4: checked 173 induced subsystems, dead: 2
+  -> saturated k* = 4; n_cores_at_kstar = 2
+     core P=(2, 5, 8, 11) R=6
+     core P=(1, 7, 9, 10) R=5
+# stage-2 cube 654[2] (C-alive, distinctness-dead per census logs)
+    k=3: checked 7 induced subsystems, dead: 0
+    k=4: checked 175 induced subsystems, dead: 0
+    k=5: checked 671 induced subsystems, dead: 3
+  -> saturated k* = 5; n_cores_at_kstar = 3
+     core P=(1, 3, 4, 8, 11) R=7
+     core P=(1, 4, 8, 9, 10) R=7
+     core P=(2, 5, 6, 9, 10) R=7
+# stage-2 cube 654[3] (C-alive, distinctness-dead per census logs)
+    k=3: checked 5 induced subsystems, dead: 0
+    k=4: checked 182 induced subsystems, dead: 0
+    k=5: checked 656 induced subsystems, dead: 5
+  -> saturated k* = 5; n_cores_at_kstar = 5
+     core P=(0, 1, 5, 7, 8) R=7
+     core P=(0, 3, 4, 6, 11) R=6
+     core P=(0, 3, 5, 7, 11) R=6
+     core P=(2, 7, 8, 9, 10) R=5
+     core P=(3, 4, 5, 6, 11) R=6
+[{"slice": "654", "idx": 0, "kstar": 4, "n_cores": 1}, {"slice": "654", "idx": 1, "kstar": 4, "n_cores": 2}, {"slice": "654", "idx": 2, "kstar": 5, "n_cores": 3}, {"slice": "654", "idx": 3, "kstar": 5, "n_cores": 5}]

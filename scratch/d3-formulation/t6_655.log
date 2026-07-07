@@ -1,0 +1,11 @@
+# n=13 profile 655 caps=(6, 5, 5): sampled 100 (100 attempts)
+# stage1 tally: {'DEAD': 32, 'ALIVE': 68, 'TIMEOUT': 0}
+#   stage2 10/68: {'DEAD': 10, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 20/68: {'DEAD': 20, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 30/68: {'DEAD': 30, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 40/68: {'DEAD': 40, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 50/68: {'DEAD': 50, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 60/68: {'DEAD': 60, 'ALIVE': 0, 'TIMEOUT': 0}
+#   stage2 68/68: {'DEAD': 68, 'ALIVE': 0, 'TIMEOUT': 0}
+# stage2 tally: {'DEAD': 68, 'ALIVE': 0, 'TIMEOUT': 0}
+{"profile": "655", "n": 13, "sampled": 100, "stage1": {"DEAD": 32, "ALIVE": 68, "TIMEOUT": 0}, "stage2_on_alive": {"DEAD": 68, "ALIVE": 0, "TIMEOUT": 0}, "distinct_alive": 0}

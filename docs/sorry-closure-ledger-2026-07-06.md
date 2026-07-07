@@ -127,8 +127,16 @@ ideal-theoretic/geometric certificates via the PROVEN forced gauge-pair
 collapse; dichotomy DONE 2026-07-06 — all mined dead cores ℂ-dead, so D3
 poses ideal-theoretically with ℚ-Nullstellensatz certificates in the
 endpoint-bank shape; D3 direction DECIDED 2026-07-06 by Adam — uniform
-ideal-theoretic lemma first, certificate census fallback). Proposed split
-residual
+ideal-theoretic lemma first, certificate census fallback; D3 formulation
+pass DONE 2026-07-06 — the decided shape is FALSIFIED at n ≥ 15 by
+explicit realizable witnesses (lattice n=15; concentric-ring n=16, 16, 20,
+general-position/full-H1/fully-exact; independently verified,
+`scratch/d3-formulation/`), which also kill the pattern-level census
+fallback for the tail; witnesses are non-convex so the leaf itself stands;
+survivors: Candidate B row-decorated remnant (embedding test in flight),
+Candidate C head split n ∈ {12,13,14}, Candidate D convexity-coupled
+forcing (no mechanism); split decision to Adam — plan §7 D3). Proposed
+split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
 has genuine open-strategy uncertainty (register U4). Census dispatched
