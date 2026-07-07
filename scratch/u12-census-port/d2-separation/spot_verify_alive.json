@@ -1,0 +1,26 @@
+{
+  "555": {
+    "alive_sample": {
+      "ALIVE": 25,
+      "DEAD": 0,
+      "TIMEOUT": 0
+    },
+    "dead_sample": {
+      "ALIVE": 0,
+      "DEAD": 25,
+      "TIMEOUT": 0
+    }
+  },
+  "654": {
+    "alive_sample": {
+      "ALIVE": 25,
+      "DEAD": 0,
+      "TIMEOUT": 0
+    },
+    "dead_sample": {
+      "ALIVE": 0,
+      "DEAD": 25,
+      "TIMEOUT": 0
+    }
+  }
+}

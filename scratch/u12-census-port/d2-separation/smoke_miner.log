@@ -1,0 +1,5 @@
+[smoke] codex |A|=11 min_support = 6 (expect 6)
+[smoke] cores P = [(0, 1, 2, 3, 6, 9), (0, 1, 2, 3, 7, 9)]
+    P=[0, 1, 2, 3, 6, 9] sig=[0, 2, 2, 3, 3, 4] full_4stars=[9]
+    P=[0, 1, 2, 3, 7, 9] sig=[1, 2, 2, 3, 3, 4] full_4stars=[2]
+[smoke] OK: min-support 6, both known cores, each exactly one full-4-star

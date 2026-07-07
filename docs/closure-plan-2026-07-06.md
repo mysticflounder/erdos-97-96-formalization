@@ -229,10 +229,15 @@ frontier of the whole proof. Basis (|A| = 12 minimal-core census, math-prover
 2026-07-06, EMPIRICALLY VERIFIED on samples): (6,5,4)+(5,5,5) slices, 2000
 cubes each; minimal infeasible cores form hundreds of classes with no
 flattening (10 cubes→35 classes … 70→146; 66–76% singletons); the one proven
-pattern covers ~7% (287/4000). Assets from the mining: every dead core is an
-equidistance framework on k ∈ {4,5,6} points with over-determination
-R−(2k−4) ∈ {−1,0,1,2}; all kills are forced-coincidence, not ℂ-emptiness;
-the −1 cases prove the target lemma cannot be generic-DOF counting.
+pattern covers ~7% (287/4000). Assets from the mining (ranges corrected
+2026-07-06 by D2's exhaustive-per-cube mine — 540 Singular-confirmed minimal
+cores from 239 dead cubes — superseding the earlier 4-record basis): every
+dead core is an equidistance framework on k ∈ {4,…,8} points (k = 7 modal)
+with over-determination R−(2k−4) ∈ {−1,…,4} (−1 real but rare, 2/540); every
+kill is a forced gauge-pair collapse — each ℂ-infeasible induced subsystem
+contains both gauge points (PROVEN, D2 report §7), so the kill forces u = v
+rather than free-ℂ emptiness; the −1 cases prove the target lemma cannot be
+generic-DOF counting.
 Equidistance constraints are point-on-perpendicular-bisector incidences, so
 the target is a realizability criterion for near-critical bisector-incidence
 patterns with all points distinct.
@@ -265,33 +270,39 @@ patterns with all points distinct.
   (shared-bisector rigidity, per-constraint polynomial nonvanishing
   witnesses, generic-projection engine) is the ℝ-side certificate shape for
   lead 1 and the natural Lean vocabulary for D3 (D1 report addendum).
-- **D2 — invariant separation test (solver dispatch, independent):** compute
-  candidate combinatorial invariants over the mined dead cores vs
-  known-realizable controls (the ALIVE sampled cubes from the same census)
-  and test for separation. Candidate invariants: Laman-style sparsity counts
-  on the equidistance hypergraph, per-subframework over-determination
-  profiles, circle-degree distributions. Data source: p97-rvol scratch census
-  artifacts (inventoried 2026-07-06; all under
-  `../p97-rvol/scratch/u1_2_faithful/twolargecap_core/`, ~1.4 MB total) —
-  port into `scratch/u12-census-port/` here before running: dead cores
-  `_u12_dead_555.jsonl` + `_u12_dead_654.jsonl`; realizable controls
-  `_u12_alive_654.jsonl` (no `_u12_alive_555.jsonl` exists — extract 555
-  controls from the census logs or re-derive; verify control coverage at
-  port time); uncovered-cube lists `_u12_pattern_miss_{555,654}.jsonl`;
-  summaries `_u12_census_654.json` + `_u12_census_{555,654}_full.log`;
-  generating scripts for parsing/provenance `_u12_census.py`,
-  `_u12_core_mine.py`, `_u12_distinct.py`, `_u12_resolve_distinct.py`,
-  `_u12_pattern_cover.py`, `_u12_verify_alive.py`. Verdicts: clean
-  separation → a combinatorial criterion is plausible; formulate the lemma
-  (D3). No separation → the criterion is not purely combinatorial; report
-  with the data — the next escalation (semialgebraic invariants, or a
-  different decomposition of the leaf) is a direction decision, not
-  something to improvise.
-- **D3 — lemma formulation + proof attempt:** only after a D2 signal; out of
-  scope until then.
+- **D2 — invariant separation test: DONE 2026-07-06 — verdict NO clean
+  separation** (`scratch/u12-census-port/d2-separation/report.md`; basis: 540
+  Singular-confirmed minimal dead cores, exhaustive per cube over 239/1882
+  dead cubes, vs 2,551,993 ℂ-feasible induced-control frameworks from both
+  slices). Every invariant family — Laman sparsity scalars, δ-profiles,
+  circle degrees, SST coordination counts (provably ≡ δ + class structure
+  here), FJK/GJ pair-contraction profiles — overlaps between infeasible cores
+  and feasible controls, with 4/4 solver-verified witness pairs agreeing on
+  the entire 21-scalar vector. The full 28-invariant vector has zero overlap
+  but is a lookup table, not a criterion (HEURISTIC: it identifies frameworks
+  near-isomorphically; its components fail individually and in every tested
+  sub-combination). Control gap CLOSED at the ℂ-alive level:
+  `_u12_alive_555.jsonl` never existed (census crashed pre-persist); controls
+  re-derived by deterministic sampler regeneration validated against the
+  census logs (V1–V5 all pass; attempts/tallies match exactly) + 100/100
+  msolve spot-checks. Standing caveat: "alive" = ℂ-equidistance-alive in
+  gauge; ALL alive cubes are distinctness-dead, so no control is known
+  realizable with 12 distinct points. Two positives for D3: (1) contraction
+  profiles carry most of the discriminating power — 430/540 dead profiles
+  unattained by any control — a census index key, not a lemma; (2) PROVEN:
+  every kill is a forced gauge-pair collapse ("pattern forces u = v" — the
+  Near Enemy shared-bisector vocabulary, per the D1 addendum), pointing D3 at
+  ideal-theoretic/geometric certificates rather than counting criteria.
+- **D3 — lemma formulation + proof attempt:** D2's signal has arrived
+  (negative for counting invariants; positive shape = forced gauge-pair
+  collapse). Still out of scope pending the ℂ-vs-ℝ dichotomy result and a
+  direction decision (Adam) — per the D2 spec, the escalation is not
+  improvised.
 
-D1 and D2 are cheap, independent, and dispatchable today; they bound the
-proof's largest uncertainty (register U4) from both sides.
+D1 and D2 are done; together they bound the proof's largest uncertainty
+(register U4) from both sides: no theorem transfers, and no counting
+invariant decides feasibility. The dichotomy classification (in flight) is
+the last cheap probe before D3 needs a direction decision.
 
 ## 8. Global gates and hygiene
 
@@ -321,9 +332,11 @@ separation, and the ℂ-vs-ℝ dichotomy classification (§7, D1 lead 1); the D2
 census artifacts are ported to `scratch/u12-census-port/` with a sha256
 manifest. In flight on the Lean side: endpoint wiring (§2, anchored session),
 erased-pin reduction-inputs (§4 lane), liveData branch split (§6). Landed:
-D1 scan, §3 step-1 enumeration, trustCompiler approval, U2 attic — §0 items
-2–3 are done; §0 closure now reduces to the five obligations plus a fresh
-final mine.
+D1 scan, §3 step-1 enumeration, trustCompiler approval, U2 attic, the
+two-hit probe (SAT — U2 closed), D2 separation (NO clean separation — §7);
+still in flight: (5,5,4) census CEGAR, ℂ-vs-ℝ dichotomy. §0 items 2–3 are
+done; §0 closure now reduces to the five obligations plus a fresh final
+mine.
 
 ## 10. Solver-run ledger (supersedes the missed-angle table)
 
@@ -332,10 +345,10 @@ final mine.
 | Endpoint coefficient post-processing | bridge vocabulary | DONE (`endpoint_core_census`) |
 | Pinned-135 lift support + uniform-center test | m-uniformity of the exact bank | DONE — exact bank is m=5-only (verified) |
 | Relaxed projection → split → singleton ladder | relaxed-vocabulary viability | DONE — 135/135 unit (verified) |
-| §3 step-1 required-fact enumeration | general-m derivability checklist | NOT ATTEMPTED (zero solver cost) |
-| Two-hit probe (§4) | lemma-vs-census shape of the ≤1 bounds | NOT ATTEMPTED |
-| (5,5,4) exhaustive census (§5) | \|A\|=11 slice of obligation 4 | PLANNED; smoke gates specified |
-| D2 invariant separation (§7) | plausibility of a combinatorial rigidity criterion | NOT ATTEMPTED |
+| §3 step-1 required-fact enumeration | general-m derivability checklist | DONE — residue EMPTY (U1 closed) |
+| Two-hit probe (§4) | lemma-vs-census shape of the ≤1 bounds | DONE — SAT, exact witnesses (U2 closed) |
+| (5,5,4) exhaustive census (§5) | \|A\|=11 slice of obligation 4 | IN FLIGHT — smoke 99/99; pattern-bank CEGAR running |
+| D2 invariant separation (§7) | plausibility of a combinatorial rigidity criterion | DONE — NO clean separation (§7) |
 | s1_030 lift-support timeout | (cleanliness only) | SUPERSEDED — singleton split covers it |
 
 Not proposed, with dead-end citations: SOS/Positivstellensatz hunts,
@@ -363,12 +376,14 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE: no direct transfer, 5 adaptable leads (§7) — leads 2–4 feed D2's invariant menu, lead 1 (ℂ-vs-ℝ dichotomy) is a new cheap dispatch; next signal = D2 separation or dichotomy classification; else honest OPEN report |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | D1 DONE (no direct transfer, 5 leads); D2 DONE 2026-07-06: **NO clean combinatorial separation** — solver-verified witness pairs close the counting route; positives = contraction-profile index key (430/540 unattained) + PROVEN forced gauge-pair collapse ("pattern forces u = v"). Next signal = ℂ-vs-ℝ dichotomy (in flight); then D3 direction decision (Adam) |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
 | U8 | ℝ-only content in census certificates (checker fit) | unknown until emit | census output inspection; decision point if present |
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
-computation away. U4 is the proof's genuine frontier; D1+D2 are the cheapest
-known ways to attack it.
+computation away. U4 is the proof's genuine frontier; D1+D2 (both done) have
+bounded it from both sides — no theorem transfers, no counting invariant
+decides — leaving the dichotomy as the last cheap probe before a D3
+direction decision.

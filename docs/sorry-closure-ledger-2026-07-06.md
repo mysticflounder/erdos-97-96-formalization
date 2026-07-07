@@ -120,11 +120,15 @@ theorem left behind in source).
 ### 2.4 `DoubleApexOffSurplusSharedRadiusPair` (row 4)
 
 Route: master plan §5 ((5,5,4) census with the surplus-designation WLOG
-caution and smoke gate) + §7 (workstream D for |A| ≥ 12; D1 literature scan
-in flight, D2 port manifest ready). Proposed split residual
+caution and smoke gate) + §7 (workstream D for |A| ≥ 12; D1 DONE — 5 leads,
+no direct transfer; D2 DONE 2026-07-06 — NO clean combinatorial separation,
+so the |A| ≤ 11 slice stays census-shaped and D3 aims at
+ideal-theoretic/geometric certificates via the PROVEN forced gauge-pair
+collapse; dichotomy in flight). Proposed split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
-has genuine open-strategy uncertainty (register U4). Dispatch pending Adam.
+has genuine open-strategy uncertainty (register U4). Census dispatched
+2026-07-06 (§1 table row "dispatched").
 Acceptance: either the obligation closes, or it is replaced on the spine by
 the strictly narrower Card12Up residual with the |A| ≤ 11 slice
 kernel-closed.

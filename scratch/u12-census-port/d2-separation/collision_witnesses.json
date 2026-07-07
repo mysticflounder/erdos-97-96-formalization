@@ -1,0 +1,784 @@
+{
+ "witnesses": {
+  "ALL_scalars": [
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 34,
+     "P": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      8,
+      10,
+      11
+     ],
+     "k": 8,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 322,
+      "core_idx": 14,
+      "P": [
+       0,
+       1,
+       4,
+       6,
+       7,
+       8,
+       9,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[8, 12, 0, 0, -1, 1, 0, 6, 3, 1, 18, 2, 3, 1, 6, 2, 2, -1, 2, 13, 16]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 52,
+     "P": [
+      0,
+      1,
+      2,
+      6,
+      7,
+      8,
+      11
+     ],
+     "k": 7,
+     "delta": 2
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 7,
+      "core_idx": 7,
+      "P": [
+       0,
+       1,
+       2,
+       7,
+       8,
+       9,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[7, 12, 2, 2, 0, 4, 1, 7, 2, 1, 19, 5, 4, 2, 7, 4, 4, 2, 2, 20, 16]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 124,
+     "P": [
+      0,
+      1,
+      2,
+      4,
+      10,
+      11
+     ],
+     "k": 6,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 102,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       2,
+       3,
+       4,
+       7
+      ]
+     }
+    ],
+    "shared_combo_value": "[6, 8, 0, 0, 0, 2, 0, 5, 2, 1, 13, 1, 3, 1, 2, 2, 2, 0, 2, 5, 10]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 131,
+     "P": [
+      0,
+      1,
+      2,
+      5,
+      7,
+      9,
+      10
+     ],
+     "k": 7,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 122,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       2,
+       3,
+       5,
+       6,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[7, 10, 0, 0, 0, 3, 0, 6, 2, 1, 16, 2, 3, 1, 2, 2, 2, 0, 2, 9, 13]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 139,
+     "P": [
+      0,
+      1,
+      2,
+      5,
+      8,
+      9,
+      11
+     ],
+     "k": 7,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 20,
+      "core_idx": 1,
+      "P": [
+       0,
+       1,
+       2,
+       4,
+       6,
+       7,
+       10
+      ]
+     }
+    ],
+    "shared_combo_value": "[7, 11, 1, 1, 0, 1, 1, 7, 2, 1, 18, 4, 4, 2, 7, 3, 3, 1, 2, 17, 15]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 212,
+     "P": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      8,
+      11
+     ],
+     "k": 7,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 10,
+      "core_idx": 5,
+      "P": [
+       0,
+       1,
+       4,
+       6,
+       7,
+       10,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[7, 10, 0, 0, 0, 2, 0, 5, 3, 1, 15, 1, 4, 1, 4, 2, 2, -1, 3, 8, 14]"
+   }
+  ],
+  "k+delta+contraction": [
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 0,
+     "P": [
+      0,
+      3,
+      5,
+      7
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 118,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       2,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[0, 1], [0, 1], [0, 2], [0, 2], [1, 1], [1, 2]]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 4,
+     "P": [
+      0,
+      5,
+      6,
+      11
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 323,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 1], [0, 2]]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 6,
+     "P": [
+      0,
+      1,
+      2,
+      5,
+      7,
+      11
+     ],
+     "k": 6,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 63,
+      "core_idx": 1,
+      "P": [
+       0,
+       1,
+       3,
+       4,
+       6,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[6, 0, [[-1, 1], [-1, 1], [-1, 1], [-1, 2], [-1, 2], [0, 1], [0, 1], [0, 2], [0, 2], [1, 0], [1, 0], [1, 1], [1, 1], [1, 1], [2, 0]]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 7,
+     "P": [
+      1,
+      3,
+      7,
+      11
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 323,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 1], [0, 2]]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 7,
+     "P": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      9
+     ],
+     "k": 6,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 318,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       3,
+       6,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[6, 1, [[-1, 2], [0, 1], [0, 1], [0, 2], [0, 2], [0, 3], [1, 0], [1, 0], [1, 1], [1, 1], [1, 2], [2, 0], [2, 0], [2, 1], [2, 1]]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 8,
+     "P": [
+      0,
+      3,
+      4,
+      8
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 23,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     },
+     {
+      "profile": "654",
+      "cube_idx": 47,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       3,
+       11
+      ]
+     },
+     {
+      "profile": "654",
+      "cube_idx": 314,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       4,
+       7
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 2], [1, 1]]]"
+   }
+  ],
+  "k+delta+contraction+circledeg": [
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 0,
+     "P": [
+      0,
+      3,
+      5,
+      7
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "555",
+      "cube_idx": 118,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       2,
+       11
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[0, 1], [0, 1], [0, 2], [0, 2], [1, 1], [1, 2]], [2, 1, 1, 1]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 4,
+     "P": [
+      0,
+      5,
+      6,
+      11
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 323,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 1], [0, 2]], [2, 2, 1]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 6,
+     "P": [
+      0,
+      1,
+      2,
+      5,
+      7,
+      11
+     ],
+     "k": 6,
+     "delta": 0
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 63,
+      "core_idx": 1,
+      "P": [
+       0,
+       1,
+       3,
+       4,
+       6,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[6, 0, [[-1, 1], [-1, 1], [-1, 1], [-1, 2], [-1, 2], [0, 1], [0, 1], [0, 2], [0, 2], [1, 0], [1, 0], [1, 1], [1, 1], [1, 1], [2, 0]], [2, 2, 2, 1, 1]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 7,
+     "P": [
+      1,
+      3,
+      7,
+      11
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 323,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 1], [0, 2]], [2, 2, 1]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 7,
+     "P": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      9
+     ],
+     "k": 6,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 318,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       3,
+       6,
+       8,
+       9
+      ]
+     }
+    ],
+    "shared_combo_value": "[6, 1, [[-1, 2], [0, 1], [0, 1], [0, 2], [0, 2], [0, 3], [1, 0], [1, 0], [1, 1], [1, 1], [1, 2], [2, 0], [2, 0], [2, 1], [2, 1]], [2, 2, 2, 2, 1]]"
+   },
+   {
+    "control": {
+     "profile": "654",
+     "cube_idx": 8,
+     "P": [
+      0,
+      3,
+      4,
+      8
+     ],
+     "k": 4,
+     "delta": 1
+    },
+    "dead": [
+     {
+      "profile": "654",
+      "cube_idx": 23,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       8,
+       9
+      ]
+     },
+     {
+      "profile": "654",
+      "cube_idx": 47,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       3,
+       11
+      ]
+     },
+     {
+      "profile": "654",
+      "cube_idx": 314,
+      "core_idx": 0,
+      "P": [
+       0,
+       1,
+       4,
+       7
+      ]
+     }
+    ],
+    "shared_combo_value": "[4, 1, [[-1, 2], [0, 1], [0, 1], [0, 1], [0, 2], [1, 1]], [2, 2, 1]]"
+   }
+  ]
+ },
+ "solver_verifications": [
+  {
+   "combo": "ALL_scalars",
+   "control": {
+    "profile": "654",
+    "cube_idx": 34,
+    "P": [
+     0,
+     1,
+     2,
+     4,
+     5,
+     8,
+     10,
+     11
+    ],
+    "k": 8,
+    "delta": 0
+   },
+   "control_verdict": {
+    "msolve": "feasible",
+    "singular_infeasible": false,
+    "n_gens": 12
+   },
+   "paired_dead": {
+    "profile": "654",
+    "cube_idx": 322,
+    "core_idx": 14,
+    "P": [
+     0,
+     1,
+     4,
+     6,
+     7,
+     8,
+     9,
+     11
+    ]
+   },
+   "dead_verdict": {
+    "msolve": "infeasible",
+    "singular_infeasible": true,
+    "n_gens": 12
+   },
+   "witness_valid": true
+  },
+  {
+   "combo": "ALL_scalars",
+   "control": {
+    "profile": "654",
+    "cube_idx": 52,
+    "P": [
+     0,
+     1,
+     2,
+     6,
+     7,
+     8,
+     11
+    ],
+    "k": 7,
+    "delta": 2
+   },
+   "control_verdict": {
+    "msolve": "feasible",
+    "singular_infeasible": false,
+    "n_gens": 12
+   },
+   "paired_dead": {
+    "profile": "555",
+    "cube_idx": 7,
+    "core_idx": 7,
+    "P": [
+     0,
+     1,
+     2,
+     7,
+     8,
+     9,
+     11
+    ]
+   },
+   "dead_verdict": {
+    "msolve": "infeasible",
+    "singular_infeasible": true,
+    "n_gens": 12
+   },
+   "witness_valid": true
+  },
+  {
+   "combo": "ALL_scalars",
+   "control": {
+    "profile": "654",
+    "cube_idx": 124,
+    "P": [
+     0,
+     1,
+     2,
+     4,
+     10,
+     11
+    ],
+    "k": 6,
+    "delta": 0
+   },
+   "control_verdict": {
+    "msolve": "feasible",
+    "singular_infeasible": false,
+    "n_gens": 8
+   },
+   "paired_dead": {
+    "profile": "555",
+    "cube_idx": 102,
+    "core_idx": 0,
+    "P": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     7
+    ]
+   },
+   "dead_verdict": {
+    "msolve": "infeasible",
+    "singular_infeasible": true,
+    "n_gens": 8
+   },
+   "witness_valid": true
+  },
+  {
+   "combo": "ALL_scalars",
+   "control": {
+    "profile": "654",
+    "cube_idx": 131,
+    "P": [
+     0,
+     1,
+     2,
+     5,
+     7,
+     9,
+     10
+    ],
+    "k": 7,
+    "delta": 0
+   },
+   "control_verdict": {
+    "msolve": "feasible",
+    "singular_infeasible": false,
+    "n_gens": 10
+   },
+   "paired_dead": {
+    "profile": "555",
+    "cube_idx": 122,
+    "core_idx": 0,
+    "P": [
+     0,
+     1,
+     2,
+     3,
+     5,
+     6,
+     11
+    ]
+   },
+   "dead_verdict": {
+    "msolve": "infeasible",
+    "singular_infeasible": true,
+    "n_gens": 10
+   },
+   "witness_valid": true
+  }
+ ]
+}

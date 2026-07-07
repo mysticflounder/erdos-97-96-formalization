@@ -1,0 +1,28 @@
+[654] dead cores swept: {'n_cube_records': 109, 'min_support_hist': {'4': 7, '5': 17, '6': 42, '7': 38, '8': 5}, 'n_cores': 261, 'n_singular_timeout_cores': 3}
+[555] dead cores swept: {'n_cube_records': 130, 'min_support_hist': {'4': 9, '5': 20, '6': 49, '7': 44, '8': 8}, 'n_cores': 286, 'n_singular_timeout_cores': 4}
+{
+  "dead_654": {
+    "n_cube_records": 109,
+    "min_support_hist": {
+      "4": 7,
+      "5": 17,
+      "6": 42,
+      "7": 38,
+      "8": 5
+    },
+    "n_cores": 261,
+    "n_singular_timeout_cores": 3
+  },
+  "dead_555": {
+    "n_cube_records": 130,
+    "min_support_hist": {
+      "4": 9,
+      "5": 20,
+      "6": 49,
+      "7": 44,
+      "8": 8
+    },
+    "n_cores": 286,
+    "n_singular_timeout_cores": 4
+  }
+}

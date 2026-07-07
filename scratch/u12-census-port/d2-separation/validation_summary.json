@@ -1,0 +1,69 @@
+{
+  "pass": true,
+  "checks": {
+    "V1 dead_654 count": {
+      "ok": true,
+      "detail": "958 == 958 (stage1 DEAD, census log)"
+    },
+    "V1 dead_555 count": {
+      "ok": true,
+      "detail": "924 == 924 (stage1 DEAD, census log)"
+    },
+    "V2 alive_654 count": {
+      "ok": true,
+      "detail": "164 == n_alive_C 164 (300-cube pilot)"
+    },
+    "V2 first_alive match": {
+      "ok": true,
+      "detail": "first line of _u12_alive_654.jsonl == census_654.json first_alive_C"
+    },
+    "V4 gen_map schema dead_654[0]": {
+      "ok": true,
+      "detail": "36 gens, star (c, K_c[0], K_c[j]), 3 distinct points each, 3 per center"
+    },
+    "V4 gen_map schema dead_555[0]": {
+      "ok": true,
+      "detail": "36 gens, star (c, K_c[0], K_c[j]), 3 distinct points each, 3 per center"
+    },
+    "V3 regen_654 distinct": {
+      "ok": true,
+      "detail": "2000 distinct cubes regenerated"
+    },
+    "V5 regen_654 attempts": {
+      "ok": true,
+      "detail": "attempts 2095 vs census-log 2095"
+    },
+    "V3 dead_654 subset": {
+      "ok": true,
+      "detail": "all 958 dead cubes in regenerated sample (missing 0)"
+    },
+    "V3 alive_654 complement size": {
+      "ok": true,
+      "detail": "1042 == logged stage1 ALIVE 1042"
+    },
+    "V3 ported alive in first300": {
+      "ok": true,
+      "detail": "164/164 ported alive cubes in regenerated first 300"
+    },
+    "V3 ported alive disjoint from dead": {
+      "ok": true,
+      "detail": "164/164 not in dead set"
+    },
+    "V3 regen_555 distinct": {
+      "ok": true,
+      "detail": "2000 distinct cubes regenerated"
+    },
+    "V5 regen_555 attempts": {
+      "ok": true,
+      "detail": "attempts 2004 vs census-log 2004"
+    },
+    "V3 dead_555 subset": {
+      "ok": true,
+      "detail": "all 924 dead cubes in regenerated sample (missing 0)"
+    },
+    "V3 alive_555 complement size": {
+      "ok": true,
+      "detail": "1076 == logged stage1 ALIVE 1076"
+    }
+  }
+}

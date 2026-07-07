@@ -1,0 +1,67 @@
+dead cores: 540 {'654': 258, '555': 282}; alive controls: {'654': 1256179, '555': 1295814, 'pooled': 2551993}
+dead cells (profile,k,delta): ["('555', 4, 1)", "('555', 4, 2)", "('555', 5, 0)", "('555', 5, 1)", "('555', 5, 2)", "('555', 5, 3)", "('555', 6, -1)", "('555', 6, 0)", "('555', 6, 1)", "('555', 6, 2)", "('555', 6, 3)", "('555', 7, -1)", "('555', 7, 0)", "('555', 7, 1)", "('555', 7, 2)", "('555', 7, 3)", "('555', 7, 4)", "('555', 8, 1)", "('555', 8, 2)", "('555', 8, 3)", "('555', 8, 4)", "('654', 4, 1)", "('654', 4, 3)", "('654', 5, 0)", "('654', 5, 1)", "('654', 5, 2)", "('654', 6, 0)", "('654', 6, 1)", "('654', 6, 2)", "('654', 6, 3)", "('654', 7, 0)", "('654', 7, 1)", "('654', 7, 2)", "('654', 7, 3)", "('654', 8, 0)", "('654', 8, 1)", "('654', 8, 2)", "('654', 8, 3)"]
+
+invariant                          POOLED sep?  hit/dead vals  dead-in-ovl  alive-in-ovl   cell-sep
+k                                           no      5/5         540/540    2551993/2551993    0/540  
+R                                           no     12/12        540/540    1702014/2551993    0/540  
+delta                                       no      6/6         540/540    748329/2551993    0/540  
+max_sub_delta_all                           no      6/6         540/540    2550299/2551993    0/540  
+max_sub_delta_proper                        no      5/5         540/540    2550133/2551993    0/540  
+n_sub_tight                                 no     14/14        540/540    2543408/2551993    0/540  
+n_sub_over                                  no     12/12        540/540    2548878/2551993    0/540  
+n_circles                                   no      6/6         540/540    2044324/2551993    0/540  
+max_circle_degree                           no      2/2         540/540    2215710/2551993    0/540  
+min_circle_degree                           no      2/2         540/540    2540482/2551993    0/540  
+E_star_edges                                no     17/17        540/540    1731623/2551993    0/540  
+E_minus_2k                                  no     10/10        540/540    984449/2551993    0/540  
+max_member_degree                           no      3/3         540/540    1517047/2551993    0/540  
+min_member_degree                           no      3/3         540/540    2551951/2551993    0/540  
+min_L_at_max_delta                          no      8/8         540/540    2551993/2551993    0/540  
+max_contract_delta                          no      7/7         540/540    1334731/2551993    0/540  
+max_contract_delta_z0                       no      7/7         540/540    695067/2551993    0/540  
+gauge_contract_delta                        no      7/7         540/540    961886/2551993   56/540  
+gauge_contract_z                            no      3/4         525/540    200462/2551993   41/540  
+n_pairs_contract_over                       no     29/29        540/540    2551993/2551993    0/540  
+n_pairs_z_pos                               no     14/14        540/540    2045352/2551993    0/540  
+circle_degree_profile                       no     65/65        540/540    1469234/2551993    0/540  
+class_size_profile                          no     65/65        540/540    1469234/2551993    0/540  
+member_degree_profile                       no    123/123       540/540    273452/2551993    1/540  
+sub_delta_hist                              no    290/479       350/540      7174/2551993  235/540  
+sub_size_delta_hist                         no    247/482       304/540      6512/2551993  280/540  
+contraction_profile                         no     98/525       110/540       468/2551993  470/540  
+argmax_sizes                                no     22/22        540/540    652305/2551993    0/540  
+k+delta                                     no     23/23        540/540    550279/2551993    0/540  
+k+delta+maxsub                              no     25/25        540/540    401127/2551993    0/540  
+k+delta+circledeg                           no     86/86        540/540    288062/2551993    0/540  
+k+delta+memberdeg                           no    159/159       540/540    188526/2551993    1/540  
+k+delta+subhist                             no    290/479       350/540      7174/2551993  235/540  
+k+delta+sizesubhist                         no    247/482       304/540      6512/2551993  280/540  
+k+delta+contraction                         no     98/525       110/540       442/2551993  470/540  
+k+delta+gaugecontract                       no     85/117       473/540     33343/2551993   71/540  
+k+delta+subhist+circledeg                   no    218/503       254/540      2892/2551993  335/540  
+k+delta+contraction+circledeg               no     69/525        81/540       376/2551993  489/540  
+ALL_scalars                                 no     43/525        44/540        58/2551993  516/540  
+ALL_scalars+profiles                       YES      0/530         0/540         0/2551993  540/540  
+
+scalar ranges (pooled)  dead | alive:
+  k                                [4, 8] | [4, 8]
+  R                                [5, 16] | [2, 20]
+  delta                            [-1, 4] | [-6, 8]
+  max_sub_delta_all                [-1, 4] | [-1, 8]
+  max_sub_delta_proper             [-1, 3] | [-1, 6]
+  n_sub_tight                      [0, 19] | [0, 26]
+  n_sub_over                       [0, 12] | [0, 36]
+  n_circles                        [3, 8] | [1, 8]
+  max_circle_degree                [2, 3] | [1, 3]
+  min_circle_degree                [1, 2] | [1, 3]
+  E_star_edges                     [8, 24] | [3, 28]
+  E_minus_2k                       [-1, 8] | [-8, 12]
+  max_member_degree                [3, 5] | [1, 7]
+  min_member_degree                [0, 2] | [0, 3]
+  min_L_at_max_delta               [1, 8] | [1, 8]
+  max_contract_delta               [0, 6] | [-4, 9]
+  max_contract_delta_z0            [1, 6] | [-4, 9]
+  gauge_contract_delta             [-3, 3] | [-6, 8]
+  gauge_contract_z                 [1, 4] | [0, 3]
+  n_pairs_contract_over            [0, 28] | [0, 28]
+  n_pairs_z_pos                    [6, 19] | [3, 24]

@@ -1,0 +1,5 @@
+[555] derived-ALIVE sample: {'ALIVE': 25, 'DEAD': 0, 'TIMEOUT': 0}  (expect all ALIVE)
+[555] ported-DEAD sample:   {'ALIVE': 0, 'DEAD': 25, 'TIMEOUT': 0}  (expect all DEAD)
+[654] derived-ALIVE sample: {'ALIVE': 25, 'DEAD': 0, 'TIMEOUT': 0}  (expect all ALIVE)
+[654] ported-DEAD sample:   {'ALIVE': 0, 'DEAD': 25, 'TIMEOUT': 0}  (expect all DEAD)
+SPOT-VERIFY PASS
