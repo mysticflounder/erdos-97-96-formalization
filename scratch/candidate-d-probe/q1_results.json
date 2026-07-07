@@ -1500,5 +1500,397 @@
   },
   "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
   "wall": 90.05
+ },
+ {
+  "id": "m1s1l0r2_V3_k0",
+  "tuple": [
+   1,
+   1,
+   0,
+   2
+  ],
+  "vc": [
+   "v3"
+  ],
+  "k": 0,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "vc": [
+    "v3"
+   ],
+   "k": 0,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "v1",
+    "b1",
+    "b2"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.02851414680481
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.03,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.07
+ },
+ {
+  "id": "m1s1l0r2_V3_k1",
+  "tuple": [
+   1,
+   1,
+   0,
+   2
+  ],
+  "vc": [
+   "v3"
+  ],
+  "k": 1,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "vc": [
+    "v3"
+   ],
+   "k": 1,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "v1",
+    "b1",
+    "b2"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.028931140899658
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.03,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.07
+ },
+ {
+  "id": "m1s1l1r1_V1_k0",
+  "tuple": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "vc": [
+   "v1"
+  ],
+  "k": 0,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "vc": [
+    "v1"
+   ],
+   "k": 0,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "a1",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.030341863632202
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.02,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.07
+ },
+ {
+  "id": "m1s1l1r1_V1_k1",
+  "tuple": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "vc": [
+   "v1"
+  ],
+  "k": 1,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "vc": [
+    "v1"
+   ],
+   "k": 1,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "a1",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.028151988983154
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.02,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.05
+ },
+ {
+  "id": "m1s1l1r1_V2_k0",
+  "tuple": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "vc": [
+   "v2"
+  ],
+  "k": 0,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "vc": [
+    "v2"
+   ],
+   "k": 0,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "a1",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.03125786781311
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.03,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.07
+ },
+ {
+  "id": "m1s1l1r1_V2_k1",
+  "tuple": [
+   1,
+   1,
+   1,
+   1
+  ],
+  "vc": [
+   "v2"
+  ],
+  "k": 1,
+  "meta": {
+   "tuple": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "vc": [
+    "v2"
+   ],
+   "k": 1,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "v3",
+    "a1",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.029980182647705
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.02,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.06
+ },
+ {
+  "id": "m1s2l0r1_V1_k0",
+  "tuple": [
+   1,
+   2,
+   0,
+   1
+  ],
+  "vc": [
+   "v1"
+  ],
+  "k": 0,
+  "meta": {
+   "tuple": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "vc": [
+    "v1"
+   ],
+   "k": 0,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "own2",
+    "v3",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.033066034317017
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.02,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.07
+ },
+ {
+  "id": "m1s2l0r1_V1_k1",
+  "tuple": [
+   1,
+   2,
+   0,
+   1
+  ],
+  "vc": [
+   "v1"
+  ],
+  "k": 1,
+  "meta": {
+   "tuple": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "vc": [
+    "v1"
+   ],
+   "k": 1,
+   "window_points": [
+    "v2",
+    "own0",
+    "own1",
+    "own2",
+    "v3",
+    "v1",
+    "b1"
+   ],
+   "n_vars": 13,
+   "n_eqs": 6,
+   "n_ge": 7,
+   "n_gt": 49
+  },
+  "msolve_eq": {
+   "verdict": "TIMEOUT",
+   "secs": 30.030388116836548
+  },
+  "z3": {
+   "status": "unknown",
+   "secs": 60.02,
+   "reason": "timeout"
+  },
+  "verdict": "NOT-KILLED-AT-SCALE(z3-unknown)",
+  "wall": 90.06
  }
 ]

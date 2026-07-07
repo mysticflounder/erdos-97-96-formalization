@@ -58,11 +58,17 @@ collapse; z3 300s unknown, cvc5/z3-1800s escalation artifacts in runs/):
 Sub-case refinement (PROVEN direction): s = 2 classes realized ONLY in
 straddle form (k = 1); their k in {0,2} cases ride SUB2.
 
-z3 full-window sweep (q1_sweep.log, q1_results.json): every completed case
-z3-unknown at 60 s (m0 block; sweep may still be appending — it is
-superseded by the factory witnesses and K-C proofs; treat as obstruction-D3
-documentation only). msolve step-(i): POSDIM everywhere tried (equality
+z3 full-window sweep (q1_sweep.log, q1_results.json): TERMINATED at 40/72
+cases (external stop) — every completed case z3-unknown at 60 s. Superseded
+by the factory witnesses and K-C proofs; treat as obstruction-D3
+documentation only. msolve step-(i): POSDIM everywhere tried (equality
 layer far underdetermined, as predicted).
+
+SUB2 solver escalation FINAL: z3 qfnra-nlsat 300 s unknown (both sides);
+cvc5 900 s "interrupted by timeout" (both sides,
+runs/SUB2_{left,right}.cvc5.out); the 1800 s z3 runs did not complete
+before session end (runs/SUB2_*.z3long.out empty). SUB2 remains
+solver-unresolved; kill CONJECTURED on the float evidence (K-D).
 
 ## Q2 (composition, D1)
 
