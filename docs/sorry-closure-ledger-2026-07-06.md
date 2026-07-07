@@ -138,7 +138,11 @@ ring witness, every enumerated candidate a solution, exact-verified —
 `scratch/d3-formulation/candidateB/`), so the ideal-theoretic uniform
 shape for the tail is CLOSED; remaining routes: Candidate C head split
 n ∈ {12,13,14}, Candidate D convexity-coupled forcing (no mechanism);
-split decision to Adam — plan §7 D3). Proposed
+split decision to Adam — plan §7 D3; RESOLVED 2026-07-07: Candidate D
+probe first — per-type convex-order exclusion over the 19 reflected
+primitive N8 tuples + composition test targeting obstruction D1,
+dispatched to `scratch/candidate-d-probe/`; C census extension deferred
+pending the probe verdict). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
