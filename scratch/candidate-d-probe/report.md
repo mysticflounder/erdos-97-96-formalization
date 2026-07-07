@@ -26,10 +26,17 @@
        - Gate artifacts on disk: G1 msolve `[-1]` (both separator
          encodings), G3 `[1,20,-1,[]]` (posdim, alive), G2 per report.
        - SUB2 terminal solver record confirmed on disk: both cvc5 900 s
-         legs "interrupted by timeout" (runs/SUB2_{left,right}.cvc5.out);
-         the two z3 1800 s legs were still running detached at final
-         transcription (z3-left in flight); their outputs land in
-         runs/SUB2_*.z3long.out and will be recorded when they finish.
+         legs "interrupted by timeout" (runs/SUB2_{left,right}.cvc5.out).
+         The two z3 1800 s legs never completed: the detached solver chain
+         was killed by the harness ~60-min background-task cap at 04:41:48
+         (started 03:41) — z3-left was killed at its own -T boundary with
+         no output written (runs/SUB2_left.z3long.out is the empty
+         redirect artifact), z3-right never started. Net: SUB2 is
+         solver-UNDECIDED across every attempt (z3 nlsat 300 s unknown ×2,
+         cvc5 900 s timeout ×2, z3 1800 s no result); the orchestrator did
+         not re-run the 1800 s legs — consistent with the report's own
+         conclusion that CAD QE (QEPCAD/Redlog) or a collapse-limit hand
+         proof, not more solver wall-time, is the route.
        - The superseded full-window z3 sweep was stopped by the agent at
          40/72 cases (all unknown at 60 s); q1_results.json finalized
          04:17 as obstruction-D3 documentation.
