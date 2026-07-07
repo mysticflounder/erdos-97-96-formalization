@@ -343,10 +343,13 @@ patterns with all points distinct.
   double-apex patterns, at every separator level L0–L3: Δ / +full-H1 / +Γ
   noncollinearity / +E exactness) is refuted by explicit witnesses: W15
   (15-point triangular-lattice subset, exact integers, census-admissible,
-  ℝ-realized by its own points) kills L0; two concentric-regular-octagon
-  configurations (n=16) and the decagon pair with inner radius b = 1/φ
-  (n=20) — general-position, full-H1, fully-exact-4, class structure
-  PROVEN via shared-quadratic/φ-identities — kill L1–L3 simultaneously.
+  ℝ-realized by its own points) and W16-tri (n=16, same family) kill L0;
+  W16-sq (square lattice, n=16, full-H1 with all 16 classes full exact-4
+  radius classes in exact integers) kills L1/L3 with no numerics; two
+  concentric-regular-octagon configurations (n=16) and the decagon pair
+  with inner radius b = 1/φ (n=20) — general-position, full-H1,
+  fully-exact-4, class structure PROVEN via shared-quadratic/φ-identities
+  — kill L1–L3 simultaneously.
   Independently verified by the orchestrator (exact-integer + 50-digit
   re-derivation from scratch, `scratch/d3-formulation/independent_check.py`
   — ALL PASS). The same witnesses kill the pattern-level certificate-census

@@ -104,6 +104,16 @@ def run_lattice(rec, idx):
     for c, K in classes.items():
         r2s = {d2_tri(pts[c], pts[m]) for m in K}
         check(len(r2s) == 1 and 0 not in r2s, f"{name}: class at {pts[c]} not equidistant (d2 set {r2s})")
+    # class fullness (exact-4): is each class the FULL radius class? Exact
+    # integer count of all points at the class radius. Required when the
+    # record claims exact4_variant (decides the E/L3 level for this witness);
+    # informational otherwise.
+    full = all(
+        {z for z in range(n) if z != c and d2_tri(pts[z], pts[c]) == d2_tri(pts[next(iter(K))], pts[c])} == K
+        for c, K in classes.items())
+    if rec.get('exact4_variant'):
+        check(full, f"{name}: exact4_variant claimed but some class is not the full radius class")
+    print(f"  {name}: all classes full exact-4 radius classes: {full} (claimed: {bool(rec.get('exact4_variant'))})")
     admissibility(name, n, U, V, W, S, O1, O2, classes, h1_required=('V', 'W'))
     print(f"  {name}: realization = the {n} distinct lattice points themselves (exact)")
 

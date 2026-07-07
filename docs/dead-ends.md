@@ -747,11 +747,14 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   equality-plus-separator saturation" — is FALSE at every separator level for
   n ≥ 15. Explicit falsifiers (independently verified, exact-integer /
   50-digit; `scratch/d3-formulation/`): W15 = 15-point triangular-lattice
-  subset (census-H1) kills the Δ-saturated census-level statement; two
-  concentric-regular-octagon configurations (n=16, b = cos(kπ/8)+√(cos²+1))
-  and the decagon pair with b = 1/φ (n=20) are general-position, full-H1,
-  fully-exact-4 and kill every leaf-extractable strengthening (+ full H1,
-  + noncollinearity Γ, + exactness E) simultaneously. Consequence: the
+  subset (census-H1) and W16-tri (same, n=16) kill the Δ-saturated
+  census-level statement; W16-sq (square lattice, n=16) is full-H1 with all
+  16 classes full exact-4 radius classes IN EXACT INTEGERS (kills +full-H1
+  and +exactness, not general-position); two concentric-regular-octagon
+  configurations (n=16, b = cos(kπ/8)+√(cos²+1)) and the decagon pair with
+  b = 1/φ (n=20) are general-position, full-H1, fully-exact-4 and kill
+  every leaf-extractable strengthening (+ full H1, + noncollinearity Γ,
+  + exactness E) simultaneously. Consequence: the
   per-pattern certificate bank/covering (the census-fallback shape) also
   cannot close the n ≥ 15 tail — the admissible pattern family contains
   ℝ-realizable members, so no dead-pattern bank covers it; any uniform-in-n
@@ -764,6 +767,7 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   (4460/4460 sampled patterns dead across seven cap profiles, kills localize
   to ≤ 8-point windows) and the row-decorated remnant (Candidate B,
   embedding test pending). **Lesson:** any future uniform |A| ≥ 12 proposal
-  must kill the banked falsifiers (W15 + the two-ring family,
+  must kill the banked falsifiers (W15/W16-tri/W16-sq in
+  `scratch/d3-formulation/t1_results.json` + the two-ring family,
   `scratch/d3-formulation/t9_wit_*.json`) before dispatch; convexity-free
   pattern abstractions cannot close the tail.
