@@ -305,7 +305,10 @@ packet extraction (`largeK4SurplusCapPacket`), the pinned-surplus finite-bank
 handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
 (`removableVertexOfLarge_of_nonIsM44`).
 
-**Active work happens in this repo.** The live plans are
+**Active work happens in this repo.**
+[`docs/closure-plan-2026-07-06.md`](docs/closure-plan-2026-07-06.md) is the
+master closure plan (cross-cutting strategy, gates, dispatch specs,
+uncertainty register). The lane execution logs are
 [`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
 (the two slot-3 U-lane residuals) and
 [`docs/four-point-subpacket-plan.md`](docs/four-point-subpacket-plan.md)
