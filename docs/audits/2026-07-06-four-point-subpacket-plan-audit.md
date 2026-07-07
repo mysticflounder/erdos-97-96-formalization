@@ -108,11 +108,19 @@ which remains "not attempted" per the missed-angle solver table. The gate
 correctly blocks proof attempts, but nothing schedules the probe itself (one
 solver-day). Until it runs, the branch's checklist cannot move.
 
-**FP5. Verification commands are currently unenforceable and no interim gate
-is stated** (shared with the slot-3 plan; see companion audit SP5). While
-proof-blueprint's miner is paused, on-spine claims should be gated by
-`lake-build` plus `proof-blueprint axioms <target>` (live kernel query; does
-not need the mined graph).
+**FP5. Verification commands were unenforceable at audit time — RESOLVED
+same day.** proof-blueprint was unblocked on 2026-07-06 via a `[mining].skip`
+for the generated certificate subtrees (commit e621b8c; cert modules render
+as declared 🔒 trusted leaves; cert sorries remain caught by the source scan
+and by live `#print axioms`). A kernel-fresh `proof-blueprint spine` run after
+the unblock confirms the frontier this audit assumed: 928/950 nodes closed on
+`Problem97.erdos97_rhs`, exactly the five named sorry obligations open, both
+targets sharing them, and the two `U2OppCap2Escape` sorries flagged
+off-spine. Note the skip means the mined graph no longer surfaces the
+`Lean.trustCompiler` trust cost — that remains visible only to the live
+axiom check (verified earlier on 2026-07-06: closure = core + sorryAx +
+ofReduceBool + trustCompiler), and `[axioms].approved` is still empty, so
+verify-publish will still block on trustCompiler after the sorries close.
 
 Out of scope here: the absence of a uniform-rigidity workstream is charged to
 the slot-3 plan audit (this plan is slot-2-scoped and its obligations have no

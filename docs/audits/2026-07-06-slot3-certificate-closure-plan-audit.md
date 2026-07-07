@@ -109,12 +109,20 @@ the plan prevents it; also re-validate the encoding against the known
 (5,5,4) sampled verdicts before trusting the exhaustive run (per solver
 policy: smoke-test first).
 
-**SP5. The verification checklist is currently a dead letter with no
-substitute stated.** The plan correctly says not to run the blueprint spine
-commands while the miner is being repaired, but gives no interim gate.
-Recommendation: state it — `lake-build` per touched root plus
-`proof-blueprint axioms <target>` (live kernel query; needs no mined graph)
-for both publish targets, until the PHASE10 miner fix lands.
+**SP5. The verification checklist was a dead letter at audit time — RESOLVED
+same day; the plan text is now stale in the other direction.**
+proof-blueprint was unblocked on 2026-07-06 via `[mining].skip` for the
+generated certificate subtrees (commit e621b8c), and a kernel-fresh spine run
+confirms the five-obligation frontier on both targets. The plan's "do not run
+the blueprint commands until the tool is runnable again" paragraph should now
+be deleted and the verification checklist re-enabled as written. Two
+caveats to record alongside: (a) the skipped cert subtrees hide
+`Lean.trustCompiler` from the mined graph — the live `#print axioms` gate
+still reports it, and `[axioms].approved` is still empty, so verify-publish
+blocks on it until deliberately approved; (b) the spine's off-spine section
+is authoritative again — new certificate soundness modules stay invisible to
+the spine until actually imported by a spine module, so "wired in" claims
+should cite a spine diff, not a build log.
 
 ## Verdict
 
