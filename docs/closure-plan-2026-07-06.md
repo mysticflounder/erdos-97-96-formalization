@@ -200,6 +200,29 @@ two-large-cap case; there is no (5,5,3) slice.
    caps/convex/shell content must enter the certificates; report before
    proceeding.
 
+**Census status (2026-07-07, budget-partial).** The CEGAR pattern-bank run
+exhausted its 6h wall budget with no stop condition: **1596 unique orbits /
+40,524 unique pattern instances** banked (one benign diagnosed zombie
+duplicate line), kills all equality-only Nullstellensatz (base 58, pair 403,
+multi_pair 1135 — no U8 decision point arises), full bank verified by
+independent exact-Fraction re-check (`verify_certs.py`, no Singular/msolve
+in the loop; agent run + orchestrator re-run). **No ALIVE cube in 376
+witnesses** — the exact engine never even ran as a screen (every witness had
+an msolve-dead induced sub-pattern at k ≤ 6); HEURISTIC evidence for
+all-dead, not proof. **Coverage is NOT complete**: the SAT gap signal stayed
+flat (~0.8 s solves), so UNSAT is not near at this bank size; fully
+resumable in ~50-min installments (`uv run python
+scratch/census-554/run_census.py 3000 1200`, resumes from `bank.jsonl` +
+`failed.jsonl`; protocol + full stats in `scratch/census-554/STATE.md`,
+report in `scratch/census-554/report.md`). 52 certify-fail patterns are
+persistently blacklisted (none banked — sound; offline-certification
+candidates). Checker fit confirmed (U8): the Lean Checker's arithmetic
+layer is variable-count generic (Certificate = generator/coefficient
+sparse-poly lists over Nat-indexed variables), so census payloads need a
+census BankSoundness analog + coverage DFS theorem, not a checker change.
+Spec item 5's split (card-11 closed + `…Card12Up` residual) remains the
+consumer shape; it activates when the bank reaches UNSAT/coverage-complete.
+
 **|A| ≥ 12 — workstream D (§7).** No other route: descent/deletion is
 proven-dead (monotonicity dead-ends; K4 not downward-hereditary), the finite
 bank is empirically dead at |A| = 12, and bisector/radical-axis counting is
@@ -506,12 +529,12 @@ Both: fold per the §8 doc-ownership rule.
 |---|---|---|---|
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
-| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
+| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **BUDGET-partial 2026-07-07**: 1596 orbits / 40,524 instances banked + verified, **no ALIVE cube in 376 witnesses** (HEURISTIC for all-dead); coverage incomplete (gap signal flat), resumable (§5 census status) |
 | U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`scratch/candidate-d-probe/`, §7 D3); C head split deferred as standing fallback. **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). Live D shape = cross-center coupling (Q3, unprobed). **C-split go/no-go to Adam** |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
-| U8 | ℝ-only content in census certificates (checker fit) | unknown until emit | census output inspection; decision point if present |
+| U8 | ~~ℝ-only content in census certificates (checker fit)~~ **RESOLVED 2026-07-07: none** — every kill in the 1596-orbit bank is an equality-only Nullstellensatz identity (Rabinowitsch pairs stay equalities, consumer sets t = 1/d²), and the pipeline can only emit that shape (an ALIVE cube stops the run instead); Checker arithmetic layer confirmed variable-count generic | closed | census bank inspection + Checker.lean read |
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
 computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy+D3
