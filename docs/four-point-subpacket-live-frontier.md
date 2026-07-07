@@ -158,7 +158,7 @@ Lean names:
 
 Checkpoint, 2026-07-07:
 
-Six finite-scaffold row bridges are now proved:
+Eight finite-scaffold row bridges are now proved:
 
 ```text
 rightNonSurplusRow0022Excluded_of_finiteScaffold
@@ -167,6 +167,8 @@ rightNonSurplusRow0121Excluded_of_finiteScaffold
 leftNonSurplusRow0112Excluded_of_finiteScaffold
 rightNonSurplusRow1021Excluded_of_finiteScaffold
 leftNonSurplusRow1012Excluded_of_finiteScaffold
+rightNonSurplusRow2011Excluded_of_finiteScaffold
+leftNonSurplusRow2011Excluded_of_finiteScaffold
 ```
 
 The row0022 bridges choose the named surplus triple around the row's own two
@@ -375,13 +377,16 @@ The erased-pin finite plan is therefore:
    private-`.w` cross-separation incidence in the JSON/report output, and
    `ErasedPinFixedSeedDFS.lean` now exposes the eight row-wide private-`.w`
    contradictions.
-2. Wire the corresponding geometric adapters into the pruned-row producer
-   surface using the existing `hsearchSep`, exact `.w` mask, and private-mask
-   placement interfaces.  Current geometric progress: right `(0,0,2,2)`, left
-   `(0,0,2,2)`, right `(0,1,2,1)`, left `(0,1,1,2)`, right `(1,0,2,1)`, and
-   left `(1,0,1,2)` are proved from the finite scaffold.  The two remaining
-   cheap cross-separation rows are the `m = 2` cases, right `(2,0,1,1)` and
-   left `(2,0,1,1)`.
+2. Done locally: wire the corresponding geometric adapters to finite-scaffold
+   row exclusions using the existing `hsearchSep`, exact `.w` mask, and
+   private-mask placement interfaces.  Current geometric progress: all eight
+   cheap cross-separation rows are proved from the finite scaffold, including
+   the final `m = 2` cases via
+   `rightNonSurplusRow2011Excluded_of_finiteScaffold` and
+   `leftNonSurplusRow2011Excluded_of_finiteScaffold`.
+   Remaining on-spine work: preserve the finite scaffold facts into the
+   pruned left-right row producer surface so these row-specific theorems are
+   actually consumed before that data is erased.
 3. Treat the other 18 finite ten-label rows as a separate residual requiring
    a stronger validator interface, partial row splitting, or the full
    fixed-seed DFS shadow route.

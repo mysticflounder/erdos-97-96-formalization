@@ -6190,6 +6190,128 @@ theorem IsM44.right_row1021_selectedClass_eq_moser_oppInterior2_surplus
   exact ⟨m, r, hMeq, hmVerts, hReq, hrSurplus,
     Finset.Subset.antisymm hselSubset hselSuperset⟩
 
+/-- The right non-surplus finite row `(2,0,1,1)` names the selected class as
+two Moser vertices, one point in the other non-surplus interior pair, and one
+surplus-interior point. -/
+theorem IsM44.right_row2011_selectedClass_eq_moserPair_oppInterior2_surplus
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (_hM44 : S.IsM44)
+    {center : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 2)
+    (hs : S.sameCapCount S.oppIndex1 center radius = 0)
+    (hl : S.leftAdjCount S.oppIndex1 center radius = 1)
+    (hr : S.rightAdjCount S.oppIndex1 center radius = 1) :
+    ∃ m₁ m₂ q r : ℝ²,
+      m₁ ≠ m₂ ∧
+      SelectedClass A center radius ∩ S.triangle.verts =
+        ({m₁, m₂} : Finset ℝ²) ∧
+      m₁ ∈ S.triangle.verts ∧
+      m₂ ∈ S.triangle.verts ∧
+      SelectedClass A center radius ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex1 =
+        ({q} : Finset ℝ²) ∧
+      q ∈ S.oppInterior2 ∧
+      SelectedClass A center radius ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex1 =
+        ({r} : Finset ℝ²) ∧
+      r ∈ S.capInteriorByIndex S.surplusIdx ∧
+      SelectedClass A center radius =
+        ({q, m₁, m₂, r} : Finset ℝ²) := by
+  classical
+  let M := SelectedClass A center radius ∩ S.triangle.verts
+  let C := SelectedClass A center radius ∩
+    (S.capInteriorByIndex S.oppIndex1).erase center
+  let L := SelectedClass A center radius ∩
+    S.leftAdjacentInteriorByIndex S.oppIndex1
+  let R := SelectedClass A center radius ∩
+    S.rightAdjacentInteriorByIndex S.oppIndex1
+  have hMcard : M.card = 2 := by
+    simpa [M, moserCount] using hm
+  obtain ⟨m₁, m₂, hm₁₂, hMeq⟩ := Finset.card_eq_two.mp hMcard
+  have hm₁Verts : m₁ ∈ S.triangle.verts := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).2
+  have hm₂Verts : m₂ ∈ S.triangle.verts := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).2
+  have hCcard : C.card = 0 := by
+    simpa [C, sameCapCount] using hs
+  have hCeq : C = ∅ := Finset.card_eq_zero.mp hCcard
+  have hLcard : L.card = 1 := by
+    simpa [L, leftAdjCount] using hl
+  obtain ⟨q, hLeq⟩ := Finset.card_eq_one.mp hLcard
+  have hqOpp : q ∈ S.oppInterior2 := by
+    have hqL : q ∈ L := by
+      rw [hLeq]
+      simp
+    have hqLeft := (Finset.mem_inter.mp hqL).2
+    simpa [S.leftAdjacentInteriorByIndex_oppIndex1_eq_oppInterior2]
+      using hqLeft
+  have hRcard : R.card = 1 := by
+    simpa [R, rightAdjCount] using hr
+  obtain ⟨r, hReq⟩ := Finset.card_eq_one.mp hRcard
+  have hrSurplus : r ∈ S.capInteriorByIndex S.surplusIdx := by
+    have hrR : r ∈ R := by
+      rw [hReq]
+      simp
+    have hrRight := (Finset.mem_inter.mp hrR).2
+    simpa [S.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior]
+      using hrRight
+  have hselCover : SelectedClass A center radius ⊆ M ∪ C ∪ L ∪ R := by
+    intro y hy
+    have hcover := S.selectedClass_subset_groupUnion S.oppIndex1
+      hradius_pos hy
+    simp only [Finset.mem_union] at hcover ⊢
+    rcases hcover with (((hyM | hyC) | hyL) | hyR)
+    · exact Or.inl (Or.inl (Or.inl (Finset.mem_inter.mpr ⟨hy, hyM⟩)))
+    · exact Or.inl (Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyC⟩)))
+    · exact Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyL⟩))
+    · exact Or.inr (Finset.mem_inter.mpr ⟨hy, hyR⟩)
+  have hselSubset :
+      SelectedClass A center radius ⊆ ({q, m₁, m₂, r} : Finset ℝ²) := by
+    intro y hy
+    have hycover := hselCover hy
+    simp [M, C, L, R, hMeq, hCeq, hLeq, hReq] at hycover
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    tauto
+  have hqSel : q ∈ SelectedClass A center radius := by
+    have hqL : q ∈ L := by
+      rw [hLeq]
+      simp
+    exact (Finset.mem_inter.mp hqL).1
+  have hm₁Sel : m₁ ∈ SelectedClass A center radius := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).1
+  have hm₂Sel : m₂ ∈ SelectedClass A center radius := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).1
+  have hrSel : r ∈ SelectedClass A center radius := by
+    have hrR : r ∈ R := by
+      rw [hReq]
+      simp
+    exact (Finset.mem_inter.mp hrR).1
+  have hselSuperset :
+      ({q, m₁, m₂, r} : Finset ℝ²) ⊆
+        SelectedClass A center radius := by
+    intro y hy
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hy
+    rcases hy with rfl | rfl | rfl | rfl
+    · exact hqSel
+    · exact hm₁Sel
+    · exact hm₂Sel
+    · exact hrSel
+  exact ⟨m₁, m₂, q, r, hm₁₂, hMeq, hm₁Verts, hm₂Verts, hLeq,
+    hqOpp, hReq, hrSurplus,
+    Finset.Subset.antisymm hselSubset hselSuperset⟩
+
 /-- The left non-surplus finite row `(0,0,2,2)` names the selected class as
 the other non-surplus interior pair together with two surplus-interior points.
 -/
@@ -6520,6 +6642,128 @@ theorem IsM44.left_row1012_selectedClass_eq_moser_oppInterior1_surplus
     · exact hmSel
     · exact hlSel
   exact ⟨m, l, hMeq, hmVerts, hLeq, hlSurplus,
+    Finset.Subset.antisymm hselSubset hselSuperset⟩
+
+/-- The left non-surplus finite row `(2,0,1,1)` names the selected class as
+two Moser vertices, one point in the other non-surplus interior pair, and one
+surplus-interior point. -/
+theorem IsM44.left_row2011_selectedClass_eq_moserPair_oppInterior1_surplus
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (_hM44 : S.IsM44)
+    {center : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount center radius = 2)
+    (hs : S.sameCapCount S.oppIndex2 center radius = 0)
+    (hl : S.leftAdjCount S.oppIndex2 center radius = 1)
+    (hr : S.rightAdjCount S.oppIndex2 center radius = 1) :
+    ∃ m₁ m₂ q l : ℝ²,
+      m₁ ≠ m₂ ∧
+      SelectedClass A center radius ∩ S.triangle.verts =
+        ({m₁, m₂} : Finset ℝ²) ∧
+      m₁ ∈ S.triangle.verts ∧
+      m₂ ∈ S.triangle.verts ∧
+      SelectedClass A center radius ∩
+          S.rightAdjacentInteriorByIndex S.oppIndex2 =
+        ({q} : Finset ℝ²) ∧
+      q ∈ S.oppInterior1 ∧
+      SelectedClass A center radius ∩
+          S.leftAdjacentInteriorByIndex S.oppIndex2 =
+        ({l} : Finset ℝ²) ∧
+      l ∈ S.capInteriorByIndex S.surplusIdx ∧
+      SelectedClass A center radius =
+        ({q, m₁, m₂, l} : Finset ℝ²) := by
+  classical
+  let M := SelectedClass A center radius ∩ S.triangle.verts
+  let C := SelectedClass A center radius ∩
+    (S.capInteriorByIndex S.oppIndex2).erase center
+  let L := SelectedClass A center radius ∩
+    S.leftAdjacentInteriorByIndex S.oppIndex2
+  let R := SelectedClass A center radius ∩
+    S.rightAdjacentInteriorByIndex S.oppIndex2
+  have hMcard : M.card = 2 := by
+    simpa [M, moserCount] using hm
+  obtain ⟨m₁, m₂, hm₁₂, hMeq⟩ := Finset.card_eq_two.mp hMcard
+  have hm₁Verts : m₁ ∈ S.triangle.verts := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).2
+  have hm₂Verts : m₂ ∈ S.triangle.verts := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).2
+  have hCcard : C.card = 0 := by
+    simpa [C, sameCapCount] using hs
+  have hCeq : C = ∅ := Finset.card_eq_zero.mp hCcard
+  have hLcard : L.card = 1 := by
+    simpa [L, leftAdjCount] using hl
+  obtain ⟨l, hLeq⟩ := Finset.card_eq_one.mp hLcard
+  have hlSurplus : l ∈ S.capInteriorByIndex S.surplusIdx := by
+    have hlL : l ∈ L := by
+      rw [hLeq]
+      simp
+    have hlLeft := (Finset.mem_inter.mp hlL).2
+    simpa [S.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior]
+      using hlLeft
+  have hRcard : R.card = 1 := by
+    simpa [R, rightAdjCount] using hr
+  obtain ⟨q, hReq⟩ := Finset.card_eq_one.mp hRcard
+  have hqOpp : q ∈ S.oppInterior1 := by
+    have hqR : q ∈ R := by
+      rw [hReq]
+      simp
+    have hqRight := (Finset.mem_inter.mp hqR).2
+    simpa [S.rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1]
+      using hqRight
+  have hselCover : SelectedClass A center radius ⊆ M ∪ C ∪ L ∪ R := by
+    intro y hy
+    have hcover := S.selectedClass_subset_groupUnion S.oppIndex2
+      hradius_pos hy
+    simp only [Finset.mem_union] at hcover ⊢
+    rcases hcover with (((hyM | hyC) | hyL) | hyR)
+    · exact Or.inl (Or.inl (Or.inl (Finset.mem_inter.mpr ⟨hy, hyM⟩)))
+    · exact Or.inl (Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyC⟩)))
+    · exact Or.inl (Or.inr (Finset.mem_inter.mpr ⟨hy, hyL⟩))
+    · exact Or.inr (Finset.mem_inter.mpr ⟨hy, hyR⟩)
+  have hselSubset :
+      SelectedClass A center radius ⊆ ({q, m₁, m₂, l} : Finset ℝ²) := by
+    intro y hy
+    have hycover := hselCover hy
+    simp [M, C, L, R, hMeq, hCeq, hLeq, hReq] at hycover
+    simp only [Finset.mem_insert, Finset.mem_singleton]
+    tauto
+  have hqSel : q ∈ SelectedClass A center radius := by
+    have hqR : q ∈ R := by
+      rw [hReq]
+      simp
+    exact (Finset.mem_inter.mp hqR).1
+  have hm₁Sel : m₁ ∈ SelectedClass A center radius := by
+    have hm₁M : m₁ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₁M).1
+  have hm₂Sel : m₂ ∈ SelectedClass A center radius := by
+    have hm₂M : m₂ ∈ M := by
+      rw [hMeq]
+      simp
+    exact (Finset.mem_inter.mp hm₂M).1
+  have hlSel : l ∈ SelectedClass A center radius := by
+    have hlL : l ∈ L := by
+      rw [hLeq]
+      simp
+    exact (Finset.mem_inter.mp hlL).1
+  have hselSuperset :
+      ({q, m₁, m₂, l} : Finset ℝ²) ⊆
+        SelectedClass A center radius := by
+    intro y hy
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hy
+    rcases hy with rfl | rfl | rfl | rfl
+    · exact hqSel
+    · exact hm₁Sel
+    · exact hm₂Sel
+    · exact hlSel
+  exact ⟨m₁, m₂, q, l, hm₁₂, hMeq, hm₁Verts, hm₂Verts, hReq,
+    hqOpp, hLeq, hlSurplus,
     Finset.Subset.antisymm hselSubset hselSuperset⟩
 
 /-- If the erased point belongs to the right-adjacent singleton of a right
