@@ -126,7 +126,9 @@ so the |A| ≤ 11 slice stays census-shaped and D3 aims at
 ideal-theoretic/geometric certificates via the PROVEN forced gauge-pair
 collapse; dichotomy DONE 2026-07-06 — all mined dead cores ℂ-dead, so D3
 poses ideal-theoretically with ℚ-Nullstellensatz certificates in the
-endpoint-bank shape). Proposed split residual
+endpoint-bank shape; D3 direction DECIDED 2026-07-06 by Adam — uniform
+ideal-theoretic lemma first, certificate census fallback). Proposed split
+residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
 has genuine open-strategy uncertainty (register U4). Census dispatched

@@ -318,12 +318,25 @@ patterns with all points distinct.
   85 Cempty / 181 nodistinct — different minimality notions, no conflict.
   Tripwire hook: §6's bounded-forced-subsystem tripwire should test these
   ℂ-dead cores as liveData producers.
-- **D3 — lemma formulation + proof attempt:** all three bounding signals are
-  in — D1 (no transfer), D2 (no counting criterion), dichotomy (uniformly
-  ℂ-dead ⇒ ideal-theoretic certificate shape, census-shaped with the
-  contraction-profile index key). Direction decision (Adam): certificate
-  census over cores (endpoint-stack shape) vs a uniform ideal-theoretic
-  lemma attempt. Out of scope until that decision.
+- **D3 — DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first;
+  certificate census over cores (endpoint-stack shape, contraction-profile
+  index) is the standing fallback.** Target: the proposed
+  `DoubleApexOffSurplusSharedRadiusPairCard12Up` residual — one statement
+  covering every |A| ≥ 12 configuration; per-pattern banking cannot finish
+  this side (class accumulation is not flattening: 43 new classes in 80
+  fresh cubes). Attack shape fixed by the probes: forced-coincidence
+  ("pattern forces u = v") proven ideal-theoretically over ℚ with Wu/Chou
+  saturation; in-house precedents are the general-m pinned route (§3:
+  relaxed DFS completeness + four-kind transport at symbolic parameter) and
+  the Near Enemy shared-bisector chain (D1 addendum). Hard constraints from
+  the negatives: no counting-invariant criterion (D2); no SOS/real-root
+  machinery needed at the mined-core layer (dichotomy). First step
+  (dispatched 2026-07-06): candidate-lemma formulation — ranked statements,
+  each with an executed falsification test against the landed data (572-row
+  dichotomy table, D2's 540 cores + invariants, complete k=4 universe) and
+  a proof-attack sketch. Fallback trigger (presented to Adam, who decides
+  the pivot): every candidate dies under falsification, or a formulated
+  lemma's attack hits a named obstruction with no repair route.
 
 D1, D2, and the dichotomy are done; together they bound the proof's largest
 uncertainty (register U4) from all three cheap sides: no theorem transfers,
@@ -403,7 +416,7 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **dispatched 2026-07-06** (smoke-gated) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. Next = D3 direction decision (Adam) |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback — formulation dispatch in flight |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
@@ -412,5 +425,6 @@ Both: fold per the §8 doc-ownership rule.
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
 computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy (all
 done) have bounded it from every cheap side — no theorem transfers, no
-counting invariant decides, kill mechanism uniformly ℂ-ideal-theoretic —
-leaving the D3 direction decision (Adam) as the next move on it.
+counting invariant decides, kill mechanism uniformly ℂ-ideal-theoretic.
+D3 direction is decided (uniform lemma first, census fallback); the
+formulation pass is the active move on U4.
