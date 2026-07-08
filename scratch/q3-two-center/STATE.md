@@ -59,18 +59,38 @@ Read formulation.md, then kill_notes.md, then this file.
        K-Q3-5 landed; retally CONFIRMED: 63 witness + 15 KILLED-PROVEN
        + 4 NEEDS-SPECIAL + 5 residue. verify.py re-run: ALL 63
        witnesses VERIFIED, 0 failures, mutation control rejects.
-       7b. [ ] TRUE residue (5): V0o2_WV0_o2i, V0o2_WVo1_o2i_o1d,
-       VWU_Wso1_o1i, VWo2_Wso1_o2d_o1i, Vso2_Wso1_o2d_o1i_ssep —
-       targeted hand witnesses (the check_kq34.py shapes are z3-SAT at
-       skewed apexes, so realizable-shaped) or UNRESOLVED (treated
-       LIVE). msolve equality-ideal step on class representatives
-       (expected POSDIM; certificates only if surprises).
-8. [ ] Composition retest (token level, q2_token.py pattern) with the
-       K-Q3-1 + K-Q3-3 kills granted, n = 12–16.
-9. [ ] Falsifier gate on the kills (W20 + lattice witnesses): K-Q3-1 uses
-       radii + cap signs only; K-Q3-3 additionally I-DISK + I-OBT + H1
-       count — neither uses ORDER constraints, so the full applicability
-       check applies to both.
+       7b. [x] TRUE residue (5) ALL REALIZED: right-angle apexes are
+       provably order-dead (at ux∈{0,1} the last-p exit turn p·U < rv2
+       contradicts I-DISK exactly — the residue4 sweep aimed at the
+       wrong apexes; check_kq34's SAT models are order-free), so a
+       float feasibility probe over the OFFICIAL encoding
+       (float_resid.py: build_w2c lambdified, SLSQP multistart) found
+       full-window float points for all 5 classes; rationalize_resid.py
+       (ident point via rational circle parametrization pins the radii;
+       members by exact rational rotations; margin-polished to 5e-4)
+       produced exact rational witnesses, ALL 5 VERIFIED via
+       build_w2c + verify_exact with mutation controls
+       (resid_witnesses.json). eq_ideal step moot: verified witnesses
+       are variety points with nonzero separators, so C-EMPTY is
+       impossible for the witnessed subcases.
+       CLASSIFICATION COMPLETE: 87 = 68 witnessed (63 factory +
+       5 rationalized) + 4 NEEDS-SPECIAL (Q(√3), verified) +
+       15 KILLED-PROVEN. Zero unresolved.
+8. [x] Composition retest (q3_token.py): q2_token model + the Q3 joint
+       kills on all three Moser pairs (K-Q3-5 no shared member in the
+       common cap; K-Q3-1 no cross-cap shared pair; both transfer by
+       cap relabeling), ALL unordered cap profiles per n (broader than
+       q2_token's one profile). Verdict: SAT at every n = 12–16 for
+       both K_proven and K_plus (q3_token_{proven,plus}.json) — the
+       joint kills do NOT close the token-level D1 evasion.
+9. [x] Falsifier gate (falsifier_gate.py): kills checked GEOMETRICALLY
+       (config MEC computed, nonobtuse boundary triangles enumerated,
+       strict chord-sign cap membership + I-DISK) against W15/W16
+       lattice + W16/W20 ring witnesses (t1, t1b, t9 files): 396
+       nonobtuse MEC triangles, ZERO killed-type realizations — GATE
+       PASS. Note: cube-level cap LABELS in those witnesses do not
+       carry chord geometry (labeled triangles can be off-MEC); a
+       label-level check false-alarms — the gate must be geometric.
 10. [ ] report.md + fold into plan §7 D3 / ledger, commit.
 
 ## Environment
