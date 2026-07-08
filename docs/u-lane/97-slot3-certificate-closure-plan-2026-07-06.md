@@ -60,20 +60,20 @@ certificate/census obligations in `RemovableVertexAxiom.lean`:
 
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
 open as a publish-spine theorem.  Its broad erased-pin triple surface is being
-reduced inside the theorem to the local route-grouped seed-row surface
-`IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement`.
-Closed adapters first recover
-`IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement`, then the
+reduced inside the theorem to the local route-grouped finite-residual seed-row
+surface
+`IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`.
+Closed adapters first recover the pruned and routed seed-row surfaces, then the
 raw count-row statement,
 `IsM44NonSurplusContainmentErasedPinTripleCountFamilyFactsStatement`, and the
 existing erased-pin triple exclusions.  The older finite/named/candidate
 adapters remain compiled support, but the two-hit probe makes the
 `AdjacentChainOneHitData` route non-operative for this branch.  The
-proof-facing local obligation must ask for the route-grouped row exclusions and
-the two terminal generated seed-candidate inputs.  The erased one-sided
-terminal payload exclusions are now closed from those seed-candidate inputs by
-the `false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.  There
-is no
+proof-facing local obligation must ask for the finite scaffold, four
+left-right residual rows, and six same-side-heavy residual rows.  The erased
+one-sided terminal payload exclusions are now closed from the finite scaffold
+by the `false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.
+There is no
 separate top-level
 `Problem97.isM44NonSurplusContainmentErasedPinTripleReductionInputs` theorem.
 The row/route census has now been generated, but it is only a row-spec work
@@ -1007,17 +1007,18 @@ Current Lean boundary:
 
 1. Use the existing exact-pin adapters in `RemovableVertexAxiom.lean`; do not
    bypass them.
-2. The remaining routed-row input asks for:
+2. The current finite-residual input asks for:
    - surplus-opposite Moser vertex direct `ErasedPinTriple` exclusion;
    - surplus-cap strict-interior direct `ErasedPinTriple` exclusions;
+   - `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus point;
    - `oppIndex1` non-surplus strict interiors:
-     `RightNonSurplusRoutedSeedRowsExcluded S x p`, i.e. the 9 left-right
-     subpacket rows, the 5 same-side-heavy rows, and generated seed-candidate
-     inputs for the terminal row `(2,1,0,1)`;
+     `RightNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
+     remaining left-right subpacket rows and the 3 remaining same-side-heavy
+     rows;
    - `oppIndex2` non-surplus strict interiors:
-     `LeftNonSurplusRoutedSeedRowsExcluded S x p`, i.e. the 9 left-right
-     subpacket rows, the 5 same-side-heavy rows, and generated seed-candidate
-     inputs for the terminal row `(2,1,1,0)`.
+     `LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
+     remaining left-right subpacket rows and the 3 remaining same-side-heavy
+     rows.
 3. Closed arithmetic adapters turn the finite rows into the universal family
    predicates:
    `rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded`,
@@ -1047,9 +1048,10 @@ families `(0,1,2,1)`, `(0,0,2,2)`, and surplus-side at-least-three hits.
 Current routed-row/count-family boundary:
 
 - The local on-spine `sorry` proves
-  `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement`.
-  The raw `IsM44NonSurplusContainmentErasedPinTripleCountRowsFactsStatement`
-  is recovered by the closed seed-row and routed-row adapters.
+  `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`.
+  The older pruned/routed seed-row surfaces and then the raw
+  `IsM44NonSurplusContainmentErasedPinTripleCountRowsFactsStatement` are
+  recovered by closed finite-residual, seed-row, and routed-row adapters.
 - `RightNonSurplusExactCountRowsExcluded S x p` and
   `LeftNonSurplusExactCountRowsExcluded S x p` enumerate the 15 concrete rows
   per side.  Their closed adapters recover
@@ -1094,11 +1096,11 @@ Current routed-row/count-family boundary:
 - The remaining local `sorry` is boundary-specified but not
   producer-complete.  Its concrete producer obligations are:
   `surplus-opposite` direct `ErasedPinTriple` exclusion; surplus-cap
-  strict-interior direct `ErasedPinTriple` exclusions; 8 right and 8 left
-  left-right-subpacket row exclusions; 5 right and 5 left same-side-heavy row
-  exclusions; and the right/left terminal seed-candidate input producers.  It
-  no longer has to construct arbitrary one-sided payload exclusions or
-  `AdjacentChainOneHitData`.
+  strict-interior direct `ErasedPinTriple` exclusions; the finite candidate
+  scaffold; 2 right and 2 left left-right-subpacket row exclusions; and 3
+  right and 3 left same-side-heavy row exclusions.  It no longer has to
+  construct arbitrary one-sided payload exclusions, terminal seed-candidate
+  inputs, or `AdjacentChainOneHitData`.
 - The erased-pin producer census is now generated by
   `scripts/erased-pin-producer-census.py`.  It writes
   `certificates/surplus/erased_pin_producer_census.json` and
@@ -1369,9 +1371,27 @@ Current routed-row/count-family boundary:
   `false_of_left_row0121_finiteCandidateFacts` and
   `leftNonSurplusRow0121Excluded_of_finiteScaffold`, then shrinks
   `LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded` to two left
-  left-right residual rows.  The current proof-facing finite residual source
-  is now the scaffold plus fourteen finite residual rows: four left-right rows
-  and ten same-side-heavy rows.  Focused checks passed for
+  left-right residual rows.  At that checkpoint, the proof-facing finite
+  residual source was the scaffold plus fourteen finite residual rows: four
+  left-right rows and ten same-side-heavy rows.  Focused checks passed for
+  `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
+  `RemovableVertexAxiom.lean`; `RemovableVertexAxiom.lean` still reports only
+  the three expected live `sorry` warnings.
+
+  Ninth July 7 checkpoint: the same-side-heavy Moser-plus-surplus-triple pair
+  is now threaded through the finite scaffold.  The right row `(1,0,0,3)` /
+  `ep_right_m1_s0_l0_r3` is closed by
+  `IsM44.right_row1003_selectedClass_eq_moser_surplusTriple`,
+  `right_row1003_exists_erasedPinRowSeed_privateMask`,
+  `false_of_right_row1003_finiteCandidateFacts`, and
+  `rightNonSurplusRow1003Excluded_of_finiteScaffold`.  The left mirror row
+  `(1,0,3,0)` / `ep_left_m1_s0_l3_r0` is closed by
+  `IsM44.left_row1030_selectedClass_eq_moser_surplusTriple`,
+  `left_row1030_exists_erasedPinRowSeed_privateMask`,
+  `false_of_left_row1030_finiteCandidateFacts`, and
+  `leftNonSurplusRow1030Excluded_of_finiteScaffold`.  The current proof-facing
+  finite residual source is now the scaffold plus ten finite residual rows:
+  four left-right rows and six same-side-heavy rows.  Focused checks passed for
   `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
   `RemovableVertexAxiom.lean`; `RemovableVertexAxiom.lean` still reports only
   the three expected live `sorry` warnings.
