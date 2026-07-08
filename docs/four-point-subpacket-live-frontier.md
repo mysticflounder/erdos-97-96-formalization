@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as open: 1/785.  The only on-spine custom obstruction is
+reports this anchor as open: 1/797.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -1576,14 +1576,15 @@ the quantified surplus-interior center.  This supersedes the earlier note that
 `U5SelectedCandidateSkeleton` was unavailable.  The remaining direct U5
 producer gap is now: produce `U5ModeA D` and either a same-circle export or the
 rowwise confined-class payload needed by `U5ConfinedK4AuditPayload.of_auxAndClasses`,
-or bypass U5 with a direct surplus-index contradiction.  The finite scaffold
-gap remains unchanged.
+or bypass U5 with a direct surplus-index contradiction.  At that checkpoint the
+finite scaffold gap was still unchanged.
 
-Narrow verification after this bridge exposure: `lake-build
+Narrow verification after this bridge exposure, before the finite-candidate
+producer checkpoint below: `lake-build
 Erdos9796Proof.P97.RemovableVertexAxiom` completed successfully and
 proof-blueprint resynced.  Open/total counts after resync are:
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
-`1/785`; `Problem97.erdos97_rhs` is `22/1563`; `Problem96.erdos96_rhs` is
+`1/797`; `Problem97.erdos97_rhs` is `22/1563`; `Problem96.erdos96_rhs` is
 `26/1571`.
 
 Checkpoint search, 2026-07-08 PDT: the new multi-center incidence artifacts in
@@ -1595,14 +1596,15 @@ inventory from `class_key`s and confirms exact project-level stability at
 to the completed evidence until its artifact lands.  This does not supply a
 producer for `ErasedPinFiniteCandidateSepScaffoldFacts S x`, `U5ModeA D`, a
 confined-class payload, or either direct surplus-side `ErasedPinTriple`
-exclusion.  The open/total state for this leaf remains `1/785`; the next
-proof-producing step is still one of the three producers listed above.
+exclusion.  At that checkpoint the open/total state for this leaf was `1/797`;
+the finite-candidate producer checkpoint below supersedes the finite-scaffold
+part of that boundary, but not the direct surplus-side boundary.
 
 Checkpoint script, 2026-07-08 PDT: `census/multi_center/frontier_report.py`
 now makes the previous paragraph executable.  It loads the completed
 multi-center sweep artifacts, flags the partial `n12_30` and `n21_30` files,
 checks for either pending `n28_32` or `n29_32` extension artifact, and reports
-the active erased-pin producer boundary.  Current output records
+the active erased-pin producer boundary.  At that checkpoint, output recorded
 `533,761 / 533,761` completed L2 GLOBAL / PROVEN cells as SAT, `0 UNSAT`,
 `0 INDETERMINATE`, and the same `n = 25..28` exact-stability window at `3375`
 SAT classes.  Since the loaded evidence has no UNSAT incidence class and does
@@ -1672,11 +1674,130 @@ proof-blueprint spine \
   --max-depth 4
 ```
 
-The Lean target and proof-blueprint resync both succeeded.  The active leaf is
-still open because the on-spine scaffold in
-`RemovableVertexAxiom.lean` still asks for the older total SEP surface before
-the producer is wired.  Current open/total state for this anchor is `1/785`.
-The next closure step is to narrow the active finite-candidate scaffold and its
-conversion lemmas from total SEP to generated-domain SEP, then feed the compiled
-right/left SEP producers into that scaffold together with the already compiled
-prefix-count producers and the remaining seed-candidate producers.
+The Lean target and proof-blueprint resync both succeeded at that checkpoint.
+The next checkpoint below supersedes the then-open wiring task: the generated
+domain SEP producer is now fed into the active finite-candidate scaffold branch.
+
+Finite-candidate producer checkpoint, 2026-07-08 PDT: the producer is now
+written and wired into
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+`RemovableVertexAxiom.lean` defines the concrete right/left erased-payload
+center classes:
+
+```lean
+rightPinnedErasedPayloadCenterClass
+leftPinnedErasedPayloadCenterClass
+```
+
+and proves the right/left finite-candidate SEP fact packets:
+
+```lean
+rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+```
+
+These are not wrappers around a fresh `sorry`: they consume the generated
+prefix-count producers, the generated-domain `sepOKFor` producers, and the
+generated cross-separation producers for the exact-cap/selected-class center
+classes.  The active scaffold branch now calls those producers directly.
+
+The finite-candidate branch still has four concrete producer obligations:
+
+```text
+right generated ten-label CCW hull placement
+right own-kind candidate remainders for .Pw and .Pu
+left generated ten-label CCW hull placement
+left own-kind candidate remainders for .Pw and .Pu
+```
+
+The two direct surplus-side branches are still separate open producer
+obligations:
+
+```text
+surplus-opposite direct ErasedPinTriple exclusion
+surplus-cap strict-interior direct ErasedPinTriple exclusions
+```
+
+Narrow verification for this checkpoint:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
+  lake-build Erdos9796Proof.P97.RemovableVertexAxiom
+
+proof-blueprint spine \
+  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded \
+  --max-depth 6
+```
+
+The Lean target and proof-blueprint resync both succeeded.  The current
+open/total state for this anchor is `1/797`.
+
+Terminal-row producer checkpoint, 2026-07-08 PDT: the concrete producers for
+the one-sided terminal rows are now written and compiled.  In
+`SurplusCOMPGBankGeometry.lean`, the geometry layer constructs the exact
+generated erased-pin row seed and proves that its point mask is the surplus
+private Moser-pair mask:
+
+```lean
+right_row2101_exists_erasedPinRowSeed_privateMask
+left_row2110_exists_erasedPinRowSeed_privateMask
+```
+
+The same file also wires those rows to the generated DFS no-survivor facts:
+
+```lean
+false_of_erasedPinRow_ep_right_m2_s1_l0_r1_seedShadow_pointClasses
+false_of_erasedPinRow_ep_left_m2_s1_l1_r0_seedShadow_pointClasses
+```
+
+`RemovableVertexAxiom.lean` now has direct finite-facts closures for the two
+terminal rows:
+
+```lean
+false_of_right_row2101_finiteCandidateFacts
+false_of_left_row2110_finiteCandidateFacts
+```
+
+These are producer proofs, not additional wrapper surfaces: they consume the
+terminal erased-payload geometry, choose the concrete generated row seed, split
+the private center over `{p1, p2}`, and use the generated DFS row exclusion.
+
+This checkpoint does not yet close
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`,
+because the active theorem still routes through the older finite-candidate
+scaffold.  That scaffold asks for a stronger package than the terminal row
+closures need:
+
+```text
+right generated ten-label CCW hull placement
+right own-kind candidate remainders for .Pw and .Pu
+left generated ten-label CCW hull placement
+left own-kind candidate remainders for .Pw and .Pu
+```
+
+The direct surplus-side branches are also still open:
+
+```text
+surplus-opposite direct ErasedPinTriple exclusion
+surplus-cap strict-interior direct ErasedPinTriple exclusions
+```
+
+The efficient next move is to avoid extending the overstrong finite-candidate
+surface.  Refactor the active branch so the terminal-row cases consume the new
+direct row closures branch-wise, after splitting the private center.  That
+should remove the sibling-class candidate-remainder demand instead of requiring
+new producers for facts not used by row2101/row2110 themselves.
+
+Narrow verification for this checkpoint:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
+  lake-build Erdos9796Proof.P97.RemovableVertexAxiom
+
+proof-blueprint spine \
+  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded \
+  --max-depth 6
+```
+
+The Lean target and proof-blueprint resync both succeeded.  The current active
+spine state remains `1/797` open.
