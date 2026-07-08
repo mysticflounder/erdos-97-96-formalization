@@ -51,10 +51,41 @@ over the (mirror-reduced) location pairs the enumeration admits:
 - Three or more shared members: excluded by C2 (≤ 2), and independently by
   |C_V ∩ C_W| ≤ 2 with the mirror-pair structure.
 
+## K-Q3-3. Shared-apex + shared-S kill (PROVEN)
+
+**Claim.** No |A| ≥ 12 leaf configuration has U ∈ K(V) ∩ K(W) together
+with a shared intS member z ∈ intS ∩ K(V) ∩ K(W) (class
+`VsU_WsU_sshared`, the only mirror-reduced class with isv=shared,
+bv=U, bw=U).
+
+*Proof.* U, z ∈ K(V) ∩ K(W), so by F-Q3-2 they are the mirror pair
+across the chord line VW: z = (U_x, −U_y), and the {U, shared-s} disk
+computation forces ω = 0 — the Thales frame (O on VW, U on the circle
+with diameter VW, so ∠VUW = 90°). U ∈ K(V) gives ρV² = ‖U−V‖². Now
+∠VUW = 90° means U−V ⊥ chord WU, i.e. U is the foot of the
+perpendicular from V onto the line through W, U. Writing any point of
+the closed half-plane H beyond that chord (the side containing cap O1,
+not containing V) as p = q + t·n with q on the line, t ≥ 0, and
+n = (U−V)/‖U−V‖ the unit normal into H:
+‖p−V‖² = ‖q−V‖² + 2t‖U−V‖ + t² ≥ ‖U−V‖²,
+with equality iff q = U and t = 0, i.e. p = U. So every point of cap O1
+other than the corner U is strictly farther than ‖U−V‖ from V. But H1
+gives |K(V) ∩ intO1| ≥ 2 (here γ_V = 2), and each such member has
+distance exactly ρV = ‖U−V‖ from V with intO1 ∌ U. Contradiction. ∎
+
+Constraints used: radius equalities, strict cap signs (for the F-Q3-2
+mirror pair), I-DISK on z, I-OBT (ω ≥ 0), and the H1 count — no ORDER
+constraints, so the full falsifier-gate check applies. Machine
+cross-check: z3 unsat on the subsystem with even a SINGLE intO1 member
+of K(V) (check_kq33.py), i.e. the kill does not need the full γ count.
+
 ## Machine cross-checks
 
 - K-Q3-1 sub-system (V, W, z₁, z₂, radius equalities, the two chord-VW
   sign conditions only) → z3 must return unsat fast; kept in runs/.
+- K-Q3-3 sub-system (check_kq33.py: E-MEC, forced radii rv2 = ‖UV‖²,
+  rw2 = ‖UW‖², shared z on both circles, ONE p in intO1 on the V-circle,
+  I-OBT, I-DISK, strict cap signs) → z3 unsat.
 - F-Q3-2 {U, s}-case: full-window witness on the Thales frame (ω = 0)
   verifies exactly; perturbing ω to 1/100 with the same shared structure
   must fail the disk constraint on z (checked in the factory's exact

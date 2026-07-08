@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Q3 exact witness factory v2 (constructive rational; see formulation.md).
+"""Q3 exact witness factory v3 (constructive rational; see formulation.md).
 
 Frame: rational apex U above the axis; oy = (ux^2-ux+uy^2)/(2uy) rational,
 R2 = 1/4 + oy^2. Radius equalities hold exactly by construction (members
@@ -7,7 +7,7 @@ are rational rotations of a base point about their center). Region/order
 constraints screened with exact Fraction arithmetic; witnesses re-verified
 through the OFFICIAL build_w2c + verify_exact in verify.py.
 
-v2 resolution order (kill_notes.md F-Q3-2 structure):
+v3 resolution order (kill_notes.md F-Q3-2 structure), with backtracking:
  1. K-Q3-1 classes (io2=ident AND io1=ident) -> KILLED-PROVEN, no search.
  2. Coupled members first (shared s-point, cross-interior identifications):
     they DEFINE the radii; two-forced-radii cases use the exact rational
@@ -15,6 +15,9 @@ v2 resolution order (kill_notes.md F-Q3-2 structure):
     {U, shared-s} pair.
  3. Remaining specials placed on the now-known circles by directed
     rotation; plains fill up gamma counts.
+Each stage is a generator over candidate states and the plains tail runs
+inside the nested iteration (budgeted), so a failed tail retries the next
+sample/candidate instead of abandoning the apex.
 Classes whose forced structure is provably irrational in this gauge
 (e.g. rv2 = rw2 = 1 identifications, the equilateral U) are returned
 NEEDS-SPECIAL for the exact-algebraic pass (specials.py).
@@ -122,6 +125,11 @@ U_MENU = [(Fr(1, 2), Fr(1)), (Fr(1, 2), Fr(3, 4)), (Fr(1, 2), Fr(3, 2)),
 U_DENSE = [(Fr(nx, 12), Fr(ny, 12)) for nx in range(2, 11)
            for ny in range(4, 25, 2)]
 
+# skewed apexes: right angle at W (ux=1) / at V (ux=0) — nonobtuse holds
+# for every uy > 0; z3 subsystem models for the anchored-ident families
+# sit here and the interior grid never reaches them
+U_SKEW = [(Fr(x), Fr(ny, 8)) for x in (1, 0) for ny in range(3, 14, 2)]
+
 
 def u_on_unit_circle_about(center):
     other = W if center == V else V
@@ -135,34 +143,61 @@ def u_on_unit_circle_about(center):
 
 
 def u_thales():
-    """Rational points on the circle with diameter VW (forces oy = 0)."""
+    """Rational points on the circle with diameter VW (forces oy = 0).
+    Rotate W (angle 0 about the center) CCW so the image lands ABOVE the
+    axis; rotating V (angle pi) by positive t always lands below."""
     out = []
     C = (Fr(1, 2), Fr(0))
     for t in [Fr(1, 4), Fr(1, 3), Fr(2, 5), Fr(1, 2), Fr(3, 5), Fr(2, 3),
               Fr(3, 4), Fr(1), Fr(4, 3), Fr(3, 2)]:
-        p = rot(t, C, V)
+        p = rot(t, C, W)
         if p[1] > 0:
             out.append(p)
     return out
 
 
+def u_conic_ident(mirror=False):
+    """Apexes for the both-forced ident shape rv2 = |UV|^2, rw2 = 1 (or
+    its mirror): the two-circle intersection (x0, +-y0) is rational iff
+    duv*(4-duv) is a rational square, i.e. duv = 4b^2/(a^2+b^2). Build a
+    rational U0 with |U0|^2 = duv (namely (2ab/N, 2b^2/N), N = a^2+b^2),
+    then rational rotations about the center keep duv fixed."""
+    out = []
+    for a, b in [(2, 1), (3, 2), (4, 3), (5, 3), (3, 1), (5, 2), (1, 1),
+                 (5, 4), (7, 5)]:
+        N = a * a + b * b
+        U0 = (Fr(2 * a * b, N), Fr(2 * b * b, N))
+        for t in (Fr(0), Fr(1, 8), Fr(-1, 8), Fr(1, 4), Fr(-1, 4),
+                  Fr(1, 2), Fr(-1, 2), Fr(1, 16), Fr(-1, 16)):
+            p = rot(t, V, U0) if t else U0
+            if mirror:
+                p = (1 - p[0], p[1])
+            if p[1] > 0 and nonobtuse(p):
+                out.append(p)
+    return out
+
+
 def region_samples(own, U, O, R2):
+    """Samples in cap `own`, mu-outer / lam-inner so a short prefix already
+    sweeps the full chord (diverse distances from either center)."""
     chords = {1: (V, W), 2: (W, U), 3: (U, V)}
     A, B = chords[own]
     out = []
-    for lam in (Fr(1, 2), Fr(1, 4), Fr(3, 4), Fr(3, 8), Fr(5, 8)):
-        M = (A[0] + lam * (B[0] - A[0]), A[1] + lam * (B[1] - A[1]))
-        for mu in (Fr(1, 4), Fr(1, 2), Fr(1, 8), Fr(1)):
+    for mu in (Fr(1, 4), Fr(1, 2), Fr(1, 8), Fr(1), Fr(1, 16), Fr(3, 2)):
+        for lam in (Fr(1, 2), Fr(1, 4), Fr(3, 4), Fr(1, 8), Fr(7, 8),
+                    Fr(3, 8), Fr(5, 8)):
+            M = (A[0] + lam * (B[0] - A[0]), A[1] + lam * (B[1] - A[1]))
             c = (M[0] + mu * (M[0] - O[0]), M[1] + mu * (M[1] - O[1]))
             if in_cap(c, own, U, O, R2):
                 out.append(c)
     return out
 
 
-def members_on_circle(center, base, count, own, U, O, R2,
-                      include_base=True, avoid=()):
-    """count points in cap `own` on circle(center, |base-center|), by
-    directed rational rotations of base; exact in_cap acceptance."""
+def circle_cands(center, base, count, own, U, O, R2,
+                 include_base=True, avoid=()):
+    """Up to count points in cap `own` on circle(center, |base-center|), by
+    directed rational rotations of base; exact in_cap acceptance. Returns
+    whatever was found (possibly fewer than count)."""
     got = []
     if include_base and in_cap(base, own, U, O, R2) and base not in avoid:
         got.append(base)
@@ -178,8 +213,10 @@ def members_on_circle(center, base, count, own, U, O, R2,
         t_cands.append(Fr(math.tan(dth / 2)).limit_denominator(64))
     wig = [Fr(0), Fr(1, 64), Fr(-1, 64), Fr(1, 32), Fr(-1, 32), Fr(1, 16),
            Fr(-1, 16), Fr(1, 8), Fr(-1, 8), Fr(1, 4), Fr(-1, 4)]
-    for t0 in t_cands:
-        for dw in wig:
+    # wiggle-OUTER: the first pass sweeps every aim direction once, so the
+    # pool is angularly diverse instead of clustering at the first aim
+    for dw in wig:
+        for t0 in t_cands:
             if len(got) >= count:
                 return got[:count]
             cand = rot(t0 + dw, center, base)
@@ -194,7 +231,15 @@ def members_on_circle(center, base, count, own, U, O, R2,
             if (cand not in got and cand not in avoid
                     and in_cap(cand, own, U, O, R2)):
                 got.append(cand)
-    return got[:count] if len(got) >= count else None
+    return got[:count]
+
+
+def members_on_circle(center, base, count, own, U, O, R2,
+                      include_base=True, avoid=()):
+    """Exactly count points or None (strict wrapper over circle_cands)."""
+    got = circle_cands(center, base, count, own, U, O, R2,
+                       include_base=include_base, avoid=avoid)
+    return got if len(got) >= count else None
 
 
 def sort_block(pts, ref):
@@ -203,244 +248,255 @@ def sort_block(pts, ref):
 
 
 # ---------------------------------------------------------------- assembly
+#
+# v3: staged generators with full backtracking. Each stage yields candidate
+# states (rv2, rw2, vbase, wbase, extras); the plains tail runs inside the
+# nested iteration, so a failed tail retries the next candidate instead of
+# abandoning the apex (v2 regression: the defining-sample loops committed
+# to the first sample that satisfied the side's specials).
+
+CAND_LIMIT = 6      # circle candidates per special slot
+SAMPLE_LIMIT = 14   # region samples tried per defining slot
+TAIL_BUDGET = 400   # ps/qs attempts per (class, U); ps fails are cheap
+CLASS_BUDGET = 16000  # total attempts per class across the U menu
 
 
-def try_assemble(cls, U):
-    O, R2 = frame(U)
-    if U[1] <= 0 or not nonobtuse(U):
-        return None
-    av, bv, aw, bw = cls["av"], cls["bv"], cls["aw"], cls["bw"]
-    duv, duw = fr_d2(U, V), fr_d2(U, W)
-    if av == "W" and bv == "U" and duv != 1:
-        return None
-    if aw == "V" and bw == "U" and duw != 1:
-        return None
-    rv2 = Fr(1) if av == "W" else (duv if bv == "U" else None)
-    rw2 = Fr(1) if aw == "V" else (duw if bw == "U" else None)
-    # base point ON the V-circle when its radius is forced
-    vbase = W if av == "W" else (U if bv == "U" else None)
-    wbase = V if aw == "V" else (U if bw == "U" else None)
-    extras = {}
+def _st(rv2, rw2, vbase, wbase, extras):
+    return {"rv2": rv2, "rw2": rw2, "vbase": vbase, "wbase": wbase,
+            "extras": extras}
 
-    # ---- coupled members first (F-Q3-2)
-    if cls["isv"] == "shared":
-        if rv2 is not None and rw2 is not None:
-            pts = circle_pts(rv2, rw2)
-            if pts is None:
-                return None  # this U gives no rational shared point
-            z = pts[1]  # lower
-            if not in_cap(z, 1, U, O, R2):
-                return None
-            extras["svw"] = z
-        elif rv2 is not None:
-            zc = members_on_circle(V, vbase, 1, 1, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            extras["svw"] = z
-            rw2, wbase = fr_d2(z, W), z
-        elif rw2 is not None:
-            zc = members_on_circle(W, wbase, 1, 1, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            extras["svw"] = z
-            rv2, vbase = fr_d2(z, V), z
-        else:
-            smp = region_samples(1, U, O, R2)
-            if not smp:
-                return None
-            z = smp[0]
-            extras["svw"] = z
-            rv2, vbase = fr_d2(z, V), z
-            rw2, wbase = fr_d2(z, W), z
+
+def gen_shared(cls, U, O, R2, st):
+    """Shared s-point stage (F-Q3-2): defines both radii when free; the
+    o2/o1-ident partner, if any, is the exact mirror across VW."""
+    if cls["isv"] != "shared":
+        yield st
+        return
+    rv2, rw2 = st["rv2"], st["rw2"]
+
+    def with_z(z, rv2n, vb, rw2n, wb):
+        ex = dict(st["extras"])
+        ex["svw"] = z
         if cls["io2"] == "ident" or cls["io1"] == "ident":
-            # second shared member = exact mirror of the s-point (F-Q3-2)
-            zs = extras["svw"]
-            zm = (zs[0], -zs[1])
+            zm = (z[0], -z[1])  # exact mirror (F-Q3-2)
             reg = 3 if cls["io2"] == "ident" else 2
             if not in_cap(zm, reg, U, O, R2):
                 return None
-            extras["_ident_o2" if reg == 3 else "_ident_o1"] = zm
+            ex["_ident_o2" if reg == 3 else "_ident_o1"] = zm
+        return _st(rv2n, rw2n, vb, wb, ex)
 
-    if cls["io2"] == "ident" and "_ident_o2" not in extras:
-        if rv2 is not None and rw2 is not None:
-            pts = circle_pts(rv2, rw2)
-            if pts is None:
-                return None
-            z = pts[0]  # upper
-            if not in_cap(z, 3, U, O, R2):
-                return None
-        elif rv2 is not None:
-            zc = members_on_circle(V, vbase, 1, 3, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            rw2, wbase = fr_d2(z, W), z
-        elif rw2 is not None:
-            zc = members_on_circle(W, wbase, 1, 3, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            rv2, vbase = fr_d2(z, V), z
-        else:
-            smp = region_samples(3, U, O, R2)
-            if not smp:
-                return None
-            z = smp[0]
-            rv2, vbase = fr_d2(z, V), z
-            rw2, wbase = fr_d2(z, W), z
-        extras["_ident_o2"] = z
-    if cls["io1"] == "ident" and "_ident_o1" not in extras:
-        if rv2 is not None and rw2 is not None:
-            pts = circle_pts(rv2, rw2)
-            if pts is None:
-                return None
-            z = pts[0]
-            if not in_cap(z, 2, U, O, R2):
-                return None
-        elif rw2 is not None:
-            zc = members_on_circle(W, wbase, 1, 2, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            rv2, vbase = fr_d2(z, V), z
-        elif rv2 is not None:
-            zc = members_on_circle(V, vbase, 1, 2, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            z = zc[0]
-            rw2, wbase = fr_d2(z, W), z
-        else:
-            smp = region_samples(2, U, O, R2)
-            if not smp:
-                return None
-            z = smp[0]
-            rv2, vbase = fr_d2(z, V), z
-            rw2, wbase = fr_d2(z, W), z
-        extras["_ident_o1"] = z
+    if rv2 is not None and rw2 is not None:
+        pts = circle_pts(rv2, rw2)
+        if pts is None:
+            return  # this U gives no rational shared point
+        z = pts[1]  # lower
+        if in_cap(z, 1, U, O, R2):
+            n = with_z(z, rv2, st["vbase"], rw2, st["wbase"])
+            if n:
+                yield n
+    elif rv2 is not None:
+        for z in circle_cands(V, st["vbase"], CAND_LIMIT, 1, U, O, R2,
+                              include_base=False):
+            n = with_z(z, rv2, st["vbase"], fr_d2(z, W), z)
+            if n:
+                yield n
+    elif rw2 is not None:
+        for z in circle_cands(W, st["wbase"], CAND_LIMIT, 1, U, O, R2,
+                              include_base=False):
+            n = with_z(z, fr_d2(z, V), z, rw2, st["wbase"])
+            if n:
+                yield n
+    else:
+        for z in region_samples(1, U, O, R2)[:SAMPLE_LIMIT]:
+            n = with_z(z, fr_d2(z, V), z, fr_d2(z, W), z)
+            if n:
+                yield n
 
-    # ---- V side: leftover specials define the circle if still free
+
+def gen_ident(cls, U, O, R2, st, which):
+    """Cross-interior identification stage; which in ('o2','o1').
+    o2 lives in region 3, o1 in region 2; the point is on BOTH circles."""
+    key = "_ident_" + which
+    reg = 3 if which == "o2" else 2
+    if cls["i" + which] != "ident" or key in st["extras"]:
+        yield st
+        return
+    rv2, rw2 = st["rv2"], st["rw2"]
+
+    def with_z(z, rv2n, vb, rw2n, wb):
+        ex = dict(st["extras"])
+        ex[key] = z
+        return _st(rv2n, rw2n, vb, wb, ex)
+
+    if rv2 is not None and rw2 is not None:
+        pts = circle_pts(rv2, rw2)
+        if pts is None:
+            return
+        z = pts[0]  # upper
+        if in_cap(z, reg, U, O, R2):
+            yield with_z(z, rv2, st["vbase"], rw2, st["wbase"])
+    elif rv2 is not None:
+        for z in circle_cands(V, st["vbase"], CAND_LIMIT, reg, U, O, R2,
+                              include_base=False):
+            yield with_z(z, rv2, st["vbase"], fr_d2(z, W), z)
+    elif rw2 is not None:
+        for z in circle_cands(W, st["wbase"], CAND_LIMIT, reg, U, O, R2,
+                              include_base=False):
+            yield with_z(z, fr_d2(z, V), z, rw2, st["wbase"])
+    else:
+        for z in region_samples(reg, U, O, R2)[:SAMPLE_LIMIT]:
+            yield with_z(z, fr_d2(z, V), z, fr_d2(z, W), z)
+
+
+def _spec_product(center, base, specials, U, O, R2):
+    """Yield dicts assigning each special (nm, reg) a distinct candidate on
+    circle(center, |base-center|)."""
+    if not specials:
+        yield {}
+        return
+    nm, reg = specials[0]
+    for z in circle_cands(center, base, CAND_LIMIT, reg, U, O, R2,
+                          include_base=False):
+        for rest in _spec_product(center, base, specials[1:], U, O, R2):
+            if z in rest.values():
+                continue
+            yield {nm: z, **rest}
+
+
+def gen_v_side(cls, U, O, R2, st):
+    """Leftover V-side specials; a defining sample fixes rv2 if still free."""
     v_specials = []
-    if av == "s" and cls["isv"] != "shared":
+    if cls["av"] == "s" and cls["isv"] != "shared":
         v_specials.append(("sv", 1))
-    if bv == "o2" and cls["io2"] != "ident":
+    if cls["bv"] == "o2" and cls["io2"] != "ident":
         v_specials.append(("vo2", 3))
-    if rv2 is None:
-        defined = False
-        for nm0, reg0 in v_specials + [("_p0", 2)]:
-            for s in region_samples(reg0, U, O, R2):
-                rv2c, vbc = fr_d2(s, V), s
-                ok = True
-                tmp = {}
-                for nm, reg in v_specials:
-                    if nm == nm0:
-                        tmp[nm] = s
-                        continue
-                    zc = members_on_circle(V, vbc, 1, reg, U, O, R2,
-                                           include_base=False)
-                    if zc is None:
-                        ok = False
-                        break
-                    tmp[nm] = zc[0]
-                if not ok:
-                    continue
-                rv2, vbase = rv2c, vbc
-                extras.update(tmp)
-                if nm0 == "_p0":
-                    extras["_p0"] = s
-                defined = True
-                break
-            if defined:
-                break
-        if not defined:
-            return None
-    else:
-        for nm, reg in v_specials:
-            zc = members_on_circle(V, vbase, 1, reg, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            extras[nm] = zc[0]
+    if st["rv2"] is not None:
+        for asg in _spec_product(V, st["vbase"], v_specials, U, O, R2):
+            ex = dict(st["extras"])
+            ex.update(asg)
+            yield _st(st["rv2"], st["rw2"], st["vbase"], st["wbase"], ex)
+        return
+    for nm0, reg0 in v_specials + [("_p0", 2)]:
+        for s in region_samples(reg0, U, O, R2)[:SAMPLE_LIMIT]:
+            rest = [spec for spec in v_specials if spec[0] != nm0]
+            for asg in _spec_product(V, s, rest, U, O, R2):
+                ex = dict(st["extras"])
+                ex[nm0] = s
+                ex.update(asg)
+                yield _st(fr_d2(s, V), st["rw2"], s, st["wbase"], ex)
 
-    # ---- W side
+
+def gen_w_side(cls, U, O, R2, st):
+    """Leftover W-side specials; a defining sample fixes rw2 if still free."""
     w_specials = []
-    if aw == "s" and cls["isv"] != "shared":
+    if cls["aw"] == "s" and cls["isv"] != "shared":
         w_specials.append(("sw", 1))
-    if bw == "o1" and cls["io1"] != "ident":
+    if cls["bw"] == "o1" and cls["io1"] != "ident":
         w_specials.append(("wo1", 2))
-    if rw2 is None:
-        defined = False
-        for nm0, reg0 in w_specials + [("_q0", 3)]:
-            for s in region_samples(reg0, U, O, R2):
-                rw2c, wbc = fr_d2(s, W), s
-                ok = True
-                tmp = {}
-                for nm, reg in w_specials:
-                    if nm == nm0:
-                        tmp[nm] = s
-                        continue
-                    zc = members_on_circle(W, wbc, 1, reg, U, O, R2,
-                                           include_base=False)
-                    if zc is None:
-                        ok = False
-                        break
-                    tmp[nm] = zc[0]
-                if not ok:
-                    continue
-                rw2, wbase = rw2c, wbc
-                extras.update(tmp)
-                if nm0 == "_q0":
-                    extras["_q0"] = s
-                defined = True
-                break
-            if defined:
-                break
-        if not defined:
-            return None
-    else:
-        for nm, reg in w_specials:
-            zc = members_on_circle(W, wbase, 1, reg, U, O, R2,
-                                   include_base=False)
-            if zc is None:
-                return None
-            extras[nm] = zc[0]
+    if st["rw2"] is not None:
+        for asg in _spec_product(W, st["wbase"], w_specials, U, O, R2):
+            ex = dict(st["extras"])
+            ex.update(asg)
+            yield _st(st["rv2"], st["rw2"], st["vbase"], st["wbase"], ex)
+        return
+    for nm0, reg0 in w_specials + [("_q0", 3)]:
+        for s in region_samples(reg0, U, O, R2)[:SAMPLE_LIMIT]:
+            rest = [spec for spec in w_specials if spec[0] != nm0]
+            for asg in _spec_product(W, s, rest, U, O, R2):
+                ex = dict(st["extras"])
+                ex[nm0] = s
+                ex.update(asg)
+                yield _st(st["rv2"], fr_d2(s, W), st["vbase"], s, ex)
 
-    # ---- plains
+
+def tail_ps(cls, U, O, R2, st):
+    """V-side plain p block; depends only on the V-side state (regions
+    keep the W-side extras collision-free). None on failure."""
+    extras = st["extras"]
     avoid_v = tuple(v for k, v in extras.items() if not k.startswith("_q"))
-    seedp = extras.get("_ident_o1") or extras.get("_p0") or vbase
+    seedp = extras.get("_ident_o1") or extras.get("_p0") or st["vbase"]
     ps = members_on_circle(V, seedp, cls["gv"], 2, U, O, R2,
                            include_base=(seedp not in (W, U)
                                          and in_cap(seedp, 2, U, O, R2)),
                            avoid=tuple(a for a in avoid_v if a != seedp))
     if ps is None:
         return None
-    seedq = extras.get("_ident_o2") or extras.get("_q0") or wbase
-    qs = members_on_circle(W, seedq, cls["gw"], 3, U, O, R2,
-                           include_base=(seedq not in (V, U)
-                                         and in_cap(seedq, 3, U, O, R2)),
-                           avoid=tuple(p for p in ps) + tuple(
-                               v for k, v in extras.items()
-                               if not k.startswith("_p")))
-    if qs is None:
-        return None
-    # the identified points must BE members of the respective plain lists
     if "_ident_o1" in extras and extras["_ident_o1"] not in ps:
         ps = [extras["_ident_o1"]] + ps[:cls["gv"] - 1]
-    if "_ident_o2" in extras and extras["_ident_o2"] not in qs:
-        qs = [extras["_ident_o2"]] + qs[:cls["gw"] - 1]
-    if len(set(ps)) < cls["gv"] or len(set(qs)) < cls["gw"]:
+    if len(set(ps)) < cls["gv"]:
         return None
+    return ps
 
-    return finalize(cls, U, O, R2, rv2, rw2, ps, qs,
-                    {k: v for k, v in extras.items()
-                     if k not in ("_p0", "_q0")})
+
+def tail_qs(cls, U, O, R2, st, ps):
+    """W-side plain q block + finalize. The W side often has a single
+    state, so on convexity failure retry over subsets of a larger
+    candidate pool (angular spread) instead of giving up."""
+    from itertools import combinations
+    extras = st["extras"]
+    seedq = extras.get("_ident_o2") or extras.get("_q0") or st["wbase"]
+    pool = circle_cands(W, seedq, cls["gw"] + 3, 3, U, O, R2,
+                        include_base=(seedq not in (V, U)
+                                      and in_cap(seedq, 3, U, O, R2)),
+                        avoid=tuple(p for p in ps) + tuple(
+                            v for k, v in extras.items()
+                            if not k.startswith("_p")))
+    ident = extras.get("_ident_o2")
+    if ident is not None:
+        pool = [ident] + [p for p in pool if p != ident]
+    if len(pool) < cls["gw"]:
+        return None
+    fin = {k: v for k, v in extras.items() if k not in ("_p0", "_q0")}
+    tried = 0
+    for idx in combinations(range(len(pool)), cls["gw"]):
+        if ident is not None and 0 not in idx:
+            continue  # the identified point must BE a q-member
+        qs = [pool[i] for i in idx]
+        tried += 1
+        res = finalize(cls, U, O, R2, st["rv2"], st["rw2"], ps, qs, fin)
+        if res is not None:
+            return res
+        if tried >= 12:
+            break
+    return None
+
+
+def try_assemble(cls, U, budget=TAIL_BUDGET):
+    """Returns (witness-or-None, tails_used)."""
+    O, R2 = frame(U)
+    if U[1] <= 0 or not nonobtuse(U):
+        return None, 0
+    av, bv, aw, bw = cls["av"], cls["bv"], cls["aw"], cls["bw"]
+    duv, duw = fr_d2(U, V), fr_d2(U, W)
+    if av == "W" and bv == "U" and duv != 1:
+        return None, 0
+    if aw == "V" and bw == "U" and duw != 1:
+        return None, 0
+    rv2 = Fr(1) if av == "W" else (duv if bv == "U" else None)
+    rw2 = Fr(1) if aw == "V" else (duw if bw == "U" else None)
+    # base point ON the V-circle when its radius is forced
+    vbase = W if av == "W" else (U if bv == "U" else None)
+    wbase = V if aw == "V" else (U if bw == "U" else None)
+    st0 = _st(rv2, rw2, vbase, wbase, {})
+    used = 0
+    for st1 in gen_shared(cls, U, O, R2, st0):
+        for st2 in gen_ident(cls, U, O, R2, st1, "o2"):
+            for st3 in gen_ident(cls, U, O, R2, st2, "o1"):
+                for st4 in gen_v_side(cls, U, O, R2, st3):
+                    used += 1
+                    ps = tail_ps(cls, U, O, R2, st4)
+                    if ps is None:
+                        if used >= budget:
+                            return None, used
+                        continue
+                    for st5 in gen_w_side(cls, U, O, R2, st4):
+                        used += 1
+                        res = tail_qs(cls, U, O, R2, st5, ps)
+                        if res is not None:
+                            return res, used
+                        if used >= budget:
+                            return None, used
+    return None, used
 
 
 def finalize(cls, U, O, R2, rv2, rw2, ps, qs, extras):
@@ -510,31 +566,45 @@ def u_candidates(cls):
     menu = list(U_MENU)
     if cls["isv"] == "shared" and cls["bv"] == "U" and cls["bw"] == "U":
         menu = u_thales() + menu  # F-Q3-2 forced frame
-    if (cls["io2"] == "ident" or cls["io1"] == "ident") and (
-            cls["av"] == "W" or cls["bv"] == "U" or cls["aw"] == "V"
-            or cls["bw"] == "U"):
-        menu = menu + U_DENSE  # need rational circle intersections
-    return menu
+    if cls["bv"] == "U" and cls["io1"] == "ident" and cls["aw"] == "V":
+        menu = u_conic_ident() + menu  # rational (duv,1) intersection
+    if cls["av"] == "W" and cls["io2"] == "ident" and cls["bw"] == "U":
+        menu = u_conic_ident(mirror=True) + menu
+    return menu + U_SKEW + U_DENSE  # breadth; CLASS_BUDGET bounds work
 
 
 def realize(cls):
     if cls["io2"] == "ident" and cls["io1"] == "ident":
         return {"status": "KILLED-PROVEN", "ref": "K-Q3-1"}
+    if cls["isv"] == "shared" and cls["bv"] == "U" and cls["bw"] == "U":
+        return {"status": "KILLED-PROVEN", "ref": "K-Q3-3"}
+    if (cls["av"] == "W" and cls["aw"] == "V"
+            and (cls["io2"] == "ident" or cls["io1"] == "ident")):
+        # rv2 = rw2 = 1: the ident point is (1/2, +-sqrt(3)/2) — never
+        # rational; exact-algebraic pass (specials.py)
+        return {"status": "NEEDS-SPECIAL"}
     cands = u_candidates(cls)
     if not cands:
         return {"status": "NEEDS-SPECIAL"}
+    total = CLASS_BUDGET
     for U in cands:
-        res = try_assemble(cls, U)
+        res, used = try_assemble(cls, U, min(TAIL_BUDGET, total))
+        total -= used
         if res is not None:
             return {"status": "witness", **res}
+        if total <= 0:
+            break
     return {"status": "no-witness-in-menu"}
 
 
 if __name__ == "__main__":
-    only = sys.argv[1] if len(sys.argv) > 1 else None
+    only = set(sys.argv[1:])  # class ids; empty = full sweep
+    path = os.path.join(HERE, "factory_raw.json")
     out = {}
+    if only and os.path.exists(path):
+        out = json.load(open(path))  # merge mode: update named classes only
     for cls in q.all_classes():
-        if only and cls["id"] != only:
+        if only and cls["id"] not in only:
             continue
         r = realize(cls)
         out[cls["id"]] = {"status": r["status"]}
@@ -544,5 +614,5 @@ if __name__ == "__main__":
             out[cls["id"]]["sc"] = r["sc"]
             out[cls["id"]]["subs"] = {k: str(v) for k, v in r["subs"].items()}
         print(cls["id"], r["status"], flush=True)
-    with open(os.path.join(HERE, "factory_raw.json"), "w") as f:
+    with open(path, "w") as f:
         json.dump(out, f, indent=1)

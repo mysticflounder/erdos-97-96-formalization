@@ -16,39 +16,52 @@ Read formulation.md, then kill_notes.md, then this file.
        imported machinery PASS; SG3(b) contiguity mutation unsat PASS.
        SG3(a)/(c): z3 unknown on full decorated windows (matches Q1
        experience) — SAT side moved to the exact factory; binding of
-       E-K×I-DISK to be evidenced by witness + perturbation control in
-       verify.py instead.
-3. [x] K-Q3-1 PROVEN (kill_notes.md): double cross-identification classes
-       (io2=ident ∧ io1=ident) die by two-circle mirror symmetry vs
-       chord-VW cap signs. Machine cross-check: z3 unsat 0.0 s on the
-       subsystem. F-Q3-2 mirror-pair forcing PROVEN (incl. Thales-frame
-       forcing for {U, shared-s}).
-4. [~] Factory v2 sweep: 6 KILLED-PROVEN (K-Q3-1 classes, machine
-       cross-checked), 20 witness, 1 NEEDS-SPECIAL (VWU_WVU equilateral),
-       60 no-witness-in-menu — REGRESSION vs v1 (47 witnesses): the v2
-       defining-sample loops in try_assemble commit to the FIRST region
-       sample that yields the side's specials and return None if plain
-       placement later fails — no backtracking over samples (v1 iterated
-       mu menus at top level). FIX NEXT: validate the full side assembly
-       (specials + plains) inside the candidate-sample loop before
-       committing, i.e. move the plains generation into the defining loop
-       or retry the tail over samples. v1's 47 witnesses are in git
-       history (factory_raw.json at the pre-v2 commit) if needed for
-       cross-checking; v1 had the class_id shared/sep collision bug, so
-       its per-class attribution for _ss classes is unreliable — regenerate
-       rather than reuse.
-5. [ ] verify.py: official-system exact verification of all witnesses
-       (+ mutation control).
-6. [ ] specials.py: exact-algebraic witnesses for NEEDS-SPECIAL classes
-       (equilateral apex; rv2=rw2=1 identifications).
-7. [ ] msolve equality-ideal step on class representatives (expected
+       E-K×I-DISK evidenced by witness + mutation controls in verify.py.
+3. [x] KILLS PROVEN (kill_notes.md):
+       - K-Q3-1: double cross-identification classes (io2=ident ∧
+         io1=ident) die by two-circle mirror symmetry vs chord-VW cap
+         signs. z3 subsystem unsat. 6 classes.
+       - K-Q3-3: shared-apex + shared-S (VsU_WsU_sshared) dies: F-Q3-2
+         forces the Thales frame, then the foot of the perpendicular
+         from V onto chord WU is U itself, so intO1 has no point at
+         radius ‖UV‖ from V. z3 subsystem unsat (check_kq33.py) with
+         even a single intO1 member. 1 class.
+       - F-Q3-2 mirror-pair forcing PROVEN (incl. Thales-frame forcing
+         for {U, shared-s}).
+       - check_kq34.py: the anchored single-ident subsystems (V0o2_WV0_o2i
+         and V0U_WVo1_o1i shapes) are z3-SAT at skewed apexes — NOT kills
+         at 1-aux-point granularity; realization gap was menu coverage.
+4. [x] Factory v3 (factory.py): staged generators with full backtracking
+       (the v2 defining-sample regression fixed); split ps/qs tail; qs
+       subset-retry for convexity; wiggle-outer angularly-diverse
+       circle_cands; U_SKEW (right-angle frames) + u_conic_ident
+       (rational two-circle intersections via duv = 4b²/(a²+b²)) +
+       u_thales fixed (was returning [] — rotations of V land below the
+       axis; rotate W instead). Rational witnesses: 47 (full sweep)
+       + residue passes ongoing (52+ at last count); merge mode:
+       `factory.py <class ids>` updates factory_raw.json in place.
+5. [x] verify.py: all 47 sweep witnesses VERIFIED through official
+       build_w2c + verify_exact (sympy exact), 0 failures, mutation
+       control rejects. RE-RUN after the final residue pass to cover
+       late witnesses.
+6. [x] specials.py: all 4 NEEDS-SPECIAL classes VERIFIED over Q(√3) with
+       per-class mutation controls (specials_witnesses.json):
+       VWU_WVU (equilateral apex), VW0_WVo1_o1i, VWU_WVo1_o1i (both:
+       rv2=rw2=1 force ident z=(1/2,√3/2)), VWo2_WVo1_o2d_o1i (hand
+       witness at U=(1/5,6/5) — auto-aim misses the feasible corner).
+       These classes are NEEDS-SPECIAL by PROOF: the ident point on both
+       unit circles is (1/2,±√3/2), never rational.
+7. [ ] Residual no-witness classes after residue passes: for each, either
+       targeted hand witness (as VWo2_WVo1_o2d_o1i) or z3 subsystem check
+       → SUSPECTED-KILL (then hand proof) vs UNRESOLVED (treated LIVE).
+       msolve equality-ideal step on class representatives (expected
        POSDIM everywhere; certificates only if surprises).
 8. [ ] Composition retest (token level, q2_token.py pattern) with the
-       K-Q3-1 kill granted, n = 12–16.
-9. [ ] Falsifier gate on any reported kill (W20 + lattice witnesses —
-       note: those witnesses are non-convex, so order-decorated kills get
-       the equality/cap/disk-only applicability check; K-Q3-1 uses no
-       order constraints, so the full check applies).
+       K-Q3-1 + K-Q3-3 kills granted, n = 12–16.
+9. [ ] Falsifier gate on the kills (W20 + lattice witnesses): K-Q3-1 uses
+       radii + cap signs only; K-Q3-3 additionally I-DISK + I-OBT + H1
+       count — neither uses ORDER constraints, so the full applicability
+       check applies to both.
 10. [ ] report.md + fold into plan §7 D3 / ledger, commit.
 
 ## Environment
