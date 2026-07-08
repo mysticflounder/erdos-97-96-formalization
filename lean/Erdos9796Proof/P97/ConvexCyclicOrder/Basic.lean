@@ -208,6 +208,61 @@ theorem isCcwConvexPolygon_cyclicShift {n : ℕ} {φ : Fin n → ℝ²}
     exact add_left_injective cut (hinj h)
   exact ccw_of_hneg hinj_s (fun {i j k} hij hjk => hneg_s hij hjk)
 
+/-- A cyclic shift of an injective finite enumeration is injective. -/
+theorem injective_cyclicShift {n : ℕ} {α : Type} {φ : Fin n → α}
+    (hinj : Function.Injective φ) (cut : Fin n) :
+    Function.Injective (fun t : Fin n => φ (t + cut)) := by
+  intro a b h
+  exact add_left_injective cut (hinj h)
+
+/-- A cyclic shift of a finite enumeration has the same image over `univ`. -/
+theorem image_univ_cyclicShift {n : ℕ} {α : Type} [DecidableEq α]
+    (φ : Fin n → α) (cut : Fin n) :
+    Finset.univ.image (fun t : Fin n => φ (t + cut)) =
+      Finset.univ.image φ := by
+  apply Finset.ext
+  intro x
+  constructor
+  · intro hx
+    rcases Finset.mem_image.mp hx with ⟨t, _ht, rfl⟩
+    exact Finset.mem_image_of_mem φ (Finset.mem_univ (t + cut))
+  · intro hx
+    rcases Finset.mem_image.mp hx with ⟨q, _hq, hq⟩
+    have hsurj : Function.Surjective (fun t : Fin n => t + cut) := by
+      exact (Finite.injective_iff_surjective).mp (add_left_injective cut)
+    rcases hsurj q with ⟨t, ht⟩
+    exact Finset.mem_image.mpr
+      ⟨t, Finset.mem_univ t, by simpa [ht] using hq⟩
+
+/-- Given a CCW convex-polygon enumeration of `A` and a point of `A`, cyclically
+re-cut the enumeration so that the chosen point is at index zero. -/
+theorem exists_isCcwConvexPolygon_cyclicShift_at_zero
+    {A : Finset ℝ²} {n : ℕ} (hn : 0 < n) {φ : Fin n → ℝ²}
+    (hinj : Function.Injective φ)
+    (himage : Finset.univ.image φ = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    {p : ℝ²} (hpA : p ∈ A) :
+    ∃ cut : Fin n,
+      Function.Injective (fun t : Fin n => φ (t + cut)) ∧
+      Finset.univ.image (fun t : Fin n => φ (t + cut)) = A ∧
+      EuclideanGeometry.IsCcwConvexPolygon (fun t : Fin n => φ (t + cut)) ∧
+      (fun t : Fin n => φ (t + cut)) (⟨0, hn⟩ : Fin n) = p := by
+  have hpImage : p ∈ Finset.univ.image φ := by
+    simpa [himage] using hpA
+  rcases Finset.mem_image.mp hpImage with ⟨cut, _hcut, hcut⟩
+  refine ⟨cut, ?_, ?_, ?_, ?_⟩
+  · exact injective_cyclicShift hinj cut
+  · rw [image_univ_cyclicShift φ cut, himage]
+  · exact isCcwConvexPolygon_cyclicShift hinj hccw cut
+  · have hzero : (⟨0, hn⟩ : Fin n) + cut = cut := by
+      ext
+      rw [Fin.val_add_eq_ite]
+      change
+        (if n ≤ 0 + cut.val then 0 + cut.val - n else 0 + cut.val) =
+          cut.val
+      simp
+    simpa [hzero] using hcut
+
 -- TODO Step 2: ConvexCyclicOrder.rotate — `ConvexCyclicOrder A p q r s
 -- → ConvexCyclicOrder A q r s p`. The generic boundary-enumeration cyclic
 -- shift above supplies the geometric transport; the remaining work is a

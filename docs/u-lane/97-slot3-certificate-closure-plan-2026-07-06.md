@@ -354,6 +354,24 @@ then `LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
 both succeeded and proof-blueprint resynced; the active spine remains `1 open /
 806 total`.
 
+2026-07-08 chosen-cut checkpoint: `ConvexCyclicOrder/Basic.lean` now also
+exposes the enumeration packaging needed by the selector:
+`Problem97.injective_cyclicShift`,
+`Problem97.image_univ_cyclicShift`, and
+`Problem97.exists_isCcwConvexPolygon_cyclicShift_at_zero`.  Given a global CCW
+convex-boundary enumeration of `A` and a point `p ∈ A`, the last theorem
+produces a cyclic cut whose shifted enumeration is still injective, still has
+image exactly `A`, is still CCW, and sends the explicit zero index to `p`.
+This is the precise setup needed to cut the P1 boundary enumeration at the
+surplus apex before applying the ordinary and complement cap-interval bridges.
+The remaining P1 selector still has to export concrete increasing indices for
+the right and left ten-label packets from the shifted enumeration and the three
+cap-block membership facts.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.ConvexCyclicOrder.Basic` and
+then `LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+both succeeded and proof-blueprint resynced; the active spine remains `1 open /
+806 total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
