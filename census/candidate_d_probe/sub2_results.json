@@ -1,0 +1,12 @@
+{
+ "left": {
+  "status": "unknown",
+  "secs": 300.01,
+  "reason": "timeout"
+ },
+ "right": {
+  "status": "unknown",
+  "secs": 300.06,
+  "reason": "timeout"
+ }
+}

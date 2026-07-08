@@ -1,0 +1,21 @@
+{
+ "classes": [],
+ "elapsed_sec": 0.48751229100162163,
+ "layer": "L2",
+ "limit": null,
+ "local_classes": 523,
+ "nodes_per_sec": 639985.9157580956,
+ "profile": [
+  4,
+  5,
+  6
+ ],
+ "summary": {
+  "INDETERMINATE": 0,
+  "SAT": 523,
+  "UNSAT": 0
+ },
+ "tested": 523,
+ "tier": "proven",
+ "total_nodes": 312001
+}

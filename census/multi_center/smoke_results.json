@@ -1,0 +1,38 @@
+[
+ {
+  "gate": "S1",
+  "mismatches": [],
+  "pass": true,
+  "profiles_checked": 22,
+  "total_nodes": 54919
+ },
+ {
+  "checks": {
+   "K-Q3-1": {
+    "absent_with_kills": true,
+    "local_preconditions": true,
+    "present_without_kills": true
+   },
+   "K-Q3-5": {
+    "absent_with_kills": true,
+    "local_preconditions": true,
+    "present_without_kills": true
+   }
+  },
+  "gate": "S2",
+  "pass": true
+ },
+ {
+  "direct_count": 185,
+  "extra_in_direct": [],
+  "gate": "S3",
+  "missing_from_direct": [],
+  "naive_count": 185,
+  "pass": true,
+  "profile": [
+   4,
+   5,
+   6
+  ]
+ }
+]

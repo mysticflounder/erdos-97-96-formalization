@@ -1,0 +1,51 @@
+[
+ {
+  "gate": "SG1",
+  "pass": true,
+  "detail": {
+   "gate": "G1",
+   "pass": true,
+   "msolve_allpairs": {
+    "verdict": "C-EMPTY",
+    "secs": 0.01,
+    "raw_prefix": "[-1]:",
+    "in": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/q3_two_center/runs/G1_vesica_k4_allpairs.msolve.in",
+    "out": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/q3_two_center/runs/G1_vesica_k4_allpairs.msolve.out"
+   },
+   "msolve_minsep_p1p3": {
+    "verdict": "C-EMPTY",
+    "secs": 0.01,
+    "raw_prefix": "[-1]:",
+    "in": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/q3_two_center/runs/G1_vesica_k4_minsep.msolve.in",
+    "out": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/q3_two_center/runs/G1_vesica_k4_minsep.msolve.out"
+   },
+   "sympy_gb_one_allpairs": true,
+   "sympy_gb_one_minsep": true
+  }
+ },
+ {
+  "gate": "SG2",
+  "pass": true,
+  "bad": []
+ },
+ {
+  "gate": "SG3",
+  "pass": false,
+  "detail": {
+   "a_baseline": {
+    "status": "unknown",
+    "secs": 120.02,
+    "all_rational": null
+   },
+   "a_model": null,
+   "b_contiguity_mut": {
+    "status": "unsat",
+    "secs": 0.0
+   },
+   "c_radius_mut": {
+    "status": "unknown",
+    "secs": 120.1
+   }
+  }
+ }
+]
