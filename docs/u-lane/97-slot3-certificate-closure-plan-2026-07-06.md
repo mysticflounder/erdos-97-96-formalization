@@ -183,7 +183,10 @@ that first verified step.  The mirror left `(0,0,4,0)` row has since been
 migrated the same way.  The representative subset-extension row
 `right (0,0,1,3)` is also migrated: it transports the row subset proof across
 the ordered scaffold's equality between the old three-point set and the
-ordered labels.  A temporary old-to-ordered adapter keeps the remaining old
+ordered labels.  The right same-side triple rows `right (0,1,0,3)` and
+`right (1,0,0,3)` now use the same ordered-set transport pattern, so the
+right side of the heavy same-side triple block no longer needs arbitrary
+three-point labels.  A temporary old-to-ordered adapter keeps the remaining old
 universal consumers compiling while the rest of the row blocks are migrated.
 This is a transition bridge only; closure still requires the active
 finite-residual statement to produce the ordered sep scaffold directly and the
