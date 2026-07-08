@@ -5323,6 +5323,81 @@ theorem oppositeVertexByIndex_mem
   · simpa [oppositeVertexByIndex] using S.triangle.v2_mem
   · simpa [oppositeVertexByIndex] using S.triangle.v3_mem
 
+/-- Export a shared CCW boundary enumeration of `A` cut so that the surplus
+apex is index zero.  This is the first geometric input for the P1 ordered
+scaffold producer: subsequent interval exports locate the two opposite cap
+interiors and the selected surplus triple in this same ambient order. -/
+theorem exists_ccw_boundary_order_at_surplus_apex
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hne : A.Nonempty) (hconv : ConvexIndep A)
+    (hK4 : HasNEquidistantProperty 4 A) :
+    ∃ n : ℕ, ∃ hn : 0 < n, ∃ φ : Fin n → ℝ²,
+      Function.Injective φ ∧
+      Finset.univ.image φ = A ∧
+      EuclideanGeometry.IsCcwConvexPolygon φ ∧
+      φ (⟨0, hn⟩ : Fin n) =
+        S.oppositeVertexByIndex S.surplusIdx := by
+  have hncol : ¬ Collinear ℝ (A : Set ℝ²) :=
+    not_collinear_of_K4 hne hconv hK4
+  rcases exists_isCcwConvexPolygon_of_convexIndep hconv hncol with
+    ⟨n, hn3, φ, hφinj, hφimage, hccw⟩
+  have hnpos : 0 < n := by omega
+  have hupA : S.oppositeVertexByIndex S.surplusIdx ∈ A :=
+    S.oppositeVertexByIndex_mem S.surplusIdx
+  rcases exists_isCcwConvexPolygon_cyclicShift_at_zero hnpos hφinj
+      hφimage hccw hupA with
+    ⟨cut, hshiftInj, hshiftImage, hshiftCcw, hzero⟩
+  exact
+    ⟨n, hnpos, (fun t : Fin n => φ (t + cut)), hshiftInj, hshiftImage,
+      hshiftCcw, hzero⟩
+
+/-- Strengthened zero-cut boundary export that also names the two opposite
+apex indices and records their dichotomy in the cut linear order.  The two
+branches correspond to the direct right and direct left P1 hull-order
+templates. -/
+theorem exists_ccw_boundary_order_at_surplus_apex_with_opposite_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hne : A.Nonempty) (hconv : ConvexIndep A)
+    (hK4 : HasNEquidistantProperty 4 A) :
+    ∃ n : ℕ, ∃ hn : 0 < n, ∃ φ : Fin n → ℝ², ∃ iv iw : Fin n,
+      Function.Injective φ ∧
+      Finset.univ.image φ = A ∧
+      EuclideanGeometry.IsCcwConvexPolygon φ ∧
+      φ (⟨0, hn⟩ : Fin n) =
+        S.oppositeVertexByIndex S.surplusIdx ∧
+      φ iv = S.oppositeVertexByIndex S.oppIndex1 ∧
+      φ iw = S.oppositeVertexByIndex S.oppIndex2 ∧
+      (((⟨0, hn⟩ : Fin n) < iv ∧ iv < iw) ∨
+        ((⟨0, hn⟩ : Fin n) < iw ∧ iw < iv)) := by
+  rcases S.exists_ccw_boundary_order_at_surplus_apex hne hconv hK4 with
+    ⟨n, hn, φ, hφinj, hφimage, hccw, hu⟩
+  have hvA : S.oppositeVertexByIndex S.oppIndex1 ∈ A :=
+    S.oppositeVertexByIndex_mem S.oppIndex1
+  have hwA : S.oppositeVertexByIndex S.oppIndex2 ∈ A :=
+    S.oppositeVertexByIndex_mem S.oppIndex2
+  have hvImage :
+      S.oppositeVertexByIndex S.oppIndex1 ∈ Finset.univ.image φ := by
+    simpa [hφimage] using hvA
+  have hwImage :
+      S.oppositeVertexByIndex S.oppIndex2 ∈ Finset.univ.image φ := by
+    simpa [hφimage] using hwA
+  rcases Finset.mem_image.mp hvImage with ⟨iv, _hiv, hv⟩
+  rcases Finset.mem_image.mp hwImage with ⟨iw, _hiw, hw⟩
+  have huv : S.oppositeVertexByIndex S.surplusIdx ≠
+      S.oppositeVertexByIndex S.oppIndex1 :=
+    S.oppositeVertexByIndex_ne_of_ne S.surplusIdx_ne_oppIndex1
+  have huw : S.oppositeVertexByIndex S.surplusIdx ≠
+      S.oppositeVertexByIndex S.oppIndex2 :=
+    S.oppositeVertexByIndex_ne_of_ne S.surplusIdx_ne_oppIndex2
+  have hvw : S.oppositeVertexByIndex S.oppIndex1 ≠
+      S.oppositeVertexByIndex S.oppIndex2 :=
+    S.oppositeVertexByIndex_ne_of_ne S.oppIndex1_ne_oppIndex2
+  have horder :=
+    _root_.Problem97.image_index_order_dichotomy_after_zero hn (φ := φ)
+      hu hv hw huv huw hvw
+  exact
+    ⟨n, hn, φ, iv, iw, hφinj, hφimage, hccw, hu, hv, hw, horder⟩
+
 /-- Global `K4` supplies the endpoint-style selector shape at any short indexed
 cap. -/
 theorem exists_moserSelectorShapeAt_of_hasNEquidistantProperty

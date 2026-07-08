@@ -502,6 +502,20 @@ checkpoint: one branch feeds the right direct hull-order selector, the other
 feeds the left direct hull-order selector, and the nonmatching side still needs
 real mirror/permutation transport or a finite-producer refactor.
 
+2026-07-08 zero-cut boundary export checkpoint: `SurplusM44Packet.lean` now
+also exposes
+`Problem97.SurplusCapPacket.exists_ccw_boundary_order_at_surplus_apex` and
+`Problem97.SurplusCapPacket.exists_ccw_boundary_order_at_surplus_apex_with_opposite_indices`.
+These package the upstream placement theorem needed by P1: from the current
+`A.Nonempty`, `ConvexIndep A`, and `HasNEquidistantProperty 4 A` hypotheses,
+the packet has a shared ambient CCW enumeration cut at the surplus apex, plus
+indices for the two opposite apexes and the post-cut order dichotomy.  The
+remaining P1 work is now the side-specific hull-order selector: in the
+`u < oppIndex1 < oppIndex2` branch, use the existing strict interval exports
+and finite sorted selectors to build the right ten-label certificate; in the
+opposite branch, build the left certificate.  The nonmatching side still needs
+transport/permutation or a finite-producer refactor.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
