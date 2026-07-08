@@ -180,11 +180,15 @@ ordered-consumer option.  `RemovableVertexAxiom.lean` now has
 adapter.  The right `(0,0,0,4)` finite row now consumes the ordered scaffold
 for the exact three-point surplus set it constructs; commit `f255a8f` records
 that first verified step.  The mirror left `(0,0,4,0)` row has since been
-migrated the same way.  A temporary old-to-ordered adapter keeps the remaining
-old universal consumers compiling while the rest of the row blocks are
-migrated.  This is a transition bridge only; closure still requires the active
+migrated the same way.  The representative subset-extension row
+`right (0,0,1,3)` is also migrated: it transports the row subset proof across
+the ordered scaffold's equality between the old three-point set and the
+ordered labels.  A temporary old-to-ordered adapter keeps the remaining old
+universal consumers compiling while the rest of the row blocks are migrated.
+This is a transition bridge only; closure still requires the active
 finite-residual statement to produce the ordered sep scaffold directly and the
 remaining row consumers to stop depending on the old false universal surface.
+Current verified spine after this migration remains `1 open / 799 total`.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
