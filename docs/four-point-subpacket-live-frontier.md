@@ -1396,17 +1396,17 @@ therefore narrower: produce the two representative candidate remainders, the
 generated prefix pair-count interface, and `sepOKFor`, plus the direct
 surplus-opposite/surplus-interior erased-pin exclusions.
 
-Build/dependency note: `[mining].skip` in `.blueprint.toml` affects
-proof-blueprint mining and trusted-leaf rendering only.  It does not remove
-generated certificate modules from Lean's import graph or from `lake-build`.
-At this checkpoint, hand-written modules outside the generated directories
-directly import endpoint-certificate modules from `RemovableVertexAxiom.lean`,
-`SurplusCOMPGBankGeometry.lean`, and `K4WindowBank.lean`; no hand-written module
-outside `SurplusCertificate/` directly imports `Erdos9796Proof.P97.SurplusCertificate.*`.
-The successful `RemovableVertexAxiom` build above rebuilt endpoint certificate
-shadow-search, row-zero product/direct, and residual-soundness modules, so this
-was observed in the Lean build itself; `[mining].skip` only changed what
-proof-blueprint mined/rendered.
+Build/dependency note: `[mining].skip` in `.blueprint.toml` skips
+proof-blueprint mining of the configured certificate files for `sorry`
+statements only.  It does not remove generated certificate modules from Lean's
+import graph or from `lake-build`.  At this checkpoint, hand-written modules
+outside the generated directories directly import endpoint-certificate modules
+from `RemovableVertexAxiom.lean`, `SurplusCOMPGBankGeometry.lean`, and
+`K4WindowBank.lean`; no hand-written module outside `SurplusCertificate/`
+directly imports `Erdos9796Proof.P97.SurplusCertificate.*`.  The successful
+`RemovableVertexAxiom` build above rebuilt endpoint certificate shadow-search,
+row-zero product/direct, and residual-soundness modules, so this was observed
+in the Lean build itself.
 
 Use narrow `lake-build` targets while editing generated certificate shards.
 Treat proof-blueprint as the spine-shape authority, but keep the live axiom
@@ -1457,3 +1457,30 @@ selected-skeleton/support contradiction usable by the U5 audit, or prove a
 separate surplus-index selected-class exclusion.  Do not route this through the
 pinned residual APIs unless first proving the missing selected-class escape
 that those APIs require.
+
+Checkpoint implementation, 2026-07-08 PDT: the local proof now has two closed
+bridges.  `u2Statement_of_nonSurplusMoserCapContainment` derives
+`U2Statement D` from the current `D.packet.NonSurplusMoserCapContainment`, so
+the direct U5 route no longer lacks U2 at this branch.
+`exists_u3FixedTriplePacket_of_erasedPinTriple` converts each direct
+`ErasedPinTriple D.A x p` into a local `U3FixedTriplePacket D x p t1 t2 t3`;
+combined with `u5DangerousTriple_of_u3FixedTriplePacket`, the surplus-opposite
+and surplus-interior direct subgoals now have local `U5DangerousTriple`s at
+their own centers.
+
+The direct U5 false theorem is still not applicable from the current context:
+there is no local producer for `U5ModeA D`, `U5SelectedCandidateSkeleton`, or
+the selected-candidate support payload (`U5ConfinedK4AuditPayload` /
+`U5BoundedAuditSupport`) for these local dangerous triples.  The direct
+surplus-side producer boundary is therefore narrower but still live: either
+produce that selected candidate/support payload, or prove a surplus-index
+selected-class contradiction that bypasses U5.  The finite scaffold boundary is
+unchanged: it still needs representative `OneSidedSeedCandidateRemainder`,
+`PrefixPairCountsOK`, and total `sepOKFor` producers for the induced shadows.
+
+Narrow verification after these bridges: `lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom` completed successfully and
+proof-blueprint resynced.  Open/total counts after resync are:
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
+`1/769`; `Problem97.erdos97_rhs` is `22/1556`; `Problem96.erdos96_rhs` is
+`26/1564`.

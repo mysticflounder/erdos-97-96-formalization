@@ -8687,6 +8687,84 @@ theorem isM44EndpointResidualsExcluded :
   `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit`. -/
 theorem isM44PinnedSurplusResidualsExcluded :
       IsM44PinnedSurplusResidualsExcludedStatement := sorry
+
+/-- The local non-surplus Moser-cap containment input supplies the `U2`
+package needed by the U5 interface for the same counterexample datum. -/
+theorem u2Statement_of_nonSurplusMoserCapContainment
+    (D : CounterexampleData)
+    (hcontain : D.packet.NonSurplusMoserCapContainment) :
+    U2Statement D := by
+  refine u2Statement_of_u2FullDistanceClasses D ?_
+  intro hM44
+  rcases hM44.exists_nonSurplus_exact_cap_classes_at_side_of_moserCapContainment
+      D.K4 hcontain with
+    ⟨d, hdpos, _h12, _h23, _h31, hexact1, hexact2⟩
+  refine ⟨d, hdpos, ?_, ?_⟩
+  · ext y
+    have h := congrArg (fun T : Finset ℝ² => y ∈ T) hexact1
+    rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
+    interval_cases i
+    all_goals
+      simpa [SelectedClass, SurplusCapPacket.oppApex1,
+        SurplusCapPacket.oppCap1, SurplusCapPacket.oppIndex1,
+        SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.capByIndex,
+        hi, dist_comm] using h
+  · ext y
+    have h := congrArg (fun T : Finset ℝ² => y ∈ T) hexact2
+    rcases hi : D.packet.surplusIdx with ⟨i, hilt⟩
+    interval_cases i
+    all_goals
+      simpa [SelectedClass, SurplusCapPacket.oppApex2,
+        SurplusCapPacket.oppCap2, SurplusCapPacket.oppIndex2,
+        SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.capByIndex,
+        hi, dist_comm] using h
+
+/-- A direct erased-pin triple is the same fixed-triple packet used by the U5
+dangerous-triple interface, with the erased point as `q`. -/
+theorem exists_u3FixedTriplePacket_of_erasedPinTriple
+    {D : CounterexampleData} {x p : ℝ²}
+    (hxA : x ∈ D.A) (hpA : p ∈ D.A)
+    (htriple : ErasedPinTriple D.A x p) :
+    ∃ t1 t2 t3 : ℝ², U3FixedTriplePacket D x p t1 t2 t3 := by
+  classical
+  rcases htriple with ⟨hpos, hcard⟩
+  rw [Finset.card_eq_three] at hcard
+  rcases hcard with ⟨t1, t2, t3, ht12, ht13, ht23, hC⟩
+  refine ⟨t1, t2, t3, ?_⟩
+  have ht1 :
+      t1 ∈ (((D.A.erase x).erase p).filter
+        fun y => dist p y = dist p x) := by
+    rw [hC]
+    simp
+  have ht2 :
+      t2 ∈ (((D.A.erase x).erase p).filter
+        fun y => dist p y = dist p x) := by
+    rw [hC]
+    simp
+  have ht3 :
+      t3 ∈ (((D.A.erase x).erase p).filter
+        fun y => dist p y = dist p x) := by
+    rw [hC]
+    simp
+  refine
+    { q_mem := hxA
+      p_mem := hpA
+      t1_mem := ?_
+      t2_mem := ?_
+      t3_mem := ?_
+      t1_ne_t2 := ht12
+      t1_ne_t3 := ht13
+      t2_ne_t3 := ht23
+      q_radius_pos := hpos
+      t1_same_radius := ?_
+      t2_same_radius := ?_
+      t3_same_radius := ?_ }
+  · simpa [CounterexampleData.skeleton] using (Finset.mem_filter.mp ht1).1
+  · simpa [CounterexampleData.skeleton] using (Finset.mem_filter.mp ht2).1
+  · simpa [CounterexampleData.skeleton] using (Finset.mem_filter.mp ht3).1
+  · exact (Finset.mem_filter.mp ht1).2
+  · exact (Finset.mem_filter.mp ht2).2
+  · exact (Finset.mem_filter.mp ht3).2
   
 /-- Categorized residual concrete erasure-witness production for the `IsM44`
 containment branch reduced to U5-style erased-pin triple circles.  The
@@ -8719,6 +8797,11 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
         exact hMin B (Nat.lt_of_not_ge hnot) hBne hBconv hBK4
       have hxA : x ∈ D.A := by
         exact S.capInteriorByIndex_subset S.surplusIdx hxI
+      have hDIsM44 : D.IsM44 := by
+        simpa [CounterexampleData.IsM44, D] using hM44
+      have hDU2 : U2Statement D := by
+        refine u2Statement_of_nonSurplusMoserCapContainment D ?_
+        simpa [D] using hcontain
       have hfixed :
           ∃ p t1 t2 t3 : ℝ², U3FixedTriplePacket D x p t1 t2 t3 := by
         exact exists_fixedTriplePacket_of_not_removable_mem hxA
@@ -8731,12 +8814,36 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
           u5DangerousTriple_of_u3FixedTriplePacket hP⟩
       refine ⟨x, hxI, ?_, ?_, ?_⟩
       · intro htriple
-        -- The deletion-failure U5 dangerous triple above is available here;
-        -- the direct surplus-opposite exclusion is the remaining producer fact.
+        rcases exists_u3FixedTriplePacket_of_erasedPinTriple
+            (D := D) hxA
+            (by
+              simpa [D] using
+                S.oppositeVertexByIndex_mem S.surplusIdx)
+            (by simpa [D] using htriple) with
+          ⟨t1, t2, t3, hP⟩
+        have hlocalDangerous :
+            U5DangerousTriple D x
+              (S.oppositeVertexByIndex S.surplusIdx)
+              ({t1, t2, t3} : Finset ℝ²) := by
+          simpa [D] using u5DangerousTriple_of_u3FixedTriplePacket hP
+        -- The direct surplus-opposite branch now has the exact U5 dangerous
+        -- triple at its own center.  The remaining producer must supply the
+        -- selected candidate/support payload, or a direct surplus-index
+        -- contradiction.
         sorry
       · intro p hpI hpErase htriple
-        -- The deletion-failure U5 dangerous triple above is available here;
-        -- the direct surplus-interior exclusion is the remaining producer fact.
+        rcases exists_u3FixedTriplePacket_of_erasedPinTriple
+            (D := D) hxA
+            (by exact (Finset.mem_erase.mp hpErase).2)
+            (by simpa [D] using htriple) with
+          ⟨t1, t2, t3, hP⟩
+        have hlocalDangerous :
+            U5DangerousTriple D x p ({t1, t2, t3} : Finset ℝ²) := by
+          simpa [D] using u5DangerousTriple_of_u3FixedTriplePacket hP
+        -- The direct surplus-interior branch now has the exact U5 dangerous
+        -- triple at its own center.  The remaining producer must supply the
+        -- selected candidate/support payload, or a direct surplus-index
+        -- contradiction.
         sorry
       · -- The reduced finite candidate scaffold remains the selected-class
         -- shadow producer needed by the finite row bridge.
