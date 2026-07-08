@@ -294,6 +294,20 @@ the right/left placement CCW certificates and the right/left candidate
 remainder producers, plus the direct surplus-opposite and surplus-interior
 erased-pin branches.
 
+2026-07-08 P1 certificate-shape checkpoint: the raw right/left CCW holes now
+factor through a verified ambient-boundary subsequence consumer.  The new
+`HullOrderSubsequenceCertificate A pointOf` requires one injective global CCW
+enumeration of `A`, an exact image proof for `A`, and strictly increasing
+indices for the ten `labelOfHullFin` packet points.  The proved
+`isCcwConvexPolygon_of_hullOrderSubsequenceCertificate` turns such a
+certificate into the exact `IsCcwConvexPolygon` argument expected by the finite
+candidate producers via `isCcwConvexPolygon_subsequence`.  The remaining P1
+producer gaps are therefore no longer unrestricted CCW assertions: they are
+specifically the right and left ambient-index export certificates.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+succeeded and proof-blueprint resynced; the active spine is `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

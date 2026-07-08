@@ -73,6 +73,48 @@ theorem pinnedSurplusCOMPGBankBridge :
     (SurplusCOMPGBank.fragmentShadowAcceptedBySearch_of_isValidPinnedFragment
       hshadow)
 
+/-- A ten-label packet occurs as a strictly increasing subsequence of one
+ambient CCW boundary enumeration of `A`.  This is the P1 certificate shape
+needed by the erased-pin ordered scaffold: the producer still has to export the
+indices, but the CCW ten-point hull follows formally from this certificate. -/
+abbrev HullOrderSubsequenceCertificate (A : Finset ℝ²)
+    (pointOf : SurplusCOMPGBank.Label → ℝ²) : Prop :=
+  ∃ n : ℕ, ∃ φ : Fin n → ℝ², ∃ idx : Fin 10 → Fin n,
+    Function.Injective φ ∧
+    Finset.univ.image φ = A ∧
+    EuclideanGeometry.IsCcwConvexPolygon φ ∧
+    StrictMono idx ∧
+    ∀ i : Fin 10, φ (idx i) =
+      pointOf (_root_.Problem97.SurplusCOMPGBank.labelOfHullFin i)
+
+/-- Consume a P1 ambient hull-order certificate to obtain the exact
+`labelOfHullFin` CCW certificate expected by the finite candidate producers. -/
+theorem isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+    {A : Finset ℝ²} {pointOf : SurplusCOMPGBank.Label → ℝ²}
+    (hcert : HullOrderSubsequenceCertificate A pointOf) :
+    EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        pointOf (_root_.Problem97.SurplusCOMPGBank.labelOfHullFin i)) := by
+  rcases hcert with ⟨n, φ, idx, _hφinj, _hφimage, hccw, hidx, hpoints⟩
+  have hsub :
+      EuclideanGeometry.IsCcwConvexPolygon (fun i : Fin 10 => φ (idx i)) :=
+    _root_.Problem97.isCcwConvexPolygon_subsequence (φ := φ) (idx := idx)
+      hccw hidx
+  intro i j k hij hjk
+  have hi :
+      pointOf (_root_.Problem97.SurplusCOMPGBank.labelOfHullFin i) =
+        φ (idx i) :=
+    (hpoints i).symm
+  have hj :
+      pointOf (_root_.Problem97.SurplusCOMPGBank.labelOfHullFin j) =
+        φ (idx j) :=
+    (hpoints j).symm
+  have hk :
+      pointOf (_root_.Problem97.SurplusCOMPGBank.labelOfHullFin k) =
+        φ (idx k) :=
+    (hpoints k).symm
+  simpa [hi, hj, hk] using hsub hij hjk
+
 /-- A concrete selected-class witness in the erased set is exactly the data
 needed to prove that the erased point is removable. -/
 theorem removableVertex_of_selectedClass_erase_witnesses
@@ -9357,9 +9399,15 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               hs3I hp12 hq12 hs12 hs13 hs23
               (fun _ => dist p x)
               (by
-                -- Producer gap: order the right packet so the generated
-                -- ten-label hull is CCW.
-                sorry)
+                have horder :
+                    HullOrderSubsequenceCertificate A
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) := by
+                  -- Producer gap: export one ambient boundary enumeration and
+                  -- increasing indices for the right ten-label packet.
+                  sorry
+                exact
+                  isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+                    horder)
               (by
                 intro sstar hsstar hsstar_eq
                 -- Producer gap: prove the right candidate remainders for the
@@ -9380,8 +9428,15 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               hs3I hq12 hp12 hs12 hs13 hs23
               (fun _ => dist p x)
               (by
-                -- Mirror placement producer gap for the generated left hull.
-                sorry)
+                have horder :
+                    HullOrderSubsequenceCertificate A
+                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) := by
+                  -- Producer gap: export one ambient boundary enumeration and
+                  -- increasing indices for the left ten-label packet.
+                  sorry
+                exact
+                  isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+                    horder)
               (by
                 intro sstar hsstar hsstar_eq
                 -- Mirror candidate-remainder producer gap.
