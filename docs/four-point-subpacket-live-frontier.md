@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as open: 1/737.  The only on-spine custom obstruction is
+reports this anchor as open: 1/753.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -360,7 +360,7 @@ exclusions, not another implication between reduced surfaces.
 Current erased-pin closure plan, 2026-07-08:
 
 Plan audit, 2026-07-08: live proof-blueprint output reports this anchor as
-open: 1/737 after the checked-prefix source shrink, with the only on-spine
+open: 1/753 after the fixed-triple/U5 source-prefix shrink, with the only on-spine
 project obligation still being the local
 `sorry` in
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
@@ -385,12 +385,13 @@ Do not port or wrap rvol machinery unless it directly produces
 exclusion, or the surplus-interior direct exclusions for the same chosen `x`.
 
 Efficient-path refinement, 2026-07-08: current-repo U3/U5 data does not yet
-give a closed bypass for this anchor.  The localized no-`Q` packet gives an
-exact three-point deleted radius class at one failing center, but the closed
-U5 terminal consumers still require an explicit local payload/audited-support
-producer.  Therefore do not replace the scaffold obligation by a U5
-direct-contradiction route unless such a producer is actually present.  The
-next lowest-risk Lean work is to shrink the existing scaffold obligation by
+give a closed bypass for this anchor.  Minimal non-removability now supplies an
+on-spine `U3FixedTriplePacket` and the corresponding `U5DangerousTriple`, but
+the closed U5 terminal consumers still require an explicit local
+payload/audited-support producer.  Therefore do not replace the scaffold
+obligation by a U5 direct-contradiction route unless such a producer is
+actually present.  The next lowest-risk Lean work is to shrink the existing
+scaffold obligation by
 removing fields that are derivable from other fields, then prove the remaining
 geometric interface directly in this repo.  First target: the scaffold carries
 both the full `sepOKFor` interface and the mask-level
@@ -426,10 +427,11 @@ U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
 one may choose any `x ∈ S.capInteriorByIndex S.surplusIdx` using
 `hM44.surplusInterior_card_ge_three`, set
 `D : CounterexampleData := ⟨A, hne, hconv, hK4, S⟩`, derive `D.Minimal` from
-`hMin`, and then use
-`exists_localizedNoQFreePacket_of_not_removable_mem` to get
-`∃ p, U3LocalizedNoQFreePacket D x p`.  Lean elaborates this prefix.  Its
-remaining goals are still exactly:
+`hMin`, and then use `exists_fixedTriplePacket_of_not_removable_mem` and
+`u5DangerousTriple_of_u3FixedTriplePacket` to get both
+`∃ p t1 t2 t3, U3FixedTriplePacket D x p t1 t2 t3` and
+`∃ p t1 t2 t3, U5DangerousTriple D x p {t1, t2, t3}`.  Lean elaborates this
+prefix.  Its remaining goals are still exactly:
 
 ```text
 ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False
@@ -438,31 +440,33 @@ forall p in S.capInteriorByIndex S.surplusIdx,
 ErasedPinFiniteCandidateSepScaffoldFacts S x
 ```
 
-Thus localized no-q-free data is a possible ingredient, not a closure by
-itself.  The next useful step is to prove that this localized obstruction, or
-some stronger choice of `x`, actually yields one of the three producer facts
-above.  Do not replace the source `sorry` with a local no-q-free skeleton unless
-one of those producer goals is also discharged or strictly reduced.
+Thus the fixed-triple/U5 data is a possible ingredient, not a closure by
+itself.  The next useful step is to prove that this dangerous-triple
+obstruction, or some stronger choice of `x`, actually yields one of the three
+producer facts above.  Do not replace the source `sorry` with a local U5
+skeleton unless one of those producer goals is also discharged or strictly
+reduced.
 
 Prefix source checkpoint, 2026-07-08: this prefix is now in the on-spine Lean
 source.  The local `hfiniteResidualRows` proof in
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` introduces the
 ambient inputs, chooses `x` from `hM44.surplusInterior_card_ge_three`, builds
 `D : CounterexampleData`, derives `D.Minimal` from `hMin`, and extracts
-`hlocalized : exists p, U3LocalizedNoQFreePacket D x p`.  It then refines the
-source statement to exactly the three producer holes listed above.  Narrow
-verification:
+`hfixed : exists p t1 t2 t3, U3FixedTriplePacket D x p t1 t2 t3` plus
+`hdangerous : exists p t1 t2 t3, U5DangerousTriple D x p {t1, t2, t3}`.  It
+then refines the source statement to exactly the three producer holes listed
+above.  Narrow verification:
 
 ```text
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom
   SUCCEEDED
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  open: 1/737
+  open: 1/753
 ```
 
 The open leaf count is still one; the total node count increased from 721 to
-737 because the formerly documentary prefix is now mined as closed on-spine
-dependencies.
+753 because the formerly documentary prefix and the fixed-triple/U5 adapter are
+now mined as closed on-spine dependencies.
 
 Producer audit, 2026-07-08: current-repo erasure-witness lemmas such as
 `IsM44.exists_oppIndex1_erase_witness_of_surplusInterior` and
@@ -496,9 +500,9 @@ opposite vertex or at a surplus-interior point.  A valid direct-surplus proof
 therefore must first derive that stronger selected-class escape from the
 chosen `x` and the global hypotheses, or use a different global argument.
 
-Post-prefix search, 2026-07-08: after the localized prefix landed, another
+Post-prefix search, 2026-07-08: after the fixed-triple/U5 prefix landed, another
 `nthdegree docs search --lean` pass for
-`U3LocalizedNoQFreePacket`, `M44SelectedApex.of_erasedPinTriple`, and
+`U5DangerousTriple`, `M44SelectedApex.of_erasedPinTriple`, and
 `surplusIdx` erased-pin triples still found no surplus-index analogue of the
 non-surplus payload closers.  `M44SelectedApex.of_erasedPinTriple` feeds the
 existing non-surplus primitive-packet and payload case split, and the indexed
@@ -1360,7 +1364,7 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
 
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   lake-build Erdos9796Proof.P97.RemovableVertexAxiom  SUCCEEDED
-  latest exact-file module rebuild: 15s
+  latest exact-file module rebuild: 13s
   expected RemovableVertexAxiom sorries:
     Problem97.isM44EndpointResidualsExcluded
     Problem97.isM44PinnedSurplusResidualsExcluded
@@ -1368,7 +1372,7 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   post-build proof-blueprint sync completed
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  open: 1/737
+  open: 1/753
   open source obligation: the erased-pin theorem's local finite-residual
     source `sorry`; all named dependencies under the anchor are closed.
 

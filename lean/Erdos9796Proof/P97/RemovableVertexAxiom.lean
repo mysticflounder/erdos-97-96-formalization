@@ -8719,18 +8719,24 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
         exact hMin B (Nat.lt_of_not_ge hnot) hBne hBconv hBK4
       have hxA : x ∈ D.A := by
         exact S.capInteriorByIndex_subset S.surplusIdx hxI
-      have hlocalized :
-          ∃ p : ℝ², U3LocalizedNoQFreePacket D x p := by
-        exact exists_localizedNoQFreePacket_of_not_removable_mem hxA
+      have hfixed :
+          ∃ p t1 t2 t3 : ℝ², U3FixedTriplePacket D x p t1 t2 t3 := by
+        exact exists_fixedTriplePacket_of_not_removable_mem hxA
           (CounterexampleData.not_isRemovableVertex_of_minimal hDmin x)
+      have hdangerous :
+          ∃ p t1 t2 t3 : ℝ²,
+            U5DangerousTriple D x p ({t1, t2, t3} : Finset ℝ²) := by
+        rcases hfixed with ⟨p, t1, t2, t3, hP⟩
+        exact ⟨p, t1, t2, t3,
+          u5DangerousTriple_of_u3FixedTriplePacket hP⟩
       refine ⟨x, hxI, ?_, ?_, ?_⟩
       · intro htriple
-        -- The localized deletion-failure packet above is available here; the
-        -- direct surplus-opposite exclusion is the remaining producer fact.
+        -- The deletion-failure U5 dangerous triple above is available here;
+        -- the direct surplus-opposite exclusion is the remaining producer fact.
         sorry
       · intro p hpI hpErase htriple
-        -- The localized deletion-failure packet above is available here; the
-        -- direct surplus-interior exclusion is the remaining producer fact.
+        -- The deletion-failure U5 dangerous triple above is available here;
+        -- the direct surplus-interior exclusion is the remaining producer fact.
         sorry
       · -- The reduced finite candidate scaffold remains the selected-class
         -- shadow producer needed by the finite row bridge.
