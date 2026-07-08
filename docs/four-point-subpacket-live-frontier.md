@@ -38,10 +38,11 @@ There is no separate top-level
 chase; if a reusable proof sketch is useful before it is consumed, park it under
 the sibling `attic/` directory rather than adding an off-spine `sorry`.
 
-The current proof-blueprint anchor is
-`Problem97.isM44EndpointResidualsExcluded`.  Pinned row-zero generation is
-supporting infrastructure, not the active anchor leaf, until it is consumed by a
-spine theorem.
+The current proof-blueprint anchor for this session is
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+Endpoint residual and pinned row-zero work are separate active anchors and are
+off-spine for this erased-pin closure plan unless the user explicitly redirects
+the session.
 
 ## Full Q Closure Boundary
 
@@ -351,6 +352,19 @@ must produce the source scaffold or one of the direct surplus erased-pin
 exclusions, not another implication between reduced surfaces.
 
 Current erased-pin closure plan, 2026-07-08:
+
+Plan audit, 2026-07-08: live proof-blueprint output still reports this anchor
+as 714/715 closed, with the only on-spine project obligation being the local
+`sorry` in
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+The Lean source still shapes that hole as
+`hfiniteResidualRows :
+IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`.
+The statement has not drifted: it requires one erased surplus point `x`, the
+two direct surplus-side `ErasedPinTriple` exclusions below, and
+`ErasedPinFiniteCandidateScaffoldFacts S x`.  A fresh semantic search did not
+surface a producer for that scaffold; the hits are the scaffold definition,
+older stronger finite surface, and existing consumer/adaptor lemmas.
 
 1. Prove the existing source statement
    `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
