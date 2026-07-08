@@ -2245,6 +2245,200 @@ theorem leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
   intro sstar hsstar hsstar_eq
   simpa [centerClass] using hcandidate sstar hsstar hsstar_eq
 
+/-- Reflected-hull variant of
+`rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass`, used by the
+nonmatching P1 orientation branch. -/
+theorem rightFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (reflectedHullLabel (labelOfHullFin i))))
+    (hcandidate : ∀ sstar : Label,
+      isSurplusStar sstar = true →
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+          (OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3
+                radius radiusOf)
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3
+                radius radiusOf)
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed))) :
+    RightOneSidedErasedPayloadFiniteCandidateSepFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex1 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex2 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;>
+      simp [centerClass, rightPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_rightPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    rightPinned_crossSeparationOKForMasks_of_reflectedExactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true := by
+    intro c cp a b hcenterPair hab
+    exact
+      sepOKFor_of_crossSeparationOKForMasks
+        (hsearchSep c cp (labelPairs_mem_orderedLabelPairs hcenterPair)) hab
+  refine
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      ?_, hcounts, hsep, hsearchSep⟩
+  intro sstar hsstar hsstar_eq
+  simpa [centerClass] using hcandidate sstar hsstar hsstar_eq
+
+/-- Reflected-hull variant of
+`leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass`, used by the
+nonmatching P1 orientation branch. -/
+theorem leftFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (reflectedHullLabel (labelOfHullFin i))))
+    (hcandidate : ∀ sstar : Label,
+      isSurplusStar sstar = true →
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+          (OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (leftPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3
+                radius radiusOf)
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              (leftPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3
+                radius radiusOf)
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed))) :
+    LeftOneSidedErasedPayloadFiniteCandidateSepFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    leftPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex2 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex1 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;>
+      simp [centerClass, leftPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_leftPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    leftPinned_crossSeparationOKForMasks_of_reflectedExactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true := by
+    intro c cp a b hcenterPair hab
+    exact
+      sepOKFor_of_crossSeparationOKForMasks
+        (hsearchSep c cp (labelPairs_mem_orderedLabelPairs hcenterPair)) hab
+  refine
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      ?_, hcounts, hsep, hsearchSep⟩
+  intro sstar hsstar hsstar_eq
+  simpa [centerClass] using hcandidate sstar hsstar hsstar_eq
+
 /-- A right-oriented finite point-class fact packet supplies the named surface
 once the erased surplus point lies in the selected surplus triple. -/
 theorem rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
@@ -9997,61 +10191,125 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
                 (by
                   intro sstar hsstar hsstar_eq
                   exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
-          · rcases hlabelBase T hxT hTcard hTsub with
+          · rcases hleftOrder with ⟨h0w, hwv⟩
+            rcases exists_leftPinnedHullOrderLabels_of_apex_order
+                (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
+                (iv := iv) (iw := iw) hn hφinj hφimage hccwBoundary hu hv
+                hw h0w hwv hM44 hxT hTcard hTsub with
               ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
                 hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
-                hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
+                hq₁I, hq₂I, hs1I, hs2I, hs3I, horder⟩
+            have hpair_rev :
+                S.oppInterior1 = ({p₂, p₁} : Finset ℝ²) := by
+              rw [hpair]
+              ext z
+              simp [or_comm]
+            have hqpair_rev :
+                S.oppInterior2 = ({q₂, q₁} : Finset ℝ²) := by
+              rw [hqpair]
+              ext z
+              simp [or_comm]
+            have hTeq_rev :
+                T = ({s3, s2, s1} : Finset ℝ²) := by
+              rw [hTeq]
+              ext z
+              simp [or_comm, or_left_comm]
+            have hxTriple_rev :
+                x ∈ ({s3, s2, s1} : Finset ℝ²) := by
+              simpa [or_comm, or_left_comm, or_assoc] using hxTriple
+            have hsSub_rev :
+                ({s3, s2, s1} : Finset ℝ²) ⊆
+                  S.capInteriorByIndex S.surplusIdx := by
+              intro z hz
+              exact hsSub (by
+                simpa [or_comm, or_left_comm, or_assoc] using hz)
             refine
-              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+              ⟨p₂, p₁, q₂, q₁, s3, s2, s1, hp12.symm, hpair_rev,
+                hq12.symm, hqpair_rev, hTeq_rev, hxTriple_rev,
+                hs23.symm, hs13.symm, hs12.symm, hsSub_rev, ?_⟩
             intro p hpI hpErase
+            have hccwReflected :
+                EuclideanGeometry.IsCcwConvexPolygon
+                  (fun i : Fin 10 =>
+                    rightPinnedLabelPoint S p₂ p₁ q₂ q₁ s3 s2 s1
+                      (reflectedHullLabel (labelOfHullFin i))) := by
+              have hccwLeft :
+                  EuclideanGeometry.IsCcwConvexPolygon
+                    (fun i : Fin 10 =>
+                      leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3
+                        (labelOfHullFin i)) :=
+                isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+              convert hccwLeft using 2
+              rename_i i
+              fin_cases i <;> rfl
             exact
-              rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
-                hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
-                hs3I hp12 hq12 hs12 hs13 hs23
+              rightFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hp₂I hp₁I hq₂I hq₁I hs3I hs2I
+                hs1I hp12.symm hq12.symm hs23.symm hs13.symm hs12.symm
                 (fun _ => dist p x)
-                (by
-                  have horder :
-                      HullOrderSubsequenceCertificate A
-                        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) := by
-                    -- Nonmatching orientation residual: transport the left
-                    -- certificate to the right finite-bank convention, or
-                    -- refactor the finite producer to consume the available
-                    -- orientation.
-                    sorry
-                  exact
-                    isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
-                      horder)
+                hccwReflected
                 (by
                   intro sstar hsstar hsstar_eq
                   exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
         · intro T hxT hTcard hTsub
           rcases hapexOrder with hrightOrder | hleftOrder
-          · rcases hlabelBase T hxT hTcard hTsub with
+          · rcases hrightOrder with ⟨h0v, hvw⟩
+            rcases exists_rightPinnedHullOrderLabels_of_apex_order
+                (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
+                (iv := iv) (iw := iw) hn hφinj hφimage hccwBoundary hu hv
+                hw h0v hvw hM44 hxT hTcard hTsub with
               ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
                 hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
-                hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
+                hq₁I, hq₂I, hs1I, hs2I, hs3I, horder⟩
+            have hpair_rev :
+                S.oppInterior1 = ({p₂, p₁} : Finset ℝ²) := by
+              rw [hpair]
+              ext z
+              simp [or_comm]
+            have hqpair_rev :
+                S.oppInterior2 = ({q₂, q₁} : Finset ℝ²) := by
+              rw [hqpair]
+              ext z
+              simp [or_comm]
+            have hTeq_rev :
+                T = ({s3, s2, s1} : Finset ℝ²) := by
+              rw [hTeq]
+              ext z
+              simp [or_comm, or_left_comm]
+            have hxTriple_rev :
+                x ∈ ({s3, s2, s1} : Finset ℝ²) := by
+              simpa [or_comm, or_left_comm, or_assoc] using hxTriple
+            have hsSub_rev :
+                ({s3, s2, s1} : Finset ℝ²) ⊆
+                  S.capInteriorByIndex S.surplusIdx := by
+              intro z hz
+              exact hsSub (by
+                simpa [or_comm, or_left_comm, or_assoc] using hz)
             refine
-              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+              ⟨p₂, p₁, q₂, q₁, s3, s2, s1, hp12.symm, hpair_rev,
+                hq12.symm, hqpair_rev, hTeq_rev, hxTriple_rev,
+                hs23.symm, hs13.symm, hs12.symm, hsSub_rev, ?_⟩
             intro p hpI hpErase
+            have hccwReflected :
+                EuclideanGeometry.IsCcwConvexPolygon
+                  (fun i : Fin 10 =>
+                    leftPinnedLabelPoint S q₂ q₁ p₂ p₁ s3 s2 s1
+                      (reflectedHullLabel (labelOfHullFin i))) := by
+              have hccwRight :
+                  EuclideanGeometry.IsCcwConvexPolygon
+                    (fun i : Fin 10 =>
+                      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+                        (labelOfHullFin i)) :=
+                isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder
+              convert hccwRight using 2
+              rename_i i
+              fin_cases i <;> rfl
             exact
-              leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
-                hconv hK4 hM44 hcontain hq₁I hq₂I hp₁I hp₂I hs1I hs2I
-                hs3I hq12 hp12 hs12 hs13 hs23
+              leftFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hq₂I hq₁I hp₂I hp₁I hs3I hs2I
+                hs1I hq12.symm hp12.symm hs23.symm hs13.symm hs12.symm
                 (fun _ => dist p x)
-                (by
-                  have horder :
-                      HullOrderSubsequenceCertificate A
-                        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) := by
-                    -- Nonmatching orientation residual: transport the right
-                    -- certificate to the left finite-bank convention, or
-                    -- refactor the finite producer to consume the available
-                    -- orientation.
-                    sorry
-                  exact
-                    isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
-                      horder)
+                hccwReflected
                 (by
                   intro sstar hsstar hsstar_eq
                   exact hleftCandidate hpI hpErase sstar hsstar hsstar_eq)

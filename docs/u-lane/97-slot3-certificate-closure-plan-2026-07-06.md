@@ -2108,3 +2108,10 @@ P1 matching halves → orientation-indexed producer boundary → P2.
 
 **Tally implication (unchanged).**  P1 closes exactly 2 of the 6 erased-pin
 sorries (9407/9436); 9415/9443 remain P2; 9286/9314 remain P4.
+
+2026-07-08 checkpoint: the nonmatching P1 orientation branches now build
+without local `sorry`s.  The committed Lean route adds reflected same-radius
+cross-separation producers, reduced reflected finite-packet producers, and
+wires both nonmatching branches through the opposite orientation selector with
+reversed labels.  The active theorem still has the two direct P4 holes and the
+two P2 candidate-remainder holes.
