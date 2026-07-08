@@ -392,6 +392,55 @@ theorem capByIndex_interval_of_global_indices
       simpa [hic, hia, hib] using h
     exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
 
+/-- Reverse-support endpoint form of `capByIndex_interval_of_global_indices`.
+If the `v3` endpoint occurs before the `v2` endpoint and the opposite apex is
+outside that interval, the indexed cap is the closed interval from `v3` to
+`v2`. -/
+theorem capByIndex_reverse_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hibia : ib < ia) (hc : ic < ib ∨ ia < ic)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) :
+    ∀ x : ℝ²,
+      x ∈ S.capByIndex i ↔
+        ∃ q : Fin n, ib ≤ q ∧ q ≤ ia ∧ φ q = x := by
+  intro x
+  constructor
+  · intro hxC
+    have hxA : x ∈ A := S.capByIndex_subset i hxC
+    rw [← hφimage] at hxA
+    rcases Finset.mem_image.mp hxA with ⟨q, _hq, hqeq⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hqC : φ q ∈ S.capByIndex i := by
+      simpa [hqeq] using hxC
+    have harc : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+      have h := (S.capByIndex_arc_membership i (φ q) hqA).1 hqC
+      simpa [hic, hia, hib] using h
+    have harcSwap : OnArcOpposite (φ ic) (φ ib) (φ ia) (φ q) :=
+      (onArcOpposite_swap (φ ic) (φ ia) (φ ib) (φ q)).1 harc
+    obtain ⟨hlo, hhi⟩ :=
+      (onArcOpposite_iff_index_block hccw hφ hibia hc q).1 harcSwap
+    exact ⟨q, hlo, hhi, hqeq⟩
+  · rintro ⟨q, hibq, hqia, rfl⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have harcSwap : OnArcOpposite (φ ic) (φ ib) (φ ia) (φ q) :=
+      (onArcOpposite_iff_index_block hccw hφ hibia hc q).2 ⟨hibq, hqia⟩
+    have harc : OnArcOpposite (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 (φ q) := by
+      have h : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) :=
+        (onArcOpposite_swap (φ ic) (φ ia) (φ ib) (φ q)).2 harcSwap
+      simpa [hic, hia, hib] using h
+    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+
 /-- In one shared ambient CCW boundary enumeration, an indexed cap is exactly
 the complement of the open endpoint interval whenever the opposite triangle
 vertex lies strictly between the endpoint indices.  This is the wraparound
@@ -1085,6 +1134,14 @@ theorem triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2
   interval_cases idx <;>
     simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
 
+/-- The first vertex of the indexed triangle is the Moser vertex opposite the
+same indexed cap. -/
+theorem triangleByIndex_v1_eq_oppositeVertexByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    (S.triangleByIndex i).v1 = S.oppositeVertexByIndex i := by
+  rcases i with ⟨idx, hidx⟩
+  interval_cases idx <;> simp [triangleByIndex, oppositeVertexByIndex]
+
 /-- In the first non-surplus cap, the `v2` endpoint is the second
 non-surplus Moser apex. -/
 theorem triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2
@@ -1634,6 +1691,39 @@ theorem capInteriorByIndex_open_interval_of_global_indices
       rw [← hqeq, hqib_eq, hib]
     exact S.capInteriorByIndex_ne_triangleByIndex_v3 hxI hx_endpoint
   exact ⟨q, lt_of_le_of_ne hiaq hqa.symm, lt_of_le_of_ne hqib hqb, hqeq⟩
+
+/-- Strict-interior version of
+`capByIndex_reverse_interval_of_global_indices`: if the support endpoints
+occur in the order `v3 < v2` with the opposite apex outside that interval, a
+strict interior point lies strictly between those two endpoint indices. -/
+theorem capInteriorByIndex_open_reverse_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hibia : ib < ia) (hc : ic < ib ∨ ia < ic)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    ∃ q : Fin n, ib < q ∧ q < ia ∧ φ q = x := by
+  have hxC : x ∈ S.capByIndex i :=
+    S.capInteriorByIndex_subset_capByIndex i hxI
+  rcases (S.capByIndex_reverse_interval_of_global_indices i hccw hφ hφimage
+      hibia hc hic hia hib x).1 hxC with
+    ⟨q, hibq, hqia, hqeq⟩
+  have hqb : q ≠ ib := by
+    intro hqib_eq
+    have hx_endpoint : x = (S.triangleByIndex i).v3 := by
+      rw [← hqeq, hqib_eq, hib]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v3 hxI hx_endpoint
+  have hqa : q ≠ ia := by
+    intro hqia_eq
+    have hx_endpoint : x = (S.triangleByIndex i).v2 := by
+      rw [← hqeq, hqia_eq, hia]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v2 hxI hx_endpoint
+  exact ⟨q, lt_of_le_of_ne hibq hqb.symm, lt_of_le_of_ne hqia hqa, hqeq⟩
 
 /-- In one shared ambient CCW boundary enumeration, a strict interior point of
 a wrapping indexed cap occurs in the open complement of the support endpoint

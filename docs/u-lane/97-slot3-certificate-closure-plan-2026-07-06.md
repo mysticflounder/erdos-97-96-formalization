@@ -516,6 +516,27 @@ and finite sorted selectors to build the right ten-label certificate; in the
 opposite branch, build the left certificate.  The nonmatching side still needs
 transport/permutation or a finite-producer refactor.
 
+2026-07-08 direct-selector checkpoint: the matching-orientation P1 selectors are
+now verified.  `SurplusM44Packet.lean` exposes the generic endpoint identity
+`SurplusCapPacket.triangleByIndex_v1_eq_oppositeVertexByIndex`, plus the
+reverse closed/open interval bridges
+`SurplusCapPacket.capByIndex_reverse_interval_of_global_indices` and
+`SurplusCapPacket.capInteriorByIndex_open_reverse_interval_of_global_indices`.
+`RemovableVertexAxiom.lean` exposes
+`exists_rightPinnedHullOrderLabels_of_apex_order` for the
+`u < oppIndex1 < oppIndex2` branch and
+`exists_leftPinnedHullOrderLabels_of_apex_order` for the
+`u < oppIndex2 < oppIndex1` branch.  Both choose ordered labels for the two
+non-surplus two-point interiors and the three-point surplus set `T`, and return
+the exact `HullOrderSubsequenceCertificate` consumed by the side-specific finite
+bank.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.  The remaining P1 work is to wire the matching selector into the split
+ordered scaffold and then resolve the nonmatching side by transport/permutation
+or by refactoring the finite producer so it consumes whichever orientation the
+zero-cut boundary actually supplies.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
