@@ -875,12 +875,13 @@ finite-list interface for induced geometric shadows. -/
 theorem searchPairCountsOK_shadowOfPointClasses_of_prefixes
     {α : Type _} [DecidableEq α] {pointOf : Label → α}
     {centerClass : Label → Finset α}
-    (hprefix : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true) :
+    (hprefix :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass)) :
     searchPairCountsOK (shadowOfPointClasses pointOf centerClass) = true := by
-  simp [searchPairCountsOK, fragmentSearchAssignedPrefixes, hprefix]
+  unfold searchPairCountsOK
+  rw [List.all_eq_true]
+  intro assigned hmem
+  exact hprefix assigned hmem
 
 /-- The generated all-pairs separation checker is exposed as an explicit
 finite `sepOKFor` interface for induced geometric shadows. -/
@@ -1285,10 +1286,7 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks
     (hcandidate : ∀ center : Label,
       pointMask pointOf (centerClass center) ∈ candidateMasks sstar center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1344,10 +1342,8 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates
     (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
       pointMask pointOf (centerClass center) ∈ candidateMasks sstar center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1383,10 +1379,8 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_seed_candidates
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ candidateMasks sstar center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1443,10 +1437,8 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces
           maskHas (pointMask pointOf (centerClass center)) .w) = false)
     (hno3 : ∀ x y : Label,
       pointPairClassCount (shadowOfPointClasses pointOf centerClass) x y <= 2)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1512,10 +1504,8 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_mask_interfaces_pinned_v
           maskHas (pointMask pointOf (centerClass center)) .w) = false)
     (hno3 : ∀ x y : Label,
       pointPairClassCount (shadowOfPointClasses pointOf centerClass) x y <= 2)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1621,10 +1611,8 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces
           maskHas (pointMask pointOf (centerClass center)) .w) = false)
     (hno3 : ∀ x y : Label,
       pointPairClassCount (shadowOfPointClasses pointOf centerClass) x y <= 2)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1670,10 +1658,8 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates
     (hcandidate : ∀ center : Label,
       pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -1786,10 +1772,8 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates_with_e
     (hcandidate : ∀ center : Label,
       pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -2109,10 +2093,8 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candi
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -2122,23 +2104,25 @@ theorem isValidOneSidedSeedShadow_shadowOfPointClasses_of_exact_vw_private_candi
       (shadowOfPointClasses pointOf centerClass) = true := by
   have hs : isSurplusStar seed.sstar = true :=
     isSurplusStar_oneSidedSeed_sstar_of_mem hseed
-  refine isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates
-    hseed hs ?_ hno3 hcounts hsep hsearchSep
-  intro center
-  by_cases hvCenter : center = .v
-  · subst center
-    exact mem_seed_candidateMasks_v_of_pointMask_eq_firstOppExactCapMask
-      hseed hv
-  · by_cases hwCenter : center = .w
+  have hcandidateFull : ∀ center : Label,
+      pointMask pointOf (centerClass center) ∈ seed.candidateMasks center := by
+    intro center
+    by_cases hvCenter : center = .v
     · subst center
-      exact mem_seed_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask
-        hseed hwMask
-    · by_cases hprivateCenter : center = seed.privateCenter
+      exact mem_seed_candidateMasks_v_of_pointMask_eq_firstOppExactCapMask
+        hseed hv
+    · by_cases hwCenter : center = .w
       · subst center
-        exact
-          mem_seed_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
-            hseed hprivate
-      · exact hcandidate center hvCenter hwCenter hprivateCenter
+        exact mem_seed_candidateMasks_w_of_pointMask_eq_secondOppExactCapMask
+          hseed hwMask
+      · by_cases hprivateCenter : center = seed.privateCenter
+        · subst center
+          exact
+            mem_seed_candidateMasks_privateCenter_of_pointMask_eq_oneSidedSeed
+              hseed hprivate
+        · exact hcandidate center hvCenter hwCenter hprivateCenter
+  exact isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates_with_exact_masks
+    hs hv hwMask hprivate hcandidateFull hno3 hcounts hsep hsearchSep
 
 /-- A listed seed cannot be realized by geometric point classes satisfying
 seeded candidate-mask membership and the global prefix/separation facts. -/
@@ -2150,10 +2134,8 @@ theorem false_of_oneSidedSeedShadow_pointClasses_of_seed_candidates
     (hcandidate : ∀ center : Label,
       pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -2179,10 +2161,7 @@ theorem false_of_oneSidedSeedShadow_pointClasses_of_exact_vw_private_candidates
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -2253,7 +2232,8 @@ theorem false_of_oneSidedSeedShadow_pointClasses_of_mask_interfaces
   exact false_of_isValidOneSidedSeedShadow_of_mem_seed hseed
     (isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces hs
       hcard hself hv hwMask hprivate hwQ1 hwQ2 hwcu hwcv huv huw hwv hwu
-      hcirc hno3 hcounts hsep hsearchSep htrigger hfinal)
+      hcirc hno3 (fun assigned _ => hcounts assigned) hsep hsearchSep
+      htrigger hfinal)
 
 /-- Exact `.v` and `.w` cap masks discharge the finite card, self-hit, and
 `w`-squeeze parts of the seeded no-survivor interface. -/
@@ -2469,7 +2449,8 @@ theorem false_of_oneSidedSeedShadow_pointClasses_of_exact_cap_trigger_interfaces
           exact secondOppExactCapMask_cuNoW_le_one))
       (circumcenterOK_shadowOfPointClasses_of_no_nonmoser_triple hcirc)
       (noThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two hno3)
-      (searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts)
+      (searchPairCountsOK_shadowOfPointClasses_of_prefixes
+        (fun assigned _ => hcounts assigned))
       (separationOK_shadowOfPointClasses_of_sepOKFor hsep)
       (searchSeparationOK_shadowOfPointClasses_of_crossSeparation hsearchSep)
       (fragmentTriggersOK_shadowOfPointClasses_of_trigger_interfaces hs
@@ -2597,7 +2578,8 @@ theorem false_of_erasedPinFixedSeedShadow_pointClasses_of_exact_cap_trigger_inte
           exact secondOppExactCapMask_cuNoW_le_one))
       (circumcenterOK_shadowOfPointClasses_of_no_nonmoser_triple hcirc)
       (noThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two hno3)
-      (searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts)
+      (searchPairCountsOK_shadowOfPointClasses_of_prefixes
+        (fun assigned _ => hcounts assigned))
       (separationOK_shadowOfPointClasses_of_sepOKFor hsep)
       (searchSeparationOK_shadowOfPointClasses_of_crossSeparation hsearchSep)
       (fragmentTriggersOK_shadowOfPointClasses_of_trigger_interfaces hs
@@ -2818,7 +2800,8 @@ theorem false_of_erasedPinFixedSeedShadow_pointClasses_of_exact_vw_private_candi
         · exact hcandidate center hvCenter hwCenter hprivateCenter
   exact false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed hseed
     (isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates_with_exact_masks
-      hs hv hwMask hprivate hcandidateFull hno3 hcounts hsep hsearchSep)
+      hs hv hwMask hprivate hcandidateFull hno3
+      (fun assigned _ => hcounts assigned) hsep hsearchSep)
 
 /-- Candidate-remainder form of the generated erased-pin producer for a seed
 whose kind tag may differ from the deduplicated `.own` fixed bank.  The
@@ -2837,10 +2820,7 @@ theorem false_of_erasedPinCanonicalFixedSeedShadow_pointClasses_of_exact_vw_priv
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7333,10 +7313,7 @@ theorem false_of_erasedPinRow_ep_right_m0_s0_l1_r3_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7388,10 +7365,7 @@ theorem false_of_erasedPinRow_ep_left_m0_s0_l3_r1_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7443,10 +7417,7 @@ theorem false_of_erasedPinRow_ep_right_m0_s1_l0_r3_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7498,10 +7469,7 @@ theorem false_of_erasedPinRow_ep_left_m0_s1_l3_r0_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7553,10 +7521,7 @@ theorem false_of_erasedPinRow_ep_right_m1_s0_l0_r3_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7608,10 +7573,7 @@ theorem false_of_erasedPinRow_ep_left_m1_s0_l3_r0_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7663,10 +7625,7 @@ theorem false_of_erasedPinRow_ep_right_m0_s0_l2_r2_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7717,10 +7676,7 @@ theorem false_of_erasedPinRow_ep_right_m0_s1_l1_r2_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7771,10 +7727,7 @@ theorem false_of_erasedPinRow_ep_left_m0_s1_l2_r1_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7825,10 +7778,7 @@ theorem false_of_erasedPinRow_ep_right_m1_s0_l1_r2_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7879,10 +7829,7 @@ theorem false_of_erasedPinRow_ep_left_m1_s0_l2_r1_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7933,10 +7880,7 @@ theorem false_of_erasedPinRow_ep_right_m1_s1_l1_r1_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -7987,10 +7931,7 @@ theorem false_of_erasedPinRow_ep_left_m1_s1_l1_r1_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -8041,10 +7982,7 @@ theorem false_of_erasedPinRow_ep_right_m1_s1_l0_r2_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -8095,10 +8033,7 @@ theorem false_of_erasedPinRow_ep_left_m1_s1_l2_r0_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -8149,10 +8084,7 @@ theorem false_of_erasedPinRow_ep_right_m2_s0_l0_r2_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -8203,10 +8135,7 @@ theorem false_of_erasedPinRow_ep_left_m2_s0_l2_r0_seedShadow_pointClasses
       center ≠ seed.privateCenter →
         pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
     (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
     (hsep : ∀ c cp x y : Label,
       sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
     (hsearchSep : ∀ c cp : Label,
@@ -10137,12 +10066,11 @@ theorem false_of_rightOwnPwErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -10392,12 +10320,11 @@ theorem false_of_rightOwnPuErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -10869,12 +10796,11 @@ theorem false_of_rightOppositePwErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -10985,12 +10911,11 @@ theorem false_of_rightOppositePuErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -11267,12 +11192,11 @@ theorem false_of_leftOwnPwErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -11522,12 +11446,11 @@ theorem false_of_leftOwnPuErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -11999,12 +11922,11 @@ theorem false_of_leftOppositePwErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -12115,12 +12037,11 @@ theorem false_of_leftOppositePuErasedPayload_pointClasses_of_seed_candidates
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -12460,12 +12381,11 @@ theorem false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_cand
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -12579,12 +12499,11 @@ theorem false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask
         (shadowOfPointClasses
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -12989,12 +12908,11 @@ theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_candi
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -13107,12 +13025,11 @@ theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_
         (shadowOfPointClasses
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true)
-    (hcounts : ∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true)
+    (hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass))
     (hsep : ∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -13517,7 +13434,8 @@ theorem pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces
   refine ⟨hsstar, hinj, hsstar_eq, ?_⟩
   intro hcandidate hno3 hcounts hsep hsearchSep
   exact isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates
-    hsstar hpinnedMask hwmask hcandidate hno3 hcounts hsep hsearchSep
+    hsstar hpinnedMask hwmask hcandidate hno3
+    (fun assigned _ => hcounts assigned) hsep hsearchSep
 
 /-- The left-surplus mirror of
 `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`. -/
@@ -13579,7 +13497,8 @@ theorem pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces
   refine ⟨hsstar, hinj, hsstar_eq, ?_⟩
   intro hcandidate hno3 hcounts hsep hsearchSep
   exact isValidPinnedFragment_shadowOfPointClasses_of_exact_vw_candidates
-    hsstar hpinnedMask hwmask hcandidate hno3 hcounts hsep hsearchSep
+    hsstar hpinnedMask hwmask hcandidate hno3
+    (fun assigned _ => hcounts assigned) hsep hsearchSep
 
 /-- The right-surplus residual supplies the generated pinned-class Boolean for
 the induced geometric shadow, once the `.v` class is identified with the pinned

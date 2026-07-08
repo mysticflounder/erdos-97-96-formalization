@@ -640,7 +640,8 @@ theorem false_of_rightOneSidedErasedPayload_of_seedMaskInputs
     false_of_rightOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces
       S hinj hsstar hsstar_eq hp12 hpair hqpair hp hpayload
       hvClass hwClass hprivatePwClass hprivatePuClass
-      hcard hself huv huw hcirc hno3 hcounts hsep hsearchSep
+      hcard hself huv huw hcirc hno3
+      (fun assigned _ => hcounts assigned) hsep hsearchSep
       htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
 
 /-- Feed the packaged left seed-mask interface into the generated
@@ -663,7 +664,8 @@ theorem false_of_leftOneSidedErasedPayload_of_seedMaskInputs
     false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_interfaces
       S hinj hsstar hsstar_eq hp12 hpair hqpair hp hpayload
       hvClass hwClass hprivatePwClass hprivatePuClass
-      hcard hself huv huw hcirc hno3 hcounts hsep hsearchSep
+      hcard hself huv huw hcirc hno3
+      (fun assigned _ => hcounts assigned) hsep hsearchSep
       htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
 
 /-- Candidate-remainder interface for refuting a right one-sided erased
@@ -725,12 +727,10 @@ abbrev RightOneSidedErasedPayloadSeedCandidateInputs {A : Finset ℝ²}
       (shadowOfPointClasses
         (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -803,12 +803,10 @@ abbrev LeftOneSidedErasedPayloadSeedCandidateInputs {A : Finset ℝ²}
       (shadowOfPointClasses
         (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -878,12 +876,10 @@ abbrev RightOneSidedErasedPayloadNamedCandidateFacts {A : Finset ℝ²}
       (shadowOfPointClasses
         (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -950,12 +946,10 @@ abbrev LeftOneSidedErasedPayloadNamedCandidateFacts {A : Finset ℝ²}
       (shadowOfPointClasses
         (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -1023,12 +1017,10 @@ abbrev RightOneSidedErasedPayloadFiniteCandidateFacts {A : Finset ℝ²}
       (shadowOfPointClasses
         (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -1096,12 +1088,10 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateFacts {A : Finset ℝ²}
       (shadowOfPointClasses
         (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
         centerClass) = true ∧
-    (∀ assigned : List Label,
-      pairCountsOK
-        (shadowPairCountsForAssigned
-          (shadowOfPointClasses
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass) assigned) = true) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
     (∀ c cp a b : Label,
       sepOKFor
         (shadowOfPointClasses
@@ -1262,7 +1252,7 @@ theorem rightFiniteCandidateFacts_of_sepFacts
       (hcounts allLabels)
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep, ?_⟩
+      hcandidate, hno3, (fun assigned _ => hcounts assigned), hsep, ?_⟩
   intro c cp
   simpa [shadowOfPointClasses_centerMask] using
     (crossSeparationOKForMasks_of_sepOKFor
@@ -1293,7 +1283,7 @@ theorem leftFiniteCandidateFacts_of_sepFacts
       (hcounts allLabels)
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep, ?_⟩
+      hcandidate, hno3, (fun assigned _ => hcounts assigned), hsep, ?_⟩
   intro c cp
   simpa [shadowOfPointClasses_centerMask] using
     (crossSeparationOKForMasks_of_sepOKFor
@@ -3955,7 +3945,8 @@ theorem rightOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
     ⟨p₁, p₂, q₁, q₂, s1, s2, s3, centerClass, sstar,
       hinj, hsstar, hsstar_eq, hp12, hpair, hqpair, hp,
       hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      ?_, ?_, ?_, ?_, ?_, ?_, hno3, hcounts, hsep, hsearchSep⟩
+      ?_, ?_, ?_, ?_, ?_, ?_, hno3, (fun assigned _ => hcounts assigned),
+      hsep, hsearchSep⟩
   · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
       (fun center hv hw hpw =>
         hcard .Pw center (Or.inl rfl) hv hw hpw)
@@ -4027,7 +4018,8 @@ theorem leftOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs
     ⟨p₁, p₂, q₁, q₂, s1, s2, s3, centerClass, sstar,
       hinj, hsstar, hsstar_eq, hp12, hpair, hqpair, hp,
       hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      ?_, ?_, ?_, ?_, ?_, ?_, hno3, hcounts, hsep, hsearchSep⟩
+      ?_, ?_, ?_, ?_, ?_, ?_, hno3, (fun assigned _ => hcounts assigned),
+      hsep, hsearchSep⟩
   · exact oneSidedSeedCandidateRemainder_of_mask_interfaces hsstar
       (fun center hv hw hpw =>
         hcard .Pw center (Or.inl rfl) hv hw hpw)
@@ -8570,7 +8562,11 @@ theorem isM44EndpointResidualsExcluded :
                 shadow = true ∧
               EndpointCertificate.Variables.EndpointMetricShadow pointOf
                 shadow := by
-        -- Real remaining finite endpoint row-bank metric-shadow producer.
+        -- Real remaining endpoint producer: after `ResidualCoreData`, the
+        -- unresolved work is geometric production of the non-`.v`/`.w`
+        -- selected-class side conditions (other class choices/radii,
+        -- exact-four cards, circumcenter exclusion, and `sepOKFor`), not
+        -- row-bank transport itself.
         sorry
       rcases hshadow with ⟨shadow, hinBank, hmetric⟩
       exact hfalse shadow hinBank hmetric
@@ -8591,7 +8587,8 @@ theorem isM44EndpointResidualsExcluded :
                 shadow = true ∧
               EndpointCertificate.Variables.EndpointMetricShadow pointOf
                 shadow := by
-        -- Real remaining finite endpoint row-bank metric-shadow producer.
+        -- Mirror remaining endpoint producer: the same non-`.v`/`.w`
+        -- selected-class geometry package remains to be built.
         sorry
       rcases hshadow with ⟨shadow, hinBank, hmetric⟩
       exact hfalse shadow hinBank hmetric

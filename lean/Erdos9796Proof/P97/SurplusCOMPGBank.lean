@@ -339,6 +339,11 @@ def shadowPairCountsForAssigned (shadow : Shadow) : List Label -> List Nat
       incrementPairCounts center (shadow.centerMask center)
         (shadowPairCountsForAssigned shadow assigned)
 
+abbrev PrefixPairCountsOK (shadow : Shadow) : Prop :=
+  ∀ assigned : List Label,
+    assigned ∈ fragmentSearchAssignedPrefixes →
+      pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true
+
 def searchPairCountsOK (shadow : Shadow) : Bool :=
   fragmentSearchAssignedPrefixes.all
     (fun assigned => pairCountsOK (shadowPairCountsForAssigned shadow assigned))

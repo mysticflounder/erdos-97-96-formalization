@@ -966,6 +966,12 @@ Remaining endpoint work:
    be replaced by a relaxed/submask bridge that does not require exact
    ten-label faithfulness.  The arbitrary `Classical.choose` fallback producer
    has been removed and should not be restored.
+   Current sharper boundary from `EndpointCertificate.ResidualCoreData`: the
+   bank transport is already reduced in-tree.  The remaining producer is the
+   non-`.v`/`.w` selected-class geometry package:
+   other selected-class choices and radii, positive radii for self-exclusion,
+   exact-four cards, non-Moser circumcenter exclusion, and the full
+   `sepOKFor` family for the induced endpoint shadow.
 3. Do not reintroduce the removed all-label selected-class bundle unless it is
    closed from genuine residual/general-`n` data.  Exact ten-label
    selected-class identities are stronger than the current row-zero consumer.
@@ -1271,6 +1277,35 @@ proof-blueprint axioms Problem97.isM44NonSurplusContainmentErasedPinTripleResidu
   custom axioms include: sorryAx, Lean.trustCompiler
   current axioms command flags only sorryAx as unapproved
 ```
+
+Current checkpoint, 2026-07-08 PDT:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
+  lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry  SUCCEEDED
+
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
+  lake-build Erdos9796Proof.P97.RemovableVertexAxiom  SUCCEEDED
+
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+  open: 1/721
+  open source obligation: the erased-pin theorem's local finite-residual
+    source `sorry`; all named dependencies under the anchor are closed.
+
+proof-blueprint spine Problem97.erdos97_rhs
+  open: 22/1544
+
+proof-blueprint spine Problem96.erdos96_rhs
+  open: 26/1552
+```
+
+Build/dependency note: `[mining].skip` in `.blueprint.toml` affects
+proof-blueprint mining and trusted-leaf rendering only.  It does not remove
+generated certificate modules from Lean's import graph or from `lake-build`.
+At this checkpoint, hand-written modules outside the generated directories
+directly import endpoint-certificate modules from `RemovableVertexAxiom.lean`,
+`SurplusCOMPGBankGeometry.lean`, and `K4WindowBank.lean`; no hand-written module
+outside `SurplusCertificate/` directly imports `Erdos9796Proof.P97.SurplusCertificate.*`.
 
 Use narrow `lake-build` targets while editing generated certificate shards.
 Treat proof-blueprint as the spine-shape authority, but keep the live axiom
