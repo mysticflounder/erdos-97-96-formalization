@@ -124,6 +124,17 @@ theorem exists_sorted_pair_points_after
       ⟨b, a, ib, ia, hloib, hbi, hib, hia,
         by simp [Finset.pair_comm]⟩
 
+/-- After cutting an ambient boundary enumeration at index zero, the "before
+zero" branch of an open reverse-complement interval is impossible. -/
+theorem open_reverse_complement_after_zero
+    {n : ℕ} (hn : 0 < n) {lo q : Fin n} :
+    q < (⟨0, hn⟩ : Fin n) ∨ lo < q → lo < q := by
+  intro h
+  haveI : NeZero n := ⟨Nat.ne_of_gt hn⟩
+  rcases h with hq | hq
+  · exact (Fin.not_lt_zero q hq).elim
+  · exact hq
+
 /-- Sort three already indexed points inside one ambient index interval.  This
 keeps the interval bounds and point-set equality needed when the P1 selector
 orients a chosen three-point surplus subpacket. -/

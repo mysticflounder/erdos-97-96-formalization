@@ -471,6 +471,27 @@ exports into these selectors.  Verification:
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 orientation audit checkpoint: while starting the geometric order
+export, the remaining P1 assumption tightened again.  Mathlib's
+`EuclideanGeometry.IsCcwConvexPolygon` is orientation-specific (`i < j < k`
+implies the oriented angle sign is `1`), so a single surplus-apex cut cannot
+simultaneously certify both mirror ten-label orders merely by reordering the
+interior points.  The right packet needs the apex order
+`u < oppIndex1 < oppIndex2`; the left mirror packet needs
+`u < oppIndex2 < oppIndex1`.  The split scaffold fixed the earlier false
+"one shared surplus triple order" surface, but the geometric producer still
+needs an orientation branch or transport layer for the nonmatching side.  The
+next grounded P1 route is therefore:
+1. prove the apex-order dichotomy after cutting at the surplus apex;
+2. build the direct hull-order selector for the side matching that dichotomy;
+3. close the opposite side by a real mirror/permutation transport theorem, or
+   refactor the finite producers so both side consumers use the orientation
+   that is actually CCW for the chosen packet.
+`SurplusM44Packet.lean` also now exposes
+`Problem97.open_reverse_complement_after_zero`, the zero-cut helper that
+collapses the wrapping cap's open reverse-complement disjunction once the
+matching orientation has been selected.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
