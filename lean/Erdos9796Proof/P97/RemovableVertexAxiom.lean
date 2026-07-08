@@ -8696,7 +8696,45 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
       IsM44NonSurplusContainmentErasedPinTripleResidualsExcludedStatement := by
     have hfiniteResidualRows :
         IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement := by
-      sorry
+      classical
+      intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2
+        hcontain
+      have hsurplusCardPos :
+          0 < (S.capInteriorByIndex S.surplusIdx).card := by
+        have hcard := hM44.surplusInterior_card_ge_three
+        omega
+      have hsurplusNonempty :
+          (S.capInteriorByIndex S.surplusIdx).Nonempty :=
+        Finset.card_pos.mp hsurplusCardPos
+      rcases hsurplusNonempty with ⟨x, hxI⟩
+      let D : CounterexampleData :=
+        { A := A
+          nonempty := hne
+          convex := hconv
+          K4 := hK4
+          packet := S }
+      have hDmin : D.Minimal := by
+        intro B hBne hBconv hBK4
+        by_contra hnot
+        exact hMin B (Nat.lt_of_not_ge hnot) hBne hBconv hBK4
+      have hxA : x ∈ D.A := by
+        exact S.capInteriorByIndex_subset S.surplusIdx hxI
+      have hlocalized :
+          ∃ p : ℝ², U3LocalizedNoQFreePacket D x p := by
+        exact exists_localizedNoQFreePacket_of_not_removable_mem hxA
+          (CounterexampleData.not_isRemovableVertex_of_minimal hDmin x)
+      refine ⟨x, hxI, ?_, ?_, ?_⟩
+      · intro htriple
+        -- The localized deletion-failure packet above is available here; the
+        -- direct surplus-opposite exclusion is the remaining producer fact.
+        sorry
+      · intro p hpI hpErase htriple
+        -- The localized deletion-failure packet above is available here; the
+        -- direct surplus-interior exclusion is the remaining producer fact.
+        sorry
+      · -- The reduced finite candidate scaffold remains the selected-class
+        -- shadow producer needed by the finite row bridge.
+        sorry
     have hprunedRows :
         IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement :=
       prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement

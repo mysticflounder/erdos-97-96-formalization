@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as open: 1/721.  The only on-spine custom obstruction is
+reports this anchor as open: 1/737.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -360,8 +360,8 @@ exclusions, not another implication between reduced surfaces.
 Current erased-pin closure plan, 2026-07-08:
 
 Plan audit, 2026-07-08: live proof-blueprint output reports this anchor as
-open: 1/721 after the reduced-scaffold shrink, with the only on-spine
-project obligation being the local
+open: 1/737 after the checked-prefix source shrink, with the only on-spine
+project obligation still being the local
 `sorry` in
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
 The Lean source still shapes that hole as
@@ -443,6 +443,26 @@ itself.  The next useful step is to prove that this localized obstruction, or
 some stronger choice of `x`, actually yields one of the three producer facts
 above.  Do not replace the source `sorry` with a local no-q-free skeleton unless
 one of those producer goals is also discharged or strictly reduced.
+
+Prefix source checkpoint, 2026-07-08: this prefix is now in the on-spine Lean
+source.  The local `hfiniteResidualRows` proof in
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` introduces the
+ambient inputs, chooses `x` from `hM44.surplusInterior_card_ge_three`, builds
+`D : CounterexampleData`, derives `D.Minimal` from `hMin`, and extracts
+`hlocalized : exists p, U3LocalizedNoQFreePacket D x p`.  It then refines the
+source statement to exactly the three producer holes listed above.  Narrow
+verification:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom
+  SUCCEEDED
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+  open: 1/737
+```
+
+The open leaf count is still one; the total node count increased from 721 to
+737 because the formerly documentary prefix is now mined as closed on-spine
+dependencies.
 
 Producer audit, 2026-07-08: current-repo erasure-witness lemmas such as
 `IsM44.exists_oppIndex1_erase_witness_of_surplusInterior` and
@@ -1337,7 +1357,7 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   post-build proof-blueprint sync completed
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  open: 1/721
+  open: 1/737
   open source obligation: the erased-pin theorem's local finite-residual
     source `sorry`; all named dependencies under the anchor are closed.
 
