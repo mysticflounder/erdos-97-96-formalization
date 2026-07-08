@@ -337,6 +337,23 @@ bridge for the non-wrapping caps and this complement bridge for the wrapping
 cap, then export the strictly increasing ten indices required by
 `HullOrderSubsequenceCertificate`.
 
+2026-07-08 cyclic-shift checkpoint: `ConvexCyclicOrder/Basic.lean` now exposes
+the generic boundary-enumeration shift theorem
+`Problem97.isCcwConvexPolygon_cyclicShift`, with supporting signed-area
+bridges `hneg_of_ccw`, `ccw_of_hneg`, and `hneg_cyclicShift`.  This ports the
+previously external `rvol` cyclic-shift argument into the formalization tree and
+removes the earlier blocker that `IsCcwConvexPolygon` could not be re-cut at a
+chosen boundary vertex.  The higher-level wrapper theorem
+`ConvexCyclicOrder.rotate` is still not packaged, but P1 no longer needs that
+wrapper before building `HullOrderSubsequenceCertificate`: the selector can
+take a global CCW enumeration, shift it so the surplus apex is at index `0`,
+then use the interval and complement-interval cap bridges to place the ten
+labels in increasing order.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.ConvexCyclicOrder.Basic` and
+then `LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+both succeeded and proof-blueprint resynced; the active spine remains `1 open /
+806 total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

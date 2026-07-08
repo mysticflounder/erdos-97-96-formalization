@@ -31,14 +31,12 @@ with `signedArea2_sign_eq_oangle_sign`. No axioms are introduced.
 
 ## Step 1 scope
 
-This file is the Step 1 wrapper. Cyclic-rotation and orientation-
-reversal closure lemmas (`ConvexCyclicOrder.rotate`,
-`ConvexCyclicOrder.reverse`) are deferred to Step 2 — they require
-reindexing `IsCcwConvexPolygon` along a cyclic permutation
-(`finRotate` iterates), which the upstream API only provides for the
-shift-by-one case (`IsCcwConvexPolygon.sign_oangle_finRotate`).
-Reversal moreover flips chirality, so a faithful Step-2 version
-must wrap upstream `IsConvexPolygon` (which already handles both
+This file is the Step 1 wrapper.  It now includes the generic cyclic-shift
+transport for `IsCcwConvexPolygon`, enough to change the linear cut of a
+global boundary enumeration.  The higher-level
+`ConvexCyclicOrder.rotate`/`ConvexCyclicOrder.reverse` wrapper API is still
+deferred to Step 2.  Reversal flips chirality, so a faithful Step-2 reverse
+should wrap upstream `IsConvexPolygon` (which already handles both
 chiralities) rather than `IsCcwConvexPolygon`.
 -/
 
@@ -71,11 +69,149 @@ theorem isCcwConvexPolygon_subsequence {n m : ℕ} {φ : Fin n → ℝ²}
   intro i j k hij hjk
   exact hccw (hidx hij) (hidx hjk)
 
+/-- Descending signed-area form extracted from a CCW convex-polygon
+enumeration. -/
+theorem hneg_of_ccw {n : ℕ} {φ : Fin n → ℝ²}
+    (hinj : Function.Injective φ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ) :
+    ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (φ i) (φ j) (φ k) < 0 := by
+  intro i j k hij hjk
+  have hij_ne : φ i ≠ φ j := fun h => (ne_of_lt hij) (hinj h)
+  have hkj_ne : φ k ≠ φ j := fun h => (ne_of_gt hjk) (hinj h)
+  have hsign : SignType.sign (signedArea2 (φ j) (φ i) (φ k)) = 1 := by
+    rw [signedArea2_sign_eq_oangle_sign (φ j) (φ i) (φ k) hij_ne hkj_ne]
+    exact hccw.sign_oangle hij hjk
+  have hpos : 0 < signedArea2 (φ j) (φ i) (φ k) :=
+    sign_eq_one_iff.mp hsign
+  have hswap :
+      signedArea2 (φ j) (φ i) (φ k) =
+        -signedArea2 (φ i) (φ j) (φ k) := by
+    simp only [signedArea2]
+    ring
+  linarith
+
+/-- Rebuild a CCW convex-polygon enumeration from the descending signed-area
+form. -/
+theorem ccw_of_hneg {n : ℕ} {ψ : Fin n → ℝ²}
+    (hinj : Function.Injective ψ)
+    (hneg : ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (ψ i) (ψ j) (ψ k) < 0) :
+    EuclideanGeometry.IsCcwConvexPolygon ψ := by
+  intro i j k hij hjk
+  have hij_ne : ψ i ≠ ψ j := fun h => (ne_of_lt hij) (hinj h)
+  have hkj_ne : ψ k ≠ ψ j := fun h => (ne_of_gt hjk) (hinj h)
+  have hpos : 0 < signedArea2 (ψ j) (ψ i) (ψ k) := by
+    have hswap :
+        signedArea2 (ψ j) (ψ i) (ψ k) =
+          -signedArea2 (ψ i) (ψ j) (ψ k) := by
+      simp only [signedArea2]
+      ring
+    have hneg' := hneg hij hjk
+    linarith
+  have hsign : SignType.sign (signedArea2 (ψ j) (ψ i) (ψ k)) = 1 :=
+    sign_eq_one_iff.mpr hpos
+  rw [signedArea2_sign_eq_oangle_sign (ψ j) (ψ i) (ψ k) hij_ne hkj_ne] at hsign
+  exact hsign
+
+/-- A cyclic shift preserves the descending signed-area form. -/
+theorem hneg_cyclicShift {n : ℕ} {φ : Fin n → ℝ²}
+    (hneg : ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (φ i) (φ j) (φ k) < 0)
+    (cut : Fin n) :
+    ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (φ (i + cut)) (φ (j + cut)) (φ (k + cut)) < 0 := by
+  have hcyc {a b c : ℝ²} : signedArea2 a b c = signedArea2 c a b := by
+    simp [signedArea2]
+    ring
+  let bound : ℕ := n - cut.val
+  have hval_nowrap {t : Fin n} (ht : (t : ℕ) < bound) :
+      ((t + cut : Fin n) : ℕ) = t.val + cut.val := by
+    rw [Fin.val_add_eq_ite]
+    have hlt : ¬ n ≤ t.val + cut.val := by omega
+    simp [hlt]
+  have hval_wrap {t : Fin n} (ht : bound ≤ (t : ℕ)) :
+      ((t + cut : Fin n) : ℕ) = t.val - bound := by
+    rw [Fin.val_add_eq_ite]
+    have hge : n ≤ t.val + cut.val := by omega
+    simp [hge]
+    omega
+  intro i j k hij hjk
+  by_cases hk : (k : ℕ) < bound
+  · have hi : (i : ℕ) < bound := by omega
+    have hj : (j : ℕ) < bound := by omega
+    have hij' : i + cut < j + cut := by
+      change (((i + cut : Fin n) : ℕ) < ((j + cut : Fin n) : ℕ))
+      rw [hval_nowrap hi, hval_nowrap hj]
+      omega
+    have hjk' : j + cut < k + cut := by
+      change (((j + cut : Fin n) : ℕ) < ((k + cut : Fin n) : ℕ))
+      rw [hval_nowrap hj, hval_nowrap hk]
+      omega
+    exact hneg hij' hjk'
+  · by_cases hj : (j : ℕ) < bound
+    · have hi : (i : ℕ) < bound := by omega
+      have hk' : bound ≤ (k : ℕ) := by omega
+      have hki : k + cut < i + cut := by
+        change (((k + cut : Fin n) : ℕ) < ((i + cut : Fin n) : ℕ))
+        rw [hval_wrap hk', hval_nowrap hi]
+        omega
+      have hij' : i + cut < j + cut := by
+        change (((i + cut : Fin n) : ℕ) < ((j + cut : Fin n) : ℕ))
+        rw [hval_nowrap hi, hval_nowrap hj]
+        omega
+      have hneg' :
+          signedArea2 (φ (k + cut)) (φ (i + cut)) (φ (j + cut)) < 0 :=
+        hneg hki hij'
+      simpa [hcyc] using hneg'
+    · by_cases hi : (i : ℕ) < bound
+      · have hj' : bound ≤ (j : ℕ) := by omega
+        have hk' : bound ≤ (k : ℕ) := by omega
+        have hjk'' : j + cut < k + cut := by
+          change (((j + cut : Fin n) : ℕ) < ((k + cut : Fin n) : ℕ))
+          rw [hval_wrap hj', hval_wrap hk']
+          omega
+        have hki : k + cut < i + cut := by
+          change (((k + cut : Fin n) : ℕ) < ((i + cut : Fin n) : ℕ))
+          rw [hval_wrap hk', hval_nowrap hi]
+          omega
+        have hneg' :
+            signedArea2 (φ (j + cut)) (φ (k + cut)) (φ (i + cut)) < 0 :=
+          hneg hjk'' hki
+        simpa [hcyc] using hneg'
+      · have hi' : bound ≤ (i : ℕ) := by omega
+        have hj' : bound ≤ (j : ℕ) := by omega
+        have hk' : bound ≤ (k : ℕ) := by omega
+        have hij' : i + cut < j + cut := by
+          change (((i + cut : Fin n) : ℕ) < ((j + cut : Fin n) : ℕ))
+          rw [hval_wrap hi', hval_wrap hj']
+          omega
+        have hjk' : j + cut < k + cut := by
+          change (((j + cut : Fin n) : ℕ) < ((k + cut : Fin n) : ℕ))
+          rw [hval_wrap hj', hval_wrap hk']
+          omega
+        exact hneg hij' hjk'
+
+/-- A cyclic shift of a CCW convex-polygon enumeration is CCW. -/
+theorem isCcwConvexPolygon_cyclicShift {n : ℕ} {φ : Fin n → ℝ²}
+    (hinj : Function.Injective φ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ) (cut : Fin n) :
+    EuclideanGeometry.IsCcwConvexPolygon (fun t : Fin n => φ (t + cut)) := by
+  have hneg : ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (φ i) (φ j) (φ k) < 0 :=
+    fun {_ _ _} hij hjk => hneg_of_ccw hinj hccw hij hjk
+  have hneg_s : ∀ {i j k : Fin n}, i < j → j < k →
+      signedArea2 (φ (i + cut)) (φ (j + cut)) (φ (k + cut)) < 0 :=
+    fun {_ _ _} hij hjk => hneg_cyclicShift hneg cut hij hjk
+  have hinj_s : Function.Injective (fun t : Fin n => φ (t + cut)) := by
+    intro a b h
+    exact add_left_injective cut (hinj h)
+  exact ccw_of_hneg hinj_s (fun {i j k} hij hjk => hneg_s hij hjk)
+
 -- TODO Step 2: ConvexCyclicOrder.rotate — `ConvexCyclicOrder A p q r s
--- → ConvexCyclicOrder A q r s p`. Needs reindexing `φ` along
--- `(finRotate n)^[iq.val]` and a lemma that `IsCcwConvexPolygon (φ ∘ σ)`
--- for general cyclic `σ` (only the shift-by-one form
--- `sign_oangle_finRotate` is in the upstream API today).
+-- → ConvexCyclicOrder A q r s p`. The generic boundary-enumeration cyclic
+-- shift above supplies the geometric transport; the remaining work is a
+-- wrapper-level theorem that repacks the four witnesses.
 --
 -- TODO Step 2: ConvexCyclicOrder.reverse — reversing the cyclic order
 -- flips CCW → CW. The faithful Step-2 form should be stated over
