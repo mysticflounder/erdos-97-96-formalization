@@ -1223,8 +1223,8 @@ Current routed-row/count-family boundary:
   `ep_left_m0_s0_l2_r2`, `ep_left_m0_s1_l1_r2`,
   `ep_left_m1_s0_l1_r2`, and `ep_left_m2_s0_l1_r1`.  The finite erased-pin
   row plan is now split into eight cross-separation-only rows, two threaded
-  triple rows using the full fixed-seed DFS route, one threaded two-surplus row
-  using the full fixed-seed DFS route, fifteen remaining finite ten-label rows
+  triple rows using the full fixed-seed DFS route, two threaded two-surplus rows
+  using the full fixed-seed DFS route, fourteen remaining finite ten-label rows
   needing a stronger validator or full fixed-seed DFS route, and two
   surplus-extra rows needing a separate surplus-extra bridge.
   Implementation update, July 7: `scripts/erased-pin-producer-census.py` now
@@ -1350,8 +1350,27 @@ Current routed-row/count-family boundary:
   `false_of_right_row0112_finiteCandidateFacts` and
   `rightNonSurplusRow0112Excluded_of_finiteScaffold`, then shrinks
   `RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded` to two right
+  left-right residual rows.  At that checkpoint, the proof-facing finite
+  residual source was the scaffold plus fifteen finite residual rows: five
+  left-right rows and ten same-side-heavy rows.  Focused checks passed for
+  `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
+  `RemovableVertexAxiom.lean`; `RemovableVertexAxiom.lean` still reports only
+  the three expected live `sorry` warnings.
+
+  Eighth July 7 checkpoint: the left mirror `(0,1,2,1)` finite row is also no
+  longer in the residual tuple.  `SurplusM44Packet.lean` adds
+  `IsM44.left_row0121_selectedClass_eq_oppInterior1_singleton_sameCap_surplusPair`.
+  `SurplusCOMPGBankGeometry.lean` adds the mirror generated candidate
+  membership lemma
+  `erasedPinRow_ep_left_m0_s1_l2_r1_seed_mem_candidates_of_q_surplus_pair_same`,
+  `left_row0121_exists_erasedPinRowSeed_privateMask`, and
+  `false_of_erasedPinRow_ep_left_m0_s1_l2_r1_seedShadow_pointClasses`.
+  `RemovableVertexAxiom.lean` consumes those through
+  `false_of_left_row0121_finiteCandidateFacts` and
+  `leftNonSurplusRow0121Excluded_of_finiteScaffold`, then shrinks
+  `LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded` to two left
   left-right residual rows.  The current proof-facing finite residual source
-  is now the scaffold plus fifteen finite residual rows: five left-right rows
+  is now the scaffold plus fourteen finite residual rows: four left-right rows
   and ten same-side-heavy rows.  Focused checks passed for
   `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
   `RemovableVertexAxiom.lean`; `RemovableVertexAxiom.lean` still reports only
