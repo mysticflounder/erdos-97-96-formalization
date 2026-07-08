@@ -54,6 +54,13 @@ Started 2026-07-07 from
    from `class_key` values, flags partial range artifacts, and should be
    used for the canonical fresh/stability readout; per-file fresh and
    cumulative fields reset when a sweep is restarted.
+6. [x] Active-leaf report:
+   `frontier_report.py` wraps the sweep analyzer with the current erased-pin
+   proof boundary.  It reports completed L2 GLOBAL / PROVEN evidence, flags
+   partial artifacts, checks for either pending `n28_32` or `n29_32` extension
+   artifact, and states whether the loaded incidence data supplies any of the
+   three producer facts still needed by
+   `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
 
 ## Commands
 
@@ -64,4 +71,5 @@ uv run python census/multi_center/multi_center_census.py global-profile --profil
 uv run python census/multi_center/multi_center_census.py sweep-global --n-min 24 --n-max 24 --layer L2 --tier proven --workers 8 --out census/multi_center/sweeps/l2_global_proven_n24.json
 uv run python census/multi_center/multi_center_census.py sweep-global --n-min 28 --n-max 28 --layer L2 --tier proven --workers 8 --out census/multi_center/sweeps/l2_global_proven_n28.json
 uv run python census/multi_center/analyze_sweeps.py
+uv run python census/multi_center/frontier_report.py
 ```

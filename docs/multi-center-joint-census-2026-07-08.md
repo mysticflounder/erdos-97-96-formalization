@@ -59,6 +59,13 @@ inventory, not the per-artifact `fresh_*`/`cumulative_*` fields. Those
 fields reset when a range sweep is restarted, so the canonical readout is
 `uv run python census/multi_center/analyze_sweeps.py`.
 
+For the active erased-pin leaf, use
+`uv run python census/multi_center/frontier_report.py`.  It preserves the
+same inventory readout, checks whether either pending `n28_32` or `n29_32`
+extension artifact has landed, and records that the completed multi-center
+data does not supply the producer facts required by
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+
 ## Interpretation
 
 The data supports two strong empirical statements.
@@ -95,6 +102,7 @@ suggested by the data are:
 - Engine + state:
   `census/multi_center/multi_center_census.py`,
   `census/multi_center/analyze_sweeps.py`,
+  `census/multi_center/frontier_report.py`,
   `census/multi_center/STATE.md`.
 
 ## Pending

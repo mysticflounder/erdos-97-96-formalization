@@ -1532,3 +1532,14 @@ producer for `ErasedPinFiniteCandidateSepScaffoldFacts S x`, `U5ModeA D`, a
 confined-class payload, or either direct surplus-side `ErasedPinTriple`
 exclusion.  The open/total state for this leaf remains `1/785`; the next
 proof-producing step is still one of the three producers listed above.
+
+Checkpoint script, 2026-07-08 PDT: `census/multi_center/frontier_report.py`
+now makes the previous paragraph executable.  It loads the completed
+multi-center sweep artifacts, flags the partial `n12_30` and `n21_30` files,
+checks for either pending `n28_32` or `n29_32` extension artifact, and reports
+the active erased-pin producer boundary.  Current output records
+`533,761 / 533,761` completed L2 GLOBAL / PROVEN cells as SAT, `0 UNSAT`,
+`0 INDETERMINATE`, and the same `n = 25..28` exact-stability window at `3375`
+SAT classes.  Since the loaded evidence has no UNSAT incidence class and does
+not produce the reduced finite scaffold, `U5ModeA`, confined support, or a
+surplus-index erased-pin exclusion, it is not a closure input for this leaf.
