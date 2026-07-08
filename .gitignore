@@ -29,3 +29,4 @@ __pycache__/
 # Local solver output from scratch probes.
 /scratch/q3-two-center/runs/
 /scratch/q3-two-center/smoke_results.json
+.venv/
