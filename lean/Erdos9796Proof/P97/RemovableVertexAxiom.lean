@@ -5455,31 +5455,12 @@ theorem rightNonSurplusRow0004Excluded_of_finiteScaffold
 /-- The left exact row `(0,0,4,0)` is closed by choosing three of the four
 surplus-side selected points for the finite surplus triple. -/
 theorem leftNonSurplusRow0040Excluded_of_finiteScaffold
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
     {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts :
-      ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
-        p₁ ≠ p₂ →
-        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
-        q₁ ≠ q₂ →
-        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
-        x ∈ ({s1, s2, s3} : Finset ℝ²) →
-        s1 ≠ s2 →
-        s1 ≠ s3 →
-        s2 ≠ s3 →
-        ({s1, s2, s3} : Finset ℝ²) ⊆
-          S.capInteriorByIndex S.surplusIdx →
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-          p ∈ A.erase x →
-            RightOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-          p ∈ A.erase x →
-            LeftOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 0 0 4 0 := by
   classical
   intro hm hs hl hr
@@ -5487,8 +5468,6 @@ theorem leftNonSurplusRow0040Excluded_of_finiteScaffold
     S.capInteriorByIndex_ne_of_mem_of_mem_ne hp hx
       (Ne.symm S.surplusIdx_ne_oppIndex2)
   have hradius_pos : 0 < dist p x := dist_pos.mpr hp_ne_x
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   let L := SelectedClass A p (dist p x) ∩
     S.leftAdjacentInteriorByIndex S.oppIndex2
   have hLsubSurplus : L ⊆ S.capInteriorByIndex S.surplusIdx := by
@@ -5523,19 +5502,10 @@ theorem leftNonSurplusRow0040Excluded_of_finiteScaffold
   have hL3cardEq : L3.card = 3 := by
     rw [Finset.card_erase_of_mem hyL]
     omega
-  have hL3card : L3.card ≤ 3 := by
-    omega
-  rcases hM44.exists_surplusInterior_triple_preserving_subset
-      hL3subSurplus hL3card with
-    ⟨s1, s2, s3, hL3triple, hs12, hs13, hs23, hsSub⟩
-  have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) :=
-    hL3triple hxL3
-  have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
-    simp [hs12, hs13, hs23]
-  have hTriple_le : ({s1, s2, s3} : Finset ℝ²).card ≤ L3.card := by
-    rw [hTripleCard, hL3cardEq]
-  have hL3eqTriple : L3 = ({s1, s2, s3} : Finset ℝ²) :=
-    Finset.eq_of_subset_of_card_le hL3triple hTriple_le
+  rcases hscaffoldFacts L3 hxL3 hL3cardEq hL3subSurplus with
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      hL3eqTriple, hxTriple, _hs12, _hs13, _hs23, _hsSub,
+      _hoppInterior1Facts, hoppInterior2Facts⟩
   have hs1Sel : s1 ∈ SelectedClass A p (dist p x) := by
     have hs1L3 : s1 ∈ L3 := by
       rw [hL3eqTriple]
@@ -5551,9 +5521,6 @@ theorem leftNonSurplusRow0040Excluded_of_finiteScaffold
       rw [hL3eqTriple]
       simp
     exact (Finset.mem_inter.mp (Finset.mem_erase.mp hs3L3).2).1
-  rcases hscaffoldFacts p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨_hoppInterior1Facts, hoppInterior2Facts⟩
   have hpOpp : p ∈ S.oppInterior2 := by
     simpa [SurplusCapPacket.oppInterior2] using hp
   exact false_of_left_row0040_finiteCandidateFacts S
@@ -8344,7 +8311,9 @@ theorem leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     LeftNonSurplusSameSideHeavyRowsExcluded S x p := by
   exact
     ⟨leftNonSurplusRow0040Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold,
+        hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold),
       leftNonSurplusRow0130Excluded_of_finiteScaffold
         hM44 hx hp hpErase hscaffold,
       leftNonSurplusRow1030Excluded_of_finiteScaffold
