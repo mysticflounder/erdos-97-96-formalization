@@ -1282,10 +1282,16 @@ Current checkpoint, 2026-07-08 PDT:
 
 ```text
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
-  lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry  SUCCEEDED
+  lake-build Erdos9796Proof.P97.SurplusCOMPGBank  SUCCEEDED
 
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   lake-build Erdos9796Proof.P97.RemovableVertexAxiom  SUCCEEDED
+  build time: 24m04s
+  expected RemovableVertexAxiom sorries:
+    Problem97.isM44EndpointResidualsExcluded
+    Problem97.isM44PinnedSurplusResidualsExcluded
+    Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
+  post-build proof-blueprint sync completed
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
   open: 1/721
@@ -1299,6 +1305,15 @@ proof-blueprint spine Problem96.erdos96_rhs
   open: 26/1552
 ```
 
+Lean shrink verified at this checkpoint: the reduced erased-pin finite-candidate
+scaffold now asks for `PrefixPairCountsOK` rather than arbitrary-list
+pair-count facts.  The new bridge
+`noThreeOK_of_PrefixPairCountsOK` derives the required `noThreeOK` field from
+the generated full DFS prefix, which is a permutation of `allLabels`.  The live
+producer obligation is therefore narrower: produce the candidate remainders,
+the generated prefix pair-count interface, and `sepOKFor`, plus the direct
+surplus-opposite/surplus-interior erased-pin exclusions.
+
 Build/dependency note: `[mining].skip` in `.blueprint.toml` affects
 proof-blueprint mining and trusted-leaf rendering only.  It does not remove
 generated certificate modules from Lean's import graph or from `lake-build`.
@@ -1306,6 +1321,10 @@ At this checkpoint, hand-written modules outside the generated directories
 directly import endpoint-certificate modules from `RemovableVertexAxiom.lean`,
 `SurplusCOMPGBankGeometry.lean`, and `K4WindowBank.lean`; no hand-written module
 outside `SurplusCertificate/` directly imports `Erdos9796Proof.P97.SurplusCertificate.*`.
+The successful `RemovableVertexAxiom` build above rebuilt endpoint certificate
+shadow-search, row-zero product/direct, and residual-soundness modules, so this
+was observed in the Lean build itself; `[mining].skip` only changed what
+proof-blueprint mined/rendered.
 
 Use narrow `lake-build` targets while editing generated certificate shards.
 Treat proof-blueprint as the spine-shape authority, but keep the live axiom

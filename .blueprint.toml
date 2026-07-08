@@ -26,7 +26,9 @@ approved = ["Lean.trustCompiler"]
 [mining]
 # Generated certificate subtrees (Erdos9796Proof.P97.{Endpoint,Surplus}Certificate.*)
 # — ~97% of the corpus, no proof structure to anchor on. Excluded from the
-# kernel mine and rendered as 🔒 trusted leaves on the spine (declared trust
-# boundary). Still indexed, so a cert sorry is caught by the source scan and by
-# `#print axioms` on the target; the target axiom closure is unaffected.
+# proof-blueprint kernel mine and rendered as 🔒 trusted leaves on the spine
+# (declared mining boundary). This does not affect Lean imports or `lake-build`:
+# imported certificate modules are still compiled. Still indexed, so a cert
+# sorry is caught by the source scan and by `#print axioms` on the target; the
+# target axiom closure is unaffected.
 skip = ["*.EndpointCertificate.*", "*.SurplusCertificate.*"]

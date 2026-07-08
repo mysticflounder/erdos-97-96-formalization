@@ -1863,6 +1863,41 @@ theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
       simp [pointPairAssignedCount, pointPairClassCount_eq_countP]⟩
   exact of_decide_eq_true (hcounts _ hmem)
 
+/-- The full generated DFS prefix is a permutation of `allLabels`, so the
+prefix pair-count interface already contains the all-label no-three check. -/
+theorem noThreeOK_of_PrefixPairCountsOK
+    {shadow : Shadow}
+    (hcounts : PrefixPairCountsOK shadow) :
+    noThreeOK shadow = true := by
+  have hfullPrefix :
+      fullFragmentSearchAssigned ∈ fragmentSearchAssignedPrefixes := by
+    simp [fragmentSearchAssignedPrefixes, fullFragmentSearchAssigned]
+  have hcountsFull :
+      pairCountsOK
+        (shadowPairCountsForAssigned shadow fullFragmentSearchAssigned) =
+          true :=
+    hcounts fullFragmentSearchAssigned hfullPrefix
+  unfold noThreeOK
+  rw [List.all_eq_true]
+  intro pointPair hpair
+  unfold pairCountsOK at hcountsFull
+  rw [List.all_eq_true] at hcountsFull
+  apply decide_eq_true
+  have hmem :
+      pointPairClassCount shadow pointPair.fst pointPair.snd ∈
+        shadowPairCountsForAssigned shadow fullFragmentSearchAssigned := by
+    rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+    exact List.mem_map.mpr ⟨pointPair, hpair, by
+      rcases pointPair with ⟨x, y⟩
+      unfold pointPairAssignedCount
+      rw [pointPairClassCount_eq_countP]
+      have hperm : fullFragmentSearchAssigned.Perm allLabels := by
+        native_decide
+      simpa using hperm.countP_eq
+        (fun center =>
+          pointPairHitByCenterMask center (shadow.centerMask center) (x, y))⟩
+  exact of_decide_eq_true (hcountsFull _ hmem)
+
 theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     {shadow : Shadow} {assigned : List Label}
     (hcounts : searchPairCountsOK shadow = true)
