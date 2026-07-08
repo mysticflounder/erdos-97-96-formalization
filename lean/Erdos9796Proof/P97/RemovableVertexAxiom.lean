@@ -1116,6 +1116,186 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateFacts {A : Finset ℝ²}
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass cp)) = true)
 
+/-- Right-oriented finite point-class facts with the mask-level search
+separation field omitted.  That field is derivable from the full `sepOKFor`
+interface by `crossSeparationOKForMasks_of_sepOKFor`. -/
+abbrev RightOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex1 ∧
+    centerClass .w = S.capByIndex S.oppIndex2 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    (∀ sstar : Label,
+      isSurplusStar sstar = true →
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+                privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+                privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+                privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+                privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+              OneSidedSeed)) ∧
+    noThreeOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) = true ∧
+    (∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true) ∧
+    (∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+
+/-- Left-oriented finite point-class facts with the derivable mask-level search
+separation field omitted. -/
+abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex2 ∧
+    centerClass .w = S.capByIndex S.oppIndex1 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    (∀ sstar : Label,
+      isSurplusStar sstar = true →
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+                privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+                privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+                privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+              OneSidedSeed) ∧
+          OneSidedSeedCandidateRemainder
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass
+            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+                privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+              OneSidedSeed)) ∧
+    noThreeOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) = true ∧
+    (∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            centerClass) assigned) = true) ∧
+    (∀ c cp a b : Label,
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true)
+
+/-- The reduced right finite-candidate packet implies the existing full packet:
+search cross-separation is just the mask form of the supplied `sepOKFor`
+interface. -/
+theorem rightFiniteCandidateFacts_of_sepFacts
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hfacts :
+      RightOneSidedErasedPayloadFiniteCandidateSepFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
+    RightOneSidedErasedPayloadFiniteCandidateFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  rcases hfacts with
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcandidate, hno3, hcounts, hsep⟩
+  refine
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcandidate, hno3, hcounts, hsep, ?_⟩
+  intro c cp
+  simpa [shadowOfPointClasses_centerMask] using
+    (crossSeparationOKForMasks_of_sepOKFor
+      (shadow := shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) centerClass)
+      (c := c) (cp := cp)
+      (fun a b hab => hsep c cp a b))
+
+/-- Mirror conversion from reduced left finite-candidate facts to the existing
+full packet. -/
+theorem leftFiniteCandidateFacts_of_sepFacts
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hfacts :
+      LeftOneSidedErasedPayloadFiniteCandidateSepFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
+    LeftOneSidedErasedPayloadFiniteCandidateFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  rcases hfacts with
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcandidate, hno3, hcounts, hsep⟩
+  refine
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcandidate, hno3, hcounts, hsep, ?_⟩
+  intro c cp
+  simpa [shadowOfPointClasses_centerMask] using
+    (crossSeparationOKForMasks_of_sepOKFor
+      (shadow := shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) centerClass)
+      (c := c) (cp := cp)
+      (fun a b hab => hsep c cp a b))
+
 /-- A right-oriented finite point-class fact packet supplies the named surface
 once the erased surplus point lies in the selected surplus triple. -/
 theorem rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
@@ -4179,6 +4359,48 @@ abbrev ErasedPinFiniteCandidateScaffoldFacts {A : Finset ℝ²}
         p ∈ A.erase x →
           LeftOneSidedErasedPayloadFiniteCandidateFacts
             S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
+/-- Reduced finite candidate scaffold for the erased-pin producer.  It omits
+the mask-level search separation field, which is derivable from `sepOKFor` by
+`crossSeparationOKForMasks_of_sepOKFor`. -/
+abbrev ErasedPinFiniteCandidateSepScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+    p₁ ≠ p₂ →
+    S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
+    q₁ ≠ q₂ →
+    S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
+    x ∈ ({s1, s2, s3} : Finset ℝ²) →
+    s1 ≠ s2 →
+    s1 ≠ s3 →
+    s2 ≠ s3 →
+    ({s1, s2, s3} : Finset ℝ²) ⊆
+      S.capInteriorByIndex S.surplusIdx →
+      (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+        p ∈ A.erase x →
+          RightOneSidedErasedPayloadFiniteCandidateSepFacts
+            S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
+      (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+        p ∈ A.erase x →
+          LeftOneSidedErasedPayloadFiniteCandidateSepFacts
+            S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
+/-- The reduced scaffold supplies the existing full scaffold by deriving the
+search cross-separation facts from `sepOKFor`. -/
+theorem finiteCandidateScaffoldFacts_of_sepScaffoldFacts
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²}
+    (hscaffold : ErasedPinFiniteCandidateSepScaffoldFacts S x) :
+    ErasedPinFiniteCandidateScaffoldFacts S x := by
+  intro p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair hxTriple
+    hs12 hs13 hs23 hsSub
+  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
+      hxTriple hs12 hs13 hs23 hsSub with
+    ⟨hright, hleft⟩
+  exact
+    ⟨fun p hpI hpErase =>
+        rightFiniteCandidateFacts_of_sepFacts (hright p hpI hpErase),
+      fun p hpI hpErase =>
+        leftFiniteCandidateFacts_of_sepFacts (hleft p hpI hpErase)⟩
 
 /-- Finite point-class version of the erased-pin seed input surface.  The
 non-surplus pair labels, the three-point surplus subpacket, and the erased
@@ -7976,8 +8198,8 @@ abbrev
 /-- Route-grouped seed-row input surface after the finite-candidate scaffold
 has discharged all finite ten-label left-right and same-side-heavy rows plus
 the pure surplus-side four-hit rows and terminal seed inputs.  The remaining
-producer obligations are the finite candidate scaffold and direct surplus
-erased-pin exclusions. -/
+producer obligations are the reduced finite candidate scaffold and direct
+surplus erased-pin exclusions. -/
 abbrev
     IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement :
     Prop :=
@@ -8001,7 +8223,7 @@ abbrev
               (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
             (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
               p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
-            ErasedPinFiniteCandidateScaffoldFacts S x
+            ErasedPinFiniteCandidateSepScaffoldFacts S x
 
 theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
     (hfiniteResidual :
@@ -8011,14 +8233,16 @@ theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
   rcases hfiniteResidual A hne hconv hK4 hgt hMin S hM44 hend1 hend2
       hpin1 hpin2 hcontain with
     ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, hscaffold⟩
+  have hfullScaffold : ErasedPinFiniteCandidateScaffoldFacts S x :=
+    finiteCandidateScaffoldFacts_of_sepScaffoldFacts hscaffold
   refine
     ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
   · intro p hpI hpErase
     exact rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase hscaffold trivial
+      hM44 hxI hpI hpErase hfullScaffold trivial
   · intro p hpI hpErase
     exact leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase hscaffold trivial
+      hM44 hxI hpI hpErase hfullScaffold trivial
 
 theorem countFamilyFactsStatement_of_countRowsFactsStatement
     (hrows :
