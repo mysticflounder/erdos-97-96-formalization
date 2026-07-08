@@ -1235,6 +1235,90 @@ theorem capInteriorByIndex_ne_rightOuterVertexByIndex
     (Or.inr (by
       simpa [h] using S.rightOuterVertexByIndex_mem_rightAdjacentCapByIndex i)))
 
+/-- A strict interior point is distinct from the `v2` endpoint of the indexed
+triangle, in the same vocabulary used by the global index interval bridges. -/
+theorem capInteriorByIndex_ne_triangleByIndex_v2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    x ≠ (S.triangleByIndex i).v2 := by
+  have hne := S.capInteriorByIndex_ne_rightOuterVertexByIndex (i := i) hxI
+  fin_cases i <;> simpa [rightOuterVertexByIndex, triangleByIndex] using hne
+
+/-- A strict interior point is distinct from the `v3` endpoint of the indexed
+triangle, in the same vocabulary used by the global index interval bridges. -/
+theorem capInteriorByIndex_ne_triangleByIndex_v3
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {i : Fin 3} {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    x ≠ (S.triangleByIndex i).v3 := by
+  have hne := S.capInteriorByIndex_ne_leftOuterVertexByIndex (i := i) hxI
+  fin_cases i <;> simpa [leftOuterVertexByIndex, triangleByIndex] using hne
+
+/-- In one shared ambient CCW boundary enumeration, a strict interior point of
+a non-wrapping indexed cap occurs strictly between the two support endpoint
+indices. -/
+theorem capInteriorByIndex_open_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hab : ia < ib) (hc : ic < ia ∨ ib < ic)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    ∃ q : Fin n, ia < q ∧ q < ib ∧ φ q = x := by
+  have hxC : x ∈ S.capByIndex i :=
+    S.capInteriorByIndex_subset_capByIndex i hxI
+  rcases (S.capByIndex_interval_of_global_indices i hccw hφ hφimage hab hc
+      hic hia hib x).1 hxC with
+    ⟨q, hiaq, hqib, hqeq⟩
+  have hqa : q ≠ ia := by
+    intro hqia
+    have hx_endpoint : x = (S.triangleByIndex i).v2 := by
+      rw [← hqeq, hqia, hia]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v2 hxI hx_endpoint
+  have hqb : q ≠ ib := by
+    intro hqib_eq
+    have hx_endpoint : x = (S.triangleByIndex i).v3 := by
+      rw [← hqeq, hqib_eq, hib]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v3 hxI hx_endpoint
+  exact ⟨q, lt_of_le_of_ne hiaq hqa.symm, lt_of_le_of_ne hqib hqb, hqeq⟩
+
+/-- In one shared ambient CCW boundary enumeration, a strict interior point of
+a wrapping indexed cap occurs in the open complement of the support endpoint
+interval. -/
+theorem capInteriorByIndex_open_complement_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (haic : ia < ic) (hcib : ic < ib)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    ∃ q : Fin n, (q < ia ∨ ib < q) ∧ φ q = x := by
+  have hxC : x ∈ S.capByIndex i :=
+    S.capInteriorByIndex_subset_capByIndex i hxI
+  rcases (S.capByIndex_complement_interval_of_global_indices i hccw hφ hφimage
+      haic hcib hic hia hib x).1 hxC with
+    ⟨q, hqout, hqeq⟩
+  have hqa : q ≠ ia := by
+    intro hqia
+    have hx_endpoint : x = (S.triangleByIndex i).v2 := by
+      rw [← hqeq, hqia, hia]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v2 hxI hx_endpoint
+  have hqb : q ≠ ib := by
+    intro hqib_eq
+    have hx_endpoint : x = (S.triangleByIndex i).v3 := by
+      rw [← hqeq, hqib_eq, hib]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v3 hxI hx_endpoint
+  rcases hqout with hqia | hibq
+  · exact ⟨q, Or.inl (lt_of_le_of_ne hqia hqa), hqeq⟩
+  · exact ⟨q, Or.inr (lt_of_le_of_ne hibq hqb.symm), hqeq⟩
+
 /-- A strict interior point is distinct from the indexed cap's opposite Moser
 endpoint. -/
 theorem capInteriorByIndex_ne_oppositeVertexByIndex

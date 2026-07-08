@@ -372,6 +372,24 @@ then `LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
 both succeeded and proof-blueprint resynced; the active spine remains `1 open /
 806 total`.
 
+2026-07-08 strict-index checkpoint: `SurplusM44Packet.lean` now exposes the
+strict cap-interior index exports needed by the ordered selector:
+`SurplusCapPacket.capInteriorByIndex_ne_triangleByIndex_v2`,
+`SurplusCapPacket.capInteriorByIndex_ne_triangleByIndex_v3`,
+`SurplusCapPacket.capInteriorByIndex_open_interval_of_global_indices`, and
+`SurplusCapPacket.capInteriorByIndex_open_complement_interval_of_global_indices`.
+The two interval lemmas refine the earlier closed-cap ordinary/complement
+bridges by removing the support endpoints: a strict interior point in the
+non-wrapping case has an index strictly between the two endpoint indices, and a
+strict interior point in the wrapping case has an index in the open complement.
+This is the exact index-level fact the P1 selector needs before sorting the two
+opposite-cap pairs and the three surplus-cap points into a
+`HullOrderSubsequenceCertificate`.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
