@@ -39,13 +39,27 @@ Euclidean realizability attaches to any row.
    `scratch/q3-two-center/STATE.md`).
 2. A results note `docs/multi-center-joint-census-<date>.md` with the
    per-n tables and the verdict.
-3. Verdict, one of:
-   - STABILIZED (EMPIRICAL): no fresh joint class for the last K = 4
-     consecutive values of n, with the full finite class inventory
-     listed; or
-   - GROWING: fresh classes persist to the max swept n, with fitted
-     closed forms in p = n − 9 (label the fits EMPIRICAL over the swept
-     range, per `escape-census-bugcheck.md` practice).
+3. Headline verdict for the **L2 GLOBAL surface under the PROVEN cuts**
+   (the results note must report the LOCAL behavior separately), using
+   exactly one of these labels verbatim:
+   - STABILIZED-EMPIRICAL: no fresh joint class for the last K = 4
+     consecutive swept values of n, all cells in that window DETERMINED
+     (no INDETERMINATE at the class frontier), with the full finite
+     class inventory listed;
+   - STABILIZED-PROVEN: as above, plus the §6 monotonicity lemma proved
+     and cited — constant above n* becomes a theorem, not a stopping
+     rule;
+   - GROWING: fresh classes persist to the max swept n, with closed
+     forms per the fit bar below;
+   - INCONCLUSIVE-BUDGET: INDETERMINATE cells in the last-K window (or
+     the >10% INDETERMINATE condition of §4) prevent any of the above.
+
+   Fit bar for GROWING: a closed form in p = n − 9 is reportable only
+   if it is an exact integer polynomial (degree ≤ 3) fitted on the
+   first half of the swept range and matching the second half exactly
+   (the `escape-census-bugcheck.md` standard). Weak, piecewise, or
+   approximate fits are not deliverables — report the raw sequence and
+   the label NO-CLOSED-FORM instead.
 4. Fold: one paragraph + register row update in
    `closure-plan-2026-07-06.md` (§7 D3 narrative, U4 row).
 
@@ -94,9 +108,20 @@ CONJECTURED tier (run as a separately labeled variant only, never mixed
 into PROVEN tables): the SUB2-conditional rows (0,3,0,1), (0,4,0,0),
 (1,3,0,0) (= K_plus \ K_proven in `q3_token.py`), and any s ≤ 2 proxy.
 
+CONJECTURED-tier scope (mandatory vs optional): the results note MUST
+include one appendix table — the L2 GLOBAL sweep under
+PROVEN + CONJECTURED cuts, same detector, presented side-by-side with
+the PROVEN headline (its purpose: does proving SUB2-H change the
+stabilization behavior — that answers whether SUB2-H is worth solver
+time). CONJECTURED-tier L0/L1 tables are optional; produce them only if
+the L2 comparison shows a difference worth diagnosing.
+
 ## 4. What to enumerate
 
-Three layers. For each, two tiers of "exists":
+Three layers. For each, two tiers of "exists". Keep the tiers separate
+in every artifact and table. The headline verdict is about the L2
+GLOBAL tier under the PROVEN cuts; LOCAL is a mandatory diagnostic tier
+and may diverge.
 
 - **LOCAL**: the joint configuration alone satisfies its internal
   constraints (C2 between the participating centers, H1 at the
@@ -118,45 +143,90 @@ constant after some small n*).
 ### L1 — two-center joint classes (per Moser pair)
 
 For a Moser pair {a,b} with common cap X, others Y, Z: the joint class
-of (K(a), K(b)) is the decoration of the shared set K(a) ∩ K(b)
-(size 0, 1, or 2 by C2):
+of (K(a), K(b)) is the **full pair-support incidence type**, not just
+the shared-set summary. Concretely, let
 
-- for each shared member z: its region ∈ {third Moser vertex, int X,
-  int Y, int Z} (int X is dead under K-Q3-5 but keep the alphabet full
-  so the kills are *observed*, not baked into the encoding);
-- plus each endpoint's own count of members in the two caps containing
-  it (its H1-visible signature: (|K(a) ∩ (Y∖{a})|, |K(a) ∩ (Z∖{a})|)
-  etc.), so the class records how the coupling sits inside each
-  center's budget.
+    Supp(a,b) := {a,b} ∪ K(a) ∪ K(b).
 
-Canonicalization: quotient by the reflection that swaps Y ↔ Z (and, when
-cap sizes are equal, the relabeling it induces); all three Moser pairs
-map to a single canonical pair by cap relabeling — enumerate once,
-tabulate once. Spell the canonical form out in code as a single
-`canon_joint(...)` function and unit-test it on hand cases.
+The class data is the isomorphism class of the finite structure on
+`Supp(a,b)` with:
+
+- distinguished endpoints `a`, `b`;
+- for each support point `z ∉ {a,b}`, a region label
+  `region(z) ∈ {third Moser vertex, int X, int Y, int Z}`;
+- incidence bits recording whether `z ∈ K(a)` and whether `z ∈ K(b)`.
+
+Equivalently: keep the full pair `(K(a), K(b))` up to renaming of the
+auxiliary support points, with region labels retained. The shared-set
+decoration and each endpoint's H1-visible signature are **derived
+columns**, not the defining quotient; this prevents distinct pair
+supports with different extension behavior from collapsing to one class.
+
+Canonicalization: quotient by the `Y ↔ Z` reflection only when it is a
+size-preserving automorphism of the pair context. Across the three Moser
+pairs of a fixed unordered profile, collapse only by profile
+automorphisms that preserve cap sizes (so equal-size cap transpositions
+may identify contexts, but unequal common-cap sizes may not). In
+particular, for an unequal profile such as `(4,5,6)`, enumerate all
+three pair contexts before quotienting. Spell the canonical form out in
+code as a single `canon_joint(...)` function and unit-test it on hand
+cases plus an unequal-profile orbit check.
 
 Tabulate per n: distinct LOCAL classes, distinct GLOBAL classes,
 fresh-vs-previous-n, cumulative.
 
 ### L2 — three-center joint classes (the target layer)
 
-The triple (K(U), K(V), K(W)) with all three pairwise shared-set
-decorations simultaneously (a compatible gluing of three L1 classes —
-note the same shared member can appear in two pairs' shared sets only
-via the third vertex or a doubly-shared interior point; C2/C4 bound
-this). Canonical form: quotient by the S₃ cap-relabeling action
-restricted to the profile's equal-size caps, plus reflection.
+The triple `(K(U), K(V), K(W))` as a **full triple-support incidence
+type**, not merely a compatible gluing of coarse L1 summaries. Let
+
+    Supp(U,V,W) := {U,V,W} ∪ K(U) ∪ K(V) ∪ K(W).
+
+The class data is the isomorphism class of the finite structure on that
+support with:
+
+- distinguished Moser vertices `U`, `V`, `W`;
+- for each non-Moser support point, a region label in
+  `{int S, int O1, int O2}`;
+- incidence bits recording membership in `K(U)`, `K(V)`, `K(W)`.
+
+The three pairwise L1 classes are derived projections of this object.
+This is the quotient that the LOCAL/GLOBAL realizability claims are
+about. Canonical form: quotient by the automorphism group of the profile
+(cap permutations allowed only when they preserve cap sizes), together
+with reflection when size-preserving.
 
 Same tabulation as L1. This is the layer whose stabilization (or not)
 is the headline verdict.
 
 ### Sweep
 
-n from 12 to 30 {{NEEDS_ADAM_INPUT: extend past 30 if cheap?}}, all
-profiles per n. LOCAL tier for every n; GLOBAL tier for every fresh
-LOCAL class (a class GLOBAL-realized at some n stays realized in the
-cumulative inventory — but see §6 monotonicity before assuming it for
-per-n tables).
+n from 12 to 30 (first pass), all profiles per n. Extension rule
+(resolves the former NEEDS_ADAM_INPUT marker): if at n = 30 the
+stabilization detector has not fired, auto-extend in steps of +5 while
+the total DFS node count for the last completed n stays under 10⁸;
+past that budget, stop and report GROWING or INCONCLUSIVE-BUDGET as
+the data dictates — extending further is Adam's call, flagged in the
+results note.
+
+For each profile, enumerate every pair/triple context
+induced by that profile before quotienting by the profile's
+size-preserving automorphism group. LOCAL tier for every n. GLOBAL tier:
+test every distinct LOCAL class present at that n (memoize only exact
+`(n, profile-context, class)` results). Do **not** prune GLOBAL checks
+to fresh-LOCAL classes and do **not** infer per-`n` GLOBAL realizability
+from earlier `n` unless §6's monotonicity lemma is actually proved and
+cited in the results note.
+
+GLOBAL budget discipline: the DFS is seeded with the target class's
+Moser assignments fixed, candidate lists precomputed, centers ordered
+by fewest candidates (the `q2_token.solve` heuristics); classes may run
+in a worker pool. These are the only speedups allowed — all are
+semantics-preserving; no mathematical pruning. If, at some n, more than
+10% of GLOBAL cells come back INDETERMINATE (node cap), the sweep stops
+at that n and the verdict is INCONCLUSIVE-BUDGET — a growth or
+stabilization claim may not rest on INDETERMINATE-heavy tables. The
+stabilization detector counts DETERMINED cells only.
 
 ## 5. Smoke tests (mandatory, before any real sweep)
 
@@ -169,10 +239,12 @@ per-n tables).
   enumerator classifies both as killed, and that with kills disabled
   they appear as LOCAL classes. This checks the kills are observed
   post-hoc, not silently unreachable in the encoding.
-- **S3 (canonicalization).** For one small profile (e.g. (6,5,4)),
-  brute-force the L1 class set with a naive independent
+- **S3 (canonicalization).** For one unequal small profile (use
+  `(4,5,6)` or `(6,5,4)` as the unordered test case), brute-force the
+  L1 class set with a naive independent
   canonicalization (permute labels explicitly, take orbit minimum) and
-  assert it matches `canon_joint`'s output set.
+  assert it matches `canon_joint`'s output set, including the distinct
+  pair contexts forced by unequal cap sizes.
 
 No sweep results are reportable until all three pass.
 
@@ -187,9 +259,11 @@ so only realizability depends on n. A monotonicity lemma —
 by inserting an inert point (choose its K-class among existing interior
 points without breaking C2/C4/H1 budgets; the obstruction is C4
 saturation — this needs an actual argument, not hand-waving) — would
-upgrade a STABILIZED verdict from EMPIRICAL to PROVEN-above-n*. If the
-lemma resists a short proof, report the verdict as EMPIRICAL and record
-the obstruction in the results note.
+upgrade STABILIZED-EMPIRICAL to STABILIZED-PROVEN (§2 labels). If the
+lemma resists a short proof, keep the STABILIZED-EMPIRICAL label and
+record the obstruction in the results note. Until the lemma is proved, the
+base sweep remains witness-driven per `n`; no monotonicity-based pruning
+or carry-forward is allowed in the per-`n` GLOBAL tables.
 
 ## 7. Non-goals / guardrails
 
@@ -199,6 +273,8 @@ the obstruction in the results note.
   carries its cut list in the artifact JSON.
 - INDETERMINATE (node-cap) cells stay INDETERMINATE in the tables and
   the results note.
+- Never identify pair/triple contexts across cap relabelings that do
+  not preserve the profile's cap-size data.
 - Environment: `uv run python` (pure stdlib enumeration expected; no
   solver deps needed).
 - Commit checkpoints per repo policy (explicit pathspecs only —
@@ -207,8 +283,9 @@ the obstruction in the results note.
 ## 8. Acceptance
 
 1. Smoke tests S1–S3 pass and are committed with their outputs.
-2. L0/L1/L2 tables for the full sweep, per-n and cumulative, with
-   fresh-class counts and the stabilization detector output.
+2. L0/L1/L2 tables for the full sweep, per-n and cumulative, with LOCAL
+   and GLOBAL tiers separated, fresh-class counts, and the
+   stabilization detector output for the L2 GLOBAL surface.
 3. Verdict paragraph with rigor label, folded into the closure plan §7
    D3 + U4 register row.
 4. If STABILIZED: the explicit finite L2 class inventory (this is the
