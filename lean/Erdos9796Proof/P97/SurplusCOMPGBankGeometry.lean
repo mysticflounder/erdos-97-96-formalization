@@ -9,6 +9,7 @@ import Erdos9796Proof.P97.SurplusSeededShadow
 import Erdos9796Proof.P97.ErasedPinFixedSeedDFS
 import Erdos9796Proof.P97.EndpointCertificate.MetricShadow
 import Erdos9796Proof.P97.SurplusM44Packet
+import Erdos9796Proof.P97.Dumitrescu.L1
 
 /-!
 # Geometric bridge for pinned surplus COMP-G shadows
@@ -869,6 +870,215 @@ theorem noThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two
       pointPairClassCount (shadowOfPointClasses pointOf centerClass) x y <= 2) :
     noThreeOK (shadowOfPointClasses pointOf centerClass) = true := by
   simp [noThreeOK, labelPairs, hcount]
+
+private theorem foldl_countP_add {α : Type _} (p : α → Bool) :
+    ∀ (items : List α) (acc : Nat),
+      items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
+        acc + List.countP p items := by
+  intro items
+  induction items with
+  | nil => intro acc; simp
+  | cons item rest ih =>
+      intro acc
+      by_cases h : p item = true
+      · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
+      · simp [h, ih]
+
+private theorem pointPairClassCount_eq_countP
+    (shadow : Shadow) (x y : Label) :
+    pointPairClassCount shadow x y =
+      List.countP
+        (fun center =>
+          pointPairHitByCenterMask center (shadow.centerMask center) (x, y))
+        allLabels := by
+  unfold pointPairClassCount
+  have hfun :
+      (fun acc center =>
+        if center == x || center == y then
+          acc
+        else if shadow.classHas center x && shadow.classHas center y then
+          acc + 1
+        else
+          acc) =
+        (fun acc center =>
+          if pointPairHitByCenterMask center (shadow.centerMask center)
+              (x, y) then
+            acc + 1
+          else
+            acc) := by
+    funext acc center
+    by_cases hx : center = x
+    · simp [pointPairHitByCenterMask, hx]
+    · by_cases hy : center = y
+      · simp [pointPairHitByCenterMask, hy]
+      · simp [pointPairHitByCenterMask, Shadow.classHas, hx, hy]
+  rw [hfun]
+  rw [foldl_countP_add]
+  simp
+
+private theorem pointPairHit_classHas_left
+    {shadow : Shadow} {center x y : Label}
+    (hhit : pointPairHitByCenterMask center
+      (shadow.centerMask center) (x, y) = true) :
+    shadow.classHas center x = true := by
+  unfold pointPairHitByCenterMask at hhit
+  by_cases hx : center = x
+  · simp only [Label.beq_eq_decide_eq, hx, decide_true, Bool.true_or,
+      if_true, Bool.false_eq_true] at hhit
+  by_cases hy : center = y
+  · simp only [Label.beq_eq_decide_eq, hy, decide_true, Bool.or_true,
+      if_true, Bool.false_eq_true] at hhit
+  simp only [Label.beq_eq_decide_eq, hx, hy, decide_false, Bool.false_or,
+    Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
+  simpa [Shadow.classHas] using hhit.1
+
+private theorem pointPairHit_classHas_right
+    {shadow : Shadow} {center x y : Label}
+    (hhit : pointPairHitByCenterMask center
+      (shadow.centerMask center) (x, y) = true) :
+    shadow.classHas center y = true := by
+  unfold pointPairHitByCenterMask at hhit
+  by_cases hx : center = x
+  · simp only [Label.beq_eq_decide_eq, hx, decide_true, Bool.true_or,
+      if_true, Bool.false_eq_true] at hhit
+  by_cases hy : center = y
+  · simp only [Label.beq_eq_decide_eq, hy, decide_true, Bool.or_true,
+      if_true, Bool.false_eq_true] at hhit
+  simp only [Label.beq_eq_decide_eq, hx, hy, decide_false, Bool.false_or,
+    Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
+  simpa [Shadow.classHas] using hhit.2
+
+/-- Same-radius membership interfaces and convex independence bound
+induced-shadow point-pair class counts by two. -/
+theorem pointPairClassCount_le_two_of_sameRadius
+    {A : Finset ℝ²} (hconv : ConvexIndep A)
+    {pointOf : Label → ℝ²}
+    (hinj : Function.Injective pointOf)
+    (hpointMem : ∀ center : Label, pointOf center ∈ A)
+    {centerClass : Label → Finset ℝ²}
+    (hsame : ∀ center a b : Label,
+      pointOf a ∈ centerClass center →
+        pointOf b ∈ centerClass center →
+          dist (pointOf center) (pointOf a) =
+            dist (pointOf center) (pointOf b))
+    {x y : Label}
+    (hpair : (x, y) ∈ labelPairs) :
+    pointPairClassCount
+      (shadowOfPointClasses pointOf centerClass) x y <= 2 := by
+  classical
+  let shadow := shadowOfPointClasses pointOf centerClass
+  let hitPred : Label → Bool := fun center =>
+    pointPairHitByCenterMask center (shadow.centerMask center) (x, y)
+  let hits : Finset Label := (allLabels.filter hitPred).toFinset
+  let target : Finset ℝ² :=
+    A.filter (fun p => dist p (pointOf x) = dist p (pointOf y))
+  have hcount_eq :
+      pointPairClassCount shadow x y = hits.card := by
+    rw [pointPairClassCount_eq_countP, List.countP_eq_length_filter]
+    have hnodupAll : allLabels.Nodup := by
+      decide
+    have hnodupHits : (allLabels.filter hitPred).Nodup :=
+      List.Nodup.filter hitPred hnodupAll
+    exact (List.toFinset_card_of_nodup hnodupHits).symm
+  have hmaps : Set.MapsTo pointOf (↑hits) (↑target) := by
+    intro center hcenter
+    have hlist : center ∈ allLabels.filter hitPred := by
+      simpa [hits] using hcenter
+    rcases List.mem_filter.mp hlist with ⟨_hmemLabel, hhit⟩
+    have hxHas : shadow.classHas center x = true :=
+      pointPairHit_classHas_left (shadow := shadow) hhit
+    have hyHas : shadow.classHas center y = true :=
+      pointPairHit_classHas_right (shadow := shadow) hhit
+    have hxMem : pointOf x ∈ centerClass center :=
+      pointMask_maskHas_mem (by
+        simpa [shadow, Shadow.classHas, shadowOfPointClasses_centerMask]
+          using hxHas)
+    have hyMem : pointOf y ∈ centerClass center :=
+      pointMask_maskHas_mem (by
+        simpa [shadow, Shadow.classHas, shadowOfPointClasses_centerMask]
+          using hyHas)
+    have hdist : dist (pointOf center) (pointOf x) =
+        dist (pointOf center) (pointOf y) :=
+      hsame center x y hxMem hyMem
+    exact Finset.mem_filter.mpr ⟨hpointMem center, hdist⟩
+  have hinjOn : Set.InjOn pointOf (↑hits) := by
+    intro a _ha b _hb hab
+    exact hinj hab
+  have hle_hits : hits.card <= target.card :=
+    Finset.card_le_card_of_injOn pointOf hmaps hinjOn
+  have hxy : x ≠ y := by
+    cases x <;> cases y <;> simp [labelPairs] at hpair ⊢
+  have hbase : pointOf x ≠ pointOf y := by
+    intro hxyPoint
+    exact hxy (hinj hxyPoint)
+  have htarget : target.card <= 2 := by
+    simpa [target] using
+      (Dumitrescu.perpBisector_apex_bound hconv (hpointMem x)
+        (hpointMem y) hbase)
+  rw [hcount_eq]
+  exact Nat.le_trans hle_hits htarget
+
+/-- Same-radius membership interfaces and convex independence supply the
+generated prefix pair-count certificate for the induced shadow. -/
+theorem prefixPairCountsOK_shadowOfPointClasses_of_sameRadius
+    {A : Finset ℝ²} (hconv : ConvexIndep A)
+    {pointOf : Label → ℝ²}
+    (hinj : Function.Injective pointOf)
+    (hpointMem : ∀ center : Label, pointOf center ∈ A)
+    {centerClass : Label → Finset ℝ²}
+    (hsame : ∀ center a b : Label,
+      pointOf a ∈ centerClass center →
+        pointOf b ∈ centerClass center →
+          dist (pointOf center) (pointOf a) =
+            dist (pointOf center) (pointOf b)) :
+    PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass) := by
+  intro assigned hassigned
+  exact pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
+    (fun x y hpair =>
+      pointPairClassCount_le_two_of_sameRadius hconv hinj hpointMem hsame
+        hpair)
+    hassigned
+
+/-- Selected-class interfaces and convex independence bound induced-shadow
+point-pair class counts by two. -/
+theorem pointPairClassCount_le_two_of_selectedClasses
+    {A : Finset ℝ²} (hconv : ConvexIndep A)
+    {pointOf : Label → ℝ²}
+    (hinj : Function.Injective pointOf)
+    (hpointMem : ∀ center : Label, pointOf center ∈ A)
+    {centerClass : Label → Finset ℝ²}
+    {radiusOf : Label → ℝ}
+    (hselected : ∀ center : Label,
+      centerClass center = SelectedClass A (pointOf center) (radiusOf center))
+    {x y : Label}
+    (hpair : (x, y) ∈ labelPairs) :
+    pointPairClassCount
+      (shadowOfPointClasses pointOf centerClass) x y <= 2 := by
+  exact pointPairClassCount_le_two_of_sameRadius hconv hinj hpointMem
+    (fun center a b ha hb => by
+      rw [hselected center] at ha hb
+      exact (mem_selectedClass.mp ha).2.trans
+        (mem_selectedClass.mp hb).2.symm)
+    hpair
+
+/-- Selected-class interfaces and convex independence supply the generated
+prefix pair-count certificate for the induced shadow. -/
+theorem prefixPairCountsOK_shadowOfPointClasses_of_selectedClasses
+    {A : Finset ℝ²} (hconv : ConvexIndep A)
+    {pointOf : Label → ℝ²}
+    (hinj : Function.Injective pointOf)
+    (hpointMem : ∀ center : Label, pointOf center ∈ A)
+    {centerClass : Label → Finset ℝ²}
+    {radiusOf : Label → ℝ}
+    (hselected : ∀ center : Label,
+      centerClass center = SelectedClass A (pointOf center) (radiusOf center)) :
+    PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass) := by
+  exact prefixPairCountsOK_shadowOfPointClasses_of_sameRadius hconv hinj
+    hpointMem
+    (fun center a b ha hb => by
+      rw [hselected center] at ha hb
+      exact (mem_selectedClass.mp ha).2.trans
+        (mem_selectedClass.mp hb).2.symm)
 
 /-- The generated prefix pair-count checker is exposed as an explicit
 finite-list interface for induced geometric shadows. -/

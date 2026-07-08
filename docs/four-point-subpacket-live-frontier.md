@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as open: 1/753.  The only on-spine custom obstruction is
+reports this anchor as open: 1/785.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -360,7 +360,7 @@ exclusions, not another implication between reduced surfaces.
 Current erased-pin closure plan, 2026-07-08:
 
 Plan audit, 2026-07-08: live proof-blueprint output reports this anchor as
-open: 1/753 after the fixed-triple/U5 source-prefix shrink, with the only on-spine
+open: 1/785 after the same-radius prefix-count producer checkpoint, with the only on-spine
 project obligation still being the local
 `sorry` in
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
@@ -422,6 +422,35 @@ center `.Pu`.  The adapter reconstructs the four opposite-kind remainders by
 seeds keep the same `sstar` and private center and only change
 `kind/privateMask`.  The full row-consumer packet is unchanged.
 
+Same-radius prefix-count producer checkpoint, 2026-07-08: the generated prefix
+pair-count interface now has a genuine geometric producer in
+`Erdos9796Proof.P97.SurplusCOMPGBankGeometry`.
+`pointPairClassCount_le_two_of_sameRadius` proves every induced-shadow
+point-pair class count is at most two from `ConvexIndep A`, injectivity of the
+ten concrete labels, label membership in `A`, and a same-radius interface for
+each `centerClass center`.  It uses
+`Dumitrescu.perpBisector_apex_bound`, not the finite DFS.  The companion
+`prefixPairCountsOK_shadowOfPointClasses_of_sameRadius` converts those
+point-pair bounds to the `PrefixPairCountsOK` field consumed by the reduced
+erased-pin scaffold.  The selected-class corollaries remain available for the
+common case where every class is literally a `SelectedClass`.
+
+This removes the need to mine or guess prefix-count certificates once the
+scaffold producer has supplied the concrete labels, point membership, and
+same-radius facts.  It does not by itself close
+`ErasedPinFiniteCandidateSepScaffoldFacts S x`, because the scaffold still
+must construct the right/left `centerClass` and prove the same-radius interface
+for the exact cap classes at `.v/.w` and selected classes at `.Pw/.Pu`, plus
+the representative `OneSidedSeedCandidateRemainder` and total `sepOKFor`
+producers.  Narrow verification:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+  SUCCEEDED
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+  open: 1/785
+```
+
 Checked prefix, 2026-07-08: the current repo already supplies the minimality to
 U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
 one may choose any `x ∈ S.capInteriorByIndex S.surplusIdx` using
@@ -461,12 +490,12 @@ above.  Narrow verification:
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom
   SUCCEEDED
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  open: 1/753
+  open: 1/785
 ```
 
 The open leaf count is still one; the total node count increased from 721 to
-753 because the formerly documentary prefix and the fixed-triple/U5 adapter are
-now mined as closed on-spine dependencies.
+785 across the fixed-triple/U5 adapter work and later finite-shadow producer
+checkpoints because those closed dependencies are now mined on the spine.
 
 Producer audit, 2026-07-08: current-repo erasure-witness lemmas such as
 `IsM44.exists_oppIndex1_erase_witness_of_surplusInterior` and
@@ -1372,7 +1401,7 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   post-build proof-blueprint sync completed
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  open: 1/753
+  open: 1/785
   open source obligation: the erased-pin theorem's local finite-residual
     source `sorry`; all named dependencies under the anchor are closed.
 
