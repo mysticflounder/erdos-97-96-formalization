@@ -1222,10 +1222,10 @@ Current routed-row/count-family boundary:
   `ep_right_m1_s0_l2_r1`, `ep_right_m2_s0_l1_r1`,
   `ep_left_m0_s0_l2_r2`, `ep_left_m0_s1_l1_r2`,
   `ep_left_m1_s0_l1_r2`, and `ep_left_m2_s0_l1_r1`.  The finite erased-pin
-  row plan is now split into eight cross-separation-only rows, eighteen
-  remaining finite ten-label rows needing a stronger validator or full
-  fixed-seed DFS route, and two surplus-extra rows needing a separate
-  surplus-extra bridge.
+  row plan is now split into eight cross-separation-only rows, two threaded
+  triple rows using the full fixed-seed DFS route, sixteen remaining finite
+  ten-label rows needing a stronger validator or full fixed-seed DFS route, and
+  two surplus-extra rows needing a separate surplus-extra bridge.
   Implementation update, July 7: `scripts/erased-pin-producer-census.py` now
   records private-`.v`/private-`.w` cross-separation incidence in the
   JSON/report output, and generated module `ErasedPinFixedSeedDFS.lean`
@@ -1318,6 +1318,22 @@ Current routed-row/count-family boundary:
   `RemovableVertexAxiom.lean` still reports the three expected live `sorry`
   warnings.  The remaining closure risk is producer-surface wiring, not the
   cheap finite-scaffold row wrapper proofs.
+
+  Sixth July 7 checkpoint: the mirror triple rows are now threaded through the
+  finite scaffold rather than left in the residual tuple.  The right row
+  `(0,0,1,3)` / `ep_right_m0_s0_l1_r3` is closed by
+  `rightNonSurplusRow0013Excluded_of_finiteScaffold`; the left row
+  `(0,0,3,1)` / `ep_left_m0_s0_l3_r1` is closed by
+  `leftNonSurplusRow0031Excluded_of_finiteScaffold`.  Both use selected-class
+  decompositions naming one `.Q` point plus the three surplus labels, then
+  transfer the terminal scaffold candidate remainder with
+  `oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter` into the
+  generated row no-survivor theorem.  The proof-facing finite residual source
+  is now the scaffold plus sixteen finite residual rows: six left-right rows
+  and ten same-side-heavy rows.  Focused checks passed for
+  `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
+  `RemovableVertexAxiom.lean`; the residual file still has only the three
+  expected live `sorry` warnings.
 
   Local artifact checkpoint: `certificates/surplus/relaxed_split/` contains the
   70 grouped relaxed-split certificate JSON files from the pre-singleton pass,
