@@ -366,6 +366,37 @@ two direct surplus-side `ErasedPinTriple` exclusions below, and
 surface a producer for that scaffold; the hits are the scaffold definition,
 older stronger finite surface, and existing consumer/adaptor lemmas.
 
+Path-priority update, 2026-07-08: there is no requirement to use the sibling
+`p97-rvol` machinery for this sorry.  Treat rvol as optional context only.  The
+efficient route is whichever argument proves the existing source statement
+below, or one of its three producer facts, with the fewest new moving parts.
+Do not port or wrap rvol machinery unless it directly produces
+`ErasedPinFiniteCandidateScaffoldFacts S x`, the surplus-opposite direct
+exclusion, or the surplus-interior direct exclusions for the same chosen `x`.
+
+Checked prefix, 2026-07-08: the current repo already supplies the minimality to
+U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
+one may choose any `x ∈ S.capInteriorByIndex S.surplusIdx` using
+`hM44.surplusInterior_card_ge_three`, set
+`D : CounterexampleData := ⟨A, hne, hconv, hK4, S⟩`, derive `D.Minimal` from
+`hMin`, and then use
+`exists_localizedNoQFreePacket_of_not_removable_mem` to get
+`∃ p, U3LocalizedNoQFreePacket D x p`.  Lean elaborates this prefix.  Its
+remaining goals are still exactly:
+
+```text
+ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False
+forall p in S.capInteriorByIndex S.surplusIdx,
+  p in A.erase x -> ErasedPinTriple A x p -> False
+ErasedPinFiniteCandidateScaffoldFacts S x
+```
+
+Thus localized no-q-free data is a possible ingredient, not a closure by
+itself.  The next useful step is to prove that this localized obstruction, or
+some stronger choice of `x`, actually yields one of the three producer facts
+above.  Do not replace the source `sorry` with a local no-q-free skeleton unless
+one of those producer goals is also discharged or strictly reduced.
+
 1. Prove the existing source statement
    `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
    do not introduce a new reduced-input wrapper unless it proves one of the
