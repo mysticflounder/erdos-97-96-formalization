@@ -260,6 +260,21 @@ still does not close P1 by itself; the next producer must combine the retained
 blocks for the opposite caps and the chosen surplus triple into the concrete
 right/left `labelOfHullFin` ten-label CCW certificates.
 
+2026-07-08 follow-up correction: the current reduced ordered scaffold is still
+too strong if read as one common naming for both sides.  The right hull template
+orders the surplus triple along the surplus cap from `.v` to `.w`; the left
+mirror template orders the same surplus cap from `.w` to `.v`.  A single
+`s1,s2,s3` order cannot generally satisfy both CCW templates.  The next P1
+refactor should therefore split the scaffold boundary into right-ordered and
+left-ordered producer packets over the same three-point set `T`, allowing the
+left packet to use the reversed surplus order and the mirror pair orientations.
+The row consumers mostly use only the side they are proving, so this should be a
+consumer-boundary refactor rather than a new geometric exclusion.  A second
+independent issue remains: the per-cap retained block export is not itself a
+shared ten-point boundary certificate; the eventual CCW producer must use one
+common ambient boundary enumeration, or prove an equivalent cyclic-order
+transport theorem, before applying `isCcwConvexPolygon_subsequence`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
