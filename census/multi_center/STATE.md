@@ -40,16 +40,19 @@ Started 2026-07-07 from
    `(4,5,6)` L2 GLOBAL: 523/523 SAT, 312,001 nodes, 0.48 s;
    `(5,5,5)` L2 GLOBAL: 177/177 SAT, 85,992 nodes, 0.15 s.
 5. [ ] Full sweep:
-   L2 GLOBAL under PROVEN cuts is complete for n = 12..28. Every tested
-   LOCAL class is GLOBAL-realizable so far: 533,761/533,761 SAT, 0 UNSAT,
+   L2 GLOBAL under PROVEN cuts is complete for n = 12..32. Every tested
+   LOCAL class is GLOBAL-realizable so far: 977,975/977,975 SAT, 0 UNSAT,
    0 INDETERMINATE. The project-level cumulative class inventory through
-   n = 28 has 3,375 classes. Project-level fresh classes:
+   n = 32 has 3,375 classes. Project-level fresh classes:
    n18 = 247, n19 = 31, n20 = 78, n21 = 69, n22 = 0, n23 = 9,
-   n24 = 6, n25 = 0, n26 = 0, n27 = 0, n28 = 0. This gives a
-   four-row zero-fresh window at n = 25..28, matching the spec's
+   n24 = 6, n25 = 0, n26 = 0, n27 = 0, n28 = 0, n29 = 0, n30 = 0,
+   n31 = 0, n32 = 0. The current exact stable window of width four is
+   n = 29..32, matching the spec's
    STABILIZED-EMPIRICAL detector condition. Rows n = 22..28 were run
    with 8 workers via the profile-parallel sweep artifacts
    `l2_global_proven_n22.json` through `l2_global_proven_n28.json`.
+   Rows n = 29..32 are available through the `n29_32` extension artifact
+   consumed by `frontier_report.py`.
    `analyze_sweeps.py` recomputes the project-level inventory directly
    from `class_key` values, flags partial range artifacts, and should be
    used for the canonical fresh/stability readout; per-file fresh and
@@ -61,6 +64,10 @@ Started 2026-07-07 from
    artifact, and states whether the loaded incidence data supplies any of the
    three producer facts still needed by
    `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+7. [ ] CONJECTURED-tier appendix:
+   Bounded smoke through n = 15 has been run for L2 GLOBAL /
+   CONJECTURED cuts: 11,223/11,223 SAT, 0 UNSAT, 0 INDETERMINATE.  The full
+   targeted appendix and erased-pin row-to-class mapping remain open.
 
 ## Commands
 

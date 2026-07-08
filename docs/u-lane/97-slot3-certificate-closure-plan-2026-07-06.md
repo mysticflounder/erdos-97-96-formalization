@@ -128,9 +128,14 @@ Grounding facts, each independently checked 2026-07-08:
   not synthesizable from the ambient context, and
   `u5AuditedSupportOrSameCircle` is not a shortcut (its descriptor payload is
   exactly the missing data).
-- The multi-center joint census L2 GLOBAL PROVEN sweep (n = 12..28, 533,761
-  checks) returned 0 UNSAT: no local incidence class is killed by the PROVEN
-  global cut vocabulary.  The CONJECTURED-tier appendix has NOT been run.
+- The multi-center joint census L2 GLOBAL PROVEN sweep is now loaded through
+  `n = 32`: `977,975/977,975` checks are SAT with 0 UNSAT and 0
+  INDETERMINATE, and the exact stable window of width four is `n = 29..32`.
+  This still supplies none of the erased-pin producer facts below.
+- Bounded CONJECTURED-tier smoke for P3 has been run on `n = 12..15`:
+  `11,223/11,223` checks are SAT with 0 UNSAT and 0 INDETERMINATE.  This is
+  not the full P3 appendix, but it gives no cut signal at the smallest
+  profiles.
 - `exists_isCcwConvexPolygon_of_convexIndep`
   (`ConvexCyclicOrder/Construct.lean:1935`) and the `ArcBlockContiguity.lean`
   cap-contiguity layer already exist — the CCW gap has known ingredients.
@@ -172,6 +177,18 @@ provide the global convex ordering and cap block contiguity, but
 transport as deferred work.  P1 is therefore not just local assembly; it must
 either add the missing transport layer or change the generated consumers to
 work with ordered labels from the start.
+
+2026-07-08 checkpoint: because `ErasedPinFiniteCandidateSepOrderedScaffoldFacts`
+chooses the labels existentially for each three-point surplus set `T`, the
+right P1 theorem target is not "prove the old arbitrary labels are CCW."  It is
+an ordered selector theorem: given the two non-surplus two-point interiors and a
+three-point surplus-interior `T`, choose the orientations of the two pairs and
+the order of the three surplus labels so that the right and left
+`labelOfHullFin` ten-point templates are CCW.  `ArcBlockContiguity` supplies the
+cap-as-index-block ingredient, but the missing formal bridge is still the
+packet-level block-order/export theorem from an `IsM44` packet and the chosen
+`T` to those two concrete ten-label CCW templates.  That bridge is the next
+grounded P1 producer; proving either old site in place remains out of scope.
 
 2026-07-08 implementation checkpoint: the Lean route has started down the
 ordered-consumer option.  `RemovableVertexAxiom.lean` now has
@@ -236,6 +253,13 @@ from row spec to census class must be written down first).  Outcomes:
   interfaces.  Proceed to P4a.
 - No kill at the CONJECTURED tier either → the exclusion content is outside
   the entire current cut vocabulary.  Proceed to P4b.
+
+2026-07-08 bounded run: `sweep-global --layer L2 --tier conjectured
+--summary-only` was run for `n = 12..15`.  The result was all SAT
+(`11,223` tested, 0 UNSAT, 0 INDETERMINATE).  Do not claim P3 complete from
+this bounded smoke; the row-to-class mapping and any larger targeted sweep
+remain open.  The useful current conclusion is only that the stronger cut tier
+does not immediately name a kill at the smallest profiles.
 
 **P4a — prove the named cut and thread it.**  Prove the killing cut as a
 Lean lemma over the pinned frame, extend the seeded-shadow/cross-separation
