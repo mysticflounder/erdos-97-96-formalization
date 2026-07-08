@@ -576,8 +576,10 @@ def u_candidates(cls):
 def realize(cls):
     if cls["io2"] == "ident" and cls["io1"] == "ident":
         return {"status": "KILLED-PROVEN", "ref": "K-Q3-1"}
-    if cls["isv"] == "shared" and cls["bv"] == "U" and cls["bw"] == "U":
-        return {"status": "KILLED-PROVEN", "ref": "K-Q3-3"}
+    if cls["isv"] == "shared":
+        # K-Q3-5 (kill_notes.md): any shared intS member is impossible;
+        # subsumes K-Q3-3 (the bv=U ∧ bw=U case)
+        return {"status": "KILLED-PROVEN", "ref": "K-Q3-5"}
     if (cls["av"] == "W" and cls["aw"] == "V"
             and (cls["io2"] == "ident" or cls["io1"] == "ident")):
         # rv2 = rw2 = 1: the ident point is (1/2, +-sqrt(3)/2) — never

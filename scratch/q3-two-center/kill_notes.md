@@ -79,7 +79,7 @@ constraints, so the full falsifier-gate check applies. Machine
 cross-check: z3 unsat on the subsystem with even a SINGLE intO1 member
 of K(V) (check_kq33.py), i.e. the kill does not need the full γ count.
 
-## K-Q3-5. Shared-S kill — ALL isv=shared classes (PROVEN, hand)
+## K-Q3-5. Shared-S kill — ALL isv=shared classes (PROVEN, hand + lemma-level z3)
 
 **Claim.** No |A| ≥ 12 leaf configuration has a shared member
 z ∈ intS ∩ K(V) ∩ K(W). This kills every isv='shared' class (9 of the
@@ -102,9 +102,13 @@ So ρV² + ρW² > dV² + dW² ≥ 1 ≥ ρV² + ρW². Contradiction. ∎
 Constraints used: E-MEC, radius equalities, I-DISK on z, I-OBT (all
 three corners), strict cap signs, H1 counts — no ORDER constraints, so
 the full falsifier-gate check applies. Machine cross-check: the full
-3-aux-point subsystem is z3-unknown (300 s); lemma-level checks (the
-sum bound, the dV²+dW² ≥ 1 inequality, the strict lower bounds) are
-each small polynomial claims — PENDING (STATE item 7a).
+3-aux-point subsystem is z3-unknown (300 s, check_kq35.py); the proof
+is instead machine-checked lemma-by-lemma (check_kq35_lemmas.py, all
+UNSAT on the negations): L1 sum bound ρV²+ρW² ≤ 1 on intS (E-MEC +
+I-OBT + I-DISK + cap sign), L2 dV²+dW² ≥ 1 for nonobtuse frames
+(division-free form), L3/L3′ strict cap-interior lower bounds
+‖p−V‖²·‖WU‖² > uy² and mirror. The chaining L1+L2+L3+L3′ ⟹ ⊥ is
+linear arithmetic over the radius equalities.
 
 ## Machine cross-checks
 
@@ -117,3 +121,6 @@ each small polynomial claims — PENDING (STATE item 7a).
   verifies exactly; perturbing ω to 1/100 with the same shared structure
   must fail the disk constraint on z (checked in the factory's exact
   screen).
+- K-Q3-5 lemmas (check_kq35_lemmas.py): L1, L2, L3, L3′ each z3-unsat
+  on the negation (QF_NRA, division-free). Full subsystem
+  (check_kq35.py) remains z3-unknown — superseded by the lemma checks.

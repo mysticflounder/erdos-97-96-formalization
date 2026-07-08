@@ -51,23 +51,20 @@ Read formulation.md, then kill_notes.md, then this file.
        witness at U=(1/5,6/5) — auto-aim misses the feasible corner).
        These classes are NEEDS-SPECIAL by PROOF: the ident point on both
        unit circles is (1/2,±√3/2), never rational.
-7. [~] Residue after passes 1–3: 13 no-witness classes. 8 of them are
-       ALL the remaining isv='shared' classes → KILLED by K-Q3-5
-       (kill_notes.md: shared intS member forces ρV²+ρW² ≤ 1 via the
-       parallelogram identity while opposite-cap members force
-       ρV²+ρW² > dV²+dW² ≥ 1; hand-PROVEN, subsumes K-Q3-3).
-       7a. PENDING: lemma-level machine checks for K-Q3-5 (full
-       3-aux-point subsystem is z3-unknown; check the three small
-       lemmas separately: sum bound, dV²+dW² ≥ 1, strict lower bounds).
-       Then mark the 8 classes KILLED-PROVEN in factory (guard
-       isv=='shared' → K-Q3-5) and re-tally: 63 witness + 15 killed +
-       4 special + 5 residue. Remaining TRUE residue (5): V0o2_WV0_o2i,
-       V0o2_WVo1_o2i_o1d, VWU_Wso1_o1i, VWo2_Wso1_o2d_o1i,
-       Vso2_Wso1_o2d_o1i_ssep — targeted hand witnesses (the
-       check_kq34.py shapes are z3-SAT, so realizable-shaped) or
-       UNRESOLVED (treated LIVE). msolve equality-ideal step on class
-       representatives (expected POSDIM; certificates only if
-       surprises).
+7. [~] Residue resolution.
+       7a. [x] K-Q3-5 machine-checked lemma-by-lemma
+       (check_kq35_lemmas.py: L1 sum bound, L2 dV²+dW² ≥ 1 nonobtuse,
+       L3/L3′ strict cap-interior bounds — all z3-unsat on negations;
+       chaining is linear arithmetic). Factory guard isv=='shared' →
+       K-Q3-5 landed; retally CONFIRMED: 63 witness + 15 KILLED-PROVEN
+       + 4 NEEDS-SPECIAL + 5 residue. verify.py re-run: ALL 63
+       witnesses VERIFIED, 0 failures, mutation control rejects.
+       7b. [ ] TRUE residue (5): V0o2_WV0_o2i, V0o2_WVo1_o2i_o1d,
+       VWU_Wso1_o1i, VWo2_Wso1_o2d_o1i, Vso2_Wso1_o2d_o1i_ssep —
+       targeted hand witnesses (the check_kq34.py shapes are z3-SAT at
+       skewed apexes, so realizable-shaped) or UNRESOLVED (treated
+       LIVE). msolve equality-ideal step on class representatives
+       (expected POSDIM; certificates only if surprises).
 8. [ ] Composition retest (token level, q2_token.py pattern) with the
        K-Q3-1 + K-Q3-3 kills granted, n = 12–16.
 9. [ ] Falsifier gate on the kills (W20 + lattice witnesses): K-Q3-1 uses

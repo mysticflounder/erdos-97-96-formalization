@@ -1748,7 +1748,8 @@
   "ref": "K-Q3-1"
  },
  "Vs0_Ws0_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vs0_Ws0_ssep": {
   "status": "witness",
@@ -1785,7 +1786,8 @@
   }
  },
  "Vs0_WsU_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vs0_WsU_ssep": {
   "status": "witness",
@@ -1820,7 +1822,8 @@
   }
  },
  "Vs0_Wso1_o1d_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vs0_Wso1_o1d_ssep": {
   "status": "witness",
@@ -1857,7 +1860,8 @@
   }
  },
  "Vs0_Wso1_o1i_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vs0_Wso1_o1i_ssep": {
   "status": "witness",
@@ -1893,7 +1897,7 @@
  },
  "VsU_WsU_sshared": {
   "status": "KILLED-PROVEN",
-  "ref": "K-Q3-3"
+  "ref": "K-Q3-5"
  },
  "VsU_WsU_ssep": {
   "status": "witness",
@@ -1926,7 +1930,8 @@
   }
  },
  "VsU_Wso1_o1d_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "VsU_Wso1_o1d_ssep": {
   "status": "witness",
@@ -1961,7 +1966,8 @@
   }
  },
  "VsU_Wso1_o1i_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "VsU_Wso1_o1i_ssep": {
   "status": "witness",
@@ -1994,7 +2000,8 @@
   }
  },
  "Vso2_Wso1_o2d_o1d_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vso2_Wso1_o2d_o1d_ssep": {
   "status": "witness",
@@ -2031,7 +2038,8 @@
   }
  },
  "Vso2_Wso1_o2d_o1i_sshared": {
-  "status": "no-witness-in-menu"
+  "status": "KILLED-PROVEN",
+  "ref": "K-Q3-5"
  },
  "Vso2_Wso1_o2d_o1i_ssep": {
   "status": "no-witness-in-menu"
