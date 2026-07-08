@@ -96,6 +96,107 @@ The two `U2OppCap2Escape.lean` sorries remain off the current publish spine and
 must not be treated as live slot-3 closure work unless they are explicitly
 wired back into the spine.
 
+## Exact closure path — erased-pin triple residuals (2026-07-08)
+
+Audit of the six live `sorry` sites inside
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
+(`RemovableVertexAxiom.lean` 9339, 9367, 9406, 9411, 9420, 9424), classified
+by what is known to block each, with the ordered path to closure.  Line
+numbers are as of commit 596428d.
+
+### Sorry-site inventory
+
+| Site | Obligation | Classification |
+|---|---|---|
+| 9339 | direct surplus-opposite `ErasedPinTriple` exclusion | BLOCKED — no producer (Mode-A probe, frontier doc 2026-07-08) |
+| 9367 | direct surplus-interior `ErasedPinTriple` exclusion | BLOCKED — same hole as 9339 |
+| 9406 | right ten-label hull `IsCcwConvexPolygon` | unprovable in place; needs reordering restructure (P1) |
+| 9411 | right own-kind `OneSidedSeedCandidateRemainder` pair | mechanical-shaped {{NEEDS_PROOF}} (P2) |
+| 9420 | left mirror hull CCW | same as 9406 (P1) |
+| 9424 | left mirror candidate remainders | same as 9411 (P2) |
+
+Grounding facts, each independently checked 2026-07-08:
+
+- The row-truth probe holds verified exact-rational witnesses for the two
+  surviving residual rows (e.g.
+  `scratch/erased-pin-row-truth/results/witness_ep_right_m0_s0_l0_r4.json`)
+  and for the direct surplus-side configurations
+  (`witness_surplus_opposite_SO_t2_PuQ1.json`, verified PASS).  All remaining
+  exclusions are therefore NOT local geometric impossibilities: closure
+  content must be cross-separation/global.
+- The Mode-A probe (frontier doc, 2026-07-08 entry) confirms `U5ModeA D` is
+  not synthesizable from the ambient context, and
+  `u5AuditedSupportOrSameCircle` is not a shortcut (its descriptor payload is
+  exactly the missing data).
+- The multi-center joint census L2 GLOBAL PROVEN sweep (n = 12..28, 533,761
+  checks) returned 0 UNSAT: no local incidence class is killed by the PROVEN
+  global cut vocabulary.  The CONJECTURED-tier appendix has NOT been run.
+- `exists_isCcwConvexPolygon_of_convexIndep`
+  (`ConvexCyclicOrder/Construct.lean:1935`) and the `ArcBlockContiguity.lean`
+  cap-contiguity layer already exist — the CCW gap has known ingredients.
+- `ErasedPinOrderedProducer.lean` (uncommitted WIP, 2,406 lines, sorry-free)
+  is ordered seed-census machinery; it contains no CCW content and is not yet
+  imported by any module.
+
+### Path
+
+**P1 — CCW producers (sites 9406/9420).  No new math.**  The goals as
+written are false for the given unordered points: the seven interior points
+arrive with membership hypotheses only, and a fixed label template cannot be
+CCW for every assignment.  Restructure instead of proving in place:
+1. Prove a within-group reordering lemma: for p-pair, q-pair, and surplus
+   triple there exist within-group permutations making the fixed ten-label
+   template CCW.  Ingredients: `exists_isCcwConvexPolygon_of_convexIndep`
+   + cap contiguity (`ArcBlockContiguity.lean`) + within-cap reindexing
+   (`ConvexCyclicOrder/Basic.lean` shift/rotate lemmas).  {{NEEDS_PROOF}} —
+   assembly work, ingredient lemmas exist.
+2. In the theorem body, `rcases` the reordering lemma and apply the sep-facts
+   producers to the permuted points.  Downstream hypotheses (memberships,
+   distinctness) are within-group symmetric; the two private-center seed
+   variants (.Pu/.Pw) are both already demanded by `hcandidate`, so the
+   permutation does not break the seed interface.
+
+**P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
+every non-fixed center's realized point-mask lies in the generated
+candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
+completeness condition on the generated filter, not an exclusion — the same
+shape as the closed `*_exists_erasedPinRowSeed_privateMask` chain.
+{{NEEDS_PROOF}}; expected mechanical, but if any realized mask is NOT in the
+generated list, that is a generator bug or a genuinely new mask family —
+report before widening the filter.
+
+**P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
+Cheapest experiment that can name the missing exclusion content for the
+BLOCKED sites and the two surviving rows (right `(0,0,0,4)`, left
+`(0,0,4,0)`).  Sweep the CONJECTURED cut tier over the incidence classes
+matching these configurations ({{NEEDS_RESEARCH}} — the class-key mapping
+from row spec to census class must be written down first).  Outcomes:
+- Some conjectured cut kills the matching classes → that cut names the lemma
+  to prove; the exclusion routes through the existing cross-separation
+  interfaces.  Proceed to P4a.
+- No kill at the CONJECTURED tier either → the exclusion content is outside
+  the entire current cut vocabulary.  Proceed to P4b.
+
+**P4a — prove the named cut and thread it.**  Prove the killing cut as a
+Lean lemma over the pinned frame, extend the seeded-shadow/cross-separation
+consumers, close 9339/9367 and the surviving rows through the existing
+finite-scaffold adapters.  Scope known only after P3.
+
+**P4b — new vocabulary decision (Adam).**  Candidates, none currently
+concrete: a surplus-index selected-class contradiction bypassing Mode A
+(stated alternative at sites 9339/9367, no known shape); real/convex-layer
+content beyond equality-Nullstellensatz (the witnesses already satisfy
+convexity, so this means new *global* real content, e.g. joint constraints
+at richer layers than L2); or minimality-based descent not expressible in
+the local pin.  {{NEEDS_ADAM_INPUT}} — route selection is a pivot-level
+decision.
+
+**Order.**  P1 and P2 are independent of P3 and of each other; all three can
+run in parallel.  P1+P2 close four of the six sorries and reduce the theorem
+to exactly the two direct-branch sorries plus whatever P3/P4 supply.  Nothing
+in P1/P2 depends on the P4 outcome.  Closure of the theorem = P1 + P2 + (P4a
+or P4b succeeding on both direct branches and both surviving rows).
+
 ## Q Closure Gate
 
 The current certificate work is useful infrastructure, but it does not by
@@ -281,7 +382,7 @@ First tasks:
 
 July 7 acceleration probes:
 
-- `scratch/q3-two-center/` records the formulation and encoder library for the
+- `census/q3_two_center/` records the formulation and encoder library for the
   smallest cross-center window around the two chord-sharing vertices.  It is a
   verdict-table probe only, not Lean production; any UNSAT result still needs an
   exact certificate or a theorem surface before it can close the
