@@ -422,6 +422,20 @@ indices for the right and left ten-label packets and prove the finite
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 finite-certificate constructor checkpoint:
+`RemovableVertexAxiom.lean` now exposes
+`Problem97.hullOrderSubsequenceCertificate_of_explicit_indices`.  Given one
+ambient CCW enumeration, ten strictly increasing indices in generated
+`labelOfHullFin` order, and the ten point equalities, it constructs the
+`HullOrderSubsequenceCertificate` consumed by the existing CCW bridge.  This
+removes the finite `Fin 10`/`StrictMono` bookkeeping from the remaining P1
+producer; the next real obligation is upstream geometry/combinatorics, namely
+exporting those ordered indices from the ordinary interval, strict-interior,
+reverse-complement, and sorted-selector facts.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

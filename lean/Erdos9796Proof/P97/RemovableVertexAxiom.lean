@@ -115,6 +115,51 @@ theorem isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
     (hpoints k).symm
   simpa [hi, hj, hk] using hsub hij hjk
 
+/-- Build the P1 hull-order certificate from explicit strictly increasing
+ambient indices for the ten generated labels.  This isolates the finite
+`Fin 10` bookkeeping from the geometric selector, whose remaining job is to
+export these indices from the cap-block interval facts. -/
+theorem hullOrderSubsequenceCertificate_of_explicit_indices
+    {A : Finset ℝ²} {pointOf : SurplusCOMPGBank.Label → ℝ²}
+    {n : ℕ} {φ : Fin n → ℝ²}
+    {iu iQ1 iQ2 iv is1 is2 is3 iw iPw iPu : Fin n}
+    (hφinj : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (huQ1 : iu < iQ1) (hQ1Q2 : iQ1 < iQ2) (hQ2v : iQ2 < iv)
+    (hvs1 : iv < is1) (hs1s2 : is1 < is2) (hs2s3 : is2 < is3)
+    (hs3w : is3 < iw) (hwPw : iw < iPw) (hPwPu : iPw < iPu)
+    (hu : φ iu = pointOf .u)
+    (hQ1 : φ iQ1 = pointOf .Q1)
+    (hQ2 : φ iQ2 = pointOf .Q2)
+    (hv : φ iv = pointOf .v)
+    (hs1 : φ is1 = pointOf .s1)
+    (hs2 : φ is2 = pointOf .s2)
+    (hs3 : φ is3 = pointOf .s3)
+    (hw : φ iw = pointOf .w)
+    (hPw : φ iPw = pointOf .Pw)
+    (hPu : φ iPu = pointOf .Pu) :
+    HullOrderSubsequenceCertificate A pointOf := by
+  let idx : Fin 10 → Fin n
+    | ⟨0, _⟩ => iu
+    | ⟨1, _⟩ => iQ1
+    | ⟨2, _⟩ => iQ2
+    | ⟨3, _⟩ => iv
+    | ⟨4, _⟩ => is1
+    | ⟨5, _⟩ => is2
+    | ⟨6, _⟩ => is3
+    | ⟨7, _⟩ => iw
+    | ⟨8, _⟩ => iPw
+    | ⟨9, _⟩ => iPu
+    | ⟨k + 10, hk⟩ => by omega
+  refine ⟨n, φ, idx, hφinj, hφimage, hccw, ?_, ?_⟩
+  · intro a b hab
+    fin_cases a <;> fin_cases b <;> simp [idx] at hab ⊢ <;> omega
+  · intro i
+    fin_cases i <;>
+      simp [idx, SurplusCOMPGBank.labelOfHullFin, hu, hQ1, hQ2, hv, hs1,
+        hs2, hs3, hw, hPw, hPu]
+
 /-- A concrete selected-class witness in the erased set is exactly the data
 needed to prove that the erased point is removable. -/
 theorem removableVertex_of_selectedClass_erase_witnesses
