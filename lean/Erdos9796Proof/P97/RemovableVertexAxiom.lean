@@ -4953,6 +4953,65 @@ abbrev ErasedPinFiniteCandidateSepScaffoldFacts {A : Finset ℝ²}
           LeftOneSidedErasedPayloadFiniteCandidateSepFacts
             S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
 
+/-- Ordered finite candidate scaffold for the erased-pin producer.  Rather
+than asking for every arbitrary presentation of the two pairs and surplus
+triple, this surface asks for one naming of each concrete three-point surplus
+set the row consumers use. -/
+abbrev ErasedPinFiniteCandidateOrderedScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ T : Finset ℝ²,
+    x ∈ T →
+    T.card = 3 →
+    T ⊆ S.capInteriorByIndex S.surplusIdx →
+      ∃ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+        p₁ ≠ p₂ ∧
+        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) ∧
+        q₁ ≠ q₂ ∧
+        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) ∧
+        T = ({s1, s2, s3} : Finset ℝ²) ∧
+        x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+        s1 ≠ s2 ∧
+        s1 ≠ s3 ∧
+        s2 ≠ s3 ∧
+        ({s1, s2, s3} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.surplusIdx ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+          p ∈ A.erase x →
+            RightOneSidedErasedPayloadFiniteCandidateFacts
+              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+          p ∈ A.erase x →
+            LeftOneSidedErasedPayloadFiniteCandidateFacts
+              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
+/-- Reduced ordered finite candidate scaffold. -/
+abbrev ErasedPinFiniteCandidateSepOrderedScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ T : Finset ℝ²,
+    x ∈ T →
+    T.card = 3 →
+    T ⊆ S.capInteriorByIndex S.surplusIdx →
+      ∃ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+        p₁ ≠ p₂ ∧
+        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) ∧
+        q₁ ≠ q₂ ∧
+        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) ∧
+        T = ({s1, s2, s3} : Finset ℝ²) ∧
+        x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+        s1 ≠ s2 ∧
+        s1 ≠ s3 ∧
+        s2 ≠ s3 ∧
+        ({s1, s2, s3} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.surplusIdx ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+          p ∈ A.erase x →
+            RightOneSidedErasedPayloadFiniteCandidateSepFacts
+              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+          p ∈ A.erase x →
+            LeftOneSidedErasedPayloadFiniteCandidateSepFacts
+              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
 /-- The reduced scaffold supplies the existing full scaffold by deriving the
 search cross-separation facts from `sepOKFor`. -/
 theorem finiteCandidateScaffoldFacts_of_sepScaffoldFacts
@@ -4969,6 +5028,53 @@ theorem finiteCandidateScaffoldFacts_of_sepScaffoldFacts
         rightFiniteCandidateFacts_of_sepFacts (hright p hpI hpErase),
       fun p hpI hpErase =>
         leftFiniteCandidateFacts_of_sepFacts (hleft p hpI hpErase)⟩
+
+/-- The reduced ordered scaffold supplies the full ordered scaffold by deriving
+the search cross-separation facts from `sepOKFor`. -/
+theorem finiteCandidateOrderedScaffoldFacts_of_sepOrderedScaffoldFacts
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²}
+    (hscaffold : ErasedPinFiniteCandidateSepOrderedScaffoldFacts S x) :
+    ErasedPinFiniteCandidateOrderedScaffoldFacts S x := by
+  intro T hxT hTcard hTsub
+  rcases hscaffold T hxT hTcard hTsub with
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      hTeq, hxTriple, hs12, hs13, hs23, hsSub, hright, hleft⟩
+  exact
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      hTeq, hxTriple, hs12, hs13, hs23, hsSub,
+      fun p hpI hpErase =>
+        rightFiniteCandidateFacts_of_sepFacts (hright p hpI hpErase),
+      fun p hpI hpErase =>
+        leftFiniteCandidateFacts_of_sepFacts (hleft p hpI hpErase)⟩
+
+/-- Transitional adapter: the old universal scaffold implies the ordered
+surface by choosing any naming of the concrete surplus triple.  The active
+closure route should eventually produce the ordered surface directly. -/
+theorem finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²}
+    (hM44 : S.IsM44)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x) :
+    ErasedPinFiniteCandidateOrderedScaffoldFacts S x := by
+  intro T hxT hTcard hTsub
+  rcases hM44.exists_oppInterior_pairs with
+    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
+  have hTcardLe : T.card ≤ 3 := by omega
+  rcases hM44.exists_surplusInterior_triple_preserving_subset hTsub
+      hTcardLe with
+    ⟨s1, s2, s3, hTtriple, hs12, hs13, hs23, hsSub⟩
+  have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) := hTtriple hxT
+  have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
+    simp [hs12, hs13, hs23]
+  have hTriple_le : ({s1, s2, s3} : Finset ℝ²).card ≤ T.card := by
+    rw [hTripleCard, hTcard]
+  have hTeq : T = ({s1, s2, s3} : Finset ℝ²) :=
+    Finset.eq_of_subset_of_card_le hTtriple hTriple_le
+  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
+      hxTriple hs12 hs13 hs23 hsSub with
+    ⟨hright, hleft⟩
+  exact
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      hTeq, hxTriple, hs12, hs13, hs23, hsSub, hright, hleft⟩
 
 /-- Finite point-class version of the erased-pin seed input surface.  The
 non-surplus pair labels, the three-point surplus subpacket, and the erased
@@ -5274,31 +5380,12 @@ theorem leftNonSurplusPureRow_exists_surplusExtra
 /-- The right exact row `(0,0,0,4)` is closed by choosing three of the four
 surplus-side selected points for the finite surplus triple. -/
 theorem rightNonSurplusRow0004Excluded_of_finiteScaffold
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
     {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts :
-      ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
-        p₁ ≠ p₂ →
-        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
-        q₁ ≠ q₂ →
-        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
-        x ∈ ({s1, s2, s3} : Finset ℝ²) →
-        s1 ≠ s2 →
-        s1 ≠ s3 →
-        s2 ≠ s3 →
-        ({s1, s2, s3} : Finset ℝ²) ⊆
-          S.capInteriorByIndex S.surplusIdx →
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-          p ∈ A.erase x →
-            RightOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-          p ∈ A.erase x →
-            LeftOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     RightNonSurplusExactCountRowExcluded S x p 0 0 0 4 := by
   classical
   intro hm hs hl hr
@@ -5306,8 +5393,6 @@ theorem rightNonSurplusRow0004Excluded_of_finiteScaffold
     S.capInteriorByIndex_ne_of_mem_of_mem_ne hp hx
       (Ne.symm S.surplusIdx_ne_oppIndex1)
   have hradius_pos : 0 < dist p x := dist_pos.mpr hp_ne_x
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   let R := SelectedClass A p (dist p x) ∩
     S.rightAdjacentInteriorByIndex S.oppIndex1
   have hRsubSurplus : R ⊆ S.capInteriorByIndex S.surplusIdx := by
@@ -5342,19 +5427,10 @@ theorem rightNonSurplusRow0004Excluded_of_finiteScaffold
   have hR3cardEq : R3.card = 3 := by
     rw [Finset.card_erase_of_mem hyR]
     omega
-  have hR3card : R3.card ≤ 3 := by
-    omega
-  rcases hM44.exists_surplusInterior_triple_preserving_subset
-      hR3subSurplus hR3card with
-    ⟨s1, s2, s3, hR3triple, hs12, hs13, hs23, hsSub⟩
-  have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) :=
-    hR3triple hxR3
-  have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
-    simp [hs12, hs13, hs23]
-  have hTriple_le : ({s1, s2, s3} : Finset ℝ²).card ≤ R3.card := by
-    rw [hTripleCard, hR3cardEq]
-  have hR3eqTriple : R3 = ({s1, s2, s3} : Finset ℝ²) :=
-    Finset.eq_of_subset_of_card_le hR3triple hTriple_le
+  rcases hscaffoldFacts R3 hxR3 hR3cardEq hR3subSurplus with
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      hR3eqTriple, hxTriple, _hs12, _hs13, _hs23, _hsSub,
+      hoppInterior1Facts, _hoppInterior2Facts⟩
   have hs1Sel : s1 ∈ SelectedClass A p (dist p x) := by
     have hs1R3 : s1 ∈ R3 := by
       rw [hR3eqTriple]
@@ -5370,9 +5446,6 @@ theorem rightNonSurplusRow0004Excluded_of_finiteScaffold
       rw [hR3eqTriple]
       simp
     exact (Finset.mem_inter.mp (Finset.mem_erase.mp hs3R3).2).1
-  rcases hscaffoldFacts p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨hoppInterior1Facts, _hoppInterior2Facts⟩
   have hpOpp : p ∈ S.oppInterior1 := by
     simpa [SurplusCapPacket.oppInterior1] using hp
   exact false_of_right_row0004_finiteCandidateFacts S
@@ -8247,7 +8320,9 @@ theorem rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     RightNonSurplusSameSideHeavyRowsExcluded S x p := by
   exact
     ⟨rightNonSurplusRow0004Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold,
+        hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold),
       rightNonSurplusRow0103Excluded_of_finiteScaffold
         hM44 hx hp hpErase hscaffold,
       rightNonSurplusRow1003Excluded_of_finiteScaffold
