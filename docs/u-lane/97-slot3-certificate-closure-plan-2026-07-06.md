@@ -231,6 +231,21 @@ surplus-opposite/surplus-interior erased-pin branches plus the ordered
 placement and candidate-remainder producers inside the ordered scaffold
 obligation.
 
+2026-07-08 checkpoint: the first reusable P1 transport facts are now in the
+verified Lean tree.  `ConvexCyclicOrder/Basic.lean` has
+`Problem97.isCcwConvexPolygon_subsequence`, proving that a strictly increasing
+finite subsequence of a CCW convex polygon is CCW.  `SurplusM44Packet.lean` now
+imports `CGN.CGN4g` and exposes
+`SurplusCapPacket.capByIndex_cgn4g_capData`, a packet-level export theorem
+showing every indexed cap has the ordered-cap data produced by
+`CGN4g_capData_of_supportCap`.
+`lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds and proof-blueprint
+resynced the call graph.  The active leaf remains `1 open / 797 total`; this
+checkpoint supplies ordered-cap data for the forthcoming selector bridge, but it
+does not yet prove the concrete ten-label right/left CCW templates.  The still
+missing P1 bridge is the order export from the three indexed cap blocks and the
+chosen surplus triple `T` to the `labelOfHullFin` ten-label sequence.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

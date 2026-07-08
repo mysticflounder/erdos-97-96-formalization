@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Cap.PartitionFromMEC
+import Erdos9796Proof.P97.CGN.CGN4g
 import Erdos9796Proof.P97.CircumscribedMECPacket
 import Erdos9796Proof.P97.WitnessPacketInterface
 import Erdos9796Proof.P97.N8.FourSubpacket
@@ -192,6 +193,43 @@ theorem triangleByIndex_v3_mem_capByIndex
   · exact S.partition.v3_mem_C1
   · exact S.partition.v1_mem_C2
   · exact S.partition.v2_mem_C3
+
+/-- Every indexed cap of a surplus packet has the ordered-cap data supplied by
+the CGN4g support-cap theorem.  This exports the existing support-cap result
+through the cyclic packet API used by the erased-pin ordered scaffold. -/
+theorem capByIndex_cgn4g_capData
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) :
+    ∃ m, ∃ L : Problem97.CGN.OrderedCap m,
+      ∃ Packet : Problem97.CGN.MecCapPacket A L,
+      ∃ _ : Problem97.CGN.MinorCapSideHypotheses Packet,
+      ∃ _ : Problem97.CGN.StrictCapOrder A L,
+        Finset.univ.image L.points = S.capByIndex i := by
+  fin_cases i
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap
+      (A := A) (C := S.capByIndex 0) (M := S.triangleByIndex 0)
+      hconv S.hncol (S.capByIndex_subset 0)
+      (S.capByIndex_arc_membership 0)
+      (S.triangleByIndex_v2_mem_capByIndex 0)
+      (S.triangleByIndex_v3_mem_capByIndex 0)
+      (by simpa [triangleByIndex] using S.circPacket)
+      (by simpa [triangleByIndex] using S.circPacket.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap
+      (A := A) (C := S.capByIndex 1) (M := S.triangleByIndex 1)
+      hconv S.hncol (S.capByIndex_subset 1)
+      (S.capByIndex_arc_membership 1)
+      (S.triangleByIndex_v2_mem_capByIndex 1)
+      (S.triangleByIndex_v3_mem_capByIndex 1)
+      S.circPacket2
+      (by simpa [triangleByIndex] using S.circPacket2.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap
+      (A := A) (C := S.capByIndex 2) (M := S.triangleByIndex 2)
+      hconv S.hncol (S.capByIndex_subset 2)
+      (S.capByIndex_arc_membership 2)
+      (S.triangleByIndex_v2_mem_capByIndex 2)
+      (S.triangleByIndex_v3_mem_capByIndex 2)
+      S.circPacket3
+      (by simpa [triangleByIndex] using S.circPacket3.inner_at_v1)
 
 /-- One-hit bound for an indexed support cap, viewed from its first support
 endpoint. -/

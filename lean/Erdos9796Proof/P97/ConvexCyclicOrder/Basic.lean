@@ -60,6 +60,17 @@ def ConvexCyclicOrder (A : Finset ℝ²) (p q r s : ℝ²) : Prop :=
       ip < iq ∧ iq < ir ∧ ir < is ∧
       φ ip = p ∧ φ iq = q ∧ φ ir = r ∧ φ is = s
 
+/-- A strictly increasing finite subsequence of a CCW convex polygon is again
+CCW.  This is the subpolygon step used by cap-block arguments once the selected
+points have been exported as increasing global boundary indices. -/
+theorem isCcwConvexPolygon_subsequence {n m : ℕ} {φ : Fin n → ℝ²}
+    {idx : Fin m → Fin n}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hidx : StrictMono idx) :
+    EuclideanGeometry.IsCcwConvexPolygon (fun i : Fin m => φ (idx i)) := by
+  intro i j k hij hjk
+  exact hccw (hidx hij) (hidx hjk)
+
 -- TODO Step 2: ConvexCyclicOrder.rotate — `ConvexCyclicOrder A p q r s
 -- → ConvexCyclicOrder A q r s p`. Needs reindexing `φ` along
 -- `(finRotate n)^[iq.val]` and a lemma that `IsCcwConvexPolygon (φ ∘ σ)`
