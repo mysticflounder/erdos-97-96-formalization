@@ -188,12 +188,16 @@ ordered labels.  The right same-side triple rows `right (0,1,0,3)` and
 right side of the heavy same-side triple block no longer needs arbitrary
 three-point labels.  The mirror left same-side triple rows `left (0,1,3,0)`
 and `left (1,0,3,0)` are migrated the same way.  A temporary old-to-ordered
-adapter keeps the remaining old
-universal consumers compiling while the rest of the row blocks are migrated.
+adapter keeps the remaining old universal consumers compiling while the rest
+of the row blocks are migrated.  The remaining same-side heavy pair rows
+`right (1,1,0,2)`, `right (2,0,0,2)`, `left (1,1,2,0)`, and
+`left (2,0,2,0)` are now also ordered consumers, so the same-side heavy
+block no longer directly consumes the false arbitrary-label scaffold surface.
 This is a transition bridge only; closure still requires the active
 finite-residual statement to produce the ordered sep scaffold directly and the
-remaining row consumers to stop depending on the old false universal surface.
-Current verified spine after this migration remains `1 open / 799 total`.
+remaining row consumers outside this block to stop depending on the old false
+universal surface.  Current verified spine after this migration remains
+`1 open / 799 total`.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
