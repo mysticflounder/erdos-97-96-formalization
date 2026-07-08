@@ -8058,6 +8058,114 @@ theorem false_of_erasedPinRow_ep_left_m1_s1_l2_r0_seedShadow_pointClasses
               · exact hcandidate center hvCenter hwCenter hprivateCenter)
         hno3 hcounts hsep hsearchSep)
 
+/-- Row-specific point-class contradiction for the erased-pin finite row
+`ep_right_m2_s0_l0_r2`.  Once geometry identifies one of the row's generated
+candidate seeds, the generated row no-survivor theorem closes the seeded
+shadow. -/
+theorem false_of_erasedPinRow_ep_right_m2_s0_l0_r2_seedShadow_pointClasses
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates)
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  have hfixed : seed ∈ erasedPinFixedSeeds :=
+    erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates_subset_fixed hseed
+  exact
+    erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates_false_of_isValidOneSidedSeedShadow
+      hseed
+      (isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates_with_exact_masks
+        hs hv hwMask hprivate (by
+          intro center
+          by_cases hvCenter : center = .v
+          · subst center
+            rw [hv]
+            exact erasedPinFixedSeeds_firstOppExactCapMask_mem_candidateMasks_v
+              seed hfixed
+          · by_cases hwCenter : center = .w
+            · subst center
+              rw [hwMask]
+              exact erasedPinFixedSeeds_secondOppExactCapMask_mem_candidateMasks_w
+                seed hfixed
+            · by_cases hprivateCenter : center = seed.privateCenter
+              · subst center
+                rw [hprivate]
+                exact
+                  erasedPinFixedSeeds_privateMask_mem_candidateMasks_privateCenter
+                    seed hfixed
+              · exact hcandidate center hvCenter hwCenter hprivateCenter)
+        hno3 hcounts hsep hsearchSep)
+
+/-- Row-specific point-class contradiction for the erased-pin finite row
+`ep_left_m2_s0_l2_r0`.  Once geometry identifies one of the row's generated
+candidate seeds, the generated row no-survivor theorem closes the seeded
+shadow. -/
+theorem false_of_erasedPinRow_ep_left_m2_s0_l2_r0_seedShadow_pointClasses
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates)
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcandidate : ∀ center : Label, center ≠ .v → center ≠ .w →
+      center ≠ seed.privateCenter →
+        pointMask pointOf (centerClass center) ∈ seed.candidateMasks center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : ∀ assigned : List Label,
+      pairCountsOK
+        (shadowPairCountsForAssigned
+          (shadowOfPointClasses pointOf centerClass) assigned) = true)
+    (hsep : ∀ c cp x y : Label,
+      sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  have hfixed : seed ∈ erasedPinFixedSeeds :=
+    erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates_subset_fixed hseed
+  exact
+    erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates_false_of_isValidOneSidedSeedShadow
+      hseed
+      (isValidOneSidedSeedShadow_shadowOfPointClasses_of_seed_candidates_with_exact_masks
+        hs hv hwMask hprivate (by
+          intro center
+          by_cases hvCenter : center = .v
+          · subst center
+            rw [hv]
+            exact erasedPinFixedSeeds_firstOppExactCapMask_mem_candidateMasks_v
+              seed hfixed
+          · by_cases hwCenter : center = .w
+            · subst center
+              rw [hwMask]
+              exact erasedPinFixedSeeds_secondOppExactCapMask_mem_candidateMasks_w
+                seed hfixed
+            · by_cases hprivateCenter : center = seed.privateCenter
+              · subst center
+                rw [hprivate]
+                exact
+                  erasedPinFixedSeeds_privateMask_mem_candidateMasks_privateCenter
+                    seed hfixed
+              · exact hcandidate center hvCenter hwCenter hprivateCenter)
+        hno3 hcounts hsep hsearchSep)
+
 /-- Exact cap masks, the listed private seed mask, and the exact generated
 trigger interface give the seeded no-survivor contradiction.  Compared with
 `false_of_oneSidedSeedShadow_pointClasses_of_exact_cap_trigger_interfaces`,

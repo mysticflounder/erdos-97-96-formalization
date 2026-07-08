@@ -69,12 +69,12 @@ raw count-row statement,
 existing erased-pin triple exclusions.  The older finite/named/candidate
 adapters remain compiled support, but the two-hit probe makes the
 `AdjacentChainOneHitData` route non-operative for this branch.  The
-proof-facing local obligation must ask for the finite scaffold and four
-same-side-heavy residual rows; the left-right finite-residual bucket is empty
-after the `(1,1,1,1)` pair closure, and the `M1|S1|O0|X2`
-same-side-heavy pair is closed from the finite scaffold.  The erased
-one-sided terminal payload exclusions are now closed from the finite scaffold
-by the `false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.
+proof-facing local obligation now asks for the finite scaffold and the two
+pure surplus-side four-hit residual rows.  The left-right finite-residual
+bucket is empty, and the finite ten-label same-side-heavy rows are closed from
+the finite scaffold.  The erased one-sided terminal payload exclusions are now
+closed from the finite scaffold by the
+`false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.
 There is no
 separate top-level
 `Problem97.isM44NonSurplusContainmentErasedPinTripleReductionInputs` theorem.
@@ -1014,11 +1014,11 @@ Current Lean boundary:
    - surplus-cap strict-interior direct `ErasedPinTriple` exclusions;
    - `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus point;
    - `oppIndex1` non-surplus strict interiors:
-     `RightNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
-     remaining same-side-heavy rows;
+     `RightNonSurplusRoutedFiniteResidualRowsExcluded S x p`, now reduced to
+     the pure surplus-side four-hit row `(0,0,0,4)`;
    - `oppIndex2` non-surplus strict interiors:
-     `LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
-     remaining same-side-heavy rows.
+     `LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p`, now reduced to
+     the pure surplus-side four-hit row `(0,0,4,0)`.
 3. Closed arithmetic adapters turn the finite rows into the universal family
    predicates:
    `rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded`,
@@ -1097,7 +1097,8 @@ Current routed-row/count-family boundary:
   producer-complete.  Its concrete producer obligations are:
   `surplus-opposite` direct `ErasedPinTriple` exclusion; surplus-cap
   strict-interior direct `ErasedPinTriple` exclusions; the finite candidate
-  scaffold; and 2 right and 2 left same-side-heavy row exclusions.  It no
+  scaffold; and the two pure surplus-side four-hit row exclusions, right
+  `(0,0,0,4)` and left `(0,0,4,0)`.  It no
   longer has to
   construct arbitrary one-sided payload exclusions, terminal seed-candidate
   inputs, or `AdjacentChainOneHitData`.
@@ -1107,10 +1108,12 @@ Current routed-row/count-family boundary:
   `certificates/surplus/reports/erased_pin_producer_census.md`.  The census
   expands each exact-count row into oriented ten-label selected-class masks and
   now runs the generalized one-sided fixed-seed DFS by default.  After the two
-  already-closed pair-overflow rows, 28 proof-facing rows remain: 26 have
-  finite ten-label masks and two rows require a surplus-extra bridge because
+  already-closed pair-overflow rows, 28 proof-facing rows remained: 26 had
+  finite ten-label masks and two rows required a surplus-extra bridge because
   they ask for four selected surplus-side hits inside a three-label surplus
-  subpacket: right `(0,0,0,4)` and left `(0,0,4,0)`.
+  subpacket.  The finite-scaffold row bridges now close all 26 finite
+  ten-label rows; only the surplus-extra rows right `(0,0,0,4)` and left
+  `(0,0,4,0)` remain.
 - July 7 producer result: the 26 finite rows have 660 named finite masks,
   deduplicating to 330 fixed seeds `(sstar, privateCenter, privateMask)` for
   the exact `.v/.w` cap-mask seeded search.  The generated DFS census finds
@@ -1224,11 +1227,13 @@ Current routed-row/count-family boundary:
   `ep_right_m1_s0_l2_r1`, `ep_right_m2_s0_l1_r1`,
   `ep_left_m0_s0_l2_r2`, `ep_left_m0_s1_l1_r2`,
   `ep_left_m1_s0_l1_r2`, and `ep_left_m2_s0_l1_r1`.  The finite erased-pin
-  row plan is now split into eight cross-separation-only rows, two threaded
+  row plan was then split into eight cross-separation-only rows, two threaded
   triple rows using the full fixed-seed DFS route, two threaded two-surplus rows
-  using the full fixed-seed DFS route, fourteen remaining finite ten-label rows
-  needing a stronger validator or full fixed-seed DFS route, and two
-  surplus-extra rows needing a separate surplus-extra bridge.
+  using the full fixed-seed DFS route, fourteen finite ten-label rows needing a
+  stronger validator or full fixed-seed DFS route, and two surplus-extra rows
+  needing a separate surplus-extra bridge.  Later finite-scaffold row bridges
+  closed the finite ten-label remainder; the current live row residue is only
+  the two surplus-extra rows.
   Implementation update, July 7: `scripts/erased-pin-producer-census.py` now
   records private-`.v`/private-`.w` cross-separation incidence in the
   JSON/report output, and generated module `ErasedPinFixedSeedDFS.lean`
@@ -1445,9 +1450,27 @@ Current routed-row/count-family boundary:
   `left_row1120_exists_erasedPinRowSeed_privateMask`,
   `false_of_left_row1120_finiteCandidateFacts`, and
   `leftNonSurplusRow1120Excluded_of_finiteScaffold`.  The current
-  proof-facing finite residual source is now the scaffold plus four finite
+  proof-facing finite residual source was then the scaffold plus four finite
   residual rows: right `(0,0,0,4)`, right `(2,0,0,2)`, left `(0,0,4,0)`, and
   left `(2,0,2,0)`.  Focused checks passed for
+  `SurplusCOMPGBankGeometry.lean` and `RemovableVertexAxiom.lean`;
+  `RemovableVertexAxiom.lean` still reports only the three expected live
+  `sorry` warnings.
+
+  Thirteenth July 7 checkpoint: the same-side-heavy `M2|S0|O0|X2` pair is now
+  threaded through the finite scaffold.  The right row `(2,0,0,2)` /
+  `ep_right_m2_s0_l0_r2` is closed by
+  `IsM44.right_row2002_selectedClass_eq_moserPair_surplusPair`,
+  `right_row2002_exists_erasedPinRowSeed_privateMask`,
+  `false_of_right_row2002_finiteCandidateFacts`, and
+  `rightNonSurplusRow2002Excluded_of_finiteScaffold`.  The left mirror row
+  `(2,0,2,0)` / `ep_left_m2_s0_l2_r0` is closed by
+  `IsM44.left_row2020_selectedClass_eq_moserPair_surplusPair`,
+  `left_row2020_exists_erasedPinRowSeed_privateMask`,
+  `false_of_left_row2020_finiteCandidateFacts`, and
+  `leftNonSurplusRow2020Excluded_of_finiteScaffold`.  The current
+  proof-facing finite residual source is now the scaffold plus two residual
+  rows: right `(0,0,0,4)` and left `(0,0,4,0)`.  Focused checks passed for
   `SurplusCOMPGBankGeometry.lean` and `RemovableVertexAxiom.lean`;
   `RemovableVertexAxiom.lean` still reports only the three expected live
   `sorry` warnings.
