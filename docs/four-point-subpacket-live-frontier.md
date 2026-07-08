@@ -1543,3 +1543,32 @@ the active erased-pin producer boundary.  Current output records
 SAT classes.  Since the loaded evidence has no UNSAT incidence class and does
 not produce the reduced finite scaffold, `U5ModeA`, confined support, or a
 surplus-index erased-pin exclusion, it is not a closure input for this leaf.
+
+Mode-A probe, 2026-07-08 PDT: scratch LSP attempts at the first direct
+surplus-side hole confirm that `U5ModeA D` is not synthesized by current
+context.  Unfolding `U5ModeA` leaves the placement goal:
+
+```text
+∃ d K, 0 < d ∧ K ⊆ D.A ∧
+  (∀ x ∈ K, dist x D.packet.surplusApex = d) ∧
+  4 ≤ K.card ∧
+  (∃ e₁ e₂, e₁ ∈ K ∧ e₂ ∈ K ∧ e₁ ≠ e₂ ∧
+    e₁ ∈ D.packet.oppCap1 ∧ e₁ ∈ D.packet.surplusCap ∧
+    e₂ ∈ D.packet.oppCap2 ∧ e₂ ∈ D.packet.surplusCap) ∧
+  2 ≤ (K.filter fun x =>
+    x ∈ D.packet.surplusCap ∧
+    x ≠ D.packet.triangle.v1 ∧
+    x ≠ D.packet.triangle.v2 ∧
+    x ≠ D.packet.triangle.v3).card
+```
+
+The ambient `hK4` applied at `D.packet.surplusApex` supplies a positive
+radius and a same-distance class of cardinality at least four, but not the
+Mode-A placement facts identifying the two surplus-cap endpoints and at least
+two strict surplus-cap interior points in that class.  The existing
+`u5AuditedSupportOrSameCircle` theorem is also not a producer shortcut: it
+requires a `U5CandidateDescriptor`, whose `producer_payload` field is exactly
+the same-circle-or-audited-support payload missing in the current local goal.
+Thus a direct U5 closure still needs a genuine `U5ModeA` source plus audited
+support/same-circle data, or a surplus-index selected-class contradiction that
+bypasses Mode A.
