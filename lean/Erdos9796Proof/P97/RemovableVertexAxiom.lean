@@ -1121,42 +1121,18 @@ abbrev RightOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
     (∀ sstar : Label,
       isSurplusStar sstar = true →
         rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .own,
-                privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .own,
-                privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
-                privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
-                privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
-                privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
-                privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
-              OneSidedSeed)) ∧
+          (OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed))) ∧
     PrefixPairCountsOK
       (shadowOfPointClasses
         (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
@@ -1180,42 +1156,18 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
     (∀ sstar : Label,
       isSurplusStar sstar = true →
         leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .own,
-                privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .own,
-                privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
-                privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
-                privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
-                privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
-              OneSidedSeed) ∧
-          OneSidedSeedCandidateRemainder
-            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            centerClass
-            ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
-                privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
-              OneSidedSeed)) ∧
+          (OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed))) ∧
     PrefixPairCountsOK
       (shadowOfPointClasses
         (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
@@ -1246,9 +1198,80 @@ theorem rightFiniteCandidateFacts_of_sepFacts
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true :=
     noThreeOK_of_PrefixPairCountsOK hcounts
+  have hcandidateFull :
+      ∀ sstar : Label,
+        isSurplusStar sstar = true →
+          rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+                  privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+                  privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+                  privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+                  privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+                OneSidedSeed) := by
+    intro sstar hsstar hsstar_eq
+    rcases hcandidate sstar hsstar hsstar_eq with
+      ⟨hcandidateOwnPw, hcandidateOwnPu⟩
+    let ownPw : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .own,
+        privateMask := maskOfLabels [.u, .w, sstar, .Pu] }
+    let ownPu : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .own,
+        privateMask := maskOfLabels [.u, .w, sstar, .Pw] }
+    let oppositePwU : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pu] }
+    let oppositePwW : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pu] }
+    let oppositePuU : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pw] }
+    let oppositePuW : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pw] }
+    refine
+      ⟨hcandidateOwnPw, hcandidateOwnPu, ?_, ?_, ?_, ?_⟩
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePwU) (base := ownPw) rfl rfl hcandidateOwnPw
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePwW) (base := ownPw) rfl rfl hcandidateOwnPw
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePuU) (base := ownPu) rfl rfl hcandidateOwnPu
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePuW) (base := ownPu) rfl rfl hcandidateOwnPu
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep, ?_⟩
+      hcandidateFull, hno3, hcounts, hsep, ?_⟩
   intro c cp
   simpa [shadowOfPointClasses_centerMask] using
     (crossSeparationOKForMasks_of_sepOKFor
@@ -1276,9 +1299,80 @@ theorem leftFiniteCandidateFacts_of_sepFacts
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) = true :=
     noThreeOK_of_PrefixPairCountsOK hcounts
+  have hcandidateFull :
+      ∀ sstar : Label,
+        isSurplusStar sstar = true →
+          leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                  privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+                  privateMask := maskOfLabels [.u, .v, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+                  privateMask := maskOfLabels [.v, .w, sstar, .Pu] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+                  privateMask := maskOfLabels [.u, .v, sstar, .Pw] } :
+                OneSidedSeed) ∧
+            OneSidedSeedCandidateRemainder
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass
+              ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+                  privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
+                OneSidedSeed) := by
+    intro sstar hsstar hsstar_eq
+    rcases hcandidate sstar hsstar hsstar_eq with
+      ⟨hcandidateOwnPw, hcandidateOwnPu⟩
+    let ownPw : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .own,
+        privateMask := maskOfLabels [.u, .w, sstar, .Pu] }
+    let ownPu : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .own,
+        privateMask := maskOfLabels [.u, .w, sstar, .Pw] }
+    let oppositePwU : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pu] }
+    let oppositePwW : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pw, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pu] }
+    let oppositePuU : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeU,
+        privateMask := maskOfLabels [.u, .v, sstar, .Pw] }
+    let oppositePuW : OneSidedSeed :=
+      { sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
+        privateMask := maskOfLabels [.v, .w, sstar, .Pw] }
+    refine
+      ⟨hcandidateOwnPw, hcandidateOwnPu, ?_, ?_, ?_, ?_⟩
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePwU) (base := ownPw) rfl rfl hcandidateOwnPw
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePwW) (base := ownPw) rfl rfl hcandidateOwnPw
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePuU) (base := ownPu) rfl rfl hcandidateOwnPu
+    · exact oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := oppositePuW) (base := ownPu) rfl rfl hcandidateOwnPu
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep, ?_⟩
+      hcandidateFull, hno3, hcounts, hsep, ?_⟩
   intro c cp
   simpa [shadowOfPointClasses_centerMask] using
     (crossSeparationOKForMasks_of_sepOKFor

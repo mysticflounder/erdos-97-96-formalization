@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as 722/723 closed.  The only on-spine custom obstruction is
+reports this anchor as open: 1/721.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -360,7 +360,7 @@ exclusions, not another implication between reduced surfaces.
 Current erased-pin closure plan, 2026-07-08:
 
 Plan audit, 2026-07-08: live proof-blueprint output reports this anchor as
-722/723 closed after the reduced-scaffold shrink, with the only on-spine
+open: 1/721 after the reduced-scaffold shrink, with the only on-spine
 project obligation being the local
 `sorry` in
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
@@ -412,6 +412,15 @@ candidate consumer packets recover `noThreeOK` and mask-level search
 separation in `rightFiniteCandidateFacts_of_sepFacts` and
 `leftFiniteCandidateFacts_of_sepFacts`.
 
+Third shrink checkpoint, 2026-07-08: the reduced one-sided finite-candidate
+packets no longer need all six candidate remainders.  For each orientation and
+surplus-star label, the source now supplies only the two representative
+`kind := .own` remainders, one for private center `.Pw` and one for private
+center `.Pu`.  The adapter reconstructs the four opposite-kind remainders by
+`oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter`, since those
+seeds keep the same `sstar` and private center and only change
+`kind/privateMask`.  The full row-consumer packet is unchanged.
+
 Checked prefix, 2026-07-08: the current repo already supplies the minimality to
 U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
 one may choose any `x ∈ S.capInteriorByIndex S.surplusIdx` using
@@ -459,9 +468,12 @@ proof of the two surplus-side exclusions.
    insufficient for the two direct surplus exclusions.
 3. Produce `ErasedPinFiniteCandidateSepScaffoldFacts S x`.  This must uniformly
    supply the right and left one-sided finite candidate facts for arbitrary
-   opposite-cap interior centers, but no longer needs to provide the mask-level
-   cross-separation table separately.  The closed adapter derives the full
-   scaffold consumed by all finite row exclusions and terminal seed inputs.
+   opposite-cap interior centers.  The reduced source no longer needs to
+   provide the mask-level cross-separation table separately, no longer needs to
+   provide `noThreeOK` separately, and only needs the two own-kind candidate
+   remainders per orientation/surplus-star label.  The closed adapter derives
+   the full scaffold consumed by all finite row exclusions and terminal seed
+   inputs.
 4. Prove the direct surplus exclusions for the same `x`:
    `ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False` and
    `forall p in S.capInteriorByIndex S.surplusIdx, p in A.erase x ->
@@ -946,8 +958,8 @@ RowZeros.Bank exposes
 `false_of_endpointShadowInBank_of_weighted_metricShadow`; the weighted surface
 is compatibility infrastructure and still reuses the full row-zero dispatch.
 `proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4`
-reports 42/43 project nodes closed after the metric-shadow refactor; the only
-open project symbol is the endpoint theorem itself, through two direct local
+reports open: 1/43 after the metric-shadow refactor; the only open project
+symbol is the endpoint theorem itself, through two direct local
 finite row-bank metric-shadow producer `sorry`s.  The residual handoff exposes
 exact `.v`/`.w` selected-class masks as data.  `sorryAx` remains the
 unapproved axiom
@@ -1250,20 +1262,20 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
     Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
 
 proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4
-  42/43 nodes closed
-  open: the endpoint theorem's two local finite row-bank metric-shadow producer `sorry`s;
+  open: 1/43
+  open source: the endpoint theorem's two local finite row-bank metric-shadow producer `sorry`s;
         the kernel axiom closure reports it as `sorryAx`
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  722/723 nodes closed
-  open: the erased-pin theorem's local finite-residual source `sorry`;
+  open: 1/723 at this older checkpoint
+  open source: the erased-pin theorem's local finite-residual source `sorry`;
         the kernel axiom closure reports it as `sorryAx`
   off-spine for this anchor: endpoint residual, pinned-surplus residual,
         and U1 route-B tail sorries
 
 proof-blueprint spine Problem97.erdos97_rhs --max-depth 6
-  976/998 nodes closed
-  open: DoubleApexOffSurplusSharedRadiusPair, endpoint residual,
+  open: 22/998 at this older checkpoint
+  open source: DoubleApexOffSurplusSharedRadiusPair, endpoint residual,
         erased-pin triple residual, pinned surplus residual,
         u1_largeCap_routeB_tail_liveData_false; those source-level `sorry`s
         appear in the kernel axiom closure as `sorryAx`
@@ -1286,7 +1298,7 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
 
 LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
   lake-build Erdos9796Proof.P97.RemovableVertexAxiom  SUCCEEDED
-  build time: 24m04s
+  latest exact-file module rebuild: 15s
   expected RemovableVertexAxiom sorries:
     Problem97.isM44EndpointResidualsExcluded
     Problem97.isM44PinnedSurplusResidualsExcluded
@@ -1306,12 +1318,16 @@ proof-blueprint spine Problem96.erdos96_rhs
 ```
 
 Lean shrink verified at this checkpoint: the reduced erased-pin finite-candidate
-scaffold now asks for `PrefixPairCountsOK` rather than arbitrary-list
-pair-count facts.  The new bridge
+scaffold asks for `PrefixPairCountsOK` rather than arbitrary-list pair-count
+facts.  The bridge
 `noThreeOK_of_PrefixPairCountsOK` derives the required `noThreeOK` field from
-the generated full DFS prefix, which is a permutation of `allLabels`.  The live
-producer obligation is therefore narrower: produce the candidate remainders,
-the generated prefix pair-count interface, and `sepOKFor`, plus the direct
+the generated full DFS prefix, which is a permutation of `allLabels`.  The
+same checkpoint also reduces the one-sided candidate-remainder input from six
+remainders to two representative own-kind remainders per orientation and
+surplus-star label; the four opposite-kind remainders are derived by
+same-`sstar`/same-private-center transfer.  The live producer obligation is
+therefore narrower: produce the two representative candidate remainders, the
+generated prefix pair-count interface, and `sepOKFor`, plus the direct
 surplus-opposite/surplus-interior erased-pin exclusions.
 
 Build/dependency note: `[mining].skip` in `.blueprint.toml` affects
