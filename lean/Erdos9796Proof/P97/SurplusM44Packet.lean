@@ -191,6 +191,90 @@ theorem capByIndex_interval_of_global_indices
       simpa [hic, hia, hib] using h
     exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
 
+/-- In one shared ambient CCW boundary enumeration, an indexed cap is exactly
+the complement of the open endpoint interval whenever the opposite triangle
+vertex lies strictly between the endpoint indices.  This is the wraparound
+form needed when a cap crosses the chosen linear cut of the cyclic boundary
+order. -/
+theorem capByIndex_complement_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (haic : ia < ic) (hcib : ic < ib)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) :
+    ∀ x : ℝ²,
+      x ∈ S.capByIndex i ↔
+        ∃ q : Fin n, (q ≤ ia ∨ ib ≤ q) ∧ φ q = x := by
+  intro x
+  have hab : ia < ib := haic.trans hcib
+  have hcpos :
+      0 < signedArea2 (φ ic) (φ ia) (φ ib) :=
+    signedArea2_pos_of_between hccw hφ haic hcib
+  constructor
+  · intro hxC
+    have hxA : x ∈ A := S.capByIndex_subset i hxC
+    rw [← hφimage] at hxA
+    rcases Finset.mem_image.mp hxA with ⟨q, _hq, hqeq⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hqC : φ q ∈ S.capByIndex i := by
+      simpa [hqeq] using hxC
+    have harc : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+      have h := (S.capByIndex_arc_membership i (φ q) hqA).1 hqC
+      simpa [hic, hia, hib] using h
+    unfold OnArcOpposite at harc
+    have hq_nonpos : signedArea2 (φ q) (φ ia) (φ ib) ≤ 0 := by
+      by_contra hnot
+      have hqpos : 0 < signedArea2 (φ q) (φ ia) (φ ib) :=
+        lt_of_not_ge hnot
+      have hprod_pos :
+          0 <
+            signedArea2 (φ q) (φ ia) (φ ib) *
+              signedArea2 (φ ic) (φ ia) (φ ib) :=
+        mul_pos hqpos hcpos
+      linarith
+    obtain ⟨_hpos, hzero, hneg⟩ :=
+      signedArea2_trichotomy hccw hφ hab q
+    rcases lt_or_eq_of_le hq_nonpos with hqneg | hqzero
+    · rcases hneg.mp hqneg with hqia | hibq
+      · exact ⟨q, Or.inl (le_of_lt hqia), hqeq⟩
+      · exact ⟨q, Or.inr (le_of_lt hibq), hqeq⟩
+    · rcases hzero.mp hqzero with hqia | hqib
+      · exact ⟨q, Or.inl (le_of_eq hqia), hqeq⟩
+      · exact ⟨q, Or.inr (le_of_eq hqib.symm), hqeq⟩
+  · rintro ⟨q, hqout, rfl⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hq_nonpos : signedArea2 (φ q) (φ ia) (φ ib) ≤ 0 := by
+      rcases hqout with hqia | hibq
+      · rcases eq_or_lt_of_le hqia with hqia_eq | hqia_lt
+        · exact
+            le_of_eq
+              (signedArea2_eq_zero_of_endpoint (Or.inl hqia_eq))
+        · exact
+            le_of_lt
+              (signedArea2_neg_of_outside hccw hφ hab (Or.inl hqia_lt))
+      · rcases eq_or_lt_of_le hibq with hibq_eq | hibq_lt
+        · exact
+            le_of_eq
+              (signedArea2_eq_zero_of_endpoint (Or.inr hibq_eq.symm))
+        · exact
+            le_of_lt
+              (signedArea2_neg_of_outside hccw hφ hab (Or.inr hibq_lt))
+    have harc : OnArcOpposite (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 (φ q) := by
+      have h : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+        unfold OnArcOpposite
+        exact mul_nonpos_of_nonpos_of_nonneg hq_nonpos (le_of_lt hcpos)
+      simpa [hic, hia, hib] using h
+    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+
 /-- A carrier point outside an indexed closed cap lies strictly on the same
 side of that cap's chord as the opposite Moser vertex. -/
 theorem signedArea2_mul_pos_of_not_mem_capByIndex

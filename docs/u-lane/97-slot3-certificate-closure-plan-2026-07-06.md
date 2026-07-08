@@ -321,6 +321,22 @@ Erdos9796Proof.P97.SurplusM44Packet` and then `LEAN_ROOT=.../lean lake-build
 Erdos9796Proof.P97.RemovableVertexAxiom` both succeeded and proof-blueprint
 resynced; the active spine remains `1 open / 806 total`.
 
+2026-07-08 wrap-interval checkpoint: `SurplusM44Packet.lean` now also exposes
+`SurplusCapPacket.capByIndex_complement_interval_of_global_indices`.  This is
+the complementary case to the previous interval bridge: when the opposite apex
+lies strictly between the two endpoint indices in one shared ambient CCW
+boundary enumeration, the indexed cap is exactly the complement of the open
+endpoint interval.  This is the geometric fact needed for the wraparound
+opposite cap in the surplus-apex-rotated ten-label packet.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.  The remaining P1 selector is now concrete: choose one ambient
+enumeration with the surplus apex at the linear cut, use the ordinary interval
+bridge for the non-wrapping caps and this complement bridge for the wrapping
+cap, then export the strictly increasing ten indices required by
+`HullOrderSubsequenceCertificate`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
