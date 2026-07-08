@@ -187,9 +187,8 @@ ordered labels.  The right same-side triple rows `right (0,1,0,3)` and
 `right (1,0,0,3)` now use the same ordered-set transport pattern, so the
 right side of the heavy same-side triple block no longer needs arbitrary
 three-point labels.  The mirror left same-side triple rows `left (0,1,3,0)`
-and `left (1,0,3,0)` are migrated the same way.  A temporary old-to-ordered
-adapter keeps the remaining old universal consumers compiling while the rest
-of the row blocks are migrated.  The remaining same-side heavy pair rows
+and `left (1,0,3,0)` are migrated the same way.  The remaining same-side
+heavy pair rows
 `right (1,1,0,2)`, `right (2,0,0,2)`, `left (1,1,2,0)`, and
 `left (2,0,2,0)` are now also ordered consumers, so the same-side heavy
 block no longer directly consumes the false arbitrary-label scaffold surface.
@@ -205,11 +204,15 @@ The right and left one-sided terminal seed-input producers now also consume
 the ordered scaffold directly: each chooses a preserving surplus triple,
 asks the ordered scaffold for the concrete label bank on that set, and feeds
 those labels into the terminal seed constructor.
-This is a transition bridge only; closure still requires the active
-finite-residual statement to produce the ordered sep scaffold directly and the
-remaining routed signatures to stop depending on the old false universal
-surface.  Current verified spine after this migration remains
-`1 open / 799 total`.
+The finite-residual statement itself now asks for
+`ErasedPinFiniteCandidateSepOrderedScaffoldFacts`, and the routed/group
+signatures consume `ErasedPinFiniteCandidateOrderedScaffoldFacts` directly.
+Thus the active finite-residual-to-row path no longer depends on the false
+arbitrary-label scaffold surface.  Current verified spine after this migration
+is `1 open / 797 total`; the remaining on-spine work is the direct
+surplus-opposite/surplus-interior erased-pin branches plus the ordered
+placement and candidate-remainder producers inside the ordered scaffold
+obligation.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated

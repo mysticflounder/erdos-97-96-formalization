@@ -7927,43 +7927,27 @@ theorem rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRow
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows :
       RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
     RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
   exact
     ⟨rightNonSurplusRow0022Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow0013Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow0121Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow0112Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow1021Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow1012Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow1111Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow2011Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -7971,43 +7955,27 @@ theorem leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows :
       LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
     LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
   exact
     ⟨leftNonSurplusRow0022Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow0031Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow0112Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow0121Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow1012Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow1021Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow1111Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow2011Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -8015,31 +7983,21 @@ theorem rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows :
       RightNonSurplusSameSideHeavyFiniteResidualRowsExcluded S x p) :
     RightNonSurplusSameSideHeavyRowsExcluded S x p := by
   exact
     ⟨rightNonSurplusRow0004Excluded_of_finiteScaffold
-        hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow0103Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow1003Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow1102Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       rightNonSurplusRow2002Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -8047,31 +8005,21 @@ theorem leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows :
       LeftNonSurplusSameSideHeavyFiniteResidualRowsExcluded S x p) :
     LeftNonSurplusSameSideHeavyRowsExcluded S x p := by
   exact
     ⟨leftNonSurplusRow0040Excluded_of_finiteScaffold
-        hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow0130Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow1030Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow1120Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold),
+        hM44 hx hp hpErase hscaffoldFacts,
       leftNonSurplusRow2020Excluded_of_finiteScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem rightNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
@@ -8233,18 +8181,16 @@ theorem rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows : RightNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
     RightNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
   exact
     ⟨rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffold trivial,
+        hM44 hx hp hpErase hscaffoldFacts trivial,
       rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffold trivial,
+        hM44 hx hp hpErase hscaffoldFacts trivial,
       rightNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -8252,18 +8198,16 @@ theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x)
     (_hrows : LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
     LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
   exact
     ⟨leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffold trivial,
+        hM44 hx hp hpErase hscaffoldFacts trivial,
       leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffold trivial,
+        hM44 hx hp hpErase hscaffoldFacts trivial,
       leftNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-        hM44 hx hp hpErase
-          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
-            hscaffold)⟩
+        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
@@ -8593,7 +8537,7 @@ abbrev
               (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
             (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
               p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
-            ErasedPinFiniteCandidateSepScaffoldFacts S x
+            ErasedPinFiniteCandidateSepOrderedScaffoldFacts S x
 
 theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
     (hfiniteResidual :
@@ -8603,16 +8547,16 @@ theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
   rcases hfiniteResidual A hne hconv hK4 hgt hMin S hM44 hend1 hend2
       hpin1 hpin2 hcontain with
     ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, hscaffold⟩
-  have hfullScaffold : ErasedPinFiniteCandidateScaffoldFacts S x :=
-    finiteCandidateScaffoldFacts_of_sepScaffoldFacts hscaffold
+  have horderedScaffold : ErasedPinFiniteCandidateOrderedScaffoldFacts S x :=
+    finiteCandidateOrderedScaffoldFacts_of_sepOrderedScaffoldFacts hscaffold
   refine
     ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
   · intro p hpI hpErase
     exact rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase hfullScaffold trivial
+      hM44 hxI hpI hpErase horderedScaffold trivial
   · intro p hpI hpErase
     exact leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase hfullScaffold trivial
+      hM44 hxI hpI hpErase horderedScaffold trivial
 
 theorem countFamilyFactsStatement_of_countRowsFactsStatement
     (hrows :
@@ -9167,8 +9111,23 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
         -- rowwise confined classes or same-circle export, plus Mode A, or a
         -- direct surplus-index contradiction.
         sorry
-      · intro p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair hxTriple
-          hs12 hs13 hs23 hsSub
+      · intro T hxT hTcard hTsub
+        have hTcardLe : T.card ≤ 3 := by
+          omega
+        rcases hM44.exists_oppInterior_pairs with
+          ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
+        rcases hM44.exists_surplusInterior_triple_preserving_subset hTsub
+            hTcardLe with
+          ⟨s1, s2, s3, hTtriple, hs12, hs13, hs23, hsSub⟩
+        have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) :=
+          hTtriple hxT
+        have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
+          simp [hs12, hs13, hs23]
+        have hTriple_le :
+            ({s1, s2, s3} : Finset ℝ²).card ≤ T.card := by
+          rw [hTripleCard, hTcard]
+        have hTeq : T = ({s1, s2, s3} : Finset ℝ²) :=
+          Finset.eq_of_subset_of_card_le hTtriple hTriple_le
         have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
           have hp₁Opp : p₁ ∈ S.oppInterior1 := by
             rw [hpair]
@@ -9195,7 +9154,9 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
           hsSub (by simp)
         have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx :=
           hsSub (by simp)
-        refine ⟨?_, ?_⟩
+        refine
+          ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+            hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_, ?_⟩
         · intro p hpI hpErase
           exact
             rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
