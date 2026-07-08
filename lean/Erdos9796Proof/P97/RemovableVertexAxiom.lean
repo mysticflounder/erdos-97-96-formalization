@@ -2054,6 +2054,32 @@ abbrev IsM44NonSurplusContainmentErasedPinTripleNamedCandidateFactsStatement :
                 LeftOneSidedErasedPayloadNamedCandidateFacts
                   S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
 
+/-- Finite candidate scaffold for the erased-pin producer.  It keeps one
+oriented non-surplus pair labelling, one opposite pair labelling, and one
+three-point surplus subpacket visible long enough for row-level finite
+candidate contradictions to consume exact masks and separation data. -/
+abbrev ErasedPinFiniteCandidateScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+    p₁ ≠ p₂ →
+    S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
+    q₁ ≠ q₂ →
+    S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
+    x ∈ ({s1, s2, s3} : Finset ℝ²) →
+    s1 ≠ s2 →
+    s1 ≠ s3 →
+    s2 ≠ s3 →
+    ({s1, s2, s3} : Finset ℝ²) ⊆
+      S.capInteriorByIndex S.surplusIdx →
+      (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+        p ∈ A.erase x →
+          RightOneSidedErasedPayloadFiniteCandidateFacts
+            S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
+      (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+        p ∈ A.erase x →
+          LeftOneSidedErasedPayloadFiniteCandidateFacts
+            S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
 /-- Finite point-class version of the erased-pin seed input surface.  The
 non-surplus pair labels, the three-point surplus subpacket, and the erased
 surplus-star label are derived by closed structural adapters from `S.IsM44` and
@@ -2112,25 +2138,7 @@ abbrev IsM44NonSurplusContainmentErasedPinTripleFiniteFactsStatement :
                       S.packetSameCapCount S.oppIndex2 p T = 0 ∧
                       S.packetLeftAdjCount S.oppIndex2 T = 1 ∧
                       S.packetRightAdjCount S.oppIndex2 T = 1)) → False) ∧
-            (∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
-              p₁ ≠ p₂ →
-              S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
-              q₁ ≠ q₂ →
-              S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
-              x ∈ ({s1, s2, s3} : Finset ℝ²) →
-              s1 ≠ s2 →
-              s1 ≠ s3 →
-              s2 ≠ s3 →
-              ({s1, s2, s3} : Finset ℝ²) ⊆
-                S.capInteriorByIndex S.surplusIdx →
-                (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-                  p ∈ A.erase x →
-                    RightOneSidedErasedPayloadFiniteCandidateFacts
-                      S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
-                (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-                  p ∈ A.erase x →
-                    LeftOneSidedErasedPayloadFiniteCandidateFacts
-                      S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3))
+            ErasedPinFiniteCandidateScaffoldFacts S x
 
 /-- Exact selected-count row exclusion for the first non-surplus cap in the
 erased-pin residual.  The row variables are `(moser, same, left, right)` at
@@ -3082,6 +3090,24 @@ abbrev LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
   LeftNonSurplusExactCountRowExcluded S x p 2 0 1 1
 
+/-- First non-surplus pruned left-right rows after the finite-candidate
+scaffold has removed the cheap cross-separation rows. -/
+abbrev RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
+  RightNonSurplusExactCountRowExcluded S x p 0 0 1 3 ∧
+  RightNonSurplusExactCountRowExcluded S x p 0 1 1 2 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 0 1 2 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 1 1 1
+
+/-- Second non-surplus pruned left-right rows after the finite-candidate
+scaffold has removed the cheap cross-separation rows. -/
+abbrev LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
+  LeftNonSurplusExactCountRowExcluded S x p 0 0 3 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 0 1 2 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 0 2 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 1 1 1
+
 /-- First non-surplus rows with only the surplus-side adjacent bucket hit,
 excluding the terminal one-sided payload row. -/
 abbrev RightNonSurplusSameSideHeavyRowsExcluded {A : Finset ℝ²}
@@ -3170,6 +3196,22 @@ abbrev LeftNonSurplusRoutedSeedPrunedRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusSameSideHeavyRowsExcluded S x p ∧
   LeftNonSurplusOneSidedTerminalSeedInputs S x p
 
+/-- First non-surplus routed row data after the finite-candidate scaffold has
+discharged the cheap cross-separation left-right rows and terminal seed input.
+-/
+abbrev RightNonSurplusRoutedFiniteResidualRowsExcluded
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
+  RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p ∧
+  RightNonSurplusSameSideHeavyRowsExcluded S x p
+
+/-- Second non-surplus routed row data after the finite-candidate scaffold has
+discharged the cheap cross-separation left-right rows and terminal seed input.
+-/
+abbrev LeftNonSurplusRoutedFiniteResidualRowsExcluded
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
+  LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p ∧
+  LeftNonSurplusSameSideHeavyRowsExcluded S x p
+
 theorem rightNonSurplusLeftAdjacentThreeRowExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
     {x p : ℝ²} {m s r : ℕ} :
@@ -3226,6 +3268,56 @@ theorem leftNonSurplusLeftRightSubpacketRowsExcluded_of_pruned
     ⟨leftNonSurplusRightAdjacentThreeRowExcluded hM44, h0022, h0031,
       h0112, h0121, h1012, h1021, h1111, h2011⟩
 
+theorem rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hrows :
+      RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
+    RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
+  rcases hrows with ⟨h0013, h0112, h1012, h1111⟩
+  exact
+    ⟨rightNonSurplusRow0022Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h0013,
+      rightNonSurplusRow0121Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h0112,
+      rightNonSurplusRow1021Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h1012,
+      h1111,
+      rightNonSurplusRow2011Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold⟩
+
+theorem leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hrows :
+      LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
+    LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
+  rcases hrows with ⟨h0031, h0121, h1021, h1111⟩
+  exact
+    ⟨leftNonSurplusRow0022Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h0031,
+      leftNonSurplusRow0112Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h0121,
+      leftNonSurplusRow1012Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
+      h1021,
+      h1111,
+      leftNonSurplusRow2011Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold⟩
+
 theorem rightNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
     (hseed : RightNonSurplusOneSidedTerminalSeedInputs S x p) :
@@ -3239,6 +3331,106 @@ theorem leftNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
     LeftNonSurplusOneSidedTerminalPayloadExcluded S x p := by
   intro hpayload
   exact false_of_leftOneSidedErasedPayload_of_seedCandidateInputs hseed hpayload
+
+theorem rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x) :
+    RightNonSurplusOneSidedTerminalSeedInputs S x p := by
+  classical
+  rcases hM44.exists_oppInterior_pairs with
+    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
+  rcases hM44.exists_surplusInterior_triple_preserving hx with
+    ⟨s1, s2, s3, hxTriple, hs12, hs13, hs23, hsSub⟩
+  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
+      hxTriple hs12 hs13 hs23 hsSub with
+    ⟨hoppInterior1Facts, _hoppInterior2Facts⟩
+  have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₁Opp : p₁ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₁Opp
+  have hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₂Opp : p₂ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₂Opp
+  have hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₁Opp : q₁ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₁Opp
+  have hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₂Opp : q₂ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
+  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hpOpp : p ∈ S.oppInterior1 := by
+    simpa [SurplusCapPacket.oppInterior1] using hp
+  have hnamed :
+      RightOneSidedErasedPayloadNamedCandidateFacts
+        S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3 :=
+    rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
+      hxTriple (hoppInterior1Facts p hp hpErase)
+  exact rightOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
+    hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
+    hpair hqpair hpOpp hnamed
+
+theorem leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x) :
+    LeftNonSurplusOneSidedTerminalSeedInputs S x p := by
+  classical
+  rcases hM44.exists_oppInterior_pairs with
+    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
+  rcases hM44.exists_surplusInterior_triple_preserving hx with
+    ⟨s1, s2, s3, hxTriple, hs12, hs13, hs23, hsSub⟩
+  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
+      hxTriple hs12 hs13 hs23 hsSub with
+    ⟨_hoppInterior1Facts, hoppInterior2Facts⟩
+  have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₁Opp : p₁ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₁Opp
+  have hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₂Opp : p₂ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₂Opp
+  have hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₁Opp : q₁ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₁Opp
+  have hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₂Opp : q₂ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
+  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hpOpp : p ∈ S.oppInterior2 := by
+    simpa [SurplusCapPacket.oppInterior2] using hp
+  have hnamed :
+      LeftOneSidedErasedPayloadNamedCandidateFacts
+        S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3 :=
+    leftOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
+      hxTriple (hoppInterior2Facts p hp hpErase)
+  exact leftOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
+    hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I hq12 hp12 hs12 hs13 hs23
+    hqpair hpair hpOpp hnamed
 
 theorem rightNonSurplusRoutedRowsExcluded_of_seedRowsExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
@@ -3275,6 +3467,40 @@ theorem leftNonSurplusRoutedSeedRowsExcluded_of_pruned
   exact
     ⟨leftNonSurplusLeftRightSubpacketRowsExcluded_of_pruned hM44 hsubpacket,
       hsameSide, hseed⟩
+
+theorem rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hrows : RightNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
+    RightNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
+  rcases hrows with ⟨hsubpacket, hsameSide⟩
+  exact
+    ⟨rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
+        hM44 hx hp hpErase hscaffold hsubpacket,
+      hsameSide,
+      rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold⟩
+
+theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
+    (hpErase : p ∈ A.erase x)
+    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x)
+    (hrows : LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
+    LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
+  rcases hrows with ⟨hsubpacket, hsameSide⟩
+  exact
+    ⟨leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
+        hM44 hx hp hpErase hscaffold hsubpacket,
+      hsameSide,
+      leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold⟩
 
 theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
@@ -3575,6 +3801,59 @@ abbrev
             (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
               p ∈ A.erase x →
                 LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p)
+
+/-- Route-grouped seed-row input surface after the finite-candidate scaffold
+has discharged the eight cheap cross-separation left-right rows.  The remaining
+left-right row obligations are the four finite residual rows per orientation;
+same-side-heavy rows and terminal seed inputs are unchanged. -/
+abbrev
+    IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement :
+    Prop :=
+    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
+      HasNEquidistantProperty 4 A → 9 < A.card →
+      (∀ B : Finset ℝ², B.card < A.card →
+        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
+      ∀ S : SurplusCapPacket A, S.IsM44 →
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) →
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False) →
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedRightSurplusResidualAt radius x → False) →
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedLeftSurplusResidualAt radius x → False) →
+        S.NonSurplusMoserCapContainment →
+          ∃ x : ℝ²,
+            x ∈ S.capInteriorByIndex S.surplusIdx ∧
+            (ErasedPinTriple A x
+              (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
+              p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
+            ErasedPinFiniteCandidateScaffoldFacts S x ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+              p ∈ A.erase x →
+                RightNonSurplusRoutedFiniteResidualRowsExcluded S x p) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+              p ∈ A.erase x →
+                LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p)
+
+theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
+    (hfiniteResidual :
+      IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement) :
+    IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement := by
+  intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
+  rcases hfiniteResidual A hne hconv hK4 hgt hMin S hM44 hend1 hend2
+      hpin1 hpin2 hcontain with
+    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, hscaffold,
+      hoppInterior1Rows, hoppInterior2Rows⟩
+  refine
+    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
+  · intro p hpI hpErase
+    exact rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
+      hM44 hxI hpI hpErase hscaffold (hoppInterior1Rows p hpI hpErase)
+  · intro p hpI hpErase
+    exact leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
+      hM44 hxI hpI hpErase hscaffold (hoppInterior2Rows p hpI hpErase)
 
 theorem countFamilyFactsStatement_of_countRowsFactsStatement
     (hrows :
@@ -3934,9 +4213,13 @@ non-surplus interior cases are discharged by exact selected-count row
 exclusions for the erased-pin selected class. -/
 theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
       IsM44NonSurplusContainmentErasedPinTripleResidualsExcludedStatement := by
-    have hprunedRows :
-        IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement := by
+    have hfiniteResidualRows :
+        IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement := by
       sorry
+    have hprunedRows :
+        IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement :=
+      prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
+        hfiniteResidualRows
     have hseedRows :
         IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement :=
       routedSeedRowsFactsStatement_of_prunedRowsFactsStatement hprunedRows

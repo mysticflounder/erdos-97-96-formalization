@@ -144,8 +144,8 @@ oppIndex1 left-right-subpacket rows, 8 remaining rows              OPEN
 oppIndex2 left-right-subpacket rows, 8 remaining rows              OPEN
 oppIndex1 same-side-heavy rows, 5 rows                             OPEN
 oppIndex2 same-side-heavy rows, 5 rows                             OPEN
-oppIndex1 terminal seed-candidate input producer                   OPEN
-oppIndex2 terminal seed-candidate input producer                   OPEN
+oppIndex1 terminal seed-candidate input producer                   CLOSED from finite scaffold
+oppIndex2 terminal seed-candidate input producer                   CLOSED from finite scaffold
 oppIndex1 row `(0,0,3,1)`                                          CLOSED
 oppIndex2 row `(0,0,1,3)`                                          CLOSED
 ```
@@ -194,9 +194,14 @@ The left row `(1,0,1,2)` is proved by the mirror facts
 `left_row1012_exists_erasedPinRowSeed_privateMask`, and
 `false_of_left_row1012_finiteCandidateFacts`.
 
-These are real producer bridges, but they do not by themselves delete the
-on-spine `hprunedRows` `sorry`, because the current pruned-row statement does
-not expose the finite-scaffold payload as an input.
+These are now consumed by the on-spine erased-pin chain through the finite
+residual producer surface.  In Lean, the local source obligation is
+`hfiniteResidualRows :
+IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
+`prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement` derives the old
+`hprunedRows` surface from it by using `ErasedPinFiniteCandidateScaffoldFacts`
+and the eight finite-scaffold row bridges above.  The old pruned surface is no
+longer the source `sorry`.
 
 Producer census update, 2026-07-07:
 
@@ -236,12 +241,18 @@ the combined zero-completion theorem.  The geometry bridge in
 
 Current finite-row producer route:
 
-1. Specialize each finite exact-count row to one of the generated fixed seeds:
-   exact `.v/.w` cap masks, the selected private-center mask, and the same
-   separation/no-three/one-hit/circumcenter/trigger interfaces consumed by the
-   seeded-shadow validator.
-2. Use that bridge to remove the 26 finite row producer obligations from
-   `hprunedRows`.
+1. The eight cheap cross-separation left-right rows are no longer producer
+   obligations in the local source.  The source instead asks for the finite
+   candidate scaffold once, via `ErasedPinFiniteCandidateScaffoldFacts S x`;
+   closed adapters use that scaffold to recover those eight exact row
+   exclusions before deriving the old pruned surface.
+2. The remaining finite row obligations are the eight left-right finite
+   residual rows and the ten same-side-heavy rows.  The two terminal rows are
+   now derived from the same finite-candidate scaffold by
+   `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
+   `leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold`.
+3. The two pure surplus-side four-hit rows remain outside the finite ten-label
+   route and still need a surplus-extra bridge.
 
 Producer specification status:
 
@@ -258,8 +269,8 @@ RightNonSurplusExactCountRowExcluded S x p m s l r
 -- A finite left row supplies the mirror generated fixed seed contradiction.
 LeftNonSurplusExactCountRowExcluded S x p m s l r
 
--- The terminal rows supply the seed-candidate inputs already consumed by the
--- payload adapters.
+-- The terminal rows are now derived from the finite scaffold before the old
+-- seed-row surface is reconstructed.
 RightNonSurplusOneSidedTerminalSeedInputs S x p
 LeftNonSurplusOneSidedTerminalSeedInputs S x p
 ```
@@ -384,13 +395,20 @@ The erased-pin finite plan is therefore:
    the final `m = 2` cases via
    `rightNonSurplusRow2011Excluded_of_finiteScaffold` and
    `leftNonSurplusRow2011Excluded_of_finiteScaffold`.
-   Remaining on-spine work: preserve the finite scaffold facts into the
-   pruned left-right row producer surface so these row-specific theorems are
-   actually consumed before that data is erased.
-3. Treat the other 18 finite ten-label rows as a separate residual requiring
+3. Done locally: preserve the finite scaffold facts into the on-spine producer
+   chain before the row data is collapsed.  The new source obligation is
+   `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`.
+   It carries `ErasedPinFiniteCandidateScaffoldFacts S x` plus residual row
+   products; `prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement`
+   derives the previous pruned-row surface.
+4. Done locally: derive the two terminal seed inputs from the same finite
+   scaffold, using
+   `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
+   `leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold`.
+5. Treat the other 18 finite ten-label rows as a separate residual requiring
    a stronger validator interface, partial row splitting, or the full
    fixed-seed DFS shadow route.
-4. Keep the two surplus-extra rows outside the finite ten-label route until a
+6. Keep the two surplus-extra rows outside the finite ten-label route until a
    surplus-extra bridge is proved.
 
 Second-pass residual scan, July 7: after removing the eight row-wide
@@ -427,39 +445,34 @@ the other twelve by mask-orbit splits, but it needs a new adapter theorem that
 turns the geometric `hsearchSep`/pair-count facts for only the selected centers
 into the generated fragment contradiction.
 
-This still does not prove the bare row exclusion
-`RightNonSurplusExactCountRowExcluded S x p 0 0 2 2`.  The row-truth relay below
-found realizations for the non-closed left-right rows under the current ambient
-inputs, so the producer target cannot be a bare exact-row contradiction.
-July 7 checkpoint: `RemovableVertexAxiom.lean` now proves
-`false_of_right_row0022_finiteCandidateFacts`, which closes the right
-`(0,0,2,2)` row from the finite-candidate packet by splitting the named
-opposite pair into `.Pw`/`.Pu` private-center cases and applying
-`false_of_right_row0022_private_w_crossSeparation`.  The current pruned-row
-surface still keeps only four count equalities, so it does not carry the exact
-`.w` mask, private-center placement, surplus-triple placement, or `hsearchSep`
-table that this proof needs.
+This still does not prove a bare row exclusion from the four count equalities
+alone.  The row-truth relay below found realizations for the non-closed
+left-right rows under the current ambient inputs, so the producer target cannot
+be a bare exact-row contradiction.  July 7 checkpoint:
+`RemovableVertexAxiom.lean` now derives the old pruned-row producer surface
+from the finite residual surface.  The derivation uses the exact `.w` mask,
+private-center placement, surplus-triple placement, and `hsearchSep` table
+inside `ErasedPinFiniteCandidateScaffoldFacts S x` to close all eight cheap
+cross-separation rows before the data is collapsed to the old pruned rows.
 July 7 sorry-closure triage: the remaining publish-spine `sorry`s are not local
 tactic holes.  The endpoint pair of `hshadow` obligations still needs a genuine
 finite row-bank metric-shadow producer or a relaxed endpoint bridge; the U1
 ordered cubes are branch-0 collision / non-`p` center / metric-row-failure
 residuals without the collision-exclusion or metric producer in scope; the
 pinned-surplus theorem is still at the exact-bank-versus-general-`m` boundary;
-and this erased-pin local `hprunedRows` source still needs a producer carrying
-row-specific rich finite data.  The only currently concrete row-level deletion
-available is therefore to refine the erased-pin producer surface so the proved
-row0022 finite-candidate contradiction is consumed before collapse to the bare
-count-row tuple.
+and this erased-pin local source is now the finite residual producer
+`hfiniteResidualRows`, which still needs a producer for the scaffold, eight
+left-right residual rows, and ten same-side-heavy rows.
 
 Next proof-producing work:
 
-1. Refine the on-spine pruned-row producer so the row0022 branch consumes
-   finite-candidate facts before they are collapsed to a bare count row.
-   Equivalently, replace the row0022 component with a row-specific rich
-   exclusion surface that includes the exact `.w` mask, private-center
-   placement, surplus-triple placement, and geometric `hsearchSep` facts.
-2. Generalize the geometry-facing adapter shape to the other seven generated
-   row-wide private-`.w` contradictions.
+1. Produce `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus
+   point supplied by the residual route.  This is now load-bearing: without it
+   the eight closed row bridges cannot fire.
+2. Close the eight left-right finite residual rows and ten same-side-heavy
+   rows using the second-pass residual scan.  The most direct lead is a
+   small-fragment separation emitter/adapter; the conservative fallback is
+   prefix no-survivor facts for the existing search order.
 3. In parallel or after that, prove the surplus-extra bridge for the two
    four-hit surplus-side rows above; they are not finite ten-label rows.
 4. First try to delete a direct surplus-side exclusion only if an existing
@@ -774,10 +787,12 @@ strict cap-interior placement gives `dist p x > 0`, then
 `selectedClass_card_eq_groupSum` turns the row count sum into a four-point
 selected class.  The existing one-sided obstruction constructors then produce
 `RightOneSidedErasedPayload` or `LeftOneSidedErasedPayload`; those payloads are
-now refuted from the generated seed-candidate inputs by the existing
-`false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.  Thus the
-two terminal rows no longer require row certificates; they require
-seed-candidate input producers compatible with the seeded-shadow route.
+refuted from generated seed-candidate inputs by the existing
+`false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.  The
+finite residual source no longer asks for those seed-candidate inputs
+separately: `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
+`leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` derive them from
+`ErasedPinFiniteCandidateScaffoldFacts`.
 
 Existing one-sided chain reducers in `SurplusM44Packet.lean` can still support
 row-specific one-hit subcases, but they require adjacent upper bounds such as
@@ -872,8 +887,8 @@ proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4
         the kernel axiom closure reports it as `sorryAx`
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 3
-  92/93 nodes closed
-  open: the erased-pin theorem's local source `sorry`;
+  463/464 nodes closed
+  open: the erased-pin theorem's local finite-residual source `sorry`;
         the kernel axiom closure reports it as `sorryAx`
 
 proof-blueprint spine Problem97.erdos97_rhs --max-depth 6
