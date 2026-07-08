@@ -134,6 +134,19 @@ longer require a surplus-extra bridge.
 
 Producer-level gap, 2026-07-07:
 
+Current closure check, 2026-07-08:
+
+```text
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+```
+
+reports this anchor as 714/715 closed.  The only on-spine custom obstruction is
+the local `sorry` producing
+`IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
+(plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
+`sorry`s are separate active anchors and are not obligations for this erased-pin
+closure plan.
+
 The erased-pin plan is boundary-specified but not yet producer-complete.  The
 current Lean leaf says exactly what must be produced, but the docs do not yet
 give a row-by-row theorem/certificate map for every item below.  Further Lean
@@ -336,6 +349,28 @@ the pure-row bridge closes the two non-finite masks through generated
 cross-separation.  No further row producer lemma is live; the next Lean work
 must produce the source scaffold or one of the direct surplus erased-pin
 exclusions, not another implication between reduced surfaces.
+
+Current erased-pin closure plan, 2026-07-08:
+
+1. Prove the existing source statement
+   `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
+   do not introduce a new reduced-input wrapper unless it proves one of the
+   producer facts below.
+2. Choose the erased surplus point `x` with enough global structure to support
+   the finite candidate scaffold and the direct surplus erased-pin exclusions.
+   The later row-truth relay shows the five ambient inputs alone are
+   insufficient for the two direct surplus exclusions.
+3. Produce `ErasedPinFiniteCandidateScaffoldFacts S x`.  This must uniformly
+   supply the right and left one-sided finite candidate facts for arbitrary
+   opposite-cap interior centers; all finite row exclusions and terminal seed
+   inputs already consume this scaffold.
+4. Prove the direct surplus exclusions for the same `x`:
+   `ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False` and
+   `forall p in S.capInteriorByIndex S.surplusIdx, p in A.erase x ->
+   ErasedPinTriple A x p -> False`.  Existing apex-centered endpoint/pinned
+   residual reducers do not prove these over the current five-input surface;
+   closing them needs additional global `K4`/minimality/choice-of-`x`
+   structure or a stronger scaffold theorem.
 
 ```lean
 -- A finite right row supplies a generated fixed seed contradiction.
@@ -620,8 +655,12 @@ Next proof-producing work:
 1. Produce `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus
    point supplied by the residual route.  This is now load-bearing: without it
    the closed row bridges cannot fire.
-2. First try to delete a direct surplus-side exclusion only if an existing
-   `SurplusM44Packet` or endpoint/pinned residual lemma supplies it directly.
+2. Do not spend time trying the existing apex-centered endpoint/pinned residual
+   reducers as direct surplus-side closers over the current five-input surface.
+   The row-truth witnesses below satisfy those inputs while realizing both
+   direct surplus-side obligations.  Any successful direct-surplus proof must
+   consume additional global `K4`/minimality/choice-of-`x` structure or strengthen
+   the scaffold target.
 3. Do not add another local reduced-input statement unless the adapter proves a
    nontrivial producer fact, not just an implication between two unproved
    surfaces.
@@ -1089,10 +1128,12 @@ proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4
   open: the endpoint theorem's two local finite row-bank metric-shadow producer `sorry`s;
         the kernel axiom closure reports it as `sorryAx`
 
-proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 3
-  463/464 nodes closed
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+  714/715 nodes closed
   open: the erased-pin theorem's local finite-residual source `sorry`;
         the kernel axiom closure reports it as `sorryAx`
+  off-spine for this anchor: endpoint residual, pinned-surplus residual,
+        and U1 route-B tail sorries
 
 proof-blueprint spine Problem97.erdos97_rhs --max-depth 6
   976/998 nodes closed
