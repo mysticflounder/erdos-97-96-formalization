@@ -2062,3 +2062,49 @@ Completion endpoint:
 - `proof-blueprint spine Problem97.erdos97_rhs` is kernel-complete under the
   approved axiom set.
 - `proof-blueprint verify-publish` passes.
+
+## P1/P2 residual specification (2026-07-08, orchestrator + P1-session synthesis)
+
+Sharpened structure of what remains, agreed between the P1 session's own
+assessment and the orchestrator's code-level verification:
+
+**P1 splits into a matching half and a nonmatching-orientation half.**  Each apex
+enumeration order lands ONE hull template directly: one order gives the right
+packet's template (`u, Q1, Q2, v, s1, s2, s3, w, Pw, Pu`), the other gives the
+left/mirror template.  So each P1 sorry (right 9407, left 9436 at current
+line numbers) decomposes as:
+
+- *Matching half* — nearly free from the producers already landed (cap-block
+  interval bridges, strict-interior index exports, reverse-complement
+  orientation, `isCcwConvexPolygon_subsequence`): the side whose apex order
+  agrees with the built template.
+- *Nonmatching half* — needs an orientation-indexed producer surface or
+  duplicated finite producer: the row consumer must be fed by the side whose
+  CCW template is actually supplied by the boundary order, without asserting
+  reverse preservation of the CCW finite hull order.
+
+**Rejected route: reverse-CCW transport.**  A theorem of the shape
+CCW/certificate for label order σ ⇒ CCW/certificate for ρ∘σ, where ρ is the
+apex-order reversal, is not the right target for this proof surface.  The
+generated separator uses `labelOfHullFin` through `btw_sep`, and reversing the
+finite hull order changes chirality and the Boolean separation convention.
+`ConvexCyclicOrder/Basic.lean` already has cyclic-shift transport, but not
+reverse preservation of `IsCcwConvexPolygon`; treating that as the primary P1
+route would try to prove the wrong geometric statement.
+
+**Primary route: finite-producer orientation refactor.**  Enumerate both
+apex orientations as separate concrete producers or make the finite scaffold
+orientation-indexed, so each row consumer receives the CCW template that the
+boundary order actually supplies.  This duplicates/refactors the selector and
+finite-producer boundary rather than transporting a reversed CCW certificate.
+The expected work is interface and producer plumbing plus mirrored interval
+bridges; the proof should not introduce a reverse-CCW lemma.
+
+**P2 is sequenced strictly behind the P1 boundary.**  Sites 9415/9443 consume
+`oneSidedSeedCandidateRemainder_of_mask_interfaces`-shaped hypotheses stated
+over the ordered labels/masks that P1's boundary fixes.  P2 work started
+before that interface freezes is rework risk with no offsetting gain.  Order:
+P1 matching halves → orientation-indexed producer boundary → P2.
+
+**Tally implication (unchanged).**  P1 closes exactly 2 of the 6 erased-pin
+sorries (9407/9436); 9415/9443 remain P2; 9286/9314 remain P4.
