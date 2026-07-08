@@ -275,6 +275,25 @@ shared ten-point boundary certificate; the eventual CCW producer must use one
 common ambient boundary enumeration, or prove an equivalent cyclic-order
 transport theorem, before applying `isCcwConvexPolygon_subsequence`.
 
+2026-07-08 split-scaffold checkpoint: the consumer-boundary refactor is now in
+the verified Lean tree.  `RemovableVertexAxiom.lean` defines side-specific
+ordered scaffold surfaces
+`ErasedPinRightFiniteCandidateOrderedScaffoldFacts` and
+`ErasedPinLeftFiniteCandidateOrderedScaffoldFacts`, their reduced `Sep`
+variants, and the split pair
+`ErasedPinFiniteCandidateSepSplitOrderedScaffoldFacts`.  The finite residual
+statement now asks for the split reduced scaffold; the pruned-row bridge
+projects the right component for right rows and the left component for left
+rows.  The row producers and terminal seed-input producers now consume only
+their side's scaffold, so the active spine no longer requires one shared
+`s1,s2,s3` ordering to satisfy both mirror CCW templates.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+succeeded and proof-blueprint resynced; the active spine is `1 open / 803
+total`.  The remaining on-spine producer content is unchanged in kind: prove
+the right/left placement CCW certificates and the right/left candidate
+remainder producers, plus the direct surplus-opposite and surplus-interior
+erased-pin branches.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
