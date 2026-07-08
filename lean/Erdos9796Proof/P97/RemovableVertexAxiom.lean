@@ -1144,6 +1144,109 @@ theorem rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
       hcandidateOppositePuU, hcandidateOppositePuW, hno3, hcounts,
       hsep, hsearchSep⟩
 
+/-- The right exact row `(0,0,1,3)` closes from the finite point-class packet,
+provided the named surplus triple contains the row's three surplus-side
+selected hits.  The terminal candidate remainders in the finite scaffold
+transfer to the residual row seed because non-fixed candidate lists depend
+only on the surplus-star and private-center labels. -/
+theorem false_of_right_row0013_finiteCandidateFacts
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+    {p x : ℝ²} {radius : ℝ}
+    (hradius_pos : 0 < radius)
+    (hm : S.moserCount p radius = 0)
+    (hs : S.sameCapCount S.oppIndex1 p radius = 0)
+    (hl : S.leftAdjCount S.oppIndex1 p radius = 1)
+    (hr : S.rightAdjCount S.oppIndex1 p radius = 3)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hs12 : s1 ≠ s2)
+    (hs13 : s1 ≠ s3)
+    (hs23 : s2 ≠ s3)
+    (hp : p ∈ S.oppInterior1)
+    (hRtriple : SelectedClass A p radius ∩
+        S.rightAdjacentInteriorByIndex S.oppIndex1 ⊆
+      ({s1, s2, s3} : Finset ℝ²))
+    (hxR : x ∈ SelectedClass A p radius ∩
+        S.rightAdjacentInteriorByIndex S.oppIndex1)
+    (hfacts :
+      RightOneSidedErasedPayloadFiniteCandidateFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
+    False := by
+  rcases hfacts with
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcandidate, hno3, hcounts, hsep, hsearchSep⟩
+  have hvMask :
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .v) =
+        firstOppExactCapMask := by
+    rw [hvClass]
+    exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+      S hinj hpair
+  have hwMask :
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .w) =
+        secondOppExactCapMask := by
+    rw [hwClass]
+    exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+      S hinj hqpair
+  have hpPair : p ∈ ({p₁, p₂} : Finset ℝ²) := by
+    simpa [hpair] using hp
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hpPair
+  rcases hpPair with hp_eq | hp_eq
+  · subst p
+    rcases right_row0013_exists_erasedPinRowSeed_privateMask S hM44
+        hradius_pos hm hs hl hr hinj hqpair hRtriple hs12 hs13 hs23 hxR
+        (privateCenter := .Pw) (Or.inl rfl) hprivatePwClass with
+      ⟨seed, hseed, hsstar, hsstar_eq, hprivateCenter, hprivate⟩
+    have hterminal :
+        OneSidedSeedCandidateRemainder
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass
+          ({ sstar := seed.sstar, privateCenter := .Pw, kind := .own,
+              privateMask := maskOfLabels [.u, .w, seed.sstar, .Pu] } :
+            OneSidedSeed) := by
+      exact (hcandidate seed.sstar hsstar hsstar_eq).1
+    have hrem :
+        OneSidedSeedCandidateRemainder
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass seed :=
+      oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := seed)
+        (base :=
+          { sstar := seed.sstar, privateCenter := .Pw, kind := .own,
+            privateMask := maskOfLabels [.u, .w, seed.sstar, .Pu] })
+        rfl hprivateCenter hterminal
+    exact false_of_erasedPinRow_ep_right_m0_s0_l1_r3_seedShadow_pointClasses
+      hseed hsstar hvMask hwMask hprivate hrem hno3 hcounts hsep hsearchSep
+  · subst p
+    rcases right_row0013_exists_erasedPinRowSeed_privateMask S hM44
+        hradius_pos hm hs hl hr hinj hqpair hRtriple hs12 hs13 hs23 hxR
+        (privateCenter := .Pu) (Or.inr rfl) hprivatePuClass with
+      ⟨seed, hseed, hsstar, hsstar_eq, hprivateCenter, hprivate⟩
+    have hterminal :
+        OneSidedSeedCandidateRemainder
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass
+          ({ sstar := seed.sstar, privateCenter := .Pu, kind := .own,
+              privateMask := maskOfLabels [.u, .w, seed.sstar, .Pw] } :
+            OneSidedSeed) := by
+      exact (hcandidate seed.sstar hsstar hsstar_eq).2.1
+    have hrem :
+        OneSidedSeedCandidateRemainder
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass seed :=
+      oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter
+        (seed := seed)
+        (base :=
+          { sstar := seed.sstar, privateCenter := .Pu, kind := .own,
+            privateMask := maskOfLabels [.u, .w, seed.sstar, .Pw] })
+        rfl hprivateCenter hterminal
+    exact false_of_erasedPinRow_ep_right_m0_s0_l1_r3_seedShadow_pointClasses
+      hseed hsstar hvMask hwMask hprivate hrem hno3 hcounts hsep hsearchSep
+
 /-- The right exact row `(0,0,2,2)` closes from the finite point-class packet,
 provided the named surplus triple contains the row's two surplus-side selected
 hits.  The proof keeps the row-specific finite data visible; the bare exact
@@ -2192,6 +2295,102 @@ abbrev LeftNonSurplusExactCountRowExcluded {A : Finset ℝ²}
   S.rightAdjCount S.oppIndex2 p (dist p x) = r →
   False
 
+/-- The right exact row `(0,0,1,3)` is closed by choosing the finite surplus
+triple around the row's three surplus-side selected points. -/
+theorem rightNonSurplusRow0013Excluded_of_finiteScaffold
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
+    (hpErase : p ∈ A.erase x)
+    (hscaffoldFacts :
+      ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+        p₁ ≠ p₂ →
+        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
+        q₁ ≠ q₂ →
+        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
+        x ∈ ({s1, s2, s3} : Finset ℝ²) →
+        s1 ≠ s2 →
+        s1 ≠ s3 →
+        s2 ≠ s3 →
+        ({s1, s2, s3} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.surplusIdx →
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+          p ∈ A.erase x →
+            RightOneSidedErasedPayloadFiniteCandidateFacts
+              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+          p ∈ A.erase x →
+            LeftOneSidedErasedPayloadFiniteCandidateFacts
+              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)) :
+    RightNonSurplusExactCountRowExcluded S x p 0 0 1 3 := by
+  classical
+  intro hm hs hl hr
+  have hp_ne_x : p ≠ x :=
+    S.capInteriorByIndex_ne_of_mem_of_mem_ne hp hx
+      (Ne.symm S.surplusIdx_ne_oppIndex1)
+  have hradius_pos : 0 < dist p x := dist_pos.mpr hp_ne_x
+  rcases hM44.exists_oppInterior_pairs with
+    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
+  let R := SelectedClass A p (dist p x) ∩
+    S.rightAdjacentInteriorByIndex S.oppIndex1
+  have hRsubSurplus : R ⊆ S.capInteriorByIndex S.surplusIdx := by
+    intro y hy
+    have hyRight := (Finset.mem_inter.mp hy).2
+    simpa [R, S.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior]
+      using hyRight
+  have hRcard : R.card ≤ 3 := by
+    have hRcardEq : R.card = 3 := by
+      simpa [R, SurplusCapPacket.rightAdjCount] using hr
+    omega
+  rcases hM44.exists_surplusInterior_triple_preserving_subset hRsubSurplus
+      hRcard with
+    ⟨s1, s2, s3, hRtriple, hs12, hs13, hs23, hsSub⟩
+  have hxSelected : x ∈ SelectedClass A p (dist p x) := by
+    rw [mem_selectedClass]
+    exact ⟨S.capInteriorByIndex_subset S.surplusIdx hx, rfl⟩
+  have hxRight :
+      x ∈ S.rightAdjacentInteriorByIndex S.oppIndex1 := by
+    simpa [S.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior] using hx
+  have hxR : x ∈ R := Finset.mem_inter.mpr ⟨hxSelected, hxRight⟩
+  have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) := hRtriple hxR
+  have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₁Opp : p₁ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₁Opp
+  have hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    have hp₂Opp : p₂ ∈ S.oppInterior1 := by
+      rw [hpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior1] using hp₂Opp
+  have hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₁Opp : q₁ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₁Opp
+  have hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    have hq₂Opp : q₂ ∈ S.oppInterior2 := by
+      rw [hqpair]
+      simp
+    simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
+  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) :=
+    rightPinnedLabelPoint_injective_of_mem S
+      hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
+  rcases hscaffoldFacts p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
+      hxTriple hs12 hs13 hs23 hsSub with
+    ⟨hoppInterior1Facts, _hoppInterior2Facts⟩
+  have hpOpp : p ∈ S.oppInterior1 := by
+    simpa [SurplusCapPacket.oppInterior1] using hp
+  exact false_of_right_row0013_finiteCandidateFacts S hM44
+    hradius_pos hm hs hl hr hinj hpair hqpair hs12 hs13 hs23 hpOpp
+    hRtriple hxR (hoppInterior1Facts p hp hpErase)
+
 /-- The right exact row `(0,0,2,2)` is closed by choosing the finite surplus
 triple around the row's own two surplus-side selected points. -/
 theorem rightNonSurplusRow0022Excluded_of_finiteScaffold
@@ -3094,7 +3293,6 @@ abbrev LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded {A : Finset ℝ²}
 scaffold has removed the cheap cross-separation rows. -/
 abbrev RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded
     {A : Finset ℝ²} (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  RightNonSurplusExactCountRowExcluded S x p 0 0 1 3 ∧
   RightNonSurplusExactCountRowExcluded S x p 0 1 1 2 ∧
   RightNonSurplusExactCountRowExcluded S x p 1 0 1 2 ∧
   RightNonSurplusExactCountRowExcluded S x p 1 1 1 1
@@ -3278,11 +3476,12 @@ theorem rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRow
     (hrows :
       RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
     RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
-  rcases hrows with ⟨h0013, h0112, h1012, h1111⟩
+  rcases hrows with ⟨h0112, h1012, h1111⟩
   exact
     ⟨rightNonSurplusRow0022Excluded_of_finiteScaffold
         hM44 hx hp hpErase hscaffold,
-      h0013,
+      rightNonSurplusRow0013Excluded_of_finiteScaffold
+        hM44 hx hp hpErase hscaffold,
       rightNonSurplusRow0121Excluded_of_finiteScaffold
         hM44 hx hp hpErase hscaffold,
       h0112,

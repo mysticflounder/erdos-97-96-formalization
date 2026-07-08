@@ -124,10 +124,12 @@ LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake
 This is not a certificate that every row is geometrically impossible.  The Lean
 spine now consumes the route split: the two terminal rows are reduced to
 generated seed-candidate inputs and then, by closed adapter, to erased
-one-sided payload exclusions.  The remaining 28 rows stay grouped as
-left-right-subpacket or same-side-heavy row targets.  The next generator must
-attach those route groups to seeded-shadow consumers, row certificates, or a new
-adjacent-heavy bridge.
+one-sided payload exclusions.  At the first route-split layer the remaining 28
+rows stay grouped as left-right-subpacket or same-side-heavy row targets.
+Subsequent finite-scaffold row bridges have narrowed the current proof-facing
+source to the scaffold plus 17 finite residual rows: seven left-right rows and
+ten same-side-heavy rows.  The next generator must attach those residual rows
+to seeded-shadow consumers, row certificates, or a new adjacent-heavy bridge.
 
 Producer-level gap, 2026-07-07:
 
@@ -246,7 +248,7 @@ Current finite-row producer route:
    candidate scaffold once, via `ErasedPinFiniteCandidateScaffoldFacts S x`;
    closed adapters use that scaffold to recover those eight exact row
    exclusions before deriving the old pruned surface.
-2. The remaining finite row obligations are the eight left-right finite
+2. The remaining finite row obligations are the seven left-right finite
    residual rows and the ten same-side-heavy rows.  The two terminal rows are
    now derived from the same finite-candidate scaffold by
    `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
@@ -405,14 +407,28 @@ The erased-pin finite plan is therefore:
    scaffold, using
    `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
    `leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold`.
-5. Treat the other 18 finite ten-label rows as a separate residual requiring
+5. Treat the other 17 finite ten-label rows as a separate residual requiring
    a stronger validator interface, partial row splitting, or the full
    fixed-seed DFS shadow route.
 6. Keep the two surplus-extra rows outside the finite ten-label route until a
    surplus-extra bridge is proved.
 
+Latest finite-residual checkpoint, July 7: the right residual row
+`(m,s,l,r) = (0,0,1,3)` / `ep_right_m0_s0_l1_r3` has been deleted from the
+proof-facing residual source.  The row is closed by
+`SurplusCapPacket.IsM44.right_row0013_selectedClass_eq_oppInterior2_singleton_surplusTriple`,
+`right_row0013_exists_erasedPinRowSeed_privateMask`, and
+`false_of_right_row0013_finiteCandidateFacts`, then consumed on-spine by
+`rightNonSurplusRow0013Excluded_of_finiteScaffold`.  The key reusable move is
+`oneSidedSeedCandidateRemainder_of_same_sstar_privateCenter`: once the row
+seed has the same `sstar` and private center as a terminal scaffold seed, the
+non-fixed candidate remainder transfers even when the private mask differs.
+The local source obligation is now the finite scaffold plus 17 finite residual
+rows: seven left-right rows and ten same-side-heavy rows.  The most direct next
+mirror target is left `(0,0,3,1)` / `ep_left_m0_s0_l3_r1`.
+
 Second-pass residual scan, July 7: after removing the eight row-wide
-private-`.w` cross-separation rows, the other eighteen finite rows were scanned
+private-`.w` cross-separation rows, the remaining seventeen finite rows were scanned
 for smaller validator fragments.  No remaining row is killed by local candidate
 validity alone, and no remaining row is killed by fixed `.v/.w/private`
 pair-counts alone.  The useful residual signal is still separation/search
@@ -424,7 +440,7 @@ cross-separation.
 
 | oriented signature | representative rows | minimal extra centers beyond `.v/.w/private` | quickest lead |
 |---|---|---:|---|
-| `M0\|S0\|O1\|X3` | `ep_right_m0_s0_l1_r3`, `ep_left_m0_s0_l3_r1` | `12x1` | uniform one-extra kill; `.u`, `.Q1`, `.s1`, or `.s3` works for all masks |
+| `M0\|S0\|O1\|X3` | `ep_left_m0_s0_l3_r1` (`ep_right_m0_s0_l1_r3` closed) | `12x1` | mirror the same-`sstar`/private-center transfer closure |
 | `M0\|S1\|O1\|X2` | `ep_right_m0_s1_l1_r2`, `ep_left_m0_s1_l2_r1` | `16x1 + 4x2 + 4x3` | split by mask orbit; max three extras |
 | `M0\|S1\|O0\|X3` | `ep_right_m0_s1_l0_r3`, `ep_left_m0_s1_l3_r0` | `6x1` | uniform one-extra kill; `.u`, `.Q1`, `.s1`, or `.s3` works for all masks |
 | `M1\|S0\|O1\|X2` | `ep_right_m1_s0_l1_r2`, `ep_left_m1_s0_l2_r1` | `48x0 + 20x1 + 4x2` | combine immediate cross-separation with small split |
@@ -461,7 +477,7 @@ ordered cubes are branch-0 collision / non-`p` center / metric-row-failure
 residuals without the collision-exclusion or metric producer in scope; the
 pinned-surplus theorem is still at the exact-bank-versus-general-`m` boundary;
 and this erased-pin local source is now the finite residual producer
-`hfiniteResidualRows`, which still needs a producer for the scaffold, eight
+`hfiniteResidualRows`, which still needs a producer for the scaffold, seven
 left-right residual rows, and ten same-side-heavy rows.
 
 Next proof-producing work:
@@ -469,7 +485,7 @@ Next proof-producing work:
 1. Produce `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus
    point supplied by the residual route.  This is now load-bearing: without it
    the eight closed row bridges cannot fire.
-2. Close the eight left-right finite residual rows and ten same-side-heavy
+2. Close the seven left-right finite residual rows and ten same-side-heavy
    rows using the second-pass residual scan.  The most direct lead is a
    small-fragment separation emitter/adapter; the conservative fallback is
    prefix no-survivor facts for the existing search order.
