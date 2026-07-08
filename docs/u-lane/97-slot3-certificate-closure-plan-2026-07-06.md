@@ -69,9 +69,10 @@ raw count-row statement,
 existing erased-pin triple exclusions.  The older finite/named/candidate
 adapters remain compiled support, but the two-hit probe makes the
 `AdjacentChainOneHitData` route non-operative for this branch.  The
-proof-facing local obligation must ask for the finite scaffold and six
+proof-facing local obligation must ask for the finite scaffold and four
 same-side-heavy residual rows; the left-right finite-residual bucket is empty
-after the `(1,1,1,1)` pair closure.  The erased
+after the `(1,1,1,1)` pair closure, and the `M1|S1|O0|X2`
+same-side-heavy pair is closed from the finite scaffold.  The erased
 one-sided terminal payload exclusions are now closed from the finite scaffold
 by the `false_of_*OneSidedErasedPayload_of_seedCandidateInputs` consumers.
 There is no
@@ -1013,10 +1014,10 @@ Current Lean boundary:
    - surplus-cap strict-interior direct `ErasedPinTriple` exclusions;
    - `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus point;
    - `oppIndex1` non-surplus strict interiors:
-     `RightNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 3
+     `RightNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
      remaining same-side-heavy rows;
    - `oppIndex2` non-surplus strict interiors:
-     `LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 3
+     `LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p`, i.e. the 2
      remaining same-side-heavy rows.
 3. Closed arithmetic adapters turn the finite rows into the universal family
    predicates:
@@ -1096,7 +1097,7 @@ Current routed-row/count-family boundary:
   producer-complete.  Its concrete producer obligations are:
   `surplus-opposite` direct `ErasedPinTriple` exclusion; surplus-cap
   strict-interior direct `ErasedPinTriple` exclusions; the finite candidate
-  scaffold; and 3 right and 3 left same-side-heavy row exclusions.  It no
+  scaffold; and 2 right and 2 left same-side-heavy row exclusions.  It no
   longer has to
   construct arbitrary one-sided payload exclusions, terminal seed-candidate
   inputs, or `AdjacentChainOneHitData`.
@@ -1431,6 +1432,25 @@ Current routed-row/count-family boundary:
   `SurplusM44Packet.lean`, `SurplusCOMPGBankGeometry.lean`, and
   `RemovableVertexAxiom.lean`; `RemovableVertexAxiom.lean` still reports only
   the three expected live `sorry` warnings.
+
+  Twelfth July 7 checkpoint: the same-side-heavy `M1|S1|O0|X2` pair is now
+  threaded through the finite scaffold.  The right row `(1,1,0,2)` /
+  `ep_right_m1_s1_l0_r2` is closed by
+  `IsM44.right_row1102_selectedClass_eq_moser_sameCap_surplusPair`,
+  `right_row1102_exists_erasedPinRowSeed_privateMask`,
+  `false_of_right_row1102_finiteCandidateFacts`, and
+  `rightNonSurplusRow1102Excluded_of_finiteScaffold`.  The left mirror row
+  `(1,1,2,0)` / `ep_left_m1_s1_l2_r0` is closed by
+  `IsM44.left_row1120_selectedClass_eq_moser_sameCap_surplusPair`,
+  `left_row1120_exists_erasedPinRowSeed_privateMask`,
+  `false_of_left_row1120_finiteCandidateFacts`, and
+  `leftNonSurplusRow1120Excluded_of_finiteScaffold`.  The current
+  proof-facing finite residual source is now the scaffold plus four finite
+  residual rows: right `(0,0,0,4)`, right `(2,0,0,2)`, left `(0,0,4,0)`, and
+  left `(2,0,2,0)`.  Focused checks passed for
+  `SurplusCOMPGBankGeometry.lean` and `RemovableVertexAxiom.lean`;
+  `RemovableVertexAxiom.lean` still reports only the three expected live
+  `sorry` warnings.
 
   Local artifact checkpoint: `certificates/surplus/relaxed_split/` contains the
   70 grouped relaxed-split certificate JSON files from the pre-singleton pass,
