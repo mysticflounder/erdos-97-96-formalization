@@ -26,11 +26,16 @@ Fraction arithmetic in python (independent of Singular).
 import json
 import os
 import subprocess
+import sys
 import tempfile
 from fractions import Fraction
 from itertools import combinations
 
 import census554_lib as L
+
+# msolve cofactor coefficients can exceed Python's default 4300-digit
+# int-string conversion limit (seen: 8026 digits in the n=12 gate port).
+sys.set_int_max_str_digits(0)
 
 SCRATCH = ("/private/tmp/claude-501/-Users-adam-projects-math-projects-"
            "erdos-97-96-formalization/fe6e52a9-1de1-4034-b676-5c7e83aecbac/"
