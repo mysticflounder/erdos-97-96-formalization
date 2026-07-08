@@ -132,6 +132,28 @@ Grounding facts, each independently checked 2026-07-08:
   `n = 32`: `977,975/977,975` checks are SAT with 0 UNSAT and 0
   INDETERMINATE, and the exact stable window of width four is `n = 29..32`.
   This still supplies none of the erased-pin producer facts below.
+- The multi-center general-`n` formalization scaffold now lives in
+  `Erdos9796Proof.P97.MultiCenter.GeneralN`: finite `LocalJointClassCode`
+  alphabet, semantic `JointClass` projection, and abstract persistence-to-
+  stabilization lemmas are kernel-checked. The initial realization-facing
+  bridge now lives in `Erdos9796Proof.P97.MultiCenter.Realization`: it defines
+  `CodeInventory` and proves the code and semantic stabilization consequences
+  of one-step persistence, plus the predicate-level GLOBAL⊆LOCAL and
+  LOCAL⇒GLOBAL completion interfaces, in both threshold and all-parameter
+  forms. The bridge also has the `max(local-stability-threshold,
+  completion-threshold)` variant, so later imports do not need to align those
+  thresholds artificially; threshold completion is enough for eventual GLOBAL
+  stability once LOCAL persistence is supplied. The profile-facing surface now
+  also provides `profileOccursAtN`,
+  `realizesJointClass`, `localInventory`, and `globalInventory`, and proves
+  `localInventory_stepPersistent` from a profile-extension principle.
+  `Erdos9796Proof.P97.MultiCenter.CapProfile` also formalizes the concrete
+  U1 card-11 cap-profile handoff: the two-large-cap hypotheses give
+  `profile554`, with closed-cap sizes `(5,5,4)` and interior capacities
+  `(3,3,2)`. This still does not close any erased-pin producer obligation; the
+  next relevant U4 step is instantiating that bridge by proving local
+  extraction, occurrence closure under cap extension, and the actual GLOBAL
+  soundness/completion hypotheses.
 - Bounded CONJECTURED-tier smoke for P3 has been run on `n = 12..15`:
   `11,223/11,223` checks are SAT with 0 UNSAT and 0 INDETERMINATE.  This is
   not the full P3 appendix, but it gives no cut signal at the smallest
@@ -561,10 +583,27 @@ candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
 completeness condition on the generated filter, not an exclusion — the same
 shape as the closed `*_exists_erasedPinRowSeed_privateMask` chain.
 {{NEEDS_PROOF}}.  The local obligations at 9411/9424 do not currently expose
-the mask-interface hypotheses that `oneSidedSeedCandidateRemainder_of_mask_interfaces`
-expects; those hypotheses are normally produced inside the finite-facts
-pipeline.  Treat P2 as part of the same producer/scaffold refactor as P1, not
-as an isolated local `simp` proof.
+the mask-interface hypotheses that
+`oneSidedSeedCandidateRemainder_of_mask_interfaces` expects; those hypotheses
+are normally produced inside the finite-facts pipeline.  Treat P2 as part of
+the same producer/scaffold refactor as P1, not as an isolated local `simp`
+proof.
+
+2026-07-08 code-level correction: the current helper shape is still too broad.
+`hrightCandidate`/`hleftCandidate` in `RemovableVertexAxiom.lean` quantify over
+arbitrary ordered labels and use `fun _ => dist p x` as the radius for every
+non-fixed selected class.  The proof state at the right helper exposes only
+`p ∈ S.capInteriorByIndex S.oppIndex1`, `p ∈ A.erase x`, `sstar`, and the
+escape label equality; it does not expose the ordered-label membership/equality
+facts, nor the exact mask-cardinality/no-self/trigger interfaces consumed by
+`oneSidedSeedCandidateRemainder_of_mask_interfaces`.  More importantly,
+`HasNEquidistantProperty 4 A` gives some K4 selected radius at each center, not
+that every unrelated center has a four-point class at the shared radius
+`dist p x`.  So P2 should not be closed by proving those universal helpers in
+place.  The next grounded P2 refactor is to move candidate production to a
+surface where the finite masks or row-specific selected-class equalities are
+already present, or to shrink the finite scaffold so terminal seed production is
+derived only at the row/payload site that supplies the exact mask interfaces.
 
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
@@ -2092,6 +2131,20 @@ finite hull order changes chirality and the Boolean separation convention.
 reverse preservation of `IsCcwConvexPolygon`; treating that as the primary P1
 route would try to prove the wrong geometric statement.
 
+*Orchestrator code-level confirmation (2026-07-08): the rejection is forced,
+not just preferred.*  The nonmatching-orientation sorries (currently
+`RemovableVertexAxiom.lean:10021` and `:10051` — the 9407/9436 numbers above
+have drifted) state goals that are geometrically FALSE in their branches:
+`HullOrderSubsequenceCertificate A pointOf` forces `image φ = A` with
+`IsCcwConvexPolygon φ`, so A is in convex position and its CCW cyclic order is
+unique up to rotation; the right template forces apex order u→v→w along that
+boundary while the branch hypothesis supplies u→w→v, and the free within-pair
+choices (p₁/p₂, q₁/q₂, s-permutation) cannot change the apex cyclic order.  A
+cyclic order and its reversal cannot both embed CCW into the same
+convex-position set.  Consequence: no lemma can fill those sorries as written —
+the refactor must change the branch call sites (which producer is invoked /
+what orientation input it takes), not just supply a missing proof term.
+
 **Primary route: finite-producer orientation refactor.**  Enumerate both
 apex orientations as separate concrete producers or make the finite scaffold
 orientation-indexed, so each row consumer receives the CCW template that the
@@ -2105,6 +2158,19 @@ bridges; the proof should not introduce a reverse-CCW lemma.
 over the ordered labels/masks that P1's boundary fixes.  P2 work started
 before that interface freezes is rework risk with no offsetting gain.  Order:
 P1 matching halves → orientation-indexed producer boundary → P2.
+
+2026-07-08 refinement: after the P1 orientation refactor, the remaining P2
+helpers are not just missing local ordered-label facts.  They also assert
+candidate remainders for selected classes at a shared radius for centers that
+are not row-payload centers.  The finite separator producer currently derives
+prefix-count and separation facts from those selected classes, but it does not
+derive the exact mask-cardinality/no-self/trigger facts needed by the generated
+candidate filter.  The closure target is therefore a producer-surface change:
+either carry explicit finite mask-interface facts through the ordered scaffold,
+or delay terminal seed/candidate production until the row-specific payload
+surface supplies the exact selected-class equalities.  Do not spend effort on a
+lemma proving the current universal `hrightCandidate`/`hleftCandidate` goals as
+written.
 
 **Tally implication (unchanged).**  P1 closes exactly 2 of the 6 erased-pin
 sorries (9407/9436); 9415/9443 remain P2; 9286/9314 remain P4.
