@@ -8087,22 +8087,24 @@ theorem leftNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
   intro hpayload
   exact false_of_leftOneSidedErasedPayload_of_seedCandidateInputs hseed hpayload
 
-theorem rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+theorem rightNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
     {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     RightNonSurplusOneSidedTerminalSeedInputs S x p := by
   classical
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   rcases hM44.exists_surplusInterior_triple_preserving hx with
-    ⟨s1, s2, s3, hxTriple, hs12, hs13, hs23, hsSub⟩
-  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨hoppInterior1Facts, _hoppInterior2Facts⟩
+    ⟨u1, u2, u3, hxTriple, hu12, hu13, hu23, huSub⟩
+  have hTripleCard : ({u1, u2, u3} : Finset ℝ²).card = 3 := by
+    simp [hu12, hu13, hu23]
+  rcases hscaffoldFacts ({u1, u2, u3} : Finset ℝ²) hxTriple
+      hTripleCard huSub with
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      _hTripleEq, hxTripleOrdered, hs12, hs13, hs23, hsSub,
+      hoppInterior1Facts, _hoppInterior2Facts⟩
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
     have hp₁Opp : p₁ ∈ S.oppInterior1 := by
       rw [hpair]
@@ -8132,27 +8134,29 @@ theorem rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
       RightOneSidedErasedPayloadNamedCandidateFacts
         S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3 :=
     rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
-      hxTriple (hoppInterior1Facts p hp hpErase)
+      hxTripleOrdered (hoppInterior1Facts p hp hpErase)
   exact rightOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
     hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
     hpair hqpair hpOpp hnamed
 
-theorem leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
+theorem leftNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
     {x p : ℝ²}
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffold : ErasedPinFiniteCandidateScaffoldFacts S x) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     LeftNonSurplusOneSidedTerminalSeedInputs S x p := by
   classical
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   rcases hM44.exists_surplusInterior_triple_preserving hx with
-    ⟨s1, s2, s3, hxTriple, hs12, hs13, hs23, hsSub⟩
-  rcases hscaffold p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨_hoppInterior1Facts, hoppInterior2Facts⟩
+    ⟨u1, u2, u3, hxTriple, hu12, hu13, hu23, huSub⟩
+  have hTripleCard : ({u1, u2, u3} : Finset ℝ²).card = 3 := by
+    simp [hu12, hu13, hu23]
+  rcases hscaffoldFacts ({u1, u2, u3} : Finset ℝ²) hxTriple
+      hTripleCard huSub with
+    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+      _hTripleEq, hxTripleOrdered, hs12, hs13, hs23, hsSub,
+      _hoppInterior1Facts, hoppInterior2Facts⟩
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
     have hp₁Opp : p₁ ∈ S.oppInterior1 := by
       rw [hpair]
@@ -8182,7 +8186,7 @@ theorem leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
       LeftOneSidedErasedPayloadNamedCandidateFacts
         S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3 :=
     leftOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
-      hxTriple (hoppInterior2Facts p hp hpErase)
+      hxTripleOrdered (hoppInterior2Facts p hp hpErase)
   exact leftOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
     hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I hq12 hp12 hs12 hs13 hs23
     hqpair hpair hpOpp hnamed
@@ -8237,8 +8241,10 @@ theorem rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
         hM44 hx hp hpErase hscaffold trivial,
       rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
         hM44 hx hp hpErase hscaffold trivial,
-      rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold⟩
+      rightNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
+        hM44 hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold)⟩
 
 theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -8254,8 +8260,10 @@ theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
         hM44 hx hp hpErase hscaffold trivial,
       leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
         hM44 hx hp hpErase hscaffold trivial,
-      leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold⟩
+      leftNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
+        hM44 hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold)⟩
 
 theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}

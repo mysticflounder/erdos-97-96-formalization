@@ -201,11 +201,15 @@ The mirror left left/right subpacket pruned rows now use the same boundary:
 `left (0,0,2,2)`, `left (0,0,3,1)`, `left (0,1,1,2)`,
 `left (0,1,2,1)`, `left (1,0,1,2)`, `left (1,0,2,1)`,
 `left (1,1,1,1)`, and `left (2,0,1,1)`.
+The right and left one-sided terminal seed-input producers now also consume
+the ordered scaffold directly: each chooses a preserving surplus triple,
+asks the ordered scaffold for the concrete label bank on that set, and feeds
+those labels into the terminal seed constructor.
 This is a transition bridge only; closure still requires the active
 finite-residual statement to produce the ordered sep scaffold directly and the
-remaining terminal seed consumers and routed signatures to stop depending on
-the old false universal surface.  Current verified spine after this migration
-remains `1 open / 799 total`.
+remaining routed signatures to stop depending on the old false universal
+surface.  Current verified spine after this migration remains
+`1 open / 799 total`.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
