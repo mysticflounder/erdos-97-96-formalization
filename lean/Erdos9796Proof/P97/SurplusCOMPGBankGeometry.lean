@@ -1017,6 +1017,18 @@ theorem candidateMaskOK_of_mem_candidateMasks
   rw [candidateMasksByFilter] at h
   exact (List.mem_filter.mp h).2
 
+/-- At the `.u` center, one-sided seed candidate membership implies membership
+in the generated pinned-bank candidate table.  The seeded local predicate and
+the pinned-bank local predicate agree at `.u`. -/
+theorem mem_candidateMasks_u_of_mem_seed_candidateMasks
+    {seed : OneSidedSeed} {mask : Nat}
+    (hs : isSurplusStar seed.sstar = true)
+    (hmem : mask ∈ seed.candidateMasks .u) :
+    mask ∈ candidateMasks seed.sstar .u := by
+  exact mem_candidateMasks_of_candidateMaskOK hs (by
+    have hOK := oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks hmem
+    simpa [candidateMaskOK, oneSidedSeedCandidateMaskOK] using hOK)
+
 /-- The generated pinned `.v` mask is one of the generated `.v` candidates. -/
 theorem pinnedMaskOf_mem_candidateMasks_v
     {sstar : Label} (hs : isSurplusStar sstar = true) :
@@ -3223,6 +3235,24 @@ theorem pointMask_eq_privateSurplusTripleMask
     simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
       Label.index]
 
+/-- If exactly the three named surplus labels are visible among the ten
+finite labels of a selected class, its generated mask is the surplus triple. -/
+theorem pointMask_eq_surplusTripleMask_of_label_members
+    {α : Type _} [DecidableEq α] {pointOf : Label → α} {T : Finset α}
+    (hu : pointOf .u ∉ T)
+    (hv : pointOf .v ∉ T)
+    (hw : pointOf .w ∉ T)
+    (hs1 : pointOf .s1 ∈ T)
+    (hs2 : pointOf .s2 ∈ T)
+    (hs3 : pointOf .s3 ∈ T)
+    (hPw : pointOf .Pw ∉ T)
+    (hPu : pointOf .Pu ∉ T)
+    (hQ1 : pointOf .Q1 ∉ T)
+    (hQ2 : pointOf .Q2 ∉ T) :
+    pointMask pointOf T = maskOfLabels [.s1, .s2, .s3] := by
+  simp [pointMask, allLabels, maskOfLabels, Label.bit, Label.index,
+    hu, hv, hw, hs1, hs2, hs3, hPw, hPu, hQ1, hQ2]
+
 /-- A Moser label together with the three named surplus labels has the
 generated row mask. -/
 theorem pointMask_eq_moserSurplusTripleMask
@@ -3239,6 +3269,50 @@ theorem pointMask_eq_moserSurplusTripleMask
   rcases hmoser with rfl | rfl | rfl <;>
     simp [pointMask, allLabels, maskOfLabels, hpoint_eq, Label.bit,
       Label.index]
+
+/-- A pure surplus-triple private mask cannot be cross-separated from any
+locally admissible `.u` class for the same surplus star. -/
+theorem privateSurplusTriple_u_crossSeparation_false_of_candidate
+    {sstar privateCenter : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    {umask : Nat}
+    (hu : umask ∈ candidateMasks sstar .u) :
+    crossSeparationOKForMasks privateCenter (maskOfLabels [.s1, .s2, .s3])
+      .u umask = false := by
+  have hall :
+      ((candidateMasks sstar .u).all
+        (fun mask => decide
+          (crossSeparationOKForMasks privateCenter
+            (maskOfLabels [.s1, .s2, .s3]) .u mask = false))) = true := by
+    cases sstar <;> simp [isSurplusStar] at hsstar
+    all_goals
+      rcases hpriv with rfl | rfl <;> decide
+  exact of_decide_eq_true (List.all_eq_true.mp hall umask hu)
+
+/-- A point-class shadow with a pure surplus-triple private class and a locally
+admissible `.u` class violates the generated cross-separation checker. -/
+theorem false_of_privateSurplusTriple_u_crossSeparation
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {sstar privateCenter : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    (hu :
+      pointMask pointOf (centerClass .u) ∈ candidateMasks sstar .u)
+    (hprivate :
+      pointMask pointOf (centerClass privateCenter) =
+        maskOfLabels [.s1, .s2, .s3])
+    (hsearchSep : ∀ c cp : Label,
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    False := by
+  have htrue := hsearchSep privateCenter .u
+  rw [hprivate] at htrue
+  have hfalse :=
+    privateSurplusTriple_u_crossSeparation_false_of_candidate
+      hsstar hpriv hu
+  rw [hfalse] at htrue
+  exact Bool.false_ne_true htrue
 
 /-- In row `ep_right_m0_s0_l1_r3`, the private selected class consists of
 one `.Q` label and the three named surplus labels. -/

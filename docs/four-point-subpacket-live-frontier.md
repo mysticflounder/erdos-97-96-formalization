@@ -30,9 +30,9 @@ routed seed-row surfaces, then to the raw count-row statement, then to
 to the erased-pin triple exclusions consumed downstream.  The remaining `sorry`
 is load-bearing and on-spine.  The older finite/named/candidate adapters remain
 compiled support, but the proof-facing route now asks for the finite scaffold
-and two pure surplus-side four-hit residual rows.  The left-right
-finite-residual bucket is empty, and every finite ten-label same-side-heavy row
-is now closed from the finite scaffold.
+and direct surplus erased-pin exclusions.  The left-right and same-side-heavy
+finite-residual row buckets are empty; the pure surplus-side four-hit rows
+`(0,0,0,4)` and `(0,0,4,0)` are now closed from the finite scaffold.
 There is no separate top-level
 `Problem97.isM44NonSurplusContainmentErasedPinTripleReductionInputs` theorem to
 chase; if a reusable proof sketch is useful before it is consumed, park it under
@@ -127,11 +127,10 @@ spine now consumes the route split: the two terminal rows are reduced to
 generated seed-candidate inputs and then, by closed adapter, to erased
 one-sided payload exclusions.  At the first route-split layer the remaining 28
 rows stay grouped as left-right-subpacket or same-side-heavy row targets.
-Subsequent finite-scaffold row bridges have narrowed the current proof-facing
-source to the scaffold plus two row obligations: the pure surplus-side rows
-right `(0,0,0,4)` and left `(0,0,4,0)`.  The next producer must attach those
-residual rows to a surplus-extra bridge or to a strictly stronger certificate
-interface.
+Subsequent finite-scaffold row bridges have closed the proof-facing row
+surface.  The current source obligation is the finite scaffold plus the direct
+surplus-opposite and surplus-interior erased-pin exclusions; the row buckets no
+longer require a surplus-extra bridge.
 
 Producer-level gap, 2026-07-07:
 
@@ -146,8 +145,8 @@ surplus-opposite direct ErasedPinTriple exclusion                  OPEN
 surplus-cap strict-interior direct ErasedPinTriple exclusions      OPEN
 oppIndex1 left-right finite residual rows                         CLOSED from finite scaffold
 oppIndex2 left-right finite residual rows                         CLOSED from finite scaffold
-oppIndex1 pure surplus-side row `(0,0,0,4)`                        OPEN
-oppIndex2 pure surplus-side row `(0,0,4,0)`                        OPEN
+oppIndex1 pure surplus-side row `(0,0,0,4)`                        CLOSED from finite scaffold
+oppIndex2 pure surplus-side row `(0,0,4,0)`                        CLOSED from finite scaffold
 oppIndex1 terminal seed-candidate input producer                   CLOSED from finite scaffold
 oppIndex2 terminal seed-candidate input producer                   CLOSED from finite scaffold
 oppIndex1 row `(0,0,3,1)`                                          CLOSED
@@ -288,8 +287,8 @@ certificates/surplus/reports/erased_pin_producer_census.md
 
 The census is exact for the current ten-label subpacket vocabulary.  It records
 30 generated rows, of which two are the already-closed non-surplus pair-overflow
-rows.  After that structural closure, the proof-facing frontier has 28 rows:
-26 have finite ten-label masks and two do not.  The two non-finite rows are the
+rows.  After that structural closure, the proof-facing frontier had 28 rows:
+26 had finite ten-label masks and two did not.  The two non-finite rows were the
 pure surplus-side four-hit rows:
 
 ```text
@@ -297,10 +296,10 @@ ep_right_m0_s0_l0_r4
 ep_left_m0_s0_l4_r0
 ```
 
-Those two require a surplus-extra bridge because a three-point surplus
-subpacket cannot name four selected surplus-side hits.  They should not be sent
-to the current ten-label certificate bank without first proving a general-`n`
-surplus-extra reduction.
+Those two are now closed without sending them to the finite DFS: the proof
+chooses three of the four selected surplus-side hits, derives a pure
+surplus-triple private mask from the finite scaffold, and uses generated
+cross-separation to contradict any admissible `.u` class.
 
 The remaining 26 finite rows collapse to 13 oriented incidence signatures and
 660 named finite masks.  The producer census now also runs the generalized
@@ -319,23 +318,24 @@ Current finite-row producer route:
    candidate scaffold once, via `ErasedPinFiniteCandidateScaffoldFacts S x`;
    closed adapters use that scaffold to recover those eight exact row
    exclusions before deriving the old pruned surface.
-2. The left-right finite-residual bucket is now empty, and all finite
-   ten-label same-side-heavy rows are closed from the finite scaffold.  The
-   remaining row obligations are only the pure surplus-side four-hit pair.  The
-   two terminal rows are
+2. The left-right and same-side-heavy finite-residual buckets are now empty.
+   All finite ten-label rows and the pure surplus-side four-hit pair are closed
+   from the finite scaffold.  The two terminal rows are
    derived from the same finite-candidate scaffold by
    `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
    `leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold`.
-3. The two pure surplus-side four-hit rows remain outside the finite ten-label
-   route and still need a surplus-extra bridge.
+3. No row obligation remains in the local source; the remaining erased-pin
+   producer work is the finite scaffold itself and the direct surplus erased-pin
+   exclusions.
 
 Producer specification status:
 
-The route above is boundary-specified but not yet fully producer-specified.
-The generated DFS closes a seed after the geometric data has been translated
-to finite masks; it does not itself prove that an exact selected-count row
-forces those masks.  The next Lean work must therefore land one of the
-following producer lemmas, not another implication between reduced surfaces:
+The finite-row and pure-row producer bridges have landed.  The generated DFS
+closes a seed after the geometric data has been translated to finite masks, and
+the pure-row bridge closes the two non-finite masks through generated
+cross-separation.  No further row producer lemma is live; the next Lean work
+must produce the source scaffold or one of the direct surplus erased-pin
+exclusions, not another implication between reduced surfaces.
 
 ```lean
 -- A finite right row supplies a generated fixed seed contradiction.
@@ -360,10 +360,14 @@ exact count row
   -> `false_of_erasedPinFixedSeedShadow_pointClasses_of_exact_vw_private_candidates`
 ```
 
-The pure surplus-side rows remain outside this ladder.  Right `(0,0,0,4)` and
-left `(0,0,4,0)` still need a surplus-extra bridge because the selected class
-has four surplus-side hits while the finite subpacket names only three surplus
-interior labels.
+The pure surplus-side rows use a separate closed ladder:
+
+```text
+pure surplus-side four-hit exact row
+  -> choose three selected surplus hits with `x` included
+  -> pure surplus-triple private mask
+  -> generated cross-separation contradiction against an admissible `.u` class
+```
 
 Generated producer data now available:
 
@@ -473,17 +477,17 @@ The erased-pin finite plan is therefore:
 3. Done locally: preserve the finite scaffold facts into the on-spine producer
    chain before the row data is collapsed.  The new source obligation is
    `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`.
-   It carries `ErasedPinFiniteCandidateScaffoldFacts S x` plus residual row
-   products; `prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement`
-   derives the previous pruned-row surface.
+   It now carries `ErasedPinFiniteCandidateScaffoldFacts S x` with no residual
+   row products; `prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement`
+   derives the previous pruned-row surface by applying the closed row bridges
+   and passing the vacuous residual buckets internally.
 4. Done locally: derive the two terminal seed inputs from the same finite
    scaffold, using
    `rightNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold` and
    `leftNonSurplusOneSidedTerminalSeedInputs_of_finiteScaffold`.
-5. Treat the remaining 2 proof-facing residual rows as a surplus-extra
-   residual requiring a stronger validator interface or a surplus-extra bridge.
-6. Keep the two surplus-extra rows outside the finite ten-label route until
-   that bridge is proved.
+5. Done locally: close the remaining two pure surplus-side residual rows from
+   the finite scaffold using the pure private-mask/cross-separation bridge.
+   The same-side-heavy finite residual bucket is now empty.
 
 Earlier finite-residual checkpoint, July 7: the right residual row
 `(m,s,l,r) = (0,0,1,3)` / `ep_right_m0_s0_l1_r3` and its left mirror
@@ -555,7 +559,7 @@ Latest finite-residual checkpoint, July 7: the same-side-heavy
 obligation was then the finite scaffold plus 4 row obligations: right
 `(0,0,0,4)`, right `(2,0,0,2)`, left `(0,0,4,0)`, and left `(2,0,2,0)`.
 
-Latest finite-residual checkpoint, July 7: the same-side-heavy
+Earlier finite-residual checkpoint, July 7: the same-side-heavy
 `M2|S0|O0|X2` pair is now closed from the finite scaffold.  The right row
 `(2,0,0,2)` uses
 `IsM44.right_row2002_selectedClass_eq_moserPair_surplusPair`,
@@ -567,8 +571,19 @@ Latest finite-residual checkpoint, July 7: the same-side-heavy
 `left_row2020_exists_erasedPinRowSeed_privateMask`,
 `false_of_left_row2020_finiteCandidateFacts`, and
 `leftNonSurplusRow2020Excluded_of_finiteScaffold`.  The local source
-obligation is now the finite scaffold plus two row obligations: right
+obligation was then the finite scaffold plus two row obligations: right
 `(0,0,0,4)` and left `(0,0,4,0)`.
+
+Latest finite-residual checkpoint, July 7: the two pure surplus-side residual
+rows are now closed from the finite scaffold.  The right row `(0,0,0,4)` uses
+`right_row0004_privateMask_eq_surplusTriple`,
+`false_of_right_row0004_finiteCandidateFacts`, and
+`rightNonSurplusRow0004Excluded_of_finiteScaffold`; the left row `(0,0,4,0)`
+uses the mirror `left_row0040_privateMask_eq_surplusTriple`,
+`false_of_left_row0040_finiteCandidateFacts`, and
+`leftNonSurplusRow0040Excluded_of_finiteScaffold`.  The local row source is
+now empty; the live erased-pin `sorry` needs the scaffold and direct surplus
+`ErasedPinTriple` exclusions.
 
 Second-pass residual scan, July 7: after removing the eight row-wide
 private-`.w` cross-separation rows and the two `M0|S0|O1|X3`
@@ -578,7 +593,8 @@ from the finite scaffold, and then closing the `M1|S0|O1|X2` and
 `M1|S1|O1|X1` left-right pairs from the finite scaffold, and then closing the
 `M1|S1|O0|X2` and `M2|S0|O0|X2` same-side-heavy pairs from the finite scaffold,
 no finite ten-label residual rows remain.  The pure surplus-side four-hit pair
-is still outside the ten-label route and needs a surplus-extra bridge.
+is now also closed from the finite scaffold by the pure-mask/cross-separation
+bridge.
 
 This still does not prove a bare row exclusion from the four count equalities
 alone.  The row-truth relay below found realizations for the then-open finite
@@ -596,19 +612,17 @@ ordered cubes are branch-0 collision / non-`p` center / metric-row-failure
 residuals without the collision-exclusion or metric producer in scope; the
 pinned-surplus theorem is still at the exact-bank-versus-general-`m` boundary;
 and this erased-pin local source is now the finite residual producer
-`hfiniteResidualRows`, which still needs a producer for the scaffold and the two
-pure surplus-side four-hit rows.
+`hfiniteResidualRows`, which still needs a producer for the scaffold and the
+direct surplus erased-pin exclusions.
 
 Next proof-producing work:
 
 1. Produce `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus
    point supplied by the residual route.  This is now load-bearing: without it
    the closed row bridges cannot fire.
-2. Prove the surplus-extra bridge for the two four-hit surplus-side rows above;
-   they are not finite ten-label rows.
-3. First try to delete a direct surplus-side exclusion only if an existing
+2. First try to delete a direct surplus-side exclusion only if an existing
    `SurplusM44Packet` or endpoint/pinned residual lemma supplies it directly.
-4. Do not add another local reduced-input statement unless the adapter proves a
+3. Do not add another local reduced-input statement unless the adapter proves a
    nontrivial producer fact, not just an implication between two unproved
    surfaces.
 
@@ -852,19 +866,13 @@ surplus point and the following data:
 surplus-opposite Moser vertex direct ErasedPinTriple exclusion
 surplus-cap strict-interior direct ErasedPinTriple exclusions
 finite candidate scaffold for the erased surplus point
-oppIndex1 strict interiors:
-  left-right finite residual bucket closed by the finite scaffold;
-  exclusion of the pure surplus-side row `(0,0,0,4)`
-oppIndex2 strict interiors:
-  left-right finite residual bucket closed by the finite scaffold;
-  exclusion of the pure surplus-side row `(0,0,4,0)`
 ```
 
 Important correction: do not revive the `AdjacentChainOneHitData` route for
 this branch.  The exact-rational two-hit probe found interior non-surplus
 witnesses, so adjacent one-hit upper bounds are false at the centers this
-residual needs.  The local `sorry` is now shaped as the finite exact-row
-obligation instead.
+residual needs.  The local `sorry` is now shaped as the finite scaffold plus
+direct surplus erased-pin exclusions instead.
 
 Second correction, 2026-07-07: the row-truth probe (commit d9a0b94,
 `scratch/erased-pin-row-truth/`) realized all 26 non-Lean-closed rows and
@@ -886,8 +894,8 @@ IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement
 IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement
 RightNonSurplusRoutedRowsExcluded S x p
 LeftNonSurplusRoutedRowsExcluded S x p
-RightNonSurplusRoutedFiniteResidualRowsExcluded S x p
-LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p
+RightNonSurplusRoutedFiniteResidualRowsExcluded S x p     -- now `True`
+LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p      -- now `True`
 rightNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
 leftNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
 RightNonSurplusExactCountFamilyExcluded S x p
@@ -987,12 +995,60 @@ minimality route is also circular at this level: exact erased pins become
 `ErasedPinTriple`s, and excluding all such triples is what later yields the
 erased-set `K4` witness.
 
+Checkpoint, 2026-07-07 21:00 PDT: rechecked the live Lean frontier after the
+same-side-heavy row commit.  There is no hidden producer for
+`ErasedPinFiniteCandidateScaffoldFacts`; the name is local to
+`RemovableVertexAxiom.lean` and all current uses are consumers/adapters.  The
+closed non-surplus erased-pin reducers in `SurplusM44Packet.lean` remain useful
+only after adjacent one-hit data or the finite scaffold has produced their
+inputs.  `ErasedPinTriple` is not itself a removable-vertex witness; it is the
+exact-pin obstruction whose exclusion is needed before
+`selectedClass_erase_witness_of_no_exact_erased_pin` can build erased-set `K4`
+witnesses.  At that checkpoint the pure rows were still open; the current
+compiled state has since closed them from the finite scaffold.  The remaining
+local producer is the finite scaffold plus the direct surplus erased-pin
+exclusions.
+
+Checkpoint, 2026-07-07 21:35 PDT: checked the pure surplus-side row against the
+pinned-residual route and the semantic docs index.  The pinned residual
+producers in `SurplusM44Packet.lean` are apex-centered:
+`PinnedRightSurplusResidualAt` uses
+`SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius`, and the mirror
+uses `S.oppositeVertexByIndex S.oppIndex2`.  The erased-pin pure rows are
+interior-centered:
+`RightNonSurplusExactCountRowExcluded S x p 0 0 0 4` and
+`LeftNonSurplusExactCountRowExcluded S x p 0 0 4 0` quantify over arbitrary
+`p ∈ S.capInteriorByIndex S.oppIndex1/2`.  Therefore the current pinned route
+did not close these rows directly.  `nthdegree docs search --lean` did not
+surface an existing producer for `ErasedPinFiniteCandidateScaffoldFacts`; the
+pure rows were later closed by the finite-scaffold pure-mask/cross-separation
+bridge below.
+
+Checkpoint, 2026-07-07 22:05 PDT: the pure surplus-side rows are now closed in
+Lean from the finite scaffold.  New/active names:
+`pointMask_eq_surplusTripleMask_of_label_members`,
+`privateSurplusTriple_u_crossSeparation_false_of_candidate`,
+`false_of_privateSurplusTriple_u_crossSeparation`,
+`mem_candidateMasks_u_of_mem_seed_candidateMasks`,
+`right_row0004_privateMask_eq_surplusTriple`,
+`left_row0040_privateMask_eq_surplusTriple`,
+`false_of_right_row0004_finiteCandidateFacts`,
+`false_of_left_row0040_finiteCandidateFacts`,
+`rightNonSurplusRow0004Excluded_of_finiteScaffold`, and
+`leftNonSurplusRow0040Excluded_of_finiteScaffold`.  The same-side-heavy finite
+residual buckets are now `True`, and the adapters synthesize the pure rows from
+`ErasedPinFiniteCandidateScaffoldFacts S x`.  The erased-pin local `sorry` is
+therefore narrowed to: produce `ErasedPinFiniteCandidateScaffoldFacts S x` for
+the chosen erased surplus point, plus the surplus-opposite and surplus-interior
+direct `ErasedPinTriple` exclusions.
+
 Trust boundary: after the finite-row/count-family rewire,
 `proof-blueprint axioms
 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` reports
-only core axioms plus `sorryAx`.  The publish target
-`Problem97.erdos97_rhs` still reaches `Lean.trustCompiler` through other
-native/generated certificate paths.
+core axioms plus `sorryAx`, `Lean.ofReduceBool`, and `Lean.trustCompiler`; the
+only unapproved custom axiom reported by the command is `sorryAx`.  The publish
+target `Problem97.erdos97_rhs` has the same custom-axiom boundary at this
+checkpoint.
 
 ## Verification
 
@@ -1033,11 +1089,12 @@ proof-blueprint spine Problem97.erdos97_rhs --max-depth 6
 
 proof-blueprint axioms Problem97.erdos97_rhs
   custom axioms include: sorryAx, Lean.trustCompiler
-  current axioms command flags both as unsanctioned; .blueprint.toml lists
-  Lean.trustCompiler as approved, and spine views list it in the approved set.
+  current axioms command flags only sorryAx as unapproved; Lean.trustCompiler
+  is reported in the closure but is approved by project policy/config.
 
 proof-blueprint axioms Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
-  custom axioms include: sorryAx only
+  custom axioms include: sorryAx, Lean.trustCompiler
+  current axioms command flags only sorryAx as unapproved
 ```
 
 Use narrow `lake-build` targets while editing generated certificate shards.
