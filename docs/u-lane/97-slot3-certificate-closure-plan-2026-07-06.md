@@ -308,6 +308,19 @@ specifically the right and left ambient-index export certificates.  Verification
 succeeded and proof-blueprint resynced; the active spine is `1 open / 806
 total`.
 
+2026-07-08 shared-boundary interval checkpoint: `SurplusM44Packet.lean` now
+exposes `SurplusCapPacket.capByIndex_interval_of_global_indices`.  Given one
+shared ambient CCW boundary enumeration `φ`, endpoint indices `ia < ib`, and an
+opposite-apex index outside that interval, it proves `S.capByIndex i` is
+exactly the closed global index interval `[ia, ib]`.  This is the packet-level
+bridge from `ArcBlockContiguity.onArcOpposite_iff_index_block` needed by the
+P1 hull-order producer: the next selector can work in one surplus-apex-rotated
+global boundary order instead of separately choosing per-cap block data.
+Verification: `LEAN_ROOT=.../lean lake-build
+Erdos9796Proof.P97.SurplusM44Packet` and then `LEAN_ROOT=.../lean lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom` both succeeded and proof-blueprint
+resynced; the active spine remains `1 open / 806 total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

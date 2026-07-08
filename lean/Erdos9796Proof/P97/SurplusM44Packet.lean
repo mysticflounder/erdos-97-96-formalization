@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Cap.PartitionFromMEC
+import Erdos9796Proof.P97.ArcBlockContiguity
 import Erdos9796Proof.P97.CGN.CGN4g
 import Erdos9796Proof.P97.CircumscribedMECPacket
 import Erdos9796Proof.P97.WitnessPacketInterface
@@ -143,6 +144,52 @@ theorem capByIndex_arc_membership
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).1
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).2.1
   · simpa [capByIndex, triangleByIndex] using (S.partition.arc_membership x hxA).2.2
+
+/-- In one shared ambient CCW boundary enumeration, an indexed cap is exactly
+the closed interval between its two support endpoints whenever the opposite
+triangle vertex lies outside that endpoint interval.  This is the packet-level
+form of `onArcOpposite_iff_index_block` used by the erased-pin hull-order
+producer. -/
+theorem capByIndex_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hab : ia < ib) (hc : ic < ia ∨ ib < ic)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) :
+    ∀ x : ℝ²,
+      x ∈ S.capByIndex i ↔
+        ∃ q : Fin n, ia ≤ q ∧ q ≤ ib ∧ φ q = x := by
+  intro x
+  constructor
+  · intro hxC
+    have hxA : x ∈ A := S.capByIndex_subset i hxC
+    rw [← hφimage] at hxA
+    rcases Finset.mem_image.mp hxA with ⟨q, _hq, hqeq⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hqC : φ q ∈ S.capByIndex i := by
+      simpa [hqeq] using hxC
+    have harc : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+      have h := (S.capByIndex_arc_membership i (φ q) hqA).1 hqC
+      simpa [hic, hia, hib] using h
+    obtain ⟨hlo, hhi⟩ :=
+      (onArcOpposite_iff_index_block hccw hφ hab hc q).1 harc
+    exact ⟨q, hlo, hhi, hqeq⟩
+  · rintro ⟨q, hiaq, hqib, rfl⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have harc : OnArcOpposite (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 (φ q) := by
+      have h :=
+        (onArcOpposite_iff_index_block hccw hφ hab hc q).2 ⟨hiaq, hqib⟩
+      simpa [hic, hia, hib] using h
+    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
 
 /-- A carrier point outside an indexed closed cap lies strictly on the same
 side of that cap's chord as the opposite Moser vertex. -/
