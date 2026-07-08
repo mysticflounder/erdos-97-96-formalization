@@ -1637,3 +1637,46 @@ the same-circle-or-audited-support payload missing in the current local goal.
 Thus a direct U5 closure still needs a genuine `U5ModeA` source plus audited
 support/same-circle data, or a surplus-index selected-class contradiction that
 bypasses Mode A.
+
+SEP producer checkpoint, 2026-07-08 PDT: the finite-scaffold separation target
+has a real compiled producer path in
+`lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean`, backed by the new
+geometric core in
+`lean/Erdos9796Proof/P97/SurplusCOMPGBankSep.lean`.  The producer proves that
+same-radius point classes in the ten-label CCW hull order satisfy the generated
+cross-separation masks, and the right/left exact-cap selected-class producers
+derive generated `sepOKFor` facts for exactly the generated `labelPairs`
+center-pair and point-pair domain.
+
+Important correction to the previous producer target: the finite-scaffold SEP
+surface must not require total `∀ c cp a b, sepOKFor ... = true`.  That surface
+includes same-center cases that the generated checker never enumerates and that
+are false in the Boolean encoding, for example `separated .v .v .u .w = false`.
+The compiled bridge now exposes the correct generated-domain checkers:
+
+```lean
+separationOK_shadowOfPointClasses_of_sepOKFor_labelPairs
+searchSeparationOK_shadowOfPointClasses_of_crossSeparation_orderedPairs
+rightPinned_sepOKFor_of_exactCaps_selectedClasses
+leftPinned_sepOKFor_of_exactCaps_selectedClasses
+```
+
+Narrow verification for this checkpoint:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean \
+  lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+
+proof-blueprint spine \
+  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded \
+  --max-depth 4
+```
+
+The Lean target and proof-blueprint resync both succeeded.  The active leaf is
+still open because the on-spine scaffold in
+`RemovableVertexAxiom.lean` still asks for the older total SEP surface before
+the producer is wired.  Current open/total state for this anchor is `1/785`.
+The next closure step is to narrow the active finite-candidate scaffold and its
+conversion lemmas from total SEP to generated-domain SEP, then feed the compiled
+right/left SEP producers into that scaffold together with the already compiled
+prefix-count producers and the remaining seed-candidate producers.

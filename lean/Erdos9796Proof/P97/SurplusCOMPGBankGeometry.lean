@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.SurplusCOMPGBank
+import Erdos9796Proof.P97.SurplusCOMPGBankSep
 import Erdos9796Proof.P97.SurplusSeededShadow
 import Erdos9796Proof.P97.ErasedPinFixedSeedDFS
 import Erdos9796Proof.P97.EndpointCertificate.MetricShadow
@@ -1370,6 +1371,41 @@ theorem separationOK_shadowOfPointClasses_of_sepOKFor
     separationOK (shadowOfPointClasses pointOf centerClass) = true := by
   simp [separationOK, labelPairs, hsep]
 
+/-- Pointwise separation on exactly the generated center and point-pair lists
+is sufficient for the generated separation checker. -/
+theorem separationOK_shadowOfPointClasses_of_sepOKFor_labelPairs
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α}
+    (hsep : ∀ c cp x y : Label,
+      (c, cp) ∈ labelPairs →
+        (x, y) ∈ labelPairs →
+          sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y =
+            true) :
+    separationOK (shadowOfPointClasses pointOf centerClass) = true := by
+  unfold separationOK
+  rw [List.all_eq_true]
+  intro centerPair hcenterPair
+  rw [List.all_eq_true]
+  intro pointPair hpointPair
+  exact hsep centerPair.1 centerPair.2 pointPair.1 pointPair.2
+    hcenterPair hpointPair
+
+/-- A cross-mask separation certificate for one ordered center pair gives the
+pointwise `sepOKFor` fact for every generated point pair. -/
+theorem sepOKFor_of_crossSeparationOKForMasks
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {c cp a b : Label}
+    (hcross :
+      crossSeparationOKForMasks c
+        (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true)
+    (hab : (a, b) ∈ labelPairs) :
+    sepOKFor (shadowOfPointClasses pointOf centerClass) c cp a b = true := by
+  unfold crossSeparationOKForMasks at hcross
+  rw [List.all_eq_true] at hcross
+  simpa [sepOKFor, Shadow.classHas, shadowOfPointClasses_centerMask] using
+    hcross (a, b) hab
+
 /-- The generated search-separation checker is exposed as an explicit
 finite-mask interface for induced geometric shadows. -/
 theorem searchSeparationOK_shadowOfPointClasses_of_crossSeparation
@@ -1381,6 +1417,489 @@ theorem searchSeparationOK_shadowOfPointClasses_of_crossSeparation
     searchSeparationOK (shadowOfPointClasses pointOf centerClass) = true := by
   simp [searchSeparationOK, orderedLabelPairs, shadowOfPointClasses_centerMask,
     hsep]
+
+/-- Cross-mask separation on exactly the generated ordered center-pair list is
+sufficient for the generated search-separation checker. -/
+theorem searchSeparationOK_shadowOfPointClasses_of_crossSeparation_orderedPairs
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α}
+    (hsep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+          (pointMask pointOf (centerClass cp)) = true) :
+    searchSeparationOK (shadowOfPointClasses pointOf centerClass) = true := by
+  unfold searchSeparationOK
+  rw [List.all_eq_true]
+  intro centerPair hcenterPair
+  simpa [shadowOfPointClasses_centerMask] using
+    hsep centerPair.1 centerPair.2 hcenterPair
+
+/-- Same-radius geometric classes in a CCW ten-label hull order produce the
+generated cross-separation mask bit for one ordered center pair. -/
+theorem crossSeparationOKForMasks_of_sameRadius_ccwHull
+    {pointOf : Label → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 => pointOf (labelOfHullFin i)))
+    (hinj : Function.Injective pointOf)
+    {centerClass : Label → Finset ℝ²} {c cp : Label}
+    (hccp : c ≠ cp)
+    (hsameC : ∀ a b : Label,
+      pointOf a ∈ centerClass c →
+        pointOf b ∈ centerClass c →
+          dist (pointOf c) (pointOf a) =
+            dist (pointOf c) (pointOf b))
+    (hsameCP : ∀ a b : Label,
+      pointOf a ∈ centerClass cp →
+        pointOf b ∈ centerClass cp →
+          dist (pointOf cp) (pointOf a) =
+            dist (pointOf cp) (pointOf b)) :
+    crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+      (pointMask pointOf (centerClass cp)) = true := by
+  classical
+  have hinjHull :
+      Function.Injective
+        (fun i : Fin 10 => pointOf (labelOfHullFin i)) := by
+    intro i j h
+    have hlabel : labelOfHullFin i = labelOfHullFin j := hinj h
+    have hfin := congrArg hullFin hlabel
+    simpa using hfin
+  unfold crossSeparationOKForMasks
+  rw [List.all_eq_true]
+  intro pair hpair
+  rcases pair with ⟨x, y⟩
+  by_cases hxc : x = c
+  · simp [Label.beq_eq_decide_eq, hxc]
+  by_cases hxcp : x = cp
+  · simp [Label.beq_eq_decide_eq, hxcp]
+  by_cases hyc : y = c
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc]
+  by_cases hycp : y = cp
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hycp]
+  by_cases hcx :
+      maskHas (pointMask pointOf (centerClass c)) x = true
+  · by_cases hcy :
+        maskHas (pointMask pointOf (centerClass c)) y = true
+    · by_cases hcpx :
+          maskHas (pointMask pointOf (centerClass cp)) x = true
+      · by_cases hcpy :
+            maskHas (pointMask pointOf (centerClass cp)) y = true
+        · have hxC : pointOf x ∈ centerClass c :=
+            pointMask_maskHas_mem hcx
+          have hyC : pointOf y ∈ centerClass c :=
+            pointMask_maskHas_mem hcy
+          have hxCP : pointOf x ∈ centerClass cp :=
+            pointMask_maskHas_mem hcpx
+          have hyCP : pointOf y ∈ centerClass cp :=
+            pointMask_maskHas_mem hcpy
+          have hdistC :
+              dist (pointOf x) (pointOf c) =
+                dist (pointOf y) (pointOf c) := by
+            simpa [dist_comm] using hsameC x y hxC hyC
+          have hdistCP :
+              dist (pointOf x) (pointOf cp) =
+                dist (pointOf y) (pointOf cp) := by
+            simpa [dist_comm] using hsameCP x y hxCP hyCP
+          have hfinCCP : hullFin c ≠ hullFin cp := by
+            intro h
+            exact hccp (hullFin_inj.mp h)
+          have hyFinC : hullFin y ≠ hullFin c := by
+            intro h
+            exact hyc (hullFin_inj.mp h)
+          have hyFinCP : hullFin y ≠ hullFin cp := by
+            intro h
+            exact hycp (hullFin_inj.mp h)
+          have hxy : x ≠ y := by
+            cases x <;> cases y <;> simp [labelPairs] at hpair ⊢
+          have hxyPoint : pointOf x ≠ pointOf y := by
+            intro h
+            exact hxy (hinj h)
+          have hdistHullC :
+              dist
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin x))
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin c)) =
+                dist
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin y))
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin c)) := by
+            simpa using hdistC
+          have hdistHullCP :
+              dist
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin x))
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin cp)) =
+                dist
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin y))
+                  ((fun i : Fin 10 => pointOf (labelOfHullFin i))
+                    (hullFin cp)) := by
+            simpa using hdistCP
+          have hsepBtw :
+              btw (hullFin c) (hullFin cp) (hullFin x) ↔
+                ¬ btw (hullFin c) (hullFin cp) (hullFin y) :=
+            btw_sep
+              (ψ := fun i : Fin 10 => pointOf (labelOfHullFin i))
+              hccw hinjHull hfinCCP hyFinC hyFinCP
+              hdistHullC hdistHullCP (by simpa using hxyPoint)
+          have hseparated : separated c cp x y = true :=
+            separated_eq_true_of_btw_sep hxc hxcp hyc hycp hsepBtw
+          simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+            hcpx, hcpy, hseparated]
+        · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+            hcpx, hcpy]
+      · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+          hcpx]
+    · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy]
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx]
+
+/-- Right-oriented erased-pin producer for the private class against the exact
+`.w` cap.  The remaining geometric input is the CCW hull order of the ten
+pinned labels. -/
+theorem rightPinned_private_w_crossSeparationOK_of_selectedClass_exactCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 center : ℝ²} {radius : ℝ}
+    {privateCenter : Label}
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i)))
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    (hcenter :
+      center =
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 privateCenter)
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex2) :
+    crossSeparationOKForMasks privateCenter
+      (pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass privateCenter))
+      .w
+      (pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass .w)) = true := by
+  let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hprivate_ne_w : privateCenter ≠ .w := by
+    rcases hpriv with rfl | rfl <;> decide
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex2 hK4
+      hcontain.2 hM44.oppIndex2_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  have hsamePrivate : ∀ a b : Label,
+      pointOf a ∈ centerClass privateCenter →
+        pointOf b ∈ centerClass privateCenter →
+          dist (pointOf privateCenter) (pointOf a) =
+            dist (pointOf privateCenter) (pointOf b) := by
+    intro a b ha hb
+    rw [hprivateClass] at ha hb
+    have haDist := (mem_selectedClass.mp ha).2
+    have hbDist := (mem_selectedClass.mp hb).2
+    simpa [pointOf, hcenter] using haDist.trans hbDist.symm
+  have hsameW : ∀ a b : Label,
+      pointOf a ∈ centerClass .w →
+        pointOf b ∈ centerClass .w →
+          dist (pointOf .w) (pointOf a) =
+            dist (pointOf .w) (pointOf b) := by
+    intro a b ha hb
+    rw [hwClass] at ha hb
+    have haDist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+        hwExact ha
+    have hbDist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+        hwExact hb
+    simpa [pointOf, rightPinnedLabelPoint] using haDist.trans hbDist.symm
+  exact
+    crossSeparationOKForMasks_of_sameRadius_ccwHull
+      (pointOf := pointOf) hccw hinj hprivate_ne_w hsamePrivate hsameW
+
+/-- Right-oriented erased-pin producer for pointwise generated separation.
+The center-pair input is restricted to the generated `labelPairs` list, so the
+invalid same-center case is not part of the produced surface. -/
+theorem rightPinned_sepOKFor_of_exactCaps_selectedClasses
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²} {radius : ℝ}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i)))
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hv : centerClass .v = S.capByIndex S.oppIndex1)
+    (hw : centerClass .w = S.capByIndex S.oppIndex2)
+    (hPw : centerClass .Pw = SelectedClass A p₁ radius)
+    (hPu : centerClass .Pu = SelectedClass A p₂ radius)
+    (hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center)) :
+    ∀ c cp a b : Label, (c, cp) ∈ labelPairs → (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true := by
+  classical
+  let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hinj : Function.Injective pointOf :=
+    rightPinnedLabelPoint_injective_of_mem S
+      hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex1 hK4
+      hcontain.1 hM44.oppIndex1_cap_card_eq_four with
+    ⟨_radiusV, _hradiusV, hvExact⟩
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex2 hK4
+      hcontain.2 hM44.oppIndex2_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  have hsame : ∀ center a b : Label,
+      pointOf a ∈ centerClass center →
+        pointOf b ∈ centerClass center →
+          dist (pointOf center) (pointOf a) =
+            dist (pointOf center) (pointOf b) := by
+    intro center a b ha hb
+    cases center
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .u (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · rw [hv] at ha hb
+      have haDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+          hvExact ha
+      have hbDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+          hvExact hb
+      simpa [pointOf, rightPinnedLabelPoint] using haDist.trans hbDist.symm
+    · rw [hw] at ha hb
+      have haDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+          hwExact ha
+      have hbDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+          hwExact hb
+      simpa [pointOf, rightPinnedLabelPoint] using haDist.trans hbDist.symm
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s1 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s2 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s3 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · rw [hPw] at ha hb
+      simpa [pointOf, rightPinnedLabelPoint] using
+        (mem_selectedClass.mp ha).2.trans
+          (mem_selectedClass.mp hb).2.symm
+    · rw [hPu] at ha hb
+      simpa [pointOf, rightPinnedLabelPoint] using
+        (mem_selectedClass.mp ha).2.trans
+          (mem_selectedClass.mp hb).2.symm
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .Q1 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .Q2 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+  intro c cp a b hcenterPair hab
+  have hccp : c ≠ cp := by
+    cases c <;> cases cp <;> simp [labelPairs] at hcenterPair ⊢
+  have hcross :
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true :=
+    crossSeparationOKForMasks_of_sameRadius_ccwHull
+      (pointOf := pointOf) hccw hinj hccp
+      (hsame c) (hsame cp)
+  exact sepOKFor_of_crossSeparationOKForMasks hcross hab
+
+/-- Left-oriented erased-pin producer for the private class against the exact
+`.w` cap.  The remaining geometric input is the CCW hull order of the ten
+pinned labels after the left-to-right relabelling. -/
+theorem leftPinned_private_w_crossSeparationOK_of_selectedClass_exactCap
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 center : ℝ²} {radius : ℝ}
+    {privateCenter : Label}
+    (hinj : Function.Injective
+      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i)))
+    (hpriv : privateCenter = .Pw ∨ privateCenter = .Pu)
+    (hcenter :
+      center =
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 privateCenter)
+    {centerClass : Label → Finset ℝ²}
+    (hprivateClass : centerClass privateCenter =
+      SelectedClass A center radius)
+    (hwClass : centerClass .w = S.capByIndex S.oppIndex1) :
+    crossSeparationOKForMasks privateCenter
+      (pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass privateCenter))
+      .w
+      (pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (centerClass .w)) = true := by
+  let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hprivate_ne_w : privateCenter ≠ .w := by
+    rcases hpriv with rfl | rfl <;> decide
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex1 hK4
+      hcontain.1 hM44.oppIndex1_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  have hsamePrivate : ∀ a b : Label,
+      pointOf a ∈ centerClass privateCenter →
+        pointOf b ∈ centerClass privateCenter →
+          dist (pointOf privateCenter) (pointOf a) =
+            dist (pointOf privateCenter) (pointOf b) := by
+    intro a b ha hb
+    rw [hprivateClass] at ha hb
+    have haDist := (mem_selectedClass.mp ha).2
+    have hbDist := (mem_selectedClass.mp hb).2
+    simpa [pointOf, hcenter] using haDist.trans hbDist.symm
+  have hsameW : ∀ a b : Label,
+      pointOf a ∈ centerClass .w →
+        pointOf b ∈ centerClass .w →
+          dist (pointOf .w) (pointOf a) =
+            dist (pointOf .w) (pointOf b) := by
+    intro a b ha hb
+    rw [hwClass] at ha hb
+    have haDist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+        hwExact ha
+    have hbDist :=
+      S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+        hwExact hb
+    simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+      leftPinnedToRightLabel] using haDist.trans hbDist.symm
+  exact
+    crossSeparationOKForMasks_of_sameRadius_ccwHull
+      (pointOf := pointOf) hccw hinj hprivate_ne_w hsamePrivate hsameW
+
+/-- Left-oriented mirror of
+`rightPinned_sepOKFor_of_exactCaps_selectedClasses`. -/
+theorem leftPinned_sepOKFor_of_exactCaps_selectedClasses
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²} {radius : ℝ}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i)))
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hv : centerClass .v = S.capByIndex S.oppIndex2)
+    (hw : centerClass .w = S.capByIndex S.oppIndex1)
+    (hPw : centerClass .Pw = SelectedClass A p₁ radius)
+    (hPu : centerClass .Pu = SelectedClass A p₂ radius)
+    (hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center)) :
+    ∀ c cp a b : Label, (c, cp) ∈ labelPairs → (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true := by
+  classical
+  let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hinj : Function.Injective pointOf :=
+    leftPinnedLabelPoint_injective_of_mem S
+      hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex2 hK4
+      hcontain.2 hM44.oppIndex2_cap_card_eq_four with
+    ⟨_radiusV, _hradiusV, hvExact⟩
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex1 hK4
+      hcontain.1 hM44.oppIndex1_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  have hsame : ∀ center a b : Label,
+      pointOf a ∈ centerClass center →
+        pointOf b ∈ centerClass center →
+          dist (pointOf center) (pointOf a) =
+            dist (pointOf center) (pointOf b) := by
+    intro center a b ha hb
+    cases center
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .u (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · rw [hv] at ha hb
+      have haDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+          hvExact ha
+      have hbDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+          hvExact hb
+      simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+        leftPinnedToRightLabel] using haDist.trans hbDist.symm
+    · rw [hw] at ha hb
+      have haDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+          hwExact ha
+      have hbDist :=
+        S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+          hwExact hb
+      simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+        leftPinnedToRightLabel] using haDist.trans hbDist.symm
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s1 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s2 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .s3 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · rw [hPw] at ha hb
+      simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+        leftPinnedToRightLabel] using
+        (mem_selectedClass.mp ha).2.trans
+          (mem_selectedClass.mp hb).2.symm
+    · rw [hPu] at ha hb
+      simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+        leftPinnedToRightLabel] using
+        (mem_selectedClass.mp ha).2.trans
+          (mem_selectedClass.mp hb).2.symm
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .Q1 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+    · exact sameRadius_of_centerClass_eq_selectedClass
+        (hselectedOther .Q2 (by decide) (by decide) (by decide)
+          (by decide)) a b ha hb
+  intro c cp a b hcenterPair hab
+  have hccp : c ≠ cp := by
+    cases c <;> cases cp <;> simp [labelPairs] at hcenterPair ⊢
+  have hcross :
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true :=
+    crossSeparationOKForMasks_of_sameRadius_ccwHull
+      (pointOf := pointOf) hccw hinj hccp
+      (hsame c) (hsame cp)
+  exact sepOKFor_of_crossSeparationOKForMasks hcross hab
 
 /-- A raw Boolean trigger condition gives the generated private-trigger check
 for one center in the induced shadow. -/
