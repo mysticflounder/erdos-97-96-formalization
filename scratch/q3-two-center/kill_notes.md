@@ -79,6 +79,33 @@ constraints, so the full falsifier-gate check applies. Machine
 cross-check: z3 unsat on the subsystem with even a SINGLE intO1 member
 of K(V) (check_kq33.py), i.e. the kill does not need the full γ count.
 
+## K-Q3-5. Shared-S kill — ALL isv=shared classes (PROVEN, hand)
+
+**Claim.** No |A| ≥ 12 leaf configuration has a shared member
+z ∈ intS ∩ K(V) ∩ K(W). This kills every isv='shared' class (9 of the
+87, subsuming K-Q3-3's class).
+
+*Proof.* Let M = (1/2, 0) be the midpoint of VW and O = (1/2, ω),
+ω ≥ 0 (I-OBT). For z ∈ intS: z_y < 0 (cap sign) and ‖z−O‖² ≤ R²
+(I-DISK), so ‖z−M‖² = ‖z−O‖² + 2ω·z_y − ω² ≤ R² − ω² = 1/4, and by the
+parallelogram identity
+  ρV² + ρW² = ‖z−V‖² + ‖z−W‖² = 2‖z−M‖² + 1/2 ≤ 1.
+H1 gives K(V) a member p ∈ intO1 (γ_V ≥ 2): p strictly beyond chord WU
+forces ρV = ‖p−V‖ > dist(V, line WU) = uy/‖WU‖ =: dV; symmetrically
+ρW > dW := uy/‖UV‖. But dV² + dW² ≥ 1 for every nonobtuse frame:
+with a = ‖WU‖, b = ‖UV‖, uy = ab·sin U and ab·cos U = ux² − ux + uy²,
+  dV² + dW² ≥ 1 ⟺ (a²+b²)·sin²U ≥ 1 ⟺ cos U·(2ab·sin²U − cos U) ≥ 0,
+and cos U ≥ 0 (I-OBT at U) while ab·(2ab·sin²U − cos U) =
+2uy² − (ux²−ux+uy²) = uy² + ux(1−ux) ≥ 0 (I-OBT at V, W ⟺ ux ∈ [0,1]).
+So ρV² + ρW² > dV² + dW² ≥ 1 ≥ ρV² + ρW². Contradiction. ∎
+
+Constraints used: E-MEC, radius equalities, I-DISK on z, I-OBT (all
+three corners), strict cap signs, H1 counts — no ORDER constraints, so
+the full falsifier-gate check applies. Machine cross-check: the full
+3-aux-point subsystem is z3-unknown (300 s); lemma-level checks (the
+sum bound, the dV²+dW² ≥ 1 inequality, the strict lower bounds) are
+each small polynomial claims — PENDING (STATE item 7a).
+
 ## Machine cross-checks
 
 - K-Q3-1 sub-system (V, W, z₁, z₂, radius equalities, the two chord-VW
