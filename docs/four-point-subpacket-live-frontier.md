@@ -435,19 +435,19 @@ The local source obligation is now the finite scaffold plus 16 finite residual
 rows: six left-right rows and ten same-side-heavy rows.
 
 Second-pass residual scan, July 7: after removing the eight row-wide
-private-`.w` cross-separation rows, the remaining seventeen finite rows were scanned
-for smaller validator fragments.  No remaining row is killed by local candidate
-validity alone, and no remaining row is killed by fixed `.v/.w/private`
-pair-counts alone.  The useful residual signal is still separation/search
-fragment structure: every remaining seed is killed by the exact `.v` cap, exact
-`.w` cap, the private mask, and at most three additional center labels.  Counts
-below are per row; left/right mirror rows have the same oriented data.  "0"
-means the seed is already killed by private-`.v` or private-`.w`
-cross-separation.
+private-`.w` cross-separation rows and the two `M0|S0|O1|X3`
+terminal-remainder transfer rows, the remaining sixteen finite rows were
+scanned for smaller validator fragments.  No remaining row is killed by local
+candidate validity alone, and no remaining row is killed by fixed
+`.v/.w/private` pair-counts alone.  The useful residual signal is still
+separation/search fragment structure: every remaining seed is killed by the
+exact `.v` cap, exact `.w` cap, the private mask, and at most three additional
+center labels.  Counts below are per row; left/right mirror rows have the same
+oriented data.  "0" means the seed is already killed by private-`.v` or
+private-`.w` cross-separation.
 
 | oriented signature | representative rows | minimal extra centers beyond `.v/.w/private` | quickest lead |
 |---|---|---:|---|
-| `M0\|S0\|O1\|X3` | `ep_left_m0_s0_l3_r1` (`ep_right_m0_s0_l1_r3` closed) | `12x1` | mirror the same-`sstar`/private-center transfer closure |
 | `M0\|S1\|O1\|X2` | `ep_right_m0_s1_l1_r2`, `ep_left_m0_s1_l2_r1` | `16x1 + 4x2 + 4x3` | split by mask orbit; max three extras |
 | `M0\|S1\|O0\|X3` | `ep_right_m0_s1_l0_r3`, `ep_left_m0_s1_l3_r0` | `6x1` | uniform one-extra kill; `.u`, `.Q1`, `.s1`, or `.s3` works for all masks |
 | `M1\|S0\|O1\|X2` | `ep_right_m1_s0_l1_r2`, `ep_left_m1_s0_l2_r1` | `48x0 + 20x1 + 4x2` | combine immediate cross-separation with small split |
@@ -463,7 +463,7 @@ residual seeds die by prefix depth at most eight, and most by depth four to
 six.  This reuses the existing valid-shadow-to-DFS membership lemmas, but it
 still wants the current all-label shadow interfaces.  The faster geometric
 option is to add a small-fragment emitter for selected extra-center sets.  That
-could close six residual rows with a uniform one-extra-center adapter and close
+could close four residual rows with a uniform one-extra-center adapter and close
 the other twelve by mask-orbit splits, but it needs a new adapter theorem that
 turns the geometric `hsearchSep`/pair-count facts for only the selected centers
 into the generated fragment contradiction.
@@ -491,7 +491,7 @@ Next proof-producing work:
 
 1. Produce `ErasedPinFiniteCandidateScaffoldFacts S x` for the erased surplus
    point supplied by the residual route.  This is now load-bearing: without it
-   the eight closed row bridges cannot fire.
+   the ten closed row bridges cannot fire.
 2. Close the six left-right finite residual rows and ten same-side-heavy
    rows using the second-pass residual scan.  The most direct lead is a
    small-fragment separation emitter/adapter; the conservative fallback is
