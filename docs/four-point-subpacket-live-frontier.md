@@ -496,6 +496,17 @@ opposite vertex or at a surplus-interior point.  A valid direct-surplus proof
 therefore must first derive that stronger selected-class escape from the
 chosen `x` and the global hypotheses, or use a different global argument.
 
+Post-prefix search, 2026-07-08: after the localized prefix landed, another
+`nthdegree docs search --lean` pass for
+`U3LocalizedNoQFreePacket`, `M44SelectedApex.of_erasedPinTriple`, and
+`surplusIdx` erased-pin triples still found no surplus-index analogue of the
+non-surplus payload closers.  `M44SelectedApex.of_erasedPinTriple` feeds the
+existing non-surplus primitive-packet and payload case split, and the indexed
+`oppIndex1/oppIndex2_surplusErasedPinTriple_*` lemmas require centers in
+`S.oppInterior1` or `S.oppInterior2`.  They do not close either remaining
+direct clause for center `S.oppositeVertexByIndex S.surplusIdx` or for
+`p ∈ S.capInteriorByIndex S.surplusIdx`.
+
 Fresh scaffold search, 2026-07-08: semantic search for
 `ErasedPinFiniteCandidateSepScaffoldFacts`, `PrefixPairCountsOK`, `sepOKFor`,
 and `OneSidedSeedCandidateRemainder` found only the reduced scaffold
