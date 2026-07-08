@@ -1801,3 +1801,77 @@ proof-blueprint spine \
 
 The Lean target and proof-blueprint resync both succeeded.  The current active
 spine state remains `1/797` open.
+
+Ordered finite producer checkpoint, 2026-07-08 PDT: the finite incidence side
+has now been expanded through the unordered-to-ordered label freedom that was
+blocking the scaffold route.  The new producer
+`scripts/erased-pin-ordered-producer.py` loads the exact finite producer census
+and enumerates all block-preserving relabelings of:
+
+```text
+.Pw/.Pu        2 choices
+.Q1/.Q2        2 choices
+.s1/.s2/.s3    6 choices
+```
+
+so each finite source mask is checked under all `24` ordered presentations
+compatible with the fixed generated hull vocabulary
+`u,Q1,Q2,v,s1,s2,s3,w,Pw,Pu`.
+
+Generated artifacts:
+
+```text
+certificates/surplus/erased_pin_ordered_producer_census.json
+certificates/surplus/reports/erased_pin_ordered_producer_census.md
+```
+
+The committed JSON stores the deduplicated ordered seeds, the 24 relabeling
+maps, and row-level ordered-seed keys.  Re-run the producer with
+`--include-variants` only when a full row/mask/permutation expansion is needed
+for audit.
+
+The generated ordered census reports:
+
+```text
+finite rows                                      26
+source finite masks                              660
+ordered variants                                 15,840
+distinct ordered seeds                           330
+ordered variants in existing fixed bank          15,840
+ordered variants with zero seeded-DFS completions 15,840
+ordered variants with positive DFS completions   0
+rows with all ordered variants in fixed bank      26
+rows with all ordered variants DFS-zero           26
+```
+
+This is producer data, not a new wrapper theorem.  It rules out a missing
+finite ordered-incidence family: every ordered presentation of every finite row
+already lands in the compiled 330-seed fixed bank and is killed by the existing
+generated DFS.  The remaining finite-side Lean work is therefore the geometric
+ordered-label bridge, not more finite mining.  A valid bridge must turn the
+unordered `p₁,p₂`, `q₁,q₂`, `s1,s2,s3` choices available from the packet into
+one of the ordered presentations recorded by the producer, or refactor the
+active branch so row consumers quantify over the ordered variant directly.
+
+Current proof boundary after this producer checkpoint:
+
+```text
+finite ordered incidence census                  COMPLETE as generated data
+right generated ten-label CCW hull placement      OPEN
+right own-kind candidate remainders for .Pw/.Pu   OPEN
+left generated ten-label CCW hull placement       OPEN
+left own-kind candidate remainders for .Pw/.Pu    OPEN
+surplus-opposite direct ErasedPinTriple exclusion OPEN
+surplus-interior direct ErasedPinTriple exclusion OPEN
+```
+
+Narrow verification for this checkpoint:
+
+```text
+UV_CACHE_DIR=.uv-cache uv run python scripts/erased-pin-ordered-producer.py
+UV_CACHE_DIR=.uv-cache uv run python -m py_compile scripts/erased-pin-ordered-producer.py
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+```
+
+The producer commands succeeded.  The proof-blueprint spine remains
+`1/797` open, with the same on-spine local `sorry`.
