@@ -64,6 +64,45 @@ theorem leftPinnedToRightLabel_injective :
   intro a b h
   cases a <;> cases b <;> simp [leftPinnedToRightLabel] at h ⊢
 
+/-- Reflection of the generated hull labels across the surplus axis, swapping
+endpoint order and reversing the surplus and side blocks. -/
+def reflectedHullLabel : Label → Label
+  | .u => .u
+  | .v => .w
+  | .w => .v
+  | .s1 => .s3
+  | .s2 => .s2
+  | .s3 => .s1
+  | .Pw => .Q2
+  | .Pu => .Q1
+  | .Q1 => .Pu
+  | .Q2 => .Pw
+
+theorem reflectedHullLabel_injective :
+    Function.Injective reflectedHullLabel := by
+  intro a b h
+  cases a <;> cases b <;> simp [reflectedHullLabel] at h ⊢
+
+set_option maxHeartbeats 2000000 in
+-- Finite case split over the ten generated labels; default reduction is close
+-- to the heartbeat limit in this generated-bank module.
+/-- The finite betweenness predicate is reversed by reflection. -/
+theorem between_reflectedHullLabel_swap (a b x : Label) :
+    between a b x =
+      between (reflectedHullLabel b) (reflectedHullLabel a)
+        (reflectedHullLabel x) := by
+  cases a <;> cases b <;> cases x <;> decide
+
+/-- The generated separation predicate is invariant under the reflected hull
+labelling when the separating endpoints are swapped. -/
+theorem separated_reflectedHullLabel_swap (a b x y : Label) :
+    separated a b x y =
+      separated (reflectedHullLabel b) (reflectedHullLabel a)
+        (reflectedHullLabel x) (reflectedHullLabel y) := by
+  unfold separated
+  rw [between_reflectedHullLabel_swap a b x]
+  rw [between_reflectedHullLabel_swap a b y]
+
 /-- Left-oriented geometric interpretation of the ten pinned surplus COMP-G
 labels.  It is defined as a relabelling of the right-oriented convention, with
 `.v` now the second non-surplus apex. -/
