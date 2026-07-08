@@ -537,6 +537,24 @@ ordered scaffold and then resolve the nonmatching side by transport/permutation
 or by refactoring the finite producer so it consumes whichever orientation the
 zero-cut boundary actually supplies.
 
+2026-07-08 matching-selector wiring checkpoint: the split ordered scaffold inside
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` now calls the
+zero-cut boundary export and branches on the two apex orders.  In the
+`u < oppIndex1 < oppIndex2` branch, the right scaffold calls
+`exists_rightPinnedHullOrderLabels_of_apex_order` and feeds its
+`HullOrderSubsequenceCertificate` directly to
+`rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass`.  In the
+`u < oppIndex2 < oppIndex1` branch, the left scaffold similarly calls
+`exists_leftPinnedHullOrderLabels_of_apex_order` and feeds the resulting
+certificate to `leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass`.  The
+right/left P2 candidate-remainder gaps are factored once per side.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
+succeeded and proof-blueprint reports the active spine as `1 open / 901 total`.
+The remaining P1 hull-order content is now exactly the nonmatching orientation:
+transport the opposite-side certificate to the finite-bank convention, or
+refactor the finite producer to consume the orientation supplied by the boundary
+dichotomy.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

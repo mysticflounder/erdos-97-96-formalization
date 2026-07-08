@@ -9918,64 +9918,164 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
               hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
               hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
+        rcases S.exists_ccw_boundary_order_at_surplus_apex_with_opposite_indices
+            hne hconv hK4 with
+          ⟨n, hn, φ, iv, iw, hφinj, hφimage, hccwBoundary, hu, hv, hw,
+            hapexOrder⟩
+        have hrightCandidate :
+            ∀ {p₁ p₂ q₁ q₂ s1 s2 s3 p : ℝ²},
+              p ∈ S.capInteriorByIndex S.oppIndex1 →
+              p ∈ A.erase x →
+              ∀ sstar : Label,
+                isSurplusStar sstar = true →
+                rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
+                  (OneSidedSeedCandidateRemainder
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                      (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂
+                        s1 s2 s3 (dist p x) (fun _ => dist p x))
+                      ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                          privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                        OneSidedSeed) ∧
+                    OneSidedSeedCandidateRemainder
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+                      (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂
+                        s1 s2 s3 (dist p x) (fun _ => dist p x))
+                      ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                          privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                        OneSidedSeed)) := by
+          intro p₁ p₂ q₁ q₂ s1 s2 s3 p hpI hpErase sstar hsstar
+            hsstar_eq
+          -- P2 producer gap: prove the right candidate remainders for the
+          -- selected-class center classes.
+          sorry
+        have hleftCandidate :
+            ∀ {p₁ p₂ q₁ q₂ s1 s2 s3 p : ℝ²},
+              p ∈ S.capInteriorByIndex S.oppIndex2 →
+              p ∈ A.erase x →
+              ∀ sstar : Label,
+                isSurplusStar sstar = true →
+                leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3 sstar = x →
+                  (OneSidedSeedCandidateRemainder
+                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
+                      (leftPinnedErasedPayloadCenterClass S q₁ q₂ p₁ p₂
+                        s1 s2 s3 (dist p x) (fun _ => dist p x))
+                      ({ sstar := sstar, privateCenter := .Pw, kind := .own,
+                          privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
+                        OneSidedSeed) ∧
+                    OneSidedSeedCandidateRemainder
+                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
+                      (leftPinnedErasedPayloadCenterClass S q₁ q₂ p₁ p₂
+                        s1 s2 s3 (dist p x) (fun _ => dist p x))
+                      ({ sstar := sstar, privateCenter := .Pu, kind := .own,
+                          privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
+                        OneSidedSeed)) := by
+          intro p₁ p₂ q₁ q₂ s1 s2 s3 p hpI hpErase sstar hsstar
+            hsstar_eq
+          -- Mirror P2 candidate-remainder producer gap.
+          sorry
         constructor
         · intro T hxT hTcard hTsub
-          rcases hlabelBase T hxT hTcard hTsub with
-            ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-              hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
-              hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
-          refine
-            ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-              hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
-          intro p hpI hpErase
-          exact
-            rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
-              hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
-              hs3I hp12 hq12 hs12 hs13 hs23
-              (fun _ => dist p x)
-              (by
-                have horder :
-                    HullOrderSubsequenceCertificate A
-                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) := by
-                  -- Producer gap: export one ambient boundary enumeration and
-                  -- increasing indices for the right ten-label packet.
-                  sorry
-                exact
-                  isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
-                    horder)
-              (by
-                intro sstar hsstar hsstar_eq
-                -- Producer gap: prove the right candidate remainders for the
-                -- selected-class center classes.
-                sorry)
+          rcases hapexOrder with hrightOrder | hleftOrder
+          · rcases hrightOrder with ⟨h0v, hvw⟩
+            rcases exists_rightPinnedHullOrderLabels_of_apex_order
+                (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
+                (iv := iv) (iw := iw) hn hφinj hφimage hccwBoundary hu hv
+                hw h0v hvw hM44 hxT hTcard hTsub with
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
+                hq₁I, hq₂I, hs1I, hs2I, hs3I, horder⟩
+            refine
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+            intro p hpI hpErase
+            exact
+              rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+                hs3I hp12 hq12 hs12 hs13 hs23
+                (fun _ => dist p x)
+                (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+                (by
+                  intro sstar hsstar hsstar_eq
+                  exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
+          · rcases hlabelBase T hxT hTcard hTsub with
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
+                hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
+            refine
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+            intro p hpI hpErase
+            exact
+              rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+                hs3I hp12 hq12 hs12 hs13 hs23
+                (fun _ => dist p x)
+                (by
+                  have horder :
+                      HullOrderSubsequenceCertificate A
+                        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) := by
+                    -- Nonmatching orientation residual: transport the left
+                    -- certificate to the right finite-bank convention, or
+                    -- refactor the finite producer to consume the available
+                    -- orientation.
+                    sorry
+                  exact
+                    isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+                      horder)
+                (by
+                  intro sstar hsstar hsstar_eq
+                  exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
         · intro T hxT hTcard hTsub
-          rcases hlabelBase T hxT hTcard hTsub with
-            ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-              hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
-              hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
-          refine
-            ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-              hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
-          intro p hpI hpErase
-          exact
-            leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
-              hconv hK4 hM44 hcontain hq₁I hq₂I hp₁I hp₂I hs1I hs2I
-              hs3I hq12 hp12 hs12 hs13 hs23
-              (fun _ => dist p x)
-              (by
-                have horder :
-                    HullOrderSubsequenceCertificate A
-                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) := by
-                  -- Producer gap: export one ambient boundary enumeration and
-                  -- increasing indices for the left ten-label packet.
-                  sorry
-                exact
-                  isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
-                    horder)
-              (by
-                intro sstar hsstar hsstar_eq
-                -- Mirror candidate-remainder producer gap.
-                sorry)
+          rcases hapexOrder with hrightOrder | hleftOrder
+          · rcases hlabelBase T hxT hTcard hTsub with
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
+                hq₁I, hq₂I, hs1I, hs2I, hs3I⟩
+            refine
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+            intro p hpI hpErase
+            exact
+              leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hq₁I hq₂I hp₁I hp₂I hs1I hs2I
+                hs3I hq12 hp12 hs12 hs13 hs23
+                (fun _ => dist p x)
+                (by
+                  have horder :
+                      HullOrderSubsequenceCertificate A
+                        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) := by
+                    -- Nonmatching orientation residual: transport the right
+                    -- certificate to the left finite-bank convention, or
+                    -- refactor the finite producer to consume the available
+                    -- orientation.
+                    sorry
+                  exact
+                    isCcwConvexPolygon_of_hullOrderSubsequenceCertificate
+                      horder)
+                (by
+                  intro sstar hsstar hsstar_eq
+                  exact hleftCandidate hpI hpErase sstar hsstar hsstar_eq)
+          · rcases hleftOrder with ⟨h0w, hwv⟩
+            rcases exists_leftPinnedHullOrderLabels_of_apex_order
+                (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
+                (iv := iv) (iw := iw) hn hφinj hφimage hccwBoundary hu hv
+                hw h0w hwv hM44 hxT hTcard hTsub with
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, hp₁I, hp₂I,
+                hq₁I, hq₂I, hs1I, hs2I, hs3I, horder⟩
+            refine
+              ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
+                hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
+            intro p hpI hpErase
+            exact
+              leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+                hconv hK4 hM44 hcontain hq₁I hq₂I hp₁I hp₂I hs1I hs2I
+                hs3I hq12 hp12 hs12 hs13 hs23
+                (fun _ => dist p x)
+                (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
+                (by
+                  intro sstar hsstar hsstar_eq
+                  exact hleftCandidate hpI hpErase sstar hsstar hsstar_eq)
     have hprunedRows :
         IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement :=
       prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
