@@ -6799,26 +6799,7 @@ theorem leftNonSurplusRow0130Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts :
-      ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
-        p₁ ≠ p₂ →
-        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
-        q₁ ≠ q₂ →
-        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
-        x ∈ ({s1, s2, s3} : Finset ℝ²) →
-        s1 ≠ s2 →
-        s1 ≠ s3 →
-        s2 ≠ s3 →
-        ({s1, s2, s3} : Finset ℝ²) ⊆
-          S.capInteriorByIndex S.surplusIdx →
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-          p ∈ A.erase x →
-            RightOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-          p ∈ A.erase x →
-            LeftOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 0 1 3 0 := by
   classical
   intro hm hs hl hr
@@ -6826,8 +6807,6 @@ theorem leftNonSurplusRow0130Excluded_of_finiteScaffold
     S.capInteriorByIndex_ne_of_mem_of_mem_ne hp hx
       (Ne.symm S.surplusIdx_ne_oppIndex2)
   have hradius_pos : 0 < dist p x := dist_pos.mpr hp_ne_x
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   let L := SelectedClass A p (dist p x) ∩
     S.leftAdjacentInteriorByIndex S.oppIndex2
   have hLsubSurplus : L ⊆ S.capInteriorByIndex S.surplusIdx := by
@@ -6850,6 +6829,17 @@ theorem leftNonSurplusRow0130Excluded_of_finiteScaffold
     simpa [S.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior] using hx
   have hxL : x ∈ L := Finset.mem_inter.mpr ⟨hxSelected, hxLeft⟩
   have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) := hLtriple hxL
+  have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
+    simp [hs12, hs13, hs23]
+  rcases hscaffoldFacts ({s1, s2, s3} : Finset ℝ²) hxTriple
+      hTripleCard hsSub with
+    ⟨p₁, p₂, q₁, q₂, t1, t2, t3, hp12, hpair, hq12, hqpair,
+      hTripleEq, _hxTriple, ht12, ht13, ht23, htSub,
+      _hoppInterior1Facts, hoppInterior2Facts⟩
+  have hLtripleOrdered : L ⊆ ({t1, t2, t3} : Finset ℝ²) := by
+    intro y hy
+    rw [← hTripleEq]
+    exact hLtriple hy
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
     have hp₁Opp : p₁ ∈ S.oppInterior1 := by
       rw [hpair]
@@ -6870,22 +6860,19 @@ theorem leftNonSurplusRow0130Excluded_of_finiteScaffold
       rw [hqpair]
       simp
     simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
-  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have ht1I : t1 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
+  have ht2I : t2 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
+  have ht3I : t3 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
   have hinj :
       Function.Injective
-        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) :=
+        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ t1 t2 t3) :=
     leftPinnedLabelPoint_injective_of_mem S
-      hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I hq12 hp12 hs12 hs13 hs23
-  rcases hscaffoldFacts p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨_hoppInterior1Facts, hoppInterior2Facts⟩
+      hq₁I hq₂I hp₁I hp₂I ht1I ht2I ht3I hq12 hp12 ht12 ht13 ht23
   have hpOpp : p ∈ S.oppInterior2 := by
     simpa [SurplusCapPacket.oppInterior2] using hp
   exact false_of_left_row0130_finiteCandidateFacts S hM44
-    hradius_pos hm hs hl hr hinj hq12 hqpair hpair hs12 hs13 hs23 hpOpp
-    hLtriple hxL (hoppInterior2Facts p hp hpErase)
+    hradius_pos hm hs hl hr hinj hq12 hqpair hpair ht12 ht13 ht23 hpOpp
+    hLtripleOrdered hxL (hoppInterior2Facts p hp hpErase)
 
 /-- The left exact row `(1,0,3,0)` is closed by choosing the finite surplus
 triple around the row's three surplus-side selected points. -/
@@ -6895,26 +6882,7 @@ theorem leftNonSurplusRow1030Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts :
-      ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
-        p₁ ≠ p₂ →
-        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) →
-        q₁ ≠ q₂ →
-        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) →
-        x ∈ ({s1, s2, s3} : Finset ℝ²) →
-        s1 ≠ s2 →
-        s1 ≠ s3 →
-        s2 ≠ s3 →
-        ({s1, s2, s3} : Finset ℝ²) ⊆
-          S.capInteriorByIndex S.surplusIdx →
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-          p ∈ A.erase x →
-            RightOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3) ∧
-        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-          p ∈ A.erase x →
-            LeftOneSidedErasedPayloadFiniteCandidateFacts
-              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)) :
+    (hscaffoldFacts : ErasedPinFiniteCandidateOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 1 0 3 0 := by
   classical
   intro hm hs hl hr
@@ -6922,8 +6890,6 @@ theorem leftNonSurplusRow1030Excluded_of_finiteScaffold
     S.capInteriorByIndex_ne_of_mem_of_mem_ne hp hx
       (Ne.symm S.surplusIdx_ne_oppIndex2)
   have hradius_pos : 0 < dist p x := dist_pos.mpr hp_ne_x
-  rcases hM44.exists_oppInterior_pairs with
-    ⟨p₁, p₂, q₁, q₂, hp12, hpair, hq12, hqpair⟩
   let L := SelectedClass A p (dist p x) ∩
     S.leftAdjacentInteriorByIndex S.oppIndex2
   have hLsubSurplus : L ⊆ S.capInteriorByIndex S.surplusIdx := by
@@ -6946,6 +6912,17 @@ theorem leftNonSurplusRow1030Excluded_of_finiteScaffold
     simpa [S.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior] using hx
   have hxL : x ∈ L := Finset.mem_inter.mpr ⟨hxSelected, hxLeft⟩
   have hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²) := hLtriple hxL
+  have hTripleCard : ({s1, s2, s3} : Finset ℝ²).card = 3 := by
+    simp [hs12, hs13, hs23]
+  rcases hscaffoldFacts ({s1, s2, s3} : Finset ℝ²) hxTriple
+      hTripleCard hsSub with
+    ⟨p₁, p₂, q₁, q₂, t1, t2, t3, hp12, hpair, hq12, hqpair,
+      hTripleEq, _hxTriple, ht12, ht13, ht23, htSub,
+      _hoppInterior1Facts, hoppInterior2Facts⟩
+  have hLtripleOrdered : L ⊆ ({t1, t2, t3} : Finset ℝ²) := by
+    intro y hy
+    rw [← hTripleEq]
+    exact hLtriple hy
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
     have hp₁Opp : p₁ ∈ S.oppInterior1 := by
       rw [hpair]
@@ -6966,22 +6943,19 @@ theorem leftNonSurplusRow1030Excluded_of_finiteScaffold
       rw [hqpair]
       simp
     simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
-  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
+  have ht1I : t1 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
+  have ht2I : t2 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
+  have ht3I : t3 ∈ S.capInteriorByIndex S.surplusIdx := htSub (by simp)
   have hinj :
       Function.Injective
-        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3) :=
+        (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ t1 t2 t3) :=
     leftPinnedLabelPoint_injective_of_mem S
-      hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I hq12 hp12 hs12 hs13 hs23
-  rcases hscaffoldFacts p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpair hq12 hqpair
-      hxTriple hs12 hs13 hs23 hsSub with
-    ⟨_hoppInterior1Facts, hoppInterior2Facts⟩
+      hq₁I hq₂I hp₁I hp₂I ht1I ht2I ht3I hq12 hp12 ht12 ht13 ht23
   have hpOpp : p ∈ S.oppInterior2 := by
     simpa [SurplusCapPacket.oppInterior2] using hp
   exact false_of_left_row1030_finiteCandidateFacts S hM44
-    hradius_pos hm hs hl hr hinj hqpair hpair hs12 hs13 hs23 hpOpp
-    hLtriple hxL (hoppInterior2Facts p hp hpErase)
+    hradius_pos hm hs hl hr hinj hqpair hpair ht12 ht13 ht23 hpOpp
+    hLtripleOrdered hxL (hoppInterior2Facts p hp hpErase)
 
 /-- The left exact row `(0,0,2,2)` is closed by choosing the finite surplus
 triple around the row's own two surplus-side selected points. -/
@@ -8282,9 +8256,13 @@ theorem leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
           (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
             hscaffold),
       leftNonSurplusRow0130Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold,
+        hM44 hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold),
       leftNonSurplusRow1030Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffold,
+        hM44 hx hp hpErase
+          (finiteCandidateOrderedScaffoldFacts_of_scaffoldFacts hM44
+            hscaffold),
       leftNonSurplusRow1120Excluded_of_finiteScaffold
         hM44 hx hp hpErase hscaffold,
       leftNonSurplusRow2020Excluded_of_finiteScaffold

@@ -186,7 +186,9 @@ the ordered scaffold's equality between the old three-point set and the
 ordered labels.  The right same-side triple rows `right (0,1,0,3)` and
 `right (1,0,0,3)` now use the same ordered-set transport pattern, so the
 right side of the heavy same-side triple block no longer needs arbitrary
-three-point labels.  A temporary old-to-ordered adapter keeps the remaining old
+three-point labels.  The mirror left same-side triple rows `left (0,1,3,0)`
+and `left (1,0,3,0)` are migrated the same way.  A temporary old-to-ordered
+adapter keeps the remaining old
 universal consumers compiling while the rest of the row blocks are migrated.
 This is a transition bridge only; closure still requires the active
 finite-residual statement to produce the ordered sep scaffold directly and the
