@@ -68,6 +68,87 @@ structure BoundaryCapBlock (A C : Finset ℝ²) {n m : ℕ}
   /-- The global enumeration realizes the ambient finite set. -/
   phi_image : Finset.univ.image phi = A
 
+/-- Retained ordered-cap block data.
+
+This is the theorem-facing carrier for arguments that need both the local
+ordered cap and the original global boundary block.  The older public
+`CGN4g_capData_of_supportCap_oriented` wrapper exposes `OrderedCap` and
+`StrictCapOrder` but forgets the `BoundaryCapBlock`; consumers that need
+endpoint indices or interval transport should depend on this packet instead. -/
+structure StrictCapBlockData (A C : Finset ℝ²) where
+  /-- Length of the ambient global boundary enumeration. -/
+  n : ℕ
+  /-- Length of the retained local cap block. -/
+  m : ℕ
+  /-- Global boundary enumeration. -/
+  phi : Fin n → ℝ²
+  /-- Local ordered cap cut out from the global enumeration. -/
+  L : OrderedCap m
+  /-- MEC packet for the local cap. -/
+  Packet : MecCapPacket A L
+  /-- Side hypotheses for the local cap packet. -/
+  Hside : MinorCapSideHypotheses Packet
+  /-- The retained local-to-global interval block. -/
+  Block : BoundaryCapBlock A C phi L
+  /-- The strict ordered-cap interface consumed by CGN6 / CGN7. -/
+  Hord : StrictCapOrder A L
+
+namespace StrictCapBlockData
+
+variable {A C : Finset ℝ²}
+
+/-- The retained local cap image is exactly the support cap. -/
+theorem cap_image (B : StrictCapBlockData A C) :
+    Finset.univ.image B.L.points = C :=
+  B.Block.cap_image
+
+/-- The support cap lies in the ambient finite set. -/
+theorem cap_subset_A (B : StrictCapBlockData A C) : C ⊆ A :=
+  B.Block.cap_subset_A
+
+/-- The local cap has endpoints. -/
+theorem two_le (B : StrictCapBlockData A C) : 2 ≤ B.m :=
+  B.Block.hm
+
+/-- The retained block endpoints are ordered in the ambient boundary
+enumeration. -/
+theorem lo_lt_hi (B : StrictCapBlockData A C) : B.Block.lo < B.Block.hi :=
+  B.Block.hlohi
+
+/-- Any point of the retained support cap has an index in the local ordered
+cap. -/
+theorem exists_index_of_mem_cap (B : StrictCapBlockData A C) {x : ℝ²}
+    (hx : x ∈ C) :
+    ∃ i : Fin B.m, B.L.points i = x := by
+  rw [← B.cap_image] at hx
+  rcases Finset.mem_image.mp hx with ⟨i, _hi, hix⟩
+  exact ⟨i, hix⟩
+
+/-- Positive side of a retained subchord is exactly an intermediate local
+cap index. -/
+theorem exists_between_index_of_pos_side (B : StrictCapBlockData A C)
+    {r s : Fin B.m} {x : ℝ²} (hrs : r < s) (hxA : x ∈ A)
+    (hside : 0 < Problem97.signedArea2 (B.L.points r) (B.L.points s) x) :
+    ∃ j : Fin B.m, r < j ∧ j < s ∧ B.L.points j = x :=
+  (B.Hord.subchord_open_side_iff_A hrs hxA).1 hside
+
+/-- A local index strictly between two local indices lies on the positive side
+of the corresponding subchord. -/
+theorem posSide_of_between_index (B : StrictCapBlockData A C)
+    {r j s : Fin B.m} (hrj : r < j) (hjs : j < s) :
+    0 < Problem97.signedArea2 (B.L.points r) (B.L.points s)
+      (B.L.points j) := by
+  have hjC : B.L.points j ∈ C := by
+    have hjImg :
+        B.L.points j ∈ Finset.univ.image B.L.points :=
+      Finset.mem_image_of_mem B.L.points (Finset.mem_univ j)
+    rwa [B.cap_image] at hjImg
+  have hjA : B.L.points j ∈ A := B.cap_subset_A hjC
+  exact (B.Hord.subchord_open_side_iff_A (lt_trans hrj hjs) hjA).2
+    ⟨j, hrj, hjs, rfl⟩
+
+end StrictCapBlockData
+
 /-- Local CGN4g helper: once the omitted support vertex is the cut point of
 the global boundary order, the opposite support cap is exactly the closed
 interval between the two support endpoints. This is not a new public CGN
@@ -1179,11 +1260,10 @@ theorem CGN4g5_strictCapOrder_of_capBlock
     simpa using hproj hij
   subchord_open_side_iff_A := hsideiff
 
-/-- CGN8 step-2 packaging wrapper: turn one support-cap description into the
-ordered-cap packet consumed by CGN6 / CGN7.  This theorem is packaging only:
-the proof routes through `CGN4g0`-`CGN4g5` and the local cyclic-cut helpers
-above. -/
-theorem CGN4g_capData_of_supportCap_oriented
+/-- CGN8 step-2 retained-block wrapper: turn one support-cap description into
+the ordered-cap packet consumed by CGN6 / CGN7, while retaining the original
+global boundary interval block. -/
+theorem CGN4g_strictCapBlockData_of_supportCap_oriented
     {A C : Finset ℝ²} {M : Problem97.MoserTriangle A}
     (hA : Problem97.ConvexIndep A)
     (hnoncoll : ¬ Collinear ℝ (A : Set ℝ²))
@@ -1193,15 +1273,11 @@ theorem CGN4g_capData_of_supportCap_oriented
     (hw_mem : M.v3 ∈ C)
     (P : Problem97.CircumscribedMECPacket A M)
     (hacute : 0 ≤ ⟪M.v2 - M.v1, M.v3 - M.v1⟫_ℝ) :
-    ∃ m, ∃ L : OrderedCap m,
-      ∃ Packet : MecCapPacket A L,
-      ∃ Hside : MinorCapSideHypotheses Packet,
-      ∃ Hord : StrictCapOrder A L,
-        Finset.univ.image L.points = C ∧
-          ((L.points (firstIndex Packet.hm) = M.v2 ∧
-              L.points (lastIndex Packet.hm) = M.v3) ∨
-            (L.points (firstIndex Packet.hm) = M.v3 ∧
-              L.points (lastIndex Packet.hm) = M.v2)) := by
+    ∃ B : StrictCapBlockData A C,
+      (B.L.points (firstIndex B.Packet.hm) = M.v2 ∧
+          B.L.points (lastIndex B.Packet.hm) = M.v3) ∨
+        (B.L.points (firstIndex B.Packet.hm) = M.v3 ∧
+          B.L.points (lastIndex B.Packet.hm) = M.v2) := by
   classical
   obtain ⟨n, hn, phi, hphi_inj, hphi_image, hccw⟩ :=
     CGN4g0_globalBoundaryOrder_of_convexIndep hA hnoncoll
@@ -1401,7 +1477,17 @@ theorem CGN4g_capData_of_supportCap_oriented
         _ = psi Block.hi := by rw [Block.idx_last]
         _ = psi (i3 - i1) := by rw [hhi]
         _ = M.v3 := by simpa [psi, hi3] using hi3
-    exact ⟨m, L, Packet, Hside, Hord, Block.cap_image, Or.inl ⟨hfirst_v2, hlast_v3⟩⟩
+    let B : StrictCapBlockData A C := {
+      n := n
+      m := m
+      phi := psi
+      L := L
+      Packet := Packet
+      Hside := Hside
+      Block := Block
+      Hord := Hord
+    }
+    exact ⟨B, Or.inl ⟨hfirst_v2, hlast_v3⟩⟩
   · have h32 : i3 - i1 < i2 - i1 := lt_of_le_of_ne (le_of_not_gt h23) (by
         intro hEq
         exact hi2_ne_i3 (by
@@ -1533,7 +1619,65 @@ theorem CGN4g_capData_of_supportCap_oriented
         _ = psi Block.hi := by rw [Block.idx_last]
         _ = psi (i2 - i1) := by rw [hhi]
         _ = M.v2 := by simpa [psi, hi2] using hi2
-    exact ⟨m, L, Packet, Hside, Hord, Block.cap_image, Or.inr ⟨hfirst_v3, hlast_v2⟩⟩
+    let B : StrictCapBlockData A C := {
+      n := n
+      m := m
+      phi := psi
+      L := L
+      Packet := Packet
+      Hside := Hside
+      Block := Block
+      Hord := Hord
+    }
+    exact ⟨B, Or.inr ⟨hfirst_v3, hlast_v2⟩⟩
+
+/-- CGN8 step-2 packaging wrapper: turn one support-cap description into the
+ordered-cap packet consumed by CGN6 / CGN7.  This theorem is packaging only:
+the proof routes through the retained-block version and forgets the global
+boundary interval block. -/
+theorem CGN4g_capData_of_supportCap_oriented
+    {A C : Finset ℝ²} {M : Problem97.MoserTriangle A}
+    (hA : Problem97.ConvexIndep A)
+    (hnoncoll : ¬ Collinear ℝ (A : Set ℝ²))
+    (hC_subset : C ⊆ A)
+    (hC_arc : ∀ x ∈ A, x ∈ C ↔ Problem97.OnArcOpposite M.v1 M.v2 M.v3 x)
+    (hv_mem : M.v2 ∈ C)
+    (hw_mem : M.v3 ∈ C)
+    (P : Problem97.CircumscribedMECPacket A M)
+    (hacute : 0 ≤ ⟪M.v2 - M.v1, M.v3 - M.v1⟫_ℝ) :
+    ∃ m, ∃ L : OrderedCap m,
+      ∃ Packet : MecCapPacket A L,
+      ∃ Hside : MinorCapSideHypotheses Packet,
+      ∃ Hord : StrictCapOrder A L,
+        Finset.univ.image L.points = C ∧
+          ((L.points (firstIndex Packet.hm) = M.v2 ∧
+              L.points (lastIndex Packet.hm) = M.v3) ∨
+            (L.points (firstIndex Packet.hm) = M.v3 ∧
+              L.points (lastIndex Packet.hm) = M.v2)) := by
+  rcases CGN4g_strictCapBlockData_of_supportCap_oriented
+      (A := A) (C := C) (M := M) hA hnoncoll hC_subset hC_arc hv_mem hw_mem
+      P hacute with
+    ⟨B, horient⟩
+  exact ⟨B.m, B.L, B.Packet, B.Hside, B.Hord, B.cap_image, horient⟩
+
+/-- Drop the endpoint-orientation packet when only the retained strict cap
+block is needed. -/
+theorem CGN4g_strictCapBlockData_of_supportCap
+    {A C : Finset ℝ²} {M : Problem97.MoserTriangle A}
+    (hA : Problem97.ConvexIndep A)
+    (hnoncoll : ¬ Collinear ℝ (A : Set ℝ²))
+    (hC_subset : C ⊆ A)
+    (hC_arc : ∀ x ∈ A, x ∈ C ↔ Problem97.OnArcOpposite M.v1 M.v2 M.v3 x)
+    (hv_mem : M.v2 ∈ C)
+    (hw_mem : M.v3 ∈ C)
+    (P : Problem97.CircumscribedMECPacket A M)
+    (hacute : 0 ≤ ⟪M.v2 - M.v1, M.v3 - M.v1⟫_ℝ) :
+    Nonempty (StrictCapBlockData A C) := by
+  rcases CGN4g_strictCapBlockData_of_supportCap_oriented
+      (A := A) (C := C) (M := M) hA hnoncoll hC_subset hC_arc hv_mem hw_mem
+      P hacute with
+    ⟨B, _⟩
+  exact ⟨B⟩
 
 /-- Drop the endpoint-orientation packet when only the bare cap data is
 needed. -/

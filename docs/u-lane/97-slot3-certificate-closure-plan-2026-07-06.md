@@ -246,6 +246,20 @@ does not yet prove the concrete ten-label right/left CCW templates.  The still
 missing P1 bridge is the order export from the three indexed cap blocks and the
 chosen surplus triple `T` to the `labelOfHullFin` ten-label sequence.
 
+2026-07-08 checkpoint: the retained cap-block data is now available in the
+verified Lean tree.  `CGN.CGN4g` defines `Problem97.CGN.StrictCapBlockData`,
+retains the `BoundaryCapBlock` inside
+`CGN4g_strictCapBlockData_of_supportCap_oriented`, and keeps the previous
+`CGN4g_capData_of_supportCap_oriented` signature as a compatibility wrapper.
+`SurplusM44Packet.lean` exposes
+`SurplusCapPacket.capByIndex_cgn4g_strictCapBlockData`, so every indexed cap can
+now export the local ordered cap together with its ambient boundary interval
+block.  `lake-build Erdos9796Proof.P97.SurplusM44Packet` succeeds and
+proof-blueprint resynced.  The active leaf remains `1 open / 797 total`.  This
+still does not close P1 by itself; the next producer must combine the retained
+blocks for the opposite caps and the chosen surplus triple into the concrete
+right/left `labelOfHullFin` ten-label CCW certificates.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
