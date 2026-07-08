@@ -451,8 +451,9 @@ patterns with all points distinct.
   three PROVEN constraints folded in as admissibility cuts
   (`scratch/k4-bank/`, `scratch/census-12-gate/`). Full card-12/13/14
   census commitment waits on the n = 12 convergence readout; the resumed
-  (5,5,4) run (§5) is the |A| = 11 bellwether. The D lane items (SUB2-H,
-  Q3) remain open successor work, independent of the census compute.
+  (5,5,4) run (§5) is the |A| = 11 bellwether. Of the D lane items,
+  Q3 landed 2026-07-08 (below); SUB2-H remains open successor work,
+  independent of the census compute.
   **Gate item (1) LANDED 2026-07-07 (validated).** 44 admissible k=4
   classes (exhaustive brute-S₄ — PROVEN), exactly 10 dead CONFIRMED
   (dichotomy Tier C match 10/10; completeness rides the 34 msolve-alive
@@ -464,6 +465,24 @@ patterns with all points distinct.
   (native_decide forced by `Rat`/`Nat.gcd` kernel non-reduction — same
   shape as the EpQ pattern files). Unimported by design pending a
   covering consumer. `scratch/k4-bank/report.md`.
+  **Q3 two-center probe LANDED 2026-07-08 (validated;
+  `scratch/q3-two-center/report.md`).** The 87 mirror-reduced (V,W)
+  joint classes are COMPLETELY classified: 68 REALIZED (exact ℚ
+  witnesses, official encoder, mutation controls) + 4 REALIZED over
+  ℚ(√3) (NEEDS-SPECIAL by proof) + 15 KILLED-PROVEN. Two exportable
+  leaf-implied joint kills, no ORDER constraints, falsifier gate PASS
+  (396 geometric MEC triangles over the W15/W16/W20 witnesses):
+  **K-Q3-1** (no two shared K(V)∩K(W) members on one side of line VW)
+  and **K-Q3-5** (no shared member in intS at all; parallelogram
+  identity vs dV²+dW² ≥ 1 under I-OBT; subsumes K-Q3-3; lemma-level
+  z3 cross-checks). Composition retest with the joint kills granted on
+  all three Moser pairs, all cap profiles: **SAT at every n = 12–16**
+  — the two-center layer does not close D1. Consequence: a viable
+  Candidate D must couple MORE than one decorated (V,W) window
+  (three-center / order-coupled multi-window), or the gated census
+  route carries U4. Also PROVEN en route: right-angle apexes
+  (ux ∈ {0,1}) are order-dead at the full window (exit turn vs I-DISK
+  complementary), so order-free subsystem SATs do not lift there.
 
 D1, D2, the dichotomy, the D3 formulation pass, and the Candidate B
 embedding test are done; together they bound the proof's largest
@@ -556,7 +575,7 @@ Both: fold per the §8 doc-ownership rule.
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **BUDGET-partial 2026-07-07**: 1596 orbits / 40,524 instances banked + verified, **no ALIVE cube in 376 witnesses** (HEURISTIC for all-dead); coverage incomplete (gap signal flat), resumable (§5 census status) |
-| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`scratch/candidate-d-probe/`, §7 D3); C head split deferred as standing fallback. **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). Live D shape = cross-center coupling (Q3, unprobed). **C-split DECIDED 2026-07-07 (Adam): gated go** — k=4 bank + n = 12 window-shape convergence gate dispatched (§7 D3); full 12–14 census pending gate readout |
+| U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`scratch/candidate-d-probe/`, §7 D3); C head split deferred as standing fallback. **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). Live D shape = cross-center coupling (Q3, unprobed). **C-split DECIDED 2026-07-07 (Adam): gated go** — k=4 bank + n = 12 window-shape convergence gate dispatched (§7 D3); full 12–14 census pending gate readout. **Q3 two-center probe LANDED 2026-07-08 (validated): 87/87 joint classes classified** — 68 exact-ℚ + 4 ℚ(√3) realized, 15 KILLED-PROVEN (K-Q3-1, K-Q3-5; no ORDER; falsifier gate PASS); composition with joint kills granted still SAT n = 12–16 ⇒ two-center coupling insufficient; live D shape is >2-center coupling (`scratch/q3-two-center/report.md`) |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
@@ -571,5 +590,7 @@ statement (pattern-level or row-decorated) is FALSE at n ≥ 15, and the
 D probe (landed 2026-07-07, §7 D3) closed the pure per-type route while
 extracting three unconditional structural constraints. The C-split was
 decided 2026-07-07 (gated go); U4's active work is the two gate items plus
-the resumed |A| = 11 census, with cross-center coupling (Q3) the live D
-shape for the eventual ≥ 15 tail.
+the resumed |A| = 11 census. The two-center coupling layer (Q3) landed
+2026-07-08: completely classified (68+4 realized / 15 killed), joint
+kills exportable but composition-insufficient — the live D shape for
+the eventual ≥ 15 tail is now strictly-more-than-two-center coupling.
