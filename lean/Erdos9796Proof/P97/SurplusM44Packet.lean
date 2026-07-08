@@ -910,6 +910,66 @@ theorem leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1
     simp [leftOuterVertexByIndex, oppositeVertexByIndex, oppIndex1,
       oppIndex2, hi]
 
+/-- In the surplus cap, the `v2` endpoint is the first non-surplus Moser
+apex.  This is the endpoint form consumed by the global interval bridges. -/
+theorem triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.surplusIdx).v2 =
+      S.oppositeVertexByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+
+/-- In the surplus cap, the `v3` endpoint is the second non-surplus Moser
+apex.  This is the endpoint form consumed by the global interval bridges. -/
+theorem triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.surplusIdx).v3 =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+
+/-- In the first non-surplus cap, the `v2` endpoint is the second
+non-surplus Moser apex. -/
+theorem triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.oppIndex1).v2 =
+      S.oppositeVertexByIndex S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+
+/-- In the first non-surplus cap, the `v3` endpoint is the surplus Moser
+apex. -/
+theorem triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.oppIndex1).v3 =
+      S.oppositeVertexByIndex S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, hi]
+
+/-- In the second non-surplus cap, the `v2` endpoint is the surplus Moser
+apex. -/
+theorem triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.oppIndex2).v2 =
+      S.oppositeVertexByIndex S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex2, hi]
+
+/-- In the second non-surplus cap, the `v3` endpoint is the first
+non-surplus Moser apex. -/
+theorem triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (S.triangleByIndex S.oppIndex2).v3 =
+      S.oppositeVertexByIndex S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨idx, hidx⟩
+  interval_cases idx <;>
+    simp [triangleByIndex, oppositeVertexByIndex, oppIndex1, oppIndex2, hi]
+
 /-- The first non-surplus index is the left-adjacent index of the surplus cap. -/
 theorem oppIndex1_eq_leftAdjacentIndex_surplusIdx
     {A : Finset ℝ²} (S : SurplusCapPacket A) :

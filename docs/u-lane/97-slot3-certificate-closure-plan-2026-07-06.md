@@ -436,6 +436,23 @@ reverse-complement, and sorted-selector facts.  Verification:
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 endpoint-identity checkpoint: `SurplusM44Packet.lean` now exposes
+direct `triangleByIndex` endpoint rewrite lemmas for the three distinguished
+packet indices:
+`triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1`,
+`triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2`,
+`triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2`,
+`triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx`,
+`triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx`, and
+`triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1`.  These are
+case-split packet identities, not new geometry; they let the P1 selector call
+the ordinary interval and reverse-complement interval exports with the generated
+right/left apex labels directly.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
