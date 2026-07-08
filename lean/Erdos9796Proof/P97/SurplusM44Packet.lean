@@ -275,6 +275,95 @@ theorem capByIndex_complement_interval_of_global_indices
       simpa [hic, hia, hib] using h
     exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
 
+/-- Reverse-endpoint form of
+`capByIndex_complement_interval_of_global_indices`.  If the `v3` endpoint comes
+before the opposite apex and the apex comes before the `v2` endpoint in the
+ambient order, then the indexed cap is the complement of the open interval from
+`v3` to `v2`.  This is the wrapping orientation that occurs after cutting the
+P1 boundary order at the surplus apex. -/
+theorem capByIndex_reverse_complement_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hibc : ib < ic) (hcia : ic < ia)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) :
+    ∀ x : ℝ²,
+      x ∈ S.capByIndex i ↔
+        ∃ q : Fin n, (q ≤ ib ∨ ia ≤ q) ∧ φ q = x := by
+  intro x
+  have hbia : ib < ia := hibc.trans hcia
+  have hcpos_swap :
+      0 < signedArea2 (φ ic) (φ ib) (φ ia) :=
+    signedArea2_pos_of_between hccw hφ hibc hcia
+  have hcneg :
+      signedArea2 (φ ic) (φ ia) (φ ib) < 0 := by
+    rw [signedArea2_swap23]
+    linarith
+  constructor
+  · intro hxC
+    have hxA : x ∈ A := S.capByIndex_subset i hxC
+    rw [← hφimage] at hxA
+    rcases Finset.mem_image.mp hxA with ⟨q, _hq, hqeq⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hqC : φ q ∈ S.capByIndex i := by
+      simpa [hqeq] using hxC
+    have harc : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+      have h := (S.capByIndex_arc_membership i (φ q) hqA).1 hqC
+      simpa [hic, hia, hib] using h
+    unfold OnArcOpposite at harc
+    have hq_nonneg : 0 ≤ signedArea2 (φ q) (φ ia) (φ ib) :=
+      nonneg_of_mul_nonpos_left harc hcneg
+    have hq_nonpos_swap :
+        signedArea2 (φ q) (φ ib) (φ ia) ≤ 0 := by
+      rw [signedArea2_swap23] at hq_nonneg
+      linarith
+    obtain ⟨_hpos, hzero, hneg⟩ :=
+      signedArea2_trichotomy hccw hφ hbia q
+    rcases lt_or_eq_of_le hq_nonpos_swap with hqneg | hqzero
+    · rcases hneg.mp hqneg with hqib | hiaq
+      · exact ⟨q, Or.inl (le_of_lt hqib), hqeq⟩
+      · exact ⟨q, Or.inr (le_of_lt hiaq), hqeq⟩
+    · rcases hzero.mp hqzero with hqib | hqia
+      · exact ⟨q, Or.inl (le_of_eq hqib), hqeq⟩
+      · exact ⟨q, Or.inr (le_of_eq hqia.symm), hqeq⟩
+  · rintro ⟨q, hqout, rfl⟩
+    have hqA : φ q ∈ A := by
+      rw [← hφimage]
+      exact Finset.mem_image_of_mem φ (Finset.mem_univ q)
+    have hq_nonneg : 0 ≤ signedArea2 (φ q) (φ ia) (φ ib) := by
+      rcases hqout with hqib | hiaq
+      · rcases eq_or_lt_of_le hqib with hqib_eq | hqib_lt
+        · exact
+            le_of_eq
+              (signedArea2_eq_zero_of_endpoint (Or.inr hqib_eq)).symm
+        · have hneg_swap :
+              signedArea2 (φ q) (φ ib) (φ ia) < 0 :=
+            signedArea2_neg_of_outside hccw hφ hbia (Or.inl hqib_lt)
+          rw [signedArea2_swap23]
+          linarith
+      · rcases eq_or_lt_of_le hiaq with hqia_eq | hqia_lt
+        · exact
+            le_of_eq
+              (signedArea2_eq_zero_of_endpoint (Or.inl hqia_eq.symm)).symm
+        · have hneg_swap :
+              signedArea2 (φ q) (φ ib) (φ ia) < 0 :=
+            signedArea2_neg_of_outside hccw hφ hbia (Or.inr hqia_lt)
+          rw [signedArea2_swap23]
+          linarith
+    have harc : OnArcOpposite (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 (φ q) := by
+      have h : OnArcOpposite (φ ic) (φ ia) (φ ib) (φ q) := by
+        unfold OnArcOpposite
+        exact mul_nonpos_of_nonneg_of_nonpos hq_nonneg (le_of_lt hcneg)
+      simpa [hic, hia, hib] using h
+    exact (S.capByIndex_arc_membership i (φ q) hqA).2 harc
+
 /-- A carrier point outside an indexed closed cap lies strictly on the same
 side of that cap's chord as the opposite Moser vertex. -/
 theorem signedArea2_mul_pos_of_not_mem_capByIndex
@@ -1318,6 +1407,41 @@ theorem capInteriorByIndex_open_complement_interval_of_global_indices
   rcases hqout with hqia | hibq
   · exact ⟨q, Or.inl (lt_of_le_of_ne hqia hqa), hqeq⟩
   · exact ⟨q, Or.inr (lt_of_le_of_ne hibq hqb.symm), hqeq⟩
+
+/-- Strict-interior version of
+`capByIndex_reverse_complement_interval_of_global_indices`: the support
+endpoints are excluded, so a strict interior point lies in the open reverse
+complement. -/
+theorem capInteriorByIndex_open_reverse_complement_interval_of_global_indices
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
+    {n : ℕ} {φ : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon φ)
+    (hφ : Function.Injective φ)
+    (hφimage : Finset.univ.image φ = A)
+    {ia ib ic : Fin n} (hibc : ib < ic) (hcia : ic < ia)
+    (hic : φ ic = (S.triangleByIndex i).v1)
+    (hia : φ ia = (S.triangleByIndex i).v2)
+    (hib : φ ib = (S.triangleByIndex i).v3) {x : ℝ²}
+    (hxI : x ∈ S.capInteriorByIndex i) :
+    ∃ q : Fin n, (q < ib ∨ ia < q) ∧ φ q = x := by
+  have hxC : x ∈ S.capByIndex i :=
+    S.capInteriorByIndex_subset_capByIndex i hxI
+  rcases (S.capByIndex_reverse_complement_interval_of_global_indices i hccw hφ
+      hφimage hibc hcia hic hia hib x).1 hxC with
+    ⟨q, hqout, hqeq⟩
+  have hqa : q ≠ ia := by
+    intro hqia
+    have hx_endpoint : x = (S.triangleByIndex i).v2 := by
+      rw [← hqeq, hqia, hia]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v2 hxI hx_endpoint
+  have hqb : q ≠ ib := by
+    intro hqib_eq
+    have hx_endpoint : x = (S.triangleByIndex i).v3 := by
+      rw [← hqeq, hqib_eq, hib]
+    exact S.capInteriorByIndex_ne_triangleByIndex_v3 hxI hx_endpoint
+  rcases hqout with hqib | hiaq
+  · exact ⟨q, Or.inl (lt_of_le_of_ne hqib hqb), hqeq⟩
+  · exact ⟨q, Or.inr (lt_of_le_of_ne hiaq hqa.symm), hqeq⟩
 
 /-- A strict interior point is distinct from the indexed cap's opposite Moser
 endpoint. -/

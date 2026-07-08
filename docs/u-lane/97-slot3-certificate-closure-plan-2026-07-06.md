@@ -390,6 +390,23 @@ opposite-cap pairs and the three surplus-cap points into a
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 reverse-complement checkpoint: the wrapping P1 cap uses the reverse
+endpoint orientation after the boundary order is cut at the surplus apex.  In
+the right packet, the hull order is `u, Q1, Q2, v, s1, s2, s3, w, Pw, Pu`; the
+`Pw/Pu` cap is therefore the open complement of the interval from `u` to `w`,
+while the cap's own `triangleByIndex` endpoint order is `w` then `u`.
+`SurplusM44Packet.lean` now exposes this missing orientation explicitly:
+`SurplusCapPacket.capByIndex_reverse_complement_interval_of_global_indices`
+and
+`SurplusCapPacket.capInteriorByIndex_open_reverse_complement_interval_of_global_indices`.
+The selector can now use ordinary open intervals for the `Q1/Q2` and
+`s1/s2/s3` blocks, and the reverse open-complement interval for `Pw/Pu`.
+Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
