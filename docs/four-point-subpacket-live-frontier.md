@@ -143,7 +143,7 @@ Current closure check, 2026-07-08:
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
 ```
 
-reports this anchor as 714/715 closed.  The only on-spine custom obstruction is
+reports this anchor as 722/723 closed.  The only on-spine custom obstruction is
 the local `sorry` producing
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (plus the global `sorryAx` marker).  Endpoint, pinned-surplus, and U1-tail
@@ -360,7 +360,7 @@ exclusions, not another implication between reduced surfaces.
 Current erased-pin closure plan, 2026-07-08:
 
 Plan audit, 2026-07-08: live proof-blueprint output reports this anchor as
-721/722 closed after the reduced-scaffold shrink, with the only on-spine
+722/723 closed after the reduced-scaffold shrink, with the only on-spine
 project obligation being the local
 `sorry` in
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
@@ -400,6 +400,17 @@ landed in Lean: the live source now asks for
 `ErasedPinFiniteCandidateSepScaffoldFacts S x`, and
 `finiteCandidateScaffoldFacts_of_sepScaffoldFacts` derives the old full
 scaffold for row consumers.
+
+Second shrink checkpoint, 2026-07-08: the reduced finite candidate scaffold no
+longer needs to produce `noThreeOK` separately.  Lean now proves
+`SurplusCOMPGBank.noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels`,
+which derives `noThreeOK shadow = true` from the all-label
+`pairCountsOK (shadowPairCountsForAssigned shadow allLabels) = true` field.
+The right/left reduced candidate packets therefore retain only the candidate
+remainders, all assigned-label pair counts, and `sepOKFor`; the full
+candidate consumer packets recover `noThreeOK` and mask-level search
+separation in `rightFiniteCandidateFacts_of_sepFacts` and
+`leftFiniteCandidateFacts_of_sepFacts`.
 
 Checked prefix, 2026-07-08: the current repo already supplies the minimality to
 U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
@@ -915,6 +926,21 @@ one of:
 2. a confinement/residual relation proving the missing non-payload equations
    for a concrete row support; or
 3. a direct endpoint contradiction that bypasses exact ten-label row membership.
+July 8 current-repo checkpoint: legacy U-lane code is not a requirement for this
+leaf.  A read-only classifier over the generated endpoint row-zero modules found
+no existing exact row whose nonzero generator support is covered by only the
+residual `.v`/`.w` equalities currently exposed to
+`Problem97.isM44EndpointResidualsExcluded`.  The best current exact rows still
+need 22 non-residual dependencies for the Q1 side and 21 for the Q2 side.  The
+payload-only Singular unit probe over the exact residual `.v`/`.w` equations
+plus the endpoint `s1 != s3` separator returned `NOT_UNIT` for all 32
+`(xLabel, aLabel, bLabel)` triples, so the residual payload by itself is not a
+direct algebraic contradiction.  The efficient path for this repo is therefore
+not to port older U-lane exact-row machinery, but to close a current-repo
+producer on one of the three surfaces above: a relaxed certificate with a
+smaller generator vocabulary and additional proved geometry, a genuine
+geometric confinement relation for a concrete minimized support, or a direct
+endpoint contradiction.
 RowZeros.Bank exposes
 `false_of_endpointShadowInBank_of_metricShadow` and the coefficient-aware
 `false_of_endpointShadowInBank_of_weighted_metricShadow`; the weighted surface
@@ -1223,7 +1249,7 @@ proof-blueprint spine Problem97.isM44EndpointResidualsExcluded --max-depth 4
         the kernel axiom closure reports it as `sorryAx`
 
 proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
-  714/715 nodes closed
+  722/723 nodes closed
   open: the erased-pin theorem's local finite-residual source `sorry`;
         the kernel axiom closure reports it as `sorryAx`
   off-spine for this anchor: endpoint residual, pinned-surplus residual,

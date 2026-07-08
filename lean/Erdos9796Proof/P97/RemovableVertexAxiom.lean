@@ -1116,9 +1116,9 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateFacts {A : Finset ℝ²}
           (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass cp)) = true)
 
-/-- Right-oriented finite point-class facts with the mask-level search
-separation field omitted.  That field is derivable from the full `sepOKFor`
-interface by `crossSeparationOKForMasks_of_sepOKFor`. -/
+/-- Right-oriented finite point-class facts with the derivable fields omitted.
+The full packet recovers `noThreeOK` from the all-label pair-count check and
+mask-level search separation from the supplied `sepOKFor` interface. -/
 abbrev RightOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x : ℝ²) (radius : ℝ)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
@@ -1166,10 +1166,6 @@ abbrev RightOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
             ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
                 privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
               OneSidedSeed)) ∧
-    noThreeOK
-      (shadowOfPointClasses
-        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-        centerClass) = true ∧
     (∀ assigned : List Label,
       pairCountsOK
         (shadowPairCountsForAssigned
@@ -1182,8 +1178,8 @@ abbrev RightOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
           (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           centerClass) c cp a b = true)
 
-/-- Left-oriented finite point-class facts with the derivable mask-level search
-separation field omitted. -/
+/-- Left-oriented finite point-class facts with the same derivable fields as the
+right reduced packet omitted. -/
 abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x : ℝ²) (radius : ℝ)
     (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
@@ -1231,10 +1227,6 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
             ({ sstar := sstar, privateCenter := .Pu, kind := .oppositeW,
                 privateMask := maskOfLabels [.v, .w, sstar, .Pw] } :
               OneSidedSeed)) ∧
-    noThreeOK
-      (shadowOfPointClasses
-        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-        centerClass) = true ∧
     (∀ assigned : List Label,
       pairCountsOK
         (shadowPairCountsForAssigned
@@ -1260,7 +1252,14 @@ theorem rightFiniteCandidateFacts_of_sepFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
   rcases hfacts with
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep⟩
+      hcandidate, hcounts, hsep⟩
+  have hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true :=
+    noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
+      (hcounts allLabels)
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
       hcandidate, hno3, hcounts, hsep, ?_⟩
@@ -1284,7 +1283,14 @@ theorem leftFiniteCandidateFacts_of_sepFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
   rcases hfacts with
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      hcandidate, hno3, hcounts, hsep⟩
+      hcandidate, hcounts, hsep⟩
+  have hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true :=
+    noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
+      (hcounts allLabels)
   refine
     ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
       hcandidate, hno3, hcounts, hsep, ?_⟩

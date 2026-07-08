@@ -1836,6 +1836,28 @@ theorem pairCountsOK_shadowPairCountsForAssigned_of_pointPairClassCount
     exact countP_le_allLabels_of_fragment_prefix hprefix
   exact Nat.le_trans hleAll (hcount pointPair.fst pointPair.snd hpair)
 
+/-- The all-label pair-count check contains the same point-pair bounds as
+`noThreeOK`. -/
+theorem noThreeOK_of_pairCountsOK_shadowPairCountsForAssigned_allLabels
+    {shadow : Shadow}
+    (hcounts :
+      pairCountsOK (shadowPairCountsForAssigned shadow allLabels) = true) :
+    noThreeOK shadow = true := by
+  unfold noThreeOK
+  rw [List.all_eq_true]
+  intro pointPair hpair
+  unfold pairCountsOK at hcounts
+  rw [List.all_eq_true] at hcounts
+  apply decide_eq_true
+  have hmem :
+      pointPairClassCount shadow pointPair.fst pointPair.snd ∈
+        shadowPairCountsForAssigned shadow allLabels := by
+    rw [shadowPairCountsForAssigned_eq_map_pointPairAssignedCount]
+    exact List.mem_map.mpr ⟨pointPair, hpair, by
+      rcases pointPair with ⟨x, y⟩
+      simp [pointPairAssignedCount, pointPairClassCount_eq_countP]⟩
+  exact of_decide_eq_true (hcounts _ hmem)
+
 theorem pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
     {shadow : Shadow} {assigned : List Label}
     (hcounts : searchPairCountsOK shadow = true)
