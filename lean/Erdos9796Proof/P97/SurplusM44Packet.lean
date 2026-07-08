@@ -78,6 +78,105 @@ theorem exists_sorted_triple_finset_eq
         ext t
         simp [or_left_comm, or_comm]
 
+/-- Sort two already indexed points inside one ambient index interval.  The
+P1 selector uses this after the strict cap-interior interval export has found
+the two boundary indices for a short cap. -/
+theorem exists_sorted_pair_points_between
+    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+    {lo hi ia ib : Fin n} {a b : α}
+    (hloia : lo < ia) (hiahi : ia < hi)
+    (hloib : lo < ib) (hibhi : ib < hi)
+    (hia : φ ia = a) (hib : φ ib = b) (hab : a ≠ b) :
+    ∃ x y : α, ∃ ix iy : Fin n,
+      lo < ix ∧ ix < iy ∧ iy < hi ∧
+      φ ix = x ∧ φ iy = y ∧
+      ({x, y} : Finset α) = ({a, b} : Finset α) := by
+  have hiab : ia ≠ ib := by
+    intro h
+    exact hab (by rw [← hia, ← hib, h])
+  by_cases hlt : ia < ib
+  · exact ⟨a, b, ia, ib, hloia, hlt, hibhi, hia, hib, rfl⟩
+  · have hible : ib ≤ ia := le_of_not_gt hlt
+    have hbi : ib < ia := lt_of_le_of_ne hible hiab.symm
+    exact
+      ⟨b, a, ib, ia, hloib, hbi, hiahi, hib, hia,
+        by simp [Finset.pair_comm]⟩
+
+/-- Sort two already indexed points that both occur after a lower ambient
+index.  This is the finite selector for the wrapping cap after the boundary
+order is cut at the surplus apex. -/
+theorem exists_sorted_pair_points_after
+    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+    {lo ia ib : Fin n} {a b : α}
+    (hloia : lo < ia) (hloib : lo < ib)
+    (hia : φ ia = a) (hib : φ ib = b) (hab : a ≠ b) :
+    ∃ x y : α, ∃ ix iy : Fin n,
+      lo < ix ∧ ix < iy ∧ φ ix = x ∧ φ iy = y ∧
+      ({x, y} : Finset α) = ({a, b} : Finset α) := by
+  have hiab : ia ≠ ib := by
+    intro h
+    exact hab (by rw [← hia, ← hib, h])
+  by_cases hlt : ia < ib
+  · exact ⟨a, b, ia, ib, hloia, hlt, hia, hib, rfl⟩
+  · have hible : ib ≤ ia := le_of_not_gt hlt
+    have hbi : ib < ia := lt_of_le_of_ne hible hiab.symm
+    exact
+      ⟨b, a, ib, ia, hloib, hbi, hib, hia,
+        by simp [Finset.pair_comm]⟩
+
+/-- Sort three already indexed points inside one ambient index interval.  This
+keeps the interval bounds and point-set equality needed when the P1 selector
+orients a chosen three-point surplus subpacket. -/
+theorem exists_sorted_triple_points_between
+    {α : Type} [DecidableEq α] {n : ℕ} {φ : Fin n → α}
+    {lo hi ia ib ic : Fin n} {a b c : α}
+    (hloia : lo < ia) (hiahi : ia < hi)
+    (hloib : lo < ib) (hibhi : ib < hi)
+    (hloic : lo < ic) (hichi : ic < hi)
+    (hia : φ ia = a) (hib : φ ib = b) (hic : φ ic = c)
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+    ∃ x y z : α, ∃ ix iy iz : Fin n,
+      lo < ix ∧ ix < iy ∧ iy < iz ∧ iz < hi ∧
+      φ ix = x ∧ φ iy = y ∧ φ iz = z ∧
+      ({x, y, z} : Finset α) = ({a, b, c} : Finset α) := by
+  have hiab : ia ≠ ib := by
+    intro h
+    exact hab (by rw [← hia, ← hib, h])
+  have hiac : ia ≠ ic := by
+    intro h
+    exact hac (by rw [← hia, ← hic, h])
+  have hibc : ib ≠ ic := by
+    intro h
+    exact hbc (by rw [← hib, ← hic, h])
+  rcases exists_sorted_triple_finset_eq (a := ia) (b := ib) (c := ic)
+      hiab hiac hibc with
+    ⟨ix, iy, iz, hixiy, hiyiz, hset⟩
+  have hlo_of_mem {t : Fin n}
+      (ht : t ∈ ({ia, ib, ic} : Finset (Fin n))) : lo < t := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at ht
+    rcases ht with rfl | rfl | rfl
+    · exact hloia
+    · exact hloib
+    · exact hloic
+  have hhi_of_mem {t : Fin n}
+      (ht : t ∈ ({ia, ib, ic} : Finset (Fin n))) : t < hi := by
+    simp only [Finset.mem_insert, Finset.mem_singleton] at ht
+    rcases ht with rfl | rfl | rfl
+    · exact hiahi
+    · exact hibhi
+    · exact hichi
+  have hix_mem : ix ∈ ({ia, ib, ic} : Finset (Fin n)) := by
+    rw [← hset]
+    simp
+  have hiz_mem : iz ∈ ({ia, ib, ic} : Finset (Fin n)) := by
+    rw [← hset]
+    simp
+  have himage := congrArg (fun s : Finset (Fin n) => s.image φ) hset
+  refine
+    ⟨φ ix, φ iy, φ iz, ix, iy, iz, hlo_of_mem hix_mem, hixiy,
+      hiyiz, hhi_of_mem hiz_mem, rfl, rfl, rfl, ?_⟩
+  simpa [hia, hib, hic] using himage
+
 namespace SurplusCapPacket
 
 /-- The cyclic Moser triangle whose first vertex is opposite the selected cap

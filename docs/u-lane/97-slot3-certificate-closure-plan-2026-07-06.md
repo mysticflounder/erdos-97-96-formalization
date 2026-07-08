@@ -453,6 +453,24 @@ right/left apex labels directly.  Verification:
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 interval-selector checkpoint: `SurplusM44Packet.lean` now exposes
+the finite selector lemmas `Problem97.exists_sorted_pair_points_between`,
+`Problem97.exists_sorted_pair_points_after`, and
+`Problem97.exists_sorted_triple_points_between`.  These turn indexed unordered
+cap points into ordered point labels while preserving the ambient index
+inequalities and point-set equalities.  The ordinary interval export supplies
+the "between" hypotheses for the `Q` pair and the surplus triple; the
+reverse-complement export plus the surplus-apex cut supplies the "after"
+hypotheses for the wrapping `P` pair.  Together with
+`hullOrderSubsequenceCertificate_of_explicit_indices`, the finite side of P1 is
+now packaged.  The remaining selector work is the geometric order export:
+produce the apex indices in the right/left cut order and feed the interval
+exports into these selectors.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
