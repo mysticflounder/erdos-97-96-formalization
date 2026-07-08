@@ -407,6 +407,21 @@ Verification:
 succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
 total`.
 
+2026-07-08 sorted-selector checkpoint: `SurplusM44Packet.lean` now also
+exposes `Problem97.exists_sorted_pair_finset_eq` and
+`Problem97.exists_sorted_triple_finset_eq`.  These finite order selectors turn
+the unordered two-point cap interiors and unordered three-point surplus
+interior into increasing ambient-boundary labels before the producer builds a
+`HullOrderSubsequenceCertificate`.  Together with the ordinary interval,
+strict-interior, and reverse-complement interval bridges above, the remaining
+P1 work is now the actual side-specific selector/producers: choose the ordered
+indices for the right and left ten-label packets and prove the finite
+`StrictMono` subsequence certificates.  Verification:
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.SurplusM44Packet` and then
+`LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom` both
+succeeded and proof-blueprint resynced; the active spine remains `1 open / 806
+total`.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

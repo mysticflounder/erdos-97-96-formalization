@@ -32,6 +32,52 @@ open Finset
 
 namespace Problem97
 
+/-- Choose the increasing presentation of a two-element finite set in a linear
+order.  This is used by the P1 selector to orient the two strict-interior
+points of a short cap by their ambient boundary indices. -/
+theorem exists_sorted_pair_finset_eq
+    {α : Type} [LinearOrder α] [DecidableEq α] {a b : α} (hab : a ≠ b) :
+    ∃ x y : α, x < y ∧ ({x, y} : Finset α) = ({a, b} : Finset α) := by
+  by_cases h : a < b
+  · exact ⟨a, b, h, rfl⟩
+  · have hba : b < a := lt_of_le_of_ne (le_of_not_gt h) hab.symm
+    exact ⟨b, a, hba, by simp [Finset.pair_comm]⟩
+
+/-- Choose the increasing presentation of a three-element finite set in a
+linear order.  The P1 selector applies this to the three exported surplus-cap
+boundary indices before assigning the generated labels `s1`, `s2`, `s3`. -/
+theorem exists_sorted_triple_finset_eq
+    {α : Type} [LinearOrder α] [DecidableEq α]
+    {a b c : α} (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+    ∃ x y z : α, x < y ∧ y < z ∧
+      ({x, y, z} : Finset α) = ({a, b, c} : Finset α) := by
+  by_cases hablt : a < b
+  · by_cases hbclt : b < c
+    · exact ⟨a, b, c, hablt, hbclt, rfl⟩
+    · have hcb : c < b := lt_of_le_of_ne (le_of_not_gt hbclt) hbc.symm
+      by_cases haclt : a < c
+      · refine ⟨a, c, b, haclt, hcb, ?_⟩
+        ext t
+        simp [or_comm]
+      · have hca : c < a := lt_of_le_of_ne (le_of_not_gt haclt) hac.symm
+        refine ⟨c, a, b, hca, hablt, ?_⟩
+        ext t
+        simp [or_left_comm, or_comm]
+  · have hba : b < a := lt_of_le_of_ne (le_of_not_gt hablt) hab.symm
+    by_cases haclt : a < c
+    · refine ⟨b, a, c, hba, haclt, ?_⟩
+      ext t
+      simp [or_left_comm]
+    · have hca : c < a := lt_of_le_of_ne (le_of_not_gt haclt) hac.symm
+      by_cases hbclt : b < c
+      · refine ⟨b, c, a, hbclt, hca, ?_⟩
+        ext t
+        simp [or_left_comm, or_comm]
+      · have hcb : c < b := lt_of_le_of_ne (le_of_not_gt hbclt) hbc.symm
+        refine ⟨c, b, a, hcb, hba, ?_⟩
+        ext t
+        simp [or_left_comm, or_comm]
+
 namespace SurplusCapPacket
 
 /-- The cyclic Moser triangle whose first vertex is opposite the selected cap
