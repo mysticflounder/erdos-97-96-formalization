@@ -1520,3 +1520,15 @@ proof-blueprint resynced.  Open/total counts after resync are:
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
 `1/785`; `Problem97.erdos97_rhs` is `22/1563`; `Problem96.erdos96_rhs` is
 `26/1571`.
+
+Checkpoint search, 2026-07-08 PDT: the new multi-center incidence artifacts in
+`census/multi_center/` support the U4/tail route, not this erased-pin producer
+leaf.  The canonical analyzer
+`census/multi_center/analyze_sweeps.py` recomputes the L2 GLOBAL / PROVEN
+inventory from `class_key`s and confirms exact project-level stability at
+`3375` classes on `n = 25..28`; the `n = 28..32` extension is still external
+to the completed evidence until its artifact lands.  This does not supply a
+producer for `ErasedPinFiniteCandidateSepScaffoldFacts S x`, `U5ModeA D`, a
+confined-class payload, or either direct surplus-side `ErasedPinTriple`
+exclusion.  The open/total state for this leaf remains `1/785`; the next
+proof-producing step is still one of the three producers listed above.
