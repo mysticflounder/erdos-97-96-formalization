@@ -457,6 +457,37 @@ forces some center of `A.erase x` to fail the `K4` property.  Treat the
 minimality/U3 packet as a possible source of extra structure, not as a direct
 proof of the two surplus-side exclusions.
 
+Fresh producer search, 2026-07-08: `nthdegree docs search --lean` for the
+direct surplus-side clauses found the existing non-surplus erased-pin payload
+reducers
+`SurplusCapPacket.IsM44.oppIndex1_surplusErasedPinTriple_false_of_payload_cases`
+and
+`SurplusCapPacket.IsM44.oppIndex2_surplusErasedPinTriple_false_of_payload_cases`,
+plus the pinned-residual bridges
+`SurplusCapPacket.IsM44.oppIndex1_pinnedRightResidual_and_surplusTriple_of_right_surplus`
+and
+`SurplusCapPacket.IsM44.oppIndex2_pinnedLeftResidual_and_surplusTriple_of_left_surplus`.
+These are not hidden closers for the current two direct surplus clauses.  The
+payload reducers require centers in `S.oppInterior1` or `S.oppInterior2`, which
+is exactly the already-closed non-surplus row route.  The pinned-residual
+bridges start from selected-class strict escape at a non-surplus opposite
+Moser vertex, not from an arbitrary `ErasedPinTriple` centered at the surplus
+opposite vertex or at a surplus-interior point.  A valid direct-surplus proof
+therefore must first derive that stronger selected-class escape from the
+chosen `x` and the global hypotheses, or use a different global argument.
+
+Fresh scaffold search, 2026-07-08: semantic search for
+`ErasedPinFiniteCandidateSepScaffoldFacts`, `PrefixPairCountsOK`, `sepOKFor`,
+and `OneSidedSeedCandidateRemainder` found only the reduced scaffold
+definitions, the old stronger finite/named/seed-mask adapters, and generated
+COMP-G consumers in `SurplusCOMPGBankGeometry`.  Those consumers refute
+one-sided erased payloads once the candidate remainders, prefix pair counts,
+and separation booleans are already supplied; they do not produce the reduced
+scaffold from the five ambient packet inputs.  Do not replace the on-spine
+source by the older `IsM44NonSurplusContainmentErasedPinTripleFiniteFactsStatement`:
+that surface is stronger than the current source and would enlarge the open
+obligation.
+
 1. Prove the existing source statement
    `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
    do not introduce a new reduced-input wrapper unless it proves one of the
