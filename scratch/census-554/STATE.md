@@ -205,3 +205,32 @@ Deliverables into scratch/census-554/: scripts, smoke log, census results
   hcritical but NOT hnoRem/IH.
 - |A|=12 mining context: cores k∈{4,5,6} pts, no flattening, hundreds of
   classes → bank may be large; termination of CEGAR = empirical question.
+
+## Intra-cap exhaustive classification (2026-07-08, COMPLETE)
+
+`intracap.py` — finite COMPLETE classification of all minimal dead patterns
+whose support lies inside a single cap (S / O1 / O2). Result
+(`intracap_results.jsonl`, certs in `intracap_certs/`):
+
+- Enumeration exhaustive BY CONSTRUCTION over candidate-feasible intra-cap
+  patterns (masks |M|>=2 contained in some C1+one-hit candidate class;
+  necessary C2/C4 filters; AUTOS-canonical dedupe): S 291 + O1 2909 + O2 69
+  canonical classes. One-hit makes V,W maskless inside their own caps, so
+  mask-carrying centers are S:{3,4,5}, O1:{0,6,7,8}, O2:{0,9,10}.
+- **107 minimal dead patterns** (S 3, O1 101, O2 3), all at gens 5-7, none
+  below 5. 0 UNDECIDED. ALL 107 certified (Singular lift + exact python
+  Fraction identity, `CENSUS_CERT_ALL_PAIRS_FALLBACK=1`). ALL 107 realizable
+  (backtracking completion to a full valid cube) => census-relevant.
+  Kills: 37 pair, 67 multi_pair, 3 base (the O2 ones — both gauge points in
+  support). Equality-only throughout => U8 clean.
+- Deadness oracle: iterated pairwise saturation in Singular
+  (dead ⟺ 1 ∈ I : (∏ d2(a,b))^∞), tri-state, with adversarial msolve
+  cross-check on alive verdicts. NOTE Singular 4.4.1 pitfall: writing
+  `S = sat(S, f)[1];` (self-assignment through indexed proc return) silently
+  CORRUPTS the ideal — must assign via intermediate list. Caught 2026-07-08
+  by the msolve cross-check on a certify-provable dead pattern; fix verified
+  10/10 vs certificate-backed ground truth.
+- Smoke gates: 3 banked dead + 1 satisfiable pre-gate PASS; post-enumeration
+  all 8 banked zero-cross-cap rows subsumed by the 107. msolve output
+  convention verified on known systems: `[-1]` = empty, `[1,n,-1,[]]` =
+  positive-dim, `[0,...]` = zero-dim.
