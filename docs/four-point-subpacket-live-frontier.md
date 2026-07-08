@@ -397,6 +397,19 @@ some stronger choice of `x`, actually yields one of the three producer facts
 above.  Do not replace the source `sorry` with a local no-q-free skeleton unless
 one of those producer goals is also discharged or strictly reduced.
 
+Producer audit, 2026-07-08: current-repo erasure-witness lemmas such as
+`IsM44.exists_oppIndex1_erase_witness_of_surplusInterior` and
+`IsM44.exists_oppIndex2_erase_witness_of_surplusInterior` are downstream of the
+residual branch.  They produce selected-class witnesses for removability after
+the residual theorem has supplied the exact-pin exclusions; they do not produce
+the finite residual scaffold or the direct surplus-side `ErasedPinTriple`
+exclusions.  Likewise, minimality by itself does not refute an individual
+`ErasedPinTriple`: `ErasedPinTriple A x p` is equivalent, with `x ∈ A`, to an
+exact four-point selected class through `x` at center `p`, while minimality only
+forces some center of `A.erase x` to fail the `K4` property.  Treat the
+minimality/U3 packet as a possible source of extra structure, not as a direct
+proof of the two surplus-side exclusions.
+
 1. Prove the existing source statement
    `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`;
    do not introduce a new reduced-input wrapper unless it proves one of the
