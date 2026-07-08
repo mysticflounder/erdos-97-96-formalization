@@ -492,6 +492,16 @@ next grounded P1 route is therefore:
 collapses the wrapping cap's open reverse-complement disjunction once the
 matching orientation has been selected.
 
+2026-07-08 apex-dichotomy helper checkpoint: `SurplusM44Packet.lean` now
+also exposes `Problem97.fin_order_dichotomy_after_zero` and
+`Problem97.image_index_order_dichotomy_after_zero`.  These do not choose a
+geometric orientation; they prove the finite fact that, after the surplus apex
+is cut to index zero, the two remaining distinct apex indices must be in one of
+the two linear orders.  This is the input shape for the branch in the previous
+checkpoint: one branch feeds the right direct hull-order selector, the other
+feeds the left direct hull-order selector, and the nonmatching side still needs
+real mirror/permutation transport or a finite-producer refactor.
+
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a

@@ -135,6 +135,51 @@ theorem open_reverse_complement_after_zero
   · exact (Fin.not_lt_zero q hq).elim
   · exact hq
 
+/-- Two nonzero distinct indices after a zero cut occur in one of the two
+possible linear orders. -/
+theorem fin_order_dichotomy_after_zero
+    {n : ℕ} (hn : 0 < n) {a b : Fin n}
+    (ha : a ≠ (⟨0, hn⟩ : Fin n))
+    (hb : b ≠ (⟨0, hn⟩ : Fin n))
+    (hab : a ≠ b) :
+    (((⟨0, hn⟩ : Fin n) < a ∧ a < b) ∨
+      ((⟨0, hn⟩ : Fin n) < b ∧ b < a)) := by
+  have h0a : (⟨0, hn⟩ : Fin n) < a := by
+    rw [Fin.lt_def]
+    exact Nat.pos_of_ne_zero (by
+      intro ha0
+      exact ha (Fin.ext ha0))
+  have h0b : (⟨0, hn⟩ : Fin n) < b := by
+    rw [Fin.lt_def]
+    exact Nat.pos_of_ne_zero (by
+      intro hb0
+      exact hb (Fin.ext hb0))
+  rcases lt_or_gt_of_ne hab with hablt | hbal
+  · exact Or.inl ⟨h0a, hablt⟩
+  · exact Or.inr ⟨h0b, hbal⟩
+
+/-- Point-valued version of `fin_order_dichotomy_after_zero`: once the
+surplus apex has been cut to index zero, the two other distinct apex indices
+fall into one of the two possible side orientations. -/
+theorem image_index_order_dichotomy_after_zero
+    {α : Type} {n : ℕ} (hn : 0 < n) {φ : Fin n → α}
+    {u v w : α} {iv iw : Fin n}
+    (hu : φ (⟨0, hn⟩ : Fin n) = u)
+    (hv : φ iv = v) (hw : φ iw = w)
+    (huv : u ≠ v) (huw : u ≠ w) (hvw : v ≠ w) :
+    (((⟨0, hn⟩ : Fin n) < iv ∧ iv < iw) ∨
+      ((⟨0, hn⟩ : Fin n) < iw ∧ iw < iv)) := by
+  have hiv0 : iv ≠ (⟨0, hn⟩ : Fin n) := by
+    intro h
+    exact huv (by rw [← hu, ← hv, h])
+  have hiw0 : iw ≠ (⟨0, hn⟩ : Fin n) := by
+    intro h
+    exact huw (by rw [← hu, ← hw, h])
+  have hivw : iv ≠ iw := by
+    intro h
+    exact hvw (by rw [← hv, ← hw, h])
+  exact fin_order_dichotomy_after_zero hn hiv0 hiw0 hivw
+
 /-- Sort three already indexed points inside one ambient index interval.  This
 keeps the interval bounds and point-set equality needed when the P1 selector
 orients a chosen three-point surplus subpacket. -/
