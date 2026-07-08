@@ -140,30 +140,49 @@ Grounding facts, each independently checked 2026-07-08:
 
 ### Path
 
-**P1 — CCW producers (sites 9406/9420).  No new math.**  The goals as
-written are false for the given unordered points: the seven interior points
-arrive with membership hypotheses only, and a fixed label template cannot be
-CCW for every assignment.  Restructure instead of proving in place:
-1. Prove a within-group reordering lemma: for p-pair, q-pair, and surplus
-   triple there exist within-group permutations making the fixed ten-label
-   template CCW.  Ingredients: `exists_isCcwConvexPolygon_of_convexIndep`
-   + cap contiguity (`ArcBlockContiguity.lean`) + within-cap reindexing
-   (`ConvexCyclicOrder/Basic.lean` shift/rotate lemmas).  {{NEEDS_PROOF}} —
-   assembly work, ingredient lemmas exist.
-2. In the theorem body, `rcases` the reordering lemma and apply the sep-facts
-   producers to the permuted points.  Downstream hypotheses (memberships,
-   distinctness) are within-group symmetric; the two private-center seed
-   variants (.Pu/.Pw) are both already demanded by `hcandidate`, so the
-   permutation does not break the seed interface.
+**P1 — CCW producers (sites 9406/9420).**  The goals as written are false
+for the given unordered points: the seven interior points arrive with
+membership hypotheses only, and a fixed label template cannot be CCW for every
+assignment.  The false statement surface is the current
+`ErasedPinFiniteCandidateSepScaffoldFacts S x`, which universally quantifies
+over arbitrary names `p₁ p₂ q₁ q₂ s1 s2 s3` and then asks the fixed
+right/left ten-label templates to be CCW.  `ErasedPinOrderedProducer.lean`
+only supplies ordered finite seed-bank data; it does not yet supply a CCW
+producer or permutation transport.
+
+Current implementation choices:
+1. **Transport route.**  Prove ordered CCW/facts for a within-group
+   permutation of each row-chosen packet, then transport the resulting finite
+   facts back to the caller's arbitrary labels.  This preserves the current
+   universal scaffold statement, but needs concrete permutation-invariance
+   lemmas for `rightPinnedLabelPoint`/`leftPinnedLabelPoint`, masks, center
+   classes, and candidate remainders.
+2. **Ordered-consumer route.**  Refactor the row consumers so each row chooses
+   ordered labels before calling the finite producers.  This avoids transport
+   back to arbitrary names, but changes the scaffold/consumer boundary across
+   the generated row consumers.
+3. **CCW-free sep route.**  Replace the CCW-dependent finite producer with a
+   direct separation producer.  This is new proof content and is not the
+   current plan.
+
+Available ingredients are weaker than the previous note stated:
+`exists_isCcwConvexPolygon_of_convexIndep` and `ArcBlockContiguity.lean`
+provide the global convex ordering and cap block contiguity, but
+`ConvexCyclicOrder/Basic.lean` explicitly leaves general rotate/reindex
+transport as deferred work.  P1 is therefore not just local assembly; it must
+either add the missing transport layer or change the generated consumers to
+work with ordered labels from the start.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
 candidate-mask list (`oneSidedSeedCandidateMaskOK` filter).  This is a
 completeness condition on the generated filter, not an exclusion — the same
 shape as the closed `*_exists_erasedPinRowSeed_privateMask` chain.
-{{NEEDS_PROOF}}; expected mechanical, but if any realized mask is NOT in the
-generated list, that is a generator bug or a genuinely new mask family —
-report before widening the filter.
+{{NEEDS_PROOF}}.  The local obligations at 9411/9424 do not currently expose
+the mask-interface hypotheses that `oneSidedSeedCandidateRemainder_of_mask_interfaces`
+expects; those hypotheses are normally produced inside the finite-facts
+pipeline.  Treat P2 as part of the same producer/scaffold refactor as P1, not
+as an isolated local `simp` proof.
 
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
