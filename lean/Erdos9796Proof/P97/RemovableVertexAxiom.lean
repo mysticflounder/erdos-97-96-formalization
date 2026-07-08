@@ -8765,6 +8765,15 @@ theorem exists_u3FixedTriplePacket_of_erasedPinTriple
   · exact (Finset.mem_filter.mp ht1).2
   · exact (Finset.mem_filter.mp ht2).2
   · exact (Finset.mem_filter.mp ht3).2
+
+/-- The exact residual circle in an erased-pin triple, restated against the U5
+q-deleted skeleton notation. -/
+theorem u5ExactRadiusClassCard_of_erasedPinTriple
+    {D : CounterexampleData} {q p : ℝ²}
+    (htriple : ErasedPinTriple D.A q p) :
+    (((D.skeleton q).erase p).filter
+        fun y => dist p y = dist p q).card = 3 := by
+  simpa [CounterexampleData.skeleton] using htriple.2
   
 /-- Categorized residual concrete erasure-witness production for the `IsM44`
 containment branch reduced to U5-style erased-pin triple circles.  The
@@ -8826,10 +8835,26 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               (S.oppositeVertexByIndex S.surplusIdx)
               ({t1, t2, t3} : Finset ℝ²) := by
           simpa [D] using u5DangerousTriple_of_u3FixedTriplePacket hP
+        rcases
+            hlocalDangerous.exists_selectedCandidateSkeleton_of_card_gt_nine
+              hgt with
+          ⟨u, hlocalSelected⟩
+        have hlocalExact :
+            (((D.skeleton x).erase
+                (S.oppositeVertexByIndex S.surplusIdx)).filter
+              fun y => dist (S.oppositeVertexByIndex S.surplusIdx) y =
+                dist (S.oppositeVertexByIndex S.surplusIdx) x).card = 3 := by
+          exact u5ExactRadiusClassCard_of_erasedPinTriple
+            (by simpa [D] using htriple)
+        rcases U5DangerousTriple.exists_two_off_circle_aux hDIsM44
+            hlocalDangerous hlocalSelected hlocalExact with
+          ⟨a0, a1, ha0_mem, ha1_mem, ha0_notin_base,
+            ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-opposite branch now has the exact U5 dangerous
-        -- triple at its own center.  The remaining producer must supply the
-        -- selected candidate/support payload, or a direct surplus-index
-        -- contradiction.
+        -- triple, selected candidate, exact radius class, and auxiliary
+        -- off-circle support vertices.  The remaining producer must supply the
+        -- rowwise confined classes or same-circle export, plus Mode A, or a
+        -- direct surplus-index contradiction.
         sorry
       · intro p hpI hpErase htriple
         rcases exists_u3FixedTriplePacket_of_erasedPinTriple
@@ -8840,10 +8865,24 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
         have hlocalDangerous :
             U5DangerousTriple D x p ({t1, t2, t3} : Finset ℝ²) := by
           simpa [D] using u5DangerousTriple_of_u3FixedTriplePacket hP
+        rcases
+            hlocalDangerous.exists_selectedCandidateSkeleton_of_card_gt_nine
+              hgt with
+          ⟨u, hlocalSelected⟩
+        have hlocalExact :
+            (((D.skeleton x).erase p).filter
+              fun y => dist p y = dist p x).card = 3 := by
+          exact u5ExactRadiusClassCard_of_erasedPinTriple
+            (by simpa [D] using htriple)
+        rcases U5DangerousTriple.exists_two_off_circle_aux hDIsM44
+            hlocalDangerous hlocalSelected hlocalExact with
+          ⟨a0, a1, ha0_mem, ha1_mem, ha0_notin_base,
+            ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-interior branch now has the exact U5 dangerous
-        -- triple at its own center.  The remaining producer must supply the
-        -- selected candidate/support payload, or a direct surplus-index
-        -- contradiction.
+        -- triple, selected candidate, exact radius class, and auxiliary
+        -- off-circle support vertices.  The remaining producer must supply the
+        -- rowwise confined classes or same-circle export, plus Mode A, or a
+        -- direct surplus-index contradiction.
         sorry
       · -- The reduced finite candidate scaffold remains the selected-class
         -- shadow producer needed by the finite row bridge.

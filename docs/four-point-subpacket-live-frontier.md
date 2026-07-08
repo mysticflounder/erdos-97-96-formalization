@@ -1484,3 +1484,39 @@ proof-blueprint resynced.  Open/total counts after resync are:
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
 `1/769`; `Problem97.erdos97_rhs` is `22/1556`; `Problem96.erdos96_rhs` is
 `26/1564`.
+
+Checkpoint implementation, 2026-07-08 PDT: the direct U5 route no longer lacks
+the selected-candidate skeleton.  The existing theorem
+`U5DangerousTriple.exists_selectedCandidateSkeleton_of_card_gt_nine` applies in
+both surplus-side direct holes from the local `hgt : 9 < A.card`, and the new
+bridge `u5ExactRadiusClassCard_of_erasedPinTriple` restates the
+`ErasedPinTriple` exact residual circle in U5 q-deleted-skeleton notation.
+Together with `U5DangerousTriple.exists_two_off_circle_aux`, each direct
+surplus-side hole now has:
+
+```lean
+hlocalDangerous : U5DangerousTriple D x p T
+hlocalSelected : U5SelectedCandidateSkeleton D x p T u
+hlocalExact : (((D.skeleton x).erase p).filter
+  fun y => dist p y = dist p x).card = 3
+a0 a1 : ℝ²
+ha0_mem / ha1_mem
+ha0_notin_base / ha1_notin_base
+ha0_off / ha1_off
+```
+
+For the surplus-opposite hole, `p` is
+`S.oppositeVertexByIndex S.surplusIdx`; for the surplus-interior hole, `p` is
+the quantified surplus-interior center.  This supersedes the earlier note that
+`U5SelectedCandidateSkeleton` was unavailable.  The remaining direct U5
+producer gap is now: produce `U5ModeA D` and either a same-circle export or the
+rowwise confined-class payload needed by `U5ConfinedK4AuditPayload.of_auxAndClasses`,
+or bypass U5 with a direct surplus-index contradiction.  The finite scaffold
+gap remains unchanged.
+
+Narrow verification after this bridge exposure: `lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom` completed successfully and
+proof-blueprint resynced.  Open/total counts after resync are:
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
+`1/785`; `Problem97.erdos97_rhs` is `22/1563`; `Problem96.erdos96_rhs` is
+`26/1571`.
