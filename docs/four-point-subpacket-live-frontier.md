@@ -1377,10 +1377,10 @@ proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidua
     source `sorry`; all named dependencies under the anchor are closed.
 
 proof-blueprint spine Problem97.erdos97_rhs
-  open: 22/1544
+  open: 22/1545
 
 proof-blueprint spine Problem96.erdos96_rhs
-  open: 26/1552
+  open: 26/1553
 ```
 
 Lean shrink verified at this checkpoint: the reduced erased-pin finite-candidate
@@ -1412,3 +1412,48 @@ Use narrow `lake-build` targets while editing generated certificate shards.
 Treat proof-blueprint as the spine-shape authority, but keep the live axiom
 gate separate: generated/mined subtrees may hide native-decision trust from the
 spine graph, and `verify-publish` still needs the spine sorries closed.
+
+Checkpoint search, 2026-07-08 PDT: the active local proof state for the
+erased-pin source has only the ambient `IsM44` packet inputs, the chosen
+surplus-interior point `x`, minimality data for the induced
+`CounterexampleData`, and the derived `U5DangerousTriple`.  LSP local search
+for `ErasedPinFiniteCandidateSepScaffoldFacts` finds only the abbrev itself;
+there is no existing declaration producing the reduced scaffold from this
+context.  The generated COMP-G geometry APIs still consume supplied
+`OneSidedSeedCandidateRemainder`, `PrefixPairCountsOK`, and `sepOKFor` facts;
+they do not synthesize them from `S.IsM44`, `S.NonSurplusMoserCapContainment`,
+minimality, or `U5DangerousTriple`.
+
+The two direct surplus-side subgoals have the same boundary.  In the
+surplus-opposite goal the local context is:
+
+```lean
+hxI : x ∈ S.capInteriorByIndex S.surplusIdx
+hdangerous : ∃ p t1 t2 t3, U5DangerousTriple D x p {t1, t2, t3}
+htriple : ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx)
+⊢ False
+```
+
+The existing `oppIndex1/oppIndex2_surplusErasedPinTriple_*` closures remain
+non-surplus-center closures: they require `p ∈ S.oppInterior1` or
+`p ∈ S.oppInterior2`.  They do not apply to center
+`S.oppositeVertexByIndex S.surplusIdx` or to centers in
+`S.capInteriorByIndex S.surplusIdx`.
+
+Next proof-producing target: add a genuine producer, not a wrapper, for one of
+these three facts from the current source context:
+
+1. `ErasedPinFiniteCandidateSepScaffoldFacts S x`;
+2. `ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False`;
+3. `∀ p, p ∈ S.capInteriorByIndex S.surplusIdx -> p ∈ A.erase x ->
+   ErasedPinTriple A x p -> False`.
+
+Candidate route for the scaffold producer: derive exact-four/no-self
+selected-class masks, pair-prefix counts, and total `sepOKFor` for the induced
+right/left `shadowOfPointClasses` directly from the minimality/U5 prefix plus
+`S.NonSurplusMoserCapContainment`.  Candidate route for the direct
+surplus-side exclusions: convert the surplus-index erased-pin triple into a
+selected-skeleton/support contradiction usable by the U5 audit, or prove a
+separate surplus-index selected-class exclusion.  Do not route this through the
+pinned residual APIs unless first proving the missing selected-class escape
+that those APIs require.
