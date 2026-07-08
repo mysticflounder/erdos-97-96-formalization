@@ -83,6 +83,10 @@ theorem reflectedHullLabel_injective :
   intro a b h
   cases a <;> cases b <;> simp [reflectedHullLabel] at h ⊢
 
+theorem reflectedHullLabel_involutive (a : Label) :
+    reflectedHullLabel (reflectedHullLabel a) = a := by
+  cases a <;> rfl
+
 set_option maxHeartbeats 2000000 in
 -- Finite case split over the ten generated labels; default reduction is close
 -- to the heartbeat limit in this generated-bank module.
@@ -1592,6 +1596,179 @@ theorem crossSeparationOKForMasks_of_sameRadius_ccwHull
               hdistHullC hdistHullCP (by simpa using hxyPoint)
           have hseparated : separated c cp x y = true :=
             separated_eq_true_of_btw_sep hxc hxcp hyc hycp hsepBtw
+          simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+            hcpx, hcpy, hseparated]
+        · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+            hcpx, hcpy]
+      · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
+          hcpx]
+    · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy]
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx]
+
+/-- Same-radius geometric classes in a reflected CCW ten-label hull order
+produce the original generated cross-separation mask bit.  This is the finite
+separator used when the available packet order is the mirror orientation of the
+generated bank convention. -/
+theorem crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull
+    {pointOf : Label → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 => pointOf (reflectedHullLabel (labelOfHullFin i))))
+    (hinj : Function.Injective pointOf)
+    {centerClass : Label → Finset ℝ²} {c cp : Label}
+    (hccp : c ≠ cp)
+    (hsameC : ∀ a b : Label,
+      pointOf a ∈ centerClass c →
+        pointOf b ∈ centerClass c →
+          dist (pointOf c) (pointOf a) =
+            dist (pointOf c) (pointOf b))
+    (hsameCP : ∀ a b : Label,
+      pointOf a ∈ centerClass cp →
+        pointOf b ∈ centerClass cp →
+          dist (pointOf cp) (pointOf a) =
+            dist (pointOf cp) (pointOf b)) :
+    crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+      (pointMask pointOf (centerClass cp)) = true := by
+  classical
+  have hinjHull :
+      Function.Injective
+        (fun i : Fin 10 =>
+          pointOf (reflectedHullLabel (labelOfHullFin i))) := by
+    intro i j h
+    have hlabel :
+        reflectedHullLabel (labelOfHullFin i) =
+          reflectedHullLabel (labelOfHullFin j) := hinj h
+    have hlabel' : labelOfHullFin i = labelOfHullFin j :=
+      reflectedHullLabel_injective hlabel
+    have hfin := congrArg hullFin hlabel'
+    simpa using hfin
+  unfold crossSeparationOKForMasks
+  rw [List.all_eq_true]
+  intro pair hpair
+  rcases pair with ⟨x, y⟩
+  by_cases hxc : x = c
+  · simp [Label.beq_eq_decide_eq, hxc]
+  by_cases hxcp : x = cp
+  · simp [Label.beq_eq_decide_eq, hxcp]
+  by_cases hyc : y = c
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc]
+  by_cases hycp : y = cp
+  · simp [Label.beq_eq_decide_eq, hxc, hxcp, hycp]
+  by_cases hcx :
+      maskHas (pointMask pointOf (centerClass c)) x = true
+  · by_cases hcy :
+        maskHas (pointMask pointOf (centerClass c)) y = true
+    · by_cases hcpx :
+          maskHas (pointMask pointOf (centerClass cp)) x = true
+      · by_cases hcpy :
+            maskHas (pointMask pointOf (centerClass cp)) y = true
+        · have hxC : pointOf x ∈ centerClass c :=
+            pointMask_maskHas_mem hcx
+          have hyC : pointOf y ∈ centerClass c :=
+            pointMask_maskHas_mem hcy
+          have hxCP : pointOf x ∈ centerClass cp :=
+            pointMask_maskHas_mem hcpx
+          have hyCP : pointOf y ∈ centerClass cp :=
+            pointMask_maskHas_mem hcpy
+          have hdistC :
+              dist (pointOf x) (pointOf c) =
+                dist (pointOf y) (pointOf c) := by
+            simpa [dist_comm] using hsameC x y hxC hyC
+          have hdistCP :
+              dist (pointOf x) (pointOf cp) =
+                dist (pointOf y) (pointOf cp) := by
+            simpa [dist_comm] using hsameCP x y hxCP hyCP
+          have hfinCCP :
+              hullFin (reflectedHullLabel cp) ≠
+                hullFin (reflectedHullLabel c) := by
+            intro h
+            have hlabel : reflectedHullLabel cp = reflectedHullLabel c :=
+              hullFin_inj.mp h
+            exact hccp ((reflectedHullLabel_injective hlabel).symm)
+          have hyRefNeCP :
+              reflectedHullLabel y ≠ reflectedHullLabel cp := by
+            intro h
+            exact hycp (reflectedHullLabel_injective h)
+          have hyRefNeC :
+              reflectedHullLabel y ≠ reflectedHullLabel c := by
+            intro h
+            exact hyc (reflectedHullLabel_injective h)
+          have hyFinCP :
+              hullFin (reflectedHullLabel y) ≠
+                hullFin (reflectedHullLabel cp) := by
+            intro h
+            exact hyRefNeCP (hullFin_inj.mp h)
+          have hyFinC :
+              hullFin (reflectedHullLabel y) ≠
+                hullFin (reflectedHullLabel c) := by
+            intro h
+            exact hyRefNeC (hullFin_inj.mp h)
+          have hxy : x ≠ y := by
+            cases x <;> cases y <;> simp [labelPairs] at hpair ⊢
+          have hxyPoint :
+              pointOf (reflectedHullLabel (reflectedHullLabel x)) ≠
+                pointOf (reflectedHullLabel (reflectedHullLabel y)) := by
+            simpa [reflectedHullLabel_involutive] using
+              (fun h : pointOf x = pointOf y => hxy (hinj h))
+          have hdistHullCP :
+              dist
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel x)))
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel cp))) =
+                dist
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel y)))
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel cp))) := by
+            simpa [reflectedHullLabel_involutive] using hdistCP
+          have hdistHullC :
+              dist
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel x)))
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel c))) =
+                dist
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel y)))
+                  ((fun i : Fin 10 =>
+                      pointOf (reflectedHullLabel (labelOfHullFin i)))
+                    (hullFin (reflectedHullLabel c))) := by
+            simpa [reflectedHullLabel_involutive] using hdistC
+          have hsepBtw :
+              btw (hullFin (reflectedHullLabel cp))
+                  (hullFin (reflectedHullLabel c))
+                  (hullFin (reflectedHullLabel x)) ↔
+                ¬ btw (hullFin (reflectedHullLabel cp))
+                    (hullFin (reflectedHullLabel c))
+                    (hullFin (reflectedHullLabel y)) :=
+            btw_sep
+              (ψ := fun i : Fin 10 =>
+                pointOf (reflectedHullLabel (labelOfHullFin i)))
+              hccw hinjHull hfinCCP hyFinCP hyFinC
+              hdistHullCP hdistHullC
+              (by
+                simpa [reflectedHullLabel_involutive] using hxyPoint)
+          have hreflectedSeparated :
+              separated (reflectedHullLabel cp) (reflectedHullLabel c)
+                (reflectedHullLabel x) (reflectedHullLabel y) = true :=
+            separated_eq_true_of_btw_sep
+              (by
+                intro h
+                exact hxcp (reflectedHullLabel_injective h))
+              (by
+                intro h
+                exact hxc (reflectedHullLabel_injective h))
+              hyRefNeCP hyRefNeC hsepBtw
+          have hseparated : separated c cp x y = true := by
+            rw [separated_reflectedHullLabel_swap c cp x y]
+            exact hreflectedSeparated
           simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
             hcpx, hcpy, hseparated]
         · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy,
