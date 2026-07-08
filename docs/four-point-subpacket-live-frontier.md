@@ -451,6 +451,42 @@ proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidua
   open: 1/785
 ```
 
+Exact-cap selected-class prefix producer checkpoint, 2026-07-08: the geometry
+bank now also supplies the concrete right/left scaffold-facing producer rather
+than only the abstract same-radius interface.  The new facts are:
+
+```text
+rightPinnedLabelPoint_mem_of_mem
+leftPinnedLabelPoint_mem_of_mem
+prefixPairCountsOK_rightPinnedLabelPoint_of_exactCaps_selectedClasses
+prefixPairCountsOK_leftPinnedLabelPoint_of_exactCaps_selectedClasses
+```
+
+The two membership producers discharge the `pointOf center ∈ A` input for the
+right/left ten-label maps from cap-interior membership of the named
+non-surplus pairs and the named surplus triple.  The two prefix producers use
+`S.exact_cap_class_at_index_of_cap_card_eq_four` at `.v/.w`, the supplied
+selected classes at `.Pw/.Pu`, and selected-class equations for the remaining
+centers to produce `PrefixPairCountsOK` for the exact `shadowOfPointClasses`
+surface in the reduced erased-pin scaffold.  They call the already-compiled
+same-radius/Dumitrescu producer internally and are not wrappers around an
+unproved prefix-count claim.
+
+This removes the prefix-count field from the live producer risk once a
+candidate `centerClass` is supplied with the exact-cap and selected-class
+equations.  The reduced scaffold still needs an actual right/left
+`centerClass` construction, the two representative own-kind
+`OneSidedSeedCandidateRemainder` producers, and total `sepOKFor`; those are
+now the finite-scaffold producer facts left after prefix counts.  Narrow
+verification:
+
+```text
+LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry
+  SUCCEEDED
+proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded --max-depth 4
+  open: 1/785
+```
+
 Checked prefix, 2026-07-08: the current repo already supplies the minimality to
 U3/U5 obstruction prefix without any rvol port.  Inside the source statement,
 one may choose any `x ∈ S.capInteriorByIndex S.surplusIdx` using

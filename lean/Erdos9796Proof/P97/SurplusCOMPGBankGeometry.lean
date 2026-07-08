@@ -164,6 +164,76 @@ theorem leftPinnedLabelPoint_injective_of_mem
   exact leftPinnedToRightLabel_injective (hright (by
     simpa [leftPinnedLabelPoint] using h))
 
+/-- The right-oriented generated labels are all ambient points once the named
+non-surplus pairs and surplus triple are taken from the corresponding cap
+interiors. -/
+theorem rightPinnedLabelPoint_mem_of_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx) :
+    ∀ center : Label,
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center ∈ A := by
+  intro center
+  cases center
+  · exact S.oppositeVertexByIndex_mem S.surplusIdx
+  · exact S.oppositeVertexByIndex_mem S.oppIndex1
+  · exact S.oppositeVertexByIndex_mem S.oppIndex2
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs1I)
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs2I)
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs3I)
+  · exact S.capByIndex_subset S.oppIndex1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hp₁I)
+  · exact S.capByIndex_subset S.oppIndex1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hp₂I)
+  · exact S.capByIndex_subset S.oppIndex2
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hq₁I)
+  · exact S.capByIndex_subset S.oppIndex2
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hq₂I)
+
+/-- The left-oriented generated labels are all ambient points once the named
+non-surplus pairs and surplus triple are taken from the corresponding cap
+interiors. -/
+theorem leftPinnedLabelPoint_mem_of_mem
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx) :
+    ∀ center : Label,
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center ∈ A := by
+  intro center
+  cases center
+  · exact S.oppositeVertexByIndex_mem S.surplusIdx
+  · exact S.oppositeVertexByIndex_mem S.oppIndex2
+  · exact S.oppositeVertexByIndex_mem S.oppIndex1
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs1I)
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs2I)
+  · exact S.capByIndex_subset S.surplusIdx
+      (S.capInteriorByIndex_subset_capByIndex S.surplusIdx hs3I)
+  · exact S.capByIndex_subset S.oppIndex2
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hp₁I)
+  · exact S.capByIndex_subset S.oppIndex2
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hp₂I)
+  · exact S.capByIndex_subset S.oppIndex1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hq₁I)
+  · exact S.capByIndex_subset S.oppIndex1
+      (S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hq₂I)
+
 /-- A surplus triple member determines the corresponding generated surplus-star
 label in the right-oriented COMP-G label map. -/
 theorem exists_surplusStar_rightPinnedLabelPoint_eq_of_mem_triple
@@ -1079,6 +1149,203 @@ theorem prefixPairCountsOK_shadowOfPointClasses_of_selectedClasses
       rw [hselected center] at ha hb
       exact (mem_selectedClass.mp ha).2.trans
         (mem_selectedClass.mp hb).2.symm)
+
+private theorem sameRadius_of_centerClass_eq_selectedClass
+    {A : Finset ℝ²} {pointOf : Label → ℝ²}
+    {centerClass : Label → Finset ℝ²} {center : Label} {radius : ℝ}
+    (hcenter :
+      centerClass center = SelectedClass A (pointOf center) radius) :
+    ∀ a b : Label,
+      pointOf a ∈ centerClass center →
+        pointOf b ∈ centerClass center →
+          dist (pointOf center) (pointOf a) =
+            dist (pointOf center) (pointOf b) := by
+  intro a b ha hb
+  rw [hcenter] at ha hb
+  exact (mem_selectedClass.mp ha).2.trans
+    (mem_selectedClass.mp hb).2.symm
+
+/-- Exact non-surplus cap classes and selected classes at the remaining
+right-oriented centers supply the generated prefix pair-count certificate for
+the erased-pin scaffold surface. -/
+theorem prefixPairCountsOK_rightPinnedLabelPoint_of_exactCaps_selectedClasses
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²} {radius : ℝ}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hv : centerClass .v = S.capByIndex S.oppIndex1)
+    (hw : centerClass .w = S.capByIndex S.oppIndex2)
+    (hPw : centerClass .Pw = SelectedClass A p₁ radius)
+    (hPu : centerClass .Pu = SelectedClass A p₂ radius)
+    (hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center)) :
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) := by
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex1 hK4
+      hcontain.1 hM44.oppIndex1_cap_card_eq_four with
+    ⟨_radiusV, _hradiusV, hvExact⟩
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex2 hK4
+      hcontain.2 hM44.oppIndex2_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  exact
+    prefixPairCountsOK_shadowOfPointClasses_of_sameRadius hconv
+      (rightPinnedLabelPoint_injective_of_mem S
+        hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23)
+      (rightPinnedLabelPoint_mem_of_mem S
+        hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I)
+      (fun center a b ha hb => by
+        cases center
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .u (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · rw [hv] at ha hb
+          have haDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+              hvExact ha
+          have hbDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+              hvExact hb
+          simpa [rightPinnedLabelPoint] using haDist.trans hbDist.symm
+        · rw [hw] at ha hb
+          have haDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+              hwExact ha
+          have hbDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+              hwExact hb
+          simpa [rightPinnedLabelPoint] using haDist.trans hbDist.symm
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s1 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s2 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s3 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · rw [hPw] at ha hb
+          simpa [rightPinnedLabelPoint] using
+            (mem_selectedClass.mp ha).2.trans
+              (mem_selectedClass.mp hb).2.symm
+        · rw [hPu] at ha hb
+          simpa [rightPinnedLabelPoint] using
+            (mem_selectedClass.mp ha).2.trans
+              (mem_selectedClass.mp hb).2.symm
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .Q1 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .Q2 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb)
+
+/-- Exact non-surplus cap classes and selected classes at the remaining
+left-oriented centers supply the generated prefix pair-count certificate for
+the erased-pin scaffold surface. -/
+theorem prefixPairCountsOK_leftPinnedLabelPoint_of_exactCaps_selectedClasses
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²} {radius : ℝ}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hv : centerClass .v = S.capByIndex S.oppIndex2)
+    (hw : centerClass .w = S.capByIndex S.oppIndex1)
+    (hPw : centerClass .Pw = SelectedClass A p₁ radius)
+    (hPu : centerClass .Pu = SelectedClass A p₂ radius)
+    (hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center)) :
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) := by
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex2 hK4
+      hcontain.2 hM44.oppIndex2_cap_card_eq_four with
+    ⟨_radiusV, _hradiusV, hvExact⟩
+  rcases S.exact_cap_class_at_index_of_cap_card_eq_four S.oppIndex1 hK4
+      hcontain.1 hM44.oppIndex1_cap_card_eq_four with
+    ⟨_radiusW, _hradiusW, hwExact⟩
+  exact
+    prefixPairCountsOK_shadowOfPointClasses_of_sameRadius hconv
+      (leftPinnedLabelPoint_injective_of_mem S
+        hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23)
+      (leftPinnedLabelPoint_mem_of_mem S
+        hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I)
+      (fun center a b ha hb => by
+        cases center
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .u (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · rw [hv] at ha hb
+          have haDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+              hvExact ha
+          have hbDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex2
+              hvExact hb
+          simpa [leftPinnedLabelPoint, rightPinnedLabelPoint,
+            leftPinnedToRightLabel] using haDist.trans hbDist.symm
+        · rw [hw] at ha hb
+          have haDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+              hwExact ha
+          have hbDist :=
+            S.dist_opposite_eq_of_mem_capByIndex_of_exact S.oppIndex1
+              hwExact hb
+          simpa [leftPinnedLabelPoint, rightPinnedLabelPoint,
+            leftPinnedToRightLabel] using haDist.trans hbDist.symm
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s1 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s2 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .s3 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · rw [hPw] at ha hb
+          simpa [leftPinnedLabelPoint, rightPinnedLabelPoint,
+            leftPinnedToRightLabel] using
+            (mem_selectedClass.mp ha).2.trans
+              (mem_selectedClass.mp hb).2.symm
+        · rw [hPu] at ha hb
+          simpa [leftPinnedLabelPoint, rightPinnedLabelPoint,
+            leftPinnedToRightLabel] using
+            (mem_selectedClass.mp ha).2.trans
+              (mem_selectedClass.mp hb).2.symm
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .Q1 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb
+        · exact sameRadius_of_centerClass_eq_selectedClass
+            (hselectedOther .Q2 (by decide) (by decide) (by decide)
+              (by decide)) a b ha hb)
 
 /-- The generated prefix pair-count checker is exposed as an explicit
 finite-list interface for induced geometric shadows. -/
