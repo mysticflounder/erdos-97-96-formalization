@@ -1042,6 +1042,20 @@ therefore narrowed to: produce `ErasedPinFiniteCandidateScaffoldFacts S x` for
 the chosen erased surplus point, plus the surplus-opposite and surplus-interior
 direct `ErasedPinTriple` exclusions.
 
+Checkpoint, 2026-07-08 UTC / 2026-07-07 PDT: live `sorry` status in
+`RemovableVertexAxiom.lean` is four sites: the two endpoint finite row-bank
+metric-shadow producers inside `isM44EndpointResidualsExcluded`, the theorem
+`isM44PinnedSurplusResidualsExcluded`, and the local finite-residual source
+inside `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.  A quick
+endpoint pass confirmed that the local endpoint goal has the exposed forced
+`.v`/`.w` masks, point membership, and injectivity, but still needs an actual
+bank shadow plus `EndpointMetricShadow` for the exposed point map; premise
+search did not find a local closer.  The sibling rvol endpoint theorem
+`oppCap2_endpointEscape_false` is also a residual `sorry`, so it is not a
+closed producer to port.  The erased-pin finite-residual source likewise has no
+hidden declaration-level producer in the local index; its remaining content is
+still the scaffold plus direct surplus erased-pin exclusions described above.
+
 Trust boundary: after the finite-row/count-family rewire,
 `proof-blueprint axioms
 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` reports
