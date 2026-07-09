@@ -2318,3 +2318,35 @@ data only identifies the fixed private mask; it does not prove the missing
 non-fixed candidate memberships.  Therefore the next grounded implementation
 target remains the ordered seed-mask/candidate producer boundary described
 above, not a local rewrite of the terminal row consumers.
+
+2026-07-09 relaxed erased-pin probe checkpoint: added
+`scripts/erased-pin-relaxed-producer-probe.py` to test the exact finite
+search surface obtained by removing `seed.candidateMasks` from the erased-pin
+row producer.  The probe imports the existing erased-pin census generator and
+checks fixed `.v`, `.w`, private masks, no-three/prefix counts, and
+separation.  Results with `--max-survivors 1 --summary-only`:
+
+- `--mode raw`: 189 closed / 330 total, 141 open.
+- `--mode no_self`: 189 closed / 330 total, 141 open.  No-self alone removes
+  nothing beyond raw because the open witnesses can use zero masks.
+- `--mode shape`: 330 closed / 330 total.
+- terminal rows `ep_right_m2_s1_l0_r1`/`ep_left_m2_s1_l1_r0`: raw and
+  no-self close 15 / 18; the three open seeds are the opposite-`w` private
+  masks `v,w,s*,otherPrivate`.  Shape closes 18 / 18.
+
+Interpretation: a generated shape-relaxed DFS would be strong enough to
+replace the full candidate predicate computationally, but only after the
+proof-facing packet supplies exact-four/no-self mask shape for the non-fixed
+centers.  That shape is not currently present in
+`RightOneSidedErasedPayloadFiniteCandidateSepFacts`/
+`LeftOneSidedErasedPayloadFiniteCandidateSepFacts`, and it is not automatically
+available from the selected-class geometry used by
+`rightPinnedErasedPayloadCenterClass`/`leftPinnedErasedPayloadCenterClass`.
+The relaxed route is therefore not closed by generation alone.  The next
+productive fork is:
+
+1. prove real shape/mask-interface fields at the ordered row boundary and then
+   use either the existing candidate adapter or a new shape-relaxed DFS; or
+2. keep candidate generation row-specific and reduce the remaining cases to
+   the 141 raw-open seeds, with special attention to the three terminal
+   opposite-`w` private masks.
