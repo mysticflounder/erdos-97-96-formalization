@@ -663,6 +663,16 @@ route must therefore be one of two real producers:
   `candidateMasks` membership.  This should be checked first, because the
   project already has relaxed singleton split certificate infrastructure.
 
+2026-07-09 payload-row checkpoint: `SurplusM44Packet.lean` now exposes the
+exact count rows carried by the named erased payloads.  A right one-sided
+erased payload gives `(moser, same, left, right) = (2,1,0,1)` and a left
+one-sided erased payload gives `(2,1,1,0)`, by direct destructuring of the
+payload selected-class equalities.  These are producer facts, not a replacement
+residual surface: they support the row/payload-boundary route above by making
+the payload obstruction rows available as ordinary count facts.  They do not
+prove the current broad `hrightCandidate`/`hleftCandidate` helpers, which still
+ask for arbitrary-label candidate membership at a shared radius.
+
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
 BLOCKED sites and the two surviving rows (right `(0,0,0,4)`, left

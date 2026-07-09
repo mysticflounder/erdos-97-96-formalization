@@ -6573,6 +6573,48 @@ theorem rightOneSidedErasedPayload_erased_mem_rightAdjacentInterior
     simp
   exact (Finset.mem_inter.mp herased).2
 
+/-- In a right one-sided erased payload, the Moser count is exactly two. -/
+theorem rightOneSidedErasedPayload_moserCount_eq_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    S.moserCount center radius = 2 := by
+  rcases hpayload with
+    ⟨m₁, m₂, _s, hmne, hM, _hC, _hL, _hR, _hsel, _hcard⟩
+  have hcard : ({m₁, m₂} : Finset ℝ²).card = 2 := by
+    simp [hmne]
+  simpa [moserCount, hM] using hcard
+
+/-- In a right one-sided erased payload, the same-cap count is exactly one. -/
+theorem rightOneSidedErasedPayload_sameCapCount_eq_one
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    S.sameCapCount i center radius = 1 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, hC, _hL, _hR, _hsel, _hcard⟩
+  simp [sameCapCount, hC]
+
+/-- In a right one-sided erased payload, the left-adjacent count is zero. -/
+theorem rightOneSidedErasedPayload_leftAdjCount_eq_zero
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    S.leftAdjCount i center radius = 0 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, hL, _hR, _hsel, _hcard⟩
+  simp [leftAdjCount, hL]
+
+/-- In a right one-sided erased payload, the right-adjacent count is exactly one. -/
+theorem rightOneSidedErasedPayload_rightAdjCount_eq_one
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    S.rightAdjCount i center radius = 1 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, _hL, hR, _hsel, _hcard⟩
+  simp [rightAdjCount, hR]
+
 /-- A left one-sided erased payload carries an exact four-point selected class
 at the payload center and radius. -/
 theorem leftOneSidedErasedPayload_selectedClass_card_eq_four
@@ -6616,6 +6658,48 @@ theorem leftOneSidedErasedPayload_erased_mem_leftAdjacentInterior
     rw [hL]
     simp
   exact (Finset.mem_inter.mp herased).2
+
+/-- In a left one-sided erased payload, the Moser count is exactly two. -/
+theorem leftOneSidedErasedPayload_moserCount_eq_two
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    S.moserCount center radius = 2 := by
+  rcases hpayload with
+    ⟨m₁, m₂, _s, hmne, hM, _hC, _hL, _hR, _hsel, _hcard⟩
+  have hcard : ({m₁, m₂} : Finset ℝ²).card = 2 := by
+    simp [hmne]
+  simpa [moserCount, hM] using hcard
+
+/-- In a left one-sided erased payload, the same-cap count is exactly one. -/
+theorem leftOneSidedErasedPayload_sameCapCount_eq_one
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    S.sameCapCount i center radius = 1 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, hC, _hL, _hR, _hsel, _hcard⟩
+  simp [sameCapCount, hC]
+
+/-- In a left one-sided erased payload, the left-adjacent count is exactly one. -/
+theorem leftOneSidedErasedPayload_leftAdjCount_eq_one
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    S.leftAdjCount i center radius = 1 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, hL, _hR, _hsel, _hcard⟩
+  simp [leftAdjCount, hL]
+
+/-- In a left one-sided erased payload, the right-adjacent count is zero. -/
+theorem leftOneSidedErasedPayload_rightAdjCount_eq_zero
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    S.rightAdjCount i center radius = 0 := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, _hL, hR, _hsel, _hcard⟩
+  simp [rightAdjCount, hR]
 
 /-- The right-sided obstruction row names the whole four-point selected class:
 two Moser vertices, one same-cap point, no left-adjacent point, and one
