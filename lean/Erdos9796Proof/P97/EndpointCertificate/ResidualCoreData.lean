@@ -56,10 +56,6 @@ theorem endpointLeft_residual_exists_false_of_selectedClass_core_data
                 SurplusCOMPGBank.maskHas
                   (endpointPointMask pointOf (centerClass center)) .w) =
                   false) →
-          (∀ l₁ l₂ : ShadowBank.Label,
-            (l₁, l₂) ∈ SurplusCOMPGBank.labelPairs →
-            SurplusCOMPGBank.pointPairClassCount
-              (endpointShadowOfPointClasses pointOf centerClass) l₁ l₂ <= 2) →
           (∀ c cp l₁ l₂ : ShadowBank.Label,
             (l₁, l₂) ∈ SurplusCOMPGBank.labelPairs →
             SurplusCOMPGBank.sepOKFor
@@ -123,7 +119,7 @@ theorem endpointLeft_residual_exists_false_of_selectedClass_core_data
   dsimp only
   refine ⟨hxLabel, hinj, hxLabelEq, hpointMem, ?_⟩
   intro centerClass hvClass hwClass radiusOf hselected hradiusOther
-    hcardOther hcirc hno3 hsep
+    hcardOther hcirc hsep
   let shadow := endpointShadowOfPointClasses pointOf centerClass
   have hvMask :
       endpointPointMask pointOf (centerClass .v) =
@@ -264,7 +260,9 @@ theorem endpointLeft_residual_exists_false_of_selectedClass_core_data
       (x, y) ∈ SurplusCOMPGBank.labelPairs →
       SurplusCOMPGBank.pointPairClassCount
         (endpointShadowOfPointClasses pointOf centerClass) x y <= 2 := by
-    simpa [pointOf] using hno3
+    intro x y hpair
+    exact endpointPointPairClassCount_le_two_of_selectedClasses
+      hconv hinj hpointMem hselected hpair
   have hcounts' : ∀ assigned : List ShadowBank.Label,
       assigned ∈ SurplusCOMPGBank.fragmentSearchAssignedPrefixes →
       SurplusCOMPGBank.pairCountsOK
@@ -338,10 +336,6 @@ theorem endpointRight_residual_exists_false_of_selectedClass_core_data
                 SurplusCOMPGBank.maskHas
                   (endpointPointMask pointOf (centerClass center)) .w) =
                   false) →
-          (∀ l₁ l₂ : ShadowBank.Label,
-            (l₁, l₂) ∈ SurplusCOMPGBank.labelPairs →
-            SurplusCOMPGBank.pointPairClassCount
-              (endpointShadowOfPointClasses pointOf centerClass) l₁ l₂ <= 2) →
           (∀ c cp l₁ l₂ : ShadowBank.Label,
             (l₁, l₂) ∈ SurplusCOMPGBank.labelPairs →
             SurplusCOMPGBank.sepOKFor
@@ -405,7 +399,7 @@ theorem endpointRight_residual_exists_false_of_selectedClass_core_data
   dsimp only
   refine ⟨hxLabel, hinj, hxLabelEq, hpointMem, ?_⟩
   intro centerClass hvClass hwClass radiusOf hselected hradiusOther
-    hcardOther hcirc hno3 hsep
+    hcardOther hcirc hsep
   let shadow := endpointShadowOfPointClasses pointOf centerClass
   have hvMask :
       endpointPointMask pointOf (centerClass .v) =
@@ -546,7 +540,9 @@ theorem endpointRight_residual_exists_false_of_selectedClass_core_data
       (x, y) ∈ SurplusCOMPGBank.labelPairs →
       SurplusCOMPGBank.pointPairClassCount
         (endpointShadowOfPointClasses pointOf centerClass) x y <= 2 := by
-    simpa [pointOf] using hno3
+    intro x y hpair
+    exact endpointPointPairClassCount_le_two_of_selectedClasses
+      hconv hinj hpointMem hselected hpair
   have hcounts' : ∀ assigned : List ShadowBank.Label,
       assigned ∈ SurplusCOMPGBank.fragmentSearchAssignedPrefixes →
       SurplusCOMPGBank.pairCountsOK

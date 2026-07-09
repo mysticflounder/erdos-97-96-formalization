@@ -9,7 +9,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 Generated from the combinatorial/token census script:
 
 ```bash
-env UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/escape-census.py --min-n 9 --max-n 729 --format markdown
+env UV_CACHE_DIR=/tmp/uv-cache uv run python census/incidence/escape_census.py --min-n 9 --max-n 729 --format markdown
 ```
 
 Scope: incidence/token census only; not metric feasibility.

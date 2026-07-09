@@ -141,7 +141,7 @@ n ∈ {12,13,14}, Candidate D convexity-coupled forcing (no mechanism);
 split decision to Adam — plan §7 D3; RESOLVED 2026-07-07: Candidate D
 probe first — per-type convex-order exclusion over the 19 reflected
 primitive N8 tuples + composition test targeting obstruction D1,
-dispatched to `scratch/candidate-d-probe/`; C census extension deferred
+dispatched to `census/candidate_d_probe/`; C census extension deferred
 pending the probe verdict; probe LANDED 2026-07-07, validated — pure
 per-type route CLOSED: 13/19 classes REALIZED at the decorated minimal
 window with exact independently re-verified witnesses, obstruction D1
@@ -150,17 +150,24 @@ vertex-pair ⇒ s = 0 (2 unconditional kills), s = 2 ⇒ straddle-only;
 s ≥ 3 kills ride SUB2, CONJECTURED; C-split DECIDED 2026-07-07 (Adam):
 gated go — k=4 bank LANDED 2026-07-07 validated (10 dead classes
 confirmed, certificates kernel-checked in `K4WindowBank.lean`, unimported;
-plan §7 D3), n = 12 window-shape convergence gate in flight
-(`scratch/census-12-gate/`), full 12–14 census pending the gate readout —
-`scratch/candidate-d-probe/report.md`). Proposed
+plan §7 D3), n = 12 window-shape convergence gate READOUT 2026-07-08: **no
+convergence** over 65+ cumulative iterations (shape-stale quartile ~0.2,
+fresh ~2 shapes/iter, census-baseline-like) — 255 orbits / 158 shapes /
+20,322 instances banked, all certs verified; two CERTFAIL events
+(engine-proven C_EMPTY cubes whose in-loop full-cube certify at 1200 s per
+Singular call timed out) resolved offline at 7200 s/call; cuts=none baseline
+not started (`scratch/census-12-gate/`); full 12–14 go/no-go remains Adam's
+call — `census/candidate_d_probe/report.md`). Proposed
 split residual
 `DoubleApexOffSurplusSharedRadiusPairCard12Up` separates the census-closable
 slice from the uniform-rigidity frontier. This is the only row whose route
 has genuine open-strategy uncertainty (register U4). Census dispatched
-2026-07-06; **BUDGET-partial 2026-07-07**: 1596 orbits / 40,524 instances
-banked and verified (equality-only throughout — U8 resolved clean), no
-ALIVE cube in 376 witnesses, coverage incomplete and resumable
-(`scratch/census-554/{STATE.md,report.md}`; plan §5 census status).
+2026-07-06; **BUDGET-partial, continuation LIVE through 2026-07-08 (inst
+25)**: 5154 orbits / 135,263 instances banked and verified (equality-only
+throughout — U8 resolved clean; all kills familiar multi_pair/pair/base), no
+ALIVE cube, no UNSAT, coverage incomplete and resumable (banking rate flat
+~70–206 orbits/installment) (`scratch/census-554/{STATE.md,report.md}`;
+plan §5 census status).
 Acceptance: either the obligation closes, or it is replaced on the spine by
 the strictly narrower Card12Up residual with the |A| ≤ 11 slice
 kernel-closed.

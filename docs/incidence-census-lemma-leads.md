@@ -7,7 +7,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 # Incidence Census Lemma Leads
 
 This note records structural patterns visible in the incidence census generated
-by `scripts/escape-census.py`.  It is evidence about the combinatorial/token
+by `census/incidence/escape_census.py`.  It is evidence about the combinatorial/token
 model only.  It is not a metric feasibility result.
 
 The source table is [`n10-n81-incidence-table.md`](n10-n81-incidence-table.md).

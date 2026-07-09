@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.EndpointCertificate.Geometry
 import Erdos9796Proof.P97.EndpointCertificate.ShadowSearchCoverage
+import Erdos9796Proof.P97.Dumitrescu.L1
 import Erdos9796Proof.P97.SurplusCOMPGBankGeometry
 
 /-!
@@ -118,6 +119,155 @@ theorem endpointNoThreeOK_shadowOfPointClasses_of_pointPairClassCount_le_two
     SurplusCOMPGBank.noThreeOK
       (endpointShadowOfPointClasses pointOf centerClass) = true := by
   simp [SurplusCOMPGBank.noThreeOK, SurplusCOMPGBank.labelPairs, hcount]
+
+private theorem endpoint_foldl_countP_add {α : Type _} (p : α → Bool) :
+    ∀ (items : List α) (acc : Nat),
+      items.foldl (fun acc item => if p item then acc + 1 else acc) acc =
+        acc + List.countP p items := by
+  intro items
+  induction items with
+  | nil => intro acc; simp
+  | cons item rest ih =>
+      intro acc
+      by_cases h : p item = true
+      · simp [h, ih, Nat.add_comm, Nat.add_left_comm]
+      · simp [h, ih]
+
+private theorem endpoint_pointPairClassCount_eq_countP
+    (shadow : ShadowBank.Shadow) (x y : ShadowBank.Label) :
+    SurplusCOMPGBank.pointPairClassCount shadow x y =
+      List.countP
+        (fun center =>
+          SurplusCOMPGBank.pointPairHitByCenterMask center
+            (shadow.centerMask center) (x, y))
+        SurplusCOMPGBank.allLabels := by
+  unfold SurplusCOMPGBank.pointPairClassCount
+  have hfun :
+      (fun acc center =>
+        if center == x || center == y then
+          acc
+        else if shadow.classHas center x && shadow.classHas center y then
+          acc + 1
+        else
+          acc) =
+        (fun acc center =>
+          if SurplusCOMPGBank.pointPairHitByCenterMask center
+              (shadow.centerMask center) (x, y) then
+            acc + 1
+          else
+            acc) := by
+    funext acc center
+    by_cases hx : center = x
+    · simp [SurplusCOMPGBank.pointPairHitByCenterMask, hx]
+    · by_cases hy : center = y
+      · simp [SurplusCOMPGBank.pointPairHitByCenterMask, hy]
+      · simp [SurplusCOMPGBank.pointPairHitByCenterMask,
+          SurplusCOMPGBank.Shadow.classHas, hx, hy]
+  rw [hfun, endpoint_foldl_countP_add]
+  simp
+
+private theorem endpoint_pointPairHit_classHas_left
+    {shadow : ShadowBank.Shadow} {center x y : ShadowBank.Label}
+    (hhit : SurplusCOMPGBank.pointPairHitByCenterMask center
+      (shadow.centerMask center) (x, y) = true) :
+    shadow.classHas center x = true := by
+  unfold SurplusCOMPGBank.pointPairHitByCenterMask at hhit
+  by_cases hx : center = x
+  · simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hx, decide_true,
+      Bool.true_or, if_true, Bool.false_eq_true] at hhit
+  by_cases hy : center = y
+  · simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hy, decide_true,
+      Bool.or_true, if_true, Bool.false_eq_true] at hhit
+  simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hx, hy, decide_false,
+    Bool.false_or, Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
+  simpa [SurplusCOMPGBank.Shadow.classHas] using hhit.1
+
+private theorem endpoint_pointPairHit_classHas_right
+    {shadow : ShadowBank.Shadow} {center x y : ShadowBank.Label}
+    (hhit : SurplusCOMPGBank.pointPairHitByCenterMask center
+      (shadow.centerMask center) (x, y) = true) :
+    shadow.classHas center y = true := by
+  unfold SurplusCOMPGBank.pointPairHitByCenterMask at hhit
+  by_cases hx : center = x
+  · simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hx, decide_true,
+      Bool.true_or, if_true, Bool.false_eq_true] at hhit
+  by_cases hy : center = y
+  · simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hy, decide_true,
+      Bool.or_true, if_true, Bool.false_eq_true] at hhit
+  simp only [SurplusCOMPGBank.Label.beq_eq_decide_eq, hx, hy, decide_false,
+    Bool.false_or, Bool.false_eq_true, if_false, Bool.and_eq_true] at hhit
+  simpa [SurplusCOMPGBank.Shadow.classHas] using hhit.2
+
+/-- Selected-class interfaces and convex independence bound endpoint point-pair
+class counts by two. -/
+theorem endpointPointPairClassCount_le_two_of_selectedClasses
+    {A : Finset ℝ²} (hconv : ConvexIndep A)
+    {pointOf : ShadowBank.Label → ℝ²}
+    (hinj : Function.Injective pointOf)
+    (hpointMem : ∀ center : ShadowBank.Label, pointOf center ∈ A)
+    {centerClass : ShadowBank.Label → Finset ℝ²}
+    {radiusOf : ShadowBank.Label → ℝ}
+    (hselected : ∀ center : ShadowBank.Label,
+      centerClass center = SelectedClass A (pointOf center) (radiusOf center))
+    {x y : ShadowBank.Label}
+    (hpair : (x, y) ∈ SurplusCOMPGBank.labelPairs) :
+    SurplusCOMPGBank.pointPairClassCount
+      (endpointShadowOfPointClasses pointOf centerClass) x y <= 2 := by
+  classical
+  let shadow := endpointShadowOfPointClasses pointOf centerClass
+  let hitPred : ShadowBank.Label → Bool := fun center =>
+    SurplusCOMPGBank.pointPairHitByCenterMask center
+      (shadow.centerMask center) (x, y)
+  let hits : Finset ShadowBank.Label :=
+    (SurplusCOMPGBank.allLabels.filter hitPred).toFinset
+  let target : Finset ℝ² :=
+    A.filter (fun p => dist p (pointOf x) = dist p (pointOf y))
+  have hcount_eq :
+      SurplusCOMPGBank.pointPairClassCount shadow x y = hits.card := by
+    rw [endpoint_pointPairClassCount_eq_countP, List.countP_eq_length_filter]
+    have hnodupAll : SurplusCOMPGBank.allLabels.Nodup := by
+      decide
+    have hnodupHits : (SurplusCOMPGBank.allLabels.filter hitPred).Nodup :=
+      List.Nodup.filter hitPred hnodupAll
+    exact (List.toFinset_card_of_nodup hnodupHits).symm
+  have hmaps : Set.MapsTo pointOf (↑hits) (↑target) := by
+    intro center hcenter
+    have hlist : center ∈ SurplusCOMPGBank.allLabels.filter hitPred := by
+      simpa [hits] using hcenter
+    rcases List.mem_filter.mp hlist with ⟨_hmemLabel, hhit⟩
+    have hxHas : shadow.classHas center x = true :=
+      endpoint_pointPairHit_classHas_left (shadow := shadow) hhit
+    have hyHas : shadow.classHas center y = true :=
+      endpoint_pointPairHit_classHas_right (shadow := shadow) hhit
+    have hxMem : pointOf x ∈ centerClass center :=
+      endpointPointMask_maskHas_mem (by
+        simpa [shadow, SurplusCOMPGBank.Shadow.classHas,
+          endpointShadowOfPointClasses_centerMask] using hxHas)
+    have hyMem : pointOf y ∈ centerClass center :=
+      endpointPointMask_maskHas_mem (by
+        simpa [shadow, SurplusCOMPGBank.Shadow.classHas,
+          endpointShadowOfPointClasses_centerMask] using hyHas)
+    rw [hselected center] at hxMem hyMem
+    have hdist : dist (pointOf center) (pointOf x) =
+        dist (pointOf center) (pointOf y) :=
+      (mem_selectedClass.mp hxMem).2.trans (mem_selectedClass.mp hyMem).2.symm
+    exact Finset.mem_filter.mpr ⟨hpointMem center, hdist⟩
+  have hinjOn : Set.InjOn pointOf (↑hits) := by
+    intro a _ha b _hb hab
+    exact hinj hab
+  have hle_hits : hits.card <= target.card :=
+    Finset.card_le_card_of_injOn pointOf hmaps hinjOn
+  have hxy : x ≠ y := by
+    cases x <;> cases y <;> simp [SurplusCOMPGBank.labelPairs] at hpair ⊢
+  have hbase : pointOf x ≠ pointOf y := by
+    intro hxyPoint
+    exact hxy (hinj hxyPoint)
+  have htarget : target.card <= 2 := by
+    simpa [target] using
+      (Dumitrescu.perpBisector_apex_bound hconv (hpointMem x) (hpointMem y)
+        hbase)
+  rw [hcount_eq]
+  exact Nat.le_trans hle_hits htarget
 
 /-- Prefix pair-count facts give the generated pair-count Boolean for the
 endpoint shadow. -/

@@ -4398,6 +4398,8 @@ def PinnedRightSurplusResidualAt
       S.capInteriorByIndex S.oppIndex1 ⊆ T ∧
       S.leftOuterVertexByIndex S.oppIndex1 ∈ T ∧
       x ∈ T ∧
+      x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+        (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1) ∧
       T ∩ S.leftAdjacentCapByIndex S.oppIndex1 =
         ({S.leftOuterVertexByIndex S.oppIndex1} : Finset ℝ²) ∧
       T ∩ S.rightAdjacentCapByIndex S.oppIndex1 =
@@ -4421,6 +4423,8 @@ def PinnedLeftSurplusResidualAt
       S.capInteriorByIndex S.oppIndex2 ⊆ T ∧
       S.rightOuterVertexByIndex S.oppIndex2 ∈ T ∧
       x ∈ T ∧
+      x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+        (S.capByIndex S.oppIndex2 ∪ S.rightAdjacentCapByIndex S.oppIndex2) ∧
       T ∩ S.leftAdjacentCapByIndex S.oppIndex2 =
         ({x} : Finset ℝ²) ∧
       T ∩ S.rightAdjacentCapByIndex S.oppIndex2 =
@@ -4443,8 +4447,8 @@ theorem pinnedRightSurplusResidual_private_pair_nonEquidistant
         dist p₁ (S.leftOuterVertexByIndex S.oppIndex1) ≠
           dist p₂ (S.leftOuterVertexByIndex S.oppIndex1) := by
   rcases hpinned with
-    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hleft, _hx, _hleftEq,
-      _hrightEq, hright_ne, hleft_ne⟩
+    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hleft, _hx, _hxSurplus,
+      _hleftEq, _hrightEq, hright_ne, hleft_ne⟩
   exact ⟨p₁, p₂, hpne, hpair, hright_ne, hleft_ne⟩
 
 /-- The left-pinned residual exposes its private two-point cap and the two
@@ -4460,9 +4464,127 @@ theorem pinnedLeftSurplusResidual_private_pair_nonEquidistant
         dist p₁ (S.leftOuterVertexByIndex S.oppIndex2) ≠
           dist p₂ (S.leftOuterVertexByIndex S.oppIndex2) := by
   rcases hpinned with
-    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hright, _hx, _hleftEq,
-      _hrightEq, hright_ne, hleft_ne⟩
+    ⟨p₁, p₂, hpne, hpair, _hcard, _hsub, _hright, _hx, _hxSurplus,
+      _hleftEq, _hrightEq, hright_ne, hleft_ne⟩
   exact ⟨p₁, p₂, hpne, hpair, hright_ne, hleft_ne⟩
+
+/-- The right-pinned residual retains the strict surplus-side membership
+witness from which it was constructed. -/
+theorem pinnedRightSurplusResidual_mem_right_surplus
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+    x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+      (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1) := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hleft, _hx,
+      hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  exact hxSurplus
+
+/-- The left-pinned residual retains the strict surplus-side membership
+witness from which it was constructed. -/
+theorem pinnedLeftSurplusResidual_mem_left_surplus
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+    x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+      (S.capByIndex S.oppIndex2 ∪ S.rightAdjacentCapByIndex S.oppIndex2) := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hright, _hx,
+      hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  exact hxSurplus
+
+/-- A right-pinned residual is carried by a positive selected-class radius. -/
+theorem pinnedRightSurplusResidual_radius_pos
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+    0 < radius := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hleft, hxT,
+      hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  have hcenter_ne_x : S.oppositeVertexByIndex S.oppIndex1 ≠ x := by
+    intro hcenter
+    rcases Finset.mem_sdiff.mp hxSurplus with ⟨_hxRight, hxNotOwnOrLeft⟩
+    exact hxNotOwnOrLeft (Finset.mem_union.mpr (Or.inr (by
+      simpa [hcenter] using
+        S.oppositeVertexByIndex_mem_leftAdjacentCapByIndex S.oppIndex1)))
+  have hdist :
+      dist (S.oppositeVertexByIndex S.oppIndex1) x = radius :=
+    (mem_selectedClass.mp hxT).2
+  rw [← hdist]
+  exact dist_pos.mpr hcenter_ne_x
+
+/-- A left-pinned residual is carried by a positive selected-class radius. -/
+theorem pinnedLeftSurplusResidual_radius_pos
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+    0 < radius := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hright, hxT,
+      hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  have hcenter_ne_x : S.oppositeVertexByIndex S.oppIndex2 ≠ x := by
+    intro hcenter
+    rcases Finset.mem_sdiff.mp hxSurplus with ⟨_hxLeft, hxNotOwnOrRight⟩
+    exact hxNotOwnOrRight (Finset.mem_union.mpr (Or.inr (by
+      simpa [hcenter] using
+        S.oppositeVertexByIndex_mem_rightAdjacentCapByIndex S.oppIndex2)))
+  have hdist :
+      dist (S.oppositeVertexByIndex S.oppIndex2) x = radius :=
+    (mem_selectedClass.mp hxT).2
+  rw [← hdist]
+  exact dist_pos.mpr hcenter_ne_x
+
+/-- The right-pinned residual exposes the residual point's selected-class
+membership. -/
+theorem pinnedRightSurplusResidual_mem_selectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+    x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hleft, hxT,
+      _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  exact hxT
+
+/-- The left-pinned residual exposes the residual point's selected-class
+membership. -/
+theorem pinnedLeftSurplusResidual_mem_selectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+    x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hright, hxT,
+      _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  exact hxT
+
+/-- A right-pinned residual carries a labelled three-point surplus-interior
+subpacket containing the residual point. -/
+theorem IsM44.exists_surplusInterior_triple_of_pinnedRightSurplusResidual
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+    ∃ s1 s2 s3 : ℝ²,
+      x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+      s1 ≠ s2 ∧ s1 ≠ s3 ∧ s2 ≠ s3 ∧
+      ({s1, s2, s3} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.surplusIdx := by
+  exact hM44.exists_surplusInterior_triple_of_oppIndex1_right_surplus
+    (S.pinnedRightSurplusResidual_radius_pos hpinned)
+    (S.pinnedRightSurplusResidual_mem_selectedClass hpinned)
+    (S.pinnedRightSurplusResidual_mem_right_surplus hpinned)
+
+/-- A left-pinned residual carries a labelled three-point surplus-interior
+subpacket containing the residual point. -/
+theorem IsM44.exists_surplusInterior_triple_of_pinnedLeftSurplusResidual
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+    ∃ s1 s2 s3 : ℝ²,
+      x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+      s1 ≠ s2 ∧ s1 ≠ s3 ∧ s2 ≠ s3 ∧
+      ({s1, s2, s3} : Finset ℝ²) ⊆
+        S.capInteriorByIndex S.surplusIdx := by
+  exact hM44.exists_surplusInterior_triple_of_oppIndex2_left_surplus
+    (S.pinnedLeftSurplusResidual_radius_pos hpinned)
+    (S.pinnedLeftSurplusResidual_mem_selectedClass hpinned)
+    (S.pinnedLeftSurplusResidual_mem_left_surplus hpinned)
 
 /-- The right-pinned residual payload identifies the whole selected class:
 there are no points beyond the two private cap-interior points, the other
@@ -4481,8 +4603,8 @@ theorem pinnedRightSurplusResidual_selectedClass_eq
   classical
   let T := SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius
   rcases hpinned with
-    ⟨p₁, p₂, hpne, hpair, hTcard, hIsub, hleftT, hxT, _hleftEq,
-      _hrightEq, _hright_ne, _hleft_ne⟩
+    ⟨p₁, p₂, hpne, hpair, hTcard, hIsub, hleftT, hxT, _hxSurplus,
+      _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
     rw [hpair]
     simp
@@ -4563,8 +4685,8 @@ theorem pinnedLeftSurplusResidual_selectedClass_eq
   classical
   let T := SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius
   rcases hpinned with
-    ⟨p₁, p₂, hpne, hpair, hTcard, hIsub, hrightT, hxT, _hleftEq,
-      _hrightEq, _hright_ne, _hleft_ne⟩
+    ⟨p₁, p₂, hpne, hpair, hTcard, hIsub, hrightT, hxT, _hxSurplus,
+      _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
   have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
     rw [hpair]
     simp
@@ -4853,7 +4975,7 @@ theorem IsM44.oppIndex1_pinnedRightSurplusResidual_of_right_surplus
     S.capInterior_pair_dist_ne_leftOuter_of_selectedClass S.oppIndex1
       hp₁I hp₂I hpne hp₁T hp₂T
   exact ⟨p₁, p₂, hpne, hpairCap, hTcard, hIsub,
-    hleftOuterT, hxT', hleftEq, hrightEq, hright_ne, hleft_ne⟩
+    hleftOuterT, hxT', hxSurplus, hleftEq, hrightEq, hright_ne, hleft_ne⟩
 
 /-- A left-surplus escape at the second non-surplus index produces the mirror
 pinned residual payload consumed by the COMP-G surplus branch. -/
@@ -4904,7 +5026,7 @@ theorem IsM44.oppIndex2_pinnedLeftSurplusResidual_of_left_surplus
     S.capInterior_pair_dist_ne_leftOuter_of_selectedClass S.oppIndex2
       hp₁I hp₂I hpne hp₁T hp₂T
   exact ⟨p₁, p₂, hpne, hpairCap, hTcard, hIsub,
-    hrightOuterT, hxT', hleftEq, hrightEq, hright_ne, hleft_ne⟩
+    hrightOuterT, hxT', hxSurplus, hleftEq, hrightEq, hright_ne, hleft_ne⟩
 
 /-- A right-surplus escape at the first non-surplus index produces both the
 pinned residual payload and a three-point surplus-interior subpacket containing

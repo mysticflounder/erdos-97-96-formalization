@@ -31,4 +31,15 @@ approved = ["Lean.trustCompiler"]
 # imported certificate modules are still compiled. Still indexed, so a cert
 # sorry is caught by the source scan and by `#print axioms` on the target; the
 # target axiom closure is unaffected.
-skip = ["*.EndpointCertificate.*", "*.SurplusCertificate.*"]
+skip = [
+  "*.EndpointCertificate.*",
+  "*.SurplusCertificate.*",
+  "*.EndpointCertificate.RowZeros.Direct.*",
+  "*.EndpointCertificate.RowZeros.Product.*",
+  "*.EndpointCertificate.RowZeros.Bank",
+  "*.SurplusCertificate.RowZeros.ExactMaskBits.*",
+  "*.SurplusCertificate.RowZeros.ShapeFacts.*",
+  "*.SurplusCertificate.RowZeros.Direct.*",
+  "*.SurplusCertificate.RowZeros.Product.*",
+  "*.SurplusCertificate.RowZeros.Bank",
+]

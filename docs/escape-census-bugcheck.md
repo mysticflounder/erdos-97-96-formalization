@@ -6,7 +6,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Escape-Census Bugcheck
 
-Cross-validation of the closed forms in `scripts/escape-census.py` against an
+Cross-validation of the closed forms in `census/incidence/escape_census.py` against an
 independent brute-force enumeration, run 2026-07-05.
 
 ## Method
@@ -34,7 +34,7 @@ that re-derives the same quantity by direct construction, over surplus
 
 ## Finding: `n8_tuples_for_apex` / `n8_tuples_for_labeled_vector` under-enumerate for `p >= 3`
 
-Status: fixed in `scripts/escape-census.py` on 2026-07-05 by replacing the
+Status: fixed in `census/incidence/escape_census.py` on 2026-07-05 by replacing the
 three cyclic rotations with all distinct labeled permutations of the cap
 interior sizes.
 
@@ -111,6 +111,6 @@ All of the following matched the independent brute force at every `p = 0..10`:
 ## Reproduction
 
 ```bash
-uv run scripts/escape-census.py --min-n 9 --max-n 16 --dedup --families --n10-detail
+uv run census/incidence/escape_census.py --min-n 9 --max-n 16 --dedup --families --n10-detail
 uv run scratchpad/verify_census.py   # if the harness is restored from this note
 ```

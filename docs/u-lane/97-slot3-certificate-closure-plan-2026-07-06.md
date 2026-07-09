@@ -1621,6 +1621,225 @@ one of the general-`m` faithfulness/confinement theorems just listed.
   This matches the source audit above and gives no evidence that more
   certificate sharding is needed before attempting the on-spine proof wiring.
 
+  July 9 execution plan for the current producer residual:
+  `RemovableVertexAxiom.lean` is being split so
+  `isM44PinnedSurplusResidualsExcluded` consumes a named
+  `isM44PinnedSurplusMetricShadowProducer`.  The consumer side is intended to
+  use `pinnedSurplusCOMPGBankBridge` plus
+  `SurplusCertificate.RelaxedSplit.Bank.RowZeros.false_of_shadowInBank_of_metricShadow`;
+  that wiring is pending the broad `lake-build
+  Erdos9796Proof.P97.RemovableVertexAxiom` check.  Once that build succeeds,
+  first add explicit RowZeros certificate globs to `.blueprint.toml`'s mining
+  skip list, then refresh proof-blueprint and move this session's anchor to the
+  producer residual.  If the build fails before `RemovableVertexAxiom`, fix the
+  local consumer proof first; do not mine or anchor the new producer until it is
+  on the compiled spine.
+
+  The producer itself should be attacked as two mirrored subproofs returning
+  `RightPinnedSurplusMetricShadowData` and
+  `LeftPinnedSurplusMetricShadowData`.  For the right side, the proof recipe is:
+
+  1. From `hpinned : S.PinnedRightSurplusResidualAt radius x`, unpack the
+     selected-class fields.  The definition already gives
+     `x ∈ SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius`, the
+     two-point private pair for `S.capInteriorByIndex S.oppIndex1`, the
+     selected-class cardinality four fact, and the two adjacent-cap
+     intersection equalities.
+  2. Prove and name the missing side-condition lemma
+     `pinnedRightSurplusResidual_mem_right_surplus`:
+     `x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+       (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1)`.
+     The first component follows from
+     `T ∩ S.rightAdjacentCapByIndex S.oppIndex1 = {x}`.  The exclusions should
+     use the packet disjointness/private-cap lemmas already used around
+     `pinnedRightSurplusResidual_selectedClass_eq`.  If this cannot be proved
+     from the current residual surface, strengthen the on-spine producer
+     statement to consume a pinned residual carrying this side condition and
+     update the upstream strict-escape-to-pinned producers; do not hide this as
+     an off-spine wrapper.
+  3. Prove and name `radius_pos_of_pinnedRightSurplusResidual` if needed.  The
+     existing surplus-triple producers require `0 < radius`; this should follow
+     from membership in the selected class plus distinctness from the selected
+     center.  If a direct `0 < radius` proof is already available through the
+     strict-escape path, prefer threading it through the strengthened producer
+     surface.
+  4. Choose the other non-surplus interior pair from
+     `hM44.exists_oppInterior_pairs`, yielding `q₁`, `q₂`, `q₁ ≠ q₂`, and
+     `S.oppInterior2 = {q₁, q₂}`.
+  5. Choose the surplus triple using
+     `hM44.exists_surplusInterior_triple_of_oppIndex1_right_surplus` from
+     `radius_pos`, selected-class membership, and `hxSurplus`; alternatively
+     use `hM44.exists_surplusInterior_triple_preserving` after proving
+     `x ∈ S.capInteriorByIndex S.surplusIdx`.
+  6. Define the right-oriented `centerClass` so
+     `centerClass .v =
+       SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius` and
+     `centerClass .w = S.capByIndex S.oppIndex2`.  For non-`.v` and non-`.w`
+     centers, use selected classes at the corresponding `rightPinnedLabelPoint`
+     centers with local radii, unless a checked candidate-interface lemma
+     demands a more specific class.
+  7. Apply
+     `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`.
+     Its remaining inputs are exactly the non-`.v`/`.w` candidate-mask facts,
+     `noThreeOK`, all prefix pair-count checks, pointwise `sepOKFor`, and
+     ordered search separation.  Do not use the convenience lemmas
+     `rightPinned_sepOKFor_of_exactCaps_selectedClasses` or
+     `rightPinned_crossSeparationOKForMasks_of_exactCaps_selectedClasses`
+     unless a non-circular proof of `S.NonSurplusMoserCapContainment` has been
+     made an explicit upstream input; those lemmas currently assume containment.
+  8. Prove the metric shadow with
+     `endpointMetricShadow_shadowOfPointClasses_of_sameRadius`.  For selected
+     classes, use `mem_selectedClass`/`sameRadius_of_centerClass_eq_selectedClass`.
+     For the `.w` exact cap class, either prove the non-circular exact-cap
+     same-radius fact needed for `S.capByIndex S.oppIndex2`, or keep this as the
+     named producer residual.  The containment-based shortcut
+     `exact_cap_class_at_index_of_cap_card_eq_four` is forbidden here unless
+     the theorem interface is explicitly refactored to make containment an
+     input.
+
+  The left side is the mirror recipe:
+
+  1. Prove `pinnedLeftSurplusResidual_mem_left_surplus` for
+     `x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+       (S.capByIndex S.oppIndex2 ∪ S.rightAdjacentCapByIndex S.oppIndex2)`.
+  2. Prove or thread `radius_pos_of_pinnedLeftSurplusResidual`.
+  3. Use `hM44.exists_oppInterior_pairs` for the
+     `S.oppInterior1 = {q₁, q₂}` pair.
+  4. Use `hM44.exists_surplusInterior_triple_of_oppIndex2_left_surplus` or the
+     `exists_surplusInterior_triple_preserving` fallback.
+  5. Define `centerClass .v =
+       SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius` and
+     `centerClass .w = S.capByIndex S.oppIndex1`.
+  6. Apply
+     `pinnedLeftSurplusResidual_exists_validFragment_of_candidate_interfaces`
+     and then `endpointMetricShadow_shadowOfPointClasses_of_sameRadius`, with
+     the same non-circularity restriction on containment-based exact-cap
+     shortcuts.
+
+  Concrete helper contracts to remove guesswork:
+
+  Placement rule: put residual-payload facts in
+  `lean/Erdos9796Proof/P97/SurplusM44Packet.lean` next to
+  `pinnedRightSurplusResidual_private_pair_nonEquidistant` and its mirror.  Put
+  finite-shadow interface wrappers in
+  `lean/Erdos9796Proof/P97/SurplusCOMPGBankGeometry.lean` near
+  `pinnedRightSurplusResidual_exists_validFragment_of_candidate_interfaces`.
+  Keep the on-spine producer statement and final consumer in
+  `lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean`.
+
+  ```lean
+  theorem pinnedRightSurplusResidual_mem_rightAdjacent
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+      x ∈ S.rightAdjacentCapByIndex S.oppIndex1
+
+  theorem pinnedLeftSurplusResidual_mem_leftAdjacent
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+      x ∈ S.leftAdjacentCapByIndex S.oppIndex2
+  ```
+
+  These should be immediate from the selected-class membership in `hpinned` and
+  the singleton intersection field.  If they are not immediate, stop and inspect
+  the unpacking rather than continuing downstream.
+
+  ```lean
+  theorem pinnedRightSurplusResidual_mem_right_surplus
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+      x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+        (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1)
+
+  theorem pinnedLeftSurplusResidual_mem_left_surplus
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+      x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+        (S.capByIndex S.oppIndex2 ∪ S.rightAdjacentCapByIndex S.oppIndex2)
+  ```
+
+  Try these with only `hpinned`.  If the exclusion half needs a packet lemma,
+  the expected dependencies are `S.capInteriorByIndex_mem_private`, the
+  adjacent-cap singleton intersection fields from `hpinned`, and the basic
+  adjacent-cap membership lemmas for the named outer endpoint.  If Lean shows
+  the side exclusion is not implied by `PinnedRight/LeftSurplusResidualAt`, do
+  not force it: refactor the producer residual to take `hxSurplus` explicitly
+  and discharge that input at the existing strict-escape source
+  (`IsM44.oppIndex1_pinnedRightSurplusResidual_of_right_surplus`,
+  `IsM44.oppIndex2_pinnedLeftSurplusResidual_of_left_surplus`, and their
+  `..._and_surplusTriple_...` variants).
+
+  The next radius contracts are:
+
+  ```lean
+  theorem radius_pos_of_pinnedRightSurplusResidual
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedRightSurplusResidualAt radius x) :
+      0 < radius
+
+  theorem radius_pos_of_pinnedLeftSurplusResidual
+      {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedLeftSurplusResidualAt radius x) :
+      0 < radius
+  ```
+
+  These are desirable but not mandatory at this exact interface.  If the direct
+  proof wants additional distinctness from the selected center, thread
+  `hradius : 0 < radius` from the strict-escape producer instead of spending
+  time reconstructing it from the pinned payload.
+
+  Valid-fragment closure should be factored only after the two gates above are
+  settled.  The intended local wrapper has this shape, with all remaining
+  assumptions visible rather than hidden:
+
+  ```lean
+  theorem rightPinnedSurplusMetricShadowData_of_interfaces
+      {A : Finset ℝ²} (S : SurplusCapPacket A) (hM44 : S.IsM44)
+      {radius : ℝ} {x : ℝ²}
+      (hpinned : S.PinnedRightSurplusResidualAt radius x)
+      (hxSurplus : x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+        (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1))
+      (hradius : 0 < radius) :
+      RightPinnedSurplusMetricShadowData S radius x
+  ```
+
+  The left wrapper is the mirror with `PinnedLeftSurplusResidualAt` and
+  `LeftPinnedSurplusMetricShadowData`.  These wrappers may still have local
+  `sorry`s while the exact interface lemmas are being filled, but each `sorry`
+  must be an exposed finite-interface obligation: non-`.v`/`.w` candidate masks,
+  `noThreeOK`, prefix pair counts, pointwise separation, ordered search
+  separation, or same-radius metric shadow.  Do not introduce a wrapper whose
+  only purpose is to rename the producer statement.
+
+  Checkpoint sequence after the current build:
+
+  1. If `RemovableVertexAxiom` fails, fix the local consumer proof and rebuild
+     that target before touching proof-blueprint.
+  2. If it succeeds, update `.blueprint.toml` with explicit RowZeros certificate
+     mining skips, then run `proof-blueprint refs --refresh`.
+  3. Move the proof-blueprint anchor to
+     `Problem97.isM44PinnedSurplusMetricShadowProducer`.
+  4. Start with the two side-membership helpers above.  Their result decides
+     whether the direct residual surface is usable or whether `hxSurplus` and
+     `hradius` must be threaded from the upstream strict-escape producers.
+
+  Build-speed rule for this branch: do not use full
+  `lake-build Erdos9796Proof.P97.RemovableVertexAxiom` as the edit-cycle check
+  while proving payload helpers.  Check `SurplusM44Packet.lean` for residual
+  payload facts and `SurplusCOMPGBankGeometry.lean` for finite-shadow interface
+  facts.  Reserve the full `RemovableVertexAxiom` build for consumer wiring and
+  checkpoint validation, and run future long builds as
+  `LAKE_BUILD_NO_REFRESH=1 lake-build ...` so the proof-blueprint refresh can be
+  run manually after `.blueprint.toml` mining skips are current.
+
+  Fastest next proof step after the current build: try to formalize the two
+  side-condition lemmas `pinnedRightSurplusResidual_mem_right_surplus` and
+  `pinnedLeftSurplusResidual_mem_left_surplus` in `SurplusM44Packet.lean` or
+  `SurplusCOMPGBankGeometry.lean`.  These lemmas determine whether the current
+  residual surface is strong enough.  If they fail for structural reasons,
+  immediately refactor the producer statement to carry the surplus-side witness
+  generated by the existing strict-escape reductions; do not spend time on the
+  row-zero bank or more certificate sharding.
+
 ### Erased-pin triple residuals
 
 Publish-spine theorem:
@@ -2652,6 +2871,24 @@ seed-mask, seed-candidate, and finite row-consumer machinery lives in
 imports; it should not interfere with the non-surplus erased-pin leaf unless a
 shared base helper is intentionally changed.
 
+Pinned-surplus build-speed note: the current producer target,
+`Problem97.isM44PinnedSurplusMetricShadowProducer`, is in
+`RemovableVertexAxiom/PinnedSurplusProducer.lean`.  The fastest edit-loop
+command is `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer`; the supporting
+base command is
+`LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.Base`; this shard avoids importing
+`Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank` and was rechecked after
+the split with only the expected endpoint-residual `sorry` declaration.  The
+producer shard was rechecked with only the expected pinned-surplus producer
+`sorry` declaration.  The certificate consumer check is
+`LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank`, which deliberately
+imports the generated RowZeros bank and should be reserved for handoff checks.
+The explicit RowZeros mining skips have been added to `.blueprint.toml`; refresh
+proof-blueprint after the bank shard has completed.
+
 The current shortcut audit is negative:
 
 - `ErasedPinOrderedProducer.lean` gives ordered seed lists, fixed-bank
@@ -2760,3 +2997,86 @@ still lacks the localized no-Q-free packet, `U5ModeA`, and confined/audited
 support payload needed by the terminal U5 adapters.  Host load at this
 checkpoint was `27.72 32.23 32.70`, so no Lean build or proof-blueprint refresh
 was started.
+
+2026-07-09 pinned-surplus producer checkpoint: the current active anchor is
+`Problem97.isM44PinnedSurplusMetricShadowProducer` in
+`RemovableVertexAxiom/PinnedSurplusProducer.lean`; the P2/P4 erased-pin notes
+above remain relevant for that older anchor but are not the next edit target
+while this pinned-surplus producer is active.
+
+`nthdegree docs search --lean` plus a direct `../p97-rvol` source sweep found
+no imported producer that closes this branch.  The only relevant p97-rvol hit
+is `RVOL.P97.U2OppCap2Escape.surplusEscape_pinnedFamily_false`, which proves a
+different pinned escape residual after chord non-equidistance facts have
+already been threaded.  It does not construct
+`RightPinnedSurplusMetricShadowData` or `LeftPinnedSurplusMetricShadowData`,
+and it has no candidate-mask or metric-shadow interface for the current
+ten-label COMP-G bridge.
+
+Lean LSP reduction of the right non-`.v` `hcandidate` hole confirms the local
+obstruction: applying `mem_candidateMasks_of_candidateMaskOK` leaves the exact
+`candidateMaskOK` interface, beginning with
+`maskCard (pointMask pointOf (centerClass center)) = 4`, followed by the
+no-self, `.w`/`.u` intersection bounds, non-Moser `u/v/w` exclusion, and local
+trigger facts.  The current all-selected-class construction proves the metric
+same-radius shadow, no-three, prefix counts, and separation, but it does not
+prove that arbitrary selected classes are confined to generated four-label
+candidate masks.
+
+The exact-`.w` cap shortcut has now been replaced by a non-circular selector
+route.  `S.IsM44.exists_nonSurplusMoserSelectorShapes` supplies the two
+non-surplus Moser selector classes from K4 and convex independence.  The metric
+producer uses those shapes to prove the `.w` candidate mask directly: the
+selected class is `{Q1,Q2,leftHit,rightHit}`, where the surplus-side hit is
+either the outer opposite vertex or one of the chosen surplus triple labels, and
+the private-side hit is one of the corresponding pinned private labels.  The
+older exact-cap helpers remain out of bounds here because they go through
+`S.NonSurplusMoserCapContainment`, downstream of pinned residual exclusion.
+The next implementation target is therefore only the real
+exact-shape/confinement producer for the non-`.v`/non-`.w` masks, or a
+row-specific producer whose hypotheses are strictly weaker than the current
+broad `candidateMasks` remainders.  Do not add wrapper lemmas that only restate
+this candidate-mask obligation.
+
+Minimality/critical-shell search was also negative for this producer.  The
+available `U1CarrierInjection` helpers can choose a critical selected
+four-class for a deleted point under non-removability, but they do not prove
+that the selected class at each fixed pinned-surplus center is supported on the
+ten labels used by `rightPinnedLabelPoint`/`leftPinnedLabelPoint`.  The U5
+support-confinement helpers likewise package bounded support only after a
+separate confined payload is supplied.  They cannot by themselves prove
+`maskCard (pointMask pointOf (centerClass center)) = 4` for the current
+selected classes.
+
+2026-07-09 pinned-surplus producer refactor checkpoint:
+`RemovableVertexAxiom/PinnedSurplusProducer.lean` now isolates the
+non-`.v`/non-`.w` candidate-mask obstruction as the named on-spine residual
+`Problem97.isM44PinnedSurplusNonVExactShapeProducer`.  The main
+`Problem97.isM44PinnedSurplusMetricShadowProducer` consumer derives the metric
+shadow, no-three, prefix-count, selected-class cardinality, separation, and
+direct `.w` selector-candidate interfaces locally.  It also proves the
+point-mask normalization and no-self pieces locally: normalization comes from
+`maskNormalized_pointMask`, and no-self comes from
+`pointMask_maskHas_self_false_of_selectedClass_card_ge_four`, using the fact
+that a selected class containing its own center would force radius zero and
+cardinality at most one.  The named residual now delegates only
+`nonVWCandidateMaskOK` for the non-`.v`/non-`.w` selected classes; the consumer
+reconstructs full `candidateMaskOK` through
+`candidateMaskOK_of_nonVWCandidateMaskOK_pointMask`.
+
+Next proof step: prove
+`isM44PinnedSurplusNonVExactShapeProducer` directly, or replace it with a
+strictly narrower row-specific producer that still feeds the same
+`nonVWCandidateMaskOK` calls in `isM44PinnedSurplusMetricShadowProducer`.
+The remaining residual components are:
+exact four-point mask cardinality
+`maskCard (pointMask pointOf (centerClass center)) = 4`; for center `.u`, the
+two one-hit bounds against `cvNoUMask` and `cwNoUMask`; for non-Moser centers,
+the exclusion of simultaneously hitting `.u`, `.v`, and `.w`; and
+`localTriggerOKAt` for the induced point mask.  No-self and normalization are
+closed outside the residual.
+
+Validation: `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully after this refactor; the only `sorry` warning in the producer
+shard is the named residual above.

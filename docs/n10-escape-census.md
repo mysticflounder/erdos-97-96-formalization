@@ -23,7 +23,7 @@ Scope:
 The reusable generator is:
 
 ```bash
-env UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/escape-census.py --families --max-n 20 --n10-detail
+env UV_CACHE_DIR=/tmp/uv-cache uv run python census/incidence/escape_census.py --families --max-n 20 --n10-detail
 ```
 
 It prints, in this order:
@@ -56,7 +56,7 @@ The generated `n = 10..81` table is stored at
 Verification run:
 
 ```bash
-env UV_CACHE_DIR=/tmp/uv-cache uv run python scripts/escape-census.py --families --max-n 81
+env UV_CACHE_DIR=/tmp/uv-cache uv run python census/incidence/escape_census.py --families --max-n 81
 ```
 
 completed successfully on 2026-07-05.  The endpoint row was:

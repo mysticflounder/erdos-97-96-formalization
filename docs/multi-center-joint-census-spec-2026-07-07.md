@@ -19,7 +19,7 @@ pairs) become **constant in n**?
 Motivation. The four-point subpacket reduction works because the
 single-center primitive row surface is constant for n ≥ 12 (31 ordered /
 19 reflected rows — `incidence-census-lemma-leads.md` §7). The Q3 probe
-(`scratch/q3-two-center/report.md`) classified the two-center *decorated
+(`census/q3_two_center/report.md`) classified the two-center *decorated
 window* layer at the minimal window and proved two joint kills, but its
 composition retest ran only at fixed n = 12..16. The live Candidate D
 shape for the |A| ≥ 12 tail is strictly-more-than-two-center coupling
@@ -34,9 +34,9 @@ Euclidean realizability attaches to any row.
 
 ## 2. Deliverables
 
-1. `scratch/multi-center-census/` containing the enumerator, JSON
+1. `census/multi_center/` containing the enumerator, JSON
    artifacts per layer, and a `STATE.md` checklist (pattern:
-   `scratch/q3-two-center/STATE.md`).
+   `census/q3_two_center/STATE.md`).
 2. A results note `docs/multi-center-joint-census-<date>.md` with the
    per-n tables and the verdict.
 3. Headline verdict for the **L2 GLOBAL surface under the PROVEN cuts**
@@ -67,9 +67,9 @@ Euclidean realizability attaches to any row.
 
 Ground everything in the existing token model. Import, don't copy:
 
-- `scratch/candidate-d-probe/q2_token.py` — `build_labels`, `type_of`,
+- `census/candidate_d_probe/q2_token.py` — `build_labels`, `type_of`,
   the admissibility constraints, and the DFS `solve` skeleton.
-- `scratch/q3-two-center/q3_token.py` — `PAIR_CAP`, `joint_ok`,
+- `census/q3_two_center/q3_token.py` — `PAIR_CAP`, `joint_ok`,
   `profiles_for`.
 
 Definitions (as implemented there):
@@ -232,7 +232,7 @@ stabilization detector counts DETERMINED cells only.
 
 - **S1 (composition reproduction).** With PROVEN cuts + joint kills, the
   GLOBAL solver at n = 12..16 must reproduce
-  `scratch/q3-two-center/q3_token_proven.json` per-profile SAT bits
+  `census/q3_two_center/q3_token_proven.json` per-profile SAT bits
   exactly.
 - **S2 (kill observation).** Hand-construct an assignment violating
   K-Q3-5 (shared member in int X) and one violating K-Q3-1; assert the
@@ -250,8 +250,9 @@ No sweep results are reportable until all three pass.
 
 ## 6. Candidate upgrade lemma (attempt, don't block on it)
 
-The class *alphabet* is finite a priori (region labels × counts ≤ 4),
-so only realizability depends on n. A monotonicity lemma —
+The class *alphabet* is finite a priori (bounded support size, finite
+region labels, and finite incidence-bit patterns), so only realizability
+depends on n. A monotonicity lemma —
 
     GLOBAL-realizable at (n, profile) ⇒ GLOBAL-realizable at (n+1,
     profile + 1 interior point in a cap of size ≥ 5)
@@ -267,7 +268,7 @@ or carry-forward is allowed in the per-`n` GLOBAL tables.
 
 ## 7. Non-goals / guardrails
 
-- No metric solving, no Lean, no changes to `scripts/escape-census.py`,
+- No metric solving, no Lean, no changes to `census/incidence/escape_census.py`,
   `scratch/census-554/`, or `scratch/census-12-gate/`.
 - Never mix CONJECTURED-tier cuts into PROVEN-tier tables; every table
   carries its cut list in the artifact JSON.
@@ -290,5 +291,7 @@ or carry-forward is allowed in the per-`n` GLOBAL tables.
    D3 + U4 register row.
 4. If STABILIZED: the explicit finite L2 class inventory (this is the
    input a successor "finite joint-row split" lemma would consume).
-5. If GROWING: fitted closed forms in p with residuals shown, and a
-   one-paragraph diagnosis of which decoration dimension drives growth.
+5. If GROWING: fitted closed forms in p with residuals shown when they
+   pass the §2 fit bar; otherwise the raw sequence labeled
+   NO-CLOSED-FORM. Include a one-paragraph diagnosis of which decoration
+   dimension drives growth.

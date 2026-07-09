@@ -101,6 +101,35 @@ house placeholder pattern (`abbrev …Statement` + sorry-backed theorem).
 Proposed name: `isM44PinnedSurplusGeneralMResidualsExcluded`. The wiring
 commit must state the m-range each proved component covers.
 
+Current source checkpoint: the active split is narrower than the older proposed
+general-m residual name.  `isM44PinnedSurplusResidualsExcluded` is being wired
+as a checked row-zero consumer of a named
+`isM44PinnedSurplusMetricShadowProducer`; the remaining producer must output
+the valid pinned fragment plus `EndpointMetricShadow` data for the induced
+right/left ten-label shadows.  The detailed execution recipe lives in
+`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md` and is now
+organized around four non-circular subgoals: recover the surplus-side witness
+from the pinned residual surface, recover or thread `0 < radius`, choose the
+opposite pair and surplus triple, and prove the finite candidate/search plus
+same-radius metric-shadow interfaces without using downstream
+`S.NonSurplusMoserCapContainment`.  The first explicit gate is the pair of
+side-membership helpers
+`pinnedRightSurplusResidual_mem_right_surplus` /
+`pinnedLeftSurplusResidual_mem_left_surplus`; if those are not implied by the
+current pinned residual payload, the producer interface should be refactored to
+thread `hxSurplus` (and likely `hradius`) from the upstream strict-escape
+producers rather than adding another wrapper.
+
+Build-speed checkpoint: `RemovableVertexAxiom.lean` is now a thin coordinator.
+The stable declarations live in
+`Erdos9796Proof.P97.RemovableVertexAxiom.Base`, while producer-side work should
+build `Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer`; neither
+imports the generated row-zero bank.  The checked row-zero consumer lives in
+`Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank`.  Use the bank
+shard only when validating the certificate handoff.  The RowZeros certificate
+globs are now listed explicitly in `.blueprint.toml`'s mining skip list before
+the next proof-blueprint refresh.
+
 **Regime m ≥ 6 (the named residual's route).** The relaxed singleton
 vocabulary, not the exact masks:
 
@@ -224,7 +253,42 @@ Spec item 5's split (card-11 closed + `…Card12Up` residual) remains the
 consumer shape; it activates when the bank reaches UNSAT/coverage-complete.
 **Continuation resumed 2026-07-07 (Adam):** installment protocol restarted
 from 1596 orbits; the run doubles as the covering-leg bellwether for the
-Candidate-C gate (§7).
+Candidate-C gate (§7). **Through 2026-07-08 (installment 25): 5154 orbits /
+135,263 instances** banked + verified, all kills familiar
+(multi_pair/pair/base, equality-only), still no ALIVE cube and no UNSAT;
+banking rate flat (~70–206 orbits/installment), so coverage-complete/UNSAT
+remains far at this bank size.
+
+**Intra-cap classification (2026-07-08, COMPLETE — commit 1571ca0).**
+Exhaustive finite classification of all minimal dead patterns whose support
+lies inside a single cap (`scratch/census-554/intracap.py`, results +
+certificates in `intracap_results.jsonl` / `intracap_certs/`): **exactly
+107 minimal dead patterns modulo AUTOS** (S 3, O1 101, O2 3), all at 5–7
+generators, none below 5, 0 undecided over the 3,269 candidate-feasible
+canonical classes; all 107 Singular-lift certified + exact-Fraction
+re-checked, all 107 realizable in a full valid cube, all equality-only (U8
+clean; the 3 base kills are the O2 patterns whose support holds both gauge
+points). Bank cross-check: the 8 zero-cross-cap banked rows are all
+subsumed. This is the only sub-family of the dead set with a *finite
+complete* description; the cross-cap bulk (99.8% of the bank) does not
+compress to a small template family (4,801 role-labeled shapes over 5,028
+orbits; 1,322 unlabeled motifs — see the motif-transfer lead below).
+
+*Formalization decision (2026-07-08, assessed with Adam):* NOT formalized
+now — the theorem standalone is off-spine. Deadness half (107 certs) is
+checker-shaped (Σ cᵢ·gᵢ = 1, the EndpointCertificate/Checker.lean form) but
+a checked certificate alone proves polynomial inconsistency, not "no
+counterexample contains this pattern"; the missing piece is the binding
+lemma (pattern polys ⇔ leaf cap geometry: `CP.capAt` concyclicity, one-hit
+transfer, gauge WLOG — Lean status of the gauge WLOG unverified
+{{NEEDS_RESEARCH}}). Completeness half (3,162 aliveness verdicts) feeds
+nothing on the spine. Even fully formalized it closes zero sorries today:
+the intra-cap family is 8 of 5,000+ bank exclusions, and DoubleApex closes
+only via a coverage theorem over a *terminal* census. Conditional
+activation: if the P3 census-decision gate (u-lane slot3 plan) commits to
+the coverage route, the pattern-certificate binding lemma becomes the first
+Lean task and the 107 are the right first corpus (complete, stable, small,
+already checker-shaped).
 
 **|A| ≥ 12 — workstream D (§7).** No other route: descent/deletion is
 proven-dead (monotonicity dead-ends; K4 not downward-hereditary), the finite
@@ -500,7 +564,12 @@ constraints across centers; three unconditional leaf-implied constraints
 (m ≤ 2, vertex-pair ⇒ s = 0, s = 2 ⇒ straddle) were extracted for
 whatever route follows. The C-split go/no-go returned to Adam and was
 decided 2026-07-07: gated go — k=4 bank + n = 12 convergence gate
-dispatched, full 12–14 commitment pending the gate readout (§7 D3).
+dispatched. **Gate readout 2026-07-08: no convergence** over 65+ cumulative
+iterations (shape-stale ~0.2, fresh ~2 shapes/iter, census-baseline-like) —
+255 orbits / 158 shapes / 20,322 instances banked + all certs verified; two
+CERTFAIL events (engine-proven C_EMPTY cubes, in-loop certify 1200 s/call
+timed out) resolved offline at 7200 s/call; cuts=none baseline not started.
+Full 12–14 commitment remains Adam's call (§7 D3).
 The multi-center joint census landed 2026-07-08 on the PROVEN tier:
 L2 GLOBAL stabilizes empirically by `n = 25` with a four-row zero-fresh
 window `n = 25..28`, cumulative inventory `3375`, and no GLOBAL-only
@@ -509,6 +578,35 @@ INDETERMINATE). So U4's live D shape is no longer "arbitrary >2-center
 coupling"; it is a finite triple-support incidence inventory whose
 remaining proof work is structural (`LOCAL => GLOBAL`, persistence, then
 carry-forward), not further brute-force search.
+Formalization checkpoint 2026-07-08: the abstract finite-alphabet and
+inventory-transfer layer now lives in
+`lean/Erdos9796Proof/P97/MultiCenter/GeneralN.lean`, and the initial
+realization-facing bridge now lives in
+`lean/Erdos9796Proof/P97/MultiCenter/Realization.lean`. The bridge defines
+`CodeInventory` and proves that one-step persistence of a realized-code
+predicate gives stabilization of both code and semantic inventories. It also
+formalizes the predicate-level GLOBAL⊆LOCAL and LOCAL⇒GLOBAL-above-threshold
+interfaces that feed the quantitative completion route, plus the all-parameter
+LOCAL⇒GLOBAL form that turns local persistence into eventual GLOBAL stability.
+The realization bridge now also has the `max(local-stability-threshold,
+completion-threshold)` variant, so those two thresholds no longer need to be
+artificially identified in later imports; threshold completion is enough for
+eventual GLOBAL stability once LOCAL persistence is supplied.
+The next proof step is to instantiate that bridge with the actual census surface:
+the profile-level surface `ProfileRealizationSurface` now provides
+`profileOccursAtN`, `realizesJointClass`, `localInventory`, and
+`globalInventory`, and proves `localInventory_stepPersistent` from a profile
+extension principle. Concrete profile-cardinality handoff is also now
+formalized in `lean/Erdos9796Proof/P97/MultiCenter/CapProfile.lean`: the
+existing U1 card-11 two-large-cap theorem yields the multi-center profile
+`profile554`, with closed-cap sizes `(5,5,4)` and interior capacities
+`(3,3,2)`. Remaining work is geometric instantiation: prove local extraction
+from tail configurations into `JointClass.LocallyAdmissible`, prove the
+occurrence predicate is closed under the cap-extension operation, and prove the
+GLOBAL soundness/completion hypotheses for the actual census surface. That
+yields qualitative eventual LOCAL stability through the existing general-`n`
+scaffold; quantitative locking at the observed threshold still requires either
+constructive completeness or a faithful certificate import.
 
 ## 8. Global gates and hygiene
 
@@ -582,7 +680,7 @@ Both: fold per the §8 doc-ownership rule.
 |---|---|---|---|
 | U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
-| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **BUDGET-partial 2026-07-07**: 1596 orbits / 40,524 instances banked + verified, **no ALIVE cube in 376 witnesses** (HEURISTIC for all-dead); coverage incomplete (gap signal flat), resumable (§5 census status) |
+| U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **BUDGET-partial, continuation LIVE through 2026-07-08 (inst 25)**: 5154 orbits / 135,263 instances banked + verified, **no ALIVE cube** (HEURISTIC for all-dead), no UNSAT; coverage incomplete (banking rate flat ~70–206 orbits/installment), resumable (§5 census status) |
 | U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math, but now structurally narrowed | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`census/candidate_d_probe/`, §7 D3); C head split deferred as standing fallback. **C-split DECIDED 2026-07-07 (Adam): gated go — k=4 bank + n = 12 window-shape convergence gate dispatched; full 12–14 commitment pending the gate readout.** **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). **Q3 two-center probe LANDED 2026-07-08 (validated): 87/87 joint classes classified** — 68 exact-ℚ + 4 ℚ(√3) realized, 15 KILLED-PROVEN (K-Q3-1, K-Q3-5; no ORDER; falsifier gate PASS); composition with joint kills granted still SAT n = 12–16 ⇒ two-center coupling insufficient. **Multi-center joint census LANDED 2026-07-08 (validated): L2 GLOBAL / PROVEN stabilizes empirically by `n = 25`** — cumulative inventory `3375`, project-level fresh count `0` on `n = 25..28`, and `533,761/533,761 SAT`, `0` UNSAT, `0` INDETERMINATE through `n = 28` (`docs/multi-center-joint-census-2026-07-08.md`). Live D shape is therefore a finite triple-support incidence inventory with no observed GLOBAL-only obstruction; the open math is now to prove the structural statements suggested by the data (`LOCAL => GLOBAL`, persistence, carry-forward), not to keep searching for new counterexamples in the proved tier. |
 | U5 | liveData producer surface | HIGH | gated on U3/U4 outputs (§6 tripwire) |
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |

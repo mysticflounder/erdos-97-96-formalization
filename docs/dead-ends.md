@@ -787,7 +787,7 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   pure per-type route for the Card12Up tail — exclude each of the 19
   reflected primitive N8 tuple classes at its convex-order-decorated
   minimal window, then compose over the token census — is CLOSED on both
-  ends (Candidate-D probe, `scratch/candidate-d-probe/report.md`,
+  ends (Candidate-D probe, `census/candidate_d_probe/report.md`,
   orchestrator-validated in independent exact arithmetic). (1) 13/19
   classes are REALIZED at the decorated minimal window by exact rational
   witnesses satisfying E-MEC/E-PKT/I-POS/I-DISK/I-OBT/strict-I-CAP/

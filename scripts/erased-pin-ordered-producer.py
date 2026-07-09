@@ -402,6 +402,241 @@ def write_markdown(path: Path, payload: dict[str, Any]) -> None:
     path.write_text("\n".join(lines))
 
 
+def lean_label(label: str) -> str:
+    return f".{label}"
+
+
+def lean_ident_suffix(value: str) -> str:
+    return "".join(ch if ch.isalnum() else "_" for ch in value)
+
+
+def lean_seed(seed: tuple[str, str, int]) -> str:
+    sstar, private_center, private_mask = seed
+    return (
+        "{ sstar := "
+        f"{lean_label(sstar)}, privateCenter := {lean_label(private_center)}, "
+        f"kind := .own, privateMask := {private_mask} }}"
+    )
+
+
+def lean_seed_list(seeds: list[tuple[str, str, int]]) -> str:
+    if not seeds:
+        return "[]"
+    seed_lines = ",\n".join(f"  {lean_seed(seed)}" for seed in seeds)
+    return f"[\n{seed_lines}\n]"
+
+
+def seed_from_record(record: dict[str, Any]) -> tuple[str, str, int]:
+    return (str(record["sstar"]), str(record["center"]), int(record["mask_value"]))
+
+
+def ordered_seed_map(payload: dict[str, Any]) -> dict[str, tuple[str, str, int]]:
+    return {str(seed["key"]): seed_from_record(seed) for seed in payload["ordered_seeds"]}
+
+
+def sort_seeds(base: Any, seeds: set[tuple[str, str, int]]) -> list[tuple[str, str, int]]:
+    return sorted(seeds, key=lambda item: (base.LABEL_INDEX[item[0]], base.LABEL_INDEX[item[1]], item[2]))
+
+
+def lean_ordered_row_seed_name(row_id: str) -> str:
+    return f"erasedPinOrderedRow_{lean_ident_suffix(row_id)}_seeds"
+
+
+def ordered_seeds_for_row(
+    base: Any, seed_by_key: dict[str, tuple[str, str, int]], row: dict[str, Any]
+) -> list[tuple[str, str, int]]:
+    return sort_seeds(base, {seed_by_key[str(key)] for key in row["ordered_seed_keys"]})
+
+
+def lean_ordered_row_seed_defs(base: Any, payload: dict[str, Any]) -> str:
+    seed_by_key = ordered_seed_map(payload)
+    sections: list[str] = []
+    for row in payload["rows"]:
+        row_id = str(row["id"])
+        name = lean_ordered_row_seed_name(row_id)
+        candidate_name = f"{name}_candidates"
+        allowed_name = f"{name}_allowed"
+        row_seeds = ordered_seeds_for_row(base, seed_by_key, row)
+        sections.append(
+            f"""/-- Deduplicated ordered seed candidates associated to erased-pin row `{row_id}`. -/
+def {candidate_name} : List OneSidedSeed :=
+{lean_seed_list(row_seeds)}
+
+/-- Boolean membership test for ordered row `{row_id}` candidate seeds. -/
+def {allowed_name} (seed : OneSidedSeed) : Bool :=
+  {candidate_name}.any (fun candidate => candidate == seed)
+
+/-- Fixed-bank ordered seeds associated to erased-pin row `{row_id}`. -/
+def {name} : List OneSidedSeed :=
+  erasedPinFixedSeeds.filter {allowed_name}
+
+/-- Every fixed-bank ordered seed for row `{row_id}` is in the generated fixed
+seed bank. -/
+theorem {name}_subset_fixed {{seed : OneSidedSeed}}
+    (hseed : seed ∈ {name}) : seed ∈ erasedPinFixedSeeds :=
+  (List.mem_filter.mp hseed).1
+
+/-- The fixed-bank ordered-row filter recovers exactly the ordered row
+`{row_id}` candidate seed list. -/
+theorem {name}_eq_candidates :
+    {name} = {candidate_name} := by
+  native_decide
+
+/-- Every ordered candidate seed for row `{row_id}` is in the generated fixed
+seed bank. -/
+theorem {candidate_name}_subset_fixed {{seed : OneSidedSeed}}
+    (hseed : seed ∈ {candidate_name}) : seed ∈ erasedPinFixedSeeds :=
+  {name}_subset_fixed (by
+    simpa [{name}_eq_candidates] using hseed)
+
+/-- Ordered row `{row_id}` has the generated number of deduplicated candidate
+seeds. -/
+theorem {name}_length :
+    {name}.length = {len(row_seeds)} := by
+  native_decide"""
+        )
+    return "\n\n".join(sections)
+
+
+def lean_ordered_seed_invalid_theorems(payload: dict[str, Any]) -> str:
+    sections: list[str] = []
+    for row in payload["rows"]:
+        row_id = str(row["id"])
+        name = lean_ordered_row_seed_name(row_id)
+        candidate_name = f"{name}_candidates"
+        sections.append(
+            f"""/-- No valid seeded shadow can use an ordered candidate seed from
+erased-pin row `{row_id}`. -/
+theorem {candidate_name}_false_of_isValidOneSidedSeedShadow
+    {{seed : OneSidedSeed}} {{shadow : Shadow}}
+    (hseed : seed ∈ {candidate_name})
+    (hvalid : isValidOneSidedSeedShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed
+    ({candidate_name}_subset_fixed hseed) hvalid"""
+        )
+    return "\n\n".join(sections)
+
+
+def ordered_rows_all_private_w_cross_separation_false(
+    payload: dict[str, Any],
+) -> list[dict[str, Any]]:
+    return [
+        row
+        for row in payload["rows"]
+        if row["ordered_variant_count"] > 0
+        and row["ordered_variants_private_w_cross_separation_false"]
+        == row["ordered_variant_count"]
+    ]
+
+
+def lean_ordered_row_private_w_cross_separation_name(row_id: str) -> str:
+    return (
+        f"erasedPinOrderedRow_{lean_ident_suffix(row_id)}_seed_"
+        "private_w_crossSeparation_false"
+    )
+
+
+def lean_ordered_row_cross_separation_theorems(payload: dict[str, Any]) -> str:
+    sections: list[str] = []
+    for row in ordered_rows_all_private_w_cross_separation_false(payload):
+        row_id = str(row["id"])
+        candidate_name = f"{lean_ordered_row_seed_name(row_id)}_candidates"
+        theorem_name = lean_ordered_row_private_w_cross_separation_name(row_id)
+        sections.append(
+            f"""/-- Every ordered seed for row `{row_id}` fails the cross-separation
+check against the exact `.w` cap mask. -/
+theorem {theorem_name}
+    {{seed : OneSidedSeed}}
+    (hseed : seed ∈ {candidate_name}) :
+    crossSeparationOKForMasks seed.privateCenter seed.privateMask
+      .w secondOppExactCapMask = false := by
+  have hall : {candidate_name}.all
+      (fun seed : OneSidedSeed =>
+        decide (crossSeparationOKForMasks seed.privateCenter seed.privateMask
+          .w secondOppExactCapMask = false)) = true := by
+    decide
+  exact of_decide_eq_true (List.all_eq_true.mp hall seed hseed)"""
+        )
+    return "\n\n".join(sections)
+
+
+def write_lean(path: Path, base: Any, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    seed_by_key = ordered_seed_map(payload)
+    ordered_seeds = sort_seeds(base, set(seed_by_key.values()))
+    seed_lines = ",\n".join(f"  {lean_seed(seed)}" for seed in ordered_seeds)
+    row_seed_defs = lean_ordered_row_seed_defs(base, payload)
+    row_cross_separation_theorems = lean_ordered_row_cross_separation_theorems(payload)
+    seed_invalid_theorems = lean_ordered_seed_invalid_theorems(payload)
+    summary = payload["summary"]
+    text = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ErasedPinFixedSeedDFS
+
+/-!
+# Generated ordered erased-pin producer facts
+
+This module is generated by `scripts/erased-pin-ordered-producer.py`.
+It records the block-permutation closure of the finite erased-pin row seeds:
+private labels `.Pw/.Pu`, opposite-adjacent labels `.Q1/.Q2`, and surplus
+labels `.s1/.s2/.s3` are enumerated in every block-preserving order.  The
+resulting ordered seeds are checked against the existing fixed-seed DFS bank.
+-/
+
+namespace Problem97
+namespace SurplusCOMPGBank
+
+/-- The deduplicated ordered erased-pin seeds generated from all finite rows. -/
+def erasedPinOrderedSeeds : List OneSidedSeed :=
+[
+{seed_lines}
+]
+
+/-- The ordered erased-pin bank has the generated number of deduplicated seeds. -/
+theorem erasedPinOrderedSeeds_length :
+    erasedPinOrderedSeeds.length = {len(ordered_seeds)} := by
+  native_decide
+
+/-- The ordered erased-pin bank is exactly the fixed erased-pin DFS bank. -/
+theorem erasedPinOrderedSeeds_eq_fixed :
+    erasedPinOrderedSeeds = erasedPinFixedSeeds := by
+  native_decide
+
+/-- Every ordered erased-pin seed is in the generated fixed-seed bank. -/
+theorem erasedPinOrderedSeeds_subset_fixed {{seed : OneSidedSeed}}
+    (hseed : seed ∈ erasedPinOrderedSeeds) : seed ∈ erasedPinFixedSeeds := by
+  simpa [erasedPinOrderedSeeds_eq_fixed] using hseed
+
+/-- The ordered producer expanded all source finite masks through all
+block-preserving relabelings. -/
+theorem erasedPinOrderedVariantCount_eq :
+    {summary["source_finite_mask_count"]} * {summary["permutation_count"]} =
+      {summary["ordered_variant_count"]} := by
+  native_decide
+
+/-! ## Ordered row producer seed lists -/
+
+{row_seed_defs}
+
+/-! ## Ordered row cross-separation consequences -/
+
+{row_cross_separation_theorems}
+
+/-! ## Ordered row no-survivor consequences -/
+
+{seed_invalid_theorems}
+
+end SurplusCOMPGBank
+end Problem97
+"""
+    path.write_text(text)
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -429,6 +664,12 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Include all row/mask/permutation variant records in the JSON.",
     )
+    parser.add_argument(
+        "--lean-out",
+        type=Path,
+        default=Path("lean/Erdos9796Proof/P97/ErasedPinOrderedProducer.lean"),
+        help="Output generated Lean ordered producer module.",
+    )
     return parser.parse_args()
 
 
@@ -438,8 +679,10 @@ def main() -> None:
     payload = build_ordered_census(base, args.producer_json, args.include_variants)
     write_json(args.json_out, payload)
     write_markdown(args.markdown_out, payload)
+    write_lean(args.lean_out, base, payload)
     print(f"wrote {args.json_out}")
     print(f"wrote {args.markdown_out}")
+    print(f"wrote {args.lean_out}")
 
 
 if __name__ == "__main__":

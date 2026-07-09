@@ -1787,6 +1787,58 @@ theorem crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull
     · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx, hcy]
   · simp [Label.beq_eq_decide_eq, hxc, hxcp, hyc, hycp, hcx]
 
+/-- Selected classes in a CCW ten-label hull order satisfy every generated
+ordered cross-separation check. -/
+theorem crossSeparationOKForMasks_of_selectedClasses_ccwHull
+    {A : Finset ℝ²} {pointOf : Label → ℝ²}
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 => pointOf (labelOfHullFin i)))
+    (hinj : Function.Injective pointOf)
+    (hselected : ∀ center : Label,
+      centerClass center = SelectedClass A (pointOf center)
+        (radiusOf center)) :
+    ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true := by
+  intro c cp hpair
+  refine crossSeparationOKForMasks_of_sameRadius_ccwHull hccw hinj
+    (orderedLabelPairs_ne hpair) ?_ ?_
+  · intro a b ha hb
+    rw [hselected c] at ha hb
+    exact (mem_selectedClass.mp ha).2.trans
+      (mem_selectedClass.mp hb).2.symm
+  · intro a b ha hb
+    rw [hselected cp] at ha hb
+    exact (mem_selectedClass.mp ha).2.trans
+      (mem_selectedClass.mp hb).2.symm
+
+/-- Selected classes in a reflected CCW ten-label hull order satisfy every
+generated ordered cross-separation check. -/
+theorem crossSeparationOKForMasks_of_selectedClasses_reflectedCcwHull
+    {A : Finset ℝ²} {pointOf : Label → ℝ²}
+    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 => pointOf (reflectedHullLabel (labelOfHullFin i))))
+    (hinj : Function.Injective pointOf)
+    (hselected : ∀ center : Label,
+      centerClass center = SelectedClass A (pointOf center)
+        (radiusOf center)) :
+    ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true := by
+  intro c cp hpair
+  refine crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull hccw hinj
+    (orderedLabelPairs_ne hpair) ?_ ?_
+  · intro a b ha hb
+    rw [hselected c] at ha hb
+    exact (mem_selectedClass.mp ha).2.trans
+      (mem_selectedClass.mp hb).2.symm
+  · intro a b ha hb
+    rw [hselected cp] at ha hb
+    exact (mem_selectedClass.mp ha).2.trans
+      (mem_selectedClass.mp hb).2.symm
+
 /-- Right-oriented erased-pin producer for the private class against the exact
 `.w` cap.  The remaining geometric input is the CCW hull order of the ten
 pinned labels. -/
@@ -2992,6 +3044,64 @@ theorem isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks
     (searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts)
     (separationOK_shadowOfPointClasses_of_sepOKFor hsep)
     (searchSeparationOK_shadowOfPointClasses_of_crossSeparation hsearchSep)
+    (fragmentTriggersOK_shadowOfPointClasses_of_candidateMaskOK hs hOK)
+
+/-- List-restricted variant of
+`isValidPinnedFragment_shadowOfPointClasses_of_candidate_masks`.  It only asks
+for pointwise separation and search-separation on the generated label-pair
+lists. -/
+theorem isValidPinnedFragment_shadowOfPointClasses_of_candidate_lists
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {sstar : Label}
+    (hs : isSurplusStar sstar = true)
+    (hcandidate : ∀ center : Label,
+      pointMask pointOf (centerClass center) ∈ candidateMasks sstar center)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
+    (hsep : ∀ c cp x y : Label, (c, cp) ∈ labelPairs →
+      (x, y) ∈ labelPairs →
+        sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y = true)
+    (hsearchSep : ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
+      crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+        (pointMask pointOf (centerClass cp)) = true) :
+    isValidPinnedFragment sstar
+      (shadowOfPointClasses pointOf centerClass) = true := by
+  have hOK : ∀ center : Label,
+      candidateMaskOK sstar center
+        (pointMask pointOf (centerClass center)) = true := by
+    intro center
+    exact candidateMaskOK_of_mem_candidateMasks hs (hcandidate center)
+  exact isValidPinnedFragment_shadowOfPointClasses_of_components hs
+    (by
+      simp [Shadow.classesShapeOK, allLabels, Shadow.classShapeOKAt,
+        Shadow.classHas, shadowOfPointClasses_centerMask, candidateMaskOK]
+        at hOK ⊢
+      aesop)
+    (by
+      have hv := hOK .v
+      simp [pinnedClassOK, shadowOfPointClasses_centerMask,
+        candidateMaskOK] at hv ⊢
+      aesop)
+    (by
+      have hw := hOK .w
+      simp [wSqueezeOK, Shadow.classHas, shadowOfPointClasses_centerMask,
+        candidateMaskOK] at hw ⊢
+      aesop)
+    (by
+      have hu := hOK .u
+      have hw := hOK .w
+      simp [oneHitOK, shadowOfPointClasses_centerMask,
+        candidateMaskOK] at hu hw ⊢
+      aesop)
+    (by
+      simp [circumcenterOK, circumcenterOKAt, allLabels, Shadow.classHas,
+        shadowOfPointClasses_centerMask, candidateMaskOK] at hOK ⊢
+      aesop)
+    hno3
+    (searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts)
+    (separationOK_shadowOfPointClasses_of_sepOKFor_labelPairs hsep)
+    (searchSeparationOK_shadowOfPointClasses_of_crossSeparation_orderedPairs
+      hsearchSep)
     (fragmentTriggersOK_shadowOfPointClasses_of_candidateMaskOK hs hOK)
 
 /-- Variant of the candidate-mask assembler that discharges the generated `.v`
@@ -15592,6 +15702,99 @@ theorem false_of_leftOneSidedErasedPayload_pointClasses_of_named_pair_seed_mask_
       (fun center hmoser hpu =>
         hcirc .Pu center (Or.inr rfl) hmoser hpu)
       htriggerU htriggerQ1 htriggerQ2 htriggerPrevious hfinal
+
+/-- The right-pinned residual `.v` selected class has the generated pinned mask
+for any named first-opposite interior pair used by the ten-label shadow. -/
+theorem pinnedRightSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x)
+    (hxSurplus : x ∈ S.rightAdjacentCapByIndex S.oppIndex1 \
+      (S.capByIndex S.oppIndex1 ∪ S.leftAdjacentCapByIndex S.oppIndex1))
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj :
+      Function.Injective
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hpairP : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x) :
+    pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius) =
+      pinnedMaskOf sstar := by
+  classical
+  rcases S.pinnedRightSurplusResidual_selectedClass_eq_surplusApex
+      hpinned hxSurplus with
+    ⟨a, b, _hab, hpairPayload, hselectedPayload⟩
+  have hpairP' :
+      S.capInteriorByIndex S.oppIndex1 = ({p₁, p₂} : Finset ℝ²) := by
+    simpa [SurplusCapPacket.oppInterior1] using hpairP
+  have hpairSet :
+      ({a, b} : Finset ℝ²) = ({p₁, p₂} : Finset ℝ²) := by
+    rw [← hpairPayload, hpairP']
+  let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hselected :
+      SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) radius =
+        ({pointOf .u, pointOf sstar, pointOf .Pw, pointOf .Pu} :
+          Finset ℝ²) := by
+    rw [hselectedPayload]
+    ext y
+    have hpairMem :
+        (y ∈ ({a, b} : Finset ℝ²)) ↔
+          y ∈ ({p₁, p₂} : Finset ℝ²) := by
+      rw [hpairSet]
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hpairMem ⊢
+    simp [pointOf, rightPinnedLabelPoint, hsstar_eq]
+    tauto
+  rw [hselected]
+  exact pointMask_eq_pinnedMaskOf hinj hsstar
+
+/-- The left-pinned residual `.v` selected class has the generated pinned mask
+for any named second-opposite interior pair used by the ten-label shadow. -/
+theorem pinnedLeftSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x)
+    (hxSurplus : x ∈ S.leftAdjacentCapByIndex S.oppIndex2 \
+      (S.capByIndex S.oppIndex2 ∪ S.rightAdjacentCapByIndex S.oppIndex2))
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj :
+      Function.Injective
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hpairP : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    {sstar : Label}
+    (hsstar : isSurplusStar sstar = true)
+    (hsstar_eq :
+      leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x) :
+    pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        (SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius) =
+      pinnedMaskOf sstar := by
+  classical
+  rcases S.pinnedLeftSurplusResidual_selectedClass_eq_surplusApex
+      hpinned hxSurplus with
+    ⟨a, b, _hab, hpairPayload, hselectedPayload⟩
+  have hpairP' :
+      S.capInteriorByIndex S.oppIndex2 = ({p₁, p₂} : Finset ℝ²) := by
+    simpa [SurplusCapPacket.oppInterior2] using hpairP
+  have hpairSet :
+      ({a, b} : Finset ℝ²) = ({p₁, p₂} : Finset ℝ²) := by
+    rw [← hpairPayload, hpairP']
+  let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hselected :
+      SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) radius =
+        ({pointOf .u, pointOf sstar, pointOf .Pw, pointOf .Pu} :
+          Finset ℝ²) := by
+    rw [hselectedPayload]
+    ext y
+    have hpairMem :
+        (y ∈ ({a, b} : Finset ℝ²)) ↔
+          y ∈ ({p₁, p₂} : Finset ℝ²) := by
+      rw [hpairSet]
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hpairMem ⊢
+    simp [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+      leftPinnedToRightLabel, hsstar_eq]
+    tauto
+  rw [hselected]
+  exact pointMask_eq_pinnedMaskOf hinj hsstar
 
 /-- The right-surplus pinned residual determines the finite pinned mask for the
 generated `.v` class, after choosing a three-point surplus subpacket containing

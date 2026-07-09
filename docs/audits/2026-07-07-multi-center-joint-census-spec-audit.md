@@ -9,14 +9,14 @@ Author: OpenAI Codex
 Audited document:
 `docs/multi-center-joint-census-spec-2026-07-07.md`.
 
-This note records the audit questions and concerns that remained after
-patching the spec text on 2026-07-07. The blocking spec defects found in
-the first pass were corrected in the owner doc: unequal-profile
-under-enumeration, unsound GLOBAL pruning by fresh-LOCAL only, the
-coarse L1/L2 quotient, and the missing statement of which tier the
-headline verdict refers to.
+This note records the original audit questions/concerns and their
+subsequent resolutions in the spec text. The blocking spec defects found
+in the first pass were corrected in the owner doc: unequal-profile
+under-enumeration, unsound GLOBAL pruning by fresh-LOCAL only, the coarse
+L1/L2 quotient, and the missing statement of which tier the headline
+verdict refers to.
 
-## Questions
+## Original questions
 
 1. Sweep ceiling: the spec still carries
    `{{NEEDS_ADAM_INPUT: extend past 30 if cheap?}}`. The report format is
@@ -35,7 +35,7 @@ headline verdict refers to.
    acceptance rule for a fit that is weak, piecewise, or obviously
    unstable.
 
-## Concerns
+## Original concerns
 
 1. The full-support L1/L2 quotient is the right correctness boundary,
    but it may enlarge the class inventory substantially relative to the
