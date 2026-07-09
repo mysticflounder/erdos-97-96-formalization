@@ -635,6 +635,34 @@ either carry the old mask-interface facts through the ordered scaffold, or
 derive row-local `.u ∈ candidateMasks` from exact row/common-mask data at the
 pure-row payload site.
 
+2026-07-08 P2 obstruction checkpoint: the live proof state at
+`hrightCandidate`/`hleftCandidate` was inspected with Lean.  These helpers are
+upstream of the finite facts; the context has ambient K4/minimality, the M44
+packet, the ordered boundary data, `p ∈ A.erase x`, and the surplus-star label
+equality, but no mask-cardinality/no-self/one-hit/trigger/final fields and no
+row-local selected-class equalities for the non-fixed centers.  A small Boolean
+probe also confirms that the available cross-separation predicate can hold
+while `.u` is not in the generated candidate list, so separation cannot imply
+candidate membership.  This rules out proving the current universal candidate
+helpers as written.
+
+The row scan adds one important correction to the narrow pure-row idea: many
+finite row closures consume the terminal candidate-remainder field, not only
+the pure rows.  The existing seed-mask-to-seed-candidate adapters are still
+useful (`rightOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs`,
+`leftOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs`, and
+`seedCandidateInputsStatement_of_seedMaskInputsStatement`), but they do not by
+themselves produce the missing geometric mask-interface data.  The next code
+route must therefore be one of two real producers:
+
+- **Strong exact producer:** prove the ordered scaffold's candidate fields from
+  genuine mask-interface data for every non-fixed center.  This is the current
+  exact-bank surface, but it needs new geometric production, not wrappers.
+- **Relaxed/candidate-free producer:** regenerate or reuse relaxed/sub-mask row
+  certificates so finite row closures no longer require exact non-fixed
+  `candidateMasks` membership.  This should be checked first, because the
+  project already has relaxed singleton split certificate infrastructure.
+
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
 BLOCKED sites and the two surviving rows (right `(0,0,0,4)`, left
@@ -2229,3 +2257,15 @@ cross-separation producers, reduced reflected finite-packet producers, and
 wires both nonmatching branches through the opposite orientation selector with
 reversed labels.  The active theorem still has the two direct P4 holes and the
 two P2 candidate-remainder holes.
+
+2026-07-08 P2 checkpoint: the candidate-remainder holes are now classified as
+producer-boundary holes, not tactic holes.  `oneSidedSeedCandidateRemainder` is
+provable from the old explicit mask-interface fields, and the seed-mask to
+seed-candidate adapters are already proved, but the current ordered finite
+scaffold tries to obtain those candidate remainders before any such geometric
+mask-interface data is available.  The next implementation pass should not
+attempt to fill `hrightCandidate`/`hleftCandidate` in place.  It should first
+test the relaxed/candidate-free finite-row route against the existing relaxed
+singleton split certificate layer; if that route does not cover the active row
+families, the fallback is a real ordered seed-mask producer for the exact
+candidate surface.
