@@ -2405,3 +2405,36 @@ prove that the K4 witness classes used by the finite DFS are represented by the
 packet masks, then feed those shape facts to a generated shape-relaxed DFS or
 to `oneSidedSeedCandidateRemainder_of_mask_interfaces`.  Without that bridge,
 generating the shape-relaxed DFS only moves the obligation.
+
+2026-07-09 frontier-census checkpoint: re-ran the canonical active-leaf
+frontier report:
+
+```text
+env UV_CACHE_DIR=/private/tmp/uv-cache uv run python census/multi_center/frontier_report.py
+```
+
+The loaded L2 GLOBAL / PROVEN census is complete through `n = 32` for the
+report's available artifacts: `977,975 / 977,975` cells SAT, `0` UNSAT, `0`
+INDETERMINATE.  The project-level exact inventory stabilizes at `3,375`
+classes over `n = 29..32`.  This is useful negative information, not a
+producer: the report explicitly leaves all three erased-pin producer facts
+unavailable:
+
+- `ErasedPinFiniteCandidateSepScaffoldFacts S x`;
+- `ErasedPinTriple A x (S.oppositeVertexByIndex S.surplusIdx) -> False`;
+- `forall p in S.capInteriorByIndex S.surplusIdx, p in A.erase x ->
+  ErasedPinTriple A x p -> False`.
+
+Source search and Lean-local probing also confirm that the pinned-surplus
+residual consumers are centered at the two non-surplus opposite vertices, so
+they do not directly match the direct surplus-opposite branch whose center is
+`S.oppositeVertexByIndex S.surplusIdx`, nor the surplus-interior branch whose
+center lies in `S.capInteriorByIndex S.surplusIdx`.  The next grounded move is
+therefore still one of:
+
+1. prove the ordered-row exact-shape/confinement bridge for P2; or
+2. introduce and prove a real surplus-index selected-class cut for P4.
+
+Do not treat the completed multi-center census as closing this leaf unless one
+of those producer interfaces is actually constructed and wired into the active
+theorem.
