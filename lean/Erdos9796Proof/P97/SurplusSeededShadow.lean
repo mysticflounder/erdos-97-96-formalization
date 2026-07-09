@@ -154,6 +154,82 @@ def oneSidedSeedSearchEntriesFor (seed : OneSidedSeed) :
   (oneSidedSeedSearchAux seed [] emptyShadowMasks emptyPairCounts
     seed.searchPlan).map (fun masks => (seed, masks))
 
+/-- Relaxed local shape predicate for seeded one-sided shadows.
+
+This keeps only the exact four-point/no-self shape required by the
+relaxed-shape erased-pin producer, dropping the stronger candidate-mask
+filters used by `oneSidedSeedCandidateMaskOK`. -/
+def oneSidedSeedRelaxedShapeMaskOK (center : Label) (mask : Nat) : Bool :=
+  maskNormalized mask &&
+    maskCard mask == 4 &&
+    !maskHas mask center
+
+/-- Filter-generated relaxed shape masks for one center. -/
+def oneSidedSeedRelaxedShapeMasksByFilter (center : Label) : List Nat :=
+  allNormalizedMasks.filter (oneSidedSeedRelaxedShapeMaskOK center ·)
+
+/-- Relaxed shape masks for one center under a fixed seed. -/
+def OneSidedSeed.relaxedShapeMasks (seed : OneSidedSeed) (center : Label) :
+    List Nat :=
+  match seed.fixedMask center with
+  | some mask =>
+      if oneSidedSeedRelaxedShapeMaskOK center mask then [mask] else []
+  | none => oneSidedSeedRelaxedShapeMasksByFilter center
+
+/-- Relaxed search plan for one seed. -/
+def OneSidedSeed.relaxedShapeSearchPlan (seed : OneSidedSeed) :
+    List (Label × List Nat) :=
+  seed.searchOrder.map (fun center => (center, seed.relaxedShapeMasks center))
+
+/-- Validity predicate for the relaxed-shape erased-pin producer.
+
+It keeps the fixed `.v`/`.w` exact caps, the private mask, exact shape,
+prefix no-three counts, and separation predicates.  It deliberately omits the
+stronger candidate-mask trigger/circumcenter filters. -/
+def isValidOneSidedSeedRelaxedShapeShadow
+    (seed : OneSidedSeed) (shadow : Shadow) : Bool :=
+  isSurplusStar seed.sstar &&
+    shadow.hasTenMasks &&
+    shadow.classesShapeOK &&
+    (shadow.centerMask .v == firstOppExactCapMask) &&
+    (shadow.centerMask .w == secondOppExactCapMask) &&
+    (shadow.centerMask seed.privateCenter == seed.privateMask) &&
+    noThreeOK shadow &&
+    searchPairCountsOK shadow &&
+    separationOK shadow &&
+    searchSeparationOK shadow
+
+/-- DFS over relaxed shape masks for one fixed seed. -/
+def oneSidedSeedRelaxedShapeSearchAux
+    (seed : OneSidedSeed) (assigned : List Label) (masks pairCounts : List Nat)
+    (plan : List (Label × List Nat)) : List (List Nat) :=
+  match plan with
+  | [] =>
+      if isValidOneSidedSeedRelaxedShapeShadow seed { masks := masks } then
+        [masks]
+      else
+        []
+  | (center, candidates) :: rest =>
+      candidates.flatMap
+        (fun mask =>
+          let masks' := setCenterMask masks center mask
+          let pairCounts' := incrementPairCounts center mask pairCounts
+          if assignedSeparationOK center mask assigned masks &&
+              pairCountsOK pairCounts' then
+            oneSidedSeedRelaxedShapeSearchAux seed (center :: assigned) masks'
+              pairCounts' rest
+          else
+            [])
+termination_by plan.length
+decreasing_by
+  simp_wf
+
+/-- Relaxed-shape search results for one seed. -/
+def oneSidedSeedRelaxedShapeSearchEntriesFor (seed : OneSidedSeed) :
+    List (OneSidedSeed × List Nat) :=
+  (oneSidedSeedRelaxedShapeSearchAux seed [] emptyShadowMasks emptyPairCounts
+    seed.relaxedShapeSearchPlan).map (fun masks => (seed, masks))
+
 /-- The 18 right-oriented one-sided seeds. -/
 def oneSidedSeeds : List OneSidedSeed :=
   [{ sstar := .s1, privateCenter := .Pw, kind := .own,
@@ -605,6 +681,308 @@ theorem oneSidedSeedSearchCounts_eq :
     oneSidedSeedSearchCounts =
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
   native_decide
+
+/-! ## Relaxed-shape seeded search completeness -/
+
+/-- The relaxed-shape validity predicate contains the generated
+search-separation check. -/
+theorem searchSeparationOK_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (h : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    searchSeparationOK shadow = true := by
+  cases seed with
+  | mk sstar privateCenter kind privateMask =>
+      cases sstar <;>
+        simp [isValidOneSidedSeedRelaxedShapeShadow, isSurplusStar] at h ⊢ <;>
+        simp_all
+
+/-- The relaxed-shape validity predicate contains the generated prefix
+pair-count check. -/
+theorem searchPairCountsOK_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (h : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    searchPairCountsOK shadow = true := by
+  cases seed with
+  | mk sstar privateCenter kind privateMask =>
+      cases sstar <;>
+        simp [isValidOneSidedSeedRelaxedShapeShadow, isSurplusStar] at h ⊢ <;>
+        simp_all
+
+/-- The relaxed-shape validity predicate contains the ten-mask check. -/
+theorem hasTenMasks_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (h : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    shadow.hasTenMasks = true := by
+  cases seed with
+  | mk sstar privateCenter kind privateMask =>
+      cases sstar <;>
+        simp [isValidOneSidedSeedRelaxedShapeShadow, isSurplusStar] at h ⊢ <;>
+        simp_all
+
+/-- The relaxed-shape validity predicate supplies the local relaxed-shape
+predicate for each center. -/
+theorem oneSidedSeedRelaxedShapeMaskOK_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {center : Label}
+    (h : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    oneSidedSeedRelaxedShapeMaskOK center (shadow.centerMask center) = true := by
+  cases seed with
+  | mk sstar privateCenter kind privateMask =>
+      cases sstar <;> cases center <;>
+        simp [isValidOneSidedSeedRelaxedShapeShadow,
+          oneSidedSeedRelaxedShapeMaskOK, Shadow.classesShapeOK,
+          Shadow.classShapeOKAt, Shadow.classHas, allLabels, isSurplusStar]
+          at h ⊢ <;>
+        simp_all <;>
+        native_decide
+
+/-- A relaxed local shape mask is normalized. -/
+theorem maskNormalized_of_oneSidedSeedRelaxedShapeMaskOK
+    {center : Label} {mask : Nat}
+    (h : oneSidedSeedRelaxedShapeMaskOK center mask = true) :
+    maskNormalized mask = true := by
+  by_cases hnorm : maskNormalized mask = true
+  · exact hnorm
+  · simp [oneSidedSeedRelaxedShapeMaskOK, hnorm] at h
+
+/-- Filter-generated relaxed shape masks contain every mask satisfying the
+relaxed local shape predicate. -/
+theorem mem_oneSidedSeedRelaxedShapeMasksByFilter_of_shape
+    {center : Label} {mask : Nat}
+    (h : oneSidedSeedRelaxedShapeMaskOK center mask = true) :
+    mask ∈ oneSidedSeedRelaxedShapeMasksByFilter center := by
+  rw [oneSidedSeedRelaxedShapeMasksByFilter]
+  exact List.mem_filter.mpr
+    ⟨mem_allNormalizedMasks_of_maskNormalized
+      (maskNormalized_of_oneSidedSeedRelaxedShapeMaskOK h), h⟩
+
+/-- A valid relaxed-shape shadow supplies a relaxed shape mask at every search
+center. -/
+theorem mem_seed_relaxedShapeMasks_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {center : Label}
+    (h : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    shadow.centerMask center ∈ seed.relaxedShapeMasks center := by
+  have hshape :=
+    oneSidedSeedRelaxedShapeMaskOK_of_isValidOneSidedSeedRelaxedShapeShadow
+      (seed := seed) (shadow := shadow) (center := center) h
+  cases seed with
+  | mk sstar privateCenter kind privateMask =>
+      cases center <;> cases privateCenter <;>
+        simp [OneSidedSeed.relaxedShapeMasks, OneSidedSeed.fixedMask,
+          isValidOneSidedSeedRelaxedShapeShadow] at h hshape ⊢
+      all_goals
+        first
+        | exact mem_oneSidedSeedRelaxedShapeMasksByFilter_of_shape hshape
+        | simp_all
+
+/-- The generated separation checker supplies the assigned-prefix guard used
+by the relaxed-shape DFS. -/
+theorem assignedSeparationOK_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {center : Label}
+    {assigned : List Label} {masks : List Nat}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true)
+    (hmask : ∀ other, other ∈ assigned ->
+      centerMaskOf masks other = shadow.centerMask other)
+    (hne : ∀ other, other ∈ assigned -> center ≠ other) :
+    assignedSeparationOK center (shadow.centerMask center) assigned masks =
+      true := by
+  exact assignedSeparationOK_of_searchSeparationOK
+    (searchSeparationOK_of_isValidOneSidedSeedRelaxedShapeShadow hvalid)
+    hmask hne
+
+/-- The generated prefix pair-count checker supplies the pair-count guard used
+by the relaxed-shape DFS. -/
+theorem pairCountsOK_shadowPairCountsForAssigned_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {assigned : List Label}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true)
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes) :
+    pairCountsOK (shadowPairCountsForAssigned shadow assigned) = true := by
+  exact pairCountsOK_shadowPairCountsForAssigned_of_searchPairCountsOK
+    (searchPairCountsOK_of_isValidOneSidedSeedRelaxedShapeShadow hvalid)
+    hprefix
+
+/-- One relaxed-shape DFS step contains the valid shadow whenever the tail
+search does. -/
+theorem mem_oneSidedSeedRelaxedShapeSearchAux_cons
+    {target masks pairCounts : List Nat} {seed : OneSidedSeed}
+    {center : Label} {assigned : List Label} {candidates : List Nat}
+    {rest : List (Label × List Nat)} {mask : Nat}
+    (hmem : mask ∈ candidates)
+    (hsep : assignedSeparationOK center mask assigned masks = true)
+    (hcounts : pairCountsOK (incrementPairCounts center mask pairCounts) = true)
+    (htail : target ∈ oneSidedSeedRelaxedShapeSearchAux seed
+      (center :: assigned) (setCenterMask masks center mask)
+      (incrementPairCounts center mask pairCounts) rest) :
+    target ∈ oneSidedSeedRelaxedShapeSearchAux seed assigned masks pairCounts
+      ((center, candidates) :: rest) := by
+  unfold oneSidedSeedRelaxedShapeSearchAux
+  exact List.mem_flatMap.mpr ⟨mask, hmem, by
+    simpa [hsep, hcounts] using htail⟩
+
+/-- The terminal relaxed-shape DFS step contains a valid shadow. -/
+theorem mem_oneSidedSeedRelaxedShapeSearchAux_nil_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {assigned : List Label}
+    {masks pairCounts : List Nat}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true)
+    (hmasks : masks = shadow.masks) :
+    shadow.masks ∈ oneSidedSeedRelaxedShapeSearchAux seed assigned masks
+      pairCounts [] := by
+  subst masks
+  unfold oneSidedSeedRelaxedShapeSearchAux
+  simpa using hvalid
+
+/-- Search-step membership for valid relaxed-shape shadows in the standard
+generated search order. -/
+theorem mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow} {center : Label}
+    {assigned : List Label} {rest : List (Label × List Nat)}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true)
+    (hprefix : assigned ∈ fragmentSearchAssignedPrefixes)
+    (hnext : center :: assigned ∈ fragmentSearchAssignedPrefixes)
+    (hne : ∀ other, other ∈ assigned -> center ≠ other)
+    (htail : shadow.masks ∈ oneSidedSeedRelaxedShapeSearchAux seed
+      (center :: assigned) (shadowMasksForAssigned shadow (center :: assigned))
+      (shadowPairCountsForAssigned shadow (center :: assigned)) rest) :
+    shadow.masks ∈ oneSidedSeedRelaxedShapeSearchAux seed assigned
+      (shadowMasksForAssigned shadow assigned)
+      (shadowPairCountsForAssigned shadow assigned)
+      ((center, seed.relaxedShapeMasks center) :: rest) := by
+  apply mem_oneSidedSeedRelaxedShapeSearchAux_cons
+  · exact mem_seed_relaxedShapeMasks_of_isValidOneSidedSeedRelaxedShapeShadow
+      (center := center) hvalid
+  · exact assignedSeparationOK_of_isValidOneSidedSeedRelaxedShapeShadow hvalid
+      (fun other hmem => centerMaskOf_shadowMasksForAssigned_of_mem hprefix hmem)
+      hne
+  · simpa [shadowPairCountsForAssigned] using
+      pairCountsOK_shadowPairCountsForAssigned_of_isValidOneSidedSeedRelaxedShapeShadow
+        hvalid hnext
+  · simpa [shadowMasksForAssigned, shadowPairCountsForAssigned] using htail
+
+/-- Every valid relaxed-shape shadow appears in the relaxed-shape DFS for that
+seed. -/
+theorem shadow_mem_oneSidedSeedRelaxedShapeSearchAux_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    shadow.masks ∈ oneSidedSeedRelaxedShapeSearchAux seed [] emptyShadowMasks
+      emptyPairCounts seed.relaxedShapeSearchPlan := by
+  have h10 : shadow.masks ∈ oneSidedSeedRelaxedShapeSearchAux seed
+      fullFragmentSearchAssigned
+      (shadowMasksForAssigned shadow fullFragmentSearchAssigned)
+      (shadowPairCountsForAssigned shadow fullFragmentSearchAssigned) [] := by
+    exact
+      mem_oneSidedSeedRelaxedShapeSearchAux_nil_of_isValidOneSidedSeedRelaxedShapeShadow
+        hvalid
+        (shadowMasksForFullFragmentSearchAssigned_eq_of_hasTenMasks
+          (hasTenMasks_of_isValidOneSidedSeedRelaxedShapeShadow hvalid))
+  have h9 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .s3)
+    (assigned := [.s2, .s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := []) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h10
+  have h8 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .s2)
+    (assigned := [.s1, .Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s3, seed.relaxedShapeMasks .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h9
+  have h7 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .s1)
+    (assigned := [.Q2, .Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s2, seed.relaxedShapeMasks .s2),
+      (.s3, seed.relaxedShapeMasks .s3)])
+    hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h8
+  have h6 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .Q2)
+    (assigned := [.Q1, .Pu, .Pw, .u, .w, .v])
+    (rest := [(.s1, seed.relaxedShapeMasks .s1),
+      (.s2, seed.relaxedShapeMasks .s2), (.s3, seed.relaxedShapeMasks .s3)])
+    hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h7
+  have h5 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .Q1)
+    (assigned := [.Pu, .Pw, .u, .w, .v])
+    (rest := [(.Q2, seed.relaxedShapeMasks .Q2),
+      (.s1, seed.relaxedShapeMasks .s1), (.s2, seed.relaxedShapeMasks .s2),
+      (.s3, seed.relaxedShapeMasks .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h6
+  have h4 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .Pu)
+    (assigned := [.Pw, .u, .w, .v])
+    (rest := [(.Q1, seed.relaxedShapeMasks .Q1),
+      (.Q2, seed.relaxedShapeMasks .Q2), (.s1, seed.relaxedShapeMasks .s1),
+      (.s2, seed.relaxedShapeMasks .s2), (.s3, seed.relaxedShapeMasks .s3)])
+    hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h5
+  have h3 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .Pw)
+    (assigned := [.u, .w, .v])
+    (rest := [(.Pu, seed.relaxedShapeMasks .Pu),
+      (.Q1, seed.relaxedShapeMasks .Q1), (.Q2, seed.relaxedShapeMasks .Q2),
+      (.s1, seed.relaxedShapeMasks .s1), (.s2, seed.relaxedShapeMasks .s2),
+      (.s3, seed.relaxedShapeMasks .s3)])
+    hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h4
+  have h2 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .u)
+    (assigned := [.w, .v])
+    (rest := [(.Pw, seed.relaxedShapeMasks .Pw),
+      (.Pu, seed.relaxedShapeMasks .Pu), (.Q1, seed.relaxedShapeMasks .Q1),
+      (.Q2, seed.relaxedShapeMasks .Q2), (.s1, seed.relaxedShapeMasks .s1),
+      (.s2, seed.relaxedShapeMasks .s2), (.s3, seed.relaxedShapeMasks .s3)])
+    hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h3
+  have h1 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .w)
+    (assigned := [.v])
+    (rest := [(.u, seed.relaxedShapeMasks .u),
+      (.Pw, seed.relaxedShapeMasks .Pw), (.Pu, seed.relaxedShapeMasks .Pu),
+      (.Q1, seed.relaxedShapeMasks .Q1), (.Q2, seed.relaxedShapeMasks .Q2),
+      (.s1, seed.relaxedShapeMasks .s1), (.s2, seed.relaxedShapeMasks .s2),
+      (.s3, seed.relaxedShapeMasks .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h2
+  have h0 := mem_oneSidedSeedRelaxedShapeSearchAux_shadow_step_of_isValidOneSidedSeedRelaxedShapeShadow
+    (seed := seed) (shadow := shadow) (center := .v)
+    (assigned := [])
+    (rest := [(.w, seed.relaxedShapeMasks .w), (.u, seed.relaxedShapeMasks .u),
+      (.Pw, seed.relaxedShapeMasks .Pw), (.Pu, seed.relaxedShapeMasks .Pu),
+      (.Q1, seed.relaxedShapeMasks .Q1), (.Q2, seed.relaxedShapeMasks .Q2),
+      (.s1, seed.relaxedShapeMasks .s1), (.s2, seed.relaxedShapeMasks .s2),
+      (.s3, seed.relaxedShapeMasks .s3)]) hvalid
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by simp [fragmentSearchAssignedPrefixes])
+    (by intro other hmem; cases other <;> simp at hmem ⊢) h1
+  simpa [OneSidedSeed.relaxedShapeSearchPlan, OneSidedSeed.searchOrder,
+    fragmentSearchOrder, shadowMasksForAssigned,
+    shadowPairCountsForAssigned, emptyShadowMasks] using h0
+
+/-- Every valid relaxed-shape shadow appears in the entry list for its seed. -/
+theorem mem_oneSidedSeedRelaxedShapeSearchEntriesFor_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    (seed, shadow.masks) ∈ oneSidedSeedRelaxedShapeSearchEntriesFor seed := by
+  unfold oneSidedSeedRelaxedShapeSearchEntriesFor
+  exact List.mem_map.mpr
+    ⟨shadow.masks,
+      shadow_mem_oneSidedSeedRelaxedShapeSearchAux_of_isValidOneSidedSeedRelaxedShapeShadow
+        hvalid,
+      rfl⟩
 
 end SurplusCOMPGBank
 end Problem97

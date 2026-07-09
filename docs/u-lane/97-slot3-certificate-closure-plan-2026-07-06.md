@@ -2598,6 +2598,42 @@ data, but the available terminal theorem still needs the localized no-Q-free /
 `U5ModeA` / support-confinement payload rather than just the existing selected
 class and off-circle witnesses.
 
+2026-07-09 follow-up checkpoint: the reusable relaxed-shape DFS surface was
+added to `SurplusSeededShadow.lean` and checked with
+`lake-build Erdos9796Proof.P97.SurplusSeededShadow`.  The generated fixed-seed
+module was kept to a lightweight proof-facing surface only: canonical
+relaxed-shape validity transport, the combined relaxed-shape entry list, and
+the completeness lemma from valid relaxed-shape shadows into that entry list.
+An attempted generated bank of row/per-seed relaxed no-survivor certificates
+was deliberately not kept: even after sharding it still made
+`ErasedPinFixedSeedDFS` too slow for the edit loop.  The lightweight generated
+module rechecked with
+`LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.ErasedPinFixedSeedDFS`.
+
+No source `sorry` was closed in this checkpoint.  For the active theorem,
+source-local leaves are still `4 open / 4 total`: two P2
+candidate-remainder helpers and two P4 direct erased-pin branches.  The P4
+audit was negative for a local close: the source has the dangerous triple,
+selected candidate, exact radius class, and two off-circle auxiliaries, but
+the available U5 terminal lemmas still require `U5ModeA` plus a
+support-confinement/local no-Q-free payload.  The P2 audit remains unchanged:
+the broad candidate-remainder helpers are false as universal local claims and
+must be replaced by an ordered-row exact-shape/confinement bridge or an
+equivalent row-specific producer.
+
+Build-loop correction for the next agent/session: `Continuation.lean` imports
+`RemovableVertexAxiom.PinnedSurplusBank`, which pulls the generated RowZeros
+bank even when working on the non-surplus erased-pin theorem.  Do not use
+`lake-build Erdos9796Proof.P97.RemovableVertexAxiom.Continuation` as the edit
+cycle for these four holes.  The next efficient structural step is to isolate
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` and its immediate
+bank-free successors behind a shard importing `RemovableVertexAxiom.Base`
+instead of `PinnedSurplusBank`; keep the final removable-vertex theorem in the
+bank-consuming continuation shard.  After that split, use the narrower shard
+to close either the P2 ordered-row shape bridge or the P4 U5 support payload
+without replaying RowZeros.
+
 After the payload build and proof-blueprint refresh, the authoritative target
 spine report for
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` was

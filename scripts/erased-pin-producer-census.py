@@ -1189,6 +1189,15 @@ theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed
   cases seed
   simpa [erasedPinCanonicalSeed, isValidOneSidedSeedShadow] using hvalid
 
+theorem isValidOneSidedSeedRelaxedShapeShadow_erasedPinCanonicalSeed
+    {{seed : OneSidedSeed}} {{shadow : Shadow}}
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    isValidOneSidedSeedRelaxedShapeShadow (erasedPinCanonicalSeed seed)
+      shadow = true := by
+  cases seed
+  simpa [erasedPinCanonicalSeed, isValidOneSidedSeedRelaxedShapeShadow]
+    using hvalid
+
 /-! ## Row/signature producer seed lists -/
 
 {row_seed_defs}
@@ -1202,6 +1211,11 @@ theorem isValidOneSidedSeedShadow_erasedPinCanonicalSeed
 /-- Combined DFS entries for the erased-pin fixed seeds. -/
 def erasedPinFixedSeedSearchEntries : List (OneSidedSeed × List Nat) :=
   erasedPinFixedSeeds.flatMap oneSidedSeedSearchEntriesFor
+
+/-- Combined relaxed-shape DFS entries for the erased-pin fixed seeds. -/
+def erasedPinFixedSeedRelaxedShapeSearchEntries :
+    List (OneSidedSeed × List Nat) :=
+  erasedPinFixedSeeds.flatMap oneSidedSeedRelaxedShapeSearchEntriesFor
 
 theorem erasedPinFixedSeeds_length :
     erasedPinFixedSeeds.length = {len(seeds)} := by
@@ -1265,6 +1279,19 @@ theorem mem_erasedPinFixedSeedSearchEntries_of_isValidOneSidedSeedShadow
   exact List.mem_flatMap.mpr
     ⟨seed, hseed,
       mem_oneSidedSeedSearchEntriesFor_of_isValidOneSidedSeedShadow hvalid⟩
+
+/-- Every valid relaxed-shape shadow for a listed erased-pin fixed seed appears
+in the combined relaxed-shape fixed-seed DFS entry list. -/
+theorem mem_erasedPinFixedSeedRelaxedShapeSearchEntries_of_isValidOneSidedSeedRelaxedShapeShadow
+    {{seed : OneSidedSeed}} {{shadow : Shadow}}
+    (hseed : seed ∈ erasedPinFixedSeeds)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    (seed, shadow.masks) ∈ erasedPinFixedSeedRelaxedShapeSearchEntries := by
+  unfold erasedPinFixedSeedRelaxedShapeSearchEntries
+  exact List.mem_flatMap.mpr
+    ⟨seed, hseed,
+      mem_oneSidedSeedRelaxedShapeSearchEntriesFor_of_isValidOneSidedSeedRelaxedShapeShadow
+        hvalid⟩
 
 /-- No listed erased-pin fixed seed admits a valid seeded shadow. -/
 theorem false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed
