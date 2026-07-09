@@ -3049,34 +3049,131 @@ separate confined payload is supplied.  They cannot by themselves prove
 selected classes.
 
 2026-07-09 pinned-surplus producer refactor checkpoint:
-`RemovableVertexAxiom/PinnedSurplusProducer.lean` now isolates the
-non-`.v`/non-`.w` candidate-mask obstruction as the named on-spine residual
+`RemovableVertexAxiom/PinnedSurplusProducer.lean` now isolates the remaining
+non-`.v`/non-`.w` support/candidate obstruction as the named on-spine residual
 `Problem97.isM44PinnedSurplusNonVExactShapeProducer`.  The main
 `Problem97.isM44PinnedSurplusMetricShadowProducer` consumer derives the metric
-shadow, no-three, prefix-count, selected-class cardinality, separation, and
-direct `.w` selector-candidate interfaces locally.  It also proves the
-point-mask normalization and no-self pieces locally: normalization comes from
-`maskNormalized_pointMask`, and no-self comes from
-`pointMask_maskHas_self_false_of_selectedClass_card_ge_four`, using the fact
-that a selected class containing its own center would force radius zero and
-cardinality at most one.  The named residual now delegates only
-`nonVWCandidateMaskOK` for the non-`.v`/non-`.w` selected classes; the consumer
-reconstructs full `candidateMaskOK` through
-`candidateMaskOK_of_nonVWCandidateMaskOK_pointMask`.
+shadow, no-three, prefix-count, separation, direct `.v`/`.w` candidate
+interfaces, and cross-separation locally from the returned `centerClass` and a
+pointwise same-radius proof.  It no longer needs the deleted
+`nonVWCandidateMaskOK` wrapper or full ambient selected-class equality for every
+non-fixed center.
 
 Next proof step: prove
-`isM44PinnedSurplusNonVExactShapeProducer` directly, or replace it with a
-strictly narrower row-specific producer that still feeds the same
-`nonVWCandidateMaskOK` calls in `isM44PinnedSurplusMetricShadowProducer`.
-The remaining residual components are:
-exact four-point mask cardinality
-`maskCard (pointMask pointOf (centerClass center)) = 4`; for center `.u`, the
-two one-hit bounds against `cvNoUMask` and `cwNoUMask`; for non-Moser centers,
-the exclusion of simultaneously hitting `.u`, `.v`, and `.w`; and
-`localTriggerOKAt` for the induced point mask.  No-self and normalization are
-closed outside the residual.
+`isM44PinnedSurplusNonVExactShapeProducer` directly against the narrowed
+surface.  The remaining residual content is:
+
+- choose labelled same-radius supports for the non-`.v`/non-`.w` centers on the
+  right and left pinned residual surfaces;
+- keep `.v` equal to the exact pinned selected class and `.w` equal to the
+  opposite selector selected class;
+- prove each non-fixed support's `pointMask` is a generated `candidateMasks`
+  member for the current surplus star.
 
 Validation: `LAKE_BUILD_NO_REFRESH=1 lake-build
 Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
 successfully after this refactor; the only `sorry` warning in the producer
 shard is the named residual above.
+
+2026-07-09 pinned-surplus non-`.v`/non-`.w` audit checkpoint:
+`LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` was rerun and
+completed successfully.  The direct
+`isM44PinnedSurplusNonVExactShapeProducer` statement is now classified as
+over-broad rather than merely tactic-incomplete: it quantifies arbitrary
+selected classes obtained from K4 for every non-`.v`/non-`.w` label.  The data
+surface `RightPinnedSurplusMetricShadowData`/`LeftPinnedSurplusMetricShadowData`
+is existential in `centerClass`, so the producer does not need a theorem about
+every possible K4 choice.  It needs a chosen labelled four-point support for each
+non-exact label whose point mask is a generated candidate and whose points are
+same-radius from that label center.
+
+The available support tools do not yet supply that chosen labelled support.
+`SelectedFourClass`/`OrderedSelectedFourClass` extracts four same-radius
+witnesses from K4, but the witnesses are not tied to the ten COMP-G labels.
+The U5 `classLabels`/audited-support lemmas convert a bounded labelled support
+payload into finite masks, but they require the support payload first.  The
+row-specific selected-class lemmas in `SurplusM44Packet` are the usable exactness
+bridge once the primitive row counts
+`moserCount/sameCapCount/leftAdjCount/rightAdjCount` have been produced for the
+chosen center/radius; they do not themselves choose the row for the current K4
+selected class.
+
+The exact-count row surfaces in `RemovableVertexAxiom/Base.lean` were checked as
+well.  They belong to the later erased-pin/non-surplus-containment branch: their
+statements assume pinned residual exclusions or containment inputs before they
+produce count-family contradictions.  They are therefore downstream of this
+pinned-surplus producer and should not be imported backward as the source of the
+missing row/support data.
+
+2026-07-09 implementation update: the broad residual has now been replaced in
+`RemovableVertexAxiom/PinnedSurplusProducer.lean`.  The named on-spine residual
+`Problem97.isM44PinnedSurplusNonVExactShapeProducer` is still the open `sorry`,
+but its statement is now existential over the labelled `centerClass` consumed by
+`RightPinnedSurplusMetricShadowData` and `LeftPinnedSurplusMetricShadowData`.
+It returns exact `.v` and `.w` selected-class equalities, a pointwise same-radius
+proof for every returned class, and direct `candidateMasks` membership for every
+non-`.v`/non-`.w` centre.  The metric-shadow consumer no longer manufactures
+arbitrary K4 selected classes or reconstructs `candidateMaskOK` through the
+deleted `nonVWCandidateMaskOK` wrapper.
+
+Current next proof step: prove this narrowed producer.  If row-shaped
+exact-count lemmas are used, they should feed this producer directly by
+supplying a chosen same-radius labelled support and `candidateMasks` membership,
+not by reintroducing the older universal selected-class residual.
+
+Validation after the same-radius update: `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully in 43s after dependencies.  The producer shard reports exactly the
+one intended `sorry`, `Problem97.isM44PinnedSurplusNonVExactShapeProducer`.
+
+Search/audit note: `nthdegree docs search --lean` finds the existing exact
+`.v`/`.w` candidate-mask lemmas and the one-sided seed private-center lemmas,
+but no direct non-fixed selected-class-to-`candidateMasks` bridge for this
+pinned-surplus surface.  The older `p97-rvol` pinned-family leaf is a
+contradiction residual, not a producer for the current generated
+`candidateMasks` interface.
+
+2026-07-09 same-radius producer-surface refactor:
+`RemovableVertexAxiom/PinnedSurplusProducer.lean` is being refactored so the
+open producer no longer asks non-`.v`/non-`.w` centers to be the full ambient
+`SelectedClass A (pointOf center) radius`.  The downstream metric producer only
+uses a same-radius support interface for metric shadow, no-three, prefix-count,
+and CCW/reflected separation.  The exact full-selected-class equality was
+stronger than the consumer needed and made the residual depend on unsupported
+ambient exactness.  The open on-spine residual should now supply:
+
+- the exact `.v` pinned selected class and exact `.w` opposite selector class;
+- a pointwise same-radius proof for every center class it returns;
+- generated `candidateMasks` membership for every non-`.v`/non-`.w` center.
+
+This is still not closed.  The remaining producer content is the chosen
+labelled four-point support/candidate membership for the non-fixed centers.  K4
+can supply same-radius four-point supports abstractly, but a separate
+support-to-ten-label/candidate argument is still required before those supports
+can feed the generated pinned fragment.
+
+2026-07-09 follow-up checkpoint: the same-radius producer-surface refactor now
+builds in Lean.  `PinnedSurplusProducer.lean` no longer has the duplicated
+`noThreeOK_shadowOfPointClasses_of_sameRadius` helper from the edit loop, and
+the CCW/reflected search-separation calls use a local `orderedLabelPairs`
+inequality proof rather than the private helper from
+`SurplusCOMPGBankGeometry.lean`.
+
+Validation: `LEAN_ROOT=/Users/adam/projects/math-projects/erdos-97-96-formalization/lean
+LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully in 48s.  The shard remains `1 open / 1 total`, with the sole open
+leaf still `Problem97.isM44PinnedSurplusNonVExactShapeProducer`.
+
+Additional producer audit: a fresh `nthdegree docs search --lean` pass again
+found only the already-used pinned `.v/.w` candidate-mask lemmas and U5 support
+payload tools.  The pinned residual itself forces the `.v` selected-class
+shape, surplus membership, and private-pair non-equidistance facts; it does not
+force labelled four-point supports for `.u`, `.s1/.s2/.s3`, `.Pw/.Pu`, or
+`.Q1/.Q2`.  Cap membership alone also does not expose unconditional
+same-distance facts for these centers; the available cap distance lemmas either
+consume exact selected-cap hypotheses or downstream containment.  The next real
+producer is therefore still a support-confinement theorem: choose, for each
+non-`.v`/non-`.w` center, a four-label same-radius support whose point mask is
+in the generated `candidateMasks` list.

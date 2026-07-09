@@ -20,34 +20,34 @@ namespace Problem97
 
 open SurplusCOMPGBank
 
-private theorem endpointMetricShadow_shadowOfPointClasses_of_selectedClasses
-    {A : Finset ℝ²} {pointOf : Label → ℝ²}
-    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
-    (hinj : Function.Injective pointOf)
-    (hclass : ∀ center : Label,
-      centerClass center = SelectedClass A (pointOf center) (radiusOf center)) :
-    EndpointCertificate.Variables.EndpointMetricShadow pointOf
-      (shadowOfPointClasses pointOf centerClass) := by
-  refine endpointMetricShadow_shadowOfPointClasses_of_sameRadius hinj ?_
-  intro center a b ha hb
-  rw [hclass center] at ha hb
-  exact (mem_selectedClass.mp ha).2.trans (mem_selectedClass.mp hb).2.symm
+private abbrev SameRadiusPointClasses
+    (pointOf : Label → ℝ²) (centerClass : Label → Finset ℝ²) : Prop :=
+  ∀ center a b : Label,
+    pointOf a ∈ centerClass center →
+      pointOf b ∈ centerClass center →
+        dist (pointOf center) (pointOf a) =
+          dist (pointOf center) (pointOf b)
 
-private theorem noThreeOK_shadowOfPointClasses_of_selectedClasses
+private theorem noThreeOK_shadowOfPointClasses_of_sameRadius
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {pointOf : Label → ℝ²}
     (hinj : Function.Injective pointOf)
     (hpointMem : ∀ center : Label, pointOf center ∈ A)
-    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
-    (hselected : ∀ center : Label,
-      centerClass center = SelectedClass A (pointOf center) (radiusOf center)) :
+    {centerClass : Label → Finset ℝ²}
+    (hsame : SameRadiusPointClasses pointOf centerClass) :
     noThreeOK (shadowOfPointClasses pointOf centerClass) = true := by
   unfold noThreeOK
   rw [List.all_eq_true]
   intro pointPair hpointPair
   exact decide_eq_true
-    (pointPairClassCount_le_two_of_selectedClasses hconv hinj hpointMem
-      hselected hpointPair)
+    (pointPairClassCount_le_two_of_sameRadius hconv hinj hpointMem
+      hsame hpointPair)
+
+private theorem orderedLabelPairs_ne_local {c cp : Label}
+    (hpair : (c, cp) ∈ orderedLabelPairs) : c ≠ cp := by
+  intro hEq
+  subst cp
+  cases c <;> simp [orderedLabelPairs] at hpair
 
 private theorem wSelectorMask_mem_candidateMasks
     {sstar leftHit rightHit : Label}
@@ -99,73 +99,6 @@ private theorem wSelectorClass_mem_candidateMasks
     pointMask pointOf T ∈ candidateMasks sstar .w := by
   rw [hT, pointMask_eq_QQSelectorMask hinj hleft hright]
   exact wSelectorMask_mem_candidateMasks hsstar hleft hright
-
-/-- Candidate-mask predicate left for non-`.v`/non-`.w` centers after the
-metric-shadow producer has proved point-mask normalization and no-self. -/
-def nonVWCandidateMaskOK (sstar center : Label) (mask : Nat) : Bool :=
-  maskCard mask == 4 &&
-    (if center == .u then
-      decide (maskInterCard mask cvNoUMask <= 1) &&
-        decide (maskInterCard mask cwNoUMask <= 1)
-    else
-      true) &&
-    (if isMoserLabel center then
-      true
-    else
-      !(maskHas mask .u && maskHas mask .v && maskHas mask .w)) &&
-    localTriggerOKAt sstar center mask
-
-private theorem candidateMaskOK_of_nonVWCandidateMaskOK_pointMask
-    {α : Type _} [DecidableEq α] {pointOf : Label → α}
-    {centerClass : Label → Finset α} {sstar center : Label}
-    (hv : center ≠ .v) (hw : center ≠ .w)
-    (hself :
-      maskHas (pointMask pointOf (centerClass center)) center = false)
-    (hOK :
-      nonVWCandidateMaskOK sstar center
-        (pointMask pointOf (centerClass center)) = true) :
-    candidateMaskOK sstar center
-      (pointMask pointOf (centerClass center)) = true := by
-  cases center <;> try contradiction
-  all_goals
-    simpa [nonVWCandidateMaskOK, candidateMaskOK, maskNormalized_pointMask,
-      isMoserLabel, hself] using hOK
-
-private theorem pointMask_maskHas_self_false_of_selectedClass_card_ge_four
-    {A : Finset ℝ²} {pointOf : Label → ℝ²}
-    {centerClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
-    {center : Label}
-    (hselected :
-      centerClass center =
-        SelectedClass A (pointOf center) (radiusOf center))
-    (hcard : 4 ≤ (centerClass center).card) :
-    maskHas (pointMask pointOf (centerClass center)) center = false := by
-  classical
-  refine pointMask_maskHas_false_of_not_mem ?_
-  intro hmem
-  have hmemSelected :
-      pointOf center ∈
-        SelectedClass A (pointOf center) (radiusOf center) := by
-    simpa [hselected] using hmem
-  have hradius_zero : radiusOf center = 0 := by
-    have hdist := (mem_selectedClass.mp hmemSelected).2
-    simpa [dist_self] using hdist.symm
-  have hsub :
-      centerClass center ⊆ ({pointOf center} : Finset ℝ²) := by
-    intro y hy
-    have hySelected :
-        y ∈ SelectedClass A (pointOf center) (radiusOf center) := by
-      simpa [hselected] using hy
-    have hyDist : dist (pointOf center) y = 0 := by
-      simpa [hradius_zero] using (mem_selectedClass.mp hySelected).2
-    have hxy : pointOf center = y := dist_eq_zero.mp hyDist
-    simp [hxy]
-  have hle : (centerClass center).card ≤ 1 := by
-    calc
-      (centerClass center).card ≤ ({pointOf center} : Finset ℝ²).card :=
-        Finset.card_le_card hsub
-      _ = 1 := by simp
-  omega
 
 private theorem selectedClass_eq_pair_left_right_singletons
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
@@ -236,15 +169,11 @@ private theorem selectedClass_eq_pair_left_right_singletons
         simp
       exact by simpa [T] using (Finset.mem_inter.mp hmem).1
 
-/-- Exact finite-shape producer still needed for the pinned-surplus metric
-shadow: once the pinned residual has fixed the ten-label geometric surface, the
-non-`.v`/non-`.w` selected classes must satisfy the generated local candidate
-predicate after normalization and no-self are discharged by the consumer.
-
-This is the on-spine residual isolated from
-`isM44PinnedSurplusMetricShadowProducer`.  Its conclusion is the explicit
-non-`.v`/non-`.w` predicate, whose first unavailable conjunct is the exact
-four-label mask cardinality for the induced point mask. -/
+/-- Labelled selected-class producer still needed for the pinned-surplus
+metric shadow.  Once the pinned residual has fixed the ten-label geometric
+surface, this residual supplies the selected classes used by the consumer,
+the pinned `.v` class, the opposite `.w` class, and candidate-list membership
+for the remaining centres. -/
 abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
     ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
       HasNEquidistantProperty 4 A → 9 < A.card →
@@ -269,22 +198,23 @@ abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
             s2 ∈ S.capInteriorByIndex S.surplusIdx →
             s3 ∈ S.capInteriorByIndex S.surplusIdx →
             x ∈ ({s1, s2, s3} : Finset ℝ²) →
-            ∀ {centerClass : Label → Finset ℝ²}
-                {radiusOf : Label → ℝ} {sstar : Label},
+            ∀ {sstar : Label} {wRadius : ℝ},
               isSurplusStar sstar = true →
               rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-              (∀ center : Label,
-                centerClass center =
-                  SelectedClass A
-                    (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
-                    (radiusOf center)) →
-              (∀ center : Label, center ≠ .v → center ≠ .w →
-                4 ≤ (centerClass center).card) →
-              ∀ center : Label, center ≠ .v → center ≠ .w →
-                nonVWCandidateMaskOK sstar center
-                  (pointMask
-                    (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-                    (centerClass center)) = true) ∧
+              ∃ centerClass : Label → Finset ℝ²,
+                let pointOf :=
+                  rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+                centerClass .v = SelectedClass A (pointOf .v) radius ∧
+                  centerClass .w =
+                    SelectedClass A (pointOf .w) wRadius ∧
+                  (∀ center a b : Label,
+                    pointOf a ∈ centerClass center →
+                      pointOf b ∈ centerClass center →
+                        dist (pointOf center) (pointOf a) =
+                          dist (pointOf center) (pointOf b)) ∧
+                  ∀ center : Label, center ≠ .v → center ≠ .w →
+                    pointMask pointOf (centerClass center) ∈
+                      candidateMasks sstar center) ∧
         (∀ {radius : ℝ} {x : ℝ²},
           S.PinnedLeftSurplusResidualAt radius x →
           ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
@@ -303,25 +233,26 @@ abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
             s2 ∈ S.capInteriorByIndex S.surplusIdx →
             s3 ∈ S.capInteriorByIndex S.surplusIdx →
             x ∈ ({s1, s2, s3} : Finset ℝ²) →
-            ∀ {centerClass : Label → Finset ℝ²}
-                {radiusOf : Label → ℝ} {sstar : Label},
+            ∀ {sstar : Label} {wRadius : ℝ},
               isSurplusStar sstar = true →
               leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-              (∀ center : Label,
-                centerClass center =
-                  SelectedClass A
-                    (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
-                    (radiusOf center)) →
-              (∀ center : Label, center ≠ .v → center ≠ .w →
-                4 ≤ (centerClass center).card) →
-              ∀ center : Label, center ≠ .v → center ≠ .w →
-                nonVWCandidateMaskOK sstar center
-                  (pointMask
-                    (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-                    (centerClass center)) = true)
+              ∃ centerClass : Label → Finset ℝ²,
+                let pointOf :=
+                  leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+                centerClass .v = SelectedClass A (pointOf .v) radius ∧
+                  centerClass .w =
+                    SelectedClass A (pointOf .w) wRadius ∧
+                  (∀ center a b : Label,
+                    pointOf a ∈ centerClass center →
+                      pointOf b ∈ centerClass center →
+                        dist (pointOf center) (pointOf a) =
+                          dist (pointOf center) (pointOf b)) ∧
+                  ∀ center : Label, center ≠ .v → center ≠ .w →
+                    pointMask pointOf (centerClass center) ∈
+                      candidateMasks sstar center)
 
-/-- Named on-spine residual for the non-`.v`/non-`.w`
-exact-shape/confinement part of the pinned-surplus metric-shadow producer. -/
+/-- Named on-spine residual for the labelled selected-class/candidate producer
+part of the pinned-surplus metric-shadow producer. -/
 theorem isM44PinnedSurplusNonVExactShapeProducer :
       IsM44PinnedSurplusNonVExactShapeProducerStatement := by
   sorry
@@ -441,15 +372,20 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           x ∈ ({s1, s2, s3} : Finset ℝ²) →
           (opp2LeftHit = S.oppositeVertexByIndex S.oppIndex1 ∨
             opp2LeftHit ∈ ({s1, s2, s3} : Finset ℝ²)) →
-          (∀ {centerClass : Label → Finset ℝ²}
-              {radiusOf : Label → ℝ},
+          (∀ {centerClass : Label → Finset ℝ²},
             Function.Injective
               (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) →
-            (∀ center : Label,
-              centerClass center =
-                SelectedClass A
-                  (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
-                  (radiusOf center)) →
+            (∀ center a b : Label,
+              rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 a ∈
+                  centerClass center →
+                rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 b ∈
+                  centerClass center →
+                  dist
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 a) =
+                    dist
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 b)) →
             ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
               crossSeparationOKForMasks c
                   (pointMask
@@ -462,7 +398,7 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           RightPinnedSurplusMetricShadowData S radius x := by
       intro p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpairP hq12 hqpair
         hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I
-        hxTriple hopp2LeftAlt hsearchSepOfSelected
+        hxTriple hopp2LeftAlt hsearchSepOfSameRadius
       let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
       have hinj : Function.Injective pointOf :=
         rightPinnedLabelPoint_injective_of_mem S
@@ -474,42 +410,25 @@ theorem isM44PinnedSurplusMetricShadowProducer :
       rcases exists_surplusStar_rightPinnedLabelPoint_eq_of_mem_triple
           S p₁ p₂ q₁ q₂ s1 s2 s3 hxTriple with
         ⟨sstar, hsstar, hsstar_eq⟩
-      let radiusChoice : Label → ℝ := fun center =>
-        Classical.choose
-          (exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
-            hK4 (hpointA center))
-      let radiusOf : Label → ℝ := fun center =>
-        if center = .v then radius else
-          if center = .w then opp2Radius else radiusChoice center
-      let centerClass : Label → Finset ℝ² := fun center =>
-        SelectedClass A (pointOf center) (radiusOf center)
+      rcases hnonVShape.1 hpinned p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpairP
+          hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I
+          hs1I hs2I hs3I hxTriple
+          (sstar := sstar) (wRadius := opp2Radius) hsstar hsstar_eq with
+        ⟨centerClass, hVcenterClass, hWselectedClass, hsame,
+          hNonVcandidate⟩
       have hmetric :
           EndpointCertificate.Variables.EndpointMetricShadow pointOf
             (shadowOfPointClasses pointOf centerClass) :=
-        endpointMetricShadow_shadowOfPointClasses_of_selectedClasses hinj
-          (by intro center; rfl)
-      have hselected : ∀ center : Label,
-          centerClass center =
-            SelectedClass A (pointOf center) (radiusOf center) := by
-        intro center
-        rfl
-      have hclassCardGe : ∀ center : Label, center ≠ .v → center ≠ .w →
-          4 ≤ (centerClass center).card := by
-        intro center hcenter hwcenter
-        have hchoice :=
-          Classical.choose_spec
-            (exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
-              hK4 (hpointA center))
-        simpa [centerClass, radiusOf, radiusChoice, hcenter, hwcenter]
-          using hchoice.2
+        endpointMetricShadow_shadowOfPointClasses_of_sameRadius hinj
+          (fun {center a b} ha hb => hsame center a b ha hb)
       have hno3 :
           noThreeOK (shadowOfPointClasses pointOf centerClass) = true :=
-        noThreeOK_shadowOfPointClasses_of_selectedClasses hconv hinj hpointA
-          hselected
+        noThreeOK_shadowOfPointClasses_of_sameRadius hconv hinj hpointA
+          hsame
       have hcounts :
           PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass) :=
-        prefixPairCountsOK_shadowOfPointClasses_of_selectedClasses hconv hinj
-          hpointA hselected
+        prefixPairCountsOK_shadowOfPointClasses_of_sameRadius hconv hinj
+          hpointA hsame
       have hWclassGeom :
           SelectedClass A (S.oppositeVertexByIndex S.oppIndex2) opp2Radius =
             ({q₁, q₂, opp2LeftHit, opp2RightHit} : Finset ℝ²) := by
@@ -569,8 +488,9 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           centerClass .w =
             ({pointOf .Q1, pointOf .Q2, pointOf leftLabel,
               pointOf rightLabel} : Finset ℝ²) := by
-        simpa [centerClass, radiusOf, pointOf, rightPinnedLabelPoint,
-          hleftPoint, hrightPoint] using hWclassGeom
+        rw [hWselectedClass]
+        simpa [pointOf, rightPinnedLabelPoint, hleftPoint, hrightPoint]
+          using hWclassGeom
       have hWcandidate :
           pointMask pointOf (centerClass .w) ∈ candidateMasks sstar .w :=
         wSelectorClass_mem_candidateMasks hinj hsstar hleftCases hrightCases
@@ -582,35 +502,19 @@ theorem isM44PinnedSurplusMetricShadowProducer :
         by_cases hv : center = .v
         · subst center
           exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hsstar (by
-            dsimp [centerClass, radiusOf, pointOf]
-            simpa [rightPinnedLabelPoint] using
+            rw [hVcenterClass]
+            simpa [pointOf, rightPinnedLabelPoint] using
               pinnedRightSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
                 S hpinned hxSurplus hinj hpairP hsstar hsstar_eq)
         · by_cases hw : center = .w
           · subst center
             exact hWcandidate
-          · have hself :
-                maskHas (pointMask pointOf (centerClass center))
-                    center = false :=
-              pointMask_maskHas_self_false_of_selectedClass_card_ge_four
-                (pointOf := pointOf) (centerClass := centerClass)
-                (radiusOf := radiusOf) (center := center)
-                (hselected center) (hclassCardGe center hv hw)
-            exact
-              mem_candidateMasks_of_candidateMaskOK hsstar
-                (candidateMaskOK_of_nonVWCandidateMaskOK_pointMask
-                  hv hw hself
-                  (hnonVShape.1 hpinned p₁ p₂ q₁ q₂ s1 s2 s3 hp12
-                    hpairP hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I
-                    hq₁I hq₂I hs1I hs2I hs3I hxTriple
-                    (centerClass := centerClass) (radiusOf := radiusOf)
-                    (sstar := sstar) hsstar hsstar_eq hselected
-                    hclassCardGe center hv hw))
+          · exact hNonVcandidate center hv hw
       have hsearchSep : ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
           crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
             (pointMask pointOf (centerClass cp)) = true := by
         intro c cp hpair
-        exact hsearchSepOfSelected hinj hselected c cp hpair
+        exact hsearchSepOfSameRadius hinj hsame c cp hpair
       have hsep : ∀ c cp a b : Label, (c, cp) ∈ labelPairs →
           (a, b) ∈ labelPairs →
             sepOKFor (shadowOfPointClasses pointOf centerClass) c cp a b =
@@ -645,13 +549,12 @@ theorem isM44PinnedSurplusMetricShadowProducer :
       exact produceRight p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpairP hq12 hqpair
         hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I
         hxTriple hopp2LeftAlt (by
-          intro centerClass radiusOf hinj hselected c cp hpair
-          exact crossSeparationOKForMasks_of_selectedClasses_ccwHull
-            (A := A)
+          intro centerClass hinj hsame c cp hpair
+          exact crossSeparationOKForMasks_of_sameRadius_ccwHull
             (pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-            (centerClass := centerClass) (radiusOf := radiusOf)
+            (centerClass := centerClass)
             (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
-            hinj hselected c cp hpair)
+            hinj (orderedLabelPairs_ne_local hpair) (hsame c) (hsame cp))
     · rcases hleftOrder with ⟨h0w, hwv⟩
       rcases exists_leftPinnedHullOrderLabels_of_apex_order
           (A := A) (S := S) (x := x)
@@ -706,12 +609,12 @@ theorem isM44PinnedSurplusMetricShadowProducer :
         hq12.symm hqpair_rev hs23.symm hs13.symm hs12.symm hsSub_rev
         hp₂I hp₁I hq₂I hq₁I hs3I hs2I hs1I hxTriple_rev
         hopp2LeftAltT_rev (by
-          intro centerClass radiusOf hinj hselected c cp hpair
-          exact crossSeparationOKForMasks_of_selectedClasses_reflectedCcwHull
-            (A := A)
+          intro centerClass hinj hsame c cp hpair
+          exact crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull
             (pointOf := rightPinnedLabelPoint S p₂ p₁ q₂ q₁ s3 s2 s1)
-            (centerClass := centerClass) (radiusOf := radiusOf)
-            hccwReflected hinj hselected c cp hpair)
+            (centerClass := centerClass)
+            hccwReflected hinj (orderedLabelPairs_ne_local hpair)
+            (hsame c) (hsame cp))
   · intro radius x hpinned
     classical
     have hxSurplus := S.pinnedLeftSurplusResidual_mem_left_surplus hpinned
@@ -804,15 +707,20 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           x ∈ ({s1, s2, s3} : Finset ℝ²) →
           (opp1RightHit = S.oppositeVertexByIndex S.oppIndex2 ∨
             opp1RightHit ∈ ({s1, s2, s3} : Finset ℝ²)) →
-          (∀ {centerClass : Label → Finset ℝ²}
-              {radiusOf : Label → ℝ},
+          (∀ {centerClass : Label → Finset ℝ²},
             Function.Injective
               (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3) →
-            (∀ center : Label,
-              centerClass center =
-                SelectedClass A
-                  (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
-                  (radiusOf center)) →
+            (∀ center a b : Label,
+              leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 a ∈
+                  centerClass center →
+                leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 b ∈
+                  centerClass center →
+                  dist
+                      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+                      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 a) =
+                    dist
+                      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+                      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 b)) →
             ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
               crossSeparationOKForMasks c
                   (pointMask
@@ -825,7 +733,7 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           LeftPinnedSurplusMetricShadowData S radius x := by
       intro p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpairP hq12 hqpair
         hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I
-        hxTriple hopp1RightAlt hsearchSepOfSelected
+        hxTriple hopp1RightAlt hsearchSepOfSameRadius
       let pointOf := leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
       have hinj : Function.Injective pointOf :=
         leftPinnedLabelPoint_injective_of_mem S
@@ -837,42 +745,25 @@ theorem isM44PinnedSurplusMetricShadowProducer :
       rcases exists_surplusStar_leftPinnedLabelPoint_eq_of_mem_triple
           S p₁ p₂ q₁ q₂ s1 s2 s3 hxTriple with
         ⟨sstar, hsstar, hsstar_eq⟩
-      let radiusChoice : Label → ℝ := fun center =>
-        Classical.choose
-          (exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
-            hK4 (hpointA center))
-      let radiusOf : Label → ℝ := fun center =>
-        if center = .v then radius else
-          if center = .w then opp1Radius else radiusChoice center
-      let centerClass : Label → Finset ℝ² := fun center =>
-        SelectedClass A (pointOf center) (radiusOf center)
+      rcases hnonVShape.2 hpinned p₁ p₂ q₁ q₂ s1 s2 s3 hp12 hpairP
+          hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I
+          hs1I hs2I hs3I hxTriple
+          (sstar := sstar) (wRadius := opp1Radius) hsstar hsstar_eq with
+        ⟨centerClass, hVcenterClass, hWselectedClass, hsame,
+          hNonVcandidate⟩
       have hmetric :
           EndpointCertificate.Variables.EndpointMetricShadow pointOf
             (shadowOfPointClasses pointOf centerClass) :=
-        endpointMetricShadow_shadowOfPointClasses_of_selectedClasses hinj
-          (by intro center; rfl)
-      have hselected : ∀ center : Label,
-          centerClass center =
-            SelectedClass A (pointOf center) (radiusOf center) := by
-        intro center
-        rfl
-      have hclassCardGe : ∀ center : Label, center ≠ .v → center ≠ .w →
-          4 ≤ (centerClass center).card := by
-        intro center hcenter hwcenter
-        have hchoice :=
-          Classical.choose_spec
-            (exists_selectedClass_card_ge_four_of_hasNEquidistantProperty
-              hK4 (hpointA center))
-        simpa [centerClass, radiusOf, radiusChoice, hcenter, hwcenter]
-          using hchoice.2
+        endpointMetricShadow_shadowOfPointClasses_of_sameRadius hinj
+          (fun {center a b} ha hb => hsame center a b ha hb)
       have hno3 :
           noThreeOK (shadowOfPointClasses pointOf centerClass) = true :=
-        noThreeOK_shadowOfPointClasses_of_selectedClasses hconv hinj hpointA
-          hselected
+        noThreeOK_shadowOfPointClasses_of_sameRadius hconv hinj hpointA
+          hsame
       have hcounts :
           PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass) :=
-        prefixPairCountsOK_shadowOfPointClasses_of_selectedClasses hconv hinj
-          hpointA hselected
+        prefixPairCountsOK_shadowOfPointClasses_of_sameRadius hconv hinj
+          hpointA hsame
       have hWclassGeom :
           SelectedClass A (S.oppositeVertexByIndex S.oppIndex1) opp1Radius =
             ({q₁, q₂, opp1LeftHit, opp1RightHit} : Finset ℝ²) := by
@@ -955,9 +846,10 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           centerClass .w =
             ({pointOf .Q1, pointOf .Q2, pointOf leftLabel,
               pointOf rightLabel} : Finset ℝ²) := by
-        simpa [centerClass, radiusOf, pointOf, leftPinnedLabelPoint,
-          rightPinnedLabelPoint, leftPinnedToRightLabel, hleftPoint,
-          hrightPoint] using hWclassGeomSwap
+        rw [hWselectedClass]
+        simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
+          leftPinnedToRightLabel, hleftPoint, hrightPoint]
+          using hWclassGeomSwap
       have hWcandidate :
           pointMask pointOf (centerClass .w) ∈ candidateMasks sstar .w :=
         wSelectorClass_mem_candidateMasks hinj hsstar hleftCases hrightCases
@@ -969,36 +861,20 @@ theorem isM44PinnedSurplusMetricShadowProducer :
         by_cases hv : center = .v
         · subst center
           exact mem_candidateMasks_v_of_pointMask_eq_pinnedMaskOf hsstar (by
-            dsimp [centerClass, radiusOf, pointOf]
-            simpa [leftPinnedLabelPoint, rightPinnedLabelPoint,
+            rw [hVcenterClass]
+            simpa [pointOf, leftPinnedLabelPoint, rightPinnedLabelPoint,
               leftPinnedToRightLabel] using
               pinnedLeftSurplusResidual_pointMask_eq_pinnedMaskOf_of_pair
                 S hpinned hxSurplus hinj hpairP hsstar hsstar_eq)
         · by_cases hw : center = .w
           · subst center
             exact hWcandidate
-          · have hself :
-                maskHas (pointMask pointOf (centerClass center))
-                    center = false :=
-              pointMask_maskHas_self_false_of_selectedClass_card_ge_four
-                (pointOf := pointOf) (centerClass := centerClass)
-                (radiusOf := radiusOf) (center := center)
-                (hselected center) (hclassCardGe center hv hw)
-            exact
-              mem_candidateMasks_of_candidateMaskOK hsstar
-                (candidateMaskOK_of_nonVWCandidateMaskOK_pointMask
-                  hv hw hself
-                  (hnonVShape.2 hpinned p₁ p₂ q₁ q₂ s1 s2 s3 hp12
-                    hpairP hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I
-                    hq₁I hq₂I hs1I hs2I hs3I hxTriple
-                    (centerClass := centerClass) (radiusOf := radiusOf)
-                    (sstar := sstar) hsstar hsstar_eq hselected
-                    hclassCardGe center hv hw))
+          · exact hNonVcandidate center hv hw
       have hsearchSep : ∀ c cp : Label, (c, cp) ∈ orderedLabelPairs →
           crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
             (pointMask pointOf (centerClass cp)) = true := by
         intro c cp hpair
-        exact hsearchSepOfSelected hinj hselected c cp hpair
+        exact hsearchSepOfSameRadius hinj hsame c cp hpair
       have hsep : ∀ c cp a b : Label, (c, cp) ∈ labelPairs →
           (a, b) ∈ labelPairs →
             sepOKFor (shadowOfPointClasses pointOf centerClass) c cp a b =
@@ -1069,12 +945,12 @@ theorem isM44PinnedSurplusMetricShadowProducer :
         hp12.symm hpairP_rev hs23.symm hs13.symm hs12.symm hsSub_rev
         hq₂I hq₁I hp₂I hp₁I hs3I hs2I hs1I hxTriple_rev
         hopp1RightAltT_rev (by
-          intro centerClass radiusOf hinj hselected c cp hpair
-          exact crossSeparationOKForMasks_of_selectedClasses_reflectedCcwHull
-            (A := A)
+          intro centerClass hinj hsame c cp hpair
+          exact crossSeparationOKForMasks_of_sameRadius_reflectedCcwHull
             (pointOf := leftPinnedLabelPoint S q₂ q₁ p₂ p₁ s3 s2 s1)
-            (centerClass := centerClass) (radiusOf := radiusOf)
-            hccwReflected hinj hselected c cp hpair)
+            (centerClass := centerClass)
+            hccwReflected hinj (orderedLabelPairs_ne_local hpair)
+            (hsame c) (hsame cp))
     · rcases hleftOrder with ⟨h0w, hwv⟩
       rcases exists_leftPinnedHullOrderLabels_of_apex_order
           (A := A) (S := S) (x := x)
@@ -1093,12 +969,11 @@ theorem isM44PinnedSurplusMetricShadowProducer :
       exact produceLeft q₁ q₂ p₁ p₂ s1 s2 s3 hq12 hqpair hp12 hpairP
         hs12 hs13 hs23 hsSub hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I
         hxTriple hopp1RightAlt (by
-          intro centerClass radiusOf hinj hselected c cp hpair
-          exact crossSeparationOKForMasks_of_selectedClasses_ccwHull
-            (A := A)
+          intro centerClass hinj hsame c cp hpair
+          exact crossSeparationOKForMasks_of_sameRadius_ccwHull
             (pointOf := leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
-            (centerClass := centerClass) (radiusOf := radiusOf)
+            (centerClass := centerClass)
             (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
-            hinj hselected c cp hpair)
+            hinj (orderedLabelPairs_ne_local hpair) (hsame c) (hsame cp))
 
 end Problem97
