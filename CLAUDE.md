@@ -1,4 +1,29 @@
 
+## READ THIS BEFORE TOUCHING THE ERDŐS-97 SPINE
+
+The publish target is `Problem97.erdos97_rhs` (P96 sibling). Its open leaves are
+NOT a blank slate — they have an append-only authoritative status doc. **Before
+working ANY spine sorry, read the owning plan doc IN FULL (including its tail —
+it is append-only, newest checkpoint last), or you WILL re-derive months of
+settled work.**
+
+- Erased-pin / `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
+  (RemovableVertexOfLarge discharge): **`docs/four-point-subpacket-live-frontier.md`**
+  is the authoritative owner. Its tail carries the live boundary.
+- Get the live residual from the kernel, not from prose or your own inference:
+  `proof-blueprint spine <symbol>` (slow; be patient) and
+  `grep -rn "sorry" lean/Erdos9796Proof/P97/RemovableVertexAxiom/`.
+- The 8-point bad-pattern EMPTINESS is ALREADY PROVEN sorry-free
+  (`u5NoAuditedBoundedBadPattern`, U5FiniteExtraction.lean). Do NOT sweep/re-decide
+  it. The open work is the CONFINEMENT/mask-incidence PRODUCER, not emptiness.
+- The 4 open erased-pin sorries (Continuation.lean 174/202/303/328) are genuine
+  geometric producers (per-center mask-incidence for the pinned erased-payload
+  classes), NOT wiring; 174/202 additionally need global `HasNEquidistantProperty 4 A`.
+  `nthdegree recall "SHARPENED boundary for the 4 erased-pin sorries"` for the map.
+
+`nthdegree recall` first, then read the plan doc. Do not restate the plan's
+conclusions by re-investigating the source — extend the plan.
+
 ## Memory
 
 This project uses nthdegree for persistent memory.

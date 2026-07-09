@@ -6,6 +6,24 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Four-point subpacket live frontier (2026-07-06)
 
+> **AUTHORITATIVE — READ IN FULL BEFORE WORKING THIS ANCHOR.** This file is the
+> status owner for `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
+> (the RemovableVertexOfLarge discharge). It is append-only; the LIVE boundary is
+> at the TAIL (newest checkpoint last), not here at the top. Do not re-derive its
+> conclusions from the Lean source — extend it. Fast orientation:
+> `nthdegree recall "SHARPENED boundary for the 4 erased-pin sorries"`.
+>
+> **Current boundary (2026-07-08, spine 1/797 open):** 4 open sorries in
+> `RemovableVertexAxiom/Continuation.lean` — 303/328 (left/right own-kind
+> `OneSidedSeedCandidateRemainder` for `.Pw/.Pu`) and 174/202 (direct
+> surplus-opposite / surplus-interior `ErasedPinTriple` exclusions). ALL FOUR are
+> genuine geometric producers (per-center mask-incidence for the pinned
+> erased-payload classes via `oneSidedSeedCandidateRemainder_of_mask_interfaces`),
+> NOT wiring. The bad-pattern EMPTINESS is already proven sorry-free
+> (`u5NoAuditedBoundedBadPattern`); the open work is the confinement producer.
+> The row-truth relay (lines 914+) proved the five ambient inputs are realizable,
+> so 174/202 must be derived from global `HasNEquidistantProperty 4 A`.
+
 This is the short agent-facing status owner for the slot-2 / certificate side
 of `Problem97.erdos97_rhs`.  The append-only history remains in
 `docs/four-point-subpacket-plan.md`; when the two disagree, use this file plus
