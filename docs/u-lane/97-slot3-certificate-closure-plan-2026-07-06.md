@@ -2382,3 +2382,26 @@ Conclusion: selected-center symmetry is valid but not useful by itself.  The
 remaining finite route is still the exact shape/mask-interface route, or a
 row-specific candidate producer that supplies the same local mask facts without
 claiming a universal candidate lemma at the current false P2 helper sites.
+
+2026-07-09 source-refresh checkpoint: the current source still has exactly the
+same active local gap set inside
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`: two direct P4
+erased-pin branches plus the two P2 candidate-remainder helpers.  Re-running
+the proof-facing relaxed probe confirms the earlier finite numbers:
+
+- `--mode raw --symmetry-scope selected`: 189 closed / 330 total, 141 open.
+- `--mode shape --symmetry-scope selected`: 330 closed / 330 total.
+
+The extra geometric caveat is now explicit: the shape-relaxed DFS result is a
+computational producer target, not yet a proof-facing producer.  Its `shape`
+mode assumes every non-fixed center's ten-label mask has exact card four and
+does not contain the center.  `HasNEquidistantProperty 4 A` only supplies some
+four-point selected class at each center, and the existing erased-pin exact
+pin lemmas supply the exact four-point class for the payload center.  They do
+not imply that the shared radius `dist p x` gives exact four witnesses inside
+the ten-label packet for every other center.  Therefore the shortest closed
+P2 route is a real confinement/exact-shape bridge at the ordered row boundary:
+prove that the K4 witness classes used by the finite DFS are represented by the
+packet masks, then feed those shape facts to a generated shape-relaxed DFS or
+to `oneSidedSeedCandidateRemainder_of_mask_interfaces`.  Without that bridge,
+generating the shape-relaxed DFS only moves the obligation.
