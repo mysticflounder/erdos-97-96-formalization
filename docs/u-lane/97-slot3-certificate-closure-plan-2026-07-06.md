@@ -3411,3 +3411,59 @@ kernel-mined target spine for
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
 `1 open / 913` nodes; source-local leaves inside
 `Continuation.lean` remain `4 open / 4 total`.
+
+2026-07-09 corrected P2 producer boundary:
+the broad `hrightCandidate`/`hleftCandidate` helpers are not just missing
+tactics.  The current finite center-class constructor uses
+`SelectedClass A _ (dist p x)` for all non-cap centers, which does not give
+exact four-label/no-self masks for arbitrary centers.  The corrected producer
+must be mixed:
+
+- keep the actual payload/private center at the terminal row radius
+  `dist p x`, where the row payload proves the private mask;
+- keep `.v`/`.w` as the exact opposite cap masks;
+- for the remaining non-payload centers, K4/minimality can supply abstract
+  four-point same-radius supports in `A.erase x`, but this is not yet enough
+  for the finite bank: those support points must also be represented by the
+  current ten labels, or the proof must replace the bank packet with one whose
+  labels include the chosen supports; and
+- only after that support-to-label/confinement bridge exists can those
+  concrete supports feed the candidate/relaxed shadow bridge.
+
+Implementation started by adding
+`exists_erased_selectedClass_four_support_of_no_exact_erased_pin` in
+`WitnessPacketInterface.lean`.  It turns the existing erased selected-class
+lower-bound eliminator into a concrete four-point support with
+`T.card = 4`, `T ⊆ A.erase x`, `p ∉ T`, `x ∉ T`, and same-radius membership.
+`lake-build Erdos9796Proof.P97.WitnessPacketInterface` passed and resynced
+proof-blueprint.  This helper is necessary support infrastructure, not a P2
+closure by itself: the next code step is the support-to-ten-label/confinement
+bridge, or an equivalent refactor of the finite packet so the chosen four-point
+supports are the labelled points whose masks the generated row bank sees.
+
+2026-07-09 remaining-sorry implementation pass:
+rechecked the live source and kernel spine after a targeted
+`lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry`; proof-blueprint
+resynced and still reports `1 open / 913` nodes for
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+The source-local active theorem still has four local holes: two P2
+one-sided candidate-remainder producers and two direct P4 erased-pin
+surplus-side cuts.
+
+This pass also ruled out a tempting generic finite-mask shortcut.  A theorem
+of the form
+`pointMask pointOf {pointOf a, pointOf b, pointOf c, pointOf d} =
+maskOfLabels [a,b,c,d]` is false without label distinctness, because the
+right side is a list sum while the support is a `Finset`.  The attempted
+generic version also timed out before reaching that issue and was removed.
+Use the existing specialized exact-mask lemmas, or prove a distinct-labelled
+support-to-mask lemma only when the producer has concrete distinct labels.
+
+The P4 holes were rechecked against the pinned-surplus residual assumptions
+`hpin1`/`hpin2`.  Those assumptions apply to selected classes centered at the
+two non-surplus opposite vertices.  The current P4 centers are
+`S.oppositeVertexByIndex S.surplusIdx` and arbitrary points in
+`S.capInteriorByIndex S.surplusIdx`, so the pinned residual exclusions do not
+directly apply.  P4 still needs a surplus-index U5 localized payload cut:
+`U5ModeA` plus same-circle/confined/audited support, or a new direct
+surplus-index contradiction.
