@@ -2476,3 +2476,39 @@ Current closure status is still `1 open / 785 total` at the spine leaf level,
 with four local holes inside
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`: two P2
 candidate-remainder helpers and the two direct P4 erased-pin branches.
+
+2026-07-09 candidate-free row-coverage checkpoint: audited whether the
+existing row-level `private_w_crossSeparation` contradictions can remove P2
+without proving the upstream candidate remainders.  They are useful but not
+complete.  The direct candidate-free closures currently cover:
+
+- right rows `(0,0,2,2)`, `(0,1,2,1)`, `(1,0,2,1)`,
+  `(2,0,1,1)`;
+- left rows `(0,0,2,2)`, `(0,1,1,2)`, `(1,0,1,2)`,
+  `(2,0,1,1)`.
+
+All other active erased-pin row consumers still construct a valid seeded
+shadow and therefore still need the non-fixed candidate memberships supplied by
+`OneSidedSeedCandidateRemainder`.  In particular, the pure surplus-side rows
+need at least a `.u` candidate-mask membership for
+`false_of_privateSurplusTriple_u_crossSeparation`, and the terminal rows
+`right (2,1,0,1)` / `left (2,1,1,0)` still route through the terminal seed
+input interface.  Thus the candidate-free shortcut is only partial; importing
+or extending `ErasedPinOrderedProducer.lean` as it stands would add fixed-bank
+seed membership/no-survivor facts but would not produce the missing geometric
+candidate memberships.
+
+The fastest remaining P2 route is therefore one of two producer tasks, not a
+wrapper task:
+
+1. generate/prove additional row-level separation kills for the currently
+   seeded-shadow-dependent row families, so those consumers no longer ask for
+   `OneSidedSeedCandidateRemainder`; or
+2. prove the exact-shape/confinement producer at the ordered row boundary, so
+   non-fixed masks have card four, no self-hit, and the trigger/circumcenter
+   facts required by `oneSidedSeedCandidateRemainder_of_mask_interfaces`.
+
+Route 1 is attractive only if a quick producer generation pass closes the 18
+surviving row IDs from the selected-symmetry probe.  Otherwise route 2 remains
+the general proof-facing bridge needed for both the existing candidate adapter
+and the shape-relaxed DFS.
