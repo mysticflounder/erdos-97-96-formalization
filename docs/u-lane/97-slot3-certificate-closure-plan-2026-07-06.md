@@ -2269,3 +2269,36 @@ test the relaxed/candidate-free finite-row route against the existing relaxed
 singleton split certificate layer; if that route does not cover the active row
 families, the fallback is a real ordered seed-mask producer for the exact
 candidate surface.
+
+2026-07-09 P2 route check: the relaxed/candidate-free route does not currently
+expose an erased-pin replacement for the active ordered scaffold.  The existing
+`SurplusCertificate.RelaxedSplit` layer is pinned-surplus bank machinery: it
+aligns exact pinned-bank shadows with singleton relaxed split rows and supplies
+checked common-mask/zero-evaluation facts.  It does not provide a theorem that
+replaces
+`RightOneSidedErasedPayloadFiniteCandidateSepFacts` or
+`LeftOneSidedErasedPayloadFiniteCandidateSepFacts`, and it has no direct
+consumer for the right/left one-sided erased payload rows.
+
+The reusable P2 surface already in the Lean tree is instead the seed-mask
+adapter:
+`oneSidedSeedCandidateRemainder_of_mask_interfaces` and
+`rightOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs`/
+`leftOneSidedErasedPayloadSeedCandidateInputs_of_seedMaskInputs`.  Therefore
+the next grounded producer should not be another candidate wrapper.  It should
+either:
+
+1. add right/left ordered seed-mask scaffold fields for the terminal payload
+   path, carrying the exact mask-cardinality, no-self, `.u` one-hit,
+   circumcenter, trigger, prefix-count, and separation interfaces; or
+2. prove those same mask-interface fields directly for
+   `rightPinnedErasedPayloadCenterClass` and
+   `leftPinnedErasedPayloadCenterClass`, then close `hrightCandidate` and
+   `hleftCandidate` by applying
+   `oneSidedSeedCandidateRemainder_of_mask_interfaces`.
+
+The second route is the smallest source-level change if the mask-interface
+facts are derivable from the existing exact-cap/selected-class geometry.  If
+they are not, the first route is the correct producer-boundary refactor:
+terminal seed production must be delayed until the row-specific payload surface
+supplies those exact selected-class/mask facts.
