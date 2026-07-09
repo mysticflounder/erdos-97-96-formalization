@@ -2543,6 +2543,27 @@ they do not bypass the same non-fixed candidate memberships.  Therefore the
 next P2 implementation target is the exact-shape/confinement producer at the
 ordered row boundary, not another fixed-mask row-kill generator.
 
+2026-07-09 relaxed-shape producer checkpoint: the finite relaxed probe is now
+persisted at
+`certificates/surplus/reports/erased_pin_relaxed_shape_producer_probe.{json,md}`.
+The report uses `mode = shape`, `symmetry_scope = none`, and
+`max_survivors = 1`, and it closes `330 / 330` erased-pin ordered seed keys.
+The boundary checks are:
+
+- `raw`, no symmetry: `189 / 330` seed keys closed, `141` open;
+- `no_self`, no symmetry: `189 / 330` seed keys closed, `141` open;
+- `shape`, selected-class symmetry: `330 / 330` seed keys closed.
+
+Thus selected-class symmetry is not the missing finite ingredient; exact
+non-fixed mask shape is.  The P2 target is now narrower than full
+`OneSidedSeedCandidateRemainder`: generate a Lean producer for the
+relaxed-shape no-survivor statement, then thread or prove the row-local shape
+facts (`maskCard = 4` and no self-hit for every non-fixed selected center) at
+the ordered payload boundary.  That route should let the finite row closures
+avoid the generated `candidateMasks` filter entirely.  This is still not a
+Lean closure of `hrightCandidate` / `hleftCandidate`; it names the exact
+producer and geometric bridge needed to replace those broad helpers.
+
 2026-07-09 payload-extraction checkpoint: added and checked six grounded
 erased-payload extraction lemmas in `SurplusM44Packet.lean`:
 

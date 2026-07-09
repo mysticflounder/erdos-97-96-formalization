@@ -1,0 +1,4632 @@
+{
+  "max_survivors": 1,
+  "mode": "shape",
+  "results": [
+    {
+      "closed": true,
+      "key": "s1|Pu|105",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 105,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|106",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 106,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|108",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 108,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|120",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 120,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|267",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 267,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|269",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 269,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|27",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 27,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|270",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 270,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|281",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 281,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|282",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 282,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|284",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 284,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|29",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 29,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|297",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 297,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|298",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 298,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|30",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 30,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|300",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 300,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|312",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|329",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 329,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|330",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 330,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|332",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 332,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|344",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 344,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|360",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 360,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|43",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 43,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|45",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 45,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|46",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 46,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|523",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 523,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|525",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 525,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|526",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 526,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|537",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 537,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|538",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 538,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|540",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 540,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|553",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 553,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|554",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 554,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|556",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 556,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|568",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|57",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|58",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|585",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 585,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|586",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 586,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|588",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 588,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|60",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|600",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 600,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|616",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 616,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|75",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 75,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|77",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 77,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|777",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 777,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|778",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 778,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|78",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 78,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|780",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 780,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|792",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 792,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|808",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 808,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|840",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 840,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|89",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 89,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|90",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 90,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pu|92",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 92,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|139",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 139,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|141",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 141,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|142",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 142,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|153",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 153,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|154",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 154,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|156",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 156,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|169",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 169,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|170",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 170,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|172",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 172,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|184",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 184,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|267",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 267,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|269",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 269,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|27",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 27,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|270",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 270,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|281",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 281,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|282",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 282,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|284",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 284,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|29",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 29,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|297",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 297,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|298",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 298,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|30",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 30,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|300",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 300,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|312",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|393",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 393,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|394",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 394,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|396",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 396,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|408",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 408,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|424",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 424,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|43",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 43,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|45",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 45,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|46",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 46,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|523",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 523,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|525",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 525,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|526",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 526,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|537",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 537,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|538",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 538,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|540",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 540,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|553",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 553,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|554",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 554,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|556",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 556,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|568",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|57",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|58",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|60",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|649",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 649,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|650",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 650,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|652",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 652,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|664",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 664,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|680",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 680,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|777",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 777,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|778",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 778,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|780",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 780,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|792",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 792,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|808",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 808,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s1|Pw|904",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 904,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s1",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|113",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 113,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|114",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 114,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|116",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 116,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|120",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 120,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|27",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 27,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|275",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 275,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|277",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 277,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|278",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 278,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|281",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 281,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|282",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 282,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|284",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 284,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|29",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 29,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|30",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 30,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|305",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 305,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|306",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 306,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|308",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 308,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|312",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|337",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 337,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|338",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 338,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|340",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 340,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|344",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 344,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|368",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 368,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|51",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 51,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|53",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 53,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|531",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 531,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|533",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 533,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|534",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 534,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|537",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 537,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|538",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 538,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|54",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 54,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|540",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 540,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|561",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 561,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|562",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 562,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|564",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 564,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|568",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|57",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|58",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|593",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 593,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|594",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 594,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|596",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 596,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|60",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|600",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 600,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|624",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 624,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|785",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 785,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|786",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 786,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|788",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 788,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|792",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 792,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|816",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 816,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|83",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 83,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|848",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 848,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|85",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 85,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|86",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 86,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|89",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 89,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|90",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 90,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pu|92",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 92,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|147",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 147,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|149",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 149,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|150",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 150,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|153",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 153,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|154",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 154,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|156",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 156,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|177",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 177,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|178",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 178,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|180",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 180,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|184",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 184,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|27",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 27,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|275",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 275,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|277",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 277,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|278",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 278,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|281",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 281,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|282",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 282,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|284",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 284,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|29",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 29,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|30",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 30,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|305",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 305,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|306",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 306,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|308",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 308,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|312",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|401",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 401,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|402",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 402,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|404",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 404,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|408",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 408,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|432",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 432,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|51",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 51,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|53",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 53,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|531",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 531,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|533",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 533,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|534",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 534,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|537",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 537,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|538",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 538,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|54",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 54,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|540",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 540,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|561",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 561,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|562",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 562,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|564",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 564,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|568",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|57",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|58",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|60",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|657",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 657,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|658",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 658,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|660",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 660,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|664",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 664,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|688",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 688,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|785",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 785,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|786",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 786,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|788",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 788,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|792",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 792,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|816",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 816,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s2|Pw|912",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 912,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s2",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|101",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 101,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|102",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 102,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|105",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 105,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|106",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 106,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|108",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 108,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|113",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 113,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|114",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 114,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|116",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 116,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|120",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 120,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|291",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 291,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|293",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 293,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|294",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 294,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|297",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 297,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|298",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 298,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|300",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 300,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|305",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 305,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|306",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 306,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|308",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 308,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|312",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|353",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 353,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|354",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 354,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|356",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 356,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|360",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 360,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|368",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 368,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|43",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 43,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|45",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 45,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|46",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 46,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|51",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 51,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|53",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 53,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|54",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 54,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|547",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 547,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|549",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 549,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|550",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 550,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|553",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 553,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|554",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 554,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|556",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 556,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|561",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 561,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|562",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 562,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|564",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 564,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|568",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|57",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|58",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|60",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|609",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 609,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|610",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 610,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|612",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 612,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|616",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 616,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|624",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 624,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|801",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 801,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|802",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 802,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|804",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 804,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|808",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 808,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|816",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 816,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|864",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 864,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pu|99",
+      "mode": "shape",
+      "private_center": "Pu",
+      "private_mask": 99,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|163",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 163,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|165",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 165,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|166",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 166,
+      "row_ids": [
+        "ep_left_m2_s1_l1_r0",
+        "ep_right_m2_s1_l0_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|169",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 169,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|170",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 170,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|172",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 172,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|177",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 177,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|178",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 178,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|180",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 180,
+      "row_ids": [
+        "ep_left_m1_s1_l2_r0",
+        "ep_right_m1_s1_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|184",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 184,
+      "row_ids": [
+        "ep_left_m0_s1_l3_r0",
+        "ep_right_m0_s1_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|291",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 291,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|293",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 293,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|294",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 294,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|297",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 297,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|298",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 298,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|300",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 300,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|305",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 305,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|306",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 306,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|308",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 308,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|312",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 312,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|417",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 417,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|418",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 418,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|420",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 420,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|424",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 424,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|43",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 43,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|432",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 432,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|45",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 45,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|46",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 46,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|51",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 51,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|53",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 53,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|54",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 54,
+      "row_ids": [
+        "ep_left_m2_s0_l2_r0",
+        "ep_right_m2_s0_l0_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|547",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 547,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|549",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 549,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|550",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 550,
+      "row_ids": [
+        "ep_left_m2_s0_l1_r1",
+        "ep_right_m2_s0_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|553",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 553,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|554",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 554,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|556",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 556,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|561",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 561,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|562",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 562,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|564",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 564,
+      "row_ids": [
+        "ep_left_m1_s0_l2_r1",
+        "ep_right_m1_s0_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|568",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 568,
+      "row_ids": [
+        "ep_left_m0_s0_l3_r1",
+        "ep_right_m0_s0_l1_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|57",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 57,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|58",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 58,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|60",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 60,
+      "row_ids": [
+        "ep_left_m1_s0_l3_r0",
+        "ep_right_m1_s0_l0_r3"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|673",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 673,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|674",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 674,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|676",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 676,
+      "row_ids": [
+        "ep_left_m1_s1_l1_r1",
+        "ep_right_m1_s1_l1_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|680",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 680,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|688",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 688,
+      "row_ids": [
+        "ep_left_m0_s1_l2_r1",
+        "ep_right_m0_s1_l1_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|801",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 801,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|802",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 802,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|804",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 804,
+      "row_ids": [
+        "ep_left_m1_s0_l1_r2",
+        "ep_right_m1_s0_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|808",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 808,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|816",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 816,
+      "row_ids": [
+        "ep_left_m0_s0_l2_r2",
+        "ep_right_m0_s0_l2_r2"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    },
+    {
+      "closed": true,
+      "key": "s3|Pw|928",
+      "mode": "shape",
+      "private_center": "Pw",
+      "private_mask": 928,
+      "row_ids": [
+        "ep_left_m0_s1_l1_r2",
+        "ep_right_m0_s1_l2_r1"
+      ],
+      "sstar": "s3",
+      "survivor_count_lower_bound": 0,
+      "survivors_sample": []
+    }
+  ],
+  "schema": "p97.erased_pin_relaxed_producer_probe.v1",
+  "summary": {
+    "closed_seed_count": 330,
+    "seed_count": 330
+  },
+  "symmetry_scope": "none"
+}

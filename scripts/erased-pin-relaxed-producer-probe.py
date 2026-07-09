@@ -36,6 +36,12 @@ from typing import Any
 
 BASE_SCRIPT = Path("scripts/erased-pin-producer-census.py")
 DEFAULT_CENSUS = Path("certificates/surplus/erased_pin_producer_census.json")
+DEFAULT_REPORT_JSON = Path(
+    "certificates/surplus/reports/erased_pin_relaxed_shape_producer_probe.json"
+)
+DEFAULT_REPORT_MD = Path(
+    "certificates/surplus/reports/erased_pin_relaxed_shape_producer_probe.md"
+)
 
 
 def load_base_module(script_path: Path = BASE_SCRIPT) -> Any:
@@ -52,6 +58,11 @@ def load_base_module(script_path: Path = BASE_SCRIPT) -> Any:
 def load_json(path: Path) -> Any:
     with path.open() as handle:
         return json.load(handle)
+
+
+def write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n")
 
 
 def finite_rows(payload: dict[str, Any]) -> list[dict[str, Any]]:
@@ -309,6 +320,66 @@ def relaxed_survivor_count(
     return count, survivors
 
 
+def write_markdown(path: Path, output: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    summary = output["summary"]
+    open_seed_keys = [
+        result["key"]
+        for result in output.get("results", [])
+        if not bool(result["closed"])
+    ]
+    if not open_seed_keys:
+        open_seed_keys = list(output.get("open_seed_keys", []))
+
+    lines = [
+        "# Erased-Pin Relaxed Shape Producer Probe",
+        "",
+        "This report records the finite relaxed-mask check for the erased-pin",
+        "ordered producer route.  A closed seed means there is no assignment of",
+        "the non-fixed center masks satisfying the selected fixed/private masks,",
+        "the chosen relaxed mask mode, prefix no-three counts, and the finite",
+        "separation predicates used by the erased-pin producer census.",
+        "",
+        "## Parameters",
+        "",
+        f"- mode: `{output['mode']}`",
+        f"- symmetry scope: `{output['symmetry_scope']}`",
+        f"- max survivors per seed: `{output['max_survivors']}`",
+        "",
+        "## Summary",
+        "",
+        "| measure | value |",
+        "| --- | ---: |",
+        f"| seed count | {summary.get('seed_count', 0)} |",
+        f"| closed seed count | {summary.get('closed_seed_count', 0)} |",
+        f"| open seed count | {summary.get('open_seed_count', 0)} |",
+        "",
+    ]
+    if open_seed_keys:
+        lines.extend(["## Open Seed Keys", ""])
+        lines.extend(f"- `{key}`" for key in open_seed_keys)
+        lines.append("")
+    else:
+        lines.extend(
+            [
+                "## Open Seed Keys",
+                "",
+                "None.",
+                "",
+            ]
+        )
+
+    if output.get("results"):
+        lines.extend(["## Seed Rows", "", "| seed | row ids | status |", "| --- | --- | --- |"])
+        for result in output["results"]:
+            row_ids = ", ".join(f"`{row_id}`" for row_id in result["row_ids"])
+            status = "closed" if bool(result["closed"]) else "open"
+            lines.append(f"| `{result['key']}` | {row_ids} | {status} |")
+        lines.append("")
+
+    path.write_text("\n".join(lines))
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--census", type=Path, default=DEFAULT_CENSUS)
@@ -355,6 +426,32 @@ def parse_args() -> argparse.Namespace:
         "--symmetric",
         action="store_true",
         help="Deprecated alias for --symmetry-scope all.",
+    )
+    parser.add_argument(
+        "--json-out",
+        type=Path,
+        default=None,
+        help=(
+            "Write the JSON payload to this path.  The default path is used "
+            "when --write-default-reports is passed."
+        ),
+    )
+    parser.add_argument(
+        "--markdown-out",
+        type=Path,
+        default=None,
+        help=(
+            "Write a Markdown summary to this path.  The default path is used "
+            "when --write-default-reports is passed."
+        ),
+    )
+    parser.add_argument(
+        "--write-default-reports",
+        action="store_true",
+        help=(
+            "Write the standard relaxed-shape probe report paths under "
+            "certificates/surplus/reports."
+        ),
     )
     return parser.parse_args()
 
@@ -421,7 +518,20 @@ def main() -> None:
         ]
     else:
         output["results"] = results
-    print(json.dumps(output, indent=2, sort_keys=True))
+
+    json_out = DEFAULT_REPORT_JSON if args.write_default_reports else args.json_out
+    markdown_out = DEFAULT_REPORT_MD if args.write_default_reports else args.markdown_out
+    wrote = False
+    if json_out is not None:
+        write_json(json_out, output)
+        print(f"wrote {json_out}")
+        wrote = True
+    if markdown_out is not None:
+        write_markdown(markdown_out, output)
+        print(f"wrote {markdown_out}")
+        wrote = True
+    if not wrote:
+        print(json.dumps(output, indent=2, sort_keys=True))
 
 
 if __name__ == "__main__":
