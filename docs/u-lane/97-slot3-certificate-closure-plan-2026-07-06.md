@@ -2632,3 +2632,34 @@ Next implementation target remains P2 exact-shape/confinement at the ordered
 row boundary.  Do not add more row/DFS wrappers unless they consume a strictly
 weaker, already available geometric interface than the current candidate
 remainders.
+
+2026-07-09 live-source/census checkpoint: refreshed the active branch
+`four-point-subpacket-reduction` against the non-surplus erased-pin anchor.
+`proof-blueprint status` remains graph-stale (`0/4915` mined fresh for build
+`5ca1d8a0b82d`), so the most recent kernel-mined open/total count should not be
+reported as fresh; source-level inspection still shows the same four local
+holes in `RemovableVertexAxiom/Continuation.lean`: the two P2 candidate
+producers and the two P4 direct erased-pin cuts.  Host load was still high
+(`26.11 28.63 31.03`), so no new Lean build was started at this checkpoint.
+
+The landed `census/multi_center` data was re-run through the canonical scripts.
+`uv run python census/multi_center/frontier_report.py` reports n = 12..32 L2
+GLOBAL / PROVEN coverage with `977,975` SAT cells, `0` UNSAT, `0`
+INDETERMINATE, and an exact stable inventory window n = 29..32 at `3,375` SAT
+classes.  It explicitly leaves all three erased-pin producer facts open:
+`ErasedPinFiniteCandidateSepScaffoldFacts S x`, the surplus-opposite direct
+`ErasedPinTriple` cut, and the surplus-interior direct `ErasedPinTriple` cut.
+`analyze_sweeps.py` agrees with the stable windows and only supplies incidence
+inventory, not a Lean-facing P2/P4 producer.
+
+Shortcut audit update: the `SurplusM44Packet` erased-payload split theorems
+around the `oppIndex1`/`oppIndex2` erased-pin branches do not instantiate the
+two P4 holes, whose centers are `S.oppositeVertexByIndex S.surplusIdx` and
+arbitrary `p ∈ S.capInteriorByIndex S.surplusIdx`.  The U5 terminal adapters
+in `U3ToU5Terminal.lean` also still need a localized `U3LocalizedNoQFreePacket`,
+`U5ModeA`, and same-circle/confined/audited support.  The P4 source has a
+dangerous triple, selected candidate, exact residual circle, and off-circle aux
+vertices, but that is not yet the terminal payload.  The next implementation
+target therefore remains unchanged: build the P2 exact-shape/confinement
+producer at the ordered row boundary, or introduce a real surplus-index P4 cut
+with the missing U5 terminal inputs.
