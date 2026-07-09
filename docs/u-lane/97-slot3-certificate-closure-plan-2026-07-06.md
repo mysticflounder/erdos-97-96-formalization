@@ -2512,3 +2512,23 @@ Route 1 is attractive only if a quick producer generation pass closes the 18
 surviving row IDs from the selected-symmetry probe.  Otherwise route 2 remains
 the general proof-facing bridge needed for both the existing candidate adapter
 and the shape-relaxed DFS.
+
+2026-07-09 private-`v` row-kill audit checkpoint: regenerated the ordered
+erased-pin producer census to `/private/tmp` and compared the existing
+private-`v`/private-`w` fixed-mask separation counters against the 18
+selected-symmetry survivor row IDs.  The result is negative for route 1:
+
+- rows with all ordered variants failing private-`v` cross separation: `0`;
+- rows with all ordered variants failing private-`w` cross separation: the
+  same 8 rows already wired by the existing private-`w` row contradictions;
+- survivor-row coverage from private-`v`, private-`w`, or their union: `0 / 18`.
+
+The surviving row IDs all still have at least one ordered variant where both
+fixed private-v and private-w separation checks remain compatible with the
+finite predicates, so adding private-`v` theorem generation would not close a
+new row.  The chain-data consumer lemmas in `SurplusM44Packet.lean` are useful
+as a possible refactor, but they still need either primitive-row exclusions or
+terminal seed/candidate payload exclusions; without an exact-shape producer
+they do not bypass the same non-fixed candidate memberships.  Therefore the
+next P2 implementation target is the exact-shape/confinement producer at the
+ordered row boundary, not another fixed-mask row-kill generator.
