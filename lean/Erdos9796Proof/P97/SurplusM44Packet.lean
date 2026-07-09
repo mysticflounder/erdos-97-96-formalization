@@ -6529,6 +6529,94 @@ def LeftOneSidedErasedPayload
     SelectedClass A center radius = ({m₁, m₂, s, erased} : Finset ℝ²) ∧
     ({m₁, m₂, s, erased} : Finset ℝ²).card = 4
 
+/-- A right one-sided erased payload carries an exact four-point selected
+class at the payload center and radius. -/
+theorem rightOneSidedErasedPayload_selectedClass_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    (SelectedClass A center radius).card = 4 := by
+  rcases hpayload with
+    ⟨m₁, m₂, s, _hmne, _hM, _hC, _hL, _hR, hsel, hcard⟩
+  rw [hsel]
+  exact hcard
+
+/-- In a right one-sided erased payload, the named erased point belongs to the
+payload selected class. -/
+theorem rightOneSidedErasedPayload_erased_mem_selectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    erased ∈ SelectedClass A center radius := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, _hL, hR, _hsel, _hcard⟩
+  have herased :
+      erased ∈
+        SelectedClass A center radius ∩ S.rightAdjacentInteriorByIndex i := by
+    rw [hR]
+    simp
+  exact (Finset.mem_inter.mp herased).1
+
+/-- In a right one-sided erased payload, the named erased point is the
+right-adjacent selected hit. -/
+theorem rightOneSidedErasedPayload_erased_mem_rightAdjacentInterior
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : RightOneSidedErasedPayload S i center erased radius) :
+    erased ∈ S.rightAdjacentInteriorByIndex i := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, _hL, hR, _hsel, _hcard⟩
+  have herased :
+      erased ∈
+        SelectedClass A center radius ∩ S.rightAdjacentInteriorByIndex i := by
+    rw [hR]
+    simp
+  exact (Finset.mem_inter.mp herased).2
+
+/-- A left one-sided erased payload carries an exact four-point selected class
+at the payload center and radius. -/
+theorem leftOneSidedErasedPayload_selectedClass_card_eq_four
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    (SelectedClass A center radius).card = 4 := by
+  rcases hpayload with
+    ⟨m₁, m₂, s, _hmne, _hM, _hC, _hL, _hR, hsel, hcard⟩
+  rw [hsel]
+  exact hcard
+
+/-- In a left one-sided erased payload, the named erased point belongs to the
+payload selected class. -/
+theorem leftOneSidedErasedPayload_erased_mem_selectedClass
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    erased ∈ SelectedClass A center radius := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, hL, _hR, _hsel, _hcard⟩
+  have herased :
+      erased ∈
+        SelectedClass A center radius ∩ S.leftAdjacentInteriorByIndex i := by
+    rw [hL]
+    simp
+  exact (Finset.mem_inter.mp herased).1
+
+/-- In a left one-sided erased payload, the named erased point is the
+left-adjacent selected hit. -/
+theorem leftOneSidedErasedPayload_erased_mem_leftAdjacentInterior
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {i : Fin 3} {center erased : ℝ²} {radius : ℝ}
+    (hpayload : LeftOneSidedErasedPayload S i center erased radius) :
+    erased ∈ S.leftAdjacentInteriorByIndex i := by
+  rcases hpayload with
+    ⟨_m₁, _m₂, _s, _hmne, _hM, _hC, hL, _hR, _hsel, _hcard⟩
+  have herased :
+      erased ∈
+        SelectedClass A center radius ∩ S.leftAdjacentInteriorByIndex i := by
+    rw [hL]
+    simp
+  exact (Finset.mem_inter.mp herased).2
+
 /-- The right-sided obstruction row names the whole four-point selected class:
 two Moser vertices, one same-cap point, no left-adjacent point, and one
 right-adjacent point. -/

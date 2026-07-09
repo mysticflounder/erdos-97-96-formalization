@@ -2472,8 +2472,8 @@ production to a boundary that has exact row data.  Concretely, either:
    then prove the remaining non-fixed candidate memberships from an exact
    ordered-row shape/confinement bridge.
 
-Current closure status is still `1 open / 785 total` at the spine leaf level,
-with four local holes inside
+At this checkpoint the closure status was `1 open / 785 total` at the spine
+leaf level, with four local holes inside
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`: two P2
 candidate-remainder helpers and the two direct P4 erased-pin branches.
 
@@ -2532,3 +2532,44 @@ terminal seed/candidate payload exclusions; without an exact-shape producer
 they do not bypass the same non-fixed candidate memberships.  Therefore the
 next P2 implementation target is the exact-shape/confinement producer at the
 ordered row boundary, not another fixed-mask row-kill generator.
+
+2026-07-09 payload-extraction checkpoint: added and checked six grounded
+erased-payload extraction lemmas in `SurplusM44Packet.lean`:
+
+- `rightOneSidedErasedPayload_selectedClass_card_eq_four`;
+- `rightOneSidedErasedPayload_erased_mem_selectedClass`;
+- `rightOneSidedErasedPayload_erased_mem_rightAdjacentInterior`;
+- `leftOneSidedErasedPayload_selectedClass_card_eq_four`;
+- `leftOneSidedErasedPayload_erased_mem_selectedClass`;
+- `leftOneSidedErasedPayload_erased_mem_leftAdjacentInterior`.
+
+These are not closure wrappers: they destruct the actual
+`RightOneSidedErasedPayload` / `LeftOneSidedErasedPayload` witnesses and expose
+the exact four-point payload class plus the named erased-point membership in
+the selected class and adjacent interior.  Targeted verification succeeded with
+`lake-build Erdos9796Proof.P97.SurplusM44Packet`.
+
+The checkpoint also refreshed the proof-facing route classification.  P2 is
+still not a local tactic hole: the current `hrightCandidate` / `hleftCandidate`
+helpers are upstream of exact row data and ask for candidate remainders at the
+shared radius `dist p x`, while `HasNEquidistantProperty 4 A` only supplies an
+existential selected radius.  The new payload-extraction lemmas give the exact
+payload-center class, but they do not by themselves prove the non-fixed
+ordered-row masks.  The next P2 producer remains the exact-shape/confinement
+bridge at the ordered row boundary, or an equivalent row-specific producer
+that supplies the same mask-cardinality, no-self, trigger, circumcenter, and
+separation interfaces consumed by
+`oneSidedSeedCandidateRemainder_of_mask_interfaces`.
+
+P4 remains a separate missing producer/cut, not a certificate-search shortcut.
+The direct erased-pin branches already construct the U5-style dangerous triple
+data, but the available terminal theorem still needs the localized no-Q-free /
+`U5ModeA` / support-confinement payload rather than just the existing selected
+class and off-circle witnesses.
+
+After the payload build and proof-blueprint refresh, the authoritative target
+spine report for
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` was
+`1 open / 912 total`: the same single theorem remains open, with the same four
+local source holes.  The total increased because the refreshed kernel-mined
+dependency graph includes the newly exposed proven payload facts.
