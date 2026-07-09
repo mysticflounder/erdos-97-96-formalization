@@ -2302,3 +2302,19 @@ facts are derivable from the existing exact-cap/selected-class geometry.  If
 they are not, the first route is the correct producer-boundary refactor:
 terminal seed production must be delayed until the row-specific payload surface
 supplies those exact selected-class/mask facts.
+
+2026-07-09 terminal-row producer checkpoint: the generated terminal row
+machinery is present but does not by itself close P2.  The right terminal row
+`ep_right_m2_s1_l0_r1` and left terminal row `ep_left_m2_s1_l1_r0` both have
+row seed lists, private-mask existence lemmas, and no-valid-shadow
+contradictions.  Their consumers
+`false_of_right_row2101_finiteCandidateFacts` and
+`false_of_left_row2110_finiteCandidateFacts` still obtain the needed row seed
+by splitting the erased payload private center, then consume the same
+`OneSidedSeedCandidateRemainder` premise for the matching `.Pw`/`.Pu`
+own-kind seed.  Because `OneSidedSeedCandidateRemainder` is a statement about
+all non-fixed centers' masks being in `seed.candidateMasks`, the terminal row
+data only identifies the fixed private mask; it does not prove the missing
+non-fixed candidate memberships.  Therefore the next grounded implementation
+target remains the ordered seed-mask/candidate producer boundary described
+above, not a local rewrite of the terminal row consumers.
