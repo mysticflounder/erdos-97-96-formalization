@@ -2438,3 +2438,41 @@ therefore still one of:
 Do not treat the completed multi-center census as closing this leaf unless one
 of those producer interfaces is actually constructed and wired into the active
 theorem.
+
+2026-07-09 P2 producer-boundary audit checkpoint: re-inspected the current
+P2 surface in `RemovableVertexAxiom.lean` and the reusable seed-mask/candidate
+interfaces in `SurplusCOMPGBankGeometry.lean` / `SurplusSeededShadow.lean`.
+The existing row producers such as
+`right_row2101_exists_erasedPinRowSeed_privateMask`,
+`left_row2110_exists_erasedPinRowSeed_privateMask`, and the
+`false_of_erasedPinRow_*_seedShadow_pointClasses` consumers are downstream of
+an exact row or erased-payload split.  They can transport a terminal
+own-private candidate remainder to a row-specific seed once the finite packet
+already supplies that candidate remainder.
+
+They do not prove the current local helpers
+`hrightCandidate` / `hleftCandidate` as written.  Those helpers are upstream of
+the row split and quantify over every non-surplus interior point `p` using
+`radiusOf := fun _ => dist p x`; at that point the proof has no selected
+four-class support or exact mask facts for the non-fixed centers.  The global
+`HasNEquidistantProperty 4 A` is only an existence theorem for some selected
+four-class at each center, not a statement that the particular shared radius
+`dist p x` gives exact four-point ten-label masks for all centers.  Therefore
+the P2 hole remains a real producer-boundary hole, not a local tactic problem.
+
+The smallest grounded next implementation is still to move candidate
+production to a boundary that has exact row data.  Concretely, either:
+
+1. add an ordered seed-mask / exact-shape scaffold whose fields include the
+   mask-cardinality, no-self, circumcenter, trigger, prefix-count, and
+   separation interfaces consumed by
+   `oneSidedSeedCandidateRemainder_of_mask_interfaces`; or
+2. refactor the finite row consumers so the row-specific private-mask
+   producers are called before demanding `OneSidedSeedCandidateRemainder`, and
+   then prove the remaining non-fixed candidate memberships from an exact
+   ordered-row shape/confinement bridge.
+
+Current closure status is still `1 open / 785 total` at the spine leaf level,
+with four local holes inside
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`: two P2
+candidate-remainder helpers and the two direct P4 erased-pin branches.
