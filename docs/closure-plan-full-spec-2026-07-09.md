@@ -82,7 +82,13 @@ build passes.
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with
    gauge (0,0),(1,0), then no injective relabeling of it has any realization
-   at all. {{NEEDS_PROOF}}.
+   at all. **PROVEN 2026-07-09**: `Problem97.Census554.motif_transfer`
+   (`lean/Erdos9796Proof/P97/Census554/MotifTransfer.lean`), built via the
+   existing `normSim` similarity toolkit
+   (`U2/SimilarityNormalization.lean:72-122`); `#print axioms` = core only
+   (propext, Classical.choice, Quot.sound), no sorry. The file also fixes
+   the `Pattern`/`IsGaugedRealization`/`IsDead` vocabulary steps 2–3 consume.
+   Not yet imported by the leaf — wiring is step 5.
 5. **Leaf discharge at card 11**: from steps 1–4 + `D.K4` +
    `capProfile_eq_554_of_card_eq_eleven`, derive `False` under
    `D.A.card = 11` at the leaf, and case-split every Front-A obligation on
