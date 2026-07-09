@@ -65,10 +65,15 @@ build passes.
 
 1. **Finite space defs in Lean**: the 11-point profile, candidate classes
    (C1/C2/C4/one-hit filter) as decidable defs mirroring `census554_lib.py`.
-   Necessity side: each filter clause must cite the existing Lean lemma that
-   makes it necessary at the leaf ({{NEEDS_RESEARCH}} — collect exact lemma
-   names per clause; one-hit is proven at apices V,W only, per census
-   header).
+   **Mirror BUILT 2026-07-09**: `lean/Erdos9796Proof/P97/Census554/Space.lean`
+   (`OnehitOk`/`IsCandidateClass`/`candidateClasses`/`Cube`/`CubeOk`, all
+   decidable); encoding validated by kernel-`decide` smoke anchors — the
+   per-center class counts (210, 43, 16, 210) match
+   `len(census554_lib.candidates(p))`.
+   Necessity side still open: each filter clause must cite the existing Lean
+   lemma that makes it necessary at the leaf ({{NEEDS_RESEARCH}} — collect
+   exact lemma names per clause; one-hit is proven at apices V,W only, per
+   census header).
 2. **Certificate checker**: verified Lean checker for the banked certificate
    format (Σ cᵢ·gᵢ = 1 over ℚ) + generated pattern data. Kernel-checked via
    `decide`/`native_decide` under the bv_decide standard (verified decision
