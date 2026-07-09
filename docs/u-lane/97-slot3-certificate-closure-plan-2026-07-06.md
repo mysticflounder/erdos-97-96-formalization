@@ -2663,3 +2663,43 @@ vertices, but that is not yet the terminal payload.  The next implementation
 target therefore remains unchanged: build the P2 exact-shape/confinement
 producer at the ordered row boundary, or introduce a real surplus-index P4 cut
 with the missing U5 terminal inputs.
+
+2026-07-09 P2 interface audit checkpoint: rechecked the active source in
+`RemovableVertexAxiom/Continuation.lean` against the seed-mask and
+seed-candidate interfaces in `RemovableVertexAxiom/Base.lean` and
+`SurplusCOMPGBankGeometry.lean`.  The two P2 helpers
+`hrightCandidate`/`hleftCandidate` are not missing a simple generated lemma:
+they ask for `OneSidedSeedCandidateRemainder` for selected-class center
+classes at the shared radius `dist p x`.  The existing
+`oneSidedSeedCandidateRemainder_of_mask_interfaces` path would close those
+remainders only after supplying exact four-point masks, no-self facts,
+`u`-intersection bounds, non-Moser circumcenter exclusion, and trigger/final
+mask bounds.  Those facts are precisely the unavailable geometric
+exact-shape/confinement producer; `HasNEquidistantProperty 4 A` and the current
+ordered-pair membership data do not by themselves provide them.
+
+The stronger `IsM44NonSurplusContainmentErasedPinTripleSeedMaskInputsStatement`
+already adapts into the current seed-candidate surface via
+`seedCandidateInputsStatement_of_seedMaskInputsStatement`, but there is no
+on-spine theorem producing that seed-mask statement for this anchor.  Using the
+adapter here would only move the P2 obligation unless a real
+`Right/LeftOneSidedErasedPayloadSeedMaskInputs` producer is built for every
+non-surplus payload center.
+
+`ErasedPinOrderedProducer.lean` was also re-audited.  It records ordered seed
+lists, fixed-bank membership, per-row list equality/length facts, and
+no-valid-shadow consequences once a row-specific seed has already been
+identified.  It does not prove the upstream geometric candidate memberships
+needed by `RightOneSidedErasedPayloadFiniteCandidateSepFacts` or its left
+mirror.  Therefore the fastest remaining P2 route is still to either build the
+exact-shape/confinement producer feeding `oneSidedSeedCandidateRemainder`, or
+replace the scaffold with a row-specific producer whose hypotheses are strictly
+weaker than those candidate remainders.
+
+P4 remains unchanged after this audit.  The source has U5 dangerous triples,
+selected candidates, exact three-point residual circles, and two off-circle
+auxiliary vertices for the surplus-opposite and surplus-interior branches, but
+still lacks the localized no-Q-free packet, `U5ModeA`, and confined/audited
+support payload needed by the terminal U5 adapters.  Host load at this
+checkpoint was `27.72 32.23 32.70`, so no Lean build or proof-blueprint refresh
+was started.
