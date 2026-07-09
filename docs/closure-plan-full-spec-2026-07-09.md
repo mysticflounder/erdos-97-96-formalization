@@ -103,12 +103,19 @@ build passes.
    ℚ-polynomials (`Mon`/`SPoly`, add/neg/mul/const/normalize) with
    evaluation-soundness lemmas; payoff theorem
    `SPoly.eval_eq_zero_of_normalize_eq_nil` (normalize-to-nil ⟹ evaluates
-   to 0 everywhere) is sorry-free, core axioms only. Remaining for step 2:
-   generator re-derivation from pattern+gauge in this representation,
-   the Rabinowitsch evaluation bridge (t := 1/d² at a distinct-point
-   realization), the `checkCert ⟹ IsDead` assembly, and the cert-data
-   import pipeline (per-pattern generated modules; heavy-tail residual
-   above).
+   to 0 everywhere) is sorry-free, core axioms only.
+   **Checker bridge BUILT 2026-07-09**:
+   `lean/Erdos9796Proof/P97/Census554/CertCheck.lean` —
+   `coordVar`/`coordPoly`/`d2Poly`/`CertTag`/`envOf`/`checkCert` with
+   soundness theorem `isDead_of_checkCert` (accepted certificate ⟹
+   `IsDead P`), sorry-free, core axioms only. **End-to-end validated on
+   real banked data**: `isDead_P02213` replays cert `pat_02213.json`
+   (base kill) via `native_decide` (core axioms + ofReduceBool/
+   trustCompiler, both approved) — tag/gauge/variable conventions match
+   the bank exactly, first attempt. Step 2's mathematical core is
+   COMPLETE. Remaining: the cert-data import pipeline (script generating
+   per-pattern Lean modules from `certs/*.json`; batching TBD) and the
+   heavy-tail shrink residual above.
 3. **Cover check**: `decide`-level verification that the banked pattern set
    (after motif closure) excludes all candidate cubes. Format: either replay
    the SAT UNSAT as a generated Lean enumeration, or export DRAT and
