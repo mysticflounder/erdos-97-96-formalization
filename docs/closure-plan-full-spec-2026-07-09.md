@@ -78,6 +78,26 @@ build passes.
    format (Σ cᵢ·gᵢ = 1 over ℚ) + generated pattern data. Kernel-checked via
    `decide`/`native_decide` under the bv_decide standard (verified decision
    procedure, no `@[implemented_by]` in closure).
+   **Feasibility measured 2026-07-09** (`scratch/census-554/certs/`, 5,401
+   files at measurement): median cert 54 KB, p90 7 MB — but p99 351 MB, max
+   2.3 GB, 70 GB total. 4,929 certs ≤ 10 MB sum to 2.7 GB (transferable);
+   **475 heavy multi_pair certs carry 72.8 GB** and cannot be replayed
+   through the kernel as-is. Smallest certs are all `base` kills, largest
+   all `multi_pair`. Named residual: a shrink strategy for the heavy tail —
+   re-lift with different order/strategy, split multi_pair kills into
+   per-pair sub-certificates, or re-mine alternative patterns at the
+   affected cubes ({{NEEDS_RESEARCH}}; blocked on nothing, independent of
+   the running loop).
+   **Format verified 2026-07-09** (`certs/pat_02213.json`, schema
+   `census554_pattern_certificate.v1`): `variables` (gauged coordinate
+   names), `generators` (polynomial strings), `generator_tags` ([c,a,b] =
+   the generator is d²(c,a)−d²(c,b)), `coefficients` (one per generator;
+   identity Σ cᵢ·gᵢ = 1), `rab_pairs` (Rabinowitsch t-var generators, empty
+   for base kills), `python_exact_identity: true` (exact Fraction recheck
+   passed at banking). The Lean checker must RE-DERIVE the generators from
+   `pattern` + gauge (not trust the strings) and then verify the identity;
+   `IsDead` (MotifTransfer.lean) then follows by evaluation, giving
+   emptiness per banked pattern.
 3. **Cover check**: `decide`-level verification that the banked pattern set
    (after motif closure) excludes all candidate cubes. Format: either replay
    the SAT UNSAT as a generated Lean enumeration, or export DRAT and
