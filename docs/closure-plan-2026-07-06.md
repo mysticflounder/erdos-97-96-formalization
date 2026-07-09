@@ -608,6 +608,17 @@ yields qualitative eventual LOCAL stability through the existing general-`n`
 scaffold; quantitative locking at the observed threshold still requires either
 constructive completeness or a faithful certificate import.
 
+Formalization checkpoint 2026-07-09: the finite certificate-import side is now
+closed for the L2/full-participant representative surface. A proved-complete
+21-cell LOCAL enumerator is identified with all 3,375 typed bank rows, the six
+profile-preserving center permutations are checked semantically, and finite
+coverage is checked over all 489 generated profile rows. The terminal theorem
+is `ProfileClassIncidence.completesL2FullFrom_representativeSurface`; the exact
+LOCAL frontier scan is also flat through `n = 64`. This supersedes the prior
+"faithful certificate import" item, but not the geometric work: extraction,
+configuration-level soundness/realization, persistence, and quantitative
+locking at 3,375 remain open.
+
 ## 8. Global gates and hygiene
 
 - **`Lean.trustCompiler` approval** — **DONE 2026-07-06** (Adam): added to
@@ -686,6 +697,11 @@ Both: fold per the §8 doc-ownership rule.
 | U6 | ~~trustCompiler approval~~ **RESOLVED 2026-07-06** — approved by Adam, in `.blueprint.toml` | closed | — |
 | U7 | Endpoint 117-pattern encode scope | LOW | generator classification done (0 unclassified); residual check is reading 2 base_empty rows |
 | U8 | ~~ℝ-only content in census certificates (checker fit)~~ **RESOLVED 2026-07-07: none** — every kill in the 1596-orbit bank is an equality-only Nullstellensatz identity (Rabinowitsch pairs stay equalities, consumer sets t = 1/d²), and the pipeline can only emit that shape (an ALIVE cube stops the run instead); Checker arithmetic layer confirmed variable-count generic | closed | census bank inspection + Checker.lean read |
+
+U4 register update, 2026-07-09: the exact LOCAL frontier is flat through
+`n = 64`, and the finite L2/full representative-surface enumerator/completeness
+bridge is kernel-checked. The remaining U4 content is geometric realization and
+general-`n` transport, not finite class discovery or bank coverage.
 
 Everything outside U4/U5 is either mechanical, enumerable, or one specified
 computation away. U4 is the proof's genuine frontier; D1+D2+dichotomy+D3

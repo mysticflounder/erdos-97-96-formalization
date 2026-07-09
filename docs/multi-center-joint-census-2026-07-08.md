@@ -9,10 +9,9 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 Scope: `docs/multi-center-joint-census-spec-2026-07-07.md`, L2 GLOBAL
 surface under the PROVEN cuts. This note records the completed
 empirical sweep through `n = 28`, which is sufficient for the spec's
-`STABILIZED-EMPIRICAL` label. A supplementary extension run for
-`n = 29..32` is in flight under
-`census/multi_center/sweeps/l2_global_proven_n29_32.json` and is not
-used for the verdict below.
+`STABILIZED-EMPIRICAL` label. At publication, a supplementary extension run
+for `n = 29..32` was in flight. It has since completed; the dated update below
+keeps that later evidence separate from the original verdict table.
 
 ## Verdict
 
@@ -61,9 +60,8 @@ fields reset when a range sweep is restarted, so the canonical readout is
 
 For the active erased-pin leaf, use
 `uv run python census/multi_center/frontier_report.py`.  It preserves the
-same inventory readout, checks whether either pending `n28_32` or `n29_32`
-extension artifact has landed, and records that the completed multi-center
-data does not supply the producer facts required by
+same inventory readout and records that the completed multi-center data does
+not supply the producer facts required by
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
 
 ## Interpretation
@@ -109,3 +107,25 @@ suggested by the data are:
 
 The spec's CONJECTURED-tier appendix has not been run yet. The verdict in
 this note is therefore the PROVEN-tier headline only.
+
+## 2026-07-09 extension and formalization update
+
+The GLOBAL extension through `n = 32` completed with
+`977,975 / 977,975 SAT`, `0 UNSAT`, and `0 INDETERMINATE`; each of
+`n = 29..32` realizes the same 3,375-class inventory. Independent exact LOCAL
+frontier scans are also flat through `n = 64`: every row on `n = 29..64` has
+the same 3,375 class keys as the `n <= 28` baseline, with no new or missing
+keys.
+
+The finite L2/full-participant representative surface is now certified in
+Lean. `ProfileClassIncidence.finiteCodeWitnesses` connects a proved-complete
+21-cell LOCAL enumerator to the 3,375-row typed bank;
+`ProfileClassIncidence.coversL2FullLocalModuloFrom` adds the checked
+profile-preserving class permutations and profile/class incidence coverage;
+and `ProfileClassIncidence.completesL2FullFrom_representativeSurface` closes
+the resulting representative-surface completion interface.
+
+The rigor label remains `STABILIZED-EMPIRICAL`. The Lean result proves finite
+enumerator and representative-surface completeness, not a configuration-level
+GLOBAL realization theorem, persistence in `n`, or the quantitative claim that
+the eventual GLOBAL inventory is exactly these 3,375 classes.

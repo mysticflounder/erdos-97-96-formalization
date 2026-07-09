@@ -1,0 +1,8036 @@
+{
+  "artifact_statuses": [
+    {
+      "n_values": [
+        12
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n12_12.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "status": "PARTIAL_RANGE missing=21,22,23,24,25,26,27,28,29,30"
+    },
+    {
+      "n_values": [
+        21
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "status": "PARTIAL_RANGE missing=22,23,24,25,26,27,28,29,30"
+    },
+    {
+      "n_values": [
+        22
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        23
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        24
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        25
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        26
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        27
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        28
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "status": "OK"
+    }
+  ],
+  "bad_profile_rows": [],
+  "claims": {
+    "all_profiles_have_local_equal_sat_count": true,
+    "all_profiles_have_no_unsat_or_indeterminate_cells": true,
+    "all_profiles_have_tested_count_matching_summary": true
+  },
+  "loaded_n_values": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32
+  ],
+  "profile_count_by_n": [
+    {
+      "n": 12,
+      "profile_count": 2
+    },
+    {
+      "n": 13,
+      "profile_count": 3
+    },
+    {
+      "n": 14,
+      "profile_count": 4
+    },
+    {
+      "n": 15,
+      "profile_count": 6
+    },
+    {
+      "n": 16,
+      "profile_count": 7
+    },
+    {
+      "n": 17,
+      "profile_count": 9
+    },
+    {
+      "n": 18,
+      "profile_count": 11
+    },
+    {
+      "n": 19,
+      "profile_count": 13
+    },
+    {
+      "n": 20,
+      "profile_count": 15
+    },
+    {
+      "n": 21,
+      "profile_count": 18
+    },
+    {
+      "n": 22,
+      "profile_count": 20
+    },
+    {
+      "n": 23,
+      "profile_count": 23
+    },
+    {
+      "n": 24,
+      "profile_count": 26
+    },
+    {
+      "n": 25,
+      "profile_count": 29
+    },
+    {
+      "n": 26,
+      "profile_count": 32
+    },
+    {
+      "n": 27,
+      "profile_count": 36
+    },
+    {
+      "n": 28,
+      "profile_count": 39
+    },
+    {
+      "n": 29,
+      "profile_count": 43
+    },
+    {
+      "n": 30,
+      "profile_count": 47
+    },
+    {
+      "n": 31,
+      "profile_count": 51
+    },
+    {
+      "n": 32,
+      "profile_count": 55
+    }
+  ],
+  "profile_row_count": 489,
+  "rows": [
+    {
+      "id": 0,
+      "indeterminate_cells": 0,
+      "local_classes": 523,
+      "n": 12,
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "sat_cells": 523,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 523,
+      "total_nodes": 312001,
+      "unsat_cells": 0
+    },
+    {
+      "id": 1,
+      "indeterminate_cells": 0,
+      "local_classes": 177,
+      "n": 12,
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "sat_cells": 177,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 177,
+      "total_nodes": 85992,
+      "unsat_cells": 0
+    },
+    {
+      "id": 2,
+      "indeterminate_cells": 0,
+      "local_classes": 585,
+      "n": 13,
+      "profile": [
+        4,
+        5,
+        7
+      ],
+      "sat_cells": 585,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 585,
+      "total_nodes": 535989,
+      "unsat_cells": 0
+    },
+    {
+      "id": 3,
+      "indeterminate_cells": 0,
+      "local_classes": 404,
+      "n": 13,
+      "profile": [
+        4,
+        6,
+        6
+      ],
+      "sat_cells": 404,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 404,
+      "total_nodes": 344410,
+      "unsat_cells": 0
+    },
+    {
+      "id": 4,
+      "indeterminate_cells": 0,
+      "local_classes": 747,
+      "n": 13,
+      "profile": [
+        5,
+        5,
+        6
+      ],
+      "sat_cells": 747,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 747,
+      "total_nodes": 669136,
+      "unsat_cells": 0
+    },
+    {
+      "id": 5,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 14,
+      "profile": [
+        4,
+        5,
+        8
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 828556,
+      "unsat_cells": 0
+    },
+    {
+      "id": 6,
+      "indeterminate_cells": 0,
+      "local_classes": 864,
+      "n": 14,
+      "profile": [
+        4,
+        6,
+        7
+      ],
+      "sat_cells": 864,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 864,
+      "total_nodes": 1189235,
+      "unsat_cells": 0
+    },
+    {
+      "id": 7,
+      "indeterminate_cells": 0,
+      "local_classes": 813,
+      "n": 14,
+      "profile": [
+        5,
+        5,
+        7
+      ],
+      "sat_cells": 813,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 813,
+      "total_nodes": 1131376,
+      "unsat_cells": 0
+    },
+    {
+      "id": 8,
+      "indeterminate_cells": 0,
+      "local_classes": 1042,
+      "n": 14,
+      "profile": [
+        5,
+        6,
+        6
+      ],
+      "sat_cells": 1042,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1042,
+      "total_nodes": 1421140,
+      "unsat_cells": 0
+    },
+    {
+      "id": 9,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 15,
+      "profile": [
+        4,
+        5,
+        9
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 1235108,
+      "unsat_cells": 0
+    },
+    {
+      "id": 10,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 15,
+      "profile": [
+        4,
+        6,
+        8
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 1803219,
+      "unsat_cells": 0
+    },
+    {
+      "id": 11,
+      "indeterminate_cells": 0,
+      "local_classes": 484,
+      "n": 15,
+      "profile": [
+        4,
+        7,
+        7
+      ],
+      "sat_cells": 484,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 484,
+      "total_nodes": 945515,
+      "unsat_cells": 0
+    },
+    {
+      "id": 12,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 15,
+      "profile": [
+        5,
+        5,
+        8
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 1700222,
+      "unsat_cells": 0
+    },
+    {
+      "id": 13,
+      "indeterminate_cells": 0,
+      "local_classes": 2216,
+      "n": 15,
+      "profile": [
+        5,
+        6,
+        7
+      ],
+      "sat_cells": 2216,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2216,
+      "total_nodes": 4575705,
+      "unsat_cells": 0
+    },
+    {
+      "id": 14,
+      "indeterminate_cells": 0,
+      "local_classes": 491,
+      "n": 15,
+      "profile": [
+        6,
+        6,
+        6
+      ],
+      "sat_cells": 491,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 491,
+      "total_nodes": 788285,
+      "unsat_cells": 0
+    },
+    {
+      "id": 15,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 16,
+      "profile": [
+        4,
+        5,
+        10
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 1770588,
+      "unsat_cells": 0
+    },
+    {
+      "id": 16,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 16,
+      "profile": [
+        4,
+        6,
+        9
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 2603054,
+      "unsat_cells": 0
+    },
+    {
+      "id": 17,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 16,
+      "profile": [
+        4,
+        7,
+        8
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 952,
+      "total_nodes": 2807671,
+      "unsat_cells": 0
+    },
+    {
+      "id": 18,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 16,
+      "profile": [
+        5,
+        5,
+        9
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 2438446,
+      "unsat_cells": 0
+    },
+    {
+      "id": 19,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 16,
+      "profile": [
+        5,
+        6,
+        8
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 6727308,
+      "unsat_cells": 0
+    },
+    {
+      "id": 20,
+      "indeterminate_cells": 0,
+      "local_classes": 1198,
+      "n": 16,
+      "profile": [
+        5,
+        7,
+        7
+      ],
+      "sat_cells": 1198,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1198,
+      "total_nodes": 3534784,
+      "unsat_cells": 0
+    },
+    {
+      "id": 21,
+      "indeterminate_cells": 0,
+      "local_classes": 1506,
+      "n": 16,
+      "profile": [
+        6,
+        6,
+        7
+      ],
+      "sat_cells": 1506,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1506,
+      "total_nodes": 4499424,
+      "unsat_cells": 0
+    },
+    {
+      "id": 22,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 17,
+      "profile": [
+        4,
+        5,
+        11
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 2468856,
+      "unsat_cells": 0
+    },
+    {
+      "id": 23,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 17,
+      "profile": [
+        4,
+        6,
+        10
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 3652206,
+      "unsat_cells": 0
+    },
+    {
+      "id": 24,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 17,
+      "profile": [
+        4,
+        7,
+        9
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 952,
+      "total_nodes": 3973274,
+      "unsat_cells": 0
+    },
+    {
+      "id": 25,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 17,
+      "profile": [
+        4,
+        8,
+        8
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 492,
+      "total_nodes": 1951355,
+      "unsat_cells": 0
+    },
+    {
+      "id": 26,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 17,
+      "profile": [
+        5,
+        5,
+        10
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 3395120,
+      "unsat_cells": 0
+    },
+    {
+      "id": 27,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 17,
+      "profile": [
+        5,
+        6,
+        9
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 9498211,
+      "unsat_cells": 0
+    },
+    {
+      "id": 28,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 17,
+      "profile": [
+        5,
+        7,
+        8
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2386,
+      "total_nodes": 10068802,
+      "unsat_cells": 0
+    },
+    {
+      "id": 29,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 17,
+      "profile": [
+        6,
+        6,
+        8
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1515,
+      "total_nodes": 6362183,
+      "unsat_cells": 0
+    },
+    {
+      "id": 30,
+      "indeterminate_cells": 0,
+      "local_classes": 1596,
+      "n": 17,
+      "profile": [
+        6,
+        7,
+        7
+      ],
+      "sat_cells": 1596,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1596,
+      "total_nodes": 6887050,
+      "unsat_cells": 0
+    },
+    {
+      "id": 31,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 18,
+      "profile": [
+        4,
+        5,
+        12
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 3321238,
+      "unsat_cells": 0
+    },
+    {
+      "id": 32,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 18,
+      "profile": [
+        4,
+        6,
+        11
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 4979580,
+      "unsat_cells": 0
+    },
+    {
+      "id": 33,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 18,
+      "profile": [
+        4,
+        7,
+        10
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 952,
+      "total_nodes": 5448363,
+      "unsat_cells": 0
+    },
+    {
+      "id": 34,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 18,
+      "profile": [
+        4,
+        8,
+        9
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 960,
+      "total_nodes": 5453247,
+      "unsat_cells": 0
+    },
+    {
+      "id": 35,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 18,
+      "profile": [
+        5,
+        5,
+        11
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 4612150,
+      "unsat_cells": 0
+    },
+    {
+      "id": 36,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 18,
+      "profile": [
+        5,
+        6,
+        10
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 13021190,
+      "unsat_cells": 0
+    },
+    {
+      "id": 37,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 18,
+      "profile": [
+        5,
+        7,
+        9
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2386,
+      "total_nodes": 13900927,
+      "unsat_cells": 0
+    },
+    {
+      "id": 38,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 18,
+      "profile": [
+        5,
+        8,
+        8
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1212,
+      "total_nodes": 6773973,
+      "unsat_cells": 0
+    },
+    {
+      "id": 39,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 18,
+      "profile": [
+        6,
+        6,
+        9
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1515,
+      "total_nodes": 8653700,
+      "unsat_cells": 0
+    },
+    {
+      "id": 40,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 18,
+      "profile": [
+        6,
+        7,
+        8
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 3165,
+      "total_nodes": 18148815,
+      "unsat_cells": 0
+    },
+    {
+      "id": 41,
+      "indeterminate_cells": 0,
+      "local_classes": 581,
+      "n": 18,
+      "profile": [
+        7,
+        7,
+        7
+      ],
+      "sat_cells": 581,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 581,
+      "total_nodes": 2685086,
+      "unsat_cells": 0
+    },
+    {
+      "id": 42,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 19,
+      "profile": [
+        4,
+        5,
+        13
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 4222706,
+      "unsat_cells": 0
+    },
+    {
+      "id": 43,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 19,
+      "profile": [
+        4,
+        6,
+        12
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 6300928,
+      "unsat_cells": 0
+    },
+    {
+      "id": 44,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 19,
+      "profile": [
+        4,
+        7,
+        11
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 952,
+      "total_nodes": 6859202,
+      "unsat_cells": 0
+    },
+    {
+      "id": 45,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 19,
+      "profile": [
+        4,
+        8,
+        10
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 960,
+      "total_nodes": 6913735,
+      "unsat_cells": 0
+    },
+    {
+      "id": 46,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 19,
+      "profile": [
+        4,
+        9,
+        9
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 492,
+      "total_nodes": 3366328,
+      "unsat_cells": 0
+    },
+    {
+      "id": 47,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 19,
+      "profile": [
+        5,
+        5,
+        12
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 5883222,
+      "unsat_cells": 0
+    },
+    {
+      "id": 48,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 19,
+      "profile": [
+        5,
+        6,
+        11
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 16380052,
+      "unsat_cells": 0
+    },
+    {
+      "id": 49,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 19,
+      "profile": [
+        5,
+        7,
+        10
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2386,
+      "total_nodes": 17560612,
+      "unsat_cells": 0
+    },
+    {
+      "id": 50,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 19,
+      "profile": [
+        5,
+        8,
+        9
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2400,
+      "total_nodes": 17570055,
+      "unsat_cells": 0
+    },
+    {
+      "id": 51,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 19,
+      "profile": [
+        6,
+        6,
+        10
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1515,
+      "total_nodes": 11049833,
+      "unsat_cells": 0
+    },
+    {
+      "id": 52,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 19,
+      "profile": [
+        6,
+        7,
+        9
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 3165,
+      "total_nodes": 23134326,
+      "unsat_cells": 0
+    },
+    {
+      "id": 53,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 19,
+      "profile": [
+        6,
+        8,
+        8
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1611,
+      "total_nodes": 11876181,
+      "unsat_cells": 0
+    },
+    {
+      "id": 54,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 19,
+      "profile": [
+        7,
+        7,
+        8
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1695,
+      "total_nodes": 12267957,
+      "unsat_cells": 0
+    },
+    {
+      "id": 55,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 20,
+      "profile": [
+        4,
+        5,
+        14
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 592,
+      "total_nodes": 5579858,
+      "unsat_cells": 0
+    },
+    {
+      "id": 56,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 20,
+      "profile": [
+        4,
+        6,
+        13
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 872,
+      "total_nodes": 8247909,
+      "unsat_cells": 0
+    },
+    {
+      "id": 57,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 20,
+      "profile": [
+        4,
+        7,
+        12
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 952,
+      "total_nodes": 9016859,
+      "unsat_cells": 0
+    },
+    {
+      "id": 58,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 20,
+      "profile": [
+        4,
+        8,
+        11
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 960,
+      "total_nodes": 9095708,
+      "unsat_cells": 0
+    },
+    {
+      "id": 59,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 20,
+      "profile": [
+        4,
+        9,
+        10
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 960,
+      "total_nodes": 9060105,
+      "unsat_cells": 0
+    },
+    {
+      "id": 60,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 20,
+      "profile": [
+        5,
+        5,
+        13
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 821,
+      "total_nodes": 7648548,
+      "unsat_cells": 0
+    },
+    {
+      "id": 61,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 20,
+      "profile": [
+        5,
+        6,
+        12
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 21502267,
+      "unsat_cells": 0
+    },
+    {
+      "id": 62,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 20,
+      "profile": [
+        5,
+        7,
+        11
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2386,
+      "total_nodes": 23071669,
+      "unsat_cells": 0
+    },
+    {
+      "id": 63,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 20,
+      "profile": [
+        5,
+        8,
+        10
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 2400,
+      "total_nodes": 23204242,
+      "unsat_cells": 0
+    },
+    {
+      "id": 64,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 20,
+      "profile": [
+        5,
+        9,
+        9
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1212,
+      "total_nodes": 11493047,
+      "unsat_cells": 0
+    },
+    {
+      "id": 65,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 20,
+      "profile": [
+        6,
+        6,
+        11
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1515,
+      "total_nodes": 14426718,
+      "unsat_cells": 0
+    },
+    {
+      "id": 66,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 20,
+      "profile": [
+        6,
+        7,
+        10
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 3165,
+      "total_nodes": 30602146,
+      "unsat_cells": 0
+    },
+    {
+      "id": 67,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 20,
+      "profile": [
+        6,
+        8,
+        9
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 3180,
+      "total_nodes": 30676088,
+      "unsat_cells": 0
+    },
+    {
+      "id": 68,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 20,
+      "profile": [
+        7,
+        7,
+        9
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1695,
+      "total_nodes": 16391677,
+      "unsat_cells": 0
+    },
+    {
+      "id": 69,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 20,
+      "profile": [
+        7,
+        8,
+        8
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "tested_cells": 1701,
+      "total_nodes": 16369272,
+      "unsat_cells": 0
+    },
+    {
+      "id": 70,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 21,
+      "profile": [
+        4,
+        5,
+        15
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 592,
+      "total_nodes": 7211514,
+      "unsat_cells": 0
+    },
+    {
+      "id": 71,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 21,
+      "profile": [
+        4,
+        6,
+        14
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 872,
+      "total_nodes": 10742138,
+      "unsat_cells": 0
+    },
+    {
+      "id": 72,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 21,
+      "profile": [
+        4,
+        7,
+        13
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 952,
+      "total_nodes": 11706526,
+      "unsat_cells": 0
+    },
+    {
+      "id": 73,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 21,
+      "profile": [
+        4,
+        8,
+        12
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 960,
+      "total_nodes": 11782456,
+      "unsat_cells": 0
+    },
+    {
+      "id": 74,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 21,
+      "profile": [
+        4,
+        9,
+        11
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 960,
+      "total_nodes": 11751037,
+      "unsat_cells": 0
+    },
+    {
+      "id": 75,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 21,
+      "profile": [
+        4,
+        10,
+        10
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 492,
+      "total_nodes": 5798285,
+      "unsat_cells": 0
+    },
+    {
+      "id": 76,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 21,
+      "profile": [
+        5,
+        5,
+        14
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 821,
+      "total_nodes": 9962879,
+      "unsat_cells": 0
+    },
+    {
+      "id": 77,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 21,
+      "profile": [
+        5,
+        6,
+        13
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 2230,
+      "total_nodes": 27768384,
+      "unsat_cells": 0
+    },
+    {
+      "id": 78,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 21,
+      "profile": [
+        5,
+        7,
+        12
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 2386,
+      "total_nodes": 29717025,
+      "unsat_cells": 0
+    },
+    {
+      "id": 79,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 21,
+      "profile": [
+        5,
+        8,
+        11
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 2400,
+      "total_nodes": 29942790,
+      "unsat_cells": 0
+    },
+    {
+      "id": 80,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 21,
+      "profile": [
+        5,
+        9,
+        10
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 2400,
+      "total_nodes": 30035324,
+      "unsat_cells": 0
+    },
+    {
+      "id": 81,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 21,
+      "profile": [
+        6,
+        6,
+        12
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 1515,
+      "total_nodes": 18570145,
+      "unsat_cells": 0
+    },
+    {
+      "id": 82,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 21,
+      "profile": [
+        6,
+        7,
+        11
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 3165,
+      "total_nodes": 39832870,
+      "unsat_cells": 0
+    },
+    {
+      "id": 83,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 21,
+      "profile": [
+        6,
+        8,
+        10
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 3180,
+      "total_nodes": 40351268,
+      "unsat_cells": 0
+    },
+    {
+      "id": 84,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 21,
+      "profile": [
+        6,
+        9,
+        9
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 1611,
+      "total_nodes": 19951594,
+      "unsat_cells": 0
+    },
+    {
+      "id": 85,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 21,
+      "profile": [
+        7,
+        7,
+        10
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 1695,
+      "total_nodes": 21337556,
+      "unsat_cells": 0
+    },
+    {
+      "id": 86,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 21,
+      "profile": [
+        7,
+        8,
+        9
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 3360,
+      "total_nodes": 42709235,
+      "unsat_cells": 0
+    },
+    {
+      "id": 87,
+      "indeterminate_cells": 0,
+      "local_classes": 590,
+      "n": 21,
+      "profile": [
+        8,
+        8,
+        8
+      ],
+      "sat_cells": 590,
+      "source": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "tested_cells": 590,
+      "total_nodes": 6274719,
+      "unsat_cells": 0
+    },
+    {
+      "id": 88,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 22,
+      "profile": [
+        4,
+        5,
+        16
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 592,
+      "total_nodes": 9140645,
+      "unsat_cells": 0
+    },
+    {
+      "id": 89,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 22,
+      "profile": [
+        4,
+        6,
+        15
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 872,
+      "total_nodes": 13687469,
+      "unsat_cells": 0
+    },
+    {
+      "id": 90,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 22,
+      "profile": [
+        4,
+        7,
+        14
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 952,
+      "total_nodes": 14905720,
+      "unsat_cells": 0
+    },
+    {
+      "id": 91,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 22,
+      "profile": [
+        4,
+        8,
+        13
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 960,
+      "total_nodes": 15024486,
+      "unsat_cells": 0
+    },
+    {
+      "id": 92,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 22,
+      "profile": [
+        4,
+        9,
+        12
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 960,
+      "total_nodes": 15007050,
+      "unsat_cells": 0
+    },
+    {
+      "id": 93,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 22,
+      "profile": [
+        4,
+        10,
+        11
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 960,
+      "total_nodes": 14941524,
+      "unsat_cells": 0
+    },
+    {
+      "id": 94,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 22,
+      "profile": [
+        5,
+        5,
+        15
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 821,
+      "total_nodes": 12688180,
+      "unsat_cells": 0
+    },
+    {
+      "id": 95,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 22,
+      "profile": [
+        5,
+        6,
+        14
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 2230,
+      "total_nodes": 35367309,
+      "unsat_cells": 0
+    },
+    {
+      "id": 96,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 22,
+      "profile": [
+        5,
+        7,
+        13
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 2386,
+      "total_nodes": 37936239,
+      "unsat_cells": 0
+    },
+    {
+      "id": 97,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 22,
+      "profile": [
+        5,
+        8,
+        12
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 2400,
+      "total_nodes": 38229765,
+      "unsat_cells": 0
+    },
+    {
+      "id": 98,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 22,
+      "profile": [
+        5,
+        9,
+        11
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 2400,
+      "total_nodes": 38136852,
+      "unsat_cells": 0
+    },
+    {
+      "id": 99,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 22,
+      "profile": [
+        5,
+        10,
+        10
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 1212,
+      "total_nodes": 18898362,
+      "unsat_cells": 0
+    },
+    {
+      "id": 100,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 22,
+      "profile": [
+        6,
+        6,
+        13
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 1515,
+      "total_nodes": 23487672,
+      "unsat_cells": 0
+    },
+    {
+      "id": 101,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 22,
+      "profile": [
+        6,
+        7,
+        12
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 3165,
+      "total_nodes": 50646803,
+      "unsat_cells": 0
+    },
+    {
+      "id": 102,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 22,
+      "profile": [
+        6,
+        8,
+        11
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 3180,
+      "total_nodes": 50898216,
+      "unsat_cells": 0
+    },
+    {
+      "id": 103,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 22,
+      "profile": [
+        6,
+        9,
+        10
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 3180,
+      "total_nodes": 50779107,
+      "unsat_cells": 0
+    },
+    {
+      "id": 104,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 22,
+      "profile": [
+        7,
+        7,
+        11
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 1695,
+      "total_nodes": 26789010,
+      "unsat_cells": 0
+    },
+    {
+      "id": 105,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 22,
+      "profile": [
+        7,
+        8,
+        10
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 3360,
+      "total_nodes": 53621349,
+      "unsat_cells": 0
+    },
+    {
+      "id": 106,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 22,
+      "profile": [
+        7,
+        9,
+        9
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 1701,
+      "total_nodes": 27463628,
+      "unsat_cells": 0
+    },
+    {
+      "id": 107,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 22,
+      "profile": [
+        8,
+        8,
+        9
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "tested_cells": 1710,
+      "total_nodes": 27234277,
+      "unsat_cells": 0
+    },
+    {
+      "id": 108,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 23,
+      "profile": [
+        4,
+        5,
+        17
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 592,
+      "total_nodes": 11552187,
+      "unsat_cells": 0
+    },
+    {
+      "id": 109,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 23,
+      "profile": [
+        4,
+        6,
+        16
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 872,
+      "total_nodes": 17221013,
+      "unsat_cells": 0
+    },
+    {
+      "id": 110,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 23,
+      "profile": [
+        4,
+        7,
+        15
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 952,
+      "total_nodes": 18796379,
+      "unsat_cells": 0
+    },
+    {
+      "id": 111,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 23,
+      "profile": [
+        4,
+        8,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 960,
+      "total_nodes": 18889255,
+      "unsat_cells": 0
+    },
+    {
+      "id": 112,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 23,
+      "profile": [
+        4,
+        9,
+        13
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 960,
+      "total_nodes": 18850277,
+      "unsat_cells": 0
+    },
+    {
+      "id": 113,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 23,
+      "profile": [
+        4,
+        10,
+        12
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 960,
+      "total_nodes": 18820247,
+      "unsat_cells": 0
+    },
+    {
+      "id": 114,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 23,
+      "profile": [
+        4,
+        11,
+        11
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 492,
+      "total_nodes": 9074973,
+      "unsat_cells": 0
+    },
+    {
+      "id": 115,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 23,
+      "profile": [
+        5,
+        5,
+        16
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 821,
+      "total_nodes": 15962520,
+      "unsat_cells": 0
+    },
+    {
+      "id": 116,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 23,
+      "profile": [
+        5,
+        6,
+        15
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 2230,
+      "total_nodes": 44374698,
+      "unsat_cells": 0
+    },
+    {
+      "id": 117,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 23,
+      "profile": [
+        5,
+        7,
+        14
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 2386,
+      "total_nodes": 47542623,
+      "unsat_cells": 0
+    },
+    {
+      "id": 118,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 23,
+      "profile": [
+        5,
+        8,
+        13
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 2400,
+      "total_nodes": 47891314,
+      "unsat_cells": 0
+    },
+    {
+      "id": 119,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 23,
+      "profile": [
+        5,
+        9,
+        12
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 2400,
+      "total_nodes": 47915474,
+      "unsat_cells": 0
+    },
+    {
+      "id": 120,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 23,
+      "profile": [
+        5,
+        10,
+        11
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 2400,
+      "total_nodes": 47780894,
+      "unsat_cells": 0
+    },
+    {
+      "id": 121,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 23,
+      "profile": [
+        6,
+        6,
+        14
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 1515,
+      "total_nodes": 29509098,
+      "unsat_cells": 0
+    },
+    {
+      "id": 122,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 23,
+      "profile": [
+        6,
+        7,
+        13
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 3165,
+      "total_nodes": 63472807,
+      "unsat_cells": 0
+    },
+    {
+      "id": 123,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 23,
+      "profile": [
+        6,
+        8,
+        12
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 3180,
+      "total_nodes": 64074535,
+      "unsat_cells": 0
+    },
+    {
+      "id": 124,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 23,
+      "profile": [
+        6,
+        9,
+        11
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 3180,
+      "total_nodes": 64057919,
+      "unsat_cells": 0
+    },
+    {
+      "id": 125,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 23,
+      "profile": [
+        6,
+        10,
+        10
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 1611,
+      "total_nodes": 31868609,
+      "unsat_cells": 0
+    },
+    {
+      "id": 126,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 23,
+      "profile": [
+        7,
+        7,
+        12
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 1695,
+      "total_nodes": 33530396,
+      "unsat_cells": 0
+    },
+    {
+      "id": 127,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 23,
+      "profile": [
+        7,
+        8,
+        11
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 3360,
+      "total_nodes": 67952422,
+      "unsat_cells": 0
+    },
+    {
+      "id": 128,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 23,
+      "profile": [
+        7,
+        9,
+        10
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 3360,
+      "total_nodes": 67936730,
+      "unsat_cells": 0
+    },
+    {
+      "id": 129,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 23,
+      "profile": [
+        8,
+        8,
+        10
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 1710,
+      "total_nodes": 34346204,
+      "unsat_cells": 0
+    },
+    {
+      "id": 130,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 23,
+      "profile": [
+        8,
+        9,
+        9
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "tested_cells": 1710,
+      "total_nodes": 34385711,
+      "unsat_cells": 0
+    },
+    {
+      "id": 131,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 24,
+      "profile": [
+        4,
+        5,
+        18
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 592,
+      "total_nodes": 13994625,
+      "unsat_cells": 0
+    },
+    {
+      "id": 132,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 24,
+      "profile": [
+        4,
+        6,
+        17
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 872,
+      "total_nodes": 21244500,
+      "unsat_cells": 0
+    },
+    {
+      "id": 133,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 24,
+      "profile": [
+        4,
+        7,
+        16
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 952,
+      "total_nodes": 23340349,
+      "unsat_cells": 0
+    },
+    {
+      "id": 134,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 24,
+      "profile": [
+        4,
+        8,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 960,
+      "total_nodes": 23465416,
+      "unsat_cells": 0
+    },
+    {
+      "id": 135,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 24,
+      "profile": [
+        4,
+        9,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 960,
+      "total_nodes": 23449192,
+      "unsat_cells": 0
+    },
+    {
+      "id": 136,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 24,
+      "profile": [
+        4,
+        10,
+        13
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 960,
+      "total_nodes": 23318276,
+      "unsat_cells": 0
+    },
+    {
+      "id": 137,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 24,
+      "profile": [
+        4,
+        11,
+        12
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 960,
+      "total_nodes": 23208628,
+      "unsat_cells": 0
+    },
+    {
+      "id": 138,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 24,
+      "profile": [
+        5,
+        5,
+        17
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 821,
+      "total_nodes": 19763413,
+      "unsat_cells": 0
+    },
+    {
+      "id": 139,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 24,
+      "profile": [
+        5,
+        6,
+        16
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 2230,
+      "total_nodes": 55120884,
+      "unsat_cells": 0
+    },
+    {
+      "id": 140,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 24,
+      "profile": [
+        5,
+        7,
+        15
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 2386,
+      "total_nodes": 59154213,
+      "unsat_cells": 0
+    },
+    {
+      "id": 141,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 24,
+      "profile": [
+        5,
+        8,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 2400,
+      "total_nodes": 59594244,
+      "unsat_cells": 0
+    },
+    {
+      "id": 142,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 24,
+      "profile": [
+        5,
+        9,
+        13
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 2400,
+      "total_nodes": 59402338,
+      "unsat_cells": 0
+    },
+    {
+      "id": 143,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 24,
+      "profile": [
+        5,
+        10,
+        12
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 2400,
+      "total_nodes": 59151397,
+      "unsat_cells": 0
+    },
+    {
+      "id": 144,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 24,
+      "profile": [
+        5,
+        11,
+        11
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 1212,
+      "total_nodes": 28945444,
+      "unsat_cells": 0
+    },
+    {
+      "id": 145,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 24,
+      "profile": [
+        6,
+        6,
+        15
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 1515,
+      "total_nodes": 36490103,
+      "unsat_cells": 0
+    },
+    {
+      "id": 146,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 24,
+      "profile": [
+        6,
+        7,
+        14
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3165,
+      "total_nodes": 78708981,
+      "unsat_cells": 0
+    },
+    {
+      "id": 147,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 24,
+      "profile": [
+        6,
+        8,
+        13
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3180,
+      "total_nodes": 79042185,
+      "unsat_cells": 0
+    },
+    {
+      "id": 148,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 24,
+      "profile": [
+        6,
+        9,
+        12
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3180,
+      "total_nodes": 78836298,
+      "unsat_cells": 0
+    },
+    {
+      "id": 149,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 24,
+      "profile": [
+        6,
+        10,
+        11
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3180,
+      "total_nodes": 78785840,
+      "unsat_cells": 0
+    },
+    {
+      "id": 150,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 24,
+      "profile": [
+        7,
+        7,
+        13
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 1695,
+      "total_nodes": 41076896,
+      "unsat_cells": 0
+    },
+    {
+      "id": 151,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 24,
+      "profile": [
+        7,
+        8,
+        12
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3360,
+      "total_nodes": 83100413,
+      "unsat_cells": 0
+    },
+    {
+      "id": 152,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 24,
+      "profile": [
+        7,
+        9,
+        11
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3360,
+      "total_nodes": 83248314,
+      "unsat_cells": 0
+    },
+    {
+      "id": 153,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 24,
+      "profile": [
+        7,
+        10,
+        10
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 1701,
+      "total_nodes": 42013502,
+      "unsat_cells": 0
+    },
+    {
+      "id": 154,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 24,
+      "profile": [
+        8,
+        8,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 1710,
+      "total_nodes": 42155678,
+      "unsat_cells": 0
+    },
+    {
+      "id": 155,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 24,
+      "profile": [
+        8,
+        9,
+        10
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 3375,
+      "total_nodes": 83358846,
+      "unsat_cells": 0
+    },
+    {
+      "id": 156,
+      "indeterminate_cells": 0,
+      "local_classes": 590,
+      "n": 24,
+      "profile": [
+        9,
+        9,
+        9
+      ],
+      "sat_cells": 590,
+      "source": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "tested_cells": 590,
+      "total_nodes": 12504578,
+      "unsat_cells": 0
+    },
+    {
+      "id": 157,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 25,
+      "profile": [
+        4,
+        5,
+        19
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 592,
+      "total_nodes": 17069381,
+      "unsat_cells": 0
+    },
+    {
+      "id": 158,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 25,
+      "profile": [
+        4,
+        6,
+        18
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 872,
+      "total_nodes": 25131292,
+      "unsat_cells": 0
+    },
+    {
+      "id": 159,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 25,
+      "profile": [
+        4,
+        7,
+        17
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 952,
+      "total_nodes": 27374888,
+      "unsat_cells": 0
+    },
+    {
+      "id": 160,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 25,
+      "profile": [
+        4,
+        8,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 960,
+      "total_nodes": 27671294,
+      "unsat_cells": 0
+    },
+    {
+      "id": 161,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 25,
+      "profile": [
+        4,
+        9,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 960,
+      "total_nodes": 27703500,
+      "unsat_cells": 0
+    },
+    {
+      "id": 162,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 25,
+      "profile": [
+        4,
+        10,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 960,
+      "total_nodes": 27655469,
+      "unsat_cells": 0
+    },
+    {
+      "id": 163,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 25,
+      "profile": [
+        4,
+        11,
+        13
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 960,
+      "total_nodes": 27588138,
+      "unsat_cells": 0
+    },
+    {
+      "id": 164,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 25,
+      "profile": [
+        4,
+        12,
+        12
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 492,
+      "total_nodes": 13541591,
+      "unsat_cells": 0
+    },
+    {
+      "id": 165,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 25,
+      "profile": [
+        5,
+        5,
+        18
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 821,
+      "total_nodes": 23323921,
+      "unsat_cells": 0
+    },
+    {
+      "id": 166,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 25,
+      "profile": [
+        5,
+        6,
+        17
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2230,
+      "total_nodes": 64814227,
+      "unsat_cells": 0
+    },
+    {
+      "id": 167,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 25,
+      "profile": [
+        5,
+        7,
+        16
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2386,
+      "total_nodes": 69683919,
+      "unsat_cells": 0
+    },
+    {
+      "id": 168,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 25,
+      "profile": [
+        5,
+        8,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2400,
+      "total_nodes": 70361404,
+      "unsat_cells": 0
+    },
+    {
+      "id": 169,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 25,
+      "profile": [
+        5,
+        9,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2400,
+      "total_nodes": 70413245,
+      "unsat_cells": 0
+    },
+    {
+      "id": 170,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 25,
+      "profile": [
+        5,
+        10,
+        13
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2400,
+      "total_nodes": 70322897,
+      "unsat_cells": 0
+    },
+    {
+      "id": 171,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 25,
+      "profile": [
+        5,
+        11,
+        12
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 2400,
+      "total_nodes": 69987280,
+      "unsat_cells": 0
+    },
+    {
+      "id": 172,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 25,
+      "profile": [
+        6,
+        6,
+        16
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1515,
+      "total_nodes": 43067380,
+      "unsat_cells": 0
+    },
+    {
+      "id": 173,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 25,
+      "profile": [
+        6,
+        7,
+        15
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3165,
+      "total_nodes": 92985289,
+      "unsat_cells": 0
+    },
+    {
+      "id": 174,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 25,
+      "profile": [
+        6,
+        8,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3180,
+      "total_nodes": 93613523,
+      "unsat_cells": 0
+    },
+    {
+      "id": 175,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 25,
+      "profile": [
+        6,
+        9,
+        13
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3180,
+      "total_nodes": 93681594,
+      "unsat_cells": 0
+    },
+    {
+      "id": 176,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 25,
+      "profile": [
+        6,
+        10,
+        12
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3180,
+      "total_nodes": 93405513,
+      "unsat_cells": 0
+    },
+    {
+      "id": 177,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 25,
+      "profile": [
+        6,
+        11,
+        11
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1611,
+      "total_nodes": 48571072,
+      "unsat_cells": 0
+    },
+    {
+      "id": 178,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 25,
+      "profile": [
+        7,
+        7,
+        14
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1695,
+      "total_nodes": 48868517,
+      "unsat_cells": 0
+    },
+    {
+      "id": 179,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 25,
+      "profile": [
+        7,
+        8,
+        13
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3360,
+      "total_nodes": 98913695,
+      "unsat_cells": 0
+    },
+    {
+      "id": 180,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 25,
+      "profile": [
+        7,
+        9,
+        12
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3360,
+      "total_nodes": 98814949,
+      "unsat_cells": 0
+    },
+    {
+      "id": 181,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 25,
+      "profile": [
+        7,
+        10,
+        11
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3360,
+      "total_nodes": 98304737,
+      "unsat_cells": 0
+    },
+    {
+      "id": 182,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 25,
+      "profile": [
+        8,
+        8,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1710,
+      "total_nodes": 49967471,
+      "unsat_cells": 0
+    },
+    {
+      "id": 183,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 25,
+      "profile": [
+        8,
+        9,
+        11
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 3375,
+      "total_nodes": 97941286,
+      "unsat_cells": 0
+    },
+    {
+      "id": 184,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 25,
+      "profile": [
+        8,
+        10,
+        10
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1710,
+      "total_nodes": 50359079,
+      "unsat_cells": 0
+    },
+    {
+      "id": 185,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 25,
+      "profile": [
+        9,
+        9,
+        10
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "tested_cells": 1710,
+      "total_nodes": 49731513,
+      "unsat_cells": 0
+    },
+    {
+      "id": 186,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 26,
+      "profile": [
+        4,
+        5,
+        20
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 592,
+      "total_nodes": 20523260,
+      "unsat_cells": 0
+    },
+    {
+      "id": 187,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 26,
+      "profile": [
+        4,
+        6,
+        19
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 872,
+      "total_nodes": 30537965,
+      "unsat_cells": 0
+    },
+    {
+      "id": 188,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 26,
+      "profile": [
+        4,
+        7,
+        18
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 952,
+      "total_nodes": 33286154,
+      "unsat_cells": 0
+    },
+    {
+      "id": 189,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 26,
+      "profile": [
+        4,
+        8,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 960,
+      "total_nodes": 33558433,
+      "unsat_cells": 0
+    },
+    {
+      "id": 190,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 26,
+      "profile": [
+        4,
+        9,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 960,
+      "total_nodes": 33643887,
+      "unsat_cells": 0
+    },
+    {
+      "id": 191,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 26,
+      "profile": [
+        4,
+        10,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 960,
+      "total_nodes": 33652246,
+      "unsat_cells": 0
+    },
+    {
+      "id": 192,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 26,
+      "profile": [
+        4,
+        11,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 960,
+      "total_nodes": 33626643,
+      "unsat_cells": 0
+    },
+    {
+      "id": 193,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 26,
+      "profile": [
+        4,
+        12,
+        13
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 960,
+      "total_nodes": 33520259,
+      "unsat_cells": 0
+    },
+    {
+      "id": 194,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 26,
+      "profile": [
+        5,
+        5,
+        19
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 821,
+      "total_nodes": 28349925,
+      "unsat_cells": 0
+    },
+    {
+      "id": 195,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 26,
+      "profile": [
+        5,
+        6,
+        18
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2230,
+      "total_nodes": 78705205,
+      "unsat_cells": 0
+    },
+    {
+      "id": 196,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 26,
+      "profile": [
+        5,
+        7,
+        17
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2386,
+      "total_nodes": 84462460,
+      "unsat_cells": 0
+    },
+    {
+      "id": 197,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 26,
+      "profile": [
+        5,
+        8,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2400,
+      "total_nodes": 85298310,
+      "unsat_cells": 0
+    },
+    {
+      "id": 198,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 26,
+      "profile": [
+        5,
+        9,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2400,
+      "total_nodes": 85524726,
+      "unsat_cells": 0
+    },
+    {
+      "id": 199,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 26,
+      "profile": [
+        5,
+        10,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2400,
+      "total_nodes": 85539954,
+      "unsat_cells": 0
+    },
+    {
+      "id": 200,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 26,
+      "profile": [
+        5,
+        11,
+        13
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 2400,
+      "total_nodes": 85329967,
+      "unsat_cells": 0
+    },
+    {
+      "id": 201,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 26,
+      "profile": [
+        5,
+        12,
+        12
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1212,
+      "total_nodes": 42387153,
+      "unsat_cells": 0
+    },
+    {
+      "id": 202,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 26,
+      "profile": [
+        6,
+        6,
+        17
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1515,
+      "total_nodes": 52364881,
+      "unsat_cells": 0
+    },
+    {
+      "id": 203,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 26,
+      "profile": [
+        6,
+        7,
+        16
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3165,
+      "total_nodes": 112807365,
+      "unsat_cells": 0
+    },
+    {
+      "id": 204,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 26,
+      "profile": [
+        6,
+        8,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3180,
+      "total_nodes": 113923555,
+      "unsat_cells": 0
+    },
+    {
+      "id": 205,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 26,
+      "profile": [
+        6,
+        9,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3180,
+      "total_nodes": 114128240,
+      "unsat_cells": 0
+    },
+    {
+      "id": 206,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 26,
+      "profile": [
+        6,
+        10,
+        13
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3180,
+      "total_nodes": 113975173,
+      "unsat_cells": 0
+    },
+    {
+      "id": 207,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 26,
+      "profile": [
+        6,
+        11,
+        12
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3180,
+      "total_nodes": 113719268,
+      "unsat_cells": 0
+    },
+    {
+      "id": 208,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 26,
+      "profile": [
+        7,
+        7,
+        15
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1695,
+      "total_nodes": 59214620,
+      "unsat_cells": 0
+    },
+    {
+      "id": 209,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 26,
+      "profile": [
+        7,
+        8,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3360,
+      "total_nodes": 120908597,
+      "unsat_cells": 0
+    },
+    {
+      "id": 210,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 26,
+      "profile": [
+        7,
+        9,
+        13
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3360,
+      "total_nodes": 120995964,
+      "unsat_cells": 0
+    },
+    {
+      "id": 211,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 26,
+      "profile": [
+        7,
+        10,
+        12
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3360,
+      "total_nodes": 120912033,
+      "unsat_cells": 0
+    },
+    {
+      "id": 212,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 26,
+      "profile": [
+        7,
+        11,
+        11
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1701,
+      "total_nodes": 61554391,
+      "unsat_cells": 0
+    },
+    {
+      "id": 213,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 26,
+      "profile": [
+        8,
+        8,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1710,
+      "total_nodes": 60805839,
+      "unsat_cells": 0
+    },
+    {
+      "id": 214,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 26,
+      "profile": [
+        8,
+        9,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3375,
+      "total_nodes": 120934860,
+      "unsat_cells": 0
+    },
+    {
+      "id": 215,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 26,
+      "profile": [
+        8,
+        10,
+        11
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 3375,
+      "total_nodes": 120733338,
+      "unsat_cells": 0
+    },
+    {
+      "id": 216,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 26,
+      "profile": [
+        9,
+        9,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1710,
+      "total_nodes": 61284312,
+      "unsat_cells": 0
+    },
+    {
+      "id": 217,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 26,
+      "profile": [
+        9,
+        10,
+        10
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "tested_cells": 1710,
+      "total_nodes": 60448482,
+      "unsat_cells": 0
+    },
+    {
+      "id": 218,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 27,
+      "profile": [
+        4,
+        5,
+        21
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 592,
+      "total_nodes": 24571811,
+      "unsat_cells": 0
+    },
+    {
+      "id": 219,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 27,
+      "profile": [
+        4,
+        6,
+        20
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 872,
+      "total_nodes": 36221255,
+      "unsat_cells": 0
+    },
+    {
+      "id": 220,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 27,
+      "profile": [
+        4,
+        7,
+        19
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 952,
+      "total_nodes": 40215270,
+      "unsat_cells": 0
+    },
+    {
+      "id": 221,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 27,
+      "profile": [
+        4,
+        8,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 960,
+      "total_nodes": 40611360,
+      "unsat_cells": 0
+    },
+    {
+      "id": 222,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 27,
+      "profile": [
+        4,
+        9,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 960,
+      "total_nodes": 40615686,
+      "unsat_cells": 0
+    },
+    {
+      "id": 223,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 27,
+      "profile": [
+        4,
+        10,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 960,
+      "total_nodes": 40766825,
+      "unsat_cells": 0
+    },
+    {
+      "id": 224,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 27,
+      "profile": [
+        4,
+        11,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 960,
+      "total_nodes": 40820239,
+      "unsat_cells": 0
+    },
+    {
+      "id": 225,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 27,
+      "profile": [
+        4,
+        12,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 960,
+      "total_nodes": 40695770,
+      "unsat_cells": 0
+    },
+    {
+      "id": 226,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 27,
+      "profile": [
+        4,
+        13,
+        13
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 492,
+      "total_nodes": 20157745,
+      "unsat_cells": 0
+    },
+    {
+      "id": 227,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 27,
+      "profile": [
+        5,
+        5,
+        20
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 821,
+      "total_nodes": 33618536,
+      "unsat_cells": 0
+    },
+    {
+      "id": 228,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 27,
+      "profile": [
+        5,
+        6,
+        19
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2230,
+      "total_nodes": 94514707,
+      "unsat_cells": 0
+    },
+    {
+      "id": 229,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 27,
+      "profile": [
+        5,
+        7,
+        18
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2386,
+      "total_nodes": 101777392,
+      "unsat_cells": 0
+    },
+    {
+      "id": 230,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 27,
+      "profile": [
+        5,
+        8,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2400,
+      "total_nodes": 102750290,
+      "unsat_cells": 0
+    },
+    {
+      "id": 231,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 27,
+      "profile": [
+        5,
+        9,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2400,
+      "total_nodes": 103410209,
+      "unsat_cells": 0
+    },
+    {
+      "id": 232,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 27,
+      "profile": [
+        5,
+        10,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2400,
+      "total_nodes": 103670448,
+      "unsat_cells": 0
+    },
+    {
+      "id": 233,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 27,
+      "profile": [
+        5,
+        11,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2400,
+      "total_nodes": 103467940,
+      "unsat_cells": 0
+    },
+    {
+      "id": 234,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 27,
+      "profile": [
+        5,
+        12,
+        13
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 2400,
+      "total_nodes": 103115630,
+      "unsat_cells": 0
+    },
+    {
+      "id": 235,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 27,
+      "profile": [
+        6,
+        6,
+        18
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1515,
+      "total_nodes": 63504620,
+      "unsat_cells": 0
+    },
+    {
+      "id": 236,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 27,
+      "profile": [
+        6,
+        7,
+        17
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3165,
+      "total_nodes": 136225395,
+      "unsat_cells": 0
+    },
+    {
+      "id": 237,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 27,
+      "profile": [
+        6,
+        8,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3180,
+      "total_nodes": 138184088,
+      "unsat_cells": 0
+    },
+    {
+      "id": 238,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 27,
+      "profile": [
+        6,
+        9,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3180,
+      "total_nodes": 138905949,
+      "unsat_cells": 0
+    },
+    {
+      "id": 239,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 27,
+      "profile": [
+        6,
+        10,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3180,
+      "total_nodes": 138811090,
+      "unsat_cells": 0
+    },
+    {
+      "id": 240,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 27,
+      "profile": [
+        6,
+        11,
+        13
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3180,
+      "total_nodes": 138465266,
+      "unsat_cells": 0
+    },
+    {
+      "id": 241,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 27,
+      "profile": [
+        6,
+        12,
+        12
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1611,
+      "total_nodes": 70308729,
+      "unsat_cells": 0
+    },
+    {
+      "id": 242,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 27,
+      "profile": [
+        7,
+        7,
+        16
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1695,
+      "total_nodes": 72078111,
+      "unsat_cells": 0
+    },
+    {
+      "id": 243,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 27,
+      "profile": [
+        7,
+        8,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3360,
+      "total_nodes": 148086815,
+      "unsat_cells": 0
+    },
+    {
+      "id": 244,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 27,
+      "profile": [
+        7,
+        9,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3360,
+      "total_nodes": 148198809,
+      "unsat_cells": 0
+    },
+    {
+      "id": 245,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 27,
+      "profile": [
+        7,
+        10,
+        13
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3360,
+      "total_nodes": 148010203,
+      "unsat_cells": 0
+    },
+    {
+      "id": 246,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 27,
+      "profile": [
+        7,
+        11,
+        12
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3360,
+      "total_nodes": 147279152,
+      "unsat_cells": 0
+    },
+    {
+      "id": 247,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 27,
+      "profile": [
+        8,
+        8,
+        14
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1710,
+      "total_nodes": 73424515,
+      "unsat_cells": 0
+    },
+    {
+      "id": 248,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 27,
+      "profile": [
+        8,
+        9,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3375,
+      "total_nodes": 148427818,
+      "unsat_cells": 0
+    },
+    {
+      "id": 249,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 27,
+      "profile": [
+        8,
+        10,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3375,
+      "total_nodes": 147989498,
+      "unsat_cells": 0
+    },
+    {
+      "id": 250,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 27,
+      "profile": [
+        8,
+        11,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1710,
+      "total_nodes": 73387548,
+      "unsat_cells": 0
+    },
+    {
+      "id": 251,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 27,
+      "profile": [
+        9,
+        9,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 1710,
+      "total_nodes": 74144839,
+      "unsat_cells": 0
+    },
+    {
+      "id": 252,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 27,
+      "profile": [
+        9,
+        10,
+        11
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 3375,
+      "total_nodes": 145494304,
+      "unsat_cells": 0
+    },
+    {
+      "id": 253,
+      "indeterminate_cells": 0,
+      "local_classes": 590,
+      "n": 27,
+      "profile": [
+        10,
+        10,
+        10
+      ],
+      "sat_cells": 590,
+      "source": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "tested_cells": 590,
+      "total_nodes": 22481842,
+      "unsat_cells": 0
+    },
+    {
+      "id": 254,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 28,
+      "profile": [
+        4,
+        5,
+        22
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 592,
+      "total_nodes": 29445445,
+      "unsat_cells": 0
+    },
+    {
+      "id": 255,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 28,
+      "profile": [
+        4,
+        6,
+        21
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 872,
+      "total_nodes": 44032579,
+      "unsat_cells": 0
+    },
+    {
+      "id": 256,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 28,
+      "profile": [
+        4,
+        7,
+        20
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 952,
+      "total_nodes": 48341020,
+      "unsat_cells": 0
+    },
+    {
+      "id": 257,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        8,
+        19
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48773531,
+      "unsat_cells": 0
+    },
+    {
+      "id": 258,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        9,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48641500,
+      "unsat_cells": 0
+    },
+    {
+      "id": 259,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        10,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48627168,
+      "unsat_cells": 0
+    },
+    {
+      "id": 260,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        11,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48599963,
+      "unsat_cells": 0
+    },
+    {
+      "id": 261,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        12,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48578536,
+      "unsat_cells": 0
+    },
+    {
+      "id": 262,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 28,
+      "profile": [
+        4,
+        13,
+        14
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 960,
+      "total_nodes": 48466023,
+      "unsat_cells": 0
+    },
+    {
+      "id": 263,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 28,
+      "profile": [
+        5,
+        5,
+        21
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 821,
+      "total_nodes": 41006625,
+      "unsat_cells": 0
+    },
+    {
+      "id": 264,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 28,
+      "profile": [
+        5,
+        6,
+        20
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2230,
+      "total_nodes": 113661971,
+      "unsat_cells": 0
+    },
+    {
+      "id": 265,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 28,
+      "profile": [
+        5,
+        7,
+        19
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2386,
+      "total_nodes": 122139806,
+      "unsat_cells": 0
+    },
+    {
+      "id": 266,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 28,
+      "profile": [
+        5,
+        8,
+        18
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2400,
+      "total_nodes": 123066586,
+      "unsat_cells": 0
+    },
+    {
+      "id": 267,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 28,
+      "profile": [
+        5,
+        9,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2400,
+      "total_nodes": 123225810,
+      "unsat_cells": 0
+    },
+    {
+      "id": 268,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 28,
+      "profile": [
+        5,
+        10,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2400,
+      "total_nodes": 123272581,
+      "unsat_cells": 0
+    },
+    {
+      "id": 269,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 28,
+      "profile": [
+        5,
+        11,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2400,
+      "total_nodes": 123354141,
+      "unsat_cells": 0
+    },
+    {
+      "id": 270,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 28,
+      "profile": [
+        5,
+        12,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 2400,
+      "total_nodes": 123167520,
+      "unsat_cells": 0
+    },
+    {
+      "id": 271,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 28,
+      "profile": [
+        5,
+        13,
+        13
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1212,
+      "total_nodes": 61253259,
+      "unsat_cells": 0
+    },
+    {
+      "id": 272,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 28,
+      "profile": [
+        6,
+        6,
+        19
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1515,
+      "total_nodes": 75939119,
+      "unsat_cells": 0
+    },
+    {
+      "id": 273,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 28,
+      "profile": [
+        6,
+        7,
+        18
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3165,
+      "total_nodes": 162705832,
+      "unsat_cells": 0
+    },
+    {
+      "id": 274,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 28,
+      "profile": [
+        6,
+        8,
+        17
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3180,
+      "total_nodes": 163917804,
+      "unsat_cells": 0
+    },
+    {
+      "id": 275,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 28,
+      "profile": [
+        6,
+        9,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3180,
+      "total_nodes": 164372431,
+      "unsat_cells": 0
+    },
+    {
+      "id": 276,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 28,
+      "profile": [
+        6,
+        10,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3180,
+      "total_nodes": 164700375,
+      "unsat_cells": 0
+    },
+    {
+      "id": 277,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 28,
+      "profile": [
+        6,
+        11,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3180,
+      "total_nodes": 164620351,
+      "unsat_cells": 0
+    },
+    {
+      "id": 278,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 28,
+      "profile": [
+        6,
+        12,
+        13
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3180,
+      "total_nodes": 164287294,
+      "unsat_cells": 0
+    },
+    {
+      "id": 279,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 28,
+      "profile": [
+        7,
+        7,
+        17
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1695,
+      "total_nodes": 85305871,
+      "unsat_cells": 0
+    },
+    {
+      "id": 280,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 28,
+      "profile": [
+        7,
+        8,
+        16
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3360,
+      "total_nodes": 174319858,
+      "unsat_cells": 0
+    },
+    {
+      "id": 281,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 28,
+      "profile": [
+        7,
+        9,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3360,
+      "total_nodes": 174869388,
+      "unsat_cells": 0
+    },
+    {
+      "id": 282,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 28,
+      "profile": [
+        7,
+        10,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3360,
+      "total_nodes": 175004621,
+      "unsat_cells": 0
+    },
+    {
+      "id": 283,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 28,
+      "profile": [
+        7,
+        11,
+        13
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3360,
+      "total_nodes": 174843183,
+      "unsat_cells": 0
+    },
+    {
+      "id": 284,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 28,
+      "profile": [
+        7,
+        12,
+        12
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1701,
+      "total_nodes": 88912658,
+      "unsat_cells": 0
+    },
+    {
+      "id": 285,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 28,
+      "profile": [
+        8,
+        8,
+        15
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1710,
+      "total_nodes": 86799518,
+      "unsat_cells": 0
+    },
+    {
+      "id": 286,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 28,
+      "profile": [
+        8,
+        9,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3375,
+      "total_nodes": 175810255,
+      "unsat_cells": 0
+    },
+    {
+      "id": 287,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 28,
+      "profile": [
+        8,
+        10,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3375,
+      "total_nodes": 175882948,
+      "unsat_cells": 0
+    },
+    {
+      "id": 288,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 28,
+      "profile": [
+        8,
+        11,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3375,
+      "total_nodes": 175592282,
+      "unsat_cells": 0
+    },
+    {
+      "id": 289,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 28,
+      "profile": [
+        9,
+        9,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1710,
+      "total_nodes": 87718034,
+      "unsat_cells": 0
+    },
+    {
+      "id": 290,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 28,
+      "profile": [
+        9,
+        10,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 3375,
+      "total_nodes": 174299567,
+      "unsat_cells": 0
+    },
+    {
+      "id": 291,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 28,
+      "profile": [
+        9,
+        11,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1710,
+      "total_nodes": 88970006,
+      "unsat_cells": 0
+    },
+    {
+      "id": 292,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 28,
+      "profile": [
+        10,
+        10,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "tested_cells": 1710,
+      "total_nodes": 88548194,
+      "unsat_cells": 0
+    },
+    {
+      "id": 293,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 29,
+      "profile": [
+        4,
+        5,
+        23
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 592,
+      "total_nodes": 34721725,
+      "unsat_cells": 0
+    },
+    {
+      "id": 294,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 29,
+      "profile": [
+        4,
+        6,
+        22
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 872,
+      "total_nodes": 51362440,
+      "unsat_cells": 0
+    },
+    {
+      "id": 295,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 29,
+      "profile": [
+        4,
+        7,
+        21
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 952,
+      "total_nodes": 57150154,
+      "unsat_cells": 0
+    },
+    {
+      "id": 296,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        8,
+        20
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 58033000,
+      "unsat_cells": 0
+    },
+    {
+      "id": 297,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        9,
+        19
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 57785589,
+      "unsat_cells": 0
+    },
+    {
+      "id": 298,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        10,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 57739243,
+      "unsat_cells": 0
+    },
+    {
+      "id": 299,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        11,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 57799291,
+      "unsat_cells": 0
+    },
+    {
+      "id": 300,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        12,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 57849316,
+      "unsat_cells": 0
+    },
+    {
+      "id": 301,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 29,
+      "profile": [
+        4,
+        13,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 57844550,
+      "unsat_cells": 0
+    },
+    {
+      "id": 302,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 29,
+      "profile": [
+        4,
+        14,
+        14
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 492,
+      "total_nodes": 28168994,
+      "unsat_cells": 0
+    },
+    {
+      "id": 303,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 29,
+      "profile": [
+        5,
+        5,
+        22
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 821,
+      "total_nodes": 47812043,
+      "unsat_cells": 0
+    },
+    {
+      "id": 304,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 29,
+      "profile": [
+        5,
+        6,
+        21
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2230,
+      "total_nodes": 134007821,
+      "unsat_cells": 0
+    },
+    {
+      "id": 305,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 29,
+      "profile": [
+        5,
+        7,
+        20
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2386,
+      "total_nodes": 144709020,
+      "unsat_cells": 0
+    },
+    {
+      "id": 306,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        8,
+        19
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 145814120,
+      "unsat_cells": 0
+    },
+    {
+      "id": 307,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        9,
+        18
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 146125032,
+      "unsat_cells": 0
+    },
+    {
+      "id": 308,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        10,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 146407591,
+      "unsat_cells": 0
+    },
+    {
+      "id": 309,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        11,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 146634584,
+      "unsat_cells": 0
+    },
+    {
+      "id": 310,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        12,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 146789558,
+      "unsat_cells": 0
+    },
+    {
+      "id": 311,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 29,
+      "profile": [
+        5,
+        13,
+        14
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 146133259,
+      "unsat_cells": 0
+    },
+    {
+      "id": 312,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 29,
+      "profile": [
+        6,
+        6,
+        20
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1515,
+      "total_nodes": 90325918,
+      "unsat_cells": 0
+    },
+    {
+      "id": 313,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 29,
+      "profile": [
+        6,
+        7,
+        19
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3165,
+      "total_nodes": 192897883,
+      "unsat_cells": 0
+    },
+    {
+      "id": 314,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 29,
+      "profile": [
+        6,
+        8,
+        18
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 194870668,
+      "unsat_cells": 0
+    },
+    {
+      "id": 315,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 29,
+      "profile": [
+        6,
+        9,
+        17
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 195492346,
+      "unsat_cells": 0
+    },
+    {
+      "id": 316,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 29,
+      "profile": [
+        6,
+        10,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 196044798,
+      "unsat_cells": 0
+    },
+    {
+      "id": 317,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 29,
+      "profile": [
+        6,
+        11,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 196474044,
+      "unsat_cells": 0
+    },
+    {
+      "id": 318,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 29,
+      "profile": [
+        6,
+        12,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 195772124,
+      "unsat_cells": 0
+    },
+    {
+      "id": 319,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 29,
+      "profile": [
+        6,
+        13,
+        13
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1611,
+      "total_nodes": 97562683,
+      "unsat_cells": 0
+    },
+    {
+      "id": 320,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 29,
+      "profile": [
+        7,
+        7,
+        18
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1695,
+      "total_nodes": 101757085,
+      "unsat_cells": 0
+    },
+    {
+      "id": 321,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 29,
+      "profile": [
+        7,
+        8,
+        17
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 207474478,
+      "unsat_cells": 0
+    },
+    {
+      "id": 322,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 29,
+      "profile": [
+        7,
+        9,
+        16
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 208326466,
+      "unsat_cells": 0
+    },
+    {
+      "id": 323,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 29,
+      "profile": [
+        7,
+        10,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 209087284,
+      "unsat_cells": 0
+    },
+    {
+      "id": 324,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 29,
+      "profile": [
+        7,
+        11,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 208572498,
+      "unsat_cells": 0
+    },
+    {
+      "id": 325,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 29,
+      "profile": [
+        7,
+        12,
+        13
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 207549857,
+      "unsat_cells": 0
+    },
+    {
+      "id": 326,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 29,
+      "profile": [
+        8,
+        8,
+        16
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 103588440,
+      "unsat_cells": 0
+    },
+    {
+      "id": 327,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 29,
+      "profile": [
+        8,
+        9,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 210182298,
+      "unsat_cells": 0
+    },
+    {
+      "id": 328,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 29,
+      "profile": [
+        8,
+        10,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 209997348,
+      "unsat_cells": 0
+    },
+    {
+      "id": 329,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 29,
+      "profile": [
+        8,
+        11,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 209061047,
+      "unsat_cells": 0
+    },
+    {
+      "id": 330,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 29,
+      "profile": [
+        8,
+        12,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 104233528,
+      "unsat_cells": 0
+    },
+    {
+      "id": 331,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 29,
+      "profile": [
+        9,
+        9,
+        14
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 104291547,
+      "unsat_cells": 0
+    },
+    {
+      "id": 332,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 29,
+      "profile": [
+        9,
+        10,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 209198027,
+      "unsat_cells": 0
+    },
+    {
+      "id": 333,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 29,
+      "profile": [
+        9,
+        11,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 209039385,
+      "unsat_cells": 0
+    },
+    {
+      "id": 334,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 29,
+      "profile": [
+        10,
+        10,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 105261457,
+      "unsat_cells": 0
+    },
+    {
+      "id": 335,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 29,
+      "profile": [
+        10,
+        11,
+        11
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 105549724,
+      "unsat_cells": 0
+    },
+    {
+      "id": 336,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 30,
+      "profile": [
+        4,
+        5,
+        24
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 592,
+      "total_nodes": 40678992,
+      "unsat_cells": 0
+    },
+    {
+      "id": 337,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 30,
+      "profile": [
+        4,
+        6,
+        23
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 872,
+      "total_nodes": 60444915,
+      "unsat_cells": 0
+    },
+    {
+      "id": 338,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 30,
+      "profile": [
+        4,
+        7,
+        22
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 952,
+      "total_nodes": 66712065,
+      "unsat_cells": 0
+    },
+    {
+      "id": 339,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        8,
+        21
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 68264135,
+      "unsat_cells": 0
+    },
+    {
+      "id": 340,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        9,
+        20
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 68381582,
+      "unsat_cells": 0
+    },
+    {
+      "id": 341,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        10,
+        19
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 67912638,
+      "unsat_cells": 0
+    },
+    {
+      "id": 342,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        11,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 67908642,
+      "unsat_cells": 0
+    },
+    {
+      "id": 343,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        12,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 68029453,
+      "unsat_cells": 0
+    },
+    {
+      "id": 344,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        13,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 68090618,
+      "unsat_cells": 0
+    },
+    {
+      "id": 345,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 30,
+      "profile": [
+        4,
+        14,
+        15
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 67978606,
+      "unsat_cells": 0
+    },
+    {
+      "id": 346,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 30,
+      "profile": [
+        5,
+        5,
+        23
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 821,
+      "total_nodes": 56064819,
+      "unsat_cells": 0
+    },
+    {
+      "id": 347,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 30,
+      "profile": [
+        5,
+        6,
+        22
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2230,
+      "total_nodes": 156667687,
+      "unsat_cells": 0
+    },
+    {
+      "id": 348,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 30,
+      "profile": [
+        5,
+        7,
+        21
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2386,
+      "total_nodes": 170416245,
+      "unsat_cells": 0
+    },
+    {
+      "id": 349,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        8,
+        20
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 172376187,
+      "unsat_cells": 0
+    },
+    {
+      "id": 350,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        9,
+        19
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 171933564,
+      "unsat_cells": 0
+    },
+    {
+      "id": 351,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        10,
+        18
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 171923414,
+      "unsat_cells": 0
+    },
+    {
+      "id": 352,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        11,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 172361676,
+      "unsat_cells": 0
+    },
+    {
+      "id": 353,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        12,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 172743103,
+      "unsat_cells": 0
+    },
+    {
+      "id": 354,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 30,
+      "profile": [
+        5,
+        13,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 172544422,
+      "unsat_cells": 0
+    },
+    {
+      "id": 355,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 30,
+      "profile": [
+        5,
+        14,
+        14
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1212,
+      "total_nodes": 85394518,
+      "unsat_cells": 0
+    },
+    {
+      "id": 356,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 30,
+      "profile": [
+        6,
+        6,
+        21
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1515,
+      "total_nodes": 106240957,
+      "unsat_cells": 0
+    },
+    {
+      "id": 357,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 30,
+      "profile": [
+        6,
+        7,
+        20
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3165,
+      "total_nodes": 227258534,
+      "unsat_cells": 0
+    },
+    {
+      "id": 358,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        8,
+        19
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 228559079,
+      "unsat_cells": 0
+    },
+    {
+      "id": 359,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        9,
+        18
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 228728564,
+      "unsat_cells": 0
+    },
+    {
+      "id": 360,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        10,
+        17
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 229454507,
+      "unsat_cells": 0
+    },
+    {
+      "id": 361,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        11,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 230222189,
+      "unsat_cells": 0
+    },
+    {
+      "id": 362,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        12,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 230213820,
+      "unsat_cells": 0
+    },
+    {
+      "id": 363,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 30,
+      "profile": [
+        6,
+        13,
+        14
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 229660115,
+      "unsat_cells": 0
+    },
+    {
+      "id": 364,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 30,
+      "profile": [
+        7,
+        7,
+        19
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1695,
+      "total_nodes": 118900646,
+      "unsat_cells": 0
+    },
+    {
+      "id": 365,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 30,
+      "profile": [
+        7,
+        8,
+        18
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 241552573,
+      "unsat_cells": 0
+    },
+    {
+      "id": 366,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 30,
+      "profile": [
+        7,
+        9,
+        17
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 242682924,
+      "unsat_cells": 0
+    },
+    {
+      "id": 367,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 30,
+      "profile": [
+        7,
+        10,
+        16
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 243860336,
+      "unsat_cells": 0
+    },
+    {
+      "id": 368,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 30,
+      "profile": [
+        7,
+        11,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 244035710,
+      "unsat_cells": 0
+    },
+    {
+      "id": 369,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 30,
+      "profile": [
+        7,
+        12,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 243645860,
+      "unsat_cells": 0
+    },
+    {
+      "id": 370,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 30,
+      "profile": [
+        7,
+        13,
+        13
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1701,
+      "total_nodes": 122705460,
+      "unsat_cells": 0
+    },
+    {
+      "id": 371,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 30,
+      "profile": [
+        8,
+        8,
+        17
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 121072623,
+      "unsat_cells": 0
+    },
+    {
+      "id": 372,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        8,
+        9,
+        16
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 245356798,
+      "unsat_cells": 0
+    },
+    {
+      "id": 373,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        8,
+        10,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 245778233,
+      "unsat_cells": 0
+    },
+    {
+      "id": 374,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        8,
+        11,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 245507733,
+      "unsat_cells": 0
+    },
+    {
+      "id": 375,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        8,
+        12,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 244510463,
+      "unsat_cells": 0
+    },
+    {
+      "id": 376,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 30,
+      "profile": [
+        9,
+        9,
+        15
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 121742326,
+      "unsat_cells": 0
+    },
+    {
+      "id": 377,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        9,
+        10,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 246039155,
+      "unsat_cells": 0
+    },
+    {
+      "id": 378,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        9,
+        11,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 245238120,
+      "unsat_cells": 0
+    },
+    {
+      "id": 379,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 30,
+      "profile": [
+        9,
+        12,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 122971826,
+      "unsat_cells": 0
+    },
+    {
+      "id": 380,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 30,
+      "profile": [
+        10,
+        10,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 123087901,
+      "unsat_cells": 0
+    },
+    {
+      "id": 381,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 30,
+      "profile": [
+        10,
+        11,
+        12
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 242185942,
+      "unsat_cells": 0
+    },
+    {
+      "id": 382,
+      "indeterminate_cells": 0,
+      "local_classes": 590,
+      "n": 30,
+      "profile": [
+        11,
+        11,
+        11
+      ],
+      "sat_cells": 590,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 590,
+      "total_nodes": 37661391,
+      "unsat_cells": 0
+    },
+    {
+      "id": 383,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 31,
+      "profile": [
+        4,
+        5,
+        25
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 592,
+      "total_nodes": 47959207,
+      "unsat_cells": 0
+    },
+    {
+      "id": 384,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 31,
+      "profile": [
+        4,
+        6,
+        24
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 872,
+      "total_nodes": 71055919,
+      "unsat_cells": 0
+    },
+    {
+      "id": 385,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 31,
+      "profile": [
+        4,
+        7,
+        23
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 952,
+      "total_nodes": 76985530,
+      "unsat_cells": 0
+    },
+    {
+      "id": 386,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        8,
+        22
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77591469,
+      "unsat_cells": 0
+    },
+    {
+      "id": 387,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        9,
+        21
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77589339,
+      "unsat_cells": 0
+    },
+    {
+      "id": 388,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        10,
+        20
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77452696,
+      "unsat_cells": 0
+    },
+    {
+      "id": 389,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        11,
+        19
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77372779,
+      "unsat_cells": 0
+    },
+    {
+      "id": 390,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        12,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77283946,
+      "unsat_cells": 0
+    },
+    {
+      "id": 391,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        13,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77101394,
+      "unsat_cells": 0
+    },
+    {
+      "id": 392,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 31,
+      "profile": [
+        4,
+        14,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 77188326,
+      "unsat_cells": 0
+    },
+    {
+      "id": 393,
+      "indeterminate_cells": 0,
+      "local_classes": 492,
+      "n": 31,
+      "profile": [
+        4,
+        15,
+        15
+      ],
+      "sat_cells": 492,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 492,
+      "total_nodes": 38936294,
+      "unsat_cells": 0
+    },
+    {
+      "id": 394,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 31,
+      "profile": [
+        5,
+        5,
+        24
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 821,
+      "total_nodes": 66198110,
+      "unsat_cells": 0
+    },
+    {
+      "id": 395,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 31,
+      "profile": [
+        5,
+        6,
+        23
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2230,
+      "total_nodes": 181110535,
+      "unsat_cells": 0
+    },
+    {
+      "id": 396,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 31,
+      "profile": [
+        5,
+        7,
+        22
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2386,
+      "total_nodes": 194083034,
+      "unsat_cells": 0
+    },
+    {
+      "id": 397,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        8,
+        21
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195773833,
+      "unsat_cells": 0
+    },
+    {
+      "id": 398,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        9,
+        20
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195923603,
+      "unsat_cells": 0
+    },
+    {
+      "id": 399,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        10,
+        19
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195940090,
+      "unsat_cells": 0
+    },
+    {
+      "id": 400,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        11,
+        18
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195879856,
+      "unsat_cells": 0
+    },
+    {
+      "id": 401,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        12,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195520179,
+      "unsat_cells": 0
+    },
+    {
+      "id": 402,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        13,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195820531,
+      "unsat_cells": 0
+    },
+    {
+      "id": 403,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 31,
+      "profile": [
+        5,
+        14,
+        15
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 195924569,
+      "unsat_cells": 0
+    },
+    {
+      "id": 404,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 31,
+      "profile": [
+        6,
+        6,
+        22
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1515,
+      "total_nodes": 120600812,
+      "unsat_cells": 0
+    },
+    {
+      "id": 405,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 31,
+      "profile": [
+        6,
+        7,
+        21
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3165,
+      "total_nodes": 258329920,
+      "unsat_cells": 0
+    },
+    {
+      "id": 406,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        8,
+        20
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 259986231,
+      "unsat_cells": 0
+    },
+    {
+      "id": 407,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        9,
+        19
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 260620976,
+      "unsat_cells": 0
+    },
+    {
+      "id": 408,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        10,
+        18
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 260739576,
+      "unsat_cells": 0
+    },
+    {
+      "id": 409,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        11,
+        17
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 260390531,
+      "unsat_cells": 0
+    },
+    {
+      "id": 410,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        12,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 260991159,
+      "unsat_cells": 0
+    },
+    {
+      "id": 411,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 31,
+      "profile": [
+        6,
+        13,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 261366971,
+      "unsat_cells": 0
+    },
+    {
+      "id": 412,
+      "indeterminate_cells": 0,
+      "local_classes": 1611,
+      "n": 31,
+      "profile": [
+        6,
+        14,
+        14
+      ],
+      "sat_cells": 1611,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1611,
+      "total_nodes": 134611650,
+      "unsat_cells": 0
+    },
+    {
+      "id": 413,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 31,
+      "profile": [
+        7,
+        7,
+        20
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1695,
+      "total_nodes": 134879864,
+      "unsat_cells": 0
+    },
+    {
+      "id": 414,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        8,
+        19
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 276107884,
+      "unsat_cells": 0
+    },
+    {
+      "id": 415,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        9,
+        18
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 276559775,
+      "unsat_cells": 0
+    },
+    {
+      "id": 416,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        10,
+        17
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 276356754,
+      "unsat_cells": 0
+    },
+    {
+      "id": 417,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        11,
+        16
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 277203051,
+      "unsat_cells": 0
+    },
+    {
+      "id": 418,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        12,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 277962304,
+      "unsat_cells": 0
+    },
+    {
+      "id": 419,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 31,
+      "profile": [
+        7,
+        13,
+        14
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 277448519,
+      "unsat_cells": 0
+    },
+    {
+      "id": 420,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        8,
+        8,
+        18
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 137215411,
+      "unsat_cells": 0
+    },
+    {
+      "id": 421,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        8,
+        9,
+        17
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 277421308,
+      "unsat_cells": 0
+    },
+    {
+      "id": 422,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        8,
+        10,
+        16
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 278484357,
+      "unsat_cells": 0
+    },
+    {
+      "id": 423,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        8,
+        11,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 279664599,
+      "unsat_cells": 0
+    },
+    {
+      "id": 424,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        8,
+        12,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 279371655,
+      "unsat_cells": 0
+    },
+    {
+      "id": 425,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        8,
+        13,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 144272088,
+      "unsat_cells": 0
+    },
+    {
+      "id": 426,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        9,
+        9,
+        16
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 138117530,
+      "unsat_cells": 0
+    },
+    {
+      "id": 427,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        9,
+        10,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 277208257,
+      "unsat_cells": 0
+    },
+    {
+      "id": 428,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        9,
+        11,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 277138751,
+      "unsat_cells": 0
+    },
+    {
+      "id": 429,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        9,
+        12,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 276569125,
+      "unsat_cells": 0
+    },
+    {
+      "id": 430,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        10,
+        10,
+        14
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 140092326,
+      "unsat_cells": 0
+    },
+    {
+      "id": 431,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 31,
+      "profile": [
+        10,
+        11,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 274906973,
+      "unsat_cells": 0
+    },
+    {
+      "id": 432,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        10,
+        12,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 140574263,
+      "unsat_cells": 0
+    },
+    {
+      "id": 433,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 31,
+      "profile": [
+        11,
+        11,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 140442203,
+      "unsat_cells": 0
+    },
+    {
+      "id": 434,
+      "indeterminate_cells": 0,
+      "local_classes": 592,
+      "n": 32,
+      "profile": [
+        4,
+        5,
+        26
+      ],
+      "sat_cells": 592,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 592,
+      "total_nodes": 54797069,
+      "unsat_cells": 0
+    },
+    {
+      "id": 435,
+      "indeterminate_cells": 0,
+      "local_classes": 872,
+      "n": 32,
+      "profile": [
+        4,
+        6,
+        25
+      ],
+      "sat_cells": 872,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 872,
+      "total_nodes": 81446273,
+      "unsat_cells": 0
+    },
+    {
+      "id": 436,
+      "indeterminate_cells": 0,
+      "local_classes": 952,
+      "n": 32,
+      "profile": [
+        4,
+        7,
+        24
+      ],
+      "sat_cells": 952,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 952,
+      "total_nodes": 89325117,
+      "unsat_cells": 0
+    },
+    {
+      "id": 437,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        8,
+        23
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90347288,
+      "unsat_cells": 0
+    },
+    {
+      "id": 438,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        9,
+        22
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90090675,
+      "unsat_cells": 0
+    },
+    {
+      "id": 439,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        10,
+        21
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90142480,
+      "unsat_cells": 0
+    },
+    {
+      "id": 440,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        11,
+        20
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90262131,
+      "unsat_cells": 0
+    },
+    {
+      "id": 441,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        12,
+        19
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90236765,
+      "unsat_cells": 0
+    },
+    {
+      "id": 442,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        13,
+        18
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90190319,
+      "unsat_cells": 0
+    },
+    {
+      "id": 443,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        14,
+        17
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 90127220,
+      "unsat_cells": 0
+    },
+    {
+      "id": 444,
+      "indeterminate_cells": 0,
+      "local_classes": 960,
+      "n": 32,
+      "profile": [
+        4,
+        15,
+        16
+      ],
+      "sat_cells": 960,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 960,
+      "total_nodes": 89972701,
+      "unsat_cells": 0
+    },
+    {
+      "id": 445,
+      "indeterminate_cells": 0,
+      "local_classes": 821,
+      "n": 32,
+      "profile": [
+        5,
+        5,
+        25
+      ],
+      "sat_cells": 821,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 821,
+      "total_nodes": 75906840,
+      "unsat_cells": 0
+    },
+    {
+      "id": 446,
+      "indeterminate_cells": 0,
+      "local_classes": 2230,
+      "n": 32,
+      "profile": [
+        5,
+        6,
+        24
+      ],
+      "sat_cells": 2230,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2230,
+      "total_nodes": 209651351,
+      "unsat_cells": 0
+    },
+    {
+      "id": 447,
+      "indeterminate_cells": 0,
+      "local_classes": 2386,
+      "n": 32,
+      "profile": [
+        5,
+        7,
+        23
+      ],
+      "sat_cells": 2386,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2386,
+      "total_nodes": 225394173,
+      "unsat_cells": 0
+    },
+    {
+      "id": 448,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        8,
+        22
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 227278004,
+      "unsat_cells": 0
+    },
+    {
+      "id": 449,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        9,
+        21
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 227892984,
+      "unsat_cells": 0
+    },
+    {
+      "id": 450,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        10,
+        20
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 228313325,
+      "unsat_cells": 0
+    },
+    {
+      "id": 451,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        11,
+        19
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 228385574,
+      "unsat_cells": 0
+    },
+    {
+      "id": 452,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        12,
+        18
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 228466098,
+      "unsat_cells": 0
+    },
+    {
+      "id": 453,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        13,
+        17
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 228370758,
+      "unsat_cells": 0
+    },
+    {
+      "id": 454,
+      "indeterminate_cells": 0,
+      "local_classes": 2400,
+      "n": 32,
+      "profile": [
+        5,
+        14,
+        16
+      ],
+      "sat_cells": 2400,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 2400,
+      "total_nodes": 228128982,
+      "unsat_cells": 0
+    },
+    {
+      "id": 455,
+      "indeterminate_cells": 0,
+      "local_classes": 1212,
+      "n": 32,
+      "profile": [
+        5,
+        15,
+        15
+      ],
+      "sat_cells": 1212,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1212,
+      "total_nodes": 113759253,
+      "unsat_cells": 0
+    },
+    {
+      "id": 456,
+      "indeterminate_cells": 0,
+      "local_classes": 1515,
+      "n": 32,
+      "profile": [
+        6,
+        6,
+        23
+      ],
+      "sat_cells": 1515,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1515,
+      "total_nodes": 140599847,
+      "unsat_cells": 0
+    },
+    {
+      "id": 457,
+      "indeterminate_cells": 0,
+      "local_classes": 3165,
+      "n": 32,
+      "profile": [
+        6,
+        7,
+        22
+      ],
+      "sat_cells": 3165,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3165,
+      "total_nodes": 300329528,
+      "unsat_cells": 0
+    },
+    {
+      "id": 458,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        8,
+        21
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 303259616,
+      "unsat_cells": 0
+    },
+    {
+      "id": 459,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        9,
+        20
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304086894,
+      "unsat_cells": 0
+    },
+    {
+      "id": 460,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        10,
+        19
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304419310,
+      "unsat_cells": 0
+    },
+    {
+      "id": 461,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        11,
+        18
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304708742,
+      "unsat_cells": 0
+    },
+    {
+      "id": 462,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        12,
+        17
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304794037,
+      "unsat_cells": 0
+    },
+    {
+      "id": 463,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        13,
+        16
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304693942,
+      "unsat_cells": 0
+    },
+    {
+      "id": 464,
+      "indeterminate_cells": 0,
+      "local_classes": 3180,
+      "n": 32,
+      "profile": [
+        6,
+        14,
+        15
+      ],
+      "sat_cells": 3180,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3180,
+      "total_nodes": 304503750,
+      "unsat_cells": 0
+    },
+    {
+      "id": 465,
+      "indeterminate_cells": 0,
+      "local_classes": 1695,
+      "n": 32,
+      "profile": [
+        7,
+        7,
+        21
+      ],
+      "sat_cells": 1695,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1695,
+      "total_nodes": 157929876,
+      "unsat_cells": 0
+    },
+    {
+      "id": 466,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        8,
+        20
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 322363857,
+      "unsat_cells": 0
+    },
+    {
+      "id": 467,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        9,
+        19
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 323128535,
+      "unsat_cells": 0
+    },
+    {
+      "id": 468,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        10,
+        18
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 323700827,
+      "unsat_cells": 0
+    },
+    {
+      "id": 469,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        11,
+        17
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 324045799,
+      "unsat_cells": 0
+    },
+    {
+      "id": 470,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        12,
+        16
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 324181080,
+      "unsat_cells": 0
+    },
+    {
+      "id": 471,
+      "indeterminate_cells": 0,
+      "local_classes": 3360,
+      "n": 32,
+      "profile": [
+        7,
+        13,
+        15
+      ],
+      "sat_cells": 3360,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3360,
+      "total_nodes": 324128265,
+      "unsat_cells": 0
+    },
+    {
+      "id": 472,
+      "indeterminate_cells": 0,
+      "local_classes": 1701,
+      "n": 32,
+      "profile": [
+        7,
+        14,
+        14
+      ],
+      "sat_cells": 1701,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1701,
+      "total_nodes": 164578923,
+      "unsat_cells": 0
+    },
+    {
+      "id": 473,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        8,
+        8,
+        19
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 160568079,
+      "unsat_cells": 0
+    },
+    {
+      "id": 474,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        8,
+        9,
+        18
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325133156,
+      "unsat_cells": 0
+    },
+    {
+      "id": 475,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        8,
+        10,
+        17
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325818165,
+      "unsat_cells": 0
+    },
+    {
+      "id": 476,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        8,
+        11,
+        16
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 326171604,
+      "unsat_cells": 0
+    },
+    {
+      "id": 477,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        8,
+        12,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 326218373,
+      "unsat_cells": 0
+    },
+    {
+      "id": 478,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        8,
+        13,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325824881,
+      "unsat_cells": 0
+    },
+    {
+      "id": 479,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        9,
+        9,
+        17
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 161071185,
+      "unsat_cells": 0
+    },
+    {
+      "id": 480,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        9,
+        10,
+        16
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325532832,
+      "unsat_cells": 0
+    },
+    {
+      "id": 481,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        9,
+        11,
+        15
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325796281,
+      "unsat_cells": 0
+    },
+    {
+      "id": 482,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        9,
+        12,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 325671992,
+      "unsat_cells": 0
+    },
+    {
+      "id": 483,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        9,
+        13,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 165317605,
+      "unsat_cells": 0
+    },
+    {
+      "id": 484,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        10,
+        10,
+        15
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 163194037,
+      "unsat_cells": 0
+    },
+    {
+      "id": 485,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        10,
+        11,
+        14
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 323787497,
+      "unsat_cells": 0
+    },
+    {
+      "id": 486,
+      "indeterminate_cells": 0,
+      "local_classes": 3375,
+      "n": 32,
+      "profile": [
+        10,
+        12,
+        13
+      ],
+      "sat_cells": 3375,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 3375,
+      "total_nodes": 323341864,
+      "unsat_cells": 0
+    },
+    {
+      "id": 487,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        11,
+        11,
+        13
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 164575896,
+      "unsat_cells": 0
+    },
+    {
+      "id": 488,
+      "indeterminate_cells": 0,
+      "local_classes": 1710,
+      "n": 32,
+      "profile": [
+        11,
+        12,
+        12
+      ],
+      "sat_cells": 1710,
+      "source": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "tested_cells": 1710,
+      "total_nodes": 162285721,
+      "unsat_cells": 0
+    }
+  ],
+  "schema": "multi_center_l2_profile_inventory_certificate.v1",
+  "source_dir": "census/multi_center/sweeps"
+}

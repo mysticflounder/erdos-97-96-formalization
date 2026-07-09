@@ -96,6 +96,19 @@ DEFAULT_INCIDENCE_LEAN_OUT = (
     ROOT / "lean" / "Erdos9796Proof" / "P97" / "MultiCenter" /
     "Certificate" / "ProfileClassIncidence.lean"
 )
+DEFAULT_CLASS_PERMUTATION_LEAN_OUT = (
+    ROOT / "lean" / "Erdos9796Proof" / "P97" / "MultiCenter" /
+    "Certificate" / "ClassPermutationTable.lean"
+)
+
+CLASS_PERMUTATIONS = (
+    ("identity", (0, 1, 2)),
+    ("swap01", (1, 0, 2)),
+    ("swap02", (2, 1, 0)),
+    ("swap12", (0, 2, 1)),
+    ("cycle012", (2, 0, 1)),
+    ("cycle021", (1, 2, 0)),
+)
 
 
 def rel(path: Path) -> str:
@@ -693,9 +706,11 @@ Scope: {range_text}.  The certificate-level facts are:
 - each profile row's incidence count matches `ProfileInventory.localClasses`;
 - the incidence-pair digest is `{report['incidence_sha256']}`.
 
-This is a finite incidence certificate for the imported sweep rows.  It still
-does not prove that the DFS implementation enumerates every possible local
-class outside the checked artifact boundary.
+This generated report alone is a finite incidence certificate for the imported
+sweep rows.  In the full Lean certificate stack, the independent LOCAL
+enumerator and typed-bank equality close enumerator completeness for the
+L2/full-participant representative surface modulo profile automorphisms.  They
+do not prove geometric GLOBAL realization or any claim about unscanned `n`.
 
 {incidence_count_table(report)}
 """
@@ -819,6 +834,164 @@ def typed_class_row(row: dict[str, Any]) -> dict[str, Any]:
 
 def typed_class_rows(report: dict[str, Any]) -> list[dict[str, Any]]:
     return [typed_class_row(row) for row in report["rows"]]
+
+
+def permute_three_mask(mask: int, permutation: tuple[int, int, int]) -> int:
+    result = 0
+    for vertex in range(3):
+        if mask & (1 << vertex):
+            result |= 1 << permutation[vertex]
+    return result
+
+
+def permuted_cap_name(cap: str, permutation: tuple[int, int, int]) -> str:
+    missing_by_cap = {"S": 0, "O1": 1, "O2": 2}
+    cap_by_missing = {0: "S", 1: "O1", 2: "O2"}
+    return cap_by_missing[permutation[missing_by_cap[cap]]]
+
+
+def permuted_class_key(
+    raw_key: str, permutation: tuple[int, int, int]
+) -> str:
+    key = json.loads(raw_key)
+    layer, participants, moser_masks, cap_rows = key
+    new_participants = sorted(permutation[int(vertex)] for vertex in participants)
+    new_moser = [0, 0, 0]
+    for source_vertex, raw_mask in enumerate(moser_masks):
+        new_moser[permutation[source_vertex]] = permute_three_mask(
+            int(raw_mask), permutation
+        )
+    new_counts: dict[tuple[str, int], int] = {}
+    for cap, raw_mask, raw_count in cap_rows:
+        target_cap = permuted_cap_name(str(cap), permutation)
+        target_mask = permute_three_mask(int(raw_mask), permutation)
+        new_counts[(target_cap, target_mask)] = int(raw_count)
+    cap_order = {"S": 0, "O1": 1, "O2": 2}
+    new_cap_rows = [
+        [cap, mask, count]
+        for (cap, mask), count in sorted(
+            new_counts.items(), key=lambda item: (cap_order[item[0][0]], item[0][1])
+        )
+        if count
+    ]
+    return json.dumps(
+        [layer, new_participants, new_moser, new_cap_rows], separators=(",", ":")
+    )
+
+
+def class_permutation_tables(
+    report: dict[str, Any]
+) -> dict[str, list[int]]:
+    rows = report["rows"]
+    key_to_id = {str(row["class_key"]): int(row["id"]) for row in rows}
+    tables: dict[str, list[int]] = {}
+    for name, permutation in CLASS_PERMUTATIONS:
+        targets = []
+        for row in rows:
+            target_key = permuted_class_key(str(row["class_key"]), permutation)
+            if target_key not in key_to_id:
+                raise ValueError(
+                    f"permutation {name} leaves typed class bank at row {row['id']}"
+                )
+            targets.append(key_to_id[target_key])
+        tables[name] = targets
+    return tables
+
+
+def lean_nat_array(values: list[int], width: int = 24) -> str:
+    lines = ["#["]
+    for index in range(0, len(values), width):
+        chunk = ", ".join(str(value) for value in values[index:index + width])
+        suffix = "," if index + width < len(values) else ""
+        lines.append(f"  {chunk}{suffix}")
+    lines.append("]")
+    return "\n".join(lines)
+
+
+def write_class_permutation_lean_bank(
+    report: dict[str, Any], path: Path
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tables = class_permutation_tables(report)
+    table_defs = "\n\n".join(
+        f"/-- Target class IDs under `{name}`. -/\n"
+        f"def {name}Table : Array Nat :=\n{lean_nat_array(tables[name])}"
+        for name, _permutation in CLASS_PERMUTATIONS
+    )
+    text = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.MultiCenter.Certificate.ProfileSymmetry
+import Erdos9796Proof.P97.MultiCenter.Certificate.TypedClassBank
+
+set_option linter.style.nativeDecide false
+set_option linter.style.longLine false
+set_option maxRecDepth 100000
+
+/-!
+# Multi-center class permutation table
+
+This generated module records the typed-bank row reached by each of the six
+Moser-vertex permutations.
+-/
+
+namespace Problem97
+namespace MultiCenter
+namespace Certificate
+namespace ClassPermutationTable
+
+open ProfileSymmetry
+
+{table_defs}
+
+/-- Target-ID table selected by a permutation code. -/
+def table : PermCode -> Array Nat
+  | .identity => identityTable
+  | .swap01 => swap01Table
+  | .swap02 => swap02Table
+  | .swap12 => swap12Table
+  | .cycle012 => cycle012Table
+  | .cycle021 => cycle021Table
+
+/-- Target typed-row ID for a source row ID and permutation. -/
+def targetId (code : PermCode) (sourceId : Nat) : Option Nat :=
+  (table code)[sourceId]?
+
+/-- Typed class rows in target-ID lookup order. -/
+def typedRows : Array RawClassRow :=
+  TypedClassBank.rows.toArray
+
+/-- A permutation table has a semantic target for every typed row. -/
+def tableSemanticsOK (code : PermCode) : Bool :=
+  decide ((table code).size = typedRows.size) &&
+    typedRows.all fun source =>
+      match targetId code source.id with
+      | none => false
+      | some targetId =>
+          match typedRows[targetId]? with
+          | none => false
+          | some target =>
+              decide (target.id = targetId) &&
+              sameJointClassData
+                (transform code source.toJointClass) target.toJointClass
+
+/-- All six generated permutation tables have the intended semantic action. -/
+def allTableSemanticsOK : Bool :=
+  permCodes.all tableSemanticsOK
+
+/-- The generated permutation tables are semantically correct. -/
+theorem allTableSemantics_ok : allTableSemanticsOK = true := by
+  native_decide
+
+end ClassPermutationTable
+end Certificate
+end MultiCenter
+end Problem97
+"""
+    path.write_text(text)
 
 
 def typed_class_lean_row(row: dict[str, Any]) -> str:
@@ -1971,6 +2144,12 @@ def parse_args() -> argparse.Namespace:
         default=DEFAULT_INCIDENCE_LEAN_OUT,
         help="Path for the generated profile/class incidence Lean bank.",
     )
+    parser.add_argument(
+        "--class-permutation-lean-out",
+        type=Path,
+        default=DEFAULT_CLASS_PERMUTATION_LEAN_OUT,
+        help="Path for the generated typed-class permutation table.",
+    )
     return parser.parse_args()
 
 
@@ -1997,6 +2176,9 @@ def main() -> None:
         incidence_report, args.incidence_markdown_out
     )
     write_incidence_lean_bank(incidence_report, args.incidence_lean_out)
+    write_class_permutation_lean_bank(
+        class_report, args.class_permutation_lean_out
+    )
 
 
 if __name__ == "__main__":

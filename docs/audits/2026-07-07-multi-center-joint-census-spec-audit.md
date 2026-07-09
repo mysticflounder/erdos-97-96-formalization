@@ -85,3 +85,13 @@ All six items are resolved by spec decisions in
   headline must use STABILIZED-EMPIRICAL / STABILIZED-PROVEN / GROWING
   / INCONCLUSIVE-BUDGET verbatim; §6 ties the PROVEN label to the
   monotonicity lemma.
+
+## Implementation follow-up (2026-07-09)
+
+The audited requirements are now implemented on the PROVEN tier. The GLOBAL
+sweep completed through `n = 32`, exact LOCAL frontier scans remained flat
+through `n = 64`, and the L2/full-participant representative-surface
+enumerator-completeness bridge is kernel-checked. The original audit's rigor
+distinction remains operative: neither the finite scan nor the representative
+certificate proves geometric GLOBAL realization or eventual quantitative
+stabilization. The spec-mandated CONJECTURED-tier appendix remains open.

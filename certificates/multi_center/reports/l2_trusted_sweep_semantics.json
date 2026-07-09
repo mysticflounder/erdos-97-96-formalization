@@ -1,0 +1,329 @@
+{
+  "artifact_statuses": [
+    {
+      "n_values": [
+        12
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n12_12.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n12_30.json",
+      "status": "PARTIAL_RANGE missing=21,22,23,24,25,26,27,28,29,30"
+    },
+    {
+      "n_values": [
+        21
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n21_30.json",
+      "status": "PARTIAL_RANGE missing=22,23,24,25,26,27,28,29,30"
+    },
+    {
+      "n_values": [
+        22
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n22.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        23
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n23.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        24
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n24.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        25
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n25.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        26
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n26.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        27
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n27.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        28
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n28.json",
+      "status": "OK"
+    },
+    {
+      "n_values": [
+        29,
+        30,
+        31,
+        32
+      ],
+      "path": "census/multi_center/sweeps/l2_global_proven_n29_32.json",
+      "status": "OK"
+    }
+  ],
+  "checked": {
+    "artifact_count": 11,
+    "artifact_n_rows": 22,
+    "raw_class_cells": 978675,
+    "raw_profile_rows": 491
+  },
+  "checker": {
+    "imports_project_code": false,
+    "python_modules": [
+      "argparse",
+      "collections",
+      "dataclasses",
+      "functools",
+      "hashlib",
+      "itertools",
+      "json",
+      "pathlib",
+      "re",
+      "typing"
+    ]
+  },
+  "claims": {
+    "artifact_metadata_recomputes": true,
+    "class_keys_parse_and_satisfy_local_semantics": true,
+    "profile_metadata_recomputes": true,
+    "project_terminal_inventory_equals_full_inventory": true,
+    "trusted_checker_error_free": true
+  },
+  "error_count": 0,
+  "error_counts": {},
+  "errors": [],
+  "project": {
+    "class_first_seen_counts": [
+      {
+        "count": 619,
+        "n": 12
+      },
+      {
+        "count": 531,
+        "n": 13
+      },
+      {
+        "count": 609,
+        "n": 14
+      },
+      {
+        "count": 574,
+        "n": 15
+      },
+      {
+        "count": 280,
+        "n": 16
+      },
+      {
+        "count": 322,
+        "n": 17
+      },
+      {
+        "count": 247,
+        "n": 18
+      },
+      {
+        "count": 31,
+        "n": 19
+      },
+      {
+        "count": 78,
+        "n": 20
+      },
+      {
+        "count": 69,
+        "n": 21
+      },
+      {
+        "count": 0,
+        "n": 22
+      },
+      {
+        "count": 9,
+        "n": 23
+      },
+      {
+        "count": 6,
+        "n": 24
+      },
+      {
+        "count": 0,
+        "n": 25
+      },
+      {
+        "count": 0,
+        "n": 26
+      },
+      {
+        "count": 0,
+        "n": 27
+      },
+      {
+        "count": 0,
+        "n": 28
+      },
+      {
+        "count": 0,
+        "n": 29
+      },
+      {
+        "count": 0,
+        "n": 30
+      },
+      {
+        "count": 0,
+        "n": 31
+      },
+      {
+        "count": 0,
+        "n": 32
+      }
+    ],
+    "distinct_class_keys": 3375,
+    "full_inventory_sha256": "888df36a194fd54a1a81adde336c50be295fcfa507b981b4c1f0286d196bcb40",
+    "loaded_n_values": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32
+    ],
+    "profile_count_by_n": [
+      {
+        "n": 12,
+        "profile_count": 2
+      },
+      {
+        "n": 13,
+        "profile_count": 3
+      },
+      {
+        "n": 14,
+        "profile_count": 4
+      },
+      {
+        "n": 15,
+        "profile_count": 6
+      },
+      {
+        "n": 16,
+        "profile_count": 7
+      },
+      {
+        "n": 17,
+        "profile_count": 9
+      },
+      {
+        "n": 18,
+        "profile_count": 11
+      },
+      {
+        "n": 19,
+        "profile_count": 13
+      },
+      {
+        "n": 20,
+        "profile_count": 15
+      },
+      {
+        "n": 21,
+        "profile_count": 18
+      },
+      {
+        "n": 22,
+        "profile_count": 20
+      },
+      {
+        "n": 23,
+        "profile_count": 23
+      },
+      {
+        "n": 24,
+        "profile_count": 26
+      },
+      {
+        "n": 25,
+        "profile_count": 29
+      },
+      {
+        "n": 26,
+        "profile_count": 32
+      },
+      {
+        "n": 27,
+        "profile_count": 36
+      },
+      {
+        "n": 28,
+        "profile_count": 39
+      },
+      {
+        "n": 29,
+        "profile_count": 43
+      },
+      {
+        "n": 30,
+        "profile_count": 47
+      },
+      {
+        "n": 31,
+        "profile_count": 51
+      },
+      {
+        "n": 32,
+        "profile_count": 55
+      }
+    ],
+    "selected_class_cells": 977975,
+    "selected_profile_rows": 489,
+    "terminal_class_keys": 3375,
+    "terminal_inventory_sha256": "888df36a194fd54a1a81adde336c50be295fcfa507b981b4c1f0286d196bcb40",
+    "terminal_n": 32
+  },
+  "schema": "multi_center_l2_trusted_sweep_semantics.v1",
+  "source_dir": "census/multi_center/sweeps"
+}

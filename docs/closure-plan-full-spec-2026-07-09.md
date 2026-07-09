@@ -183,15 +183,25 @@ Candidate-D-shaped arguments), plus the P3 decision gate below.
 
 Status: L2 (three-center joint incidence classes), GLOBAL tier, PROVEN cuts,
 swept n=12..32: 977,975/977,975 SAT, 0 UNSAT, 0 INDETERMINATE; cumulative
-inventory 3,375 classes, zero fresh on n=25..32 — verdict
-**STABILIZED-EMPIRICAL** (STATE.md; results note lines 19–50). Upgrade path
-to proof: the §6 persistence lemma (insert-an-inert-point monotonicity,
-obstruction C4-saturation) — specified, not proved. The Phase-3 audit defect
-(commit b7431da) stands: **T2 (one-step persistence) alone gives only
-qualitative eventual constancy; T1 (or an equivalent cap) is REQUIRED for
-the quantitative inventory-locking** `inventory(n) = inventory(25)`. The
-mandatory CONJECTURED-tier appendix sweep has NOT been run (only an n=12..15
-smoke, 11,223/11,223 SAT).
+inventory 3,375 classes, zero fresh on n=25..32. Exact LOCAL frontier scans
+are flat against that inventory through n=64. The verdict remains
+**STABILIZED-EMPIRICAL** (STATE.md; results note and its 2026-07-09 addendum).
+
+The finite representative-surface bridge is now proved in Lean. A complete
+21-cell L2/full LOCAL enumerator is checked equal to the 3,375-row typed bank;
+all profile-preserving center permutations and all 489 generated profile rows
+are covered; and `ProfileClassIncidence.completesL2FullFrom_representativeSurface`
+is kernel-checked. This closes the former enumerator-completeness obligation,
+not geometric realization.
+
+The upgrade path still needs the §6 persistence lemma (insert-an-inert-point
+monotonicity, obstruction C4-saturation) and a sound configuration-level
+LOCAL-to-GLOBAL bridge. The Phase-3 audit defect (commit b7431da) therefore
+stands: **T2 (one-step persistence) alone gives only qualitative eventual
+constancy; T1 (or an equivalent cap) is REQUIRED for the quantitative
+inventory-locking** `inventory(n) = inventory(25)`. The mandatory
+CONJECTURED-tier appendix sweep has NOT been run (only an n=12..15 smoke,
+11,223/11,223 SAT).
 
 ### B.2 Erased-pin generated row bank (leaf 5 lane)
 

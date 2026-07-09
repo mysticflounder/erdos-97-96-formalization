@@ -15,6 +15,15 @@ used to live under `scratch/` and `scripts/`.
 - `multi_center/` contains the multi-center joint census implementation
   for `docs/multi-center-joint-census-spec-2026-07-07.md`.
 
+## Multi-center checkpoint (2026-07-09)
+
+The L2 GLOBAL / PROVEN sweep is complete through `n = 32`, and the exact
+L2 LOCAL frontier scan is flat through `n = 64`: every scanned row from
+`n = 29` onward has the same 3,375 class keys as the `n <= 28` baseline.
+The certificate stack in `certificates/multi_center/` now proves completeness
+of that L2/full-participant representative surface modulo profile
+automorphisms. This is not yet a geometric GLOBAL-realization theorem.
+
 ## Current commands
 
 ```bash

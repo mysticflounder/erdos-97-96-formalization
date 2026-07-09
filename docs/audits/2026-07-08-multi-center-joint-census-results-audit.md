@@ -130,3 +130,27 @@ register-completeness fix, not a data loss.
    spec's 10⁸ auto-extend budget, so extension past 32 is Adam's call.
 3. Verdicts remain empirical pending the proof plan's theorems; no
    claim audited here asserts otherwise.
+
+## 2026-07-09 formalization addendum
+
+The finite L2/full-participant enumerator-completeness concern is now closed in
+Lean.  An independent 21-cell LOCAL enumerator is proved complete, its accepted
+support-data keys are checked equal to all 3,375 typed-bank rows, all six
+profile-preserving center permutations are checked semantically, and the finite
+coverage check ranges over all 489 profile rows and 3,375 typed classes.  The
+resulting theorems are
+`ProfileClassIncidence.finiteCodeWitnesses`,
+`ProfileClassIncidence.coversL2FullLocalModuloFrom`, and
+`ProfileClassIncidence.completesL2FullFrom_representativeSurface`.
+
+This does not alter the audit's warning about quantitative stabilization.  The
+proved target is the generated representative surface modulo profile
+automorphisms, not geometric GLOBAL realization.  T1 still requires a sound
+configuration-level realization bridge, and the upper-bound direction needed
+to identify an eventual inventory with exactly 3,375 classes remains separate.
+
+The empirical record has also advanced without changing that conclusion. The
+GLOBAL sweep is complete through `n = 32` at `977,975 / 977,975 SAT`, and the
+exact LOCAL frontier is flat against the 3,375-class baseline through
+`n = 64`, with no new or missing class keys on `n = 29..64`. These are bounded
+verified computations, not a general-`n` theorem.

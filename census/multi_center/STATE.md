@@ -39,7 +39,7 @@ Started 2026-07-07 from
    Python's process-pool semaphore check is sandbox-blocked. Benchmarks:
    `(4,5,6)` L2 GLOBAL: 523/523 SAT, 312,001 nodes, 0.48 s;
    `(5,5,5)` L2 GLOBAL: 177/177 SAT, 85,992 nodes, 0.15 s.
-5. [ ] Full sweep:
+5. [x] Full PROVEN sweep:
    L2 GLOBAL under PROVEN cuts is complete for n = 12..32. Every tested
    LOCAL class is GLOBAL-realizable so far: 977,975/977,975 SAT, 0 UNSAT,
    0 INDETERMINATE. The project-level cumulative class inventory through
@@ -57,14 +57,30 @@ Started 2026-07-07 from
    from `class_key` values, flags partial range artifacts, and should be
    used for the canonical fresh/stability readout; per-file fresh and
    cumulative fields reset when a sweep is restarted.
-6. [x] Active-leaf report:
+6. [x] LOCAL frontier extension:
+   exact L2 LOCAL scans with the PROVEN kills are complete through `n = 64`.
+   Every scanned row on `n = 29..64` has exactly the same 3,375 class keys as
+   the `n <= 28` baseline, with no new or missing keys. The final chunk outputs
+   are recorded in `frontier_scan_n39_44.log`, `frontier_scan_n45_50.log`,
+   `frontier_scan_n51_56.log`, and `frontier_scan_n57_64.log`.
+7. [x] Lean representative-surface certificate:
+   the independent 21-cell LOCAL enumerator, equality with the 3,375-row typed
+   class bank, all six profile-preserving center permutations, and finite
+   profile/class coverage are kernel-checked. The terminal theorems are
+   `ProfileClassIncidence.finiteCodeWitnesses`,
+   `ProfileClassIncidence.coversL2FullLocalModuloFrom`, and
+   `ProfileClassIncidence.completesL2FullFrom_representativeSurface`. This
+   closes enumerator completeness for the generated L2/full representative
+   surface, not geometric GLOBAL realization or quantitative eventual
+   stabilization.
+8. [x] Active-leaf report:
    `frontier_report.py` wraps the sweep analyzer with the current erased-pin
    proof boundary.  It reports completed L2 GLOBAL / PROVEN evidence, flags
    partial artifacts, checks for either pending `n28_32` or `n29_32` extension
    artifact, and states whether the loaded incidence data supplies any of the
    three producer facts still needed by
    `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
-7. [ ] CONJECTURED-tier appendix:
+9. [ ] CONJECTURED-tier appendix:
    Bounded smoke through n = 15 has been run for L2 GLOBAL /
    CONJECTURED cuts: 11,223/11,223 SAT, 0 UNSAT, 0 INDETERMINATE.  The full
    targeted appendix and erased-pin row-to-class mapping remain open.
@@ -79,4 +95,5 @@ uv run python census/multi_center/multi_center_census.py sweep-global --n-min 24
 uv run python census/multi_center/multi_center_census.py sweep-global --n-min 28 --n-max 28 --layer L2 --tier proven --workers 8 --out census/multi_center/sweeps/l2_global_proven_n28.json
 uv run python census/multi_center/analyze_sweeps.py
 uv run python census/multi_center/frontier_report.py
+lake-build Erdos9796Proof.P97.MultiCenter.Certificate.ProfileClassCompletion
 ```

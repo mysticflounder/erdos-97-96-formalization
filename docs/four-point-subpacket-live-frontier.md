@@ -1629,6 +1629,17 @@ SAT classes.  Since the loaded evidence has no UNSAT incidence class and does
 not produce the reduced finite scaffold, `U5ModeA`, confined support, or a
 surplus-index erased-pin exclusion, it is not a closure input for this leaf.
 
+Superseding multi-center checkpoint, 2026-07-09 PDT: the GLOBAL artifact
+through `n = 32` has landed (`977,975 / 977,975 SAT`, no UNSAT or
+INDETERMINATE), and exact LOCAL frontier scans remain equal to the 3,375-class
+baseline through `n = 64`. The finite L2/full representative-surface bridge is
+also kernel-checked in `Certificate.ProfileClassCompletion`, including
+enumerator completeness, typed-bank equality, profile symmetries, and
+profile/class coverage. This removes finite class discovery and certificate
+coverage as uncertainties. It still does not produce the ordered-row
+exact-shape/confinement facts, `U5ModeA`, confined support, or either direct
+surplus-index erased-pin exclusion required at this leaf.
+
 Mode-A probe, 2026-07-08 PDT: scratch LSP attempts at the first direct
 surplus-side hole confirm that `U5ModeA D` is not synthesized by current
 context.  Unfolding `U5ModeA` leaves the placement goal:

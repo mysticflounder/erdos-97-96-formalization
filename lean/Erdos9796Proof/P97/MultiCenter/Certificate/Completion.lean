@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.MultiCenter.Certificate.ProfileInventory
 import Erdos9796Proof.P97.MultiCenter.Certificate.TrustedSweep
+import Erdos9796Proof.P97.MultiCenter.Certificate.LocalClassEncoding
 import Erdos9796Proof.P97.MultiCenter.Certificate.TypedClassBank
 
 /-!
@@ -73,6 +74,16 @@ theorem hasCertifiedRepresentative_of_certifies
     HasCertifiedRepresentative certifies profile cls :=
   ⟨cls, hcert, JointClass.equivalentUnder_refl profile cls⟩
 
+/-- Certification of a profile-equivalent representative gives certification
+by representative. -/
+theorem hasCertifiedRepresentative_of_equivalent_certifies
+    {certifies : JointProfile -> JointClass -> Prop}
+    {profile : JointProfile} {cls representative : JointClass}
+    (hcert : certifies profile representative)
+    (hequiv : JointClass.EquivalentUnder profile cls representative) :
+    HasCertifiedRepresentative certifies profile cls :=
+  ⟨representative, hcert, hequiv⟩
+
 /-- The profile-realization surface induced by a profile/class certificate
 relation.  Soundness and completion of `certifies` are separate obligations. -/
 def surfaceFromCertifiedRelation
@@ -109,6 +120,15 @@ def CompletesL2FullFrom
     (surface : ProfileRealizationSurface) (threshold : Nat) : Prop :=
   ∀ {n profile cls}, threshold ≤ n -> surface.profileOccursAtN n profile ->
     L2FullLocal profile cls -> surface.realizesJointClass profile cls
+
+/-- The corrected L2/full LOCAL premise supplies the side conditions needed
+to encode a semantic class as a generated-style raw row and decode it back. -/
+theorem rawRowOfClass_toJointClass_of_l2FullLocal
+    {profile : JointProfile} {cls : JointClass}
+    (hlocal : L2FullLocal profile cls) :
+    (LocalClassEncoding.rawRowOfClass cls).toJointClass = cls :=
+  LocalClassEncoding.rawRowOfClass_toJointClass_of_l2_supported hlocal.1
+    hlocal.2.2.1
 
 /-- Coverage is exactly the `ProfileRealizationSurface` completion obligation
 for the induced certificate surface. -/

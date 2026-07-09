@@ -162,6 +162,14 @@ Grounding facts, each independently checked 2026-07-08:
   next relevant U4 step is instantiating that bridge by proving local
   extraction, occurrence closure under cap extension, and the actual GLOBAL
   soundness/completion hypotheses.
+- The finite L2/full representative-surface instance is now closed in
+  `Erdos9796Proof.P97.MultiCenter.Certificate.ProfileClassCompletion`: the
+  independent LOCAL enumerator is complete, equals the 3,375-row typed bank,
+  and reaches every generated profile/class incidence modulo the six checked
+  profile-preserving center permutations. The exact LOCAL frontier is flat
+  through `n = 64`. This discharges finite enumerator/bank coverage only; it
+  does not supply a configuration-level GLOBAL realization or any P2/P4
+  erased-pin producer.
 - Bounded CONJECTURED-tier smoke for P3 has been run on `n = 12..15`:
   `11,223/11,223` checks are SAT with 0 UNSAT and 0 INDETERMINATE.  This is
   not the full P3 appendix, but it gives no cut signal at the smallest

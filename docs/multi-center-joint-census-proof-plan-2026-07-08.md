@@ -32,8 +32,8 @@ L2 PROVEN data now shows:
    entire swept range: for every `m < n <= 32`, every class seen at `m`
    is still seen at `n`.
 7. The exact `L2 LOCAL` frontier is flat against the `n <= 28` baseline on
-   every completed chunk through `n = 56`: no new `LOCAL` class keys appear
-   on `n = 29..56`, and no previously seen `LOCAL` class disappears.
+   every completed chunk through `n = 64`: no new `LOCAL` class keys appear
+   on `n = 29..64`, and no previously seen `LOCAL` class disappears.
 
 These facts support two structural conjectures and one theorem upgrade
 path.
@@ -129,7 +129,7 @@ independent of n for all n >= n0.
 Why this is now a serious candidate:
 
 - the exact `LOCAL` frontier is flat on every completed scan through
-  `n = 56`;
+  `n = 64`;
 - this supplies the upper-bound direction that forward `GLOBAL`
   persistence alone does not give;
 - it converts the large-`n` tail from an unbounded discovery problem into
@@ -413,8 +413,8 @@ whereas the generated bank is an L2/full-participant canonical-representative
 bank.  The generated module now records this as the checked obstruction
 `ProfileClassIncidence.not_coversLocalFrom_certifies`.
 
-The remaining bridge must therefore be restated before it can be closed.  Its
-proof-facing shape should:
+At that checkpoint, the remaining bridge had to be restated before it could be
+closed. Its proof-facing shape was required to:
 
 1. restrict the LOCAL premise to the L2/full-participant census surface;
 2. compare arbitrary local classes to the bank modulo
@@ -428,17 +428,89 @@ The corrected interface now lives in `Certificate.Completion`.  The predicate
 `L2FullLocal profile cls` is the scoped local premise; the predicate
 `HasCertifiedRepresentative certifies profile cls` is the
 profile-automorphism closure of literal bank certification; and
-`CoversL2FullLocalModuloFrom certifies threshold` is the remaining scoped
-completion obligation.  The theorem
+`CoversL2FullLocalModuloFrom certifies threshold` is the scoped completion
+obligation later discharged by the finite certificates below.  The theorem
 `completesL2FullFrom_surfaceFromCertifiedRepresentatives_iff` identifies this
 with the corresponding representative-closed realization surface.  The
 generated incidence module defines `representativeSurface` and proves
 `hasCertifiedRepresentative_of_certifies`, so exact incidence witnesses already
 feed the corrected surface.
 
-Only after `CoversL2FullLocalModuloFrom ProfileClassIncidence.certifies
-ProfileClassIncidence.threshold` is proved should it feed the stabilization
-stack.
+`CoversL2FullLocalModuloFrom ProfileClassIncidence.certifies
+ProfileClassIncidence.threshold` is now proved by the certificate stack below.
+It may feed proof-facing representative-surface arguments, but it must not be
+identified with geometric GLOBAL realization without an additional soundness
+bridge from the generated surface to configurations.
+
+Bridge implementation progress, 2026-07-09:
+
+- `Certificate.LocalClassEncoding` now proves the raw mask/count encoding
+  round trip needed before a semantic `JointClass` can be compared to generated
+  `RawClassRow` data.  In particular, an L2 supported class satisfies
+  `(rawRowOfClass cls).toJointClass = cls`.
+- `Certificate.Completion.rawRowOfClass_toJointClass_of_l2FullLocal` exposes
+  that round trip from the corrected `L2FullLocal` premise.
+- `Certificate.ProfileClassBridge` proves
+  `ProfileClassIncidence.hasCertifiedRepresentative_of_incidence_row`, which
+  packages the final finite witness shape: an incidence row, a typed class row,
+  a range-membership check, and a profile-equivalence proof directly produce
+  `HasCertifiedRepresentative`.
+- The same bridge module proves
+  `ProfileClassIncidence.exists_incidenceRow_of_profileOccursAtN`, moving from
+  the public `profileOccursAtN` premise to the matching generated incidence
+  row, and
+  `ProfileClassIncidence.coversL2FullLocalModuloFrom_of_incidenceWitnesses`,
+  reducing the public completion theorem to finite row/class representative
+  witnesses.
+- `ProfileClassIncidence.coversL2FullLocalModuloFrom_of_codeWitnesses` further
+  reduces the remaining generated certificate target to the finite
+  `LocalJointClassCode` alphabet.  This avoids asking the finite certificate to
+  quantify directly over arbitrary semantic `JointClass` values with unbounded
+  `Nat` count fields.
+- `ProfileClassIncidence.completesL2FullFrom_representativeSurface_of_codeWitnesses`
+  composes that finite-code witness theorem into the
+  `Completion.CompletesL2FullFrom representativeSurface threshold` surface that
+  downstream stabilization arguments should consume.
+- The concrete bridge target at that checkpoint was named
+  `ProfileClassIncidence.FiniteCodeWitnesses`.
+
+Enumerator checkpoint, 2026-07-09:
+
+- `Certificate.LocalEnumerator` now compiles.  It enumerates the 21 nonempty
+  cap/mask count cells with a proved recursive completeness invariant and the 64
+  self-avoiding Moser-mask assignments.  Its optimized search tracks twelve
+  monotone budgets: three exact center-use budgets, six H1 budgets, and three
+  pair-sharing budgets.
+- The same module proves `rawRowOfClass_mem_acceptedRows`: every semantic
+  L2/full-participant `JointClass` satisfying `LocallyAdmissible` is represented
+  by a row accepted by the independent finite enumerator.  The optimized
+  explicit-list LOCAL checker is proved extensionally equal to the semantic
+  `JointClass` predicates.
+- `Certificate.LocalEnumeratorCertificate` now compiles.  It proves equality
+  between the sorted support-data key lists from the accepted enumerator and all
+  3,375 rows of `TypedClassBank`; the optimized native check completes in under
+  30 seconds.  Consequently every accepted enumerator row has a typed-bank row
+  with the same decoded `JointClass`, and every L2/full LOCAL semantic class has
+  such a typed-bank witness.
+- `Certificate.ProfileSymmetry` proves that all six center-permutation codes
+  induce `JointProfile.Automorphism` values when they preserve the profile.
+  `Certificate.ClassPermutationTable` checks all 20,250 source/code table
+  entries against semantic class transport, and
+  `Certificate.ClassPermutationBridge` extracts typed target rows with
+  `EquivalentUnder` proofs.  All three modules compile.
+- `Certificate.ProfileClassCoverageCertificate` compiles its finite check over
+  all 489 generated profile rows and 3,375 typed class rows.  Every
+  capacity-compatible source row reaches an incidence class ID under one of the
+  profile-preserving permutations.
+- `Certificate.ProfileClassCompletion` proves
+  `ProfileClassIncidence.finiteCodeWitnesses`,
+  `ProfileClassIncidence.coversL2FullLocalModuloFrom`, and
+  `ProfileClassIncidence.completesL2FullFrom_representativeSurface`.
+
+Thus the enumerator-completeness bridge and `FiniteCodeWitnesses` are closed.
+This is completeness for the generated representative surface.  It does not by
+itself prove the geometric extraction/soundness theorem or T1's LOCAL-to-GLOBAL
+realization claim; those remain in the next formalization phase below.
 
 The concrete card-11 cap-profile handoff now lives in
 `lean/Erdos9796Proof/P97/MultiCenter/CapProfile.lean`. This module imports the

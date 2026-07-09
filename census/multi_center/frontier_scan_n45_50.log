@@ -1,0 +1,57 @@
+START 2026-07-08T16:20:23Z
+Artifacts
+- census/multi_center/sweeps/l2_global_proven_n12_12.json: OK; n=12
+- census/multi_center/sweeps/l2_global_proven_n12_30.json: PARTIAL_RANGE missing=21,22,23,24,25,26,27,28,29,30; n=12..20 (9 rows)
+- census/multi_center/sweeps/l2_global_proven_n21_30.json: PARTIAL_RANGE missing=22,23,24,25,26,27,28,29,30; n=21
+- census/multi_center/sweeps/l2_global_proven_n22.json: OK; n=22
+- census/multi_center/sweeps/l2_global_proven_n23.json: OK; n=23
+- census/multi_center/sweeps/l2_global_proven_n24.json: OK; n=24
+- census/multi_center/sweeps/l2_global_proven_n25.json: OK; n=25
+- census/multi_center/sweeps/l2_global_proven_n26.json: OK; n=26
+- census/multi_center/sweeps/l2_global_proven_n27.json: OK; n=27
+- census/multi_center/sweeps/l2_global_proven_n28.json: OK; n=28
+- census/multi_center/sweeps/l2_global_proven_n29_32.json: OK; n=29..32 (4 rows)
+
+Project-Level Inventory
+| n | profiles | LOCAL | SAT | fresh | new-vs-prev | missing-prev | UNSAT | INDET | cells | DFS nodes | sources |
+|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| 12 | 2 | 619 | 619 | 619 | 619 | 0 | 0 | 0 | 700 | 397,993 | l2_global_proven_n12_12.json,l2_global_proven_n12_30.json |
+| 13 | 3 | 1,150 | 1,150 | 531 | 531 | 0 | 0 | 0 | 1,736 | 1,549,535 | l2_global_proven_n12_30.json |
+| 14 | 4 | 1,759 | 1,759 | 609 | 609 | 0 | 0 | 0 | 3,311 | 4,570,307 | l2_global_proven_n12_30.json |
+| 15 | 6 | 2,333 | 2,333 | 574 | 574 | 0 | 0 | 0 | 5,476 | 11,048,054 | l2_global_proven_n12_30.json |
+| 16 | 7 | 2,613 | 2,613 | 280 | 280 | 0 | 0 | 0 | 8,171 | 24,381,275 | l2_global_proven_n12_30.json |
+| 17 | 9 | 2,935 | 2,935 | 322 | 322 | 0 | 0 | 0 | 11,456 | 48,257,057 | l2_global_proven_n12_30.json |
+| 18 | 11 | 3,182 | 3,182 | 247 | 247 | 0 | 0 | 0 | 15,286 | 86,998,269 | l2_global_proven_n12_30.json |
+| 19 | 13 | 3,213 | 3,213 | 31 | 31 | 0 | 0 | 0 | 19,691 | 143,385,137 | l2_global_proven_n12_30.json |
+| 20 | 15 | 3,291 | 3,291 | 78 | 78 | 0 | 0 | 0 | 24,641 | 236,386,113 | l2_global_proven_n12_30.json |
+| 21 | 18 | 3,360 | 3,360 | 69 | 69 | 0 | 0 | 0 | 30,181 | 375,445,745 | l2_global_proven_n21_30.json |
+| 22 | 20 | 3,360 | 3,360 | 0 | 0 | 0 | 0 | 0 | 36,251 | 574,883,663 | l2_global_proven_n22.json |
+| 23 | 23 | 3,369 | 3,369 | 9 | 9 | 0 | 0 | 0 | 42,911 | 855,806,285 | l2_global_proven_n23.json |
+| 24 | 26 | 3,375 | 3,375 | 6 | 6 | 0 | 0 | 0 | 50,116 | 1,232,474,553 | l2_global_proven_n24.json |
+| 25 | 29 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 57,896 | 1,690,868,064 | l2_global_proven_n25.json |
+| 26 | 32 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 66,221 | 2,356,657,465 | l2_global_proven_n26.json |
+| 27 | 36 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 75,136 | 3,244,409,704 | l2_global_proven_n27.json |
+| 28 | 39 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 84,581 | 4,355,073,653 | l2_global_proven_n28.json |
+| 29 | 43 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 94,616 | 5,795,498,263 | l2_global_proven_n29_32.json |
+| 30 | 47 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 105,196 | 7,555,701,066 | l2_global_proven_n29_32.json |
+| 31 | 51 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 116,351 | 9,524,326,062 | l2_global_proven_n29_32.json |
+| 32 | 55 | 3,375 | 3,375 | 0 | 0 | 0 | 0 | 0 | 128,051 | 12,234,247,376 | l2_global_proven_n29_32.json |
+
+Stabilization Windows
+- n=25..28: exact inventory stable at 3,375 classes
+- n=26..29: exact inventory stable at 3,375 classes
+- n=27..30: exact inventory stable at 3,375 classes
+- n=28..31: exact inventory stable at 3,375 classes
+- n=29..32: exact inventory stable at 3,375 classes
+
+Local Frontier Scan (L2, kills=on)
+- baseline SAT inventory: 3,375 classes from n <= 28
+| n | profiles | LOCAL | new-vs-baseline | new-vs-prev-scan | missing-prev-scan | novel profiles |
+|---:|---:|---:|---:|---:|---:|---:|
+| 45 | 126 | 3,375 | 0 | n/a | n/a | 0 |
+| 46 | 132 | 3,375 | 0 | 0 | 0 | 0 |
+| 47 | 139 | 3,375 | 0 | 0 | 0 | 0 |
+| 48 | 146 | 3,375 | 0 | 0 | 0 | 0 |
+| 49 | 153 | 3,375 | 0 | 0 | 0 | 0 |
+| 50 | 160 | 3,375 | 0 | 0 | 0 | 0 |
+EXIT_CODE=0
