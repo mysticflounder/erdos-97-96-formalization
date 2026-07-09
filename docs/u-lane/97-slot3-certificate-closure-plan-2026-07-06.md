@@ -616,6 +616,25 @@ surface where the finite masks or row-specific selected-class equalities are
 already present, or to shrink the finite scaffold so terminal seed production is
 derived only at the row/payload site that supplies the exact mask interfaces.
 
+2026-07-08 source-surface review: `nthdegree docs search --lean` finds the
+expected reusable candidate producer,
+`oneSidedSeedCandidateRemainder_of_mask_interfaces`, plus the older
+`RightOneSidedErasedPayloadSeedMaskInputs` /
+`LeftOneSidedErasedPayloadSeedMaskInputs` interfaces.  The live aggregate
+finite packet `RightOneSidedErasedPayloadFiniteCandidateSepFacts` deliberately
+omits the mask-cardinality, no-self, trigger, and final `uPwPuMask` facts and
+instead takes `hcandidate` as an input to
+`rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass`; the left packet is
+the same.  The two surviving pure rows
+`false_of_right_row0004_finiteCandidateFacts` and
+`false_of_left_row0040_finiteCandidateFacts` also still consume `hcandidate`
+only to derive the `.u` candidate-mask membership needed by
+`false_of_privateSurplusTriple_u_crossSeparation`.  Therefore the quick P2
+route is not a local proof of the current helpers.  The next producer should
+either carry the old mask-interface facts through the ordered scaffold, or
+derive row-local `.u ∈ candidateMasks` from exact row/common-mask data at the
+pure-row payload site.
+
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
 BLOCKED sites and the two surviving rows (right `(0,0,0,4)`, left
@@ -648,6 +667,18 @@ convexity, so this means new *global* real content, e.g. joint constraints
 at richer layers than L2); or minimality-based descent not expressible in
 the local pin.  {{NEEDS_ADAM_INPUT}} — route selection is a pivot-level
 decision.
+
+2026-07-08 source-surface review: the current direct P4 branches already
+construct a `U5DangerousTriple`, a selected candidate from
+`exists_selectedCandidateSkeleton_of_card_gt_nine`, the exact erased-pin radius
+class via `u5ExactRadiusClassCard_of_erasedPinTriple`, and two off-circle
+support points from `U5DangerousTriple.exists_two_off_circle_aux`.  Existing
+`SurplusM44Packet` erased-pin triple theorems apply to non-surplus payload
+centers in `oppInterior1`/`oppInterior2`; they do not close the direct
+surplus-opposite or surplus-interior payload centers.  Existing U5 support
+theorems still require a `U5ModeA D` or equivalent global support-confinement
+producer.  Treat P4 as a real missing cut/producer, not a search problem over
+the current non-surplus row bank.
 
 **Order.**  P1 is no longer live in the current source.  P2 and P3/P4 can run
 in parallel.  P2 reduces the theorem to the two direct-branch sorries plus
