@@ -98,11 +98,19 @@ wired back into the spine.
 
 ## Exact closure path — erased-pin triple residuals (2026-07-08)
 
-Audit of the six live `sorry` sites inside
+Audit of the live `sorry` sites inside
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
 (`RemovableVertexAxiom.lean` 9339, 9367, 9406, 9411, 9420, 9424), classified
 by what is known to block each, with the ordered path to closure.  Line
 numbers are as of commit 596428d.
+
+2026-07-08 checkpoint update: the two P1 CCW sites have since been removed
+from the live local hole set by the ordered/reflected producer refactor.  The
+current local `sorry` sites in this theorem are the two direct P4 erased-pin
+branches (`RemovableVertexAxiom.lean:10015`, `:10043`) and the two P2
+candidate-remainder helpers (`:10144`, `:10169`).  The live proof-blueprint
+spine remains one open leaf, because all four local holes sit inside the same
+headline theorem.
 
 ### Sorry-site inventory
 
@@ -110,9 +118,9 @@ numbers are as of commit 596428d.
 |---|---|---|
 | 9339 | direct surplus-opposite `ErasedPinTriple` exclusion | BLOCKED — no producer (Mode-A probe, frontier doc 2026-07-08) |
 | 9367 | direct surplus-interior `ErasedPinTriple` exclusion | BLOCKED — same hole as 9339 |
-| 9406 | right ten-label hull `IsCcwConvexPolygon` | unprovable in place; needs reordering restructure (P1) |
+| 9406 | right ten-label hull `IsCcwConvexPolygon` | CLOSED in current source by the ordered/reflected producer refactor (P1) |
 | 9411 | right own-kind `OneSidedSeedCandidateRemainder` pair | mechanical-shaped {{NEEDS_PROOF}} (P2) |
-| 9420 | left mirror hull CCW | same as 9406 (P1) |
+| 9420 | left mirror hull CCW | CLOSED in current source by the ordered/reflected producer refactor (P1) |
 | 9424 | left mirror candidate remainders | same as 9411 (P2) |
 
 Grounding facts, each independently checked 2026-07-08:
@@ -572,10 +580,13 @@ certificate to `leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass`.  The
 right/left P2 candidate-remainder gaps are factored once per side.  Verification:
 `LEAN_ROOT=.../lean lake-build Erdos9796Proof.P97.RemovableVertexAxiom`
 succeeded and proof-blueprint reports the active spine as `1 open / 901 total`.
-The remaining P1 hull-order content is now exactly the nonmatching orientation:
-transport the opposite-side certificate to the finite-bank convention, or
-refactor the finite producer to consume the orientation supplied by the boundary
-dichotomy.
+
+2026-07-08 correction: the nonmatching orientation has also been wired in the
+current Lean source.  `rightFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass`
+and `leftFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass` feed the
+opposite-orientation selector through reversed labels and reflected hull-label
+separation.  P1 should no longer be treated as a remaining local closure target;
+the remaining local holes are P2 plus the two direct P4 branches.
 
 **P2 — candidate remainders (sites 9411/9424).**  For each own-kind seed:
 every non-fixed center's realized point-mask lies in the generated
@@ -638,11 +649,11 @@ at richer layers than L2); or minimality-based descent not expressible in
 the local pin.  {{NEEDS_ADAM_INPUT}} — route selection is a pivot-level
 decision.
 
-**Order.**  P1 and P2 are independent of P3 and of each other; all three can
-run in parallel.  P1+P2 close four of the six sorries and reduce the theorem
-to exactly the two direct-branch sorries plus whatever P3/P4 supply.  Nothing
-in P1/P2 depends on the P4 outcome.  Closure of the theorem = P1 + P2 + (P4a
-or P4b succeeding on both direct branches and both surviving rows).
+**Order.**  P1 is no longer live in the current source.  P2 and P3/P4 can run
+in parallel.  P2 reduces the theorem to the two direct-branch sorries plus
+whatever P3/P4 supply.  Nothing in P2 depends on the P4 outcome.  Closure of
+the theorem = P2 + (P4a or P4b succeeding on both direct branches and both
+surviving rows).
 
 ## Q Closure Gate
 
@@ -2159,6 +2170,11 @@ over the ordered labels/masks that P1's boundary fixes.  P2 work started
 before that interface freezes is rework risk with no offsetting gain.  Order:
 P1 matching halves → orientation-indexed producer boundary → P2.
 
+2026-07-08 update: the P1 boundary is now frozen in the current source,
+including the reflected nonmatching branches.  P2 can proceed against the
+current split ordered scaffold; do not reopen P1 unless a later build shows the
+reflected producer path is invalid.
+
 2026-07-08 refinement: after the P1 orientation refactor, the remaining P2
 helpers are not just missing local ordered-label facts.  They also assert
 candidate remainders for selected classes at a shared radius for centers that
@@ -2172,8 +2188,9 @@ surface supplies the exact selected-class equalities.  Do not spend effort on a
 lemma proving the current universal `hrightCandidate`/`hleftCandidate` goals as
 written.
 
-**Tally implication (unchanged).**  P1 closes exactly 2 of the 6 erased-pin
-sorries (9407/9436); 9415/9443 remain P2; 9286/9314 remain P4.
+**Tally implication.**  P1 has closed the two CCW holes.  The live local hole
+set is now two P2 candidate-remainder helpers and two P4 direct erased-pin
+branches, all inside the one on-spine headline theorem.
 
 2026-07-08 checkpoint: the nonmatching P1 orientation branches now build
 without local `sorry`s.  The committed Lean route adds reflected same-radius
