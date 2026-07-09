@@ -16,6 +16,11 @@ no-three / prefix-pair-count constraints, and separation constraints.
 The search is deliberately over-approximating.  A zero-survivor result here is
 usable as a producer target; a positive survivor only means the weaker
 interface is not enough for that seed/mode.
+
+Use `--symmetry-scope selected` for the same-radius selected-class symmetry
+that is proof-facing in the erased-payload scaffold.  `--symmetry-scope all`
+is an overstrong diagnostic only: the `.v` and `.w` centers are exact cap
+classes, not selected classes at the shared radius.
 """
 
 from __future__ import annotations
@@ -131,12 +136,58 @@ def fixed_masks_for_seed(base: Any, private_center: str, private_mask: int) -> d
     }
 
 
-def final_valid(base: Any, masks_by_center: dict[str, int]) -> bool:
+def symmetric_centers(base: Any, scope: str) -> tuple[str, ...]:
+    if scope == "none":
+        return ()
+    if scope == "selected":
+        return tuple(label for label in base.LABELS if label not in ("v", "w"))
+    if scope == "all":
+        return tuple(base.LABELS)
+    raise ValueError(f"unknown symmetry scope {scope!r}")
+
+
+def symmetric_masks_ok(
+    base: Any, masks_by_center: dict[str, int], symmetry_scope: str
+) -> bool:
+    centers = symmetric_centers(base, symmetry_scope)
+    return all(
+        base.mask_has(masks_by_center[c], cp)
+        == base.mask_has(masks_by_center[cp], c)
+        for c in centers
+        for cp in centers
+        if c != cp
+    )
+
+
+def symmetric_with_assigned_ok(
+    base: Any,
+    center: str,
+    mask: int,
+    assigned: dict[str, int],
+    symmetry_scope: str,
+) -> bool:
+    centers = set(symmetric_centers(base, symmetry_scope))
+    if center not in centers:
+        return True
+    return all(
+        base.mask_has(other_mask, center) == base.mask_has(mask, other)
+        for other, other_mask in assigned.items()
+        if other in centers
+    )
+
+
+def final_valid(
+    base: Any, masks_by_center: dict[str, int], symmetry_scope: str
+) -> bool:
     masks = [masks_by_center[label] for label in base.LABELS]
     return (
         base.no_three_ok(masks)
         and base.separation_ok(masks)
         and base.search_separation_ok(masks)
+        and (
+            symmetry_scope == "none"
+            or symmetric_masks_ok(base, masks_by_center, symmetry_scope)
+        )
     )
 
 
@@ -164,6 +215,7 @@ def relaxed_survivor_count(
     private_mask: int,
     mode: str,
     max_survivors: int,
+    symmetry_scope: str,
 ) -> tuple[int, list[dict[str, Any]]]:
     fixed = fixed_masks_for_seed(base, private_center, private_mask)
     if any(not mask_allowed(base, mode, sstar, center, mask) for center, mask in fixed.items()):
@@ -190,6 +242,10 @@ def relaxed_survivor_count(
     for center in remaining:
         candidates = []
         for mask in all_masks_for_mode(base, script_path, mode, sstar, center):
+            if symmetry_scope != "none" and not symmetric_with_assigned_ok(
+                base, center, mask, assigned, symmetry_scope
+            ):
+                continue
             next_counts = add_counts(counts, pair_count_delta(base, center, mask))
             if not counts_ok(next_counts):
                 continue
@@ -215,7 +271,7 @@ def relaxed_survivor_count(
             return
         if index == len(search_order):
             masks_by_center = {**assigned, **current}
-            if final_valid(base, masks_by_center):
+            if final_valid(base, masks_by_center, symmetry_scope):
                 count += 1
                 if len(survivors) < 3:
                     survivors.append(
@@ -233,6 +289,10 @@ def relaxed_survivor_count(
 
         center = search_order[index]
         for mask in candidates_by_center[center]:
+            if symmetry_scope != "none" and not symmetric_with_assigned_ok(
+                base, center, mask, current, symmetry_scope
+            ):
+                continue
             if any(
                 not ordered_cross_ok(base, center, mask, other, other_mask)
                 for other, other_mask in current.items()
@@ -282,11 +342,26 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Print only aggregate counts and the open seed keys.",
     )
+    parser.add_argument(
+        "--symmetry-scope",
+        choices=("none", "selected", "all"),
+        default="none",
+        help=(
+            "Require pairwise symmetric membership for no centers, only "
+            "same-radius selected-class centers, or all centers."
+        ),
+    )
+    parser.add_argument(
+        "--symmetric",
+        action="store_true",
+        help="Deprecated alias for --symmetry-scope all.",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
+    symmetry_scope = "all" if args.symmetric else str(args.symmetry_scope)
     base = load_base_module(args.base_script)
     payload = load_json(args.census)
     if payload.get("schema") != base.SCHEMA:
@@ -318,6 +393,7 @@ def main() -> None:
             int(record["private_mask"]),
             str(args.mode),
             int(args.max_survivors),
+            symmetry_scope,
         )
         closed = count == 0
         summary["seed_count"] += 1
@@ -336,6 +412,7 @@ def main() -> None:
         "schema": "p97.erased_pin_relaxed_producer_probe.v1",
         "mode": args.mode,
         "max_survivors": args.max_survivors,
+        "symmetry_scope": symmetry_scope,
         "summary": dict(summary),
     }
     if args.summary_only:

@@ -2350,3 +2350,35 @@ productive fork is:
 2. keep candidate generation row-specific and reduce the remaining cases to
    the 141 raw-open seeds, with special attention to the three terminal
    opposite-`w` private masks.
+
+2026-07-09 symmetry bugcheck: the first symmetry probe used global pairwise
+mask-membership symmetry and reported 312 closed / 330 total in raw and
+no-self mode, leaving 18 seeds in four row IDs.  That assumption is too strong
+for the active erased-payload scaffold: `.v` and `.w` are exact cap classes,
+not same-radius selected classes, so membership against them is not symmetric
+with the selected-class centers.  The script now distinguishes
+`--symmetry-scope selected` from the overstrong `--symmetry-scope all`.
+
+The proof-facing selected-center-only symmetry check gives no additional
+finite cut:
+
+- `--mode raw --symmetry-scope selected`: 189 closed / 330 total, 141 open.
+- `--mode no_self --symmetry-scope selected`: 189 closed / 330 total, 141 open.
+- `--mode shape --symmetry-scope selected`: 330 closed / 330 total.
+
+The 141 no-self/selected-symmetry survivors affect 18 row IDs:
+`ep_right_m0_s0_l1_r3`, `ep_right_m0_s1_l0_r3`,
+`ep_right_m0_s1_l1_r2`, `ep_right_m1_s0_l0_r3`,
+`ep_right_m1_s0_l1_r2`, `ep_right_m1_s1_l0_r2`,
+`ep_right_m1_s1_l1_r1`, `ep_right_m2_s0_l0_r2`,
+`ep_right_m2_s1_l0_r1`, and the nine left mirrors
+`ep_left_m0_s0_l3_r1`, `ep_left_m0_s1_l2_r1`,
+`ep_left_m0_s1_l3_r0`, `ep_left_m1_s0_l2_r1`,
+`ep_left_m1_s0_l3_r0`, `ep_left_m1_s1_l1_r1`,
+`ep_left_m1_s1_l2_r0`, `ep_left_m2_s0_l2_r0`,
+`ep_left_m2_s1_l1_r0`.
+
+Conclusion: selected-center symmetry is valid but not useful by itself.  The
+remaining finite route is still the exact shape/mask-interface route, or a
+row-specific candidate producer that supplies the same local mask facts without
+claiming a universal candidate lemma at the current false P2 helper sites.
