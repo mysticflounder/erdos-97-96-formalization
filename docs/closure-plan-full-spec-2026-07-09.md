@@ -98,6 +98,17 @@ build passes.
    `pattern` + gauge (not trust the strings) and then verify the identity;
    `IsDead` (MotifTransfer.lean) then follows by evaluation, giving
    emptiness per banked pattern.
+   **Verified poly layer BUILT 2026-07-09**:
+   `lean/Erdos9796Proof/P97/Census554/PolyCheck.lean` — computable sparse
+   ℚ-polynomials (`Mon`/`SPoly`, add/neg/mul/const/normalize) with
+   evaluation-soundness lemmas; payoff theorem
+   `SPoly.eval_eq_zero_of_normalize_eq_nil` (normalize-to-nil ⟹ evaluates
+   to 0 everywhere) is sorry-free, core axioms only. Remaining for step 2:
+   generator re-derivation from pattern+gauge in this representation,
+   the Rabinowitsch evaluation bridge (t := 1/d² at a distinct-point
+   realization), the `checkCert ⟹ IsDead` assembly, and the cert-data
+   import pipeline (per-pattern generated modules; heavy-tail residual
+   above).
 3. **Cover check**: `decide`-level verification that the banked pattern set
    (after motif closure) excludes all candidate cubes. Format: either replay
    the SAT UNSAT as a generated Lean enumeration, or export DRAT and
