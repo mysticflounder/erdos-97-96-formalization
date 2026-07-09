@@ -1094,6 +1094,25 @@ theorem {candidate_name}_false_of_isValidOneSidedSeedShadow
     return "\n\n".join(sections)
 
 
+def lean_row_relaxed_shape_theorems(payload: dict[str, Any]) -> str:
+    sections: list[str] = []
+    for row in finite_rows(payload):
+        row_id = str(row["id"])
+        candidate_name = f"{lean_row_seed_name(row_id)}_candidates"
+        sections.append(
+            f"""/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `{row_id}`. -/
+theorem {candidate_name}_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {{seed : OneSidedSeed}} {{shadow : Shadow}}
+    (hseed : seed ∈ {candidate_name})
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    ({candidate_name}_subset_fixed hseed) hvalid"""
+        )
+    return "\n\n".join(sections)
+
+
 def rows_all_private_w_cross_separation_false(payload: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         row
@@ -1139,6 +1158,7 @@ def write_lean(path: Path, payload: dict[str, Any]) -> None:
     signature_seed_defs = lean_signature_seed_defs(payload)
     row_cross_separation_theorems = lean_row_cross_separation_theorems(payload)
     seed_invalid_theorems = lean_seed_invalid_theorems(payload)
+    row_relaxed_shape_theorems = lean_row_relaxed_shape_theorems(payload)
     text = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -1268,6 +1288,12 @@ theorem erasedPinFixedSeedSearchEntries_eq_nil :
     erasedPinFixedSeedSearchEntries = [] := by
   native_decide
 
+/-- The generalized erased-pin relaxed-shape fixed-seed incidence search has no
+survivors. -/
+theorem erasedPinFixedSeedRelaxedShapeSearchEntries_eq_nil :
+    erasedPinFixedSeedRelaxedShapeSearchEntries = [] := by
+  native_decide
+
 /-- Every valid shadow for a listed erased-pin fixed seed appears in the
 combined fixed-seed DFS entry list. -/
 theorem mem_erasedPinFixedSeedSearchEntries_of_isValidOneSidedSeedShadow
@@ -1304,6 +1330,17 @@ theorem false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed
       hseed hvalid
   simp [erasedPinFixedSeedSearchEntries_eq_nil] at hmem
 
+/-- No listed erased-pin fixed seed admits a valid relaxed-shape seeded shadow. -/
+theorem false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    {{seed : OneSidedSeed}} {{shadow : Shadow}}
+    (hseed : seed ∈ erasedPinFixedSeeds)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False := by
+  have hmem :=
+    mem_erasedPinFixedSeedRelaxedShapeSearchEntries_of_isValidOneSidedSeedRelaxedShapeShadow
+      hseed hvalid
+  simp [erasedPinFixedSeedRelaxedShapeSearchEntries_eq_nil] at hmem
+
 /-- No seed whose canonical erased-pin row seed is listed admits a valid
 seeded shadow.  This is the kind-insensitive form used by geometric producers
 whose payload split records `.oppositeU` or `.oppositeW` even though the fixed
@@ -1319,6 +1356,10 @@ theorem false_of_isValidOneSidedSeedShadow_of_mem_erasedPinCanonicalSeed
 /-! ## Row/signature no-survivor consequences -/
 
 {seed_invalid_theorems}
+
+/-! ## Row relaxed-shape no-survivor consequences -/
+
+{row_relaxed_shape_theorems}
 
 end SurplusCOMPGBank
 end Problem97

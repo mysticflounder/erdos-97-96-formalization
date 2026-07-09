@@ -1,4 +1,5 @@
-active anchors (3):
+active anchors (4):
+  ⚓ 019f300c (YOU)  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [open]  — Working the free non-surplus erased-pin P2/P4 residual leaf
   ⚓ 019f38a3  Problem97.isM44PinnedSurplusResidualsExcluded  [open]  — Switching from DoubleApex/card-11 census to pinned surplus residual per Adam request
   ⚓ f1cc942b  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]
   ⚓ f46fdf3f  Problem97.largeK4SurplusCapPacket  [closed]
@@ -10,24 +11,75 @@ target spine view: 2 configured target_symbol(s)
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 5/505 node(s)
-spine source: 22005 line(s) of lean across 513 decl(s)
+open: 24/1672 node(s)
+trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 62043 line(s) of lean across 1680 decl(s)
 
-open obligations (1):
-  ⏳ Problem97.RemovableVertexOfLarge  [stale]
+open obligations (6):
+  💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
+  💧 Problem97.isM44EndpointResidualsExcluded  [sorry]
+  💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
+  💧 Problem97.isM44PinnedSurplusNonVExactShapeProducer  [sorry]
+  💧 Problem97.u1_largeCap_routeB_tail_liveData_false  [sorry]
+  ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
 └── Problem97.erdos97_rhs
     └── Problem97.UniversalProblem97
         ├── Problem97.universalReductionHypotheses
         │   ├── Problem97.descent_contradicts_minimality
-        │   │   ├── Problem97.RemovableVertexOfLarge  [⏳ stale]
+        │   │   ├── Problem97.RemovableVertexOfLarge
+        │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
+        │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
+        │   │   │   │   │   ├── Problem97.isM44EndpointResidualsExcluded  [💧]
+        │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   ├── Problem97.isM44PinnedSurplusResidualsExcluded
+        │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusMetricShadowProducer
+        │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusNonVExactShapeProducer  [💧]
+        │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 82 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
+        │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
+        │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
+        │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
+        │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]  ⚓ (YOU)
+        │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 74 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+        │   │   │   │   │   └── ✓ 2 closed dep(s)
+        │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
+        │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
+        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  [💧]
+        │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_center_p_t2_t20
+        │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
+        │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
+        │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
+        │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+        │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+        │   │   │   │   │   │   │   │   └── ✓ 27 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 35 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 46 closed dep(s)
+        │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   └── ✓ 2 closed dep(s)
         │   │   └── ✓ 3 closed dep(s)
         │   └── ✓ 3 closed dep(s)
         └── ✓ 2 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - 1 stale symbol(s) (build changed since mine — re-run `refs --refresh`)
+  - reaches sorry via 5 symbol(s)
+  - unapproved axiom on spine: sorryAx
 
 ════════════════════════════════════════════════════════════════
 [2/2] theorem Problem96.erdos96_rhs
@@ -35,11 +87,17 @@ open obligations (1):
 spine rooted at: Problem96.erdos96_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 9/513 node(s)
-spine source: 22198 line(s) of lean across 521 decl(s)
+open: 28/1680 node(s)
+trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 62236 line(s) of lean across 1688 decl(s)
 
-open obligations (1):
-  ⏳ Problem97.RemovableVertexOfLarge  [stale]
+open obligations (6):
+  💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
+  💧 Problem97.isM44EndpointResidualsExcluded  [sorry]
+  💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
+  💧 Problem97.isM44PinnedSurplusNonVExactShapeProducer  [sorry]
+  💧 Problem97.u1_largeCap_routeB_tail_liveData_false  [sorry]
+  ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
 └── Problem96.erdos96_rhs
@@ -50,7 +108,51 @@ open obligations (1):
             │   │   ├── Problem97.UniversalProblem97
             │   │   │   ├── Problem97.universalReductionHypotheses
             │   │   │   │   ├── Problem97.descent_contradicts_minimality
-            │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge  [⏳ stale]
+            │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge
+            │   │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
+            │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
+            │   │   │   │   │   │   │   │   ├── Problem97.isM44EndpointResidualsExcluded  [💧]
+            │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusResidualsExcluded
+            │   │   │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusMetricShadowProducer
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusNonVExactShapeProducer  [💧]
+            │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   └── ✓ 82 closed dep(s)
+            │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+            │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
+            │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
+            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]  ⚓ (YOU)
+            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 74 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+            │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
+            │   │   │   │   │   │   │   │   └── ✓ 2 closed dep(s)
+            │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
+            │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
+            │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  [💧]
+            │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_center_p_t2_t20
+            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
+            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
+            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 27 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   └── ✓ 35 closed dep(s)
+            │   │   │   │   │   │   │   │   │   └── ✓ 46 closed dep(s)
+            │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+            │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+            │   │   │   │   │   │   └── ✓ 2 closed dep(s)
             │   │   │   │   │   └── ✓ 3 closed dep(s)
             │   │   │   │   └── ✓ 3 closed dep(s)
             │   │   │   └── ✓ 2 closed dep(s)
@@ -59,19 +161,9 @@ open obligations (1):
             └── ✓ 3 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem96.erdos96_rhs` has:
-  - 1 stale symbol(s) (build changed since mine — re-run `refs --refresh`)
+  - reaches sorry via 5 symbol(s)
+  - unapproved axiom on spine: sorryAx
 
-⚠ off-spine sorries (5 symbol(s) in 4 file(s)) — placeholder sorries are no longer allowed; all live work must be wired into the spine:
-  Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean  (1 sorry)
-    💧 Problem97.isM44EndpointResidualsExcluded
-  Erdos9796Proof/P97/RemovableVertexAxiom/Continuation.lean  (1 sorry)
-    💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded
-  Erdos9796Proof/P97/RemovableVertexAxiom/PinnedSurplusProducer.lean  (1 sorry)
-    💧 Problem97.isM44PinnedSurplusNonVExactShapeProducer
-  Erdos9796Proof/P97/U1LargeCapRouteBTail.lean  (2 sorry)
-    💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair
-    💧 Problem97.u1_largeCap_routeB_tail_liveData_false
-
-unimported files (510 file(s), 1641 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (512 file(s), 1678 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

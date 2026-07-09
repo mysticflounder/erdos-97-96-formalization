@@ -2733,17 +2733,28 @@ theorem candidateMaskOK_of_mem_candidateMasks
   rw [candidateMasksByFilter] at h
   exact (List.mem_filter.mp h).2
 
+/-- Away from the pinned `.v` center, one-sided seed candidate membership
+implies membership in the generated pinned-bank candidate table.  The seeded
+local predicate and the pinned-bank local predicate only differ by the `.v`
+pinned-mask clause. -/
+theorem mem_candidateMasks_ne_v_of_mem_seed_candidateMasks
+    {seed : OneSidedSeed} {center : Label} {mask : Nat}
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : center ≠ .v)
+    (hmem : mask ∈ seed.candidateMasks center) :
+    mask ∈ candidateMasks seed.sstar center := by
+  exact mem_candidateMasks_of_candidateMaskOK hs (by
+    have hOK := oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks hmem
+    simpa [candidateMaskOK, oneSidedSeedCandidateMaskOK, hv] using hOK)
+
 /-- At the `.u` center, one-sided seed candidate membership implies membership
-in the generated pinned-bank candidate table.  The seeded local predicate and
-the pinned-bank local predicate agree at `.u`. -/
+in the generated pinned-bank candidate table. -/
 theorem mem_candidateMasks_u_of_mem_seed_candidateMasks
     {seed : OneSidedSeed} {mask : Nat}
     (hs : isSurplusStar seed.sstar = true)
     (hmem : mask ∈ seed.candidateMasks .u) :
     mask ∈ candidateMasks seed.sstar .u := by
-  exact mem_candidateMasks_of_candidateMaskOK hs (by
-    have hOK := oneSidedSeedCandidateMaskOK_of_mem_seed_candidateMasks hmem
-    simpa [candidateMaskOK, oneSidedSeedCandidateMaskOK] using hOK)
+  exact mem_candidateMasks_ne_v_of_mem_seed_candidateMasks hs (by decide) hmem
 
 /-- The generated pinned `.v` mask is one of the generated `.v` candidates. -/
 theorem pinnedMaskOf_mem_candidateMasks_v
@@ -10680,6 +10691,164 @@ theorem false_of_erasedPinRow_ep_left_m2_s1_l1_r0_seedShadow_pointClasses
                     seed hfixed
               · exact hcandidate center hvCenter hwCenter hprivateCenter)
         hno3 hcounts hsep hsearchSep)
+
+/-- Component-wise generated Boolean facts assemble a relaxed-shape seeded
+one-sided shadow.  This is the candidate-free interface: exact `.v`/`.w` cap
+masks handle the fixed centers, while the caller supplies exact four-label
+shape for every remaining center. -/
+theorem isValidRelaxedShapeShadow_shadowOfPointClasses_of_exact_vw_shapes_labelPairs
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas (pointMask pointOf (centerClass center)) center = false)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
+    (hsep : ∀ c cp x y : Label,
+      (c, cp) ∈ labelPairs →
+        (x, y) ∈ labelPairs →
+          sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y =
+            true)
+    (hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+          (pointMask pointOf (centerClass cp)) = true) :
+    isValidOneSidedSeedRelaxedShapeShadow seed
+      (shadowOfPointClasses pointOf centerClass) = true := by
+  have hcardAll : ∀ center : Label,
+      maskCard (pointMask pointOf (centerClass center)) = 4 := by
+    intro center
+    by_cases hvCenter : center = .v
+    · subst center
+      rw [hv]
+      exact firstOppExactCapMask_card
+    · by_cases hwCenter : center = .w
+      · subst center
+        rw [hwMask]
+        exact secondOppExactCapMask_card
+      · exact hcard center hvCenter hwCenter
+  have hselfAll : ∀ center : Label,
+      maskHas (pointMask pointOf (centerClass center)) center = false := by
+    intro center
+    by_cases hvCenter : center = .v
+    · subst center
+      rw [hv]
+      exact firstOppExactCapMask_not_v
+    · by_cases hwCenter : center = .w
+      · subst center
+        rw [hwMask]
+        exact secondOppExactCapMask_not_w
+      · exact hself center hvCenter hwCenter
+  simp [isValidOneSidedSeedRelaxedShapeShadow, hs,
+    shadowOfPointClasses_hasTenMasks,
+    classesShapeOK_shadowOfPointClasses_of_maskCard_not_mem hcardAll
+      hselfAll,
+    shadowOfPointClasses_centerMask, hv, hwMask, hprivate, hno3,
+    searchPairCountsOK_shadowOfPointClasses_of_prefixes hcounts,
+    separationOK_shadowOfPointClasses_of_sepOKFor_labelPairs hsep,
+    searchSeparationOK_shadowOfPointClasses_of_crossSeparation_orderedPairs
+      hsearchSep]
+
+/-- Any fixed erased-pin seed in the generated bank is contradicted by exact cap
+masks, the seed's private mask, and relaxed four-label/no-self shape for the
+remaining point classes. -/
+theorem false_of_erasedPinFixedSeedRelaxedShape_pointClasses
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinFixedSeeds)
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas (pointMask pointOf (centerClass center)) center = false)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
+    (hsep : ∀ c cp x y : Label,
+      (c, cp) ∈ labelPairs →
+        (x, y) ∈ labelPairs →
+          sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y =
+            true)
+    (hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+          (pointMask pointOf (centerClass cp)) = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    hseed
+    (isValidRelaxedShapeShadow_shadowOfPointClasses_of_exact_vw_shapes_labelPairs
+      hs hv hwMask hprivate hcard hself hno3 hcounts hsep hsearchSep)
+
+/-- Row-specific relaxed-shape point-class contradiction for erased-pin finite
+row `ep_right_m2_s1_l0_r1`. -/
+theorem false_of_erasedPinRow_ep_right_m2_s1_l0_r1_relaxedShape_pointClasses
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_right_m2_s1_l0_r1_seeds_candidates)
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas (pointMask pointOf (centerClass center)) center = false)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
+    (hsep : ∀ c cp x y : Label,
+      (c, cp) ∈ labelPairs →
+        (x, y) ∈ labelPairs →
+          sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y =
+            true)
+    (hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+          (pointMask pointOf (centerClass cp)) = true) :
+    False :=
+  false_of_erasedPinFixedSeedRelaxedShape_pointClasses
+    (erasedPinRow_ep_right_m2_s1_l0_r1_seeds_candidates_subset_fixed hseed)
+    hs hv hwMask hprivate hcard hself hno3 hcounts hsep hsearchSep
+
+/-- Row-specific relaxed-shape point-class contradiction for erased-pin finite
+row `ep_left_m2_s1_l1_r0`. -/
+theorem false_of_erasedPinRow_ep_left_m2_s1_l1_r0_relaxedShape_pointClasses
+    {α : Type _} [DecidableEq α] {pointOf : Label → α}
+    {centerClass : Label → Finset α} {seed : OneSidedSeed}
+    (hseed : seed ∈ erasedPinRow_ep_left_m2_s1_l1_r0_seeds_candidates)
+    (hs : isSurplusStar seed.sstar = true)
+    (hv : pointMask pointOf (centerClass .v) = firstOppExactCapMask)
+    (hwMask : pointMask pointOf (centerClass .w) = secondOppExactCapMask)
+    (hprivate : pointMask pointOf (centerClass seed.privateCenter) =
+      seed.privateMask)
+    (hcard : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard (pointMask pointOf (centerClass center)) = 4)
+    (hself : ∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas (pointMask pointOf (centerClass center)) center = false)
+    (hno3 : noThreeOK (shadowOfPointClasses pointOf centerClass) = true)
+    (hcounts : PrefixPairCountsOK (shadowOfPointClasses pointOf centerClass))
+    (hsep : ∀ c cp x y : Label,
+      (c, cp) ∈ labelPairs →
+        (x, y) ∈ labelPairs →
+          sepOKFor (shadowOfPointClasses pointOf centerClass) c cp x y =
+            true)
+    (hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c (pointMask pointOf (centerClass c)) cp
+          (pointMask pointOf (centerClass cp)) = true) :
+    False :=
+  false_of_erasedPinFixedSeedRelaxedShape_pointClasses
+    (erasedPinRow_ep_left_m2_s1_l1_r0_seeds_candidates_subset_fixed hseed)
+    hs hv hwMask hprivate hcard hself hno3 hcounts hsep hsearchSep
 
 /-- Exact cap masks, the listed private seed mask, and the exact generated
 trigger interface give the seeded no-survivor contradiction.  Compared with

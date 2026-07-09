@@ -2956,6 +2956,12 @@ theorem erasedPinFixedSeedSearchEntries_eq_nil :
     erasedPinFixedSeedSearchEntries = [] := by
   native_decide
 
+/-- The generalized erased-pin relaxed-shape fixed-seed incidence search has no
+survivors. -/
+theorem erasedPinFixedSeedRelaxedShapeSearchEntries_eq_nil :
+    erasedPinFixedSeedRelaxedShapeSearchEntries = [] := by
+  native_decide
+
 /-- Every valid shadow for a listed erased-pin fixed seed appears in the
 combined fixed-seed DFS entry list. -/
 theorem mem_erasedPinFixedSeedSearchEntries_of_isValidOneSidedSeedShadow
@@ -2991,6 +2997,17 @@ theorem false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed
     mem_erasedPinFixedSeedSearchEntries_of_isValidOneSidedSeedShadow
       hseed hvalid
   simp [erasedPinFixedSeedSearchEntries_eq_nil] at hmem
+
+/-- No listed erased-pin fixed seed admits a valid relaxed-shape seeded shadow. -/
+theorem false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinFixedSeeds)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False := by
+  have hmem :=
+    mem_erasedPinFixedSeedRelaxedShapeSearchEntries_of_isValidOneSidedSeedRelaxedShapeShadow
+      hseed hvalid
+  simp [erasedPinFixedSeedRelaxedShapeSearchEntries_eq_nil] at hmem
 
 /-- No seed whose canonical erased-pin row seed is listed admits a valid
 seeded shadow.  This is the kind-insensitive form used by geometric producers
@@ -3395,6 +3412,268 @@ theorem erasedPinSignature_M2_S1_O0_X1_seeds_candidates_false_of_isValidOneSided
     False :=
   false_of_isValidOneSidedSeedShadow_of_mem_erasedPinFixedSeed
     (erasedPinSignature_M2_S1_O0_X1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-! ## Row relaxed-shape no-survivor consequences -/
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m0_s0_l2_r2`. -/
+theorem erasedPinRow_ep_right_m0_s0_l2_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s0_l2_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m0_s0_l2_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m0_s0_l1_r3`. -/
+theorem erasedPinRow_ep_right_m0_s0_l1_r3_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s0_l1_r3_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m0_s0_l1_r3_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m0_s1_l2_r1`. -/
+theorem erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m0_s1_l2_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m0_s1_l1_r2`. -/
+theorem erasedPinRow_ep_right_m0_s1_l1_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s1_l1_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m0_s1_l1_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m0_s1_l0_r3`. -/
+theorem erasedPinRow_ep_right_m0_s1_l0_r3_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m0_s1_l0_r3_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m0_s1_l0_r3_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m1_s0_l2_r1`. -/
+theorem erasedPinRow_ep_right_m1_s0_l2_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m1_s0_l2_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m1_s0_l2_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m1_s0_l1_r2`. -/
+theorem erasedPinRow_ep_right_m1_s0_l1_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m1_s0_l1_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m1_s0_l1_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m1_s0_l0_r3`. -/
+theorem erasedPinRow_ep_right_m1_s0_l0_r3_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m1_s0_l0_r3_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m1_s0_l0_r3_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m1_s1_l1_r1`. -/
+theorem erasedPinRow_ep_right_m1_s1_l1_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m1_s1_l1_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m1_s1_l1_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m1_s1_l0_r2`. -/
+theorem erasedPinRow_ep_right_m1_s1_l0_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m1_s1_l0_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m1_s1_l0_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m2_s0_l1_r1`. -/
+theorem erasedPinRow_ep_right_m2_s0_l1_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m2_s0_l1_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m2_s0_l1_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m2_s0_l0_r2`. -/
+theorem erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m2_s0_l0_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_right_m2_s1_l0_r1`. -/
+theorem erasedPinRow_ep_right_m2_s1_l0_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_right_m2_s1_l0_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_right_m2_s1_l0_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m0_s0_l2_r2`. -/
+theorem erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m0_s0_l2_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m0_s0_l3_r1`. -/
+theorem erasedPinRow_ep_left_m0_s0_l3_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s0_l3_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m0_s0_l3_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m0_s1_l1_r2`. -/
+theorem erasedPinRow_ep_left_m0_s1_l1_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s1_l1_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m0_s1_l1_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m0_s1_l2_r1`. -/
+theorem erasedPinRow_ep_left_m0_s1_l2_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s1_l2_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m0_s1_l2_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m0_s1_l3_r0`. -/
+theorem erasedPinRow_ep_left_m0_s1_l3_r0_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m0_s1_l3_r0_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m0_s1_l3_r0_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m1_s0_l1_r2`. -/
+theorem erasedPinRow_ep_left_m1_s0_l1_r2_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m1_s0_l1_r2_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m1_s0_l1_r2_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m1_s0_l2_r1`. -/
+theorem erasedPinRow_ep_left_m1_s0_l2_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m1_s0_l2_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m1_s0_l2_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m1_s0_l3_r0`. -/
+theorem erasedPinRow_ep_left_m1_s0_l3_r0_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m1_s0_l3_r0_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m1_s0_l3_r0_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m1_s1_l1_r1`. -/
+theorem erasedPinRow_ep_left_m1_s1_l1_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m1_s1_l1_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m1_s1_l1_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m1_s1_l2_r0`. -/
+theorem erasedPinRow_ep_left_m1_s1_l2_r0_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m1_s1_l2_r0_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m1_s1_l2_r0_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m2_s0_l1_r1`. -/
+theorem erasedPinRow_ep_left_m2_s0_l1_r1_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m2_s0_l1_r1_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m2_s0_l1_r1_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m2_s0_l2_r0`. -/
+theorem erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m2_s0_l2_r0_seeds_candidates_subset_fixed hseed) hvalid
+
+/-- No valid relaxed-shape shadow can use a candidate seed from erased-pin
+producer row `ep_left_m2_s1_l1_r0`. -/
+theorem erasedPinRow_ep_left_m2_s1_l1_r0_seeds_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow
+    {seed : OneSidedSeed} {shadow : Shadow}
+    (hseed : seed ∈ erasedPinRow_ep_left_m2_s1_l1_r0_seeds_candidates)
+    (hvalid : isValidOneSidedSeedRelaxedShapeShadow seed shadow = true) :
+    False :=
+  false_of_isValidOneSidedSeedRelaxedShapeShadow_of_mem_erasedPinFixedSeed
+    (erasedPinRow_ep_left_m2_s1_l1_r0_seeds_candidates_subset_fixed hseed) hvalid
 
 end SurplusCOMPGBank
 end Problem97

@@ -2820,15 +2820,16 @@ class and off-circle witnesses.
 2026-07-09 follow-up checkpoint: the reusable relaxed-shape DFS surface was
 added to `SurplusSeededShadow.lean` and checked with
 `lake-build Erdos9796Proof.P97.SurplusSeededShadow`.  The generated fixed-seed
-module was kept to a lightweight proof-facing surface only: canonical
-relaxed-shape validity transport, the combined relaxed-shape entry list, and
-the completeness lemma from valid relaxed-shape shadows into that entry list.
-An attempted generated bank of row/per-seed relaxed no-survivor certificates
-was deliberately not kept: even after sharding it still made
-`ErasedPinFixedSeedDFS` too slow for the edit loop.  The lightweight generated
-module rechecked with
-`LAKE_BUILD_NO_REFRESH=1 lake-build
-Erdos9796Proof.P97.ErasedPinFixedSeedDFS`.
+module now has a proof-facing relaxed certificate surface: canonical
+relaxed-shape validity transport, the combined relaxed-shape entry list, the
+completeness lemma from valid relaxed-shape shadows into that entry list, a
+deduplicated relaxed-bank `eq_nil` theorem for the 330 fixed seeds, and 26
+finite-row relaxed no-survivor corollaries derived from row membership in the
+deduplicated bank.  This replaces the earlier terminal-only generated relaxed
+surface.  `lake-build Erdos9796Proof.P97.ErasedPinFixedSeedDFS` checked this
+certificate layer in 189s.  The post-build proof-blueprint resync failed in the
+generated snippet with unknown identifier `CoreM`; the Lean target itself built
+successfully.
 
 No source `sorry` was closed in this checkpoint.  For the active theorem,
 source-local leaves are still `4 open / 4 total`: two P2
@@ -3177,3 +3178,236 @@ consume exact selected-cap hypotheses or downstream containment.  The next real
 producer is therefore still a support-confinement theorem: choose, for each
 non-`.v`/non-`.w` center, a four-label same-radius support whose point mask is
 in the generated `candidateMasks` list.
+
+2026-07-09 support-payload factoring checkpoint:
+`PinnedSurplusProducer.lean` now names the remaining support output as
+`PinnedSurplusSupportClasses pointOf sstar centerClass`, consisting exactly of
+the pointwise same-radius proof plus generated `candidateMasks` membership for
+the non-`.v`/non-`.w` centers.  This is a statement-level cleanup, not a proof
+closure: the sole on-spine open leaf remains
+`Problem97.isM44PinnedSurplusNonVExactShapeProducer`, and it still must produce
+the labelled same-radius supports for `.u`, `.s1/.s2/.s3`, `.Pw/.Pu`, and
+`.Q1/.Q2` on the right and left pinned residual surfaces.
+
+Validation: `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully after this factoring.  The only warning in the producer shard is
+the intended `sorry` at
+`Problem97.isM44PinnedSurplusNonVExactShapeProducer`.
+
+2026-07-09 exact-center same-radius shrink:
+`PinnedSurplusSupportClasses pointOf sstar centerClass` now carries same-radius
+data only for non-`.v`/non-`.w` centers, along with their generated
+`candidateMasks` membership.  The producer shard proves the full
+`SameRadiusPointClasses` interface for the consumer from the exact
+`centerClass .v = SelectedClass A (pointOf .v) radius` and
+`centerClass .w = SelectedClass A (pointOf .w) wRadius` equalities plus the
+non-fixed support payload.  This removes the exact `.v` and `.w` same-radius
+subobligations from the open residual.
+
+Validation: `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully.  The only warning in the producer shard remains the intended
+`sorry` at `Problem97.isM44PinnedSurplusNonVExactShapeProducer`.
+
+Current remaining obligation for that leaf: construct non-fixed labelled
+support classes for `.u`, `.s1/.s2/.s3`, `.Pw/.Pu`, and `.Q1/.Q2` on the
+right and left pinned residual surfaces, with pointwise same-radius and
+generated `candidateMasks` membership.  The exact centers `.v` and `.w` no
+longer need same-radius support from the residual.
+
+2026-07-09 exact-center construction shrink:
+`PinnedSurplusProducer.lean` now constructs the full center-class function with
+`pinnedSurplusCenterClass A pointOf radius wRadius supportClass`.  The open
+residual `Problem97.isM44PinnedSurplusNonVExactShapeProducer` no longer has to
+return a full `centerClass` or prove exact `.v`/`.w` equalities.  It returns
+only the non-fixed `supportClass`; the `.v` slot is definitionally
+`SelectedClass A (pointOf .v) radius`, and the `.w` slot is definitionally
+`SelectedClass A (pointOf .w) wRadius` in the consumer.
+
+Validation: `LAKE_BUILD_NO_REFRESH=1 lake-build
+Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer` completed
+successfully.  The only warning in the producer shard remains the intended
+`sorry` at `Problem97.isM44PinnedSurplusNonVExactShapeProducer`.
+
+Sharper remaining obligation: for each pinned orientation, construct
+`supportClass` for the eight non-fixed labels so that, after
+`pinnedSurplusCenterClass` fills the exact `.v/.w` slots, every non-fixed
+center has same-radius labelled support and a generated `candidateMasks`
+membership proof.  The current repo does not expose a non-circular producer for
+those supports; the exact-cap and one-sided erased-payload tools remain
+downstream inputs, not sources for this leaf.
+
+2026-07-09 live obstruction checkpoint: rechecked the dependency boundary before
+editing this leaf again.  `PinnedSurplusBank.lean` imports
+`PinnedSurplusProducer.lean`, so the closed
+`isM44PinnedSurplusResidualsExcluded` consumer cannot be used to prove
+`isM44PinnedSurplusNonVExactShapeProducer` without a cycle.  Likewise
+`IsM44.nonSurplusMoserCapContainment_of_endpoint_pinnedSurplusResiduals`
+requires the endpoint exclusions and the pinned residual exclusions; it belongs
+to the later containment/removable adapter and is not an upstream source of the
+non-fixed support classes.  A Lean proof-state check at the open producer shows
+the right/left pinned residual hypotheses alone do not contradict locally.
+
+The remaining producer for this leaf must therefore be one of:
+
+- a genuine non-fixed support-confinement theorem from the pinned residual/M44
+  geometry, producing four labelled same-radius witnesses for `.u`,
+  `.s1/.s2/.s3`, `.Pw/.Pu`, and `.Q1/.Q2`; or
+- a statement/boundary change that moves this producer downstream to a context
+  where containment or erased-payload selected-class data is already available,
+  without reimporting `PinnedSurplusBank` into the producer shard.
+
+Do not spend more time on the circular shortcuts above.  If the goal is to close
+a source `sorry` quickly, the next candidate should be one of the other live
+spine leaves; this pinned producer remains `1 open / 1 total` until the support
+confinement payload is supplied.
+
+2026-07-09 remaining-sorry triage checkpoint:
+the live RemovableVertexAxiom cluster is still `7 open / 7 total` at source
+level: one pinned-surplus support producer, two endpoint metric-shadow
+producers, two P2 one-sided candidate producers, and two P4 direct
+surplus-side erased-pin cuts.
+
+Endpoint triage: `EndpointCertificate.ResidualSoundness` and
+`EndpointCertificate.ResidualCoreData` already supply the row-bank and
+selected-class soundness surfaces.  The two `Base.lean` endpoint `sorry`s are
+not row-bank lookup gaps; they require an actual metric shadow in the bank after
+residual label data is exposed.  The available soundness theorems still require
+the caller to supply non-`.v`/`.w` selected classes with exact-four masks,
+non-Moser `u/v/w` exclusion, and separation data.  Therefore the endpoint sites
+are producer gaps, not tactic closures.
+
+P2 triage: the continuation `hrightCandidate`/`hleftCandidate` sites feed
+`rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass` and its mirror.
+`oneSidedSeedCandidateRemainder_of_mask_interfaces` would close these goals if
+the local proof already had the older seed-mask facts: exact-four masks,
+self-exclusion, the `.u` one-hit bounds, non-Moser triple exclusion, and the
+trigger/final-trigger facts.  The current local hypotheses at the P2 sites only
+provide `p ∈ A.erase x`, cap membership, and the chosen surplus-star equality.
+That is insufficient to prove generated `candidateMasks` membership for the
+selected classes.  The existing one-sided payload-case split in
+`SurplusM44Packet.lean` reduces later non-surplus erased-pin branches to the
+same payload/candidate interface; it does not bypass this producer.
+
+P4 triage: `SurplusM44Packet.IsM44.oppIndex1/2_surplusErasedPinTriple_*`
+theorems are for non-surplus centers `p ∈ S.oppInterior1/2`.  They do not apply
+to the two direct surplus-side cuts in `Continuation.lean`, whose centers are
+`S.oppositeVertexByIndex S.surplusIdx` and surplus-interior points.  The U5
+terminal tools available in this repo still require a localized no-q-free packet
+plus same-circle or confined/audited support; the current P4 proof sites only
+construct the dangerous triple, selected candidate, exact radius class, and two
+off-circle auxiliary points.
+
+Next implementation target: do not add wrappers.  Either prove a real P2
+seed-mask/candidate producer that supplies the missing mask and trigger facts
+for the erased-payload center classes, or narrow the P2 surface so the payload
+itself supplies the selected-class side conditions consumed by the generated
+one-sided seed certificates.  Endpoint and pinned producer remain real
+support/metric-shadow producers; P4 remains a U5 localized-payload producer.
+
+2026-07-09 P2 proof-shape check:
+a standalone Lean `example` with the exact `hrightCandidate` proposition was
+tested against the obvious direct proof skeleton.  After unfolding
+`rightPinnedErasedPayloadCenterClass`, Lean leaves the raw obligations
+
+```
+pointMask (rightPinnedLabelPoint S p1 p2 q1 q2 s1 s2 s3)
+  (SelectedClass A (rightPinnedLabelPoint S p1 p2 q1 q2 s1 s2 s3 center)
+    (dist p x))
+  ∈ seed.candidateMasks center
+```
+
+and the analogous `.Pw/.Pu` selected-class cases.  The local hypotheses are only
+`p` cap membership, `p ∈ A.erase x`, and the erased surplus-star equality; no
+`hpair`/`hqpair`, exact-four mask, trigger, or row-count side condition is
+available at the current top-level `hrightCandidate`/`hleftCandidate` helpers.
+This confirms P2 is not a tactic gap.
+
+The efficient route is to stop trying to prove those two helpers as written.
+The finite scaffold is carrying terminal seed-candidate data too early.  Either
+split the scaffold into:
+
+- geometric prefix/separation facts, produced where P1 already has ordered
+  labels; and
+- row/payload-local seed-candidate facts, produced only in the terminal
+  one-sided row context where the selected-class row counts and payload cases
+  are known;
+
+or replace the scaffold candidate field with a strictly narrower
+row-indexed/payload-indexed field that exposes the same row-local side
+conditions.  A broad candidate-remainder producer for arbitrary selected
+classes should be treated as false or at least unjustified until a new
+confinement theorem is supplied.
+
+2026-07-09 remaining-sorry live pass:
+source inspection still shows `7 open / 7 total` in the
+`RemovableVertexAxiom` cluster.  The current endpoint shortcut is ruled out:
+the endpoint bank rows satisfy the full `classesShapeOK` contract, so every
+center mask is a four-label row mask.  There is no vacuous metric-shadow row to
+feed the endpoint `hfalse`; the two endpoint leaves still require genuine
+non-`.v`/`.w` selected-class metric production.
+
+The P4 direct surplus-side leaves were also rechecked against
+`U3ToU5Terminal`.  The proof sites already produce a dangerous triple,
+selected skeleton candidate, exact three-point residual circle, and two
+off-circle auxiliary vertices.  That data is still short of the terminal
+consumer: exact-three at one radius does not provide
+`U3LocalizedNoQFreePacket`, and the terminal contradiction still needs
+`U5ModeA` plus same-circle or audited/confined support.  Therefore P4 remains a
+localized U5 payload producer, not a local exact-radius-card tactic.
+
+The active implementation target remains the producer-boundary route for P2:
+split or narrow the finite scaffold so candidate/seed facts are produced at a
+row or payload-local boundary that exposes exact selected-class masks, instead
+of proving the current broad `hrightCandidate`/`hleftCandidate` helpers.
+
+2026-07-09 active-pass refinement: a terminal-only relaxed-shape split is not
+enough.  The existing nonterminal finite row consumers still take
+`Right/LeftOneSidedErasedPayloadFiniteCandidateFacts`, and several rows
+genuinely consume candidate data (`row0004`/`row0040` need the `.u`
+candidate-mask membership; other generated seed-shadow rows consume
+`OneSidedSeedCandidateRemainder` directly).  Therefore replacing only
+`row2101`/`row2110` with the already-proved relaxed-shape terminal consumers
+would leave the same broad P2 producer obligation on the remaining rows.
+
+The same pass also ruled out deriving P2 from the existing prefix/separation
+facts alone.  `candidateMaskOK`/`oneSidedSeedCandidateMaskOK` includes
+normalization, one-hit, circumcenter, and trigger/final-trigger clauses, not
+just `PrefixPairCountsOK` and cross-separation.  The real producer must expose
+the row-local mask-interface facts (`maskCard = 4`, no-self, one-hit,
+circumcenter, trigger, previous-trigger, and final-trigger bounds), or replace
+the affected row consumers with generated relaxed/submask consumers that are
+proved from an equally strong row-local shape interface.
+
+Current implementation route: build a row-local finite producer boundary, not
+a terminal-only wrapper.  The producer should sit where the exact selected-count
+row hypotheses and payload cases are available, then feed either
+`oneSidedSeedCandidateRemainder_of_mask_interfaces` for the exact candidate
+rows or a generated relaxed/submask row bank for every affected row.  The broad
+top-level helpers in `Continuation.lean` remain false or under-specified as
+standalone goals.
+
+2026-07-09 execution update: the generated relaxed row bank now exists in Lean
+for all 26 finite erased-pin rows through
+`scripts/erased-pin-producer-census.py` and
+`ErasedPinFixedSeedDFS.lean`.  This closes the computational side of the
+relaxed/submask option, but it still needs the ordered-row shape/confinement
+bridge: the proof must supply exact `.v`/`.w` cap masks, the row private mask,
+`maskCard = 4`, no-self for non-fixed centers, no-three, prefix counts, and
+search/cross-separation for the payload classes before the relaxed no-survivor
+corollaries can replace the current broad P2 candidate-remainder helpers.
+
+The proof-facing relaxed consumer bridge is now also checked:
+`SurplusCOMPGBankGeometry.lean` provides
+`false_of_erasedPinFixedSeedRelaxedShape_pointClasses`, which composes a fixed
+seed's membership in the generated erased-pin bank with exact cap masks, the
+private mask, relaxed four-label/no-self shape, no-three, prefix counts, and
+search/cross-separation facts.  The two terminal row-specific relaxed consumers
+now call this generic bridge through their row-subset lemmas.
+`lake-build Erdos9796Proof.P97.SurplusCOMPGBankGeometry` checked the adapter in
+57s and proof-blueprint resynced successfully.  Current status after this build:
+kernel-mined target spine for
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` is
+`1 open / 913` nodes; source-local leaves inside
+`Continuation.lean` remain `4 open / 4 total`.
