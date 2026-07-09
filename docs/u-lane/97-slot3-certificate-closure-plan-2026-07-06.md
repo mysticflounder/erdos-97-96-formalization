@@ -2583,3 +2583,52 @@ spine report for
 `1 open / 912 total`: the same single theorem remains open, with the same four
 local source holes.  The total increased because the refreshed kernel-mined
 dependency graph includes the newly exposed proven payload facts.
+
+2026-07-09 shard-refresh checkpoint: the active source has been split.  The
+coordinator `RemovableVertexAxiom.lean` is now a thin import of
+`RemovableVertexAxiom/Continuation.lean`; the active non-surplus erased-pin
+theorem and its four local holes live in `Continuation.lean`, while the shared
+seed-mask, seed-candidate, and finite row-consumer machinery lives in
+`RemovableVertexAxiom/Base.lean`.  Work on the pinned-surplus branch
+`Problem97.isM44PinnedSurplusResidualsExcluded` should stay in
+`RemovableVertexAxiom/PinnedSurplusBank.lean` and the row-zero certificate
+imports; it should not interfere with the non-surplus erased-pin leaf unless a
+shared base helper is intentionally changed.
+
+The current shortcut audit is negative:
+
+- `ErasedPinOrderedProducer.lean` gives ordered seed lists, fixed-bank
+  membership, and no-valid-shadow consequences once a row-specific seed has
+  already been identified.  It does not remove the upstream need for
+  `OneSidedSeedCandidateRemainder` in the surviving row consumers.
+- A shape-relaxed DFS would be a genuine producer only if paired with
+  proof-facing exact-shape/confinement facts.  The existing
+  `isValidOneSidedSeedShadow_shadowOfPointClasses_of_mask_interfaces` already
+  provides the Lean assembly from those shape facts to the seeded-shadow
+  contradiction, so generating another no-survivor theorem without the bridge
+  would not lower the open count.
+- The P4 erased-pin branches build a U5 dangerous triple, selected candidate,
+  exact residual circle, and two off-circle auxiliary vertices.  They still do
+  not supply a localized `U3LocalizedNoQFreePacket` for the same `(q,p)`,
+  `U5ModeA`, or confined/audited support.  An `ErasedPinTriple` gives one
+  radius class of size three; it does not prove the `muP <= 3`/no-q-free
+  condition needed by the terminal U5 theorem.
+
+Remaining obligations for this leaf are therefore still exactly four local
+holes inside
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`:
+
+1. P2 right candidate producer: replace the false broad `hrightCandidate`
+   helper with a real exact-shape/confinement boundary, or a row-specific
+   producer that avoids candidate remainders for every surviving row.
+2. P2 left candidate producer: the mirror of the right producer.
+3. P4 surplus-opposite erased-pin cut: provide localized no-q-free plus
+   `U5ModeA` and confined/audited support, or a direct surplus-index
+   contradiction.
+4. P4 surplus-interior erased-pin cut: the same terminal payload for
+   arbitrary `p in S.capInteriorByIndex S.surplusIdx`.
+
+Next implementation target remains P2 exact-shape/confinement at the ordered
+row boundary.  Do not add more row/DFS wrappers unless they consume a strictly
+weaker, already available geometric interface than the current candidate
+remainders.
