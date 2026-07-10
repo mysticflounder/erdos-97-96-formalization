@@ -27,7 +27,9 @@ orbits contained in motif embedding sets (5/5).
 Read-only wrt bank.jsonl; independent of the running CEGAR driver.
 """
 import json
+import os
 import sys
+import tempfile
 import time
 from itertools import permutations
 
@@ -35,9 +37,14 @@ sys.path.insert(0, ".")
 import miner  # noqa: E402
 import sat_cover  # noqa: E402
 
-CNF_PATH = ("/private/tmp/claude-501/-Users-adam-projects-math-projects-"
-            "erdos-97-96-formalization/fe6e52a9-1de1-4034-b676-5c7e83aecbac/"
-            "scratchpad/cover_probe.cnf")
+# Per-process private CNF path (audit 2026-07-09 P1: a shared hardcoded
+# session-scratchpad path let concurrent solver invocations clobber each
+# other's CNF and broke fresh-checkout reproducibility).  Override the
+# directory with CENSUS554_TMPDIR if a stable location is wanted.
+CNF_PATH = os.path.join(
+    tempfile.mkdtemp(prefix="census554_cover_",
+                     dir=os.environ.get("CENSUS554_TMPDIR")),
+    "cover_probe.cnf")
 
 
 def load_bank():

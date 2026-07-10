@@ -167,9 +167,12 @@ class CoverInstance:
         return "SAT", cube
 
 
-SCRATCH = ("/private/tmp/claude-501/-Users-adam-projects-math-projects-"
-           "erdos-97-96-formalization/fe6e52a9-1de1-4034-b676-5c7e83aecbac/"
-           "scratchpad")
+# Per-process private scratch dir (audit 2026-07-09 P1: shared hardcoded
+# session path).  Override the parent with CENSUS554_TMPDIR if wanted.
+import os as _os
+import tempfile as _tempfile
+SCRATCH = _tempfile.mkdtemp(prefix="census554_sat_",
+                            dir=_os.environ.get("CENSUS554_TMPDIR"))
 
 
 def smoke():

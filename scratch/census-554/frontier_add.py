@@ -1,13 +1,21 @@
 #!/usr/bin/env python3
 """Append certified frontier pattern(s) to bank.jsonl, mirroring
 cegar.bank_one EXACTLY (cert file + bank row with next pid index, orbit
-expansion).  GUARDED: refuses to run if any census driver is alive
-(single-writer invariant on bank.jsonl).
+expansion).
+
+SINGLE-WRITER: the whole append transaction (pid allocation + cert write +
+bank append) runs under an exclusive OS-level flock on bank.jsonl.lock, per
+docs/audits/2026-07-09-census-554-parallel-work-audit.md (P1: the old
+run_census.py pgrep guard did not exclude other frontier_add/cegar writers;
+duplicate pat_00003 was a real instance of that race).  The pgrep guard on
+run_census.py is kept as belt-and-braces: cegar.py does not yet take the
+lock, so a broad-census driver must stay down while frontier writers run.
 
 Usage: uv run python frontier_add.py <patterns.json>
 where patterns.json = [{"pattern": {c: [..]}, "cert": {...}, "cube": {...}}, ...]
 Each cert must be a completed miner.certify_pattern dict (has "kill").
 """
+import fcntl
 import json
 import os
 import subprocess
@@ -19,6 +27,7 @@ import miner  # noqa: E402
 HERE = os.path.dirname(os.path.abspath(__file__))
 BANK = f"{HERE}/bank.jsonl"
 CERTS = f"{HERE}/certs"
+LOCK = f"{HERE}/bank.jsonl.lock"
 
 
 def driver_alive():
@@ -40,6 +49,9 @@ def main():
         print("REFUSING: a census driver (run_census.py) is alive — "
               "single-writer invariant. Stop it first.", flush=True)
         sys.exit(2)
+
+    lockf = open(LOCK, "w")
+    fcntl.flock(lockf, fcntl.LOCK_EX)  # held until process exit
 
     rows = json.load(open(sys.argv[1]))
     npat = next_pid_index()
