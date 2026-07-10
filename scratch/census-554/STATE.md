@@ -253,9 +253,9 @@ single-writer, P2 stale handoff):
   to be DOWN first.
 - Bank writes now go through `frontier_add.py`, which takes an exclusive
   OS-level flock on `bank.jsonl.lock` around the whole append transaction
-  (pid allocation + cert write + bank append).  `cegar.py` does NOT yet take
-  the lock — one more reason run_census.py stays down while frontier work
-  runs.
+  (pid allocation + cert write + bank append).  `cegar.py` takes the SAME
+  lock for its whole run (non-blocking; refuses to start if held) as of
+  ee6cc03 — every bank writer is now under the one lock.
 - Certify-timeout retries: `retry_certify_queue.py` (serial,
   `CENSUS_CERT_ALL_PAIRS_FALLBACK=1`) writes candidates to
   `retry_certified_pending.json` ONLY; banking them is a manual

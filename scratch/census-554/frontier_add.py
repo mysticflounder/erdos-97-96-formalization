@@ -7,9 +7,9 @@ SINGLE-WRITER: the whole append transaction (pid allocation + cert write +
 bank append) runs under an exclusive OS-level flock on bank.jsonl.lock, per
 docs/audits/2026-07-09-census-554-parallel-work-audit.md (P1: the old
 run_census.py pgrep guard did not exclude other frontier_add/cegar writers;
-duplicate pat_00003 was a real instance of that race).  The pgrep guard on
-run_census.py is kept as belt-and-braces: cegar.py does not yet take the
-lock, so a broad-census driver must stay down while frontier writers run.
+duplicate pat_00003 was a real instance of that race).  cegar.py takes the
+same lock for its whole run, so every bank writer is under the one lock;
+the pgrep guard on run_census.py is kept as belt-and-braces.
 
 Usage: uv run python frontier_add.py <patterns.json>
 where patterns.json = [{"pattern": {c: [..]}, "cert": {...}, "cube": {...}}, ...]
