@@ -91,11 +91,10 @@ split: `of_isM44PinnedSurplus` vs `of_nonIsM44`).
   encodes C1 center-K4, C2 two-circle, C4 strict convexity, and one-hit at
   V/W over the 11 labeled points. Its header records those cuts as proved
   necessary, and the Lean finite mirror reproduces the Python candidate
-  counts. The theorem-level transport from the geometric leaf hypotheses to
-  every `CubeOk` clause has NOT been assembled in Lean, however; until A.2
-  step 1 lands, "exact port" is an implementation claim rather than a
-  card-11 closure theorem. At card 11 every point of `A` is labeled, so no
-  additional unlabeled-point confinement condition is expected.
+  counts. `Problem97.Census554.exists_card11SelectedCube_cubeOk` now assembles
+  the theorem-level transport from the geometric card-11 leaf hypotheses to
+  every `CubeOk` clause. At card 11 every point of `A` is labeled, so no
+  additional unlabeled-point confinement condition is needed.
 
 ### A.1 Card-11 slice — ACTIVE PRE-LEASE RUN, INCOMPLETE
 
@@ -139,8 +138,8 @@ The complete card-11 discharge chain has seven obligations:
 7. package the resulting contradiction and wire the card-11/card-at-least-12
    split into the actual Front-A leaves.
 
-Obligations 4 and 5, plus the mathematical checker core needed for obligation
-3, are complete. A.2 tracks the remaining artifacts.
+Obligations 2, 4, and 5, plus the mathematical checker core needed for
+obligation 3, are complete. A.2 tracks the remaining artifacts.
 
 Operational code now has a shared lifetime driver lease, a separate bank
 transaction lock, max-suffix PID allocation, canonical dedupe, exact precommit
@@ -172,29 +171,33 @@ corresponding closure-matrix gate, not by prose completion claims.
    decidable); encoding validated by kernel-`decide` smoke anchors — the
    per-center class counts (210, 43, 16, 210) match
    `len(census554_lib.candidates(p))`.
-   **Status: DEFINITIONS COMPLETE; FIRST GEOMETRIC BRIDGE BUILT; LABEL/CUBE
-   BRIDGES OPEN (matrix A11-GEO-*).** `Census554/GeometryBridge.lean` proves
-   `card_ge_eleven_of_twoLargeCaps` from the generic cap lower bounds and
-   cap-sum identity. Its targeted build succeeds and its axiom query reports
-   only core axioms. Remaining outputs are:
+   **Status: DEFINITIONS AND GEOMETRIC NECESSITY BRIDGE COMPLETE (matrix
+   A11-GEO-*).** `Census554/GeometryBridge.lean` now provides:
 
-   - `Card11Labeling`: an injective `pointOf : Fin 11 → ℝ²` whose range is
-     `D.A`, with labels 0/1/2 assigned to the three Moser apices and the
-     remaining labels assigned to the `(3,3,2)` cap interiors supplied by
-     `MultiCenter.closedCapProfileOfFrame_interiorCapacity_332_of_card_eq_eleven`.
-   - `Card11SelectedCube`: choose one `SelectedFourClass D.A (pointOf p)` for
-     every label using `exists_selectedFourClass_of_globalK4`; define `κ p` as
-     the preimage of that support under `pointOf`.
-   - `Card11SelectedCube.cubeOk`: prove C1 from `SelectedFourClass.support_card`
-     and `center_not_mem`; C2 from `SelectedFourClass.inter_card_le_two`; C4
-     from `Dumitrescu.perpBisector_apex_bound`; and one-hit at labels 1 and 2
-     from
-     `SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep`
-     and its right sibling after transporting through the cap frame.
+   - `Card11CapLabeling.nonempty_of_card_eq_eleven`, which constructs an
+     injective `pointOf : Fin 11 → ℝ²` with range `D.A`, puts the three Moser
+     apices at labels 0/1/2, and maps the canonical blocks 3--5, 6--8, and
+     9--10 exactly onto the `(3,3,2)` strict cap interiors;
+   - `Card11SelectedCube.ofGlobalK4` and `Card11SelectedCube.cube`, which choose
+     one proved-nonempty `SelectedFourClass D.A (pointOf p)` per label and pull
+     its support back through `pointOf`;
+   - `image_cube_eq_support` and `equidist_of_mem_cube`, the exact
+     schema-neutral facts needed to construct the future `RealizesCube`
+     relation without repeating geometric reasoning;
+   - `cube_card`, `center_not_mem_cube`, and `cube_inter_card_le_two` for C1/C2;
+     `pair_hit_centers_card_le_two` for C4; and
+     `onehitOk_of_capProfile` for the two V/W one-hit conditions; and
+   - `Card11SelectedCube.cubeOk` plus
+     `exists_card11SelectedCube_cubeOk`, which package the complete necessity
+     bridge from the card-11 two-large-cap hypotheses to `CubeOk`.
 
-   Candidate-count agreement checks only the finite mirror; the theorem above
-   is the required necessity bridge from a hypothetical geometric
-   counterexample to `CubeOk`.
+   The targeted `lake-build` succeeds. The source contains no
+   `sorry`/`admit`/declared axiom, and live axiom queries for
+   `Card11CapLabeling.nonempty_of_card_eq_eleven`,
+   `Card11SelectedCube.cubeOk`, and `exists_card11SelectedCube_cubeOk` report
+   only `propext`, `Classical.choice`, and `Quot.sound`. `RealizesCube` itself
+   remains deliberately owned by step 3/A11-COVER-REL; its selected-cube
+   adapter must use `L.injective` and `S.equidist_of_mem_cube`.
 2. **Certificate checker**: verified Lean checker for the banked certificate
    format (Σ cᵢ·gᵢ = 1 over ℚ) + generated pattern data. Kernel-checked via
    `decide`/`native_decide` under the bv_decide standard (verified decision
@@ -319,6 +322,21 @@ corresponding closure-matrix gate, not by prose completion claims.
    thresholds are matrix A11-COVER-FMT. DRAT verification and core/LRAT
    extraction are implemented and integration-tested; Lean format selection
    remains OPEN.
+
+   **LRAT-route base encoder LANDED 2026-07-09**
+   (`Census554/CoverCnf.lean`): a variable-for-variable, clause-for-clause
+   Lean port of `sat_cover.py`'s base encoding (one-hot selection, C2 NAND,
+   C4 Sinz counters) as `baseDimacs`/`baseCnf : Std.Sat.CNF Nat`, with five
+   `native_decide` anchors against the Python ground truth (candidate counts
+   210/43/16/210×8, 1949 x-vars, 27286 vars, 207969 clauses, 143883 C2
+   clauses) and a rendered DIMACS verified **byte-identical** (all 2,821,218
+   bytes) to `CoverInstance().dimacs()` on the empty bank. Candidate tables
+   are nullary defs so the compiled anchors evaluate in ~13 s (the naive
+   per-literal recomputation took 2001 s). Still open on this sub-lane: the
+   banked-pattern `y`-layer emitter over the frozen terminal manifest, the
+   completeness lemma `CubeOk κ → the derived assignment satisfies the CNF`
+   (Sinz counting aux + one-hot + NAND + indicator layers), and the terminal
+   `verifyCert_correct` replay.
 4. **Motif-transfer lemma** in Lean: equidistance-pattern deadness is
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with
