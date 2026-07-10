@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Payload
 import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R000UeqvR000
 import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R001NoSeparatorR001N
 import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R001NoSeparatorR001Y
@@ -157,26 +158,6 @@ namespace SurplusCertificate
 namespace RelaxedSplit
 
 open Problem97.EndpointCertificate
-
-/-- Algebraic payload carried by a generated relaxed split surplus certificate row. -/
-inductive CertificatePayload where
-  | direct (cert : Certificate)
-  | productSum (products : List Poly)
-
-/-- Run the Boolean checker associated with a relaxed split certificate payload. -/
-def CertificatePayload.check : CertificatePayload → Bool
-  | .direct cert => checkCertificate cert
-  | .productSum products => checkProductSum products
-
-/-- One checked relaxed split surplus certificate fact. -/
-structure VerifiedCertificate where
-  id : String
-  payload : CertificatePayload
-  valid : payload.check = true
-
-/-- Run the Boolean checker associated with a verified relaxed split certificate. -/
-def VerifiedCertificate.check (cert : VerifiedCertificate) : Bool :=
-  cert.payload.check
 
 /-- The full checked singleton relaxed split surplus certificate set. -/
 def allRelaxedSplitSingletonCertificates : List VerifiedCertificate :=

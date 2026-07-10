@@ -28,6 +28,17 @@ private abbrev SameRadiusPointClasses
         dist (pointOf center) (pointOf a) =
           dist (pointOf center) (pointOf b)
 
+private abbrev PinnedSurplusSupportClasses
+    (pointOf : Label → ℝ²) (sstar : Label)
+    (centerClass : Label → Finset ℝ²) : Prop :=
+  (∀ center a b : Label, center ≠ .v → center ≠ .w →
+    pointOf a ∈ centerClass center →
+      pointOf b ∈ centerClass center →
+        dist (pointOf center) (pointOf a) =
+          dist (pointOf center) (pointOf b)) ∧
+    ∀ center : Label, center ≠ .v → center ≠ .w →
+      pointMask pointOf (centerClass center) ∈ candidateMasks sstar center
+
 private theorem noThreeOK_shadowOfPointClasses_of_sameRadius
     {A : Finset ℝ²} (hconv : ConvexIndep A)
     {pointOf : Label → ℝ²}
@@ -100,6 +111,21 @@ private theorem wSelectorClass_mem_candidateMasks
   rw [hT, pointMask_eq_QQSelectorMask hinj hleft hright]
   exact wSelectorMask_mem_candidateMasks hsstar hleft hright
 
+private noncomputable def pinnedSurplusCenterClass
+    (A : Finset ℝ²) (pointOf : Label → ℝ²)
+    (vRadius wRadius : ℝ)
+    (supportClass : Label → Finset ℝ²) : Label → Finset ℝ²
+  | .u => supportClass .u
+  | .v => SelectedClass A (pointOf .v) vRadius
+  | .w => SelectedClass A (pointOf .w) wRadius
+  | .s1 => supportClass .s1
+  | .s2 => supportClass .s2
+  | .s3 => supportClass .s3
+  | .Pw => supportClass .Pw
+  | .Pu => supportClass .Pu
+  | .Q1 => supportClass .Q1
+  | .Q2 => supportClass .Q2
+
 private theorem selectedClass_eq_pair_left_right_singletons
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) {radius : ℝ}
     {q₁ q₂ leftHit rightHit : ℝ²}
@@ -169,11 +195,45 @@ private theorem selectedClass_eq_pair_left_right_singletons
         simp
       exact by simpa [T] using (Finset.mem_inter.mp hmem).1
 
-/-- Labelled selected-class producer still needed for the pinned-surplus
+private theorem sameRadiusPointClasses_of_exact_vw_and_nonfixed
+    {A : Finset ℝ²} {pointOf : Label → ℝ²}
+    {centerClass : Label → Finset ℝ²} {vRadius wRadius : ℝ}
+    (hVcenterClass :
+      centerClass .v = SelectedClass A (pointOf .v) vRadius)
+    (hWcenterClass :
+      centerClass .w = SelectedClass A (pointOf .w) wRadius)
+    (hNonfixed :
+      ∀ center a b : Label, center ≠ .v → center ≠ .w →
+        pointOf a ∈ centerClass center →
+          pointOf b ∈ centerClass center →
+            dist (pointOf center) (pointOf a) =
+              dist (pointOf center) (pointOf b)) :
+    SameRadiusPointClasses pointOf centerClass := by
+  intro center a b ha hb
+  by_cases hv : center = .v
+  · subst center
+    have ha' : pointOf a ∈ SelectedClass A (pointOf .v) vRadius := by
+      simpa [hVcenterClass] using ha
+    have hb' : pointOf b ∈ SelectedClass A (pointOf .v) vRadius := by
+      simpa [hVcenterClass] using hb
+    exact (mem_selectedClass.mp ha').2.trans
+      (mem_selectedClass.mp hb').2.symm
+  · by_cases hw : center = .w
+    · subst center
+      have ha' : pointOf a ∈ SelectedClass A (pointOf .w) wRadius := by
+        simpa [hWcenterClass] using ha
+      have hb' : pointOf b ∈ SelectedClass A (pointOf .w) wRadius := by
+        simpa [hWcenterClass] using hb
+      exact (mem_selectedClass.mp ha').2.trans
+        (mem_selectedClass.mp hb').2.symm
+    · exact hNonfixed center a b hv hw ha hb
+
+/-- Labelled support-class producer still needed for the pinned-surplus
 metric shadow.  Once the pinned residual has fixed the ten-label geometric
-surface, this residual supplies the selected classes used by the consumer,
-the pinned `.v` class, the opposite `.w` class, and candidate-list membership
-for the remaining centres. -/
+surface, this residual supplies the support classes used by the consumer, the
+exact pinned `.v` class, the opposite `.w` selector class, a pointwise
+same-radius proof for the non-fixed centers, and candidate-list membership for
+the remaining centres. -/
 abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
     ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
       HasNEquidistantProperty 4 A → 9 < A.card →
@@ -201,20 +261,12 @@ abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
             ∀ {sstar : Label} {wRadius : ℝ},
               isSurplusStar sstar = true →
               rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-              ∃ centerClass : Label → Finset ℝ²,
+              ∃ supportClass : Label → Finset ℝ²,
                 let pointOf :=
                   rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
-                centerClass .v = SelectedClass A (pointOf .v) radius ∧
-                  centerClass .w =
-                    SelectedClass A (pointOf .w) wRadius ∧
-                  (∀ center a b : Label,
-                    pointOf a ∈ centerClass center →
-                      pointOf b ∈ centerClass center →
-                        dist (pointOf center) (pointOf a) =
-                          dist (pointOf center) (pointOf b)) ∧
-                  ∀ center : Label, center ≠ .v → center ≠ .w →
-                    pointMask pointOf (centerClass center) ∈
-                      candidateMasks sstar center) ∧
+                PinnedSurplusSupportClasses pointOf sstar
+                  (pinnedSurplusCenterClass A pointOf radius wRadius
+                    supportClass)) ∧
         (∀ {radius : ℝ} {x : ℝ²},
           S.PinnedLeftSurplusResidualAt radius x →
           ∀ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
@@ -236,22 +288,14 @@ abbrev IsM44PinnedSurplusNonVExactShapeProducerStatement : Prop :=
             ∀ {sstar : Label} {wRadius : ℝ},
               isSurplusStar sstar = true →
               leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-              ∃ centerClass : Label → Finset ℝ²,
+              ∃ supportClass : Label → Finset ℝ²,
                 let pointOf :=
                   leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
-                centerClass .v = SelectedClass A (pointOf .v) radius ∧
-                  centerClass .w =
-                    SelectedClass A (pointOf .w) wRadius ∧
-                  (∀ center a b : Label,
-                    pointOf a ∈ centerClass center →
-                      pointOf b ∈ centerClass center →
-                        dist (pointOf center) (pointOf a) =
-                          dist (pointOf center) (pointOf b)) ∧
-                  ∀ center : Label, center ≠ .v → center ≠ .w →
-                    pointMask pointOf (centerClass center) ∈
-                      candidateMasks sstar center)
+                PinnedSurplusSupportClasses pointOf sstar
+                  (pinnedSurplusCenterClass A pointOf radius wRadius
+                    supportClass))
 
-/-- Named on-spine residual for the labelled selected-class/candidate producer
+/-- Named on-spine residual for the labelled support/candidate producer
 part of the pinned-surplus metric-shadow producer. -/
 theorem isM44PinnedSurplusNonVExactShapeProducer :
       IsM44PinnedSurplusNonVExactShapeProducerStatement := by
@@ -414,8 +458,17 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I
           hs1I hs2I hs3I hxTriple
           (sstar := sstar) (wRadius := opp2Radius) hsstar hsstar_eq with
-        ⟨centerClass, hVcenterClass, hWselectedClass, hsame,
-          hNonVcandidate⟩
+        ⟨supportClass, hsupport⟩
+      let centerClass :=
+        pinnedSurplusCenterClass A pointOf radius opp2Radius supportClass
+      have hVcenterClass :
+          centerClass .v = SelectedClass A (pointOf .v) radius := rfl
+      have hWselectedClass :
+          centerClass .w = SelectedClass A (pointOf .w) opp2Radius := rfl
+      rcases hsupport with ⟨hNonfixedSame, hNonVcandidate⟩
+      have hsame : SameRadiusPointClasses pointOf centerClass :=
+        sameRadiusPointClasses_of_exact_vw_and_nonfixed
+          (A := A) hVcenterClass hWselectedClass hNonfixedSame
       have hmetric :
           EndpointCertificate.Variables.EndpointMetricShadow pointOf
             (shadowOfPointClasses pointOf centerClass) :=
@@ -749,8 +802,17 @@ theorem isM44PinnedSurplusMetricShadowProducer :
           hq12 hqpair hs12 hs13 hs23 hsSub hp₁I hp₂I hq₁I hq₂I
           hs1I hs2I hs3I hxTriple
           (sstar := sstar) (wRadius := opp1Radius) hsstar hsstar_eq with
-        ⟨centerClass, hVcenterClass, hWselectedClass, hsame,
-          hNonVcandidate⟩
+        ⟨supportClass, hsupport⟩
+      let centerClass :=
+        pinnedSurplusCenterClass A pointOf radius opp1Radius supportClass
+      have hVcenterClass :
+          centerClass .v = SelectedClass A (pointOf .v) radius := rfl
+      have hWselectedClass :
+          centerClass .w = SelectedClass A (pointOf .w) opp1Radius := rfl
+      rcases hsupport with ⟨hNonfixedSame, hNonVcandidate⟩
+      have hsame : SameRadiusPointClasses pointOf centerClass :=
+        sameRadiusPointClasses_of_exact_vw_and_nonfixed
+          (A := A) hVcenterClass hWselectedClass hNonfixedSame
       have hmetric :
           EndpointCertificate.Variables.EndpointMetricShadow pointOf
             (shadowOfPointClasses pointOf centerClass) :=

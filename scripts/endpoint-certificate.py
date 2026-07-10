@@ -1269,226 +1269,6 @@ def emit_direct_row_zero_dir(
         emit_direct_row_zero_aggregate(stems, aggregate_out, module_root)
 
 
-def product_block_zero_theorem_name(pid: str, gen_index: int, start: int, stop: int) -> str:
-    return f"{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_eval_zero"
-
-
-def product_block_zero_module(
-    cert_path: Path,
-    pid: str,
-    variables: list[str],
-    gen_index: int,
-    start: int,
-    stop: int,
-    generator_expr: str,
-    out_path: Path,
-) -> str:
-    stem = lean_module_stem(pid)
-    block_stem = block_module_stem(pid, gen_index, start, stop)
-    shard_namespace = f"Patterns.{stem}TermShards"
-    theorem_name = product_block_zero_theorem_name(pid, gen_index, start, stop)
-    row_expr = endpoint_row_expr(pid)
-    classification = classify_generator(generator_expr, variables)
-    generator_zero = endpoint_generator_zero_proof(classification)
-    partial_cases = []
-    for term_index in range(start, stop):
-        partial_cases.append(
-            "  \u00b7 exact evalPoly_eq_zero_of_mulPoly_eq_right_zero\n"
-            "      (endpointS1S3Assignment pointOf)\n"
-            f"      {shard_namespace}.{pid}_partial_{gen_index:02d}_{term_index:04d}_valid\n"
-            "      hgenerator"
-        )
-    partial_cases_text = "\n".join(partial_cases)
-    rcases_pattern = " | ".join("rfl" for _ in range(start, stop))
-    source = cert_path.as_posix()
-    module = f"""/-
-Copyright (c) 2026 Adam McKenna. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Adam McKenna
--/
-
-import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}TermShards.{block_stem}
-
-/-!
-# Endpoint product-row block zero {pid}, block {gen_index}:{start}-{stop - 1}
-
-This generated module proves semantic zero-evaluation for one checked block in
-the term-sharded product-sum endpoint certificate row `{pid}`.
-
-Source certificate: `{source}`.
--/
-
-set_option linter.style.longLine false
-set_option linter.unusedSimpArgs false
-set_option linter.style.nativeDecide false
-
-open scoped EuclideanGeometry
-
-namespace Problem97
-
-namespace EndpointCertificate
-
-namespace Variables
-
-namespace {stem}BlockZeros
-
-/-- Checked block `{gen_index}:{start}-{stop - 1}` in product-sum row `{pid}`
-evaluates to zero under a metric interpretation of the row shadow. -/
-theorem {theorem_name}
-    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
-    (hmetric : EndpointMetricShadow pointOf ({row_expr}).toShadow) :
-    evalPoly (endpointS1S3Assignment pointOf)
-      {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} = 0 := by
-  have hgenerator :
-      evalPoly (endpointS1S3Assignment pointOf)
-        {shard_namespace}.{pid}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} = 0 := by
-    {generator_zero.replace("\n", "\n    ")}
-  refine evalPoly_target_eq_zero_of_checkProductSumEq
-    (endpointS1S3Assignment pointOf)
-    {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_valid ?_
-  intro p hp
-  simp only [{shard_namespace}.{pid}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d},
-    List.mem_cons, List.not_mem_nil, or_false] at hp
-  rcases hp with {rcases_pattern}
-{partial_cases_text}
-
-end {stem}BlockZeros
-
-end Variables
-
-end EndpointCertificate
-
-end Problem97
-"""
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(module)
-    return out_path.stem
-
-
-def emit_product_row_zero_module(
-    cert_path: Path,
-    coordinator_out: Path,
-    block_out_dir: Path,
-    module_root: str,
-) -> str | None:
-    check_certificate_file(cert_path)
-    cert = json.loads(cert_path.read_text())
-    pid = str(cert["pid"])
-    if pid not in PRODUCT_SUM_ENDPOINT_IDS:
-        return None
-
-    variables = cert["variables"]
-    generator_exprs = cert["generators"]
-    coefficient_exprs = cert["coefficients"]
-    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
-        raise ValueError(f"{cert_path}: invalid variables")
-    if not isinstance(generator_exprs, list) or not all(isinstance(x, str) for x in generator_exprs):
-        raise ValueError(f"{cert_path}: invalid generators")
-    if not isinstance(coefficient_exprs, list) or not all(isinstance(x, str) for x in coefficient_exprs):
-        raise ValueError(f"{cert_path}: invalid coefficients")
-
-    variables_str = [str(variable) for variable in variables]
-    stem = lean_module_stem(pid)
-    shard_namespace = f"Patterns.{stem}TermShards"
-    block_refs: list[tuple[int, int, int, str]] = []
-    imports: list[str] = []
-    for gen_index, (generator_expr, coefficient_expr) in enumerate(
-        zip(generator_exprs, coefficient_exprs, strict=True)
-    ):
-        coeff_poly = parse_poly(str(coefficient_expr), variables_str)
-        terms = sorted_poly_terms(coeff_poly)
-        for start in range(0, len(terms), 100):
-            stop = min(start + 100, len(terms))
-            block_stem = product_block_zero_module(
-                cert_path,
-                pid,
-                variables_str,
-                gen_index,
-                start,
-                stop,
-                str(generator_expr),
-                block_out_dir / f"{block_module_stem(pid, gen_index, start, stop)}.lean",
-            )
-            imports.append(f"import {module_root}.{stem}BlockZeros.{block_stem}")
-            block_refs.append((gen_index, start, stop, block_stem))
-
-    row_expr = endpoint_row_expr(pid)
-    block_list_entries = []
-    block_cases = []
-    for gen_index, start, stop, _block_stem in block_refs:
-        block_list_entries.append(
-            f"      {shard_namespace}.{pid}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
-        )
-        block_cases.extend(
-            [
-                "  rcases List.mem_cons.mp hp with rfl | hp",
-                f"  \u00b7 exact {stem}BlockZeros."
-                f"{product_block_zero_theorem_name(pid, gen_index, start, stop)} hmetric",
-            ]
-        )
-    block_list_text = ",\n".join(block_list_entries)
-    block_cases.append("  cases hp")
-    block_cases_text = "\n".join(block_cases)
-    source = cert_path.as_posix()
-    import_text = "\n".join(imports)
-    module = f"""/-
-Copyright (c) 2026 Adam McKenna. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Adam McKenna
--/
-
-import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
-{import_text}
-
-/-!
-# Endpoint product row-zero certificate {pid}
-
-This generated module proves that every checked block in product-sum endpoint
-row `{pid}` vanishes under the endpoint normal-axis assignment attached to any
-metric interpretation of the row shadow.
-
-Source certificate: `{source}`.
--/
-
-set_option linter.style.longLine false
-
-open scoped EuclideanGeometry
-
-namespace Problem97
-
-namespace EndpointCertificate
-
-namespace Variables
-
-/-- Every block in product-sum endpoint certificate `{pid}` evaluates to zero
-under a metric interpretation of its finite shadow. -/
-theorem {pid}_evaluationZeros_of_metricShadow
-    {{pointOf : ShadowBank.Label \u2192 \u211d\u00b2}}
-    (hmetric : EndpointMetricShadow pointOf ({row_expr}).toShadow) :
-    Patterns.CertificatePayload.evaluationZeros
-      (.productSum Patterns.{pid}_blocks)
-      (endpointS1S3Assignment pointOf) := by
-  dsimp [Patterns.CertificatePayload.evaluationZeros]
-  intro p hp
-  change p \u2208
-    [
-{block_list_text}
-    ] at hp
-{block_cases_text}
-
-end Variables
-
-end EndpointCertificate
-
-end Problem97
-"""
-    coordinator_out.parent.mkdir(parents=True, exist_ok=True)
-    coordinator_out.write_text(module)
-    return coordinator_out.stem
-
-
 def emit_product_row_zero_aggregate(
     stems: list[str],
     out_path: Path,
@@ -1523,32 +1303,6 @@ end Problem97
 """
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(module)
-
-
-def emit_product_row_zero_dir(
-    cert_paths: list[Path],
-    out_dir: Path,
-    aggregate_out: Path | None,
-    module_root: str,
-) -> None:
-    paths = certificate_files(cert_paths)
-    if not paths:
-        raise ValueError("no certificate JSON files for product row-zero emission")
-    stems: list[str] = []
-    for cert_path in paths:
-        cert = json.loads(cert_path.read_text())
-        pid = str(cert["pid"])
-        stem = lean_module_stem(pid)
-        row_stem = emit_product_row_zero_module(
-            cert_path,
-            out_dir / f"{stem}.lean",
-            out_dir / f"{stem}BlockZeros",
-            module_root,
-        )
-        if row_stem is not None:
-            stems.append(row_stem)
-    if aggregate_out is not None:
-        emit_product_row_zero_aggregate(stems, aggregate_out, module_root)
 
 
 def bank_payload(pid: str) -> str:
@@ -1780,27 +1534,12 @@ def product_module_stem(pid: str, start: int, stop: int) -> str:
     return f"{lean_module_stem(pid)}Product{start:02d}_{stop - 1:02d}"
 
 
-def block_module_stem(pid: str, gen_index: int, start: int, stop: int) -> str:
-    return f"{lean_module_stem(pid)}Block{gen_index:02d}_{start:04d}_{stop - 1:04d}"
-
-
 def sorted_poly_terms(poly: Poly) -> list[tuple[Monomial, Fraction]]:
     return [
         (monom, coeff)
         for monom, coeff in sorted(poly.items(), key=lambda item: lean_monom_key(item[0]))
         if coeff
     ]
-
-
-def singleton_poly(monom: Monomial, coeff: Fraction) -> Poly:
-    return {monom: coeff} if coeff else {}
-
-
-def add_poly_many(polys: list[Poly]) -> Poly:
-    out: Poly = {}
-    for poly in polys:
-        out = add_poly(out, poly)
-    return out
 
 
 def emit_sharded_product_module(
@@ -1981,82 +1720,110 @@ end Problem97
     coordinator_out.write_text(module)
 
 
-def emit_term_block_module(
+# Computed product emitters used for the endpoint product rows.
+ENDPOINT_COMPUTED_BLOCK_MAX_TERMS = 100
+ENDPOINT_COMPUTED_SHARD_MAX_BLOCKS = 24
+ENDPOINT_COMPUTED_SHARD_MAX_PAYLOAD_BYTES = 200_000
+
+
+def emit_computed_generator_module(
     pid: str,
     lean_name: str,
-    gen_index: int,
-    start: int,
-    stop: int,
-    generator: Poly,
-    terms: list[tuple[Monomial, Fraction]],
-    partials: list[Poly],
-    block_sum: Poly,
+    generators: list[Poly],
     out_path: Path,
-) -> str:
-    defs: list[str] = [
-        f"""/-- Generator polynomial {gen_index} for endpoint certificate `{pid}`. -/
-def {lean_name}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} : Poly :=
-{lean_poly(generator)}"""
-    ]
-    partial_names: list[str] = []
-    for local_idx, term_index in enumerate(range(start, stop)):
-        monom, coeff = terms[term_index]
-        partial_names.append(f"{lean_name}_partial_{gen_index:02d}_{term_index:04d}")
-        defs.append(
-            f"""/-- Coefficient term {term_index} from coefficient polynomial {gen_index}. -/
-def {lean_name}_coefficient_{gen_index:02d}_{term_index:04d} : Poly :=
-{lean_poly(singleton_poly(monom, coeff))}
-
-/-- Partial product {term_index} for generator {gen_index}. -/
-def {lean_name}_partial_{gen_index:02d}_{term_index:04d} : Poly :=
-{lean_poly(partials[local_idx])}
-
-set_option linter.style.nativeDecide false in
-/-- Checked partial-product identity {term_index} for generator {gen_index}. -/
-theorem {lean_name}_partial_{gen_index:02d}_{term_index:04d}_valid :
-    mulPoly {lean_name}_coefficient_{gen_index:02d}_{term_index:04d}
-        {lean_name}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} =
-      {lean_name}_partial_{gen_index:02d}_{term_index:04d} := by
-  native_decide"""
-        )
-
-    partial_entries = ",\n".join(f"  {name}" for name in partial_names)
-    defs.append(
-        f"""/-- Partial products in this block. -/
-def {lean_name}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d} : List Poly :=
-[
-{partial_entries}
-]
-
-/-- Sum of partial products in this block. -/
-def {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} : Poly :=
-{lean_poly(block_sum)}
-
-set_option linter.style.nativeDecide false in
-/-- Checked block-sum identity for generator {gen_index}, terms {start} through {stop - 1}. -/
-theorem {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_valid :
-    checkProductSumEq {lean_name}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d}
-      {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} = true := by
-  native_decide"""
-    )
-
-    body = "\n\n".join(defs)
+) -> None:
     stem = lean_module_stem(pid)
+    generator_namespace = f"{stem}Generators"
+    generator_names = [f"{lean_name}_generator_{idx:02d}" for idx in range(len(generators))]
+    definitions = "\n\n".join(
+        f"""/-- Generator polynomial {idx} for endpoint certificate `{pid}`. -/
+def {name} : Poly :=
+{lean_poly(generators[idx])}"""
+        for idx, name in enumerate(generator_names)
+    )
+    entries = ",\n".join(f"  {name}" for name in generator_names)
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
+import Erdos9796Proof.P97.EndpointCertificate.ProductCertificate
 
 set_option linter.style.longLine false
 
 /-!
-# Endpoint certificate {pid}, term block {gen_index}:{start}-{stop - 1}
+# Endpoint certificate {pid} generators
 
-This generated module checks partial products for one block of the internally
-sharded endpoint certificate row `{pid}`.
+This generated module stores the endpoint generator list once. Product rows
+refer to these generators by index from computed coefficient blocks.
+-/
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Patterns
+
+namespace {generator_namespace}
+
+{definitions}
+
+/-- Generator list for endpoint certificate `{pid}`. -/
+def {lean_name}_generators : List Poly :=
+[
+{entries}
+]
+
+end {generator_namespace}
+
+end Patterns
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+
+
+def emit_computed_term_shard_module(
+    pid: str,
+    lean_name: str,
+    specs: list[tuple[int, int, int, Poly]],
+    out_path: Path,
+) -> str:
+    stem = lean_module_stem(pid)
+    generator_namespace = f"{stem}Generators"
+    definitions = []
+    for gen_index, start, stop, coefficient in specs:
+        block_name = f"{lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
+        definitions.append(
+            f"""/-- Computed coefficient block `{gen_index}:{start}-{stop - 1}` for
+endpoint certificate `{pid}`. -/
+def {block_name} :
+    ComputedProductBlock {generator_namespace}.{lean_name}_generators :=
+  {{ generatorIndex := {gen_index}
+    coefficient :=
+{lean_poly(coefficient)} }}"""
+        )
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.ProductCertificate
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.{generator_namespace}
+
+set_option linter.style.longLine false
+
+/-!
+# Endpoint certificate {pid} computed product shard
+
+This generated module stores bounded coefficient blocks. The shared checker
+computes each coefficient-generator product when the row coordinator is
+checked.
 -/
 
 namespace Problem97
@@ -2067,7 +1834,7 @@ namespace Patterns
 
 namespace {stem}TermShards
 
-{body}
+{"\n\n".join(definitions)}
 
 end {stem}TermShards
 
@@ -2089,8 +1856,12 @@ def emit_term_sharded_lean_certificate(
     module_root: str,
     block_size: int,
 ) -> None:
-    if block_size <= 0:
-        raise ValueError("--block-size must be positive")
+    """Emit a product row as computed coefficient-generator blocks."""
+    if block_size <= 0 or block_size > ENDPOINT_COMPUTED_BLOCK_MAX_TERMS:
+        raise ValueError(
+            "--block-size must be between 1 and "
+            f"{ENDPOINT_COMPUTED_BLOCK_MAX_TERMS}"
+        )
     check_certificate_file(cert_path)
     cert = json.loads(cert_path.read_text())
     pid = str(cert["pid"])
@@ -2110,53 +1881,80 @@ def emit_term_sharded_lean_certificate(
     generators = [parse_poly(expr, variables) for expr in generator_exprs]
     coefficients = [parse_poly(expr, variables) for expr in coefficient_exprs]
     stem = lean_module_stem(pid)
-    block_refs: list[str] = []
-    imports: list[str] = []
-    for gen_index, (generator, coeff_poly) in enumerate(zip(generators, coefficients, strict=True)):
-        terms = sorted_poly_terms(coeff_poly)
+    emit_computed_generator_module(
+        pid,
+        lean_name,
+        generators,
+        coordinator_out.parent / f"{stem}Generators.lean",
+    )
+
+    specs: list[tuple[int, int, int, Poly]] = []
+    for gen_index, coefficient in enumerate(coefficients):
+        terms = sorted_poly_terms(coefficient)
         for start in range(0, len(terms), block_size):
             stop = min(start + block_size, len(terms))
-            partials = [
-                mul_poly(singleton_poly(monom, coeff), generator)
-                for monom, coeff in terms[start:stop]
-            ]
-            block_sum = add_poly_many(partials)
-            module_stem = block_module_stem(pid, gen_index, start, stop)
-            emit_term_block_module(
-                pid,
-                lean_name,
-                gen_index,
-                start,
-                stop,
-                generator,
-                terms,
-                partials,
-                block_sum,
-                shard_out_dir / f"{module_stem}.lean",
-            )
-            imports.append(f"import {module_root}.{stem}TermShards.{module_stem}")
-            block_refs.append(
-                f"{stem}TermShards.{lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
-            )
+            specs.append((gen_index, start, stop, dict(terms[start:stop])))
 
-    import_text = "\n".join(imports)
-    block_entries = ",\n".join(f"  {ref}" for ref in block_refs)
+    shard_stems: list[str] = []
+    spec_index = 0
+    while spec_index < len(specs):
+        shard_specs: list[tuple[int, int, int, Poly]] = []
+        payload_bytes = 0
+        while spec_index < len(specs):
+            spec = specs[spec_index]
+            coefficient_payload = len(lean_poly(spec[3]).encode("utf-8"))
+            if (
+                shard_specs
+                and (
+                    len(shard_specs) >= ENDPOINT_COMPUTED_SHARD_MAX_BLOCKS
+                    or payload_bytes + coefficient_payload
+                    > ENDPOINT_COMPUTED_SHARD_MAX_PAYLOAD_BYTES
+                )
+            ):
+                break
+            shard_specs.append(spec)
+            payload_bytes += coefficient_payload
+            spec_index += 1
+        if not shard_specs:
+            raise AssertionError("computed endpoint shard did not consume a block")
+        shard_stem = f"{stem}BlockShard{len(shard_stems):03d}"
+        emit_computed_term_shard_module(
+            pid,
+            lean_name,
+            shard_specs,
+            shard_out_dir / f"{shard_stem}.lean",
+        )
+        shard_stems.append(shard_stem)
+
+    imports = "\n".join(
+        f"import {module_root}.{stem}TermShards.{shard_stem}"
+        for shard_stem in shard_stems
+    )
+    generator_namespace = f"{stem}Generators"
+    block_entries = ",\n".join(
+        f"  {stem}TermShards.{lean_name}_block_{gen_index:02d}_"
+        f"{start:04d}_{stop - 1:04d}"
+        for gen_index, start, stop, _coefficient in specs
+    )
+    source = cert_path.as_posix()
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-{import_text}
+import {module_root}.{generator_namespace}
+{imports}
 
 set_option linter.style.longLine false
 
 /-!
 # Endpoint certificate {pid}
 
-This generated coordinator checks the final block-sum identity for the
-term-sharded endpoint certificate row `{pid}`.  The imported shard modules
-separately check each coefficient-term partial product and each block sum.
+This generated coordinator computes products from bounded coefficient blocks
+and checks one final product-sum identity for endpoint certificate row `{pid}`.
+
+Source certificate: `{source}`.
 -/
 
 namespace Problem97
@@ -2165,18 +1963,23 @@ namespace EndpointCertificate
 
 namespace Patterns
 
-/-- Block sums for the term-sharded endpoint certificate `{pid}`. -/
-def {lean_name}_blocks : List Poly :=
+/-- Computed coefficient-generator blocks for endpoint certificate `{pid}`. -/
+def {lean_name}_productBlocks :
+    List (ComputedProductBlock {generator_namespace}.{lean_name}_generators) :=
 [
 {block_entries}
 ]
 
+/-- Product polynomials for endpoint certificate `{pid}`. -/
+def {lean_name}_blocks : List Poly :=
+  computedProductPolys {lean_name}_productBlocks
+
 set_option linter.style.nativeDecide false in
-/-- Final checked block-sum identity for endpoint certificate `{pid}`. -/
+/-- Final checked product-sum identity for endpoint certificate `{pid}`. -/
 theorem {lean_name}_valid : checkProductSum {lean_name}_blocks = true := by
   native_decide
 
-/-- Alias for the checked block-sum identity for endpoint certificate `{pid}`. -/
+/-- Alias for the checked product-sum identity for endpoint certificate `{pid}`. -/
 theorem {lean_name}_sum_valid : checkProductSum {lean_name}_blocks = true :=
   {lean_name}_valid
 
@@ -2188,6 +1991,123 @@ end Problem97
 """
     coordinator_out.parent.mkdir(parents=True, exist_ok=True)
     coordinator_out.write_text(module)
+
+
+def emit_computed_product_row_zero_module(
+    cert_path: Path,
+    out_path: Path,
+) -> str | None:
+    check_certificate_file(cert_path)
+    cert = json.loads(cert_path.read_text())
+    pid = str(cert["pid"])
+    if pid not in PRODUCT_SUM_ENDPOINT_IDS:
+        return None
+    variables = cert["variables"]
+    generators = cert["generators"]
+    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
+        raise ValueError(f"{cert_path}: invalid variables")
+    if not isinstance(generators, list) or not all(isinstance(x, str) for x in generators):
+        raise ValueError(f"{cert_path}: invalid generators")
+
+    stem = lean_module_stem(pid)
+    generator_namespace = f"{stem}Generators"
+    row_name = f"{pid}_row"
+    row_expr = endpoint_row_expr(pid)
+    classifications = [
+        classify_generator(str(generator), [str(variable) for variable in variables])
+        for generator in generators
+    ]
+    proofs = [endpoint_generator_zero_proof(classification) for classification in classifications]
+    cases = "\n".join("  · " + proof.replace("\n", "\n    ") for proof in proofs)
+    rcases_pattern = " | ".join("rfl" for _ in generators)
+    source = cert_path.as_posix()
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
+import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.ProductCertificateSoundness
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.{stem}
+
+/-!
+# Endpoint computed product row-zero certificate {pid}
+
+This generated module uses the shared computed-product soundness theorem. The
+row-specific content is only the finite endpoint generator-zero data.
+
+Source certificate: `{source}`.
+-/
+
+set_option linter.style.longLine false
+set_option linter.unusedSimpArgs false
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+
+namespace EndpointCertificate
+
+namespace Variables
+
+private def {row_name} : ShadowBank.EndpointRow :=
+  {row_expr}
+
+set_option linter.style.nativeDecide false in
+/-- Every computed product in endpoint certificate `{pid}` evaluates to zero
+under a metric interpretation of its finite shadow. -/
+theorem {pid}_evaluationZeros_of_metricShadow
+    {{pointOf : ShadowBank.Label → ℝ²}}
+    (hmetric : EndpointMetricShadow pointOf {row_name}.toShadow) :
+    Patterns.CertificatePayload.evaluationZeros
+      (.productSum Patterns.{pid}_blocks)
+      (endpointS1S3Assignment pointOf) := by
+  change ∀ p ∈ computedProductPolys Patterns.{pid}_productBlocks,
+    evalPoly (endpointS1S3Assignment pointOf) p = 0
+  refine evaluationZeros_of_computedProductBlocks
+    (endpointS1S3Assignment pointOf) Patterns.{pid}_productBlocks ?_
+  intro g hg
+  simp only [Patterns.{generator_namespace}.{pid}_generators,
+    List.mem_cons, List.not_mem_nil, or_false] at hg
+  rcases hg with {rcases_pattern}
+{cases}
+
+end Variables
+
+end EndpointCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+    return out_path.stem
+
+
+def emit_product_row_zero_dir(
+    cert_paths: list[Path],
+    out_dir: Path,
+    aggregate_out: Path | None,
+    module_root: str,
+) -> None:
+    paths = certificate_files(cert_paths)
+    if not paths:
+        raise ValueError("no certificate JSON files for product row-zero emission")
+    stems: list[str] = []
+    for cert_path in paths:
+        cert = json.loads(cert_path.read_text())
+        pid = str(cert["pid"])
+        if pid not in PRODUCT_SUM_ENDPOINT_IDS:
+            continue
+        stem = emit_computed_product_row_zero_module(
+            cert_path,
+            out_dir / f"{lean_module_stem(pid)}.lean",
+        )
+        if stem is not None:
+            stems.append(stem)
+    if aggregate_out is not None:
+        emit_product_row_zero_aggregate(stems, aggregate_out, module_root)
 
 
 def check_certificate_file(path: Path) -> None:

@@ -1843,6 +1843,90 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
             (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
             (centerClass cp)) = true)
 
+/-- Right-oriented finite point-class facts for the relaxed-shape terminal row.
+Compared with the candidate packet, this keeps exact four-label/no-self shape
+for every non-cap center and drops membership in the generated candidate-mask
+filters. -/
+abbrev RightOneSidedErasedPayloadFiniteRelaxedShapeFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (_x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex1 ∧
+    centerClass .w = S.capByIndex S.oppIndex2 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    (∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass center)) = 4) ∧
+    (∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas
+        (pointMask
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass center)) center = false) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
+    (∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true) ∧
+    (∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true)
+
+/-- Left-oriented mirror of
+`RightOneSidedErasedPayloadFiniteRelaxedShapeFacts`. -/
+abbrev LeftOneSidedErasedPayloadFiniteRelaxedShapeFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (_x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex2 ∧
+    centerClass .w = S.capByIndex S.oppIndex1 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    (∀ center : Label, center ≠ .v → center ≠ .w →
+      maskCard
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass center)) = 4) ∧
+    (∀ center : Label, center ≠ .v → center ≠ .w →
+      maskHas
+        (pointMask
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass center)) center = false) ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
+    (∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true) ∧
+    (∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true)
+
 /-- The reduced right finite-candidate packet implies the existing full packet:
 search cross-separation is just the mask form of the supplied `sepOKFor`
 interface. -/
@@ -5056,6 +5140,140 @@ theorem false_of_left_row2110_finiteCandidateFacts
         rfl hprivateCenter hterminal
     exact false_of_erasedPinRow_ep_left_m2_s1_l1_r0_seedShadow_pointClasses
       hseed hsstar hvMask hwMask hprivate hrem hno3 hcounts hsep hsearchSep
+
+/-- Relaxed-shape version of the right terminal row `(2,1,0,1)`.  This row
+uses exact four-label/no-self shape for the non-cap centers instead of
+candidate-mask membership. -/
+theorem false_of_right_row2101_finiteRelaxedShapeFacts
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p x : ℝ²} {radius : ℝ}
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior1 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior2 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior1)
+    (hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.RightOneSidedErasedPayload
+        S S.oppIndex1 p x radius)
+    (hfacts :
+      RightOneSidedErasedPayloadFiniteRelaxedShapeFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
+    False := by
+  rcases hfacts with
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcard, hself, hcounts, hsep, hsearchSep⟩
+  have hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true :=
+    noThreeOK_of_PrefixPairCountsOK hcounts
+  have hvMask :
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .v) =
+        firstOppExactCapMask := by
+    rw [hvClass]
+    exact rightPinnedLabelPoint_firstOppExactCapMask_of_oppInterior1_pair
+      S hinj hpair
+  have hwMask :
+      pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .w) =
+        secondOppExactCapMask := by
+    rw [hwClass]
+    exact rightPinnedLabelPoint_secondOppExactCapMask_of_oppInterior2_pair
+      S hinj hqpair
+  have hpPair : p ∈ ({p₁, p₂} : Finset ℝ²) := by
+    simpa [hpair] using hp
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hpPair
+  rcases hpPair with hp_eq | hp_eq
+  · subst p
+    rcases right_row2101_exists_erasedPinRowSeed_privateMask S
+        hpayload hinj hp12 hpair hxTriple
+        (privateCenter := .Pw) (otherPrivate := .Pu)
+        (Or.inl ⟨rfl, rfl, rfl⟩) hprivatePwClass with
+      ⟨seed, hseed, hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+    exact false_of_erasedPinRow_ep_right_m2_s1_l0_r1_relaxedShape_pointClasses
+      hseed hsstar hvMask hwMask hprivate hcard hself hno3 hcounts hsep
+      hsearchSep
+  · subst p
+    rcases right_row2101_exists_erasedPinRowSeed_privateMask S
+        hpayload hinj hp12 hpair hxTriple
+        (privateCenter := .Pu) (otherPrivate := .Pw)
+        (Or.inr ⟨rfl, rfl, rfl⟩) hprivatePuClass with
+      ⟨seed, hseed, hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+    exact false_of_erasedPinRow_ep_right_m2_s1_l0_r1_relaxedShape_pointClasses
+      hseed hsstar hvMask hwMask hprivate hcard hself hno3 hcounts hsep
+      hsearchSep
+
+/-- Relaxed-shape version of the left terminal row `(2,1,1,0)`.  This row
+uses exact four-label/no-self shape for the non-cap centers instead of
+candidate-mask membership. -/
+theorem false_of_left_row2110_finiteRelaxedShapeFacts
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    {p x : ℝ²} {radius : ℝ}
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hinj : Function.Injective
+      (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    (hp12 : p₁ ≠ p₂)
+    (hpair : S.oppInterior2 = ({p₁, p₂} : Finset ℝ²))
+    (hqpair : S.oppInterior1 = ({q₁, q₂} : Finset ℝ²))
+    (hp : p ∈ S.oppInterior2)
+    (hxTriple : x ∈ ({s1, s2, s3} : Finset ℝ²))
+    (hpayload :
+      SurplusCapPacket.LeftOneSidedErasedPayload
+        S S.oppIndex2 p x radius)
+    (hfacts :
+      LeftOneSidedErasedPayloadFiniteRelaxedShapeFacts
+        S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
+    False := by
+  rcases hfacts with
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcard, hself, hcounts, hsep, hsearchSep⟩
+  have hno3 :
+      noThreeOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) = true :=
+    noThreeOK_of_PrefixPairCountsOK hcounts
+  have hvMask :
+      pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .v) =
+        firstOppExactCapMask := by
+    rw [hvClass]
+    exact leftPinnedLabelPoint_firstOppExactCapMask_of_oppInterior2_pair
+      S hinj hpair
+  have hwMask :
+      pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          (centerClass .w) =
+        secondOppExactCapMask := by
+    rw [hwClass]
+    exact leftPinnedLabelPoint_secondOppExactCapMask_of_oppInterior1_pair
+      S hinj hqpair
+  have hpPair : p ∈ ({p₁, p₂} : Finset ℝ²) := by
+    simpa [hpair] using hp
+  simp only [Finset.mem_insert, Finset.mem_singleton] at hpPair
+  rcases hpPair with hp_eq | hp_eq
+  · subst p
+    rcases left_row2110_exists_erasedPinRowSeed_privateMask S
+        hpayload hinj hp12 hpair hxTriple
+        (privateCenter := .Pw) (otherPrivate := .Pu)
+        (Or.inl ⟨rfl, rfl, rfl⟩) hprivatePwClass with
+      ⟨seed, hseed, hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+    exact false_of_erasedPinRow_ep_left_m2_s1_l1_r0_relaxedShape_pointClasses
+      hseed hsstar hvMask hwMask hprivate hcard hself hno3 hcounts hsep
+      hsearchSep
+  · subst p
+    rcases left_row2110_exists_erasedPinRowSeed_privateMask S
+        hpayload hinj hp12 hpair hxTriple
+        (privateCenter := .Pu) (otherPrivate := .Pw)
+        (Or.inr ⟨rfl, rfl, rfl⟩) hprivatePuClass with
+      ⟨seed, hseed, hsstar, _hsstar_eq, _hprivateCenter, hprivate⟩
+    exact false_of_erasedPinRow_ep_left_m2_s1_l1_r0_relaxedShape_pointClasses
+      hseed hsstar hvMask hwMask hprivate hcard hself hno3 hcounts hsep
+      hsearchSep
 
 /-- The left exact row `(1,0,1,2)` closes from the finite point-class packet,
 provided the named surplus triple contains the row's surplus-side singleton.

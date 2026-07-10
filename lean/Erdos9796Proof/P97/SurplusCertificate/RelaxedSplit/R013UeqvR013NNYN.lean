@@ -4,56 +4,22 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock02_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock03_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock03_0100_0100
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock04_0000_0060
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock05_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock05_0100_0152
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock06_0000_0000
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock07_0000_0003
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock08_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock09_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock10_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock10_0100_0130
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock12_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock12_0100_0130
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock13_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock13_0100_0130
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock15_0000_0060
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock16_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock16_0100_0199
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock16_0200_0299
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock16_0300_0399
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock16_0400_0496
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock17_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock17_0100_0128
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock18_0000_0098
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock19_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock19_0100_0199
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock19_0200_0284
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock21_0000_0040
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock22_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock26_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock27_0000_0015
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock28_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock28_0100_0130
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock29_0000_0099
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock29_0100_0155
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlock30_0000_0036
-
-set_option linter.style.longLine false
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNGenerators
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlockShard000
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R013UeqvR013NNYNTermShards.R013UeqvR013NNYNBlockShard001
 
 /-!
 # Relaxed split surplus certificate R013:u=v:R013NNYN
 
-This generated coordinator checks the final block-sum identity for a
-term-sharded relaxed pinned-surplus split certificate.  The imported shard
-modules separately check each coefficient-term partial product and each block
-sum.
+This generated coordinator checks the final product-sum identity for a
+term-sharded relaxed pinned-surplus split certificate. The imported shard
+modules store bounded coefficient blocks; the products are computed by
+the shared checker.
 
 Source certificate: `certificates/surplus/relaxed_split_singleton/R013_ueqv_R013NNYN.json`.
 -/
+
+set_option linter.style.longLine false
 
 namespace Problem97
 
@@ -63,8 +29,9 @@ namespace RelaxedSplit
 
 open Problem97.EndpointCertificate
 
-/-- Block sums for the term-sharded relaxed split surplus certificate `R013:u=v:R013NNYN`. -/
-def rs_R013_ueqv_R013NNYN_blocks : List Poly :=
+/-- Computed product blocks for relaxed split surplus certificate `R013:u=v:R013NNYN`. -/
+def rs_R013_ueqv_R013NNYN_productBlocks :
+    List (ComputedProductBlock rs_R013_ueqv_R013NNYN_generators) :=
 [
   R013UeqvR013NNYNTermShards.rs_R013_ueqv_R013NNYN_block_02_0000_0015,
   R013UeqvR013NNYNTermShards.rs_R013_ueqv_R013NNYN_block_03_0000_0099,
@@ -104,6 +71,10 @@ def rs_R013_ueqv_R013NNYN_blocks : List Poly :=
   R013UeqvR013NNYNTermShards.rs_R013_ueqv_R013NNYN_block_29_0100_0155,
   R013UeqvR013NNYNTermShards.rs_R013_ueqv_R013NNYN_block_30_0000_0036
 ]
+
+/-- Product polynomials for relaxed split surplus certificate `R013:u=v:R013NNYN`. -/
+def rs_R013_ueqv_R013NNYN_blocks : List Poly :=
+  computedProductPolys rs_R013_ueqv_R013NNYN_productBlocks
 
 set_option linter.style.nativeDecide false in
 /-- Final checked block-sum identity for relaxed split surplus certificate `R013:u=v:R013NNYN`. -/

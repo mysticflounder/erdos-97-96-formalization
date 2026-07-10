@@ -211,12 +211,19 @@ UV_CACHE_DIR=/private/tmp/uv-cache-endpoint \
     --lean-shard-threshold 40000
 ```
 
-The generated Lean bank has 136 top-level modules including `All.lean`, 34
-term-sharded certificate directories, and 2729 shard modules.  The aggregate
-module `Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All` defines
+The current `RelaxedSplit` source tree has 392 Lean modules and occupies 36 MB.
+It consists of 135 certificate coordinators, 34 generator modules, 220 bundled
+coefficient-shard modules, and the `All`, `Bank`, and `Payload` modules. No
+source module exceeds 205 KB. The aggregate module
+`Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All` defines
 `allRelaxedSplitSingletonCertificates`, a 135-entry list of checked facts.
-Direct rows prove `checkCertificate = true`; term-sharded rows prove
-`checkProductSum ... = true`.
+Direct rows prove `checkCertificate = true`. For the 34 product-sum rows, each
+coefficient definition contains at most 100 terms, and each source shard holds
+at most 24 definitions or 200 KB of coefficient data. Products are computed
+from a coefficient and generator index by the shared `ComputedProductBlock`
+interface; generated source does not repeat expanded products or prove a
+separate multiplication identity for every block. Each product certificate
+uses one final `native_decide` proof of `checkProductSum ... = true`.
 
 Emit the finite row metadata/alignment bank:
 
@@ -258,25 +265,17 @@ common-center/two-ordinary, common-center fixed `.v` member, common-center fixed
 center, and exact `.w` center unit-radius shapes.  The bridge now also covers
 the separator Rabinowitsch generators: variable-variable separators use the
 pair-distance Rabinowitsch adapter, and fixed-`.v` separators use
-`rabinowitschSqNormPoly`.  Thus the relaxed singleton metadata is fully
-classified at the generator-shape level.  The remaining geometric step is
-payload-level row-zero transport.  The direct row-zero emitter has generated
-116 direct row coordinators under
-`Erdos9796Proof/P97/SurplusCertificate/RowZeros/Direct`, with supporting
-exact-pid mask-bit shards under `RowZeros/ExactMaskBits`, per-row polynomial
-shape shards under `RowZeros/ShapeFacts`, and per-generator geometric zero
-shards under `RowZeros/Direct/GeneratorZeros`.  A representative regenerated
-generator shard target, `lake-build
-Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R001NoSeparatorR001N.G00`,
-succeeds and rebuilds the `R001` exact-mask and shape-fact shards.  Broad
-row/coordinator and aggregate builds remain too expensive for normal feedback
-because they fan out through all generator shards; use narrow shard targets
-while finishing compile-scaling.  The direct row coordinator has been reduced
-to an index-based dispatcher over `List.get_of_mem`, but it has not yet been
-verified as a cheap target after all imported generator shards are warm.  The
-term-sharded product-sum rows still need block/product-sum zero lifting.
-The validation
-commands
+`rabinowitschSqNormPoly`. Thus the relaxed singleton metadata is fully
+classified at the generator-shape level. Payload-level row-zero transport is
+also complete for all 135 rows: 101 direct coordinators live under
+`RowZeros/Direct`, and 34 computed product-sum coordinators live under
+`RowZeros/Product`. `GeometryCore` contains the row-local geometric
+interpretation without importing the aggregate bank. The general theorem
+`evaluationZeros_of_computedProductBlocks` lifts generator zeros to every
+computed coefficient-generator product, so product row modules contain only
+finite rule data and one small Boolean rule check.
+
+The validation commands
 
 ```bash
 lake-build Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All
@@ -285,13 +284,20 @@ lake-build Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness
 lake-build Erdos9796Proof.P97.SurplusCertificate.BankSoundness
 lake-build Erdos9796Proof.P97.SurplusCertificate.ExactBridge
 lake-build Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
+lake-build Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank
 ```
 
-succeed; the last recorded clean aggregate build took 15m03s, and the
-row-bank, payload-soundness, and bank-soundness modules built in 113s, 5.6s,
-and 6.0s after the aggregate cache was fresh.  `ExactBridge` built in 93s
-after the common-mask/member alignment facts were added, and `GeometryBridge`
-built in 6.9s after the distance-generator bridge adapters were added.
+succeed. The first full `RowZeros.Bank` migration build after regenerating the
+new layout took 10m48s. Its largest shared steps were `RelaxedSplit.All` at
+90s, `RelaxedSplit.Bank` at 158s, and `ExactBridge` at 108s; the final
+`RowZeros.Bank` coordinator took 6.5s. A later rebuild after changing the
+foundational `ComputedProductBlock` interface took 13m25s because it invalidated
+every generated product and aggregate bridge. An immediate warm rebuild of the
+same target took 2.7s. Representative row-local targets took 28s for
+`RowZeros.Product.R006UeqvR006` and 17s for the cached largest-row check
+`RowZeros.Product.R013UeqvR013YYNYN`. Row-local targets are the normal edit
+loop; the full bank target is now a checkpoint build rather than an hours-long
+dependency replay.
 
 The original incidence bank is still a pattern/verdict bank.
 `Erdos9796Proof.P97.SurplusCOMPGBank` checks the finite incidence bank in

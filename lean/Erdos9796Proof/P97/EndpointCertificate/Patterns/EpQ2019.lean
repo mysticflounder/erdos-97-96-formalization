@@ -4,78 +4,21 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block00_0000_0003
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block01_0000_0070
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block02_0000_0092
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block03_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block03_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block03_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block03_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block03_0400_0414
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block04_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block04_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block04_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block04_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block04_0400_0425
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block05_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block05_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block05_0200_0280
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block06_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block06_0100_0141
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block07_0000_0092
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block08_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block08_0100_0198
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block09_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block09_0100_0165
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block10_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block10_0100_0153
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block11_0000_0055
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block12_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block12_0100_0153
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block13_0000_0022
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block14_0000_0065
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block15_0000_0042
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block16_0000_0033
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block17_0000_0052
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block18_0000_0050
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block19_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block19_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block19_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block19_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block20_0000_0040
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0500_0599
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0600_0699
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block21_0700_0703
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block22_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block22_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block22_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block22_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block22_0400_0413
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block23_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block23_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block23_0200_0210
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block24_0000_0053
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block25_0000_0045
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block26_0000_0074
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block27_0000_0093
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block28_0000_0040
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block29_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block29_0100_0109
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019Block30_0000_0000
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019Generators
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019BlockShard000
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019BlockShard001
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019BlockShard002
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2019TermShards.EpQ2019BlockShard003
 
 set_option linter.style.longLine false
 
 /-!
 # Endpoint certificate ep_Q2_019
 
-This generated coordinator checks the final block-sum identity for the
-term-sharded endpoint certificate row `ep_Q2_019`.  The imported shard modules
-separately check each coefficient-term partial product and each block sum.
+This generated coordinator computes products from bounded coefficient blocks
+and checks one final product-sum identity for endpoint certificate row `ep_Q2_019`.
+
+Source certificate: `certificates/endpoint/ep_Q2_019.json`.
 -/
 
 namespace Problem97
@@ -84,8 +27,9 @@ namespace EndpointCertificate
 
 namespace Patterns
 
-/-- Block sums for the term-sharded endpoint certificate `ep_Q2_019`. -/
-def ep_Q2_019_blocks : List Poly :=
+/-- Computed coefficient-generator blocks for endpoint certificate `ep_Q2_019`. -/
+def ep_Q2_019_productBlocks :
+    List (ComputedProductBlock EpQ2019Generators.ep_Q2_019_generators) :=
 [
   EpQ2019TermShards.ep_Q2_019_block_00_0000_0003,
   EpQ2019TermShards.ep_Q2_019_block_01_0000_0070,
@@ -152,12 +96,16 @@ def ep_Q2_019_blocks : List Poly :=
   EpQ2019TermShards.ep_Q2_019_block_30_0000_0000
 ]
 
+/-- Product polynomials for endpoint certificate `ep_Q2_019`. -/
+def ep_Q2_019_blocks : List Poly :=
+  computedProductPolys ep_Q2_019_productBlocks
+
 set_option linter.style.nativeDecide false in
-/-- Final checked block-sum identity for endpoint certificate `ep_Q2_019`. -/
+/-- Final checked product-sum identity for endpoint certificate `ep_Q2_019`. -/
 theorem ep_Q2_019_valid : checkProductSum ep_Q2_019_blocks = true := by
   native_decide
 
-/-- Alias for the checked block-sum identity for endpoint certificate `ep_Q2_019`. -/
+/-- Alias for the checked product-sum identity for endpoint certificate `ep_Q2_019`. -/
 theorem ep_Q2_019_sum_valid : checkProductSum ep_Q2_019_blocks = true :=
   ep_Q2_019_valid
 

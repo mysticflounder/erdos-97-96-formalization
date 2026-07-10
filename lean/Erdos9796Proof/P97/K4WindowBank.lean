@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
+import Erdos9796Proof.P97.EndpointCertificate.Soundness
 
 /-!
 # The dead k=4 window universe — certificate bank
@@ -900,6 +900,18 @@ set_option linter.style.nativeDecide false in
 theorem k4DeadCertificates_all_valid :
     k4DeadCertificates.all (fun c => checkCertificate c) = true := by
   native_decide
+
+/-- Any valuation zeroing the generators of a certificate in the dead k=4
+window bank is contradictory. This is the ambient-cardinality-independent
+semantic consumer for the ten checked Nullstellensatz payloads. -/
+theorem false_of_mem_k4DeadCertificates
+    (ν : Nat → ℝ) {cert : Certificate}
+    (hcert : cert ∈ k4DeadCertificates)
+    (hgenerators : ∀ g ∈ cert.generators, evalPoly ν g = 0) :
+    False :=
+  false_of_checkCertificate ν cert
+    (List.all_eq_true.mp k4DeadCertificates_all_valid cert hcert)
+    hgenerators
 
 end K4WindowBank
 

@@ -4,8 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Soundness
-import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.All
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Payload
 
 /-!
 # Soundness for generated relaxed split surplus certificate aggregates
@@ -21,13 +20,6 @@ namespace SurplusCertificate
 namespace RelaxedSplit
 
 open Problem97.EndpointCertificate
-
-/-- Semantic zero condition needed by a generated relaxed split payload. -/
-def CertificatePayload.evaluationZeros
-    (payload : CertificatePayload) (ν : Nat → ℝ) : Prop :=
-  match payload with
-  | .direct data => ∀ g ∈ data.generators, evalPoly ν g = 0
-  | .productSum products => ∀ p ∈ products, evalPoly ν p = 0
 
 /-- A checked direct relaxed split payload contradicts any real assignment that
 zeros all of its generators. -/

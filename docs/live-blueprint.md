@@ -1,6 +1,5 @@
-active anchors (4):
+active anchors (3):
   ⚓ 019f300c  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [open]  — Working the free non-surplus erased-pin P2/P4 residual leaf
-  ⚓ 019f38a3  Problem97.isM44PinnedSurplusResidualsExcluded  [open]  — Switching from DoubleApex/card-11 census to pinned surplus residual per Adam request
   ⚓ f1cc942b  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]
   ⚓ f46fdf3f  Problem97.largeK4SurplusCapPacket  [closed]
 target spine view: 2 configured target_symbol(s)
@@ -164,6 +163,6 @@ open obligations (6):
   - reaches sorry via 5 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (52 file(s), 1333 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (52 file(s), 1342 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

@@ -4,9 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
-
-set_option linter.style.longLine false
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.RuleData
 
 /-!
 # Relaxed split surplus certificate R011:u=v:R011NYY
@@ -22,254 +20,57 @@ This generated module lives in the `RelaxedSplit` namespace.
 
 -/
 
+set_option linter.style.longLine false
+
 namespace Problem97
 
 namespace SurplusCertificate
 
 open Problem97.EndpointCertificate
+open Problem97.EndpointCertificate.Variables
 
 namespace RelaxedSplit
 
 
+/-- Reflected generator rules for relaxed split surplus certificate `R011:u=v:R011NYY`. -/
+def rs_R011_ueqv_R011NYY_rules : List Bank.RowZeros.GeneratorRule :=
+[
+  .exactV .u .s2 EndpointVar.ux EndpointVar.uy EndpointVar.s2x EndpointVar.s2y,
+  .exactV .u .Pw EndpointVar.ux EndpointVar.uy EndpointVar.pwx EndpointVar.pwy,
+  .exactV .u .Pu EndpointVar.ux EndpointVar.uy EndpointVar.pux EndpointVar.puy,
+  .exactW .s2 .Pu EndpointVar.s2x EndpointVar.s2y EndpointVar.pux EndpointVar.puy,
+  .exactW .s2 .Q1 EndpointVar.s2x EndpointVar.s2y EndpointVar.q1x EndpointVar.q1y,
+  .exactW .s2 .Q2 EndpointVar.s2x EndpointVar.s2y EndpointVar.q2x EndpointVar.q2y,
+  .distinctV .u EndpointVar.ux EndpointVar.uy,
+  .ordinary .u .s1 .s3 EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.s3x EndpointVar.s3y,
+  .ordinary .u .s1 .Pu EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.pux EndpointVar.puy,
+  .ordinary .u .s1 .Q1 EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y EndpointVar.q1x EndpointVar.q1y,
+  .ordinaryVLeft .s1 .s2 EndpointVar.s1x EndpointVar.s1y EndpointVar.s2x EndpointVar.s2y,
+  .ordinaryVLeft .s1 .s3 EndpointVar.s1x EndpointVar.s1y EndpointVar.s3x EndpointVar.s3y,
+  .ordinaryVLeft .s1 .Q1 EndpointVar.s1x EndpointVar.s1y EndpointVar.q1x EndpointVar.q1y,
+  .ordinaryWRight .s2 .u EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy,
+  .ordinary .s2 .u .s3 EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy EndpointVar.s3x EndpointVar.s3y,
+  .ordinary .s2 .u .Q2 EndpointVar.s2x EndpointVar.s2y EndpointVar.ux EndpointVar.uy EndpointVar.q2x EndpointVar.q2y,
+  .ordinaryVW .s3 EndpointVar.s3x,
+  .ordinaryVLeft .s3 .s2 EndpointVar.s3x EndpointVar.s3y EndpointVar.s2x EndpointVar.s2y,
+  .ordinaryVLeft .s3 .Pw EndpointVar.s3x EndpointVar.s3y EndpointVar.pwx EndpointVar.pwy,
+  .ordinaryWRight .Pw .u EndpointVar.pwx EndpointVar.pwy EndpointVar.ux EndpointVar.uy,
+  .ordinary .Pw .u .s1 EndpointVar.pwx EndpointVar.pwy EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y,
+  .ordinary .Pw .u .s2 EndpointVar.pwx EndpointVar.pwy EndpointVar.ux EndpointVar.uy EndpointVar.s2x EndpointVar.s2y,
+  .ordinaryVRight .Pu .u EndpointVar.pux EndpointVar.puy EndpointVar.ux EndpointVar.uy,
+  .ordinary .Pu .u .s3 EndpointVar.pux EndpointVar.puy EndpointVar.ux EndpointVar.uy EndpointVar.s3x EndpointVar.s3y,
+  .ordinary .Pu .u .Pw EndpointVar.pux EndpointVar.puy EndpointVar.ux EndpointVar.uy EndpointVar.pwx EndpointVar.pwy,
+  .ordinaryVW .Q1 EndpointVar.q1x,
+  .ordinaryVLeft .Q1 .Pu EndpointVar.q1x EndpointVar.q1y EndpointVar.pux EndpointVar.puy,
+  .ordinaryVLeft .Q1 .Q2 EndpointVar.q1x EndpointVar.q1y EndpointVar.q2x EndpointVar.q2y,
+  .ordinaryVRight .Q2 .u EndpointVar.q2x EndpointVar.q2y EndpointVar.ux EndpointVar.uy,
+  .ordinary .Q2 .u .s1 EndpointVar.q2x EndpointVar.q2y EndpointVar.ux EndpointVar.uy EndpointVar.s1x EndpointVar.s1y,
+  .ordinary .Q2 .u .Q1 EndpointVar.q2x EndpointVar.q2y EndpointVar.ux EndpointVar.uy EndpointVar.q1x EndpointVar.q1y
+]
+
 /-- Generator polynomials for relaxed split surplus certificate `R011:u=v:R011NYY`. -/
 def rs_R011_ueqv_R011NYY_generators : List Poly :=
-[
-  [
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (-1 : Rat) [(4, 2)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (-1 : Rat) [(8, 2)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (1 : Rat) [(0, 2)],
-  term (1 : Rat) [(1, 2)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (-2 : Rat) [(4, 1)],
-  term (1 : Rat) [(4, 2)],
-  term (1 : Rat) [(5, 2)],
-  term (2 : Rat) [(10, 1)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (-2 : Rat) [(4, 1)],
-  term (1 : Rat) [(4, 2)],
-  term (1 : Rat) [(5, 2)],
-  term (2 : Rat) [(12, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (-2 : Rat) [(4, 1)],
-  term (1 : Rat) [(4, 2)],
-  term (1 : Rat) [(5, 2)],
-  term (2 : Rat) [(14, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (1 : Rat) [(0, 2), (16, 1)],
-  term (1 : Rat) [(1, 2), (16, 1)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (6, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (7, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(6, 2)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (10, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (11, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(10, 2)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (2, 1)],
-  term (2 : Rat) [(0, 1), (12, 1)],
-  term (-2 : Rat) [(1, 1), (3, 1)],
-  term (2 : Rat) [(1, 1), (13, 1)],
-  term (1 : Rat) [(2, 2)],
-  term (1 : Rat) [(3, 2)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (4, 1)],
-  term (2 : Rat) [(3, 1), (5, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (6, 1)],
-  term (2 : Rat) [(3, 1), (7, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (2 : Rat) [(2, 1), (12, 1)],
-  term (2 : Rat) [(3, 1), (13, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (-1 : Rat) [(13, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (6, 1)],
-  term (2 : Rat) [(5, 1), (7, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (4, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (5, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (14, 1)],
-  term (2 : Rat) [(5, 1), (15, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (2 : Rat) [(6, 1)]
-],
-  [
-  term (2 : Rat) [(4, 1), (6, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (2 : Rat) [(5, 1), (7, 1)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (2 : Rat) [(6, 1), (8, 1)],
-  term (2 : Rat) [(7, 1), (9, 1)],
-  term (-1 : Rat) [(8, 2)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (-2 : Rat) [(0, 1), (8, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (9, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(8, 1)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (8, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (9, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(2, 1), (8, 1)],
-  term (-1 : Rat) [(2, 2)],
-  term (2 : Rat) [(3, 1), (9, 1)],
-  term (-1 : Rat) [(3, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (8, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (9, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(4, 1), (8, 1)],
-  term (-1 : Rat) [(4, 2)],
-  term (2 : Rat) [(5, 1), (9, 1)],
-  term (-1 : Rat) [(5, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (10, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (11, 1)],
-  term (1 : Rat) [(1, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (10, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (11, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(6, 1), (10, 1)],
-  term (-1 : Rat) [(6, 2)],
-  term (2 : Rat) [(7, 1), (11, 1)],
-  term (-1 : Rat) [(7, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (10, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (11, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(8, 1), (10, 1)],
-  term (-1 : Rat) [(8, 2)],
-  term (2 : Rat) [(9, 1), (11, 1)],
-  term (-1 : Rat) [(9, 2)]
-],
-  [
-  term (-1 : Rat) [],
-  term (2 : Rat) [(12, 1)]
-],
-  [
-  term (2 : Rat) [(10, 1), (12, 1)],
-  term (-1 : Rat) [(10, 2)],
-  term (2 : Rat) [(11, 1), (13, 1)],
-  term (-1 : Rat) [(11, 2)]
-],
-  [
-  term (2 : Rat) [(12, 1), (14, 1)],
-  term (2 : Rat) [(13, 1), (15, 1)],
-  term (-1 : Rat) [(14, 2)],
-  term (-1 : Rat) [(15, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (14, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (15, 1)],
-  term (1 : Rat) [(1, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (14, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (15, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(2, 1), (14, 1)],
-  term (-1 : Rat) [(2, 2)],
-  term (2 : Rat) [(3, 1), (15, 1)],
-  term (-1 : Rat) [(3, 2)]
-],
-  [
-  term (-2 : Rat) [(0, 1), (14, 1)],
-  term (1 : Rat) [(0, 2)],
-  term (-2 : Rat) [(1, 1), (15, 1)],
-  term (1 : Rat) [(1, 2)],
-  term (2 : Rat) [(12, 1), (14, 1)],
-  term (-1 : Rat) [(12, 2)],
-  term (2 : Rat) [(13, 1), (15, 1)],
-  term (-1 : Rat) [(13, 2)]
-]
-]
+  rs_R011_ueqv_R011NYY_rules.map Bank.RowZeros.GeneratorRule.normalizedPoly
 
 /-- Coefficient polynomials for relaxed split surplus certificate `R011:u=v:R011NYY`. -/
 def rs_R011_ueqv_R011NYY_coefficients : List Poly :=

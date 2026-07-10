@@ -4,71 +4,20 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block01_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block01_0100_0111
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block02_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block02_0100_0111
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block03_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block03_0100_0125
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block04_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block04_0100_0114
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block05_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block05_0100_0126
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block06_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block06_0100_0133
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block07_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block07_0100_0119
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block08_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block08_0100_0104
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block09_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block09_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block09_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block09_0300_0378
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block10_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block10_0100_0119
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block11_0000_0091
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block12_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block12_0100_0121
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block13_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block13_0100_0119
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block14_0000_0004
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block15_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block15_0100_0118
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block16_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block16_0100_0119
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block17_0000_0005
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block18_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block18_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block18_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block18_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block18_0400_0428
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block19_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block19_0100_0136
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block20_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block20_0100_0111
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block21_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block21_0100_0114
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block22_0000_0068
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block23_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block23_0100_0133
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block24_0000_0001
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block25_0000_0096
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block26_0000_0023
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block27_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block27_0100_0109
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block28_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block28_0100_0107
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block29_0000_0009
-import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028Block30_0000_0000
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028Generators
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028BlockShard000
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028BlockShard001
+import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ1028TermShards.EpQ1028BlockShard002
 
 set_option linter.style.longLine false
 
 /-!
 # Endpoint certificate ep_Q1_028
 
-This generated coordinator checks the final block-sum identity for the
-term-sharded endpoint certificate row `ep_Q1_028`.  The imported shard modules
-separately check each coefficient-term partial product and each block sum.
+This generated coordinator computes products from bounded coefficient blocks
+and checks one final product-sum identity for endpoint certificate row `ep_Q1_028`.
+
+Source certificate: `certificates/endpoint/ep_Q1_028.json`.
 -/
 
 namespace Problem97
@@ -77,8 +26,9 @@ namespace EndpointCertificate
 
 namespace Patterns
 
-/-- Block sums for the term-sharded endpoint certificate `ep_Q1_028`. -/
-def ep_Q1_028_blocks : List Poly :=
+/-- Computed coefficient-generator blocks for endpoint certificate `ep_Q1_028`. -/
+def ep_Q1_028_productBlocks :
+    List (ComputedProductBlock EpQ1028Generators.ep_Q1_028_generators) :=
 [
   EpQ1028TermShards.ep_Q1_028_block_01_0000_0099,
   EpQ1028TermShards.ep_Q1_028_block_01_0100_0111,
@@ -138,12 +88,16 @@ def ep_Q1_028_blocks : List Poly :=
   EpQ1028TermShards.ep_Q1_028_block_30_0000_0000
 ]
 
+/-- Product polynomials for endpoint certificate `ep_Q1_028`. -/
+def ep_Q1_028_blocks : List Poly :=
+  computedProductPolys ep_Q1_028_productBlocks
+
 set_option linter.style.nativeDecide false in
-/-- Final checked block-sum identity for endpoint certificate `ep_Q1_028`. -/
+/-- Final checked product-sum identity for endpoint certificate `ep_Q1_028`. -/
 theorem ep_Q1_028_valid : checkProductSum ep_Q1_028_blocks = true := by
   native_decide
 
-/-- Alias for the checked block-sum identity for endpoint certificate `ep_Q1_028`. -/
+/-- Alias for the checked product-sum identity for endpoint certificate `ep_Q1_028`. -/
 theorem ep_Q1_028_sum_valid : checkProductSum ep_Q1_028_blocks = true :=
   ep_Q1_028_valid
 

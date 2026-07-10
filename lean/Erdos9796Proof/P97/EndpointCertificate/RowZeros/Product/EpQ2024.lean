@@ -5,148 +5,21 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.EndpointCertificate.AggregateSoundness
+import Erdos9796Proof.P97.EndpointCertificate.GeneratorZeros
+import Erdos9796Proof.P97.EndpointCertificate.ProductCertificateSoundness
 import Erdos9796Proof.P97.EndpointCertificate.Patterns.EpQ2024
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block00_0000_0088
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block01_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block01_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block01_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block01_0300_0346
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block02_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block02_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block02_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block02_0300_0335
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block03_0500_0514
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0500_0599
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block04_0600_0609
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block05_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block05_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block05_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block05_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block05_0400_0497
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block06_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block06_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block06_0200_0200
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block08_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block08_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block08_0200_0226
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block10_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block10_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block10_0200_0236
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block11_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block11_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block11_0200_0255
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block12_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block12_0100_0172
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block13_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block13_0100_0101
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block14_0000_0059
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0500_0599
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0600_0699
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0700_0799
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0800_0899
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_0900_0999
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1000_1099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1100_1199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1200_1299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1300_1399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1400_1499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1500_1599
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1600_1699
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1700_1799
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1800_1899
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_1900_1999
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_2000_2099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block15_2100_2129
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block16_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block16_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block16_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block16_0300_0322
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block17_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block17_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block17_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block17_0300_0387
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block18_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block18_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block18_0200_0246
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block19_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block19_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block19_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block19_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block19_0400_0489
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block20_0500_0524
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0500_0599
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0600_0699
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0700_0799
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0800_0899
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_0900_0999
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_1000_1099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_1100_1199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_1200_1299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block21_1300_1350
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0300_0399
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0400_0499
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block22_0500_0560
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block23_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block23_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block23_0200_0248
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block24_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block24_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block24_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block24_0300_0373
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block25_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block25_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block25_0200_0299
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block25_0300_0380
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block26_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block26_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block26_0200_0256
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block27_0000_0077
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block28_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block28_0100_0119
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block29_0000_0099
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block29_0100_0199
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block29_0200_0255
-import Erdos9796Proof.P97.EndpointCertificate.RowZeros.Product.EpQ2024BlockZeros.EpQ2024Block30_0000_0001
 
 /-!
-# Endpoint product row-zero certificate ep_Q2_024
+# Endpoint computed product row-zero certificate ep_Q2_024
 
-This generated module proves that every checked block in product-sum endpoint
-row `ep_Q2_024` vanishes under the endpoint normal-axis assignment attached to any
-metric interpretation of the row shadow.
+This generated module uses the shared computed-product soundness theorem. The
+row-specific content is only the finite endpoint generator-zero data.
 
 Source certificate: `certificates/endpoint/ep_Q2_024.json`.
 -/
 
 set_option linter.style.longLine false
+set_option linter.unusedSimpArgs false
 
 open scoped EuclideanGeometry
 
@@ -156,407 +29,377 @@ namespace EndpointCertificate
 
 namespace Variables
 
-/-- Every block in product-sum endpoint certificate `ep_Q2_024` evaluates to zero
+private def ep_Q2_024_row : ShadowBank.EndpointRow :=
+  ShadowBank.endpointRowsQ2.get (Fin.mk 24 (by decide))
+
+set_option linter.style.nativeDecide false in
+/-- Every computed product in endpoint certificate `ep_Q2_024` evaluates to zero
 under a metric interpretation of its finite shadow. -/
 theorem ep_Q2_024_evaluationZeros_of_metricShadow
     {pointOf : ShadowBank.Label → ℝ²}
-    (hmetric : EndpointMetricShadow pointOf (ShadowBank.endpointRowsQ2.get (Fin.mk 24 (by decide))).toShadow) :
+    (hmetric : EndpointMetricShadow pointOf ep_Q2_024_row.toShadow) :
     Patterns.CertificatePayload.evaluationZeros
       (.productSum Patterns.ep_Q2_024_blocks)
       (endpointS1S3Assignment pointOf) := by
-  dsimp [Patterns.CertificatePayload.evaluationZeros]
-  intro p hp
-  change p ∈
-    [
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_00_0000_0088,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_01_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_01_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_01_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_01_0300_0346,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_02_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_02_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_02_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_02_0300_0335,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_03_0500_0514,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0500_0599,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_04_0600_0609,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_05_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_05_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_05_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_05_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_05_0400_0497,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_06_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_06_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_06_0200_0200,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_08_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_08_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_08_0200_0226,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_10_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_10_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_10_0200_0236,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_11_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_11_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_11_0200_0255,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_12_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_12_0100_0172,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_13_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_13_0100_0101,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_14_0000_0059,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0500_0599,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0600_0699,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0700_0799,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0800_0899,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_0900_0999,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1000_1099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1100_1199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1200_1299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1300_1399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1400_1499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1500_1599,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1600_1699,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1700_1799,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1800_1899,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_1900_1999,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_2000_2099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_15_2100_2129,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_16_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_16_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_16_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_16_0300_0322,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_17_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_17_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_17_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_17_0300_0387,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_18_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_18_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_18_0200_0246,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_19_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_19_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_19_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_19_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_19_0400_0489,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_20_0500_0524,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0500_0599,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0600_0699,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0700_0799,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0800_0899,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_0900_0999,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_1000_1099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_1100_1199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_1200_1299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_21_1300_1350,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0300_0399,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0400_0499,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_22_0500_0560,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_23_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_23_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_23_0200_0248,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_24_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_24_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_24_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_24_0300_0373,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_25_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_25_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_25_0200_0299,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_25_0300_0380,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_26_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_26_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_26_0200_0256,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_27_0000_0077,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_28_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_28_0100_0119,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_29_0000_0099,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_29_0100_0199,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_29_0200_0255,
-      Patterns.EpQ2024TermShards.ep_Q2_024_block_30_0000_0001
-    ] at hp
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_00_0000_0088_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_01_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_01_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_01_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_01_0300_0346_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_02_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_02_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_02_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_02_0300_0335_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_03_0500_0514_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0500_0599_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_04_0600_0609_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_05_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_05_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_05_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_05_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_05_0400_0497_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_06_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_06_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_06_0200_0200_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_08_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_08_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_08_0200_0226_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_10_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_10_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_10_0200_0236_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_11_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_11_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_11_0200_0255_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_12_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_12_0100_0172_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_13_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_13_0100_0101_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_14_0000_0059_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0500_0599_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0600_0699_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0700_0799_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0800_0899_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_0900_0999_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1000_1099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1100_1199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1200_1299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1300_1399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1400_1499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1500_1599_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1600_1699_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1700_1799_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1800_1899_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_1900_1999_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_2000_2099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_15_2100_2129_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_16_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_16_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_16_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_16_0300_0322_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_17_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_17_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_17_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_17_0300_0387_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_18_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_18_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_18_0200_0246_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_19_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_19_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_19_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_19_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_19_0400_0489_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_20_0500_0524_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0500_0599_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0600_0699_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0700_0799_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0800_0899_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_0900_0999_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_1000_1099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_1100_1199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_1200_1299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_21_1300_1350_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0300_0399_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0400_0499_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_22_0500_0560_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_23_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_23_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_23_0200_0248_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_24_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_24_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_24_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_24_0300_0373_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_25_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_25_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_25_0200_0299_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_25_0300_0380_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_26_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_26_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_26_0200_0256_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_27_0000_0077_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_28_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_28_0100_0119_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_29_0000_0099_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_29_0100_0199_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_29_0200_0255_eval_zero hmetric
-  rcases List.mem_cons.mp hp with rfl | hp
-  · exact EpQ2024BlockZeros.ep_Q2_024_block_30_0000_0001_eval_zero hmetric
-  cases hp
+  change ∀ p ∈ computedProductPolys Patterns.ep_Q2_024_productBlocks,
+    evalPoly (endpointS1S3Assignment pointOf) p = 0
+  refine evaluationZeros_of_computedProductBlocks
+    (endpointS1S3Assignment pointOf) Patterns.ep_Q2_024_productBlocks ?_
+  intro g hg
+  simp only [Patterns.EpQ2024Generators.ep_Q2_024_generators,
+    List.mem_cons, List.not_mem_nil, or_false] at hg
+  rcases hg with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s2x.index EndpointVar.s2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .s2)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s2x) (b_y := EndpointVar.s2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s3x.index EndpointVar.s3y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .s3)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s3x) (b_y := EndpointVar.s3y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.pux.index EndpointVar.puy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .Pu)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.pux) (b_y := EndpointVar.puy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormDiffPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.pwx.index EndpointVar.pwy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormDiffPoly_eq_zero_of_metricShadow
+              (a := .s1) (b := .Pw)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.pwx) (b_y := EndpointVar.pwy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormDiffPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.pux.index EndpointVar.puy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormDiffPoly_eq_zero_of_metricShadow
+              (a := .s1) (b := .Pu)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.pux) (b_y := EndpointVar.puy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormDiffPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormDiffPoly_eq_zero_of_metricShadow
+              (a := .s1) (b := .Q2)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.q2x) (b_y := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToUnitXDiffPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s2x.index EndpointVar.s2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToUnitXDiffPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .s2)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s2x) (b_y := EndpointVar.s2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToUnitXDiffPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.q1x.index EndpointVar.q1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToUnitXDiffPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .Q1)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.q1x) (b_y := EndpointVar.q1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToUnitXDiffPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToUnitXDiffPoly_eq_zero_of_metricShadow
+              (a := .u) (b := .Q2)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.q2x) (b_y := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistMinusSqNormFirstPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.ux.index EndpointVar.uy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistMinusSqNormFirstPoly_eq_zero_of_metricShadow
+              (a := .s1) (b := .u)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.ux) (b_y := EndpointVar.uy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s2x.index EndpointVar.s2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .s1) (a := .u)
+              (b := .s2)
+              (cx := EndpointVar.s1x) (cy := EndpointVar.s1y)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s2x) (b_y := EndpointVar.s2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.pwx.index EndpointVar.pwy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .s1) (a := .u)
+              (b := .Pw)
+              (cx := EndpointVar.s1x) (cy := EndpointVar.s1y)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.pwx) (b_y := EndpointVar.pwy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.s2x.index EndpointVar.s2y.index EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.s3x.index EndpointVar.s3y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .s2) (a := .s1)
+              (b := .s3)
+              (cx := EndpointVar.s2x) (cy := EndpointVar.s2y)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.s3x) (b_y := EndpointVar.s3y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.s2x.index EndpointVar.s2y.index EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.pwx.index EndpointVar.pwy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .s2) (a := .s1)
+              (b := .Pw)
+              (cx := EndpointVar.s2x) (cy := EndpointVar.s2y)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.pwx) (b_y := EndpointVar.pwy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.s2x.index EndpointVar.s2y.index EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.q1x.index EndpointVar.q1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .s2) (a := .s1)
+              (b := .Q1)
+              (cx := EndpointVar.s2x) (cy := EndpointVar.s2y)
+              (ax := EndpointVar.s1x) (ay := EndpointVar.s1y)
+              (bx := EndpointVar.q1x) (b_y := EndpointVar.q1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := twiceVarMinusOnePoly EndpointVar.s3x.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_twiceVarMinusOnePoly_eq_zero_of_metricShadow
+              (a := .s3) (ax := EndpointVar.s3x)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.s3x.index EndpointVar.s3y.index EndpointVar.s1x.index EndpointVar.s1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .s3) (b := .s1)
+              (ax := EndpointVar.s3x) (ay := EndpointVar.s3y)
+              (bx := EndpointVar.s1x) (b_y := EndpointVar.s1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.s3x.index EndpointVar.s3y.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .s3) (b := .Q2)
+              (ax := EndpointVar.s3x) (ay := EndpointVar.s3y)
+              (bx := EndpointVar.q2x) (b_y := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.pwx.index EndpointVar.pwy.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s1x.index EndpointVar.s1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .Pw) (a := .u)
+              (b := .s1)
+              (cx := EndpointVar.pwx) (cy := EndpointVar.pwy)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s1x) (b_y := EndpointVar.s1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.pwx.index EndpointVar.pwy.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s3x.index EndpointVar.s3y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .Pw) (a := .u)
+              (b := .s3)
+              (cx := EndpointVar.pwx) (cy := EndpointVar.pwy)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s3x) (b_y := EndpointVar.s3y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.pwx.index EndpointVar.pwy.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.pux.index EndpointVar.puy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .Pw) (a := .u)
+              (b := .Pu)
+              (cx := EndpointVar.pwx) (cy := EndpointVar.pwy)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.pux) (b_y := EndpointVar.puy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := twiceVarMinusOnePoly EndpointVar.pux.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_twiceVarMinusOnePoly_eq_zero_of_metricShadow
+              (a := .Pu) (ax := EndpointVar.pux)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.pux.index EndpointVar.puy.index EndpointVar.pwx.index EndpointVar.pwy.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .Pu) (b := .Pw)
+              (ax := EndpointVar.pux) (ay := EndpointVar.puy)
+              (bx := EndpointVar.pwx) (b_y := EndpointVar.pwy)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqNormFirstMinusSqDistPoly EndpointVar.pux.index EndpointVar.puy.index EndpointVar.q1x.index EndpointVar.q1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqNormFirstMinusSqDistPoly_eq_zero_of_metricShadow
+              (a := .Pu) (b := .Q1)
+              (ax := EndpointVar.pux) (ay := EndpointVar.puy)
+              (bx := EndpointVar.q1x) (b_y := EndpointVar.q1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistPointToUnitXDiffPoly EndpointVar.ux.index EndpointVar.uy.index EndpointVar.q1x.index EndpointVar.q1y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistPointToUnitXDiffPoly_eq_zero_of_metricShadow
+              (center := .u) (a := .Q1)
+              (cx := EndpointVar.ux) (cy := EndpointVar.uy)
+              (ax := EndpointVar.q1x) (ay := EndpointVar.q1y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.q1x.index EndpointVar.q1y.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.s3x.index EndpointVar.s3y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .Q1) (a := .u)
+              (b := .s3)
+              (cx := EndpointVar.q1x) (cy := EndpointVar.q1y)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.s3x) (b_y := EndpointVar.s3y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistToCenterDiffPoly EndpointVar.q1x.index EndpointVar.q1y.index EndpointVar.ux.index EndpointVar.uy.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistToCenterDiffPoly_eq_zero_of_metricShadow
+              (center := .Q1) (a := .u)
+              (b := .Q2)
+              (cx := EndpointVar.q1x) (cy := EndpointVar.q1y)
+              (ax := EndpointVar.ux) (ay := EndpointVar.uy)
+              (bx := EndpointVar.q2x) (b_y := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistUnitXToPointMinusCenterDistPoly EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistUnitXToPointMinusCenterDistPoly_eq_zero_of_metricShadow
+              (center := .s1) (a := .Q2)
+              (cx := EndpointVar.s1x) (cy := EndpointVar.s1y)
+              (ax := EndpointVar.q2x) (ay := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistUnitXToPointMinusCenterDistPoly EndpointVar.s2x.index EndpointVar.s2y.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistUnitXToPointMinusCenterDistPoly_eq_zero_of_metricShadow
+              (center := .s2) (a := .Q2)
+              (cx := EndpointVar.s2x) (cy := EndpointVar.s2y)
+              (ax := EndpointVar.q2x) (ay := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := sqDistUnitXToPointMinusCenterDistPoly EndpointVar.q1x.index EndpointVar.q1y.index EndpointVar.q2x.index EndpointVar.q2y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpoint_sqDistUnitXToPointMinusCenterDistPoly_eq_zero_of_metricShadow
+              (center := .Q1) (a := .Q2)
+              (cx := EndpointVar.q1x) (cy := EndpointVar.q1y)
+              (ax := EndpointVar.q2x) (ay := EndpointVar.q2y)
+              hmetric
+              (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval]) (by simp [endpointS1S3Assignment, EndpointVar.eval])
+              (by decide) (by decide))
+  · exact evalPoly_eq_zero_of_normalizePoly_eq
+          (endpointS1S3Assignment pointOf) (q := rabinowitschSqDistPoly EndpointVar.tau.index EndpointVar.s1x.index EndpointVar.s1y.index EndpointVar.s3x.index EndpointVar.s3y.index)
+          (by native_decide)
+          (by
+            exact evalPoly_endpointS1S3_rabinowitschSqDistPoly_eq_zero_of_metricShadow hmetric)
 
 end Variables
 

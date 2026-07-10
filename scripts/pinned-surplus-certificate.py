@@ -1311,6 +1311,8 @@ def emit_relaxed_split_lean_certificate(
 ) -> None:
     endpoint_tool = load_endpoint_tool()
     cert_id, variables, generators, coefficients = read_relaxed_certificate(cert_path)
+    generator_rules = row_zero_generator_rule_exprs(load_json(cert_path))
+    rule_entries = ",\n".join(f"  {rule}" for rule in generator_rules)
 
     lean_name = name or safe_lean_decl_name(cert_id)
     source = cert_path.as_posix()
@@ -1327,9 +1329,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
-
-set_option linter.style.longLine false
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.RuleData
 
 /-!
 # Relaxed split surplus certificate {cert_id}
@@ -1343,16 +1343,25 @@ Source certificate: `{source}`.
 {namespace_note}
 -/
 
+set_option linter.style.longLine false
+
 namespace Problem97
 
 namespace SurplusCertificate
 
 open Problem97.EndpointCertificate
+open Problem97.EndpointCertificate.Variables
 {namespace_open}
+
+/-- Reflected generator rules for relaxed split surplus certificate `{cert_id}`. -/
+def {lean_name}_rules : List Bank.RowZeros.GeneratorRule :=
+[
+{rule_entries}
+]
 
 /-- Generator polynomials for relaxed split surplus certificate `{cert_id}`. -/
 def {lean_name}_generators : List Poly :=
-{endpoint_tool.lean_poly_list(generators, variables)}
+  {lean_name}_rules.map Bank.RowZeros.GeneratorRule.normalizedPoly
 
 /-- Coefficient polynomials for relaxed split surplus certificate `{cert_id}`. -/
 def {lean_name}_coefficients : List Poly :=
@@ -1377,84 +1386,104 @@ end Problem97
     out_path.write_text(module)
 
 
-def emit_relaxed_term_block_module(
-    endpoint_tool: Any,
+def emit_relaxed_generators_module(
     cert_id: str,
     lean_name: str,
-    gen_index: int,
-    start: int,
-    stop: int,
-    generator: Any,
-    terms: list[tuple[Any, Any]],
-    partials: list[Any],
-    block_sum: Any,
+    generator_rules: list[str],
     out_path: Path,
-) -> str:
-    defs: list[str] = [
-        f"""/-- Generator polynomial {gen_index} for relaxed split surplus certificate `{cert_id}`. -/
-def {lean_name}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} : Poly :=
-{endpoint_tool.lean_poly(generator)}"""
-    ]
-    partial_names: list[str] = []
-    for local_idx, term_index in enumerate(range(start, stop)):
-        monom, coeff = terms[term_index]
-        partial_names.append(f"{lean_name}_partial_{gen_index:02d}_{term_index:04d}")
-        defs.append(
-            f"""/-- Coefficient term {term_index} from coefficient polynomial {gen_index}. -/
-def {lean_name}_coefficient_{gen_index:02d}_{term_index:04d} : Poly :=
-{endpoint_tool.lean_poly(endpoint_tool.singleton_poly(monom, coeff))}
-
-/-- Partial product {term_index} for generator {gen_index}. -/
-def {lean_name}_partial_{gen_index:02d}_{term_index:04d} : Poly :=
-{endpoint_tool.lean_poly(partials[local_idx])}
-
-set_option linter.style.nativeDecide false in
-/-- Checked partial-product identity {term_index} for generator {gen_index}. -/
-theorem {lean_name}_partial_{gen_index:02d}_{term_index:04d}_valid :
-    mulPoly {lean_name}_coefficient_{gen_index:02d}_{term_index:04d}
-        {lean_name}_generator_{gen_index:02d}_{start:04d}_{stop - 1:04d} =
-      {lean_name}_partial_{gen_index:02d}_{term_index:04d} := by
-  native_decide"""
-        )
-
-    partial_entries = ",\n".join(f"  {name}" for name in partial_names)
-    defs.append(
-        f"""/-- Partial products in this block. -/
-def {lean_name}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d} : List Poly :=
-[
-{partial_entries}
-]
-
-/-- Sum of partial products in this block. -/
-def {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} : Poly :=
-{endpoint_tool.lean_poly(block_sum)}
-
-set_option linter.style.nativeDecide false in
-/-- Checked block-sum identity for generator {gen_index}, terms {start} through {stop - 1}. -/
-theorem {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}_valid :
-    checkProductSumEq {lean_name}_partials_{gen_index:02d}_{start:04d}_{stop - 1:04d}
-      {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} = true := by
-  native_decide"""
-    )
-
-    body = "\n\n".join(defs)
-    stem = relaxed_lean_module_stem(cert_id)
+) -> None:
+    rule_entries = ",\n".join(f"  {rule}" for rule in generator_rules)
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.EndpointCertificate.Checker
+import Erdos9796Proof.P97.EndpointCertificate.ProductCertificate
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.RuleData
+
+/-!
+# Relaxed split surplus certificate {cert_id}, generators
+
+This generated module holds the shared generator list used by the bounded
+product blocks of one relaxed pinned-surplus split certificate.
+-/
 
 set_option linter.style.longLine false
 
-/-!
-# Relaxed split surplus certificate {cert_id}, term block {gen_index}:{start}-{stop - 1}
+namespace Problem97
 
-This generated module checks partial products for one block of an internally
-sharded relaxed pinned-surplus split certificate.
+namespace SurplusCertificate
+
+namespace RelaxedSplit
+
+open Problem97.EndpointCertificate
+open Problem97.EndpointCertificate.Variables
+
+/-- Reflected generator rules for relaxed split surplus certificate `{cert_id}`. -/
+def {lean_name}_rules : List Bank.RowZeros.GeneratorRule :=
+[
+{rule_entries}
+]
+
+/-- Generator polynomials for relaxed split surplus certificate `{cert_id}`. -/
+def {lean_name}_generators : List Poly :=
+  {lean_name}_rules.map Bank.RowZeros.GeneratorRule.normalizedPoly
+
+end RelaxedSplit
+
+end SurplusCertificate
+
+end Problem97
+"""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(module)
+
+
+RELAXED_TERM_BLOCK_MAX_CERTIFICATE_TERMS = 100
+RELAXED_TERM_BLOCK_MAX_PAYLOAD_BYTES = 350_000
+RELAXED_TERM_BLOCK_MAX_POLY_TERMS = 2_000
+RELAXED_BLOCK_SHARD_MAX_PAYLOAD_BYTES = 200_000
+RELAXED_BLOCK_SHARD_MAX_BLOCKS = 24
+
+
+def emit_relaxed_term_block_shard_module(
+    cert_id: str,
+    lean_name: str,
+    shard_index: int,
+    generator_module_import: str,
+    blocks: list[tuple[int, int, int, str]],
+    out_path: Path,
+) -> str:
+    stem = relaxed_lean_module_stem(cert_id)
+    block_defs = "\n\n".join(
+        f"""/-- Computed product block for generator {gen_index}, coefficient terms {start}
+through {stop - 1}. -/
+def {lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d} :
+    ComputedProductBlock {lean_name}_generators :=
+  {{ generatorIndex := {gen_index}
+    coefficient :=
+{coefficient_lean} }}"""
+        for gen_index, start, stop, coefficient_lean in blocks
+    )
+    module = f"""/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
 -/
+
+import {generator_module_import}
+
+/-!
+# Relaxed split surplus certificate {cert_id}, coefficient shard {shard_index}
+
+This generated module stores bounded coefficient blocks from an internally
+sharded relaxed pinned-surplus split certificate. Each block contains at most
+{RELAXED_TERM_BLOCK_MAX_CERTIFICATE_TERMS} coefficient terms, and its product
+is computed by the shared checker.
+-/
+
+set_option linter.style.longLine false
 
 namespace Problem97
 
@@ -1466,7 +1495,7 @@ open Problem97.EndpointCertificate
 
 namespace {stem}TermShards
 
-{body}
+{block_defs}
 
 end {stem}TermShards
 
@@ -1495,38 +1524,88 @@ def emit_relaxed_split_lean_term_sharded_certificate(
     cert_id, variables, generator_exprs, coefficient_exprs = read_relaxed_certificate(cert_path)
     lean_name = name or safe_lean_decl_name(cert_id)
 
-    generators = [endpoint_tool.parse_poly(expr, variables) for expr in generator_exprs]
     coefficients = [endpoint_tool.parse_poly(expr, variables) for expr in coefficient_exprs]
+    if len(generator_exprs) != len(coefficients):
+        raise ValueError(f"{cert_path}: generator/coefficient length mismatch")
+    generator_rules = row_zero_generator_rule_exprs(load_json(cert_path))
     stem = relaxed_lean_module_stem(cert_id)
-    block_refs: list[str] = []
-    imports: list[str] = []
-    for gen_index, (generator, coeff_poly) in enumerate(zip(generators, coefficients, strict=True)):
+    generator_module_stem = f"{stem}Generators"
+    generator_module_import = f"{module_root}.{generator_module_stem}"
+    emit_relaxed_generators_module(
+        cert_id,
+        lean_name,
+        generator_rules,
+        coordinator_out.with_name(f"{generator_module_stem}.lean"),
+    )
+    block_specs: list[tuple[int, int, int, str]] = []
+    imports: list[str] = [f"import {generator_module_import}"]
+
+    def collect_block_range(
+        gen_index: int,
+        terms: list[tuple[Any, Any]],
+        start: int,
+        stop: int,
+    ) -> None:
+        coefficient_block = endpoint_tool.add_poly_many(
+            [
+                endpoint_tool.singleton_poly(monom, coeff)
+                for monom, coeff in terms[start:stop]
+            ]
+        )
+        coefficient_lean = endpoint_tool.lean_poly(coefficient_block)
+        payload_bytes = len(coefficient_lean.encode())
+        poly_terms = len(coefficient_block)
+        if stop - start > 1 and (
+            stop - start > RELAXED_TERM_BLOCK_MAX_CERTIFICATE_TERMS
+            or payload_bytes > RELAXED_TERM_BLOCK_MAX_PAYLOAD_BYTES
+            or poly_terms > RELAXED_TERM_BLOCK_MAX_POLY_TERMS
+        ):
+            middle = start + (stop - start) // 2
+            collect_block_range(gen_index, terms, start, middle)
+            collect_block_range(gen_index, terms, middle, stop)
+            return
+        block_specs.append((gen_index, start, stop, coefficient_lean))
+
+    for gen_index, coeff_poly in enumerate(coefficients):
         terms = endpoint_tool.sorted_poly_terms(coeff_poly)
         for start in range(0, len(terms), block_size):
             stop = min(start + block_size, len(terms))
-            partials = [
-                endpoint_tool.mul_poly(endpoint_tool.singleton_poly(monom, coeff), generator)
-                for monom, coeff in terms[start:stop]
-            ]
-            block_sum = endpoint_tool.add_poly_many(partials)
-            module_stem = relaxed_block_module_stem(cert_id, gen_index, start, stop)
-            emit_relaxed_term_block_module(
-                endpoint_tool,
-                cert_id,
-                lean_name,
-                gen_index,
-                start,
-                stop,
-                generator,
-                terms,
-                partials,
-                block_sum,
-                shard_out_dir / f"{module_stem}.lean",
-            )
-            imports.append(f"import {module_root}.{stem}TermShards.{module_stem}")
-            block_refs.append(
-                f"{stem}TermShards.{lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
-            )
+            collect_block_range(gen_index, terms, start, stop)
+
+    block_shards: list[list[tuple[int, int, int, str]]] = []
+    current_shard: list[tuple[int, int, int, str]] = []
+    current_payload_bytes = 0
+    for block in block_specs:
+        block_payload_bytes = len(block[3].encode())
+        if current_shard and (
+            len(current_shard) >= RELAXED_BLOCK_SHARD_MAX_BLOCKS
+            or current_payload_bytes + block_payload_bytes
+            > RELAXED_BLOCK_SHARD_MAX_PAYLOAD_BYTES
+        ):
+            block_shards.append(current_shard)
+            current_shard = []
+            current_payload_bytes = 0
+        current_shard.append(block)
+        current_payload_bytes += block_payload_bytes
+    if current_shard:
+        block_shards.append(current_shard)
+
+    block_refs: list[str] = []
+    for shard_index, blocks in enumerate(block_shards):
+        module_stem = f"{stem}BlockShard{shard_index:03d}"
+        emit_relaxed_term_block_shard_module(
+            cert_id,
+            lean_name,
+            shard_index,
+            generator_module_import,
+            blocks,
+            shard_out_dir / f"{module_stem}.lean",
+        )
+        imports.append(f"import {module_root}.{stem}TermShards.{module_stem}")
+        block_refs.extend(
+            f"{stem}TermShards.{lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
+            for gen_index, start, stop, _coefficient_lean in blocks
+        )
 
     import_text = "\n".join(imports)
     block_entries = ",\n".join(f"  {ref}" for ref in block_refs)
@@ -1539,18 +1618,18 @@ Authors: Adam McKenna
 
 {import_text}
 
-set_option linter.style.longLine false
-
 /-!
 # Relaxed split surplus certificate {cert_id}
 
-This generated coordinator checks the final block-sum identity for a
-term-sharded relaxed pinned-surplus split certificate.  The imported shard
-modules separately check each coefficient-term partial product and each block
-sum.
+This generated coordinator checks the final product-sum identity for a
+term-sharded relaxed pinned-surplus split certificate. The imported shard
+modules store bounded coefficient blocks; the products are computed by
+the shared checker.
 
 Source certificate: `{source}`.
 -/
+
+set_option linter.style.longLine false
 
 namespace Problem97
 
@@ -1560,11 +1639,16 @@ namespace RelaxedSplit
 
 open Problem97.EndpointCertificate
 
-/-- Block sums for the term-sharded relaxed split surplus certificate `{cert_id}`. -/
-def {lean_name}_blocks : List Poly :=
+/-- Computed product blocks for relaxed split surplus certificate `{cert_id}`. -/
+def {lean_name}_productBlocks :
+    List (ComputedProductBlock {lean_name}_generators) :=
 [
 {block_entries}
 ]
+
+/-- Product polynomials for relaxed split surplus certificate `{cert_id}`. -/
+def {lean_name}_blocks : List Poly :=
+  computedProductPolys {lean_name}_productBlocks
 
 set_option linter.style.nativeDecide false in
 /-- Final checked block-sum identity for relaxed split surplus certificate `{cert_id}`. -/
@@ -1631,7 +1715,10 @@ def write_relaxed_split_lean_aggregate(
     out_path: Path,
     module_root: str,
 ) -> None:
-    imports = "\n".join(f"import {module_root}.{row['stem']}" for row in rows)
+    imports = "\n".join(
+        [f"import {module_root}.Payload"]
+        + [f"import {module_root}.{row['stem']}" for row in rows]
+    )
     entries: list[str] = []
     for row in rows:
         payload_expr = (
@@ -1669,26 +1756,6 @@ namespace SurplusCertificate
 namespace RelaxedSplit
 
 open Problem97.EndpointCertificate
-
-/-- Algebraic payload carried by a generated relaxed split surplus certificate row. -/
-inductive CertificatePayload where
-  | direct (cert : Certificate)
-  | productSum (products : List Poly)
-
-/-- Run the Boolean checker associated with a relaxed split certificate payload. -/
-def CertificatePayload.check : CertificatePayload → Bool
-  | .direct cert => checkCertificate cert
-  | .productSum products => checkProductSum products
-
-/-- One checked relaxed split surplus certificate fact. -/
-structure VerifiedCertificate where
-  id : String
-  payload : CertificatePayload
-  valid : payload.check = true
-
-/-- Run the Boolean checker associated with a verified relaxed split certificate. -/
-def VerifiedCertificate.check (cert : VerifiedCertificate) : Bool :=
-  cert.payload.check
 
 /-- The full checked singleton relaxed split surplus certificate set. -/
 def allRelaxedSplitSingletonCertificates : List VerifiedCertificate :=
@@ -2168,24 +2235,12 @@ def common_mask_names(lean_name: str, cert: dict[str, object]) -> dict[str, str]
 
 
 def row_cert_defs(lean_name: str, row_index: int, exact_pid: str, cert: dict[str, object]) -> str:
-    return f"""/-- Paired generated row/certificate metadata for `{cert['certificate_id']}`. -/
-private def {lean_name}_rowCert : Row × Certificate :=
-  certifiedRelaxedSplitRows.get (Fin.mk {row_index} (by native_decide))
-
-set_option linter.style.nativeDecide false in
-/-- The generated row/certificate pair carries the expected exact pid. -/
-private theorem {lean_name}_rowCert_exactPids :
-    {lean_name}_rowCert.1.exactPids = [{lean_string(exact_pid)}] := by
-  native_decide
-
-/-- The matched exact row has the generated singleton exact pid. -/
+    return f"""/-- The matched exact row has the generated singleton exact pid. -/
 private theorem {lean_name}_exactRow_pid_eq
     {{exactRow : SurplusCOMPGBank.Row}}
-    (hpid : {lean_name}_rowCert.1.exactPids = [exactRow.pid]) :
+    (hpid : [{lean_string(exact_pid)}] = [exactRow.pid]) :
     exactRow.pid = {lean_string(exact_pid)} := by
-  have hlist : [exactRow.pid] = [{lean_string(exact_pid)}] := by
-    rw [← hpid, {lean_name}_rowCert_exactPids]
-  simpa using hlist"""
+  simpa using hpid.symm"""
 
 
 def lean_common_mask_arg(common_names: dict[str, str], center: str) -> str:
@@ -2220,14 +2275,6 @@ def row_zero_shape_fact_qualified(lemma_name: str) -> str:
         "Problem97.SurplusCertificate.RelaxedSplit.Bank.RowZeros.ShapeFacts."
         f"{lemma_name}"
     )
-
-
-def row_zero_generator_zero_module_root(row_zero_module_root: str, stem: str) -> str:
-    return row_zero_module_root + ".GeneratorZeros." + stem
-
-
-def row_zero_generator_zero_module_name(index: int) -> str:
-    return f"G{index:02d}"
 
 
 def bridge_call_common_all_ordinary(
@@ -2551,77 +2598,118 @@ def row_zero_shape_and_bridge(
     raise ValueError(f"unsupported common witnesses {(center, left, right)!r}")
 
 
-def row_zero_generator_lemmas(
-    lean_name: str,
-    cert: dict[str, object],
-    assignment: str,
-    exact_pid: str,
-    endpoint_tool: Any,
-) -> tuple[list[str], list[str], dict[tuple[str, str, str], str], str]:
+def row_zero_assignment_rule_expr(separator_pair: str | None) -> str:
+    if separator_pair is None:
+        return ".s1s3"
+    left, right = separator_pair.split("=")
+    return f"(.pair {lean_label_expr(left)} {lean_label_expr(right)})"
+
+
+def row_zero_generator_rule_exprs(cert: dict[str, object]) -> list[str]:
     metadata = cert.get("generator_metadata")
     generators = cert.get("generators")
-    variables = cert.get("variables")
     if not isinstance(metadata, list) or not isinstance(generators, list):
         raise ValueError(f"{cert.get('certificate_id')}: missing generator metadata")
-    if not isinstance(variables, list) or not all(isinstance(x, str) for x in variables):
-        raise ValueError(f"{cert.get('certificate_id')}: bad variables")
     if len(metadata) != len(generators):
         raise ValueError(f"{cert.get('certificate_id')}: generator metadata length mismatch")
-    lemmas: list[str] = []
-    shape_fact_lemmas: list[str] = []
-    names: list[str] = []
-    bit_fact_names: dict[tuple[str, str, str], str] = {}
-    for index, (meta, generator) in enumerate(zip(metadata, generators, strict=True)):
+    rules: list[str] = []
+    for meta in metadata:
         if not isinstance(meta, dict):
             raise ValueError(f"{cert.get('certificate_id')}: bad generator metadata")
-        if not isinstance(generator, str):
-            raise ValueError(f"{cert.get('certificate_id')}: bad generator")
-        shape, bridge = row_zero_shape_and_bridge(
-            lean_name, cert, meta, exact_pid, bit_fact_names
-        )
-        generator_ref = generator_get_expr(lean_name, index)
-        lemma_name = f"{lean_name}_generator_{index:02d}_zero"
-        shape_fact_name = f"{lean_name}_generator_{index:02d}_shape"
-        names.append(lemma_name)
-        shape_fact_lemmas.append(
-            f"""/-- Generator {index} for `{cert['certificate_id']}` has the expected geometric shape. -/
-theorem {shape_fact_name} :
-    normalizePoly ({generator_ref}) =
-      normalizePoly ({shape}) := by
-  native_decide"""
-        )
-        lemmas.append(
-            f"""/-- Generator {index} for `{cert['certificate_id']}` evaluates to zero. -/
-theorem {lemma_name}
-    {{pointOf : SurplusCOMPGBank.Label → ℝ²}}
-    {{centerClass : SurplusCOMPGBank.Label → Finset ℝ²}}
-    {{exactRow : SurplusCOMPGBank.Row}}
-    (hmetric :
-      EndpointMetricShadow pointOf
-        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass))
-    (hrow : exactRow ∈ SurplusCOMPGBank.rows)
-    (hmasks :
-      exactRow.masks =
-        (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
-    (hpidEq : exactRow.pid = {lean_string(exact_pid)}) :
-    evalPoly ({assignment}) ({generator_ref}) = 0 := by
-  exact evalPoly_eq_zero_of_normalizePoly_eq
-    ({assignment}) (q := {shape})
-    {row_zero_shape_fact_qualified(shape_fact_name)}
-    (by
-      exact (
-        {bridge}))"""
-        )
-    return lemmas, names, bit_fact_names, "\n\n".join(shape_fact_lemmas)
+        kind = meta.get("kind")
+        if kind == "rabinowitsch_distinct":
+            pair = meta.get("pair")
+            if not isinstance(pair, list) or len(pair) != 2:
+                raise ValueError(f"{cert.get('certificate_id')}: bad Rabinowitsch pair")
+            left, right = str(pair[0]), str(pair[1])
+            lx, ly = endpoint_var_pair(left)
+            if right == "v":
+                rules.append(
+                    f".distinctV {lean_label_expr(left)} {lx} {ly}"
+                )
+            else:
+                rx, ry = endpoint_var_pair(right)
+                rules.append(
+                    f".distinct {lean_label_expr(left)} {lean_label_expr(right)} "
+                    f"{lx} {ly} {rx} {ry}"
+                )
+            continue
+        if kind != "distance_eq":
+            raise ValueError(
+                f"{cert.get('certificate_id')}: unsupported generator kind {kind!r}"
+            )
+        center = str(meta.get("center"))
+        witnesses = meta.get("witnesses")
+        if not isinstance(witnesses, list) or len(witnesses) != 2:
+            raise ValueError(f"{cert.get('certificate_id')}: bad witnesses")
+        left, right = str(witnesses[0]), str(witnesses[1])
+        if center == "v":
+            lx, ly = endpoint_var_pair(left)
+            rx, ry = endpoint_var_pair(right)
+            rules.append(
+                f".exactV {lean_label_expr(left)} {lean_label_expr(right)} "
+                f"{lx} {ly} {rx} {ry}"
+            )
+        elif center == "w" and left == "v":
+            rx, ry = endpoint_var_pair(right)
+            rules.append(f".exactWV {lean_label_expr(right)} {rx} {ry}")
+        elif center == "w":
+            lx, ly = endpoint_var_pair(left)
+            rx, ry = endpoint_var_pair(right)
+            rules.append(
+                f".exactW {lean_label_expr(left)} {lean_label_expr(right)} "
+                f"{lx} {ly} {rx} {ry}"
+            )
+        elif left in ENDPOINT_VARS_BY_LABEL and right in ENDPOINT_VARS_BY_LABEL:
+            cx, cy = endpoint_var_pair(center)
+            lx, ly = endpoint_var_pair(left)
+            rx, ry = endpoint_var_pair(right)
+            rules.append(
+                f".ordinary {lean_label_expr(center)} {lean_label_expr(left)} "
+                f"{lean_label_expr(right)} {cx} {cy} {lx} {ly} {rx} {ry}"
+            )
+        elif left == "v" and right in ENDPOINT_VARS_BY_LABEL:
+            cx, cy = endpoint_var_pair(center)
+            rx, ry = endpoint_var_pair(right)
+            rules.append(
+                f".ordinaryVLeft {lean_label_expr(center)} {lean_label_expr(right)} "
+                f"{cx} {cy} {rx} {ry}"
+            )
+        elif right == "v" and left in ENDPOINT_VARS_BY_LABEL:
+            cx, cy = endpoint_var_pair(center)
+            lx, ly = endpoint_var_pair(left)
+            rules.append(
+                f".ordinaryVRight {lean_label_expr(center)} {lean_label_expr(left)} "
+                f"{cx} {cy} {lx} {ly}"
+            )
+        elif left == "w" and right in ENDPOINT_VARS_BY_LABEL:
+            cx, cy = endpoint_var_pair(center)
+            rx, ry = endpoint_var_pair(right)
+            rules.append(
+                f".ordinaryWLeft {lean_label_expr(center)} {lean_label_expr(right)} "
+                f"{cx} {cy} {rx} {ry}"
+            )
+        elif right == "w" and left in ENDPOINT_VARS_BY_LABEL:
+            cx, cy = endpoint_var_pair(center)
+            lx, ly = endpoint_var_pair(left)
+            rules.append(
+                f".ordinaryWRight {lean_label_expr(center)} {lean_label_expr(left)} "
+                f"{cx} {cy} {lx} {ly}"
+            )
+        elif left == "v" and right == "w":
+            cx, _cy = endpoint_var_pair(center)
+            rules.append(f".ordinaryVW {lean_label_expr(center)} {cx}")
+        else:
+            raise ValueError(
+                f"unsupported common witnesses {(center, left, right)!r}"
+            )
+    return rules
 
 
 def emit_relaxed_split_direct_row_zero_module(
     cert_path: Path,
     out_path: Path,
     cert_module_root: str,
-    exact_mask_module_import: str,
-    shape_fact_module_import: str,
-    generator_zero_module_root: str,
     row_index: int,
 ) -> dict[str, object]:
     cert = load_json(cert_path)
@@ -2639,31 +2727,9 @@ def emit_relaxed_split_direct_row_zero_module(
     stem = relaxed_lean_module_stem(cert_id)
     lean_name = safe_lean_decl_name(cert_id)
     assignment = row_zero_assignment_expr(separator_pair)
-    endpoint_tool = load_endpoint_tool()
-    (
-        generator_lemma_texts,
-        generator_lemma_names,
-        bit_fact_names,
-        shape_fact_lemmas,
-    ) = row_zero_generator_lemmas(
-        lean_name, cert, assignment, exact_pid, endpoint_tool
-    )
-    fin_cases_branches = "\n".join(
-        f"  · simpa using {name} hmetric hrow hmasks hpidEq"
-        for name in generator_lemma_names
-    )
-    branch_text = "\n".join(
-        f"  · exact {name} hmetric hrow hmasks ({lean_name}_exactRow_pid_eq hpid)"
-        for name in generator_lemma_names
-    )
+    assignment_rule = row_zero_assignment_rule_expr(separator_pair)
+    generator_rules = row_zero_generator_rule_exprs(cert)
     row_defs = row_cert_defs(lean_name, row_index, exact_pid, cert)
-    generator_imports = "\n".join(
-        "import "
-        + generator_zero_module_root
-        + "."
-        + row_zero_generator_zero_module_name(index)
-        for index in range(len(generator_lemma_names))
-    )
     source = cert_path.as_posix()
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
@@ -2671,11 +2737,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
-import {exact_mask_module_import}
-import {shape_fact_module_import}
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Payload
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.DirectSoundness
 import {cert_module_root}.{stem}
-{generator_imports}
 
 /-!
 # Direct row zeros for relaxed split surplus certificate {cert_id}
@@ -2706,6 +2770,13 @@ namespace Direct
 open Problem97.EndpointCertificate
 open Problem97.EndpointCertificate.Variables
 
+set_option linter.style.nativeDecide false in
+/-- The generated rules are valid for the selected exact-row bank entry. -/
+private theorem {lean_name}_rules_check :
+    rulesValidForPid {lean_string(exact_pid)} {assignment_rule}
+      {lean_name}_rules = true := by
+  native_decide
+
 {row_defs}
 
 /-- The direct payload for `{cert_id}` has all generators zero under the
@@ -2721,14 +2792,16 @@ theorem {lean_name}_evaluationZeros_of_metricShadow
     (hmasks :
       exactRow.masks =
         (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
-    (hpid : {lean_name}_rowCert.1.exactPids = [exactRow.pid]) :
+    (hpid : [{lean_string(exact_pid)}] = [exactRow.pid]) :
     CertificatePayload.evaluationZeros (.direct {lean_name}) ({assignment}) := by
   have hpidEq := {lean_name}_exactRow_pid_eq hpid
   change ∀ g ∈ {lean_name}_generators, evalPoly ({assignment}) g = 0
-  intro g hg
-  rcases List.get_of_mem hg with ⟨i, rfl⟩
-  fin_cases i
-{fin_cases_branches}
+  simpa [{lean_name}_generators, RowAssignment.evaluation] using
+    (evaluationZeros_of_rulesValidForPid
+      (pointOf := pointOf) (centerClass := centerClass)
+      (exactRow := exactRow) (pid := {lean_string(exact_pid)})
+      (assignment := {assignment_rule}) (rules := {lean_name}_rules)
+      {lean_name}_rules_check hmetric hrow hmasks hpidEq)
 
 end Direct
 
@@ -2751,10 +2824,7 @@ end Problem97
         "row_index": row_index,
         "exact_pid": exact_pid,
         "separator_pair": separator_pair,
-        "generator_count": len(generator_lemma_names),
-        "mask_bit_facts": list(bit_fact_names.keys()),
-        "shape_fact_lemmas": shape_fact_lemmas,
-        "generator_lemma_texts": generator_lemma_texts,
+        "generator_count": len(generator_rules),
     }
 
 
@@ -2911,12 +2981,12 @@ end Problem97
 def emit_relaxed_split_product_row_zero_module(
     cert_path: Path,
     coordinator_out: Path,
-    block_out_dir: Path,
+    _block_out_dir: Path,
     cert_module_root: str,
-    row_zero_module_root: str,
-    exact_mask_module_import: str,
+    _row_zero_module_root: str,
+    _exact_mask_module_import: str,
     row_index: int,
-    bit_fact_names: dict[tuple[str, str, str], str],
+    _bit_fact_names: dict[tuple[str, str, str], str],
     block_size: int,
 ) -> dict[str, object]:
     cert = load_json(cert_path)
@@ -2931,63 +3001,23 @@ def emit_relaxed_split_product_row_zero_module(
     if separator_pair_raw is not None and not isinstance(separator_pair_raw, str):
         raise ValueError(f"{cert_path}: bad separator_pair")
     separator_pair = separator_pair_raw
-    metadata = cert.get("generator_metadata")
-    if not isinstance(metadata, list) or not all(isinstance(item, dict) for item in metadata):
-        raise ValueError(f"{cert_path}: missing generator metadata")
     cert_id_read, variables, generator_exprs, coefficient_exprs = read_relaxed_certificate(
         cert_path
     )
     if cert_id_read != cert_id:
         raise ValueError(f"{cert_path}: certificate_id mismatch")
-    if len(metadata) != len(generator_exprs):
-        raise ValueError(f"{cert_path}: generator metadata length mismatch")
     stem = relaxed_lean_module_stem(cert_id)
     lean_name = safe_lean_decl_name(cert_id)
     assignment = row_zero_assignment_expr(separator_pair)
+    assignment_rule = row_zero_assignment_rule_expr(separator_pair)
+    generator_rules = row_zero_generator_rule_exprs(cert)
     endpoint_tool = load_endpoint_tool()
-    block_refs: list[tuple[int, int, int, str]] = []
-    imports: list[str] = []
-    for gen_index, coeff_expr in enumerate(coefficient_exprs):
+    block_count = 0
+    for coeff_expr in coefficient_exprs:
         coeff_poly = endpoint_tool.parse_poly(coeff_expr, variables)
         terms = endpoint_tool.sorted_poly_terms(coeff_poly)
-        for start in range(0, len(terms), block_size):
-            stop = min(start + block_size, len(terms))
-            block_stem = emit_relaxed_split_product_block_zero_module(
-                cert_path,
-                cert,
-                lean_name,
-                exact_pid,
-                exact_mask_module_import,
-                cert_module_root,
-                assignment,
-                gen_index,
-                start,
-                stop,
-                metadata[gen_index],
-                bit_fact_names,
-                block_out_dir / f"{relaxed_block_module_stem(cert_id, gen_index, start, stop)}.lean",
-            )
-            imports.append(f"import {row_zero_module_root}.{stem}BlockZeros.{block_stem}")
-            block_refs.append((gen_index, start, stop, block_stem))
+        block_count += (len(terms) + block_size - 1) // block_size
     row_defs = row_cert_defs(lean_name, row_index, exact_pid, cert)
-    shard_namespace = f"Problem97.SurplusCertificate.RelaxedSplit.{stem}TermShards"
-    block_list_entries = []
-    block_cases = []
-    for gen_index, start, stop, _block_stem in block_refs:
-        block_list_entries.append(
-            f"      {shard_namespace}.{lean_name}_block_{gen_index:02d}_{start:04d}_{stop - 1:04d}"
-        )
-        block_cases.extend(
-            [
-                "  rcases List.mem_cons.mp hp with rfl | hp",
-                f"  · exact {product_row_zero_theorem_name(lean_name, gen_index, start, stop)} "
-                "hmetric hrow hmasks hpidEq",
-            ]
-        )
-    block_cases.append("  cases hp")
-    block_list_text = ",\n".join(block_list_entries)
-    block_cases_text = "\n".join(block_cases)
-    import_text = "\n".join(imports)
     source = cert_path.as_posix()
     module = f"""/-
 Copyright (c) 2026 Adam McKenna. All rights reserved.
@@ -2995,17 +3025,16 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.SurplusCertificate.AggregateSoundness
-import Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Payload
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.DirectSoundness
 import {cert_module_root}.{stem}
-{import_text}
 
 /-!
 # Product-sum row zeros for relaxed split surplus certificate {cert_id}
 
-This generated module proves that every checked block in product-sum relaxed
-split surplus row `{cert_id}` vanishes under the row-local normal-axis
-assignment supplied by its separator metadata.
+This generated module interprets the checked product blocks through the shared
+generator-rule soundness theorem. The row-specific content is only finite rule
+data and one Boolean check.
 
 Source certificate: `{source}`.
 -/
@@ -3030,9 +3059,16 @@ namespace Product
 open Problem97.EndpointCertificate
 open Problem97.EndpointCertificate.Variables
 
+set_option linter.style.nativeDecide false in
+/-- The generated rules are valid for the selected exact-row bank entry. -/
+private theorem {lean_name}_rules_check :
+    rulesValidForPid {lean_string(exact_pid)} {assignment_rule}
+      {lean_name}_rules = true := by
+  native_decide
+
 {row_defs}
 
-/-- Every checked block in product-sum relaxed split surplus certificate
+/-- Every computed block in product-sum relaxed split surplus certificate
 `{cert_id}` evaluates to zero under the row-local normal-axis assignment. -/
 theorem {lean_name}_evaluationZeros_of_metricShadow
     {{pointOf : SurplusCOMPGBank.Label → ℝ²}}
@@ -3045,18 +3081,21 @@ theorem {lean_name}_evaluationZeros_of_metricShadow
     (hmasks :
       exactRow.masks =
         (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
-    (hpid : {lean_name}_rowCert.1.exactPids = [exactRow.pid]) :
+    (hpid : [{lean_string(exact_pid)}] = [exactRow.pid]) :
     CertificatePayload.evaluationZeros
       (.productSum Problem97.SurplusCertificate.RelaxedSplit.{lean_name}_blocks)
       ({assignment}) := by
   have hpidEq := {lean_name}_exactRow_pid_eq hpid
-  dsimp [CertificatePayload.evaluationZeros]
-  intro p hp
-  change p ∈
-    [
-{block_list_text}
-    ] at hp
-{block_cases_text}
+  change ∀ p ∈ computedProductPolys {lean_name}_productBlocks,
+    evalPoly ({assignment}) p = 0
+  refine evaluationZeros_of_computedProductBlocks
+    ({assignment}) {lean_name}_productBlocks ?_
+  simpa [{lean_name}_generators, RowAssignment.evaluation] using
+    (evaluationZeros_of_rulesValidForPid
+      (pointOf := pointOf) (centerClass := centerClass)
+      (exactRow := exactRow) (pid := {lean_string(exact_pid)})
+      (assignment := {assignment_rule}) (rules := {lean_name}_rules)
+      {lean_name}_rules_check hmetric hrow hmasks hpidEq)
 
 end Product
 
@@ -3079,7 +3118,7 @@ end Problem97
         "row_index": row_index,
         "exact_pid": exact_pid,
         "separator_pair": separator_pair,
-        "block_count": len(block_refs),
+        "block_count": block_count,
     }
 
 
@@ -3622,73 +3661,6 @@ end Problem97
     out_path.write_text(module)
 
 
-def write_row_zero_generator_zero_module(
-    cert_id: str,
-    source: str,
-    exact_mask_module_import: str,
-    shape_fact_module_import: str,
-    cert_module_import: str,
-    lemma_text: str,
-    out_path: Path,
-) -> None:
-    module = f"""/-
-Copyright (c) 2026 Adam McKenna. All rights reserved.
-Released under Apache 2.0 license as described in the file LICENSE.
-Authors: Adam McKenna
--/
-
-import Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
-import {exact_mask_module_import}
-import {shape_fact_module_import}
-import {cert_module_import}
-
-/-!
-# Generator-zero proof for direct relaxed split row-zero certificate {cert_id}
-
-This generated module proves one geometric generator-zero fact for a direct
-relaxed split surplus certificate.
-
-Source certificate: `{source}`.
--/
-
-set_option linter.style.longLine false
-set_option linter.style.nativeDecide false
-
-open scoped EuclideanGeometry
-
-namespace Problem97
-
-namespace SurplusCertificate
-
-namespace RelaxedSplit
-
-namespace Bank
-
-namespace RowZeros
-
-namespace Direct
-
-open Problem97.EndpointCertificate
-open Problem97.EndpointCertificate.Variables
-
-{lemma_text}
-
-end Direct
-
-end RowZeros
-
-end Bank
-
-end RelaxedSplit
-
-end SurplusCertificate
-
-end Problem97
-"""
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(module)
-
-
 def emit_relaxed_split_direct_row_zeros_dir(
     cert_dir: Path,
     lean_out_dir: Path,
@@ -3699,11 +3671,6 @@ def emit_relaxed_split_direct_row_zeros_dir(
     certificate_ids: set[str] | None,
 ) -> None:
     rows: list[dict[str, object]] = []
-    exact_mask_root = exact_mask_bits_module_root(row_zero_module_root)
-    shape_fact_root = row_zero_shape_facts_module_root(row_zero_module_root)
-    bit_fact_names: dict[tuple[str, str, str], str] = {}
-    shape_fact_dir = lean_out_dir.parent / "ShapeFacts"
-    generator_zero_dir = lean_out_dir / "GeneratorZeros"
     for row_index, cert_path in enumerate(relaxed_certificate_paths(cert_dir)):
         cert_id, _variables, _generators, _coefficients = read_relaxed_certificate(cert_path)
         if certificate_ids is not None and cert_id not in certificate_ids:
@@ -3716,74 +3683,13 @@ def emit_relaxed_split_direct_row_zeros_dir(
         ):
             continue
         stem = relaxed_lean_module_stem(cert_id)
-        exact_pids = load_json(cert_path).get("exact_pids")
-        if not isinstance(exact_pids, list) or len(exact_pids) != 1:
-            raise ValueError(f"{cert_path}: expected one exact pid")
-        exact_pid = str(exact_pids[0])
-        exact_mask_import = (
-            exact_mask_root + "." + exact_mask_bits_module_stem(exact_pid)
-        )
-        shape_fact_import = shape_fact_root + "." + stem
-        cert_module_import = cert_module_root + "." + stem
-        generator_zero_root = row_zero_generator_zero_module_root(
-            row_zero_module_root,
-            stem,
-        )
         emitted = emit_relaxed_split_direct_row_zero_module(
             cert_path,
             lean_out_dir / f"{stem}.lean",
             cert_module_root,
-            exact_mask_import,
-            shape_fact_import,
-            generator_zero_root,
             row_index,
         )
         rows.append(emitted)
-        shape_fact_lemmas = emitted["shape_fact_lemmas"]
-        if not isinstance(shape_fact_lemmas, str):
-            raise ValueError(f"bad emitted shape facts for {cert_id}")
-        write_row_zero_shape_facts_module(
-            cert_id,
-            cert_path.as_posix(),
-            cert_module_import,
-            shape_fact_lemmas,
-            shape_fact_dir / f"{stem}.lean",
-        )
-        generator_lemma_texts = emitted["generator_lemma_texts"]
-        if not isinstance(generator_lemma_texts, list):
-            raise ValueError(f"bad emitted generator lemmas for {cert_id}")
-        for index, lemma_text in enumerate(generator_lemma_texts):
-            if not isinstance(lemma_text, str):
-                raise ValueError(f"bad emitted generator lemma for {cert_id}")
-            write_row_zero_generator_zero_module(
-                cert_id,
-                cert_path.as_posix(),
-                exact_mask_import,
-                shape_fact_import,
-                cert_module_import,
-                lemma_text,
-                generator_zero_dir
-                / stem
-                / f"{row_zero_generator_zero_module_name(index)}.lean",
-            )
-        for fact in emitted["mask_bit_facts"]:
-            if not isinstance(fact, tuple) or len(fact) != 3:
-                raise ValueError(f"bad emitted mask-bit fact {fact!r}")
-            exact_pid, center, label = fact
-            bit_fact_names[(exact_pid, center, label)] = exact_bit_fact_name(
-                exact_pid, center, label
-            )
-    exact_mask_dir = lean_out_dir.parent / "ExactMaskBits"
-    for exact_pid in sorted({fact[0] for fact in bit_fact_names}):
-        pid_facts = {
-            fact: name
-            for fact, name in bit_fact_names.items()
-            if fact[0] == exact_pid
-        }
-        write_exact_mask_bits_module(
-            pid_facts,
-            exact_mask_dir / f"{exact_mask_bits_module_stem(exact_pid)}.lean",
-        )
     if aggregate_out is not None:
         write_relaxed_split_direct_row_zero_aggregate(
             rows, aggregate_out, row_zero_module_root

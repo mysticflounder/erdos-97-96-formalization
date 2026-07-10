@@ -4,41 +4,9 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.SurplusCertificate.GeometryBridge
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.ExactMaskBits.S1009
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.ShapeFacts.R002UeqvR002YYY
+import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.Payload
+import Erdos9796Proof.P97.SurplusCertificate.RowZeros.DirectSoundness
 import Erdos9796Proof.P97.SurplusCertificate.RelaxedSplit.R002UeqvR002YYY
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G00
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G01
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G02
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G03
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G04
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G05
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G06
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G07
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G08
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G09
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G10
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G11
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G12
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G13
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G14
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G15
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G16
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G17
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G18
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G19
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G20
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G21
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G22
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G23
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G24
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G25
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G26
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G27
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G28
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G29
-import Erdos9796Proof.P97.SurplusCertificate.RowZeros.Direct.GeneratorZeros.R002UeqvR002YYY.G30
 
 /-!
 # Direct row zeros for relaxed split surplus certificate R002:u=v:R002YYY
@@ -69,24 +37,19 @@ namespace Direct
 open Problem97.EndpointCertificate
 open Problem97.EndpointCertificate.Variables
 
-/-- Paired generated row/certificate metadata for `R002:u=v:R002YYY`. -/
-private def rs_R002_ueqv_R002YYY_rowCert : Row × Certificate :=
-  certifiedRelaxedSplitRows.get (Fin.mk 13 (by native_decide))
-
 set_option linter.style.nativeDecide false in
-/-- The generated row/certificate pair carries the expected exact pid. -/
-private theorem rs_R002_ueqv_R002YYY_rowCert_exactPids :
-    rs_R002_ueqv_R002YYY_rowCert.1.exactPids = ["s1_009"] := by
+/-- The generated rules are valid for the selected exact-row bank entry. -/
+private theorem rs_R002_ueqv_R002YYY_rules_check :
+    rulesValidForPid "s1_009" (.pair .u .v)
+      rs_R002_ueqv_R002YYY_rules = true := by
   native_decide
 
 /-- The matched exact row has the generated singleton exact pid. -/
 private theorem rs_R002_ueqv_R002YYY_exactRow_pid_eq
     {exactRow : SurplusCOMPGBank.Row}
-    (hpid : rs_R002_ueqv_R002YYY_rowCert.1.exactPids = [exactRow.pid]) :
+    (hpid : ["s1_009"] = [exactRow.pid]) :
     exactRow.pid = "s1_009" := by
-  have hlist : [exactRow.pid] = ["s1_009"] := by
-    rw [← hpid, rs_R002_ueqv_R002YYY_rowCert_exactPids]
-  simpa using hlist
+  simpa using hpid.symm
 
 /-- The direct payload for `R002:u=v:R002YYY` has all generators zero under the
 row-local normal-axis assignment supplied by its separator metadata. -/
@@ -101,44 +64,16 @@ theorem rs_R002_ueqv_R002YYY_evaluationZeros_of_metricShadow
     (hmasks :
       exactRow.masks =
         (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass).masks)
-    (hpid : rs_R002_ueqv_R002YYY_rowCert.1.exactPids = [exactRow.pid]) :
+    (hpid : ["s1_009"] = [exactRow.pid]) :
     CertificatePayload.evaluationZeros (.direct rs_R002_ueqv_R002YYY) (endpointPairAssignment pointOf .u .v) := by
   have hpidEq := rs_R002_ueqv_R002YYY_exactRow_pid_eq hpid
   change ∀ g ∈ rs_R002_ueqv_R002YYY_generators, evalPoly (endpointPairAssignment pointOf .u .v) g = 0
-  intro g hg
-  rcases List.get_of_mem hg with ⟨i, rfl⟩
-  fin_cases i
-  · simpa using rs_R002_ueqv_R002YYY_generator_00_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_01_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_02_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_03_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_04_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_05_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_06_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_07_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_08_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_09_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_10_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_11_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_12_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_13_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_14_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_15_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_16_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_17_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_18_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_19_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_20_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_21_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_22_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_23_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_24_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_25_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_26_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_27_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_28_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_29_zero hmetric hrow hmasks hpidEq
-  · simpa using rs_R002_ueqv_R002YYY_generator_30_zero hmetric hrow hmasks hpidEq
+  simpa [rs_R002_ueqv_R002YYY_generators, RowAssignment.evaluation] using
+    (evaluationZeros_of_rulesValidForPid
+      (pointOf := pointOf) (centerClass := centerClass)
+      (exactRow := exactRow) (pid := "s1_009")
+      (assignment := (.pair .u .v)) (rules := rs_R002_ueqv_R002YYY_rules)
+      rs_R002_ueqv_R002YYY_rules_check hmetric hrow hmasks hpidEq)
 
 end Direct
 

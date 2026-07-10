@@ -1,0 +1,2353 @@
+{
+  "canonical_erased_pin_seed_crosscheck": {
+    "all_have_zero_pinned_bank_completions": true,
+    "all_have_zero_seeded_dfs_completions": true,
+    "distinct_seed_count": 6,
+    "occurrence_count": 12,
+    "occurrences": [
+      {
+        "center": "Pw",
+        "mask": "u,w,s1,Pu",
+        "mask_value": 141,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s1"
+      },
+      {
+        "center": "Pw",
+        "mask": "u,w,s2,Pu",
+        "mask_value": 149,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s2"
+      },
+      {
+        "center": "Pw",
+        "mask": "u,w,s3,Pu",
+        "mask_value": 165,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s3"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s1,Pw",
+        "mask_value": 77,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s1"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s2,Pw",
+        "mask_value": 85,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s2"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s3,Pw",
+        "mask_value": 101,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_right_m2_s1_l0_r1",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s3"
+      },
+      {
+        "center": "Pw",
+        "mask": "u,w,s1,Pu",
+        "mask_value": 141,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s1"
+      },
+      {
+        "center": "Pw",
+        "mask": "u,w,s2,Pu",
+        "mask_value": 149,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s2"
+      },
+      {
+        "center": "Pw",
+        "mask": "u,w,s3,Pu",
+        "mask_value": 165,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s3"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s1,Pw",
+        "mask_value": 77,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s1"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s2,Pw",
+        "mask_value": 85,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s2"
+      },
+      {
+        "center": "Pu",
+        "mask": "u,w,s3,Pw",
+        "mask_value": 101,
+        "pinned_bank_completion_count": 0,
+        "pinned_bank_completion_pids": [],
+        "row_id": "ep_left_m2_s1_l1_r0",
+        "seeded_dfs_completion_count": 0,
+        "sstar": "s3"
+      }
+    ],
+    "source": "certificates/surplus/erased_pin_producer_census.json"
+  },
+  "grouped_candidates": [
+    {
+      "bytes": 14183,
+      "case_id": "R001:no_separator",
+      "certificate_id": "R001:no_separator:R001",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_000",
+        "s1_001"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R001",
+      "path": "certificates/surplus/relaxed_split/R001_no_separator_R001.json",
+      "sha256": "6315677434c22a4a7e665c9add500c1c7d238ce8c3affaf295fcb799be618a70",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": []
+    },
+    {
+      "bytes": 15451,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002NNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_010",
+        "s1_011"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R002NNN",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002NNN.json",
+      "sha256": "8398228ec84ffc23c8621e120e96440e1bc36202f71af204c6ea6b59d384e7be",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 34231,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002NYY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_004",
+        "s1_005"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R002NYY",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002NYY.json",
+      "sha256": "78c36f1029979025a0da8c88180954ffca1fe0137dbcb107ab9f2f3a25250dd4",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 619096,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002YN",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s1_006",
+        "s1_007",
+        "s1_012"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R002YN",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002YN.json",
+      "sha256": "25d257455308282a093f6f62b886575051ee9fe6e4596e7b8ee61d2a9fb583c8",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "Pw"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 26197,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002YY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_008",
+        "s1_009"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R002YY",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002YY.json",
+      "sha256": "854d0e4de4ffb990bf25283f739bbc77db6c6d4f0b3110c54a13fafbbc03f5da",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "Pw"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 43040,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004YY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_031",
+        "s1_036"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R004YY",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004YY.json",
+      "sha256": "1a47224eedd9d48dbf10f184aa58fdadc48dc31c0dc5bd7871bb7b86f95cb773",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "yes",
+          "label": "Pu"
+        },
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "Q1"
+        }
+      ]
+    },
+    {
+      "bytes": 2592533,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005NNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_021",
+        "s1_023"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R005NNN",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005NNN.json",
+      "sha256": "3eb08477d7e6b2f7d80a4105e927678af9474e59270d8cb6bdaf3dba4aa5b8f1",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 167044,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005YNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_018",
+        "s1_019"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R005YNN",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005YNN.json",
+      "sha256": "12440fa18632dc77af30401a2d326d340237551c3b7865b053373b6c758b22d1",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "s1"
+        },
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "u"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 15345,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005YY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_015",
+        "s1_020"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R005YY",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005YY.json",
+      "sha256": "fa7899f10ae546bc59157c6a59e6f5c5fac939a49569bd641362b16c154d4fd0",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "s1"
+        },
+        {
+          "center": "s3",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 17888,
+      "case_id": "R007:u=v",
+      "certificate_id": "R007:u=v:R007Y",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s1_038",
+        "s1_039"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R007Y",
+      "path": "certificates/surplus/relaxed_split/R007_ueqv_R007Y.json",
+      "sha256": "d2949b275c1069749fd441223e9241548bf15e08a926d458f3e295498fe54a23",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s3",
+          "decision": "yes",
+          "label": "Q1"
+        }
+      ]
+    },
+    {
+      "bytes": 14255,
+      "case_id": "R008:u=v",
+      "certificate_id": "R008:u=v:R008NN",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_006",
+        "s2_007",
+        "s2_008",
+        "s2_009"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R008NN",
+      "path": "certificates/surplus/relaxed_split/R008_ueqv_R008NN.json",
+      "sha256": "f1b99b5e2bd578865348a1443bb9382b564f5eed4952a2648d33db67cd2158c2",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 3035440,
+      "case_id": "R008:u=v",
+      "certificate_id": "R008:u=v:R008NY",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_000",
+        "s2_002",
+        "s2_014",
+        "s2_015"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R008NY",
+      "path": "certificates/surplus/relaxed_split/R008_ueqv_R008NY.json",
+      "sha256": "32e90e819cfe36562d2ee9a256cccd84febe8c2071ecc8166221ccc5ebe45c46",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 1569216,
+      "case_id": "R008:u=v",
+      "certificate_id": "R008:u=v:R008YN",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_010",
+        "s2_011",
+        "s2_012",
+        "s2_013"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R008YN",
+      "path": "certificates/surplus/relaxed_split/R008_ueqv_R008YN.json",
+      "sha256": "18b67513c1a1874f65bb942ee8856c111f09174fd67c7591fa15dd8fc41248de",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 16152,
+      "case_id": "R008:u=v",
+      "certificate_id": "R008:u=v:R008YY",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_001",
+        "s2_003",
+        "s2_004",
+        "s2_005"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R008YY",
+      "path": "certificates/surplus/relaxed_split/R008_ueqv_R008YY.json",
+      "sha256": "f9582b8020b7cae58f4b47e5608a0d57f1577f9fe8a89e43d8ea99eab7f62028",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 15190,
+      "case_id": "R009:u=s1",
+      "certificate_id": "R009:u=s1:R009N",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_043",
+        "s2_044"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009N",
+      "path": "certificates/surplus/relaxed_split/R009_ueqs1_R009N.json",
+      "sha256": "c4e3bf0ace1598f9f612a001c41a5ca9f5cf67931fcf2623e63f2b277f12f755",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 1363056,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NNNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_026",
+        "s2_028"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009NNNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NNNN.json",
+      "sha256": "9a81af8b33556b3b9fbeb3537496df599f4cd322368a9531059850632c58eb4a",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "u"
+        },
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "s1"
+        }
+      ]
+    },
+    {
+      "bytes": 14889,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NNNY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_027",
+        "s2_029"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009NNNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NNNY.json",
+      "sha256": "983eddfd8ebe27a1b60f3ee4a225707e0b9580491e52d4b2b33be32b1eb9cfc5",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "u"
+        },
+        {
+          "center": "s3",
+          "decision": "yes",
+          "label": "s1"
+        }
+      ]
+    },
+    {
+      "bytes": 14581,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NNY",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_018",
+        "s2_023",
+        "s2_024",
+        "s2_025"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009NNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NNY.json",
+      "sha256": "afc708b4169aa3965566b2dafbe26d41bed8e18dd6a9a19e6718a0f1de7333bd",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s3",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 16235,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YNN",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_038",
+        "s2_039",
+        "s2_046",
+        "s2_049"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009YNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YNN.json",
+      "sha256": "b1394f3886d6ed69712a7631d9a90034ad11df43eb37c37a9d2e09db640b02b3",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 16878,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YNYY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_041",
+        "s2_042"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009YNYY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YNYY.json",
+      "sha256": "e1b9928f00ebd2c643cc4d3e6c0521fff8301540f87077700862bd7f9b2c0f29",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "u"
+        },
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "Q2"
+        }
+      ]
+    },
+    {
+      "bytes": 27735,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YYN",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_019",
+        "s2_020",
+        "s2_021",
+        "s2_034"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009YYN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YYN.json",
+      "sha256": "eef47dbee4a75bf8a28d94e5cc7badf00dd96ae292b7d49bcd01e26d8613ae66",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Q2"
+        }
+      ]
+    },
+    {
+      "bytes": 13935,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YYY",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s2_031",
+        "s2_035",
+        "s2_037",
+        "s2_045"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R009YYY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YYY.json",
+      "sha256": "e25a160c6dab85bc31d8f8f601ac7eaeb231d6279b11c9b7c7abf961a7846b9b",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "Q2"
+        }
+      ]
+    },
+    {
+      "bytes": 1541451,
+      "case_id": "R010:u=v",
+      "certificate_id": "R010:u=v:R010N",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s2_065",
+        "s2_066",
+        "s2_069"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R010N",
+      "path": "certificates/surplus/relaxed_split/R010_ueqv_R010N.json",
+      "sha256": "6045a9c366a8ce1c31933bd4ec0ac29e2693e675b83e56218848be77f6ccfcc2",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 7221953,
+      "case_id": "R010:u=v",
+      "certificate_id": "R010:u=v:R010Y",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s2_067",
+        "s2_068",
+        "s2_070"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R010Y",
+      "path": "certificates/surplus/relaxed_split/R010_ueqv_R010Y.json",
+      "sha256": "1845b1b5dea4ce13316a41f01fb99cc00004a00cb48f8dbe692cb7b839703af4",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 69002,
+      "case_id": "R011:u=s1",
+      "certificate_id": "R011:u=s1:R011",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s2_053",
+        "s2_061",
+        "s2_062"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R011",
+      "path": "certificates/surplus/relaxed_split/R011_ueqs1_R011.json",
+      "sha256": "97a568614bd1e15d8110be61c48ca87dab1a14d860b7c8d767ee8c5f959a5c78",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": []
+    },
+    {
+      "bytes": 607571041,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011NNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_063",
+        "s2_064"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R011NNN",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011NNN.json",
+      "sha256": "1b34d379f76ba1ec05efb62e5f23cb1fcf2f8249d7eecbd1eb3f211b1ef2d3d9",
+      "size_bucket": "at-least-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_long_retry_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 25084,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011NY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s2_059",
+        "s2_060"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R011NY",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011NY.json",
+      "sha256": "40dfb6c9559d4d4168080a7d122e11852b2c615b8d74e3819e90748e6fdee112",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        }
+      ]
+    },
+    {
+      "bytes": 219261,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011YN",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s2_055",
+        "s2_056",
+        "s2_057"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R011YN",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011YN.json",
+      "sha256": "bd48aad9f370ff511e99ed499743c87c71b14be0766d8897d97a44a39c12596f",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "Q2"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Q1"
+        }
+      ]
+    },
+    {
+      "bytes": 1069316,
+      "case_id": "R013:u=v",
+      "certificate_id": "R013:u=v:R013NNN",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s3_010",
+        "s3_016"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R013NNN",
+      "path": "certificates/surplus/relaxed_split/R013_ueqv_R013NNN.json",
+      "sha256": "b125a1d10c572cdecdb1d8a41c64b4bcedfc8483e309e066600993a607a638cf",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 208489329,
+      "case_id": "R013:u=v",
+      "certificate_id": "R013:u=v:R013NNY",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s3_015",
+        "s3_017"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R013NNY",
+      "path": "certificates/surplus/relaxed_split/R013_ueqv_R013NNY.json",
+      "sha256": "134ecc9e58c2c8b7710a5ec30c78839133353b7738b76d79f0197e0017c282a1",
+      "size_bucket": "at-least-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 463789,
+      "case_id": "R013:u=v",
+      "certificate_id": "R013:u=v:R013NY",
+      "exact_pid_count": 4,
+      "exact_pids": [
+        "s3_011",
+        "s3_012",
+        "s3_013",
+        "s3_014"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R013NY",
+      "path": "certificates/surplus/relaxed_split/R013_ueqv_R013NY.json",
+      "sha256": "4c7ed5cfdc73d0377ef5b1ab83cc50028531c87d9d81b0562c1961bfd5fdd57d",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s1"
+        }
+      ]
+    },
+    {
+      "bytes": 192408810,
+      "case_id": "R013:u=v",
+      "certificate_id": "R013:u=v:R013Y",
+      "exact_pid_count": 9,
+      "exact_pids": [
+        "s3_001",
+        "s3_002",
+        "s3_003",
+        "s3_004",
+        "s3_005",
+        "s3_006",
+        "s3_007",
+        "s3_008",
+        "s3_009"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R013Y",
+      "path": "certificates/surplus/relaxed_split/R013_ueqv_R013Y.json",
+      "sha256": "13475a4a6afde10425e256a4b400ef2fa55622bedbcd1a02ffe1aa538d65ca8c",
+      "size_bucket": "at-least-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 3640556,
+      "case_id": "R014:u=v",
+      "certificate_id": "R014:u=v:R014N",
+      "exact_pid_count": 3,
+      "exact_pids": [
+        "s3_018",
+        "s3_020",
+        "s3_022"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R014N",
+      "path": "certificates/surplus/relaxed_split/R014_ueqv_R014N.json",
+      "sha256": "28721e391cba2b5403944cca054e296b1c86501496ed7914f04f2bdc593f07ae",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "s3"
+        }
+      ]
+    },
+    {
+      "bytes": 41164,
+      "case_id": "R014:u=v",
+      "certificate_id": "R014:u=v:R014Y",
+      "exact_pid_count": 2,
+      "exact_pids": [
+        "s3_019",
+        "s3_021"
+      ],
+      "grouped_general_ambient_candidate": true,
+      "leaf_id": "R014Y",
+      "path": "certificates/surplus/relaxed_split/R014_ueqv_R014Y.json",
+      "sha256": "efd52a7ee2e79c9faf1588ea8e167bd7ad46031f1cf05f64b135735b28e50eb3",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "s3"
+        }
+      ]
+    }
+  ],
+  "schema": "grouped_relaxed_general_n_mining.v1",
+  "scope": {
+    "bank": "certificates/surplus/relaxed_split/*.json",
+    "note": "Metadata audit. A candidate still needs Lean emission and a geometric producer for its common-mask equations."
+  },
+  "single_pid_certificates": [
+    {
+      "bytes": 22120,
+      "case_id": "R000:u=v",
+      "certificate_id": "R000:u=v:R000",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_002"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R000",
+      "path": "certificates/surplus/relaxed_split/R000_ueqv_R000.json",
+      "sha256": "3589810666d97f782648ebd357a9b8b432ed292e5142b9295ce3dfb67ef4b7b1",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": []
+    },
+    {
+      "bytes": 31041,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002NNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_003"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R002NNY",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002NNY.json",
+      "sha256": "9d0631eb0cf6721d7db1298f3aae51b28c61a4de2394747a7319f48b0e3d3f62",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 16997,
+      "case_id": "R002:u=v",
+      "certificate_id": "R002:u=v:R002NYN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_013"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R002NYN",
+      "path": "certificates/surplus/relaxed_split/R002_ueqv_R002NYN.json",
+      "sha256": "4c60b9b50c3d71aa4184b0e2b23f658cf719e63c074ff03a57f7675198a63da9",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "Pw"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 106647,
+      "case_id": "R003:u=v",
+      "certificate_id": "R003:u=v:R003NN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_027"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R003NN",
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003NN.json",
+      "sha256": "a1d497c01349be7e0feb7d242ac82eee5dbf7130942f79dc18648a0db7e64a3b",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 97502,
+      "case_id": "R003:u=v",
+      "certificate_id": "R003:u=v:R003NY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_026"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R003NY",
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003NY.json",
+      "sha256": "cdf6c864042fd950cfbb06be37b9de059f1d97d59b1e5082f463520533d2b6c1",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 25113,
+      "case_id": "R003:u=v",
+      "certificate_id": "R003:u=v:R003YN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_025"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R003YN",
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003YN.json",
+      "sha256": "ff386cd21816a7303b68427b9f0cbd53f1ff800ae38ef9400f1749f35b23c6b3",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 257721,
+      "case_id": "R003:u=v",
+      "certificate_id": "R003:u=v:R003YY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_024"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R003YY",
+      "path": "certificates/surplus/relaxed_split/R003_ueqv_R003YY.json",
+      "sha256": "fb0a3894dd8e00d55ccdbfd5ee288362e51f73eb6bf2c672db7c968a82eeafa7",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 17710,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004NNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_035"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004NNN",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NNN.json",
+      "sha256": "e0e14ae30c59b42a69deaf25929104068f4e60ae6478e490cb89dbb234f87f68",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 15832,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004NNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_033"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004NNY",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NNY.json",
+      "sha256": "f3d2df03ac5ceb1ef4b0b956546c7e92689dd7091a353e96d003c8c1e3c0aaa2",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 25988,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004NYN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_030"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004NYN",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NYN.json",
+      "sha256": "e95e99e01d8730c544a05ff3116c8b08d116311d3850346170d979694e61aad0",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 17066,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004NYY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_029"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004NYY",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004NYY.json",
+      "sha256": "d5000ea1ce1ef4ce60ae7d1e52e7da17094838cb9940e668ab500a31009c0567",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 24749,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004YNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_032"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004YNN",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004YNN.json",
+      "sha256": "61f160bb5af4c141b503568621b03f7d578b05f910c16917d2d182485f76186b",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "yes",
+          "label": "Pu"
+        },
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 16126,
+      "case_id": "R004:u=v",
+      "certificate_id": "R004:u=v:R004YNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_034"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R004YNY",
+      "path": "certificates/surplus/relaxed_split/R004_ueqv_R004YNY.json",
+      "sha256": "9e2c12455a9658e569c097829424b93feaeaa2fc1f4cd45acd751d003c672b2d",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Q2",
+          "decision": "yes",
+          "label": "Pu"
+        },
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 4466690,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005NNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_022"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R005NNY",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005NNY.json",
+      "sha256": "6a757d81e800d99d935f4721e0b890dffe50d4c3d78d55fd2171ab6ac70acf5c",
+      "size_bucket": "1-to-50-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 485110,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005NYN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_016"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R005NYN",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005NYN.json",
+      "sha256": "87f9a07c6c405b3534809d40b7af53e06a29206dd4aed977c1a0b43f780f2a5e",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 19743,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005NYY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_017"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R005NYY",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005NYY.json",
+      "sha256": "af139d7f3aa047773e0917b29b53a2e30cbb65cca9f6feaa46c6a622ebab6f25",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "s1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 63759,
+      "case_id": "R005:u=v",
+      "certificate_id": "R005:u=v:R005YNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_014"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R005YNY",
+      "path": "certificates/surplus/relaxed_split/R005_ueqv_R005YNY.json",
+      "sha256": "aad250c43e2b40645bd1c66d8ebbd00900beb43de21de7448871dc3708139722",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "s1"
+        },
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "u"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 191307,
+      "case_id": "R006:u=v",
+      "certificate_id": "R006:u=v:R006",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_028"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R006",
+      "path": "certificates/surplus/relaxed_split/R006_ueqv_R006.json",
+      "sha256": "e302ea7f658160007d2399d7c473fb882374da7c43cff12470f38b194d0eb9c0",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": []
+    },
+    {
+      "bytes": 21026,
+      "case_id": "R007:u=v",
+      "certificate_id": "R007:u=v:R007NN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_040"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R007NN",
+      "path": "certificates/surplus/relaxed_split/R007_ueqv_R007NN.json",
+      "sha256": "08d25caf22641b157f39f68f4b187f7804ec4e54846fa471371d87f594028687",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 279291,
+      "case_id": "R007:u=v",
+      "certificate_id": "R007:u=v:R007NY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s1_037"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R007NY",
+      "path": "certificates/surplus/relaxed_split/R007_ueqv_R007NY.json",
+      "sha256": "c2a216eaabecbb46bf7996d48b01484090fef5706260742f60a726613ed647dc",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "s3",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 17588,
+      "case_id": "R009:u=s1",
+      "certificate_id": "R009:u=s1:R009Y",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_030"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009Y",
+      "path": "certificates/surplus/relaxed_split/R009_ueqs1_R009Y.json",
+      "sha256": "abe1dfaeff199eef943241ad9b5abb3b1b2f54f4b9f4db84dc389eba18d6f565",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 17520,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYNNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_048"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYNNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNNN.json",
+      "sha256": "4bf6bb5446d6ae57af988754e6da94257f68d2a426dfe6fdc276cb5252687986",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 19355,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYNNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_047"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYNNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNNY.json",
+      "sha256": "498708a82b9bc52ff83aa072b748916c7076d0ba33f1f561a598a5e1b66a466e",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "v"
+        },
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 952046,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYNYN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_050"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYNYN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNYN.json",
+      "sha256": "7f161273fed21906cb57fba0e0ccfcd5882e7a1f8b2763676f23544edcb3c6ed",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 33639,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYNYY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_033"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYNYY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYNYY.json",
+      "sha256": "f05c2adb8d72e7870c06301b9907ce9dd24ba60c2a5a2d5011665ad8a105db5f",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "s2"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "v"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "u"
+        }
+      ]
+    },
+    {
+      "bytes": 16680,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYYNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_051"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYYNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYNN.json",
+      "sha256": "57461c3eb0f84488a930679005ca8d449f182644e2908d97459519f5935b1eed",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 88795,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYYNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_032"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYYNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYNY.json",
+      "sha256": "b937774eecc39129b39ba4ad29166b53b3db0ff38656fbf124fa7e5c17c9694a",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 16807,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYYYNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_022"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYYYNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYNN.json",
+      "sha256": "e70d7cb91261298b8e69dabb796709ae0f19289c6dee18272f29105aac79fc5f",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 19916,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYYYNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_017"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYYYNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYNY.json",
+      "sha256": "9121795ba89b73edf1edc1196837bd02514905a221cad97fa0ccfa96b4f3bc17",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Pu"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 158983,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009NYYYY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_040"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009NYYYY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009NYYYY.json",
+      "sha256": "1fcd27f082ae6527c53de6589737258c11f8c24da476286086f933c2f5defc86",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_singleton_replacement_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        },
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "s2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pu"
+        }
+      ]
+    },
+    {
+      "bytes": 16668,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YNYNN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_036"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009YNYNN",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YNYNN.json",
+      "sha256": "2390b65c9f22cce1f336b8e71d33724de2ea82da8a1112156e7b7f0e5cfe7454",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "u"
+        },
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 16679,
+      "case_id": "R009:u=v",
+      "certificate_id": "R009:u=v:R009YNYNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_016"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R009YNYNY",
+      "path": "certificates/surplus/relaxed_split/R009_ueqv_R009YNYNY.json",
+      "sha256": "91eb2b73bd16cdedad65e4fa4eb45f2ea7ac4235e25e251966d8f9948b096821",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pw",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "w"
+        },
+        {
+          "center": "s2",
+          "decision": "yes",
+          "label": "u"
+        },
+        {
+          "center": "s2",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "v"
+        }
+      ]
+    },
+    {
+      "bytes": 35721,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011NNY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_052"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R011NNY",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011NNY.json",
+      "sha256": "42534e6d119f28419e5f15e4ccae2d163b657ec84fd1bbfab043707d769cef6e",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "no",
+          "label": "Q2"
+        },
+        {
+          "center": "u",
+          "decision": "no",
+          "label": "Q1"
+        },
+        {
+          "center": "u",
+          "decision": "yes",
+          "label": "Pw"
+        }
+      ]
+    },
+    {
+      "bytes": 21379,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011YYN",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_058"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R011YYN",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011YYN.json",
+      "sha256": "503865d23edea71f9447218b49bbddb48455d2a713d5bcc4b65c452cd42b1be9",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "Q2"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "no",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 63156,
+      "case_id": "R011:u=v",
+      "certificate_id": "R011:u=v:R011YYY",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s2_054"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R011YYY",
+      "path": "certificates/surplus/relaxed_split/R011_ueqv_R011YYY.json",
+      "sha256": "58878f3ca3eb8bf2fa22575a942a9e8559bf78c5ac018baf87fc31931b1d1e1f",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": [
+        {
+          "center": "Pu",
+          "decision": "yes",
+          "label": "Q2"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "Q1"
+        },
+        {
+          "center": "s1",
+          "decision": "yes",
+          "label": "w"
+        }
+      ]
+    },
+    {
+      "bytes": 19973,
+      "case_id": "R012:u=v",
+      "certificate_id": "R012:u=v:R012",
+      "exact_pid_count": 1,
+      "exact_pids": [
+        "s3_000"
+      ],
+      "grouped_general_ambient_candidate": false,
+      "leaf_id": "R012",
+      "path": "certificates/surplus/relaxed_split/R012_ueqv_R012.json",
+      "sha256": "5276cd00323902cb1421d688a2b651281fec4b0d378259f8a4ca5e5e8b176bae",
+      "size_bucket": "under-1-MiB",
+      "source_report": "certificates/surplus/reports/pinned_surplus_relaxed_split_certificate_census.json",
+      "split_path": []
+    }
+  ],
+  "summary": {
+    "exact_pid_count_distribution": {
+      "1": 36,
+      "2": 18,
+      "3": 6,
+      "4": 9,
+      "9": 1
+    },
+    "grouped_bytes": 1032423326,
+    "grouped_size_bucket_distribution": {
+      "1-to-50-MiB": 8,
+      "at-least-50-MiB": 3,
+      "under-1-MiB": 23
+    },
+    "multi_pid_grouped_candidates": 34,
+    "single_pid_certificates": 36,
+    "valid_certificates": 70
+  }
+}

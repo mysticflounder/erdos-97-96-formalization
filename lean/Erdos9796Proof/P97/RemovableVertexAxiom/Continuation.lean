@@ -1,8 +1,17 @@
 import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 
+/-!
+# Removable-vertex continuation branch
+
+This shard wires the residual exclusions and finite row/certificate handoffs
+used by the removable-vertex continuation argument.
+-/
+
 open scoped EuclideanGeometry
 
 namespace Problem97
+
+open SurplusCOMPGBank
 
 /-- The local non-surplus Moser-cap containment input supplies the `U2`
 package needed by the U5 interface for the same counterexample datum. -/

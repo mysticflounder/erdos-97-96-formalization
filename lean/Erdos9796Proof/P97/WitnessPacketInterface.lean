@@ -151,6 +151,47 @@ theorem selectedClass_erase_witness_of_no_exact_erased_pin
   · exact hwitness
   · exact False.elim (hpin hradius hcard hxpin)
 
+/-- Exact-four support version of
+`selectedClass_erase_witness_of_no_exact_erased_pin`.
+
+The finite incidence producers need a concrete four-point same-radius support
+inside the erased carrier, not only a cardinality lower bound for the whole
+selected class. -/
+theorem exists_erased_selectedClass_four_support_of_no_exact_erased_pin
+    {A : Finset ℝ²} {x p : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hp : p ∈ A.erase x)
+    (hpin : ∀ {radius : ℝ}, 0 < radius →
+      (SelectedClass A p radius).card = 4 →
+      x ∈ SelectedClass A p radius → False) :
+    ∃ (radius : ℝ) (T : Finset ℝ²),
+      0 < radius ∧
+      T ⊆ SelectedClass (A.erase x) p radius ∧
+      T.card = 4 ∧
+      p ∉ T ∧
+      x ∉ T ∧
+      T ⊆ A.erase x ∧
+      ∀ y ∈ T, dist p y = radius := by
+  classical
+  rcases selectedClass_erase_witness_of_no_exact_erased_pin hK4 hp hpin with
+    ⟨radius, hradius, hcard⟩
+  rcases Finset.exists_subset_card_eq
+      (s := SelectedClass (A.erase x) p radius) hcard with
+    ⟨T, hTsub, hTcard⟩
+  refine ⟨radius, T, hradius, hTsub, hTcard, ?_, ?_, ?_, ?_⟩
+  · intro hpT
+    have hpSel : p ∈ SelectedClass (A.erase x) p radius := hTsub hpT
+    have hpdist : dist p p = radius := (mem_selectedClass.mp hpSel).2
+    have hzero : (0 : ℝ) = radius := by simpa using hpdist
+    linarith
+  · intro hxT
+    have hxSel : x ∈ SelectedClass (A.erase x) p radius := hTsub hxT
+    have hxErase : x ∈ A.erase x := (mem_selectedClass.mp hxSel).1
+    exact (Finset.mem_erase.mp hxErase).1 rfl
+  · intro y hy
+    exact (mem_selectedClass.mp (hTsub hy)).1
+  · intro y hy
+    exact (mem_selectedClass.mp (hTsub hy)).2
+
 /-- Three-point residual circle left by an exact selected class through the
 erased point.  This is the generic, `Finset`-level version of the U5
 q-critical triple-circle shape. -/
