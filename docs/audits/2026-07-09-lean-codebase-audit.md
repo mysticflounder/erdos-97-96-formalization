@@ -24,18 +24,45 @@ holes are not independently auditable or directly mineable. The recommended
 refactor is to extract named producer and case lemmas, leaving the existing
 consumer declarations as the public closure boundary.
 
+Resolution update, 2026-07-09: the pinned-surplus source term has moved from
+`isM44PinnedSurplusNonVExactShapeProducer` to the direct larger-regime theorem
+`isM44PinnedSurplusGeneralMResidualsExcluded` in
+`RemovableVertexAxiom/PinnedSurplusBank.lean`.  The exact-shape and
+metric-shadow producers are now proved for `S.surplusCap.card = 5`; the total
+source-`sorry` count is unchanged by this split.
+
 ### P1: Blueprint anchor and status documentation are stale
 
-The live blueprint anchor is still `Problem97.isM44PinnedSurplusResidualsExcluded`,
-while the actual open producer is
-`Problem97.isM44PinnedSurplusNonVExactShapeProducer`. The README and several
-working documents still use the old name. The root module also claims that the
-proof reaches a single remaining `sorry` at [line 10](../../lean/Erdos9796Proof.lean#L10).
+At audit time, the live blueprint anchor was still
+`Problem97.isM44PinnedSurplusResidualsExcluded`, while the actual open producer
+was `Problem97.isM44PinnedSurplusNonVExactShapeProducer`. The README and several
+working documents used the old name. The root module also claimed that the
+proof reached a single remaining `sorry` at
+[line 10](../../lean/Erdos9796Proof.lean#L10).
+
+The current pinned-surplus anchor should be the general-m residual above, not
+either of the two superseded producer names.
 
 The README link to `RemovableVertexAxiom.lean#L546` is invalid: that file is a
 9-line coordinator, while the declarations now live under the
 `RemovableVertexAxiom/` directory. This can direct future agents to the wrong
 anchor and wrong file.
+
+### P1: The relaxed singleton bank is not a general-m coverage theorem
+
+The empty-residue generator report classifies every nonzero generator after a
+singleton leaf is chosen, but does not prove that a general-m submask assignment
+satisfies any leaf.  The reproducible finite probe
+`scripts/pinned-generalm-certificate-coverage.py` enforces candidate-submask
+domains, cyclic cross-separation, and the global point-pair class-count bound.
+All 15 fixed `.v/.w` rows admit assignments defeating every available leaf at
+nonfixed labelled-cardinality floors 2 and 3; all 15 are covered at floor 4.
+
+This is a finite-interface countermodel, not a geometric realization.  It
+nevertheless falsifies the claimed implication from the currently formalized
+finite constraints to singleton-leaf coverage.  General-m closure needs a
+four-label confinement/selection theorem, additional geometric constraints
+that eliminate these models, or a broader verified certificate family.
 
 ### P1: Root-build coverage excludes active source
 
@@ -131,4 +158,3 @@ coordinators thin.
 3. Add explicit build targets for active unimported branches and keep multi-megabyte generated files out of Git.
 4. Factor the orientation, indexed-cap, and finite-permutation lemmas.
 5. Narrow mining skips and reduce warning noise before larger certificate rebuilds.
-

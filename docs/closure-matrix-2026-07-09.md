@@ -59,7 +59,7 @@ diff in every affected file, and avoid any row owned by an active session.
 |---|---|---|---|---|
 | K-A-PAIR | OPEN-RESEARCH | `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` (`U1LargeCapRouteBTail.lean:2657`, hole `:2702`) | `false_of_center_p_t2_t20` through the liveData chain | The declaration is sorry-free and absent from `proof-blueprint symbols --with-sorry`. |
 | K-A-LIVE | OPEN-RESEARCH | `Problem97.u1_largeCap_routeB_tail_liveData_false` (`U1LargeCapRouteBTail.lean:3525`, 79 holes) | `u1_largeCap_routeB_tail_false` | All LIVE-* rows are DONE and the declaration leaves the spine-open list. |
-| K-B-PIN | OPEN-PROOF | `Problem97.isM44PinnedSurplusNonVExactShapeProducer` (`PinnedSurplusProducer.lean:300`, hole `:302`) | `isM44PinnedSurplusMetricShadowProducer` | PIN-R and PIN-L DONE; target module builds; declaration leaves spine-open list. |
+| K-B-PIN | OPEN-RESEARCH | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` (`PinnedSurplusBank.lean:25`, hole `:27`) | `isM44PinnedSurplusResidualsExcluded` | The `m = 5` exact-shape, metric-shadow, and row-zero path is DONE; PIN-GENERAL must close the explicit `5 < surplusCap.card` branch. |
 | K-B-END | OPEN-PROOF | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:10055`, holes `:10082`, `:10104`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | END-L and END-R DONE; declaration leaves spine-open list. |
 | K-B-ERASE | OPEN-PROOF | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` (`Continuation.lean:107`, holes `:183`, `:211`, `:312`, `:337`) | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | ERASE-P4-U/S and ERASE-P2-R/L DONE; declaration leaves spine-open list. |
 
@@ -172,8 +172,9 @@ are not the default plan.
 |---|---|---|---|---|
 | END-L | OPEN-PROOF | Existing `endpointLeft_residual_exists_false_of_metric_shadow_data` | `EndpointCertificate.endpointLeft_residual_exists_metricShadow`: produce `∃ shadow, endpointShadowInBank xLabel shadow = true ∧ EndpointMetricShadow pointOf shadow`. The open content is non-v/w selected-class confinement, exact-four/card/self exclusion, circumcenter/no-three, and `sepOKFor`. | Replace Base hole 10082 by one call; targeted endpoint producer and Base modules build. |
 | END-R | OPEN-PROOF | END-L reusable lemmas; right residual core data | Exact mirror theorem for `endpointMirrorLabelPoint`. | Replace Base hole 10104; K-B-END DONE when both sides land. |
-| PIN-R | OPEN-PROOF | Existing right pinned ten-label geometry and selector classes | Right half of `IsM44PinnedSurplusNonVExactShapeProducerStatement`: construct `supportClass` satisfying same-radius and `candidateMasks` membership at every non-v/w center. | Right conjunct has no `sorry`; downstream metric-shadow producer builds. |
-| PIN-L | OPEN-PROOF | PIN-R mirrorable lemmas | Left half with reversed cap roles and left label map. | Remove line 302 `sorry`; K-B-PIN DONE. |
+| PIN-R | DONE | Label-complete `S.surplusCap.card = 5`, right pinned geometry | Right half of `IsM44PinnedSurplusNonVExactShapeProducerStatement`: construct same-radius support classes and exact candidate masks. | Proved; `PinnedSurplusProducer` builds without `sorry`. |
+| PIN-L | DONE | PIN-R mirror lemmas and left label map | Left half in the label-complete regime. | Proved; full metric-shadow producer builds without `sorry`. |
+| PIN-GENERAL | OPEN-RESEARCH | `5 < S.surplusCap.card`; exact bank explicitly out of scope | Prove `isM44PinnedSurplusGeneralMResidualsExcluded` directly. Current 135-leaf singleton bank has uncovered finite-interface models for every fixed `.v/.w` row at nonfixed labelled-cardinality floors 2 and 3. | Supply four-label confinement/selection, stronger geometry eliminating all recorded models, or a broader certificate family with verified coverage; then remove the sole `PinnedSurplusBank.lean` `sorry`. |
 | ERASE-P4-U | OPEN-RESEARCH | Exact data already at Continuation lines 150-177 | Prove `False` for the direct surplus-opposite erased-pin triple, via row-confined classes + Mode A or a new sound direct cut. | Replace line 183. No ten-label claim may assume more than three surplus labels without an explicit extra-label bridge. |
 | ERASE-P4-S | OPEN-RESEARCH | Exact data at lines 184-205 | Prove the direct surplus-interior mirror/family contradiction. | Replace line 211. |
 | ERASE-P2-R | OPEN-PROOF, actively owned at audit | Side-specific right ordered scaffold types in Base lines 6055ff | Refactor away the false broad `hrightCandidate`; produce `ErasedPinRightFiniteCandidateOrderedScaffoldFacts` from the concrete ordered mask interface and feed `rightFiniteCandidateSepFacts_of_*`. | Replace line 312; side-specific theorem and Continuation build. |
@@ -200,7 +201,7 @@ through MC-CONSUMER; do not introduce off-spine sorries while exploring them.
 |---|---|---|
 | `DoubleApexOffSurplusSharedRadiusPair` | 2702 | 1 |
 | `u1_largeCap_routeB_tail_liveData_false` | LIVE-Q (24), LIVE-T1 (24), LIVE-T3 (24), terminal 5876, 5877, 5883, 5884, 5885, 5886, 5887 | 79 |
-| `isM44PinnedSurplusNonVExactShapeProducer` | 302 | 1 |
+| `isM44PinnedSurplusGeneralMResidualsExcluded` | 27 | 1 |
 | `isM44EndpointResidualsExcluded` | 10082, 10104 | 2 |
 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | 183, 211, 312, 337 | 4 |
 | **Total** | | **87** |

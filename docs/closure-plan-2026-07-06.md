@@ -149,16 +149,31 @@ vocabulary, not the exact masks:
    (resp. u,s1), i.e. exactly the pairwise distinctness the payload already
    has (`pinnedSurplusTenLabels_pairwise_of_mem`, closed). Mirror the
    endpoint `GeneratorZeros` forced-collapse treatment.
-3. Relaxed submask production at m ≥ 6: sub-mask facts are ⊆-monotone
-   (one-hit/no-three survive relaxation), so the payload needs only its
-   *labeled* witnesses in each class — the anonymous-witness gap the exact
-   masks had at `.u` does not arise by construction. Step 1's enumeration
-   confirms every needed fact is one of the four categories above, all of
-   which the closed lemma families cover by kind (register U1 RESOLVED).
+3. Relaxed submask production at m ≥ 6: **the earlier closure claim here is
+   superseded.**  Empty generator residue classifies the facts needed *after a
+   singleton leaf has been chosen*; it does not prove that an arbitrary
+   geometric submask assignment satisfies any leaf.  The reproducible finite
+   check in `scripts/pinned-generalm-certificate-coverage.py` enforces the
+   current candidate-submask domains, cyclic cross-separation, and the global
+   point-pair class-count bound.  All 15 fixed `.v/.w` rows have uncovered
+   models when every nonfixed mask has at least 2 labelled members, and again
+   when it has at least 3.  All 15 become covered only at labelled cardinality
+   4, recovering exact-bank completeness.  See
+   `certificates/surplus/reports/pinned_surplus_generalm_certificate_coverage.{json,md}`.
 
-Uncertainty: LOW — the fact checklist is complete with an empty residue;
-what remains is Lean transport work (relaxed DFS completeness theorem +
-per-leaf application of the four fact kinds), not open enumeration.
+Current source split: the exact-shape and metric-shadow producers now require
+`S.surplusCap.card = 5` and are fully proved.  `PinnedSurplusBank.lean` closes
+that regime through the checked row-zero bank and exposes the sole larger
+regime obligation as
+`Problem97.isM44PinnedSurplusGeneralMResidualsExcluded`, with hypothesis
+`5 < S.surplusCap.card`.
+
+Uncertainty: HIGH for general m.  A valid closure now needs one of: a genuine
+four-label confinement/selection theorem, stronger geometric constraints that
+exclude every recorded floor-2/floor-3 countermodel, or a broader certificate
+family whose finite coverage is verified on the weaker interface.  A DFS over
+the existing 135 exact completions is not a completeness proof for general-m
+submasks.
 
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 
@@ -416,8 +431,9 @@ patterns with all points distinct.
   this side (class accumulation is not flattening: 43 new classes in 80
   fresh cubes). Attack shape fixed by the probes: forced-coincidence
   ("pattern forces u = v") proven ideal-theoretically over ℚ with Wu/Chou
-  saturation; in-house precedents are the general-m pinned route (§3:
-  relaxed DFS completeness + four-kind transport at symbolic parameter) and
+  saturation; the attempted general-m pinned route (§3) is a caution rather
+  than a precedent: four-kind transport was classified, but finite submask
+  coverage failed below labelled cardinality four.  The positive precedent is
   the Near Enemy shared-bisector chain (D1 addendum). Hard constraints from
   the negatives: no counting-invariant criterion (D2); no SOS/real-root
   machinery needed at the mined-core layer (dichotomy). First step
@@ -689,7 +705,7 @@ Both: fold per the §8 doc-ownership rule.
 
 | ID | Unknown | Severity | Resolved by |
 |---|---|---|---|
-| U1 | ~~Are all §3-step-1 facts derivable at m ≥ 6 from closed lemma families?~~ **RESOLVED 2026-07-06: yes — residue EMPTY**; all 3041 nonzero generators are v/w-center, separator, or erased-submask facts (§3 step 1) | closed | the enumeration report |
+| U1 | Are the §3 facts sufficient at m ≥ 6? Generator classification is complete (residue EMPTY), but leaf coverage is not: all 15 rows have floor-2 and floor-3 countermodels under the current finite constraints. | **OPEN-RESEARCH** | `pinned_surplus_generalm_required_facts` plus `pinned_surplus_generalm_certificate_coverage` |
 | U2 | ~~Two-hit configuration SAT or UNSAT?~~ **RESOLVED 2026-07-06: SAT** (PROVEN, exact witnesses, both smoke gates passed) — one-hit bounds false at interior centers; census route operative (`scratch/two-hit-probe/report.md`) | closed | the probe |
 | U3 | (5,5,4) census: all-dead, or an ALIVE cube? | MEDIUM | §5 run — **BUDGET-partial, continuation LIVE through 2026-07-08 (inst 25)**: 5154 orbits / 135,263 instances banked + verified, **no ALIVE cube** (HEURISTIC for all-dead), no UNSAT; coverage incomplete (banking rate flat ~70–206 orbits/installment), resumable (§5 census status) |
 | U4 | Does any \|A\|≥12-uniform route exist? | HIGH — the open math, but now structurally narrowed | All three cheap probes DONE 2026-07-06 — D1: no direct transfer (5 leads); D2: NO clean combinatorial separation (witness pairs close the counting route; contraction-profile index key); dichotomy: **all mined dead cores ℂ-dead** (572/572, two exact engines) ⇒ D3 poses ideal-theoretically — ℚ-Nullstellensatz certificates, endpoint-bank shape, Wu/Chou applies, no SOS/real-root needed at this layer. D3 direction DECIDED 2026-07-06 (Adam): uniform ideal-theoretic lemma first, certificate census fallback. Formulation pass DONE 2026-07-06: decided shape **FALSIFIED at n ≥ 15** (explicit lattice/ring witnesses, independently verified; the pattern-level census fallback dies with it for the tail; witnesses non-convex, leaf untouched). Candidate B (row-decorated remnant) **FALSIFIED 2026-07-07** — ρ embeds in every ring witness, every enumerated candidate a solution, exact-verified. **Ideal-theoretic uniform shape for the tail CLOSED.** Remaining: C (head 12–14 split), D (convexity-coupled tail, no mechanism). **Split decision RESOLVED 2026-07-07: D probe first** — per-type convex exclusion over the 19 primitive tuples + D1 composition test dispatched (`census/candidate_d_probe/`, §7 D3); C head split deferred as standing fallback. **C-split DECIDED 2026-07-07 (Adam): gated go — k=4 bank + n = 12 window-shape convergence gate dispatched; full 12–14 commitment pending the gate readout.** **Probe LANDED 2026-07-07 (validated): pure per-type route CLOSED** — 13/19 classes REALIZED at the decorated minimal window (exact witnesses, independently re-verified) and obstruction D1 CONFIRMED token-level (evasion patterns at every n = 12–16 even granting all conjectured kills). Extracted PROVEN leaf-implied constraints for any successor: m ≤ 2, vertex-pair ⇒ s = 0 (2 classes killed unconditionally), s = 2 ⇒ straddle-only; s ≥ 3 kills ride SUB2 (CONJECTURED-UNSAT, 7-var NRA). **Q3 two-center probe LANDED 2026-07-08 (validated): 87/87 joint classes classified** — 68 exact-ℚ + 4 ℚ(√3) realized, 15 KILLED-PROVEN (K-Q3-1, K-Q3-5; no ORDER; falsifier gate PASS); composition with joint kills granted still SAT n = 12–16 ⇒ two-center coupling insufficient. **Multi-center joint census LANDED 2026-07-08 (validated): L2 GLOBAL / PROVEN stabilizes empirically by `n = 25`** — cumulative inventory `3375`, project-level fresh count `0` on `n = 25..28`, and `533,761/533,761 SAT`, `0` UNSAT, `0` INDETERMINATE through `n = 28` (`docs/multi-center-joint-census-2026-07-08.md`). Live D shape is therefore a finite triple-support incidence inventory with no observed GLOBAL-only obstruction; the open math is now to prove the structural statements suggested by the data (`LOCAL => GLOBAL`, persistence, carry-forward), not to keep searching for new counterexamples in the proved tier. |

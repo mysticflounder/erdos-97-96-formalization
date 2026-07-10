@@ -328,8 +328,25 @@ and `Lean.trustCompiler`.  The generated module and emitter have no `unsafe`,
 blueprint-reported trust surface unless the incidence certificate is later
 reworked into a pure-kernel/sharded proof.
 
-It does not yet prove that a formal geometric residual matches one of the rows.
-The remaining proof work is the faithfulness bridge from the formal local
-residual to a `Shadow` satisfying `fragmentShadowAcceptedBySearch = true`,
-followed by either Lean-checkable COMP-G certificates or an explicitly accepted
-external-certificate boundary.
+The formal faithfulness bridge is complete when
+`S.surplusCap.card = 5`: `PinnedSurplusProducer.lean` constructs the exact
+ten-label metric shadow, and `PinnedSurplusBank.lean` sends it through the
+checked row-zero bank.
+
+The same exact bank is not a general-m submask certificate.  Reproduce the
+finite coverage boundary with:
+
+```bash
+UV_CACHE_DIR=/private/tmp/uv-cache-endpoint \
+  uv run python scripts/pinned-generalm-certificate-coverage.py
+```
+
+The generated
+`reports/pinned_surplus_generalm_certificate_coverage.{json,md}` checks all 15
+fixed `.v/.w` rows.  Every row has an assignment satisfying the current
+candidate-submask, cyclic-separation, and pair-count interfaces while defeating
+all singleton leaves at nonfixed labelled-cardinality floors 2 and 3.  All rows
+are covered at floor 4.  These are finite-interface countermodels, not geometric
+realizations; they show that larger-regime closure needs an additional
+confinement/selection theorem, stronger geometric constraints, or a broader
+verified certificate family.

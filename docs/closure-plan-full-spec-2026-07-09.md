@@ -28,7 +28,7 @@ Last fully mined kernel graph (build fingerprint `f241809581e3`):
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:19` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:25` | 1 | B |
 | 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10055` | 2 | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 

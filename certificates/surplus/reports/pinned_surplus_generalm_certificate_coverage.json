@@ -1,0 +1,2226 @@
+{
+  "constraints": {
+    "coverage": "some leaf has all nonzero erased-center generator pairs",
+    "cross_separation": true,
+    "fixed_centers": [
+      "v",
+      "w"
+    ],
+    "nonfixed_centers": [
+      "u",
+      "s1",
+      "s2",
+      "s3",
+      "Pw",
+      "Pu",
+      "Q1",
+      "Q2"
+    ],
+    "nonfixed_domain": "submasks of candidateMasks at the stated card floor",
+    "point_pair_class_count_le_two": true
+  },
+  "floors": [
+    {
+      "cardinality_floor": 2,
+      "rows": [
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 288,
+            "Pw": 528,
+            "Q1": 513,
+            "Q2": 404,
+            "s1": 17,
+            "s2": 38,
+            "s3": 258,
+            "u": 320,
+            "v": 201,
+            "w": 777
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s3",
+              "Q1"
+            ],
+            "Pw": [
+              "s2",
+              "Q2"
+            ],
+            "Q1": [
+              "u",
+              "Q2"
+            ],
+            "Q2": [
+              "w",
+              "s2",
+              "Pu",
+              "Q1"
+            ],
+            "s1": [
+              "u",
+              "s2"
+            ],
+            "s2": [
+              "v",
+              "w",
+              "s3"
+            ],
+            "s3": [
+              "v",
+              "Q1"
+            ],
+            "u": [
+              "Pw",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s1",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R000",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 2,
+          "countermodel_masks": {
+            "Pu": 280,
+            "Pw": 5,
+            "Q1": 12,
+            "Q2": 33,
+            "s1": 22,
+            "s2": 5,
+            "s3": 18,
+            "u": 640,
+            "v": 201,
+            "w": 834
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s1",
+              "s2",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "w"
+            ],
+            "Q1": [
+              "w",
+              "s1"
+            ],
+            "Q2": [
+              "u",
+              "s3"
+            ],
+            "s1": [
+              "v",
+              "w",
+              "s2"
+            ],
+            "s2": [
+              "u",
+              "w"
+            ],
+            "s3": [
+              "v",
+              "s2"
+            ],
+            "u": [
+              "Pu",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "v",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R001",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 11,
+          "countermodel_masks": {
+            "Pu": 290,
+            "Pw": 515,
+            "Q1": 40,
+            "Q2": 18,
+            "s1": 18,
+            "s2": 68,
+            "s3": 640,
+            "u": 12,
+            "v": 201,
+            "w": 840
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "s3",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "Q1": [
+              "s1",
+              "s3"
+            ],
+            "Q2": [
+              "v",
+              "s2"
+            ],
+            "s1": [
+              "v",
+              "s2"
+            ],
+            "s2": [
+              "w",
+              "Pw"
+            ],
+            "s3": [
+              "Pu",
+              "Q2"
+            ],
+            "u": [
+              "w",
+              "s1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s1",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R002",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "countermodel_masks": {
+            "Pu": 96,
+            "Pw": 13,
+            "Q1": 68,
+            "Q2": 257,
+            "s1": 3,
+            "s2": 34,
+            "s3": 640,
+            "u": 640,
+            "v": 201,
+            "w": 848
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s3",
+              "Pw"
+            ],
+            "Pw": [
+              "u",
+              "w",
+              "s1"
+            ],
+            "Q1": [
+              "w",
+              "Pw"
+            ],
+            "Q2": [
+              "u",
+              "Q1"
+            ],
+            "s1": [
+              "u",
+              "v"
+            ],
+            "s2": [
+              "v",
+              "s3"
+            ],
+            "s3": [
+              "Pu",
+              "Q2"
+            ],
+            "u": [
+              "Pu",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R003",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 8,
+          "countermodel_masks": {
+            "Pu": 6,
+            "Pw": 144,
+            "Q1": 24,
+            "Q2": 34,
+            "s1": 530,
+            "s2": 640,
+            "s3": 513,
+            "u": 48,
+            "v": 201,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "w"
+            ],
+            "Pw": [
+              "s2",
+              "Pu"
+            ],
+            "Q1": [
+              "s1",
+              "s2"
+            ],
+            "Q2": [
+              "v",
+              "s3"
+            ],
+            "s1": [
+              "v",
+              "s2",
+              "Q2"
+            ],
+            "s2": [
+              "Pu",
+              "Q2"
+            ],
+            "s3": [
+              "u",
+              "Q2"
+            ],
+            "u": [
+              "s2",
+              "s3"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R004",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 10,
+          "countermodel_masks": {
+            "Pu": 257,
+            "Pw": 44,
+            "Q1": 130,
+            "Q2": 20,
+            "s1": 528,
+            "s2": 96,
+            "s3": 513,
+            "u": 640,
+            "v": 201,
+            "w": 904
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "Q1"
+            ],
+            "Pw": [
+              "w",
+              "s1",
+              "s3"
+            ],
+            "Q1": [
+              "v",
+              "Pu"
+            ],
+            "Q2": [
+              "w",
+              "s2"
+            ],
+            "s1": [
+              "s2",
+              "Q2"
+            ],
+            "s2": [
+              "s3",
+              "Pw"
+            ],
+            "s3": [
+              "u",
+              "Q2"
+            ],
+            "u": [
+              "Pu",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s1",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R005",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 264,
+            "Pw": 18,
+            "Q1": 12,
+            "Q2": 264,
+            "s1": 3,
+            "s2": 6,
+            "s3": 80,
+            "u": 320,
+            "v": 201,
+            "w": 912
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s1",
+              "Q1"
+            ],
+            "Pw": [
+              "v",
+              "s2"
+            ],
+            "Q1": [
+              "w",
+              "s1"
+            ],
+            "Q2": [
+              "s1",
+              "Q1"
+            ],
+            "s1": [
+              "u",
+              "v"
+            ],
+            "s2": [
+              "v",
+              "w"
+            ],
+            "s3": [
+              "s2",
+              "Pw"
+            ],
+            "u": [
+              "Pw",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R006",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "countermodel_masks": {
+            "Pu": 42,
+            "Pw": 280,
+            "Q1": 12,
+            "Q2": 22,
+            "s1": 530,
+            "s2": 326,
+            "s3": 3,
+            "u": 576,
+            "v": 201,
+            "w": 928
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "s1",
+              "s3"
+            ],
+            "Pw": [
+              "s1",
+              "s2",
+              "Q1"
+            ],
+            "Q1": [
+              "w",
+              "s1"
+            ],
+            "Q2": [
+              "v",
+              "w",
+              "s2"
+            ],
+            "s1": [
+              "v",
+              "s2",
+              "Q2"
+            ],
+            "s2": [
+              "v",
+              "w",
+              "Pw",
+              "Q1"
+            ],
+            "s3": [
+              "u",
+              "v"
+            ],
+            "u": [
+              "Pw",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R007",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 16,
+          "countermodel_masks": {
+            "Pu": 14,
+            "Pw": 48,
+            "Q1": 40,
+            "Q2": 384,
+            "s1": 516,
+            "s2": 33,
+            "s3": 136,
+            "u": 320,
+            "v": 209,
+            "w": 785
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "w",
+              "s1"
+            ],
+            "Pw": [
+              "s2",
+              "s3"
+            ],
+            "Q1": [
+              "s1",
+              "s3"
+            ],
+            "Q2": [
+              "Pu",
+              "Q1"
+            ],
+            "s1": [
+              "w",
+              "Q2"
+            ],
+            "s2": [
+              "u",
+              "s3"
+            ],
+            "s3": [
+              "s1",
+              "Pu"
+            ],
+            "u": [
+              "Pw",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s2",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R008",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 36,
+          "countermodel_masks": {
+            "Pu": 264,
+            "Pw": 33,
+            "Q1": 3,
+            "Q2": 266,
+            "s1": 640,
+            "s2": 66,
+            "s3": 24,
+            "u": 136,
+            "v": 209,
+            "w": 848
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s1",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "s3"
+            ],
+            "Q1": [
+              "u",
+              "v"
+            ],
+            "Q2": [
+              "v",
+              "s1",
+              "Q1"
+            ],
+            "s1": [
+              "Pu",
+              "Q2"
+            ],
+            "s2": [
+              "v",
+              "Pw"
+            ],
+            "s3": [
+              "s1",
+              "s2"
+            ],
+            "u": [
+              "s1",
+              "Pu"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R009",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 6,
+          "countermodel_masks": {
+            "Pu": 96,
+            "Pw": 640,
+            "Q1": 640,
+            "Q2": 66,
+            "s1": 530,
+            "s2": 12,
+            "s3": 257,
+            "u": 384,
+            "v": 209,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s3",
+              "Pw"
+            ],
+            "Pw": [
+              "Pu",
+              "Q2"
+            ],
+            "Q1": [
+              "Pu",
+              "Q2"
+            ],
+            "Q2": [
+              "v",
+              "Pw"
+            ],
+            "s1": [
+              "v",
+              "s2",
+              "Q2"
+            ],
+            "s2": [
+              "w",
+              "s1"
+            ],
+            "s3": [
+              "u",
+              "Q1"
+            ],
+            "u": [
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R010",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 13,
+          "countermodel_masks": {
+            "Pu": 576,
+            "Pw": 296,
+            "Q1": 520,
+            "Q2": 264,
+            "s1": 272,
+            "s2": 257,
+            "s3": 516,
+            "u": 130,
+            "v": 209,
+            "w": 912
+          },
+          "countermodel_members": {
+            "Pu": [
+              "Pw",
+              "Q2"
+            ],
+            "Pw": [
+              "s1",
+              "s3",
+              "Q1"
+            ],
+            "Q1": [
+              "s1",
+              "Q2"
+            ],
+            "Q2": [
+              "s1",
+              "Q1"
+            ],
+            "s1": [
+              "s2",
+              "Q1"
+            ],
+            "s2": [
+              "u",
+              "Q1"
+            ],
+            "s3": [
+              "w",
+              "Q2"
+            ],
+            "u": [
+              "v",
+              "Pu"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R011",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 26,
+            "Pw": 5,
+            "Q1": 656,
+            "Q2": 322,
+            "s1": 388,
+            "s2": 38,
+            "s3": 640,
+            "u": 72,
+            "v": 225,
+            "w": 801
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "s1",
+              "s2"
+            ],
+            "Pw": [
+              "u",
+              "w"
+            ],
+            "Q1": [
+              "s2",
+              "Pu",
+              "Q2"
+            ],
+            "Q2": [
+              "v",
+              "Pw",
+              "Q1"
+            ],
+            "s1": [
+              "w",
+              "Pu",
+              "Q1"
+            ],
+            "s2": [
+              "v",
+              "w",
+              "s3"
+            ],
+            "s3": [
+              "Pu",
+              "Q2"
+            ],
+            "u": [
+              "s1",
+              "Pw"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s3",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R012",
+          "sstar": "s3",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 17,
+          "countermodel_masks": {
+            "Pu": 48,
+            "Pw": 10,
+            "Q1": 640,
+            "Q2": 3,
+            "s1": 533,
+            "s2": 257,
+            "s3": 12,
+            "u": 384,
+            "v": 225,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s2",
+              "s3"
+            ],
+            "Pw": [
+              "v",
+              "s1"
+            ],
+            "Q1": [
+              "Pu",
+              "Q2"
+            ],
+            "Q2": [
+              "u",
+              "v"
+            ],
+            "s1": [
+              "u",
+              "w",
+              "s2",
+              "Q2"
+            ],
+            "s2": [
+              "u",
+              "Q1"
+            ],
+            "s3": [
+              "w",
+              "s1"
+            ],
+            "u": [
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R013",
+          "sstar": "s3",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 5,
+          "countermodel_masks": {
+            "Pu": 17,
+            "Pw": 513,
+            "Q1": 576,
+            "Q2": 257,
+            "s1": 290,
+            "s2": 544,
+            "s3": 3,
+            "u": 72,
+            "v": 225,
+            "w": 928
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "s2"
+            ],
+            "Pw": [
+              "u",
+              "Q2"
+            ],
+            "Q1": [
+              "Pw",
+              "Q2"
+            ],
+            "Q2": [
+              "u",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "s3",
+              "Q1"
+            ],
+            "s2": [
+              "s3",
+              "Q2"
+            ],
+            "s3": [
+              "u",
+              "v"
+            ],
+            "u": [
+              "s1",
+              "Pw"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R014",
+          "sstar": "s3",
+          "status": "sat"
+        }
+      ],
+      "summary": {
+        "sat": 15,
+        "unknown": 0,
+        "unsat": 0
+      }
+    },
+    {
+      "cardinality_floor": 3,
+      "rows": [
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 518,
+            "Pw": 656,
+            "Q1": 35,
+            "Q2": 268,
+            "s1": 134,
+            "s2": 608,
+            "s3": 76,
+            "u": 82,
+            "v": 201,
+            "w": 777
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "w",
+              "Q2"
+            ],
+            "Pw": [
+              "s2",
+              "Pu",
+              "Q2"
+            ],
+            "Q1": [
+              "u",
+              "v",
+              "s3"
+            ],
+            "Q2": [
+              "w",
+              "s1",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "w",
+              "Pu"
+            ],
+            "s2": [
+              "s3",
+              "Pw",
+              "Q2"
+            ],
+            "s3": [
+              "w",
+              "s1",
+              "Pw"
+            ],
+            "u": [
+              "v",
+              "s2",
+              "Pw"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s1",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R000",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 2,
+          "countermodel_masks": {
+            "Pu": 304,
+            "Pw": 517,
+            "Q1": 22,
+            "Q2": 416,
+            "s1": 134,
+            "s2": 43,
+            "s3": 21,
+            "u": 608,
+            "v": 201,
+            "w": 834
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s2",
+              "s3",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "w",
+              "Q2"
+            ],
+            "Q1": [
+              "v",
+              "w",
+              "s2"
+            ],
+            "Q2": [
+              "s3",
+              "Pu",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "w",
+              "Pu"
+            ],
+            "s2": [
+              "u",
+              "v",
+              "s1",
+              "s3"
+            ],
+            "s3": [
+              "u",
+              "w",
+              "s2"
+            ],
+            "u": [
+              "s3",
+              "Pw",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "v",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R001",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 11,
+          "countermodel_masks": {
+            "Pu": 608,
+            "Pw": 529,
+            "Q1": 515,
+            "Q2": 280,
+            "s1": 386,
+            "s2": 672,
+            "s3": 13,
+            "u": 14,
+            "v": 201,
+            "w": 840
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s3",
+              "Pw",
+              "Q2"
+            ],
+            "Pw": [
+              "u",
+              "s2",
+              "Q2"
+            ],
+            "Q1": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "Q2": [
+              "s1",
+              "s2",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "Pu",
+              "Q1"
+            ],
+            "s2": [
+              "s3",
+              "Pu",
+              "Q2"
+            ],
+            "s3": [
+              "u",
+              "w",
+              "s1"
+            ],
+            "u": [
+              "v",
+              "w",
+              "s1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s1",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R002",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "countermodel_masks": {
+            "Pu": 608,
+            "Pw": 386,
+            "Q1": 517,
+            "Q2": 38,
+            "s1": 289,
+            "s2": 552,
+            "s3": 515,
+            "u": 416,
+            "v": 201,
+            "w": 848
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s3",
+              "Pw",
+              "Q2"
+            ],
+            "Pw": [
+              "v",
+              "Pu",
+              "Q1"
+            ],
+            "Q1": [
+              "u",
+              "w",
+              "Q2"
+            ],
+            "Q2": [
+              "v",
+              "w",
+              "s3"
+            ],
+            "s1": [
+              "u",
+              "s3",
+              "Q1"
+            ],
+            "s2": [
+              "s1",
+              "s3",
+              "Q2"
+            ],
+            "s3": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "u": [
+              "s3",
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R003",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 8,
+          "countermodel_masks": {
+            "Pu": 533,
+            "Pw": 259,
+            "Q1": 37,
+            "Q2": 416,
+            "s1": 70,
+            "s2": 552,
+            "s3": 26,
+            "u": 400,
+            "v": 201,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "w",
+              "s2",
+              "Q2"
+            ],
+            "Pw": [
+              "u",
+              "v",
+              "Q1"
+            ],
+            "Q1": [
+              "u",
+              "w",
+              "s3"
+            ],
+            "Q2": [
+              "s3",
+              "Pu",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "w",
+              "Pw"
+            ],
+            "s2": [
+              "s1",
+              "s3",
+              "Q2"
+            ],
+            "s3": [
+              "v",
+              "s1",
+              "s2"
+            ],
+            "u": [
+              "s2",
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R004",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 10,
+          "countermodel_masks": {
+            "Pu": 326,
+            "Pw": 549,
+            "Q1": 42,
+            "Q2": 21,
+            "s1": 146,
+            "s2": 578,
+            "s3": 19,
+            "u": 416,
+            "v": 201,
+            "w": 904
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "w",
+              "Pw",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "w",
+              "s3",
+              "Q2"
+            ],
+            "Q1": [
+              "v",
+              "s1",
+              "s3"
+            ],
+            "Q2": [
+              "u",
+              "w",
+              "s2"
+            ],
+            "s1": [
+              "v",
+              "s2",
+              "Pu"
+            ],
+            "s2": [
+              "v",
+              "Pw",
+              "Q2"
+            ],
+            "s3": [
+              "u",
+              "v",
+              "s2"
+            ],
+            "u": [
+              "s3",
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s1",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R005",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 100,
+            "Pw": 545,
+            "Q1": 644,
+            "Q2": 259,
+            "s1": 592,
+            "s2": 328,
+            "s3": 518,
+            "u": 42,
+            "v": 201,
+            "w": 912
+          },
+          "countermodel_members": {
+            "Pu": [
+              "w",
+              "s3",
+              "Pw"
+            ],
+            "Pw": [
+              "u",
+              "s3",
+              "Q2"
+            ],
+            "Q1": [
+              "w",
+              "Pu",
+              "Q2"
+            ],
+            "Q2": [
+              "u",
+              "v",
+              "Q1"
+            ],
+            "s1": [
+              "s2",
+              "Pw",
+              "Q2"
+            ],
+            "s2": [
+              "s1",
+              "Pw",
+              "Q1"
+            ],
+            "s3": [
+              "v",
+              "w",
+              "Q2"
+            ],
+            "u": [
+              "v",
+              "s1",
+              "s3"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R006",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "countermodel_masks": {
+            "Pu": 14,
+            "Pw": 50,
+            "Q1": 578,
+            "Q2": 289,
+            "s1": 162,
+            "s2": 324,
+            "s3": 25,
+            "u": 276,
+            "v": 201,
+            "w": 928
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "w",
+              "s1"
+            ],
+            "Pw": [
+              "v",
+              "s2",
+              "s3"
+            ],
+            "Q1": [
+              "v",
+              "Pw",
+              "Q2"
+            ],
+            "Q2": [
+              "u",
+              "s3",
+              "Q1"
+            ],
+            "s1": [
+              "v",
+              "s3",
+              "Pu"
+            ],
+            "s2": [
+              "w",
+              "Pw",
+              "Q1"
+            ],
+            "s3": [
+              "u",
+              "s1",
+              "s2"
+            ],
+            "u": [
+              "w",
+              "s2",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s1",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R007",
+          "sstar": "s1",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 16,
+          "countermodel_masks": {
+            "Pu": 584,
+            "Pw": 672,
+            "Q1": 517,
+            "Q2": 134,
+            "s1": 386,
+            "s2": 608,
+            "s3": 92,
+            "u": 392,
+            "v": 209,
+            "w": 785
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s1",
+              "Pw",
+              "Q2"
+            ],
+            "Pw": [
+              "s3",
+              "Pu",
+              "Q2"
+            ],
+            "Q1": [
+              "u",
+              "w",
+              "Q2"
+            ],
+            "Q2": [
+              "v",
+              "w",
+              "Pu"
+            ],
+            "s1": [
+              "v",
+              "Pu",
+              "Q1"
+            ],
+            "s2": [
+              "s3",
+              "Pw",
+              "Q2"
+            ],
+            "s3": [
+              "w",
+              "s1",
+              "s2",
+              "Pw"
+            ],
+            "u": [
+              "s1",
+              "Pu",
+              "Q1"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s2",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R008",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 36,
+          "countermodel_masks": {
+            "Pu": 515,
+            "Pw": 644,
+            "Q1": 672,
+            "Q2": 290,
+            "s1": 560,
+            "s2": 76,
+            "s3": 25,
+            "u": 14,
+            "v": 209,
+            "w": 848
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "Pw": [
+              "w",
+              "Pu",
+              "Q2"
+            ],
+            "Q1": [
+              "s3",
+              "Pu",
+              "Q2"
+            ],
+            "Q2": [
+              "v",
+              "s3",
+              "Q1"
+            ],
+            "s1": [
+              "s2",
+              "s3",
+              "Q2"
+            ],
+            "s2": [
+              "w",
+              "s1",
+              "Pw"
+            ],
+            "s3": [
+              "u",
+              "s1",
+              "s2"
+            ],
+            "u": [
+              "v",
+              "w",
+              "s1"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R009",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 6,
+          "countermodel_masks": {
+            "Pu": 584,
+            "Pw": 386,
+            "Q1": 37,
+            "Q2": 280,
+            "s1": 560,
+            "s2": 42,
+            "s3": 530,
+            "u": 162,
+            "v": 209,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "s1",
+              "Pw",
+              "Q2"
+            ],
+            "Pw": [
+              "v",
+              "Pu",
+              "Q1"
+            ],
+            "Q1": [
+              "u",
+              "w",
+              "s3"
+            ],
+            "Q2": [
+              "s1",
+              "s2",
+              "Q1"
+            ],
+            "s1": [
+              "s2",
+              "s3",
+              "Q2"
+            ],
+            "s2": [
+              "v",
+              "s1",
+              "s3"
+            ],
+            "s3": [
+              "v",
+              "s2",
+              "Q2"
+            ],
+            "u": [
+              "v",
+              "s3",
+              "Pu"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R010",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 13,
+          "countermodel_masks": {
+            "Pu": 259,
+            "Pw": 524,
+            "Q1": 104,
+            "Q2": 304,
+            "s1": 545,
+            "s2": 518,
+            "s3": 140,
+            "u": 138,
+            "v": 209,
+            "w": 912
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "v",
+              "Q1"
+            ],
+            "Pw": [
+              "w",
+              "s1",
+              "Q2"
+            ],
+            "Q1": [
+              "s1",
+              "s3",
+              "Pw"
+            ],
+            "Q2": [
+              "s2",
+              "s3",
+              "Q1"
+            ],
+            "s1": [
+              "u",
+              "s3",
+              "Q2"
+            ],
+            "s2": [
+              "v",
+              "w",
+              "Q2"
+            ],
+            "s3": [
+              "w",
+              "s1",
+              "Pu"
+            ],
+            "u": [
+              "v",
+              "s1",
+              "Pu"
+            ],
+            "v": [
+              "u",
+              "s2",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s2",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R011",
+          "sstar": "s2",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "countermodel_masks": {
+            "Pu": 322,
+            "Pw": 19,
+            "Q1": 38,
+            "Q2": 13,
+            "s1": 324,
+            "s2": 546,
+            "s3": 14,
+            "u": 656,
+            "v": 225,
+            "w": 801
+          },
+          "countermodel_members": {
+            "Pu": [
+              "v",
+              "Pw",
+              "Q1"
+            ],
+            "Pw": [
+              "u",
+              "v",
+              "s2"
+            ],
+            "Q1": [
+              "v",
+              "w",
+              "s3"
+            ],
+            "Q2": [
+              "u",
+              "w",
+              "s1"
+            ],
+            "s1": [
+              "w",
+              "Pw",
+              "Q1"
+            ],
+            "s2": [
+              "v",
+              "s3",
+              "Q2"
+            ],
+            "s3": [
+              "v",
+              "w",
+              "s1"
+            ],
+            "u": [
+              "s2",
+              "Pu",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "u",
+              "s3",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R012",
+          "sstar": "s3",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 17,
+          "countermodel_masks": {
+            "Pu": 21,
+            "Pw": 50,
+            "Q1": 134,
+            "Q2": 25,
+            "s1": 515,
+            "s2": 290,
+            "s3": 261,
+            "u": 524,
+            "v": 225,
+            "w": 864
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "w",
+              "s2"
+            ],
+            "Pw": [
+              "v",
+              "s2",
+              "s3"
+            ],
+            "Q1": [
+              "v",
+              "w",
+              "Pu"
+            ],
+            "Q2": [
+              "u",
+              "s1",
+              "s2"
+            ],
+            "s1": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "s2": [
+              "v",
+              "s3",
+              "Q1"
+            ],
+            "s3": [
+              "u",
+              "w",
+              "Q1"
+            ],
+            "u": [
+              "w",
+              "s1",
+              "Q2"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pw",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R013",
+          "sstar": "s3",
+          "status": "sat"
+        },
+        {
+          "certificate_leaf_count": 5,
+          "countermodel_masks": {
+            "Pu": 11,
+            "Pw": 21,
+            "Q1": 515,
+            "Q2": 336,
+            "s1": 261,
+            "s2": 290,
+            "s3": 592,
+            "u": 38,
+            "v": 225,
+            "w": 928
+          },
+          "countermodel_members": {
+            "Pu": [
+              "u",
+              "v",
+              "s1"
+            ],
+            "Pw": [
+              "u",
+              "w",
+              "s2"
+            ],
+            "Q1": [
+              "u",
+              "v",
+              "Q2"
+            ],
+            "Q2": [
+              "s2",
+              "Pw",
+              "Q1"
+            ],
+            "s1": [
+              "u",
+              "w",
+              "Q1"
+            ],
+            "s2": [
+              "v",
+              "s3",
+              "Q1"
+            ],
+            "s3": [
+              "s2",
+              "Pw",
+              "Q2"
+            ],
+            "u": [
+              "v",
+              "w",
+              "s3"
+            ],
+            "v": [
+              "u",
+              "s3",
+              "Pw",
+              "Pu"
+            ],
+            "w": [
+              "s3",
+              "Pu",
+              "Q1",
+              "Q2"
+            ]
+          },
+          "relaxed_id": "R014",
+          "sstar": "s3",
+          "status": "sat"
+        }
+      ],
+      "summary": {
+        "sat": 15,
+        "unknown": 0,
+        "unsat": 0
+      }
+    },
+    {
+      "cardinality_floor": 4,
+      "rows": [
+        {
+          "certificate_leaf_count": 1,
+          "relaxed_id": "R000",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 2,
+          "relaxed_id": "R001",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 11,
+          "relaxed_id": "R002",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "relaxed_id": "R003",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 8,
+          "relaxed_id": "R004",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 10,
+          "relaxed_id": "R005",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "relaxed_id": "R006",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 4,
+          "relaxed_id": "R007",
+          "sstar": "s1",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 16,
+          "relaxed_id": "R008",
+          "sstar": "s2",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 36,
+          "relaxed_id": "R009",
+          "sstar": "s2",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 6,
+          "relaxed_id": "R010",
+          "sstar": "s2",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 13,
+          "relaxed_id": "R011",
+          "sstar": "s2",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 1,
+          "relaxed_id": "R012",
+          "sstar": "s3",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 17,
+          "relaxed_id": "R013",
+          "sstar": "s3",
+          "status": "unsat"
+        },
+        {
+          "certificate_leaf_count": 5,
+          "relaxed_id": "R014",
+          "sstar": "s3",
+          "status": "unsat"
+        }
+      ],
+      "summary": {
+        "sat": 0,
+        "unknown": 0,
+        "unsat": 15
+      }
+    }
+  ],
+  "inputs": {
+    "incidence": "certificates/surplus/reports/pinned_surplus_relaxed_incidence_census.json",
+    "required_facts": "certificates/surplus/reports/pinned_surplus_generalm_required_facts.json"
+  },
+  "schema": "pinned_surplus_generalm_certificate_coverage.v1",
+  "status_semantics": {
+    "sat": "finite masks satisfy the interface and defeat every leaf",
+    "unsat": "the singleton leaves cover the stated finite interface"
+  }
+}

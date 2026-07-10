@@ -746,22 +746,37 @@ abbrev LeftPinnedSurplusMetricShadowData
       EndpointCertificate.Variables.EndpointMetricShadow pointOf
         (SurplusCOMPGBank.shadowOfPointClasses pointOf centerClass)
 
-/-- Named on-spine residual for the pinned-surplus geometry producer.  The
-certificate side is closed separately below; the remaining work is to produce,
-from each formal pinned residual, the induced valid metric shadow consumed by
-the checked row-zero bank. -/
+/-- The pinned-surplus geometry producer in the label-complete `m = 5` regime.
+The ten named points exhaust the ambient packet in this regime, so the induced
+valid metric shadow is faithful to the checked row-zero bank. -/
 abbrev IsM44PinnedSurplusMetricShadowProducerStatement : Prop :=
     ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
       HasNEquidistantProperty 4 A → 9 < A.card →
       (∀ B : Finset ℝ², B.card < A.card →
         B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
       ∀ S : SurplusCapPacket A, S.IsM44 →
+        S.surplusCap.card = 5 →
         (∀ {radius : ℝ} {x : ℝ²},
           S.PinnedRightSurplusResidualAt radius x →
             RightPinnedSurplusMetricShadowData S radius x) ∧
         (∀ {radius : ℝ} {x : ℝ²},
           S.PinnedLeftSurplusResidualAt radius x →
             LeftPinnedSurplusMetricShadowData S radius x)
+
+/-- The remaining pinned-surplus exclusion in the non-label-complete regime.
+It is stated at the residual boundary rather than forcing a larger packet
+through the exact ten-label metric-shadow interface. -/
+abbrev IsM44PinnedSurplusGeneralMResidualsExcludedStatement : Prop :=
+    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
+      HasNEquidistantProperty 4 A → 9 < A.card →
+      (∀ B : Finset ℝ², B.card < A.card →
+        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
+      ∀ S : SurplusCapPacket A, S.IsM44 →
+        5 < S.surplusCap.card →
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedRightSurplusResidualAt radius x → False) ∧
+        (∀ {radius : ℝ} {x : ℝ²},
+          S.PinnedLeftSurplusResidualAt radius x → False)
 
 /-- Final `IsM44` removable-vertex extraction once the two non-surplus Moser
   caps are contained.  Existing `SurplusM44Packet` lemmas prove count/placement

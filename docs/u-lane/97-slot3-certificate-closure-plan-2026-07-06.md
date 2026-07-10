@@ -3584,3 +3584,34 @@ row-specific payload and exact masks are available.  The broad
 ask for generated candidate membership for arbitrary selected classes at the
 shared radius `dist p x`, before the row-specific support/confinement facts
 exist.
+
+2026-07-09 pinned-surplus regime-split checkpoint:
+`Problem97.isM44PinnedSurplusNonVExactShapeProducer` and
+`Problem97.isM44PinnedSurplusMetricShadowProducer` now explicitly require
+`S.surplusCap.card = 5`.  Both right and left exact-shape branches are proved,
+and the focused producer target builds with no `sorry` in
+`PinnedSurplusProducer.lean`.  `PinnedSurplusBank.lean` splits on that equality:
+the label-complete branch reaches the checked row-zero contradiction, while the
+larger branch is the direct on-spine obligation
+`Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` with
+`5 < S.surplusCap.card`.  The bank target builds with exactly that one intended
+`sorry` warning.
+
+The prior relaxed-singleton general-m plan is not complete.  The empty-residue
+report proves that every nonzero generator has a known fact shape after a leaf
+is selected; it does not prove that a geometric submask assignment satisfies
+some leaf.  `scripts/pinned-generalm-certificate-coverage.py` checks the 15
+fixed `.v/.w` rows under candidate-submask domains, cyclic cross-separation,
+and the global point-pair class-count bound.  Every row has a model defeating
+all of its singleton certificates when nonfixed labelled masks have cardinality
+at least 2, and again at least 3.  Every row is covered at cardinality 4.  The
+machine-readable and proof-facing reports are
+`certificates/surplus/reports/pinned_surplus_generalm_certificate_coverage.{json,md}`.
+
+Consequently, general-m closure is not “relaxed DFS transport work.”  The next
+valid route must prove genuine four-label confinement/selection, derive new
+geometric constraints that eliminate the recorded floor-2/floor-3 models, or
+generate and verify a broader certificate family for the weaker interface.
+The multi-center L2/full-participant completion theorems found by
+`nthdegree docs search --lean` concern stabilization of a separate class-code
+inventory and do not supply this pinned-surplus confinement theorem.
