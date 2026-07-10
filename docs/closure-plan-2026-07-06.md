@@ -160,18 +160,30 @@ orientations.  `exists_pinnedRightExtraCriticalPacket` and
 outside the pinned four-class, prove that class survives the required erasures,
 and use minimality to produce a `U3LocalizedNoQFreePacket` and
 `U3FixedTriplePacket` at a blocker center distinct from the pinned apex.  The
-on-spine theorem also derives `CriticalShellSystem A`.  Its remaining hole is
-therefore the direct obstruction from those data, not packet extraction or an
-`m = 5` reduction.  U2/U5 Mode A and non-surplus containment are unavailable
-unless established independently, because their existing route is downstream
-of this residual.
+fixed triple gives the exact full critical shell, the two-circle bound gives a
+triple label outside the pinned class, and `U3FixedTripleAuditFrame` supplies a
+selected candidate plus two off-circle auxiliaries.  The on-spine theorem also
+derives `CriticalShellSystem A`.  Each audit center has a proved exact
+q-deleted-four/q-critical-three dichotomy, but no bounded-support confinement.
+The direct finite consumer is now proved as
+`U3FixedTripleAuditFrame.false_of_rowwiseConfinedQDeletedClasses`; each
+orientation extractor exposes
+`∀ H : U3FixedTripleAuditFrame ..., ¬ H.RowwiseConfinedQDeletedClasses`.
+The remaining hole is therefore the exact producer
+`H.RowwiseConfinedQDeletedClasses`: resolve every q-critical row and prove
+bounded-support inclusion for each q-deleted four-class.  A stronger direct
+contradiction from the same data is also acceptable.  This is not packet
+extraction or an `m = 5` reduction.  U2/U5 Mode A and non-surplus containment
+are unavailable unless established independently, because their existing
+route is downstream of this residual.
 
-Uncertainty: HIGH for general m.  A valid closure now needs one of: a genuine
-extra-critical-packet obstruction, a four-label confinement/selection theorem,
-stronger geometric constraints that exclude every recorded floor-2/floor-3
-countermodel, or a broader certificate family whose finite coverage is
-verified on the weaker interface.  A DFS over the existing 135 exact
-completions is not a completeness proof for general-m submasks.
+Uncertainty: HIGH for general m.  A valid closure now needs one of: a proof of
+the exact rowwise proposition above, including q-critical-row elimination and
+q-deleted-class confinement; a stronger audit-frame obstruction; stronger
+geometric constraints that exclude every recorded floor-2/floor-3 countermodel;
+or a broader certificate family whose finite coverage is verified on the
+weaker interface.  A DFS over the existing 135 exact completions is not a
+completeness proof for general-m submasks.
 
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 

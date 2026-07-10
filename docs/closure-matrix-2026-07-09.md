@@ -24,15 +24,16 @@ Source index plus the last fully mined graph after the final
 - all 5 were on both publish-target spines in the last fully mined graph;
 - 87 textual proof holes inside those declarations;
 - 0 off-spine declarations with `sorry`;
-- P97 spine: 23/1676 project nodes open;
-- P96 spine: 27/1684 project nodes open; and
+- P97 spine: 23/1827 project nodes open;
+- P96 spine: 27/1835 project nodes open; and
 - `sorryAx` is the kernel marker reached through the five declarations, not a
   sixth source obligation.
 
 The five-declaration source inventory and node counts are current at build
-fingerprint `04729e61b704`: 6014/6014 mined symbols are fresh.  At this
-checkpoint proof-blueprint reports exactly one uncommitted Lean path,
-`PinnedSurplusBank.lean`; this matrix accompanies that path's commit.
+fingerprint `002b0247c64e`: 6024/6024 mined symbols are fresh.  At this
+checkpoint proof-blueprint reports two uncommitted Lean paths,
+`PinnedSurplusBank.lean` and `U3ToU5Terminal.lean`; this matrix accompanies
+those paths' commit.
 Publication remains blocked by the five source declarations above, not by a
 stale graph.
 
@@ -58,7 +59,7 @@ diff in every affected file, and avoid any row owned by an active session.
 |---|---|---|---|---|
 | K-A-PAIR | OPEN-RESEARCH | `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` (`U1LargeCapRouteBTail.lean:2657`, hole `:2702`) | `false_of_center_p_t2_t20` through the liveData chain | The declaration is sorry-free and absent from `proof-blueprint symbols --with-sorry`. |
 | K-A-LIVE | OPEN-RESEARCH | `Problem97.u1_largeCap_routeB_tail_liveData_false` (`U1LargeCapRouteBTail.lean:3525`, 79 holes) | `u1_largeCap_routeB_tail_false` | All LIVE-* rows are DONE and the declaration leaves the spine-open list. |
-| K-B-PIN | OPEN-RESEARCH | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` (`PinnedSurplusBank.lean:265`, hole `:318`) | `isM44PinnedSurplusResidualsExcluded` | The `m = 5` path and both orientation-specific extra-critical-packet extractions are DONE; PIN-GENERAL must turn the extracted packet plus critical shell into `False`. |
+| K-B-PIN | OPEN-RESEARCH | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` (`PinnedSurplusBank.lean:471`, hole `:542`) | `isM44PinnedSurplusResidualsExcluded` | The `m = 5` path, exact critical-shell extraction, outside-triple label, bounded audit frame, and direct finite consumer are DONE; PIN-GENERAL must produce the exact rowwise confined-class proposition or a stronger contradiction. |
 | K-B-END | OPEN-PROOF | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:10055`, holes `:10082`, `:10104`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | END-L and END-R DONE; declaration leaves spine-open list. |
 | K-B-ERASE | OPEN-PROOF | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` (`Continuation.lean:107`, holes `:183`, `:211`, `:312`, `:337`) | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | ERASE-P4-U/S and ERASE-P2-R/L DONE; declaration leaves spine-open list. |
 
@@ -173,7 +174,7 @@ are not the default plan.
 | END-R | OPEN-PROOF | END-L reusable lemmas; right residual core data | Exact mirror theorem for `endpointMirrorLabelPoint`. | Replace Base hole 10104; K-B-END DONE when both sides land. |
 | PIN-R | DONE | Label-complete `S.surplusCap.card = 5`, right pinned geometry | Right half of `IsM44PinnedSurplusNonVExactShapeProducerStatement`: construct same-radius support classes and exact candidate masks. | Proved; `PinnedSurplusProducer` builds without `sorry`. |
 | PIN-L | DONE | PIN-R mirror lemmas and left label map | Left half in the label-complete regime. | Proved; full metric-shadow producer builds without `sorry`. |
-| PIN-GENERAL | OPEN-RESEARCH | `5 < S.surplusCap.card`; exact bank explicitly out of scope; `exists_pinnedRightExtraCriticalPacket` and `exists_pinnedLeftExtraCriticalPacket` DONE | Consume `CriticalShellSystem A` and the orientation-specific `U3LocalizedNoQFreePacket`/`U3FixedTriplePacket`, whose blocker center is proved distinct from the pinned apex. Current 135-leaf singleton bank still has uncovered finite-interface models at labelled-cardinality floors 2 and 3. | Prove a direct extra-critical-packet obstruction, or an independent confinement/certificate theorem implying it. Do not import U2/U5 or containment conclusions that depend on this residual. Remove the sole `PinnedSurplusBank.lean:318` `sorry`. |
+| PIN-GENERAL | OPEN-RESEARCH | `5 < S.surplusCap.card`; exact bank explicitly out of scope; both `exists_pinned*ExtraCriticalPacket` theorems DONE | Consume `CriticalShellSystem A`, the exact `CriticalSelectedFourClass` on `{y,t1,t2,t3}`, a triple label outside the pinned class, and the extracted `U3FixedTripleAuditFrame` `H`. Every audit center has a proved exact q-deleted-four/q-critical-three row dichotomy. The direct finite consumer `¬ H.RowwiseConfinedQDeletedClasses` is DONE for every such frame and bypasses U2/Mode A. Current 135-leaf singleton bank still has uncovered finite-interface models at labelled-cardinality floors 2 and 3. | Prove `H.RowwiseConfinedQDeletedClasses`: eliminate or promote every q-critical-three row, then prove bounded-support inclusion for each q-deleted four-class. A stronger direct audit-frame contradiction is also acceptable. Do not import U2/U5 or containment conclusions that depend on this residual. Remove `PinnedSurplusBank.lean:542`. |
 | ERASE-P4-U | OPEN-RESEARCH | Exact data already at Continuation lines 150-177 | Prove `False` for the direct surplus-opposite erased-pin triple, via row-confined classes + Mode A or a new sound direct cut. | Replace line 183. No ten-label claim may assume more than three surplus labels without an explicit extra-label bridge. |
 | ERASE-P4-S | OPEN-RESEARCH | Exact data at lines 184-205 | Prove the direct surplus-interior mirror/family contradiction. | Replace line 211. |
 | ERASE-P2-R | OPEN-PROOF, actively owned at audit | Side-specific right ordered scaffold types in Base lines 6055ff | Refactor away the false broad `hrightCandidate`; produce `ErasedPinRightFiniteCandidateOrderedScaffoldFacts` from the concrete ordered mask interface and feed `rightFiniteCandidateSepFacts_of_*`. | Replace line 312; side-specific theorem and Continuation build. |
@@ -200,7 +201,7 @@ through MC-CONSUMER; do not introduce off-spine sorries while exploring them.
 |---|---|---|
 | `DoubleApexOffSurplusSharedRadiusPair` | 2702 | 1 |
 | `u1_largeCap_routeB_tail_liveData_false` | LIVE-Q (24), LIVE-T1 (24), LIVE-T3 (24), terminal 5876, 5877, 5883, 5884, 5885, 5886, 5887 | 79 |
-| `isM44PinnedSurplusGeneralMResidualsExcluded` | 318 | 1 |
+| `isM44PinnedSurplusGeneralMResidualsExcluded` | 542 | 1 |
 | `isM44EndpointResidualsExcluded` | 10082, 10104 | 2 |
 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | 183, 211, 312, 337 | 4 |
 | **Total** | | **87** |

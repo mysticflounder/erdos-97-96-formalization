@@ -32,7 +32,16 @@ metric-shadow producers are now proved for `S.surplusCap.card = 5`; the total
 source-`sorry` count is unchanged by this split.  Both orientation-specific
 extra-critical-packet extraction theorems are now proved.  The one source term
 remains at the direct obstruction from those packets and a critical-shell
-system, rather than at the extraction boundary.
+system, rather than at the extraction boundary.  The extracted surface now
+includes the exact critical shell, a fixed-triple label outside the pinned
+class, and the full selected-candidate/two-auxiliary bounded audit frame.  The
+frame's centers have a proved q-deleted-four/q-critical-three dichotomy, but
+not bounded-support confinement.  The direct terminal consumer is now proved:
+`U3FixedTripleAuditFrame.false_of_rowwiseConfinedQDeletedClasses` turns exact
+rowwise confined classes into audited support and the finite contradiction,
+without U2 or Mode A.  The remaining finite-route risk is entirely producer
+side: q-critical rows must be eliminated or promoted, and each q-deleted class
+must be confined to the bounded support.
 
 ### P1: Blueprint anchor and status documentation are stale
 
@@ -66,8 +75,10 @@ nevertheless falsifies the claimed implication from the currently formalized
 finite constraints to singleton-leaf coverage.  General-m closure needs a
 four-label confinement/selection theorem, additional geometric constraints
 that eliminate these models, a direct obstruction from the newly extracted
-extra critical packet, or a broader verified certificate family.  Minimality
-does produce that packet, but does not itself reduce the configuration to
+audit frame, a proof of `H.RowwiseConfinedQDeletedClasses` resolving both its
+q-critical and confinement subobligations, or a broader verified certificate
+family.  Minimality does produce the frame and its finite consumer, but does
+not itself produce the rowwise proposition or reduce the configuration to
 `m = 5`.
 
 ### P1: Root-build coverage excludes active source

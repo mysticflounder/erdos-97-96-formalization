@@ -16,10 +16,10 @@ audit recheck 2026-07-09):
   mined graph; and
 - no off-spine source declaration contains `sorry`.
 
-Last fully mined kernel graph (build fingerprint `04729e61b704`):
+Last fully mined kernel graph (build fingerprint `002b0247c64e`):
 
-- `Problem97.erdos97_rhs`: 23/1676 project nodes open;
-- `Problem96.erdos96_rhs`: 27/1684 project nodes open;
+- `Problem97.erdos97_rhs`: 23/1827 project nodes open;
+- `Problem96.erdos96_rhs`: 27/1835 project nodes open;
 - both targets reach the same five source declarations containing `sorry`;
 - `sorryAx` appears as the synthetic unapproved kernel axiom reached through
   those declarations, not as a sixth source obligation.
@@ -28,7 +28,7 @@ Last fully mined kernel graph (build fingerprint `04729e61b704`):
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:265` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:471` | 1 | B |
 | 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10055` | 2 | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
@@ -38,11 +38,11 @@ prerequisites such as Census554 cover verification and final publication
 gates.
 
 **Reproducibility checkpoint.** The focused pinned-surplus build is green, and
-proof-blueprint reports build fingerprint `04729e61b704` with 6014/6014 mined
-symbols fresh.  It sees exactly one uncommitted Lean path,
-`PinnedSurplusBank.lean`; this plan accompanies that path's commit.  The five
-source declarations remain open, so this fresh mine is checkpoint evidence,
-not a passing publication gate.
+proof-blueprint reports build fingerprint `002b0247c64e` with 6024/6024 mined
+symbols fresh.  It sees two uncommitted Lean paths, `PinnedSurplusBank.lean`
+and `U3ToU5Terminal.lean`; this plan accompanies those paths' commit.  The
+five source declarations remain open, so this fresh mine is checkpoint
+evidence, not a passing publication gate.
 
 ## Execution contract
 
@@ -584,20 +584,46 @@ obligation.  The orientation-specific theorems
 surplus-interior point `y` outside the pinned four-class.  That class survives
 in the skeleton with `y` and its pinned apex erased.  Minimality then produces
 a `U3LocalizedNoQFreePacket D y p`, forces `p` to differ from the pinned apex,
-and supplies a `U3FixedTriplePacket D y p t1 t2 t3`.  The on-spine theorem also
-constructs `D.Minimal` and a `CriticalShellSystem A` before its sole `sorry`.
+and supplies a `U3FixedTriplePacket D y p t1 t2 t3`.  The packet now also
+contains the exact full `CriticalSelectedFourClass D.A y p` on
+`{y,t1,t2,t3}`.  The two-circle bound forces at least one of `t1,t2,t3`
+outside the pinned class.  Finally, `U3FixedTripleAuditFrame` supplies a
+selected candidate `u` and two further auxiliary points `a0,a1`, all with the
+required skeleton exclusions and all off the critical circle.  The on-spine
+theorem constructs `D.Minimal` and a `CriticalShellSystem A` before its sole
+`sorry`.  Each orientation extractor now returns a concrete frame and the
+proved terminal fact
+`∀ H : U3FixedTripleAuditFrame ..., ¬ H.RowwiseConfinedQDeletedClasses`.
+
+For every center in this bounded frame,
+`U3FixedTripleAuditFrame.auditCenters_qDeleted_or_qCritical` proves the exact
+row dichotomy: either an exact-cardinality-four q-deleted K4 class or an exact
+three-point q-critical class.  It deliberately does not assert that a
+q-deleted class is confined to the bounded support.
 
 This extraction does not reduce `m` or confine the additional surplus points
 to the existing ten labels.  The remaining theorem must derive `False` from
-the critical-shell system together with either orientation's extra critical
-packet.  A route through U2/U5 Mode A or non-surplus containment would be
-circular at this source site unless its required input is proved independently.
+the critical-shell system together with either orientation's exact critical
+packet and bounded audit frame.  The finite consumer is now complete:
+`U3FixedTripleAuditFrame.false_of_rowwiseConfinedQDeletedClasses` assembles
+`U5ConfinedK4AuditPayload`, converts it to audited support, and invokes the
+kernel-checked finite audit directly.  It uses neither `U2Statement` nor
+`U5ModeA`.  Its exact remaining producer is
+`H.RowwiseConfinedQDeletedClasses`: every one of the six audit centers must
+have an exact q-deleted four-class contained in `U5BoundedSupport`.
+
+Producing that proposition has two explicit subobligations.  First eliminate
+or promote the q-critical-three arm of the proved row dichotomy.  Second prove
+bounded-support confinement for each surviving q-deleted four-class.  A route
+through U2/U5 Mode A or non-surplus containment would be circular at this
+source site unless its required input is proved independently.
 
 Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
-prove a direct extra-critical-packet obstruction, or establish an independent
-confinement/certificate theorem strong enough to imply it.  Remove the sole
-`PinnedSurplusBank.lean:318` `sorry` and confirm the named general-m residual
-leaves the spine-open list.
+prove `H.RowwiseConfinedQDeletedClasses` for one extracted orientation frame,
+or prove a stronger direct audit-frame obstruction.  In the confinement route,
+both q-critical-row resolution and bounded-support inclusion are mandatory.
+Remove the sole `PinnedSurplusBank.lean:542` `sorry` and confirm the named
+general-m residual leaves the spine-open list.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 
