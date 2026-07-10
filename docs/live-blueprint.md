@@ -163,6 +163,6 @@ open obligations (6):
   - reaches sorry via 5 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (52 file(s), 1342 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (52 file(s), 1396 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

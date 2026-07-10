@@ -25,9 +25,10 @@ are kernel-`decide`d below against the Python ground truth
 
 The bank-independent lower-bound theorem
 `Census554.card_ge_eleven_of_twoLargeCaps` is compiled in
-`Census554/GeometryBridge.lean`. The labeling and `CubeOk` necessity bridge
-from geometric Front-A hypotheses remains open under matrix A11-GEO-LABEL
-through A11-GEO-CUBE; this file only fixes the decidable finite mirror.
+`Census554/GeometryBridge.lean`, together with the canonical card-11 labeling,
+selected geometric cube, realization transport, and complete `CubeOk`
+necessity bridge. This file fixes the decidable finite mirror consumed by that
+bridge.
 -/
 
 namespace Problem97
