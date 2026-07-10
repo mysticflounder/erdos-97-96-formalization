@@ -119,9 +119,9 @@ headline theorem.
 | 9339 | direct surplus-opposite `ErasedPinTriple` exclusion | BLOCKED — no producer (Mode-A probe, frontier doc 2026-07-08) |
 | 9367 | direct surplus-interior `ErasedPinTriple` exclusion | BLOCKED — same hole as 9339 |
 | 9406 | right ten-label hull `IsCcwConvexPolygon` | CLOSED in current source by the ordered/reflected producer refactor (P1) |
-| 9411 | right own-kind `OneSidedSeedCandidateRemainder` pair | mechanical-shaped {{NEEDS_PROOF}} (P2) |
+| 9411 | right own-kind `OneSidedSeedCandidateRemainder` pair | NOT a tactic gap: current helper is over-broad; needs producer-boundary refactor (P2) |
 | 9420 | left mirror hull CCW | CLOSED in current source by the ordered/reflected producer refactor (P1) |
-| 9424 | left mirror candidate remainders | same as 9411 (P2) |
+| 9424 | left mirror candidate remainders | mirror of 9411; same producer-boundary obstruction (P2) |
 
 Grounding facts, each independently checked 2026-07-08:
 
@@ -680,6 +680,19 @@ residual surface: they support the row/payload-boundary route above by making
 the payload obstruction rows available as ordinary count facts.  They do not
 prove the current broad `hrightCandidate`/`hleftCandidate` helpers, which still
 ask for arbitrary-label candidate membership at a shared radius.
+
+2026-07-09 producer-boundary audit: the tempting relaxed/support shortcut is
+not sufficient as stated.  The K4 hypothesis can produce four-point selected
+supports at a center, but those supports may use carrier points outside the
+ten labelled erased-pin packet.  The generated DFS masks count only labels, so
+an arbitrary K4 support does not yield `maskCard = 4` for the packet shadow.
+Likewise, the row exact-count hypotheses give exact selected-class shape only
+for the erased-pin/private center, not for every non-cap center in the current
+full selected-class scaffold.  Therefore P2 cannot be closed by adding relaxed
+row wrappers alone.  The source surface must be changed so candidate/relaxed
+shape is produced at a row-local packet where all labelled mask facts are
+explicitly available, or else a genuine mask-interface producer must be proved
+for the current full selected-class packet.
 
 **P3 — decision gate: run the CONJECTURED-tier joint-census appendix.**
 Cheapest experiment that can name the missing exclusion content for the
@@ -1583,6 +1596,49 @@ one of the general-`m` faithfulness/confinement theorems just listed.
   Lake-scheduler confidence check is worth the known generated-dependency
   fanout cost.
 
+  2026-07-09 compile-scaling update (supersedes the shard counts, row timings,
+  and feedback guidance above): the product-certificate data boundary has been
+  refactored around `EndpointCertificate.ComputedProductBlock`. A block now
+  stores only a generator index and bounded coefficient; Lean computes
+  `mulCanon coefficient (generators.getD index [])`. The reusable theorem
+  `evaluationZeros_of_computedProductBlocks` proves that all such products
+  evaluate to zero whenever the generator list does. The generated product
+  layer therefore no longer repeats expanded product polynomials or runs one
+  `native_decide` multiplication check per block. It uses one final
+  `native_decide` sum check per product certificate.
+
+  Coefficient definitions remain bounded at 100 terms, but are bundled up to
+  24 definitions or 200 KB per source module. The current `RelaxedSplit` tree
+  is 36 MB and 392 Lean files, with a largest file of 204276 bytes; it replaces
+  the earlier 2729-shard layout. The 135 row-zero proofs are split into 101
+  direct rows and 34 computed product rows. The stable payload interface now
+  lives in `RelaxedSplit.Payload`, and row-local metric interpretation lives in
+  `GeometryCore`; neither row-local layer imports the aggregate certificate
+  bank through `GeometryBridge`.
+
+  Validation after the migration:
+
+  - `lake-build Erdos9796Proof.P97.SurplusCertificate.RowZeros.Bank` passed in
+    10m48s while rebuilding the regenerated bank. The largest shared modules
+    were `RelaxedSplit.All` at 90s, `RelaxedSplit.Bank` at 158s, and
+    `ExactBridge` at 108s; the final row-bank coordinator took 6.5s.
+  - An immediate warm rebuild of the same full target passed in 2.4s.
+  - A subsequent foundational-interface invalidation, after removing the old
+    product-block compatibility API, passed in 13m25s. In that run
+    `RelaxedSplit.All` took 50s, `RelaxedSplit.Bank` took 164s,
+    `ExactBridge` took 116s, and the final row-bank coordinator took 7s. The
+    immediate no-op rebuild then passed in 2.7s.
+  - `RowZeros.Product.R006UeqvR006` passed in 28s on its regenerated row-local
+    path. The cached largest-row target
+    `RowZeros.Product.R013UeqvR013YYNYN` passed in 17s.
+  - `GeometryBridge` passes independently after the geometry split.
+
+  Current feedback guidance: use the row-local direct or product target while
+  editing a row and use `RowZeros.Bank` at checkpoints. No further certificate
+  sharding is currently justified; the remaining cold cost is concentrated in
+  the three shared aggregate modules named above, not in multi-minute row
+  coordinators.
+
   Proof-closure guidance for this checkpoint: once
   `RowZeros.false_of_shadowInBank_of_metricShadow` builds, the certificate side
   is no longer the main blocker for the exact `m = 5` route.  The fastest
@@ -1628,6 +1684,32 @@ one of the general-`m` faithfulness/confinement theorems just listed.
   finite pinned-fragment interface lemmas as the relevant Lean declarations.
   This matches the source audit above and gives no evidence that more
   certificate sharding is needed before attempting the on-spine proof wiring.
+
+  2026-07-09 `EndpointCertificate.Patterns` refactor checkpoint: the twelve
+  product-sum endpoint rows (`ep_Q1_008`, `ep_Q1_009`, `ep_Q1_028`,
+  `ep_Q2_002`, `ep_Q2_008`, `ep_Q2_019`, `ep_Q2_020`, `ep_Q2_024`,
+  `ep_Q2_041`, `ep_Q2_054`, `ep_Q2_064`, and `ep_Q2_074`) now use
+  `EndpointCertificate.ComputedProductBlock`.  The reusable
+  `evaluationZeros_of_computedProductBlocks` theorem replaces the old
+  per-product expanded-polynomial and per-block `native_decide` layer.  Each
+  row keeps one final computed product-sum check; coefficient blocks are at
+  most 100 terms and generated modules bundle at most 24 blocks or 200 KB.
+
+  The old 1218 endpoint term-shard modules, including their 104088 per-term
+  `native_decide` occurrences, were removed from live Lean and moved to
+  `attic/surplus-certificate-legacy-2026-07-09/EndpointCertificate`.  The live
+  endpoint tree is now 23 MB: 18 MB in 219 pattern modules and 344 KB in the
+  13 product row-zero modules; the largest generated source file is 204622
+  bytes.  Direct endpoint rows and the other agent's `MultiCenter` work were
+  left unchanged.
+
+  Validation passed for `Patterns.EpQ1008`,
+  `RowZeros.Product.EpQ1008`, `RowZeros.Product.Bank`, and
+  `EndpointCertificate.ResidualSoundness`.  The changed row-zero-bank replay
+  used 8375 jobs and the residual-soundness replay used 8592 jobs.  The
+  certificate layer is therefore no longer the immediate compile-scaling
+  blocker for the pinned-surplus producer; return to the on-spine metric-shadow
+  obligation after the warm bank check.
 
   July 9 execution plan for the current producer residual:
   `RemovableVertexAxiom.lean` is being split so
@@ -3475,3 +3557,30 @@ two non-surplus opposite vertices.  The current P4 centers are
 directly apply.  P4 still needs a surplus-index U5 localized payload cut:
 `U5ModeA` plus same-circle/confined/audited support, or a new direct
 surplus-index contradiction.
+
+2026-07-09 active-leaf execution checkpoint:
+the current source still has exactly four local holes in
+`RemovableVertexAxiom/Continuation.lean`: P4 at lines 183 and 211, and P2 at
+lines 312 and 337.  A targeted
+`lake-build Erdos9796Proof.P97.RemovableVertexAxiom.Continuation` was started
+from this source but was stopped manually during generated certificate replay
+at about `14321/20092` modules; no Lean error had surfaced.  The stop was to
+avoid waiting on another full row-zero replay before making the next proof edit.
+
+This pass rechecked the tempting terminal-only relaxed-shape route against the
+current row pipeline.  The terminal relaxed consumers
+`false_of_right_row2101_finiteRelaxedShapeFacts` and
+`false_of_left_row2110_finiteRelaxedShapeFacts` are useful but do not remove
+P2 by themselves: the left-right and same-side-heavy row consumers still pass
+through `Right/LeftOneSidedErasedPayloadFiniteCandidateFacts`, and some of
+those generated rows still consume non-fixed `candidateMasks` membership
+directly.  Replacing only the two terminal rows would leave the same broad
+candidate-remainder helpers for the remaining rows.
+
+The next executable P2 step is therefore unchanged but sharper: build the
+ordered-row exact-shape/support-to-label producer at the point where the
+row-specific payload and exact masks are available.  The broad
+`hrightCandidate`/`hleftCandidate` helpers should not be proved in place; they
+ask for generated candidate membership for arbitrary selected classes at the
+shared radius `dist p x`, before the row-specific support/confinement facts
+exist.

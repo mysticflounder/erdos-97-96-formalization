@@ -1,5 +1,5 @@
 active anchors (4):
-  ⚓ 019f300c (YOU)  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [open]  — Working the free non-surplus erased-pin P2/P4 residual leaf
+  ⚓ 019f300c  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [open]  — Working the free non-surplus erased-pin P2/P4 residual leaf
   ⚓ 019f38a3  Problem97.isM44PinnedSurplusResidualsExcluded  [open]  — Switching from DoubleApex/card-11 census to pinned surplus residual per Adam request
   ⚓ f1cc942b  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]
   ⚓ f46fdf3f  Problem97.largeK4SurplusCapPacket  [closed]
@@ -13,7 +13,7 @@ spine rooted at: Problem97.erdos97_rhs
 approved axioms: core + Lean.trustCompiler
 open: 24/1672 node(s)
 trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 62043 line(s) of lean across 1680 decl(s)
+spine source: 62046 line(s) of lean across 1680 decl(s)
 
 open obligations (6):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
@@ -45,7 +45,7 @@ open obligations (6):
         │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
         │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
         │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
-        │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]  ⚓ (YOU)
+        │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]
         │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   └── ✓ 74 closed dep(s)
         │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
@@ -89,7 +89,7 @@ spine rooted at: Problem96.erdos96_rhs
 approved axioms: core + Lean.trustCompiler
 open: 28/1680 node(s)
 trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 62236 line(s) of lean across 1688 decl(s)
+spine source: 62239 line(s) of lean across 1688 decl(s)
 
 open obligations (6):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
@@ -125,7 +125,7 @@ open obligations (6):
             │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
             │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
             │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
-            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]  ⚓ (YOU)
+            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]
             │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 74 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
@@ -164,6 +164,6 @@ open obligations (6):
   - reaches sorry via 5 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (512 file(s), 1678 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (52 file(s), 1333 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open
