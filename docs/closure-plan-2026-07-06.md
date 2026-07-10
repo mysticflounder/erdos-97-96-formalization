@@ -101,24 +101,10 @@ house placeholder pattern (`abbrev …Statement` + sorry-backed theorem).
 Proposed name: `isM44PinnedSurplusGeneralMResidualsExcluded`. The wiring
 commit must state the m-range each proved component covers.
 
-Current source checkpoint: the active split is narrower than the older proposed
-general-m residual name.  `isM44PinnedSurplusResidualsExcluded` is being wired
-as a checked row-zero consumer of a named
-`isM44PinnedSurplusMetricShadowProducer`; the remaining producer must output
-the valid pinned fragment plus `EndpointMetricShadow` data for the induced
-right/left ten-label shadows.  The detailed execution recipe lives in
-`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md` and is now
-organized around four non-circular subgoals: recover the surplus-side witness
-from the pinned residual surface, recover or thread `0 < radius`, choose the
-opposite pair and surplus triple, and prove the finite candidate/search plus
-same-radius metric-shadow interfaces without using downstream
-`S.NonSurplusMoserCapContainment`.  The first explicit gate is the pair of
-side-membership helpers
-`pinnedRightSurplusResidual_mem_right_surplus` /
-`pinnedLeftSurplusResidual_mem_left_surplus`; if those are not implied by the
-current pinned residual payload, the producer interface should be refactored to
-thread `hxSurplus` (and likely `hradius`) from the upstream strict-escape
-producers rather than adding another wrapper.
+Current source checkpoint: the `m = 5` exact-shape, metric-shadow, and row-zero
+path is fully proved.  The sole remaining source leaf is the proposed named
+residual, `isM44PinnedSurplusGeneralMResidualsExcluded`, stated for
+`5 < S.surplusCap.card` in `PinnedSurplusBank.lean`.
 
 Build-speed checkpoint: `RemovableVertexAxiom.lean` is now a thin coordinator.
 The stable declarations live in
@@ -168,12 +154,24 @@ regime obligation as
 `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded`, with hypothesis
 `5 < S.surplusCap.card`.
 
+Checkpoint 2026-07-09: the first general-`m` reduction is proved on both
+orientations.  `exists_pinnedRightExtraCriticalPacket` and
+`exists_pinnedLeftExtraCriticalPacket` select an extra surplus-interior point
+outside the pinned four-class, prove that class survives the required erasures,
+and use minimality to produce a `U3LocalizedNoQFreePacket` and
+`U3FixedTriplePacket` at a blocker center distinct from the pinned apex.  The
+on-spine theorem also derives `CriticalShellSystem A`.  Its remaining hole is
+therefore the direct obstruction from those data, not packet extraction or an
+`m = 5` reduction.  U2/U5 Mode A and non-surplus containment are unavailable
+unless established independently, because their existing route is downstream
+of this residual.
+
 Uncertainty: HIGH for general m.  A valid closure now needs one of: a genuine
-four-label confinement/selection theorem, stronger geometric constraints that
-exclude every recorded floor-2/floor-3 countermodel, or a broader certificate
-family whose finite coverage is verified on the weaker interface.  A DFS over
-the existing 135 exact completions is not a completeness proof for general-m
-submasks.
+extra-critical-packet obstruction, a four-label confinement/selection theorem,
+stronger geometric constraints that exclude every recorded floor-2/floor-3
+countermodel, or a broader certificate family whose finite coverage is
+verified on the weaker interface.  A DFS over the existing 135 exact
+completions is not a completeness proof for general-m submasks.
 
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 

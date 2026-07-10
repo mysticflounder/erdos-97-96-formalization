@@ -16,10 +16,10 @@ audit recheck 2026-07-09):
   mined graph; and
 - no off-spine source declaration contains `sorry`.
 
-Last fully mined kernel graph (build fingerprint `f241809581e3`):
+Last fully mined kernel graph (build fingerprint `04729e61b704`):
 
-- `Problem97.erdos97_rhs`: 24/1672 project nodes open;
-- `Problem96.erdos96_rhs`: 28/1680 project nodes open;
+- `Problem97.erdos97_rhs`: 23/1676 project nodes open;
+- `Problem96.erdos96_rhs`: 27/1684 project nodes open;
 - both targets reach the same five source declarations containing `sorry`;
 - `sorryAx` appears as the synthetic unapproved kernel axiom reached through
   those declarations, not as a sixth source obligation.
@@ -28,7 +28,7 @@ Last fully mined kernel graph (build fingerprint `f241809581e3`):
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:25` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:265` | 1 | B |
 | 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10055` | 2 | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
@@ -37,16 +37,12 @@ decomposes them into producer families and also records non-`sorry`
 prerequisites such as Census554 cover verification and final publication
 gates.
 
-**Reproducibility caveat.** At the final audit recheck proof-blueprint reported
-12,416 uncommitted Lean paths, mostly a concurrent generated-certificate
-rewrite. A direct git inventory additionally found 12,115 untracked Lean
-replacement files, for 24,170 changed Lean paths in all. These counts are
-volatile. The current build fingerprint is `5279f6474dd6`, with 0/5787 mined
-symbols fresh; the source-current list of five declarations is exact, but the
-24/1672 and 28/1680 node counts come from the cached graph at
-`f241809581e3`. The full build is not reproducible from git until the generated
-tree is adjudicated and committed. Do not run a publication gate against a
-mixed snapshot and report it as release evidence.
+**Reproducibility checkpoint.** The focused pinned-surplus build is green, and
+proof-blueprint reports build fingerprint `04729e61b704` with 6014/6014 mined
+symbols fresh.  It sees exactly one uncommitted Lean path,
+`PinnedSurplusBank.lean`; this plan accompanies that path's commit.  The five
+source declarations remain open, so this fresh mine is checkpoint evidence,
+not a passing publication gate.
 
 ## Execution contract
 
@@ -581,12 +577,27 @@ available leaves in every one of the 15 fixed `.v/.w` rows at nonfixed
 labelled-cardinality floors 2 and 3, even with cyclic cross-separation and the
 global point-pair class-count bound.  Coverage returns only at floor 4.
 
+The first larger-regime reduction is now proved, without adding a second
+obligation.  The orientation-specific theorems
+`CounterexampleData.exists_pinnedRightExtraCriticalPacket` and
+`CounterexampleData.exists_pinnedLeftExtraCriticalPacket` choose an additional
+surplus-interior point `y` outside the pinned four-class.  That class survives
+in the skeleton with `y` and its pinned apex erased.  Minimality then produces
+a `U3LocalizedNoQFreePacket D y p`, forces `p` to differ from the pinned apex,
+and supplies a `U3FixedTriplePacket D y p t1 t2 t3`.  The on-spine theorem also
+constructs `D.Minimal` and a `CriticalShellSystem A` before its sole `sorry`.
+
+This extraction does not reduce `m` or confine the additional surplus points
+to the existing ten labels.  The remaining theorem must derive `False` from
+the critical-shell system together with either orientation's extra critical
+packet.  A route through U2/U5 Mode A or non-surplus containment would be
+circular at this source site unless its required input is proved independently.
+
 Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
-prove the direct larger-regime exclusion using a genuine four-label
-confinement/selection theorem, stronger geometry that eliminates every
-recorded countermodel, or a broader certificate family with a verified finite
-coverage theorem.  Remove the sole `PinnedSurplusBank.lean` `sorry` and confirm
-the named general-m residual leaves the spine-open list.
+prove a direct extra-critical-packet obstruction, or establish an independent
+confinement/certificate theorem strong enough to imply it.  Remove the sole
+`PinnedSurplusBank.lean:318` `sorry` and confirm the named general-m residual
+leaves the spine-open list.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 

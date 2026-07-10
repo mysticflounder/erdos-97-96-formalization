@@ -29,7 +29,10 @@ Resolution update, 2026-07-09: the pinned-surplus source term has moved from
 `isM44PinnedSurplusGeneralMResidualsExcluded` in
 `RemovableVertexAxiom/PinnedSurplusBank.lean`.  The exact-shape and
 metric-shadow producers are now proved for `S.surplusCap.card = 5`; the total
-source-`sorry` count is unchanged by this split.
+source-`sorry` count is unchanged by this split.  Both orientation-specific
+extra-critical-packet extraction theorems are now proved.  The one source term
+remains at the direct obstruction from those packets and a critical-shell
+system, rather than at the extraction boundary.
 
 ### P1: Blueprint anchor and status documentation are stale
 
@@ -62,7 +65,10 @@ This is a finite-interface countermodel, not a geometric realization.  It
 nevertheless falsifies the claimed implication from the currently formalized
 finite constraints to singleton-leaf coverage.  General-m closure needs a
 four-label confinement/selection theorem, additional geometric constraints
-that eliminate these models, or a broader verified certificate family.
+that eliminate these models, a direct obstruction from the newly extracted
+extra critical packet, or a broader verified certificate family.  Minimality
+does produce that packet, but does not itself reduce the configuration to
+`m = 5`.
 
 ### P1: Root-build coverage excludes active source
 
