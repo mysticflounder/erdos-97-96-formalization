@@ -44,3 +44,6 @@ __pycache__/
 /scratch/census-554/bank.jsonl.lock
 /scratch/census-554/retry_certified_pending.json
 .blueprint.db
+/census/multi_center/frontier_cache/
+/census/multi_center/*.log
+/scratch/census-554/driver.lock

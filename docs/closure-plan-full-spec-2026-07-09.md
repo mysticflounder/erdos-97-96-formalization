@@ -260,6 +260,15 @@ corresponding closure-matrix gate, not by prose completion claims.
    this sharpens the heavy-tail residual: re-mine smaller certificates for
    those patterns or redesign the checker's `normalize` (quadratic
    insert-merge) before replay.
+   **`normalize` redesign DONE 2026-07-09**: `SPoly.normalize` is now
+   sort-merge (`Mon.canon` map → `List.mergeSort` by monomial → linear
+   adjacent-merge `mergeAdj`), eval-soundness reproven via
+   `List.mergeSort_perm` + permutation-invariance of the evaluation sum,
+   core axioms only; all 21 committed Bank modules replay unchanged.
+   Measured on the largest committed module (Pat05043, 7.3 MB): 381 s →
+   343 s wall (−10%) — literal elaboration dominates at this size, so the
+   checker fix alone does NOT rescue the >16 MB tail; re-mining/splitting
+   remains the named residual there.
 
    The committed generator now puts batch output in a disjoint namespace,
    emits the standard Lean file header, and no longer leaves the duplicate

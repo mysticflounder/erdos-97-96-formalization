@@ -3,6 +3,7 @@ Copyright (c) 2026 Adam McKenna. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
+import Mathlib.Algebra.BigOperators.Group.List.Basic
 import Mathlib.Data.Real.Basic
 import Mathlib.Data.Rat.Cast.Defs
 import Mathlib.Tactic.Ring
@@ -26,11 +27,14 @@ certificate data, no I/O.
   lists with duplicates allowed, evaluated over ℝ via `Mon.eval` / `SPoly.eval`.
 * `SPoly.add` / `SPoly.neg` / `SPoly.mul` / `SPoly.const` — non-normalizing
   arithmetic, each with its evaluation lemma (`SPoly.eval_add`, …).
-* `SPoly.normalize` — computable canonicalization by fold-based insert-merge:
-  each monomial is canonicalized (`Mon.canon`: sorted by variable index, equal
-  variables merged by adding exponents, zero exponents dropped), then terms are
-  inserted into an accumulator, merging equal canonical monomials by adding
-  coefficients and dropping zero coefficients.
+* `SPoly.normalize` — computable canonicalization by sort-merge: each monomial
+  is canonicalized (`Mon.canon`: sorted by variable index, equal variables
+  merged by adding exponents, zero exponents dropped), the term list is sorted
+  by monomial (`List.mergeSort` under the Bool comparator `monLe`), and a
+  single linear pass (`mergeAdj`) merges adjacent equal canonical monomials by
+  adding coefficients and drops zero coefficients.  Soundness needs no order
+  laws for `monLe`: `mergeSort` is a permutation (`List.mergeSort_perm`) and
+  evaluation is permutation-invariant (`List.Perm.sum_eq`).
 * `SPoly.eval_normalize` and the certificate-checking payoff
   `SPoly.eval_eq_zero_of_normalize_eq_nil`: a polynomial whose normal form is
   the empty term list evaluates to zero at every assignment.  Only this
@@ -203,57 +207,83 @@ theorem eval_const (ρ : Nat → ℝ) (c : ℚ) :
     (SPoly.const c).eval ρ = (c : ℝ) := by
   simp [SPoly.const]
 
-/-- Insert a term (canonical monomial `m`, coefficient `c`) into a term list:
-merge onto an equal monomial by adding coefficients, dropping the term when the
-(possibly merged) coefficient is zero. -/
-def insertTerm (m : Mon) (c : ℚ) : SPoly → SPoly
-  | [] => if c = 0 then [] else [(m, c)]
-  | (m', c') :: rest =>
-    if m = m' then
-      if c + c' = 0 then rest else (m, c + c') :: rest
-    else
-      (m', c') :: insertTerm m c rest
+/-- Bool-valued lexicographic comparator on exponent pairs (variable index
+first, then exponent). -/
+def pairLe (a b : Nat × Nat) : Bool :=
+  a.1 < b.1 || (a.1 == b.1 && a.2 ≤ b.2)
 
-/-- `insertTerm` is evaluation-sound: it adds `(c : ℝ) * Mon.eval ρ m` to the
-polynomial value. -/
-theorem eval_insertTerm (ρ : Nat → ℝ) (m : Mon) (c : ℚ) (p : SPoly) :
-    SPoly.eval ρ (insertTerm m c p) = (c : ℝ) * Mon.eval ρ m + SPoly.eval ρ p := by
+/-- Bool-valued lexicographic comparator on monomials, used only to bring
+equal canonical monomials adjacent before the linear merge pass.  No order
+laws are needed for soundness: `eval_normalize` relies only on `mergeSort`
+being a permutation. -/
+def monLe : Mon → Mon → Bool
+  | [], _ => true
+  | _ :: _, [] => false
+  | a :: as, b :: bs => if a = b then monLe as bs else pairLe a b
+
+/-- Single linear pass over a term list: merge runs of adjacent equal
+monomials by adding coefficients, dropping zero coefficients.  On a list
+sorted by monomial this merges every group of equal canonical monomials. -/
+def mergeAdj : SPoly → SPoly
+  | [] => []
+  | [(m, c)] => if c = 0 then [] else [(m, c)]
+  | (m₁, c₁) :: (m₂, c₂) :: rest =>
+    if m₁ = m₂ then mergeAdj ((m₁, c₁ + c₂) :: rest)
+    else if c₁ = 0 then mergeAdj ((m₂, c₂) :: rest)
+    else (m₁, c₁) :: mergeAdj ((m₂, c₂) :: rest)
+  termination_by p => p.length
+  decreasing_by all_goals simp
+
+/-- `mergeAdj` is evaluation-sound. -/
+theorem eval_mergeAdj (ρ : Nat → ℝ) (p : SPoly) :
+    SPoly.eval ρ (mergeAdj p) = SPoly.eval ρ p := by
+  induction p using mergeAdj.induct with
+  | case1 => simp [mergeAdj]
+  | case2 m => simp [mergeAdj]
+  | case3 m c hc => simp [mergeAdj, hc]
+  | case4 c₁ m₂ c₂ rest ih =>
+    have hstep : mergeAdj ((m₂, c₁) :: (m₂, c₂) :: rest)
+        = mergeAdj ((m₂, c₁ + c₂) :: rest) := by simp [mergeAdj]
+    rw [hstep, ih, eval_cons, eval_cons, eval_cons]
+    push_cast
+    ring
+  | case5 m₁ m₂ c₂ rest hne ih =>
+    have hstep : mergeAdj ((m₁, 0) :: (m₂, c₂) :: rest)
+        = mergeAdj ((m₂, c₂) :: rest) := by simp [mergeAdj, hne]
+    rw [hstep, ih]
+    simp [eval_cons]
+  | case6 m₁ c₁ m₂ c₂ rest hne hz ih =>
+    have hstep : mergeAdj ((m₁, c₁) :: (m₂, c₂) :: rest)
+        = (m₁, c₁) :: mergeAdj ((m₂, c₂) :: rest) := by simp [mergeAdj, hne, hz]
+    rw [hstep]
+    simp only [eval_cons, ih]
+
+/-- Evaluation is invariant under permutation of the term list. -/
+theorem eval_of_perm (ρ : Nat → ℝ) {p q : SPoly} (h : p.Perm q) :
+    SPoly.eval ρ p = SPoly.eval ρ q :=
+  List.Perm.sum_eq (h.map _)
+
+/-- Canonicalizing every monomial is evaluation-sound. -/
+theorem eval_canonTerms (ρ : Nat → ℝ) (p : SPoly) :
+    SPoly.eval ρ (p.map fun t => (Mon.canon t.1, t.2)) = SPoly.eval ρ p := by
   induction p with
-  | nil => by_cases hc : c = 0 <;> simp [insertTerm, hc]
-  | cons t rest ih =>
-    obtain ⟨m', c'⟩ := t
-    by_cases hm : m = m'
-    · subst hm
-      by_cases hz : c + c' = 0
-      · have hc : (c : ℝ) + (c' : ℝ) = 0 := by exact_mod_cast congrArg (Rat.cast : ℚ → ℝ) hz
-        have hstep : insertTerm m c ((m, c') :: rest) = rest := by simp [insertTerm, hz]
-        rw [hstep, eval_cons, eq_neg_of_add_eq_zero_right hc]
-        ring
-      · have hstep : insertTerm m c ((m, c') :: rest) = (m, c + c') :: rest := by
-          simp [insertTerm, hz]
-        rw [hstep, eval_cons, eval_cons]
-        push_cast
-        ring
-    · have hstep : insertTerm m c ((m', c') :: rest) = (m', c') :: insertTerm m c rest := by
-        simp [insertTerm, hm]
-      rw [hstep, eval_cons, eval_cons, ih]
-      ring
+  | nil => rfl
+  | cons t rest ih => simp [eval_cons, Mon.eval_canon, ih]
 
-/-- Computable canonicalization: canonicalize each monomial with `Mon.canon`,
-then insert-merge every term into an accumulator with `insertTerm`, so equal
-canonical monomials are merged by adding coefficients and zero coefficients are
-dropped. -/
+/-- Computable canonicalization by sort-merge: canonicalize each monomial with
+`Mon.canon`, sort the term list by monomial, then merge adjacent equal
+canonical monomials with `mergeAdj` (adding coefficients, dropping zeros).
+Replaces the earlier quadratic fold-based insert-merge; `O(T log T)` list
+operations instead of `O(T²)`. -/
 def normalize (p : SPoly) : SPoly :=
-  p.foldr (fun t acc => insertTerm (Mon.canon t.1) t.2 acc) []
+  mergeAdj ((p.map fun t => (Mon.canon t.1, t.2)).mergeSort
+    fun s t => monLe s.1 t.1)
 
 /-- `SPoly.normalize` is evaluation-sound. -/
 theorem eval_normalize (ρ : Nat → ℝ) (p : SPoly) :
     p.normalize.eval ρ = p.eval ρ := by
-  induction p with
-  | nil => rfl
-  | cons t rest ih =>
-    change SPoly.eval ρ (insertTerm (Mon.canon t.1) t.2 (normalize rest)) = _
-    rw [eval_insertTerm, Mon.eval_canon, ih, eval_cons]
+  unfold normalize
+  rw [eval_mergeAdj, eval_of_perm ρ (List.mergeSort_perm _ _), eval_canonTerms]
 
 /-- The certificate-checking payoff: a polynomial that normalizes to nil
 evaluates to zero everywhere. -/
