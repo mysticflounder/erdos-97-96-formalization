@@ -16,6 +16,7 @@ configuration.
 - Lean modules: 155
 - Lake-root/import-reachable modules: 118
 - Theorems and lemmas: 3,257
+- Source declarations containing `sorry`/`admit`: 0
 - General-n/local-uniform candidates: 285
 - Exact-name matches already here: 0
 - Statement-shape matches already here: 0
@@ -23,6 +24,25 @@ configuration.
 - Novel source-proved candidates: 285
 - Novel contradiction consumers: 39
 - Deduplicated candidate shapes: 233
+
+The candidate count is a syntactic portability shortlist, not a claim
+that all 285 declarations are useful general-n theorems.
+In particular,
+the scalar rows are fixed polynomial/cell certificates whose types do not
+mention ambient cardinality. No public candidate is quantified by an
+ambient `n`; the reusable geometry is bounded-local and therefore
+cardinality-independent rather than an all-`n` classification theorem.
+
+## Candidate Categories
+
+| Category | Public declarations |
+|---|---:|
+| `ambient-n` | 0 |
+| `ambient-set-uniform` | 4 |
+| `checker-soundness-uniform` | 0 |
+| `metric-point-uniform` | 98 |
+| `scalar-algebra-uniform` | 183 |
+| `type-uniform-utility` | 0 |
 
 ## Families
 
@@ -85,4 +105,6 @@ configuration.
 
 The JSON companion contains every candidate statement, normalized
 shape, source path, proof-status classification, and current-repo
-name/shape match.
+name/shape match. The source enumeration and syntactic categories are
+exhaustive for local `.lean` files outside `.lake`; semantic equivalence
+and proof usefulness are not decided by this census.

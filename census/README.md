@@ -21,6 +21,11 @@ used to live under `scratch/` and `scripts/`.
 - `card_head/` contains the arithmetic-only labeled profile specification for
   a possible card-12--14 head census. It intentionally includes no conjectured
   geometric cuts.
+- `global_confinement/` contains the general-`m` pinned-surplus incidence
+  probes. They separate q-critical row compatibility, simultaneous q-deleted
+  survival, and eight-point confinement; cover every ordered surplus placement
+  at `n = 11,12`; and add a source-indexed no-q-free critical-shell shadow,
+  while keeping SAT explicitly weaker than Euclidean realizability.
 
 ## Multi-center checkpoint (2026-07-09)
 
@@ -39,10 +44,14 @@ uv run python census/multi_center/smoke.py
 uv run python census/multi_center/multi_center_census.py local-summary --n-min 12 --n-max 14 --out census/multi_center/local_summary_n12_14.json
 uv run python census/multi_center/multi_center_census.py global-profile --profile 4,5,6 --layer L2 --tier proven --summary-only --out census/multi_center/global_profile_456_l2_summary.json
 uv run python -m census.card_head.profiles --n-min 12 --n-max 14
+uv run python -m census.global_confinement.probe --n-min 11 --n-max 12 --workers 8 --out census/global_confinement/results_n11_12.json --markdown census/global_confinement/results_n11_12.md
+uv run python -m census.global_confinement.placement_scan --n-min 11 --n-max 12 --workers 8 --out census/global_confinement/placement_results_n11_12.json --markdown census/global_confinement/placement_results_n11_12.md
+uv run python -m census.global_confinement.critical_shell_probe --n-min 11 --n-max 12 --all-placements --per-type 1 --workers 8 --max-nodes 300000 --out census/global_confinement/critical_shell_results_all_placements_n11_12.json --markdown census/global_confinement/critical_shell_results_all_placements_n11_12.md
 uv run python -m census.census_554.cover_probe_smoke
 uv run python -m census.census_554.verify_completion --root scratch/census-554
 uv run python -m unittest discover -s census/census_554/tests -t . -v
 uv run python -m unittest discover -s census/card_head/tests -t . -v
+uv run python -m unittest discover -s census/global_confinement/tests -t . -v
 ```
 
 When running in a restricted sandbox, set `UV_CACHE_DIR=.uv-cache` so
