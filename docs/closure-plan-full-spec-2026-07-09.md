@@ -51,7 +51,10 @@ profile, conditional on exactly two discharge obligations:
 2. **Motif-transfer lemma** — deadness of an equidistance pattern is invariant
    under relabeling + similarity (gauge moves points 0,1 to (0,0),(1,0)).
    Empirically validated 135/135 (scratch/census-554/motif_transfer.log).
-   {{NEEDS_PROOF}} as a Lean lemma; see A.3 step 4.
+   **PROVEN in Lean 2026-07-09** — `Problem97.Census554.motif_transfer`,
+   sorry-free, core axioms (see A.2 step 4). Obligation 2 is DISCHARGED;
+   obligation 1 is the A.2 step-2 replay (checker built and validated
+   end-to-end; data pipeline in progress).
 
 Stop conditions that would revise this section: a frontier cube with no
 minimal dead pattern (a genuinely ALIVE cube ⇒ the census finds a candidate
@@ -312,10 +315,12 @@ bounded work):**
 **Bounded, well-specified queue (each item = 1–3 focused sessions unless
 marked):**
 
-- A.2 steps 1–5: Lean finite-space defs, certificate checker, cover check
+- A.2 steps 1–5 (progress 2026-07-09: step 1 mirror DONE, step 2 math core
+  DONE + end-to-end validated, step 4 DONE — see A.2): remaining are the
+  step-2 data pipeline + heavy-tail shrink, step 3 cover check
   ({{NEEDS_RESEARCH}} on enumeration feasibility — may be several
-  sessions), motif-transfer lemma, card-11/card-≥12 split wiring (does not
-  exist yet — A.2b).
+  sessions), and step-5 card-11/card-≥12 split wiring (does not exist
+  yet — A.2b).
 - B.1 T2 persistence lemma, then T1 quantitative cap (Phase 3a/3b split per
   audit b7431da).
 - B.2 P3: write the erased-pin row-to-class mapping, run the
