@@ -1,7 +1,7 @@
 # census-554 working state (2026-07-06, session checkpoint)
 
-Task: (5,5,4) exhaustive census for DoubleApex obligation per
-docs/closure-plan-2026-07-06.md §5 (|A|=11 slice). NO git ops; NO Lean edits.
+Task: (5,5,4) exhaustive census for the DoubleApex obligation, retained in the
+current closure plan's card-11 slice. NO git ops; NO Lean edits.
 Deliverables into scratch/census-554/: scripts, smoke log, census results
 (verdicts + certificate payloads), report.md.
 

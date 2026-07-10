@@ -57,7 +57,7 @@ The `report.md` write is blocked by a harness guard (subagent file-report restri
 
 ## 1. What was investigated
 
-Exhaustive census of constrained equidistance-class cubes for the `DoubleApexOffSurplusSharedRadiusPair` leaf (`U1LargeCapRouteBTail.lean:2383`) at |A|=11, per `docs/closure-plan-2026-07-06.md` §5, continuing the checkpointed pipeline from `scratch/census-554/STATE.md`. This session: applied the two planned cegar upgrades, diagnosed the slow-iteration path, sanity-gated, ran the long CEGAR run, and verified the full bank.
+Exhaustive census of constrained equidistance-class cubes for the `DoubleApexOffSurplusSharedRadiusPair` leaf (`U1LargeCapRouteBTail.lean:2383`) at |A|=11, retained in the current closure plan's card-11 route and continuing the checkpointed pipeline from `scratch/census-554/STATE.md`. This session: applied the two planned cegar upgrades, diagnosed the slow-iteration path, sanity-gated, ran the long CEGAR run, and verified the full bank.
 
 ## 2. Setup (self-contained)
 

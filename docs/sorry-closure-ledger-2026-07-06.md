@@ -6,11 +6,12 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Full-tree sorry closure ledger (2026-07-06)
 
-Companion to [`closure-plan-2026-07-06.md`](closure-plan-2026-07-06.md) (the
-master closure plan). The master plan owns cross-cutting strategy per
-obligation; this ledger enumerates **every `sorry` in the source tree** —
+Historical companion to the archived 2026-07-06 master plan. Current dispatch
+uses [`closure-plan-full-spec-2026-07-09.md`](closure-plan-full-spec-2026-07-09.md)
+and [`closure-matrix-2026-07-09.md`](closure-matrix-2026-07-09.md). This ledger
+enumerates **every `sorry` in the source tree** at its dated snapshot —
 on-spine, off-spine, and in-proof — with a closure route and acceptance test
-for each. Nothing in the tree is outside this ledger.
+for each.
 
 ## 0. Inventory method and snapshot caveat
 

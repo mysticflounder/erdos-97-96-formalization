@@ -1,6 +1,7 @@
 # D2 — invariant separation test (|A|=12 census dead cores vs realizable controls)
 
-Date: 2026-07-06. Workstream D2 per `docs/closure-plan-2026-07-06.md` §7, invariant
+Date: 2026-07-06. Workstream D2 per the archived 2026-07-06 closure plan
+(`archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md` §7), invariant
 menu from `docs/d1-rigidity-literature-scan-2026-07-06.md` §5 (leads 2, 3) and the
 task spec. All computation in `scratch/u12-census-port/d2-separation/`.
 

@@ -91,8 +91,8 @@ Read formulation.md, then kill_notes.md, then this file.
        PASS. Note: cube-level cap LABELS in those witnesses do not
        carry chord geometry (labeled triangles can be off-MEC); a
        label-level check false-alarms — the gate must be geometric.
-10. [x] report.md written; verdict folded into plan §7 D3 narrative +
-       U4 ledger row (docs/closure-plan-2026-07-06.md). PROBE COMPLETE.
+10. [x] report.md written; verdict folded into the current closure plan's
+       A.3/Candidate-D narrative. PROBE COMPLETE.
 
 ## Environment
 

@@ -12,7 +12,8 @@ in Lean on 2026-07-09. This file remains the historical requirements document.
 Owner docs for current status are
 `docs/multi-center-joint-census-proof-plan-2026-07-08.md` and
 `certificates/multi_center/README.md`; the verdict fold remains
-`closure-plan-2026-07-06.md` §7 D3 + uncertainty register U4.
+`closure-plan-full-spec-2026-07-09.md` Cross-cutting C + current matrix
+MC-CONSUMER boundary.
 
 ## 1. Question
 
@@ -65,8 +66,8 @@ Euclidean realizability attaches to any row.
    (the `escape-census-bugcheck.md` standard). Weak, piecewise, or
    approximate fits are not deliverables — report the raw sequence and
    the label NO-CLOSED-FORM instead.
-4. Fold: one paragraph + register row update in
-   `closure-plan-2026-07-06.md` (§7 D3 narrative, U4 row).
+4. Fold: one paragraph + matrix/current-plan update only if an exact
+   `MC-CONSUMER` theorem is stated; otherwise retain this as off-spine research.
 
 ## 3. Model (reuse, do not re-derive)
 

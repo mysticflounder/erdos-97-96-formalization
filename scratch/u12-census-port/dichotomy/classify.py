@@ -3,7 +3,8 @@
 
 Dispatch: D1 lead 1 of docs/d1-rigidity-literature-scan-2026-07-06.md (Wu 1986 /
 Chou 1988 saturation machinery; see scan section 4.3 FLAG) and
-docs/closure-plan-2026-07-06.md section 7. One bit per dead core: is the core
+archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md
+section 7. One bit per dead core: is the core
 dead over C (equality ideal + Rabinowitsch distinctness = unit ideal, i.e.
 reduced Groebner basis {1} over QQ) or only over R (complex distinct-separated
 solutions exist; the kill would be real-geometric)?

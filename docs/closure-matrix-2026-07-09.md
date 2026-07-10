@@ -17,8 +17,7 @@ consumer and gate pass.
 
 ## Snapshot and status vocabulary
 
-Source index plus the last fully mined graph after the final
-`proof-blueprint index --refresh`:
+Audited 2026-07-09 source index plus the last fully mined graph:
 
 - 5 source declarations with `sorry`;
 - all 5 were on both publish-target spines in the last fully mined graph;
@@ -29,13 +28,12 @@ Source index plus the last fully mined graph after the final
 - `sorryAx` is the kernel marker reached through the five declarations, not a
   sixth source obligation.
 
-The five-declaration source inventory and node counts are current at build
-fingerprint `002b0247c64e`: 6024/6024 mined symbols are fresh.  At this
-checkpoint proof-blueprint reports two uncommitted Lean paths,
-`PinnedSurplusBank.lean` and `U3ToU5Terminal.lean`; this matrix accompanies
-those paths' commit.
-Publication remains blocked by the five source declarations above, not by a
-stale graph.
+The five-declaration inventory and node counts above are dated evidence from
+build fingerprint `002b0247c64e`, where 6024/6024 mined symbols were fresh.
+They are not dispatch truth. Before taking a row, run `CTRL-GRAPH` and record
+the source-index state, current build/mining fingerprint, open theorem names,
+and source artifact. Publication remains blocked by the live spine, not a
+historical snapshot.
 
 Statuses:
 
@@ -49,6 +47,18 @@ Statuses:
 | OPEN-RESEARCH | Exact terminal theorem is known, but no complete mechanism is known. |
 | DECISION | Mutually exclusive route choice; do not dispatch dependent rows yet. |
 | OPTIONAL | Diagnostic/off-spine work; does not close a current `sorry` by itself. |
+| PARTIAL | Some stated deliverables exist, but the row's acceptance gate is open. |
+| DONE-CODE | Code and its local tests exist; a stated live or integration gate remains. |
+| DONE-CORE | A reusable formal kernel is proved and audited, but its route-specific adapter is not complete. |
+| OPEN-ADAPTER | The remaining work is a proved transport from the route packet to an existing formal kernel. |
+| RESTART-PENDING | A completed code path is not yet active in the legacy live process. |
+| LIVE-GATE-PENDING | Code and local tests exist, but a required live terminal or publication gate has not yet run. |
+| ACTIVE-PRELEASE | A live process is running, but its terminal evidence has not been accepted. |
+| IMPLEMENTED-ON-UNSAT | The implementation is ready but activates only after a checked UNSAT result. |
+| OPTIONAL-PARTIAL | Optional research has partial infrastructure or evidence but no closure claim. |
+
+Semicolon-separated statuses describe independently auditable components; the
+row is not complete until its stated acceptance gate passes.
 
 Before taking a row, run `proof-blueprint anchor list`, inspect the current
 diff in every affected file, and avoid any row owned by an active session.
@@ -60,18 +70,19 @@ diff in every affected file, and avoid any row owned by an active session.
 | K-A-PAIR | OPEN-RESEARCH | `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` (`U1LargeCapRouteBTail.lean:2657`, hole `:2702`) | `false_of_center_p_t2_t20` through the liveData chain | The declaration is sorry-free and absent from `proof-blueprint symbols --with-sorry`. |
 | K-A-LIVE | OPEN-RESEARCH | `Problem97.u1_largeCap_routeB_tail_liveData_false` (`U1LargeCapRouteBTail.lean:3525`, 79 holes) | `u1_largeCap_routeB_tail_false` | All LIVE-* rows are DONE and the declaration leaves the spine-open list. |
 | K-B-PIN | OPEN-RESEARCH | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` (`PinnedSurplusBank.lean:471`, hole `:542`) | `isM44PinnedSurplusResidualsExcluded` | The `m = 5` path, exact critical-shell extraction, outside-triple label, bounded audit frame, and direct finite consumer are DONE; PIN-GENERAL must produce the exact rowwise confined-class proposition or a stronger contradiction. |
-| K-B-END | OPEN-PROOF | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:10055`, holes `:10082`, `:10104`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | END-L and END-R DONE; declaration leaves spine-open list. |
+| K-B-END | OPEN-PROOF | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:10070`, `hshadow` holes `:10097`, `:10119`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | END-L and END-R DONE; declaration leaves spine-open list. |
 | K-B-ERASE | OPEN-PROOF | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` (`Continuation.lean:107`, holes `:183`, `:211`, `:312`, `:337`) | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | ERASE-P4-U/S and ERASE-P2-R/L DONE; declaration leaves spine-open list. |
 
 ## Control and publication gates
 
 | ID | Status | Dependencies | Exact deliverable | Consumer and acceptance |
 |---|---|---|---|---|
-| CTRL-GRAPH | OPEN-ENG | Generated rewrite reaches a checkpoint; no same-project build/miner active | Run the required serialized target builds for source edits, then `proof-blueprint refs --refresh` and `status`. | Current build fingerprint equals the mined fingerprint; no branch or anchor is `graph-stale`. This is a coordination refresh, not publication evidence. |
+| CTRL-GRAPH | OPEN-ENG | Generated rewrite reaches a checkpoint; no same-project build/miner active | Run the required serialized target builds for source edits, then `proof-blueprint index --refresh`, `refs --refresh`, `refs --check`, and `status`. | Source index and mined graph describe the same current build; no branch or anchor is `graph-stale`. This is a coordination refresh, not publication evidence. |
 | CTRL-OWN | OPEN-ENG | CTRL-GRAPH | Refresh `proof-blueprint anchor list`; assign one owner per active source file; each session owner clears or moves its own stale anchor. | No two sessions edit the same proof declaration or run same-project builds concurrently. One agent does not clear another session's anchor or overwrite its file. |
+| CTRL-BANK-PREFLIGHT | OPEN-ENG | CTRL-GRAPH | Before any new finite-pattern, row-slot, incidence, or local-metric contradiction, inspect every registry listed in `AGENTS.md` and run `nthdegree docs search --lean`. Record normalized candidate statement, source/import reachability, closure status, field-by-field live-packet map, first missing antecedent, circularity check, and immediate spine consumer. | The record either identifies a directly usable theorem and its producer map or gives a bounded negative result. A consumer without its producer does not authorize a new `sorry` or certificate hunt. |
 | CTRL-GIT | OPEN-ENG | Concurrent generated-certificate work finished | Owners adjudicate every generated-file change, commit the accepted tree, and record the supported generator command. Discarding another session's output requires that owner's or Adam's explicit approval. | `git status --short` has no unexplained generated churn; HEAD can reproduce the source tree. |
 | PUB-BUILD | OPEN-ENG | All kernel rows DONE; CTRL-GIT DONE | Run one serialized full `lake-build`, then `proof-blueprint index --refresh` and `proof-blueprint refs --refresh`. | Build succeeds; source index and mined graph are fresh against the same HEAD. |
-| PUB-AXIOMS | OPEN-ENG | PUB-BUILD | Query both target axiom closures and every new certificate terminal theorem. | Only Lean core axioms plus approved `Lean.trustCompiler` where audited `native_decide` is used; no unsafe/extern/implemented-by decision procedure in that closure. |
+| PUB-AXIOMS | OPEN-ENG | PUB-BUILD | Query both target axiom closures and every new certificate terminal theorem. | Only Lean core axioms (including `Lean.ofReduceBool`/`Lean.ofReduceNat` when present) plus approved `Lean.trustCompiler` where audited `native_decide` is used; no unsafe/extern/implemented-by decision procedure in that closure. |
 | PUB-SORRY | OPEN-ENG | PUB-BUILD | Run `proof-blueprint symbols --with-sorry` and textual `rg` scan. | Zero source declarations with code `sorry`; prose mentions only. |
 | PUB-GATE | OPEN-ENG | PUB-AXIOMS, PUB-SORRY | Run `proof-blueprint verify-publish` for both configured targets. | Exit 0; both target spines kernel-complete; no off-spine sorries. |
 
@@ -87,9 +98,9 @@ diff in every affected file, and avoid any row owned by an active session.
 | A11-OPS-TEST | PARTIAL | A11-OPS-HOME, A11-OPS-LOCK, A11-OPS-CNF | Commit self-contained fixtures and deterministic tests for SAT gates, `unlabeled_key` relabel invariance, non-isomorphic separation, AUTOS containment, and `embed_into_cube` validity. Do not require ignored certificate payloads or cwd-relative imports. | Permanent self-contained motif smoke and infrastructure/audit tests pass from repo root. The SAT encoder's four solver gates still live in scratch and must move before this row is DONE. |
 | A11-OPS-TERM | DONE-CODE; LIVE-GATE-PENDING | A11-OPS-LOCK, A11-OPS-CNF | Stage final CNF, checked DRAT, extracted core CNF, LRAT, lock-consistent bank snapshot, and exact instance provenance. Record hashes/versions and publish `COVERAGE_COMPLETE.json` last only after re-solve and `drat-trim` verification. | Unit tests prove failed checking emits no marker; a real CaDiCaL 3.0.0 + `drat-trim` integration emits and re-verifies core/LRAT. `verify_completion` rejects the legacy marker schema and rechecks every digest and DRAT. Any marker from the pre-restart process fails this mandatory gate. |
 | A11-BANK-AUDIT | PARTIAL | A11-OPS-HOME | Produce an immutable normalized bank audit: every line valid JSON; unique canonical PID/motif; cert exists; cert PID/pattern matches row; exact verifier passes; orphan certs reported. Preserve the known proof-identical `pat_00003` duplicate only in raw provenance. | Structural snapshot at 5,444 raw / 5,443 normalized rows passed: no unexplained duplicate, missing cert, or orphan; digests recorded by `census.census_554.bank_audit`. Exact replay is explicitly NOT_RUN and the live bank can advance, so final freeze remains open. |
-| A11-RUN | ACTIVE-PRELEASE | A11-OPS-LOCK, A11-OPS-TEST, A11-OPS-TERM | Reach exactly one recorded terminal state: solver UNSAT, genuine ALIVE candidate, zero-certified/certify failure, or explicit bounded stop. | File/log evidence at 19:40 PDT shows iteration 1240 and 5,444 raw rows; process-list access was sandbox-blocked. The process predates the lifetime lease/terminal rewrite. No terminal result is claimed. |
-| A11-OUTCOME | DECISION | A11-RUN reaches a recorded terminal state | Adjudicate the terminal state. UNSAT authorizes A11-FREEZE. ALIVE requires independent exact realization review, then either a proved necessary cut and restart or a recorded route blocker. Certify failure requires tool repair/retry. Bounded stop requires an explicit resume/abandon decision. | One outcome and its evidence are recorded; no downstream UNSAT row is dispatched for ALIVE, failure, or bounded-stop output. |
-| A11-FREEZE | OPEN-ENG | A11-OUTCOME selects UNSAT; A11-OPS-TERM, A11-BANK-AUDIT | Immutable manifest containing normalized bank digest, cert digests, exact motif-instance provenance, final CNF/proof digests, script commit, command, and versions. Independently run `verify_certs.py` over every source pattern referenced by the manifest. | Clean-checkout verifier reproduces all digests, checks the SAT proof and manifest/CNF correspondence, and validates all referenced certs. A stdout-only UNSAT does not pass. |
+| A11-RUN | PARTIAL | A11-OPS-LOCK, A11-OPS-TEST, A11-OPS-TERM | Recheck the terminal state, then reach exactly one recorded result: solver UNSAT, genuine ALIVE candidate, zero-certified/certify failure, or explicit bounded stop. | The 2026-07-09 file/log snapshot reached iteration 1240 and 5,444 raw rows, but was not a live-process claim. A restart or resumed process must load the lease/terminal gate; no terminal result is claimed until then. |
+| A11-OUTCOME | DECISION | A11-RUN reaches a recorded terminal state | Adjudicate the terminal state. UNSAT authorizes A11-FREEZE. Classify ALIVE as Boolean cube, exact `RealizesCube`, or full Front-A-leaf configuration; the latter two require an independent exact realization review and complete assumption ledger. Certify failure requires tool repair/retry. Bounded stop requires an explicit resume/abandon decision. | One outcome and its evidence are recorded; no downstream UNSAT row is dispatched for ALIVE, failure, or bounded-stop output. |
+| A11-FREEZE | OPEN-ENG | A11-OUTCOME selects UNSAT; A11-OPS-TERM, A11-BANK-AUDIT | Immutable manifest containing normalized bank digest, cert digests, exact motif-instance provenance, final CNF/proof digests, script commit, command, versions, full `y`-layer allocation, clause/variable IDs, and LRAT input digest. Independently run `verify_certs.py` over every source pattern referenced by the manifest. | Clean-checkout verifier reproduces all digests, checks the SAT proof and final-manifest/CNF correspondence, validates all referenced certs, and fails when one mapped motif or `y` clause is corrupted. A stdout-only UNSAT does not pass. |
 | A11-COVER-FMT | OPEN-ENG | A11-FREEZE, or a representative frozen prefix for measurement | Compare direct Lean `decide`/DFS certificate, generated search trace, and checked DRAT/LRAT route. Record source size, build wall time, peak memory, and number of pattern IDs used. | Select the first format whose targeted `lake-build` remains below the 30-minute hard ceiling and the wrapper's 16,384 MB per-Lean-worker cap. If none qualifies, return measured blocker; do not claim coverage. |
 | A11-CORE | IMPLEMENTED-ON-UNSAT | A11-OPS-TERM reaches checked UNSAT | Use `drat-trim -c/-L` to emit an UNSAT core CNF and LRAT, map core exclusion clauses back to manifest rows, and emit source-row digests/PIDs with cert sizes. | Integration test maps the needed exclusion into the extracted core. The live cover has not reached UNSAT, so no real core exists yet; later replay consumes the core, not the fleet. |
 
@@ -99,8 +110,9 @@ diff in every affected file, and avoid any row owned by an active session.
 |---|---|---|---|---|
 | A11-GEN | OPEN-ENG | A11-OPS-HOME, A11-CORE | Integrate the tracked certificate generator in the permanent package; generated files have project headers and deterministic output. Preserve the committed disjoint batch namespace and absence of duplicate global declarations. | Generate one base, pair, and multi-pair module twice byte-identically; import batch and individual compatibility probe together; targeted `lake-build` and proof-blueprint index both succeed. Twenty-one representative replay modules are committed; core-specific generation remains open. |
 | A11-CERT-BENCH | PARTIAL | A11-GEN, real A11-CORE | Build representative smallest/median/p90/largest cover-core certs serially and record source bytes, coefficient terms, wall time, and peak memory. Set the naive-replay threshold from core measurements, targeting 10 minutes and never exceeding 30 minutes or 16,384 MB per Lean worker. | Fleet scan records 78.16 GB total, p50 54,787 B, p90 7,193,804 B, p99 365,247,505 B, max 2,281,208,887 B, and 157 certs over 100 MiB. Core-specific builds/classification remain open. |
-| A11-CERT-LIGHT | OPEN-ENG | A11-CERT-BENCH | Generate and build every LIGHT cover-core certificate. Export one `IsDead` theorem per core pattern. | Targeted modules build serially; generator's exact re-derivation passes; theorem axioms are core plus approved native-decision boundary. |
-| A11-CERT-HEAVY | OPEN-ENG | A11-CERT-BENCH | For each HEAVY core certificate, choose in order: re-lift with alternative order, split the `multi_pair` Rabinowitsch set, re-mine a smaller covering motif, then optimize `SPoly.normalize`. Record old/new terms and build time. | Every heavy core ID obtains a buildable `IsDead` theorem within the same limits. Fleet-wide heavy certificates outside the core are not blockers. |
+| A11-EQUALITY-CORE | OPTIONAL | A11-CORE, A11-GEN | For frozen core IDs with checked `DuplicateCenterCore` or `EqualK4Core` witnesses, generate/validate the finite witness data and use `Census554/EqualityCore.lean` to emit `IsDead`. | Targeted adapter builds and axiom audit pass; manifest IDs match exactly; the measured certificate-core reduction is recorded. This is neither bank coverage nor a closure theorem, and unmatched patterns continue through A11-CERT-*. |
+| A11-CERT-LIGHT | OPEN-ENG | A11-CERT-BENCH | Generate and build every LIGHT cover-core certificate. Export one `IsDead` theorem per core pattern. | Targeted modules build serially; generator's exact re-derivation passes; theorem axioms are core plus approved native-decision boundary; each evaluated closure is audited for unsafe/extern/implemented-by redirection. |
+| A11-CERT-HEAVY | OPEN-ENG | A11-CERT-BENCH | For each HEAVY core certificate, choose in order: re-lift with alternative order, split the `multi_pair` Rabinowitsch set, re-mine a smaller covering motif, then optimize `SPoly.normalize`. Record old/new terms and build time. | Every heavy core ID obtains a buildable `IsDead` theorem within the same limits and receives the same native-decision audit. A proof change for the same motif refreshes only its certificate; a changed motif, cover, or manifest invalidates A11-FREEZE, A11-CORE, A11-COVER-CHECK, and the LRAT replay. Fleet-wide heavy certificates outside the core are not blockers. |
 | A11-CERT-INDEX | OPEN-ENG | A11-CERT-LIGHT, A11-CERT-HEAVY | Generated `CoverCoreBank.lean` lists core patterns and maps every entry to its `IsDead` theorem without duplicate declarations. | One target imports the full core bank within build budget; no missing or extra pattern IDs versus A11-CORE. |
 
 ### Geometry bridge
@@ -154,6 +166,7 @@ are not the default plan.
 
 | ID | Status | Exact holes | Required output and gate |
 |---|---|---|---|
+| LIVE-BANK-MATCH | OPEN-ENG | CTRL-BANK-PREFLIGHT; before any LIVE-Q/T1/T3 or terminal branch certificate hunt | Machine-readable map: ordered live leaf → `RowSlotLabelPacket` construction → available row/equality/distinctness facts → theorem-bank candidate or first unavailable/circular antecedent → immediate spine consumer. | Registry preflight and `nthdegree docs search --lean` result are attached. A negative map is accepted; no new sorry or unguided certificate hunt is. |
 | LIVE-Q | OPEN-RESEARCH | 24 ordered `q = t2[0]` leaves at lines 3792, 3812, 3850, 3870, 3908, 3928, 4075, 4095, 4133, 4153, 4191, 4211, 4285, 4306, 4346, 4367, 4407, 4428, 4501, 4521, 4560, 4580, 4619, 4639 | Factor and prove a consumer invariant under the 24 support-label permutations; textual hole count drops by 24 with no new unconsumed `sorry`. |
 | LIVE-T1 | OPEN-RESEARCH | 24 `t1 = t2[0]` source-slot leaves at lines 4799, 4807, 4887, 4895, 4975, 4983, 5063, 5071, 5107, 5115, 5149, 5157, 5203, 5211, 5241, 5249, 5277, 5285, 5331, 5339, 5369, 5377, 5405, 5413 | Prove two row-vs-fixed-triple consumers: six positive `ht1Row_l1` leaves where the source slot is `l1 = t1`, and eighteen negative leaves for the other source/label orders. Close all relabelings; do not assert one false polarity-uniform lemma. |
 | LIVE-T3 | OPEN-RESEARCH | 24 `t3 = t2[0]` source-slot leaves at lines 5487, 5491, 5515, 5519, 5543, 5547, 5591, 5595, 5619, 5623, 5647, 5651, 5695, 5699, 5723, 5727, 5751, 5755, 5799, 5803, 5827, 5831, 5855, 5859 | Produce and apply the t3 mirror orbit consumer; textual hole count drops by 24. |
@@ -170,8 +183,9 @@ are not the default plan.
 
 | ID | Status | Dependencies | Exact deliverable | Consumer and acceptance |
 |---|---|---|---|---|
-| END-L | OPEN-PROOF | Existing `endpointLeft_residual_exists_false_of_metric_shadow_data` | `EndpointCertificate.endpointLeft_residual_exists_metricShadow`: produce `∃ shadow, endpointShadowInBank xLabel shadow = true ∧ EndpointMetricShadow pointOf shadow`. The open content is non-v/w selected-class confinement, exact-four/card/self exclusion, circumcenter/no-three, and `sepOKFor`. | Replace Base hole 10082 by one call; targeted endpoint producer and Base modules build. |
-| END-R | OPEN-PROOF | END-L reusable lemmas; right residual core data | Exact mirror theorem for `endpointMirrorLabelPoint`. | Replace Base hole 10104; K-B-END DONE when both sides land. |
+| END-MOD | OPEN-ENG | CTRL-GRAPH, CTRL-OWN | Create `EndpointCertificate/GeometryProducer.lean` with the exact left/right existential shadow signatures. It may be imported by `Base.lean`, but must not import `Base.lean` or a consumer of `isM44EndpointResidualsExcluded`. | Import DAG and public signatures are reviewed; source/axiom audit is explicit because the certificate namespace is mining-skipped. |
+| END-L | OPEN-PROOF | END-MOD, existing `endpointLeft_residual_exists_false_of_metric_shadow_data` | `EndpointCertificate.endpointLeft_residual_exists_metricShadow`: produce `∃ shadow, endpointShadowInBank xLabel shadow = true ∧ EndpointMetricShadow pointOf shadow`. The open content is non-v/w selected-class confinement, exact-four/card/self exclusion, circumcenter/no-three, and `sepOKFor`. | Replace Base hole 10097 by one call; targeted endpoint producer and Base modules build. |
+| END-R | OPEN-PROOF | END-MOD, END-L reusable lemmas, right residual core data | Exact mirror theorem for `endpointMirrorLabelPoint`. | Replace Base hole 10119; K-B-END DONE when both sides land. |
 | PIN-R | DONE | Label-complete `S.surplusCap.card = 5`, right pinned geometry | Right half of `IsM44PinnedSurplusNonVExactShapeProducerStatement`: construct same-radius support classes and exact candidate masks. | Proved; `PinnedSurplusProducer` builds without `sorry`. |
 | PIN-L | DONE | PIN-R mirror lemmas and left label map | Left half in the label-complete regime. | Proved; full metric-shadow producer builds without `sorry`. |
 | PIN-GENERAL | OPEN-RESEARCH | `5 < S.surplusCap.card`; exact bank explicitly out of scope; both `exists_pinned*ExtraCriticalPacket` theorems DONE | Consume `CriticalShellSystem A`, the exact `CriticalSelectedFourClass` on `{y,t1,t2,t3}`, a triple label outside the pinned class, and the extracted `U3FixedTripleAuditFrame` `H`. Every audit center has a proved exact q-deleted-four/q-critical-three row dichotomy. The direct finite consumer `¬ H.RowwiseConfinedQDeletedClasses` is DONE for every such frame and bypasses U2/Mode A. `CriticalShellSystem` now retains its blocker no-q-free fact and center-erased projection. All ordered surplus placements are scanned at `n = 11,12`; `(0,0,2,2)` and `(0,2,0,2)` remain zero-extension types. All 517 source-indexed shell representatives remain SAT with a K4 at every center, so shell existence alone is not a contradiction. | Prove `H.RowwiseConfinedQDeletedClasses`: eliminate or promote every q-critical-three row, then prove bounded-support inclusion for each q-deleted four-class. Next couple the source-indexed shells to all six audit-center alternatives. Mine minimal cores for the two stable zero-extension types, and require one larger-cardinality scan or a size-independent core before formalizing them. A stronger direct audit-frame contradiction is also acceptable. Do not import U2/U5 or containment conclusions that depend on this residual. Remove `PinnedSurplusBank.lean:542`. |
@@ -202,7 +216,7 @@ through MC-CONSUMER; do not introduce off-spine sorries while exploring them.
 | `DoubleApexOffSurplusSharedRadiusPair` | 2702 | 1 |
 | `u1_largeCap_routeB_tail_liveData_false` | LIVE-Q (24), LIVE-T1 (24), LIVE-T3 (24), terminal 5876, 5877, 5883, 5884, 5885, 5886, 5887 | 79 |
 | `isM44PinnedSurplusGeneralMResidualsExcluded` | 542 | 1 |
-| `isM44EndpointResidualsExcluded` | 10082, 10104 | 2 |
+| `isM44EndpointResidualsExcluded` | 10097, 10119 | 2 |
 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | 183, 211, 312, 337 | 4 |
 | **Total** | | **87** |
 
@@ -215,6 +229,7 @@ active:
 lake-build
 proof-blueprint index --refresh
 proof-blueprint refs --refresh
+proof-blueprint refs --check
 proof-blueprint symbols --with-sorry
 proof-blueprint spine
 proof-blueprint verify-publish

@@ -1,22 +1,46 @@
-# Full Closure Specification — Problem 97/96 (2026-07-09)
+# Current Closure Plan — Problem 97/96 (2026-07-09)
 
-Authoritative route plan from the current source state and last fully mined
-kernel state to
+This is the single active route plan to
 `proof-blueprint verify-publish` green on `Problem97.erdos97_rhs` and
 `Problem96.erdos96_rhs`. The executable task register is
 `docs/closure-matrix-2026-07-09.md`; this document owns route rationale and
 dependency order. The full-plan audit is
 `docs/audits/2026-07-09-full-closure-plan-audit.md`.
 
-Source-current snapshot (`proof-blueprint index --refresh` and `status`, final
-audit recheck 2026-07-09):
+It consolidates the decision-relevant content of the former 2026-07-06 master
+plan. That detailed record is [archived](../archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)
+and is evidence for rejected routes and dated solver results, not a dispatch
+authority.
+
+## Authority and snapshot protocol
+
+The numerical snapshots in this plan and the matrix are dated evidence, not
+current truth. Before dispatching or reporting a row, run the matrix's
+`CTRL-GRAPH` and `CTRL-OWN` gates and record the timestamp, source-index state,
+build/mining fingerprint, open theorem names, and source artifact. Do not infer
+currentness from a prior line number, node count, or anchor.
+
+Before proposing a new finite-pattern, row-slot, incidence, or local-metric
+contradiction, complete the mandatory theorem-bank preflight: inspect every
+registry named in `AGENTS.md`, search the indexed corpus with
+`nthdegree docs search --lean`, and record the candidate's normalized
+statement, source/import reachability, closure status, field-by-field map from
+the live packet, first missing antecedent, circularity check, and immediate
+spine consumer. A negative compatibility result is a valid deliverable; a
+consumer without its geometric producer is not a closure route.
+
+## Audited 2026-07-09 snapshot
+
+Source snapshot (`proof-blueprint index --refresh` and `status`, final audit
+recheck 2026-07-09):
 
 - the source index is in sync and contains exactly five declarations with
   `sorry`, all of which were on both publish-target spines in the last fully
   mined graph; and
 - no off-spine source declaration contains `sorry`.
 
-Last fully mined kernel graph (build fingerprint `002b0247c64e`):
+Last fully mined kernel graph at that snapshot (build fingerprint
+`002b0247c64e`):
 
 - `Problem97.erdos97_rhs`: 23/1827 project nodes open;
 - `Problem96.erdos96_rhs`: 27/1835 project nodes open;
@@ -29,7 +53,7 @@ Last fully mined kernel graph (build fingerprint `002b0247c64e`):
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
 | 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:471` | 1 | B |
-| 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10055` | 2 | B |
+| 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10070` | 2 (`:10097`, `:10119`) | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
 The 87 textual holes collapse to the five declarations above. The matrix
@@ -37,12 +61,12 @@ decomposes them into producer families and also records non-`sorry`
 prerequisites such as Census554 cover verification and final publication
 gates.
 
-**Reproducibility checkpoint.** The focused pinned-surplus build is green, and
-proof-blueprint reports build fingerprint `002b0247c64e` with 6024/6024 mined
-symbols fresh.  It sees two uncommitted Lean paths, `PinnedSurplusBank.lean`
-and `U3ToU5Terminal.lean`; this plan accompanies those paths' commit.  The
-five source declarations remain open, so this fresh mine is checkpoint
-evidence, not a passing publication gate.
+**Reproducibility checkpoint (dated 2026-07-09).** The focused pinned-surplus
+build was green, and proof-blueprint reported build fingerprint
+`002b0247c64e` with 6024/6024 mined symbols fresh. It saw two uncommitted Lean
+paths, `PinnedSurplusBank.lean` and `U3ToU5Terminal.lean`. The five source
+declarations remained open, so this was checkpoint evidence, not a passing
+publication gate. Re-run `CTRL-GRAPH` rather than reusing these particulars.
 
 ## Execution contract
 
@@ -54,15 +78,22 @@ counts as progress.
 
 For a Lean row, acceptance is:
 
-1. no other top-level build or direct Lean compile is active in this project;
-2. `lake-build <smallest affected module target>` succeeds;
-3. `proof-blueprint index --refresh` reports the source index in sync;
-4. after the build graph is fresh, `proof-blueprint spine <consumer-symbol>`
-   shows the intended dependency;
-5. `proof-blueprint axioms <new-terminal-symbol>` shows only core axioms and
-   the explicitly approved `Lean.trustCompiler` boundary when
-   `native_decide` is used; and
-6. the row's targeted tests in the closure matrix pass.
+1. `proof-blueprint anchor list` and a fresh diff show that no active owner is
+   being overwritten; a closed or stale anchor is cleared by its owner, never
+   by another session;
+2. no other top-level build or direct Lean compile is active in this project;
+3. `lake-build <smallest affected module target>` succeeds;
+4. `proof-blueprint index --refresh` reports the source index in sync;
+5. `proof-blueprint refs --refresh`, then `proof-blueprint refs --check`,
+   establish that the mined graph describes that build;
+6. `proof-blueprint spine <consumer-symbol>` shows the intended dependency;
+7. `proof-blueprint axioms <new-terminal-symbol>` shows only Lean core axioms
+   (including `Lean.ofReduceBool`/`Lean.ofReduceNat` when present) and the
+   explicitly approved `Lean.trustCompiler` boundary when `native_decide` is
+   used;
+8. for every `native_decide` terminal, the evaluated decision-procedure
+   closure is audited for `unsafe`, `@[implemented_by]`, and `@[extern]`; and
+9. the row's targeted tests in the closure matrix pass.
 
 Only the final publication row runs the full project build, refreshes kernel
 references, and invokes `proof-blueprint verify-publish` on both targets.
@@ -70,6 +101,23 @@ references, and invokes `proof-blueprint verify-publish` on both targets.
 Two fronts. Front A is the two-large-cap (¬M44) branch; Front B is the M44
 branch. They are disjoint on the spine (the `removableVertexOfLarge` case
 split: `of_isM44PinnedSurplus` vs `of_nonIsM44`).
+
+## Retained decisions from the archived 2026-07-06 plan
+
+The archive preserves detailed logs; these constraints remain active here:
+
+- exact two-hit witnesses refute the former interior one-hit bounds, so the
+  erased-pin route must use the specified P4/P2 producers rather than revive
+  `leftAdjCount ≤ 1` or `rightAdjCount ≤ 1`;
+- the exact ten-label bank closes only the `m = 5` pinned-surplus regime; it is
+  not a general-`m` coverage theorem;
+- equality-only and pattern-only statements do not close the card-`≥ 15` tail.
+  Their known falsifying witnesses are non-convex, so they do not refute the
+  actual `ConvexIndep` leaf; they rule out only that relaxed proof surface;
+- multi-center work is off-spine until `MC-CONSUMER` has an exact theorem whose
+  hypotheses occur at a Front-A leaf; and
+- `Lean.trustCompiler` is the approved native-decision boundary, while anchors
+  are ephemeral coordination hints rather than durable proof state.
 
 ---
 
@@ -92,16 +140,18 @@ split: `of_isM44PinnedSurplus` vs `of_nonIsM44`).
   every `CubeOk` clause. At card 11 every point of `A` is labeled, so no
   additional unlabeled-point confinement condition is needed.
 
-### A.1 Card-11 slice — ACTIVE PRE-LEASE RUN, INCOMPLETE
+### A.1 Card-11 slice — pre-lease run snapshot; terminal state unadjudicated
 
 Pipeline (`scratch/census-554/frontier_loop.py`): lazy motif-embedding cover +
 CEGAR mining at genuine frontiers, to UNSAT.
 
-The 18:32 audit snapshot was paused at 5,431 rows / iteration 1154. A later
-process resumed it. At 19:40 PDT, lock-consistent file evidence showed 5,444
-raw bank rows and the log had reached the frontier at iteration 1240. Direct
-process-list access was sandbox-blocked, so this status is grounded in current
-bank/log mtimes and content. There is still no adjudicated terminal result.
+At the 2026-07-09 audit, the 18:32 snapshot was paused at 5,431 rows /
+iteration 1154. A later process resumed it; at 19:40 PDT, lock-consistent file
+evidence showed 5,444 raw bank rows and the log at iteration 1240. Direct
+process-list access was sandbox-blocked. This is historical bank/log evidence,
+not a current process claim: recheck A11-RUN before resuming, restarting, or
+interpreting a terminal marker. There was no adjudicated terminal result at the
+snapshot.
 
 **Correct interpretation of a future solver UNSAT:** CaDiCaL UNSAT would be an
 EMPIRICALLY VERIFIED coverage result for the exact emitted Python CNF and the
@@ -154,6 +204,14 @@ Stop conditions that would revise this section: a frontier cube with no
 minimal dead pattern (a genuinely ALIVE cube ⇒ the census finds a candidate
 11-point counterexample-consistent class system — a mathematical finding, not
 a tooling failure), or systematic certify failure.
+
+**ALIVE adjudication contract.** Keep three claims distinct: an ALIVE Boolean
+cube, an exact-coordinate `RealizesCube` witness, and a configuration satisfying
+the full Front-A leaf hypotheses. The first is only a cover failure; the second
+needs an independent exact realization check; only the third can challenge a
+geometric necessity claim. The outcome record must identify its level, complete
+assumption ledger, source hashes, and independent verifier before any restart or
+route change.
 
 ### A.2 Card-11 Lean transfer — specified steps
 
@@ -277,6 +335,21 @@ corresponding closure-matrix gate, not by prose completion claims.
    and retain the documented ignored-artifact policy for raw heavy payloads
    before fleet generation. **Step 2 status: checker soundness COMPLETE;
    permanent generator integration and terminal cover-core replay OPEN.**
+
+   **Conditional equality-core reduction.**
+   `Census554/EqualityCore.lean` proves generic duplicate-center and equal-K4
+   deadness, while its generated-bank adapter may shorten some replayed pattern
+   proofs. This is not miner-witness validation, bank coverage, or a closure
+   theorem. After a terminal core is frozen, `A11-EQUALITY-CORE` must match
+   manifest IDs to checked finite core witnesses, build and axiom-audit the
+   generated adapters, and measure the reduction in the replayed cover core.
+   Unmatched patterns continue through the ordinary certificate route.
+
+   **Per-module native-decision audit.** Every generated replay module and the
+   assembled core bank must record its `proof-blueprint axioms` output and an
+   audit of the evaluated closure for `unsafe`, `@[implemented_by]`, and
+   `@[extern]`. This occurs before indexing the core bank, not only at the final
+   publication gate.
 3. **Motif-closed cover bridge and check**: this step has separate mathematical
    and finite-computation parts. The support-injection and relational substeps
    are complete; the remaining parts are open:
@@ -357,6 +430,16 @@ corresponding closure-matrix gate, not by prose completion claims.
    remaining unknown is only the terminal certificate's size/check time,
    measurable when the loop reaches UNSAT.
 
+   **Frozen final-CNF contract.** `FinalCoverData` must bind the normalized
+   manifest row IDs, canonical pattern and certificate hashes, full DIMACS/CNF
+   digest (including the banked-pattern `y` layer), variable and clause IDs, and
+   the exact LRAT input digest. The final Lean CNF must be byte-identical after
+   canonical rendering or carry a proved clause/variable correspondence used by
+   `verifyCert_correct`. A regression that corrupts one mapped motif or `y`
+   clause must fail. Reproving the same motif changes only that certificate's
+   digest; changing a motif, cover, or manifest invalidates the frozen CNF,
+   extracted core, and LRAT and restarts their gates.
+
    **Sinz completeness core PROVEN 2026-07-09** (`Census554/SinzSat.lean`):
    `sinz_sat` — for any assignment with at most `k` true inputs, the
    canonical counter witness `sinzExt` satisfies every clause of
@@ -435,6 +518,14 @@ corresponding closure-matrix gate, not by prose completion claims.
   of the leaf exists anywhere in the tree. A.2 step 5 therefore includes
   building that split and contradiction packaging from scratch.
 
+Before a LIVE-* family receives a new local contradiction or certificate hunt,
+`LIVE-BANK-MATCH` records a machine-readable map from each ordered leaf to an
+existing U1/U5 consumer, or records the first unavailable or circular
+antecedent. The map includes its `RowSlotLabelPacket` construction, available
+equalities/distinctness facts, theorem-bank preflight result, and immediate
+spine consumer. It is acceptable for a family to have no match; it is not
+acceptable to add a new `sorry` or repeat a certificate search without one.
+
 ### A.3 Card ≥ 12 residual
 
 Evidence sources: `scratch/census-12-gate/STATE.md` and
@@ -447,7 +538,8 @@ narrowing, STATE.md:192-208). Readout = **no observed convergence** over the
 measured 65+ iterations: 256 bank rows, 158 window shapes before the two
 offline full-cube additions, and 20,322 pre-addition orbit instances; the raw
 evidence is `iters12_654_all.jsonl`, `cegar12_654_all.log`, and
-`run_census12_654_all.log` (digest in `docs/closure-plan-2026-07-06.md:567-570`).
+`run_census12_654_all.log`; those underlying artifacts, not a volatile plan
+line range, are the authoritative digest source.
 All 256 current certificate files exist and the recorded full-bank verifier
 passed, including offline `pat_00255`. The canonical family-size estimate is
 approximately 5e20 (`STATE.md:286-297`). The (5,5,5) profile was never run to
@@ -471,7 +563,8 @@ depth; (5,6,4) was deliberately unmeasured (STATE.md:47-52).
   equality-shaped strengthening of the leaf's proven combinatorial shadow
   (`census/candidate_d_probe/report.md:56,105`). No pattern bank can cover the
   tail; the uniform-n ideal-theoretic extrapolation is false (same file,
-  line 163).
+  line 163). These witnesses are non-convex, so they do not refute the actual
+  `ConvexIndep` leaf; they refute only the relaxed equality/pattern surface.
 - **Only non-excluded tail route: Candidate D** — synthetic
   convexity-coupled forcing of the shared-radius pair refuted downstream by
   `oppCap2_escape_gen`. The completed Candidate-D probe gives three reusable
@@ -524,8 +617,8 @@ are advisory, so file changes still require a fresh diff read.
 
 ### B.1 Endpoint residual producer (leaf 4)
 
-`isM44EndpointResidualsExcluded` has exactly two holes, at
-`RemovableVertexAxiom/Base.lean:10082` and `:10104`. `ResidualCoreData` already
+`isM44EndpointResidualsExcluded` has exactly two `hshadow` holes, at
+`RemovableVertexAxiom/Base.lean:10097` and `:10119`. `ResidualCoreData` already
 produces the ten point labels, injectivity, point membership, the two fixed
 `.v/.w` selected-class masks, and the terminal contradiction from any shadow
 that is both in the endpoint bank and a metric shadow. The left and right
@@ -545,7 +638,10 @@ exactly four labeled members, same-radius interpretation, center exclusion,
 circumcenter/no-three bounds, and `sepOKFor`. Reuse
 `endpointLeft_residual_exists_endpointShadowInBank_of_mask_interfaces`, its
 right mirror, and the `pointPairClassCount_le_two_of_sameRadius` family; do not
-rebuild bank transport. Acceptance: the two Base holes disappear and
+rebuild bank transport. Before creating the module, pin its two public
+existential signatures and import boundary: `Base.lean` may import the producer,
+but the producer must not import `Base.lean` or any consumer of
+`isM44EndpointResidualsExcluded`. Acceptance: the two Base holes disappear and
 `isM44EndpointResidualsExcluded` leaves the spine-open list.
 
 ### B.2 Pinned-surplus general-m residual (leaf 3)
@@ -814,11 +910,11 @@ The card-11 finite pipeline contains substantial engineering and finite-proof
 work, but it is not uniformly "bounded to 1–3 sessions": final cover format,
 cover-core size, and heavy-certificate cost are not known until the run freezes.
 
-**Paused at the final 2026-07-09 audit checkpoint:** the card-11 (5,5,4)
-cover loop had 5,431 bank rows and had printed the frontier at iteration 1154.
-No process or terminal marker was live at 18:32 PDT. Do not restart it until
-the A11-OPS-* permanence, driver-lock, transaction, and terminal-artifact
-gates pass.
+**At the final 2026-07-09 audit checkpoint:** the card-11 (5,5,4) cover loop
+had 5,431 bank rows and had printed the frontier at iteration 1154. No process
+or terminal marker was live at 18:32 PDT. This is historical evidence; recheck
+A11-RUN before resuming or restarting, and do not proceed until the A11-OPS-*
+permanence, driver-lock, transaction, and terminal-artifact gates pass.
 
 Execution order is dependency-based, not difficulty-based:
 
@@ -858,4 +954,6 @@ This document supersedes ad-hoc status narration. Any status change must update
 both this plan and `docs/closure-matrix-2026-07-09.md`, cite a source artifact
 or kernel query, and distinguish source-current evidence from the last compiled
 kernel snapshot. A row is DONE only when its stated consumer and acceptance
-gate pass; a successful exploratory script is evidence, not proof closure.
+gate pass; a successful exploratory script is evidence, not proof closure. The
+archived 2026-07-06 plan is not updated with new status; retain it only as
+dated provenance and update this plan, the matrix, and the active source links.

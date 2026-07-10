@@ -306,12 +306,15 @@ handoff (`pinnedSurplusCOMPGBankBridge`), and the non-`IsM44` descent adapter
 (`removableVertexOfLarge_of_nonIsM44`).
 
 **Active work happens in this repo.**
-[`docs/closure-plan-2026-07-06.md`](docs/closure-plan-2026-07-06.md) is the
-master closure plan (cross-cutting strategy, gates, dispatch specs,
-uncertainty register);
+[`docs/closure-plan-full-spec-2026-07-09.md`](docs/closure-plan-full-spec-2026-07-09.md)
+is the single current closure plan (cross-cutting strategy, gates, dispatch
+specs, uncertainty register), and
+[`docs/closure-matrix-2026-07-09.md`](docs/closure-matrix-2026-07-09.md) is its
+executable task register. The former July 6 master plan is a historical record
+under [`archive/2026-07-10-closure-plan-consolidation/`](archive/2026-07-10-closure-plan-consolidation/).
 [`docs/sorry-closure-ledger-2026-07-06.md`](docs/sorry-closure-ledger-2026-07-06.md)
-is its sorry-level companion — every `sorry` in the tree with a route and
-acceptance test. The lane execution logs are
+is the dated sorry-level companion — every then-known `sorry` in the tree with
+a route and acceptance test. The lane execution logs are
 [`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
 (the two slot-3 U-lane residuals) and
 [`docs/four-point-subpacket-plan.md`](docs/four-point-subpacket-plan.md)

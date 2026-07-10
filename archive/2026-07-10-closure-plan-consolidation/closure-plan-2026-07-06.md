@@ -6,17 +6,25 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Master closure plan (2026-07-06)
 
-The complete route from the current kernel state to `verify-publish` passing
-on both targets, with every gate, decision point, and open uncertainty named.
+> **Historical record — archived 2026-07-10.** This was the master plan at its
+> 2026-07-06 snapshot. It is not a dispatch authority. The single current plan
+> is the [2026-07-09 closure plan](../../docs/closure-plan-full-spec-2026-07-09.md)
+> together with its [closure matrix](../../docs/closure-matrix-2026-07-09.md).
+> This record is retained for its solver evidence, rejected routes, and dated
+> decisions.
 
-Ownership: this doc owns cross-cutting strategy, gates, dispatch-ready specs,
-and the uncertainty register. The two lane plans —
-[`u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
-and [`four-point-subpacket-plan.md`](four-point-subpacket-plan.md) — own
-per-lane execution logs. Corrections they should fold in are in §11. Audit
-basis: the three 2026-07-06 audit docs under [`audits/`](audits/). The
-sorry-level companion —
-[`sorry-closure-ledger-2026-07-06.md`](sorry-closure-ledger-2026-07-06.md) —
+The complete route from the then-current kernel state to `verify-publish`
+passing on both targets, with every gate, decision point, and open uncertainty
+named at that snapshot.
+
+Historical ownership: this document then owned cross-cutting strategy, gates,
+dispatch-ready specs, and the uncertainty register. The two lane plans —
+[`u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](../../docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
+and [`four-point-subpacket-plan.md`](../../docs/four-point-subpacket-plan.md) —
+owned per-lane execution logs. Corrections they should fold in are in §11.
+Audit basis: the three 2026-07-06 audit docs under
+[`docs/audits/`](../../docs/audits/). The sorry-level companion —
+[`sorry-closure-ledger-2026-07-06.md`](../../docs/sorry-closure-ledger-2026-07-06.md) —
 enumerates every `sorry` in the tree (including in-proof case sorries and the
 off-spine pair) with a route and acceptance test each.
 
@@ -194,15 +202,37 @@ audit rows remain incidence-compatible in `2654/3276` tests at `n = 11` and
 confinement is UNSAT on every admitted frame at both sizes.  The follow-up
 covered all 12 ordered surplus placements at `n = 11` and all 20 at `n = 12`.
 The zero-extension types `(0,0,2,2)` and `(0,2,0,2)` persist at every placement
-and size.  A source-indexed representative scan then encoded the retained
-no-q-free blocker fact and found all 517 placement/type packets SAT, both for
-the joint shell system and after selecting a K4 at every center, with no capped
-searches.  In Lean, `CriticalShellSystem` now stores `no_qfree`, exposed both
-before and after erasing the blocker center.  These checkpoints remove the
-placement and shell-interface gaps but still do not produce
-`RowwiseConfinedQDeletedClasses`.  The next probe must couple the shell system
-to the six audit-center q-critical/survival alternatives; see the full closure
-spec for the low-level action list.
+and size.  A filtered `n = 13` follow-up covers all 30 ordered placements for
+those two types: all 600 `(0,0,2,2)` and 1,200 `(0,2,0,2)` scenarios are UNSAT,
+with no capped search.  This satisfies the larger-cardinality probe gate but is
+still bounded evidence.  The follow-up core pass explains all 2,888 zero-type
+rows across `n = 11,12,13` before DFS: 1,444 have a fixed pin/dangerous
+incompatibility from overlap or cross-separation, and 1,444 leave `Moser-2` with
+an empty candidate domain after Q3/overlap/cross-separation filtering.  Core
+extraction is complete.  The overlap atom already has
+`SelectedFourClass.inter_card_le_two`; the finite-order cyclic-separation core
+is now generalized as `SurplusCOMPGBank.btw_sep` over `Fin n`.  The remaining
+formalization requires a carrier-to-boundary-index bridge, an adapter into the
+existing K-Q3-1 same-side two-circle kernel, a Lean proof of K-Q3-5, and a
+geometric selected-class-to-L2-code bridge before the verified LOCAL certificate
+can exhaust the Moser-2 branch.  The resulting two type exclusions are
+dangerous-row case leaves, not the full producer.
+
+A source-indexed representative scan encoded the retained no-q-free blocker
+fact and found all 517 placement/type packets SAT, both for the joint shell
+system and after selecting a K4 at every center.  The completed shell/audit
+coupling then adjudicated all 4,993 q-critical scenarios and 15,440 six-center
+q-deleted frames: q-critical is 4,198 SAT / 795 UNSAT, and q-deleted survival is
+12,894 SAT / 2,546 UNSAT.  The 67 initially capped searches were all resolved by
+targeted 1M/3M/10M-node retries.  In Lean, `CriticalShellSystem` stores
+`no_qfree`, exposed both before and after erasing the blocker center.  These
+checkpoints remove the placement, shell-interface, and shell/audit coupling
+gaps, but the surviving incidence assignments still do not produce
+`RowwiseConfinedQDeletedClasses`.  The next proof-facing steps are to formalize
+those zero-type rejection families through the named bridges and to mine the
+shell/audit failures and surviving assignments for a new geometric necessity
+lemma covering the other row types; see the full closure spec for the low-level
+action list.
 
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 
@@ -377,7 +407,7 @@ the target is a realizability criterion for near-critical bisector-incidence
 patterns with all points distinct.
 
 - **D1 — literature scan: DONE 2026-07-06**
-  ([`d1-rigidity-literature-scan-2026-07-06.md`](d1-rigidity-literature-scan-2026-07-06.md);
+  ([`d1-rigidity-literature-scan-2026-07-06.md`](../../docs/d1-rigidity-literature-scan-2026-07-06.md);
   verified-citations-only, 7 PROVEN-in-literature / 16 PARTIAL / 5 NO-LEAD /
   0 unverified-memory). Headline: **no theorem transfers directly** — the
   target class (near-critical equidistance frameworks, forced-coincidence
