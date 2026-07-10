@@ -337,6 +337,18 @@ corresponding closure-matrix gate, not by prose completion claims.
    completeness lemma `CubeOk κ → the derived assignment satisfies the CNF`
    (Sinz counting aux + one-hot + NAND + indicator layers), and the terminal
    `verifyCert_correct` replay.
+
+   **LRAT plumbing VALIDATED end-to-end 2026-07-09** on a real forced-UNSAT
+   instance (base CNF + the smoke-gate-3 C2-violation units `272`, `483`):
+   `cadical --no-binary --lrat` → 1,951-action ASCII certificate →
+   `Std.Tactic.BVDecide.Reflect.verifyCert (baseCnf ++ units) cert = true`
+   directly — **no drat-trim conversion, no clause-ID compaction, and no
+   detautologization were needed** (cadical's LRAT IDs continue contiguously
+   from the 207,971 originals, and `parseLRATProof` accepts the ASCII output
+   as-is). The v4.29-targeted `piqd-lrat` port is therefore NOT required.
+   A11-COVER-FMT format selection: **verified-LRAT route CONFIRMED**; the
+   remaining unknown is only the terminal certificate's size/check time,
+   measurable when the loop reaches UNSAT.
 4. **Motif-transfer lemma** in Lean: equidistance-pattern deadness is
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with
