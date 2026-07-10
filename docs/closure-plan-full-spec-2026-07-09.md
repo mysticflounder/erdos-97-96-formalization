@@ -28,7 +28,7 @@ Last fully mined kernel graph (build fingerprint `f241809581e3`):
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusNonVExactShapeProducer` | `RemovableVertexAxiom/PinnedSurplusProducer.lean:300` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:19` | 1 | B |
 | 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10055` | 2 | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
@@ -370,6 +370,18 @@ corresponding closure-matrix gate, not by prose completion claims.
    completeness lemma; the remaining composition (one-hot exactly-one, C2
    NAND, C4 counting from `CubeOk`, block disjointness, pattern `y`-layer)
    is still open.
+
+   **Base-CNF completeness PROVEN 2026-07-09** (`Census554/BaseSat.lean`):
+   `baseDimacs_sat`/`baseCnf_sat` — an index-level candidate selection
+   `idx : Nat → Nat` obeying index-level C2 (`interCard` ≤ 2 pairwise) and C4
+   (per-point-pair center count ≤ 2) constraints yields a satisfying
+   assignment for the whole base CNF (one-hot + C2 + C4 layers composed via
+   threaded `sinzExt` folds mirroring `onehotClauses`/`c4Fold`). Axioms: core
+   only; no sorry. Deliberately index-level, not `Finset`/`CubeOk`-level —
+   still open: the bridge from `CubeOk κ` down to these index-level
+   hypotheses (needs a candidate-enumeration completeness anchor: every
+   `IsCandidateClass` mask appears in `candMasks p`), the banked-pattern
+   `y`-layer emitter, and the terminal `verifyCert_correct` replay.
 4. **Motif-transfer lemma** in Lean: equidistance-pattern deadness is
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with
@@ -540,11 +552,12 @@ right mirror, and the `pointPairClassCount_le_two_of_sameRadius` family; do not
 rebuild bank transport. Acceptance: the two Base holes disappear and
 `isM44EndpointResidualsExcluded` leaves the spine-open list.
 
-### B.2 Pinned-surplus producer (leaf 3)
+### B.2 Pinned-surplus general-m residual (leaf 3)
 
-`isM44PinnedSurplusNonVExactShapeProducer` has one source `sorry`, but its
-statement is a conjunction of right and left obligations. For each pinned
-residual and fixed ten-label geometry, the exact output is
+The label-complete path is closed.  Both halves of
+`isM44PinnedSurplusNonVExactShapeProducer` now require
+`S.surplusCap.card = 5` and prove, for each pinned residual and fixed ten-label
+geometry, the exact output
 
 ```text
 ∃ supportClass : Label → Finset ℝ²,
@@ -554,13 +567,26 @@ residual and fixed ten-label geometry, the exact output is
 
 where `PinnedSurplusSupportClasses` means (i) same-radius classes at every
 center other than `.v/.w`, and (ii) membership of every resulting point mask
-in `candidateMasks sstar center`. The pinned `.v` class and opposite `.w`
-selector are already constructed downstream in
-`isM44PinnedSurplusMetricShadowProducer`; the checked row-zero bank and final
-contradiction are also closed. Matrix PIN-R and PIN-L own the two halves.
-Acceptance: prove both halves in `PinnedSurplusProducer.lean`, remove the one
-conjunctive `sorry`, build that module, and confirm the named producer vanishes
-from the spine-open list.
+in `candidateMasks sstar center`.  The metric-shadow assembly and checked
+row-zero contradiction also close this `m = 5` regime.  The focused producer
+and bank targets build; `PinnedSurplusProducer.lean` contains no `sorry`.
+
+The one remaining leaf is
+`isM44PinnedSurplusGeneralMResidualsExcluded`, stated directly with
+`5 < S.surplusCap.card`.  Do not route it through exact ten-label masks.  The
+empty-residue generator census only classifies facts after selecting a
+singleton leaf.  The finite coverage probe
+`scripts/pinned-generalm-certificate-coverage.py` finds a model defeating all
+available leaves in every one of the 15 fixed `.v/.w` rows at nonfixed
+labelled-cardinality floors 2 and 3, even with cyclic cross-separation and the
+global point-pair class-count bound.  Coverage returns only at floor 4.
+
+Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
+prove the direct larger-regime exclusion using a genuine four-label
+confinement/selection theorem, stronger geometry that eliminates every
+recorded countermodel, or a broader certificate family with a verified finite
+coverage theorem.  Remove the sole `PinnedSurplusBank.lean` `sorry` and confirm
+the named general-m residual leaves the spine-open list.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 
