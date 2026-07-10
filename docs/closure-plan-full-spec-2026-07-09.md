@@ -195,9 +195,9 @@ corresponding closure-matrix gate, not by prose completion claims.
    `sorry`/`admit`/declared axiom, and live axiom queries for
    `Card11CapLabeling.nonempty_of_card_eq_eleven`,
    `Card11SelectedCube.cubeOk`, and `exists_card11SelectedCube_cubeOk` report
-   only `propext`, `Classical.choice`, and `Quot.sound`. `RealizesCube` itself
-   remains deliberately owned by step 3/A11-COVER-REL; its selected-cube
-   adapter must use `L.injective` and `S.equidist_of_mem_cube`.
+   only `propext`, `Classical.choice`, and `Quot.sound`. Step 3/A11-COVER-REL
+   now defines `RealizesCube` and proves the selected-cube adapter directly
+   from `L.injective` and `S.equidist_of_mem_cube`.
 2. **Certificate checker**: verified Lean checker for the banked certificate
    format (Σ cᵢ·gᵢ = 1 over ℚ) + generated pattern data. Kernel-checked via
    `decide`/`native_decide` under the bv_decide standard (verified decision
@@ -282,10 +282,9 @@ corresponding closure-matrix gate, not by prose completion claims.
    before fleet generation. **Step 2 status: checker soundness COMPLETE;
    permanent generator integration and terminal cover-core replay OPEN.**
 3. **Motif-closed cover bridge and check**: this step has separate mathematical
-   and finite-computation parts. The support-injection substep is complete;
-   the remaining parts are open:
+   and finite-computation parts. The support-injection and relational substeps
+   are complete; the remaining parts are open:
 
-   - define when a bank pattern or its unlabeled motif embeds into a `Cube`;
    - freeze the terminal bank and exact motif-instance manifest; the permanent
      publisher now records all required provenance and hashes;
    - consume the emitted core CNF/LRAT and mapped core source rows, then
@@ -300,11 +299,23 @@ corresponding closure-matrix gate, not by prose completion claims.
    injection directly. The latter was built and its axiom query reports only
    `propext`, `Classical.choice`, and `Quot.sound`.
 
-   Implement the remaining surface in `Census554/Cover.lean`. Represent an
-   embedding by a total map `f : Fin 11 → Fin 11` together with
-   `Set.InjOn f (support row.pattern)`; the proved support bridge performs the
-   completion internally. Keep the combinatorial and geometric conclusions
-   separate:
+   **Relational interface PROVEN 2026-07-09**
+   (`Census554/CoverRelations.lean`): `CoverRow` keeps computable source ID and
+   pattern data separate from `CoverRow.Certified := IsDead row.pattern`;
+   `PatternEmbedsUnder row.pattern f κ` stores the total map, its
+   `Set.InjOn f (support row.pattern)` proof, and every mapped-mask inclusion;
+   `RealizesCube x κ` stores point injectivity and per-class equidistance.
+   `RealizesCube.equidist_of_patternEmbedsUnder` supplies the relabeled motif
+   equations, and `CoverRow.not_realizesCube_of_embeds` combines a certified
+   row with an embedding through `motif_transfer_of_supportInjOn`.
+   `Card11SelectedCube.realizesCube` is the geometric adapter. A nonidentity
+   two-row smoke example compiles. The source is sorry-free, and live axiom
+   queries for the three public endpoints report only `propext`,
+   `Classical.choice`, and `Quot.sound`.
+
+   Implement the finite coordinator and generated core data in
+   `Census554/Cover.lean`, reusing these relations. Keep the combinatorial and
+   geometric conclusions separate:
 
    - `coverCore_covers : CubeOk κ → ∃ row ∈ coverCore, ∃ f,
      PatternEmbedsUnder row.pattern f κ`; and
@@ -320,8 +331,8 @@ corresponding closure-matrix gate, not by prose completion claims.
    checked DRAT/LRAT-derived artifact; do not trust the current overwritten
    CaDiCaL CNF or stdout verdict. The format-selection experiment and its stop
    thresholds are matrix A11-COVER-FMT. DRAT verification and core/LRAT
-   extraction are implemented and integration-tested; Lean format selection
-   remains OPEN.
+   extraction are implemented and integration-tested. The verified-LRAT
+   route is selected below; terminal certificate size/check time remains open.
 
    **LRAT-route base encoder LANDED 2026-07-09**
    (`Census554/CoverCnf.lean`): a variable-for-variable, clause-for-clause
