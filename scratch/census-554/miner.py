@@ -481,16 +481,28 @@ def certify_pattern(pat, timeout=240):
 
 # ---------------- orbit closure ----------------
 
-def orbit(pat):
-    """All distinct AUTOS images of the pattern."""
+def orbit_with_maps(pat):
+    """Distinct AUTOS images paired with source-to-image point maps."""
     out = {}
     for m in L.AUTOS:
         img = {}
         for c, M in pat.items():
             img[m[c]] = frozenset(m[x] for x in M)
         key = tuple(sorted((c, tuple(sorted(M))) for c, M in img.items()))
-        out[key] = img
-    return list(out.values())
+        support = set(pat)
+        for members in pat.values():
+            support.update(members)
+        point_map = {point: m[point] for point in support}
+        previous = out.get(key)
+        map_key = tuple(sorted(point_map.items()))
+        if previous is None or map_key < tuple(sorted(previous[1].items())):
+            out[key] = (img, point_map)
+    return [out[key] for key in sorted(out)]
+
+
+def orbit(pat):
+    """All distinct AUTOS images of the pattern."""
+    return [img for img, _point_map in orbit_with_maps(pat)]
 
 
 def contains(cube, pat):

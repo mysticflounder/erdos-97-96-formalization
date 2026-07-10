@@ -118,6 +118,7 @@ class CoverInstance:
         """pat: dict {center: frozenset members}.  Adds one exclusion clause."""
         cl = [-self.y_var(c, M) for c, M in sorted(pat.items())]
         self.excl.append(cl)
+        return list(cl)
 
     def dimacs(self):
         lines = [f"p cnf {self.cnf.n} {len(self.cnf.clauses) + len(self.excl)}"]

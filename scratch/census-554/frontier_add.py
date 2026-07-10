@@ -1,100 +1,98 @@
 #!/usr/bin/env python3
-"""Append certified frontier pattern(s) to bank.jsonl, mirroring
-cegar.bank_one EXACTLY (cert file + bank row with next pid index, orbit
-expansion).
+"""Validate and atomically publish certified frontier patterns.
 
-SINGLE-WRITER: the whole append transaction (pid allocation + cert write +
-bank append) runs under an exclusive OS-level flock on bank.jsonl.lock, per
-docs/audits/2026-07-09-census-554-parallel-work-audit.md (P1: the old
-run_census.py pgrep guard did not exclude other frontier_add/cegar writers;
-duplicate pat_00003 was a real instance of that race).  cegar.py takes the
-same lock for its whole run, so every bank writer is under the one lock;
-the pgrep guard on run_census.py is kept as belt-and-braces.
+Direct CLI use takes the lifetime driver lease. ``frontier_loop.py`` imports
+``append_rows`` while it already holds that lease. Every publication then takes
+the shorter bank transaction lock, canonical-deduplicates under that lock,
+validates the exact certificate, writes recoverable certificate files, and
+atomically replaces ``bank.jsonl``.
 
 Usage: uv run python frontier_add.py <patterns.json>
-where patterns.json = [{"pattern": {c: [..]}, "cert": {...}, "cube": {...}}, ...]
-Each cert must be a completed miner.certify_pattern dict (has "kill").
+where patterns.json = [{"pattern": {c: [...]}, "cert": {...}, "cube": {...}}, ...]
 """
-import fcntl
+
+from __future__ import annotations
+
 import json
-import os
-import subprocess
 import sys
+from pathlib import Path
 
-sys.path.insert(0, ".")
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parent.parent
+sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(REPO_ROOT))
+
 import miner  # noqa: E402
-
-HERE = os.path.dirname(os.path.abspath(__file__))
-BANK = f"{HERE}/bank.jsonl"
-CERTS = f"{HERE}/certs"
-LOCK = f"{HERE}/bank.jsonl.lock"
-
-
-def driver_alive():
-    out = subprocess.run(["pgrep", "-f", "run_census.py"],
-                         capture_output=True, text=True)
-    return bool(out.stdout.strip())
+import verify_certs  # noqa: E402
+from census.census_554.io_protocol import (  # noqa: E402
+    BankEntry,
+    LockBusy,
+    commit_bank_records,
+    driver_lease,
+    read_jsonl_strict,
+)
 
 
-def next_pid_index():
-    n = 0
-    with open(BANK) as f:
-        for _ in f:
-            n += 1
-    return n
+def append_rows(rows):
+    """Publish a batch while the caller holds, or exclusively owns, the driver."""
 
-
-def main():
-    if driver_alive():
-        print("REFUSING: a census driver (run_census.py) is alive — "
-              "single-writer invariant. Stop it first.", flush=True)
-        sys.exit(2)
-
-    lockf = open(LOCK, "w")
-    try:
-        # non-blocking: a held lock means another writer (cegar.py holds it
-        # for its whole run) — fail loudly rather than queue silently
-        fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:
-        print("REFUSING: bank.jsonl.lock is held by another writer "
-              "(cegar driver or another frontier_add). Stop it first.",
-              flush=True)
-        sys.exit(2)
-
-    rows = json.load(open(sys.argv[1]))
-    npat = next_pid_index()
-    added = 0
+    entries = []
     for row in rows:
         pat = {int(c): frozenset(M) for c, M in row["pattern"].items()}
-        cert = row["cert"]
+        cert = dict(row["cert"])
         if "kill" not in cert:
             print(f"SKIP: cert has no kill (uncertified): {row['pattern']}",
                   flush=True)
             continue
-        pid = f"pat_{npat:05d}"
-        cert = dict(cert)
-        cert["pid"] = pid
-        cert["source_cube"] = {str(c): sorted(v)
-                               for c, v in row.get("cube", {}).items()}
-        with open(f"{CERTS}/{pid}.json", "w") as f:
-            json.dump(cert, f)
-        imgs = miner.orbit(pat)
-        k = len(miner.pattern_points(pat))
-        with open(BANK, "a") as f:
-            f.write(json.dumps({
-                "pid": pid,
-                "pattern": {str(c): sorted(M) for c, M in pat.items()},
-                "kill": cert["kill"],
-                "n_orbit": len(imgs),
-                "k": k,
-                "iter": -1,  # frontier-sourced, not a CEGAR iteration
-                "cert": f"certs/{pid}.json"}) + "\n")
-        print(f"ADDED {pid}: kill={cert['kill']} orbit={len(imgs)} k={k}",
-              flush=True)
-        npat += 1
-        added += 1
-    print(f"DONE: appended {added} row(s); bank now {npat} rows", flush=True)
+        cert["source_cube"] = {
+            str(c): sorted(values) for c, values in row.get("cube", {}).items()
+        }
+        images = miner.orbit(pat)
+        entries.append(BankEntry(
+            pattern=pat,
+            certificate=cert,
+            fields={
+                "n_orbit": len(images),
+                "k": len(miner.pattern_points(pat)),
+                "iter": -1,
+            },
+        ))
+
+    result = commit_bank_records(
+        HERE,
+        entries,
+        canonical_key=miner.canon_key,
+        validate=verify_certs.verify_cert,
+    )
+    for record in result.records:
+        print(
+            f"ADDED {record['pid']}: kill={record['kill']} "
+            f"orbit={record['n_orbit']} k={record['k']}",
+            flush=True,
+        )
+    bank_rows, _ = read_jsonl_strict(HERE / "bank.jsonl")
+    print(
+        f"DONE: published {len(result.records)} row(s), skipped "
+        f"{result.skipped_duplicates} canonical duplicate(s); "
+        f"bank now {len(bank_rows)} rows",
+        flush=True,
+    )
+    return result
+
+
+def main() -> int:
+    if len(sys.argv) != 2:
+        print("usage: frontier_add.py <patterns.json>", file=sys.stderr)
+        return 2
+    rows = json.loads(Path(sys.argv[1]).read_text(encoding="utf-8"))
+    try:
+        with driver_lease(HERE):
+            append_rows(rows)
+    except LockBusy as exc:
+        print(f"REFUSING: {exc}", file=sys.stderr, flush=True)
+        return 2
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

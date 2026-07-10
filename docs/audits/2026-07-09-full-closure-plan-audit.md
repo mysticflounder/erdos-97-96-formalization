@@ -232,21 +232,33 @@ that the leaf-1 export pair has one hole while leaf 2 separately has 79.
 
 ## Residual risks
 
+### Mitigation checkpoint (2026-07-09 19:40 PDT)
+
+Several engineering risks below have since been reduced: permanent
+Census554 lease/transaction/terminal/audit modules and self-contained tests
+exist; the proof-gated terminal path emits DRAT, core CNF, and LRAT; the first
+bank-independent geometry theorem builds; and fixed-head 12--14 profile lists
+have executable Python tests plus Lean arithmetic exhaustiveness theorems.
+The active census process predates the lifetime-lease and terminal imports, so
+those operational guarantees become authoritative only after restart or an
+explicit re-publication pass.
+
 1. **No complete theorem route exists for four open-math clusters:** the
    Front-A shared-radius tail, Front-A liveData families, endpoint/pinned
    confinement, and erased-pin P2/P4 confinement.
-2. **Census554 has no terminal result and is currently paused.** The final
-   log reaches the frontier at iteration 1154 with 5,431 bank rows; no process
-   or terminal marker was live at 18:32 PDT. Even a future solver UNSAT remains
-   empirical until the frozen cover is checked.
+2. **Census554 has no terminal result and is active under pre-mitigation
+   process state.** At 19:40 PDT file evidence reached iteration 1240 with
+   5,444 raw bank rows. Even a solver UNSAT is not downstream evidence until
+   the new proof-gated publisher and frozen-cover checks pass.
 3. **The generated-certificate worktree is highly volatile.** Matrix line
    numbers and ownership must be refreshed before dispatch, although theorem
    names and hole-family identities are stable.
-4. **The Census554 operational fixes are not yet complete.** Per-process CNF
-   paths, broad-CEGAR and append locks, terminal persistence code, the smoke
-   suite, bank, generator, and 21 replay modules are tracked. The permanent
-   package move, frontier-driver lease, atomic transaction, proof-checked
-   completion marker, and self-contained fixtures remain open.
+4. **Census554 migration and frozen replay remain incomplete.** The permanent
+   package now contains the frontier-driver lease, atomic recoverable
+   transaction, proof-checked completion publisher, structural auditor, and
+   self-contained fixtures. Runtime driver/miner/verifier/generator, changing
+   bank, and bulk certs have not moved; the current process has not loaded the
+   new lease/terminal code; exact frozen-bank replay has not run.
 5. **The closure matrix is as agent-complete as the known mechanisms allow.**
    OPEN-RESEARCH rows deliberately name exact outputs and falsified shortcuts,
    but they cannot prescribe a proof mechanism that the project does not yet

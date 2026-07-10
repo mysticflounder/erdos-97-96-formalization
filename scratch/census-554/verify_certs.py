@@ -47,6 +47,7 @@ def verify_cert(bank_rec, cert):
     pat = {int(c): frozenset(M) for c, M in cert["pattern"].items()}
     # 1. structural
     assert cert["schema"] == "census554_pattern_certificate.v1", pid
+    assert cert["pid"] == pid, f"{pid}: cert PID mismatch"
     assert bank_rec["pattern"] == cert["pattern"], f"{pid}: bank/cert mismatch"
     for c, M in pat.items():
         assert 0 <= c < L.N and len(M) >= 2 and c not in M, f"{pid}: bad mask"

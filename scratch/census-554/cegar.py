@@ -23,45 +23,36 @@ State persists in bank.jsonl / certs/ / cegar.log; resumable (load_bank
 replays bank.jsonl into exclusions).
 """
 
-import fcntl
 import json
 import os
 import sys
 import time
+from pathlib import Path
+
+HERE_PATH = Path(__file__).resolve().parent
+REPO_ROOT = HERE_PATH.parent.parent
+sys.path.insert(0, str(HERE_PATH))
+sys.path.insert(0, str(REPO_ROOT))
 
 import census554_lib as L
 import engine
 import miner
 import sat_cover
+import verify_certs
+from census.census_554.io_protocol import (
+    BankEntry,
+    LockBusy,
+    atomic_write_json,
+    commit_bank_records,
+    driver_lease,
+)
 
-HERE = os.path.dirname(os.path.abspath(__file__))
+HERE = str(HERE_PATH)
 BANK = f"{HERE}/bank.jsonl"
 FAILED = f"{HERE}/failed.jsonl"
-CERTS = f"{HERE}/certs"
 LOG = f"{HERE}/cegar.log"
 ALIVE = f"{HERE}/ALIVE_CANDIDATE.json"
-DONE = f"{HERE}/COVERAGE_COMPLETE.json"
 CNFTMP = f"{sat_cover.SCRATCH}/census554_cegar.cnf"
-LOCK = f"{HERE}/bank.jsonl.lock"
-
-os.makedirs(CERTS, exist_ok=True)
-
-
-def acquire_bank_lock():
-    """Whole-run exclusive writer lock on bank.jsonl (audit 2026-07-09 P1:
-    every bank writer must take the same OS-level lock; frontier_add.py
-    takes it per append).  Non-blocking: refuse to start if another writer
-    holds it.  Held until process exit; pid allocation from the in-memory
-    counter is safe only under this lock."""
-    lockf = open(LOCK, "w")
-    try:
-        fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except OSError:
-        raise SystemExit(
-            "REFUSING to start: another bank writer holds bank.jsonl.lock "
-            "(frontier_add.py or another cegar/frontier driver). "
-            "Single-writer invariant — stop it first.")
-    return lockf  # keep the handle alive; closing releases the lock
 
 
 def log(msg):
@@ -96,13 +87,13 @@ def load_failed():
 
 def stop_alive(it, cube, v, tag="ALIVE CANDIDATE"):
     log(f"iter {it}: {tag} — STOP. cube={json.dumps(cube)}")
-    with open(ALIVE, "w") as f:
-        json.dump({"cube": {str(c): cube[c] for c in cube},
-                   "verdict": v}, f, indent=2)
+    atomic_write_json(
+        Path(ALIVE),
+        {"cube": {str(c): cube[c] for c in cube}, "verdict": v},
+    )
 
 
-def main(max_iters=100000, wall_budget_s=None):
-    _bank_lock = acquire_bank_lock()  # noqa: F841 — held for process life
+def _run(max_iters=100000, wall_budget_s=None):
     t_start = time.time()
     inst = sat_cover.CoverInstance()
     bank = load_bank()
@@ -118,33 +109,51 @@ def main(max_iters=100000, wall_budget_s=None):
     log(f"resume: {npat} banked orbits ({n_inst} instances), "
         f"{len(failed_keys)} blacklisted fail-patterns")
 
-    def bank_one(pat, cert, cube, v, kmin, it):
+    def bank_many(pending, cube, v, it):
         nonlocal npat, n_inst
-        pid = f"pat_{npat:05d}"
-        cert["pid"] = pid
-        cert["source_cube"] = {str(c): cube[c] for c in cube}
-        if v is not None:
-            cert["source_verdict"] = {kk: v[kk] for kk in
-                                      ("verdict", "base_dim") if kk in v}
-        with open(f"{CERTS}/{pid}.json", "w") as f:
-            json.dump(cert, f)
-        imgs = miner.orbit(pat)
-        with open(BANK, "a") as f:
-            f.write(json.dumps({
-                "pid": pid,
-                "pattern": {str(c): sorted(M) for c, M in pat.items()},
-                "kill": cert["kill"],
-                "n_orbit": len(imgs),
-                "k": kmin,
-                "iter": it,
-                "cert": f"certs/{pid}.json"}) + "\n")
-        bank.append(pat)
-        npat += 1
-        for img in imgs:
-            inst.add_pattern_instance(img)
-            all_instances.append(img)
-            n_inst += 1
-        return len(imgs)
+        entries = []
+        for pat, cert, kmin in pending:
+            cert = dict(cert)
+            cert["source_cube"] = {str(c): cube[c] for c in cube}
+            if v is not None:
+                cert["source_verdict"] = {
+                    key: v[key] for key in ("verdict", "base_dim") if key in v
+                }
+            entries.append(BankEntry(
+                pattern=pat,
+                certificate=cert,
+                fields={
+                    "n_orbit": len(miner.orbit(pat)),
+                    "k": kmin,
+                    "iter": it,
+                },
+            ))
+        result = commit_bank_records(
+            HERE,
+            entries,
+            canonical_key=miner.canon_key,
+            validate=verify_certs.verify_cert,
+        )
+        orbit_sizes = []
+        kills = []
+        for record in result.records:
+            pat = {
+                int(c): frozenset(members)
+                for c, members in record["pattern"].items()
+            }
+            images = miner.orbit(pat)
+            bank.append(pat)
+            npat += 1
+            orbit_sizes.append(len(images))
+            kills.append(record["kill"])
+            for image in images:
+                inst.add_pattern_instance(image)
+                all_instances.append(image)
+                n_inst += 1
+        if result.skipped_duplicates:
+            log(f"  transaction skipped {result.skipped_duplicates} "
+                "canonical duplicate(s)")
+        return orbit_sizes, kills
 
     it = 0
     while it < max_iters:
@@ -156,14 +165,11 @@ def main(max_iters=100000, wall_budget_s=None):
         res, cube = inst.solve(CNFTMP, timeout=3600)
         t_sat = time.time() - t0
         if res == "UNSAT":
-            log(f"UNSAT after {npat} orbits ({n_inst} instances) "
-                f"— COVERAGE COMPLETE")
-            with open(DONE, "w") as f:
-                json.dump({"n_orbits": npat,
-                           "n_instances": n_inst,
-                           "wall_s": round(time.time() - t_start, 1)}, f,
-                          indent=2)
-            return "COMPLETE"
+            log(f"UNSAT after {npat} orbits ({n_inst} instances), but this "
+                "retired broad driver cannot publish coverage. No completion "
+                "marker was written; use frontier_loop.py for proof-gated "
+                "terminal artifacts.")
+            return "UNSAT_UNPUBLISHED"
         if res != "SAT":
             log(f"SAT solver anomaly: {res}")
             return "ERR"
@@ -211,8 +217,10 @@ def main(max_iters=100000, wall_budget_s=None):
         from concurrent.futures import ThreadPoolExecutor
         with ThreadPoolExecutor(max_workers=8) as ex:
             certs = list(ex.map(miner.certify_pattern, work))
-        n_new, n_fail = 0, 0
+        n_fail = 0
         kills, orbit_sizes = [], []
+        pending = []
+        pending_instances = []
         for pat, cert in zip(work, certs):
             if cert is None:
                 n_fail += 1
@@ -224,13 +232,17 @@ def main(max_iters=100000, wall_budget_s=None):
                 log(f"    certify FAILED on mined pattern "
                     f"{ {c: sorted(M) for c, M in pat.items()} }")
                 continue
-            if any(miner.instance_subsumes(img, pat)
-                   for img in all_instances):
+            if (any(miner.instance_subsumes(img, pat)
+                    for img in all_instances)
+                    or any(miner.instance_subsumes(img, pat)
+                           for img in pending_instances)):
                 n_skip += 1  # subsumed by a pattern banked earlier this iter
                 continue
-            orbit_sizes.append(bank_one(pat, cert, cube, v, kmin, it))
-            kills.append(cert["kill"])
-            n_new += 1
+            pending.append((pat, cert, kmin))
+            pending_instances.extend(miner.orbit(pat))
+        if pending:
+            orbit_sizes, kills = bank_many(pending, cube, v, it)
+        n_new = len(orbit_sizes)
         t_cert = time.time() - t0
 
         if n_new == 0:
@@ -250,14 +262,18 @@ def main(max_iters=100000, wall_budget_s=None):
             if cert is None:
                 log(f"iter {it}: CANNOT CERTIFY dead cube — STOP. "
                     f"cube={json.dumps(cube)}")
-                with open(ALIVE, "w") as f:
-                    json.dump({"cube": {str(c): cube[c] for c in cube},
-                               "verdict": v, "note": "certify failed"}, f,
-                              indent=2)
+                atomic_write_json(
+                    Path(ALIVE),
+                    {"cube": {str(c): cube[c] for c in cube},
+                     "verdict": v, "note": "certify failed"},
+                )
                 return "CERTFAIL"
-            orbit_sizes.append(bank_one(full, cert, cube, v, None, it))
-            kills.append(cert["kill"])
-            n_new = 1
+            orbit_sizes, kills = bank_many([(full, cert, None)], cube, v, it)
+            n_new = len(orbit_sizes)
+            if n_new == 0:
+                log(f"iter {it}: full-cube certificate canonical-duplicates "
+                    "the bank but did not exclude the witness — STOP")
+                return "INVARIANT_FAILURE"
 
         src = "miner" if v is None else f"engine:{v['verdict']}"
         log(f"iter {it}: src={src} k={kmin} banked={n_new} "
@@ -266,6 +282,15 @@ def main(max_iters=100000, wall_budget_s=None):
             f"[sat {t_sat:.1f}s mine {t_mine:.1f}s cert {t_cert:.1f}s]")
         it += 1
     return "MAXITER"
+
+
+def main(max_iters=100000, wall_budget_s=None):
+    try:
+        with driver_lease(HERE):
+            return _run(max_iters=max_iters, wall_budget_s=wall_budget_s)
+    except LockBusy as exc:
+        log(f"REFUSING: {exc}")
+        return "LOCKED"
 
 
 if __name__ == "__main__":

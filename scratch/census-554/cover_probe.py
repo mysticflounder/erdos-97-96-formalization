@@ -31,11 +31,16 @@ import os
 import sys
 import tempfile
 import time
+from pathlib import Path
 from itertools import permutations
 
-sys.path.insert(0, ".")
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parent.parent
+sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(REPO_ROOT))
 import miner  # noqa: E402
 import sat_cover  # noqa: E402
+from census.census_554.io_protocol import row_sha256  # noqa: E402
 
 # Per-process private CNF path (audit 2026-07-09 P1: a shared hardcoded
 # session-scratchpad path let concurrent solver invocations clobber each
@@ -48,18 +53,26 @@ CNF_PATH = os.path.join(
 
 
 def load_bank():
-    pats = []
-    with open("bank.jsonl") as f:
+    return [item["pattern"] for item in load_bank_records()]
+
+
+def load_bank_records():
+    """Load complete rows with stable row digests and native patterns."""
+    records = []
+    with open(HERE / "bank.jsonl") as f:
         for ln in f:
             ln = ln.strip()
             if not ln:
                 continue
-            try:
-                r = json.loads(ln)
-            except json.JSONDecodeError:
-                continue  # racing the live appender on the last line
-            pats.append({int(c): frozenset(M) for c, M in r["pattern"].items()})
-    return pats
+            row = json.loads(ln)
+            records.append({
+                "row": row,
+                "row_sha256": row_sha256(row),
+                "pattern": {
+                    int(c): frozenset(M) for c, M in row["pattern"].items()
+                },
+            })
+    return records
 
 
 def support(pat):
@@ -76,9 +89,9 @@ def _invariant(pat, p):
     return (out_deg, in_deg, memb)
 
 
-def unlabeled_key(pat):
+def unlabeled_key_with_map(pat):
     """Canonical serialized form under all support bijections consistent
-    with the invariant partition (min over consistent relabelings)."""
+    with the invariant partition, with a deterministic source-to-key map."""
     sup = support(pat)
     inv = {p: _invariant(pat, p) for p in sup}
     blocks = {}
@@ -86,15 +99,19 @@ def unlabeled_key(pat):
         blocks.setdefault(inv[p], []).append(p)
     keys = sorted(blocks)
     best = None
+    best_map = None
 
     def rec(bi, label_of, next_label):
-        nonlocal best
+        nonlocal best, best_map
         if bi == len(keys):
-            ser = tuple(sorted(
+            serialized = tuple(sorted(
                 (label_of[c], tuple(sorted(label_of[p] for p in M)))
                 for c, M in pat.items()))
-            if best is None or ser < best:
-                best = ser
+            map_key = tuple(sorted(label_of.items()))
+            if (best is None or serialized < best
+                    or (serialized == best and map_key < tuple(sorted(best_map.items())))):
+                best = serialized
+                best_map = dict(label_of)
             return
         for perm in permutations(blocks[keys[bi]]):
             lo = dict(label_of)
@@ -105,13 +122,20 @@ def unlabeled_key(pat):
             rec(bi + 1, lo, nl)
 
     rec(0, {}, 0)
-    return best
+    return best, best_map
 
 
-def embed_into_cube(key, cube):
+def unlabeled_key(pat):
+    """Canonical serialized form under support relabeling."""
+    return unlabeled_key_with_map(pat)[0]
+
+
+def embed_into_cube_with_maps(key, cube):
     """All injective embeddings of canonical motif `key` into the fixed
     cube {c: frozenset K_c}: image(M_c) ⊆ K_{image(c)} for every center.
-    Returns a set of serialized embedded patterns."""
+    Returns serialized embedded patterns mapped to canonical-support
+    injections. When automorphisms emit the same pattern, the least injection
+    is retained deterministically."""
     centers = {c: frozenset(M) for c, M in key}
     nodes = sorted({c for c, _ in key} | {p for _, M in key for p in M})
     order = sorted(nodes,
@@ -128,14 +152,21 @@ def embed_into_cube(key, cube):
                     return False
         return True
 
-    out = set()
+    out = {}
     assign = {}
     used = set()
 
     def rec(i):
         if i == len(order):
-            out.add(tuple(sorted((assign[c], tuple(sorted(assign[p] for p in M)))
-                                 for c, M in centers.items())))
+            serialized = tuple(sorted(
+                (assign[c], tuple(sorted(assign[p] for p in M)))
+                for c, M in centers.items()
+            ))
+            point_map = dict(assign)
+            previous = out.get(serialized)
+            if (previous is None
+                    or tuple(sorted(point_map.items())) < tuple(sorted(previous.items()))):
+                out[serialized] = point_map
             return
         n = order[i]
         for t in range(11):
@@ -150,6 +181,11 @@ def embed_into_cube(key, cube):
 
     rec(0)
     return out
+
+
+def embed_into_cube(key, cube):
+    """All serialized injective embeddings of `key` into `cube`."""
+    return set(embed_into_cube_with_maps(key, cube))
 
 
 def ser(pat):

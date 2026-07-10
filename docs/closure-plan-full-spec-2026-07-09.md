@@ -97,28 +97,32 @@ split: `of_isM44PinnedSurplus` vs `of_nonIsM44`).
   card-11 closure theorem. At card 11 every point of `A` is labeled, so no
   additional unlabeled-point confinement condition is expected.
 
-### A.1 Card-11 slice — PAUSED, INCOMPLETE
+### A.1 Card-11 slice — ACTIVE PRE-LEASE RUN, INCOMPLETE
 
 Pipeline (`scratch/census-554/frontier_loop.py`): lazy motif-embedding cover +
 CEGAR mining at genuine frontiers, to UNSAT.
 
-Final audit recheck (2026-07-09 18:32 PDT): no census process was live. The
-bank had 5,431 rows and the log ended after printing the frontier cube at
-iteration 1154, before a terminal verdict. Neither `COVERAGE_COMPLETE.json`
-nor `ALIVE_CANDIDATE.json` existed. This is an externally stopped or paused
-checkpoint, not UNSAT, ALIVE, certify failure, or a bounded terminal result.
+The 18:32 audit snapshot was paused at 5,431 rows / iteration 1154. A later
+process resumed it. At 19:40 PDT, lock-consistent file evidence showed 5,444
+raw bank rows and the log had reached the frontier at iteration 1240. Direct
+process-list access was sandbox-blocked, so this status is grounded in current
+bank/log mtimes and content. There is still no adjudicated terminal result.
 
 **Correct interpretation of a future solver UNSAT:** CaDiCaL UNSAT would be an
 EMPIRICALLY VERIFIED coverage result for the exact emitted Python CNF and the
 bank snapshot used to emit it. It would say that every candidate cube in that
 encoding contains an encoded bank-motif instance. It would not, by itself,
-prove the geometric card-11 theorem or close a Lean leaf. The tracked driver
-now contains a terminal persistence prototype for a final CNF, DRAT
-output, instance manifest, bank snapshot, and digests. That path has not run
-to a terminal result and is not yet a completion gate: it must write the
-completion marker only after the persisted CNF re-solves UNSAT and the proof
-artifact checks, take a lock-consistent bank snapshot, and retain the
-source-pattern/relabeling provenance needed to extract the Lean cover core.
+prove the geometric card-11 theorem or close a Lean leaf. The permanent
+terminal publisher now re-solves the persisted CNF, requires `drat-trim`
+verification, emits core CNF and LRAT artifacts, takes a lock-consistent bank
+snapshot, and records source row, canonical motif, support injection, emitted
+pattern, and clause provenance. It writes the completion marker last. Unit
+fault gates and a real tiny CaDiCaL/`drat-trim` integration test pass. The
+active process predates that frontier-loop rewrite, however, so its in-memory
+terminal function is the old prototype. Any marker from this run is provisional
+until rechecked and re-published by the new gate. The mandatory consumer command
+`uv run python -m census.census_554.verify_completion --root scratch/census-554`
+rejects the legacy marker schema and independently rechecks all hashes and DRAT.
 
 The complete card-11 discharge chain has seven obligations:
 
@@ -138,17 +142,17 @@ The complete card-11 discharge chain has seven obligations:
 Obligations 4 and 5, plus the mathematical checker core needed for obligation
 3, are complete. A.2 tracks the remaining artifacts.
 
-Operational prerequisite: per-process solver temporary paths and a
-transaction lock inside `frontier_add.py` are now tracked, and
-the deterministic motif-cover smoke suite passed at the final audit recheck.
-The repair is still incomplete: there is no lifetime-exclusive driver lease,
-so two `frontier_loop.py` processes can still overlap; the append transaction
-does not yet use validated temp-file/rename/fsync semantics; and the supported
-tooling, tracked bank, and regression script still live in the provisional
-`scratch/` tree. Broad `cegar.py` now holds the shared bank lock for its whole
-run, which closes the earlier unlocked-writer gap for that entry point. No
-driver may be restarted until matrix A11-OPS-* moves the code to its permanent
-home and closes the remaining gaps. See
+Operational code now has a shared lifetime driver lease, a separate bank
+transaction lock, max-suffix PID allocation, canonical dedupe, exact precommit
+certificate validation, a crash-recovery journal, fsynced atomic certificate
+publication, and fsynced atomic bank replacement. The child publisher used
+this path successfully for `pat_05443`. Cross-process and fault-injection tests
+pass. The active process started before the lifetime lease loaded, so lease
+enforcement begins at restart. Permanent migration is partial:
+`census/census_554/` owns the protocol, terminal gate, structural auditor,
+combinatorial core, and self-contained smoke/tests, while the driver, miner,
+verifier, changing bank, and large certificate artifact remain under
+`scratch/`. See
 `docs/audits/2026-07-09-census-554-parallel-work-audit.md`.
 
 Stop conditions that would revise this section: a frontier cube with no
@@ -168,13 +172,12 @@ corresponding closure-matrix gate, not by prose completion claims.
    decidable); encoding validated by kernel-`decide` smoke anchors — the
    per-center class counts (210, 43, 16, 210) match
    `len(census554_lib.candidates(p))`.
-   **Status: DEFINITIONS COMPLETE; GEOMETRIC BRIDGE OPEN (matrix A11-GEO-*).**
-   Implement `Census554/GeometryBridge.lean` with these concrete outputs:
+   **Status: DEFINITIONS COMPLETE; FIRST GEOMETRIC BRIDGE BUILT; LABEL/CUBE
+   BRIDGES OPEN (matrix A11-GEO-*).** `Census554/GeometryBridge.lean` proves
+   `card_ge_eleven_of_twoLargeCaps` from the generic cap lower bounds and
+   cap-sum identity. Its targeted build succeeds and its axiom query reports
+   only core axioms. Remaining outputs are:
 
-   - `card_ge_eleven_of_twoLargeCaps`: derive `11 ≤ D.A.card` from
-     `capTriple_caps_card_ge_four`, the surplus `>4` cap, the distinct second
-     `≥5` cap, and the cap-sum identity. This justifies the later
-     `card = 11` versus `12 ≤ card` split.
    - `Card11Labeling`: an injective `pointOf : Fin 11 → ℝ²` whose range is
      `D.A`, with labels 0/1/2 assigned to the three Moser apices and the
      remaining labels assigned to the `(3,3,2)` cap interiors supplied by
@@ -196,19 +199,21 @@ corresponding closure-matrix gate, not by prose completion claims.
    format (Σ cᵢ·gᵢ = 1 over ℚ) + generated pattern data. Kernel-checked via
    `decide`/`native_decide` under the bv_decide standard (verified decision
    procedure, no `@[implemented_by]` in closure).
-   **Feasibility measured 2026-07-09** (`scratch/census-554/certs/`, about
-   5,400 files at the relevant live checkpoints): median cert 54 KB, p90 7 MB
-   — but p99 351 MB, max 2.3 GB, over 70 GB total. About 4,900 certs at most
+   **Feasibility remeasured 2026-07-09** by the permanent structural auditor at
+   5,443 unique cert paths: median 54,787 B, p90 7,193,804 B, p99 365,247,505 B,
+   max 2,281,208,887 B, 157 files over 100 MiB, and 78,158,578,373 B total.
+   About 4,900 certs at most
    10 MB account for only a few GB; roughly 475 heavy `multi_pair` certs carry
    most of the bytes and cannot be replayed
    through the kernel as-is. Smallest certs are all `base` kills, largest
    all `multi_pair`. Named residual: a shrink strategy for the heavy tail —
    re-lift with different order/strategy, split multi_pair kills into
    per-pair sub-certificates, or re-mine alternative patterns at the
-   affected cubes. Apply this only to certificates selected by the terminal
-   cover core; do not replay or shrink the full fleet before the cover witness
-   identifies which motifs are actually consumed (matrix A11-CORE and
-   A11-CERT-*).
+   affected cubes. The terminal checker now invokes `drat-trim -c/-L`, maps
+   core exclusion clauses back to exact manifest rows, and records core source
+   cert sizes. Apply shrinking only to that core; exact full-bank replay is a
+   freeze audit, not part of terminal SAT-proof publication (matrix A11-CORE
+   and A11-CERT-*).
    **Format verified 2026-07-09** (`certs/pat_02213.json`, schema
    `census554_pattern_certificate.v1`): `variables` (gauged coordinate
    names), `generators` (polynomial strings), `generator_tags` ([c,a,b] =
@@ -269,10 +274,10 @@ corresponding closure-matrix gate, not by prose completion claims.
    the remaining parts are open:
 
    - define when a bank pattern or its unlabeled motif embeds into a `Cube`;
-   - freeze the terminal bank, exact motif-instance manifest, and hashes;
-   - extract the set of pattern IDs actually used by the checked cover and
-     generate/replay only that certificate core before considering fleet-wide
-     replay;
+   - freeze the terminal bank and exact motif-instance manifest; the permanent
+     publisher now records all required provenance and hashes;
+   - consume the emitted core CNF/LRAT and mapped core source rows, then
+     generate/replay only that certificate core before fleet-wide replay;
    - kernel-check that every `CubeOk` cube contains a dead motif instance; and
    - combine per-pattern deadness, the support bridge, and step 4 to derive
      impossibility of every covered cube.
@@ -302,7 +307,9 @@ corresponding closure-matrix gate, not by prose completion claims.
    If that exceeds the build budget, use a generated search certificate or a
    checked DRAT/LRAT-derived artifact; do not trust the current overwritten
    CaDiCaL CNF or stdout verdict. The format-selection experiment and its stop
-   thresholds are matrix A11-COVER-FMT. **Status: OPEN.**
+   thresholds are matrix A11-COVER-FMT. DRAT verification and core/LRAT
+   extraction are implemented and integration-tested; Lean format selection
+   remains OPEN.
 4. **Motif-transfer lemma** in Lean: equidistance-pattern deadness is
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with

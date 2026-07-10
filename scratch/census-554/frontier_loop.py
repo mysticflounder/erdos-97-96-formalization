@@ -1,54 +1,57 @@
 #!/usr/bin/env python3
-"""Frontier-driven cover loop: run the (5,5,4) |A|=11 census to UNSAT.
+"""Frontier-driven cover loop for the (5,5,4), ``|A| = 11`` census.
 
-Combines cover_probe's lazy motif-embedding exclusion with CEGAR mining at
-genuine frontiers.  Each iteration:
+The process holds the shared lifetime driver lease. Frontier certificates are
+exactly revalidated and atomically banked in one transaction. Every SAT
+exclusion retains its source bank-row digest, canonical motif, support
+injection, emitted pattern, and exact CNF clause.
 
-  1. solve the cover CNF
-     UNSAT -> DONE: the search terminates.  Trust label at that point is
-              EMPIRICALLY VERIFIED, not PROVEN — the result still rests on
-              CaDiCaL plus the motif-transfer lemma, pending the Lean-side
-              cover check (closure plan A.2 step 3) or an independently
-              checked SAT proof.  The terminal state persists everything a
-              checker needs: bank snapshot digest, full exclusion-instance
-              manifest, the exact final CNF, and a DRAT proof
-              (audit 2026-07-09 P2: durable proof artifact).
-     SAT   -> witness cube.
-  2. embed every known dead motif into the cube (all candidate-feasible
-     injective embeddings).  New embeddings -> add them + their AUTOS orbits
-     as exclusion clauses; next iteration.  (No mining, no certificates —
-     these clauses are what the motif-transfer lemma licenses.)
-  3. no embedding -> GENUINE frontier: mine the cube's minimal dead patterns
-     (exact itersat oracle).  All mined patterns are new motifs by step 2.
-     Certify in parallel (block-order lift + exact Fraction recheck), bank
-     via frontier_add.py, add orbits; next iteration.
+An UNSAT solver response is only a candidate terminal state. Publication
+re-solves the persisted CNF, checks the emitted DRAT proof with ``drat-trim``,
+validates and hashes every referenced source certificate, snapshots the bank
+under its transaction lock, and atomically writes ``COVERAGE_COMPLETE.json``
+last. The checked SAT result still depends on the Lean motif-transfer theorem.
 
-Any banked mined pattern lies inside its cube, so every mining step strictly
-excludes the current cube — the loop cannot spin.
-
-Hard stops (review): solver error; frontier cube with no minimal dead
-pattern (cube genuinely ALIVE — real finding); 0/N certified.
-
-Usage: uv run python frontier_loop.py   (from scratch/census-554)
+Usage: uv run python scratch/census-554/frontier_loop.py
 Env: CERT_WORKERS (default 8), CERT_TIMEOUT (default 900), MAX_ITERS (5000)
 """
+
+from __future__ import annotations
+
+import importlib.metadata
 import json
 import os
 import subprocess
 import sys
 import time
 from concurrent.futures import ProcessPoolExecutor
+from pathlib import Path
 
-sys.path.insert(0, ".")
+HERE = Path(__file__).resolve().parent
+REPO_ROOT = HERE.parent.parent
+sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(REPO_ROOT))
+
 import cover_probe as cp  # noqa: E402
+import frontier_add  # noqa: E402
 import intracap  # noqa: E402
 import miner  # noqa: E402
 import sat_cover  # noqa: E402
+from census.census_554.io_protocol import (  # noqa: E402
+    LockBusy,
+    atomic_write_json,
+    driver_lease,
+    row_sha256,
+)
+from census.census_554.terminal_artifacts import (  # noqa: E402
+    TerminalArtifactError,
+    publish_unsat_artifacts,
+)
 
 
 def _exact_dead(pat, timeout=30):
-    v = intracap.pattern_dead3(pat, max(timeout, 60))
-    return bool(v)  # None (timeout) -> conservative not-dead
+    verdict = intracap.pattern_dead3(pat, max(timeout, 60))
+    return bool(verdict)
 
 
 miner.pattern_dead_fast = _exact_dead
@@ -58,183 +61,353 @@ CERT_TIMEOUT = int(os.environ.get("CERT_TIMEOUT", "900"))
 MAX_ITERS = int(os.environ.get("MAX_ITERS", "5000"))
 
 
-def certify_one(pj):
-    pat = {int(c): frozenset(M) for c, M in pj.items()}
-    t0 = time.time()
-    cert = miner.certify_pattern(pat, timeout=CERT_TIMEOUT)
-    return pj, cert, time.time() - t0
+def certify_one(pattern_json):
+    pattern = {int(c): frozenset(members)
+               for c, members in pattern_json.items()}
+    started = time.time()
+    certificate = miner.certify_pattern(pattern, timeout=CERT_TIMEOUT)
+    return pattern_json, certificate, time.time() - started
 
 
-def _sha256(path):
-    import hashlib
-    h = hashlib.sha256()
-    with open(path, "rb") as f:
-        for chunk in iter(lambda: f.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
+def _compose_maps(*maps):
+    composed = dict(maps[0])
+    for next_map in maps[1:]:
+        composed = {source: next_map[target]
+                    for source, target in composed.items()}
+    return composed
 
 
-def persist_unsat(inst, added, it, n_mined_cycles, elapsed):
-    """Durable terminal artifact for an UNSAT verdict (audit 2026-07-09
-    P2): exact final CNF + DRAT proof + full exclusion-instance manifest
-    + bank snapshot digest, all tied together in COVERAGE_COMPLETE.json.
-    Without these the UNSAT would live only in CaDiCaL's stdout and the
-    loop's process memory."""
-    import gzip
-    import shutil
-    cnf_final = "coverage_final.cnf"
-    with open(cnf_final, "w") as f:
-        f.write(inst.dimacs())
-    # independent re-solve on the persisted CNF, emitting a DRAT proof
-    drat = "coverage_final.drat"
-    pr = subprocess.run(["cadical", "-q", cnf_final, drat],
-                        capture_output=True, text=True, timeout=14400)
-    drat_ok = "s UNSATISFIABLE" in pr.stdout
-    if not drat_ok:
-        print(f"[terminal] WARNING: re-solve of persisted CNF did not "
-              f"return UNSAT (output tail: {pr.stdout[-200:]})", flush=True)
-    manifest = "coverage_instances.jsonl.gz"
-    with gzip.open(manifest, "wt") as f:
-        for s in sorted(added):
-            f.write(json.dumps([[c, list(M)] for c, M in s]) + "\n")
-    bank_snap = "coverage_bank_snapshot.jsonl"
-    shutil.copyfile("bank.jsonl", bank_snap)
-    meta = {
-        "verdict": "UNSAT",
-        "trust": "EMPIRICALLY VERIFIED (CaDiCaL + motif-transfer lemma; "
-                 "Lean cover check pending — closure plan A.2 step 3)",
-        "iteration": it,
-        "mining_cycles": n_mined_cycles,
-        "n_instances": len(added),
-        "elapsed_s": round(elapsed),
-        "cnf": {"path": cnf_final, "sha256": _sha256(cnf_final)},
-        "drat": {"path": drat, "resolve_unsat": drat_ok,
-                 "sha256": _sha256(drat) if os.path.exists(drat) else None},
-        "instances": {"path": manifest, "sha256": _sha256(manifest)},
-        "bank": {"path": bank_snap, "sha256": _sha256(bank_snap),
-                 "rows": sum(1 for _ in open(bank_snap))},
+def _pattern_json(pattern):
+    return [[center, sorted(members)]
+            for center, members in sorted(pattern.items())]
+
+
+def _motif_json(key):
+    return [[center, list(members)] for center, members in key]
+
+
+def _item_from_row(row):
+    return {
+        "row": row,
+        "row_sha256": row_sha256(row),
+        "pattern": {
+            int(c): frozenset(members)
+            for c, members in row["pattern"].items()
+        },
     }
-    with open("COVERAGE_COMPLETE.json", "w") as f:
-        json.dump(meta, f, indent=2)
-    print(f"[terminal] persisted: {cnf_final}, {drat} "
-          f"(re-solve UNSAT={drat_ok}), {manifest}, {bank_snap}, "
-          f"COVERAGE_COMPLETE.json", flush=True)
+
+
+def _add_instance(
+    instance,
+    added,
+    *,
+    pattern,
+    source,
+    canonical_key,
+    source_to_target,
+    embedding_kind,
+):
+    serialized = cp.ser(pattern)
+    if serialized in added:
+        return False
+    clause = instance.add_pattern_instance(pattern)
+    injection = [[source_point, source_to_target[source_point]]
+                 for source_point in sorted(source_to_target)]
+    targets = [target for _, target in injection]
+    if len(set(targets)) != len(targets):
+        raise AssertionError("non-injective provenance map")
+    added[serialized] = {
+        "source_pid": source["row"]["pid"],
+        "source_row_sha256": source["row_sha256"],
+        "source_cert": source["row"]["cert"],
+        "canonical_motif": _motif_json(canonical_key),
+        "support_injection": injection,
+        "pattern": _pattern_json(pattern),
+        "clause": clause,
+        "embedding_kind": embedding_kind,
+    }
+    return True
+
+
+def _seed_bank_row(instance, added, source):
+    key = source.get("canonical_key")
+    if key is None:
+        key, source_to_key = cp.unlabeled_key_with_map(source["pattern"])
+        source["canonical_key"] = key
+        source["source_to_key"] = source_to_key
+    count = 0
+    for image, source_to_image in miner.orbit_with_maps(source["pattern"]):
+        count += _add_instance(
+            instance,
+            added,
+            pattern=image,
+            source=source,
+            canonical_key=key,
+            source_to_target=source_to_image,
+            embedding_kind="bank_autos",
+        )
+    return count
+
+
+def _motif_representatives(sources):
+    representatives = {}
+    ordered = sorted(
+        sources,
+        key=lambda item: (str(item["row"].get("pid")), item["row_sha256"]),
+    )
+    for source in ordered:
+        key, source_to_key = cp.unlabeled_key_with_map(source["pattern"])
+        source["canonical_key"] = key
+        source["source_to_key"] = source_to_key
+        representatives.setdefault(key, (source, source_to_key))
+    return representatives
+
+
+def _tool_version(command):
+    try:
+        result = subprocess.run(
+            command, capture_output=True, text=True, timeout=30
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return "unavailable"
+    output = (result.stdout or result.stderr).strip().splitlines()
+    return output[0] if output else f"exit {result.returncode}"
+
+
+def _git_commit():
+    result = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    return result.stdout.strip() if result.returncode == 0 else "unknown"
+
+
+def persist_unsat(instance, added, iteration, mining_cycles, elapsed):
+    if [row["clause"] for row in added.values()] != instance.excl:
+        raise TerminalArtifactError("manifest clauses do not match CNF exclusions")
+    try:
+        sympy_version = importlib.metadata.version("sympy")
+    except importlib.metadata.PackageNotFoundError:
+        sympy_version = "not installed"
+    metadata = {
+        "iteration": iteration,
+        "mining_cycles": mining_cycles,
+        "n_instances": len(added),
+        "elapsed_s": round(elapsed, 3),
+        "command": sys.argv,
+        "git_commit": _git_commit(),
+        "versions": {
+            "python": sys.version.split()[0],
+            "sympy": sympy_version,
+            "cadical": _tool_version(["cadical", "--version"]),
+            "drat-trim": _tool_version(["drat-trim"]),
+        },
+    }
+    marker = publish_unsat_artifacts(
+        HERE,
+        dimacs=instance.dimacs(),
+        instances=added.values(),
+        run_metadata=metadata,
+    )
+    print(
+        f"[terminal] proof-checked generation {marker['generation']} published; "
+        "COVERAGE_COMPLETE.json written last",
+        flush=True,
+    )
+
+
+def _run():
+    started = time.time()
+    sources = cp.load_bank_records()
+    representatives = _motif_representatives(sources)
+    motif_keys = sorted(representatives)
+    print(
+        f"[seed] {len(sources)} bank rows, {len(motif_keys)} motifs",
+        flush=True,
+    )
+
+    instance = sat_cover.CoverInstance()
+    added = {}
+    for source in sources:
+        _seed_bank_row(instance, added, source)
+    print(
+        f"[seed] {len(added)} orbit instances ({time.time() - started:.0f}s)",
+        flush=True,
+    )
+
+    mining_cycles = 0
+    for iteration in range(1, MAX_ITERS + 1):
+        result, cube = instance.solve(cp.CNF_PATH, timeout=3600)
+        if result == "UNSAT":
+            print(
+                f"[iter {iteration}] UNSAT candidate ({len(added)} instances, "
+                f"{mining_cycles} mining cycles, {time.time() - started:.0f}s); "
+                "running terminal proof and manifest gates",
+                flush=True,
+            )
+            persist_unsat(
+                instance,
+                added,
+                iteration,
+                mining_cycles,
+                time.time() - started,
+            )
+            return 0
+        if result != "SAT":
+            print(f"[iter {iteration}] solver returned {result}; STOP", flush=True)
+            return 1
+
+        frozen_cube = {center: frozenset(members)
+                       for center, members in cube.items()}
+        found = {}
+        for key in motif_keys:
+            for serialized, key_to_embedding in cp.embed_into_cube_with_maps(
+                key, frozen_cube
+            ).items():
+                if serialized not in added:
+                    found.setdefault(serialized, (key, key_to_embedding))
+
+        if found:
+            new_instances = 0
+            for serialized in sorted(found):
+                key, key_to_embedding = found[serialized]
+                source, source_to_key = representatives[key]
+                embedded = {center: frozenset(members)
+                            for center, members in serialized}
+                for image, embedding_to_image in miner.orbit_with_maps(embedded):
+                    source_to_image = _compose_maps(
+                        source_to_key, key_to_embedding, embedding_to_image
+                    )
+                    new_instances += _add_instance(
+                        instance,
+                        added,
+                        pattern=image,
+                        source=source,
+                        canonical_key=key,
+                        source_to_target=source_to_image,
+                        embedding_kind="motif_embedding_autos",
+                    )
+            print(
+                f"[iter {iteration}] +{len(found)} embeddings "
+                f"(+{new_instances} instances, total {len(added)}) "
+                f"({time.time() - started:.0f}s)",
+                flush=True,
+            )
+            continue
+
+        cube_sorted = {center: sorted(cube[center]) for center in sorted(cube)}
+        print(
+            f"[iter {iteration}] FRONTIER cube: "
+            f"{json.dumps({str(c): cube_sorted[c] for c in cube_sorted})}",
+            flush=True,
+        )
+        mining_started = time.time()
+        mined, size = miner.mine_all_patterns(
+            cube_sorted,
+            log=lambda message: print("   ", message, flush=True),
+        )
+        print(
+            f"[iter {iteration}] {len(mined)} minimal pattern(s) at k={size} "
+            f"({time.time() - mining_started:.0f}s)",
+            flush=True,
+        )
+        if not mined:
+            print(
+                f"[iter {iteration}] frontier cube has no minimal dead pattern; "
+                "STOP for ALIVE review",
+                flush=True,
+            )
+            return 1
+
+        new_patterns = [
+            {str(c): sorted(members) for c, members in pattern.items()}
+            for pattern in mined
+        ]
+        print(
+            f"[iter {iteration}] certifying {len(new_patterns)} motif(s) "
+            f"({WORKERS} workers, timeout {CERT_TIMEOUT}s)",
+            flush=True,
+        )
+        rows = []
+        failures = 0
+        with ProcessPoolExecutor(max_workers=WORKERS) as executor:
+            for pattern_json, certificate, elapsed in executor.map(
+                certify_one, new_patterns
+            ):
+                if certificate is not None and "kill" in certificate:
+                    print(
+                        f"[iter {iteration}] certified {json.dumps(pattern_json)} "
+                        f"kill={certificate['kill']} ({elapsed:.0f}s)",
+                        flush=True,
+                    )
+                    rows.append({
+                        "pattern": pattern_json,
+                        "cert": certificate,
+                        "cube": cube_sorted,
+                    })
+                else:
+                    failures += 1
+                    print(
+                        f"[iter {iteration}] CERTIFY FAILED "
+                        f"{json.dumps(pattern_json)} ({elapsed:.0f}s)",
+                        flush=True,
+                    )
+        if not rows:
+            print(
+                f"[iter {iteration}] 0/{len(new_patterns)} certified; STOP",
+                flush=True,
+            )
+            return 1
+
+        atomic_write_json(HERE / f"frontier_iter_{iteration:04d}.json", rows)
+        committed = frontier_add.append_rows(rows)
+        if not committed.records:
+            print(
+                f"[iter {iteration}] no new canonical motif was committed; STOP",
+                flush=True,
+            )
+            return 1
+        mining_cycles += 1
+
+        new_instances = 0
+        for bank_row in committed.records:
+            source = _item_from_row(bank_row)
+            key, source_to_key = cp.unlabeled_key_with_map(source["pattern"])
+            source["canonical_key"] = key
+            source["source_to_key"] = source_to_key
+            representatives.setdefault(key, (source, source_to_key))
+            new_instances += _seed_bank_row(instance, added, source)
+        motif_keys = sorted(representatives)
+        print(
+            f"[iter {iteration}] banked {len(committed.records)} motif(s) "
+            f"({failures} certify failures, "
+            f"{committed.skipped_duplicates} duplicate skips), "
+            f"+{new_instances} instances",
+            flush=True,
+        )
+
+    print(f"MAX_ITERS reached ({len(added)} instances); INCONCLUSIVE", flush=True)
+    return 1
 
 
 def main():
-    t0 = time.time()
-    pats = cp.load_bank()
-    motif_keys = sorted({cp.unlabeled_key(p) for p in pats})
-    print(f"[seed] {len(pats)} bank rows, {len(motif_keys)} motifs", flush=True)
-
-    inst = sat_cover.CoverInstance()
-    added = set()
-    for pat in pats:
-        for img in miner.orbit(pat):
-            s = cp.ser(img)
-            if s not in added:
-                added.add(s)
-                inst.add_pattern_instance(img)
-    print(f"[seed] {len(added)} orbit instances ({time.time()-t0:.0f}s)",
-          flush=True)
-
-    n_mined_cycles = 0
-    for it in range(1, MAX_ITERS + 1):
-        res, cube = inst.solve(cp.CNF_PATH, timeout=3600)
-        if res == "UNSAT":
-            print(f"[iter {it}] UNSAT — coverage search complete "
-                  f"({len(added)} instances, {n_mined_cycles} mining cycles, "
-                  f"{time.time()-t0:.0f}s). Trust: EMPIRICALLY VERIFIED "
-                  f"(CaDiCaL + motif transfer; Lean cover check pending). "
-                  "Persisting terminal artifacts.", flush=True)
-            persist_unsat(inst, added, it, n_mined_cycles, time.time() - t0)
-            return
-        if res != "SAT":
-            print(f"[iter {it}] solver returned {res} — STOP", flush=True)
-            return
-
-        fcube = {c: frozenset(K) for c, K in cube.items()}
-        found = set()
-        for key in motif_keys:
-            found |= cp.embed_into_cube(key, fcube)
-        found = {s for s in found if s not in added}
-
-        if found:
-            n_new = 0
-            for s in found:
-                pat = {c: frozenset(M) for c, M in s}
-                for img in miner.orbit(pat):
-                    si = cp.ser(img)
-                    if si not in added:
-                        added.add(si)
-                        inst.add_pattern_instance(img)
-                        n_new += 1
-            print(f"[iter {it}] +{len(found)} embeddings "
-                  f"(+{n_new} instances, total {len(added)}) "
-                  f"({time.time()-t0:.0f}s)", flush=True)
-            continue
-
-        # genuine frontier — no known motif embeds
-        cube_s = {c: sorted(cube[c]) for c in sorted(cube)}
-        print(f"[iter {it}] FRONTIER cube: "
-              f"{json.dumps({str(c): cube_s[c] for c in cube_s})}", flush=True)
-        tm = time.time()
-        mined, k = miner.mine_all_patterns(
-            {c: sorted(ks) for c, ks in cube_s.items()},
-            log=lambda m: print("   ", m, flush=True))
-        print(f"[iter {it}] {len(mined)} minimal pattern(s) at k={k} "
-              f"({time.time()-tm:.0f}s)", flush=True)
-        if not mined:
-            print(f"[iter {it}] frontier cube has NO minimal dead pattern — "
-                  "cube may be genuinely ALIVE. STOP for review.", flush=True)
-            return
-
-        new = [{str(c): sorted(M) for c, M in p.items()} for p in mined]
-        print(f"[iter {it}] certifying {len(new)} new motif(s) "
-              f"({WORKERS} workers, timeout {CERT_TIMEOUT}s)", flush=True)
-        rows, nfail = [], 0
-        with ProcessPoolExecutor(max_workers=WORKERS) as ex:
-            for pj, cert, dt in ex.map(certify_one, new):
-                if cert is not None and "kill" in cert:
-                    print(f"[iter {it}] certified {json.dumps(pj)} "
-                          f"kill={cert['kill']} ({dt:.0f}s)", flush=True)
-                    rows.append({"pattern": pj, "cert": cert, "cube": cube_s})
-                else:
-                    nfail += 1
-                    print(f"[iter {it}] CERTIFY FAILED {json.dumps(pj)} "
-                          f"({dt:.0f}s)", flush=True)
-        if not rows:
-            print(f"[iter {it}] 0/{len(new)} certified — STOP for review.",
-                  flush=True)
-            return
-
-        fn = f"frontier_iter_{it:04d}.json"
-        with open(fn, "w") as f:
-            json.dump(rows, f)
-        r = subprocess.run([sys.executable, "frontier_add.py", fn])
-        if r.returncode != 0:
-            print(f"[iter {it}] frontier_add FAILED — STOP", flush=True)
-            return
-        n_mined_cycles += 1
-
-        n_new = 0
-        for row in rows:
-            pat = {int(c): frozenset(M) for c, M in row["pattern"].items()}
-            motif_keys.append(cp.unlabeled_key(pat))
-            for img in miner.orbit(pat):
-                si = cp.ser(img)
-                if si not in added:
-                    added.add(si)
-                    inst.add_pattern_instance(img)
-                    n_new += 1
-        motif_keys = sorted(set(motif_keys))
-        print(f"[iter {it}] banked {len(rows)} new motif(s) "
-              f"({nfail} certify-failed dropped), +{n_new} instances",
-              flush=True)
-
-    print(f"MAX_ITERS reached ({len(added)} instances) — INCONCLUSIVE",
-          flush=True)
+    try:
+        with driver_lease(HERE):
+            return _run()
+    except LockBusy as exc:
+        print(f"REFUSING: {exc}", file=sys.stderr, flush=True)
+        return 2
+    except TerminalArtifactError as exc:
+        print(
+            f"[terminal] FAILED: {exc}; no new completion marker was published",
+            file=sys.stderr,
+            flush=True,
+        )
+        return 1
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

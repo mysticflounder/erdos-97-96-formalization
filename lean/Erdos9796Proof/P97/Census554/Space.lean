@@ -8,9 +8,9 @@ import Erdos9796Proof.P97.Census554.MotifTransfer
 /-!
 # Census-554 finite candidate space (closure plan A.2 step 1)
 
-Decidable Lean mirror of the (5,5,4) |A|=11 census candidate space
-(`scratch/census-554/census554_lib.py`, whose header records the labeled
-profile and the necessity-audited constraint port):
+Decidable Lean mirror of the (5,5,4) |A|=11 census candidate space. The
+permanent combinatorial implementation is `census/census_554/combinatorics.py`;
+the runtime encoder remains migration-compatible with the historical driver.
 
 * labels: `U=0`, `V=1`, `W=2`; caps `S={1..5}`, `O1={0,2,6,7,8}`,
   `O2={0,1,9,10}`;
@@ -23,9 +23,11 @@ Encoding validation (solver policy): the per-center candidate-class counts
 are kernel-`decide`d below against the Python ground truth
 `[len(L.candidates(p)) for p in range(11)] = [210,43,16,210,…,210]`.
 
-Necessity citations for each clause at the leaf (which existing Lean lemma
-makes the clause sound to impose) are collected at plan step A.2.1
-{{NEEDS_RESEARCH}}; this file only fixes the decidable mirror.
+The bank-independent lower-bound theorem
+`Census554.card_ge_eleven_of_twoLargeCaps` is compiled in
+`Census554/GeometryBridge.lean`. The labeling and `CubeOk` necessity bridge
+from geometric Front-A hypotheses remains open under matrix A11-GEO-LABEL
+through A11-GEO-CUBE; this file only fixes the decidable finite mirror.
 -/
 
 namespace Problem97

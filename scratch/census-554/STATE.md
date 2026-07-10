@@ -251,26 +251,34 @@ single-writer, P2 stale handoff):
 - `run_census.py` (broad CEGAR) is RETIRED as a resume path.  Relaunching
   broad census is an explicit Adam decision, and requires the frontier loop
   to be DOWN first.
-- Bank writes now go through `frontier_add.py`, which takes an exclusive
-  OS-level flock on `bank.jsonl.lock` around the whole append transaction
-  (pid allocation + cert write + bank append).  `cegar.py` takes the SAME
-  lock for its whole run (non-blocking; refuses to start if held) as of
-  ee6cc03 — every bank writer is now under the one lock.
+- New launches take the shared lifetime `driver.lock` lease. Bank publication
+  uses a separate short transaction lock, max-suffix PID allocation, canonical
+  dedupe, exact certificate revalidation, a recovery journal, atomic fsynced
+  certificate writes, and atomic fsynced bank replacement. The active run at
+  the 19:40 checkpoint predates the lifetime-lease import; enforcement begins
+  when it restarts, although its `frontier_add.py` child already uses the new
+  atomic publisher.
 - Certify-timeout retries: `retry_certify_queue.py` (serial,
   `CENSUS_CERT_ALL_PAIRS_FALLBACK=1`) writes candidates to
   `retry_certified_pending.json` ONLY; banking them is a manual
   `frontier_add.py` call at a safe moment.
-- Terminal states: UNSAT now persists durable artifacts (final CNF + DRAT
-  re-solve + gzipped instance manifest + bank snapshot + digests in
-  `COVERAGE_COMPLETE.json`); trust label at that point is EMPIRICALLY
-  VERIFIED (CaDiCaL + motif-transfer lemma) pending the Lean cover check
-  (closure plan A.2 step 3).  ALIVE cube or 0-certified iteration: STOP for
-  review.
-- Row counts drift with the live run — read `bank.jsonl` / `frontier_loop.log`
-  for current numbers, not this file (5,431 rows at this checkpoint, iter
-  ~1154, loop healthy).
+- On restart, terminal UNSAT publication requires a persisted-CNF re-solve and
+  successful `drat-trim` check, emits core CNF + LRAT, records exact source-row
+  and support-injection provenance, snapshots the bank under lock, and writes
+  `COVERAGE_COMPLETE.json` last. The active pre-rewrite process still has the
+old terminal function in memory: any marker it emits is provisional and must
+be rechecked/re-published through the permanent gate. The acceptance command
+`uv run python -m census.census_554.verify_completion --root scratch/census-554`
+rejects that legacy schema. ALIVE cube or
+  0-certified iteration remains a hard stop for review.
+- Row counts drift with the live run. At 19:40 PDT the lock-consistent
+  structural snapshot had 5,444 raw / 5,443 normalized rows and the log had
+  reached iteration 1240. Read current files rather than treating those as
+  terminal.
 - Deterministic regression suite for the motif-cover machinery:
   `cover_probe_smoke.py` (unlabeled_key relabeling invariance, key
   separation, AUTOS orbit containment, embedding validity).
+- Permanent self-contained counterpart (no bank/cert payload or cwd-relative
+  imports): `uv run python -m census.census_554.cover_probe_smoke`.
 - Lean transfer state lives in `docs/closure-plan-full-spec-2026-07-09.md`
   §A.2, not here.

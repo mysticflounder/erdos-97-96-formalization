@@ -235,6 +235,33 @@ had 5,431 rows and the log ended after printing the frontier cube at iteration
 1154. No `COVERAGE_COMPLETE.json` or `ALIVE_CANDIDATE.json` existed. This is a
 paused, nonterminal checkpoint, not evidence for UNSAT or ALIVE.
 
+## Risk-mitigation follow-up (2026-07-09 19:40 PDT)
+
+The run subsequently resumed and reached a 5,444-row / iteration-1240
+nonterminal snapshot. The following mitigations are now implemented:
+
+- permanent `census/census_554/` modules provide the lifetime driver lease,
+  recoverable bank transactions, terminal artifact publication, structural
+  audit, combinatorial core, and self-contained tests;
+- bank publication allocates after the maximum PID suffix, canonical-dedupes
+  under lock, exactly revalidates the certificate, journals, fsyncs, and
+  atomically replaces the bank; the live child publisher used it for
+  `pat_05443`;
+- terminal publication requires a persisted-CNF UNSAT re-solve and successful
+  `drat-trim`, emits core CNF and LRAT, maps core exclusions to source rows,
+  records support injections, and publishes the completion pointer last;
+- both failed-checker unit coverage and a real tiny CaDiCaL/`drat-trim`
+  integration gate pass; and
+- the lock-consistent structural bank audit normalizes the proof-identical
+  `pat_00003` zombie row and reports no unexplained duplicate, missing cert, or
+  orphan. Exact identity replay remains explicitly `NOT_RUN`.
+
+The active process loaded `frontier_loop.py` before these changes. Its child
+publisher sees the new atomic code, but its in-memory terminal function is the
+old prototype and it holds no lifetime lease. Therefore any terminal marker
+from that process is provisional and must be rechecked/re-published by the new
+gate. Full code/data migration and exact frozen-bank audit remain open.
+
 ## Overall verdict
 
 The core Lean certificate-to-deadness, motif-transfer, and support-injection
