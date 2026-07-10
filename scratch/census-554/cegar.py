@@ -23,6 +23,7 @@ State persists in bank.jsonl / certs/ / cegar.log; resumable (load_bank
 replays bank.jsonl into exclusions).
 """
 
+import fcntl
 import json
 import os
 import sys
@@ -41,8 +42,26 @@ LOG = f"{HERE}/cegar.log"
 ALIVE = f"{HERE}/ALIVE_CANDIDATE.json"
 DONE = f"{HERE}/COVERAGE_COMPLETE.json"
 CNFTMP = f"{sat_cover.SCRATCH}/census554_cegar.cnf"
+LOCK = f"{HERE}/bank.jsonl.lock"
 
 os.makedirs(CERTS, exist_ok=True)
+
+
+def acquire_bank_lock():
+    """Whole-run exclusive writer lock on bank.jsonl (audit 2026-07-09 P1:
+    every bank writer must take the same OS-level lock; frontier_add.py
+    takes it per append).  Non-blocking: refuse to start if another writer
+    holds it.  Held until process exit; pid allocation from the in-memory
+    counter is safe only under this lock."""
+    lockf = open(LOCK, "w")
+    try:
+        fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        raise SystemExit(
+            "REFUSING to start: another bank writer holds bank.jsonl.lock "
+            "(frontier_add.py or another cegar/frontier driver). "
+            "Single-writer invariant — stop it first.")
+    return lockf  # keep the handle alive; closing releases the lock
 
 
 def log(msg):
@@ -83,6 +102,7 @@ def stop_alive(it, cube, v, tag="ALIVE CANDIDATE"):
 
 
 def main(max_iters=100000, wall_budget_s=None):
+    _bank_lock = acquire_bank_lock()  # noqa: F841 — held for process life
     t_start = time.time()
     inst = sat_cover.CoverInstance()
     bank = load_bank()

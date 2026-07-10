@@ -51,7 +51,15 @@ def main():
         sys.exit(2)
 
     lockf = open(LOCK, "w")
-    fcntl.flock(lockf, fcntl.LOCK_EX)  # held until process exit
+    try:
+        # non-blocking: a held lock means another writer (cegar.py holds it
+        # for its whole run) — fail loudly rather than queue silently
+        fcntl.flock(lockf, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        print("REFUSING: bank.jsonl.lock is held by another writer "
+              "(cegar driver or another frontier_add). Stop it first.",
+              flush=True)
+        sys.exit(2)
 
     rows = json.load(open(sys.argv[1]))
     npat = next_pid_index()
