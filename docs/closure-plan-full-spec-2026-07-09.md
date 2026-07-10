@@ -116,9 +116,25 @@ build passes.
    (base kill) via `native_decide` (core axioms + ofReduceBool/
    trustCompiler, both approved) — tag/gauge/variable conventions match
    the bank exactly, first attempt. Step 2's mathematical core is
-   COMPLETE. Remaining: the cert-data import pipeline (script generating
-   per-pattern Lean modules from `certs/*.json`; batching TBD) and the
-   heavy-tail shrink residual above.
+   COMPLETE.
+   **Data pipeline BUILT + probe-measured 2026-07-09**
+   (`scratch/census-554/gen_lean_certs.py`; probe modules under
+   `lean/.../Census554/Bank/`, uncommitted): hand-written tokenizer,
+   per-cert validation (exact generator-string round-trip; coefficients
+   are verbatim Singular output so they get semantic round-trip + the
+   exact Fraction identity Σcᵢgᵢ=1 re-derived from pattern+tags), chunked
+   `SPoly` literals (≤128 terms/def — a ~5,000-term literal dies at
+   maxRecDepth). 21/21 probe certs validated; generated theorems replay
+   via `native_decide`, axioms = core + ofReduceBool/trustCompiler.
+   **Measured cost** (scales with coefficient term count, ~60–80 ms/term):
+   small modules 6.5 s each with batching amortizing overhead to
+   ~0.1 s/theorem; fleet-median 55 KB cert → 88 s; 572 KB multi_pair →
+   753 s. **Projection**: certs ≤ 1 MB (4,277 = 79% of fleet) ≈ 145–150
+   CPU-hours — feasible batched at 8-way. The > 1 MB tail (1,136 certs),
+   and especially the ~410 certs > 16 MB, are NOT viable by naive replay —
+   this sharpens the heavy-tail residual: re-mine smaller certificates
+   for those patterns or redesign the checker's `normalize`
+   (quadratic insert-merge) before replay.
 3. **Cover check**: `decide`-level verification that the banked pattern set
    (after motif closure) excludes all candidate cubes. Format: either replay
    the SAT UNSAT as a generated Lean enumeration, or export DRAT and
