@@ -259,6 +259,47 @@ So the formalization value of T1/T2/T4 is to narrow or close the U4
 tail route by proving that the live `>2`-center coupling surface is a
 finite stabilized local incidence alphabet with no hidden `GLOBAL` layer.
 
+## Separate PIN-GENERAL probe surface (2026-07-10)
+
+The global confinement probe in `census/global_confinement/` reuses the
+L2/PROVEN row alphabet, but it is not evidence for T1--T4 and must not be
+folded into their theorem statements.  It adds a fixed pinned class, a marked
+exact dangerous class through a deleted surplus point, six audit rows, cyclic
+cross-separation, and a full one-row-per-center extension.  Its target is the
+PIN-GENERAL producer `RowwiseConfinedQDeletedClasses`, not the U4 tail.
+
+On the canonical adjacent labeled placement, the exact declared-shadow scans
+at `n = 11,12` leave two dangerous-row types with no full-center extension at
+either size:
+
+```text
+(m,s,l,r) = (0,0,2,2)
+(m,s,l,r) = (0,2,0,2)
+```
+
+These are candidates for fixed-pin global exclusion lemmas.  The follow-up
+scan verifies both types at every ordered surplus source/deletion placement at
+`n = 11,12` (12 and 20 placements, respectively).  A separate source-indexed
+scan encodes the no-q-free implication of `CriticalShellSystem`; all 517
+placement/type representatives remain SAT with a compatible K4 at every
+center.  In Lean, `CriticalShellSystem` now retains this no-q-free fact and its
+center-erased projection.  Thus the placement and shell-interface concerns are
+resolved, but the candidates are still not general-`n` theorems.  The proof
+plan for either candidate is now:
+
+1. verify zero extension at one larger cardinality or derive a
+   size-independent core;
+2. extract a minimal core in the vocabulary of cross-separation, pair-count,
+   Q3, and the existing local row kills;
+3. state the first Lean lemma with the fixed pin and dangerous-row hypotheses
+   explicit; and
+4. only then abstract the cap sizes or cyclic labels to a general-`n` form.
+
+The scan also prevents an overclaim: `(0,0,0,4)` has no extension at any
+`n = 11` placement but reappears at `n = 12`.  It is not a theorem candidate.
+See `census/global_confinement/` for the canonical, all-placement, and
+source-indexed artifacts and the SAT/UNSAT interpretation.
+
 ## Lean formalization status
 
 Initial abstract general-`n` support now lives in

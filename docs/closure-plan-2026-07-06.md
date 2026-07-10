@@ -185,6 +185,25 @@ or a broader certificate family whose finite coverage is verified on the
 weaker interface.  A DFS over the existing 135 exact completions is not a
 completeness proof for general-m submasks.
 
+Probe checkpoint 2026-07-10: `census/global_confinement/` first exhausted the
+canonical adjacent labeled placement at `n = 11,12` under the current
+L2/PROVEN, Q3, cyclic-separation, overlap, and point-pair cuts.  Q-critical
+audit rows remain incidence-compatible in `2654/3276` tests at `n = 11` and
+`6082/7090` at `n = 12`.  Simultaneous q-deleted survival is mixed at `n = 11`
+(`3933` SAT, `3347` UNSAT) and SAT on all `24815` admitted `n = 12` frames;
+confinement is UNSAT on every admitted frame at both sizes.  The follow-up
+covered all 12 ordered surplus placements at `n = 11` and all 20 at `n = 12`.
+The zero-extension types `(0,0,2,2)` and `(0,2,0,2)` persist at every placement
+and size.  A source-indexed representative scan then encoded the retained
+no-q-free blocker fact and found all 517 placement/type packets SAT, both for
+the joint shell system and after selecting a K4 at every center, with no capped
+searches.  In Lean, `CriticalShellSystem` now stores `no_qfree`, exposed both
+before and after erasing the blocker center.  These checkpoints remove the
+placement and shell-interface gaps but still do not produce
+`RowwiseConfinedQDeletedClasses`.  The next probe must couple the shell system
+to the six audit-center q-critical/survival alternatives; see the full closure
+spec for the low-level action list.
+
 ## 4. Obligation 3 — erased-pin triples (gate: the two-hit probe)
 
 State: the reduction to one-sided payloads is closed; the two adjacent

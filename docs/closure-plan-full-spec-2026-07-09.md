@@ -591,8 +591,10 @@ outside the pinned class.  Finally, `U3FixedTripleAuditFrame` supplies a
 selected candidate `u` and two further auxiliary points `a0,a1`, all with the
 required skeleton exclusions and all off the critical circle.  The on-spine
 theorem constructs `D.Minimal` and a `CriticalShellSystem A` before its sole
-`sorry`.  Each orientation extractor now returns a concrete frame and the
-proved terminal fact
+`sorry`.  The system now retains, for every source, the deletion-failure fact
+at its chosen blocker center; `CriticalShellSystem.no_qfree_erase_center_at`
+exports the center-erased form consumed by localized packets.  Each orientation
+extractor now returns a concrete frame and the proved terminal fact
 `∀ H : U3FixedTripleAuditFrame ..., ¬ H.RowwiseConfinedQDeletedClasses`.
 
 For every center in this bounded frame,
@@ -624,6 +626,76 @@ or prove a stronger direct audit-frame obstruction.  In the confinement route,
 both q-critical-row resolution and bounded-support inclusion are mandatory.
 Remove the sole `PinnedSurplusBank.lean:542` `sorry` and confirm the named
 general-m residual leaves the spine-open list.
+
+#### PIN-GENERAL incidence-probe checkpoint (2026-07-10)
+
+The permanent probe at `census/global_confinement/` first searched the canonical
+adjacent pinned-source/deleted-point placement for the `(6,4,4)` and `(7,4,4)`
+profiles (`n = 11,12`).  It fixes the pinned and dangerous exact classes,
+selects one compatible K4 row at every remaining center, and enforces the
+L2/PROVEN local cuts, Q3 joint cuts, cyclic cross-separation, the two-circle
+overlap bound, and the global point-pair class-count bound.  It separately
+tests individual q-critical audit rows, simultaneous q-deleted survival at all
+six audit centers, and eight-point confinement.  SAT is only a selected-class
+incidence witness; the probe has no coordinates or distance equations.
+
+The exhaustive declared-shadow counts are:
+
+- `n = 11`: `364/564` dangerous rows have a full-center extension;
+  `2654/3276` individual audit-center q-critical tests are SAT;
+  simultaneous q-deleted survival is SAT on `3933/7280` admitted packet frames
+  and UNSAT on `3347/7280`; confinement is UNSAT on all `7280` frames.
+- `n = 12`: `709/935` dangerous rows have a full-center extension;
+  `6082/7090` individual q-critical tests are SAT; simultaneous q-deleted
+  survival is SAT on all `24815` admitted packet frames; confinement is UNSAT
+  on all `24815` frames.
+
+These results do not close PIN-GENERAL.  They show that the current incidence
+cuts do not eliminate q-critical rows, and that selecting globally compatible
+K4 rows does not itself prove the theorem-facing q-deleted classes.  The
+all-UNSAT confinement result is a finite-consumer check, not evidence for the
+missing producer.  The dangerous-row types `(0,0,2,2)` and `(0,2,0,2)` have no
+full-center extension in either scan and are provisional fixed-pin elimination
+lemmas.  The apparent `n = 11` elimination of `(0,0,0,4)` disappears at
+`n = 12`, so it must not be promoted to a general theorem.
+
+Two follow-up scans close the original model-coverage TODOs:
+
+- `placement_results_n11_12` covers every ordered pair of distinct surplus
+  labels: 12 placements at `n = 11` and 20 at `n = 12`.  Aggregated admitted /
+  rejected dangerous rows are `3779/2989` and `13700/5000`, respectively.  The
+  two zero-extension types `(0,0,2,2)` and `(0,2,0,2)` remain zero at every
+  scanned placement and cardinality.  This is bounded evidence; a larger-size
+  scan or a size-independent core is still required before formalization.
+- `critical_shell_results_all_placements_n11_12` samples one admitted packet
+  per placement and dangerous-row type.  It encodes one exact blocker shell
+  for every source and requires every selected K4 at that blocker center to
+  contain the source.  All `177 + 340 = 517` packets admit the joint shell
+  system and a K4 at every ambient center (`517` SAT, `0` UNSAT, `0` capped in
+  both stages).  The largest full search used `276052/300000` nodes.
+
+The Lean interface now matches that enriched model: `CriticalShellSystem`
+stores `no_qfree`, `exists_criticalShellSystem` preserves it, and
+`CriticalShellSystem.no_qfree_erase_center_at` supplies the center-erased form.
+This eliminates the prior data-loss risk.  The all-SAT result shows that shell
+existence plus the current global incidence cuts is not itself the missing
+contradiction.
+
+Next actions, in dependency order:
+
+1. couple the source-indexed shell rows and no-q-free linkage to each
+   audit-center q-critical alternative and to simultaneous six-row q-deleted
+   survival; report critical/survival SAT, UNSAT, and capped counts separately;
+2. if shell-coupled q-critical models survive, mine their assignments for the
+   missing geometric relation and state the needed necessity lemma before
+   adding any stronger cut;
+3. extract minimal UNSAT cores for `(0,0,2,2)`, `(0,2,0,2)`, and the `n = 11`
+   survival failures, then match every core atom to an existing Lean theorem;
+4. run the two stable zero-extension types at one larger cardinality or derive
+   a size-independent core; only then formalize a fixed-pin row elimination;
+5. use the shell-coupled audit result either to prove q-critical-row
+   promotion/elimination or to identify a direct critical-shell contradiction
+   that bypasses rowwise confinement.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 
