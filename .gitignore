@@ -30,3 +30,17 @@ __pycache__/
 /scratch/q3-two-center/runs/
 /scratch/q3-two-center/smoke_results.json
 .venv/
+
+# census-554 run artifacts: banking intermediates (contents live in
+# bank.jsonl + certs/), untracked run logs, writer lock, blueprint DB.
+/scratch/census-554/frontier_*.json
+/scratch/census-554/audit_pat0*.log
+/scratch/census-554/bank_frontier.log
+/scratch/census-554/cover_probe.log
+/scratch/census-554/frontier_*.log
+/scratch/census-554/intracap.log
+/scratch/census-554/motif_transfer.log
+/scratch/census-554/retry_certify*.log
+/scratch/census-554/bank.jsonl.lock
+/scratch/census-554/retry_certified_pending.json
+.blueprint.db

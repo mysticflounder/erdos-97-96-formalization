@@ -43,6 +43,21 @@ SCRATCH = ("/private/tmp/claude-501/-Users-adam-projects-math-projects-"
 os.makedirs(SCRATCH, exist_ok=True)
 
 
+def _env_int(name, default):
+    try:
+        return int(os.environ.get(name, default))
+    except ValueError:
+        return default
+
+
+MINE_WORKERS = _env_int("CENSUS_MINE_WORKERS", 12)
+MINE_BATCH = _env_int("CENSUS_MINE_BATCH", 48)
+MINE_TARGET_DEAD = _env_int("CENSUS_MINE_TARGET_DEAD", 12)
+MINE_TARGET_MIN_K = _env_int("CENSUS_MINE_TARGET_MIN_K", 6)
+CERT_SHRINK_TIMEOUT = _env_int("CENSUS_CERT_SHRINK_TIMEOUT", 10)
+CERT_ALL_PAIRS_FALLBACK = os.environ.get("CENSUS_CERT_ALL_PAIRS_FALLBACK") == "1"
+
+
 # ---------------- pattern algebra ----------------
 
 def pattern_points(pat):
@@ -201,7 +216,7 @@ def instance_subsumes(img, pat):
 
 
 def _dead_supports_min_k(cube, log):
-    """Phase 1: all msolve-dead induced patterns at the smallest point-support
+    """Phase 1: msolve-dead induced patterns at the smallest point-support
     size k (k = 4..N; k = N is the full cube).  Returns (dead_list, k)."""
     from concurrent.futures import ThreadPoolExecutor
     for k in range(4, L.N + 1):
@@ -213,9 +228,21 @@ def _dead_supports_min_k(cube, log):
                 cands.append(pat)
         if not cands:
             continue
-        with ThreadPoolExecutor(max_workers=12) as ex:
-            flags = list(ex.map(lambda p: pattern_dead_fast(p, 20), cands))
-        dead = [p for p, f in zip(cands, flags) if f]
+        cands.sort(key=lambda p: (n_gens(p), len(p)))
+        dead, checked = [], 0
+        target = MINE_TARGET_DEAD if k >= MINE_TARGET_MIN_K else 0
+        batch_size = max(1, MINE_BATCH)
+        for lo in range(0, len(cands), batch_size):
+            batch = cands[lo:lo + batch_size]
+            with ThreadPoolExecutor(max_workers=MINE_WORKERS) as ex:
+                flags = list(ex.map(lambda p: pattern_dead_fast(p, 20), batch))
+            checked += len(batch)
+            dead.extend(p for p, f in zip(batch, flags) if f)
+            if target > 0 and len(dead) >= target:
+                log(f"    point-support hit at k={k} "
+                    f"({len(dead)}/{checked} checked dead; "
+                    f"{len(cands)} candidates total; early stop target={target})")
+                return dead, k
         if dead:
             log(f"    point-support hit at k={k} "
                 f"({len(dead)}/{len(cands)} dead)")
@@ -233,7 +260,7 @@ def mine_all_patterns(cube, log=lambda *a: None):
     if not dead:
         return [], None
     dead.sort(key=lambda p: (n_gens(p), len(p)))
-    with ThreadPoolExecutor(max_workers=12) as ex:
+    with ThreadPoolExecutor(max_workers=MINE_WORKERS) as ex:
         shrunk = list(ex.map(greedy_shrink, dead))
     out, seen = [], set()
     for q in sorted(shrunk, key=lambda p: (n_gens(p), len(p))):
@@ -336,21 +363,53 @@ def certify_pattern(pat, timeout=240):
             return L.poly_str(q, varnames=names)
 
         gstrs = [render(g) for g in gens]
-        script_lines = [
-            f"ring r = 0, ({','.join(names)}), dp;",
-            "ideal I = " + ",\n  ".join(gstrs) + ";",
-            "ideal G = std(I);",
-            'string("RED1:", reduce(1, G));',
-            "matrix T = lift(I, ideal(1));",
+        cof_lines = [
             "poly chk = 0;",
             "int i;",
             "for (i = 1; i <= size(I); i = i + 1) { chk = chk + I[i]*T[i,1]; }",
             'string("CHK:", chk);',
             "for (i = 1; i <= size(I); i = i + 1) "
-            '{ string("COF", i, ":", T[i,1]); }',
-            "exit;"]
+            '{ string("COF", i, ":", T[i,1]); }']
+        tset = set(tnames.values())
+        tlist = [n for n in names if n in tset]
+        glist = [n for n in names if n not in tset]
+        if tlist and glist:
+            # A block order with the Rabinowitsch t-variables in a leading
+            # elimination block collapses the module-Grobner computation that
+            # lift() performs: the flat dp order stalls (>600s; std alone >900s
+            # on the all-pairs system) on hard k=7-tail patterns whose cofactors
+            # have huge height, while (dp(t), dp(geom)) lifts them in ~90s.  No
+            # std priming / RED1 gate here -- std(I) itself blows up under an
+            # elimination order, and lift is already fast; CHK:1 + the exact
+            # Fraction recheck below are the authoritative soundness gates.
+            ring_decl = (f"ring r = 0, ({','.join(tlist + glist)}), "
+                         f"(dp({len(tlist)}), dp({len(glist)}));")
+            script_lines = [
+                ring_decl,
+                "ideal I = " + ",\n  ".join(gstrs) + ";",
+                "matrix T = lift(I, ideal(1));"] + cof_lines + ["exit;"]
+            require_red1 = False
+        else:
+            # Plain dp (base attempt, no t-vars): std(I) is cheap and PRIMES the
+            # Grobner basis so the following lift is fast (without it lift
+            # recomputes from scratch and grinds on a big system).  RED1 also
+            # fast-bails: guard the lift with reduce(1,G)==0 so a non-membership
+            # (the normal base case, 1 not in the equidistance ideal) never
+            # reaches lift at all.
+            ring_decl = f"ring r = 0, ({','.join(names)}), dp;"
+            script_lines = [
+                ring_decl,
+                "ideal I = " + ",\n  ".join(gstrs) + ";",
+                "ideal G = std(I);",
+                "poly r1 = reduce(1, G);",
+                'string("RED1:", r1);',
+                "if (r1 == 0) {",
+                "matrix T = lift(I, ideal(1));"] + cof_lines + ["}", "exit;"]
+            require_red1 = True
         out = sing_run("\n".join(script_lines), timeout)
-        if out is None or "RED1:0" not in out:
+        if out is None:
+            return None
+        if require_red1 and "RED1:0" not in out:
             return None
         if "CHK:1" not in out:
             return None
@@ -400,12 +459,13 @@ def certify_pattern(pat, timeout=240):
                 break
             trial = [p for p in cur if p != e]
             rabs = rabinowitsch_polys(pat, pairs=trial)
-            if msolve_empty(polys + [r[0] for r in rabs], timeout=10):
+            if msolve_empty(polys + [r[0] for r in rabs],
+                            timeout=CERT_SHRINK_TIMEOUT):
                 cur = trial
         payload = attempt(rabinowitsch_polys(pat, pairs=cur))
         if payload is not None:
             pairs = cur
-        else:
+        elif CERT_ALL_PAIRS_FALLBACK and cur != pairs:
             payload = attempt(rabinowitsch_polys(pat, pairs=pairs))
         kill = (f"pair:{pairs[0][0]}-{pairs[0][1]}" if len(pairs) == 1
                 else "multi_pair")
