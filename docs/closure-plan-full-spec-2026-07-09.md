@@ -349,6 +349,16 @@ corresponding closure-matrix gate, not by prose completion claims.
    A11-COVER-FMT format selection: **verified-LRAT route CONFIRMED**; the
    remaining unknown is only the terminal certificate's size/check time,
    measurable when the loop reaches UNSAT.
+
+   **Sinz completeness core PROVEN 2026-07-09** (`Census554/SinzSat.lean`):
+   `sinz_sat` — for any assignment with at most `k` true inputs, the
+   canonical counter witness `sinzExt` satisfies every clause of
+   `sinzClauses` (all six clause families) — plus the DIMACS↔`Std.Sat.CNF`
+   evaluation bridge `evalClauseD_toLit`. Axioms: core only (propext,
+   Classical.choice, Quot.sound); no sorry. This is the reusable core of the
+   completeness lemma; the remaining composition (one-hot exactly-one, C2
+   NAND, C4 counting from `CubeOk`, block disjointness, pattern `y`-layer)
+   is still open.
 4. **Motif-transfer lemma** in Lean: equidistance-pattern deadness is
    similarity-invariant. This is the single new mathematical lemma of Front
    A's card-11 slice. Shape: if a labeled pattern has no realization with
