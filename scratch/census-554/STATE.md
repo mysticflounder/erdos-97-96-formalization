@@ -87,7 +87,10 @@ Deliverables into scratch/census-554/: scripts, smoke log, census results
 - verify_certs.py over the FULL bank: ALL 1597 PASS (04:26 2026-07-07;
   structure + generator fidelity to the pattern + exact Fraction identity;
   independent of Singular/msolve).
-- RESUME COMMAND (continuation runs, fully safe):
+- RESUME COMMAND — **SUPERSEDED 2026-07-09, DO NOT RUN** (see the
+  "Authoritative driver" section at the tail of this file; launching
+  run_census.py alongside the frontier loop reintroduces the unlocked
+  bank-writer race of audit 2026-07-09 P1):
     cd /Users/adam/projects/math-projects/erdos-97-96-formalization
     uv run python scratch/census-554/run_census.py 3000 1200
   in ~50-min installments (harness kills bg tasks at ~60 min); relaunch on
@@ -234,3 +237,40 @@ whose support lies inside a single cap (S / O1 / O2). Result
   all 8 banked zero-cross-cap rows subsumed by the 107. msolve output
   convention verified on known systems: `[-1]` = empty, `[1,n,-1,[]]` =
   positive-dim, `[0,...]` = zero-dim.
+
+## Authoritative driver (2026-07-09) — supersedes all earlier resume commands
+
+Per audit `docs/audits/2026-07-09-census-554-parallel-work-audit.md` (P1
+single-writer, P2 stale handoff):
+
+- **The one authoritative driver is `frontier_loop.py`** (frontier-driven
+  cover loop: lazy motif-embedding exclusion + CEGAR mining at genuine
+  frontiers; header of that file documents the iteration).  Launch from
+  `scratch/census-554/`: `uv run python frontier_loop.py`.  NEVER alongside
+  any other bank writer.
+- `run_census.py` (broad CEGAR) is RETIRED as a resume path.  Relaunching
+  broad census is an explicit Adam decision, and requires the frontier loop
+  to be DOWN first.
+- Bank writes now go through `frontier_add.py`, which takes an exclusive
+  OS-level flock on `bank.jsonl.lock` around the whole append transaction
+  (pid allocation + cert write + bank append).  `cegar.py` does NOT yet take
+  the lock — one more reason run_census.py stays down while frontier work
+  runs.
+- Certify-timeout retries: `retry_certify_queue.py` (serial,
+  `CENSUS_CERT_ALL_PAIRS_FALLBACK=1`) writes candidates to
+  `retry_certified_pending.json` ONLY; banking them is a manual
+  `frontier_add.py` call at a safe moment.
+- Terminal states: UNSAT now persists durable artifacts (final CNF + DRAT
+  re-solve + gzipped instance manifest + bank snapshot + digests in
+  `COVERAGE_COMPLETE.json`); trust label at that point is EMPIRICALLY
+  VERIFIED (CaDiCaL + motif-transfer lemma) pending the Lean cover check
+  (closure plan A.2 step 3).  ALIVE cube or 0-certified iteration: STOP for
+  review.
+- Row counts drift with the live run — read `bank.jsonl` / `frontier_loop.log`
+  for current numbers, not this file (5,431 rows at this checkpoint, iter
+  ~1154, loop healthy).
+- Deterministic regression suite for the motif-cover machinery:
+  `cover_probe_smoke.py` (unlabeled_key relabeling invariance, key
+  separation, AUTOS orbit containment, embedding validity).
+- Lean transfer state lives in `docs/closure-plan-full-spec-2026-07-09.md`
+  §A.2, not here.

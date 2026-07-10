@@ -460,7 +460,12 @@ def emit_defs(out, stem, pattern, rab_pairs, tags, coeff_polys, pid, kill):
       f"coeffs{stem}\n    (by native_decide)\n")
 
 
-HEADER = """import Erdos9796Proof.P97.Census554.CertCheck
+HEADER = """/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+import Erdos9796Proof.P97.Census554.CertCheck
 
 /-!
 # Census-554 bank certificate replay: {title}
@@ -489,17 +494,34 @@ end Problem97
 """
 
 
-def emit_module(path, records, title):
+def emit_module(path, records, title, batch_ns=None):
+    """batch_ns: extra namespace under Bank for batch modules, so a batch
+    and the individual per-pattern modules can never export the same global
+    names (audit 2026-07-09 P1: PatBatchProbe vs Pat02213 duplicate
+    declarations broke proof-blueprint resync)."""
     sources = ",\n".join(f"`scratch/census-554/certs/{r['pid']}.json`"
                          for r in records)
     with open(path, "w") as out:
         out.write(HEADER.format(title=title, sources=sources))
+        if batch_ns:
+            out.write(f"namespace {batch_ns}\n\n")
         for k, r in enumerate(records):
             if k:
                 out.write("\n")
             emit_defs(out, r["stem"], r["pattern"], r["rab_pairs"],
                       r["tags"], r["coeffs"], r["pid"], r["kill"])
+        if batch_ns:
+            out.write(f"\nend {batch_ns}")
         out.write(FOOTER)
+
+
+def lean_namespace_of(name):
+    """Sanitize a batch name into a Lean namespace ident (alnum only,
+    leading uppercase)."""
+    s = "".join(ch for ch in name if ch.isalnum())
+    if not s or not s[0].isalpha():
+        raise ValueError(f"batch name {name!r} does not yield a Lean ident")
+    return s[0].upper() + s[1:]
 
 
 # ---------------- driver ----------------
@@ -545,8 +567,10 @@ def main():
 
     emitted = []
     if args.batch_name:
-        path = os.path.join(args.out_dir, f"{args.batch_name}.lean")
-        emit_module(path, ok_records, f"batch `{args.batch_name}`")
+        ns = lean_namespace_of(args.batch_name)
+        path = os.path.join(args.out_dir, f"{ns}.lean")
+        emit_module(path, ok_records, f"batch `{args.batch_name}`",
+                    batch_ns=ns)
         emitted.append(path)
     else:
         for r in ok_records:

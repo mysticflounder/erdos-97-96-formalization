@@ -103,7 +103,7 @@ Mirror the endpoint stack: (1) per-orbit `census554_pattern_certificate.v1` payl
 
 ## 9. What next (ranked)
 
-1. **Continue the CEGAR run to UNSAT** — the sole blocker for everything downstream. Exact resume command (fully safe, resumes from `bank.jsonl` + `failed.jsonl`): `uv run python /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/census-554/run_census.py 3000 1200`, relaunched in ~50-min installments on completion notification; never two drivers at once (check `ps -axo command | grep cegar` first).
+1. **Continue the CEGAR run to UNSAT** — the sole blocker for everything downstream. ~~Exact resume command (fully safe, resumes from `bank.jsonl` + `failed.jsonl`): `uv run python /Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/census-554/run_census.py 3000 1200`, relaunched in ~50-min installments on completion notification; never two drivers at once (check `ps -axo command | grep cegar` first).~~ **SUPERSEDED 2026-07-09**: `run_census.py` is retired as a resume path; the authoritative driver is `frontier_loop.py` — see the tail section of `STATE.md` (audit 2026-07-09 P1/P2).
 2. Offline-certify the 52 blacklisted patterns with long timeouts (each success removes a recurring mining sink and shrinks the uncovered region).
 3. On UNSAT: emit Checker-format payloads + the coverage DFS input table from `bank.jsonl`/`certs/`, then the Lean coverage theorem, then the consumer wiring at `U1LargeCapRouteBTail.lean:2383` (on-spine, via proof-blueprint).
 4. Only after card-11 lands: assess the Card12Up census empirically.

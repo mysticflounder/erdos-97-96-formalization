@@ -1,3 +1,8 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
 import Erdos9796Proof.P97.U2.SimilarityNormalization
 
 /-!
@@ -110,6 +115,73 @@ theorem motif_transfer (P : Pattern) (hP : IsDead P)
     rcases mul_eq_zero.mp h0 with h | h
     · exact absurd h (by positivity)
     · exact hzinj (dist_eq_zero.mp h)
+
+/- ## Support-injection bridge (audit 2026-07-09, obligation 4)
+
+The cover loop's embedding step produces an injection defined only on a
+motif's **support** (its centers and mask members), not on all of `Fin 11`.
+`motif_transfer` wants a totally-injective relabeling, so we bridge: any
+map injective on a finite subset of `Fin n` extends to an injective
+self-map (complement counting), and the transfer hypothesis only ever
+evaluates the relabeling on the support. -/
+
+/-- The labels a pattern actually mentions: participating centers plus all
+mask members. -/
+def support (P : Pattern) : Finset (Fin 11) :=
+  (Finset.univ.filter fun c => (P c).Nonempty) ∪ Finset.univ.biUnion P
+
+theorem center_mem_support {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
+    c ∈ support P := by
+  simp only [support, Finset.mem_union, Finset.mem_filter, Finset.mem_univ,
+    true_and]
+  exact Or.inl ⟨a, ha⟩
+
+theorem mem_support_of_mem {P : Pattern} {c a : Fin 11} (ha : a ∈ P c) :
+    a ∈ support P := by
+  simp only [support, Finset.mem_union, Finset.mem_biUnion, Finset.mem_univ,
+    true_and]
+  exact Or.inr ⟨c, ha⟩
+
+/-- Any map injective on a finite subset of `Fin n` extends to an injective
+self-map of `Fin n`: the complements of `S` and of its image have equal
+cardinality, so a bijection between them completes the injection. -/
+theorem exists_injective_extension {n : ℕ} {S : Finset (Fin n)}
+    {f : Fin n → Fin n} (hf : Set.InjOn f S) :
+    ∃ σ : Fin n → Fin n, Function.Injective σ ∧ ∀ i ∈ S, σ i = f i := by
+  classical
+  have hcard : Sᶜ.card = (S.image f)ᶜ.card := by
+    rw [Finset.card_compl, Finset.card_compl,
+      Finset.card_image_of_injOn hf]
+  let e := Finset.equivOfCardEq hcard
+  refine ⟨fun i => if h : i ∈ S then f i
+    else (e ⟨i, Finset.mem_compl.mpr h⟩ : Fin n), ?_, ?_⟩
+  · intro i j hij
+    by_cases hi : i ∈ S <;> by_cases hj : j ∈ S <;>
+      simp only [hi, hj, dif_pos, dif_neg, not_false_iff] at hij
+    · exact hf hi hj hij
+    · exact absurd (hij ▸ Finset.mem_image_of_mem f hi)
+        (Finset.mem_compl.mp (e ⟨j, Finset.mem_compl.mpr hj⟩).2)
+    · exact absurd (hij ▸ Finset.mem_image_of_mem f hj)
+        (Finset.mem_compl.mp (e ⟨i, Finset.mem_compl.mpr hi⟩).2)
+    · have := e.injective (Subtype.coe_injective hij)
+      exact congrArg Subtype.val this
+  · intro i hi
+    simp [hi]
+
+/-- **Motif transfer from a support injection**: the form the cover loop's
+lazy embedding step licenses.  An embedding of a dead motif is injective
+only on the motif's support; extend it and apply `motif_transfer`. -/
+theorem motif_transfer_of_supportInjOn (P : Pattern) (hP : IsDead P)
+    (f : Fin 11 → Fin 11) (hf : Set.InjOn f (support P))
+    (x : Fin 11 → ℝ²) (hx : Function.Injective x)
+    (heq : ∀ c, ∀ a ∈ P c, ∀ b ∈ P c,
+      dist (x (f c)) (x (f a)) = dist (x (f c)) (x (f b))) : False := by
+  obtain ⟨σ, hσ, hagree⟩ := exists_injective_extension hf
+  refine motif_transfer P hP σ hσ x hx ?_
+  intro c a ha b hb
+  rw [hagree c (center_mem_support ha), hagree a (mem_support_of_mem ha),
+    hagree b (mem_support_of_mem hb)]
+  exact heq c a ha b hb
 
 end Census554
 end Problem97

@@ -5,9 +5,14 @@ Combines cover_probe's lazy motif-embedding exclusion with CEGAR mining at
 genuine frontiers.  Each iteration:
 
   1. solve the cover CNF
-     UNSAT -> DONE: coverage closes, conditional ONLY on the motif-transfer
-              lemma (deadness is similarity-invariant; validated 135/135 by
-              motif_transfer.py; single Lean obligation for the transfer).
+     UNSAT -> DONE: the search terminates.  Trust label at that point is
+              EMPIRICALLY VERIFIED, not PROVEN — the result still rests on
+              CaDiCaL plus the motif-transfer lemma, pending the Lean-side
+              cover check (closure plan A.2 step 3) or an independently
+              checked SAT proof.  The terminal state persists everything a
+              checker needs: bank snapshot digest, full exclusion-instance
+              manifest, the exact final CNF, and a DRAT proof
+              (audit 2026-07-09 P2: durable proof artifact).
      SAT   -> witness cube.
   2. embed every known dead motif into the cube (all candidate-feasible
      injective embeddings).  New embeddings -> add them + their AUTOS orbits
@@ -60,6 +65,62 @@ def certify_one(pj):
     return pj, cert, time.time() - t0
 
 
+def _sha256(path):
+    import hashlib
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1 << 20), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def persist_unsat(inst, added, it, n_mined_cycles, elapsed):
+    """Durable terminal artifact for an UNSAT verdict (audit 2026-07-09
+    P2): exact final CNF + DRAT proof + full exclusion-instance manifest
+    + bank snapshot digest, all tied together in COVERAGE_COMPLETE.json.
+    Without these the UNSAT would live only in CaDiCaL's stdout and the
+    loop's process memory."""
+    import gzip
+    import shutil
+    cnf_final = "coverage_final.cnf"
+    with open(cnf_final, "w") as f:
+        f.write(inst.dimacs())
+    # independent re-solve on the persisted CNF, emitting a DRAT proof
+    drat = "coverage_final.drat"
+    pr = subprocess.run(["cadical", "-q", cnf_final, drat],
+                        capture_output=True, text=True, timeout=14400)
+    drat_ok = "s UNSATISFIABLE" in pr.stdout
+    if not drat_ok:
+        print(f"[terminal] WARNING: re-solve of persisted CNF did not "
+              f"return UNSAT (output tail: {pr.stdout[-200:]})", flush=True)
+    manifest = "coverage_instances.jsonl.gz"
+    with gzip.open(manifest, "wt") as f:
+        for s in sorted(added):
+            f.write(json.dumps([[c, list(M)] for c, M in s]) + "\n")
+    bank_snap = "coverage_bank_snapshot.jsonl"
+    shutil.copyfile("bank.jsonl", bank_snap)
+    meta = {
+        "verdict": "UNSAT",
+        "trust": "EMPIRICALLY VERIFIED (CaDiCaL + motif-transfer lemma; "
+                 "Lean cover check pending — closure plan A.2 step 3)",
+        "iteration": it,
+        "mining_cycles": n_mined_cycles,
+        "n_instances": len(added),
+        "elapsed_s": round(elapsed),
+        "cnf": {"path": cnf_final, "sha256": _sha256(cnf_final)},
+        "drat": {"path": drat, "resolve_unsat": drat_ok,
+                 "sha256": _sha256(drat) if os.path.exists(drat) else None},
+        "instances": {"path": manifest, "sha256": _sha256(manifest)},
+        "bank": {"path": bank_snap, "sha256": _sha256(bank_snap),
+                 "rows": sum(1 for _ in open(bank_snap))},
+    }
+    with open("COVERAGE_COMPLETE.json", "w") as f:
+        json.dump(meta, f, indent=2)
+    print(f"[terminal] persisted: {cnf_final}, {drat} "
+          f"(re-solve UNSAT={drat_ok}), {manifest}, {bank_snap}, "
+          f"COVERAGE_COMPLETE.json", flush=True)
+
+
 def main():
     t0 = time.time()
     pats = cp.load_bank()
@@ -81,10 +142,12 @@ def main():
     for it in range(1, MAX_ITERS + 1):
         res, cube = inst.solve(cp.CNF_PATH, timeout=3600)
         if res == "UNSAT":
-            print(f"[iter {it}] UNSAT — COVERAGE COMPLETE modulo the "
-                  f"motif-transfer lemma ({len(added)} instances, "
-                  f"{n_mined_cycles} mining cycles, {time.time()-t0:.0f}s). "
-                  "DONE.", flush=True)
+            print(f"[iter {it}] UNSAT — coverage search complete "
+                  f"({len(added)} instances, {n_mined_cycles} mining cycles, "
+                  f"{time.time()-t0:.0f}s). Trust: EMPIRICALLY VERIFIED "
+                  f"(CaDiCaL + motif transfer; Lean cover check pending). "
+                  "Persisting terminal artifacts.", flush=True)
+            persist_unsat(inst, added, it, n_mined_cycles, time.time() - t0)
             return
         if res != "SAT":
             print(f"[iter {it}] solver returned {res} — STOP", flush=True)
