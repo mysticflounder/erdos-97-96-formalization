@@ -36,6 +36,7 @@ import cover_probe as cp  # noqa: E402
 import frontier_add  # noqa: E402
 import intracap  # noqa: E402
 import miner  # noqa: E402
+import queue_client  # noqa: E402
 import sat_cover  # noqa: E402
 from census.census_554.io_protocol import (  # noqa: E402
     LockBusy,
@@ -59,6 +60,26 @@ miner.pattern_dead_fast = _exact_dead
 WORKERS = int(os.environ.get("CERT_WORKERS", "8"))
 CERT_TIMEOUT = int(os.environ.get("CERT_TIMEOUT", "900"))
 MAX_ITERS = int(os.environ.get("MAX_ITERS", "5000"))
+# Node budget for one motif-into-cube embedding search. A weakly-pruning
+# motif can send the backtracking factorial (observed 2026-07-11: one
+# motif x cube pair ground >10h and stalled the loop); exceeding motifs
+# are skipped with a log line — instances only strengthen SAT pruning,
+# so skips never affect bank soundness.
+EMBED_MAX_NODES = int(os.environ.get("CENSUS554_EMBED_MAX_NODES", "500000"))
+
+# Optional overflow offload to a flux.local remote_certify_worker.py daemon
+# over the shared NFS bridge. Off by default -- when disabled (or when a
+# batch is small enough to fit in the local pool) behavior is byte-identical
+# to the pre-existing local-only path. See
+# scratch/census-554/flux_worker/remote_certify_worker.py for the daemon and
+# its own module docstring for the wire format this mirrors.
+REMOTE_CERT_ENABLED = os.environ.get("CENSUS554_REMOTE_CERT", "0") == "1"
+REMOTE_JOBS_DIR = Path(os.environ.get(
+    "CENSUS554_REMOTE_JOBS_DIR", "/opt/nfs/erdos9796-flux-bridge/jobs"))
+REMOTE_RESULTS_DIR = Path(os.environ.get(
+    "CENSUS554_REMOTE_RESULTS_DIR", "/opt/nfs/erdos9796-flux-bridge/results"))
+REMOTE_POLL_INTERVAL = float(os.environ.get("CENSUS554_REMOTE_POLL_S", "2.0"))
+REMOTE_TIMEOUT_MARGIN = int(os.environ.get("CENSUS554_REMOTE_MARGIN_S", "120"))
 
 
 def certify_one(pattern_json):
@@ -67,6 +88,52 @@ def certify_one(pattern_json):
     started = time.time()
     certificate = miner.certify_pattern(pattern, timeout=CERT_TIMEOUT)
     return pattern_json, certificate, time.time() - started
+
+
+def _submit_remote_job(stem, pattern_json):
+    atomic_write_json(REMOTE_JOBS_DIR / f"{stem}.json", pattern_json)
+
+
+def _poll_remote_results(remote_stems, deadline):
+    """Poll REMOTE_RESULTS_DIR for `remote_stems` (stem -> pattern_json)
+    until every job has a result file or `deadline` passes. Returns
+    (completed, timed_out) where `completed` maps stem -> (pattern_json,
+    certificate, elapsed) and `timed_out` is the list of pattern_json for
+    stems that never produced a result file in time -- callers must
+    certify those locally as a fallback."""
+    pending = dict(remote_stems)
+    completed = {}
+    while pending and time.time() < deadline:
+        # Gate on a directory listing before any per-name open: a lookup
+        # that races the remote write plants a macOS NFS negative dentry
+        # that repeated polling keeps warm, making an existing result file
+        # read as absent for minutes (see remote_mine.py, same fix).
+        try:
+            names = set(os.listdir(REMOTE_RESULTS_DIR))
+        except OSError:
+            names = set()
+        for stem in list(pending):
+            if f"{stem}.json" not in names:
+                continue
+            result_path = REMOTE_RESULTS_DIR / f"{stem}.json"
+            try:
+                with open(result_path, encoding="utf-8") as handle:
+                    data = json.load(handle)
+            except FileNotFoundError:
+                continue
+            except (OSError, json.JSONDecodeError):
+                continue  # torn/partial read raced the atomic rename; retry
+            completed[stem] = (data["pattern"], data.get("certificate"),
+                                data.get("elapsed", 0.0))
+            del pending[stem]
+            try:
+                result_path.unlink()
+            except FileNotFoundError:
+                pass
+        if pending:
+            time.sleep(REMOTE_POLL_INTERVAL)
+    timed_out = list(pending.values())
+    return completed, timed_out
 
 
 def _compose_maps(*maps):
@@ -239,6 +306,7 @@ def _run():
     )
 
     mining_cycles = 0
+    embed_budget_skipped = set()
     for iteration in range(1, MAX_ITERS + 1):
         result, cube = instance.solve(cp.CNF_PATH, timeout=3600)
         if result == "UNSAT":
@@ -264,9 +332,22 @@ def _run():
                        for center, members in cube.items()}
         found = {}
         for key in motif_keys:
-            for serialized, key_to_embedding in cp.embed_into_cube_with_maps(
-                key, frozen_cube
-            ).items():
+            try:
+                embeddings = cp.embed_into_cube_with_maps(
+                    key, frozen_cube, max_nodes=EMBED_MAX_NODES
+                )
+            except cp.EmbedBudgetExceeded:
+                if key not in embed_budget_skipped:
+                    embed_budget_skipped.add(key)
+                    print(
+                        f"[iter {iteration}] embed budget "
+                        f"({EMBED_MAX_NODES} nodes) exceeded for motif "
+                        f"{_motif_json(key)}; skipping its embeddings "
+                        "(soundness unaffected; SAT pruning only)",
+                        flush=True,
+                    )
+                continue
+            for serialized, key_to_embedding in embeddings.items():
                 if serialized not in added:
                     found.setdefault(serialized, (key, key_to_embedding))
 
@@ -326,35 +407,140 @@ def _run():
             {str(c): sorted(members) for c, members in pattern.items()}
             for pattern in mined
         ]
-        print(
-            f"[iter {iteration}] certifying {len(new_patterns)} motif(s) "
-            f"({WORKERS} workers, timeout {CERT_TIMEOUT}s)",
-            flush=True,
-        )
         rows = []
         failures = 0
-        with ProcessPoolExecutor(max_workers=WORKERS) as executor:
-            for pattern_json, certificate, elapsed in executor.map(
-                certify_one, new_patterns
-            ):
-                if certificate is not None and "kill" in certificate:
+
+        def _handle_result(pattern_json, certificate, elapsed, tag=""):
+            nonlocal failures
+            if certificate is not None and "kill" in certificate:
+                print(
+                    f"[iter {iteration}] certified {json.dumps(pattern_json)} "
+                    f"kill={certificate['kill']} ({elapsed:.0f}s{tag})",
+                    flush=True,
+                )
+                rows.append({
+                    "pattern": pattern_json,
+                    "cert": certificate,
+                    "cube": cube_sorted,
+                })
+            else:
+                failures += 1
+                print(
+                    f"[iter {iteration}] CERTIFY FAILED "
+                    f"{json.dumps(pattern_json)} ({elapsed:.0f}s{tag})",
+                    flush=True,
+                )
+
+        def _certify_locally(patterns, tag=""):
+            with ProcessPoolExecutor(max_workers=WORKERS) as executor:
+                for pattern_json, certificate, elapsed in executor.map(
+                    certify_one, patterns
+                ):
+                    _handle_result(pattern_json, certificate, elapsed, tag)
+
+        queue_mode = False
+        if queue_client.enabled():
+            capacity = queue_client.live_capacity()
+            if capacity > 0:
+                queue_mode = True
+                queue_client.gc_stale_results()
+                stem_patterns = {}
+                submit_failed = []
+                for idx, pattern_json in enumerate(new_patterns):
+                    stem = queue_client.new_stem(f"cert-i{iteration:04d}")
+                    try:
+                        queue_client.submit(stem, pattern_json)
+                        stem_patterns[stem] = pattern_json
+                    except OSError as exc:
+                        print(
+                            f"[iter {iteration}] queue submit failed ({exc}); "
+                            "will certify that pattern locally",
+                            flush=True,
+                        )
+                        submit_failed.append(pattern_json)
+                rounds = max(1, -(-len(stem_patterns) // capacity))
+                print(
+                    f"[iter {iteration}] certifying {len(stem_patterns)} "
+                    f"motif(s) via work queue (live capacity {capacity}, "
+                    f"timeout {CERT_TIMEOUT}s)",
+                    flush=True,
+                )
+
+                def _on_cert(stem, data):
+                    pattern_json = (data.get("pattern")
+                                    or stem_patterns[stem])
+                    worker = data.get("worker", "queue")
+                    _handle_result(pattern_json, data.get("certificate"),
+                                   data.get("elapsed", 0.0),
+                                   tag=f", {worker}")
+
+                deadline = (time.time() + CERT_TIMEOUT * rounds
+                            + REMOTE_TIMEOUT_MARGIN)
+                _completed, missing = queue_client.poll(
+                    stem_patterns, deadline, _on_cert
+                )
+                leftovers = submit_failed + [stem_patterns[s] for s in missing]
+                if leftovers:
+                    queue_client.cancel(missing)
                     print(
-                        f"[iter {iteration}] certified {json.dumps(pattern_json)} "
-                        f"kill={certificate['kill']} ({elapsed:.0f}s)",
+                        f"[iter {iteration}] {len(leftovers)} certify job(s) "
+                        "unreturned by queue deadline; falling back to local "
+                        "certification",
                         flush=True,
                     )
-                    rows.append({
-                        "pattern": pattern_json,
-                        "cert": certificate,
-                        "cube": cube_sorted,
-                    })
-                else:
-                    failures += 1
+                    _certify_locally(leftovers)
+            else:
+                print(
+                    f"[iter {iteration}] queue mode: no live worker "
+                    "heartbeats; certifying locally",
+                    flush=True,
+                )
+
+        if not queue_mode:
+            local_patterns = new_patterns
+            remote_patterns = []
+            if REMOTE_CERT_ENABLED and len(new_patterns) > WORKERS:
+                local_patterns = new_patterns[:WORKERS]
+                remote_patterns = new_patterns[WORKERS:]
+
+            remote_stems = {}
+            for idx, pattern_json in enumerate(remote_patterns):
+                stem = f"iter{iteration:04d}_r{idx:03d}"
+                try:
+                    _submit_remote_job(stem, pattern_json)
+                    remote_stems[stem] = pattern_json
+                except OSError as exc:
                     print(
-                        f"[iter {iteration}] CERTIFY FAILED "
-                        f"{json.dumps(pattern_json)} ({elapsed:.0f}s)",
+                        f"[iter {iteration}] remote submit failed ({exc}); "
+                        "certifying locally instead",
                         flush=True,
                     )
+                    local_patterns = local_patterns + [pattern_json]
+
+            print(
+                f"[iter {iteration}] certifying {len(local_patterns)} motif(s) "
+                f"locally ({WORKERS} workers, timeout {CERT_TIMEOUT}s)"
+                + (f" + {len(remote_stems)} remote (flux)" if remote_stems else ""),
+                flush=True,
+            )
+            _certify_locally(local_patterns)
+
+            if remote_stems:
+                deadline = time.time() + CERT_TIMEOUT + REMOTE_TIMEOUT_MARGIN
+                remote_results, timed_out = _poll_remote_results(
+                    remote_stems, deadline
+                )
+                for pattern_json, certificate, elapsed in remote_results.values():
+                    _handle_result(pattern_json, certificate, elapsed, tag=", flux")
+                if timed_out:
+                    print(
+                        f"[iter {iteration}] {len(timed_out)} remote job(s) did not "
+                        f"report within {CERT_TIMEOUT + REMOTE_TIMEOUT_MARGIN}s; "
+                        "falling back to local certification",
+                        flush=True,
+                    )
+                    _certify_locally(timed_out)
+
         if not rows:
             print(
                 f"[iter {iteration}] 0/{len(new_patterns)} certified; STOP",

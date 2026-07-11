@@ -130,17 +130,27 @@ def unlabeled_key(pat):
     return unlabeled_key_with_map(pat)[0]
 
 
-def embed_into_cube_with_maps(key, cube):
+class EmbedBudgetExceeded(Exception):
+    """Raised when embed_into_cube_with_maps exceeds its node budget.
+    A motif whose constraint graph prunes weakly can send the backtracking
+    into factorial territory (observed: one motif x cube pair ground for
+    10+ hours); callers skip such embeddings — instances only strengthen
+    SAT-cover pruning, so a skip never affects bank soundness."""
+
+
+def embed_into_cube_with_maps(key, cube, max_nodes=None):
     """All injective embeddings of canonical motif `key` into the fixed
     cube {c: frozenset K_c}: image(M_c) ⊆ K_{image(c)} for every center.
     Returns serialized embedded patterns mapped to canonical-support
     injections. When automorphisms emit the same pattern, the least injection
-    is retained deterministically."""
+    is retained deterministically. Raises EmbedBudgetExceeded when more than
+    `max_nodes` search nodes are visited (None = unbounded)."""
     centers = {c: frozenset(M) for c, M in key}
     nodes = sorted({c for c, _ in key} | {p for _, M in key for p in M})
     order = sorted(nodes,
                    key=lambda n: -(len(centers.get(n, ())) +
                                    (100 if n in centers else 0)))
+    budget = [max_nodes if max_nodes is not None else -1]
 
     def ok(assign):
         for c, M in centers.items():
@@ -157,6 +167,9 @@ def embed_into_cube_with_maps(key, cube):
     used = set()
 
     def rec(i):
+        if budget[0] == 0:
+            raise EmbedBudgetExceeded
+        budget[0] -= 1
         if i == len(order):
             serialized = tuple(sorted(
                 (assign[c], tuple(sorted(assign[p] for p in M)))
