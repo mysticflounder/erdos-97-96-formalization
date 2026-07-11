@@ -82,26 +82,26 @@ theorem sep_signedArea2 (x y c d : ℝ²)
     · exact h
   linarith [hsum]
 
-/-- Strict linear betweenness on the normalized ten-label hull order. -/
-def btw (i j k : Fin 10) : Prop :=
+/-- Strict betweenness in a finite convex order after choosing a linear cut. -/
+def btw {n : ℕ} (i j k : Fin n) : Prop :=
   (i < k ∧ k < j) ∨ (j < k ∧ k < i)
 
-instance (i j k : Fin 10) : Decidable (btw i j k) := by
+instance {n : ℕ} (i j k : Fin n) : Decidable (btw i j k) := by
   unfold btw
   infer_instance
 
 /-- No point is strictly between an endpoint and itself. -/
-theorem not_btw_same (i k : Fin 10) : ¬ btw i i k := by
+theorem not_btw_same {n : ℕ} (i k : Fin n) : ¬ btw i i k := by
   unfold btw
   rintro (⟨h1, h2⟩ | ⟨h1, h2⟩)
   · exact (not_lt_of_ge (le_of_lt h1)) h2
   · exact (not_lt_of_ge (le_of_lt h1)) h2
 
-/-- SEP as `btw` alternation in a CCW convex ten-point enumeration. -/
-theorem btw_sep {ψ : Fin 10 → ℝ²}
+/-- SEP as `btw` alternation in an arbitrary finite CCW convex enumeration. -/
+theorem btw_sep {n : ℕ} {ψ : Fin n → ℝ²}
     (hccw : EuclideanGeometry.IsCcwConvexPolygon ψ)
     (hinj : Function.Injective ψ)
-    {i j a b : Fin 10} (hij : i ≠ j)
+    {i j a b : Fin n} (hij : i ≠ j)
     (hbi : b ≠ i) (hbj : b ≠ j)
     (hci : dist (ψ a) (ψ i) = dist (ψ b) (ψ i))
     (hcj : dist (ψ a) (ψ j) = dist (ψ b) (ψ j))

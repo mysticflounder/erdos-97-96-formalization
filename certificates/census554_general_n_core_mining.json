@@ -1,0 +1,1026 @@
+{
+  "bank": {
+    "bank_rows": {
+      "duplicate-center": 1148,
+      "equal-K4": 283,
+      "equilateral-bisector": 1116,
+      "other": 2855,
+      "three-triad": 230
+    },
+    "centers": {
+      "3": 177,
+      "4": 2289,
+      "5": 1956,
+      "6": 1161,
+      "7": 49
+    },
+    "duplicate_pids": {
+      "pat_00003": 2
+    },
+    "generators": {
+      "5": 1040,
+      "6": 1770,
+      "7": 753,
+      "8": 567,
+      "9": 1315,
+      "10": 20,
+      "11": 167
+    },
+    "kill": {
+      "base": 267,
+      "multi_pair": 3587,
+      "pair": 1778
+    },
+    "row_weighted_role_labeled_orbit_instances": {
+      "duplicate-center": 25589,
+      "equal-K4": 3884,
+      "equilateral-bisector": 25838,
+      "other": 88565,
+      "three-triad": 5754
+    },
+    "rows": 5632,
+    "support": {
+      "4": 282,
+      "5": 3052,
+      "6": 2099,
+      "7": 199
+    },
+    "unique_pid_role_labeled_orbit_instances": {
+      "duplicate-center": 25589,
+      "equal-K4": 3884,
+      "equilateral-bisector": 25802,
+      "other": 88565,
+      "three-triad": 5754
+    },
+    "unique_pids": 5631,
+    "unique_unlabeled_motifs": 1670,
+    "unlabeled_motif_status": {
+      "duplicate-center": 27,
+      "equal-K4": 5,
+      "equilateral-bisector": 31,
+      "other": 1598,
+      "three-triad": 9
+    }
+  },
+  "generated_at": "2026-07-11T00:23:37.670731+00:00",
+  "generated_lean_bank": {
+    "counts": {
+      "duplicate-center": 0,
+      "equal-K4": 12,
+      "equilateral-bisector": 2,
+      "other": 7,
+      "three-triad": 0
+    },
+    "module_count": 21,
+    "modules": [
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        ],
+        "module": "Pat00084.lean",
+        "pid": "pat_00084",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "a": 1,
+            "b": 0,
+            "c": 9,
+            "p": 2,
+            "x": 3
+          }
+        ],
+        "module": "Pat00128.lean",
+        "pid": "pat_00128",
+        "status": "equilateral-bisector"
+      },
+      {
+        "first_witness": [
+          {
+            "a": 0,
+            "b": 1,
+            "c": 9,
+            "p": 2,
+            "x": 3
+          }
+        ],
+        "module": "Pat00134.lean",
+        "pid": "pat_00134",
+        "status": "equilateral-bisector"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        ],
+        "module": "Pat00568.lean",
+        "pid": "pat_00568",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        ],
+        "module": "Pat00573.lean",
+        "pid": "pat_00573",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "module": "Pat00744.lean",
+        "pid": "pat_00744",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              2,
+              5
+            ]
+          }
+        ],
+        "module": "Pat00966.lean",
+        "pid": "pat_00966",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat01429.lean",
+        "pid": "pat_01429",
+        "status": "other"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              2,
+              5
+            ]
+          }
+        ],
+        "module": "Pat01535.lean",
+        "pid": "pat_01535",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              2,
+              4
+            ]
+          }
+        ],
+        "module": "Pat01571.lean",
+        "pid": "pat_01571",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              7,
+              9
+            ]
+          }
+        ],
+        "module": "Pat02175.lean",
+        "pid": "pat_02175",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        ],
+        "module": "Pat02213.lean",
+        "pid": "pat_02213",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              3,
+              4
+            ]
+          }
+        ],
+        "module": "Pat02369.lean",
+        "pid": "pat_02369",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              2,
+              6
+            ]
+          }
+        ],
+        "module": "Pat02386.lean",
+        "pid": "pat_02386",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat02474.lean",
+        "pid": "pat_02474",
+        "status": "other"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat02537.lean",
+        "pid": "pat_02537",
+        "status": "other"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat02682.lean",
+        "pid": "pat_02682",
+        "status": "other"
+      },
+      {
+        "first_witness": [
+          {
+            "points": [
+              0,
+              1,
+              5,
+              8
+            ]
+          }
+        ],
+        "module": "Pat03063.lean",
+        "pid": "pat_03063",
+        "status": "equal-K4"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat04970.lean",
+        "pid": "pat_04970",
+        "status": "other"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat05043.lean",
+        "pid": "pat_05043",
+        "status": "other"
+      },
+      {
+        "first_witness": [],
+        "module": "Pat05243.lean",
+        "pid": "pat_05243",
+        "status": "other"
+      }
+    ]
+  },
+  "recent_tail": {
+    "bank_rows": {
+      "duplicate-center": 0,
+      "equal-K4": 0,
+      "equilateral-bisector": 0,
+      "other": 131,
+      "three-triad": 1
+    },
+    "centers": {
+      "4": 1,
+      "5": 20,
+      "6": 99,
+      "7": 12
+    },
+    "generators": {
+      "8": 9,
+      "9": 45,
+      "10": 5,
+      "11": 73
+    },
+    "kill": {
+      "base": 25,
+      "multi_pair": 38,
+      "pair": 69
+    },
+    "new_unlabeled_motifs_vs_prefix": 131,
+    "row_weighted_role_labeled_orbit_instances": {
+      "duplicate-center": 0,
+      "equal-K4": 0,
+      "equilateral-bisector": 0,
+      "other": 4158,
+      "three-triad": 18
+    },
+    "rows": 132,
+    "support": {
+      "6": 53,
+      "7": 79
+    },
+    "unique_pid_role_labeled_orbit_instances": {
+      "duplicate-center": 0,
+      "equal-K4": 0,
+      "equilateral-bisector": 0,
+      "other": 4158,
+      "three-triad": 18
+    },
+    "unique_unlabeled_motifs": 131
+  },
+  "schema": "p97-census554-general-n-equality-core-mining-v2",
+  "source": {
+    "bank": "scratch/census-554/bank.jsonl",
+    "lean_bank_dir": "lean/Erdos9796Proof/P97/Census554/Bank",
+    "prefix_checkpoint": 5154,
+    "recent_count": 132,
+    "row_limit": 5632,
+    "rows_read": 5632,
+    "sha256": "20623311cb21a68ec2c13270bd9a7637aafd806f16b39aa52795a72ff56134e6"
+  },
+  "tail_after_prefix": {
+    "bank_rows": {
+      "duplicate-center": 32,
+      "equal-K4": 5,
+      "equilateral-bisector": 37,
+      "other": 392,
+      "three-triad": 12
+    },
+    "centers": {
+      "3": 5,
+      "4": 75,
+      "5": 145,
+      "6": 228,
+      "7": 25
+    },
+    "generators": {
+      "5": 20,
+      "6": 71,
+      "7": 24,
+      "8": 48,
+      "9": 174,
+      "10": 17,
+      "11": 124
+    },
+    "kill": {
+      "base": 55,
+      "multi_pair": 217,
+      "pair": 206
+    },
+    "new_unlabeled_motifs_vs_prefix": 311,
+    "row_weighted_role_labeled_orbit_instances": {
+      "duplicate-center": 717,
+      "equal-K4": 57,
+      "equilateral-bisector": 828,
+      "other": 12546,
+      "three-triad": 219
+    },
+    "rows": 478,
+    "support": {
+      "4": 5,
+      "5": 99,
+      "6": 225,
+      "7": 149
+    },
+    "unique_pid_role_labeled_orbit_instances": {
+      "duplicate-center": 717,
+      "equal-K4": 57,
+      "equilateral-bisector": 828,
+      "other": 12546,
+      "three-triad": 219
+    },
+    "unique_unlabeled_motifs": 403
+  },
+  "theorem_surface": {
+    "emitted_structural_consumers": {
+      "equal_k4_modules": 12,
+      "equilateral_bisector_modules": 2,
+      "module": "Census554/Bank/EqualityCore.lean",
+      "three_triad_modules": 0
+    },
+    "existing_geometry_kernels": [
+      "Problem97.not_dist_eq_three_of_ne",
+      "Problem97.u5_unit_triangle_on_p_circle_incompatibility",
+      "Problem97.Census554.EqualityCore.equilateral_bisector_collision",
+      "Problem97.Census554.EqualityCore.three_triad_collision"
+    ],
+    "formalized_combinatorics": [
+      "realized row equalities are preserved by edge-equality closure",
+      "a closure duplicate-center witness implies no injective realization",
+      "a closure equal-K4 witness implies no injective realization",
+      "a closure equilateral-bisector witness implies a forced collision",
+      "a closure three-triad witness implies a forced collision"
+    ],
+    "trust_boundary": "The miner's finite witness data is not itself a Lean proof. Its --lean-out emission is separately kernel-checked, but neither emission nor this artifact verifies certificates or proves census coverage."
+  },
+  "top_unlabeled_motifs": [
+    {
+      "bank_row_count": 443,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 2,
+          "mask": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            1,
+            3
+          ]
+        }
+      ],
+      "first_pid": "pat_00002",
+      "first_witness": [
+        {
+          "centers": [
+            0,
+            1
+          ],
+          "triple": [
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "last_pid": "pat_05357",
+      "status": "duplicate-center"
+    },
+    {
+      "bank_row_count": 315,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 2,
+          "mask": [
+            0,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            1,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00011",
+      "first_witness": [
+        {
+          "centers": [
+            6,
+            8
+          ],
+          "triple": [
+            1,
+            4,
+            7
+          ]
+        }
+      ],
+      "last_pid": "pat_05351",
+      "status": "duplicate-center"
+    },
+    {
+      "bank_row_count": 190,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 2,
+          "mask": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            1,
+            3
+          ]
+        }
+      ],
+      "first_pid": "pat_00187",
+      "first_witness": [
+        {
+          "a": 3,
+          "b": 6,
+          "c": 8,
+          "d": 9,
+          "e": 10
+        }
+      ],
+      "last_pid": "pat_05360",
+      "status": "three-triad"
+    },
+    {
+      "bank_row_count": 135,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00000",
+      "first_witness": [
+        {
+          "points": [
+            3,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "last_pid": "pat_05325",
+      "status": "equal-K4"
+    },
+    {
+      "bank_row_count": 123,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            2,
+            3
+          ]
+        }
+      ],
+      "first_pid": "pat_00032",
+      "first_witness": [
+        {
+          "a": 5,
+          "b": 9,
+          "c": 7,
+          "p": 3,
+          "x": 4
+        }
+      ],
+      "last_pid": "pat_05269",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 114,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00061",
+      "first_witness": [
+        {
+          "a": 8,
+          "b": 10,
+          "c": 5,
+          "p": 1,
+          "x": 4
+        }
+      ],
+      "last_pid": "pat_05328",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 105,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            1
+          ]
+        }
+      ],
+      "first_pid": "pat_00016",
+      "first_witness": [
+        {
+          "a": 4,
+          "b": 7,
+          "c": 2,
+          "p": 8,
+          "x": 6
+        }
+      ],
+      "last_pid": "pat_05262",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 99,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            1,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00019",
+      "first_witness": [
+        {
+          "a": 6,
+          "b": 4,
+          "c": 3,
+          "p": 10,
+          "x": 7
+        }
+      ],
+      "last_pid": "pat_05111",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 82,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "mask": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            1,
+            3
+          ]
+        }
+      ],
+      "first_pid": "pat_00303",
+      "first_witness": [
+        {
+          "a": 9,
+          "b": 3,
+          "c": 0,
+          "p": 5,
+          "x": 1
+        }
+      ],
+      "last_pid": "pat_05358",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 80,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00013",
+      "first_witness": [
+        {
+          "a": 6,
+          "b": 1,
+          "c": 3,
+          "p": 10,
+          "x": 5
+        }
+      ],
+      "last_pid": "pat_05312",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 75,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "mask": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            0,
+            1,
+            4
+          ]
+        }
+      ],
+      "first_pid": "pat_00067",
+      "first_witness": [
+        {
+          "a": 9,
+          "b": 2,
+          "c": 5,
+          "p": 6,
+          "x": 4
+        }
+      ],
+      "last_pid": "pat_05342",
+      "status": "equilateral-bisector"
+    },
+    {
+      "bank_row_count": 68,
+      "canonical_pattern": [
+        {
+          "center": 0,
+          "mask": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "mask": [
+            0,
+            2,
+            3
+          ]
+        },
+        {
+          "center": 3,
+          "mask": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "mask": [
+            0,
+            2
+          ]
+        }
+      ],
+      "first_pid": "pat_00014",
+      "first_witness": [
+        {
+          "a": 4,
+          "b": 9,
+          "c": 6,
+          "p": 2,
+          "x": 5
+        }
+      ],
+      "last_pid": "pat_05305",
+      "status": "equilateral-bisector"
+    }
+  ]
+}

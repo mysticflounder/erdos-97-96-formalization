@@ -337,13 +337,33 @@ corresponding closure-matrix gate, not by prose completion claims.
    permanent generator integration and terminal cover-core replay OPEN.**
 
    **Conditional equality-core reduction.**
-   `Census554/EqualityCore.lean` proves generic duplicate-center and equal-K4
-   deadness, while its generated-bank adapter may shorten some replayed pattern
-   proofs. This is not miner-witness validation, bank coverage, or a closure
-   theorem. After a terminal core is frozen, `A11-EQUALITY-CORE` must match
+   `Census554/EqualityCore.lean`, `FivePointCollision.lean`, and
+   `ThreeTriadCollision.lean` prove generic duplicate-center, equal-K4,
+   equilateral-bisector, and three-triad deadness.  The generated-bank adapter
+   emits structural proofs for all twelve equal-K4 and both
+   equilateral-bisector instances among the 21 current `Bank/Pat` modules.
+   This is not miner-witness validation, bank coverage, or a closure theorem.
+   After a terminal core is frozen, `A11-EQUALITY-CORE` must match
    manifest IDs to checked finite core witnesses, build and axiom-audit the
    generated adapters, and measure the reduction in the replayed cover core.
    Unmatched patterns continue through the ordinary certificate route.
+
+   **Conditional cyclic-separation reduction.**
+   `Census554/SeparationCore.lean` proves the general shared-pair alternation
+   theorem and encodes the `U,O2,V,S,W,O1` surface as exactly 72 internal
+   orders.  `SeparationMirror.lean` adds the reflected `U,O1,W,S,V,O2`
+   surface and a consumer that requires rejection of both orientations.
+   `SeparationCertificate.lean` checks proof-free row/flip paths for all 144
+   orders and proves that a successful Boolean check yields the two rejection
+   predicates.  `SeparationGeometry.lean` proves
+   `Card11CapLabeling.nonempty_directOrMirrorMacroCcwLabeling` by cutting the
+   global CCW boundary at the surplus apex, sorting the cap-interior blocks,
+   and using the other-apex order dichotomy to select the direct or mirrored
+   surface.  `SeparationBridge.lean` composes that producer with the checked
+   certificate consumer.  No concrete bank-row certificate is emitted yet.
+   Do not generate or count separation-based `IsDead` rows until both finite
+   rejection witnesses for each claimed row are Lean-checked; a direct-only
+   72-order Python screen is not sufficient.
 
    **Per-module native-decision audit.** Every generated replay module and the
    assembled core bank must record its `proof-blueprint axioms` output and an
