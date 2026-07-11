@@ -37,7 +37,18 @@ where this audit and the live spine disagree, the spine wins.
 
 ## 2. Closure assessment per obligation
 
-**K-B-END is the only obligation that is both fully routed and unowned.**
+**Update (2026-07-11, post-dispatch):** the K-B-END route below was
+dispatched and hit a verified blocker — every transport route to
+`endpointShadowInBank` requires `maskCard = 4` per non-`.v/.w` center, whose
+only producer consumes full label-completeness of `A`, available only under
+`S.surplusCap.card = 5`; the statement carries no such hypothesis. K-B-END
+therefore shares the Front-B confinement core with K-B-PIN and was re-rated
+OPEN-RESEARCH in the closure matrix (see the matrix row for evidence
+pointers and the two candidate dispositions). The §3 swarm assessment
+tightens accordingly: **no spine obligation is currently closable by
+dispatch with existing repo content.**
+
+**K-B-END was the only obligation that is both fully routed and unowned.**
 Plan §B.1 specifies it to signature level: create
 `EndpointCertificate/GeometryProducer.lean` with two mirror theorems
 producing
