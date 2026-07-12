@@ -3489,6 +3489,55 @@ theorem u1_largeCap_routeB_t1ShellTarget_to_qCriticalTripleClass
   simpa [show ({q, p, t3, u} : Finset ℝ²) = insert q ({p, t3, u} : Finset ℝ²) by rfl,
     hq_not_mem_pt3u] using hcrit
 
+/-- Three pairwise-distinct elements, each landing in a pairwise-distinct
+target triple `{x, y, z}`, exhaust that triple as a `Finset`.  Supplies the
+`{l1, l2, l4} = {t1, t2, t3}` complement equality for the `hlabel_mem_base`
+style `q_t20` cubes so that `perm_of_finset_eq_triple` can finish the split. -/
+theorem triple_finset_eq_of_mem {α : Type*} [DecidableEq α]
+    {a b c x y z : α}
+    (ha : a = x ∨ a = y ∨ a = z)
+    (hb : b = x ∨ b = y ∨ b = z)
+    (hc : c = x ∨ c = y ∨ c = z)
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c)
+    (hxy : x ≠ y) (hxz : x ≠ z) (hyz : y ≠ z) :
+    ({a, b, c} : Finset α) = ({x, y, z} : Finset α) := by
+  refine Finset.eq_of_subset_of_card_le ?_ ?_
+  · intro w hw
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hw ⊢
+    rcases hw with rfl | rfl | rfl
+    · exact ha
+    · exact hb
+    · exact hc
+  · have hs : ({a, b, c} : Finset α).card = 3 :=
+      Finset.card_eq_three.mpr ⟨a, b, c, hab, hac, hbc, rfl⟩
+    have ht : ({x, y, z} : Finset α).card = 3 :=
+      Finset.card_eq_three.mpr ⟨x, y, z, hxy, hxz, hyz, rfl⟩
+    omega
+
+/-- A three-element `Finset` equality whose left triple is pairwise distinct
+forces one of the six ordered assignments of `(a, b, c)` onto `(x, y, z)`.
+Collapses the hand-enumerated `{l2, l3, l4} → {t1, t2, t3}` bijection case
+splits in the `q_t20` cubes of `u1_largeCap_routeB_tail_liveData_false`. -/
+theorem perm_of_finset_eq_triple {α : Type*} [DecidableEq α]
+    {a b c x y z : α}
+    (hset : ({a, b, c} : Finset α) = ({x, y, z} : Finset α))
+    (hab : a ≠ b) (hac : a ≠ c) (hbc : b ≠ c) :
+    (a = x ∧ b = y ∧ c = z) ∨ (a = x ∧ b = z ∧ c = y) ∨
+      (a = y ∧ b = x ∧ c = z) ∨ (a = y ∧ b = z ∧ c = x) ∨
+      (a = z ∧ b = x ∧ c = y) ∨ (a = z ∧ b = y ∧ c = x) := by
+  have ha : a = x ∨ a = y ∨ a = z := by
+    have hmem : a ∈ ({x, y, z} : Finset α) := hset ▸ (by simp)
+    simpa [Finset.mem_insert, Finset.mem_singleton] using hmem
+  have hb : b = x ∨ b = y ∨ b = z := by
+    have hmem : b ∈ ({x, y, z} : Finset α) := hset ▸ (by simp)
+    simpa [Finset.mem_insert, Finset.mem_singleton] using hmem
+  have hc : c = x ∨ c = y ∨ c = z := by
+    have hmem : c ∈ ({x, y, z} : Finset α) := hset ▸ (by simp)
+    simpa [Finset.mem_insert, Finset.mem_singleton] using hmem
+  rcases ha with rfl | rfl | rfl <;> rcases hb with rfl | rfl | rfl <;>
+    rcases hc with rfl | rfl | rfl <;> simp_all
+
+
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- **LEAF — U1.2 large-cap Route-B structural bridge.**
 
@@ -3738,194 +3787,30 @@ theorem u1_largeCap_routeB_tail_liveData_false
           simpa [hq_slot0, f2CriticalRow.selected.l1_ne_l2,
             f2CriticalRow.selected.l1_ne_l3, f2CriticalRow.selected.l1_ne_l4,
             hl1_ne_t1, hl1_ne_t2, hl1_ne_t3] using h
-        have hl2_base :
-            f2CriticalRow.selected.l2 = t1 ∨
-              f2CriticalRow.selected.l2 = t2 ∨
-                f2CriticalRow.selected.l2 = t3 := by
-          have hmem :
-              f2CriticalRow.selected.l2 ∈ ({t1, t2, t3} : Finset ℝ²) := by
-            have hmem' :
-                f2CriticalRow.selected.l2 ∈
-                  ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-              simp
-            simpa [htail_set] using hmem'
-          simpa [Finset.mem_insert, Finset.mem_singleton] using hmem
-        rcases hl2_base with hl2_t1 | hl2_t2 | hl2_t3
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t2 ∨
-                f2CriticalRow.selected.l3 = t3 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (hl2_t1.trans h3t1.symm))
-            · exact Or.inl h3t2
-            · exact Or.inr h3t3
-          rcases hl3_base with hl3_t2 | hl3_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
-            -- `l3 = t2`, `l4 = t3`.
-            sorry
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
-            -- `l3 = t3`, `l4 = t2`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t1 ∨
-                f2CriticalRow.selected.l3 = t3 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact Or.inl h3t1
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (hl2_t2.trans h3t2.symm))
-            · exact Or.inr h3t3
-          rcases hl3_base with hl3_t1 | hl3_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
-            -- `l3 = t1`, `l4 = t3`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
-            -- `l3 = t3`, `l4 = t1`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t1 ∨
-                f2CriticalRow.selected.l3 = t2 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact Or.inl h3t1
-            · exact Or.inr h3t2
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (hl2_t3.trans h3t3.symm))
-          rcases hl3_base with hl3_t1 | hl3_t2
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
-            -- `l3 = t1`, `l4 = t2`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
-            -- `l3 = t2`, `l4 = t1`.
-            sorry
+        rcases perm_of_finset_eq_triple htail_set
+            f2CriticalRow.selected.l2_ne_l3 f2CriticalRow.selected.l2_ne_l4
+            f2CriticalRow.selected.l3_ne_l4 with
+          ⟨hl2_t1, hl3_t2, hl4_t3⟩ | ⟨hl2_t1, hl3_t3, hl4_t2⟩ |
+            ⟨hl2_t2, hl3_t1, hl4_t3⟩ | ⟨hl2_t2, hl3_t3, hl4_t1⟩ |
+            ⟨hl2_t3, hl3_t1, hl4_t2⟩ | ⟨hl2_t3, hl3_t2, hl4_t1⟩
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
+          -- `l3 = t2`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
+          -- `l3 = t3`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
+          -- `l3 = t1`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
+          -- `l3 = t3`, `l4 = t1`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
+          -- `l3 = t1`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
+          -- `l3 = t2`, `l4 = t1`.
+          sorry
       · -- Remaining cube: `q_t20` with `q = f2CriticalRow.selected.l2`.
         have hlabels_base :
             ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
@@ -4021,194 +3906,30 @@ theorem u1_largeCap_routeB_tail_liveData_false
                     exact hl2_ne_t3 (hx_l2.symm.trans hx_t3),
                     Or.inr (Or.inr (Or.inr hx_t3))⟩
           simpa [hleft, hright] using h
-        have hl1_base :
-            f2CriticalRow.selected.l1 = t1 ∨
-              f2CriticalRow.selected.l1 = t2 ∨
-                f2CriticalRow.selected.l1 = t3 := by
-          have hmem :
-              f2CriticalRow.selected.l1 ∈ ({t1, t2, t3} : Finset ℝ²) := by
-            have hmem' :
-                f2CriticalRow.selected.l1 ∈
-                  ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-              simp
-            simpa [htail_set] using hmem'
-          simpa [Finset.mem_insert, Finset.mem_singleton] using hmem
-        rcases hl1_base with hl1_t1 | hl1_t2 | hl1_t3
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t2 ∨
-                f2CriticalRow.selected.l3 = t3 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l3 (hl1_t1.trans h3t1.symm))
-            · exact Or.inl h3t2
-            · exact Or.inr h3t3
-          rcases hl3_base with hl3_t2 | hl3_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
-            -- `l3 = t2`, `l4 = t3`.
-            sorry
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
-            -- `l3 = t3`, `l4 = t2`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t1 ∨
-                f2CriticalRow.selected.l3 = t3 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact Or.inl h3t1
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l3 (hl1_t2.trans h3t2.symm))
-            · exact Or.inr h3t3
-          rcases hl3_base with hl3_t1 | hl3_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
-            -- `l3 = t1`, `l4 = t3`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
-            -- `l3 = t3`, `l4 = t1`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`.
-          have hl3_base :
-              f2CriticalRow.selected.l3 = t1 ∨
-                f2CriticalRow.selected.l3 = t2 := by
-            have hmem : f2CriticalRow.selected.l3 ∈
-                ({t1, t2, t3} : Finset ℝ²) := by
-              have hmem' : f2CriticalRow.selected.l3 ∈
-                  ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                    f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                simp
-              simpa [htail_set] using hmem'
-            simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-            rcases hmem with h3t1 | h3t2 | h3t3
-            · exact Or.inl h3t1
-            · exact Or.inr h3t2
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l3 (hl1_t3.trans h3t3.symm))
-          rcases hl3_base with hl3_t1 | hl3_t2
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
-            -- `l3 = t1`, `l4 = t2`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem : f2CriticalRow.selected.l4 ∈
-                  ({t1, t2, t3} : Finset ℝ²) := by
-                have hmem' : f2CriticalRow.selected.l4 ∈
-                    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3,
-                      f2CriticalRow.selected.l4} : Finset ℝ²) := by
-                  simp
-                simpa [htail_set] using hmem'
-              simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
-              rcases hmem with h4t1 | h4t2 | h4t3
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    (hl3_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
-            -- `l3 = t2`, `l4 = t1`.
-            sorry
+        rcases perm_of_finset_eq_triple htail_set
+            f2CriticalRow.selected.l1_ne_l3 f2CriticalRow.selected.l1_ne_l4
+            f2CriticalRow.selected.l3_ne_l4 with
+          ⟨hl1_t1, hl3_t2, hl4_t3⟩ | ⟨hl1_t1, hl3_t3, hl4_t2⟩ |
+            ⟨hl1_t2, hl3_t1, hl4_t3⟩ | ⟨hl1_t2, hl3_t3, hl4_t1⟩ |
+            ⟨hl1_t3, hl3_t1, hl4_t2⟩ | ⟨hl1_t3, hl3_t2, hl4_t1⟩
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
+          -- `l3 = t2`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
+          -- `l3 = t3`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
+          -- `l3 = t1`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
+          -- `l3 = t3`, `l4 = t1`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
+          -- `l3 = t1`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
+          -- `l3 = t2`, `l4 = t1`.
+          sorry
       · -- Remaining cube: `q_t20` with `q = f2CriticalRow.selected.l3`.
         have hlabels_base :
             ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
@@ -4226,206 +3947,65 @@ theorem u1_largeCap_routeB_tail_liveData_false
           have hx' : x ∈ ({q, t1, t2, t3} : Finset ℝ²) := by
             simpa [hlabels_base] using hx
           simpa [Finset.mem_insert, Finset.mem_singleton] using hx'
-        have hl1_base :
-            f2CriticalRow.selected.l1 = t1 ∨
-              f2CriticalRow.selected.l1 = t2 ∨
-                f2CriticalRow.selected.l1 = t3 := by
-          have hmem :
-              f2CriticalRow.selected.l1 = q ∨
-                f2CriticalRow.selected.l1 = t1 ∨
-                  f2CriticalRow.selected.l1 = t2 ∨
-                    f2CriticalRow.selected.l1 = t3 :=
-            hlabel_mem_base (x := f2CriticalRow.selected.l1) (by simp)
-          rcases hmem with h1q | h1t1 | h1t2 | h1t3
-          · exact False.elim
-              (f2CriticalRow.selected.l1_ne_l3 (h1q.trans hq_slot2))
+        have hl1_mem :
+            f2CriticalRow.selected.l1 = t1 ∨ f2CriticalRow.selected.l1 = t2 ∨
+              f2CriticalRow.selected.l1 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l1) (by simp) with
+            h1q | h1t1 | h1t2 | h1t3
+          · exact absurd (h1q.trans hq_slot2) f2CriticalRow.selected.l1_ne_l3
           · exact Or.inl h1t1
           · exact Or.inr (Or.inl h1t2)
           · exact Or.inr (Or.inr h1t3)
-        rcases hl1_base with hl1_t1 | hl1_t2 | hl1_t3
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t2 ∨
-                f2CriticalRow.selected.l2 = t3 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (h2q.trans hq_slot2))
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t1.trans h2t1.symm))
-            · exact Or.inl h2t2
-            · exact Or.inr h2t3
-          rcases hl2_base with hl2_t2 | hl2_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
-            -- `l2 = t2`, `l4 = t3`.
-            sorry
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
-            -- `l2 = t3`, `l4 = t2`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t1 ∨
-                f2CriticalRow.selected.l2 = t3 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (h2q.trans hq_slot2))
-            · exact Or.inl h2t1
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t2.trans h2t2.symm))
-            · exact Or.inr h2t3
-          rcases hl2_base with hl2_t1 | hl2_t3
-          · have hl4_t3 : f2CriticalRow.selected.l4 = t3 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t1.trans h4t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t2.trans h4t2.symm))
-              · exact h4t3
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
-            -- `l2 = t1`, `l4 = t3`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
-            -- `l2 = t3`, `l4 = t1`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t1 ∨
-                f2CriticalRow.selected.l2 = t2 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l3 (h2q.trans hq_slot2))
-            · exact Or.inl h2t1
-            · exact Or.inr h2t2
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t3.trans h2t3.symm))
-          rcases hl2_base with hl2_t1 | hl2_t2
-          · have hl4_t2 : f2CriticalRow.selected.l4 = t2 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t1.trans h4t1.symm))
-              · exact h4t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
-            -- `l2 = t1`, `l4 = t2`.
-            sorry
-          · have hl4_t1 : f2CriticalRow.selected.l4 = t1 := by
-              have hmem :
-                  f2CriticalRow.selected.l4 = q ∨
-                    f2CriticalRow.selected.l4 = t1 ∨
-                      f2CriticalRow.selected.l4 = t2 ∨
-                        f2CriticalRow.selected.l4 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp)
-              rcases hmem with h4q | h4t1 | h4t2 | h4t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4
-                    ((h4q.trans hq_slot2).symm))
-              · exact h4t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l4
-                    (hl2_t2.trans h4t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l4
-                    (hl1_t3.trans h4t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
-            -- `l2 = t2`, `l4 = t1`.
-            sorry
+        have hl2_mem :
+            f2CriticalRow.selected.l2 = t1 ∨ f2CriticalRow.selected.l2 = t2 ∨
+              f2CriticalRow.selected.l2 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp) with
+            h2q | h2t1 | h2t2 | h2t3
+          · exact absurd (h2q.trans hq_slot2) f2CriticalRow.selected.l2_ne_l3
+          · exact Or.inl h2t1
+          · exact Or.inr (Or.inl h2t2)
+          · exact Or.inr (Or.inr h2t3)
+        have hl4_mem :
+            f2CriticalRow.selected.l4 = t1 ∨ f2CriticalRow.selected.l4 = t2 ∨
+              f2CriticalRow.selected.l4 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l4) (by simp) with
+            h4q | h4t1 | h4t2 | h4t3
+          · exact absurd (h4q.trans hq_slot2).symm f2CriticalRow.selected.l3_ne_l4
+          · exact Or.inl h4t1
+          · exact Or.inr (Or.inl h4t2)
+          · exact Or.inr (Or.inr h4t3)
+        have htail_set :
+            ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
+                f2CriticalRow.selected.l4} : Finset ℝ²) =
+              ({t1, t2, t3} : Finset ℝ²) :=
+          triple_finset_eq_of_mem hl1_mem hl2_mem hl4_mem
+            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l4
+            f2CriticalRow.selected.l2_ne_l4
+            hfixed.t1_ne_t2 hfixed.t1_ne_t3 hfixed.t2_ne_t3
+        rcases perm_of_finset_eq_triple htail_set
+            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l4
+            f2CriticalRow.selected.l2_ne_l4 with
+          ⟨hl1_t1, hl2_t2, hl4_t3⟩ | ⟨hl1_t1, hl2_t3, hl4_t2⟩ |
+            ⟨hl1_t2, hl2_t1, hl4_t3⟩ | ⟨hl1_t2, hl2_t3, hl4_t1⟩ |
+            ⟨hl1_t3, hl2_t1, hl4_t2⟩ | ⟨hl1_t3, hl2_t2, hl4_t1⟩
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
+          -- `l2 = t2`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
+          -- `l2 = t3`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
+          -- `l2 = t1`, `l4 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
+          -- `l2 = t3`, `l4 = t1`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
+          -- `l2 = t1`, `l4 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
+          -- `l2 = t2`, `l4 = t1`.
+          sorry
       · -- Remaining cube: `q_t20` with `q = f2CriticalRow.selected.l4`.
         have hlabels_base :
             ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
@@ -4443,200 +4023,65 @@ theorem u1_largeCap_routeB_tail_liveData_false
           have hx' : x ∈ ({q, t1, t2, t3} : Finset ℝ²) := by
             simpa [hlabels_base] using hx
           simpa [Finset.mem_insert, Finset.mem_singleton] using hx'
-        have hl1_base :
-            f2CriticalRow.selected.l1 = t1 ∨
-              f2CriticalRow.selected.l1 = t2 ∨
-                f2CriticalRow.selected.l1 = t3 := by
-          have hmem :
-              f2CriticalRow.selected.l1 = q ∨
-                f2CriticalRow.selected.l1 = t1 ∨
-                  f2CriticalRow.selected.l1 = t2 ∨
-                    f2CriticalRow.selected.l1 = t3 :=
-            hlabel_mem_base (x := f2CriticalRow.selected.l1) (by simp)
-          rcases hmem with h1q | h1t1 | h1t2 | h1t3
-          · exact False.elim
-              (f2CriticalRow.selected.l1_ne_l4 (h1q.trans hq_slot3))
+        have hl1_mem :
+            f2CriticalRow.selected.l1 = t1 ∨ f2CriticalRow.selected.l1 = t2 ∨
+              f2CriticalRow.selected.l1 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l1) (by simp) with
+            h1q | h1t1 | h1t2 | h1t3
+          · exact absurd (h1q.trans hq_slot3) f2CriticalRow.selected.l1_ne_l4
           · exact Or.inl h1t1
           · exact Or.inr (Or.inl h1t2)
           · exact Or.inr (Or.inr h1t3)
-        rcases hl1_base with hl1_t1 | hl1_t2 | hl1_t3
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t2 ∨
-                f2CriticalRow.selected.l2 = t3 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l4 (h2q.trans hq_slot3))
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t1.trans h2t1.symm))
-            · exact Or.inl h2t2
-            · exact Or.inr h2t3
-          rcases hl2_base with hl2_t2 | hl2_t3
-          · have hl3_t3 : f2CriticalRow.selected.l3 = t3 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t1.trans h3t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t2.trans h3t2.symm))
-              · exact h3t3
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
-            -- `l2 = t2`, `l3 = t3`.
-            sorry
-          · have hl3_t2 : f2CriticalRow.selected.l3 = t2 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t1.trans h3t1.symm))
-              · exact h3t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t3.trans h3t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
-            -- `l2 = t3`, `l3 = t2`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t1 ∨
-                f2CriticalRow.selected.l2 = t3 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l4 (h2q.trans hq_slot3))
-            · exact Or.inl h2t1
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t2.trans h2t2.symm))
-            · exact Or.inr h2t3
-          rcases hl2_base with hl2_t1 | hl2_t3
-          · have hl3_t3 : f2CriticalRow.selected.l3 = t3 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t1.trans h3t1.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t2.trans h3t2.symm))
-              · exact h3t3
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
-            -- `l2 = t1`, `l3 = t3`.
-            sorry
-          · have hl3_t1 : f2CriticalRow.selected.l3 = t1 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact h3t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t2.trans h3t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t3.trans h3t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
-            -- `l2 = t3`, `l3 = t1`.
-            sorry
-        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`.
-          have hl2_base :
-              f2CriticalRow.selected.l2 = t1 ∨
-                f2CriticalRow.selected.l2 = t2 := by
-            have hmem :
-                f2CriticalRow.selected.l2 = q ∨
-                  f2CriticalRow.selected.l2 = t1 ∨
-                    f2CriticalRow.selected.l2 = t2 ∨
-                      f2CriticalRow.selected.l2 = t3 :=
-              hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp)
-            rcases hmem with h2q | h2t1 | h2t2 | h2t3
-            · exact False.elim
-                (f2CriticalRow.selected.l2_ne_l4 (h2q.trans hq_slot3))
-            · exact Or.inl h2t1
-            · exact Or.inr h2t2
-            · exact False.elim
-                (f2CriticalRow.selected.l1_ne_l2
-                  (hl1_t3.trans h2t3.symm))
-          rcases hl2_base with hl2_t1 | hl2_t2
-          · have hl3_t2 : f2CriticalRow.selected.l3 = t2 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t1.trans h3t1.symm))
-              · exact h3t2
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t3.trans h3t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
-            -- `l2 = t1`, `l3 = t2`.
-            sorry
-          · have hl3_t1 : f2CriticalRow.selected.l3 = t1 := by
-              have hmem :
-                  f2CriticalRow.selected.l3 = q ∨
-                    f2CriticalRow.selected.l3 = t1 ∨
-                      f2CriticalRow.selected.l3 = t2 ∨
-                        f2CriticalRow.selected.l3 = t3 :=
-                hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp)
-              rcases hmem with h3q | h3t1 | h3t2 | h3t3
-              · exact False.elim
-                  (f2CriticalRow.selected.l3_ne_l4 (h3q.trans hq_slot3))
-              · exact h3t1
-              · exact False.elim
-                  (f2CriticalRow.selected.l2_ne_l3
-                    (hl2_t2.trans h3t2.symm))
-              · exact False.elim
-                  (f2CriticalRow.selected.l1_ne_l3
-                    (hl1_t3.trans h3t3.symm))
-            -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
-            -- `l2 = t2`, `l3 = t1`.
-            sorry
+        have hl2_mem :
+            f2CriticalRow.selected.l2 = t1 ∨ f2CriticalRow.selected.l2 = t2 ∨
+              f2CriticalRow.selected.l2 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l2) (by simp) with
+            h2q | h2t1 | h2t2 | h2t3
+          · exact absurd (h2q.trans hq_slot3) f2CriticalRow.selected.l2_ne_l4
+          · exact Or.inl h2t1
+          · exact Or.inr (Or.inl h2t2)
+          · exact Or.inr (Or.inr h2t3)
+        have hl3_mem :
+            f2CriticalRow.selected.l3 = t1 ∨ f2CriticalRow.selected.l3 = t2 ∨
+              f2CriticalRow.selected.l3 = t3 := by
+          rcases hlabel_mem_base (x := f2CriticalRow.selected.l3) (by simp) with
+            h3q | h3t1 | h3t2 | h3t3
+          · exact absurd (h3q.trans hq_slot3) f2CriticalRow.selected.l3_ne_l4
+          · exact Or.inl h3t1
+          · exact Or.inr (Or.inl h3t2)
+          · exact Or.inr (Or.inr h3t3)
+        have htail_set :
+            ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
+                f2CriticalRow.selected.l3} : Finset ℝ²) =
+              ({t1, t2, t3} : Finset ℝ²) :=
+          triple_finset_eq_of_mem hl1_mem hl2_mem hl3_mem
+            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l3
+            f2CriticalRow.selected.l2_ne_l3
+            hfixed.t1_ne_t2 hfixed.t1_ne_t3 hfixed.t2_ne_t3
+        rcases perm_of_finset_eq_triple htail_set
+            f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l3
+            f2CriticalRow.selected.l2_ne_l3 with
+          ⟨hl1_t1, hl2_t2, hl3_t3⟩ | ⟨hl1_t1, hl2_t3, hl3_t2⟩ |
+            ⟨hl1_t2, hl2_t1, hl3_t3⟩ | ⟨hl1_t2, hl2_t3, hl3_t1⟩ |
+            ⟨hl1_t3, hl2_t1, hl3_t2⟩ | ⟨hl1_t3, hl2_t2, hl3_t1⟩
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
+          -- `l2 = t2`, `l3 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
+          -- `l2 = t3`, `l3 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
+          -- `l2 = t1`, `l3 = t3`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
+          -- `l2 = t3`, `l3 = t1`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
+          -- `l2 = t1`, `l3 = t2`.
+          sorry
+        · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
+          -- `l2 = t2`, `l3 = t1`.
+          sorry
     · by_cases ht1_t20 :
         t1 = rows.pointOfChoice
           { source := U1Depth5.CriticalSource.t2, slot := 0 }
