@@ -1296,6 +1296,19 @@ Refactor the consumer to take the already defined side-specific surfaces
 concrete ordered mask interface, and feed the existing
 `rightFiniteCandidateSepFacts_of_*` consumers.
 
+UPDATE 2026-07-11 (route audited, fails as prescribed): the ordered scaffold
+surfaces contain the same `OneSidedSeedCandidateRemainder` conjuncts, whose
+only producers bottom out at per-center mask-incidence facts with zero
+producers in `lean/` or any indexed bank; and because pinned-witness
+cross-separation is unconditional (`SurplusCOMPGBankGeometry.lean:2016`),
+the remainder goal is false in the real configuration for any `p` realizing
+row-(0,0,0,4)/(0,0,4,0) counts — any producer must contain those row
+exclusions, inverting the `Base.lean:9167` dependency. Full audit:
+`docs/audits/2026-07-11-erase-p2-remainder-blocker-audit.md`. Correct
+factoring is a per-row refutation redraft of the `Base.lean:9167`
+intermediate plus new per-row geometric content; {{NEEDS_ADAM_INPUT}} before
+executing (supersedes the paragraph above).
+
 Existing finite side:
 
 - `ErasedPinFixedSeedDFS.lean` contains 330 deduplicated fixed seeds and 26
