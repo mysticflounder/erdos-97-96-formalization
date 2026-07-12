@@ -54,6 +54,12 @@ collapse; z3 300s unknown, cvc5/z3-1800s escalation artifacts in runs/):
   (0,3,0,1); (0,4,0,0); (1,3,0,0)  [fully decided by SUB2]
   (1,2,0,1)  [k in {0,2} ride SUB2; k=1 straddle separately open,
               factory exhausted without witness]   [4 classes]
+[RESOLVED 2026-07-12: SUB2-H PROVEN UNSAT — hand proof + exact certificate,
+skeptic audit PASS, Lean kernel-checked (core axioms;
+lean/Erdos9796Proof/P97/ATail/Sub2Certificate.lean). The three whole
+classes above and (1,2,0,1) k in {0,2} are now KILLED at PROVEN tier;
+(1,2,0,1) k=1 straddle remains OPEN. See scratch/atail-sub2/ and
+scratch/atail-sub2-audit/AUDIT.md; K_plus tier upgraded, no Q2 rerun.]
 
 Sub-case refinement (PROVEN direction): s = 2 classes realized ONLY in
 straddle form (k = 1); their k in {0,2} cases ride SUB2.

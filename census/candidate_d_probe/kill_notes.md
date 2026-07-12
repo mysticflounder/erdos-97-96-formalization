@@ -99,7 +99,15 @@ local lens depth, which can exceed ‖x−v2‖ (e.g. x = (0.3, −0.05) in the
 FULL-lens K-A (both corners) is a theorem. K-C above uses only the
 full-lens version and is unaffected.
 
-## K-D. Same-side own-pair sub-window (status: see sub2_results.json)
+## K-D. Same-side own-pair sub-window (RESOLVED 2026-07-12: PROVEN UNSAT)
+
+**RESOLVED 2026-07-12: SUB2-H PROVEN UNSAT** — bisector-frame hand proof +
+exact machine-checked polynomial certificate (`scratch/atail-sub2/`),
+adversarial skeptic audit PASS (`scratch/atail-sub2-audit/AUDIT.md`), Lean
+kernel-checked at core axioms
+(`lean/Erdos9796Proof/P97/ATail/Sub2Certificate.lean`). The downstream
+dependency map below now applies at PROVEN tier; (1,2,0,1) k=1 straddle
+remains OPEN. The paragraphs below record the pre-resolution state.
 
 Sub-window SUB2 (encoder.build_sub2): x, w_a, w_b ∈ L1 with
 ‖x−w_a‖ = ‖x−w_b‖ = ρ, both w on ONE side of x in the own block, disk +
