@@ -810,16 +810,21 @@ sole remaining `isM44PinnedSurplusGeneralMResidualsExcluded` `sorry` directly.
 
 Implementation checkpoint: `CapSelectedNativeClassifier` now performs direct
 row-mask DFS with deterministic equality closure instead of quantifying free
-edge colors. Placement `(6,4)` is Lean-checked by `native_decide` in about 81
-seconds. The external four-family rerun remains exhaustive with zero survivors
-for all twelve placements, but the other eleven placements are not yet Lean
-theorems. `CapSelectedNativeClassifierSound` proves local candidate coverage,
+edge colors. All twelve ordered pin/deletion placements are Lean-checked by
+`native_decide` and packaged by
+`CapSelectedNativePlacements.allPlacementChecks`; the eight-job aggregate
+build took about 17m31s. The external four-family rerun remains an independent
+exhaustive zero-survivor cross-check. `CapSelectedNativeClassifierSound` proves local candidate coverage,
 the fixed pinned row, and soundness of overlap, Q3, cyclic-separation,
 pairwise `rowsCompatible`, `pairBoundOK`, and the complete `compatibleWith`
 filter. `CapSelectedNativeClassifierCoverage` also proves the recursive
 semantic trace through domain sorting and restriction; successful placement
 replay now yields a duplicate-free semantic prefix with `hasPrefixCore = true`.
+`CapSelectedNogoodCertificate` proves checked direct row/flip closure paths,
+pinned exactness, and core extraction. `CapSelectedNogoodClassifier` proves the
+same semantic trace for a static checked nogood bank and returns
+`ClosureCoreAlternative` from a successful placement replay.
 `CapSelectedGeometry` separately proves the exact `(4,2,2)` boundary-block
-packet in either orientation. Open work is checked closure-core path replay and
-core extraction, all-placement replay, and canonical enumeration of the three
-boundary blocks.
+packet in either orientation. Open work is generation and kernel replay of the
+compact bank payload, its twelve static placement checks, and canonical
+enumeration of the three boundary blocks.

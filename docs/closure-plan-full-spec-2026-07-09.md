@@ -1183,17 +1183,19 @@ This is exact within the declared finite model. It is not yet a Lean theorem.
 
 `Census554.CapSelectedNativeClassifier` replaces the quantified free-color
 bitvector search with direct eleven-bit row enumeration and deterministic
-equality closure. The first closed placement theorem,
-`placementCheck_p6_d4`, builds by `native_decide` in about 81 seconds on this
-host. The older bitvector attempt had produced no verdict after 55 minutes, so
-the replacement is already more than forty times faster relative to that
-elapsed nonverdict; this comparison is not a completed old-runtime benchmark.
+equality closure. All twelve ordered pin/deletion placements now build by
+`native_decide`; `CapSelectedNativePlacements.allPlacementChecks` is their
+aggregate theorem. The eight-job aggregate build took about 17m31s on this
+host. Individual runtimes ranged from about 90 seconds to 17m25s. The older
+bitvector attempt had produced no verdict after 55 minutes on one placement,
+so the replacement is substantially faster, but this is not a completed
+old-runtime benchmark.
 
 The exact external enumerator was rerun after removing the rhombus detector.
 All twelve placements remain `EXHAUSTIVE` with zero survivors under only
 duplicate-center, exact-off-circle, perpendicular-bisector, and oriented convex
-five-point cores. This is exact within the finite model, not a Lean theorem for
-the eleven remaining placements.
+five-point cores. This remains the external finite-model cross-check; the
+twelve native placement equalities are now Lean theorems.
 
 The proof-facing layer is partially kernel-checked:
 
@@ -1208,17 +1210,24 @@ The proof-facing layer is partially kernel-checked:
   recursive search trace. In particular,
   `exists_semanticPrefixCore_of_placementCheck` turns a successful placement
   replay into a duplicate-free semantic prefix with `hasPrefixCore = true`;
-  and
+- `CapSelectedNativePlacements` packages all twelve successful native replays;
+- `CapSelectedNogoodCertificate` proves direct row/flip path checking, compact
+  core extraction, pinned exactness, and checked-bank-match soundness;
+- `CapSelectedNogoodClassifier` proves the complete static-bank DFS trace and
+  turns a successful placement certificate replay into the public
+  `ClosureCoreAlternative`; and
 - `CapSelectedClosureColor` and
   `CapSelectedGeometry.exists_boundaryBlocks_of_isM44_surplus_card_eq_six`
   build without `sorry`, supplying canonical closure colors and exact direct-or-
   mirror `(4,2,2)` boundary blocks.
 
 This checkpoint does not close the leaf. The remaining finite obligations are
-explicit checked closure paths and core extraction from `hasPrefixCore`, plus
-all-placement Lean replay. The remaining geometry obligation is to enumerate
-each exact boundary block into the canonical `Fin 11` labels and instantiate
-`IncidenceOK` and `PinnedShellOK` from the live carrier.
+generation and kernel replay of the compact checked nogood bank, including
+successful static-bank placement checks. The checker and semantic replay
+theorems are proved; the generated payload is not yet present. The remaining
+geometry obligation is to enumerate each exact boundary block into the
+canonical `Fin 11` labels and instantiate `IncidenceOK` and `PinnedShellOK`
+from the live carrier.
 
 The current closure route has exactly two proof-producing gaps:
 
@@ -1226,9 +1235,9 @@ The current closure route has exactly two proof-producing gaps:
    card-eleven carrier to the canonical `Fin 11` model, including
    `IncidenceOK`, `PinnedShellOK`, edge-closure color soundness, and direct or
    reversed hull order;
-2. implement a kernel-checked finite classifier or certificate replay proving
-   that every such canonical code has one of the twelve
-   `ClosureCoreAlternative` branches.
+2. generate the compact checked nogood payload and prove its static placement
+   replays, thereby instantiating the proved certificate interface for every
+   canonical code.
 
 Once both are available, the existing generic consumers close
 `isM44PinnedSurplusGeneralMResidualsExcluded` directly. The previous
@@ -1237,8 +1246,8 @@ not the current critical path.
 
 Next actions, in dependency order:
 
-1. finish and kernel-check finite coverage/core soundness for all twelve
-   placements, with no prose-only tuple exclusions;
+1. emit the compact row-nogood payload, check every direct row/flip path, and
+   kernel-replay the static bank over all twelve placements;
 2. complete the proved `(4,2,2)` boundary-block packet into a canonical-label
    and soundness bridge in both orientations;
 3. invoke `closureCoreAlternative_of_colorCoreAlternative`, discharge the

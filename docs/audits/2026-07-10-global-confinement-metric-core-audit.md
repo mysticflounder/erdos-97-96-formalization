@@ -316,3 +316,21 @@ The audit remains OPEN. The unadjudicated finite risks are explicit
 closure-path replay/core extraction and the eleven remaining placement checks;
 the geometric risk remains conversion of exact boundary blocks to canonical
 labels and the live `IncidenceOK`/`PinnedShellOK` interface.
+
+### All-placement and checked-nogood addendum (2026-07-11)
+
+The two finite risks in the preceding paragraph have now been narrowed.
+`CapSelectedNativePlacements.allPlacementChecks` packages successful Lean
+replays for all twelve ordered pin/deletion placements. Its live axiom audit
+reports `propext`, `Lean.ofReduceBool`, and the project-approved
+`Lean.trustCompiler`; the evaluated project modules contain no `unsafe`,
+`@[implemented_by]`, or `@[extern]` declarations.
+
+`CapSelectedNogoodCertificate` now checks proof-free row choices and direct
+row/flip closure paths and proves that a checked match yields the existing
+`ClosureCoreAlternative`. `CapSelectedNogoodClassifier` separately proves the
+full semantic DFS trace for a static checked bank. Thus core extraction and
+search coverage are proved at the generic checker level. The remaining finite
+risk is concrete: emit the compact bank payload, validate every path, and prove
+all twelve static-bank placement checks. The geometric labeling and source
+consumer remain open as stated above.
