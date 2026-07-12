@@ -1,0 +1,7 @@
+[PASS] S1_role_bank_codes: pairCodes 55 (55 expected), tripleCodes 165 (165 expected), sets equal
+[PASS] S2_candidate_row_sizes: {'sizes_deleted3': {0: 46, 1: 15, 2: 15, 3: 96, 4: 96, 5: 96, 6: 96, 7: 203, 8: 203, 9: 203, 10: 203}, 'center0_pre_deleted_gate': 79}
+[PASS] S3_detector_crosscheck: 2000 sampled closures, 0 mismatches
+[PASS] S4_endpoint_64_gate: 64/64 killed (64/64 expected), total nodes 1352155, 198.2s
+[PASS] S5_pinned_12_gate: 12/12 killed (12/12 expected), total nodes 971496, 141.4s
+
+SMOKE PASS -> smoke_test_results.json

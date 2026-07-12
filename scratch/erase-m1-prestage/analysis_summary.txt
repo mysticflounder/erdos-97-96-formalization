@@ -1,0 +1,48 @@
+records: 4680  distinct: 4680  domain: 4680
+coverage: 4680/4680 (0 missing)
+
+verdicts by family:
+  P2   killed     3056
+  P4S  killed     1440
+  P4U  killed     184
+
+survived: 0  capped: 0  gate_false: 0
+
+nodes per killed search: min 0  median 4116  p90 12968  p99 28201  max 41767  total 26838887
+secs per killed search:  min 0.001  median 0.945  p90 2.801  max 8.363  total 5918
+
+detector kills across all killed searches (total 10718601):
+  dup        4225123  (39.4%)
+  five       3193743  (29.8%)
+  perp       2434557  (22.7%)
+  offcircle  865178  (8.1%)
+empty-domain prunes: 18778464
+prefix-kill depth histogram (depth = assigned rows incl. seed):
+  depth  3: 1220
+  depth  4: 27701
+  depth  5: 425292
+  depth  6: 2018571
+  depth  7: 5375477
+  depth  8: 2524984
+  depth  9: 335257
+  depth 10: 9491
+  depth 11: 608
+max search depth per killed search:
+  depth  0: 656
+  depth  1: 64
+  depth  7: 8
+  depth  8: 380
+  depth  9: 1794
+  depth 10: 1451
+  depth 11: 327
+
+per-family killed-search node counts:
+  P2   c0= 7: n=764 median 2784 p99 29993 max 37619
+  P2   c0= 8: n=764 median 4084 p99 24792 max 29066
+  P2   c0= 9: n=764 median 4062 p99 24703 max 29502
+  P2   c0=10: n=764 median 2805 p99 29993 max 37619
+  P4S  c0= 3: n=360 median 4611 p99 16162 max 17418
+  P4S  c0= 4: n=360 median 5040 p99 14432 max 14693
+  P4S  c0= 5: n=360 median 4953 p99 14575 max 14759
+  P4S  c0= 6: n=360 median 4618 p99 16277 max 17476
+  P4U  c0= 0: n=184 median 7922 p99 41767 max 41767

@@ -1,0 +1,1313 @@
+{
+  "checks": {
+    "S1_role_bank_codes": {
+      "pass": true,
+      "detail": "pairCodes 55 (55 expected), tripleCodes 165 (165 expected), sets equal"
+    },
+    "S2_candidate_row_sizes": {
+      "pass": true,
+      "detail": {
+        "sizes_deleted3": {
+          "0": 46,
+          "1": 15,
+          "2": 15,
+          "3": 96,
+          "4": 96,
+          "5": 96,
+          "6": 96,
+          "7": 203,
+          "8": 203,
+          "9": 203,
+          "10": 203
+        },
+        "center0_pre_deleted_gate": 79
+      }
+    },
+    "S3_detector_crosscheck": {
+      "pass": true,
+      "detail": "2000 sampled closures, 0 mismatches"
+    },
+    "S4_endpoint_64_gate": {
+      "pass": true,
+      "detail": "64/64 killed (64/64 expected), total nodes 1352155, 198.2s"
+    },
+    "S5_pinned_12_gate": {
+      "pass": true,
+      "detail": "12/12 killed (12/12 expected), total nodes 971496, 141.4s"
+    }
+  },
+  "endpoint_runs": [
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 2,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 5966,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1220,
+        "offcircle": 14,
+        "perp": 869,
+        "five": 652
+      },
+      "empty_prunes": 4392,
+      "secs": 0.911
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 2,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 5260,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1031,
+        "offcircle": 24,
+        "perp": 578,
+        "five": 519
+      },
+      "empty_prunes": 3550,
+      "secs": 0.828
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 2,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 5084,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 987,
+        "offcircle": 19,
+        "perp": 525,
+        "five": 505
+      },
+      "empty_prunes": 3471,
+      "secs": 0.778
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 2,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 7342,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1021,
+        "offcircle": 30,
+        "perp": 724,
+        "five": 595
+      },
+      "empty_prunes": 4640,
+      "secs": 1.023
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 3,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 50197,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9529,
+        "offcircle": 642,
+        "perp": 5541,
+        "five": 6962
+      },
+      "empty_prunes": 28482,
+      "secs": 6.816
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 3,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 49934,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9468,
+        "offcircle": 682,
+        "perp": 5616,
+        "five": 6575
+      },
+      "empty_prunes": 29297,
+      "secs": 6.813
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 3,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 52030,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9834,
+        "offcircle": 796,
+        "perp": 5737,
+        "five": 6877
+      },
+      "empty_prunes": 29188,
+      "secs": 6.957
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 4,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 28576,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 4532,
+        "offcircle": 403,
+        "perp": 3272,
+        "five": 3710
+      },
+      "empty_prunes": 17709,
+      "secs": 3.954
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 4,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 24191,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 3791,
+        "offcircle": 404,
+        "perp": 2510,
+        "five": 3009
+      },
+      "empty_prunes": 15397,
+      "secs": 3.371
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 4,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 24536,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 3702,
+        "offcircle": 430,
+        "perp": 2621,
+        "five": 2900
+      },
+      "empty_prunes": 14908,
+      "secs": 3.408
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 5,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 14173,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 2083,
+        "offcircle": 172,
+        "perp": 1564,
+        "five": 1836
+      },
+      "empty_prunes": 9138,
+      "secs": 2.002
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 5,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 12477,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1861,
+        "offcircle": 150,
+        "perp": 1272,
+        "five": 1477
+      },
+      "empty_prunes": 8401,
+      "secs": 1.784
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 5,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 12270,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1721,
+        "offcircle": 189,
+        "perp": 1258,
+        "five": 1411
+      },
+      "empty_prunes": 7846,
+      "secs": 1.676
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 6,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 4414,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 676,
+        "offcircle": 81,
+        "perp": 395,
+        "five": 403
+      },
+      "empty_prunes": 3527,
+      "secs": 0.606
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 6,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 3872,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 565,
+        "offcircle": 59,
+        "perp": 297,
+        "five": 355
+      },
+      "empty_prunes": 2962,
+      "secs": 0.553
+    },
+    {
+      "family": "left",
+      "escapee": 9,
+      "fourth": 6,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 4026,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 478,
+        "offcircle": 72,
+        "perp": 307,
+        "five": 381
+      },
+      "empty_prunes": 3775,
+      "secs": 0.626
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 2,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 6599,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1520,
+        "offcircle": 8,
+        "perp": 930,
+        "five": 865
+      },
+      "empty_prunes": 4021,
+      "secs": 1.105
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 2,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 5592,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1151,
+        "offcircle": 21,
+        "perp": 579,
+        "five": 636
+      },
+      "empty_prunes": 3518,
+      "secs": 0.939
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 2,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 5558,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1186,
+        "offcircle": 23,
+        "perp": 552,
+        "five": 599
+      },
+      "empty_prunes": 3385,
+      "secs": 0.926
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 2,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 8246,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1355,
+        "offcircle": 16,
+        "perp": 856,
+        "five": 723
+      },
+      "empty_prunes": 4576,
+      "secs": 1.175
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 3,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 65436,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 13006,
+        "offcircle": 873,
+        "perp": 6436,
+        "five": 9454
+      },
+      "empty_prunes": 37983,
+      "secs": 9.802
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 3,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 64613,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 13050,
+        "offcircle": 903,
+        "perp": 6350,
+        "five": 8870
+      },
+      "empty_prunes": 38206,
+      "secs": 9.133
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 3,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 71084,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 13978,
+        "offcircle": 1213,
+        "perp": 6752,
+        "five": 10287
+      },
+      "empty_prunes": 40506,
+      "secs": 9.889
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 4,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 33514,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 5310,
+        "offcircle": 327,
+        "perp": 3425,
+        "five": 4740
+      },
+      "empty_prunes": 21170,
+      "secs": 4.969
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 4,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 27766,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 4587,
+        "offcircle": 310,
+        "perp": 2800,
+        "five": 3351
+      },
+      "empty_prunes": 18295,
+      "secs": 4.105
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 4,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 28883,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 4284,
+        "offcircle": 337,
+        "perp": 2878,
+        "five": 3667
+      },
+      "empty_prunes": 18075,
+      "secs": 4.335
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 5,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 15701,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 2273,
+        "offcircle": 152,
+        "perp": 1548,
+        "five": 2034
+      },
+      "empty_prunes": 11004,
+      "secs": 2.429
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 5,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 13460,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1999,
+        "offcircle": 110,
+        "perp": 1321,
+        "five": 1562
+      },
+      "empty_prunes": 9678,
+      "secs": 2.083
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 5,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 13879,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1977,
+        "offcircle": 161,
+        "perp": 1368,
+        "five": 1529
+      },
+      "empty_prunes": 9476,
+      "secs": 2.157
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 6,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 4119,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 682,
+        "offcircle": 44,
+        "perp": 347,
+        "five": 338
+      },
+      "empty_prunes": 3582,
+      "secs": 0.691
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 6,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 3573,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 575,
+        "offcircle": 28,
+        "perp": 272,
+        "five": 265
+      },
+      "empty_prunes": 2951,
+      "secs": 0.602
+    },
+    {
+      "family": "left",
+      "escapee": 10,
+      "fourth": 6,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 3596,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 445,
+        "offcircle": 42,
+        "perp": 228,
+        "five": 368
+      },
+      "empty_prunes": 3717,
+      "secs": 0.619
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 1,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 7799,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1285,
+        "offcircle": 25,
+        "perp": 842,
+        "five": 801
+      },
+      "empty_prunes": 4236,
+      "secs": 1.214
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 1,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 5524,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1090,
+        "offcircle": 44,
+        "perp": 588,
+        "five": 620
+      },
+      "empty_prunes": 3155,
+      "secs": 0.946
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 1,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 5574,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1179,
+        "offcircle": 24,
+        "perp": 534,
+        "five": 635
+      },
+      "empty_prunes": 3690,
+      "secs": 0.984
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 1,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 6668,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1527,
+        "offcircle": 23,
+        "perp": 869,
+        "five": 873
+      },
+      "empty_prunes": 4241,
+      "secs": 1.151
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 3,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 3494,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 484,
+        "offcircle": 43,
+        "perp": 239,
+        "five": 323
+      },
+      "empty_prunes": 3095,
+      "secs": 0.651
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 3,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 3539,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 609,
+        "offcircle": 27,
+        "perp": 270,
+        "five": 254
+      },
+      "empty_prunes": 2737,
+      "secs": 0.613
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 3,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 4099,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 687,
+        "offcircle": 49,
+        "perp": 359,
+        "five": 310
+      },
+      "empty_prunes": 3185,
+      "secs": 0.702
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 4,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 13823,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1996,
+        "offcircle": 146,
+        "perp": 1354,
+        "five": 1521
+      },
+      "empty_prunes": 9300,
+      "secs": 2.231
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 4,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 13422,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1976,
+        "offcircle": 110,
+        "perp": 1341,
+        "five": 1541
+      },
+      "empty_prunes": 9637,
+      "secs": 2.1
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 4,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 15661,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 2268,
+        "offcircle": 148,
+        "perp": 1568,
+        "five": 2010
+      },
+      "empty_prunes": 10895,
+      "secs": 2.451
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 5,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 29161,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 4356,
+        "offcircle": 330,
+        "perp": 2892,
+        "five": 3667
+      },
+      "empty_prunes": 18278,
+      "secs": 4.301
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 5,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 27790,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 4605,
+        "offcircle": 304,
+        "perp": 2802,
+        "five": 3350
+      },
+      "empty_prunes": 18280,
+      "secs": 4.101
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 5,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 33928,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 5379,
+        "offcircle": 328,
+        "perp": 3440,
+        "five": 4747
+      },
+      "empty_prunes": 21568,
+      "secs": 5.089
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 6,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 71069,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 14069,
+        "offcircle": 1193,
+        "perp": 6795,
+        "five": 10175
+      },
+      "empty_prunes": 40151,
+      "secs": 10.43
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 6,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 64565,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 13003,
+        "offcircle": 894,
+        "perp": 6478,
+        "five": 8682
+      },
+      "empty_prunes": 38195,
+      "secs": 9.536
+    },
+    {
+      "family": "right",
+      "escapee": 7,
+      "fourth": 6,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 65722,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 13065,
+        "offcircle": 883,
+        "perp": 6615,
+        "five": 9388
+      },
+      "empty_prunes": 38854,
+      "secs": 9.738
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 1,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 6743,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 974,
+        "offcircle": 20,
+        "perp": 686,
+        "five": 581
+      },
+      "empty_prunes": 4264,
+      "secs": 1.04
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 1,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 5015,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 924,
+        "offcircle": 25,
+        "perp": 520,
+        "five": 500
+      },
+      "empty_prunes": 3222,
+      "secs": 0.812
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 1,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 5215,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1054,
+        "offcircle": 16,
+        "perp": 520,
+        "five": 523
+      },
+      "empty_prunes": 3678,
+      "secs": 0.865
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 1,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 5945,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1212,
+        "offcircle": 22,
+        "perp": 804,
+        "five": 655
+      },
+      "empty_prunes": 4559,
+      "secs": 0.963
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 3,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 3754,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 505,
+        "offcircle": 54,
+        "perp": 276,
+        "five": 348
+      },
+      "empty_prunes": 3180,
+      "secs": 0.628
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 3,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 3770,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 597,
+        "offcircle": 55,
+        "perp": 280,
+        "five": 338
+      },
+      "empty_prunes": 2710,
+      "secs": 0.553
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 3,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 4304,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 688,
+        "offcircle": 70,
+        "perp": 377,
+        "five": 390
+      },
+      "empty_prunes": 3174,
+      "secs": 0.618
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 4,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 12253,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1747,
+        "offcircle": 159,
+        "perp": 1270,
+        "five": 1392
+      },
+      "empty_prunes": 7790,
+      "secs": 1.757
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 4,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 12445,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 1834,
+        "offcircle": 150,
+        "perp": 1297,
+        "five": 1471
+      },
+      "empty_prunes": 8373,
+      "secs": 1.885
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 4,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 14203,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 2092,
+        "offcircle": 155,
+        "perp": 1601,
+        "five": 1821
+      },
+      "empty_prunes": 9135,
+      "secs": 2.041
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 5,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 24626,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 3710,
+        "offcircle": 416,
+        "perp": 2610,
+        "five": 2912
+      },
+      "empty_prunes": 15080,
+      "secs": 3.486
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 5,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 24221,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 3808,
+        "offcircle": 398,
+        "perp": 2512,
+        "five": 3007
+      },
+      "empty_prunes": 15396,
+      "secs": 3.477
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 5,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 28756,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 4539,
+        "offcircle": 399,
+        "perp": 3263,
+        "five": 3728
+      },
+      "empty_prunes": 18007,
+      "secs": 4.193
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 6,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 52169,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9819,
+        "offcircle": 761,
+        "perp": 5693,
+        "five": 6910
+      },
+      "empty_prunes": 29201,
+      "secs": 7.326
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 6,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 50052,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9364,
+        "offcircle": 668,
+        "perp": 5700,
+        "five": 6504
+      },
+      "empty_prunes": 29461,
+      "secs": 8.155
+    },
+    {
+      "family": "right",
+      "escapee": 8,
+      "fourth": 6,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 50879,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 9667,
+        "offcircle": 662,
+        "perp": 5758,
+        "five": 6908
+      },
+      "empty_prunes": 29265,
+      "secs": 7.054
+    }
+  ],
+  "pinned_runs": [
+    {
+      "pinSource": 3,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 197795,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 40017,
+        "offcircle": 3099,
+        "perp": 20204,
+        "five": 26943
+      },
+      "empty_prunes": 125483,
+      "secs": 27.982
+    },
+    {
+      "pinSource": 3,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 187640,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 37443,
+        "offcircle": 3058,
+        "perp": 19266,
+        "five": 24637
+      },
+      "empty_prunes": 118080,
+      "secs": 26.49
+    },
+    {
+      "pinSource": 3,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 190414,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 37620,
+        "offcircle": 3081,
+        "perp": 18278,
+        "five": 26370
+      },
+      "empty_prunes": 133096,
+      "secs": 27.144
+    },
+    {
+      "pinSource": 4,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 93652,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 14962,
+        "offcircle": 2024,
+        "perp": 8028,
+        "five": 12226
+      },
+      "empty_prunes": 77882,
+      "secs": 13.897
+    },
+    {
+      "pinSource": 4,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 76834,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 12447,
+        "offcircle": 1436,
+        "perp": 6383,
+        "five": 8807
+      },
+      "empty_prunes": 60880,
+      "secs": 11.442
+    },
+    {
+      "pinSource": 4,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 74816,
+      "max_depth": 11,
+      "kills_by_detector": {
+        "dup": 11588,
+        "offcircle": 1578,
+        "perp": 6370,
+        "five": 8510
+      },
+      "empty_prunes": 55534,
+      "secs": 11.105
+    },
+    {
+      "pinSource": 5,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 43671,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 6633,
+        "offcircle": 1120,
+        "perp": 3487,
+        "five": 5456
+      },
+      "empty_prunes": 38326,
+      "secs": 6.721
+    },
+    {
+      "pinSource": 5,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 37406,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 5402,
+        "offcircle": 1007,
+        "perp": 2841,
+        "five": 4041
+      },
+      "empty_prunes": 33288,
+      "secs": 5.794
+    },
+    {
+      "pinSource": 5,
+      "deleted": 6,
+      "verdict": "killed",
+      "nodes": 35498,
+      "max_depth": 10,
+      "kills_by_detector": {
+        "dup": 5027,
+        "offcircle": 985,
+        "perp": 2583,
+        "five": 3693
+      },
+      "empty_prunes": 27291,
+      "secs": 5.317
+    },
+    {
+      "pinSource": 6,
+      "deleted": 3,
+      "verdict": "killed",
+      "nodes": 11914,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1713,
+        "offcircle": 437,
+        "perp": 786,
+        "five": 1058
+      },
+      "empty_prunes": 10949,
+      "secs": 1.978
+    },
+    {
+      "pinSource": 6,
+      "deleted": 4,
+      "verdict": "killed",
+      "nodes": 9930,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1362,
+        "offcircle": 394,
+        "perp": 512,
+        "five": 794
+      },
+      "empty_prunes": 8738,
+      "secs": 1.638
+    },
+    {
+      "pinSource": 6,
+      "deleted": 5,
+      "verdict": "killed",
+      "nodes": 11926,
+      "max_depth": 9,
+      "kills_by_detector": {
+        "dup": 1494,
+        "offcircle": 382,
+        "perp": 712,
+        "five": 746
+      },
+      "empty_prunes": 11966,
+      "secs": 1.898
+    }
+  ],
+  "smoke_verdict": "PASS",
+  "note": "EMPIRICAL replica validation only; licenses no Lean claim. S4/S5 reproduce committed native_decide theorems (EndpointPlacementDispatch.lean 64-seed gate, CapSelectedNativePlacements.lean 12-seed gate)."
+}
