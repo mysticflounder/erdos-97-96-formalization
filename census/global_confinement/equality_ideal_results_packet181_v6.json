@@ -1,0 +1,488 @@
+{
+  "algebra": {
+    "coefficient_field": "QQ",
+    "coordinate_gauge": {
+      "0": [
+        "0",
+        "0"
+      ],
+      "1": [
+        "1",
+        "0"
+      ]
+    },
+    "exact_flags_used": false,
+    "free_coordinate_names": "x{label}x,x{label}y for labels 2..n-1",
+    "membership_test": "reduce(1, slimgb(I))",
+    "monomial_order": "dp",
+    "row_generator": "d2(center,support[0])-d2(center,support[i]), i=1..3",
+    "standard_basis_command": "slimgb"
+  },
+  "claims": {
+    "NONUNIT": "The equality ideal is proper; this is not a real realizability claim.",
+    "UNIT": "Exact over QQ for the gauge-fixed squared-distance equality ideal: 1 belongs to the ideal.",
+    "minimization": "Rows are removed greedily only on UNIT; no minimum-cardinality claim is made."
+  },
+  "execution": {
+    "result_order": "ascending packet_index",
+    "singular_command": [
+      "Singular",
+      "-q"
+    ],
+    "timeout_seconds_per_system": 300.0,
+    "timestamps_included": false,
+    "timings_included": false
+  },
+  "input": {
+    "complete": false,
+    "eligible_core_free_sat_packets": 123,
+    "path": "census/global_confinement/surplus_source_metric_core_results_n11_12.json",
+    "requested_packet_indices": [
+      181
+    ],
+    "saved_result_count": 341,
+    "schema": "p97-global-confinement-surplus-source-metric-core-v6",
+    "selected_packet_count": 1,
+    "sha256": "0801e78afc7a049c1e60c68133a44858e6af5647145358704ce26cb9ada5d81b"
+  },
+  "results": [
+    {
+      "blocker": 3,
+      "dangerous": [
+        4,
+        5,
+        8,
+        10
+      ],
+      "deleted": 4,
+      "equality_equation_count": 36,
+      "initial": {
+        "returncode": 0,
+        "verdict": "UNIT"
+      },
+      "minimization": {
+        "attempts": [
+          {
+            "original_index": 0,
+            "removed": true,
+            "returncode": 0,
+            "row": {
+              "center": 0,
+              "exact": true,
+              "support": [
+                1,
+                3,
+                4,
+                6
+              ]
+            },
+            "verdict": "UNIT"
+          },
+          {
+            "original_index": 1,
+            "removed": false,
+            "returncode": 0,
+            "row": {
+              "center": 1,
+              "exact": true,
+              "support": [
+                0,
+                3,
+                8,
+                9
+              ]
+            },
+            "verdict": "NONUNIT"
+          },
+          {
+            "original_index": 2,
+            "removed": true,
+            "returncode": 0,
+            "row": {
+              "center": 2,
+              "exact": true,
+              "support": [
+                0,
+                1,
+                10,
+                11
+              ]
+            },
+            "verdict": "UNIT"
+          },
+          {
+            "original_index": 3,
+            "removed": false,
+            "row": {
+              "center": 3,
+              "exact": true,
+              "support": [
+                4,
+                5,
+                8,
+                10
+              ]
+            },
+            "verdict": "TIMEOUT"
+          },
+          {
+            "original_index": 4,
+            "removed": true,
+            "returncode": 0,
+            "row": {
+              "center": 4,
+              "exact": true,
+              "support": [
+                3,
+                6,
+                7,
+                10
+              ]
+            },
+            "verdict": "UNIT"
+          },
+          {
+            "original_index": 5,
+            "removed": false,
+            "row": {
+              "center": 5,
+              "exact": false,
+              "support": [
+                4,
+                6,
+                9,
+                11
+              ]
+            },
+            "verdict": "TIMEOUT"
+          },
+          {
+            "original_index": 6,
+            "removed": false,
+            "row": {
+              "center": 6,
+              "exact": true,
+              "support": [
+                2,
+                3,
+                8,
+                11
+              ]
+            },
+            "verdict": "TIMEOUT"
+          },
+          {
+            "original_index": 7,
+            "removed": true,
+            "returncode": 0,
+            "row": {
+              "center": 7,
+              "exact": false,
+              "support": [
+                2,
+                6,
+                9,
+                10
+              ]
+            },
+            "verdict": "UNIT"
+          },
+          {
+            "original_index": 8,
+            "removed": false,
+            "row": {
+              "center": 8,
+              "exact": false,
+              "support": [
+                1,
+                5,
+                7,
+                9
+              ]
+            },
+            "verdict": "TIMEOUT"
+          },
+          {
+            "original_index": 9,
+            "removed": false,
+            "row": {
+              "center": 9,
+              "exact": false,
+              "support": [
+                0,
+                2,
+                3,
+                5
+              ]
+            },
+            "verdict": "TIMEOUT"
+          },
+          {
+            "original_index": 10,
+            "removed": true,
+            "returncode": 0,
+            "row": {
+              "center": 10,
+              "exact": false,
+              "support": [
+                0,
+                5,
+                6,
+                11
+              ]
+            },
+            "verdict": "UNIT"
+          },
+          {
+            "original_index": 11,
+            "removed": false,
+            "row": {
+              "center": 11,
+              "exact": false,
+              "support": [
+                0,
+                2,
+                4,
+                7
+              ]
+            },
+            "verdict": "TIMEOUT"
+          }
+        ],
+        "complete": false,
+        "confirmed_row_irredundant": false,
+        "final_equation_count": 21,
+        "final_row_count": 7,
+        "initial_row_count": 12,
+        "rows": [
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": false,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": false,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": false,
+            "support": [
+              0,
+              2,
+              3,
+              5
+            ]
+          },
+          {
+            "center": 11,
+            "exact": false,
+            "support": [
+              0,
+              2,
+              4,
+              7
+            ]
+          }
+        ],
+        "strategy": "one-pass-greedy-normalized-row-deletion",
+        "unit_preserved": true
+      },
+      "n": 12,
+      "normalized_row_count": 12,
+      "normalized_rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            7
+          ]
+        }
+      ],
+      "packet_index": 181,
+      "pin_source": 3,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "type": "(0, 2, 1, 1)"
+    }
+  ],
+  "schema": "p97-global-confinement-equality-ideal-v1",
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "returncode": 0,
+      "verdict": "NONUNIT"
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "returncode": 0,
+      "verdict": "UNIT"
+    }
+  },
+  "summary": {
+    "initial_verdicts": {
+      "ERROR": 0,
+      "NONUNIT": 0,
+      "TIMEOUT": 0,
+      "UNIT": 1
+    },
+    "selected_packets": 1
+  }
+}

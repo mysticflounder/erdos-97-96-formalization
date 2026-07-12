@@ -1,0 +1,106 @@
+{
+  "complete": true,
+  "generated_at": "2026-07-11T10:38:23.196315+00:00",
+  "input": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+  "input_sha256": "6d94b47ce41bc4290e0b19e59e4a7c605988a01ad7258f396fd1a1aa1faea620",
+  "results": [
+    {
+      "audit_centers": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "aux": [
+        0,
+        1,
+        2
+      ],
+      "blocker": 8,
+      "core_cache": {
+        "complete": {
+          "hits": 2022673,
+          "misses": 1112
+        },
+        "prefix": {
+          "hits": 2849347,
+          "misses": 154796
+        }
+      },
+      "core_free": {
+        "nodes": 3000001,
+        "status": "INDETERMINATE"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "deleted": 4,
+      "elapsed_sec": 144.0324753340101,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "frame_index": 0,
+      "incidence": {
+        "nodes": 93831,
+        "status": "SAT"
+      },
+      "n": 12,
+      "packet_index": 177,
+      "pin_source": 3,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "surplus_choice_count": 76,
+      "type": "(0, 0, 0, 4)"
+    }
+  ],
+  "schema": "p97-global-confinement-full-audit-metric-core-v2",
+  "scope": {
+    "completed_scenarios": 1,
+    "expected_scenarios": 1,
+    "frames_per_packet": 1,
+    "max_nodes": 3000000,
+    "packet_indices": [
+      177
+    ],
+    "packet_limit": null,
+    "scenario_limit": null,
+    "weaker_indeterminate_frames_skipped": 0,
+    "weaker_unsat_frames_skipped": 0,
+    "workers": 1
+  },
+  "summary": {
+    "all_selected_frames_excluded": false,
+    "core_free": {
+      "INDETERMINATE": 1,
+      "SAT": 0,
+      "UNSAT": 0
+    },
+    "first_incidence_core": {
+      "equality-duplicate-center": 1
+    },
+    "incidence": {
+      "INDETERMINATE": 0,
+      "SAT": 1,
+      "UNSAT": 0
+    }
+  }
+}

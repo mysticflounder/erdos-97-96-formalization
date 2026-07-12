@@ -1,0 +1,1271 @@
+{
+  "config": {
+    "cvc5": "/Users/adam/bin/cvc5",
+    "deletion_timeout_seconds": 10.0,
+    "validation_timeout_seconds": 60.0,
+    "workers": 2,
+    "z3": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3"
+  },
+  "generated_at": "2026-07-11T00:04:34.087146+00:00",
+  "input": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/global_confinement/metric_realizability_cvc5.json",
+    "schema": "p97-global-confinement-metric-realizability-cvc5-v1",
+    "sha256": "e7ac8a818ba351b7c278b07f69e156453070e902fb2944b2ecbbea09a68d9948"
+  },
+  "results": [
+    {
+      "atom_core": {
+        "atom_count": 4,
+        "atoms": [
+          [
+            3,
+            8
+          ],
+          [
+            3,
+            10
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            10,
+            1
+          ]
+        ],
+        "crosscheck_status": "CROSSCHECKED_UNSAT",
+        "cvc5_validation": {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 4,
+            "selected_rows": 6,
+            "total": 190
+          },
+          "elapsed_sec": 0.590048,
+          "return_code": 0,
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        },
+        "deletion_attempts": [
+          {
+            "atom": [
+              1,
+              3
+            ],
+            "elapsed_sec": 0.454833,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              1,
+              8
+            ],
+            "elapsed_sec": 0.491996,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              1,
+              9
+            ],
+            "elapsed_sec": 0.511113,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              3,
+              2
+            ],
+            "elapsed_sec": 0.495586,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              3,
+              8
+            ],
+            "elapsed_sec": 10.010852,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              3,
+              10
+            ],
+            "elapsed_sec": 10.013619,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              4,
+              5
+            ],
+            "elapsed_sec": 0.858475,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              4,
+              7
+            ],
+            "elapsed_sec": 0.427445,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              4,
+              10
+            ],
+            "elapsed_sec": 0.530112,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              8,
+              1
+            ],
+            "elapsed_sec": 10.008788,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              8,
+              3
+            ],
+            "elapsed_sec": 0.490619,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              8,
+              5
+            ],
+            "elapsed_sec": 0.478108,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              10,
+              1
+            ],
+            "elapsed_sec": 10.012844,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              10,
+              4
+            ],
+            "elapsed_sec": 0.442982,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              10,
+              7
+            ],
+            "elapsed_sec": 0.425596,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              11,
+              6
+            ],
+            "elapsed_sec": 0.442745,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              11,
+              9
+            ],
+            "elapsed_sec": 0.41819,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              11,
+              10
+            ],
+            "elapsed_sec": 0.564097,
+            "removed": true,
+            "status": "UNSAT"
+          }
+        ],
+        "original_atom_count": 18,
+        "stage": "convex-only-relaxation",
+        "z3_validation": {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 4,
+            "selected_rows": 6,
+            "total": 190
+          },
+          "elapsed_sec": 0.021046,
+          "return_code": 0,
+          "solver": "z3",
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        }
+      },
+      "convex_only_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 18,
+          "selected_rows": 6,
+          "total": 204
+        },
+        "elapsed_sec": 0.452319,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "core_row_count": 6,
+      "core_row_indices": [
+        1,
+        3,
+        4,
+        8,
+        10,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            9,
+            10
+          ]
+        }
+      ],
+      "crosscheck_status": "CROSSCHECKED_UNSAT",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "exact_exclusions": 28,
+          "row_equalities": 18,
+          "selected_rows": 6,
+          "total": 232
+        },
+        "elapsed_sec": 2.001436,
+        "return_code": 0,
+        "stage": "full-convex",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 6.713754,
+          "removed": true,
+          "row_index": 0,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.011542,
+          "removed": false,
+          "row_index": 1,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 2.151703,
+          "removed": true,
+          "row_index": 2,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.014831,
+          "removed": false,
+          "row_index": 3,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.015163,
+          "removed": false,
+          "row_index": 4,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 2.003409,
+          "removed": true,
+          "row_index": 5,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 4.655472,
+          "removed": true,
+          "row_index": 6,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 2.536597,
+          "removed": true,
+          "row_index": 7,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.010128,
+          "removed": false,
+          "row_index": 8,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.979992,
+          "removed": true,
+          "row_index": 9,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.011465,
+          "removed": false,
+          "row_index": 10,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.007407,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            8,
+            10
+          ]
+        }
+      ],
+      "minimized_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "blocker": 8,
+          "dangerous": [
+            0,
+            1,
+            3,
+            5
+          ],
+          "deleted": 5,
+          "deleted_index": 2,
+          "n": 12,
+          "pin_source": 3,
+          "pin_source_index": 0,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(2, 0, 0, 2)"
+        },
+        "family": "shell-audit-critical",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/207/first_critical_witness/result/assignment"
+      },
+      "system_id": "66d08a69dde4db909815",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "exact_exclusions": 28,
+          "row_equalities": 18,
+          "selected_rows": 6,
+          "total": 232
+        },
+        "elapsed_sec": 0.054466,
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "full-convex",
+        "status": "UNSAT"
+      }
+    },
+    {
+      "atom_core": {
+        "atom_count": 13,
+        "atoms": [
+          [
+            1,
+            8
+          ],
+          [
+            1,
+            9
+          ],
+          [
+            4,
+            9
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            7,
+            9
+          ],
+          [
+            8,
+            1
+          ],
+          [
+            8,
+            7
+          ],
+          [
+            9,
+            5
+          ],
+          [
+            9,
+            8
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            11,
+            9
+          ],
+          [
+            11,
+            10
+          ]
+        ],
+        "crosscheck_status": "CVC5_UNSAT_Z3_UNKNOWN",
+        "cvc5_validation": {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 13,
+            "selected_rows": 8,
+            "total": 199
+          },
+          "elapsed_sec": 6.950398,
+          "return_code": 0,
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        },
+        "deletion_attempts": [
+          {
+            "atom": [
+              0,
+              4
+            ],
+            "elapsed_sec": 1.601203,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              0,
+              5
+            ],
+            "elapsed_sec": 1.565123,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              0,
+              7
+            ],
+            "elapsed_sec": 2.495258,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              1,
+              3
+            ],
+            "elapsed_sec": 1.583513,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              1,
+              8
+            ],
+            "elapsed_sec": 10.010476,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              1,
+              9
+            ],
+            "elapsed_sec": 10.008604,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              4,
+              6
+            ],
+            "elapsed_sec": 1.637135,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              4,
+              9
+            ],
+            "elapsed_sec": 10.012042,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              4,
+              11
+            ],
+            "elapsed_sec": 1.568566,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              7,
+              3
+            ],
+            "elapsed_sec": 10.01409,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              7,
+              4
+            ],
+            "elapsed_sec": 1.549714,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              7,
+              9
+            ],
+            "elapsed_sec": 10.007432,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              8,
+              1
+            ],
+            "elapsed_sec": 10.008479,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              8,
+              3
+            ],
+            "elapsed_sec": 1.550766,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              8,
+              7
+            ],
+            "elapsed_sec": 10.006472,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              9,
+              5
+            ],
+            "elapsed_sec": 10.008006,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              9,
+              6
+            ],
+            "elapsed_sec": 3.801229,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              9,
+              8
+            ],
+            "elapsed_sec": 10.014651,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              10,
+              1
+            ],
+            "elapsed_sec": 10.016001,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              10,
+              4
+            ],
+            "elapsed_sec": 1.612292,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              10,
+              6
+            ],
+            "elapsed_sec": 10.011195,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              11,
+              5
+            ],
+            "elapsed_sec": 7.217591,
+            "removed": true,
+            "status": "UNSAT"
+          },
+          {
+            "atom": [
+              11,
+              9
+            ],
+            "elapsed_sec": 10.00676,
+            "removed": false,
+            "status": "UNKNOWN"
+          },
+          {
+            "atom": [
+              11,
+              10
+            ],
+            "elapsed_sec": 10.011951,
+            "removed": false,
+            "status": "UNKNOWN"
+          }
+        ],
+        "original_atom_count": 24,
+        "stage": "convex-only-relaxation",
+        "z3_validation": {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 13,
+            "selected_rows": 8,
+            "total": 199
+          },
+          "elapsed_sec": 60.01697,
+          "reason": "timeout",
+          "return_code": 0,
+          "solver": "z3",
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      },
+      "convex_only_validation": null,
+      "core_row_count": 8,
+      "core_row_indices": [
+        0,
+        1,
+        4,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        }
+      ],
+      "crosscheck_status": "CVC5_UNSAT_Z3_UNKNOWN",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 24,
+          "selected_rows": 8,
+          "total": 210
+        },
+        "elapsed_sec": 4.476898,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 10.009803,
+          "removed": false,
+          "row_index": 0,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.015133,
+          "removed": false,
+          "row_index": 1,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.499064,
+          "removed": true,
+          "row_index": 2,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.737215,
+          "removed": true,
+          "row_index": 3,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.01262,
+          "removed": false,
+          "row_index": 4,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.797771,
+          "removed": true,
+          "row_index": 5,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 4.70828,
+          "removed": true,
+          "row_index": 6,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.008812,
+          "removed": false,
+          "row_index": 7,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.00743,
+          "removed": false,
+          "row_index": 8,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.011626,
+          "removed": false,
+          "row_index": 9,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.013186,
+          "removed": false,
+          "row_index": 10,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 10.007479,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "minimized_stage": "convex-only-relaxation",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "blocker": 8,
+          "dangerous": [
+            0,
+            1,
+            3,
+            7
+          ],
+          "deleted": 7,
+          "deleted_index": 4,
+          "n": 12,
+          "pin_source": 3,
+          "pin_source_index": 0,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(2, 0, 0, 2)"
+        },
+        "family": "shell-audit-critical",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/241/first_critical_witness/result/assignment"
+      },
+      "system_id": "e5cea0bced9ad6e37aff",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 24,
+          "selected_rows": 8,
+          "total": 210
+        },
+        "elapsed_sec": 60.014898,
+        "reason": "timeout",
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "convex-only-relaxation",
+        "status": "UNKNOWN"
+      }
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-cvc5-cores-v1"
+}

@@ -1,0 +1,320 @@
+{
+  "config": {
+    "checkpoint_every": 1,
+    "cvc5": "/Users/adam/bin/cvc5",
+    "cvc5_version": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "timeout_seconds": 120.0,
+    "workers": 1
+  },
+  "extraction": {
+    "deduplicated_assignments": 178,
+    "input_files": [
+      {
+        "path": "census/global_confinement/results_n11_12.json",
+        "sha256": "1cfac3c594daa534981b20c8d41d4944d898851363cb7b88700950d165deeeca"
+      },
+      {
+        "path": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+        "sha256": "5eedf2a56f7effd2616204a4c5d583be9fc97d302871a32f930bd2c64e4fcaea"
+      },
+      {
+        "path": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "sha256": "6d94b47ce41bc4290e0b19e59e4a7c605988a01ad7258f396fd1a1aa1faea620"
+      }
+    ],
+    "raw_assignments": 1503,
+    "rejected_non_sat_assignments": 0,
+    "source_family_counts": {
+      "base-critical": 2,
+      "base-survival": 2,
+      "critical-shell-global": 517,
+      "shell-audit-critical": 517,
+      "shell-audit-survival": 465
+    },
+    "unique_metric_systems": 1325
+  },
+  "generated_at": "2026-07-11T00:27:51.956584+00:00",
+  "results": [
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 0, 2)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/339/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 120.010496,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 120.007398,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 120.008438,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "70d66f0cd568debd988f"
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-cvc5-v1",
+  "selection": {
+    "baseline_path": "census/global_confinement/metric_realizability_residual_60s.json",
+    "baseline_sha256": "8061ffd5d347c740a941ea3b82e0f840af6f174a61b3a3ad03a1b66d7d4307b3",
+    "count": 30,
+    "matches_baseline": true,
+    "selected_for_run": 1,
+    "system_id_sha256": "085f332d753a3ca693230196643fc68c504afbd5ca99863a4433ab8ee97092d2"
+  },
+  "smoke": {
+    "passed": true,
+    "sat": {
+      "constraint_counts": {
+        "distinctness": 10,
+        "row_equalities": 3,
+        "selected_rows": 1,
+        "total": 13
+      },
+      "elapsed_sec": 0.01719,
+      "return_code": 0,
+      "stage": "exact-metric-relaxation",
+      "status": "SAT"
+    },
+    "unsat": {
+      "constraint_counts": {
+        "distinctness": 15,
+        "exact_exclusions": 2,
+        "row_equalities": 6,
+        "selected_rows": 2,
+        "total": 23
+      },
+      "elapsed_sec": 0.186683,
+      "return_code": 0,
+      "stage": "exact-metric-relaxation",
+      "status": "UNSAT"
+    }
+  },
+  "summary": {
+    "decisive_stage_counts": {
+      "none": 1
+    },
+    "stage_status_counts": {
+      "convex-only-relaxation": {
+        "UNKNOWN": 1
+      },
+      "exact-metric-relaxation": {
+        "UNKNOWN": 1
+      },
+      "full-convex": {
+        "UNKNOWN": 1
+      }
+    },
+    "status_counts": {
+      "UNKNOWN": 1
+    }
+  }
+}

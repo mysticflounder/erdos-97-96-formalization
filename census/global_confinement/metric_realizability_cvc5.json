@@ -1,0 +1,6869 @@
+{
+  "config": {
+    "checkpoint_every": 5,
+    "cvc5": "/Users/adam/bin/cvc5",
+    "cvc5_version": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+    "timeout_seconds": 30.0,
+    "workers": 8
+  },
+  "extraction": {
+    "deduplicated_assignments": 178,
+    "input_files": [
+      {
+        "path": "census/global_confinement/results_n11_12.json",
+        "sha256": "1cfac3c594daa534981b20c8d41d4944d898851363cb7b88700950d165deeeca"
+      },
+      {
+        "path": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+        "sha256": "5eedf2a56f7effd2616204a4c5d583be9fc97d302871a32f930bd2c64e4fcaea"
+      },
+      {
+        "path": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "sha256": "6d94b47ce41bc4290e0b19e59e4a7c605988a01ad7258f396fd1a1aa1faea620"
+      }
+    ],
+    "raw_assignments": 1503,
+    "rejected_non_sat_assignments": 0,
+    "source_family_counts": {
+      "base-critical": 2,
+      "base-survival": 2,
+      "critical-shell-global": 517,
+      "shell-audit-critical": 517,
+      "shell-audit-survival": 465
+    },
+    "unique_metric_systems": 1325
+  },
+  "generated_at": "2026-07-10T23:45:26.259333+00:00",
+  "results": [
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              3,
+              4,
+              9,
+              10
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 7,
+            "pin_source_index": 4,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 1, 1, 2)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/469/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.014209,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.015967,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.015593,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "07a72abd92c44eaa3c06"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            7,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 4,
+            "dangerous": [
+              1,
+              3,
+              8,
+              10
+            ],
+            "deleted": 3,
+            "deleted_index": 0,
+            "n": 12,
+            "pin_source": 6,
+            "pin_source_index": 3,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/391/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.01371,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 0.258365,
+          "return_code": 0,
+          "stage": "full-convex",
+          "status": "UNSAT"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 0.117008,
+          "return_code": 0,
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        }
+      ],
+      "status": "CVC5_UNSAT",
+      "system_id": "0b12b25bf5daa7566f98"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 35
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "deleted": 3,
+            "deleted_index": 0,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 0, 2)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/322/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 137
+          },
+          "elapsed_sec": 30.011978,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 257
+          },
+          "elapsed_sec": 30.014919,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.019187,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "0b6b097441ddf0b0e49b"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 35
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            1,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            4,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            6,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              10
+            ],
+            "aux": [
+              1,
+              2,
+              5
+            ],
+            "blocker": 3,
+            "dangerous": [
+              0,
+              4,
+              6,
+              10
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 2, 0, 1)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/358/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 137
+          },
+          "elapsed_sec": 30.011045,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 257
+          },
+          "elapsed_sec": 30.015377,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.015628,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "106e1a42afcf538a849d"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            1,
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 2,
+            "dangerous": [
+              0,
+              5,
+              10,
+              11
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 7,
+            "pin_source_index": 4,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "Moser-2"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/499/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.010901,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.012536,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.015585,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "152bd38c57928be4cc92"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            5,
+            6
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 3,
+            "dangerous": [
+              4,
+              6,
+              8,
+              10
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 2, 1, 1)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/334/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.016065,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.007013,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.01558,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "159d2ee82c094e05523e"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 30
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 7,
+            "dangerous": [
+              3,
+              4,
+              5,
+              8
+            ],
+            "deleted": 3,
+            "deleted_index": 0,
+            "n": 11,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(0, 1, 0, 3)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/46/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 118
+          },
+          "elapsed_sec": 30.016407,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 217
+          },
+          "elapsed_sec": 30.014931,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.007129,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "27fce7e59583ba5b825f"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            4,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              4,
+              10
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/191/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.014415,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.015702,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.008938,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "2a16b95a04ac47087e57"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            5,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              3,
+              4,
+              5,
+              9
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 1, 0, 3)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/179/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.01367,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.013573,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.011141,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "3b6356bb4ae2d22cfdf2"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            4,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            4,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              4,
+              10
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 6,
+            "pin_source_index": 3,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/412/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.016107,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.009536,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.006609,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "3ceb5775d12d20f898bf"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            4,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              10
+            ],
+            "aux": [
+              0,
+              1,
+              2
+            ],
+            "blocker": 8,
+            "dangerous": [
+              3,
+              4,
+              5,
+              10
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 0, 1, 3)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/195/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.015884,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.009734,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.006613,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "4652c7cd938593a900ba"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            1,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              10
+            ],
+            "aux": [
+              1,
+              2,
+              4
+            ],
+            "blocker": 3,
+            "dangerous": [
+              0,
+              5,
+              6,
+              10
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 12,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 2, 0, 1)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/290/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.01568,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.009713,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.006599,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "52a33c74b5009eb22bf8"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 30
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              7
+            ],
+            "aux": [
+              0,
+              2,
+              7
+            ],
+            "blocker": 3,
+            "dangerous": [
+              1,
+              4,
+              5,
+              6
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 11,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(1, 3, 0, 0)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/85/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 118
+          },
+          "elapsed_sec": 30.015616,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 217
+          },
+          "elapsed_sec": 30.009796,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.006631,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "581245063c8c351b6bc3"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 35
+      },
+      "decisive_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            5,
+            7
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              3,
+              5,
+              9
+            ],
+            "aux": [
+              0,
+              2,
+              5
+            ],
+            "blocker": 8,
+            "dangerous": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 6,
+            "pin_source_index": 3,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 0, 2)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/407/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 137
+          },
+          "elapsed_sec": 30.017803,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 257
+          },
+          "elapsed_sec": 0.345802,
+          "return_code": 0,
+          "stage": "full-convex",
+          "status": "UNSAT"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 0.206495,
+          "return_code": 0,
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        }
+      ],
+      "status": "CVC5_UNSAT",
+      "system_id": "61441fb2d7ae397e1df6"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 0, 2)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/207/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.015521,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 2.971963,
+          "return_code": 0,
+          "stage": "full-convex",
+          "status": "UNSAT"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.009402,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "CVC5_UNSAT",
+      "system_id": "66d08a69dde4db909815"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              1,
+              3,
+              4,
+              9
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 0, 2)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/339/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.012757,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.015485,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.009977,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "70d66f0cd568debd988f"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            5,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              6,
+              10
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/361/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.00736,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.008451,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.007471,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "723b2bc0ae09d2895246"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            2,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            6,
+            7
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 3,
+            "dangerous": [
+              1,
+              4,
+              8,
+              10
+            ],
+            "deleted": 4,
+            "deleted_index": 1,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/340/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.010937,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.007406,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.013431,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "764d4ac1e0dbc37f82ec"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 35
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              6,
+              7
+            ],
+            "aux": [
+              1,
+              2,
+              7
+            ],
+            "blocker": 3,
+            "dangerous": [
+              0,
+              4,
+              5,
+              6
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 3, 0, 0)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/206/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 137
+          },
+          "elapsed_sec": 30.007304,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 257
+          },
+          "elapsed_sec": 30.008467,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.007445,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "777aee8749c55f758c21"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            3,
+            6
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 3,
+            "dangerous": [
+              1,
+              6,
+              8,
+              10
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 12,
+            "pin_source": 7,
+            "pin_source_index": 4,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 1, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/510/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.007356,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.008441,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.007483,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "8b603a23dac8ce175d81"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 24
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            6,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            3,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 3,
+            "dangerous": [
+              1,
+              4,
+              5,
+              6
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 11,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(1, 3, 0, 0)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/85/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 24,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 112
+          },
+          "elapsed_sec": 30.007263,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 24,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 211
+          },
+          "elapsed_sec": 30.008469,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.007554,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "8b6ceb4eed2ec9f83827"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 35
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            1,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            3,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            7,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              10
+            ],
+            "aux": [
+              1,
+              2,
+              5
+            ],
+            "blocker": 3,
+            "dangerous": [
+              0,
+              4,
+              7,
+              10
+            ],
+            "deleted": 7,
+            "deleted_index": 4,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(1, 2, 0, 1)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/375/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 137
+          },
+          "elapsed_sec": 30.007227,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 35,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 257
+          },
+          "elapsed_sec": 30.008438,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.007493,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "8dde257dddfcbb6077f5"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 30
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            3,
+            8
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 7,
+            "dangerous": [
+              3,
+              4,
+              5,
+              8
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 11,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(0, 1, 0, 3)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/61/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 118
+          },
+          "elapsed_sec": 30.007225,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 217
+          },
+          "elapsed_sec": 30.008439,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.007556,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "9fb7dd4ad469de0eb0ba"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 28
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "audit_centers": [
+              0,
+              1,
+              2,
+              4,
+              5,
+              7
+            ],
+            "aux": [
+              0,
+              1,
+              2
+            ],
+            "blocker": 3,
+            "dangerous": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "deleted": 6,
+            "deleted_index": 3,
+            "n": 12,
+            "pin_source": 5,
+            "pin_source_index": 2,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 4, 0, 0)"
+          },
+          "family": "shell-audit-survival",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/353/first_survival_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 28,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 130
+          },
+          "elapsed_sec": 30.006338,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 28,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 250
+          },
+          "elapsed_sec": 30.011092,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.012699,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "cdf0fd34aee1a2a82c1b"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              3,
+              4,
+              5,
+              9
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(0, 1, 0, 3)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/196/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.008355,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.007472,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.008512,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "d7d5dfa853fb682c7fc3"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 30
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            1,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            3,
+            8,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 7,
+            "dangerous": [
+              0,
+              3,
+              6,
+              9
+            ],
+            "deleted": 3,
+            "deleted_index": 0,
+            "n": 11,
+            "pin_source": 6,
+            "pin_source_index": 3,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(1, 0, 1, 2)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/140/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 118
+          },
+          "elapsed_sec": 30.011217,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 217
+          },
+          "elapsed_sec": 30.007512,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.008529,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "e1f357be73ee7fb3a72f"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            3,
+            5,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              3,
+              7
+            ],
+            "deleted": 7,
+            "deleted_index": 4,
+            "n": 12,
+            "pin_source": 3,
+            "pin_source_index": 0,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 0, 2)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/241/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.008421,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 2.400638,
+          "return_code": 0,
+          "stage": "full-convex",
+          "status": "UNSAT"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 0.775409,
+          "return_code": 0,
+          "stage": "convex-only-relaxation",
+          "status": "UNSAT"
+        }
+      ],
+      "status": "CVC5_UNSAT",
+      "system_id": "e5cea0bced9ad6e37aff"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 120,
+        "distinctness": 66,
+        "equalities": 36,
+        "exact_exclusions": 42
+      },
+      "decisive_stage": null,
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            4,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            6,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            7,
+            10
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 8,
+            "dangerous": [
+              0,
+              1,
+              5,
+              10
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 12,
+            "pin_source": 7,
+            "pin_source_index": 4,
+            "profile": [
+              7,
+              4,
+              4
+            ],
+            "type": "(2, 0, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/497/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 144
+          },
+          "elapsed_sec": 30.013559,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "exact_exclusions": 42,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 264
+          },
+          "elapsed_sec": 30.011064,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 120,
+            "distinctness": 66,
+            "row_equalities": 36,
+            "selected_rows": 12,
+            "total": 222
+          },
+          "elapsed_sec": 30.007527,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "e8ea2093ced5f198ecfa"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 36
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            3,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 3,
+            "dangerous": [
+              1,
+              5,
+              7,
+              9
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 11,
+            "pin_source": 4,
+            "pin_source_index": 1,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(1, 1, 1, 1)"
+          },
+          "family": "shell-audit-critical",
+          "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+          "json_pointer": "/packets/68/first_critical_witness/result/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 36,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 124
+          },
+          "elapsed_sec": 30.013563,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 36,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 223
+          },
+          "elapsed_sec": 30.011101,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.007561,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "eb45f1d1df00244fb84c"
+    },
+    {
+      "constraint_counts": {
+        "convex_order": 99,
+        "distinctness": 55,
+        "equalities": 33,
+        "exact_exclusions": 30
+      },
+      "decisive_stage": null,
+      "n": 11,
+      "order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8
+      ],
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            2,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "context": {
+            "blocker": 7,
+            "dangerous": [
+              0,
+              3,
+              5,
+              6
+            ],
+            "deleted": 5,
+            "deleted_index": 2,
+            "n": 11,
+            "pin_source": 6,
+            "pin_source_index": 3,
+            "profile": [
+              6,
+              4,
+              4
+            ],
+            "type": "(1, 0, 0, 3)"
+          },
+          "family": "critical-shell-global",
+          "file": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+          "json_pointer": "/packets/167/joint_global/assignment"
+        }
+      ],
+      "stages": [
+        {
+          "constraint_counts": {
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 118
+          },
+          "elapsed_sec": 30.0135,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "exact-metric-relaxation",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "exact_exclusions": 30,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 217
+          },
+          "elapsed_sec": 30.01111,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "full-convex",
+          "status": "UNKNOWN"
+        },
+        {
+          "constraint_counts": {
+            "convex_order": 99,
+            "distinctness": 55,
+            "row_equalities": 33,
+            "selected_rows": 11,
+            "total": 187
+          },
+          "elapsed_sec": 30.007586,
+          "reason": "cvc5 interrupted by timeout.",
+          "return_code": -6,
+          "stage": "convex-only-relaxation",
+          "status": "UNKNOWN"
+        }
+      ],
+      "status": "UNKNOWN",
+      "system_id": "f8e6c82e10f32504c46c"
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-cvc5-v1",
+  "selection": {
+    "baseline_path": "census/global_confinement/metric_realizability_residual_60s.json",
+    "baseline_sha256": "8061ffd5d347c740a941ea3b82e0f840af6f174a61b3a3ad03a1b66d7d4307b3",
+    "count": 30,
+    "matches_baseline": true,
+    "selected_for_run": 30,
+    "system_id_sha256": "085f332d753a3ca693230196643fc68c504afbd5ca99863a4433ab8ee97092d2"
+  },
+  "smoke": {
+    "passed": true,
+    "sat": {
+      "constraint_counts": {
+        "distinctness": 10,
+        "row_equalities": 3,
+        "selected_rows": 1,
+        "total": 13
+      },
+      "elapsed_sec": 0.017161,
+      "return_code": 0,
+      "stage": "exact-metric-relaxation",
+      "status": "SAT"
+    },
+    "unsat": {
+      "constraint_counts": {
+        "distinctness": 15,
+        "exact_exclusions": 2,
+        "row_equalities": 6,
+        "selected_rows": 2,
+        "total": 23
+      },
+      "elapsed_sec": 0.183491,
+      "return_code": 0,
+      "stage": "exact-metric-relaxation",
+      "status": "UNSAT"
+    }
+  },
+  "summary": {
+    "decisive_stage_counts": {
+      "full-convex": 4,
+      "none": 26
+    },
+    "stage_status_counts": {
+      "convex-only-relaxation": {
+        "UNKNOWN": 27,
+        "UNSAT": 3
+      },
+      "exact-metric-relaxation": {
+        "UNKNOWN": 30
+      },
+      "full-convex": {
+        "UNKNOWN": 26,
+        "UNSAT": 4
+      }
+    },
+    "status_counts": {
+      "CVC5_UNSAT": 4,
+      "UNKNOWN": 26
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "blocker": 2,
+  "cap_selected_row_counting": true,
+  "core_cache": {
+    "complete": {
+      "hits": 0,
+      "misses": 0
+    },
+    "prefix": {
+      "hits": 707270,
+      "misses": 360836
+    }
+  },
+  "core_free": {
+    "nodes": 1064862,
+    "status": "UNSAT"
+  },
+  "dangerous": [
+    0,
+    6,
+    9,
+    10
+  ],
+  "deleted": 6,
+  "elapsed_sec": 207.16391562495846,
+  "first_incidence_core": {
+    "core": {
+      "centers": [
+        3,
+        7
+      ],
+      "triple": [
+        0,
+        1,
+        5
+      ]
+    },
+    "stage": "equality-duplicate-center"
+  },
+  "incidence": {
+    "assignment": null,
+    "nodes": 19,
+    "status": "SAT"
+  },
+  "include_ordered_metric_cores": true,
+  "n": 11,
+  "packet_index": 44,
+  "pin_source": 3,
+  "profile": [
+    6,
+    4,
+    4
+  ],
+  "surplus_choice_count": 46,
+  "type": "Moser-2"
+}

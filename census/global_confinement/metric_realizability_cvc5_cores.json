@@ -1,0 +1,1469 @@
+{
+  "config": {
+    "cvc5": "/Users/adam/bin/cvc5",
+    "deletion_timeout_seconds": 5.0,
+    "validation_timeout_seconds": 60.0,
+    "workers": 4,
+    "z3": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/bin/z3"
+  },
+  "generated_at": "2026-07-10T23:49:36.769852+00:00",
+  "input": {
+    "path": "/Users/adam/projects/math-projects/erdos-97-96-formalization/census/global_confinement/metric_realizability_cvc5.json",
+    "schema": "p97-global-confinement-metric-realizability-cvc5-v1",
+    "sha256": "e7ac8a818ba351b7c278b07f69e156453070e902fb2944b2ecbbea09a68d9948"
+  },
+  "results": [
+    {
+      "convex_only_validation": null,
+      "core_row_count": 3,
+      "core_row_indices": [
+        1,
+        9,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            4,
+            9,
+            10
+          ]
+        }
+      ],
+      "crosscheck_status": "CROSSCHECKED_UNSAT",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 9,
+          "selected_rows": 3,
+          "total": 195
+        },
+        "elapsed_sec": 2.333474,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 0.104832,
+          "removed": true,
+          "row_index": 0,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.009922,
+          "removed": false,
+          "row_index": 1,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.104729,
+          "removed": true,
+          "row_index": 2,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.119713,
+          "removed": true,
+          "row_index": 3,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.096902,
+          "removed": true,
+          "row_index": 4,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.824764,
+          "removed": true,
+          "row_index": 5,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.468872,
+          "removed": true,
+          "row_index": 6,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.700823,
+          "removed": true,
+          "row_index": 7,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 4.430654,
+          "removed": true,
+          "row_index": 8,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.009587,
+          "removed": false,
+          "row_index": 9,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 2.320184,
+          "removed": true,
+          "row_index": 10,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            1,
+            9,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.012555,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            9
+          ]
+        }
+      ],
+      "minimized_stage": "convex-only-relaxation",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "blocker": 4,
+          "dangerous": [
+            1,
+            3,
+            8,
+            10
+          ],
+          "deleted": 3,
+          "deleted_index": 0,
+          "n": 12,
+          "pin_source": 6,
+          "pin_source_index": 3,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(1, 1, 1, 1)"
+        },
+        "family": "shell-audit-critical",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/391/first_critical_witness/result/assignment"
+      },
+      "system_id": "0b12b25bf5daa7566f98",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 9,
+          "selected_rows": 3,
+          "total": 195
+        },
+        "elapsed_sec": 51.084365,
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      }
+    },
+    {
+      "convex_only_validation": null,
+      "core_row_count": 11,
+      "core_row_indices": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "exact": false,
+          "support": [
+            5,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            5,
+            7
+          ]
+        }
+      ],
+      "crosscheck_status": "CVC5_UNSAT_Z3_ERROR",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 33,
+          "selected_rows": 11,
+          "total": 219
+        },
+        "elapsed_sec": 0.184501,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 5.007486,
+          "removed": false,
+          "row_index": 0,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007059,
+          "removed": false,
+          "row_index": 1,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.008397,
+          "removed": false,
+          "row_index": 2,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007486,
+          "removed": false,
+          "row_index": 3,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.178105,
+          "removed": true,
+          "row_index": 4,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.013401,
+          "removed": false,
+          "row_index": 5,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.011275,
+          "removed": false,
+          "row_index": 6,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.012494,
+          "removed": false,
+          "row_index": 7,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.013693,
+          "removed": false,
+          "row_index": 8,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.011143,
+          "removed": false,
+          "row_index": 9,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007504,
+          "removed": false,
+          "row_index": 10,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.008488,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "minimized_stage": "convex-only-relaxation",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "audit_centers": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            9
+          ],
+          "aux": [
+            0,
+            2,
+            5
+          ],
+          "blocker": 8,
+          "dangerous": [
+            1,
+            3,
+            4,
+            9
+          ],
+          "deleted": 4,
+          "deleted_index": 1,
+          "n": 12,
+          "pin_source": 6,
+          "pin_source_index": 3,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(1, 1, 0, 2)"
+        },
+        "family": "shell-audit-survival",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/407/first_survival_witness/result/assignment"
+      },
+      "system_id": "61441fb2d7ae397e1df6",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 33,
+          "selected_rows": 11,
+          "total": 219
+        },
+        "elapsed_sec": 60.015562,
+        "reason": "timeout",
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "convex-only-relaxation",
+        "status": "ERROR"
+      }
+    },
+    {
+      "convex_only_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 15,
+          "selected_rows": 5,
+          "total": 201
+        },
+        "elapsed_sec": 0.512018,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "core_row_count": 5,
+      "core_row_indices": [
+        0,
+        3,
+        8,
+        10,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            6,
+            9,
+            10
+          ]
+        }
+      ],
+      "crosscheck_status": "CVC5_UNSAT_Z3_ERROR",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "exact_exclusions": 21,
+          "row_equalities": 15,
+          "selected_rows": 5,
+          "total": 222
+        },
+        "elapsed_sec": 1.338429,
+        "return_code": 0,
+        "stage": "full-convex",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 5.014359,
+          "removed": false,
+          "row_index": 0,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 3.692806,
+          "removed": true,
+          "row_index": 1,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 2.628013,
+          "removed": true,
+          "row_index": 2,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.011432,
+          "removed": false,
+          "row_index": 3,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.602802,
+          "removed": true,
+          "row_index": 4,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.565189,
+          "removed": true,
+          "row_index": 5,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.674889,
+          "removed": true,
+          "row_index": 6,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.407187,
+          "removed": true,
+          "row_index": 7,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.013554,
+          "removed": false,
+          "row_index": 8,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            3,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.35201,
+          "removed": true,
+          "row_index": 9,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            3,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007316,
+          "removed": false,
+          "row_index": 10,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            3,
+            8,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007443,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            3,
+            8,
+            10
+          ]
+        }
+      ],
+      "minimized_stage": "full-convex",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "blocker": 8,
+          "dangerous": [
+            0,
+            1,
+            3,
+            5
+          ],
+          "deleted": 5,
+          "deleted_index": 2,
+          "n": 12,
+          "pin_source": 3,
+          "pin_source_index": 0,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(2, 0, 0, 2)"
+        },
+        "family": "shell-audit-critical",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/207/first_critical_witness/result/assignment"
+      },
+      "system_id": "66d08a69dde4db909815",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "exact_exclusions": 21,
+          "row_equalities": 15,
+          "selected_rows": 5,
+          "total": 222
+        },
+        "elapsed_sec": 60.015483,
+        "reason": "timeout",
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "full-convex",
+        "status": "ERROR"
+      }
+    },
+    {
+      "convex_only_validation": null,
+      "core_row_count": 8,
+      "core_row_indices": [
+        0,
+        1,
+        4,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": false,
+          "support": [
+            2,
+            3,
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            3,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": false,
+          "support": [
+            0,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": false,
+          "support": [
+            0,
+            1,
+            4,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "exact": false,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        }
+      ],
+      "crosscheck_status": "CVC5_UNSAT_Z3_ERROR",
+      "cvc5_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 24,
+          "selected_rows": 8,
+          "total": 210
+        },
+        "elapsed_sec": 4.370366,
+        "return_code": 0,
+        "stage": "convex-only-relaxation",
+        "status": "UNSAT"
+      },
+      "deletion_attempts": [
+        {
+          "elapsed_sec": 5.006275,
+          "removed": false,
+          "row_index": 0,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.015724,
+          "removed": false,
+          "row_index": 1,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 0.493648,
+          "removed": true,
+          "row_index": 2,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.723317,
+          "removed": true,
+          "row_index": 3,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.00704,
+          "removed": false,
+          "row_index": 4,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 1.615723,
+          "removed": true,
+          "row_index": 5,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 4.350756,
+          "removed": true,
+          "row_index": 6,
+          "status": "UNSAT",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.013274,
+          "removed": false,
+          "row_index": 7,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.011043,
+          "removed": false,
+          "row_index": 8,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.007725,
+          "removed": false,
+          "row_index": 9,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.015505,
+          "removed": false,
+          "row_index": 10,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            11
+          ]
+        },
+        {
+          "elapsed_sec": 5.008471,
+          "removed": false,
+          "row_index": 11,
+          "status": "UNKNOWN",
+          "trial_row_indices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "minimized_stage": "convex-only-relaxation",
+      "n": 12,
+      "order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        2,
+        8,
+        9
+      ],
+      "original_row_count": 12,
+      "profile": [
+        7,
+        4,
+        4
+      ],
+      "source": {
+        "context": {
+          "blocker": 8,
+          "dangerous": [
+            0,
+            1,
+            3,
+            7
+          ],
+          "deleted": 7,
+          "deleted_index": 4,
+          "n": 12,
+          "pin_source": 3,
+          "pin_source_index": 0,
+          "profile": [
+            7,
+            4,
+            4
+          ],
+          "type": "(2, 0, 0, 2)"
+        },
+        "family": "shell-audit-critical",
+        "file": "census/global_confinement/shell_audit_results_all_frames_n11_12.json",
+        "json_pointer": "/packets/241/first_critical_witness/result/assignment"
+      },
+      "system_id": "e5cea0bced9ad6e37aff",
+      "z3_validation": {
+        "constraint_counts": {
+          "convex_order": 120,
+          "distinctness": 66,
+          "row_equalities": 24,
+          "selected_rows": 8,
+          "total": 210
+        },
+        "elapsed_sec": 60.014768,
+        "reason": "timeout",
+        "return_code": 0,
+        "solver": "z3",
+        "stage": "convex-only-relaxation",
+        "status": "ERROR"
+      }
+    }
+  ],
+  "schema": "p97-global-confinement-metric-realizability-cvc5-cores-v1"
+}

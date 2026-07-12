@@ -1,0 +1,9943 @@
+{
+  "complete": true,
+  "generated_at": "2026-07-11T19:10:11.486468+00:00",
+  "input": "census/global_confinement/critical_shell_results_all_placements_n11_12.json",
+  "input_sha256": "5eedf2a56f7effd2616204a4c5d583be9fc97d302871a32f930bd2c64e4fcaea",
+  "results": [
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3509,
+          "misses": 5003
+        }
+      },
+      "core_free": {
+        "nodes": 5927,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 3.5106032909825444,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 6370,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 0,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 5518,
+          "misses": 8667
+        }
+      },
+      "core_free": {
+        "nodes": 11163,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 5.627867417002562,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 329,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 1,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2219,
+          "misses": 3975
+        }
+      },
+      "core_free": {
+        "nodes": 3260,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 3.1312848750385456,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            2
+          ],
+          "triple": [
+            0,
+            3,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3778,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 2,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 20123,
+          "misses": 22286
+        }
+      },
+      "core_free": {
+        "nodes": 39153,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 14.011705707991496,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            5
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 582,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 3,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.06439658300951123,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 43,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 4,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3587,
+          "misses": 5034
+        }
+      },
+      "core_free": {
+        "nodes": 5742,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 4,
+      "elapsed_sec": 3.312601958983578,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 147,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 5,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2012,
+          "misses": 2946
+        }
+      },
+      "core_free": {
+        "nodes": 2147,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.989111665985547,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 157,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 6,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 14404,
+          "misses": 15814
+        }
+      },
+      "core_free": {
+        "nodes": 27384,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 9.015006250003353,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 29,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 7,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 194884,
+          "misses": 106077
+        }
+      },
+      "core_free": {
+        "nodes": 297558,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 59.61643516703043,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            10
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 21,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 8,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 71662,
+          "misses": 28070
+        }
+      },
+      "core_free": {
+        "nodes": 96483,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 18.894884333014488,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 43,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 9,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        6
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.13173091603675857,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 775,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 10,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 13025,
+          "misses": 10731
+        }
+      },
+      "core_free": {
+        "nodes": 21008,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 6.875686749990564,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 56,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 11,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2084,
+          "misses": 2783
+        }
+      },
+      "core_free": {
+        "nodes": 2264,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        4,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.9710257920087315,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 57,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 12,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 54322,
+          "misses": 94600
+        }
+      },
+      "core_free": {
+        "nodes": 145995,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 60.64724158402532,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            3
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 29,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 13,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 88580,
+          "misses": 107932
+        }
+      },
+      "core_free": {
+        "nodes": 193532,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        9,
+        10
+      ],
+      "deleted": 4,
+      "elapsed_sec": 67.76687975000823,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            4
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 4265,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 14,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3903,
+          "misses": 5302
+        }
+      },
+      "core_free": {
+        "nodes": 6656,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.2699498329893686,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 31,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 15,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6808,
+          "misses": 9423
+        }
+      },
+      "core_free": {
+        "nodes": 13239,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 6.077359916991554,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 459,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 16,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2668,
+          "misses": 4762
+        }
+      },
+      "core_free": {
+        "nodes": 4360,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.6655689160106704,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            8
+          ],
+          "triple": [
+            0,
+            3,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3528,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 17,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 10048,
+          "misses": 14815
+        }
+      },
+      "core_free": {
+        "nodes": 21577,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 10.378469499992207,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 16971,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 18,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.26481850002892315,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            10
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3807,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 19,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3830,
+          "misses": 5480
+        }
+      },
+      "core_free": {
+        "nodes": 6460,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.6204264580155723,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 194,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 20,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2326,
+          "misses": 3496
+        }
+      },
+      "core_free": {
+        "nodes": 2879,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.304726333997678,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 112,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 21,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 10456,
+          "misses": 13721
+        }
+      },
+      "core_free": {
+        "nodes": 21211,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 8.290757625014521,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 62,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 22,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 145411,
+          "misses": 64787
+        }
+      },
+      "core_free": {
+        "nodes": 206927,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        5,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 37.17783612495987,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 24,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 23,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6429,
+          "misses": 6033
+        }
+      },
+      "core_free": {
+        "nodes": 9184,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 4.556547791988123,
+      "first_incidence_core": {
+        "core": {
+          "center": 3,
+          "off_support": 1,
+          "support": [
+            0,
+            4,
+            5,
+            9
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 2106,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 24,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        6
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.13515674998052418,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 904,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 25,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 259034,
+          "misses": 166
+        },
+        "prefix": {
+          "hits": 344428,
+          "misses": 10437
+        }
+      },
+      "core_free": {
+        "nodes": 351981,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 13.466617874975782,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 152,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 26,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3030,
+          "misses": 4424
+        }
+      },
+      "core_free": {
+        "nodes": 4715,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.0222249170183204,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            6
+          ],
+          "triple": [
+            0,
+            3,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 22,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 27,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 73568,
+          "misses": 115389
+        }
+      },
+      "core_free": {
+        "nodes": 185982,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 72.60107050003717,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            3
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 42,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 28,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 240507,
+          "misses": 190569
+        }
+      },
+      "core_free": {
+        "nodes": 427964,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        9,
+        10
+      ],
+      "deleted": 5,
+      "elapsed_sec": 114.47170429199468,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 21,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 29,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2903,
+          "misses": 4929
+        }
+      },
+      "core_free": {
+        "nodes": 5139,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.1352109169820324,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 30,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 30,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 12657,
+          "misses": 15164
+        }
+      },
+      "core_free": {
+        "nodes": 24693,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 9.731512834026944,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 33,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 31,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4153,
+          "misses": 5893
+        }
+      },
+      "core_free": {
+        "nodes": 6840,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        6,
+        8,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 4.349651917000301,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 41,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 32,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 10779,
+          "misses": 13890
+        }
+      },
+      "core_free": {
+        "nodes": 21407,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 9.826560333021916,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            8
+          ],
+          "triple": [
+            0,
+            2,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 472,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 33,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.05059441702906042,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 20,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 34,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 22288,
+          "misses": 9379
+        }
+      },
+      "core_free": {
+        "nodes": 28685,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 5.748082000005525,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            0,
+            4
+          ],
+          "triple": [
+            1,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 84,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 35,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3186,
+          "misses": 5425
+        }
+      },
+      "core_free": {
+        "nodes": 5536,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.7031468329951167,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 27,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 36,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 12953,
+          "misses": 14309
+        }
+      },
+      "core_free": {
+        "nodes": 24164,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 9.161868584051263,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 69,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 37,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 80775,
+          "misses": 34360
+        }
+      },
+      "core_free": {
+        "nodes": 111996,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 20.058449791977182,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 20,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 38,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6354,
+          "misses": 4703
+        }
+      },
+      "core_free": {
+        "nodes": 7799,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.362735500035342,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 25,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 39,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.12656704103574157,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 496,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 40,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 259034,
+          "misses": 166
+        },
+        "prefix": {
+          "hits": 345440,
+          "misses": 10356
+        }
+      },
+      "core_free": {
+        "nodes": 352776,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 13.760429374990053,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 49,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 41,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3078,
+          "misses": 5272
+        }
+      },
+      "core_free": {
+        "nodes": 5475,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.6816223750356585,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            0,
+            5
+          ],
+          "triple": [
+            2,
+            3,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 75,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 42,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 76634,
+          "misses": 139759
+        }
+      },
+      "core_free": {
+        "nodes": 213370,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 84.64912487502443,
+      "first_incidence_core": {
+        "core": {
+          "center": 1,
+          "off_support": 2,
+          "support": [
+            0,
+            3,
+            7,
+            8
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 29,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 43,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 662661,
+          "misses": 340583
+        }
+      },
+      "core_free": {
+        "nodes": 1000001,
+        "status": "INDETERMINATE"
+      },
+      "dangerous": [
+        0,
+        6,
+        9,
+        10
+      ],
+      "deleted": 6,
+      "elapsed_sec": 195.33068625000305,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 19,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 44,
+      "pin_source": 3,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2536,
+          "misses": 4448
+        }
+      },
+      "core_free": {
+        "nodes": 4544,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.0563164170016535,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1077,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 45,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 5884,
+          "misses": 7839
+        }
+      },
+      "core_free": {
+        "nodes": 10856,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 5.221044250007253,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 78,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 46,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2892,
+          "misses": 4346
+        }
+      },
+      "core_free": {
+        "nodes": 4469,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.372920249996241,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 4425,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 47,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 178744,
+          "misses": 78468
+        }
+      },
+      "core_free": {
+        "nodes": 253989,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 53.72816141601652,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 112,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 48,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        6,
+        7
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.059456749993842095,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 65,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 49,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2317,
+          "misses": 3878
+        }
+      },
+      "core_free": {
+        "nodes": 3472,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 3,
+      "elapsed_sec": 2.7487929170019925,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            9
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 212,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 50,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2237,
+          "misses": 3125
+        }
+      },
+      "core_free": {
+        "nodes": 2717,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 2.388208875025157,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 632,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 51,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6021,
+          "misses": 7278
+        }
+      },
+      "core_free": {
+        "nodes": 10631,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 4.760842624993529,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            8
+          ],
+          "triple": [
+            0,
+            3,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1188,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 52,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6172,
+          "misses": 6692
+        }
+      },
+      "core_free": {
+        "nodes": 10210,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 4.383888541022316,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            3,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 173,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 53,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 42127,
+          "misses": 14283
+        }
+      },
+      "core_free": {
+        "nodes": 53322,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 10.38653354201233,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            3
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 993,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 54,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        6
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.058735208003781736,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            4
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 38,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 55,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4688,
+          "misses": 5570
+        }
+      },
+      "core_free": {
+        "nodes": 7680,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.950698208005633,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            0,
+            4,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 48,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 56,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1389,
+          "misses": 1567
+        }
+      },
+      "core_free": {
+        "nodes": 659,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.4289146669907495,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            4
+          ],
+          "triple": [
+            0,
+            3,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 4145,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 57,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 15874,
+          "misses": 30796
+        }
+      },
+      "core_free": {
+        "nodes": 43893,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 21.6691566669615,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            5
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 393,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 58,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 26290,
+          "misses": 37329
+        }
+      },
+      "core_free": {
+        "nodes": 60936,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        9,
+        10
+      ],
+      "deleted": 3,
+      "elapsed_sec": 24.119545624998864,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 385,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 59,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1990,
+          "misses": 2484
+        }
+      },
+      "core_free": {
+        "nodes": 2070,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.6802757499972358,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 28,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 60,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2918,
+          "misses": 3685
+        }
+      },
+      "core_free": {
+        "nodes": 3756,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.649220791994594,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 133,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 61,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2305,
+          "misses": 3480
+        }
+      },
+      "core_free": {
+        "nodes": 3075,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        8,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.7615842079976574,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 5617,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 62,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 61875,
+          "misses": 32513
+        }
+      },
+      "core_free": {
+        "nodes": 91312,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        5,
+        6,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 18.82562949997373,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1063,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 63,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.06982375000370666,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            10
+          ],
+          "triple": [
+            0,
+            2,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 59,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 64,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3092,
+          "misses": 3530
+        }
+      },
+      "core_free": {
+        "nodes": 3917,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.5561916659935378,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 56,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 65,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2208,
+          "misses": 3095
+        }
+      },
+      "core_free": {
+        "nodes": 2731,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.0580513749737293,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            4
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 338,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 66,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 8332,
+          "misses": 5671
+        }
+      },
+      "core_free": {
+        "nodes": 11452,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.510945291025564,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            1,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 186,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 67,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 228791,
+          "misses": 99940
+        }
+      },
+      "core_free": {
+        "nodes": 325460,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        5,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 63.576102249964606,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 417,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 68,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 23617,
+          "misses": 23377
+        }
+      },
+      "core_free": {
+        "nodes": 43916,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        6,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 13.293131332960911,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 29,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 69,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.06451712502166629,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 104,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 70,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1567,
+          "misses": 1904
+        }
+      },
+      "core_free": {
+        "nodes": 1018,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.3680075000156648,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 22,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 71,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1848,
+          "misses": 2516
+        }
+      },
+      "core_free": {
+        "nodes": 1782,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 3.1959264999604784,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            8
+          ],
+          "triple": [
+            0,
+            4,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 34711,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 72,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 9862,
+          "misses": 21466
+        }
+      },
+      "core_free": {
+        "nodes": 28770,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 14.262646791001316,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            3
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 23,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 73,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 48040,
+          "misses": 74752
+        }
+      },
+      "core_free": {
+        "nodes": 119832,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        9,
+        10
+      ],
+      "deleted": 5,
+      "elapsed_sec": 46.419439457997214,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            9
+          ],
+          "triple": [
+            0,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1094,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 74,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1691,
+          "misses": 2153
+        }
+      },
+      "core_free": {
+        "nodes": 1296,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.436981333012227,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 27,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 75,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4576,
+          "misses": 4452
+        }
+      },
+      "core_free": {
+        "nodes": 6045,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.0957731670350768,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 42,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 76,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2342,
+          "misses": 3330
+        }
+      },
+      "core_free": {
+        "nodes": 2826,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        6,
+        8,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 2.183888499974273,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            4
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 38,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 77,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 27670,
+          "misses": 17389
+        }
+      },
+      "core_free": {
+        "nodes": 41953,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        5,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 10.398302250017878,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1211,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 78,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.06296687497524545,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            10
+          ],
+          "triple": [
+            0,
+            3,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 31,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 79,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2589,
+          "misses": 3054
+        }
+      },
+      "core_free": {
+        "nodes": 2806,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.935389457968995,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 94,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 80,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1889,
+          "misses": 2727
+        }
+      },
+      "core_free": {
+        "nodes": 1912,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.911276416038163,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            4
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 27,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 81,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 8689,
+          "misses": 7394
+        }
+      },
+      "core_free": {
+        "nodes": 13400,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 4.879762290976942,
+      "first_incidence_core": {
+        "core": {
+          "center": 3,
+          "off_support": 7,
+          "support": [
+            2,
+            5,
+            8,
+            10
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 193,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 82,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 76825,
+          "misses": 39702
+        }
+      },
+      "core_free": {
+        "nodes": 113388,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 24.46620083396556,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 46,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 83,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 5451,
+          "misses": 11132
+        }
+      },
+      "core_free": {
+        "nodes": 13476,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 6.63178695901297,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            4
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 26,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 84,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.057619000028353184,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 33,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 85,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3086,
+          "misses": 3473
+        }
+      },
+      "core_free": {
+        "nodes": 3970,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 2.3869037500116974,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 23,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 86,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1787,
+          "misses": 2473
+        }
+      },
+      "core_free": {
+        "nodes": 1542,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.7007095830049366,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 138,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 87,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 11988,
+          "misses": 23119
+        }
+      },
+      "core_free": {
+        "nodes": 32501,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 15.499285665981006,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 69,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 88,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 207292,
+          "misses": 210271
+        }
+      },
+      "core_free": {
+        "nodes": 414471,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        6,
+        9,
+        10
+      ],
+      "deleted": 6,
+      "elapsed_sec": 121.40534708299674,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            9
+          ],
+          "triple": [
+            1,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1100,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 89,
+      "pin_source": 4,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2054,
+          "misses": 2612
+        }
+      },
+      "core_free": {
+        "nodes": 2419,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.835461208014749,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1024,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 90,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2864,
+          "misses": 4616
+        }
+      },
+      "core_free": {
+        "nodes": 4798,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.208011374983471,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            9
+          ],
+          "triple": [
+            0,
+            4,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 121,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 91,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2118,
+          "misses": 2715
+        }
+      },
+      "core_free": {
+        "nodes": 2400,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 2.1397635000175796,
+      "first_incidence_core": {
+        "core": {
+          "center": 7,
+          "off_support": 10,
+          "support": [
+            3,
+            4,
+            8,
+            9
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3893,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 92,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 125357,
+          "misses": 50188
+        }
+      },
+      "core_free": {
+        "nodes": 172478,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        6,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 31.39276737504406,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            2,
+            3,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 651,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 93,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        6,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.06784362503094599,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 104,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 94,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2898,
+          "misses": 3000
+        }
+      },
+      "core_free": {
+        "nodes": 3360,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 3,
+      "elapsed_sec": 2.127447040984407,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            9
+          ],
+          "triple": [
+            0,
+            4,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 75,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 95,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1895,
+          "misses": 2799
+        }
+      },
+      "core_free": {
+        "nodes": 2396,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.185585082974285,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 33200,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 96,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2163,
+          "misses": 2578
+        }
+      },
+      "core_free": {
+        "nodes": 2464,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.9312328330124728,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            5
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1250,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 97,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 11381,
+          "misses": 6023
+        }
+      },
+      "core_free": {
+        "nodes": 14750,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 3.728707875008695,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            8
+          ],
+          "triple": [
+            0,
+            3,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 55,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 98,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 90693,
+          "misses": 33145
+        }
+      },
+      "core_free": {
+        "nodes": 120901,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 20.397877167037223,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            3
+          ],
+          "triple": [
+            0,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 9268,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 99,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.05551925004692748,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            6
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 37,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 100,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1366,
+          "misses": 1673
+        }
+      },
+      "core_free": {
+        "nodes": 868,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.216922916995827,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            7
+          ],
+          "triple": [
+            0,
+            3,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 450,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 101,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1267,
+          "misses": 983
+        }
+      },
+      "core_free": {
+        "nodes": 82,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.2590171250049025,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3103,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 102,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4195,
+          "misses": 9760
+        }
+      },
+      "core_free": {
+        "nodes": 11650,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 6.755399374989793,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3332,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 103,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 46279,
+          "misses": 27464
+        }
+      },
+      "core_free": {
+        "nodes": 71184,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        9,
+        10
+      ],
+      "deleted": 3,
+      "elapsed_sec": 18.773154916998465,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1181,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 104,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3211,
+          "misses": 3390
+        }
+      },
+      "core_free": {
+        "nodes": 4366,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 2.279535665991716,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 37,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 105,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3062,
+          "misses": 3689
+        }
+      },
+      "core_free": {
+        "nodes": 4069,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        5,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 2.562198041996453,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 51,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 106,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2199,
+          "misses": 3075
+        }
+      },
+      "core_free": {
+        "nodes": 2865,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 2.2147086249897256,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            0,
+            3
+          ],
+          "triple": [
+            1,
+            4,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1132,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 107,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 52431,
+          "misses": 23569
+        }
+      },
+      "core_free": {
+        "nodes": 72953,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 13.944981666980311,
+      "first_incidence_core": {
+        "core": {
+          "foci": [
+            2,
+            10
+          ],
+          "points": [
+            1,
+            6,
+            9
+          ]
+        },
+        "stage": "equality-perpendicular-bisector-convex"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1207,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 108,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.6746136670117266,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            8
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 10960,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 109,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1953,
+          "misses": 2424
+        }
+      },
+      "core_free": {
+        "nodes": 1838,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.664005791011732,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 79,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 110,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2157,
+          "misses": 2975
+        }
+      },
+      "core_free": {
+        "nodes": 2857,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 2.021139750024304,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            10
+          ],
+          "triple": [
+            2,
+            3,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 43,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 111,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1950,
+          "misses": 2411
+        }
+      },
+      "core_free": {
+        "nodes": 2107,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.7566778330365196,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            8
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 2273,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 112,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 176613,
+          "misses": 77864
+        }
+      },
+      "core_free": {
+        "nodes": 251239,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 50.354255874990486,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            9
+          ],
+          "triple": [
+            0,
+            3,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 148,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 113,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 14401,
+          "misses": 16065
+        }
+      },
+      "core_free": {
+        "nodes": 27421,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        6,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 8.883623500005342,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            4,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 23,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 114,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.1374134580255486,
+      "first_incidence_core": {
+        "core": {
+          "center": 1,
+          "off_support": 3,
+          "support": [
+            0,
+            5,
+            7,
+            8
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 474,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 115,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1439,
+          "misses": 1396
+        }
+      },
+      "core_free": {
+        "nodes": 688,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.9966058330028318,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 137,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 116,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1511,
+          "misses": 1775
+        }
+      },
+      "core_free": {
+        "nodes": 1010,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        4,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.595258042041678,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 5819,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 117,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2829,
+          "misses": 9002
+        }
+      },
+      "core_free": {
+        "nodes": 9526,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 6.46628375002183,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3154,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 118,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 26790,
+          "misses": 41181
+        }
+      },
+      "core_free": {
+        "nodes": 65308,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        9,
+        10
+      ],
+      "deleted": 4,
+      "elapsed_sec": 26.379077999969013,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1904,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 119,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 8,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1883,
+          "misses": 2048
+        }
+      },
+      "core_free": {
+        "nodes": 1492,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.3867611669702455,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 755,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 120,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 0, 1, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2934,
+          "misses": 4318
+        }
+      },
+      "core_free": {
+        "nodes": 4758,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 2.7863879579817876,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 36,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 121,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3479,
+          "misses": 2522
+        }
+      },
+      "core_free": {
+        "nodes": 3307,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        6,
+        8,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.7263923329883255,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 32,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 122,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4309,
+          "misses": 5226
+        }
+      },
+      "core_free": {
+        "nodes": 6430,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.4892415840295143,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 178,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 123,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.05786937504308298,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            10
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 31,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 124,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2345,
+          "misses": 3588
+        }
+      },
+      "core_free": {
+        "nodes": 3596,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 3.625319084036164,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 43187,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 125,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1720,
+          "misses": 1948
+        }
+      },
+      "core_free": {
+        "nodes": 1116,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.2469811660121195,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            5
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 26,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 126,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 5085,
+          "misses": 3851
+        }
+      },
+      "core_free": {
+        "nodes": 6405,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        6,
+        8
+      ],
+      "deleted": 6,
+      "elapsed_sec": 2.313833334017545,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            8
+          ],
+          "triple": [
+            1,
+            3,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 110,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 127,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 12802,
+          "misses": 9182
+        }
+      },
+      "core_free": {
+        "nodes": 18969,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        6,
+        7,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 5.603614084015135,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 265,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 128,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2644,
+          "misses": 3734
+        }
+      },
+      "core_free": {
+        "nodes": 3277,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 2.47086300002411,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            5
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 124,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 129,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.05640662502264604,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 47,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 130,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2527,
+          "misses": 1895
+        }
+      },
+      "core_free": {
+        "nodes": 1990,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 1.2212942910264246,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 44,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 131,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1499,
+          "misses": 1504
+        }
+      },
+      "core_free": {
+        "nodes": 442,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        6,
+        9
+      ],
+      "deleted": 6,
+      "elapsed_sec": 0.9674763749935664,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 28,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 132,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 4709,
+          "misses": 11505
+        }
+      },
+      "core_free": {
+        "nodes": 13786,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        6
+      ],
+      "deleted": 6,
+      "elapsed_sec": 7.197551499994006,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            4,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 20,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 133,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 132832,
+          "misses": 126941
+        }
+      },
+      "core_free": {
+        "nodes": 256833,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        6,
+        9,
+        10
+      ],
+      "deleted": 6,
+      "elapsed_sec": 78.9570529590128,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 33,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 134,
+      "pin_source": 5,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1937,
+          "misses": 2469
+        }
+      },
+      "core_free": {
+        "nodes": 1725,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.8022322920151055,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 160,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 135,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2133,
+          "misses": 1519
+        }
+      },
+      "core_free": {
+        "nodes": 1343,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.3288686249870807,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3189,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 136,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 21395,
+          "misses": 9122
+        }
+      },
+      "core_free": {
+        "nodes": 27451,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 5.240536542027257,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 52,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 137,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        6,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.05229433299973607,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 28,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 138,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2576,
+          "misses": 2429
+        }
+      },
+      "core_free": {
+        "nodes": 2473,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.795111834013369,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 165,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 139,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1655,
+          "misses": 1520
+        }
+      },
+      "core_free": {
+        "nodes": 542,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        6,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.3544855830259621,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            3,
+            6,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 5549,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 140,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1817,
+          "misses": 2023
+        }
+      },
+      "core_free": {
+        "nodes": 1687,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.4675493339891545,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            4
+          ],
+          "triple": [
+            0,
+            3,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1629,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 141,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1473,
+          "misses": 1077
+        }
+      },
+      "core_free": {
+        "nodes": 20,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        7,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.7898086660425179,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            10
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 283,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 142,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2687,
+          "misses": 3504
+        }
+      },
+      "core_free": {
+        "nodes": 3260,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 2.180978792021051,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            5
+          ],
+          "triple": [
+            0,
+            7,
+            8
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 318,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 143,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 4,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        5,
+        6
+      ],
+      "deleted": 3,
+      "elapsed_sec": 0.05185370799154043,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            5
+          ],
+          "triple": [
+            0,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 29,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 144,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2254,
+          "misses": 1833
+        }
+      },
+      "core_free": {
+        "nodes": 2045,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.3485766670200974,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            10
+          ],
+          "triple": [
+            0,
+            1,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1902,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 145,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1192,
+          "misses": 889
+        }
+      },
+      "core_free": {
+        "nodes": 42,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        9
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.0651129999896511,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            4,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3920,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 146,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1405,
+          "misses": 1648
+        }
+      },
+      "core_free": {
+        "nodes": 914,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 3,
+      "elapsed_sec": 1.6881817909888923,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            9
+          ],
+          "triple": [
+            0,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3350,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 147,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 26620,
+          "misses": 15793
+        }
+      },
+      "core_free": {
+        "nodes": 39978,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        9,
+        10
+      ],
+      "deleted": 3,
+      "elapsed_sec": 10.622606458025984,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            9
+          ],
+          "triple": [
+            0,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 744,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 148,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1919,
+          "misses": 2294
+        }
+      },
+      "core_free": {
+        "nodes": 1532,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        6,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.6504539159941487,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            9
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 69,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 149,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1641,
+          "misses": 1436
+        }
+      },
+      "core_free": {
+        "nodes": 792,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        4,
+        8,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.271711083012633,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 2992,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 150,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 8232,
+          "misses": 4999
+        }
+      },
+      "core_free": {
+        "nodes": 10321,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 3.1765948339598253,
+      "first_incidence_core": {
+        "core": {
+          "center": 5,
+          "off_support": 3,
+          "support": [
+            2,
+            4,
+            7,
+            10
+          ]
+        },
+        "stage": "equality-exact-off-circle"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 755,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 151,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.4368254169821739,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            10
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 4207,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 152,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2240,
+          "misses": 2064
+        }
+      },
+      "core_free": {
+        "nodes": 1771,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        4,
+        6
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.4461877920548432,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            9
+          ],
+          "triple": [
+            0,
+            3,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 83,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 153,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2075,
+          "misses": 1863
+        }
+      },
+      "core_free": {
+        "nodes": 1253,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        6,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.6261111249914393,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 3714,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 154,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1649,
+          "misses": 1626
+        }
+      },
+      "core_free": {
+        "nodes": 1145,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        4,
+        8
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.198258833028376,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            4
+          ],
+          "triple": [
+            0,
+            3,
+            7
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1312,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 155,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 29845,
+          "misses": 15824
+        }
+      },
+      "core_free": {
+        "nodes": 42583,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        7,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 10.886337040981743,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 30,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 156,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 6362,
+          "misses": 4749
+        }
+      },
+      "core_free": {
+        "nodes": 8208,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 3.017016874975525,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            6
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 370,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 157,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.2808452499448322,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            0,
+            3
+          ],
+          "triple": [
+            1,
+            2,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 2291,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 158,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1338,
+          "misses": 1301
+        }
+      },
+      "core_free": {
+        "nodes": 621,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.0737305829534307,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            10
+          ],
+          "triple": [
+            0,
+            1,
+            2
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1293,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 159,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1246,
+          "misses": 921
+        }
+      },
+      "core_free": {
+        "nodes": 20,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        4,
+        9
+      ],
+      "deleted": 4,
+      "elapsed_sec": 0.9570264170179144,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            8,
+            9
+          ],
+          "triple": [
+            0,
+            3,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 6649,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 160,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1498,
+          "misses": 1951
+        }
+      },
+      "core_free": {
+        "nodes": 1310,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "deleted": 4,
+      "elapsed_sec": 1.8975729169906117,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            9
+          ],
+          "triple": [
+            0,
+            5,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 2813,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 161,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 45504,
+          "misses": 22642
+        }
+      },
+      "core_free": {
+        "nodes": 65607,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        9,
+        10
+      ],
+      "deleted": 4,
+      "elapsed_sec": 16.173487167048734,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 106,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 162,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2757,
+          "misses": 2820
+        }
+      },
+      "core_free": {
+        "nodes": 2840,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.0194607909652404,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            5
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 128,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 163,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1661,
+          "misses": 1463
+        }
+      },
+      "core_free": {
+        "nodes": 245,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        5,
+        6,
+        8,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.1181013340246864,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            8
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 835,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 164,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 1, 1, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2352,
+          "misses": 2751
+        }
+      },
+      "core_free": {
+        "nodes": 2169,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.900101666979026,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            2,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 499,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 165,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 2, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        4,
+        5,
+        6,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.07141508400673047,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            7,
+            10
+          ],
+          "triple": [
+            0,
+            3,
+            9
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 31,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 166,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(0, 3, 0, 1)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2705,
+          "misses": 2522
+        }
+      },
+      "core_free": {
+        "nodes": 2642,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        3,
+        5,
+        6
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.7621167920297012,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 201,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 167,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 0, 3)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1575,
+          "misses": 1373
+        }
+      },
+      "core_free": {
+        "nodes": 211,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        6,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.1002100420300849,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            7
+          ],
+          "triple": [
+            0,
+            2,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1158,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 168,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 0, 1, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1309,
+          "misses": 1198
+        }
+      },
+      "core_free": {
+        "nodes": 273,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        3,
+        5,
+        8
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.8050923749688081,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            6,
+            9
+          ],
+          "triple": [
+            0,
+            2,
+            10
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 55,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 169,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 0, 2)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1701,
+          "misses": 1338
+        }
+      },
+      "core_free": {
+        "nodes": 57,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        5,
+        7,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.9766837079660036,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            1,
+            5
+          ],
+          "triple": [
+            0,
+            3,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 100,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 170,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 1, 1, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 2437,
+          "misses": 2797
+        }
+      },
+      "core_free": {
+        "nodes": 2308,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        4,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.8054671669960953,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            3
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 176,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 171,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 2, 0, 1)"
+    },
+    {
+      "blocker": 3,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 0,
+          "misses": 2
+        }
+      },
+      "core_free": {
+        "nodes": 0,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        4,
+        5,
+        6
+      ],
+      "deleted": 5,
+      "elapsed_sec": 0.0949264169903472,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 318,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 172,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(1, 3, 0, 0)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1819,
+          "misses": 2134
+        }
+      },
+      "core_free": {
+        "nodes": 1800,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        4,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 2.389449542039074,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            4,
+            10
+          ],
+          "triple": [
+            1,
+            2,
+            6
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 11886,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 173,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 0, 2)"
+    },
+    {
+      "blocker": 7,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 1300,
+          "misses": 987
+        }
+      },
+      "core_free": {
+        "nodes": 32,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        1,
+        5,
+        9
+      ],
+      "deleted": 5,
+      "elapsed_sec": 1.3158316669869237,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            7
+          ],
+          "triple": [
+            0,
+            1,
+            5
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 8150,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 174,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "(2, 0, 1, 1)"
+    },
+    {
+      "blocker": 0,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 3296,
+          "misses": 7487
+        }
+      },
+      "core_free": {
+        "nodes": 8608,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        1,
+        2,
+        3,
+        5
+      ],
+      "deleted": 5,
+      "elapsed_sec": 5.170470833021682,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            3,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1466,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 175,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-0"
+    },
+    {
+      "blocker": 2,
+      "cap_selected_row_counting": true,
+      "core_cache": {
+        "complete": {
+          "hits": 0,
+          "misses": 0
+        },
+        "prefix": {
+          "hits": 49890,
+          "misses": 56914
+        }
+      },
+      "core_free": {
+        "nodes": 104161,
+        "status": "UNSAT"
+      },
+      "dangerous": [
+        0,
+        5,
+        9,
+        10
+      ],
+      "deleted": 5,
+      "elapsed_sec": 38.94639283395372,
+      "first_incidence_core": {
+        "core": {
+          "centers": [
+            5,
+            8
+          ],
+          "triple": [
+            0,
+            1,
+            4
+          ]
+        },
+        "stage": "equality-duplicate-center"
+      },
+      "incidence": {
+        "assignment": null,
+        "nodes": 1146,
+        "status": "SAT"
+      },
+      "include_ordered_metric_cores": true,
+      "n": 11,
+      "packet_index": 176,
+      "pin_source": 6,
+      "profile": [
+        6,
+        4,
+        4
+      ],
+      "surplus_choice_count": 46,
+      "type": "Moser-2"
+    }
+  ],
+  "schema": "p97-global-confinement-cap-selected-row-metric-core-v2",
+  "scope": {
+    "cap_selected_row_counting": true,
+    "completed_packets": 177,
+    "expected_packets": 177,
+    "include_ordered_metric_cores": true,
+    "legacy_reused_packets": 0,
+    "limit": 177,
+    "max_nodes": 1000000,
+    "workers": 8
+  },
+  "summary": {
+    "core_free": {
+      "INDETERMINATE": 1,
+      "SAT": 0,
+      "UNSAT": 176
+    },
+    "first_incidence_core": {
+      "equality-duplicate-center": 170,
+      "equality-exact-off-circle": 6,
+      "equality-perpendicular-bisector-convex": 1
+    },
+    "incidence": {
+      "INDETERMINATE": 0,
+      "SAT": 177,
+      "UNSAT": 0
+    },
+    "legacy_reuse": {}
+  }
+}
