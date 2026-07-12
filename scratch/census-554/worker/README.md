@@ -46,8 +46,12 @@ their results, removes the host's heartbeat file, then exits.
 ## Deployed fleet (2026-07-12)
 
 - `dada-mun-26.local` (driver box, 32 cores): 16 slots (reduced from 24
-  after two hard crashes under sustained Singular load, 2026-07-11/12),
-  launched from `scratch/census-554/worker/`.
+  after two hard crashes under sustained Singular load, 2026-07-11/12;
+  root cause found 2026-07-12: the box's memory-hog-killer script had
+  stopped working, so certify load exhausted RAM — script restored, but
+  note a hogging Singular job may now be killed mid-run, surfacing as a
+  certify failure rather than a crash), launched from
+  `scratch/census-554/worker/`.
 - `flux` (16-core x86_64, 39G RAM, queue root
   `/mnt/nfs/erdos9796-flux-bridge`): 4 slots (reduced from 16 after one
   crash-reboot + repeated worker deaths), deployed at
