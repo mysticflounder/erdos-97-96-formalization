@@ -1300,6 +1300,71 @@ abbrev LeftOneSidedErasedPayloadFiniteCandidateSepFacts {A : Finset ℝ²}
             (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
             (centerClass cp)) = true)
 
+/-- Right-oriented finite point-class facts with both the derivable
+`noThreeOK` field and the zero-producer seed-candidate remainder fields
+omitted.  This is the honestly producible core of the reduced packet:
+center-class pins, generated prefix counts, and generated separation
+certificates. -/
+abbrev RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (_x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex1 ∧
+    centerClass .w = S.capByIndex S.oppIndex2 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
+    (∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true) ∧
+    (∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true)
+
+/-- Left-oriented mirror of
+`RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts`. -/
+abbrev LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (_x : ℝ²) (radius : ℝ)
+    (p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²) : Prop :=
+  ∃ centerClass : Label → Finset ℝ²,
+    centerClass .v = S.capByIndex S.oppIndex2 ∧
+    centerClass .w = S.capByIndex S.oppIndex1 ∧
+    centerClass .Pw = SelectedClass A p₁ radius ∧
+    centerClass .Pu = SelectedClass A p₂ radius ∧
+    PrefixPairCountsOK
+      (shadowOfPointClasses
+        (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+        centerClass) ∧
+    (∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+      sepOKFor
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) c cp a b = true) ∧
+    (∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true)
+
 /-- Right-oriented finite point-class facts for the relaxed-shape terminal row.
 Compared with the candidate packet, this keeps exact four-label/no-self shape
 for every non-cap center and drops membership in the generated candidate-mask
@@ -2027,6 +2092,316 @@ theorem leftFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
       ?_, hcounts, hsep, hsearchSep⟩
   intro sstar hsstar hsstar_eq
   simpa [centerClass] using hcandidate sstar hsstar hsstar_eq
+
+/-- Core producer for the reduced right finite-candidate packet: the
+remainder-free portion of
+`rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass`, requiring no
+seed-candidate remainder input. -/
+theorem rightFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i))) :
+    RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex1 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex2 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;> simp [centerClass, rightPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_rightPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true :=
+    rightPinned_sepOKFor_of_exactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    rightPinned_crossSeparationOKForMasks_of_exactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  exact
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcounts, hsep, hsearchSep⟩
+
+/-- Left-oriented mirror of
+`rightFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass`. -/
+theorem leftFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (labelOfHullFin i))) :
+    LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    leftPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex2 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex1 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;> simp [centerClass, leftPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_leftPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true :=
+    leftPinned_sepOKFor_of_exactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    leftPinned_crossSeparationOKForMasks_of_exactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  exact
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcounts, hsep, hsearchSep⟩
+
+/-- Reflected-hull variant of
+`rightFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass`, used by the
+nonmatching P1 orientation branch. -/
+theorem rightFiniteCandidateSepCoreFacts_of_reflectedErasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (reflectedHullLabel (labelOfHullFin i)))) :
+    RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex1 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex2 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;>
+      simp [centerClass, rightPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_rightPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    rightPinned_crossSeparationOKForMasks_of_reflectedExactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true := by
+    intro c cp a b hcenterPair hab
+    exact
+      sepOKFor_of_crossSeparationOKForMasks
+        (hsearchSep c cp (labelPairs_mem_orderedLabelPairs hcenterPair)) hab
+  exact
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcounts, hsep, hsearchSep⟩
+
+/-- Reflected-hull variant of
+`leftFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass`, used by the
+nonmatching P1 orientation branch. -/
+theorem leftFiniteCandidateSepCoreFacts_of_reflectedErasedPayloadCenterClass
+    {A : Finset ℝ²} {S : SurplusCapPacket A} {x : ℝ²} {radius : ℝ}
+    (hconv : ConvexIndep A) (hK4 : HasNEquidistantProperty 4 A)
+    (hM44 : S.IsM44) (hcontain : S.NonSurplusMoserCapContainment)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx)
+    (hp12 : p₁ ≠ p₂) (hq12 : q₁ ≠ q₂)
+    (hs12 : s1 ≠ s2) (hs13 : s1 ≠ s3) (hs23 : s2 ≠ s3)
+    (radiusOf : Label → ℝ)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon
+      (fun i : Fin 10 =>
+        leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+          (reflectedHullLabel (labelOfHullFin i)))) :
+    LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+      S x radius p₁ p₂ q₁ q₂ s1 s2 s3 := by
+  classical
+  let centerClass :=
+    leftPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂ s1 s2 s3 radius
+      radiusOf
+  have hvClass : centerClass .v = S.capByIndex S.oppIndex2 := rfl
+  have hwClass : centerClass .w = S.capByIndex S.oppIndex1 := rfl
+  have hprivatePwClass : centerClass .Pw = SelectedClass A p₁ radius := rfl
+  have hprivatePuClass : centerClass .Pu = SelectedClass A p₂ radius := rfl
+  have hselectedOther : ∀ center : Label,
+      center ≠ .v → center ≠ .w → center ≠ .Pw → center ≠ .Pu →
+        centerClass center =
+          SelectedClass A
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+            (radiusOf center) := by
+    intro center hv hw hPw hPu
+    cases center <;>
+      simp [centerClass, leftPinnedErasedPayloadCenterClass] at hv hw hPw hPu ⊢
+  have hcounts :
+      PrefixPairCountsOK
+        (shadowOfPointClasses
+          (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+          centerClass) :=
+    prefixPairCountsOK_leftPinnedLabelPoint_of_exactCaps_selectedClasses
+      S hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
+      hs3I hp12 hq12 hs12 hs13 hs23 hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsearchSep : ∀ c cp : Label,
+      (c, cp) ∈ orderedLabelPairs →
+        crossSeparationOKForMasks c
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass c)) cp
+          (pointMask
+            (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (centerClass cp)) = true :=
+    leftPinned_crossSeparationOKForMasks_of_reflectedExactCaps_selectedClasses
+      S hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12
+      hq12 hs12 hs13 hs23 hccw hvClass hwClass hprivatePwClass
+      hprivatePuClass hselectedOther
+  have hsep : ∀ c cp a b : Label,
+      (c, cp) ∈ labelPairs →
+        (a, b) ∈ labelPairs →
+          sepOKFor
+            (shadowOfPointClasses
+              (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+              centerClass) c cp a b = true := by
+    intro c cp a b hcenterPair hab
+    exact
+      sepOKFor_of_crossSeparationOKForMasks
+        (hsearchSep c cp (labelPairs_mem_orderedLabelPairs hcenterPair)) hab
+  exact
+    ⟨centerClass, hvClass, hwClass, hprivatePwClass, hprivatePuClass,
+      hcounts, hsep, hsearchSep⟩
 
 /-- A right-oriented finite point-class fact packet supplies the named surface
 once the erased surplus point lies in the selected surplus triple. -/
@@ -3186,12 +3561,12 @@ theorem false_of_right_row0022_finiteCandidateFacts
     (hxR : x ∈ SelectedClass A p radius ∩
         S.rightAdjacentInteriorByIndex S.oppIndex1)
     (hfacts :
-      RightOneSidedErasedPayloadFiniteCandidateFacts
+      RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -3236,12 +3611,12 @@ theorem false_of_right_row0121_finiteCandidateFacts
     (hxR : x ∈ SelectedClass A p radius ∩
         S.rightAdjacentInteriorByIndex S.oppIndex1)
     (hfacts :
-      RightOneSidedErasedPayloadFiniteCandidateFacts
+      RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -3782,12 +4157,12 @@ theorem false_of_right_row1021_finiteCandidateFacts
     (hxR : x ∈ SelectedClass A p radius ∩
         S.rightAdjacentInteriorByIndex S.oppIndex1)
     (hfacts :
-      RightOneSidedErasedPayloadFiniteCandidateFacts
+      RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -3831,12 +4206,12 @@ theorem false_of_right_row2011_finiteCandidateFacts
     (hxR : x ∈ SelectedClass A p radius ∩
         S.rightAdjacentInteriorByIndex S.oppIndex1)
     (hfacts :
-      RightOneSidedErasedPayloadFiniteCandidateFacts
+      RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -3881,12 +4256,12 @@ theorem false_of_left_row0112_finiteCandidateFacts
     (hxL : x ∈ SelectedClass A p radius ∩
         S.leftAdjacentInteriorByIndex S.oppIndex2)
     (hfacts :
-      LeftOneSidedErasedPayloadFiniteCandidateFacts
+      LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -4753,12 +5128,12 @@ theorem false_of_left_row1012_finiteCandidateFacts
     (hxL : x ∈ SelectedClass A p radius ∩
         S.leftAdjacentInteriorByIndex S.oppIndex2)
     (hfacts :
-      LeftOneSidedErasedPayloadFiniteCandidateFacts
+      LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -4802,12 +5177,12 @@ theorem false_of_left_row2011_finiteCandidateFacts
     (hxL : x ∈ SelectedClass A p radius ∩
         S.leftAdjacentInteriorByIndex S.oppIndex2)
     (hfacts :
-      LeftOneSidedErasedPayloadFiniteCandidateFacts
+      LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -4854,12 +5229,12 @@ theorem false_of_left_row0022_finiteCandidateFacts
     (hxL : x ∈ SelectedClass A p radius ∩
         S.leftAdjacentInteriorByIndex S.oppIndex2)
     (hfacts :
-      LeftOneSidedErasedPayloadFiniteCandidateFacts
+      LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
         S x radius p₁ p₂ q₁ q₂ s1 s2 s3) :
     False := by
   rcases hfacts with
     ⟨centerClass, _hvClass, hwClass, hprivatePwClass, hprivatePuClass,
-      _hcandidate, _hno3, _hcounts, _hsep, hsearchSep⟩
+      _hcounts, _hsep, hsearchSep⟩
   have hwMask :
       pointMask (leftPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
           (centerClass .w) =
@@ -5618,6 +5993,63 @@ abbrev ErasedPinFiniteCandidateSepSplitOrderedScaffoldFacts {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
   ErasedPinRightFiniteCandidateSepOrderedScaffoldFacts S x ∧
   ErasedPinLeftFiniteCandidateSepOrderedScaffoldFacts S x
+
+/-- Reduced right ordered finite candidate scaffold with the zero-producer
+seed-candidate remainder fields omitted. -/
+abbrev ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ T : Finset ℝ²,
+    x ∈ T →
+    T.card = 3 →
+    T ⊆ S.capInteriorByIndex S.surplusIdx →
+      ∃ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+        p₁ ≠ p₂ ∧
+        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) ∧
+        q₁ ≠ q₂ ∧
+        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) ∧
+        T = ({s1, s2, s3} : Finset ℝ²) ∧
+        x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+        s1 ≠ s2 ∧
+        s1 ≠ s3 ∧
+        s2 ≠ s3 ∧
+        ({s1, s2, s3} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.surplusIdx ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+          p ∈ A.erase x →
+            RightOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+              S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3)
+
+/-- Reduced left ordered finite candidate scaffold with the zero-producer
+seed-candidate remainder fields omitted. -/
+abbrev ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ∀ T : Finset ℝ²,
+    x ∈ T →
+    T.card = 3 →
+    T ⊆ S.capInteriorByIndex S.surplusIdx →
+      ∃ p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²,
+        p₁ ≠ p₂ ∧
+        S.oppInterior1 = ({p₁, p₂} : Finset ℝ²) ∧
+        q₁ ≠ q₂ ∧
+        S.oppInterior2 = ({q₁, q₂} : Finset ℝ²) ∧
+        T = ({s1, s2, s3} : Finset ℝ²) ∧
+        x ∈ ({s1, s2, s3} : Finset ℝ²) ∧
+        s1 ≠ s2 ∧
+        s1 ≠ s3 ∧
+        s2 ≠ s3 ∧
+        ({s1, s2, s3} : Finset ℝ²) ⊆
+          S.capInteriorByIndex S.surplusIdx ∧
+        (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+          p ∈ A.erase x →
+            LeftOneSidedErasedPayloadFiniteCandidateSepCoreFacts
+              S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3)
+
+/-- Reduced split ordered finite candidate scaffold with the zero-producer
+seed-candidate remainder fields omitted. -/
+abbrev ErasedPinFiniteCandidateSepCoreSplitOrderedScaffoldFacts {A : Finset ℝ²}
+    (S : SurplusCapPacket A) (x : ℝ²) : Prop :=
+  ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts S x ∧
+  ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts S x
 
 /-- The reduced scaffold supplies the existing full scaffold by deriving the
 search cross-separation facts from `sepOKFor`. -/
@@ -6435,7 +6867,8 @@ theorem rightNonSurplusRow0022Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     RightNonSurplusExactCountRowExcluded S x p 0 0 2 2 := by
   classical
   intro hm hs hl hr
@@ -6525,7 +6958,8 @@ theorem rightNonSurplusRow0121Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     RightNonSurplusExactCountRowExcluded S x p 0 1 2 1 := by
   classical
   intro hm hs hl hr
@@ -6796,7 +7230,8 @@ theorem rightNonSurplusRow1021Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     RightNonSurplusExactCountRowExcluded S x p 1 0 2 1 := by
   classical
   intro hm hs hl hr
@@ -7155,7 +7590,8 @@ theorem rightNonSurplusRow2011Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinRightFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     RightNonSurplusExactCountRowExcluded S x p 2 0 1 1 := by
   classical
   intro hm hs hl hr
@@ -7492,7 +7928,8 @@ theorem leftNonSurplusRow0022Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 0 0 2 2 := by
   classical
   intro hm hs hl hr
@@ -7582,7 +8019,8 @@ theorem leftNonSurplusRow0112Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 0 1 1 2 := by
   classical
   intro hm hs hl hr
@@ -8125,7 +8563,8 @@ theorem leftNonSurplusRow1012Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 1 0 1 2 := by
   classical
   intro hm hs hl hr
@@ -8214,7 +8653,8 @@ theorem leftNonSurplusRow2011Excluded_of_finiteScaffold
     (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
     (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
     (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x) :
+    (hscaffoldFacts :
+      ErasedPinLeftFiniteCandidateSepCoreOrderedScaffoldFacts S x) :
     LeftNonSurplusExactCountRowExcluded S x p 2 0 1 1 := by
   classical
   intro hm hs hl hr
@@ -8362,44 +8802,6 @@ abbrev LeftNonSurplusLeftRightSubpacketRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
   LeftNonSurplusExactCountRowExcluded S x p 2 0 1 1
 
-/-- First non-surplus left-right rows after removing the structurally
-impossible three-hit row on the other non-surplus side. -/
-abbrev RightNonSurplusLeftRightSubpacketPrunedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  RightNonSurplusExactCountRowExcluded S x p 0 0 2 2 ∧
-  RightNonSurplusExactCountRowExcluded S x p 0 0 1 3 ∧
-  RightNonSurplusExactCountRowExcluded S x p 0 1 2 1 ∧
-  RightNonSurplusExactCountRowExcluded S x p 0 1 1 2 ∧
-  RightNonSurplusExactCountRowExcluded S x p 1 0 2 1 ∧
-  RightNonSurplusExactCountRowExcluded S x p 1 0 1 2 ∧
-  RightNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
-  RightNonSurplusExactCountRowExcluded S x p 2 0 1 1
-
-/-- Second non-surplus left-right rows after removing the structurally
-impossible three-hit row on the other non-surplus side. -/
-abbrev LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  LeftNonSurplusExactCountRowExcluded S x p 0 0 2 2 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 0 0 3 1 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 0 1 1 2 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 0 1 2 1 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 1 0 1 2 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 1 0 2 1 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
-  LeftNonSurplusExactCountRowExcluded S x p 2 0 1 1
-
-/-- First non-surplus pruned left-right finite residual rows.  This bucket is
-empty after the finite-candidate scaffold also removes the `(1,1,1,1)` row. -/
-abbrev RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded
-    {A : Finset ℝ²} (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
-
-/-- Second non-surplus pruned left-right finite residual rows.  This bucket is
-empty after the finite-candidate scaffold also removes the `(1,1,1,1)` row. -/
-abbrev LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded
-    {A : Finset ℝ²} (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
-
 /-- First non-surplus rows with only the surplus-side adjacent bucket hit,
 excluding the terminal one-sided payload row. -/
 abbrev RightNonSurplusSameSideHeavyRowsExcluded {A : Finset ℝ²}
@@ -8420,20 +8822,6 @@ abbrev LeftNonSurplusSameSideHeavyRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusExactCountRowExcluded S x p 1 1 2 0 ∧
   LeftNonSurplusExactCountRowExcluded S x p 2 0 2 0
 
-/-- First non-surplus same-side-heavy finite residual rows.  The finite
-scaffold also removes the pure surplus-side four-hit row, so this bucket is
-empty. -/
-abbrev RightNonSurplusSameSideHeavyFiniteResidualRowsExcluded {A : Finset ℝ²}
-    (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
-
-/-- Second non-surplus same-side-heavy finite residual rows.  The finite
-scaffold also removes the pure surplus-side four-hit row, so this bucket is
-empty. -/
-abbrev LeftNonSurplusSameSideHeavyFiniteResidualRowsExcluded {A : Finset ℝ²}
-    (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
-
 /-- Payload exclusion for the first non-surplus terminal row `(2,1,0,1)`. -/
 abbrev RightNonSurplusOneSidedTerminalPayloadExcluded {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
@@ -8446,15 +8834,40 @@ abbrev LeftNonSurplusOneSidedTerminalPayloadExcluded {A : Finset ℝ²}
   SurplusCapPacket.LeftOneSidedErasedPayload
       S S.oppIndex2 p x (dist p x) → False
 
-/-- Seed-candidate data for the first non-surplus terminal row `(2,1,0,1)`. -/
-abbrev RightNonSurplusOneSidedTerminalSeedInputs {A : Finset ℝ²}
+/-- First non-surplus per-row refutation obligations that the remainder-free
+finite-candidate scaffold cannot discharge: the nine remainder-dependent
+count rows plus the terminal one-sided payload exclusion.  Each conjunct is a
+direct `→ False` obligation carried by the redrafted finite-residual
+statement. -/
+abbrev RightNonSurplusRemainderRowsExcluded {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  RightOneSidedErasedPayloadSeedCandidateInputs S p x (dist p x)
+  RightNonSurplusExactCountRowExcluded S x p 0 0 1 3 ∧
+  RightNonSurplusExactCountRowExcluded S x p 0 0 0 4 ∧
+  RightNonSurplusExactCountRowExcluded S x p 0 1 1 2 ∧
+  RightNonSurplusExactCountRowExcluded S x p 0 1 0 3 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 0 1 2 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 0 0 3 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
+  RightNonSurplusExactCountRowExcluded S x p 1 1 0 2 ∧
+  RightNonSurplusExactCountRowExcluded S x p 2 0 0 2 ∧
+  RightNonSurplusOneSidedTerminalPayloadExcluded S x p
 
-/-- Seed-candidate data for the second non-surplus terminal row `(2,1,1,0)`. -/
-abbrev LeftNonSurplusOneSidedTerminalSeedInputs {A : Finset ℝ²}
+/-- Second non-surplus per-row refutation obligations that the remainder-free
+finite-candidate scaffold cannot discharge: the mirror nine
+remainder-dependent count rows plus the terminal one-sided payload
+exclusion. -/
+abbrev LeftNonSurplusRemainderRowsExcluded {A : Finset ℝ²}
     (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  LeftOneSidedErasedPayloadSeedCandidateInputs S p x (dist p x)
+  LeftNonSurplusExactCountRowExcluded S x p 0 0 3 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 0 0 4 0 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 0 1 2 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 0 1 3 0 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 0 2 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 0 3 0 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 1 1 1 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 1 1 2 0 ∧
+  LeftNonSurplusExactCountRowExcluded S x p 2 0 2 0 ∧
+  LeftNonSurplusOneSidedTerminalPayloadExcluded S x p
 
 /-- First non-surplus row exclusions grouped by the generated route census. -/
 abbrev RightNonSurplusRoutedRowsExcluded {A : Finset ℝ²}
@@ -8469,52 +8882,6 @@ abbrev LeftNonSurplusRoutedRowsExcluded {A : Finset ℝ²}
   LeftNonSurplusLeftRightSubpacketRowsExcluded S x p ∧
   LeftNonSurplusSameSideHeavyRowsExcluded S x p ∧
   LeftNonSurplusOneSidedTerminalPayloadExcluded S x p
-
-/-- First non-surplus row data grouped by the generated route census, with the
-terminal row reduced to generated seed-candidate inputs. -/
-abbrev RightNonSurplusRoutedSeedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  RightNonSurplusLeftRightSubpacketRowsExcluded S x p ∧
-  RightNonSurplusSameSideHeavyRowsExcluded S x p ∧
-  RightNonSurplusOneSidedTerminalSeedInputs S x p
-
-/-- Second non-surplus row data grouped by the generated route census, with the
-terminal row reduced to generated seed-candidate inputs. -/
-abbrev LeftNonSurplusRoutedSeedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  LeftNonSurplusLeftRightSubpacketRowsExcluded S x p ∧
-  LeftNonSurplusSameSideHeavyRowsExcluded S x p ∧
-  LeftNonSurplusOneSidedTerminalSeedInputs S x p
-
-/-- First non-surplus routed seed-row data with the impossible three-hit row
-removed from the proof-facing obligations. -/
-abbrev RightNonSurplusRoutedSeedPrunedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p ∧
-  RightNonSurplusSameSideHeavyRowsExcluded S x p ∧
-  RightNonSurplusOneSidedTerminalSeedInputs S x p
-
-/-- Second non-surplus routed seed-row data with the impossible three-hit row
-removed from the proof-facing obligations. -/
-abbrev LeftNonSurplusRoutedSeedPrunedRowsExcluded {A : Finset ℝ²}
-    (S : SurplusCapPacket A) (x p : ℝ²) : Prop :=
-  LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p ∧
-  LeftNonSurplusSameSideHeavyRowsExcluded S x p ∧
-  LeftNonSurplusOneSidedTerminalSeedInputs S x p
-
-/-- First non-surplus routed row data after the finite-candidate scaffold has
-discharged the finite left-right rows, same-side-heavy rows, and terminal seed
-input.  The finite residual row bucket is empty. -/
-abbrev RightNonSurplusRoutedFiniteResidualRowsExcluded
-    {A : Finset ℝ²} (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
-
-/-- Second non-surplus routed row data after the finite-candidate scaffold has
-discharged the finite left-right rows, same-side-heavy rows, and terminal seed
-input.  The finite residual row bucket is empty. -/
-abbrev LeftNonSurplusRoutedFiniteResidualRowsExcluded
-    {A : Finset ℝ²} (_S : SurplusCapPacket A) (_x _p : ℝ²) : Prop :=
-  True
 
 theorem rightNonSurplusLeftAdjacentThreeRowExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
@@ -8549,316 +8916,6 @@ theorem leftNonSurplusRightAdjacentThreeRowExcluded
           rw [S.rightAdjacentInteriorByIndex_oppIndex2_eq_oppInterior1]
       _ = 2 := hM44.oppInterior1_card_eq_two
   omega
-
-theorem rightNonSurplusLeftRightSubpacketRowsExcluded_of_pruned
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hrows : RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p) :
-    RightNonSurplusLeftRightSubpacketRowsExcluded S x p := by
-  rcases hrows with
-    ⟨h0022, h0013, h0121, h0112, h1021, h1012, h1111, h2011⟩
-  exact
-    ⟨rightNonSurplusLeftAdjacentThreeRowExcluded hM44, h0022, h0013,
-      h0121, h0112, h1021, h1012, h1111, h2011⟩
-
-theorem leftNonSurplusLeftRightSubpacketRowsExcluded_of_pruned
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hrows : LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p) :
-    LeftNonSurplusLeftRightSubpacketRowsExcluded S x p := by
-  rcases hrows with
-    ⟨h0022, h0031, h0112, h0121, h1012, h1021, h1111, h2011⟩
-  exact
-    ⟨leftNonSurplusRightAdjacentThreeRowExcluded hM44, h0022, h0031,
-      h0112, h0121, h1012, h1021, h1111, h2011⟩
-
-theorem rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows :
-      RightNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
-    RightNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
-  exact
-    ⟨rightNonSurplusRow0022Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow0013Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow0121Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow0112Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow1021Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow1012Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow1111Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow2011Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
-
-theorem leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows :
-      LeftNonSurplusLeftRightSubpacketFiniteResidualRowsExcluded S x p) :
-    LeftNonSurplusLeftRightSubpacketPrunedRowsExcluded S x p := by
-  exact
-    ⟨leftNonSurplusRow0022Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow0031Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow0112Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow0121Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow1012Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow1021Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow1111Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow2011Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
-
-theorem rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows :
-      RightNonSurplusSameSideHeavyFiniteResidualRowsExcluded S x p) :
-    RightNonSurplusSameSideHeavyRowsExcluded S x p := by
-  exact
-    ⟨rightNonSurplusRow0004Excluded_of_finiteScaffold
-        hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow0103Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow1003Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow1102Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      rightNonSurplusRow2002Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
-
-theorem leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows :
-      LeftNonSurplusSameSideHeavyFiniteResidualRowsExcluded S x p) :
-    LeftNonSurplusSameSideHeavyRowsExcluded S x p := by
-  exact
-    ⟨leftNonSurplusRow0040Excluded_of_finiteScaffold
-        hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow0130Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow1030Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow1120Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts,
-      leftNonSurplusRow2020Excluded_of_finiteScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
-
-theorem rightNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
-    {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
-    (hseed : RightNonSurplusOneSidedTerminalSeedInputs S x p) :
-    RightNonSurplusOneSidedTerminalPayloadExcluded S x p := by
-  intro hpayload
-  exact false_of_rightOneSidedErasedPayload_of_seedCandidateInputs hseed hpayload
-
-theorem leftNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs
-    {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
-    (hseed : LeftNonSurplusOneSidedTerminalSeedInputs S x p) :
-    LeftNonSurplusOneSidedTerminalPayloadExcluded S x p := by
-  intro hpayload
-  exact false_of_leftOneSidedErasedPayload_of_seedCandidateInputs hseed hpayload
-
-theorem rightNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x) :
-    RightNonSurplusOneSidedTerminalSeedInputs S x p := by
-  classical
-  rcases hM44.exists_surplusInterior_triple_preserving hx with
-    ⟨u1, u2, u3, hxTriple, hu12, hu13, hu23, huSub⟩
-  have hTripleCard : ({u1, u2, u3} : Finset ℝ²).card = 3 := by
-    simp [hu12, hu13, hu23]
-  rcases hscaffoldFacts ({u1, u2, u3} : Finset ℝ²) hxTriple
-      hTripleCard huSub with
-    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-      _hTripleEq, hxTripleOrdered, hs12, hs13, hs23, hsSub,
-      hoppInterior1Facts⟩
-  have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
-    have hp₁Opp : p₁ ∈ S.oppInterior1 := by
-      rw [hpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior1] using hp₁Opp
-  have hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1 := by
-    have hp₂Opp : p₂ ∈ S.oppInterior1 := by
-      rw [hpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior1] using hp₂Opp
-  have hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
-    have hq₁Opp : q₁ ∈ S.oppInterior2 := by
-      rw [hqpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior2] using hq₁Opp
-  have hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2 := by
-    have hq₂Opp : q₂ ∈ S.oppInterior2 := by
-      rw [hqpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
-  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hpOpp : p ∈ S.oppInterior1 := by
-    simpa [SurplusCapPacket.oppInterior1] using hp
-  have hnamed :
-      RightOneSidedErasedPayloadNamedCandidateFacts
-        S x (dist p x) p₁ p₂ q₁ q₂ s1 s2 s3 :=
-    rightOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
-      hxTripleOrdered (hoppInterior1Facts p hp hpErase)
-  exact rightOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
-    hp₁I hp₂I hq₁I hq₂I hs1I hs2I hs3I hp12 hq12 hs12 hs13 hs23
-    hpair hqpair hpOpp hnamed
-
-theorem leftNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x) :
-    LeftNonSurplusOneSidedTerminalSeedInputs S x p := by
-  classical
-  rcases hM44.exists_surplusInterior_triple_preserving hx with
-    ⟨u1, u2, u3, hxTriple, hu12, hu13, hu23, huSub⟩
-  have hTripleCard : ({u1, u2, u3} : Finset ℝ²).card = 3 := by
-    simp [hu12, hu13, hu23]
-  rcases hscaffoldFacts ({u1, u2, u3} : Finset ℝ²) hxTriple
-      hTripleCard huSub with
-    ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
-      _hTripleEq, hxTripleOrdered, hs12, hs13, hs23, hsSub,
-      hoppInterior2Facts⟩
-  have hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
-    have hp₁Opp : p₁ ∈ S.oppInterior1 := by
-      rw [hpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior1] using hp₁Opp
-  have hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1 := by
-    have hp₂Opp : p₂ ∈ S.oppInterior1 := by
-      rw [hpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior1] using hp₂Opp
-  have hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
-    have hq₁Opp : q₁ ∈ S.oppInterior2 := by
-      rw [hqpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior2] using hq₁Opp
-  have hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2 := by
-    have hq₂Opp : q₂ ∈ S.oppInterior2 := by
-      rw [hqpair]
-      simp
-    simpa [SurplusCapPacket.oppInterior2] using hq₂Opp
-  have hs1I : s1 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs2I : s2 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hs3I : s3 ∈ S.capInteriorByIndex S.surplusIdx := hsSub (by simp)
-  have hpOpp : p ∈ S.oppInterior2 := by
-    simpa [SurplusCapPacket.oppInterior2] using hp
-  have hnamed :
-      LeftOneSidedErasedPayloadNamedCandidateFacts
-        S x (dist p x) q₁ q₂ p₁ p₂ s1 s2 s3 :=
-    leftOneSidedErasedPayloadNamedCandidateFacts_of_finiteCandidateFacts
-      hxTripleOrdered (hoppInterior2Facts p hp hpErase)
-  exact leftOneSidedErasedPayloadSeedCandidateInputs_of_namedCandidateFacts
-    hq₁I hq₂I hp₁I hp₂I hs1I hs2I hs3I hq12 hp12 hs12 hs13 hs23
-    hqpair hpair hpOpp hnamed
-
-theorem rightNonSurplusRoutedRowsExcluded_of_seedRowsExcluded
-    {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
-    (hrows : RightNonSurplusRoutedSeedRowsExcluded S x p) :
-    RightNonSurplusRoutedRowsExcluded S x p := by
-  rcases hrows with ⟨hsubpacket, hsameSide, hseed⟩
-  exact ⟨hsubpacket, hsameSide,
-    rightNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs hseed⟩
-
-theorem leftNonSurplusRoutedRowsExcluded_of_seedRowsExcluded
-    {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
-    (hrows : LeftNonSurplusRoutedSeedRowsExcluded S x p) :
-    LeftNonSurplusRoutedRowsExcluded S x p := by
-  rcases hrows with ⟨hsubpacket, hsameSide, hseed⟩
-  exact ⟨hsubpacket, hsameSide,
-    leftNonSurplusOneSidedTerminalPayloadExcluded_of_seedInputs hseed⟩
-
-theorem rightNonSurplusRoutedSeedRowsExcluded_of_pruned
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hrows : RightNonSurplusRoutedSeedPrunedRowsExcluded S x p) :
-    RightNonSurplusRoutedSeedRowsExcluded S x p := by
-  rcases hrows with ⟨hsubpacket, hsameSide, hseed⟩
-  exact
-    ⟨rightNonSurplusLeftRightSubpacketRowsExcluded_of_pruned hM44 hsubpacket,
-      hsameSide, hseed⟩
-
-theorem leftNonSurplusRoutedSeedRowsExcluded_of_pruned
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hrows : LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p) :
-    LeftNonSurplusRoutedSeedRowsExcluded S x p := by
-  rcases hrows with ⟨hsubpacket, hsameSide, hseed⟩
-  exact
-    ⟨leftNonSurplusLeftRightSubpacketRowsExcluded_of_pruned hM44 hsubpacket,
-      hsameSide, hseed⟩
-
-theorem rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex1)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinRightFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows : RightNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
-    RightNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
-  exact
-    ⟨rightNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffoldFacts trivial,
-      rightNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffoldFacts trivial,
-      rightNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
-
-theorem leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
-    {x p : ℝ²}
-    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
-    (hp : p ∈ S.capInteriorByIndex S.oppIndex2)
-    (hpErase : p ∈ A.erase x)
-    (hscaffoldFacts : ErasedPinLeftFiniteCandidateOrderedScaffoldFacts S x)
-    (_hrows : LeftNonSurplusRoutedFiniteResidualRowsExcluded S x p) :
-    LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p := by
-  exact
-    ⟨leftNonSurplusLeftRightSubpacketPrunedRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffoldFacts trivial,
-      leftNonSurplusSameSideHeavyRowsExcluded_of_finiteResidualRows
-        hM44 hx hp hpErase hscaffoldFacts trivial,
-      leftNonSurplusOneSidedTerminalSeedInputs_of_orderedScaffold
-        hM44 hx hp hpErase hscaffoldFacts⟩
 
 theorem rightNonSurplusTerminalRowExcluded_of_payloadExcluded
     {A : Finset ℝ²} {S : SurplusCapPacket A} {x p : ℝ²}
@@ -9096,75 +9153,15 @@ abbrev IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement :
               p ∈ A.erase x →
                 LeftNonSurplusRoutedRowsExcluded S x p)
 
-/-- Route-grouped finite-row input surface whose terminal rows are reduced to
-the generated seed-candidate interfaces. -/
-abbrev IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement :
-    Prop :=
-    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
-      HasNEquidistantProperty 4 A → 9 < A.card →
-      (∀ B : Finset ℝ², B.card < A.card →
-        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
-      ∀ S : SurplusCapPacket A, S.IsM44 →
-        (∀ {radius rho : ℝ} {x : ℝ²},
-          S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) →
-        (∀ {radius rho : ℝ} {x : ℝ²},
-          S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False) →
-        (∀ {radius : ℝ} {x : ℝ²},
-          S.PinnedRightSurplusResidualAt radius x → False) →
-        (∀ {radius : ℝ} {x : ℝ²},
-          S.PinnedLeftSurplusResidualAt radius x → False) →
-        S.NonSurplusMoserCapContainment →
-          ∃ x : ℝ²,
-            x ∈ S.capInteriorByIndex S.surplusIdx ∧
-            (ErasedPinTriple A x
-              (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
-              p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-              p ∈ A.erase x →
-                RightNonSurplusRoutedSeedRowsExcluded S x p) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-              p ∈ A.erase x →
-                LeftNonSurplusRoutedSeedRowsExcluded S x p)
-
-/-- Route-grouped seed-row input surface with the two structurally impossible
-three-hit rows on the other non-surplus side removed from the proof-facing
-obligation. -/
-abbrev
-    IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement :
-    Prop :=
-    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
-      HasNEquidistantProperty 4 A → 9 < A.card →
-      (∀ B : Finset ℝ², B.card < A.card →
-        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
-      ∀ S : SurplusCapPacket A, S.IsM44 →
-        (∀ {radius rho : ℝ} {x : ℝ²},
-          S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) →
-        (∀ {radius rho : ℝ} {x : ℝ²},
-          S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False) →
-        (∀ {radius : ℝ} {x : ℝ²},
-          S.PinnedRightSurplusResidualAt radius x → False) →
-        (∀ {radius : ℝ} {x : ℝ²},
-          S.PinnedLeftSurplusResidualAt radius x → False) →
-        S.NonSurplusMoserCapContainment →
-          ∃ x : ℝ²,
-            x ∈ S.capInteriorByIndex S.surplusIdx ∧
-            (ErasedPinTriple A x
-              (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
-              p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
-              p ∈ A.erase x →
-                RightNonSurplusRoutedSeedPrunedRowsExcluded S x p) ∧
-            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
-              p ∈ A.erase x →
-                LeftNonSurplusRoutedSeedPrunedRowsExcluded S x p)
-
-/-- Route-grouped seed-row input surface after the finite-candidate scaffold
-has discharged all finite ten-label left-right and same-side-heavy rows plus
-the pure surplus-side four-hit rows and terminal seed inputs.  The remaining
-producer obligations are the reduced finite candidate scaffold and direct
-surplus erased-pin exclusions. -/
+/-- Redrafted finite-residual input surface (2026-07-12).  The
+finite-candidate scaffold conjunct is remainder-free: it carries only the
+honestly producible core packet (center-class pins, generated prefix counts,
+and generated separation certificates).  The rows whose exclusions consumed
+the zero-producer seed-candidate remainder fields are folded into direct
+per-row `→ False` obligations, carried at the full statement hypothesis
+surface — `hK4` and minimality included, which the stored exact-rational
+row-truth witnesses show to be load-bearing (see
+`docs/audits/2026-07-11-erase-p2-remainder-blocker-audit.md`). -/
 abbrev
     IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement :
     Prop :=
@@ -9188,28 +9185,63 @@ abbrev
               (S.oppositeVertexByIndex S.surplusIdx) → False) ∧
             (∀ p : ℝ², p ∈ S.capInteriorByIndex S.surplusIdx →
               p ∈ A.erase x → ErasedPinTriple A x p → False) ∧
-            ErasedPinFiniteCandidateSepSplitOrderedScaffoldFacts S x
+            ErasedPinFiniteCandidateSepCoreSplitOrderedScaffoldFacts S x ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex1 →
+              p ∈ A.erase x →
+                RightNonSurplusRemainderRowsExcluded S x p) ∧
+            (∀ p : ℝ², p ∈ S.capInteriorByIndex S.oppIndex2 →
+              p ∈ A.erase x →
+                LeftNonSurplusRemainderRowsExcluded S x p)
 
-theorem prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
+theorem routedRowsFactsStatement_of_finiteResidualRowsFactsStatement
     (hfiniteResidual :
       IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement) :
-    IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement := by
+    IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement := by
   intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
   rcases hfiniteResidual A hne hconv hK4 hgt hMin S hM44 hend1 hend2
       hpin1 hpin2 hcontain with
-    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, hscaffold⟩
-  have horderedScaffold :
-      ErasedPinFiniteCandidateSplitOrderedScaffoldFacts S x :=
-    finiteCandidateSplitOrderedScaffoldFacts_of_sepSplitOrderedScaffoldFacts
-      hscaffold
+    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, hscaffold,
+      hrightRows, hleftRows⟩
   refine
     ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
   · intro p hpI hpErase
-    exact rightNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase horderedScaffold.1 trivial
+    rcases hrightRows p hpI hpErase with
+      ⟨h0013, h0004, h0112, h0103, h1012, h1003, h1111, h1102, h2002,
+        hterminal⟩
+    exact
+      ⟨⟨rightNonSurplusLeftAdjacentThreeRowExcluded hM44,
+          rightNonSurplusRow0022Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.1,
+          h0013,
+          rightNonSurplusRow0121Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.1,
+          h0112,
+          rightNonSurplusRow1021Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.1,
+          h1012, h1111,
+          rightNonSurplusRow2011Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.1⟩,
+        ⟨h0004, h0103, h1003, h1102, h2002⟩,
+        hterminal⟩
   · intro p hpI hpErase
-    exact leftNonSurplusRoutedSeedPrunedRowsExcluded_of_finiteResidualRows
-      hM44 hxI hpI hpErase horderedScaffold.2 trivial
+    rcases hleftRows p hpI hpErase with
+      ⟨h0031, h0040, h0121, h0130, h1021, h1030, h1111, h1120, h2020,
+        hterminal⟩
+    exact
+      ⟨⟨leftNonSurplusRightAdjacentThreeRowExcluded hM44,
+          leftNonSurplusRow0022Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.2,
+          h0031,
+          leftNonSurplusRow0112Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.2,
+          h0121,
+          leftNonSurplusRow1012Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.2,
+          h1021, h1111,
+          leftNonSurplusRow2011Excluded_of_finiteScaffold hM44 hxI hpI
+            hpErase hscaffold.2⟩,
+        ⟨h0040, h0130, h1030, h1120, h2020⟩,
+        hterminal⟩
 
 theorem countFamilyFactsStatement_of_countRowsFactsStatement
     (hrows :
@@ -9246,42 +9278,6 @@ theorem countRowsFactsStatement_of_routedRowsFactsStatement
   · intro p hpI hpErase
     exact leftNonSurplusExactCountRowsExcluded_of_routedRowsExcluded
       hxI hpI (hoppInterior2Rows p hpI hpErase)
-
-theorem routedRowsFactsStatement_of_routedSeedRowsFactsStatement
-    (hseedRows :
-      IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement) :
-    IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement := by
-  intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
-  rcases hseedRows A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2
-      hcontain with
-    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple,
-      hoppInterior1Rows, hoppInterior2Rows⟩
-  refine
-    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
-  · intro p hpI hpErase
-    exact rightNonSurplusRoutedRowsExcluded_of_seedRowsExcluded
-      (hoppInterior1Rows p hpI hpErase)
-  · intro p hpI hpErase
-    exact leftNonSurplusRoutedRowsExcluded_of_seedRowsExcluded
-      (hoppInterior2Rows p hpI hpErase)
-
-theorem routedSeedRowsFactsStatement_of_prunedRowsFactsStatement
-    (hpruned :
-      IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement) :
-    IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement := by
-  intro A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2 hcontain
-  rcases hpruned A hne hconv hK4 hgt hMin S hM44 hend1 hend2 hpin1 hpin2
-      hcontain with
-    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple,
-      hoppInterior1Rows, hoppInterior2Rows⟩
-  refine
-    ⟨x, hxI, hsurplusOppTriple, hsurplusInteriorTriple, ?_, ?_⟩
-  · intro p hpI hpErase
-    exact rightNonSurplusRoutedSeedRowsExcluded_of_pruned hM44
-      (hoppInterior1Rows p hpI hpErase)
-  · intro p hpI hpErase
-    exact leftNonSurplusRoutedSeedRowsExcluded_of_pruned hM44
-      (hoppInterior2Rows p hpI hpErase)
 
 namespace SurplusCapPacket
 

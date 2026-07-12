@@ -1,4 +1,5 @@
 import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
+import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
 
 /-!
 # Removable-vertex continuation branch
@@ -146,7 +147,7 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
         rcases hfixed with ⟨p, t1, t2, t3, hP⟩
         exact ⟨p, t1, t2, t3,
           u5DangerousTriple_of_u3FixedTriplePacket hP⟩
-      refine ⟨x, hxI, ?_, ?_, ?_⟩
+      refine ⟨x, hxI, ?_, ?_, ?_, ?_, ?_⟩
       · intro htriple
         rcases exists_u3FixedTriplePacket_of_erasedPinTriple
             (D := D) hxA
@@ -284,57 +285,6 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             hne hconv hK4 with
           ⟨n, hn, φ, iv, iw, hφinj, hφimage, hccwBoundary, hu, hv, hw,
             hapexOrder⟩
-        have hrightCandidate :
-            ∀ {p₁ p₂ q₁ q₂ s1 s2 s3 p : ℝ²},
-              p ∈ S.capInteriorByIndex S.oppIndex1 →
-              p ∈ A.erase x →
-              ∀ sstar : Label,
-                isSurplusStar sstar = true →
-                rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 sstar = x →
-                  (OneSidedSeedCandidateRemainder
-                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-                      (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂
-                        s1 s2 s3 (dist p x) (fun _ => dist p x))
-                      ({ sstar := sstar, privateCenter := .Pw, kind := .own,
-                          privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
-                        OneSidedSeed) ∧
-                    OneSidedSeedCandidateRemainder
-                      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
-                      (rightPinnedErasedPayloadCenterClass S p₁ p₂ q₁ q₂
-                        s1 s2 s3 (dist p x) (fun _ => dist p x))
-                      ({ sstar := sstar, privateCenter := .Pu, kind := .own,
-                          privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
-                        OneSidedSeed)) := by
-          intro p₁ p₂ q₁ q₂ s1 s2 s3 p hpI hpErase sstar hsstar
-            hsstar_eq
-          -- P2 producer gap: prove the right candidate remainders for the
-          -- selected-class center classes.
-          sorry
-        have hleftCandidate :
-            ∀ {p₁ p₂ q₁ q₂ s1 s2 s3 p : ℝ²},
-              p ∈ S.capInteriorByIndex S.oppIndex2 →
-              p ∈ A.erase x →
-              ∀ sstar : Label,
-                isSurplusStar sstar = true →
-                leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3 sstar = x →
-                  (OneSidedSeedCandidateRemainder
-                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
-                      (leftPinnedErasedPayloadCenterClass S q₁ q₂ p₁ p₂
-                        s1 s2 s3 (dist p x) (fun _ => dist p x))
-                      ({ sstar := sstar, privateCenter := .Pw, kind := .own,
-                          privateMask := maskOfLabels [.u, .w, sstar, .Pu] } :
-                        OneSidedSeed) ∧
-                    OneSidedSeedCandidateRemainder
-                      (leftPinnedLabelPoint S q₁ q₂ p₁ p₂ s1 s2 s3)
-                      (leftPinnedErasedPayloadCenterClass S q₁ q₂ p₁ p₂
-                        s1 s2 s3 (dist p x) (fun _ => dist p x))
-                      ({ sstar := sstar, privateCenter := .Pu, kind := .own,
-                          privateMask := maskOfLabels [.u, .w, sstar, .Pw] } :
-                        OneSidedSeed)) := by
-          intro p₁ p₂ q₁ q₂ s1 s2 s3 p hpI hpErase sstar hsstar
-            hsstar_eq
-          -- Mirror P2 candidate-remainder producer gap.
-          sorry
         constructor
         · intro T hxT hTcard hTsub
           rcases hapexOrder with hrightOrder | hleftOrder
@@ -349,16 +299,13 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             refine
               ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
                 hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
-            intro p hpI hpErase
+            intro p _hpI _hpErase
             exact
-              rightFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+              rightFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass
                 hconv hK4 hM44 hcontain hp₁I hp₂I hq₁I hq₂I hs1I hs2I
                 hs3I hp12 hq12 hs12 hs13 hs23
                 (fun _ => dist p x)
                 (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
-                (by
-                  intro sstar hsstar hsstar_eq
-                  exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
           · rcases hleftOrder with ⟨h0w, hwv⟩
             rcases exists_leftPinnedHullOrderLabels_of_apex_order
                 (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
@@ -395,7 +342,7 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               ⟨p₂, p₁, q₂, q₁, s3, s2, s1, hp12.symm, hpair_rev,
                 hq12.symm, hqpair_rev, hTeq_rev, hxTriple_rev,
                 hs23.symm, hs13.symm, hs12.symm, hsSub_rev, ?_⟩
-            intro p hpI hpErase
+            intro p _hpI _hpErase
             have hccwReflected :
                 EuclideanGeometry.IsCcwConvexPolygon
                   (fun i : Fin 10 =>
@@ -411,14 +358,11 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               rename_i i
               fin_cases i <;> rfl
             exact
-              rightFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+              rightFiniteCandidateSepCoreFacts_of_reflectedErasedPayloadCenterClass
                 hconv hK4 hM44 hcontain hp₂I hp₁I hq₂I hq₁I hs3I hs2I
                 hs1I hp12.symm hq12.symm hs23.symm hs13.symm hs12.symm
                 (fun _ => dist p x)
                 hccwReflected
-                (by
-                  intro sstar hsstar hsstar_eq
-                  exact hrightCandidate hpI hpErase sstar hsstar hsstar_eq)
         · intro T hxT hTcard hTsub
           rcases hapexOrder with hrightOrder | hleftOrder
           · rcases hrightOrder with ⟨h0v, hvw⟩
@@ -457,7 +401,7 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               ⟨p₂, p₁, q₂, q₁, s3, s2, s1, hp12.symm, hpair_rev,
                 hq12.symm, hqpair_rev, hTeq_rev, hxTriple_rev,
                 hs23.symm, hs13.symm, hs12.symm, hsSub_rev, ?_⟩
-            intro p hpI hpErase
+            intro p _hpI _hpErase
             have hccwReflected :
                 EuclideanGeometry.IsCcwConvexPolygon
                   (fun i : Fin 10 =>
@@ -473,14 +417,11 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
               rename_i i
               fin_cases i <;> rfl
             exact
-              leftFiniteCandidateSepFacts_of_reflectedErasedPayloadCenterClass
+              leftFiniteCandidateSepCoreFacts_of_reflectedErasedPayloadCenterClass
                 hconv hK4 hM44 hcontain hq₂I hq₁I hp₂I hp₁I hs3I hs2I
                 hs1I hq12.symm hp12.symm hs23.symm hs13.symm hs12.symm
                 (fun _ => dist p x)
                 hccwReflected
-                (by
-                  intro sstar hsstar hsstar_eq
-                  exact hleftCandidate hpI hpErase sstar hsstar hsstar_eq)
           · rcases hleftOrder with ⟨h0w, hwv⟩
             rcases exists_leftPinnedHullOrderLabels_of_apex_order
                 (A := A) (S := S) (x := x) (T := T) (n := n) (φ := φ)
@@ -492,26 +433,61 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             refine
               ⟨p₁, p₂, q₁, q₂, s1, s2, s3, hp12, hpair, hq12, hqpair,
                 hTeq, hxTriple, hs12, hs13, hs23, hsSub, ?_⟩
-            intro p hpI hpErase
+            intro p _hpI _hpErase
             exact
-              leftFiniteCandidateSepFacts_of_erasedPayloadCenterClass
+              leftFiniteCandidateSepCoreFacts_of_erasedPayloadCenterClass
                 hconv hK4 hM44 hcontain hq₁I hq₂I hp₁I hp₂I hs1I hs2I
                 hs3I hq12 hp12 hs12 hs13 hs23
                 (fun _ => dist p x)
                 (isCcwConvexPolygon_of_hullOrderSubsequenceCertificate horder)
-                (by
-                  intro sstar hsstar hsstar_eq
-                  exact hleftCandidate hpI hpErase sstar hsstar hsstar_eq)
-    have hprunedRows :
-        IsM44NonSurplusContainmentErasedPinTripleRoutedSeedPrunedRowsFactsStatement :=
-      prunedRowsFactsStatement_of_finiteResidualRowsFactsStatement
-        hfiniteResidualRows
-    have hseedRows :
-        IsM44NonSurplusContainmentErasedPinTripleRoutedSeedRowsFactsStatement :=
-      routedSeedRowsFactsStatement_of_prunedRowsFactsStatement hprunedRows
+      · intro p hpI hpErase
+        exact
+          ⟨right_row0013_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row0004_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row0112_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row0103_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row1012_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row1003_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row1111_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row1102_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_row2002_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            right_terminal2101_payload_residual_excluded hne hconv hK4 hgt
+              hMin hM44 hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase⟩
+      · intro p hpI hpErase
+        exact
+          ⟨left_row0031_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row0040_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row0121_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row0130_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row1021_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row1030_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row1111_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row1120_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_row2020_residual_excluded hne hconv hK4 hgt hMin hM44
+              hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase,
+            left_terminal2110_payload_residual_excluded hne hconv hK4 hgt
+              hMin hM44 hend1 hend2 hpin1 hpin2 hcontain hxI hpI hpErase⟩
     have hrouted :
         IsM44NonSurplusContainmentErasedPinTripleRoutedRowsFactsStatement :=
-      routedRowsFactsStatement_of_routedSeedRowsFactsStatement hseedRows
+      routedRowsFactsStatement_of_finiteResidualRowsFactsStatement
+        hfiniteResidualRows
     have hrows :
         IsM44NonSurplusContainmentErasedPinTripleCountRowsFactsStatement :=
       countRowsFactsStatement_of_routedRowsFactsStatement hrouted
