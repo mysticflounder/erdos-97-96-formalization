@@ -9,11 +9,15 @@ A sliding submission window (--max-inflight, default 20) leaves queue
 capacity for the live frontier loop's own 900s certify bursts and mining
 chunks.
 
-Successful rows are APPENDED one per line to retry_certified_pending.jsonl
-(JSONL: O(1) append; the legacy retry_certified_pending.json grew to 5.5GB
-and was rewritten whole on every success). Both files are consulted for
-dedupe. This script NEVER banks — merge pending rows manually at a safe
-moment, exactly like the serial script.
+Successful rows are stored atomically, one file per canonical pattern, under
+retry_certified_pending.d/.  A compact key index makes restart deduplication
+independent of certificate size.  Legacy JSON/JSONL pending files are migrated
+and indexed once in a short-lived helper, so their multi-gigabyte decode heap
+is returned to the OS instead of being retained by this long-lived process.
+Queue results are converted by the same disposable-helper pattern.
+
+This script NEVER banks — merge pending records manually at a safe moment,
+exactly like the serial script.
 
 Run OUTSIDE the Claude sandbox (NFS access) with live worker heartbeats:
     uv run python retry_certify_drain.py [--max-inflight N] [--timeout S]
@@ -24,39 +28,48 @@ import os
 import sys
 import time
 import uuid
+from pathlib import Path
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 # queue_client.submit imports census.census_554.io_protocol -> repo root
 sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))
 import cover_probe as cp  # noqa: E402
+import pending_cert_store as pcs  # noqa: E402
 import queue_client as qc  # noqa: E402
 import retry_certify_queue as rq  # noqa: E402
 from concurrent.futures import ThreadPoolExecutor  # noqa: E402
 
-PENDING_JSONL = "retry_certified_pending.jsonl"
+PENDING_STORE = Path(HERE) / "retry_certified_pending.d"
+LEGACY_INDEX = PENDING_STORE / "legacy-index.json"
+LEGACY_SOURCES = (
+    Path(HERE) / "retry_certified_pending.json",
+    Path(HERE) / "retry_certified_pending.jsonl",
+    Path(HERE) / "retry_iter585_certified.json",
+)
 DEADCHECK_TIMEOUT = 300
 DEADCHECK_WORKERS = 12
 CLAIM_MARGIN_S = 3600  # queue wait + NFS latency headroom past the timeout
 
 
 def load_done_all():
-    done = rq.load_done()
-    if os.path.exists(PENDING_JSONL):
-        with open(PENDING_JSONL) as f:
-            for ln in f:
-                row = json.loads(ln)
-                pat = {int(c): frozenset(M)
-                       for c, M in row["pattern"].items()}
-                done.add(cp.unlabeled_key(pat))
+    store = pcs.PendingCertificateStore(PENDING_STORE)
+    done = store.done_digests()
+    try:
+        legacy = pcs.load_legacy_index(
+            LEGACY_INDEX, LEGACY_SOURCES, store_root=PENDING_STORE
+        )
+    except (FileNotFoundError, pcs.PendingStoreError,
+            json.JSONDecodeError):
+        print("legacy pending migration/index missing or stale; rebuilding "
+              "in disposable helper (one-time)", flush=True)
+        legacy = pcs.ensure_legacy_index(
+            LEGACY_INDEX, LEGACY_SOURCES, store_root=PENDING_STORE
+        )
+        print(f"legacy pending migration/index ready: {len(legacy)} "
+              "canonical records", flush=True)
+    done.update(legacy)
     return done
-
-
-def append_pending(row):
-    with open(PENDING_JSONL, "a", encoding="utf-8") as f:
-        f.write(json.dumps(row, sort_keys=True) + "\n")
-        f.flush()
-        os.fsync(f.fileno())
 
 
 def gc_own_stale_results():
@@ -79,12 +92,12 @@ def main():
     gc_own_stale_results()
 
     fails = rq.scan_failures()
-    bank_motifs = {cp.unlabeled_key(p) for p in cp.load_bank()}
+    bank_motifs = {pcs.pattern_digest(p) for p in cp.load_bank()}
     done = load_done_all()
     todo, seen = [], set()
     for pj, cube in fails:
         pat = {int(c): frozenset(M) for c, M in pj.items()}
-        key = cp.unlabeled_key(pat)
+        key = pcs.pattern_digest(pat)
         if key in bank_motifs or key in done or key in seen:
             continue
         seen.add(key)
@@ -128,27 +141,31 @@ def main():
             if f"{stem}.json" in names:
                 path = qc.RESULTS_DIR / f"{stem}.json"
                 try:
-                    with open(path, encoding="utf-8") as h:
-                        data = json.load(h)
-                except (OSError, json.JSONDecodeError):
-                    continue  # torn read raced the rename; next cycle
+                    status = pcs.consume_queue_result_isolated(
+                        path, pj, cube, PENDING_STORE
+                    )
+                except (OSError, pcs.PendingStoreError) as exc:
+                    # Leave the result and window entry intact. A torn NFS
+                    # read or failed helper is retryable and must not discard
+                    # a successfully computed certificate.
+                    print(f"RESULT RETAINED for retry ({stem}): {exc}",
+                          flush=True)
+                    continue
                 try:
                     path.unlink()
                 except (FileNotFoundError, OSError):
                     pass
                 del window[stem]
-                cert = data.get("certificate")
-                dt = data.get("elapsed", 0.0)
-                who = data.get("worker", "?")
-                if cert is not None and "kill" in cert:
+                dt = status.get("elapsed", 0.0)
+                who = status.get("worker", "?")
+                if status["outcome"] == "certified":
                     certified += 1
-                    append_pending({"pattern": pj, "cert": cert,
-                                    "cube": cube})
-                    print(f"CERTIFIED kill={cert['kill']} "
+                    disposition = "stored" if status["stored"] else "existing"
+                    print(f"CERTIFIED kill={status['kill']} {disposition} "
                           f"({dt:.0f}s, {who}) {json.dumps(pj)}", flush=True)
                 else:
                     failed += 1
-                    err = data.get("error")
+                    err = status.get("error")
                     print(f"FAILED again ({dt:.0f}s, {who}"
                           f"{', ' + err if err else ''}) {json.dumps(pj)}",
                           flush=True)
@@ -160,7 +177,7 @@ def main():
                       f"{json.dumps(pj)}", flush=True)
         if window or queue:
             time.sleep(qc.POLL_INTERVAL)
-    print(f"done: {certified} certified -> {PENDING_JSONL}, "
+    print(f"done: {certified} certified -> {PENDING_STORE}, "
           f"{failed} failed again, {orphaned} orphaned", flush=True)
     return 0
 
