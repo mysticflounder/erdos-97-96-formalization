@@ -47,3 +47,16 @@ __pycache__/
 /census/multi_center/frontier_cache/
 /census/multi_center/*.log
 /scratch/census-554/driver.lock
+
+# census-554 probe run artifacts (multi-GB solver output; the probe
+# scripts and their summaries are what gets committed).
+/scratch/census-554/separation_probe_runs/
+/scratch/census-554/transition_snapshots/
+/scratch/census-554/frontier_analysis_runs/
+
+# queue worker runtime state
+/scratch/census-554/worker/worker.log
+/scratch/census-554/worker/worker.pid
+
+# Singular REPL history
+.singularhistory
