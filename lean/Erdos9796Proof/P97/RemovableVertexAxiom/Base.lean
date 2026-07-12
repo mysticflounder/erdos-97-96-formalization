@@ -700,6 +700,22 @@ abbrev IsM44EndpointResidualsExcludedStatement : Prop :=
         (∀ {radius rho : ℝ} {x : ℝ²},
           S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
 
+/-- General-`m` endpoint residual exclusions: the `5 < m` branch of
+  `IsM44EndpointResidualsExcludedStatement` after the label-complete `m = 5`
+  split (route decision (b), 2026-07-11).  In this regime
+  `A.card = S.surplusCap.card + 5 > 10`, so the ten endpoint labels cannot
+  cover `A` and the label-complete shadow producer does not apply. -/
+abbrev IsM44EndpointGeneralMResidualsExcludedStatement : Prop :=
+    ∀ A : Finset ℝ², A.Nonempty → ConvexIndep A →
+      HasNEquidistantProperty 4 A → 9 < A.card →
+      (∀ B : Finset ℝ², B.card < A.card →
+        B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False) →
+      ∀ S : SurplusCapPacket A, S.IsM44 → 5 < S.surplusCap.card →
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False) ∧
+        (∀ {radius rho : ℝ} {x : ℝ²},
+          S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+
 /-- Pinned surplus-family residual exclusions needed by the `IsM44` branch.
   The closed finite-bank handoff is available as an input, but the remaining work
   is still the geometric payload-to-COMP-G verdict boundary. -/
@@ -10064,13 +10080,29 @@ theorem largeK4SurplusCapPacket :
       LargeK4SurplusCapPacketStatement :=
   fun _A hne hconv hK4 hgt => MEC.nonempty_surplusCapPacket_of_K4 hne hconv hK4 hgt
 
+/-- General-`m` endpoint residuals are the remaining branch after the
+  label-complete `m = 5` split (route decision (b), 2026-07-11).  The ten-label
+  shadow producer does not claim this regime; see the closure-matrix K-B-END
+  row for the route evidence. -/
+theorem isM44EndpointGeneralMResidualsExcluded :
+      IsM44EndpointGeneralMResidualsExcludedStatement := by
+  sorry
+
 /-- Endpoint residuals are impossible in the `IsM44` branch.  This is a spine
   obligation consumed by
-  `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit`. -/
+  `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit`.  Split by
+  surplus-cap cardinality: the `5 < m` regime delegates to
+  `isM44EndpointGeneralMResidualsExcluded`; the label-complete `m = 5` regime
+  (`A.card = 10`) carries the shadow-producer holes with `hcard5` in scope. -/
 theorem isM44EndpointResidualsExcluded :
       IsM44EndpointResidualsExcludedStatement := by
     classical
-    intro A _hne hconv hK4 _hgt _hMin S hM44
+    intro A hne hconv hK4 hgt hMin S hM44
+    by_cases hcard5 : S.surplusCap.card = 5
+    case neg =>
+      have hge5 := hM44.surplus_card_ge_five
+      exact isM44EndpointGeneralMResidualsExcluded A hne hconv hK4 hgt hMin
+        S hM44 (by omega)
     constructor
     · intro radius rho x hend
       rcases
@@ -10093,7 +10125,9 @@ theorem isM44EndpointResidualsExcluded :
         -- unresolved work is geometric production of the non-`.v`/`.w`
         -- selected-class side conditions (other class choices/radii,
         -- exact-four cards, circumcenter exclusion, and `sepOKFor`), not
-        -- row-bank transport itself.
+        -- row-bank transport itself.  `hcard5 : S.surplusCap.card = 5` is in
+        -- scope, so `A.card = 10` and the ten labels cover `A`
+        -- (label-completeness route, cf. `PinnedSurplusProducer`).
         sorry
       rcases hshadow with ⟨shadow, hinBank, hmetric⟩
       exact hfalse shadow hinBank hmetric
@@ -10115,7 +10149,8 @@ theorem isM44EndpointResidualsExcluded :
               EndpointCertificate.Variables.EndpointMetricShadow pointOf
                 shadow := by
         -- Mirror remaining endpoint producer: the same non-`.v`/`.w`
-        -- selected-class geometry package remains to be built.
+        -- selected-class geometry package remains to be built.  `hcard5` is
+        -- in scope as in the left branch.
         sorry
       rcases hshadow with ⟨shadow, hinBank, hmetric⟩
       exact hfalse shadow hinBank hmetric
