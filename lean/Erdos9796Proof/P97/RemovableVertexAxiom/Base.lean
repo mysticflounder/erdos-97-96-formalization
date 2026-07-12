@@ -7,6 +7,7 @@ import Erdos9796Proof.P97.NoDiameterUnderK4
 import Erdos9796Proof.P97.U1LargeCapRouteBTail
 import Erdos9796Proof.P97.EndpointCertificate.ResidualCoreData
 import Erdos9796Proof.P97.PinnedHullOrder
+import Erdos9796Proof.P97.EndpointCertificate.GeometryProducer
 
 /-!
 # Removable-vertex existence for `|A| > 9`
@@ -9529,32 +9530,10 @@ theorem isM44EndpointResidualsExcluded :
         S hM44 (by omega)
     constructor
     · intro radius rho x hend
-      rcases
-          EndpointCertificate.endpointLeft_residual_exists_false_of_metric_shadow_data
-            hM44 hconv hend with
-        ⟨p₁, p₂, q₁, q₂, s1, s2, s3, xLabel, aLabel, bLabel,
-          hdata⟩
-      let pointOf :=
-        EndpointCertificate.endpointLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
-      rcases hdata with
-        ⟨_hxLabel, _haLabel, _hbLabel, _hinj, _hxEq, _hpointMem,
-          _hvMask, _hwMask, hfalse⟩
-      have hshadow :
-          ∃ shadow : EndpointCertificate.ShadowBank.Shadow,
-            EndpointCertificate.ShadowBank.endpointShadowInBank xLabel
-                shadow = true ∧
-              EndpointCertificate.Variables.EndpointMetricShadow pointOf
-                shadow := by
-        -- Real remaining endpoint producer: after `ResidualCoreData`, the
-        -- unresolved work is geometric production of the non-`.v`/`.w`
-        -- selected-class side conditions (other class choices/radii,
-        -- exact-four cards, circumcenter exclusion, and `sepOKFor`), not
-        -- row-bank transport itself.  `hcard5 : S.surplusCap.card = 5` is in
-        -- scope, so `A.card = 10` and the ten labels cover `A`
-        -- (label-completeness route, cf. `PinnedSurplusProducer`).
-        sorry
-      rcases hshadow with ⟨shadow, hinBank, hmetric⟩
-      exact hfalse shadow hinBank hmetric
+      -- Label-complete `m = 5` left endpoint producer (both ambient CCW apex
+      -- orientations), `hcard5 : S.surplusCap.card = 5` in scope.
+      exact EndpointCertificate.endpointLeft_residual_false_of_card_five hM44 hne
+        hconv hK4 hcard5 hend
     · intro radius rho x hend
       rcases
           EndpointCertificate.endpointRight_residual_exists_false_of_metric_shadow_data
