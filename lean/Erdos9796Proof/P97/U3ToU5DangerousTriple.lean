@@ -220,6 +220,30 @@ theorem hasNEquidistantPointsAt_of_erase
     HasNEquidistantPointsAt 4 S p :=
   hasNEquidistantPointsAt_mono (Finset.erase_subset p S) h
 
+/-- Erasing the center itself does not remove any point from a positive-radius
+equidistant class centered there. -/
+theorem hasNEquidistantPointsAt_erase_center
+    {n : ℕ} {S : Finset ℝ²} {p : ℝ²}
+    (h : HasNEquidistantPointsAt n S p) :
+    HasNEquidistantPointsAt n (S.erase p) p := by
+  rcases h with ⟨r, hr, hcard⟩
+  refine ⟨r, hr, ?_⟩
+  have hpNot : ¬ dist p p = r := by
+    simp
+    exact ne_of_lt hr
+  have hpNotMem : p ∉ S.filter fun q => dist p q = r := by
+    intro hp
+    exact hpNot (Finset.mem_filter.mp hp).2
+  simpa [Finset.filter_erase, hpNotMem] using hcard
+
+/-- Contrapositive form of `hasNEquidistantPointsAt_erase_center`. -/
+theorem not_hasNEquidistantPointsAt_of_no_erase_center
+    {n : ℕ} {S : Finset ℝ²} {p : ℝ²}
+    (h : ¬ HasNEquidistantPointsAt n (S.erase p) p) :
+    ¬ HasNEquidistantPointsAt n S p := by
+  intro hfull
+  exact h (hasNEquidistantPointsAt_erase_center hfull)
+
 /-- Localized U3 deletion-failure data at the apex `p` after deleting `q`.
 
 This is the minimal faithful packet needed by the fixed-triple extractor:

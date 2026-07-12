@@ -299,6 +299,40 @@ index. -/
     inner_at_v3 := S.circPacket.inner_at_v2
     disk_contains_A := S.circPacket.disk_contains_A }
 
+/-- The circumscribed MEC packet associated with an arbitrary indexed cap. -/
+@[reducible] noncomputable def circPacketByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    CircumscribedMECPacket A (S.triangleByIndex i) :=
+  Classical.choice <| by
+    fin_cases i
+    · exact ⟨by simpa [triangleByIndex] using S.circPacket⟩
+    · exact ⟨S.circPacket2⟩
+    · exact ⟨S.circPacket3⟩
+
+/-- The cap frame whose ordered base is the support chord of an indexed cap. -/
+@[reducible] def capFrameByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    MoserTriangle A :=
+  (S.triangleByIndex i).rotate
+
+/-- The circumscribed MEC packet in the support-chord frame of an indexed cap. -/
+@[reducible] noncomputable def capFramePacketByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    CircumscribedMECPacket A (S.capFrameByIndex i) :=
+  (S.circPacketByIndex i).rotate
+
+/-- The support-chord frame of an indexed cap with the base order reversed. -/
+@[reducible] def reversedCapFrameByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    MoserTriangle A :=
+  (S.triangleByIndex i).reverse
+
+/-- The circumscribed MEC packet in the reversed support-chord frame. -/
+@[reducible] noncomputable def reversedCapFramePacketByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
+    CircumscribedMECPacket A (S.reversedCapFrameByIndex i) :=
+  (S.circPacketByIndex i).reverse
+
 /-- The closed cap selected by an index is contained in the ambient point set. -/
 theorem capByIndex_subset
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3) :
@@ -1659,6 +1693,58 @@ theorem capInteriorByIndex_ne_triangleByIndex_v3
     x ≠ (S.triangleByIndex i).v3 := by
   have hne := S.capInteriorByIndex_ne_leftOuterVertexByIndex (i := i) hxI
   fin_cases i <;> simpa [leftOuterVertexByIndex, triangleByIndex] using hne
+
+/-- A strict interior point of an indexed cap lies strictly on the opposite
+side of its support chord from the indexed apex. -/
+theorem signedArea2_mul_neg_of_mem_capInteriorByIndex
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
+    (i : Fin 3) {x : ℝ²} (hxI : x ∈ S.capInteriorByIndex i) :
+    signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 *
+      signedArea2 (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 < 0 := by
+  have hxA : x ∈ A := S.capInteriorByIndex_subset i hxI
+  have hcap : x ∈ S.capByIndex i := S.capInteriorByIndex_subset_capByIndex i hxI
+  have hle :
+      signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 *
+        signedArea2 (S.triangleByIndex i).v1
+          (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 ≤ 0 := by
+    exact (S.capByIndex_arc_membership i x hxA).1 hcap
+  have hxbase_ne :
+      signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 ≠ 0 := by
+    intro hzero
+    exact hconv.not_three_collinear hxA (S.triangleByIndex i).v2_mem
+      (S.triangleByIndex i).v3_mem
+      (S.capInteriorByIndex_ne_triangleByIndex_v2 hxI)
+      (S.capInteriorByIndex_ne_triangleByIndex_v3 hxI)
+      (S.triangleByIndex i).v23_ne
+      (collinear_of_signedArea2_eq_zero x (S.triangleByIndex i).v2
+        (S.triangleByIndex i).v3 hzero)
+  have htri_ne :
+      signedArea2 (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 ≠ 0 := by
+    intro hzero
+    exact hconv.not_three_collinear (S.triangleByIndex i).v1_mem
+      (S.triangleByIndex i).v2_mem (S.triangleByIndex i).v3_mem
+      (S.triangleByIndex i).v12_ne (S.triangleByIndex i).v13_ne
+      (S.triangleByIndex i).v23_ne
+      (collinear_of_signedArea2_eq_zero (S.triangleByIndex i).v1
+        (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 hzero)
+  exact lt_of_le_of_ne hle (mul_ne_zero hxbase_ne htri_ne)
+
+/-- Under a positive indexed orientation, strict cap membership gives a
+strictly negative chord-side signed area. -/
+theorem signedArea2_neg_of_mem_capInteriorByIndex_of_oriented
+    {A : Finset ℝ²} (S : SurplusCapPacket A) (hconv : ConvexIndep A)
+    (i : Fin 3) {x : ℝ²} (hxI : x ∈ S.capInteriorByIndex i)
+    (hori : 0 < signedArea2 (S.triangleByIndex i).v1
+      (S.triangleByIndex i).v2 (S.triangleByIndex i).v3) :
+    signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 < 0 := by
+  have hprod := S.signedArea2_mul_neg_of_mem_capInteriorByIndex hconv i hxI
+  by_contra hnot
+  have hnonneg :
+      0 ≤ signedArea2 x (S.triangleByIndex i).v2 (S.triangleByIndex i).v3 :=
+    le_of_not_gt hnot
+  exact (not_lt_of_ge (mul_nonneg hnonneg (le_of_lt hori))) hprod
 
 /-- In one shared ambient CCW boundary enumeration, a strict interior point of
 a non-wrapping indexed cap occurs strictly between the two support endpoint
@@ -4532,6 +4618,149 @@ theorem pinnedLeftSurplusResidual_radius_pos
   rw [← hdist]
   exact dist_pos.mpr hcenter_ne_x
 
+/-- At the first pinned short-cap apex, every positive radius carrying four
+ambient points is the pinned residual radius.  The two private cap-interior
+points belong to every such class by the short-cap core selector. -/
+theorem IsM44.pinnedRightSurplusResidual_k4Radius_eq
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A)
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x)
+    {rho : ℝ} (hrho : 0 < rho)
+    (hrhoCard :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) rho).card) :
+    rho = radius := by
+  rcases hpinned with
+    ⟨p₁, _p₂, _hpne, hpair, _hcard, hsub, _hleft, _hx,
+      _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  have hp₁Interior :
+      p₁ ∈ S.capInteriorByIndex S.oppIndex1 := by
+    rw [hpair]
+    simp
+  have hp₁Radius :
+      p₁ ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) radius :=
+    hsub hp₁Interior
+  have hcore := S.moserCapCoreSelectorAt hconv S.oppIndex1 hrho
+    hM44.oppIndex1_cap_card_eq_four hrhoCard
+  have hp₁Rho :
+      p₁ ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) rho :=
+    hcore.2.1 hp₁Interior
+  exact ((mem_selectedClass.mp hp₁Rho).2).symm.trans
+    (mem_selectedClass.mp hp₁Radius).2
+
+/-- Mirror radius uniqueness at the second pinned short-cap apex. -/
+theorem IsM44.pinnedLeftSurplusResidual_k4Radius_eq
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A)
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x)
+    {rho : ℝ} (hrho : 0 < rho)
+    (hrhoCard :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) rho).card) :
+    rho = radius := by
+  rcases hpinned with
+    ⟨p₁, _p₂, _hpne, hpair, _hcard, hsub, _hright, _hx,
+      _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  have hp₁Interior :
+      p₁ ∈ S.capInteriorByIndex S.oppIndex2 := by
+    rw [hpair]
+    simp
+  have hp₁Radius :
+      p₁ ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) radius :=
+    hsub hp₁Interior
+  have hcore := S.moserCapCoreSelectorAt hconv S.oppIndex2 hrho
+    hM44.oppIndex2_cap_card_eq_four hrhoCard
+  have hp₁Rho :
+      p₁ ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) rho :=
+    hcore.2.1 hp₁Interior
+  exact ((mem_selectedClass.mp hp₁Rho).2).symm.trans
+    (mem_selectedClass.mp hp₁Radius).2
+
+/-- Deleting any member of a right-pinned class destroys every K4 witness at
+the pinned apex. -/
+theorem IsM44.pinnedRightSurplusResidual_no_qfree_of_mem
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A)
+    {radius : ℝ} {x q : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x)
+    (hq : q ∈ SelectedClass A
+      (S.oppositeVertexByIndex S.oppIndex1) radius) :
+    ¬ HasNEquidistantPointsAt 4 (A.erase q)
+      (S.oppositeVertexByIndex S.oppIndex1) := by
+  intro hK4
+  rcases hK4 with ⟨rho, hrho, hcardFilter⟩
+  have hcardErase :
+      4 ≤ (SelectedClass (A.erase q)
+        (S.oppositeVertexByIndex S.oppIndex1) rho).card := by
+    simpa [SelectedClass] using hcardFilter
+  have hcardAmbient :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) rho).card := by
+    exact le_trans hcardErase (Finset.card_le_card (by
+      rw [selectedClass_erase_eq]
+      exact Finset.erase_subset q
+        (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex1) rho)))
+  have hrhoeq : rho = radius :=
+    hM44.pinnedRightSurplusResidual_k4Radius_eq
+      hconv hpinned hrho hcardAmbient
+  subst rho
+  have hclassCard :
+      (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) radius).card = 4 := by
+    rcases hpinned with
+      ⟨_p₁, _p₂, _hpne, _hpair, hcard, _hsub, _hleft, _hx,
+        _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+    exact hcard
+  rw [selectedClass_erase_eq, Finset.card_erase_of_mem hq, hclassCard]
+    at hcardErase
+  omega
+
+/-- Mirror deletion blocker theorem for a left-pinned class. -/
+theorem IsM44.pinnedLeftSurplusResidual_no_qfree_of_mem
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hconv : ConvexIndep A)
+    {radius : ℝ} {x q : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x)
+    (hq : q ∈ SelectedClass A
+      (S.oppositeVertexByIndex S.oppIndex2) radius) :
+    ¬ HasNEquidistantPointsAt 4 (A.erase q)
+      (S.oppositeVertexByIndex S.oppIndex2) := by
+  intro hK4
+  rcases hK4 with ⟨rho, hrho, hcardFilter⟩
+  have hcardErase :
+      4 ≤ (SelectedClass (A.erase q)
+        (S.oppositeVertexByIndex S.oppIndex2) rho).card := by
+    simpa [SelectedClass] using hcardFilter
+  have hcardAmbient :
+      4 ≤ (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) rho).card := by
+    exact le_trans hcardErase (Finset.card_le_card (by
+      rw [selectedClass_erase_eq]
+      exact Finset.erase_subset q
+        (SelectedClass A
+          (S.oppositeVertexByIndex S.oppIndex2) rho)))
+  have hrhoeq : rho = radius :=
+    hM44.pinnedLeftSurplusResidual_k4Radius_eq
+      hconv hpinned hrho hcardAmbient
+  subst rho
+  have hclassCard :
+      (SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) radius).card = 4 := by
+    rcases hpinned with
+      ⟨_p₁, _p₂, _hpne, _hpair, hcard, _hsub, _hright, _hx,
+        _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+    exact hcard
+  rw [selectedClass_erase_eq, Finset.card_erase_of_mem hq, hclassCard]
+    at hcardErase
+  omega
+
 /-- The right-pinned residual exposes the residual point's selected-class
 membership. -/
 theorem pinnedRightSurplusResidual_mem_selectedClass
@@ -4553,6 +4782,68 @@ theorem pinnedLeftSurplusResidual_mem_selectedClass
     ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hright, hxT,
       _hxSurplus, _hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
   exact hxT
+
+/-- In a right-pinned residual, the residual point is the only surplus-cap
+interior point in the pinned selected class. -/
+theorem pinnedRightSurplusResidual_surplusInterior_mem_selectedClass_iff
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x y : ℝ²}
+    (hpinned : S.PinnedRightSurplusResidualAt radius x)
+    (hy : y ∈ S.capInteriorByIndex S.surplusIdx) :
+    y ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex1) radius ↔
+      y = x := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hleft, hx,
+      _hxSurplus, _hleftEq, hrightEq, _hright_ne, _hleft_ne⟩
+  have hyRightInterior :
+      y ∈ S.rightAdjacentInteriorByIndex S.oppIndex1 := by
+    simpa [S.rightAdjacentInteriorByIndex_oppIndex1_eq_surplusInterior]
+      using hy
+  have hyRight : y ∈ S.rightAdjacentCapByIndex S.oppIndex1 :=
+    S.rightAdjacentInteriorByIndex_subset_rightAdjacentCapByIndex
+      S.oppIndex1 hyRightInterior
+  constructor
+  · intro hyClass
+    have hyInter :
+        y ∈ SelectedClass A
+            (S.oppositeVertexByIndex S.oppIndex1) radius ∩
+          S.rightAdjacentCapByIndex S.oppIndex1 :=
+      Finset.mem_inter.mpr ⟨hyClass, hyRight⟩
+    rw [hrightEq] at hyInter
+    simpa using hyInter
+  · intro hyx
+    simpa [hyx] using hx
+
+/-- Mirror uniqueness of the surplus-cap interior point in a left-pinned
+selected class. -/
+theorem pinnedLeftSurplusResidual_surplusInterior_mem_selectedClass_iff
+    {A : Finset ℝ²} (S : SurplusCapPacket A) {radius : ℝ} {x y : ℝ²}
+    (hpinned : S.PinnedLeftSurplusResidualAt radius x)
+    (hy : y ∈ S.capInteriorByIndex S.surplusIdx) :
+    y ∈ SelectedClass A
+        (S.oppositeVertexByIndex S.oppIndex2) radius ↔
+      y = x := by
+  rcases hpinned with
+    ⟨_p₁, _p₂, _hpne, _hpair, _hcard, _hsub, _hright, hx,
+      _hxSurplus, hleftEq, _hrightEq, _hright_ne, _hleft_ne⟩
+  have hyLeftInterior :
+      y ∈ S.leftAdjacentInteriorByIndex S.oppIndex2 := by
+    simpa [S.leftAdjacentInteriorByIndex_oppIndex2_eq_surplusInterior]
+      using hy
+  have hyLeft : y ∈ S.leftAdjacentCapByIndex S.oppIndex2 :=
+    S.leftAdjacentInteriorByIndex_subset_leftAdjacentCapByIndex
+      S.oppIndex2 hyLeftInterior
+  constructor
+  · intro hyClass
+    have hyInter :
+        y ∈ SelectedClass A
+            (S.oppositeVertexByIndex S.oppIndex2) radius ∩
+          S.leftAdjacentCapByIndex S.oppIndex2 :=
+      Finset.mem_inter.mpr ⟨hyClass, hyLeft⟩
+    rw [hleftEq] at hyInter
+    simpa using hyInter
+  · intro hyx
+    simpa [hyx] using hx
 
 /-- A right-pinned residual carries a labelled three-point surplus-interior
 subpacket containing the residual point. -/

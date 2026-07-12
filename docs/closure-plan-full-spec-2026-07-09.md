@@ -52,7 +52,7 @@ Last fully mined kernel graph at that snapshot (build fingerprint
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusBank.lean:471` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean` | 1 | B |
 | 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10070` | 2 (`:10097`, `:10119`) | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
@@ -140,7 +140,7 @@ The archive preserves detailed logs; these constraints remain active here:
   every `CubeOk` clause. At card 11 every point of `A` is labeled, so no
   additional unlabeled-point confinement condition is needed.
 
-### A.1 Card-11 slice — pre-lease run snapshot; terminal state unadjudicated
+### A.1 Card-11 slice — formalized-structure CEGAR active
 
 Pipeline (`scratch/census-554/frontier_loop.py`): lazy motif-embedding cover +
 CEGAR mining at genuine frontiers, to UNSAT.
@@ -153,19 +153,92 @@ not a current process claim: recheck A11-RUN before resuming, restarting, or
 interpreting a terminal marker. There was no adjudicated terminal result at the
 snapshot.
 
+**Durable checkpoint, 2026-07-11.** The algebra bank was frozen at 5,836 raw
+rows, SHA-256
+`36348d35397a494bee5ac0ab9e423c20802e7aff45fa12f0530df36a57cfc43a`.
+A merged separation probe at
+`scratch/census-554/separation_probe_runs/transition-bank5836-structural36-20260711T185116Z`
+reached a checked `combined-frontier` at iteration 231 with 1,602,162 dynamic
+exclusions and 156,278 static instances, hence 1,758,440 total instances. Its
+checkpoint SHA-256 is
+`a34b5be871dc096fcdccab389955787cd9541c54b59afd609c209b17f7183ff8`.
+The immutable ordered replay of every dynamic record passed, the source
+database reopened with `integrity_check=ok`, and that terminal source remains
+preserved as rollback evidence.
+
+The mandatory theorem-bank preflight then found a convex structural
+contradiction before algebra mining: four sparse rows force labels `3`, `8`,
+and `10` onto the perpendicular bisector of the distinct foci `1` and `6`.
+`Census554/FourRowPerpBisector.lean` packages this as the reusable,
+relabel- and superpattern-stable
+`FourRowPerpBisectorCore`; the focused build and both public axiom audits use
+only `propext`, `Classical.choice`, and `Quot.sound`. This is a convex-carrier
+consumer, not an unconditional `IsDead` or Nullstellensatz-bank theorem.
+
+The approved static structural seed artifact has SHA-256
+`be498bc8e31f32fa29d12f0a37c2c8776ce80dc16ab8c9d56b00396785372ad9`
+and exactly 36 profile-orbit exclusions. The probe snapshots the seed, source
+frontier result, and Lean theorem source separately; requires passed build
+evidence; and rejects transition-time orbit loss, theorem-source drift, or
+evidence downgrade.
+
+The CEGAR refinement oracle now covers the formalized structural core rather
+than only this one static seed. The catalog contains all twelve alternatives
+in `GeneralCarrierBridge`; eleven are soundly detectable from a raw equality
+cube. The exact-off-circle alternative is explicitly disabled because a raw
+cube does not supply its required `ExactAt` premise. The eligible surface is
+nine unordered theorem families plus the convex five-point and convex
+rhombus/equilateral families, with both direct and reversed cyclic-order
+detectors. Every emitted record carries a minimized equality pattern,
+replayable row/flip closure paths, the exact Lean theorem and source hash, and
+its pattern-orbit map. Unordered cores emit unconditional sparse cuts. Ordered
+cores emit clauses scoped to the compatible boundary-order selector, becoming
+unconditional only when every valid order is excluded. Bank-motif refinement
+runs first; the structural scan runs exactly when the candidate has no new
+bank embedding.
+
+The oracle snapshot also freezes ten Lean source files and the built
+`GeneralCarrierBridge.olean` (SHA-256
+`9104b9a9d466801ab0894e5e2ff993d3ec91cbee4411ffb41c3b52342e09b96b`).
+`lake-build Erdos9796Proof.P97.Census554.GeneralCarrierBridge` passed with
+proof-blueprint build fingerprint `294acadba613`; the terminal axiom query is
+exactly `propext`, `Classical.choice`, and `Quot.sound`. The Python catalog,
+source snapshots, build artifact, and axiom result are evidence-bound by the
+oracle contract, and transition replay fails closed on structural provenance
+conflicts or algebra/structural provenance collisions.
+
+A second preservation-first transition published
+`scratch/census-554/separation_probe_runs/run-20260711T204242Z-40533-f03a883e`
+with all 1,602,162 dynamic records retained, 156,278 static instances,
+1,758,440 total instances, and zero target collisions. Its independent SQLite
+reopen returned `integrity_check=ok` and the exact dynamic-record count. The
+new probe is active with a four-hour wall budget and 5,000-refinement ceiling,
+holds the run lock, and checkpoints every iteration. Treat its `progress.json`
+as the live status surface rather than copying a quickly stale iteration count
+into this plan.
+
+This mixed-source machinery is valid for externally trusted CEGAR exploration,
+not yet for final Lean publication. Python detections and boundary-order tests
+are replayable and theorem-linked, but are not Lean proof terms. Final
+publication still requires a checked Lean replay of every used structural
+record, including a checked bridge from the Python direct/reverse order test to
+the corresponding Lean orientation premise.
+
 **Correct interpretation of a future solver UNSAT:** CaDiCaL UNSAT would be an
-EMPIRICALLY VERIFIED coverage result for the exact emitted Python CNF and the
-bank snapshot used to emit it. It would say that every candidate cube in that
-encoding contains an encoded bank-motif instance. It would not, by itself,
-prove the geometric card-11 theorem or close a Lean leaf. The permanent
+EMPIRICALLY VERIFIED coverage result for the exact emitted Python CNF and its
+frozen formula sources. In an algebra-only run it says that every candidate
+cube contains an encoded bank-motif instance. In the active mixed-source run
+it says that every candidate cube hits either an algebra motif or a separately
+identified convex structural exclusion. It would not, by itself, prove the
+geometric card-11 theorem or close a Lean leaf. The permanent
 terminal publisher now re-solves the persisted CNF, requires `drat-trim`
 verification, emits core CNF and LRAT artifacts, takes a lock-consistent bank
 snapshot, and records source row, canonical motif, support injection, emitted
 pattern, and clause provenance. It writes the completion marker last. Unit
 fault gates and a real tiny CaDiCaL/`drat-trim` integration test pass. The
-active process predates that frontier-loop rewrite, however, so its in-memory
-terminal function is the old prototype. Any marker from this run is provisional
-until rechecked and re-published by the new gate. The mandatory consumer command
+active frozen probe separately publishes `UNSAT-verified` only after a
+proof-producing re-solve and `drat-trim`; that remains an empirical CNF result,
+not the final cover publication or Lean replay. The mandatory consumer command
 `uv run python -m census.census_554.verify_completion --root scratch/census-554`
 rejects the legacy marker schema and independently rechecks all hashes and DRAT.
 
@@ -192,8 +265,9 @@ transaction lock, max-suffix PID allocation, canonical dedupe, exact precommit
 certificate validation, a crash-recovery journal, fsynced atomic certificate
 publication, and fsynced atomic bank replacement. The child publisher used
 this path successfully for `pat_05443`. Cross-process and fault-injection tests
-pass. The active process started before the lifetime lease loaded, so lease
-enforcement begins at restart. Permanent migration is partial:
+pass. The current frozen probe was launched after the safe transition and holds
+its lifetime workdir lock; the stopped historical rollback process was neither
+killed nor resumed. Permanent migration is partial:
 `census/census_554/` owns the protocol, terminal gate, structural auditor,
 combinatorial core, and self-contained smoke/tests, while the driver, miner,
 verifier, changing bank, and large certificate artifact remain under
@@ -694,10 +768,13 @@ labelled-cardinality floors 2 and 3, even with cyclic cross-separation and the
 global point-pair class-count bound.  Coverage returns only at floor 4.
 
 The first larger-regime reduction is now proved, without adding a second
-obligation.  The orientation-specific theorems
+obligation. `SurplusCapPacket.surplusInterior_card_ge_four_of_card_gt_five`
+uses the strict `5 < S.surplusCap.card` hypothesis to show that the strict
+surplus interior has at least four points. The orientation-specific theorems
 `CounterexampleData.exists_pinnedRightExtraCriticalPacket` and
 `CounterexampleData.exists_pinnedLeftExtraCriticalPacket` choose an additional
-surplus-interior point `y` outside the pinned four-class.  That class survives
+surplus-interior point `y` outside the pinned four-class and a selected
+four-class at the surplus apex whose support contains `y`. That class survives
 in the skeleton with `y` and its pinned apex erased.  Minimality then produces
 a `U3LocalizedNoQFreePacket D y p`, forces `p` to differ from the pinned apex,
 and supplies a `U3FixedTriplePacket D y p t1 t2 t3`.  The packet now also
@@ -710,8 +787,10 @@ theorem constructs `D.Minimal` and a `CriticalShellSystem A` before its sole
 `sorry`.  The system now retains, for every source, the deletion-failure fact
 at its chosen blocker center; `CriticalShellSystem.no_qfree_erase_center_at`
 exports the center-erased form consumed by localized packets.  Each orientation
-extractor now returns a concrete frame and the proved terminal fact
-`∀ H : U3FixedTripleAuditFrame ..., ¬ H.RowwiseConfinedQDeletedClasses`.
+extractor now returns a concrete frame, the proved terminal fact
+`∀ H : U3FixedTripleAuditFrame ..., ¬ H.RowwiseConfinedQDeletedClasses`, and a
+single `CriticalShellSystem` / `FaithfulCarrierPattern` preserving the pinned
+exact row, the surplus-apex row through `y`, and the dangerous exact row.
 
 For every center in this bounded frame,
 `U3FixedTripleAuditFrame.auditCenters_qDeleted_or_qCritical` proves the exact
@@ -740,8 +819,9 @@ Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
 prove `H.RowwiseConfinedQDeletedClasses` for one extracted orientation frame,
 or prove a stronger direct audit-frame obstruction.  In the confinement route,
 both q-critical-row resolution and bounded-support inclusion are mandatory.
-Remove the sole `PinnedSurplusBank.lean:542` `sorry` and confirm the named
-general-m residual leaves the spine-open list.
+Remove the sole terminal `sorry` in
+`isM44PinnedSurplusGeneralMResidualsExcluded` and confirm the named general-m
+residual leaves the spine-open list.
 
 #### PIN-GENERAL incidence-probe checkpoint (2026-07-10)
 
@@ -775,14 +855,23 @@ full-center extension in either scan and are provisional fixed-pin elimination
 lemmas.  The apparent `n = 11` elimination of `(0,0,0,4)` disappears at
 `n = 12`, so it must not be promoted to a general theorem.
 
-Two follow-up scans close the original model-coverage TODOs:
+The follow-up scans close the original model-coverage TODOs:
 
 - `placement_results_n11_12` covers every ordered pair of distinct surplus
   labels: 12 placements at `n = 11` and 20 at `n = 12`.  Aggregated admitted /
   rejected dangerous rows are `3779/2989` and `13700/5000`, respectively.  The
   two zero-extension types `(0,0,2,2)` and `(0,2,0,2)` remain zero at every
-  scanned placement and cardinality.  This is bounded evidence; a larger-size
-  scan or a size-independent core is still required before formalization.
+  scanned placement and cardinality.
+- `placement_zero_types_n13` checks just those two types over all 30 ordered
+  `n = 13` placements.  All 600 `(0,0,2,2)` and 1,200 `(0,2,0,2)` scenarios
+  are UNSAT, with no cap.  This is a successful larger-size check, but remains
+  bounded evidence.
+- `zero_type_cores_n11_13` explains all 2,888 zero-type rows before DFS.  Exactly
+  1,444 have an incompatible fixed pin/dangerous pair from overlap greater than
+  two or cyclic cross-separation.  The other 1,444 leave `Moser-2` with an empty
+  candidate domain after Q3, overlap, and cross-separation filtering.  The same
+  three rejection families occur at every scanned size.  This is a complete
+  bounded core partition, not yet a size-independent Lean theorem.
 - `critical_shell_results_all_placements_n11_12` samples one admitted packet
   per placement and dangerous-row type.  It encodes one exact blocker shell
   for every source and requires every selected K4 at that blocker center to
@@ -797,21 +886,349 @@ This eliminates the prior data-loss risk.  The all-SAT result shows that shell
 existence plus the current global incidence cuts is not itself the missing
 contradiction.
 
+The shell/audit coupling TODO is also complete.
+`shell_audit_results_all_frames_n11_12` tests every exact q-critical row and
+every six-center q-deleted frame for all 517 representatives while retaining
+the joint source-indexed shells, no-q-free linkage, and full-center extension.
+The adjudicated totals are:
+
+- q-critical: `4198` SAT, `795` UNSAT, `0` indeterminate out of `4993`;
+- q-deleted survival: `12894` SAT, `2546` UNSAT, `0` indeterminate out of
+  `15440` frames.
+
+The 67 initial caps were resolved in targeted passes at 1, 3, and 10 million
+nodes.  The added shell constraints prune both audit families, but many models
+survive, so this declared shadow does not prove q-critical elimination or
+rowwise confinement.  There is no need to repeat the confinement run: adding
+shell constraints is monotone, and every weaker confined scenario was already
+UNSAT.
+
+The stable-zero core TODO is complete.  `zero_type_cores_n11_13` inspects all
+2,888 node-zero rows for `(0,0,2,2)` and `(0,2,0,2)` across `n = 11,12,13`.
+Exactly 1,444 are fixed-pair conflicts between the pinned and dangerous exact
+classes: either overlap exceeds two or the supports violate cyclic
+cross-separation.  The other 1,444 have an empty candidate domain at Moser
+center 2; every locally admitted candidate is rejected by overlap, separation,
+K-Q3-1, or K-Q3-5.  The blocker-region signatures are stable across all three
+sizes: `O2` / `O1` for the fixed-pair / one-center branches of `(0,0,2,2)`,
+and `S` for both branches of `(0,2,0,2)`.
+
+This decomposition identifies proof atoms but is not itself a general-`n`
+proof.  `SelectedFourClass.inter_card_le_two` already supplies the overlap
+atom.  The underlying `SurplusCOMPGBank.btw_sep` theorem now applies to every
+`Fin n` CCW convex enumeration; the generated Boolean-mask wrapper remains
+ten-label-specific, and PIN-GENERAL still needs a carrier-to-boundary-index
+bridge.  K-Q3-1's same-side two-circle core is already kernel-clean as
+`SurplusCapPacket.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`;
+the missing work is the selected-support/cap-location adapter. K-Q3-5's
+normalized scalar core is now kernel-clean as
+`Problem97.q3_shared_interior_false_normalized` in
+`P97/Q3SharedInterior.lean`: it consumes normalized MEC-disk, oriented-height,
+base-coordinate, nonobtuse-apex, radius-square, and strict cap-side hypotheses.
+The packet now supplies `hdisk`, `hux0`, `hux1`, and `hapex` directly through
+the kernel-checked
+`CircumscribedMECPacket.normSim_mec_disk_normalized`,
+`CircumscribedMECPacket.normSim_v3_fst_bounds`, and
+`CircumscribedMECPacket.normSim_nonobtuse_at_v3_normalized`. The complete
+core-only indexed-cap adapter is now
+`SurplusCapPacket.q3_shared_interior_false_of_adjacent_selectedClass_membership`:
+it
+rotates the MEC packet into the cap support-chord frame and internally supplies
+the oriented height, center height, lower side, radius-square transport, and
+normalized strict side premises. Its orientation-free wrapper reverses the
+frame and swaps the two selected-circle roles when needed. Its explicit source
+contract is strict-cap witness `z`, adjacent-interior witnesses `p`/`q`, and
+shared `SelectedClass` memberships at the two cap endpoints. Adjacent-cap
+membership supplies the strict side products. The remaining producer work is to
+extract those facts from selected classes without importing the target
+confinement conclusion. Finally, the kernel-checked L2/full LOCAL enumerator proves abstract code
+coverage only; it does not extract a `ProfileClassIncidence` code from a
+concrete geometric `SelectedFourClass` or transport the required compatibility
+facts.
+
+The current source audit sharpens this boundary. `CriticalShellSystem` supplies
+a full `CriticalSelectedFourClass` and its no-q-free / center-erased blocker
+facts, while `U3FixedTripleAuditFrame` supplies only the q-deleted versus
+q-critical row dichotomy. Neither interface supplies cap-interior membership,
+adjacent-cap indices, or the four endpoint `SelectedClass` memberships consumed
+by K-Q3-5. Therefore the Q3 theorem cannot yet be instantiated from the
+PIN-GENERAL packet by definitional unfolding; a bridge must be proved from the
+selected-class shell/audit data, or this route must be marked unavailable for
+that frame. This is a producer gap, not a missing algebra lemma.
+
+The K-Q3-1 adapter has a fixed, small Lean contract.  For a chosen shared cap
+`i : Fin 3`, take `K₂ : SelectedFourClass D.A (D.packet.triangleByIndex i).v2`
+and `K₃ : SelectedFourClass D.A (D.packet.triangleByIndex i).v3`, together
+with distinct `x` and `y` in both supports and proofs that both lie outside
+`D.packet.capByIndex i`.  The adapter obtains carrier membership from
+`support_subset_A` and the four radius equations from `support_eq_radius`, then
+calls `D.packet.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex`.
+The only missing producer work is to map a Q3 code/shared-support branch to
+that `i`, these two selected classes, and the two outside-cap facts.
+
+**PIN-GENERAL proof-interface gates.** K-Q3-5 now has a named indexed-cap
+theorem contract,
+`SurplusCapPacket.q3_shared_interior_false_of_adjacent_selectedClass_membership`,
+whose
+complete normalization, MEC packet alignment, and orientation symmetry are
+kernel-checked. Before it can serve PIN-GENERAL, produce its strict-cap witness,
+two adjacent-interior witnesses, and four endpoint class memberships from the
+concrete selected classes; solver notes alone do not supply this extraction. The
+selected-class-to-L2 extractor must be total: for every
+relevant `U3FixedTripleAuditFrame` and audit center, it returns a finite-domain
+code and proves every cap-count, shared-label, overlap, separation, and Q3 field
+used by the consumer. The finite consumer must quantify over that extracted
+domain, not a hand-selected subset.
+
+**Metric-realizability triage.**
+`census/global_confinement/metric_realizability_structural_complete.{md,json}`
+records the complete deterministic partition of all 1,325 saved relaxed row
+systems: 1,264 duplicate-center, 31 exact-off-circle, 20
+perpendicular-bisector, 9 cyclic five-point, and 1 cyclic
+rhombus/equilateral contradiction. The original 30-system solver frontier is
+therefore fully mined, although a 120-second-per-stage cvc5 rerun of the last
+system still returns UNKNOWN. Generic core-only Lean consumers are
+`EqualityCore.false_of_convexIndep_of_perpBisectorCore`,
+`ConvexFivePointCore.false_of_core`, and
+`ConvexRhombusCore.false_of_core`, in addition to the earlier duplicate-center
+and exact-off-circle endpoints.
+
+This completes bounded metric-core triage but does not emit Lean
+row-realization proofs for arbitrary PIN-GENERAL frames. The remaining
+obligation is a noncircular producer/coverage theorem: map every relevant
+frame to a realized equality pattern, derive the required cyclic orientation
+facts, and extract one of the proved cores, or prove a finite-code completeness
+bridge into the certified assignment domain. The generic theorem kernels are
+general in the label type; only the current coverage artifact is bounded. The
+orientation adapter must explicitly reconcile the probe-positive cross order
+with the negative `signedArea2` convention exposed by
+`ConvexCyclicOrder.hneg_of_ccw`.
+
+The exact-row endpoint is now attached to the live shell API:
+`Census554.ExactShellBridge.false_of_criticalFourShell_exactOffCircleCore`
+combines a realized generic equality closure with a `CriticalFourShell`'s
+exact support equation. It does not manufacture the required realized pattern,
+support membership, or off-support label from a PIN-GENERAL packet; that is the
+next producer obligation and must remain independent of the target
+confinement conclusion.
+
+#### PIN-GENERAL arbitrary-carrier bridge checkpoint (2026-07-10)
+
+The arbitrary-cardinality consumer side is now kernel-checked. The canonical
+carrier subtype is mapped to a `Census554.EqualityCore.RowPattern`, with a
+proved `Realizes` witness and exact blocker rows from `CriticalShellSystem`.
+`MetricCoreAlternative` and `ShellMetricCoreAlternative` cover duplicate
+centers, exact off-circle, equal-K4, equilateral-bisector collision,
+three-triad collision, surplus-source collision, six-row-anchor collision,
+seven-point-orbit collision, seven-point circle-network collision,
+perpendicular-bisector, cyclic five-point, and cyclic rhombus cores. The cyclic
+consumers have negative-orientation wrappers matching the live CCW enumeration
+convention. All twelve consumers are generic in the finite label type and
+introduce no new `sorry`.
+
+The boundary-index gap is also closed. `GeneralCarrierBridge.BoundaryIndexing`
+packages an injective CCW enumeration and an injective inverse index for every
+carrier label. `BoundaryIndexing.sharedPair_satisfied` applies the generic
+`SurplusCOMPGBank.btw_sep` theorem directly to a realized shared-pair core.
+`PinnedCarrierBridge` simultaneously preserves the pinned exact row, a
+surplus-apex selected row containing the deleted source, and the dangerous
+exact critical row in one shell system and faithful pattern. If the dangerous
+center is the surplus apex, exact-shell uniqueness identifies the last two
+rows.
+
+The local pinned geometry has a complete opposite-apex split in both
+orientations: the K4 row is the exact opposite cap, a mirror pin at a distinct
+surplus point, or an endpoint residual. Separately, every fixed-triple audit
+constructively exposes either a q-deleted row member outside its bounded support
+or an ambient critical shell.
+
+None of these results proves the final producer. Minimality implies that every
+proper nonempty selected-row-closed subset has an escaping row, but that is not
+enough: freshness is only relative to the current support, a critical shell can
+remain internal, and a selected-row path does not compose equality closure. The
+next accepted theorem must use convex cyclic geometry to prove:
+
+```text
+nonfresh audit escape
+  -> ShellMetricCoreAlternative
+     or a shared pair with strict boundary-interval rank decrease.
+```
+
+The shared pair and strict interval inclusion are the open mathematical facts.
+An abstract `iterated_escape_forces_core` theorem without them is an overclaim.
+
+#### PIN-GENERAL surplus-source falsifier checkpoint (2026-07-10)
+
+The permanent probe
+`census.global_confinement.surplus_source_metric_core_probe` strengthens the
+source-indexed shell model by requiring the selected surplus-apex row to contain
+the deleted surplus point, matching the new three-row Lean carrier. It found
+incidence assignments that avoid the five alternatives then present in
+`MetricCoreAlternative`. Equal-K4, equilateral-bisector, three-triad, and
+surplus-source collision were subsequently added as generic consumers. The
+probe starts from `critical_shell` representatives and does not add the six rows
+of a particular `U3FixedTripleAuditFrame`; it tests the
+three-row-plus-global-shell route, not a producer that genuinely consumes the
+complete audit frame. Therefore the proposed theorem
+
+```text
+aligned pinned row + surplus-source row + dangerous row + current incidence cuts
+  -> one of the proved metric cores
+```
+
+is false at the encoded incidence level. These assignments are not Euclidean
+models and are not Problem 97 counterexamples. A 60-second-per-stage Z3 check
+of the first survivor returned UNKNOWN for the exact-metric, full-convex, and
+convex-only systems; UNKNOWN carries no verdict.
+
+The original packet-54 survivor has a stronger algebraic adjudication. After removing
+inessential reference labels, 12 squared-distance equalities on six moving
+points give the unit ideal over characteristic zero. msolve reports the same
+empty complex variety under three variable orders, and Singular independently
+confirms the characteristic-zero unit ideal. The direct theorem
+`EqualityCore.not_realizes_of_surplusSourceCollisionCore` now supersedes that
+external calculation for proof purposes and kills the known packet-54
+assignment. Packet 54 as a whole remains `INDETERMINATE` after both v4 and v5
+reach the 300,000-node cap.
+
+The complete v4 nine-core checkpoint classifies the 517 packets as 167 `UNSAT`,
+250 `SAT`, and 100 `INDETERMINATE`. It is archived as
+`surplus_source_metric_core_results_n11_12_v4.json` with SHA-256
+`d26afd7901bc72b80d212caad6c48d9aa088b653cca3ac7caeca7811ca3b0062`.
+Two further exact QQ unit cores extracted from the packet-85 and packet-181
+witnesses are now generic, kernel-checked Lean theorems:
+`not_realizes_of_sixRowAnchorCollisionCore` and
+`not_realizes_of_sevenPointOrbitCollisionCore`. Each assumes only `O != A`; all
+other roles may alias. They kill those saved witnesses, but packet-wide
+classification requires a new search for alternative assignments.
+
+Schema v5 adds those two detectors, records inherited-row provenance, reuses
+only the 167 monotone v4 `UNSAT` verdicts, and reruns every old `SAT` or
+`INDETERMINATE` packet. The rolling v5 file is active and is not a terminal
+census until `complete` is true. The shared closure-index optimization was
+differentially checked against the reference detectors and reduces the saved
+packet-177 prefix classifier by about 6.3x on this host.
+
+The permanent `equality_ideal_probe.py` mines exact QQ unit-ideal candidates
+from saved v4/v5 SAT assignments. Packet 177 survived the then-current eleven
+detectors under direct replay and exposed a Singular-confirmed seven-point unit
+subsystem. The first direct Lean `grobner` attempt exceeded the 16 GB build cap;
+the obstruction has since been reproved by smaller Gram-determinant and
+polynomial identities as
+`EqualityCore.not_realizes_of_sevenPointCircleNetworkCollisionCore`, the
+twelfth generic consumer. The old saved assignments are not Euclidean
+realizations or Problem 97 counterexamples, and their historical verdicts do
+not constitute a total producer.
+
+Exact rational local models for each opposite-apex branch independently show
+that the pinned/surplus/dangerous three-row packet alone is consistent. Any
+accepted closure must consume additional global shell/audit data. The smallest
+currently identified direct additions are either an equality-closure path from
+an exact row to an off-row label, yielding `ExactOffCircleCore`, or a second
+shared support point between the surplus and dangerous rows plus cap-order
+localization proving a proper boundary-interval successor. A shared pair alone
+gives cyclic alternation but not strict descent.
+
+Applying the critical-shell system to all four members of the surplus-apex
+class does not supply that second point. The first unsupported fact is a source
+`q` and a distinct `z` in the surplus class such that `z` also lies in `q`'s
+chosen shell while `q`'s blocker differs from the surplus apex. Even after that
+fact, the strict subinterval must inherit a valid audit/blocker state. Neither
+antecedent follows from `CriticalShellSystem` or the current aligned carrier.
+
+#### PIN-GENERAL forced card-eleven checkpoint (2026-07-11)
+
+The open branch is no longer arbitrary in either the surplus-cap size or the
+ambient cardinality. `SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4`
+and `SurplusCapPacket.surplus_card_eq_six_of_convexIndep_K4` prove that
+`5 < S.surplusCap.card` forces `S.surplusCap.card = 6`.
+`SurplusCapPacket.card_eq_eleven_of_surplus_card_gt_five` then proves
+`A.card = 11`. Finally,
+`SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts` supplies
+an ordered six-point surplus cap and proves the exact selected-row cap-hit
+counts: one at its endpoints and two at its four strict interior points. These
+are kernel-checked general theorems, not census observations.
+
+The resulting direct finite model is defined in
+`Census554.CapSelectedFiniteCode`. Its canonical labels have cap profile
+`(6,4,4)`, one selected row at every center, the existing local, overlap,
+pair-count, Q3, and cross-separation consequences, the exact cap-selected
+counts, the pinned row, and the source-indexed shell blocker conditions. The
+two order-sensitive core predicates now accept both orientations of the cyclic
+boundary. This orientation symmetry is necessary: a forward-only diagnostic
+temporarily left three row patterns in five placements, and every one was an
+already-formalized convex five-point core in the reversed order. Regression
+tests preserve that case.
+
+The orientation-complete run in
+`direct_cap_selected_metric_core_residuals_n11.json` exhausts all twelve
+ordered choices of distinct pinned and deleted surplus-interior labels. Every
+placement is `EXHAUSTIVE`, no search is capped, the largest search visits
+315,503 nodes, and the residual bank is empty. The artifact SHA-256 is
+`5d084bf9b5e9cca3f76418d30efde7ec9251915715ba85599be425d8442dd673`;
+the probe-source SHA-256 recorded by the artifact is
+`92bd8177e519fff2a4cf3aa82bcae2d75236c01b0c1d5495bab6ca75a91ccc37`.
+This is exact within the declared finite model. It is not yet a Lean theorem.
+
+#### PIN-GENERAL native-classifier checkpoint (2026-07-11)
+
+`Census554.CapSelectedNativeClassifier` replaces the quantified free-color
+bitvector search with direct eleven-bit row enumeration and deterministic
+equality closure. The first closed placement theorem,
+`placementCheck_p6_d4`, builds by `native_decide` in about 81 seconds on this
+host. The older bitvector attempt had produced no verdict after 55 minutes, so
+the replacement is already more than forty times faster relative to that
+elapsed nonverdict; this comparison is not a completed old-runtime benchmark.
+
+The exact external enumerator was rerun after removing the rhombus detector.
+All twelve placements remain `EXHAUSTIVE` with zero survivors under only
+duplicate-center, exact-off-circle, perpendicular-bisector, and oriented convex
+five-point cores. This is exact within the finite model, not a Lean theorem for
+the eleven remaining placements.
+
+The proof-facing layer is partially kernel-checked:
+
+- `CapSelectedNativeClassifierFacts` caches exhaustive mask membership,
+  intersection-cardinality, Q3-block, local-candidate, and pinned-row facts;
+- `CapSelectedNativeClassifierSound` proves semantic candidate-row coverage,
+  the fixed pinned seed, row-intersection pruning, Q3 pruning, cyclic-separation
+  pruning, and `rowsCompatible`; and
+- `CapSelectedClosureColor` and
+  `CapSelectedGeometry.exists_boundaryBlocks_of_isM44_surplus_card_eq_six`
+  build without `sorry`, supplying canonical closure colors and exact direct-or-
+  mirror `(4,2,2)` boundary blocks.
+
+This checkpoint does not close the leaf. The remaining finite obligations are
+`pairBoundOK` soundness, total search/certificate coverage, explicit checked
+closure paths and core extraction, and all-placement Lean replay. The remaining
+geometry obligation is to enumerate each exact boundary block into the
+canonical `Fin 11` labels and instantiate `IncidenceOK` and `PinnedShellOK` from
+the live carrier.
+
+The current closure route has exactly two proof-producing gaps:
+
+1. prove a cap-aware `(4,2,2)` labeling bridge from the arbitrary aligned
+   card-eleven carrier to the canonical `Fin 11` model, including
+   `IncidenceOK`, `PinnedShellOK`, edge-closure color soundness, and direct or
+   reversed hull order;
+2. implement a kernel-checked finite classifier or certificate replay proving
+   that every such canonical code has one of the twelve
+   `ClosureCoreAlternative` branches.
+
+Once both are available, the existing generic consumers close
+`isM44PinnedSurplusGeneralMResidualsExcluded` directly. The previous
+shared-pair/strict-interval descent route is retained as historical fallback,
+not the current critical path.
+
 Next actions, in dependency order:
 
-1. couple the source-indexed shell rows and no-q-free linkage to each
-   audit-center q-critical alternative and to simultaneous six-row q-deleted
-   survival; report critical/survival SAT, UNSAT, and capped counts separately;
-2. if shell-coupled q-critical models survive, mine their assignments for the
-   missing geometric relation and state the needed necessity lemma before
-   adding any stronger cut;
-3. extract minimal UNSAT cores for `(0,0,2,2)`, `(0,2,0,2)`, and the `n = 11`
-   survival failures, then match every core atom to an existing Lean theorem;
-4. run the two stable zero-extension types at one larger cardinality or derive
-   a size-independent core; only then formalize a fixed-pin row elimination;
-5. use the shell-coupled audit result either to prove q-critical-row
-   promotion/elimination or to identify a direct critical-shell contradiction
-   that bypasses rowwise confinement.
+1. finish and kernel-check finite coverage/core soundness for all twelve
+   placements, with no prose-only tuple exclusions;
+2. complete the proved `(4,2,2)` boundary-block packet into a canonical-label
+   and soundness bridge in both orientations;
+3. invoke `closureCoreAlternative_of_colorCoreAlternative`, discharge the
+   ordered core signs from convexity, apply the generic consumer, and remove
+   the sole terminal `sorry`.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 

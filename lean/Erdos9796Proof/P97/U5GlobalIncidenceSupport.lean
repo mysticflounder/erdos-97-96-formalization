@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.U5GlobalIncidenceBasic
 import Erdos9796Proof.P97.TwoCircleCrossing
+import Erdos9796Proof.P97.U1CarrierInjection
 
 /-!
 # U5 global-incidence support helpers
@@ -63,6 +64,72 @@ theorem U5QCriticalTripleClass.exists_card_three_of_qCritical
     · intro y hy
       exact ((Finset.mem_filter.mp hy).2).trans hqr.symm
   · exact hcard
+
+/-- A raw q-critical alternative determines the exact four-point ambient
+radius class through `q`.
+
+This conversion is stated at the raw alternative boundary because
+`U5QCriticalTripleClass` intentionally records only the three deleted points,
+not equality with the full deleted radius class. -/
+theorem U5QCriticalTripleClass.exists_criticalFourShell_of_qCritical
+    {D : CounterexampleData} {q center : ℝ²}
+    (hq : q ∈ D.A)
+    (hcenter : center ∈ D.skeleton q)
+    (hcritical :
+      ∃ r : ℝ, 0 < r ∧ dist center q = r ∧
+        ((((D.skeleton q).erase center).filter
+          fun y => dist center y = r).card = 3)) :
+    Nonempty (CriticalFourShell D.A q center) := by
+  classical
+  rcases hcritical with ⟨r, hrpos, hqr, hcard⟩
+  let B : Finset ℝ² :=
+    ((D.skeleton q).erase center).filter fun y => dist center y = r
+  have hcenterErase : center ∈ D.A.erase q := by
+    simpa [CounterexampleData.skeleton] using hcenter
+  have hq_not_mem_B : q ∉ B := by
+    intro hqB
+    have hqSkel : q ∈ D.skeleton q :=
+      (Finset.mem_erase.mp (Finset.mem_filter.mp hqB).1).2
+    change q ∈ D.A.erase q at hqSkel
+    exact (Finset.mem_erase.mp hqSkel).1 rfl
+  refine ⟨{
+    center_mem := hcenterErase
+    radius := r
+    radius_pos := hrpos
+    support := Finset.cons q B hq_not_mem_B
+    support_eq := ?_
+    support_card := ?_
+    q_mem_support := Finset.mem_cons_self q B
+  }⟩
+  · ext z
+    constructor
+    · intro hz
+      rcases Finset.mem_cons.mp hz with rfl | hzB
+      · exact Finset.mem_filter.mpr ⟨hq, hqr⟩
+      · have hzFilter := Finset.mem_filter.mp hzB
+        have hzCenterErase := Finset.mem_erase.mp hzFilter.1
+        have hzSkel : z ∈ D.skeleton q := hzCenterErase.2
+        have hzErase : z ∈ D.A.erase q := by
+          simpa [CounterexampleData.skeleton] using hzSkel
+        exact Finset.mem_filter.mpr
+          ⟨(Finset.mem_erase.mp hzErase).2, hzFilter.2⟩
+    · intro hz
+      have hzFilter := Finset.mem_filter.mp hz
+      by_cases hzq : z = q
+      · exact Finset.mem_cons.mpr (Or.inl hzq)
+      · have hzc : z ≠ center := by
+          intro h
+          subst z
+          rw [dist_self] at hzFilter
+          linarith
+        have hzSkel : z ∈ D.skeleton q := by
+          change z ∈ D.A.erase q
+          exact Finset.mem_erase.mpr ⟨hzq, hzFilter.1⟩
+        exact Finset.mem_cons.mpr <| Or.inr <|
+          Finset.mem_filter.mpr
+            ⟨Finset.mem_erase.mpr ⟨hzc, hzSkel⟩, hzFilter.2⟩
+  · rw [Finset.card_cons]
+    simpa [B] using hcard
 
 /-- A q-allowed four-point class containing `q` is a q-critical triple after
 erasing `q`. -/

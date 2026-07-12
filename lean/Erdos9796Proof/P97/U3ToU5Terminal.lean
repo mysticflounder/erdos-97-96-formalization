@@ -244,6 +244,26 @@ theorem auditCenter_qDeleted_or_qCritical
   · exact Or.inr
       (U5QCriticalTripleClass.exists_card_three_of_qCritical hcritical)
 
+/-- Exact-shell form of the audit-center deletion dichotomy.  In the critical
+arm this retains equality with the full ambient four-point radius class,
+rather than packaging only the three surviving deleted points. -/
+theorem auditCenter_qDeleted_or_criticalFourShell
+    {D : CounterexampleData} {q p t1 t2 t3 x : ℝ²}
+    (H : U3FixedTripleAuditFrame D q p t1 t2 t3)
+    (hx : x ∈ U5BoundedAuditCenters D q p ({t1, t2, t3} : Finset ℝ²)
+      H.u H.a0 H.a1) :
+    (∃ B : Finset ℝ²,
+      Nonempty (U5QDeletedK4Class D q x B) ∧ B.card = 4) ∨
+      Nonempty (CriticalFourShell D.A q x) := by
+  have hxSkeleton : x ∈ D.skeleton q :=
+    H.dangerous.audit_center_mem_skeleton H.selected H.a0_mem H.a1_mem hx
+  rcases U5QDeletedK4Class.exists_card_four_or_qCritical_of_globalK4
+      H.dangerous.q_mem hxSkeleton with hdeleted | hcritical
+  · exact Or.inl hdeleted
+  · exact Or.inr
+      (U5QCriticalTripleClass.exists_criticalFourShell_of_qCritical
+        H.dangerous.q_mem hxSkeleton hcritical)
+
 /-- Rowwise form of `auditCenter_qDeleted_or_qCritical` for the entire bounded
 audit center set. -/
 theorem auditCenters_qDeleted_or_qCritical
@@ -257,6 +277,19 @@ theorem auditCenters_qDeleted_or_qCritical
           Nonempty (U5QCriticalTripleClass D q x B) ∧ B.card = 3 := by
   intro x hx
   exact H.auditCenter_qDeleted_or_qCritical hx
+
+/-- Rowwise exact-shell form of
+`auditCenter_qDeleted_or_criticalFourShell`. -/
+theorem auditCenters_qDeleted_or_criticalFourShell
+    {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
+    (H : U3FixedTripleAuditFrame D q p t1 t2 t3) :
+    ∀ x ∈ U5BoundedAuditCenters D q p ({t1, t2, t3} : Finset ℝ²)
+        H.u H.a0 H.a1,
+      (∃ B : Finset ℝ²,
+        Nonempty (U5QDeletedK4Class D q x B) ∧ B.card = 4) ∨
+        Nonempty (CriticalFourShell D.A q x) := by
+  intro x hx
+  exact H.auditCenter_qDeleted_or_criticalFourShell hx
 
 /-- The exact remaining producer at a fixed-triple audit frame: every bounded
 audit row has an exact q-deleted four-class contained in the bounded support. -/
@@ -291,6 +324,37 @@ theorem false_of_rowwiseConfinedQDeletedClasses
       selected := H.selected
       audited_support := audited
       not_same_radius := H.selected_off_circle }
+
+/-- Every fixed-triple audit exposes a concrete next-row obstruction: either
+an exact q-deleted four-class leaves the bounded support, or one audit center
+has an ambient critical shell through the deleted point.
+
+This is the constructive content of the checked bounded consumer.  It does
+not assert that repeated escapes return to a bounded support. -/
+theorem exists_qDeleted_escape_or_criticalFourShell
+    {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
+    (H : U3FixedTripleAuditFrame D q p t1 t2 t3) :
+    ∃ x ∈ U5BoundedAuditCenters D q p
+        ({t1, t2, t3} : Finset ℝ²) H.u H.a0 H.a1,
+      (∃ (B : Finset ℝ²) (z : ℝ²),
+        Nonempty (U5QDeletedK4Class D q x B) ∧
+          B.card = 4 ∧
+          z ∈ B ∧
+          z ∉ U5BoundedSupport D q p
+            ({t1, t2, t3} : Finset ℝ²) H.u H.a0 H.a1) ∨
+        Nonempty (CriticalFourShell D.A q x) := by
+  classical
+  by_contra hnone
+  apply H.false_of_rowwiseConfinedQDeletedClasses
+  intro x hx
+  rcases H.auditCenter_qDeleted_or_criticalFourShell hx with
+    hdeleted | hcritical
+  · rcases hdeleted with ⟨B, hclass, hcard⟩
+    refine ⟨B, hclass, hcard, ?_⟩
+    by_contra hnotSubset
+    rcases Finset.not_subset.mp hnotSubset with ⟨z, hzB, hzOutside⟩
+    exact hnone ⟨x, hx, Or.inl ⟨B, z, hclass, hcard, hzB, hzOutside⟩⟩
+  · exact False.elim (hnone ⟨x, hx, Or.inr hcritical⟩)
 
 end U3FixedTripleAuditFrame
 

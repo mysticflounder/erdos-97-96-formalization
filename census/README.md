@@ -24,8 +24,24 @@ used to live under `scratch/` and `scripts/`.
 - `global_confinement/` contains the general-`m` pinned-surplus incidence
   probes. They separate q-critical row compatibility, simultaneous q-deleted
   survival, and eight-point confinement; cover every ordered surplus placement
-  at `n = 11,12`; and add a source-indexed no-q-free critical-shell shadow,
-  while keeping SAT explicitly weaker than Euclidean realizability.
+  at `n = 11,12`, recheck the two stable zero-extension types at every `n = 13`
+  placement, extract their node-zero fixed-pair/empty-domain cores, and couple a
+  source-indexed no-q-free critical-shell shadow to all audit alternatives,
+  while keeping SAT explicitly weaker than Euclidean realizability. The saved
+  relaxed systems have a complete five-family metric-core partition. The active
+  surplus-source follow-up checks six additional generic equality cores, for
+  eleven proved consumers total. The direct surplus-source, six-row-anchor, and
+  seven-point-orbit theorems exclude the saved assignments that first exposed
+  those motifs. The complete v4 nine-core checkpoint is archived separately;
+  v5 is rerunning every v4 `SAT` or `INDETERMINATE` packet under the eleven-core
+  detector while inheriting only monotone v4 `UNSAT` rows. These assignments are
+  incidence shadows, not Euclidean realizations.
+  The arbitrary-`n` geometric producer therefore remains open;
+  `metric_core_dependencies.py`
+  audits exactly which packet-local assumptions each saved core uses.
+  `equality_ideal_probe.py` independently mines exact QQ unit-ideal candidates
+  from saved core-free assignments without promoting `NONUNIT` to real
+  realizability.
 
 ## Multi-center checkpoint (2026-07-09)
 
@@ -46,7 +62,11 @@ uv run python census/multi_center/multi_center_census.py global-profile --profil
 uv run python -m census.card_head.profiles --n-min 12 --n-max 14
 uv run python -m census.global_confinement.probe --n-min 11 --n-max 12 --workers 8 --out census/global_confinement/results_n11_12.json --markdown census/global_confinement/results_n11_12.md
 uv run python -m census.global_confinement.placement_scan --n-min 11 --n-max 12 --workers 8 --out census/global_confinement/placement_results_n11_12.json --markdown census/global_confinement/placement_results_n11_12.md
+uv run python -m census.global_confinement.placement_scan --n-min 13 --n-max 13 --workers 8 --max-nodes 300000 --row-type '(0, 0, 2, 2)' --row-type '(0, 2, 0, 2)' --out census/global_confinement/placement_zero_types_n13.json --markdown census/global_confinement/placement_zero_types_n13.md
+uv run python -m census.global_confinement.zero_type_core_probe census/global_confinement/placement_results_n11_12.json census/global_confinement/placement_zero_types_n13.json --out census/global_confinement/zero_type_cores_n11_13.json --markdown census/global_confinement/zero_type_cores_n11_13.md
 uv run python -m census.global_confinement.critical_shell_probe --n-min 11 --n-max 12 --all-placements --per-type 1 --workers 8 --max-nodes 300000 --out census/global_confinement/critical_shell_results_all_placements_n11_12.json --markdown census/global_confinement/critical_shell_results_all_placements_n11_12.md
+uv run python -m census.global_confinement.shell_audit_probe --n-min 11 --n-max 12 --all-survival-frames --workers 8 --max-nodes 300000 --out census/global_confinement/shell_audit_results_all_frames_n11_12.json --markdown census/global_confinement/shell_audit_results_all_frames_n11_12.md
+UV_CACHE_DIR=/tmp/uv-cache uv run python -m census.global_confinement.surplus_source_metric_core_probe --workers 7 --max-nodes 300000 --resume --out census/global_confinement/surplus_source_metric_core_results_n11_12.json
 uv run python -m census.census_554.cover_probe_smoke
 uv run python -m census.census_554.verify_completion --root scratch/census-554
 uv run python -m unittest discover -s census/census_554/tests -t . -v

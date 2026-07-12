@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 import Erdos9796Proof.P97.U1TwoShortCapReduction
 import Erdos9796Proof.P97.TwoCircleCrossing
+import Erdos9796Proof.P97.WitnessPacketInterface
 
 /-!
 # U1 carrier injection support
@@ -419,6 +420,29 @@ structure SelectedFourClass (A : Finset ℝ²) (center : ℝ²) where
 
 namespace SelectedFourClass
 
+/-- An exact four-point `SelectedClass` with positive radius is a selected
+four-class in the row-pattern interface. -/
+noncomputable def ofSelectedClass
+    {A : Finset ℝ²} {center : ℝ²} {radius : ℝ}
+    (hradius : 0 < radius)
+    (hcard : (SelectedClass A center radius).card = 4) :
+    SelectedFourClass A center :=
+  { support := SelectedClass A center radius
+    support_subset_A := by
+      intro z hz
+      exact (mem_selectedClass.mp hz).1
+    support_card := hcard
+    radius := radius
+    radius_pos := hradius
+    support_eq_radius := by
+      intro z hz
+      exact (mem_selectedClass.mp hz).2
+    center_not_mem := by
+      intro hcenter
+      have hdist := (mem_selectedClass.mp hcenter).2
+      have hradiusZero : radius = 0 := by simpa using hdist.symm
+      exact (ne_of_gt hradius) hradiusZero }
+
 theorem support_nonempty {A : Finset ℝ²} {center : ℝ²}
     (K : SelectedFourClass A center) : K.support.Nonempty := by
   rw [← Finset.card_pos]
@@ -652,6 +676,31 @@ theorem exists_of_shell {A : Finset ℝ²} {q center : ℝ²}
         support_eq_labels := hlabels },
       rfl⟩
 
+/-- A positive exact four-point `SelectedClass` becomes a named critical shell
+for each of its members once its center is known to lie in the carrier. -/
+theorem exists_of_exactSelectedClass
+    {A : Finset ℝ²} {center q : ℝ²} {radius : ℝ}
+    (hcenter : center ∈ A)
+    (hradius : 0 < radius)
+    (hcard : (SelectedClass A center radius).card = 4)
+    (hq : q ∈ SelectedClass A center radius) :
+    Nonempty (CriticalSelectedFourClass A q center) := by
+  have hcenter_ne_q : center ≠ q := by
+    intro h
+    have hdist : dist center q = radius := (mem_selectedClass.mp hq).2
+    subst q
+    rw [dist_self] at hdist
+    linarith
+  let shell : CriticalFourShell A q center :=
+    { center_mem := Finset.mem_erase.mpr ⟨hcenter_ne_q, hcenter⟩
+      radius := radius
+      radius_pos := hradius
+      support := SelectedClass A center radius
+      support_eq := rfl
+      support_card := hcard
+      q_mem_support := hq }
+  exact ⟨Classical.choose (exists_of_shell shell)⟩
+
 /-- Membership in a selected critical shell is membership in one of its four
 named labels. -/
 theorem mem_support_iff_named {A : Finset ℝ²} {q center z : ℝ²}
@@ -818,76 +867,92 @@ def toSelectedFourClass {A : Finset ℝ²} {q center : ℝ²}
 
 end CriticalSelectedFourClass
 
-/-- A non-removable deleted vertex supplies a critical full four-shell.
+/-- A non-removable deleted vertex supplies a named critical full shell and
+retains the deletion failure at its blocker center.
 
-The blocker center is existential: it is a center where the K4 property fails
-after deleting `q`.  Global K4 at that center gives a full radius class in `A`;
-failure after deleting `q` forces that class to contain `q`, and to have
-cardinality exactly four. -/
+The exact shell alone records only one radius class through `q`.  The final
+conjunct records the stronger fact used to select its center: after deleting
+`q`, that center has no four-point same-distance witness at any radius. -/
+theorem exists_criticalSelectedFourClass_and_no_qfree
+    {A : Finset ℝ²} {q : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hq : q ∈ A)
+    (hnrem : ¬ IsRemovableVertex A q) :
+    ∃ center : ℝ²,
+      Nonempty (CriticalSelectedFourClass A q center) ∧
+        ¬ HasNEquidistantPointsAt 4 (A.erase q) center := by
+  classical
+  have hnotProp : ¬ HasNEquidistantProperty 4 (A.erase q) := by
+    intro hprop
+    exact hnrem ⟨hq, hprop⟩
+  have hblocked :
+      ∃ center ∈ A.erase q,
+        ¬ HasNEquidistantPointsAt 4 (A.erase q) center := by
+    by_contra hnone
+    apply hnotProp
+    intro center hcenter
+    by_contra hdeleted
+    exact hnone ⟨center, hcenter, hdeleted⟩
+  rcases hblocked with ⟨center, hcenter, hdeleted⟩
+  have hcenterA : center ∈ A := (Finset.mem_erase.mp hcenter).2
+  rcases hK4 center hcenterA with ⟨r, hrpos, hcard⟩
+  let C : Finset ℝ² := A.filter fun z => dist center z = r
+  have hqC : q ∈ C := by
+    by_contra hqCnot
+    have hsub : C ⊆ (A.erase q).filter fun z => dist center z = r := by
+      intro z hz
+      have hzA : z ∈ A := (Finset.mem_filter.mp hz).1
+      have hzdist : dist center z = r := (Finset.mem_filter.mp hz).2
+      refine Finset.mem_filter.mpr ⟨?_, hzdist⟩
+      refine Finset.mem_erase.mpr ⟨?_, hzA⟩
+      intro hzq
+      subst z
+      exact hqCnot hz
+    have hdeletedCard :
+        4 ≤ ((A.erase q).filter fun z => dist center z = r).card :=
+      le_trans hcard (Finset.card_le_card hsub)
+    exact hdeleted ⟨r, hrpos, hdeletedCard⟩
+  have hcard_le : C.card ≤ 4 := by
+    by_contra hnotle
+    have hge5 : 5 ≤ C.card := by omega
+    have hsubErase :
+        C.erase q ⊆ (A.erase q).filter fun z => dist center z = r := by
+      intro z hz
+      have hz_ne_q : z ≠ q := (Finset.mem_erase.mp hz).1
+      have hzC : z ∈ C := (Finset.mem_erase.mp hz).2
+      have hzA : z ∈ A := (Finset.mem_filter.mp hzC).1
+      have hzdist : dist center z = r := (Finset.mem_filter.mp hzC).2
+      refine Finset.mem_filter.mpr ⟨?_, hzdist⟩
+      exact Finset.mem_erase.mpr ⟨hz_ne_q, hzA⟩
+    have hCeraseCard : 4 ≤ (C.erase q).card := by
+      rw [Finset.card_erase_of_mem hqC]
+      omega
+    have hdeletedCard :
+        4 ≤ ((A.erase q).filter fun z => dist center z = r).card :=
+      le_trans hCeraseCard (Finset.card_le_card hsubErase)
+    exact hdeleted ⟨r, hrpos, hdeletedCard⟩
+  have hcard_eq : C.card = 4 := le_antisymm hcard_le hcard
+  let K : CriticalFourShell A q center :=
+    { center_mem := hcenter,
+      radius := r,
+      radius_pos := hrpos,
+      support := C,
+      support_eq := rfl,
+      support_card := hcard_eq,
+      q_mem_support := hqC }
+  rcases CriticalSelectedFourClass.exists_of_shell K with ⟨S, _hS⟩
+  exact ⟨center, ⟨S⟩, hdeleted⟩
+
+/-- A non-removable deleted vertex supplies a critical full four-shell. -/
 theorem exists_criticalFourShell
     {A : Finset ℝ²} {q : ℝ²}
     (hK4 : HasNEquidistantProperty 4 A)
     (hq : q ∈ A)
     (hnrem : ¬ IsRemovableVertex A q) :
     ∃ center : ℝ², Nonempty (CriticalFourShell A q center) := by
-  classical
-  have hnotProp : ¬ HasNEquidistantProperty 4 (A.erase q) := by
-    intro hprop
-    exact hnrem ⟨hq, hprop⟩
-  by_contra hnone
-  have hprop : HasNEquidistantProperty 4 (A.erase q) := by
-    intro center hcenter
-    by_cases hdeleted : HasNEquidistantPointsAt 4 (A.erase q) center
-    · exact hdeleted
-    · have hcenterA : center ∈ A := (Finset.mem_erase.mp hcenter).2
-      rcases hK4 center hcenterA with ⟨r, hrpos, hcard⟩
-      let C : Finset ℝ² := A.filter fun z => dist center z = r
-      have hqC : q ∈ C := by
-        by_contra hqCnot
-        have hsub :
-            C ⊆ (A.erase q).filter fun z => dist center z = r := by
-          intro z hz
-          have hzA : z ∈ A := (Finset.mem_filter.mp hz).1
-          have hzdist : dist center z = r := (Finset.mem_filter.mp hz).2
-          refine Finset.mem_filter.mpr ⟨?_, hzdist⟩
-          refine Finset.mem_erase.mpr ⟨?_, hzA⟩
-          intro hzq
-          subst z
-          exact hqCnot hz
-        have hdeletedCard :
-            4 ≤ ((A.erase q).filter fun z => dist center z = r).card :=
-          le_trans hcard (Finset.card_le_card hsub)
-        exact hdeleted ⟨r, hrpos, hdeletedCard⟩
-      have hcard_le : C.card ≤ 4 := by
-        by_contra hnotle
-        have hge5 : 5 ≤ C.card := by omega
-        have hsubErase :
-            C.erase q ⊆ (A.erase q).filter fun z => dist center z = r := by
-          intro z hz
-          have hz_ne_q : z ≠ q := (Finset.mem_erase.mp hz).1
-          have hzC : z ∈ C := (Finset.mem_erase.mp hz).2
-          have hzA : z ∈ A := (Finset.mem_filter.mp hzC).1
-          have hzdist : dist center z = r := (Finset.mem_filter.mp hzC).2
-          refine Finset.mem_filter.mpr ⟨?_, hzdist⟩
-          exact Finset.mem_erase.mpr ⟨hz_ne_q, hzA⟩
-        have hCeraseCard : 4 ≤ (C.erase q).card := by
-          rw [Finset.card_erase_of_mem hqC]
-          omega
-        have hdeletedCard :
-            4 ≤ ((A.erase q).filter fun z => dist center z = r).card :=
-          le_trans hCeraseCard (Finset.card_le_card hsubErase)
-        exact hdeleted ⟨r, hrpos, hdeletedCard⟩
-      have hcard_eq : C.card = 4 := le_antisymm hcard_le hcard
-      let K : CriticalFourShell A q center :=
-        { center_mem := hcenter,
-          radius := r,
-          radius_pos := hrpos,
-          support := C,
-          support_eq := rfl,
-          support_card := hcard_eq,
-          q_mem_support := hqC }
-      exact False.elim (hnone ⟨center, ⟨K⟩⟩)
-  exact hnotProp hprop
+  rcases exists_criticalSelectedFourClass_and_no_qfree hK4 hq hnrem with
+    ⟨center, ⟨S⟩, _hdeleted⟩
+  exact ⟨center, ⟨S.toCriticalFourShell⟩⟩
 
 /-- A non-removable deleted vertex supplies a named critical full four-shell. -/
 theorem exists_criticalSelectedFourClass
@@ -896,8 +961,8 @@ theorem exists_criticalSelectedFourClass
     (hq : q ∈ A)
     (hnrem : ¬ IsRemovableVertex A q) :
     ∃ center : ℝ², Nonempty (CriticalSelectedFourClass A q center) := by
-  rcases exists_criticalFourShell hK4 hq hnrem with ⟨center, ⟨K⟩⟩
-  rcases CriticalSelectedFourClass.exists_of_shell K with ⟨S, _hS⟩
+  rcases exists_criticalSelectedFourClass_and_no_qfree hK4 hq hnrem with
+    ⟨center, ⟨S⟩, _hdeleted⟩
   exact ⟨center, ⟨S⟩⟩
 
 /-- Counterexample-data form of `exists_criticalFourShell`: if the carrier has
@@ -942,15 +1007,21 @@ theorem CounterexampleData.exists_criticalSelectedFourClass_of_minimal
 /-- A concrete choice of named critical full shell for every source point in
 the carrier.
 
-This is the theorem-facing manifest surface for the U1.2 critical-row route:
-each row is a `CriticalSelectedFourClass`, so its support is the whole ambient
-radius class, not a selected four-subset. -/
+This is the theorem-facing manifest surface for the U1.2 critical-row route.
+Each row is a `CriticalSelectedFourClass`, so its support is the whole ambient
+radius class, not a selected four-subset.  The system also retains the blocker
+fact used to choose that row: deleting its source destroys every K4 witness at
+the chosen center. -/
 structure CriticalShellSystem (A : Finset ℝ²) where
   /-- For each source point `q`, choose a blocker center and its named full
   critical shell through `q`. -/
   shellAt :
     ∀ q : ℝ², q ∈ A → Sigma fun center : ℝ² =>
       CriticalSelectedFourClass A q center
+  /-- The chosen center is a genuine blocker after deleting its source. -/
+  no_qfree :
+    ∀ q : ℝ², ∀ hq : q ∈ A,
+      ¬ HasNEquidistantPointsAt 4 (A.erase q) (shellAt q hq).1
 
 namespace CriticalShellSystem
 
@@ -964,6 +1035,156 @@ def selectedAt {A : Finset ℝ²} (H : CriticalShellSystem A)
     (q : ℝ²) (hq : q ∈ A) :
     CriticalSelectedFourClass A q (H.centerAt q hq) :=
   (H.shellAt q hq).2
+
+/-- The chosen critical-shell center has no K4 witness after deleting its
+source. -/
+theorem no_qfree_at {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (q : ℝ²) (hq : q ∈ A) :
+    ¬ HasNEquidistantPointsAt 4 (A.erase q) (H.centerAt q hq) :=
+  H.no_qfree q hq
+
+/-- The chosen blocker center still has no K4 witness after additionally
+erasing the center itself. -/
+theorem no_qfree_erase_center_at {A : Finset ℝ²}
+    (H : CriticalShellSystem A) (q : ℝ²) (hq : q ∈ A) :
+    ¬ HasNEquidistantPointsAt 4
+      ((A.erase q).erase (H.centerAt q hq)) (H.centerAt q hq) := by
+  intro hK4
+  apply H.no_qfree_at q hq
+  rcases hK4 with ⟨r, hrpos, hcard⟩
+  refine ⟨r, hrpos, ?_⟩
+  refine le_trans hcard (Finset.card_le_card ?_)
+  intro z hz
+  rcases Finset.mem_filter.mp hz with ⟨hzErase, hzDist⟩
+  exact Finset.mem_filter.mpr
+    ⟨Finset.erase_subset (H.centerAt q hq) (A.erase q) hzErase, hzDist⟩
+
+/-- Every selected four-class at a chosen blocker center contains the source
+whose deletion makes that center critical. -/
+theorem source_mem_selectedFourClass
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (q : ℝ²) (hq : q ∈ A)
+    (K : SelectedFourClass A (H.centerAt q hq)) :
+    q ∈ K.support := by
+  by_contra hqK
+  apply H.no_qfree_at q hq
+  refine ⟨K.radius, K.radius_pos, ?_⟩
+  calc
+    4 = K.support.card := K.support_card.symm
+    _ ≤ ((A.erase q).filter
+        fun z => dist (H.centerAt q hq) z = K.radius).card :=
+      Finset.card_le_card (by
+        intro z hz
+        exact Finset.mem_filter.mpr
+          ⟨Finset.mem_erase.mpr
+              ⟨fun hzq => hqK (by simpa [hzq] using hz),
+                K.support_subset_A hz⟩,
+            K.support_eq_radius z hz⟩)
+
+/-- At a chosen blocker center, any selected four-class supplied by global K4
+is exactly the chosen critical shell.  Thus independently chosen global rows
+cannot disagree with the critical-shell system at blocker centers. -/
+theorem selectedFourClass_support_eq_shell
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (q : ℝ²) (hq : q ∈ A)
+    (K : SelectedFourClass A (H.centerAt q hq)) :
+    K.support = (H.selectedAt q hq).toCriticalFourShell.support := by
+  have hqK : q ∈ K.support := H.source_mem_selectedFourClass q hq K
+  have hradius :
+      K.radius = (H.selectedAt q hq).toCriticalFourShell.radius := by
+    calc
+      K.radius = dist (H.centerAt q hq) q :=
+        (K.support_eq_radius q hqK).symm
+      _ = (H.selectedAt q hq).toCriticalFourShell.radius :=
+        (H.selectedAt q hq).toCriticalFourShell.support_eq_radius q
+          (H.selectedAt q hq).toCriticalFourShell.q_mem_support
+  apply Finset.eq_of_subset_of_card_le
+  · intro z hz
+    exact (H.selectedAt q hq).toCriticalFourShell.off_row_named_label_forbidden
+      (K.support_subset_A hz)
+      ((K.support_eq_radius z hz).trans hradius)
+  · rw [K.support_card,
+      (H.selectedAt q hq).toCriticalFourShell.support_card]
+
+/-- Carrier vertices as a finite type, used to iterate the chosen blocker
+map. -/
+abbrev CarrierVertex (A : Finset ℝ²) := {q : ℝ² // q ∈ A}
+
+/-- Send each source vertex to its chosen blocker center. -/
+def blockerVertex {A : Finset ℝ²} (H : CriticalShellSystem A) :
+    CarrierVertex A → CarrierVertex A :=
+  fun q =>
+    ⟨H.centerAt q.1 q.2,
+      (Finset.mem_erase.mp
+        (H.selectedAt q.1 q.2).toCriticalFourShell.center_mem).2⟩
+
+/-- A source is never its own blocker. -/
+theorem blockerVertex_ne {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (q : CarrierVertex A) :
+    H.blockerVertex q ≠ q := by
+  intro h
+  have hval : H.centerAt q.1 q.2 = q.1 := congrArg Subtype.val h
+  exact (Finset.mem_erase.mp
+    (H.selectedAt q.1 q.2).toCriticalFourShell.center_mem).1 hval
+
+/-- Every nonempty finite critical-shell system contains a genuine cycle of
+chosen blocker centers.  The period is at least two because blocker centers
+are never fixed points of the source-to-blocker map. -/
+theorem exists_blocker_cycle
+    {A : Finset ℝ²} (H : CriticalShellSystem A) (hne : A.Nonempty) :
+    ∃ (q : CarrierVertex A) (k : ℕ),
+      2 ≤ k ∧ Function.IsPeriodicPt H.blockerVertex k q := by
+  classical
+  rcases hne with ⟨q0, hq0⟩
+  let start : CarrierVertex A := ⟨q0, hq0⟩
+  obtain ⟨m, n, hmn, heq⟩ :=
+    Finite.exists_ne_map_eq_of_infinite
+      (fun t : ℕ => (H.blockerVertex^[t]) start)
+  rcases lt_or_gt_of_ne hmn with hmnlt | hmnlt
+  · let q : CarrierVertex A := (H.blockerVertex^[m]) start
+    let k : ℕ := n - m
+    have hkpos : 0 < k := by
+      dsimp [k]
+      omega
+    have hperiodic : Function.IsPeriodicPt H.blockerVertex k q := by
+      change (H.blockerVertex^[k]) q = q
+      calc
+        (H.blockerVertex^[k]) q =
+            (H.blockerVertex^[k + m]) start := by
+          rw [Function.iterate_add_apply]
+        _ = (H.blockerVertex^[n]) start := by
+          congr 1
+          omega
+        _ = (H.blockerVertex^[m]) start := heq.symm
+        _ = q := rfl
+    have hk_ne_one : k ≠ 1 := by
+      intro hk
+      have hfixed : H.blockerVertex q = q := by
+        simpa [hk] using hperiodic
+      exact H.blockerVertex_ne q hfixed
+    exact ⟨q, k, by omega, hperiodic⟩
+  · let q : CarrierVertex A := (H.blockerVertex^[n]) start
+    let k : ℕ := m - n
+    have hkpos : 0 < k := by
+      dsimp [k]
+      omega
+    have hperiodic : Function.IsPeriodicPt H.blockerVertex k q := by
+      change (H.blockerVertex^[k]) q = q
+      calc
+        (H.blockerVertex^[k]) q =
+            (H.blockerVertex^[k + n]) start := by
+          rw [Function.iterate_add_apply]
+        _ = (H.blockerVertex^[m]) start := by
+          congr 1
+          omega
+        _ = (H.blockerVertex^[n]) start := heq
+        _ = q := rfl
+    have hk_ne_one : k ≠ 1 := by
+      intro hk
+      have hfixed : H.blockerVertex q = q := by
+        simpa [hk] using hperiodic
+      exact H.blockerVertex_ne q hfixed
+    exact ⟨q, k, by omega, hperiodic⟩
 
 /-- The source point is one of the four labels in its chosen critical shell. -/
 theorem source_eq_named {A : Finset ℝ²} (H : CriticalShellSystem A)
@@ -987,6 +1208,87 @@ theorem off_row_named_label_forbidden {A : Finset ℝ²}
       z = (H.selectedAt q hq).l4 :=
   (H.selectedAt q hq).off_row_named_label_forbidden hzA hzdist
 
+/-- Replace the chosen blocker for every member of one exact selected class by
+that class's center.  The supplied deletion hypothesis is exactly what makes
+the replacement a valid critical-shell choice. -/
+noncomputable def overrideExactSelectedClass
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {center : ℝ²} {radius : ℝ}
+    (hcenter : center ∈ A) (hradius : 0 < radius)
+    (hcard : (SelectedClass A center radius).card = 4)
+    (hblocked : ∀ q : ℝ², q ∈ SelectedClass A center radius →
+      ¬ HasNEquidistantPointsAt 4 (A.erase q) center) :
+    CriticalShellSystem A :=
+  { shellAt := fun q hq =>
+      if hqClass : q ∈ SelectedClass A center radius then
+        ⟨center, Classical.choice
+          (CriticalSelectedFourClass.exists_of_exactSelectedClass
+            hcenter hradius hcard hqClass)⟩
+      else
+        H.shellAt q hq
+    no_qfree := by
+      intro q hq
+      dsimp
+      split
+      · rename_i hqClass
+        exact hblocked q hqClass
+      · exact H.no_qfree q hq }
+
+/-- The overridden shell system uses the prescribed exact-class center for
+each member of that class. -/
+theorem overrideExactSelectedClass_centerAt
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {center q : ℝ²} {radius : ℝ}
+    (hcenter : center ∈ A) (hradius : 0 < radius)
+    (hcard : (SelectedClass A center radius).card = 4)
+    (hblocked : ∀ z : ℝ², z ∈ SelectedClass A center radius →
+      ¬ HasNEquidistantPointsAt 4 (A.erase z) center)
+    (hq : q ∈ A) (hqClass : q ∈ SelectedClass A center radius) :
+    (H.overrideExactSelectedClass hcenter hradius hcard hblocked).centerAt q hq =
+      center := by
+  have hqRaw : q ∈ A ∧ dist center q = radius :=
+    mem_selectedClass.mp hqClass
+  simp [centerAt, overrideExactSelectedClass, hqRaw]
+
+/-- Replace the chosen blocker shell at one source by another certified
+critical shell for that same source. -/
+noncomputable def overrideAt
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q center : ℝ²} (C : CriticalSelectedFourClass A q center)
+    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center) :
+    CriticalShellSystem A :=
+  { shellAt := fun z hz =>
+      if h : z = q then
+        ⟨center, h.symm ▸ C⟩
+      else
+        H.shellAt z hz
+    no_qfree := by
+      intro z hz
+      dsimp
+      split
+      · rename_i h
+        subst z
+        exact hblocked
+      · exact H.no_qfree z hz }
+
+/-- The pointwise override chooses the supplied shell center at its source. -/
+theorem overrideAt_centerAt
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q center : ℝ²} (C : CriticalSelectedFourClass A q center)
+    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+    (hq : q ∈ A) :
+    (H.overrideAt C hblocked).centerAt q hq = center := by
+  simp [centerAt, overrideAt]
+
+/-- A pointwise override leaves every other blocker center unchanged. -/
+theorem overrideAt_centerAt_of_ne
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    {q center z : ℝ²} (C : CriticalSelectedFourClass A q center)
+    (hblocked : ¬ HasNEquidistantPointsAt 4 (A.erase q) center)
+    (hz : z ∈ A) (hzq : z ≠ q) :
+    (H.overrideAt C hblocked).centerAt z hz = H.centerAt z hz := by
+  simp [centerAt, overrideAt, hzq]
+
 end CriticalShellSystem
 
 /-- If the carrier has no removable vertices, choose a named critical full
@@ -997,15 +1299,22 @@ theorem exists_criticalShellSystem
     (hnoRem : ∀ q : ℝ², ¬ IsRemovableVertex A q) :
     Nonempty (CriticalShellSystem A) := by
   classical
-  let shellAt :
-      ∀ q : ℝ², q ∈ A → Sigma fun center : ℝ² =>
-        CriticalSelectedFourClass A q center := by
+  let blockedAt :
+      ∀ q : ℝ², ∀ hq : q ∈ A,
+        Sigma fun center : ℝ² =>
+          { S : CriticalSelectedFourClass A q center //
+            ¬ HasNEquidistantPointsAt 4 (A.erase q) center } := by
     intro q hq
-    let witness := exists_criticalSelectedFourClass hK4 hq (hnoRem q)
+    let witness :=
+      exists_criticalSelectedFourClass_and_no_qfree hK4 hq (hnoRem q)
     let center := Classical.choose witness
-    let S := Classical.choice (Classical.choose_spec witness)
-    exact ⟨center, S⟩
-  exact ⟨{ shellAt := shellAt }⟩
+    have hspec := Classical.choose_spec witness
+    let S := Classical.choice hspec.1
+    exact ⟨center, ⟨S, hspec.2⟩⟩
+  exact
+    ⟨{ shellAt := fun q hq =>
+          ⟨(blockedAt q hq).1, (blockedAt q hq).2.1⟩
+       no_qfree := fun q hq => (blockedAt q hq).2.2 }⟩
 
 /-- Counterexample-data form of `exists_criticalShellSystem`: if the carrier
 has no removable vertices, it has a chosen critical full shell system. -/
@@ -1110,6 +1419,50 @@ theorem gaugeWitness_dist {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
   (P.classAt P.gaugeCenter P.gaugeCenter_mem).support_eq_radius
     P.gaugeWitness P.gaugeWitness_mem
 
+/-- A nonempty subset of a minimal carrier that contains every selected row
+centered at one of its vertices is the whole carrier.
+
+The selected rows make the subset a convex `K4` datum, so minimality gives the
+reverse cardinality inequality to its inclusion in the ambient carrier. -/
+theorem eq_carrier_of_nonempty_closed
+    {D : CounterexampleData} (hmin : D.Minimal)
+    (P : FaithfulCarrierPattern D.A) {B : Finset ℝ²}
+    (hBne : B.Nonempty) (hBA : B ⊆ D.A)
+    (hclosed : ∀ center : ℝ², ∀ hcenter : center ∈ B,
+      (P.classAt center (hBA hcenter)).support ⊆ B) :
+    B = D.A := by
+  have hBconvex : ConvexIndep B := ConvexIndep.mono hBA D.convex
+  have hBK4 : HasNEquidistantProperty 4 B := by
+    intro center hcenter
+    let K := P.classAt center (hBA hcenter)
+    refine ⟨K.radius, K.radius_pos, ?_⟩
+    have hsupport :
+        K.support ⊆ B.filter fun z => dist center z = K.radius := by
+      intro z hz
+      exact Finset.mem_filter.mpr
+        ⟨hclosed center hcenter hz, K.support_eq_radius z hz⟩
+    calc
+      4 = K.support.card := K.support_card.symm
+      _ ≤ (B.filter fun z => dist center z = K.radius).card :=
+        Finset.card_le_card hsupport
+  exact Finset.eq_of_subset_of_card_le hBA (hmin B hBne hBconvex hBK4)
+
+/-- Every proper nonempty subset of a minimal carrier has a selected row
+centered inside it that leaves the subset. -/
+theorem exists_row_escape_of_proper_subset
+    {D : CounterexampleData} (hmin : D.Minimal)
+    (P : FaithfulCarrierPattern D.A) {B : Finset ℝ²}
+    (hBne : B.Nonempty) (hBA : B ⊆ D.A) (hBproper : B ≠ D.A) :
+    ∃ center : ℝ², ∃ hcenter : center ∈ B, ∃ z : ℝ²,
+      z ∈ (P.classAt center (hBA hcenter)).support ∧ z ∉ B := by
+  classical
+  by_contra hnone
+  apply hBproper
+  apply P.eq_carrier_of_nonempty_closed hmin hBne hBA
+  intro center hcenter z hz
+  by_contra hzB
+  exact hnone ⟨center, hcenter, z, hz, hzB⟩
+
 /-- In the faithful gauge, the chosen center becomes the encoder's fixed point
 `p = (0, 0)`. -/
 theorem normalAxis_gaugeCenter {A : Finset ℝ²} (P : FaithfulCarrierPattern A) :
@@ -1195,5 +1548,98 @@ theorem exists_faithfulCarrierPattern_of_globalK4
     classAt := classAt
     gaugeWitness := q
     gaugeWitness_mem := hq }⟩
+
+/-- Global `K4` supplies a faithful carrier pattern whose row at one specified
+center is a prescribed selected four-class.  Rows at every other center are
+chosen from the global K4 hypothesis. -/
+theorem exists_faithfulCarrierPattern_with_classAt
+    {A : Finset ℝ²} {center : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A) (hcenter : center ∈ A)
+    (K : SelectedFourClass A center) :
+    ∃ F : FaithfulCarrierPattern A,
+      (F.classAt center hcenter).support = K.support := by
+  classical
+  let classAt : ∀ c : ℝ², c ∈ A → SelectedFourClass A c :=
+    fun c hc =>
+      if h : c = center then
+        h ▸ K
+      else
+        Classical.choice (exists_selectedFourClass_of_globalK4 hK4 hc)
+  have hclass : (classAt center hcenter).support = K.support := by
+    simp [classAt]
+  rcases K.support_nonempty with ⟨q, hq⟩
+  have hqClass : q ∈ (classAt center hcenter).support := by
+    rw [hclass]
+    exact hq
+  refine ⟨{
+    gaugeCenter := center
+    gaugeCenter_mem := hcenter
+    classAt := classAt
+    gaugeWitness := q
+    gaugeWitness_mem := hqClass
+  }, ?_⟩
+  exact hclass
+
+/-- Global `K4` supplies a faithful carrier pattern preserving two prescribed
+rows at distinct centers. -/
+theorem exists_faithfulCarrierPattern_with_two_classes
+    {A : Finset ℝ²} {c₁ c₂ : ℝ²}
+    (hK4 : HasNEquidistantProperty 4 A)
+    (hc₁ : c₁ ∈ A) (hc₂ : c₂ ∈ A) (hcne : c₁ ≠ c₂)
+    (K₁ : SelectedFourClass A c₁) (K₂ : SelectedFourClass A c₂) :
+    ∃ F : FaithfulCarrierPattern A,
+      (F.classAt c₁ hc₁).support = K₁.support ∧
+      (F.classAt c₂ hc₂).support = K₂.support := by
+  classical
+  let classAt : ∀ c : ℝ², c ∈ A → SelectedFourClass A c :=
+    fun c hc =>
+      if h₁ : c = c₁ then
+        h₁ ▸ K₁
+      else if h₂ : c = c₂ then
+        h₂ ▸ K₂
+      else
+        Classical.choice (exists_selectedFourClass_of_globalK4 hK4 hc)
+  have hclass₁ : (classAt c₁ hc₁).support = K₁.support := by
+    simp [classAt]
+  have hclass₂ : (classAt c₂ hc₂).support = K₂.support := by
+    simp [classAt, hcne.symm]
+  rcases K₁.support_nonempty with ⟨q, hq⟩
+  have hqClass : q ∈ (classAt c₁ hc₁).support := by
+    rw [hclass₁]
+    exact hq
+  refine ⟨{
+    gaugeCenter := c₁
+    gaugeCenter_mem := hc₁
+    classAt := classAt
+    gaugeWitness := q
+    gaugeWitness_mem := hqClass
+  }, hclass₁, hclass₂⟩
+
+/-- Preserve both a prescribed exact selected class and a distinct named
+critical shell in one faithful carrier pattern. -/
+theorem exists_faithfulCarrierPattern_with_exact_and_critical
+    {A : Finset ℝ²} (hK4 : HasNEquidistantProperty 4 A)
+    {exactCenter criticalCenter q : ℝ²} {radius : ℝ}
+    (hexactCenter : exactCenter ∈ A) (hradius : 0 < radius)
+    (hcard : (SelectedClass A exactCenter radius).card = 4)
+    (C : CriticalSelectedFourClass A q criticalCenter)
+    (hne : exactCenter ≠ criticalCenter) :
+    ∃ F : FaithfulCarrierPattern A,
+      (F.classAt exactCenter hexactCenter).support =
+          SelectedClass A exactCenter radius ∧
+      (F.classAt criticalCenter
+          (Finset.mem_erase.mp C.toCriticalFourShell.center_mem).2).support =
+        C.toCriticalFourShell.support := by
+  let Kexact : SelectedFourClass A exactCenter :=
+    SelectedFourClass.ofSelectedClass hradius hcard
+  let Kcritical : SelectedFourClass A criticalCenter := C.toSelectedFourClass
+  rcases exists_faithfulCarrierPattern_with_two_classes hK4
+      hexactCenter
+      (Finset.mem_erase.mp C.toCriticalFourShell.center_mem).2 hne
+      Kexact Kcritical with ⟨F, hExact, hCritical⟩
+  exact ⟨F,
+    by simpa [Kexact, SelectedFourClass.ofSelectedClass] using hExact,
+    by simpa [Kcritical, CriticalSelectedFourClass.toSelectedFourClass,
+      CriticalFourShell.toSelectedFourClass] using hCritical⟩
 
 end Problem97

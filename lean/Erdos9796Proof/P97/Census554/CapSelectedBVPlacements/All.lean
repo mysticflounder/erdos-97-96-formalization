@@ -1,0 +1,12 @@
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P3D4
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P3D5
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P3D6
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P4D3
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P4D5
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P4D6
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P5D3
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P5D4
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P5D6
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P6D3
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P6D4
+import Erdos9796Proof.P97.Census554.CapSelectedBVPlacements.P6D5

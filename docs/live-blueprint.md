@@ -1,8 +1,6 @@
-active anchors (4):
+active anchors (2):
+  ⚓ 17ed85d2  Problem97.isM44EndpointResidualsExcluded  [open]
   ⚓ 019f401b (YOU)  Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [open]  — Auditing and closing the explicit general-m pinned-surplus residual after the m=5 bank closure
-  ⚓ 019f300c  Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [open]  — Working the free non-surplus erased-pin P2/P4 residual leaf
-  ⚓ f1cc942b  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]
-  ⚓ f46fdf3f  Problem97.largeK4SurplusCapPacket  [closed]
 target spine view: 2 configured target_symbol(s)
 
 ════════════════════════════════════════════════════════════════
@@ -11,12 +9,13 @@ target spine view: 2 configured target_symbol(s)
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 23/1826 node(s)
+open: 24/1879 node(s)
 trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 65785 line(s) of lean across 1834 decl(s)
+spine source: 67472 line(s) of lean across 1887 decl(s)
 
-open obligations (6):
+open obligations (7):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
+  💧 Problem97.isM44EndpointGeneralMResidualsExcluded  [sorry]
   💧 Problem97.isM44EndpointResidualsExcluded  [sorry]
   💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
   💧 Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [sorry]
@@ -33,11 +32,14 @@ open obligations (6):
         │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
         │   │   │   │   │   ├── Problem97.isM44EndpointResidualsExcluded  [💧]
         │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+        │   │   │   │   │   │   ├── Problem97.isM44EndpointGeneralMResidualsExcluded  [💧]
+        │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+        │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+        │   │   │   │   │   │   └── ✓ 26 closed dep(s)
         │   │   │   │   │   ├── Problem97.isM44PinnedSurplusResidualsExcluded
         │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [💧]  ⚓ (YOU)
         │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+        │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
         │   │   │   │   │   │   └── ✓ 20 closed dep(s)
         │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
         │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
@@ -76,7 +78,7 @@ open obligations (6):
         └── ✓ 2 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - reaches sorry via 5 symbol(s)
+  - reaches sorry via 6 symbol(s)
   - unapproved axiom on spine: sorryAx
 
 ════════════════════════════════════════════════════════════════
@@ -85,12 +87,13 @@ open obligations (6):
 spine rooted at: Problem96.erdos96_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 27/1834 node(s)
+open: 28/1887 node(s)
 trusted leaves: 14 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 65978 line(s) of lean across 1842 decl(s)
+spine source: 67665 line(s) of lean across 1895 decl(s)
 
-open obligations (6):
+open obligations (7):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
+  💧 Problem97.isM44EndpointGeneralMResidualsExcluded  [sorry]
   💧 Problem97.isM44EndpointResidualsExcluded  [sorry]
   💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
   💧 Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [sorry]
@@ -111,11 +114,14 @@ open obligations (6):
             │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
             │   │   │   │   │   │   │   │   ├── Problem97.isM44EndpointResidualsExcluded  [💧]
             │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
+            │   │   │   │   │   │   │   │   │   ├── Problem97.isM44EndpointGeneralMResidualsExcluded  [💧]
+            │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
+            │   │   │   │   │   │   │   │   │   │   └── ✓ 1 closed dep(s)
+            │   │   │   │   │   │   │   │   │   └── ✓ 26 closed dep(s)
             │   │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusResidualsExcluded
             │   │   │   │   │   │   │   │   │   ├── Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [💧]  ⚓ (YOU)
             │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
+            │   │   │   │   │   │   │   │   │   │   └── ✓ 29 closed dep(s)
             │   │   │   │   │   │   │   │   │   └── ✓ 20 closed dep(s)
             │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
             │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
@@ -157,9 +163,9 @@ open obligations (6):
             └── ✓ 3 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem96.erdos96_rhs` has:
-  - reaches sorry via 5 symbol(s)
+  - reaches sorry via 6 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (56 file(s), 1505 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (173 file(s), 2020 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

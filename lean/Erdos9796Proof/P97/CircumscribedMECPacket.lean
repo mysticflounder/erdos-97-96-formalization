@@ -106,9 +106,77 @@ structure CircumscribedMECPacket (A : Finset ℝ²) (M : MoserTriangle A) where
   with radius `radius`. -/
   disk_contains_A : ∀ a ∈ A, ‖a - center‖ ≤ radius
 
+namespace MoserTriangle
+
+variable {A : Finset ℝ²}
+
+/-- Cyclically rotate a Moser triangle so its former second and third vertices
+become the ordered base. -/
+@[reducible] def rotate (M : MoserTriangle A) : MoserTriangle A :=
+  { v1 := M.v2
+    v2 := M.v3
+    v3 := M.v1
+    v1_mem := M.v2_mem
+    v2_mem := M.v3_mem
+    v3_mem := M.v1_mem
+    v12_ne := M.v23_ne
+    v13_ne := M.v12_ne.symm
+    v23_ne := M.v13_ne.symm }
+
+/-- Reverse a Moser triangle so its former third and second vertices become
+the ordered base. -/
+@[reducible] def reverse (M : MoserTriangle A) : MoserTriangle A :=
+  { v1 := M.v3
+    v2 := M.v2
+    v3 := M.v1
+    v1_mem := M.v3_mem
+    v2_mem := M.v2_mem
+    v3_mem := M.v1_mem
+    v12_ne := M.v23_ne.symm
+    v13_ne := M.v13_ne.symm
+    v23_ne := M.v12_ne.symm }
+
+end MoserTriangle
+
 namespace CircumscribedMECPacket
 
 variable {A : Finset ℝ²}
+
+/-- Cyclically rotate a circumscribed MEC packet with its Moser triangle. -/
+@[reducible] def rotate {M : MoserTriangle A}
+    (P : CircumscribedMECPacket A M) :
+    CircumscribedMECPacket A M.rotate :=
+  { center := P.center
+    radius := P.radius
+    radius_pos := P.radius_pos
+    moser_on_boundary_1 := P.moser_on_boundary_2
+    moser_on_boundary_2 := P.moser_on_boundary_3
+    moser_on_boundary_3 := P.moser_on_boundary_1
+    inner_at_v1 := P.inner_at_v2
+    inner_at_v2 := P.inner_at_v3
+    inner_at_v3 := P.inner_at_v1
+    disk_contains_A := P.disk_contains_A }
+
+/-- Reverse a circumscribed MEC packet with its Moser triangle. -/
+@[reducible] def reverse {M : MoserTriangle A}
+    (P : CircumscribedMECPacket A M) :
+    CircumscribedMECPacket A M.reverse :=
+  { center := P.center
+    radius := P.radius
+    radius_pos := P.radius_pos
+    moser_on_boundary_1 := P.moser_on_boundary_3
+    moser_on_boundary_2 := P.moser_on_boundary_2
+    moser_on_boundary_3 := P.moser_on_boundary_1
+    inner_at_v1 := by
+      rw [real_inner_comm]
+      exact P.inner_at_v3
+    inner_at_v2 := by
+      rw [real_inner_comm]
+      exact P.inner_at_v2
+    inner_at_v3 := by
+      rw [real_inner_comm]
+      exact P.inner_at_v1
+    disk_contains_A := P.disk_contains_A }
 
 /-- **Discharge constructor.** Given a non-obtuse circumscribed Moser
 triangle and a circumscribed case-split witness, the structural
