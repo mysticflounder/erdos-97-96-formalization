@@ -1,0 +1,137 @@
+theorem liveData_T1_ql2_srcl1_false
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase :
+      List.Pairwise (fun x y : ℝ² => x ≠ y) [p, q, t1, t2, t3, u])
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) {i : Fin 3}
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hnotOppExact : ¬ CP.OppositePairExactAt i)
+    (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
+    (hcard : 9 < D.A.card)
+    (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (f2CriticalRow :
+      U1Depth5.CriticalRowPacket D
+        (rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 }))
+    (hf2Center_eq_rowAt_center :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.center = (rows.rowAt source).center)
+    (hf2Selected_l1_eq_rowAt_l1 :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+
+  (hsource_ne_selected_of_target_ne_q :
+    ∀ {z l : ℝ²},
+      z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
+        q ≠ z → q = l → rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } ≠ l)
+  (hsource_named_except_l1 :
+    rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+        ≠ f2CriticalRow.selected.l1 →
+      rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+          = f2CriticalRow.selected.l2 ∨
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+            = f2CriticalRow.selected.l3 ∨
+          rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+              = f2CriticalRow.selected.l4)
+  (hsource_named_except_l2 :
+    rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+        ≠ f2CriticalRow.selected.l2 →
+      rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+          = f2CriticalRow.selected.l1 ∨
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+            = f2CriticalRow.selected.l3 ∨
+          rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+              = f2CriticalRow.selected.l4)
+  (hsource_named_except_l3 :
+    rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+        ≠ f2CriticalRow.selected.l3 →
+      rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+          = f2CriticalRow.selected.l1 ∨
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+            = f2CriticalRow.selected.l2 ∨
+          rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+              = f2CriticalRow.selected.l4)
+  (hsource_named_except_l4 :
+    rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+        ≠ f2CriticalRow.selected.l4 →
+      rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+          = f2CriticalRow.selected.l1 ∨
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+            = f2CriticalRow.selected.l2 ∨
+          rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+              = f2CriticalRow.selected.l3)
+  (hcenter_p : f2CriticalRow.center = p)
+  (hselected_support_eq_base_of_q_named :
+    q = f2CriticalRow.selected.l1 ∨
+        q = f2CriticalRow.selected.l2 ∨ q = f2CriticalRow.selected.l3 ∨ q
+            = f2CriticalRow.selected.l4 →
+      f2CriticalRow.selected.support = {q, t1, t2, t3})
+  (hq_t20 : ¬q = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 })
+  (ht1_t20 : t1 = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 })
+  (hselected_support_eq_base : f2CriticalRow.selected.support = {q, t1, t2, t3})
+  (ht1Row_center_p : (rows.rowAt U1Depth5.CriticalSource.t1).center = p)
+  (hf2_l1_eq_t1Row_l1 : f2CriticalRow.selected.l1
+      = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1)
+  (hfalse_of_q_slot0_t1Row_l1 :
+    q = f2CriticalRow.selected.l1 → t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+        → False)
+  (hfalse_of_l1_t1_not_t1Row_l1 :
+    f2CriticalRow.selected.l1 = t1 → ¬t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+        → False)
+  (hfalse_of_l1_t2_t1Row_l1 :
+    f2CriticalRow.selected.l1 = t2 → t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+        → False)
+  (hfalse_of_l1_t3_t1Row_l1 :
+    f2CriticalRow.selected.l1 = t3 → t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+        → False)
+  (hq_slot1 : q = f2CriticalRow.selected.l2)
+  (hsource_ne_qSlot :
+    rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+        ≠ f2CriticalRow.selected.l2)
+  (hsource_l1 : rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 }
+      = f2CriticalRow.selected.l1)
+  (hlabels_base :
+    ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l2,
+        f2CriticalRow.selected.l3, f2CriticalRow.selected.l4} : Finset ℝ²) =
+      ({q, t1, t2, t3} : Finset ℝ²))
+  (hlabels_ordered :
+    ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l1,
+        f2CriticalRow.selected.l3, f2CriticalRow.selected.l4} : Finset ℝ²) =
+      ({q, t1, t2, t3} : Finset ℝ²))
+  (hl1_t1 : f2CriticalRow.selected.l1 = t1)
+  (htail_set : ({f2CriticalRow.selected.l3, f2CriticalRow.selected.l4} : Finset ℝ²)
+      = ({t2, t3} : Finset ℝ²)) :
+    False := by
+              rcases
+                  pair_eq_or_swap_of_pair_finset_eq
+                    f2CriticalRow.selected.l3_ne_l4 htail_set with
+                hordered | hordered
+              · rcases hordered with ⟨hl3_t2, hl4_t3⟩
+                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+                -- `t20 = l1`, `l3 = t2`, `l4 = t3`.
+                by_cases ht1Row_l1 :
+                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+                · sorry
+                · exact False.elim
+                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+              · rcases hordered with ⟨hl3_t3, hl4_t2⟩
+                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+                -- `t20 = l1`, `l3 = t3`, `l4 = t2`.
+                by_cases ht1Row_l1 :
+                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+                · sorry

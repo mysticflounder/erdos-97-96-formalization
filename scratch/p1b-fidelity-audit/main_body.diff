@@ -1,0 +1,922 @@
+180,203c180,186
+<         rcases perm_of_finset_eq_triple htail_set
+<             f2CriticalRow.selected.l2_ne_l3 f2CriticalRow.selected.l2_ne_l4
+<             f2CriticalRow.selected.l3_ne_l4 with
+<           ⟨hl2_t1, hl3_t2, hl4_t3⟩ | ⟨hl2_t1, hl3_t3, hl4_t2⟩ |
+<             ⟨hl2_t2, hl3_t1, hl4_t3⟩ | ⟨hl2_t2, hl3_t3, hl4_t1⟩ |
+<             ⟨hl2_t3, hl3_t1, hl4_t2⟩ | ⟨hl2_t3, hl3_t2, hl4_t1⟩
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
+<           -- `l3 = t2`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t1`,
+<           -- `l3 = t3`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
+<           -- `l3 = t1`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t2`,
+<           -- `l3 = t3`, `l4 = t1`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
+<           -- `l3 = t1`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l1`, `l2 = t3`,
+<           -- `l3 = t2`, `l4 = t1`.
+<           sorry
+---
+>         exact liveData_Q_l1_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>           hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>           hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>           hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>           hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>           hselected_support_eq_base_of_q_named hq_t20 hqRow_center_p hselected_support_eq_base
+>           hq_slot0 hlabels_base hl1_ne_t1 hl1_ne_t2 hl1_ne_t3 htail_set
+299,322c282,288
+<         rcases perm_of_finset_eq_triple htail_set
+<             f2CriticalRow.selected.l1_ne_l3 f2CriticalRow.selected.l1_ne_l4
+<             f2CriticalRow.selected.l3_ne_l4 with
+<           ⟨hl1_t1, hl3_t2, hl4_t3⟩ | ⟨hl1_t1, hl3_t3, hl4_t2⟩ |
+<             ⟨hl1_t2, hl3_t1, hl4_t3⟩ | ⟨hl1_t2, hl3_t3, hl4_t1⟩ |
+<             ⟨hl1_t3, hl3_t1, hl4_t2⟩ | ⟨hl1_t3, hl3_t2, hl4_t1⟩
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
+<           -- `l3 = t2`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t1`,
+<           -- `l3 = t3`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
+<           -- `l3 = t1`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t2`,
+<           -- `l3 = t3`, `l4 = t1`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
+<           -- `l3 = t1`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l2`, `l1 = t3`,
+<           -- `l3 = t2`, `l4 = t1`.
+<           sorry
+---
+>         exact liveData_Q_l2_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>           hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>           hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>           hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>           hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>           hselected_support_eq_base_of_q_named hq_t20 hqRow_center_p hselected_support_eq_base
+>           hq_slot1 hlabels_base hl2_ne_t1 hl2_ne_t2 hl2_ne_t3 hl2_ne_l1 htail_set
+375,398c341,347
+<         rcases perm_of_finset_eq_triple htail_set
+<             f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l4
+<             f2CriticalRow.selected.l2_ne_l4 with
+<           ⟨hl1_t1, hl2_t2, hl4_t3⟩ | ⟨hl1_t1, hl2_t3, hl4_t2⟩ |
+<             ⟨hl1_t2, hl2_t1, hl4_t3⟩ | ⟨hl1_t2, hl2_t3, hl4_t1⟩ |
+<             ⟨hl1_t3, hl2_t1, hl4_t2⟩ | ⟨hl1_t3, hl2_t2, hl4_t1⟩
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
+<           -- `l2 = t2`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t1`,
+<           -- `l2 = t3`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
+<           -- `l2 = t1`, `l4 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t2`,
+<           -- `l2 = t3`, `l4 = t1`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
+<           -- `l2 = t1`, `l4 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l3`, `l1 = t3`,
+<           -- `l2 = t2`, `l4 = t1`.
+<           sorry
+---
+>         exact liveData_Q_l3_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>           hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>           hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>           hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>           hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>           hselected_support_eq_base_of_q_named hq_t20 hqRow_center_p hselected_support_eq_base
+>           hq_slot2 hlabels_base hlabel_mem_base hl1_mem hl2_mem hl4_mem htail_set
+451,474c400,406
+<         rcases perm_of_finset_eq_triple htail_set
+<             f2CriticalRow.selected.l1_ne_l2 f2CriticalRow.selected.l1_ne_l3
+<             f2CriticalRow.selected.l2_ne_l3 with
+<           ⟨hl1_t1, hl2_t2, hl3_t3⟩ | ⟨hl1_t1, hl2_t3, hl3_t2⟩ |
+<             ⟨hl1_t2, hl2_t1, hl3_t3⟩ | ⟨hl1_t2, hl2_t3, hl3_t1⟩ |
+<             ⟨hl1_t3, hl2_t1, hl3_t2⟩ | ⟨hl1_t3, hl2_t2, hl3_t1⟩
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
+<           -- `l2 = t2`, `l3 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t1`,
+<           -- `l2 = t3`, `l3 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
+<           -- `l2 = t1`, `l3 = t3`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t2`,
+<           -- `l2 = t3`, `l3 = t1`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
+<           -- `l2 = t1`, `l3 = t2`.
+<           sorry
+<         · -- Ordered subcube: `q_t20`, `q = l4`, `l1 = t3`,
+<           -- `l2 = t2`, `l3 = t1`.
+<           sorry
+---
+>         exact liveData_Q_l4_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>           hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>           hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>           hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>           hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>           hselected_support_eq_base_of_q_named hq_t20 hqRow_center_p hselected_support_eq_base
+>           hq_slot3 hlabels_base hlabel_mem_base hl1_mem hl2_mem hl3_mem htail_set
+623,642c555,563
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l3_ne_l4 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl3_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l2`, `l3 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl3_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l2`, `l3 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql1_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot0 hsource_ne_qSlot hsource_l2 hlabels_base hl2_t1 htail_set
+711,730c632,640
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l2_ne_l4 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl2_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l3`, `l2 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl2_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l3`, `l2 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql1_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot0 hsource_ne_qSlot hsource_l3 hlabels_base hl3_t1 htail_set
+799,818c709,717
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l2_ne_l3 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl2_t2, hl3_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l4`, `l2 = t2`, `l3 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl2_t3, hl3_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
+<                 -- `t20 = l4`, `l2 = t3`, `l3 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql1_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot0 hsource_ne_qSlot hsource_l4 hlabels_base hl4_t1 htail_set
+889,908c788,796
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l3_ne_l4 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl3_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l1`, `l3 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+<               · rcases hordered with ⟨hl3_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l1`, `l3 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+---
+>               exact liveData_T1_ql2_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot1 hsource_ne_qSlot hsource_l1 hlabels_base hlabels_ordered hl1_t1 htail_set
+931,950c819,827
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l1_ne_l4 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l3`, `l1 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l3`, `l1 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql2_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot1 hsource_ne_qSlot hsource_l3 hlabels_base hl3_t1 htail_set
+973,992c850,858
+<               rcases
+<                   pair_eq_or_swap_of_pair_finset_eq
+<                     f2CriticalRow.selected.l1_ne_l3 htail_set with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl3_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l4`, `l1 = t2`, `l3 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl3_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
+<                 -- `t20 = l4`, `l1 = t3`, `l3 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql2_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot1 hsource_ne_qSlot hsource_l4 hlabels_base hl4_t1 htail_set
+1023,1048c889,897
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot2.symm hl1_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                     f2CriticalRow.selected.l3_ne_l4
+<                     f2CriticalRow.selected.l1_ne_l2
+<                     f2CriticalRow.selected.l1_ne_l4
+<                     f2CriticalRow.selected.l2_ne_l4
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl2_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l1`, `l2 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+<               · rcases hordered with ⟨hl2_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l1`, `l2 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+---
+>               exact liveData_T1_ql3_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot2 hsource_ne_qSlot hsource_l1 hlabels_base hl1_t1
+1059,1084c908,916
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot2.symm hl2_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                     f2CriticalRow.selected.l3_ne_l4
+<                     (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                     f2CriticalRow.selected.l2_ne_l4
+<                     f2CriticalRow.selected.l1_ne_l4
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl4_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l2`, `l1 = t2`, `l4 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl4_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l2`, `l1 = t3`, `l4 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql3_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot2 hsource_ne_qSlot hsource_l2 hlabels_base hl2_t1
+1095,1120c927,935
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot2.symm hl4_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                     f2CriticalRow.selected.l1_ne_l2
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl2_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l4`, `l1 = t2`, `l2 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl2_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
+<                 -- `t20 = l4`, `l1 = t3`, `l2 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql3_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot2 hsource_ne_qSlot hsource_l4 hlabels_base hl4_t1
+1151,1176c966,974
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot3.symm hl1_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                     f2CriticalRow.selected.l1_ne_l2
+<                     f2CriticalRow.selected.l1_ne_l3
+<                     f2CriticalRow.selected.l2_ne_l3
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl2_t2, hl3_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l1`, `l2 = t2`, `l3 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+<               · rcases hordered with ⟨hl2_t3, hl3_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l1`, `l2 = t3`, `l3 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · sorry
+<                 · exact False.elim
+<                     (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+---
+>               exact liveData_T1_ql4_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot3 hsource_ne_qSlot hsource_l1 hlabels_base hl1_t1
+1187,1212c985,993
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot3.symm hl2_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                     f2CriticalRow.selected.l2_ne_l3
+<                     f2CriticalRow.selected.l1_ne_l3
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl3_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l2`, `l1 = t2`, `l3 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl3_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l2`, `l1 = t3`, `l3 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql4_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot3 hsource_ne_qSlot hsource_l2 hlabels_base hl2_t1
+1223,1248c1004,1012
+<               rcases
+<                   pair_order_or_swap_of_four_labels_mem
+<                     hlabels_base hq_slot3.symm hl3_t1 (by simp) (by simp)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                     (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                     (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                     f2CriticalRow.selected.l1_ne_l2
+<                     hfixed.t2_ne_t3 with
+<                 hordered | hordered
+<               · rcases hordered with ⟨hl1_t2, hl2_t3⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l3`, `l1 = t2`, `l2 = t3`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
+<                 · sorry
+<               · rcases hordered with ⟨hl1_t3, hl2_t2⟩
+<                 -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
+<                 -- `t20 = l3`, `l1 = t3`, `l2 = t2`.
+<                 by_cases ht1Row_l1 :
+<                     t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
+<                 · exact False.elim
+<                     (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
+<                 · sorry
+---
+>               exact liveData_T1_ql4_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>                 hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>                 hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                 hsource_ne_selected_of_target_ne_q hsource_named_except_l1 hsource_named_except_l2
+>                 hsource_named_except_l3 hsource_named_except_l4 hcenter_p
+>                 hselected_support_eq_base_of_q_named hq_t20 ht1_t20 hselected_support_eq_base
+>                 ht1Row_center_p hf2_l1_eq_t1Row_l1 hfalse_of_q_slot0_t1Row_l1
+>                 hfalse_of_l1_t1_not_t1Row_l1 hfalse_of_l1_t2_t1Row_l1 hfalse_of_l1_t3_t1Row_l1
+>                 hq_slot3 hsource_ne_qSlot hsource_l3 hlabels_base hl3_t1
+1309,1326c1073,1080
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot0.symm hl2_t3 (by simp) (by simp)
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl3_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l2`, `l3 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl3_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l2`, `l3 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql1_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot0 hsource_ne_qSlot hsource_l2
+>                     hlabels_base hl2_t3
+1337,1354c1091,1098
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot0.symm hl3_t3 (by simp) (by simp)
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl2_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l3`, `l2 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl2_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l3`, `l2 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql1_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot0 hsource_ne_qSlot hsource_l3
+>                     hlabels_base hl3_t3
+1365,1382c1109,1116
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot0.symm hl4_t3 (by simp) (by simp)
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl2_t1, hl3_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l4`, `l2 = t1`, `l3 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl2_t2, hl3_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
+<                     -- `t20 = l4`, `l2 = t2`, `l3 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql1_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot0 hsource_ne_qSlot hsource_l4
+>                     hlabels_base hl4_t3
+1413,1430c1147,1154
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot1.symm hl1_t3 (by simp) (by simp)
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl3_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l1`, `l3 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl3_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l1`, `l3 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql2_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot1 hsource_ne_qSlot hsource_l1
+>                     hlabels_base hl1_t3
+1441,1458c1165,1172
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot1.symm hl3_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l3`, `l1 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l3`, `l1 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql2_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot1 hsource_ne_qSlot hsource_l3
+>                     hlabels_base hl3_t3
+1469,1486c1183,1190
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot1.symm hl4_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl3_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l4`, `l1 = t1`, `l3 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl3_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
+<                     -- `t20 = l4`, `l1 = t2`, `l3 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql2_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot1 hsource_ne_qSlot hsource_l4
+>                     hlabels_base hl4_t3
+1517,1534c1221,1228
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot2.symm hl1_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl2_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l1`, `l2 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl2_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l1`, `l2 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql3_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot2 hsource_ne_qSlot hsource_l1
+>                     hlabels_base hl1_t3
+1545,1562c1239,1246
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot2.symm hl2_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                         f2CriticalRow.selected.l3_ne_l4
+<                         (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                         f2CriticalRow.selected.l2_ne_l4
+<                         f2CriticalRow.selected.l1_ne_l4
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl4_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l2`, `l1 = t1`, `l4 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl4_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l2`, `l1 = t2`, `l4 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql3_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot2 hsource_ne_qSlot hsource_l2
+>                     hlabels_base hl2_t3
+1573,1590c1257,1264
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot2.symm hl4_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl2_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l4`, `l1 = t1`, `l2 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl2_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
+<                     -- `t20 = l4`, `l1 = t2`, `l2 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql3_srcl4_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot2 hsource_ne_qSlot hsource_l4
+>                     hlabels_base hl4_t3
+1621,1638c1295,1302
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot3.symm hl1_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl2_t1, hl3_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l1`, `l2 = t1`, `l3 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl2_t2, hl3_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l1`, `l2 = t2`, `l3 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql4_srcl1_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot3 hsource_ne_qSlot hsource_l1
+>                     hlabels_base hl1_t3
+1649,1666c1313,1320
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot3.symm hl2_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
+<                         f2CriticalRow.selected.l2_ne_l3
+<                         f2CriticalRow.selected.l1_ne_l3
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl3_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l2`, `l1 = t1`, `l3 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl3_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l2`, `l1 = t2`, `l3 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql4_srcl2_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot3 hsource_ne_qSlot hsource_l2
+>                     hlabels_base hl2_t3
+1677,1694c1331,1338
+<                   rcases
+<                       pair_order_or_swap_of_four_labels_mem_excluding_t3
+<                         hlabels_base hq_slot3.symm hl3_t3 (by simp) (by simp)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
+<                         (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
+<                         (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
+<                         f2CriticalRow.selected.l1_ne_l2
+<                         hfixed.t1_ne_t2 with
+<                     hordered | hordered
+<                   · rcases hordered with ⟨hl1_t1, hl2_t2⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l3`, `l1 = t1`, `l2 = t2`.
+<                     sorry
+<                   · rcases hordered with ⟨hl1_t2, hl2_t1⟩
+<                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
+<                     -- `t20 = l3`, `l1 = t2`, `l2 = t1`.
+<                     sorry
+---
+>                   exact liveData_T3_ql4_srcl3_false hlocalNoQFree hfixed hbase MT hCirc CP hM
+>                     hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows
+>                     f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+>                     hsource_ne_selected_of_target_ne_q hsource_named_except_l1
+>                     hsource_named_except_l2 hsource_named_except_l3 hsource_named_except_l4
+>                     hcenter_p hselected_support_eq_base_of_q_named hq_t20 ht1_t20 ht2_t20 ht3_t20
+>                     hselected_support_eq_base ht3Row_center_p hq_slot3 hsource_ne_qSlot hsource_l3
+>                     hlabels_base hl3_t3
+1711,1712c1355,1364
+<   · sorry
+<   · sorry
+---
+>   · exact liveData_C_center_q_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>       hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>       hsource_named_except_l4 hcenter_q
+>   · exact liveData_C_center_t1_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>       hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>       hsource_named_except_l4 hcenter_t1
+1718,1722c1370,1394
+<       sorry
+<     · sorry
+<   · sorry
+<   · sorry
+<   · sorry
+---
+>       exact liveData_C_center_t2_named_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>         hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>         hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>         hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>         hsource_named_except_l4 hcenter_t2 hf5_named hp_named hq_named
+>     · exact liveData_C_center_t2_rowFailure_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap
+>         hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>         hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>         hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>         hsource_named_except_l4 hcenter_t2 hrowFailure
+>   · exact liveData_C_center_t3_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>       hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>       hsource_named_except_l4 hcenter_t3
+>   · exact liveData_C_center_u_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>       hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>       hsource_named_except_l4 hcenter_u
+>   · exact liveData_C_center_fresh_false hlocalNoQFree hfixed hbase MT hCirc CP hM hqCap hsurplus
+>       hqNonMoser hnotOppExact hNoM44 hcard hnoRem hcritical rows f2CriticalRow
+>       hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hsource_ne_selected_of_target_ne_q
+>       hsource_named_except_l1 hsource_named_except_l2 hsource_named_except_l3
+>       hsource_named_except_l4 hcenter_fresh

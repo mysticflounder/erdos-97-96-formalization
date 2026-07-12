@@ -1,0 +1,37 @@
+theorem u1_largeCap_routeB_tail_liveData_false
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase :
+      List.Pairwise (fun x y : ℝ² => x ≠ y) [p, q, t1, t2, t3, u])
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) {i : Fin 3}
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hnotOppExact : ¬ CP.OppositePairExactAt i)
+    (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
+    (hcard : 9 < D.A.card)
+    (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (f2CriticalRow :
+      U1Depth5.CriticalRowPacket D
+        (rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 }))
+    (hf2Center_eq_rowAt_center :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.center = (rows.rowAt source).center)
+    (hf2Selected_l1_eq_rowAt_l1 :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u) :
+    False := by
