@@ -29,34 +29,32 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Audited 2026-07-09 snapshot
+## Current inventory (updated 2026-07-11)
 
-Source snapshot (`proof-blueprint index --refresh` and `status`, final audit
-recheck 2026-07-09):
-
-- the source index is in sync and contains exactly five declarations with
-  `sorry`, all of which were on both publish-target spines in the last fully
-  mined graph; and
-- no off-spine source declaration contains `sorry`.
-
-Last fully mined kernel graph at that snapshot (build fingerprint
-`002b0247c64e`):
-
-- `Problem97.erdos97_rhs`: 23/1827 project nodes open;
-- `Problem96.erdos96_rhs`: 27/1835 project nodes open;
-- both targets reach the same five source declarations containing `sorry`;
-- `sorryAx` appears as the synthetic unapproved kernel axiom reached through
-  those declarations, not as a sixth source obligation.
+Six declarations / 88 textual holes after the K-B-END route-(b) split
+(commit 136ebb9b; verified by the 2026-07-11 freshness audit,
+`docs/audits/2026-07-11-closure-plan-freshness-audit.md`):
 
 | # | Leaf | Current source | Textual holes | Front |
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean` | 1 | B |
-| 4 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:10070` | 2 (`:10097`, `:10119`) | B |
-| 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean:704` | 1 | B |
+| 4 | `isM44EndpointGeneralMResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9511` | 1 (`:9513`) | B |
+| 5 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9521` | 2 (`:9555`, `:9578`) | B |
+| 6 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
-The 87 textual holes collapse to the five declarations above. The matrix
+Leaf 4 is the general-m endpoint leaf created by the split; leaf 5's umbrella
+calls it in the `m ≠ 5` branch, so it is a current proof-spine obligation
+(matrix rows K-B-END-LABEL / K-B-END-GENERAL). `sorryAx` is the synthetic
+kernel marker reached through these declarations, not a seventh obligation.
+
+Historical snapshot (audited 2026-07-09, build fingerprint `002b0247c64e`):
+five declarations / 87 holes; P97 spine 23/1827 open; P96 spine 27/1835
+open; endpoint umbrella then at `Base.lean:10070` with holes
+`:10097`/`:10119`.
+
+The 88 textual holes collapse to the six declarations above. The matrix
 decomposes them into producer families and also records non-`sorry`
 prerequisites such as Census554 cover verification and final publication
 gates.
@@ -64,7 +62,7 @@ gates.
 **Reproducibility checkpoint (dated 2026-07-09).** The focused pinned-surplus
 build was green, and proof-blueprint reported build fingerprint
 `002b0247c64e` with 6024/6024 mined symbols fresh. It saw two uncommitted Lean
-paths, `PinnedSurplusBank.lean` and `U3ToU5Terminal.lean`. The five source
+paths, `PinnedSurplusBank.lean` and `U3ToU5Terminal.lean`. The source
 declarations remained open, so this was checkpoint evidence, not a passing
 publication gate. Re-run `CTRL-GRAPH` rather than reusing these particulars.
 
@@ -704,39 +702,50 @@ one labeled circle (the `.v` selected class, SurplusM44Packet.lean:4390);
 no non-circular producer exists in the repo (slot3 tail, six checkpoints
 2026-07-09; independently confirmed against the statements this session).
 
-Coordination snapshot: other proof-blueprint sessions own the erased-pin,
-pinned-surplus, and liveData branches. Before editing any of those files, run
-`proof-blueprint anchor list`; do not take a row whose owner is active. Anchors
-are advisory, so file changes still require a fresh diff read.
+Coordination: query ownership live with `proof-blueprint anchor list`; do
+not take a row whose owner is active. Anchors are advisory, so file changes
+still require a fresh diff read. (Historical 2026-07-09 snapshot: erased-pin,
+pinned-surplus, and liveData branches all had active owners; the erased-pin
+and liveData anchors were cleared as stale on 2026-07-11.)
 
-### B.1 Endpoint residual producer (leaf 4)
+### B.1 Endpoint residual producer (leaves 4 and 5)
 
-`isM44EndpointResidualsExcluded` has exactly two `hshadow` holes, at
-`RemovableVertexAxiom/Base.lean:10097` and `:10119`. `ResidualCoreData` already
-produces the ten point labels, injectivity, point membership, the two fixed
-`.v/.w` selected-class masks, and the terminal contradiction from any shadow
-that is both in the endpoint bank and a metric shadow. The left and right
-holes must each produce exactly:
+**Updated 2026-07-11 — route (b) implemented (commit 136ebb9b).**
+`isM44EndpointResidualsExcluded` (`Base.lean:9521`) case-splits on
+`S.surplusCap.card = 5`:
 
-```text
-∃ shadow,
-  endpointShadowInBank xLabel shadow = true ∧
-  EndpointMetricShadow pointOf shadow
-```
+- **m = 5 branch (matrix K-B-END-LABEL, END-L/END-R — scoped to m = 5).**
+  Two `hshadow` holes at `Base.lean:9555`/`:9578` with
+  `hcard5 : S.surplusCap.card = 5` in scope. `ResidualCoreData` already
+  produces the ten point labels, injectivity, point membership, the two fixed
+  `.v/.w` selected-class masks, and the terminal contradiction from any shadow
+  that is both in the endpoint bank and a metric shadow. Apex orientation is
+  SYMMETRIC, not forced (2026-07-11 prover verdict): a forcing lemma is
+  equivalent to the hole itself; the two holes are exact mirrors under
+  `NonSurplusSwap` (`U2NonSurplusOneHit.lean:1642`), leaving one direct and
+  one reflected apex branch, with kernels
+  `crossSeparationOKForMasks_of_sameRadius_ccwHull`/`_reflectedCcwHull`
+  (`SurplusCOMPGBankGeometry.lean:1498`/`:1621`) reused as-is. Producer
+  staging is landed green in `EndpointCertificate/GeometryProducer.lean`
+  (engine + u-bound + circumcenter families; commits 8a7e6d1b, b2183714,
+  35bc63aa); right-apex assembly in flight. Import boundary: `Base.lean` may
+  import the producer; the producer must not import `Base.lean` or any
+  consumer of `isM44EndpointResidualsExcluded` (hull-order machinery
+  relocated upstream to `PinnedHullOrder.lean`, commit 858b7e39).
+  Acceptance: the two Base holes disappear via producer calls.
 
-Implement mirror theorems in
-`EndpointCertificate/GeometryProducer.lean` (matrix END-L and END-R), then
-replace each inline `hshadow` proof by one theorem call. The genuine open
-content is selection and confinement of the non-`.v/.w` center classes:
-exactly four labeled members, same-radius interpretation, center exclusion,
-circumcenter/no-three bounds, and `sepOKFor`. Reuse
-`endpointLeft_residual_exists_endpointShadowInBank_of_mask_interfaces`, its
-right mirror, and the `pointPairClassCount_le_two_of_sameRadius` family; do not
-rebuild bank transport. Before creating the module, pin its two public
-existential signatures and import boundary: `Base.lean` may import the producer,
-but the producer must not import `Base.lean` or any consumer of
-`isM44EndpointResidualsExcluded`. Acceptance: the two Base holes disappear and
-`isM44EndpointResidualsExcluded` leaves the spine-open list.
+- **General-m branch (matrix K-B-END-GENERAL).** New leaf
+  `isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`,
+  stated strictly `5 < S.surplusCap.card`), routed to the forced
+  `m = 6` / `A.card = 11` machinery with a scoped extension (endpoint seed
+  predicates, classifier extension, one (4,2,2) bridge case, endpoint source
+  consumers) — see `docs/audits/2026-07-11-endpoint-generalm-representability.md`.
+  Finite gate passed 2026-07-11 with zero residuals over both 32-placement
+  endpoint seed families (EXACT WITHIN MODEL, not PROVEN;
+  `census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`).
+
+`isM44EndpointResidualsExcluded` leaves the spine-open list only when BOTH
+branches close.
 
 ### B.2 Pinned-surplus general-m residual (leaf 3)
 
@@ -1338,8 +1347,13 @@ known mechanism:
    terminal center branches in `u1_largeCap_routeB_tail_liveData_false`.
    Closing the shared-radius theorem removes only one downstream dependency;
    it does not close these families.
-3. **Front-B endpoint/pinned confinement:** construct labeled same-radius
-   classes at every non-fixed center for END-* and PIN-*.
+3. **Front-B endpoint/pinned confinement.** Updated 2026-07-11: the m=5
+   branches are no longer open-ended confinement — the label-complete engine
+   closes them (END-L/END-R producer assembly in flight; PIN m=5 closed).
+   The open-math content is the general-m leaves (K-B-END-GENERAL,
+   K-B-PIN general-m), both routed through the forced `m = 6` / `A.card = 11`
+   classifier/bridge machinery; the older generic non-fixed-center
+   confinement description is historical fallback.
 4. **Front-B erased-pin confinement:** the two direct surplus P4
    contradictions and the side-specific P2 ordered-mask producers.
 

@@ -8,7 +8,10 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Historical companion to the archived 2026-07-06 master plan. Current dispatch
 uses [`closure-plan-full-spec-2026-07-09.md`](closure-plan-full-spec-2026-07-09.md)
-and [`closure-matrix-2026-07-09.md`](closure-matrix-2026-07-09.md). This ledger
+and [`closure-matrix-2026-07-09.md`](closure-matrix-2026-07-09.md); as of
+2026-07-11 the current inventory is SIX declarations / 88 holes (the K-B-END
+route-(b) split added `isM44EndpointGeneralMResidualsExcluded`) — every count
+and line number below is 2026-07-06 history. This ledger
 enumerates **every `sorry` in the source tree** at its dated snapshot —
 on-spine, off-spine, and in-proof — with a closure route and acceptance test
 for each.

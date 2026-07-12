@@ -17,20 +17,24 @@ consumer and gate pass.
 
 ## Snapshot and status vocabulary
 
-Audited 2026-07-09 source index plus the last fully mined graph:
+Current inventory (updated 2026-07-11 after the K-B-END route-(b) split,
+commit 136ebb9b; freshness audit
+`docs/audits/2026-07-11-closure-plan-freshness-audit.md`):
 
-- 5 source declarations with `sorry`;
-- all 5 were on both publish-target spines in the last fully mined graph;
-- 87 textual proof holes inside those declarations;
-- 0 off-spine declarations with `sorry`;
-- P97 spine: 23/1827 project nodes open;
-- P96 spine: 27/1835 project nodes open; and
-- `sorryAx` is the kernel marker reached through the five declarations, not a
-  sixth source obligation.
+- 6 source declarations with `sorry`;
+- all 6 on both publish-target spines;
+- 88 textual proof holes inside those declarations;
+- 0 off-spine declarations with `sorry`; and
+- `sorryAx` is the kernel marker reached through the six declarations, not a
+  seventh source obligation.
 
-The five-declaration inventory and node counts above are dated evidence from
-build fingerprint `002b0247c64e`, where 6024/6024 mined symbols were fresh.
-They are not dispatch truth. Before taking a row, run `CTRL-GRAPH` and record
+Historical snapshot (2026-07-09, build fingerprint `002b0247c64e`,
+6024/6024 mined symbols fresh): 5 declarations / 87 holes, P97 spine
+23/1827 open, P96 spine 27/1835 open. The route-(b) split added the sixth
+declaration `Problem97.isM44EndpointGeneralMResidualsExcluded` (the
+general-m endpoint leaf) with one hole.
+Inventories in this file are dated evidence, not dispatch truth. Before
+taking a row, run `CTRL-GRAPH` and record
 the source-index state, current build/mining fingerprint, open theorem names,
 and source artifact. Publication remains blocked by the live spine, not a
 historical snapshot.
@@ -70,7 +74,8 @@ diff in every affected file, and avoid any row owned by an active session.
 | K-A-PAIR | OPEN-RESEARCH | `Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` (`U1LargeCapRouteBTail.lean:2657`, hole `:2702`) | `false_of_center_p_t2_t20` through the liveData chain | The declaration is sorry-free and absent from `proof-blueprint symbols --with-sorry`. |
 | K-A-LIVE | OPEN-RESEARCH | `Problem97.u1_largeCap_routeB_tail_liveData_false` (`U1LargeCapRouteBTail.lean:3525`, 79 holes) | `u1_largeCap_routeB_tail_false` | All LIVE-* rows are DONE and the declaration leaves the spine-open list. |
 | K-B-PIN | OPEN-PROOF | `Problem97.isM44PinnedSurplusGeneralMResidualsExcluded` in `PinnedSurplusGeneralM.lean` | `isM44PinnedSurplusResidualsExcluded` | DONE in Lean: the open `5 < m` branch is forced to `m = 6`, `A.card = 11`, with exact `(6,4,4)` cap-selected hit counts. DONE in the exact finite model: all 12 pin/deletion placements are exhaustive with zero residuals under the 12 proved metric cores. OPEN: a kernel-checked finite classifier/certificate and the `(4,2,2)` carrier-to-`Fin 11` labeling/soundness bridge. |
-| K-B-END | OPEN-RESEARCH; DECISION (re-rated 2026-07-11) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:10070`, `hshadow` holes `:10097`, `:10119`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | END-L/END-R as specced are not buildable from existing content (2026-07-11 producer-dispatch audit): every bank-transport route (`GeometryCoverage.lean:437/:560`, `ResidualSoundness.lean:252-311`) requires `maskCard = 4` per non-`.v/.w` center, and `endpointMetricShadow_of_selectedClass_interfaces` (`ResidualSoundness.lean:25`) forces genuine `SelectedClass` centers; the only `maskCard = 4` engine (`exists_labelCompleteSupportClasses_of_globalK4`, `PinnedSurplusProducer.lean:482`) consumes full label-completeness of `A`, proved only under `S.surplusCap.card = 5` (`PinnedSurplusProducer.lean:398`). The statement carries no card-5 hypothesis, so END shares the §B.0 Front-B confinement core. Route DECISION: (a) non-`.v/.w` confinement producer at general M44, or (b) split the statement — `m = 5` label-complete branch (closable with the existing covers engine) plus a general-m endpoint leaf routed to the forced `m = 6` / `A.card = 11` machinery now recorded on K-B-PIN. {{NEEDS_ADAM_INPUT}} |
+| K-B-END-LABEL | OPEN-PROOF (route (b) IMPLEMENTED 2026-07-11, commit 136ebb9b) | `Problem97.isM44EndpointResidualsExcluded` (`Base.lean:9521`, `hshadow` holes `:9555`, `:9578`, both under `hcard5 : S.surplusCap.card = 5`) | `removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit` | Route DECISION resolved by Adam as (b) and implemented: the umbrella case-splits on `S.surplusCap.card = 5`; the `m ≠ 5` branch calls `isM44EndpointGeneralMResidualsExcluded` (K-B-END-GENERAL). The m=5 branch is closable with the covers engine: apex orientation is SYMMETRIC not forced (2026-07-11 prover verdict — a forcing lemma is equivalent to the hole; `NonSurplusSwap` mirrors the two holes; one direct + one reflected apex branch remain, kernels `SurplusCOMPGBankGeometry.lean:1498/:1621` reuse as-is). Producer staging landed green in `EndpointCertificate/GeometryProducer.lean` (engine 8a7e6d1b: `exists_labelCompleteSupportClasses`, `cover_of_card_ten`; u-bounds b2183714; circumcenter family 35bc63aa); assembly of the right-apex branch in flight. |
+| K-B-END-GENERAL | OPEN-ADAPTER (leaf created 2026-07-11, commit 136ebb9b) | `Problem97.isM44EndpointGeneralMResidualsExcluded` (`Base.lean:9511`, hole `:9513`; stated strictly `5 < S.surplusCap.card`) | `isM44EndpointResidualsExcluded` (`m ≠ 5` branch) | General-m endpoint leaf, routed to the forced `m = 6` / `A.card = 11` machinery (K-B-PIN). Cannot consume K-B-PIN unchanged: endpoint escape forces the Moser apex OUT of the escaped row, failing `PinnedShellOK`. Scoped extension required (see `docs/audits/2026-07-11-endpoint-generalm-representability.md`): `EndpointLeft/RightShellOK` seed predicates, classifier extension to the seed union, one (4,2,2) bridge seed-production case, endpoint source consumers. Finite gate PASSED 2026-07-11 — EXACT WITHIN MODEL, not PROVEN: 64-placement sweep (both families, twelve formalized metric cores, enumerate-residuals, complete=true) returned zero residuals (`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`); no new metric cores needed. |
 | K-B-ERASE | OPEN-PROOF | `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` (`Continuation.lean:107`, holes `:183`, `:211`, `:312`, `:337`) | `isM44NonSurplusContainmentExactPinResidualsExcluded` chain | ERASE-P4-U/S and ERASE-P2-R/L DONE; declaration leaves spine-open list. |
 
 ## Control and publication gates
@@ -185,9 +190,9 @@ are not the default plan.
 
 | ID | Status | Dependencies | Exact deliverable | Consumer and acceptance |
 |---|---|---|---|---|
-| END-MOD | OPEN-ENG | CTRL-GRAPH, CTRL-OWN | Create `EndpointCertificate/GeometryProducer.lean` with the exact left/right existential shadow signatures. It may be imported by `Base.lean`, but must not import `Base.lean` or a consumer of `isM44EndpointResidualsExcluded`. | Import DAG and public signatures are reviewed; source/axiom audit is explicit because the certificate namespace is mining-skipped. |
-| END-L | OPEN-PROOF | END-MOD, existing `endpointLeft_residual_exists_false_of_metric_shadow_data` | `EndpointCertificate.endpointLeft_residual_exists_metricShadow`: produce `∃ shadow, endpointShadowInBank xLabel shadow = true ∧ EndpointMetricShadow pointOf shadow`. The open content is non-v/w selected-class confinement, exact-four/card/self exclusion, circumcenter/no-three, and `sepOKFor`. | Replace Base hole 10097 by one call; targeted endpoint producer and Base modules build. |
-| END-R | OPEN-PROOF | END-MOD, END-L reusable lemmas, right residual core data | Exact mirror theorem for `endpointMirrorLabelPoint`. | Replace Base hole 10119; K-B-END DONE when both sides land. |
+| END-MOD | PARTIAL (scoped to `m = 5`) | CTRL-GRAPH, CTRL-OWN | `EndpointCertificate/GeometryProducer.lean` exists (green, sorry-free; commits 8a7e6d1b, b2183714, 35bc63aa): label-complete engine, u-mask-bound family, circumcenter family. It may be imported by `Base.lean`, but must not import `Base.lean` or a consumer of `isM44EndpointResidualsExcluded`. | Import DAG and public signatures are reviewed; source/axiom audit is explicit because the certificate namespace is mining-skipped. |
+| END-L | OPEN-PROOF (scoped to `m = 5`; assembly in flight) | END-MOD, existing `endpointLeft_residual_exists_false_of_metric_shadow_data`, `hcard5` in scope at the hole | `endpointLeft_residual_false_of_card_five_rightApex` + reflected-apex mirror, assembled from the staged families (chooser `SurplusM44Packet.lean:5861`, hull labels `PinnedHullOrder.lean:122/:362`, kernels `:1498/:1621`, metric `:673`, terminal `Bank.lean:542`). | Replace Base hole 9555 by one call; targeted endpoint producer and Base modules build. Closes only the m=5 branch. |
+| END-R | OPEN-PROOF (scoped to `m = 5`) | END-MOD, END-L, `NonSurplusSwap` transport (`U2NonSurplusOneHit.lean:1642/:1676`) | Right hole via the fixed-surplus swap: build `D`, `exists_nonSurplusSwap`, escape transport, END-L producer on the swapped packet (Plan A), or inline four-case mirror (Plan B). | Replace Base hole 9578; K-B-END-LABEL DONE when both sides land. The umbrella leaves the spine only when K-B-END-GENERAL also closes. |
 | PIN-R | DONE | Label-complete `S.surplusCap.card = 5`, right pinned geometry | Right half of `IsM44PinnedSurplusNonVExactShapeProducerStatement`: construct same-radius support classes and exact candidate masks. | Proved; `PinnedSurplusProducer` builds without `sorry`. |
 | PIN-L | DONE | PIN-R mirror lemmas and left label map | Left half in the label-complete regime. | Proved; full metric-shadow producer builds without `sorry`. |
 | PIN-METRIC-TRIAGE | DONE-BOUNDED | PIN-GENERAL saved relaxed row systems; `Census554.EqualityCore`, `ConvexFivePointCore`, `ConvexRhombusCore` | `metric_realizability_structural_complete` partitions all 1,325 saved systems as 1,264 duplicate-center, 31 exact-off-circle, 20 perpendicular-bisector, 9 cyclic five-point, and 1 cyclic rhombus/equilateral contradiction. | Deterministic regression checks the exact partition. Generic Lean consumers for all five schemas build and are core-only under `proof-blueprint axioms`. This row claims saved-artifact coverage only. |
@@ -217,14 +222,18 @@ through MC-CONSUMER; do not introduce off-spine sorries while exploring them.
 
 ## Exhaustive textual-hole reconciliation
 
+Updated 2026-07-11 (route-(b) split, commit 136ebb9b; line numbers per the
+2026-07-11 freshness audit):
+
 | Declaration | Hole lines | Count |
 |---|---|---|
 | `DoubleApexOffSurplusSharedRadiusPair` | 2702 | 1 |
 | `u1_largeCap_routeB_tail_liveData_false` | LIVE-Q (24), LIVE-T1 (24), LIVE-T3 (24), terminal 5876, 5877, 5883, 5884, 5885, 5886, 5887 | 79 |
 | `isM44PinnedSurplusGeneralMResidualsExcluded` | sole terminal `sorry` in the declaration | 1 |
-| `isM44EndpointResidualsExcluded` | 10097, 10119 | 2 |
+| `isM44EndpointGeneralMResidualsExcluded` | Base.lean 9513 (declared 9511) | 1 |
+| `isM44EndpointResidualsExcluded` | Base.lean 9555, 9578 (declared 9521) | 2 |
 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | 183, 211, 312, 337 | 4 |
-| **Total** | | **87** |
+| **Total** | | **88** |
 
 ## Final commands
 

@@ -10,8 +10,9 @@ lean_lib    = "lean"
 root_slug = "root"
 
 [publish]
-# P97 primary; P96 is the sibling publish target. Both reach the same five
-# named sorry obligations (see docs/sorry-closure-ledger-2026-07-06.md).
+# P97 primary; P96 is the sibling publish target. Both reach the same set of
+# named sorry obligations — six as of 2026-07-11 (current inventory:
+# docs/closure-matrix-2026-07-09.md; query live via `proof-blueprint spine`).
 target_symbol = ["Problem97.erdos97_rhs", "Problem96.erdos96_rhs"]
 state = "wip"  # "wip" | "complete" — config compat; affects no verdict (sorry is always open work)
 
