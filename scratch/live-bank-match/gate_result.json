@@ -1,0 +1,8 @@
+{
+  "G1_closed_branches_rederive_contradiction": "24/24",
+  "G2_contradiction_matches_closing_lemma": "24/24",
+  "G3_open_leaves_consistent": "79/79",
+  "G4_f2row_support_rederived": "72/72",
+  "failures": [],
+  "verdict": "PASS"
+}

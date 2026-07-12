@@ -1,0 +1,3146 @@
+{
+  "source_commit_p97_rvol": "3380775eba572be83f40166403c3c2d631af9389",
+  "census": "certificates/p97_rvol_general_n_mining.json",
+  "n_consumers": 18,
+  "cross_check_errors": [],
+  "consumers": [
+    {
+      "name": "cert_00002_2e15afed885f93cb_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 2,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal002.lean",
+      "line": 744,
+      "statement": "theorem cert_00002_2e15afed885f93cb_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00012_09f8848e88550951_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 12,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal012.lean",
+      "line": 740,
+      "statement": "theorem cert_00012_09f8848e88550951_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00040_0226817ca7c08b07_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 40,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal040.lean",
+      "line": 736,
+      "statement": "theorem cert_00040_0226817ca7c08b07_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00047_15a8d1eeea964671_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "t1",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 47,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal047.lean",
+      "line": 736,
+      "statement": "theorem cert_00047_15a8d1eeea964671_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00047_15a8d1eeea964671_branch_00000_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "t1",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 47,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal047.lean",
+      "line": 778,
+      "statement": "theorem cert_00047_15a8d1eeea964671_branch_00000_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00088_01033d22033a54f1_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 88,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal088.lean",
+      "line": 744,
+      "statement": "theorem cert_00088_01033d22033a54f1_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00088_01033d22033a54f1_branch_00000_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 88,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal088.lean",
+      "line": 786,
+      "statement": "theorem cert_00088_01033d22033a54f1_branch_00000_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00088_01033d22033a54f1_branch_00001_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 88,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal088.lean",
+      "line": 908,
+      "statement": "theorem cert_00088_01033d22033a54f1_branch_00001_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00136_00e18ed96771f88a_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 136,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal136.lean",
+      "line": 740,
+      "statement": "theorem cert_00136_00e18ed96771f88a_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00169_0682ec22d1827c59_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f4",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 169,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal169.lean",
+      "line": 740,
+      "statement": "theorem cert_00169_0682ec22d1827c59_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00169_0682ec22d1827c59_branch_00000_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f4",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 169,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal169.lean",
+      "line": 782,
+      "statement": "theorem cert_00169_0682ec22d1827c59_branch_00000_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00169_0682ec22d1827c59_branch_00002_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f4",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 169,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal169.lean",
+      "line": 1027,
+      "statement": "theorem cert_00169_0682ec22d1827c59_branch_00002_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00169_0682ec22d1827c59_branch_00006_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f4",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 169,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal169.lean",
+      "line": 1519,
+      "statement": "theorem cert_00169_0682ec22d1827c59_branch_00006_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00169_0682ec22d1827c59_branch_00008_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f4",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "p",
+          "base": "f3"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "p",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 169,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal169.lean",
+      "line": 1764,
+      "statement": "theorem cert_00169_0682ec22d1827c59_branch_00008_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f2) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00206_000e6b5dd2d132e1_false_of_row_slot_packet",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": false,
+      "all8_fields": [],
+      "placements": [],
+      "hrows": [
+        {
+          "name": "hrow_4",
+          "center": "f1",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_5",
+          "center": "f1",
+          "member": "f4",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_6",
+          "center": "f1",
+          "member": "p",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_13",
+          "center": "q",
+          "member": "t1",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_14",
+          "center": "q",
+          "member": "t2",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_16",
+          "center": "t1",
+          "member": "p",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_17",
+          "center": "t1",
+          "member": "q",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_18",
+          "center": "t1",
+          "member": "t3",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 206,
+      "kind": "row_slot_packet",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal206.lean",
+      "line": 736,
+      "statement": "theorem cert_00206_000e6b5dd2d132e1_false_of_row_slot_packet {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hrow_4 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_5 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_6 : dist (packet.point U1Depth5.f1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.f1) (packet.point U1Depth5.f2)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_13 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_14 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.t2) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_16 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.p) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_17 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_18 : dist (packet.point U1Depth5.t1) (packet.point U1Depth5.t3) = dist (packet.point U1Depth5.t1) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00206_000e6b5dd2d132e1_branch_00000_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 206,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal206.lean",
+      "line": 778,
+      "statement": "theorem cert_00206_000e6b5dd2d132e1_branch_00000_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00206_000e6b5dd2d132e1_branch_00001_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 206,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal206.lean",
+      "line": 900,
+      "statement": "theorem cert_00206_000e6b5dd2d132e1_branch_00001_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    },
+    {
+      "name": "cert_00206_000e6b5dd2d132e1_branch_00002_false_of_all8_slot_metric_core",
+      "hfixed": [
+        "q",
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "packet": [
+        "p",
+        "q",
+        "t1",
+        "t2",
+        "t3",
+        "f1"
+      ],
+      "all8": true,
+      "all8_fields": [
+        {
+          "field": "hslot_f1_f3_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_f4_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_f1_p_f2",
+          "center": "f1",
+          "row": "f1",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t1_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_q_t2_f1",
+          "center": "q",
+          "row": "q",
+          "member_slot": 3,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_p_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 1,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_q_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 2,
+          "base_slot": 0
+        },
+        {
+          "field": "hslot_t1_t3_f1",
+          "center": "t1",
+          "row": "t1",
+          "member_slot": 3,
+          "base_slot": 0
+        }
+      ],
+      "placements": [
+        {
+          "name": "hocc_f3_f1_1",
+          "kind": "occ",
+          "lhs": "f3Choice",
+          "row": "f1",
+          "slot": 1
+        },
+        {
+          "name": "hocc_f2_f1_0",
+          "kind": "occ",
+          "lhs": "f2Choice",
+          "row": "f1",
+          "slot": 0
+        },
+        {
+          "name": "hocc_f4_f1_2",
+          "kind": "occ",
+          "lhs": "f4Choice",
+          "row": "f1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_p_f1_3",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "f1",
+          "slot": 3
+        },
+        {
+          "name": "hfix_t1_q_2",
+          "kind": "fix",
+          "lhs": "t1",
+          "row": "q",
+          "slot": 2
+        },
+        {
+          "name": "hfix_f1_q_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "q",
+          "slot": 0
+        },
+        {
+          "name": "hfix_t2_q_3",
+          "kind": "fix",
+          "lhs": "t2",
+          "row": "q",
+          "slot": 3
+        },
+        {
+          "name": "hfix_p_t1_1",
+          "kind": "fix",
+          "lhs": "p",
+          "row": "t1",
+          "slot": 1
+        },
+        {
+          "name": "hfix_f1_t1_0",
+          "kind": "fix",
+          "lhs": "f1",
+          "row": "t1",
+          "slot": 0
+        },
+        {
+          "name": "hfix_q_t1_2",
+          "kind": "fix",
+          "lhs": "q",
+          "row": "t1",
+          "slot": 2
+        },
+        {
+          "name": "hfix_t3_t1_3",
+          "kind": "fix",
+          "lhs": "t3",
+          "row": "t1",
+          "slot": 3
+        }
+      ],
+      "hrows": [
+        {
+          "name": "hrow_12",
+          "center": "q",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_20",
+          "center": "t2",
+          "member": "f3",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_21",
+          "center": "t2",
+          "member": "f5",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_22",
+          "center": "t2",
+          "member": "q",
+          "base": "f2"
+        },
+        {
+          "name": "hrow_24",
+          "center": "t3",
+          "member": "f4",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_25",
+          "center": "t3",
+          "member": "f5",
+          "base": "f1"
+        },
+        {
+          "name": "hrow_26",
+          "center": "t3",
+          "member": "t1",
+          "base": "f1"
+        }
+      ],
+      "unparsed": [],
+      "ordinal": 206,
+      "kind": "all8_slot_metric_core",
+      "path": "lean/RVOL/P97/U1Depth5SourceUnitQT3Ordinal206.lean",
+      "line": 1022,
+      "statement": "theorem cert_00206_000e6b5dd2d132e1_branch_00002_false_of_all8_slot_metric_core {D : CounterexampleData} {baseP baseQ baseT1 baseT2 baseT3 selectedU : U1Depth5.Plane} (hfixed : U3FixedTriplePacket D baseQ baseP baseT1 baseT2 baseT3) (packet : U1Depth5.RowSlotLabelPacket D baseP baseQ baseT1 baseT2 baseT3 selectedU) (hall8 : U1Depth5.RowSlotLabelPacket.AllEightSlotMetricCore packet) (hocc_f3_f1_1 : packet.rows.pointOfChoice packet.f3Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 1)) (hocc_f2_f1_0 : packet.rows.pointOfChoice packet.f2Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 0)) (hocc_f4_f1_2 : packet.rows.pointOfChoice packet.f4Choice = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 2)) (hfix_p_f1_3 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.f1).slotPoint 3)) (hfix_t1_q_2 : baseT1 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 2)) (hfix_f1_q_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 0)) (hfix_t2_q_3 : baseT2 = ((packet.rows.rowAt U1Depth5.CriticalSource.q).slotPoint 3)) (hfix_p_t1_1 : baseP = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 1)) (hfix_f1_t1_0 : selectedU = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 0)) (hfix_q_t1_2 : baseQ = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 2)) (hfix_t3_t1_3 : baseT3 = ((packet.rows.rowAt U1Depth5.CriticalSource.t1).slotPoint 3)) (hrow_12 : dist (packet.point U1Depth5.q) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.q) (packet.point U1Depth5.f1)) (hrow_20 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f3) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_21 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_22 : dist (packet.point U1Depth5.t2) (packet.point U1Depth5.q) = dist (packet.point U1Depth5.t2) (packet.point U1Depth5.f2)) (hrow_24 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f4) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_25 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f5) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) (hrow_26 : dist (packet.point U1Depth5.t3) (packet.point U1Depth5.t1) = dist (packet.point U1Depth5.t3) (packet.point U1Depth5.f1)) : False",
+      "required_centers": [
+        "f1",
+        "q",
+        "t1",
+        "t2",
+        "t3"
+      ]
+    }
+  ]
+}
