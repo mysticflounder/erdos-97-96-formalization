@@ -1216,42 +1216,45 @@ The proof-facing layer is partially kernel-checked:
   core extraction, pinned exactness, and checked-bank-match soundness;
 - `CapSelectedNogoodClassifier` proves the complete static-bank DFS trace and
   turns a successful placement certificate replay into the public
-  `ClosureCoreAlternative`; and
+  `ClosureCoreAlternative`;
+- `CapSelectedNativeClosureSound` proves the native union-find parent
+  invariant, transports every normalized-root equality to `EdgeClosure`,
+  extracts all four active native core families, and proves the total theorem
+  `closureCoreAlternative_of_incidenceOK_pinnedShellOK`; and
 - `CapSelectedClosureColor` and
   `CapSelectedGeometry.exists_boundaryBlocks_of_isM44_surplus_card_eq_six`
   build without `sorry`, supplying canonical closure colors and exact direct-or-
   mirror `(4,2,2)` boundary blocks.
 
-This checkpoint does not close the leaf. The remaining finite obligations are
-generation and kernel replay of the compact checked nogood bank, including
-successful static-bank placement checks. The checker and semantic replay
-theorems are proved; the generated payload is not yet present. The remaining
-geometry obligation is to enumerate each exact boundary block into the
-canonical `Fin 11` labels and instantiate `IncidenceOK` and `PinnedShellOK`
-from the live carrier.
+The finite obligation is closed. A separate exact certificate-mining run found
+149,434 subsumption-minimal row nogoods and a 647,221,809-byte flat artifact;
+all 795,609 prefix kills had explicit row/flip paths of length at most 17, and
+the static bank replayed all twelve placements UNSAT. This is exact within the
+finite model, but the flat payload is operationally rejected as a Lean
+artifact. Its compact hash-anchored record is
+`certificates/surplus/reports/cap_selected_nogood_certificate_mining.{md,json}`.
+The generic union-find proof removes that payload entirely.
 
-The current closure route has exactly two proof-producing gaps:
+The remaining geometry obligation is to enumerate each exact boundary block
+into the canonical `Fin 11` labels and instantiate `IncidenceOK` and
+`PinnedShellOK` from the live carrier.
+
+The current closure route has one proof-producing gap:
 
 1. prove a cap-aware `(4,2,2)` labeling bridge from the arbitrary aligned
    card-eleven carrier to the canonical `Fin 11` model, including
-   `IncidenceOK`, `PinnedShellOK`, edge-closure color soundness, and direct or
-   reversed hull order;
-2. generate the compact checked nogood payload and prove its static placement
-   replays, thereby instantiating the proved certificate interface for every
-   canonical code.
+   `IncidenceOK`, `PinnedShellOK`, and direct or reversed hull order.
 
-Once both are available, the existing generic consumers close
-`isM44PinnedSurplusGeneralMResidualsExcluded` directly. The previous
+Once it is available, the total finite theorem and existing generic consumers
+close `isM44PinnedSurplusGeneralMResidualsExcluded` directly. The previous
 shared-pair/strict-interval descent route is retained as historical fallback,
 not the current critical path.
 
 Next actions, in dependency order:
 
-1. emit the compact row-nogood payload, check every direct row/flip path, and
-   kernel-replay the static bank over all twelve placements;
-2. complete the proved `(4,2,2)` boundary-block packet into a canonical-label
+1. complete the proved `(4,2,2)` boundary-block packet into a canonical-label
    and soundness bridge in both orientations;
-3. invoke `closureCoreAlternative_of_colorCoreAlternative`, discharge the
+2. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
    ordered core signs from convexity, apply the generic consumer, and remove
    the sole terminal `sorry`.
 

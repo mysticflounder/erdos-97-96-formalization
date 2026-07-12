@@ -330,7 +330,28 @@ reports `propext`, `Lean.ofReduceBool`, and the project-approved
 row/flip closure paths and proves that a checked match yields the existing
 `ClosureCoreAlternative`. `CapSelectedNogoodClassifier` separately proves the
 full semantic DFS trace for a static checked bank. Thus core extraction and
-search coverage are proved at the generic checker level. The remaining finite
-risk is concrete: emit the compact bank payload, validate every path, and prove
-all twelve static-bank placement checks. The geometric labeling and source
-consumer remain open as stated above.
+search coverage are proved at the generic checker level.
+
+### Native union-find closure addendum (2026-07-11)
+
+The remaining finite risk in the preceding paragraph is now eliminated. The
+external miner certified all 795,609 prefix kills, reproduced UNSAT in all
+twelve static replays, and reduced the bank to 149,434 subsumption-minimal
+nogoods. The full artifact is 647,221,809 bytes, so the flat-payload route was
+rejected rather than imported.
+
+`CapSelectedNativeClosureSound` proves the native parent/root invariant,
+transports every normalized-root equality to `EqualityCore.EdgeClosure`, and
+extracts duplicate-center, exact-off-circle, perpendicular-bisector, and
+oriented convex-five-point alternatives. Its total theorem
+`closureCoreAlternative_of_incidenceOK_pinnedShellOK` closes the finite
+classifier obligation for every valid placement. Its live axiom audit reports
+`propext`, `Classical.choice`, `Lean.ofReduceBool`, `Quot.sound`, and the
+project-approved `Lean.trustCompiler`; the module contains no `sorry`, `axiom`,
+`unsafe`, `@[implemented_by]`, or `@[extern]` declaration.
+
+The audit remains OPEN only at the geometry/source interface: construct the
+canonical `Fin 11` labeling from the exact direct-or-mirror `(4,2,2)` boundary
+blocks, prove `IncidenceOK` and `PinnedShellOK`, and feed the resulting core to
+the existing geometric consumers without assuming a downstream confinement
+conclusion.
