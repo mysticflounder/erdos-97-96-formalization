@@ -1,0 +1,113 @@
+{
+ "probe_0004": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0013": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0022": {
+  "combos": 48,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0103": {
+  "combos": 42,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0112": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0202": {
+  "combos": 48,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_0211": {
+  "combos": 48,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_1003": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_1012": {
+  "combos": 60,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_1102": {
+  "combos": 48,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_1111": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_2002": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "probe_2011": {
+  "combos": 36,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1[0]_n15": {
+  "combos": 642,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1[1]_n16": {
+  "combos": 792,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1[2]_n16": {
+  "combos": 984,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1b[0]_n15": {
+  "combos": 642,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1b[1]_n16": {
+  "combos": 792,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t1b[2]_n16": {
+  "combos": 984,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t9_wit_m10_0.6180.json": {
+  "combos": 1560,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t9_wit_m8_1.4534.json": {
+  "combos": 1056,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "t9_wit_m8_2.2853.json": {
+  "combos": 1056,
+  "hits": 0,
+  "indeterminate": 0
+ },
+ "ALL_CLEAN": true
+}

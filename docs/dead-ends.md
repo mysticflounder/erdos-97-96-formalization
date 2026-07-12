@@ -798,9 +798,15 @@ is `ApexApolloniusArc` (`OangleBridge.lean`), with `U2ApolloniusArcs` proved fro
   `q2_results_{proven,plus}.json`). Survivors, PROVEN and leaf-implied
   (kill_notes.md, hand-checked): m ≤ 2 per packet; vertex-pair packets
   have s = 0 (kills (2,1,0,1), (2,2,0,0) unconditionally); s = 2 packets
-  straddle-only. SUB2 (7-var NRA, CONJECTURED-UNSAT, infimum-zero
-  boundary) would add s ≤ 2 — but Q2 already shows that doesn't close
-  composition either. **WARNING (do not re-derive):** the one-sided-sup
+  straddle-only. [2026-07-12 audit correction: at probe time the s = 2
+  straddle-only KILL direction rode SUB2 and was an overclaim under the
+  PROVEN label here — the proven content then was k = 1 realizability.
+  Mooted: SUB2-H is now PROVEN UNSAT (hand proof + exact machine-checked
+  certificate, skeptic audit PASS; `scratch/atail-sub2/`), so
+  straddle-only, the whole-class kills (0,3,0,1)/(0,4,0,0)/(1,3,0,0), and
+  s ≤ 2 all hold at PROVEN tier; K_plus upgraded with no Q2 rerun.] SUB2
+  previously CONJECTURED-UNSAT (infimum-zero boundary) would add s ≤ 2 —
+  but Q2 already shows that doesn't close composition either. **WARNING (do not re-derive):** the one-sided-sup
   extension of the lens corner-max K-A is FALSE — explicit counterexample
   in kill_notes.md; only the full-lens two-corner version is a theorem.
   **Lesson:** do not re-dispatch per-type minimal-window exclusions for

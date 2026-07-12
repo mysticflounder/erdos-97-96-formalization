@@ -3,8 +3,13 @@
 Transcribed verbatim by the orchestrator from the prover agent's final
 message (the agent's own REPORT.md write was guard-blocked, same as the
 2026-07-07 probe precedent). All other artifacts in this directory are the
-agent's. Status: PROVEN claim pending adversarial audit per house rigor
-rules.
+agent's. Status: PROVEN — adversarial skeptic audit PASS 2026-07-12
+(`scratch/atail-sub2-audit/AUDIT.md`; independent identity re-derivation,
+symbolic verification of all 11 conversion lemmas, full smoke re-run ALL
+PASS). `smoke_results.json` regenerated 2026-07-12 from the checked-in
+smoke.py (the previously committed copy predated the disclosed s5 atom-fix
+and recorded a stale S5 failure). Residue: the Lean certificate theorem
+(matrix row gate) remains open.
 
 ## Terminal outcome (i): PROVEN
 
