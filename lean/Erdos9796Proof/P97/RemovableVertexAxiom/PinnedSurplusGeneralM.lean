@@ -718,16 +718,11 @@ theorem isM44PinnedSurplusGeneralMResidualsExcluded :
     exact hMin B (Nat.lt_of_not_ge hnot) hBne hBconv hBK4
   have hDIsM44 : D.IsM44 := by
     simpa [CounterexampleData.IsM44, D] using hM44
-  have hcard11 : A.card = 11 :=
-    CapSelectedRowCounting.SurplusCapPacket.card_eq_eleven_of_surplus_card_gt_five
-      S hconv hK4 hM44 hsurplusCard
   have hsurplusCard6 : S.surplusCap.card = 6 :=
     CapSelectedRowCounting.SurplusCapPacket.surplus_card_eq_six_of_convexIndep_K4
       S hconv hK4 hM44 hsurplusCard
   rcases Census554.CapSelectedGeometry.exists_canonicalLabeling_of_isM44_surplus_card_eq_six
       S hne hconv hK4 hM44 hsurplusCard6 with ⟨L⟩
-  have hcritical : Nonempty (CriticalShellSystem A) := by
-    simpa [D] using D.exists_criticalShellSystem_of_minimal hDmin
   have hrightPacket :
       ∀ {radius : ℝ} {x : ℝ²},
         S.PinnedRightSurplusResidualAt radius x →
@@ -790,23 +785,19 @@ theorem isM44PinnedSurplusGeneralMResidualsExcluded :
     simpa [D, CounterexampleData.skeleton] using
       D.exists_pinnedLeftExtraCriticalPacket hDmin hDIsM44
         hsurplusCard hpinned
-  have hrightFiniteClosure :
+  have hrightExcluded :
       ∀ {radius : ℝ} {x : ℝ²},
-        S.PinnedRightSurplusResidualAt radius x →
-          ∃ H : CriticalShellSystem A, ∃ F : FaithfulCarrierPattern A,
-            Census554.CapSelectedFiniteCode.ClosureCoreAlternative
-              (Census554.CapSelectedCarrierBridge.patternCode L F)
-              (Census554.CapSelectedPinnedShellBridge.blockerLabel L H) := by
+        S.PinnedRightSurplusResidualAt radius x → False := by
     intro radius x hpinned
     rcases hrightPacket hpinned with
       ⟨y, p, _t1, _t2, _t3, K, hyInt, hyNot, hyK, _hcard, _hnequi,
         hpne, _ht, C, haligned, _haudit, _hnotConfined, _hnoQFree, _htriple⟩
-    exact Census554.CapSelectedPinnedShellBridge.exists_right_closureCoreAlternative_of_alignedCarrier
+    exact Census554.CapSelectedPinnedShellBridge.false_of_right_pinnedResidual_alignedCarrier
       L hDIsM44 hsurplusCard6 hpinned K hyInt hyK C hyNot hpne haligned
+  refine ⟨hrightExcluded, ?_⟩
   -- The cap double count has reduced the branch to the finite `(6,4,4)`
-  -- equality case `A.card = 11`. The remaining obstruction must consume that
-  -- equality together with `hcritical` and the orientation-specific packet;
-  -- no U2/containment input is available here without circularity.
+  -- equality case `A.card = 11`. The remaining left-oriented obstruction
+  -- needs an explicit reflection transport into the right finite shell.
   sorry
 
 end Problem97

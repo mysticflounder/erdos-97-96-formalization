@@ -1160,14 +1160,13 @@ General `m >= 6` route:
    labeling, and `CapSelectedCarrierBridge.incidenceOK_patternCode` proves all
    six incidence conjuncts for its realized row code with core-only axiom
    closure (`propext`, `Classical.choice`, `Quot.sound`).
-3. The right-oriented aligned carrier now proves `PinnedShellOK` and reaches
-   `ClosureCoreAlternative` through the total native classifier
-   (`CapSelectedPinnedShellBridge.lean`). The remaining consumer is limited to
-   the four actual native branches: duplicate-center, exact off-circle,
-   perpendicular-bisector, and oriented convex-five. It must transport those
-   cores along the canonical `Fin 11` labeling to the geometric carrier; the
-   left-oriented packet first needs the explicit boundary-reflection transport
-   into the same right-oriented seed. Do not fall back to exact ten-mask
+3. The right-oriented aligned carrier now proves `PinnedShellOK`, reaches
+   `ClosureCoreAlternative`, and consumes all twelve certified alternatives on
+   the geometric carrier (`CapSelectedPinnedShellBridge.lean`). The terminal
+   source returns `PinnedRightSurplusResidualAt -> False` directly. The only
+   residual obligation is the left-oriented packet: construct the explicit
+   boundary-reflection transport into the same right-oriented seed, then reuse
+   the right shell and closure consumer. Do not fall back to exact ten-mask
    membership or import downstream containment conclusions.
 
 Current generated support:

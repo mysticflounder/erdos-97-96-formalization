@@ -6,6 +6,7 @@ Authors: Adam McKenna
 
 import Erdos9796Proof.P97.Census554.CapSelectedCarrierBridge
 import Erdos9796Proof.P97.Census554.PinnedCarrierBridge
+import Erdos9796Proof.P97.EndpointCertificate.OrderedCoreSigns
 
 /-!
 # Pinned-shell realization for the cap-selected code
@@ -360,6 +361,129 @@ theorem false_of_perpBisectorCore_patternCode
     (core : PerpBisectorCore (rowPattern (patternCode L F))) : False :=
   false_of_convexIndep_of_perpBisectorCore (realizes_patternCode L F) hconv
     L.mem_carrier core
+
+/-- The finite label of a critical-shell blocker inherits the carrier-level
+exactness of that blocker row. -/
+theorem exactAt_blockerLabel_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (H : CriticalShellSystem A) (q : Label) :
+    ExactAt (rowPattern (patternCode L F)) L.pointOf (blockerLabel L H q) := by
+  intro a ha z hz hdist
+  let qCarrier : GeneralCarrierBridge.CarrierLabel A :=
+    ⟨L.pointOf q, L.mem_carrier q⟩
+  let aCarrier : GeneralCarrierBridge.CarrierLabel A :=
+    ⟨L.pointOf a, L.mem_carrier a⟩
+  let zCarrier : GeneralCarrierBridge.CarrierLabel A :=
+    ⟨L.pointOf z, L.mem_carrier z⟩
+  let cCarrier : GeneralCarrierBridge.CarrierLabel A :=
+    GeneralCarrierBridge.blockerLabel H (L.pointOf q) (L.mem_carrier q)
+  have hc : cCarrier.1 = L.pointOf (blockerLabel L H q) := by
+    simpa [cCarrier] using (pointOf_blockerLabel L H q).symm
+  have hsupport :
+      (F.classAt cCarrier.1 cCarrier.2).support =
+        (F.classAt (L.pointOf (blockerLabel L H q))
+          (L.mem_carrier (blockerLabel L H q))).support :=
+    classAt_support_eq_of_eq F cCarrier.2
+      (L.mem_carrier (blockerLabel L H q)) hc
+  have haCarrier : aCarrier ∈ GeneralCarrierBridge.rowPattern F cCarrier := by
+    apply (GeneralCarrierBridge.mem_rowPattern_iff F cCarrier aCarrier).mpr
+    rw [hsupport]
+    exact (mem_row_patternCode_iff L F (blockerLabel L H q) a).mp ha
+  have hzCarrier : zCarrier ∉ GeneralCarrierBridge.rowPattern F cCarrier := by
+    intro hzCarrier
+    apply hz
+    apply (mem_row_patternCode_iff L F (blockerLabel L H q) z).mpr
+    rw [← hsupport]
+    exact (GeneralCarrierBridge.mem_rowPattern_iff F cCarrier zCarrier).mp hzCarrier
+  have hdistCarrier :
+      dist cCarrier.1 zCarrier.1 = dist cCarrier.1 aCarrier.1 := by
+    simpa [hc, aCarrier, zCarrier] using hdist
+  exact GeneralCarrierBridge.exactAt_blocker F H (L.pointOf q) (L.mem_carrier q)
+    aCarrier haCarrier zCarrier hzCarrier hdistCarrier
+
+/-- An exact-off-circle core at a selected finite blocker is impossible. -/
+theorem false_of_exactOffCircleCore_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (H : CriticalShellSystem A) (source : Label)
+    (core : ExactOffCircleCore (rowPattern (patternCode L F)))
+    (hcenter : core.c = blockerLabel L H source) : False := by
+  apply false_of_exactAt_of_exactOffCircleCore (realizes_patternCode L F) core
+  rw [hcenter]
+  exact exactAt_blockerLabel_patternCode L F H source
+
+/-- An oriented convex-five core of the finite code is impossible under either
+canonical hull orientation. -/
+theorem false_of_convexFivePointCore_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (core : ConvexFivePointCore.Core (rowPattern (patternCode L F)))
+    (hcyc : CyclicFiveUpToOrientation core.a core.x core.b core.c core.y) :
+    False :=
+  OrderedCoreSigns.cyclicFiveCore_false_of_canonicalLabeling L
+    (realizes_patternCode L F) core hcyc
+
+/-- Every certified finite closure alternative contradicts its realized right
+carrier once the finite blocker map is supplied by a critical-shell system. -/
+theorem false_of_closureCoreAlternative_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (H : CriticalShellSystem A) (hconv : ConvexIndep A)
+    (hcore : ClosureCoreAlternative (patternCode L F) (blockerLabel L H)) :
+    False := by
+  rcases hcore with hduplicate | hexact | hequalK4 | hequilateral | hthree |
+      hsurplus | hsix | horbit | hnetwork | hperp | hfive | hrhombus
+  · rcases hduplicate with ⟨core⟩
+    exact false_of_duplicateCenterCore_patternCode L F core
+  · rcases hexact with ⟨source, core, hcenter⟩
+    exact false_of_exactOffCircleCore_patternCode L F H source core hcenter
+  · rcases hequalK4 with ⟨core⟩
+    exact not_realizes_of_equalK4Core core ⟨_, realizes_patternCode L F⟩
+  · rcases hequilateral with ⟨core⟩
+    exact not_realizes_of_equilateralBisectorCollisionCore core
+      ⟨_, realizes_patternCode L F⟩
+  · rcases hthree with ⟨core⟩
+    exact not_realizes_of_threeTriadCollisionCore core ⟨_, realizes_patternCode L F⟩
+  · rcases hsurplus with ⟨core⟩
+    exact not_realizes_of_surplusSourceCollisionCore core
+      ⟨_, realizes_patternCode L F⟩
+  · rcases hsix with ⟨core⟩
+    exact not_realizes_of_sixRowAnchorCollisionCore core
+      ⟨_, realizes_patternCode L F⟩
+  · rcases horbit with ⟨core⟩
+    exact not_realizes_of_sevenPointOrbitCollisionCore core
+      ⟨_, realizes_patternCode L F⟩
+  · rcases hnetwork with ⟨core⟩
+    exact not_realizes_of_sevenPointCircleNetworkCollisionCore core
+      ⟨_, realizes_patternCode L F⟩
+  · rcases hperp with ⟨core⟩
+    exact false_of_perpBisectorCore_patternCode L F hconv core
+  · rcases hfive with ⟨core, hcyc⟩
+    exact false_of_convexFivePointCore_patternCode L F core hcyc
+  · rcases hrhombus with ⟨core, hcyc⟩
+    exact OrderedCoreSigns.cyclicSixCore_false_of_canonicalLabeling L
+      (realizes_patternCode L F) core hcyc
+
+/-- An aligned right-pinned residual is impossible. -/
+theorem false_of_right_pinnedResidual_alignedCarrier
+    {D : CounterexampleData}
+    (L : CanonicalLabeling D.packet) (hM44 : D.packet.IsM44)
+    (hsurplusCard : D.packet.surplusCap.card = 6) {radius : ℝ} {x y p : ℝ²}
+    (hpinned : D.packet.PinnedRightSurplusResidualAt radius x)
+    (K : SelectedFourClass D.A
+      (D.packet.oppositeVertexByIndex D.packet.surplusIdx))
+    (hyInt : y ∈ D.packet.capInteriorByIndex D.packet.surplusIdx)
+    (hyK : y ∈ K.support)
+    (C : CriticalSelectedFourClass D.A y p)
+    (hyNot : y ∉ SelectedClass D.A
+      (D.packet.oppositeVertexByIndex D.packet.oppIndex1) radius)
+    (hpne : p ≠ D.packet.oppositeVertexByIndex D.packet.oppIndex1)
+    (haligned : RightPinnedSurplusAlignedCarrierData D radius y p K C) :
+    False := by
+  rcases exists_right_closureCoreAlternative_of_alignedCarrier L hM44
+      hsurplusCard hpinned K hyInt hyK C hyNot hpne haligned with ⟨H, F, hcore⟩
+  exact false_of_closureCoreAlternative_patternCode L F H D.convex hcore
 
 end CapSelectedPinnedShellBridge
 end Census554
