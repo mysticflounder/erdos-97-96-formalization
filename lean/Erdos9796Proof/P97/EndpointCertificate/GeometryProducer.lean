@@ -262,6 +262,158 @@ theorem exists_labelCompleteSupportClasses
     apply pointMask_maskHas_false_of_not_mem
     exact (classAt center).center_not_mem
 
+
+private theorem maskInterCard_pointMask_le_inter_card
+    {α : Type _} [DecidableEq α]
+    {pointOf : Label → α} (hinj : Function.Injective pointOf)
+    (T C : Finset α) (fixedMask : Nat)
+    (hfixed : ∀ label : Label, maskHas fixedMask label = true →
+      pointOf label ∈ C) :
+    maskInterCard (pointMask pointOf T) fixedMask ≤ (T ∩ C).card := by
+  let labels := allLabels.filter fun label =>
+    maskHas (pointMask pointOf T) label && maskHas fixedMask label
+  have hmaskCard :
+      maskInterCard (pointMask pointOf T) fixedMask = labels.length := by
+    rw [maskInterCard, foldl_count_true]
+    simp [labels]
+  have hlabelsNodup : labels.Nodup := by
+    exact (by decide : allLabels.Nodup).filter _
+  have himageSub : labels.toFinset.image pointOf ⊆ T ∩ C := by
+    intro x hx
+    rcases Finset.mem_image.mp hx with ⟨label, hlabel, rfl⟩
+    have hlabelList : label ∈ labels := by simpa using hlabel
+    have hbits := (List.mem_filter.mp hlabelList).2
+    simp only [Bool.and_eq_true] at hbits
+    exact Finset.mem_inter.mpr
+      ⟨pointMask_maskHas_mem hbits.1, hfixed label hbits.2⟩
+  calc
+    maskInterCard (pointMask pointOf T) fixedMask = labels.length := hmaskCard
+    _ = labels.toFinset.card :=
+      (List.toFinset_card_of_nodup hlabelsNodup).symm
+    _ = (labels.toFinset.image pointOf).card :=
+      (Finset.card_image_of_injective _ hinj).symm
+    _ ≤ (T ∩ C).card := Finset.card_le_card himageSub
+
+private theorem maskHas_cvNoUMask_cases {label : Label}
+    (hlabel : maskHas cvNoUMask label = true) :
+    label = .w ∨ label = .Pw ∨ label = .Pu := by
+  cases label with
+  | w => exact Or.inl rfl
+  | Pw => exact Or.inr (Or.inl rfl)
+  | Pu => exact Or.inr (Or.inr rfl)
+  | u | v | s1 | s2 | s3 | Q1 | Q2 =>
+      exfalso
+      revert hlabel
+      decide
+
+private theorem maskHas_cwNoUMask_cases {label : Label}
+    (hlabel : maskHas cwNoUMask label = true) :
+    label = .v ∨ label = .Q1 ∨ label = .Q2 := by
+  cases label with
+  | v => exact Or.inl rfl
+  | Q1 => exact Or.inr (Or.inl rfl)
+  | Q2 => exact Or.inr (Or.inr rfl)
+  | u | w | s1 | s2 | s3 | Pw | Pu =>
+      exfalso
+      revert hlabel
+      decide
+
+private theorem rightPinned_u_maskInter_bounds
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A)
+    {p₁ p₂ q₁ q₂ s1 s2 s3 : ℝ²}
+    (hp₁I : p₁ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hp₂I : p₂ ∈ S.capInteriorByIndex S.oppIndex1)
+    (hq₁I : q₁ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hq₂I : q₂ ∈ S.capInteriorByIndex S.oppIndex2)
+    (hinj : Function.Injective
+      (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3))
+    {supportClass : Label → Finset ℝ²} {radiusOf : Label → ℝ}
+    (hsub : ∀ center : Label,
+      supportClass center ⊆
+        SelectedClass A
+          (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3 center)
+          (radiusOf center)) :
+    maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (supportClass .u))
+          cvNoUMask ≤ 1 ∧
+      maskInterCard
+          (pointMask
+            (rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3)
+            (supportClass .u))
+          cwNoUMask ≤ 1 := by
+  let pointOf := rightPinnedLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
+  have hleftFixed : ∀ label : Label,
+      maskHas cvNoUMask label = true →
+        pointOf label ∈ S.leftAdjacentCapByIndex S.surplusIdx := by
+    intro label hlabel
+    rcases maskHas_cvNoUMask_cases hlabel with rfl | rfl | rfl
+    · rw [S.leftAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex1_eq_leftAdjacentIndex_surplusIdx]
+      simpa [pointOf, rightPinnedLabelPoint,
+        ← S.rightOuterVertexByIndex_oppIndex1_eq_oppositeVertexByIndex_oppIndex2]
+        using S.rightOuterVertexByIndex_mem_capByIndex S.oppIndex1
+    · rw [S.leftAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex1_eq_leftAdjacentIndex_surplusIdx]
+      exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hp₁I
+    · rw [S.leftAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex1_eq_leftAdjacentIndex_surplusIdx]
+      exact S.capInteriorByIndex_subset_capByIndex S.oppIndex1 hp₂I
+  have hrightFixed : ∀ label : Label,
+      maskHas cwNoUMask label = true →
+        pointOf label ∈ S.rightAdjacentCapByIndex S.surplusIdx := by
+    intro label hlabel
+    rcases maskHas_cwNoUMask_cases hlabel with rfl | rfl | rfl
+    · rw [S.rightAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex2_eq_rightAdjacentIndex_surplusIdx]
+      simpa [pointOf, rightPinnedLabelPoint,
+        ← S.leftOuterVertexByIndex_oppIndex2_eq_oppositeVertexByIndex_oppIndex1]
+        using S.leftOuterVertexByIndex_mem_capByIndex S.oppIndex2
+    · rw [S.rightAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex2_eq_rightAdjacentIndex_surplusIdx]
+      exact S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hq₁I
+    · rw [S.rightAdjacentCapByIndex_eq_capByIndex,
+        ← S.oppIndex2_eq_rightAdjacentIndex_surplusIdx]
+      exact S.capInteriorByIndex_subset_capByIndex S.oppIndex2 hq₂I
+  have hsupportSub :
+      supportClass .u ⊆
+        SelectedClass A (S.oppositeVertexByIndex S.surplusIdx)
+          (radiusOf .u) := by
+    simpa [pointOf, rightPinnedLabelPoint] using hsub .u
+  constructor
+  · calc
+      maskInterCard (pointMask pointOf (supportClass .u)) cvNoUMask
+          ≤ (supportClass .u ∩
+              S.leftAdjacentCapByIndex S.surplusIdx).card :=
+        maskInterCard_pointMask_le_inter_card hinj _ _ _ hleftFixed
+      _ ≤ (SelectedClass A (S.oppositeVertexByIndex S.surplusIdx)
+              (radiusOf .u) ∩
+            S.leftAdjacentCapByIndex S.surplusIdx).card :=
+        Finset.card_le_card (by
+          intro x hx
+          rw [Finset.mem_inter] at hx ⊢
+          exact ⟨hsupportSub hx.1, hx.2⟩)
+      _ ≤ 1 :=
+        S.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          hconv S.surplusIdx (radiusOf .u)
+  · calc
+      maskInterCard (pointMask pointOf (supportClass .u)) cwNoUMask
+          ≤ (supportClass .u ∩
+              S.rightAdjacentCapByIndex S.surplusIdx).card :=
+        maskInterCard_pointMask_le_inter_card hinj _ _ _ hrightFixed
+      _ ≤ (SelectedClass A (S.oppositeVertexByIndex S.surplusIdx)
+              (radiusOf .u) ∩
+            S.rightAdjacentCapByIndex S.surplusIdx).card :=
+        Finset.card_le_card (by
+          intro x hx
+          rw [Finset.mem_inter] at hx ⊢
+          exact ⟨hsupportSub hx.1, hx.2⟩)
+      _ ≤ 1 :=
+        S.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep
+          hconv S.surplusIdx (radiusOf .u)
+
 end EndpointCertificate
 
 end Problem97
