@@ -35,6 +35,11 @@ Job file formats:
    Result: {"type": "mine_batch", "flags": [<bool>, ...], "elapsed": <s>,
             "worker": <host>, "errors": [{"index": i, "error": "..."}]?}
 
+3. Typed certify (per-job timeout, used by the retry-backlog drainer):
+    {"type": "certify", "pattern": <pattern>, "timeout": 7200}
+   Same result shape as format 1; the job's timeout overrides the
+   worker's --cert-timeout for this job only.
+
 Requirements on the host: python3.10+, msolve and Singular on PATH, the
 queue root mounted. Stdlib only. See run_worker.sh / README.md.
 """
@@ -103,6 +108,9 @@ def certify_job(claimed_path_str: str, cert_timeout: int):
         pattern_json = json.loads(claimed_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
         return claimed_path_str, None, None, time.time() - started, repr(exc)
+    if isinstance(pattern_json, dict) and pattern_json.get("type") == "certify":
+        cert_timeout = int(pattern_json.get("timeout", cert_timeout))
+        pattern_json = pattern_json.get("pattern") or {}
     try:
         pattern = {int(c): frozenset(members)
                    for c, members in pattern_json.items()}
