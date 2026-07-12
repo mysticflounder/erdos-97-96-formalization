@@ -2139,6 +2139,48 @@ private lemma nat_eq_554_of_sum_eq_fourteen
     a = 5 ∧ b = 5 ∧ c = 4 := by
   omega
 
+/-- `Fin 3` always offers a label distinct from two given ones. -/
+private lemma fin3_exists_ne : ∀ i j : Fin 3, ∃ k : Fin 3, k ≠ i ∧ k ≠ j := by
+  decide
+
+/-- Two labels avoiding both members of a distinct pair in `Fin 3` agree. -/
+private lemma fin3_eq_of_ne_of_ne {i j k l : Fin 3}
+    (hji : j ≠ i) (hki : k ≠ i) (hkj : k ≠ j)
+    (hli : l ≠ i) (hlj : l ≠ j) : l = k := by
+  revert i j k l
+  decide
+
+/-- Index-level `(5,5,4)` profile dispatch shared by the cap-profile lemmas:
+with all three caps bounded below by `4`, total closed-cap mass `14`, and two
+distinct large caps `i`, `j`, the indexed cap sizes are exactly `(5,5,4)`. -/
+private lemma capAt_profile_eq_554
+    {A : Finset ℝ²} {M : MoserTriangle A} (CP : CapTriple A M)
+    {i j : Fin 3} (hji : j ≠ i)
+    (hlower : 4 ≤ CP.C1.card ∧ 4 ≤ CP.C2.card ∧ 4 ≤ CP.C3.card)
+    (hsum : CP.C1.card + CP.C2.card + CP.C3.card = 14)
+    (hi5 : 5 ≤ (CP.capAt i).card) (hj5 : 5 ≤ (CP.capAt j).card) :
+    (CP.capAt i).card = 5 ∧
+      (CP.capAt j).card = 5 ∧
+        ∀ k : Fin 3, k ≠ i → k ≠ j → (CP.capAt k).card = 4 := by
+  obtain ⟨k, hki, hkj⟩ := fin3_exists_ne i j
+  have hk4 : 4 ≤ (CP.capAt k).card := by
+    fin_cases k
+    · simpa [CapTriple.capAt] using hlower.1
+    · simpa [CapTriple.capAt] using hlower.2.1
+    · simpa [CapTriple.capAt] using hlower.2.2
+  have hsum' :
+      (CP.capAt i).card + (CP.capAt j).card + (CP.capAt k).card = 14 := by
+    fin_cases i <;> fin_cases j <;> fin_cases k <;>
+      first
+        | exact absurd rfl hji
+        | exact absurd rfl hki
+        | exact absurd rfl hkj
+        | (simp [CapTriple.capAt]; omega)
+  have hprof := nat_eq_554_of_sum_eq_fourteen hi5 hj5 hk4 hsum'
+  refine ⟨hprof.1, hprof.2.1, fun l hli hlj => ?_⟩
+  rw [fin3_eq_of_ne_of_ne hji hki hkj hli hlj]
+  exact hprof.2.2
+
 /-- Strict cap interior selected by the same index convention as
 `CapTriple.capAt`. -/
 noncomputable def capInteriorAt
@@ -2148,6 +2190,19 @@ noncomputable def capInteriorAt
   | ⟨0, _⟩ => U1OppositeCapLowerBounds.interior1 CP
   | ⟨1, _⟩ => U1OppositeCapLowerBounds.interior2 CP
   | _ => U1OppositeCapLowerBounds.interior3 CP
+
+/-- The indexed strict cap interior omits exactly the two Moser endpoints of
+its cap, uniformly in the `capAt` index convention. -/
+private lemma capInteriorAt_card_add_two
+    {A : Finset ℝ²} {M : MoserTriangle A} (CP : CapTriple A M) (k : Fin 3) :
+    (capInteriorAt CP k).card + 2 = (CP.capAt k).card := by
+  fin_cases k
+  · simpa [capInteriorAt, CapTriple.capAt]
+      using U1OppositeCapLowerBounds.interior1_card_add_two CP
+  · simpa [capInteriorAt, CapTriple.capAt]
+      using U1OppositeCapLowerBounds.interior2_card_add_two CP
+  · simpa [capInteriorAt, CapTriple.capAt]
+      using U1OppositeCapLowerBounds.interior3_card_add_two CP
 
 /-- In the card-11 branch of the two-large-cap leaf, the cap sizes are exactly
 `(5,5,4)` relative to the surplus cap `i` and the chosen second large cap `j`.
@@ -2179,88 +2234,7 @@ theorem capProfile_eq_554_of_card_eq_eleven
   have hsum : CP.C1.card + CP.C2.card + CP.C3.card = 14 := by
     have h := CP.cap_sum_identity
     omega
-  fin_cases i <;> fin_cases j
-  · exact False.elim (hji rfl)
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C1.card) (b := CP.C2.card) (c := CP.C3.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.2.2 hsum
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hki rfl)
-    · exact False.elim (hkj rfl)
-    · simpa [CapTriple.capAt] using hprof.2.2
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C1.card) (b := CP.C3.card) (c := CP.C2.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.2.1 (by omega)
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hki rfl)
-    · simpa [CapTriple.capAt] using hprof.2.2
-    · exact False.elim (hkj rfl)
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C2.card) (b := CP.C1.card) (c := CP.C3.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.2.2 (by omega)
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hkj rfl)
-    · exact False.elim (hki rfl)
-    · simpa [CapTriple.capAt] using hprof.2.2
-  · exact False.elim (hji rfl)
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C2.card) (b := CP.C3.card) (c := CP.C1.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.1 (by omega)
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · simpa [CapTriple.capAt] using hprof.2.2
-    · exact False.elim (hki rfl)
-    · exact False.elim (hkj rfl)
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C3.card) (b := CP.C1.card) (c := CP.C2.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.2.1 (by omega)
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hkj rfl)
-    · simpa [CapTriple.capAt] using hprof.2.2
-    · exact False.elim (hki rfl)
-  · have hprof :=
-      nat_eq_554_of_sum_eq_fourteen
-        (a := CP.C3.card) (b := CP.C2.card) (c := CP.C1.card)
-        (by simpa [CapTriple.capAt] using hi5)
-        (by simpa [CapTriple.capAt] using hj5)
-        hlower.1 (by omega)
-    refine ⟨by simpa [CapTriple.capAt] using hprof.1,
-      by simpa [CapTriple.capAt] using hprof.2.1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · simpa [CapTriple.capAt] using hprof.2.2
-    · exact False.elim (hkj rfl)
-    · exact False.elim (hki rfl)
-  · exact False.elim (hji rfl)
+  exact capAt_profile_eq_554 CP hji hlower hsum hi5 hj5
 
 /-- In the card-11 branch of the two-large-cap leaf, the strict cap interiors
 have size `(3,3,2)` relative to the surplus cap `i`, the chosen second large
@@ -2280,132 +2254,17 @@ theorem capInteriorProfile_eq_332_of_card_eq_eleven
     (capInteriorAt CP i).card = 3 ∧
       (capInteriorAt CP j).card = 3 ∧
         ∀ k : Fin 3, k ≠ i → k ≠ j → (capInteriorAt CP k).card = 2 := by
-  have hprofile :=
+  obtain ⟨hi, hj, hrest⟩ :=
     capProfile_eq_554_of_card_eq_eleven MT hCirc CP hM hji hsurplus hj5
       hcard11
-  rcases hprofile with ⟨hi, hj, hrest⟩
-  subst hM
-  have hI1add := U1OppositeCapLowerBounds.interior1_card_add_two CP
-  have hI2add := U1OppositeCapLowerBounds.interior2_card_add_two CP
-  have hI3add := U1OppositeCapLowerBounds.interior3_card_add_two CP
-  fin_cases i <;> fin_cases j
-  · exact False.elim (hji rfl)
-  · have hC1 : CP.C1.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC2 : CP.C2.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 3 := by
-      omega
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 3 := by
-      omega
-    have hC3 : CP.C3.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨2, by decide⟩ (by decide) (by decide)
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI1,
-      by simpa [capInteriorAt] using hI2, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hki rfl)
-    · exact False.elim (hkj rfl)
-    · simpa [capInteriorAt] using hI3
-  · have hC1 : CP.C1.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC3 : CP.C3.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 3 := by
-      omega
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 3 := by
-      omega
-    have hC2 : CP.C2.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨1, by decide⟩ (by decide) (by decide)
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI1,
-      by simpa [capInteriorAt] using hI3, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hki rfl)
-    · simpa [capInteriorAt] using hI2
-    · exact False.elim (hkj rfl)
-  · have hC2 : CP.C2.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC1 : CP.C1.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 3 := by
-      omega
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 3 := by
-      omega
-    have hC3 : CP.C3.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨2, by decide⟩ (by decide) (by decide)
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI2,
-      by simpa [capInteriorAt] using hI1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hkj rfl)
-    · exact False.elim (hki rfl)
-    · simpa [capInteriorAt] using hI3
-  · exact False.elim (hji rfl)
-  · have hC2 : CP.C2.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC3 : CP.C3.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 3 := by
-      omega
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 3 := by
-      omega
-    have hC1 : CP.C1.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨0, by decide⟩ (by decide) (by decide)
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI2,
-      by simpa [capInteriorAt] using hI3, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · simpa [capInteriorAt] using hI1
-    · exact False.elim (hki rfl)
-    · exact False.elim (hkj rfl)
-  · have hC3 : CP.C3.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC1 : CP.C1.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 3 := by
-      omega
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 3 := by
-      omega
-    have hC2 : CP.C2.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨1, by decide⟩ (by decide) (by decide)
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI3,
-      by simpa [capInteriorAt] using hI1, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · exact False.elim (hkj rfl)
-    · simpa [capInteriorAt] using hI2
-    · exact False.elim (hki rfl)
-  · have hC3 : CP.C3.card = 5 := by
-      simpa [CapTriple.capAt] using hi
-    have hC2 : CP.C2.card = 5 := by
-      simpa [CapTriple.capAt] using hj
-    have hI3 : (U1OppositeCapLowerBounds.interior3 CP).card = 3 := by
-      omega
-    have hI2 : (U1OppositeCapLowerBounds.interior2 CP).card = 3 := by
-      omega
-    have hC1 : CP.C1.card = 4 := by
-      simpa [CapTriple.capAt] using hrest ⟨0, by decide⟩ (by decide) (by decide)
-    have hI1 : (U1OppositeCapLowerBounds.interior1 CP).card = 2 := by
-      omega
-    refine ⟨by simpa [capInteriorAt] using hI3,
-      by simpa [capInteriorAt] using hI2, ?_⟩
-    intro k hki hkj
-    fin_cases k
-    · simpa [capInteriorAt] using hI1
-    · exact False.elim (hkj rfl)
-    · exact False.elim (hki rfl)
-  · exact False.elim (hji rfl)
+  obtain ⟨k, hki, hkj⟩ := fin3_exists_ne i j
+  have hk4 : (CP.capAt k).card = 4 := hrest k hki hkj
+  have hIi := capInteriorAt_card_add_two CP i
+  have hIj := capInteriorAt_card_add_two CP j
+  have hIk := capInteriorAt_card_add_two CP k
+  refine ⟨by omega, by omega, fun l hli hlj => ?_⟩
+  rw [fin3_eq_of_ne_of_ne hji hki hkj hli hlj]
+  omega
 
 /-- **`≥ 5` witness bridge.**  With the proven opposite-cap lower bounds,
 the spine's no-`IsM44` exit fuel forces a *second* large cap: some cap other
