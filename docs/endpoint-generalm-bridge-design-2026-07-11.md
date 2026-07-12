@@ -214,6 +214,18 @@ consume them, do not rebuild. The placement question for those items is
 moot. L11/L12 remain open and shared; watch the pinned lane's wiring work
 for duplication before dispatching them.
 
+UPDATE 2026-07-11 (assembly inputs landed): L6–L8 + right L3/L4 mirrors in
+`EndpointCertificate/BridgeCarrier.lean` (9bac7853); L12 in
+`EndpointCertificate/OrderedCoreSigns.lean` (2c32e3a1 — mirror boundary
+handled by `card11BoundaryReflection` index reversal, no `reflectXAxis`
+lemma needed); classifier transport items 4–7 in
+`EndpointClassifierSound.lean`/`EndpointClosureSound.lean` (fffff751, finals
+`closureCoreAlternative_of_incidenceOK_endpointLeft/RightShellOK`). Pinned
+lane 8ebadfa2 additionally landed `false_of_duplicateCenterCore_patternCode`
+and `false_of_perpBisectorCore_patternCode`
+(`Census554/CapSelectedPinnedShellBridge.lean`) — consume in L12b, do not
+rebuild. Open: L11, L12b, L13 + `Base.lean:9513` wiring.
+
 [shared] = seed-independent, jointly discharges K-B-PIN's remaining adapter
 gaps. Suggested homes: L2–L5 in `EndpointCertificate/GeneralMCardEleven.lean`;
 L6–L8, L13 in a new endpoint carrier-bridge module; L9–L12 in a shared
