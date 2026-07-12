@@ -43,16 +43,42 @@ their results, removes the host's heartbeat file, then exits.
   `queue_client.live_capacity()` both skip dotfiles for this reason —
   keep that invariant if you touch either scan.
 
-## Deployed fleet (2026-07-11)
+## Deployed fleet (2026-07-12)
 
-- `dada-mun-26.local` (driver box, 32 cores): 24 slots, launched from
-  `scratch/census-554/worker/`.
-- `flux` (16-core x86_64, queue root `/mnt/nfs/erdos9796-flux-bridge`):
-  16 slots, deployed at `~/census554-worker/`. Replaces the retired
-  `flux_worker/remote_certify_worker.py` daemon (stopped 2026-07-11);
-  that legacy path (`CENSUS554_REMOTE_CERT`/`CENSUS554_REMOTE_MINE`)
-  remains in frontier_loop.py/remote_mine.py as a fallback but the
-  queue (`CENSUS554_QUEUE=1`) supersedes it.
+- `dada-mun-26.local` (driver box, 32 cores): 16 slots (reduced from 24
+  after two hard crashes under sustained Singular load, 2026-07-11/12),
+  launched from `scratch/census-554/worker/`.
+- `flux` (16-core x86_64, 39G RAM, queue root
+  `/mnt/nfs/erdos9796-flux-bridge`): 4 slots (reduced from 16 after one
+  crash-reboot + repeated worker deaths), deployed at
+  `~/census554-worker/`, run under `supervise_worker.sh` (below).
+  Replaces the retired `flux_worker/remote_certify_worker.py` daemon
+  (stopped 2026-07-11); that legacy path
+  (`CENSUS554_REMOTE_CERT`/`CENSUS554_REMOTE_MINE`) remains in
+  frontier_loop.py/remote_mine.py as a fallback but the queue
+  (`CENSUS554_QUEUE=1`) supersedes it.
+
+### supervise_worker.sh (silent-death forensics + auto-restart)
+
+The flux daemon died silently three times on 2026-07-11/12 (no
+traceback, no oomd/kernel journal entry; each time shortly after
+claiming retrycert jobs; leaves orphaned fork-children whose results
+can never publish). Until the cause is known, run remote workers under
+the supervisor:
+
+```sh
+setsid nohup ./supervise_worker.sh /mnt/nfs/erdos9796-flux-bridge 4 &
+```
+
+It records every exit code/signal to `worker-exits.log` and restarts
+after 10s; a clean stop (exit 0 or SIGTERM/143 drain) is respected and
+not restarted. `supervisor.pid` names the loop.
+
+Footgun: `ssh <host> 'pkill -f census554_worker'` kills the ssh
+session's own remote shell (the pattern matches its command line) and
+returns 255. Stop workers with `kill "$(cat worker.pid)"`; stop the
+supervisor first (`kill "$(cat supervisor.pid)"`) or it will restart
+the drained worker.
 
 ## How it interacts with the driver
 
