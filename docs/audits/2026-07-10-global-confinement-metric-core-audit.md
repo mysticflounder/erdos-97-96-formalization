@@ -302,3 +302,17 @@ build. Unadjudicated risks remain: pair-count pruning, search-tree coverage,
 closure-path/core soundness, eleven unchecked placements, and conversion of
 the boundary blocks to canonical labels. Accordingly the audit status remains
 OPEN and the target `sorry` is untouched.
+
+### Native-classifier search-coverage addendum (2026-07-11)
+
+Two risks listed above are now discharged in Lean. The soundness module proves
+the pair-count pruning guard `pairBoundOK` and the complete `compatibleWith`
+filter for every fresh semantic row. `CapSelectedNativeClassifierCoverage`
+then proves that domain sorting is permutation-only, restriction preserves the
+distinguished semantic rows, and a successful native placement check produces
+a duplicate-free semantic prefix with `hasPrefixCore = true`.
+
+The audit remains OPEN. The unadjudicated finite risks are explicit
+closure-path replay/core extraction and the eleven remaining placement checks;
+the geometric risk remains conversion of exact boundary blocks to canonical
+labels and the live `IncidenceOK`/`PinnedShellOK` interface.

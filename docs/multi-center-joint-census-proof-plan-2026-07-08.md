@@ -814,8 +814,12 @@ edge colors. Placement `(6,4)` is Lean-checked by `native_decide` in about 81
 seconds. The external four-family rerun remains exhaustive with zero survivors
 for all twelve placements, but the other eleven placements are not yet Lean
 theorems. `CapSelectedNativeClassifierSound` proves local candidate coverage,
-the fixed pinned row, and soundness of overlap, Q3, cyclic-separation, and
-pairwise `rowsCompatible` pruning. `CapSelectedGeometry` separately proves the
-exact `(4,2,2)` boundary-block packet in either orientation. Open work is
-`pairBoundOK`, total DFS or certificate coverage, checked closure-core paths,
-all-placement replay, and canonical enumeration of the three boundary blocks.
+the fixed pinned row, and soundness of overlap, Q3, cyclic-separation,
+pairwise `rowsCompatible`, `pairBoundOK`, and the complete `compatibleWith`
+filter. `CapSelectedNativeClassifierCoverage` also proves the recursive
+semantic trace through domain sorting and restriction; successful placement
+replay now yields a duplicate-free semantic prefix with `hasPrefixCore = true`.
+`CapSelectedGeometry` separately proves the exact `(4,2,2)` boundary-block
+packet in either orientation. Open work is checked closure-core path replay and
+core extraction, all-placement replay, and canonical enumeration of the three
+boundary blocks.

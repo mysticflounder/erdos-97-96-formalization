@@ -1201,18 +1201,24 @@ The proof-facing layer is partially kernel-checked:
   intersection-cardinality, Q3-block, local-candidate, and pinned-row facts;
 - `CapSelectedNativeClassifierSound` proves semantic candidate-row coverage,
   the fixed pinned seed, row-intersection pruning, Q3 pruning, cyclic-separation
-  pruning, and `rowsCompatible`; and
+  pruning, `rowsCompatible`, `pairBoundOK`, and the complete `compatibleWith`
+  filter;
+- `CapSelectedNativeClassifierCoverage` proves domain sorting is a permutation,
+  domain restriction preserves each distinguished semantic row, and the full
+  recursive search trace. In particular,
+  `exists_semanticPrefixCore_of_placementCheck` turns a successful placement
+  replay into a duplicate-free semantic prefix with `hasPrefixCore = true`;
+  and
 - `CapSelectedClosureColor` and
   `CapSelectedGeometry.exists_boundaryBlocks_of_isM44_surplus_card_eq_six`
   build without `sorry`, supplying canonical closure colors and exact direct-or-
   mirror `(4,2,2)` boundary blocks.
 
 This checkpoint does not close the leaf. The remaining finite obligations are
-`pairBoundOK` soundness, total search/certificate coverage, explicit checked
-closure paths and core extraction, and all-placement Lean replay. The remaining
-geometry obligation is to enumerate each exact boundary block into the
-canonical `Fin 11` labels and instantiate `IncidenceOK` and `PinnedShellOK` from
-the live carrier.
+explicit checked closure paths and core extraction from `hasPrefixCore`, plus
+all-placement Lean replay. The remaining geometry obligation is to enumerate
+each exact boundary block into the canonical `Fin 11` labels and instantiate
+`IncidenceOK` and `PinnedShellOK` from the live carrier.
 
 The current closure route has exactly two proof-producing gaps:
 

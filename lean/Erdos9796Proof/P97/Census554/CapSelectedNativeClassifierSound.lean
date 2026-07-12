@@ -219,6 +219,191 @@ theorem rowsCompatible_rowOfPattern
     crossSeparationOK_rowOfPattern hinc.2.2.2.1 hne
   simp [rowsCompatible, hoverlap, hq3, hseparation]
 
+/-- Arithmetic contract for one base-eleven pair code. -/
+def ValidPairCode (code : Nat) : Prop :=
+  code / 11 < 11 ∧ code % 11 < 11 ∧ code / 11 ≠ code % 11
+
+instance (code : Nat) : Decidable (ValidPairCode code) := by
+  unfold ValidPairCode
+  infer_instance
+
+set_option linter.style.nativeDecide false in
+theorem pairCodes_valid :
+    CapSelectedBVRoleBank.pairCodes.all
+      (fun code => decide (ValidPairCode code)) = true := by
+  native_decide
+
+theorem validPairCode_of_mem {code : Nat}
+    (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    ValidPairCode code := by
+  have hvalid := List.all_eq_true.mp pairCodes_valid code hcode
+  exact of_decide_eq_true hvalid
+
+/-- First decoded label of a base-eleven pair code. -/
+def pairFirstLabel (code : Nat) : Label := Fin.ofNat 11 (code / 11)
+
+/-- Second decoded label of a base-eleven pair code. -/
+def pairSecondLabel (code : Nat) : Label := Fin.ofNat 11 (code % 11)
+
+theorem pairFirstLabel_val_of_mem {code : Nat}
+    (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    (pairFirstLabel code).val = code / 11 := by
+  have hvalid := validPairCode_of_mem hcode
+  simp [pairFirstLabel, Nat.mod_eq_of_lt hvalid.1]
+
+theorem pairSecondLabel_val_of_mem {code : Nat}
+    (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    (pairSecondLabel code).val = code % 11 := by
+  have hvalid := validPairCode_of_mem hcode
+  simp [pairSecondLabel, Nat.mod_eq_of_lt hvalid.2.1]
+
+theorem pairLabels_ne_of_mem {code : Nat}
+    (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    pairFirstLabel code ≠ pairSecondLabel code := by
+  have hfirst := pairFirstLabel_val_of_mem hcode
+  have hsecond := pairSecondLabel_val_of_mem hcode
+  intro heq
+  have hval := congrArg Fin.val heq
+  rw [hfirst, hsecond] at hval
+  exact (validPairCode_of_mem hcode).2.2 hval
+
+theorem containsPair_rowOfPattern_iff
+    (P : PatternCode) (center : Label) {code : Nat}
+    (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    containsPair (rowOfPattern P center) code = true ↔
+      pairFirstLabel code ∈ row P center ∧
+        pairSecondLabel code ∈ row P center := by
+  have hfirst := pairFirstLabel_val_of_mem hcode
+  have hsecond := pairSecondLabel_val_of_mem hcode
+  change
+    (has (rowMaskOf P center) (code / 11) &&
+      has (rowMaskOf P center) (code % 11)) = true ↔ _
+  rw [← hfirst, ← hsecond, Bool.and_eq_true, has_rowMaskOf, has_rowMaskOf]
+  simp only [mem_row_iff]
+
+/-- Counting encoded prefix rows containing a decoded pair agrees with the
+cardinality of the corresponding semantic center set. -/
+theorem countP_encodedRows_eq_pairCentersCard
+    (P : PatternCode) {centers : List Label} (hnodup : centers.Nodup)
+    {code : Nat} (hcode : code ∈ CapSelectedBVRoleBank.pairCodes) :
+    (centers.map (rowOfPattern P)).countP
+        (fun previous => containsPair previous code) =
+      (centers.toFinset.filter fun center =>
+        pairFirstLabel code ∈ row P center ∧
+          pairSecondLabel code ∈ row P center).card := by
+  classical
+  rw [List.countP_map, List.countP_eq_length_filter]
+  change
+    (centers.filter fun center =>
+      containsPair (rowOfPattern P center) code).length = _
+  have hnodupFiltered :
+      (centers.filter fun center =>
+        containsPair (rowOfPattern P center) code).Nodup :=
+    hnodup.filter _
+  rw [← List.toFinset_card_of_nodup hnodupFiltered,
+    List.toFinset_filter]
+  apply congrArg Finset.card
+  ext center
+  simp [containsPair_rowOfPattern_iff P center hcode]
+
+/-- The executable point-pair pruning guard accepts every fresh semantic row
+under the global two-center bound. -/
+theorem pairBoundOK_encodedRows
+    {P : PatternCode} (hpair : PairCenterCountOK P)
+    {centers : List Label} (hnodup : centers.Nodup)
+    {center : Label} (hfresh : center ∉ centers) :
+    pairBoundOK (centers.map (rowOfPattern P)) (rowOfPattern P center) = true := by
+  classical
+  unfold pairBoundOK
+  rw [List.all_eq_true]
+  intro code hcode
+  by_cases hsemantic :
+      pairFirstLabel code ∈ row P center ∧
+        pairSecondLabel code ∈ row P center
+  · have hcontains :
+        containsPair (rowOfPattern P center) code = true :=
+      (containsPair_rowOfPattern_iff P center hcode).2 hsemantic
+    have htotal :
+        ((Finset.univ : Finset Label).filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other).card ≤ 2 :=
+      hpair (pairFirstLabel code) (pairSecondLabel code)
+        (pairLabels_ne_of_mem hcode)
+    have hsubset :
+        (centers.toFinset.filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other) ⊆
+          (Finset.univ.filter fun other =>
+            pairFirstLabel code ∈ row P other ∧
+              pairSecondLabel code ∈ row P other) := by
+      intro other hother
+      exact Finset.mem_filter.mpr
+        ⟨Finset.mem_univ other, (Finset.mem_filter.mp hother).2⟩
+    have hcenterTotal :
+        center ∈ (Finset.univ.filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other) := by
+      exact Finset.mem_filter.mpr ⟨Finset.mem_univ center, hsemantic⟩
+    have hcenterPrefix :
+        center ∉ (centers.toFinset.filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other) := by
+      intro hcenter
+      exact hfresh (by simpa using (Finset.mem_filter.mp hcenter).1)
+    have hproper :
+        (centers.toFinset.filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other) ⊂
+          (Finset.univ.filter fun other =>
+            pairFirstLabel code ∈ row P other ∧
+              pairSecondLabel code ∈ row P other) :=
+      (Finset.ssubset_iff_of_subset hsubset).2
+        ⟨center, hcenterTotal, hcenterPrefix⟩
+    have hprefixLt :
+        (centers.toFinset.filter fun other =>
+          pairFirstLabel code ∈ row P other ∧
+            pairSecondLabel code ∈ row P other).card < 2 :=
+      (Finset.card_lt_card hproper).trans_le htotal
+    have hcountLt :
+        (centers.map (rowOfPattern P)).countP
+          (fun previous => containsPair previous code) < 2 := by
+      rw [countP_encodedRows_eq_pairCentersCard P hnodup hcode]
+      exact hprefixLt
+    have hcountLt' :
+        centers.countP
+          ((fun previous => containsPair previous code) ∘ rowOfPattern P) < 2 := by
+      simpa only [List.countP_map] using hcountLt
+    simp [hcontains, hcountLt']
+  · have hcontains :
+        containsPair (rowOfPattern P center) code = false :=
+      Bool.eq_false_iff.mpr fun htrue =>
+        hsemantic ((containsPair_rowOfPattern_iff P center hcode).1 htrue)
+    simp [hcontains]
+
+/-- Every fresh proof-facing row passes the complete executable prefix
+compatibility filter. -/
+theorem compatibleWith_encodedRows
+    {P : PatternCode} (hinc : IncidenceOK P)
+    {centers : List Label} (hnodup : centers.Nodup)
+    {center : Label} (hfresh : center ∉ centers) :
+    compatibleWith (centers.map (rowOfPattern P))
+      (rowOfPattern P center) = true := by
+  have hpair :
+      pairBoundOK (centers.map (rowOfPattern P))
+        (rowOfPattern P center) = true :=
+    pairBoundOK_encodedRows hinc.2.2.1 hnodup hfresh
+  have hrows :
+      (centers.map (rowOfPattern P)).all
+        (fun previous =>
+          rowsCompatible (rowOfPattern P center) previous) = true := by
+    rw [List.all_eq_true]
+    intro previous hprevious
+    rcases List.mem_map.mp hprevious with ⟨other, hother, rfl⟩
+    apply rowsCompatible_rowOfPattern hinc
+    intro heq
+    exact hfresh (heq ▸ hother)
+  simp [compatibleWith, hpair, hrows]
+
 /-- The semantic pinned-shell row is exactly the fixed seed used by the native
 search. -/
 theorem rowOfPattern_eq_fixedPinnedRow
