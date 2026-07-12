@@ -1,0 +1,1324 @@
+{
+  "complete": true,
+  "dependency_sha256": {
+    "census/endpoint_confinement/critical_shell_probe.py": "d7f82cdadf9cb4599adf4cb06f4dcb47a987ce2c9229b869ca1b8cd4a4f906c1",
+    "census/endpoint_confinement/metric_realizability_probe.py": "d7a727f2130cc28f5d7c5d92af9e58a6e9f40179aa2490e5c0eab5b890e2382e",
+    "census/endpoint_confinement/probe.py": "0b254fb647f6eb8569909e35f6d2739e1b26f0bd1bceda0404a48e8c0625f0b3",
+    "census/endpoint_confinement/shadow.py": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62",
+    "census/endpoint_confinement/surplus_source_metric_core_probe.py": "1c47bef43e713e5bdac7983e4ce1ef25a6985b973df5e7964c6e437824d7d0f1",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679"
+  },
+  "generated_at": "2026-07-12T01:31:51.751858+00:00",
+  "residual_bank": [],
+  "residual_pattern_count": 0,
+  "results": [
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 9.083158707999246,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 10098,
+      "prefix_cache_misses": 10890,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 8.315445124999314,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 8645,
+      "prefix_cache_misses": 9437,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 7.882747832998575,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 8258,
+      "prefix_cache_misses": 9050,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 12.070079208000607,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 11893,
+      "prefix_cache_misses": 12685,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 63.63272620799944,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 76968,
+      "prefix_cache_misses": 77830,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 63.86532533300124,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 77858,
+      "prefix_cache_misses": 78720,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 64.24526391700056,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 78279,
+      "prefix_cache_misses": 79141,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 39.32135604200084,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 45076,
+      "prefix_cache_misses": 45914,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 34.128939124999306,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 38426,
+      "prefix_cache_misses": 39264,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 34.48161112499838,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 38630,
+      "prefix_cache_misses": 39468,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 20.404651749999175,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 22505,
+      "prefix_cache_misses": 23319,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 18.648162292000052,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 20309,
+      "prefix_cache_misses": 21123,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 18.256834541998614,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 19534,
+      "prefix_cache_misses": 20348,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 7.573770249999143,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 7692,
+      "prefix_cache_misses": 8482,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 6.730067415999656,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 6484,
+      "prefix_cache_misses": 7274,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 7.885931500000879,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        9
+      ],
+      "escapee": 9,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 7707,
+      "prefix_cache_misses": 8497,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 9.365759249998518,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 10369,
+      "prefix_cache_misses": 11205,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 8.776300792000256,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 8966,
+      "prefix_cache_misses": 9802,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 8.31951108300018,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 8642,
+      "prefix_cache_misses": 9478,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 12.642693124998914,
+      "escaped_row": [
+        2,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 2,
+      "nodes": 12680,
+      "prefix_cache_misses": 13516,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 81.01465841699974,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 98871,
+      "prefix_cache_misses": 99778,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 80.15270158299973,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 97920,
+      "prefix_cache_misses": 98827,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 85.271505875,
+      "escaped_row": [
+        3,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 3,
+      "nodes": 104672,
+      "prefix_cache_misses": 105579,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 47.21737083299922,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 53853,
+      "prefix_cache_misses": 54736,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 39.713668500000495,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 45177,
+      "prefix_cache_misses": 46060,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 41.64147883300029,
+      "escaped_row": [
+        4,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 4,
+      "nodes": 46196,
+      "prefix_cache_misses": 47079,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 23.802288083999883,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 25999,
+      "prefix_cache_misses": 26858,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 20.875321416999213,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 22741,
+      "prefix_cache_misses": 23600,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 21.075213375001113,
+      "escaped_row": [
+        5,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 5,
+      "nodes": 22823,
+      "prefix_cache_misses": 23682,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 7.416225707998819,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 7389,
+      "prefix_cache_misses": 8224,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 6.551719375000175,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 6129,
+      "prefix_cache_misses": 6964,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 7.5965235410003515,
+      "escaped_row": [
+        6,
+        7,
+        8,
+        10
+      ],
+      "escapee": 10,
+      "family": "left",
+      "fourth": 6,
+      "nodes": 7207,
+      "prefix_cache_misses": 8042,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 1,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 11.431109291999746,
+      "escaped_row": [
+        1,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 11648,
+      "prefix_cache_misses": 12484,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 8.135502000000997,
+      "escaped_row": [
+        1,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 8402,
+      "prefix_cache_misses": 9238,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 8.592073125000752,
+      "escaped_row": [
+        1,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 8914,
+      "prefix_cache_misses": 9750,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 9.56115816700003,
+      "escaped_row": [
+        1,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 10670,
+      "prefix_cache_misses": 11506,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 7.362841125001069,
+      "escaped_row": [
+        3,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 6612,
+      "prefix_cache_misses": 7447,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 6.740733000000546,
+      "escaped_row": [
+        3,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 6197,
+      "prefix_cache_misses": 7032,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 7.592857083000126,
+      "escaped_row": [
+        3,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 7237,
+      "prefix_cache_misses": 8072,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 21.20735666699875,
+      "escaped_row": [
+        4,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 22989,
+      "prefix_cache_misses": 23848,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 21.60112866700001,
+      "escaped_row": [
+        4,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 23851,
+      "prefix_cache_misses": 24710,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 24.26839516600012,
+      "escaped_row": [
+        4,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 27006,
+      "prefix_cache_misses": 27865,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 41.92313925000053,
+      "escaped_row": [
+        5,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 47121,
+      "prefix_cache_misses": 48004,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 40.81807554199986,
+      "escaped_row": [
+        5,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 46802,
+      "prefix_cache_misses": 47685,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 48.76876950000042,
+      "escaped_row": [
+        5,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 56300,
+      "prefix_cache_misses": 57183,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 88.80782779200126,
+      "escaped_row": [
+        6,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 108487,
+      "prefix_cache_misses": 109394,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 81.08460991600077,
+      "escaped_row": [
+        6,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 98657,
+      "prefix_cache_misses": 99564,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 83.1055282920006,
+      "escaped_row": [
+        6,
+        7,
+        9,
+        10
+      ],
+      "escapee": 7,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 101378,
+      "prefix_cache_misses": 102285,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 10.63879283300048,
+      "escaped_row": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 10647,
+      "prefix_cache_misses": 11439,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 7.800329375000729,
+      "escaped_row": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 7922,
+      "prefix_cache_misses": 8714,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 8.301863791999494,
+      "escaped_row": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 8636,
+      "prefix_cache_misses": 9428,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 9.325236624999889,
+      "escaped_row": [
+        1,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 1,
+      "nodes": 10324,
+      "prefix_cache_misses": 11116,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 7.782104957999763,
+      "escaped_row": [
+        3,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 6906,
+      "prefix_cache_misses": 7696,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 6.801454250000461,
+      "escaped_row": [
+        3,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 6349,
+      "prefix_cache_misses": 7139,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 7.659232874999361,
+      "escaped_row": [
+        3,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 3,
+      "nodes": 7372,
+      "prefix_cache_misses": 8162,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 18.432734334000997,
+      "escaped_row": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 19571,
+      "prefix_cache_misses": 20385,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 19.07648183299898,
+      "escaped_row": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 20637,
+      "prefix_cache_misses": 21451,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 20.89395116599917,
+      "escaped_row": [
+        4,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 4,
+      "nodes": 23023,
+      "prefix_cache_misses": 23837,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 34.968678916999124,
+      "escaped_row": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 39295,
+      "prefix_cache_misses": 40133,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 34.7023635000005,
+      "escaped_row": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 39002,
+      "prefix_cache_misses": 39840,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 6,
+      "elapsed_sec": 40.256311208000625,
+      "escaped_row": [
+        5,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 5,
+      "nodes": 46546,
+      "prefix_cache_misses": 47384,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 3,
+      "elapsed_sec": 65.7333311250004,
+      "escaped_row": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 78344,
+      "prefix_cache_misses": 79206,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 4,
+      "elapsed_sec": 63.926554249999754,
+      "escaped_row": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 76587,
+      "prefix_cache_misses": 77449,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    },
+    {
+      "complete_cache_misses": 0,
+      "deleted": 5,
+      "elapsed_sec": 64.95188625000083,
+      "escaped_row": [
+        6,
+        8,
+        9,
+        10
+      ],
+      "escapee": 8,
+      "family": "right",
+      "fourth": 6,
+      "nodes": 77959,
+      "prefix_cache_misses": 78821,
+      "residual_count": 0,
+      "residuals": [],
+      "seed_center": 2,
+      "status": "EXHAUSTIVE"
+    }
+  ],
+  "schema": "p97-endpoint-direct-cap-selected-metric-core-residual-bank-v1",
+  "scope": {
+    "apply_cores": true,
+    "blocker_map": "derived-from-exact-compatible-centers",
+    "cap_selected_exact_counts": true,
+    "families": [
+      "left",
+      "right"
+    ],
+    "local_row_kills": [],
+    "max_nodes": 10000000,
+    "metric_core_count": 12,
+    "mode": "enumerate-residuals",
+    "one_selected_row_per_center": true,
+    "placements": 64,
+    "profile": [
+      6,
+      4,
+      4
+    ],
+    "seed": "endpoint-escaped-row",
+    "workers": 8
+  },
+  "source": "census/endpoint_confinement/endpoint_direct_metric_core_probe.py",
+  "source_sha256": "f44b1c5a1aecedd69a923e65241c4ead5a6664a0c8a0dea61b87de29f4737314",
+  "summary": {
+    "EXHAUSTIVE": 64
+  }
+}

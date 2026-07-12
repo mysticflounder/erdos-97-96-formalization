@@ -70,14 +70,23 @@ exists — use-site inventory checked), reducing to two joint cases
 `|v₂v₀| = |v₂v₁| = rho`). Wiring constraint: K-B-PIN's classifier proof
 must then not case through the endpoint predicates.
 
-## The one substantive unknown (EMPIRICAL)
+## The one substantive unknown (EMPIRICAL) — RESOLVED 2026-07-11
 
-No probe has established zero residuals for the endpoint seed placements
-under the twelve proved metric cores — the pinned zero-residual result
-carries no evidence for this domain. **Decisive next step:** run the
-existing exact finite-model probe (`direct_cap_selected_metric_core_
-residuals_n11` tooling, pinned-surplus session's) over the
-`EndpointLeft/RightShellOK` families. Zero residuals confirms verdict (i);
+**Zero residuals.** The exact finite-model sweep over both
+`EndpointLeft/RightShellOK` families (64 ordered placements, twelve
+formalized metric cores, enumerate-residuals mode, complete=true) returned
+EXHAUSTIVE on every placement with an empty residual bank:
+`census/endpoint_confinement/endpoint_direct_metric_core_residuals_n11.json`.
+Verdict (i) is empirically confirmed — the endpoint extension needs NO new
+metric cores; the remaining work is exactly the scoped extension of §
+"Required additions" (seed predicates, classifier extension to the seed
+union, one (4,2,2) bridge case, mechanical ports).
+
+Original framing of the gap, for the record: no probe had established zero
+residuals for the endpoint seed placements — the pinned zero-residual
+result carried no evidence for this domain. The plan was: run the probe
+over the `EndpointLeft/RightShellOK` families; zero residuals confirms
+verdict (i);
 residuals name the missing cores. RESOLVED 2026-07-11: per Adam, the
 pinned-surplus lane keeps its tooling for now; an insulated snapshot lives at
 `census/endpoint_confinement/` (provenance hashes in `PROVENANCE.md`),
