@@ -78,9 +78,17 @@ carries no evidence for this domain. **Decisive next step:** run the
 existing exact finite-model probe (`direct_cap_selected_metric_core_
 residuals_n11` tooling, pinned-surplus session's) over the
 `EndpointLeft/RightShellOK` families. Zero residuals confirms verdict (i);
-residuals name the missing cores. {{NEEDS_ADAM_INPUT}} — the probe tooling
-belongs to the active pinned-surplus session's lane; coordinate before
-running.
+residuals name the missing cores. RESOLVED 2026-07-11: per Adam, the
+pinned-surplus lane keeps its tooling for now; an insulated snapshot lives at
+`census/endpoint_confinement/` (provenance hashes in `PROVENANCE.md`),
+validated by an exact parity run in pinned mode
+(`parity_pinned_residuals_n11.json` — identical results and residual bank).
+The endpoint sweep runs via
+`endpoint_direct_metric_core_probe.py --enumerate-residuals --family both`
+(32 ordered placements per family, seed = the `EndpointLeftShellOK` shape:
+exact escaped row `{7, 8, escapee, fourth}` at center 1 with
+`escapee ∈ intO2`, `fourth ∈ {2} ∪ intS`, `deleted ∈ intS`,
+`fourth ≠ deleted`; right family is the O1↔O2 mirror at center 2).
 
 ## Pricing for the route-(b) decision record
 
