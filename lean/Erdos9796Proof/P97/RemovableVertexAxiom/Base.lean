@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.U1LargeCapRouteBTail
 import Erdos9796Proof.P97.EndpointCertificate.ResidualCoreData
 import Erdos9796Proof.P97.PinnedHullOrder
 import Erdos9796Proof.P97.EndpointCertificate.GeometryProducer
+import Erdos9796Proof.P97.EndpointCertificate.BridgeAssembly
 
 /-!
 # Removable-vertex existence for `|A| > 9`
@@ -9511,7 +9512,14 @@ theorem largeK4SurplusCapPacket :
   row for the route evidence. -/
 theorem isM44EndpointGeneralMResidualsExcluded :
       IsM44EndpointGeneralMResidualsExcludedStatement := by
-  sorry
+  intro A hne hconv hK4 _hgt hMin S hM44 hgt5
+  constructor
+  · intro radius rho x hend
+    exact EndpointCertificate.false_of_endpointEscapeLeft_cardEleven
+      hne hconv hK4 hM44 hgt5 hMin hend
+  · intro radius rho x hend
+    exact EndpointCertificate.false_of_endpointEscapeRight_cardEleven
+      hne hconv hK4 hM44 hgt5 hMin hend
 
 /-- Endpoint residuals are impossible in the `IsM44` branch.  This is a spine
   obligation consumed by
