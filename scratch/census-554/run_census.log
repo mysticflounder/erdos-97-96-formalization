@@ -38,3 +38,112 @@
 [14:02:11] driver done: status=BUDGET wall=3238s final bank=(1905, 49737)
 [14:09:59] driver start: total=3000s chunk=1200s bank=(1905, 49737)
 [14:36:43] chunk 0: status=BUDGET wall=1604s bank 1905->1990 orbits (49737->52088 inst) rate=3.2 orb/min
+[16:27:16] chunk 1: status=BUDGET wall=6632s bank 1990->2072 orbits (52088->54530 inst) rate=0.7 orb/min
+[16:27:16] driver done: status=BUDGET wall=8237s final bank=(2072, 54530)
+[16:32:45] driver start: total=3000s chunk=1200s bank=(2072, 54530)
+[17:04:17] chunk 0: status=BUDGET wall=1892s bank 2072->2149 orbits (54530->56681 inst) rate=2.4 orb/min
+[17:29:37] chunk 1: status=BUDGET wall=1520s bank 2149->2191 orbits (56681->57809 inst) rate=1.7 orb/min
+[17:29:37] driver done: status=BUDGET wall=3412s final bank=(2191, 57809)
+[17:42:04] driver start: total=3000s chunk=1200s bank=(2191, 57809)
+[18:09:39] chunk 0: status=BUDGET wall=1655s bank 2191->2266 orbits (57809->60181 inst) rate=2.7 orb/min
+[18:33:25] chunk 1: status=BUDGET wall=1426s bank 2266->2441 orbits (60181->64554 inst) rate=7.4 orb/min
+[18:33:25] driver done: status=BUDGET wall=3081s final bank=(2441, 64554)
+[18:40:58] driver start: total=3000s chunk=1200s bank=(2441, 64554)
+[19:04:50] chunk 0: status=BUDGET wall=1432s bank 2441->2481 orbits (64554->65628 inst) rate=1.7 orb/min
+[19:28:23] chunk 1: status=BUDGET wall=1413s bank 2481->2515 orbits (65628->66666 inst) rate=1.4 orb/min
+[19:36:55] driver start: total=3000s chunk=1200s bank=(2550, 67296)
+[20:06:01] chunk 0: status=BUDGET wall=1746s bank 2550->2620 orbits (67296->69284 inst) rate=2.4 orb/min
+[20:33:19] chunk 1: status=BUDGET wall=1638s bank 2620->2705 orbits (69284->71594 inst) rate=3.1 orb/min
+[20:33:19] driver done: status=BUDGET wall=3384s final bank=(2705, 71594)
+[20:37:22] driver start: total=3000s chunk=1200s bank=(2705, 71594)
+[21:03:44] chunk 0: status=BUDGET wall=1582s bank 2705->2761 orbits (71594->72952 inst) rate=2.1 orb/min
+[21:31:14] chunk 1: status=BUDGET wall=1650s bank 2761->2836 orbits (72952->74914 inst) rate=2.7 orb/min
+[21:31:14] driver done: status=BUDGET wall=3232s final bank=(2836, 74914)
+[21:35:00] driver start: total=3000s chunk=1200s bank=(2836, 74914)
+[21:59:38] chunk 0: status=BUDGET wall=1478s bank 2836->2888 orbits (74914->76162 inst) rate=2.1 orb/min
+[22:28:09] chunk 1: status=BUDGET wall=1711s bank 2888->2957 orbits (76162->77986 inst) rate=2.4 orb/min
+[22:28:09] driver done: status=BUDGET wall=3189s final bank=(2957, 77986)
+[22:31:23] driver start: total=3000s chunk=1200s bank=(2957, 77986)
+[23:02:32] chunk 0: status=BUDGET wall=1869s bank 2957->3088 orbits (77986->81401 inst) rate=4.2 orb/min
+[23:21:33] chunk 1: status=BUDGET wall=1141s bank 3088->3168 orbits (81401->83597 inst) rate=4.2 orb/min
+[23:21:33] driver done: status=BUDGET wall=3010s final bank=(3168, 83597)
+[23:28:05] driver start: total=3000s chunk=1200s bank=(3168, 83597)
+[23:56:02] chunk 0: status=BUDGET wall=1677s bank 3168->3250 orbits (83597->85201 inst) rate=2.9 orb/min
+[00:25:03] chunk 1: status=BUDGET wall=1741s bank 3250->3283 orbits (85201->85951 inst) rate=1.1 orb/min
+[00:25:03] driver done: status=BUDGET wall=3418s final bank=(3283, 85951)
+[00:27:37] driver start: total=3000s chunk=1200s bank=(3283, 85951)
+[00:56:05] chunk 0: status=BUDGET wall=1707s bank 3283->3304 orbits (85951->86497 inst) rate=0.7 orb/min
+[01:31:56] chunk 1: status=BUDGET wall=2151s bank 3304->3333 orbits (86497->87523 inst) rate=0.8 orb/min
+[01:31:56] driver done: status=BUDGET wall=3859s final bank=(3333, 87523)
+[01:40:51] driver start: total=3000s chunk=1200s bank=(3333, 87523)
+[02:08:38] chunk 0: status=BUDGET wall=1667s bank 3333->3374 orbits (87523->88501 inst) rate=1.5 orb/min
+[02:35:30] chunk 1: status=BUDGET wall=1612s bank 3374->3439 orbits (88501->90139 inst) rate=2.4 orb/min
+[02:35:30] driver done: status=BUDGET wall=3279s final bank=(3439, 90139)
+[02:42:51] driver start: total=3000s chunk=1200s bank=(3439, 90139)
+[03:06:03] chunk 0: status=BUDGET wall=1392s bank 3439->3569 orbits (90139->93236 inst) rate=5.6 orb/min
+[03:28:41] chunk 1: status=BUDGET wall=1359s bank 3569->3619 orbits (93236->94676 inst) rate=2.2 orb/min
+[03:39:19] chunk 2: status=BUDGET wall=637s bank 3619->3640 orbits (94676->95246 inst) rate=2.0 orb/min
+[03:39:19] driver done: status=BUDGET wall=3388s final bank=(3640, 95246)
+[03:47:22] driver start: total=3000s chunk=1200s bank=(3640, 95246)
+[04:11:11] chunk 0: status=BUDGET wall=1429s bank 3640->3674 orbits (95246->96470 inst) rate=1.4 orb/min
+[04:39:10] chunk 1: status=BUDGET wall=1679s bank 3674->3735 orbits (96470->97699 inst) rate=2.2 orb/min
+[04:39:10] driver done: status=BUDGET wall=3108s final bank=(3735, 97699)
+[04:48:53] driver start: total=3000s chunk=1200s bank=(3735, 97699)
+[05:16:31] chunk 0: status=BUDGET wall=1659s bank 3735->3832 orbits (97699->99691 inst) rate=3.5 orb/min
+[05:39:02] chunk 1: status=BUDGET wall=1351s bank 3832->3869 orbits (99691->101005 inst) rate=1.6 orb/min
+[05:39:02] driver done: status=BUDGET wall=3010s final bank=(3869, 101005)
+[05:49:49] driver start: total=3000s chunk=1200s bank=(3869, 101005)
+[06:10:42] chunk 0: status=BUDGET wall=1252s bank 3869->3913 orbits (101005->102202 inst) rate=2.1 orb/min
+[06:38:31] chunk 1: status=BUDGET wall=1669s bank 3913->3958 orbits (102202->103234 inst) rate=1.6 orb/min
+[06:48:46] chunk 2: status=BUDGET wall=615s bank 3958->3973 orbits (103234->103528 inst) rate=1.5 orb/min
+[06:48:46] driver done: status=BUDGET wall=3537s final bank=(3973, 103528)
+[06:55:41] driver start: total=3000s chunk=1200s bank=(3973, 103528)
+[07:23:16] chunk 0: status=BUDGET wall=1656s bank 3973->4062 orbits (103528->105868 inst) rate=3.2 orb/min
+[07:44:13] chunk 1: status=BUDGET wall=1256s bank 4062->4105 orbits (105868->107029 inst) rate=2.1 orb/min
+[07:55:17] chunk 2: status=BUDGET wall=665s bank 4105->4123 orbits (107029->107458 inst) rate=1.6 orb/min
+[07:55:17] driver done: status=BUDGET wall=3576s final bank=(4123, 107458)
+[08:04:22] driver start: total=3000s chunk=1200s bank=(4123, 107458)
+[08:34:06] chunk 0: status=BUDGET wall=1785s bank 4123->4191 orbits (107458->109447 inst) rate=2.3 orb/min
+[09:06:19] chunk 1: status=BUDGET wall=1933s bank 4191->4278 orbits (109447->111877 inst) rate=2.7 orb/min
+[09:06:19] driver done: status=BUDGET wall=3718s final bank=(4278, 111877)
+[09:10:38] driver start: total=3000s chunk=1200s bank=(4278, 111877)
+[09:35:51] chunk 0: status=BUDGET wall=1513s bank 4278->4312 orbits (111877->112891 inst) rate=1.3 orb/min
+[10:03:46] chunk 1: status=BUDGET wall=1675s bank 4312->4348 orbits (112891->113971 inst) rate=1.3 orb/min
+[10:03:46] driver done: status=BUDGET wall=3188s final bank=(4348, 113971)
+[10:09:02] driver start: total=3000s chunk=1200s bank=(4348, 113971)
+[10:29:32] chunk 0: status=BUDGET wall=1231s bank 4348->4437 orbits (113971->116247 inst) rate=4.3 orb/min
+[10:53:03] chunk 1: status=BUDGET wall=1410s bank 4437->4507 orbits (116247->117933 inst) rate=3.0 orb/min
+[11:03:12] chunk 2: status=BUDGET wall=609s bank 4507->4524 orbits (117933->118725 inst) rate=1.7 orb/min
+[11:03:12] driver done: status=BUDGET wall=3250s final bank=(4524, 118725)
+[11:13:31] driver start: total=3000s chunk=1200s bank=(4524, 118725)
+[11:42:43] chunk 0: status=BUDGET wall=1752s bank 4524->4661 orbits (118725->121944 inst) rate=4.7 orb/min
+[12:07:46] chunk 1: status=BUDGET wall=1503s bank 4661->4730 orbits (121944->123543 inst) rate=2.8 orb/min
+[12:07:46] driver done: status=BUDGET wall=3254s final bank=(4730, 123543)
+[12:15:37] driver start: total=3000s chunk=1200s bank=(4730, 123543)
+[12:37:34] chunk 0: status=BUDGET wall=1317s bank 4730->4812 orbits (123543->125711 inst) rate=3.7 orb/min
+[13:04:26] chunk 1: status=BUDGET wall=1612s bank 4812->4866 orbits (125711->127202 inst) rate=2.0 orb/min
+[13:14:40] chunk 2: status=BUDGET wall=614s bank 4866->4880 orbits (127202->127700 inst) rate=1.4 orb/min
+[13:14:40] driver done: status=BUDGET wall=3544s final bank=(4880, 127700)
+[13:20:57] driver start: total=3000s chunk=1200s bank=(4880, 127700)
+[13:41:38] chunk 0: status=BUDGET wall=1241s bank 4880->4956 orbits (127700->129587 inst) rate=3.7 orb/min
+[14:09:13] chunk 1: status=BUDGET wall=1655s bank 4956->4997 orbits (129587->130916 inst) rate=1.5 orb/min
+[14:12:22] chunk 2: status=BUDGET wall=189s bank 4997->5011 orbits (130916->131246 inst) rate=4.4 orb/min
+[14:12:22] driver done: status=BUDGET wall=3085s final bank=(5011, 131246)
+[14:12:48] driver start: total=3000s chunk=1200s bank=(5011, 131246)
+[14:39:47] chunk 0: status=BUDGET wall=1619s bank 5011->5080 orbits (131246->133382 inst) rate=2.6 orb/min
+[15:03:36] chunk 1: status=BUDGET wall=1429s bank 5080->5154 orbits (133382->135263 inst) rate=3.1 orb/min
+[15:03:36] driver done: status=BUDGET wall=3048s final bank=(5154, 135263)
+[15:12:42] driver start: total=3000s chunk=1200s bank=(5154, 135263)
+[15:40:04] chunk 0: status=BUDGET wall=1642s bank 5154->5220 orbits (135263->137357 inst) rate=2.4 orb/min
+[16:00:07] chunk 1: status=BUDGET wall=1203s bank 5220->5268 orbits (137357->138629 inst) rate=2.4 orb/min
+[16:07:53] driver start: total=3000s chunk=1200s bank=(5273, 138743)
+[16:07:53] driver start: total=3000s chunk=1200s bank=(5273, 138743)
+[16:34:46] chunk 0: status=BUDGET wall=1613s bank 5273->5297 orbits (138743->139481 inst) rate=0.9 orb/min
+[16:34:46] chunk 0: status=BUDGET wall=1613s bank 5273->5297 orbits (138743->139481 inst) rate=0.9 orb/min
+[16:57:20] chunk 1: status=BUDGET wall=1355s bank 5297->5351 orbits (139481->140729 inst) rate=2.4 orb/min
+[16:57:20] chunk 1: status=BUDGET wall=1355s bank 5297->5351 orbits (139481->140729 inst) rate=2.4 orb/min
+[17:07:57] chunk 2: status=BUDGET wall=636s bank 5351->5376 orbits (140729->141404 inst) rate=2.4 orb/min
+[17:07:57] chunk 2: status=BUDGET wall=636s bank 5351->5376 orbits (140729->141404 inst) rate=2.4 orb/min
+[17:07:57] driver done: status=BUDGET wall=3604s final bank=(5376, 141404)
+[17:07:57] driver done: status=BUDGET wall=3604s final bank=(5376, 141404)
+BUDGET
