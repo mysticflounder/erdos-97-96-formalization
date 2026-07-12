@@ -206,6 +206,14 @@ The right leaf conjunct reuses the same `L` with the committed
 
 ## 5. Dependency-ordered new lemmas
 
+UPDATE 2026-07-11 (post-design): commit 9e6b5722 (pinned lane) landed
+`q3OK_patternCode`, `capSelectedCountsOK_patternCode`, and
+`incidenceOK_patternCode` in `Census554/CapSelectedCarrierBridge.lean` with
+core-only axiom closure — **L9, L10, and L10b below are DONE upstream**;
+consume them, do not rebuild. The placement question for those items is
+moot. L11/L12 remain open and shared; watch the pinned lane's wiring work
+for duplication before dispatching them.
+
 [shared] = seed-independent, jointly discharges K-B-PIN's remaining adapter
 gaps. Suggested homes: L2–L5 in `EndpointCertificate/GeneralMCardEleven.lean`;
 L6–L8, L13 in a new endpoint carrier-bridge module; L9–L12 in a shared
