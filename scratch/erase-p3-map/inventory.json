@@ -1,0 +1,3096 @@
+{
+ "schema": "erase_p3_map_inventory.v1",
+ "vocabulary": {
+  "census": "census/multi_center/multi_center_census.py (docs/multi-center-joint-census-spec-2026-07-07.md)",
+  "row_code": "canonical single-center type min((m,s,l,r),(m,s,r,l)) per q2_token.type_of; buckets S->(O1,O2), O1->(O2,S), O2->(S,O1)",
+  "apex_code": "class_key(canon_joint(profile,(0,),moser_masks,cap_counts,'EP1')) -- census canonicalization, single-participant layer 'EP1'",
+  "orientation": "side in {O1,O2,S,U} + chi in {direct,reflected,symmetric} (inverts the census quotient; see ep3map.py header)"
+ },
+ "profiles": {
+  "10": [
+   5,
+   4,
+   4
+  ],
+  "11": [
+   6,
+   4,
+   4
+  ]
+ },
+ "summary": {
+  "n10_U": {
+   "total_pin_shapes": 22,
+   "surviving_local": 8
+  },
+  "n10_Sint": {
+   "total_pin_shapes": 14,
+   "surviving_local": 10
+  },
+  "n11_U": {
+   "total_pin_shapes": 23,
+   "surviving_local": 9
+  },
+  "n11_Sint": {
+   "total_pin_shapes": 17,
+   "surviving_local": 13
+  }
+ },
+ "family_counts_surviving": {
+  "n10: (2,1,1)-strict": 1,
+  "n10: (3,1,0)/(3,0,1)": 2,
+  "n10: corner+3-surplus": 2,
+  "n10: corner+opp": 2,
+  "n10: corner: Mode-A": 1,
+  "n10: surplus-interior": 10,
+  "n11: (2,1,1)-strict": 1,
+  "n11: (3,1,0)/(3,0,1)": 2,
+  "n11: (4,0,0)": 1,
+  "n11: corner+3-surplus": 2,
+  "n11: corner+opp": 2,
+  "n11: corner: Mode-A": 1,
+  "n11: surplus-interior": 13
+ },
+ "canonical_classes_surviving": [
+  {
+   "card": 10,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      3,
+      0,
+      1
+     ],
+     "chi": "reflected"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      3,
+      1,
+      0
+     ],
+     "chi": "direct"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      1,
+      2,
+      0,
+      1
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      0,
+      2,
+      1,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      1,
+      3,
+      0,
+      0
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      0,
+      3,
+      0,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,2]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      1,
+      2,
+      0,
+      0
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 1, 1, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      1,
+      1,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      1,
+      2,
+      1
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 2, 0, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      0,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      2,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 2, 1, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 1, 0, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      0,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      2,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 1, 1, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 10,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 2, 0, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      2,
+      0,
+      1
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      2,
+      1,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      2,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      3,
+      0,
+      1
+     ],
+     "chi": "reflected"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      3,
+      1,
+      0
+     ],
+     "chi": "direct"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,4]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      0,
+      4,
+      0,
+      0
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      1,
+      2,
+      0,
+      1
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      0,
+      2,
+      1,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      0,
+      1,
+      3,
+      0,
+      0
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      0,
+      3,
+      0,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "apexClass",
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,2]]]",
+   "orbit": [
+    {
+     "site": "U",
+     "ordered_sig": [
+      1,
+      1,
+      2,
+      0,
+      0
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 1, 1, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      1,
+      1,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      1,
+      2,
+      1
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 2, 0, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      0,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      2,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 2, 1, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      2,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[0, 3, 0, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      3,
+      0,
+      1
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      0,
+      3,
+      1,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 1, 0, 2]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      0,
+      2
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      2,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 1, 1, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      1,
+      1,
+      1
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 2, 0, 1]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      2,
+      0,
+      1
+     ],
+     "chi": "direct"
+    },
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      2,
+      1,
+      0
+     ],
+     "chi": "reflected"
+    }
+   ]
+  },
+  {
+   "card": 11,
+   "code_kind": "surplusCapRow",
+   "class_code": "[1, 3, 0, 0]",
+   "orbit": [
+    {
+     "site": "Sint",
+     "ordered_sig": [
+      1,
+      3,
+      0,
+      0
+     ],
+     "chi": "symmetric"
+    }
+   ]
+  }
+ ],
+ "entries": [
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    1,
+    1,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    1,
+    2,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    1,
+    2,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    1,
+    1,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "family": "(2,1,1)-strict",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "symmetric"
+   },
+   "witnessed": "SO_t2_PuQ1"
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    3,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    3,
+    1,
+    0
+   ],
+   "family": "(3,1,0)/(3,0,1)",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    3,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    3,
+    0,
+    1
+   ],
+   "family": "(3,1,0)/(3,0,1)",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    2,
+    1,
+    0
+   ],
+   "family": "corner+opp",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    2,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    3,
+    0,
+    0
+   ],
+   "family": "corner+3-surplus",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "family": "corner+opp",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    3,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   "family": "corner+3-surplus",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,1],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,1],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    2,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    2,
+    0,
+    0
+   ],
+   "family": "corner: Mode-A",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 1, 1, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 1, 1, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    2,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    1,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 1, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    0,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    2,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 1, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": "SI_c-s1_Q2vPu"
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    2,
+    1,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 2, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 2, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    1,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 1, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    2,
+    1,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 1, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 2, 0, 0]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 10,
+   "site": "Sint",
+   "ordered_sig": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[3, 1, 0, 0]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    1,
+    1,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    1,
+    2,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    1,
+    2,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    1,
+    1,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    1,
+    1
+   ],
+   "family": "(2,1,1)-strict",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    2,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    2,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,2],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    3,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    3,
+    1,
+    0
+   ],
+   "family": "(3,1,0)/(3,0,1)",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    3,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    3,
+    0,
+    1
+   ],
+   "family": "(3,1,0)/(3,0,1)",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,3],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    0,
+    4,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    0,
+    4,
+    0,
+    0
+   ],
+   "family": "(4,0,0)",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,0],[[\"S\",1,4]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    1,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    2,
+    1,
+    0
+   ],
+   "family": "corner+opp",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    2,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    0,
+    3,
+    0,
+    0
+   ],
+   "family": "corner+3-surplus",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    2,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    1,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O1\",1,1],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    0,
+    2
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,1],[\"O2\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    0,
+    1
+   ],
+   "family": "corner+opp",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,2],[\"O2\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    0,
+    3,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    3,
+    0,
+    0
+   ],
+   "family": "corner+3-surplus",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,0,1],[[\"S\",1,3]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,1],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "h1_ok": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,1],[\"O1\",1,1]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "U",
+   "ordered_sig": [
+    1,
+    1,
+    2,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    2,
+    0,
+    0
+   ],
+   "family": "corner: Mode-A",
+   "surviving_local": true,
+   "checks": {
+    "h1_ok": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[\"EP1\",[0],[0,1,1],[[\"S\",1,2]]]",
+   "code_kind": "apexClass",
+   "orientation": {
+    "side": "U",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    2,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 1, 1, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    1,
+    2,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    1,
+    1,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 1, 1, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    2,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    1,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 1, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    2,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    2,
+    0,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[0, 2, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    3,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    0,
+    3,
+    1,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": true,
+    "local_ok": true
+   },
+   "class_code": "[0, 3, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    0,
+    3,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    0,
+    3,
+    0,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": true,
+    "local_ok": true
+   },
+   "class_code": "[0, 3, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    2,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 1, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    1,
+    2,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    1,
+    0,
+    2
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 1, 0, 2]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    1,
+    2,
+    1,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 2, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    2,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    2,
+    0,
+    1
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": true
+   },
+   "class_code": "[1, 2, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    1,
+    3,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    1,
+    3,
+    0,
+    0
+   ],
+   "family": "surplus-interior",
+   "surviving_local": true,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": false,
+    "killed_plus": true,
+    "local_ok": true
+   },
+   "class_code": "[1, 3, 0, 0]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    1,
+    0,
+    1
+   ],
+   "mirror_sig": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 1, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "direct"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    1,
+    1,
+    0
+   ],
+   "mirror_sig": [
+    2,
+    1,
+    0,
+    1
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 1, 0, 1]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "reflected"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    2,
+    2,
+    0,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": true,
+    "killed_proven": true,
+    "killed_plus": true,
+    "local_ok": false
+   },
+   "class_code": "[2, 2, 0, 0]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  },
+  {
+   "card": 11,
+   "site": "Sint",
+   "ordered_sig": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "mirror_sig": [
+    3,
+    1,
+    0,
+    0
+   ],
+   "family": null,
+   "surviving_local": false,
+   "checks": {
+    "m_le_2": false,
+    "killed_proven": false,
+    "killed_plus": false,
+    "local_ok": false
+   },
+   "class_code": "[3, 1, 0, 0]",
+   "code_kind": "surplusCapRow",
+   "orientation": {
+    "side": "S",
+    "chi": "symmetric"
+   },
+   "witnessed": null
+  }
+ ]
+}

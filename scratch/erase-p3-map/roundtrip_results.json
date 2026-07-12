@@ -1,0 +1,17 @@
+{
+ "schema": "erase_p3_map_roundtrip.v1",
+ "domain_sizes": {
+  "n10_O1int": 19,
+  "n10_O2int": 19,
+  "n10_Sint": 22,
+  "n10_U": 30,
+  "n11_O1int": 20,
+  "n11_O2int": 20,
+  "n11_Sint": 25,
+  "n11_U": 31
+ },
+ "total_features": 186,
+ "distinct_code_orientation_pairs": 186,
+ "failures": [],
+ "verdict": "IDENTITY"
+}
