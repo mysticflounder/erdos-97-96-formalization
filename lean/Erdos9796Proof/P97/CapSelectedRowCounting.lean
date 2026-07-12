@@ -821,9 +821,9 @@ theorem SurplusCapPacket.card_eq_eleven_of_surplus_card_gt_five
   omega
 
 /-- At the forced card-eleven equality case, the surplus cap admits a
-six-point ordered indexing on which every selected row has the exact endpoint
-or interior cap-hit count. -/
-theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts
+six-point ordered indexing whose endpoints are the two Moser endpoints and on
+which every selected row has the exact endpoint or interior cap-hit count. -/
+theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts_and_endpoints
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (hM44 : S.IsM44)
     (F : FaithfulCarrierPattern A) (hcard : S.surplusCap.card = 6) :
@@ -832,14 +832,22 @@ theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts
       ∃ Hside : CGN.MinorCapSideHypotheses Packet,
       ∃ Hord : CGN.StrictCapOrder A L,
         Finset.univ.image L.points = S.surplusCap ∧
-        ∀ j : Fin 6,
-          ((F.classAt (L.points j) (Packet.mem_A j)).support ∩
-              Finset.univ.image L.points).card =
-            if j = CGN.firstIndex Packet.hm then 1
-            else if j = CGN.lastIndex Packet.hm then 1 else 2 := by
+        (((L.points (CGN.firstIndex Packet.hm) =
+                (S.triangleByIndex S.surplusIdx).v2 ∧
+              L.points (CGN.lastIndex Packet.hm) =
+                (S.triangleByIndex S.surplusIdx).v3) ∨
+            (L.points (CGN.firstIndex Packet.hm) =
+                (S.triangleByIndex S.surplusIdx).v3 ∧
+              L.points (CGN.lastIndex Packet.hm) =
+                (S.triangleByIndex S.surplusIdx).v2)) ∧
+          ∀ j : Fin 6,
+            ((F.classAt (L.points j) (Packet.mem_A j)).support ∩
+                Finset.univ.image L.points).card =
+              if j = CGN.firstIndex Packet.hm then 1
+              else if j = CGN.lastIndex Packet.hm then 1 else 2) := by
   classical
-  rcases S.capByIndex_cgn4g_capData hconv S.surplusIdx with
-    ⟨m, L, Packet, Hside, Hord, hcap⟩
+  rcases S.capByIndex_cgn4g_capData_oriented hconv S.surplusIdx with
+    ⟨m, L, Packet, Hside, Hord, hcap, hendpoints⟩
   have hcapSurplus : S.capByIndex S.surplusIdx = S.surplusCap := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
     interval_cases i <;> simp [SurplusCapPacket.capByIndex,
@@ -860,10 +868,83 @@ theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts
     omega
   have houtside : (A \ Finset.univ.image L.points).card = 5 := by
     rw [Finset.card_sdiff_of_subset hCsub, himageCard, hAcard]
-  refine ⟨L, Packet, Hside, Hord, hcap.trans hcapSurplus, ?_⟩
+  refine ⟨L, Packet, Hside, Hord, hcap.trans hcapSurplus, hendpoints, ?_⟩
   intro j
   exact orderedCap_selected_support_inter_card_eq_of_six_five
     Packet Hside Hord hconv F houtside j
+
+/-- Compatibility wrapper retaining the original exact-count interface while
+forgetting the ordered endpoint witness. -/
+theorem SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (hM44 : S.IsM44)
+    (F : FaithfulCarrierPattern A) (hcard : S.surplusCap.card = 6) :
+    ∃ L : CGN.OrderedCap 6,
+      ∃ Packet : CGN.MecCapPacket A L,
+      ∃ Hside : CGN.MinorCapSideHypotheses Packet,
+      ∃ Hord : CGN.StrictCapOrder A L,
+        Finset.univ.image L.points = S.surplusCap ∧
+        ∀ j : Fin 6,
+          ((F.classAt (L.points j) (Packet.mem_A j)).support ∩
+              Finset.univ.image L.points).card =
+            if j = CGN.firstIndex Packet.hm then 1
+            else if j = CGN.lastIndex Packet.hm then 1 else 2 := by
+  rcases SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts_and_endpoints
+      S hconv hM44 F hcard with
+    ⟨L, Packet, Hside, Hord, hcap, _hendpoints, hcounts⟩
+  exact ⟨L, Packet, Hside, Hord, hcap, hcounts⟩
+
+/-- In the card-eleven equality case, a selected row centered on the surplus
+cap hits that cap once at either support endpoint and twice at every other cap
+point. -/
+theorem SurplusCapPacket.selectedClass_support_inter_surplusCap_card_eq
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (hM44 : S.IsM44)
+    (F : FaithfulCarrierPattern A) (hcard : S.surplusCap.card = 6)
+    {center : ℝ²} (hcenterA : center ∈ A)
+    (hcenterCap : center ∈ S.surplusCap) :
+    ((F.classAt center hcenterA).support ∩ S.surplusCap).card =
+      if center = (S.triangleByIndex S.surplusIdx).v2 ∨
+          center = (S.triangleByIndex S.surplusIdx).v3 then 1 else 2 := by
+  classical
+  rcases SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts_and_endpoints
+      S hconv hM44 F hcard with
+    ⟨L, Packet, _Hside, _Hord, hcap, hendpoints, hcounts⟩
+  have hcenterImage : center ∈ Finset.univ.image L.points := by
+    rwa [hcap]
+  rcases Finset.mem_image.mp hcenterImage with ⟨j, _hj, hjcenter⟩
+  subst center
+  have hpointEndpoints :
+      (L.points j = (S.triangleByIndex S.surplusIdx).v2 ∨
+          L.points j = (S.triangleByIndex S.surplusIdx).v3) ↔
+        (j = CGN.firstIndex Packet.hm ∨ j = CGN.lastIndex Packet.hm) := by
+    rcases hendpoints with hendpoints | hendpoints
+    · constructor
+      · rintro (hjv2 | hjv3)
+        · exact Or.inl (L.injective (hjv2.trans hendpoints.1.symm))
+        · exact Or.inr (L.injective (hjv3.trans hendpoints.2.symm))
+      · rintro (rfl | rfl)
+        · exact Or.inl hendpoints.1
+        · exact Or.inr hendpoints.2
+    · constructor
+      · rintro (hjv2 | hjv3)
+        · exact Or.inr (L.injective (hjv2.trans hendpoints.2.symm))
+        · exact Or.inl (L.injective (hjv3.trans hendpoints.1.symm))
+      · rintro (rfl | rfl)
+        · exact Or.inr hendpoints.1
+        · exact Or.inl hendpoints.2
+  calc
+    ((F.classAt (L.points j) hcenterA).support ∩ S.surplusCap).card =
+        if j = CGN.firstIndex Packet.hm then 1
+        else if j = CGN.lastIndex Packet.hm then 1 else 2 := by
+          simpa only [hcap] using hcounts j
+    _ = if j = CGN.firstIndex Packet.hm ∨
+          j = CGN.lastIndex Packet.hm then 1 else 2 := by
+      by_cases hfirst : j = CGN.firstIndex Packet.hm <;>
+        by_cases hlast : j = CGN.lastIndex Packet.hm <;> simp [hfirst, hlast]
+    _ = if L.points j = (S.triangleByIndex S.surplusIdx).v2 ∨
+          L.points j = (S.triangleByIndex S.surplusIdx).v3 then 1 else 2 := by
+      simp only [hpointEndpoints]
 
 end CapSelectedRowCounting
 

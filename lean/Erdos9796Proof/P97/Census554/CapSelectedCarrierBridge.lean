@@ -45,6 +45,23 @@ noncomputable def patternCode {A : Finset ℝ²} {S : SurplusCapPacket A}
         (F.classAt (L.pointOf center) (L.mem_carrier center)).support := by
   simp [patternCode, mem_row_iff]
 
+/-- Row membership supplies membership in the selected same-radius class at
+the corresponding geometric center. -/
+theorem mem_selectedClass_of_mem_row
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    {center point : Label} (hpoint : point ∈ row (patternCode L F) center) :
+    L.pointOf point ∈
+      SelectedClass A (L.pointOf center)
+        (F.classAt (L.pointOf center) (L.mem_carrier center)).radius := by
+  rw [mem_selectedClass]
+  have hsupport := (mem_row_patternCode_iff L F center point).mp hpoint
+  exact
+    ⟨(F.classAt (L.pointOf center) (L.mem_carrier center)).support_subset_A
+        hsupport,
+      (F.classAt (L.pointOf center) (L.mem_carrier center)).support_eq_radius
+        _ hsupport⟩
+
 /-- A pulled-back row is exactly the canonical label preimage of its selected
 geometric support. -/
 theorem row_patternCode_eq_labelsOf
@@ -73,6 +90,29 @@ theorem realizes_patternCode
       _ hleftSupport).trans
     ((F.classAt (L.pointOf center) (L.mem_carrier center)).support_eq_radius
       _ hrightSupport).symm
+
+private theorem cyclicSeparated_of_direct_btw :
+    ∀ c d a b : Label,
+      c ≠ d → a ≠ c → a ≠ d → b ≠ c → b ≠ d →
+      (SurplusCOMPGBank.btw (hullIndex c) (hullIndex d) (hullIndex a) ↔
+        ¬ SurplusCOMPGBank.btw
+          (hullIndex c) (hullIndex d) (hullIndex b)) →
+      CyclicSeparated c d a b := by
+  decide
+
+private theorem cyclicSeparated_of_reflected_btw :
+    ∀ c d a b : Label,
+      c ≠ d → a ≠ c → a ≠ d → b ≠ c → b ≠ d →
+      (SurplusCOMPGBank.btw
+          (SeparationCore.card11BoundaryReflection (hullIndex c))
+          (SeparationCore.card11BoundaryReflection (hullIndex d))
+          (SeparationCore.card11BoundaryReflection (hullIndex a)) ↔
+        ¬ SurplusCOMPGBank.btw
+          (SeparationCore.card11BoundaryReflection (hullIndex c))
+          (SeparationCore.card11BoundaryReflection (hullIndex d))
+          (SeparationCore.card11BoundaryReflection (hullIndex b))) →
+      CyclicSeparated c d a b := by
+  decide
 
 /-- Every pulled-back row has four labels. -/
 theorem row_patternCode_card
@@ -262,6 +302,66 @@ theorem pairCenterCount_patternCode
   change hits.card ≤ 2
   exact hhitsTarget.trans htarget
 
+/-- A pair shared by two distinct pulled-back rows alternates across those
+centers in the canonical cyclic order. -/
+theorem crossSeparationOK_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A) :
+    CrossSeparationOK (patternCode L F) := by
+  intro c d a b hcd hab hac hbc had hbd
+  have hacCenter : a ≠ c := by
+    intro h
+    subst a
+    exact center_not_mem_row_patternCode L F c hac
+  have hadCenter : a ≠ d := by
+    intro h
+    subst a
+    exact center_not_mem_row_patternCode L F d had
+  have hbcCenter : b ≠ c := by
+    intro h
+    subst b
+    exact center_not_mem_row_patternCode L F c hbc
+  have hbdCenter : b ≠ d := by
+    intro h
+    subst b
+    exact center_not_mem_row_patternCode L F d hbd
+  let core :
+      SeparationCore.SharedPairSeparationCore
+        (rowPattern (patternCode L F)) :=
+    { firstCenter := c
+      secondCenter := d
+      firstPoint := a
+      secondPoint := b
+      centers_ne := hcd
+      secondPoint_ne_firstCenter := hbcCenter
+      secondPoint_ne_secondCenter := hbdCenter
+      points_ne := hab
+      firstCenter_eq := EdgeClosure.row c a b hac hbc
+      secondCenter_eq := EdgeClosure.row d a b had hbd }
+  rcases L.canonicalHull.point_eq with hdirect | hreflected
+  · have hsat : core.SatisfiedBy hullIndex :=
+      core.satisfiedBy_of_realizes_ccw (realizes_patternCode L F)
+        L.canonicalHull.boundary hullIndex
+        L.canonicalHull.boundary_ccw L.canonicalHull.boundary_injective
+        hullIndex_injective hdirect
+    apply cyclicSeparated_of_direct_btw c d a b hcd hacCenter hadCenter
+      hbcCenter hbdCenter
+    simpa [core, SeparationCore.SharedPairSeparationCore.SatisfiedBy] using hsat
+  · let reflectedIndex : Label → Fin 11 := fun label =>
+      SeparationCore.card11BoundaryReflection (hullIndex label)
+    have hreflectedInjective : Function.Injective reflectedIndex :=
+      SeparationCore.card11BoundaryReflection.injective.comp
+        hullIndex_injective
+    have hsat : core.SatisfiedBy reflectedIndex :=
+      core.satisfiedBy_of_realizes_ccw (realizes_patternCode L F)
+        L.canonicalHull.boundary reflectedIndex
+        L.canonicalHull.boundary_ccw L.canonicalHull.boundary_injective
+        hreflectedInjective hreflected
+    apply cyclicSeparated_of_reflected_btw c d a b hcd hacCenter hadCenter
+      hbcCenter hbdCenter
+    simpa [core, reflectedIndex,
+      SeparationCore.SharedPairSeparationCore.SatisfiedBy] using hsat
+
 private theorem capByIndex_surplusIdx_eq_surplusCap
     {A : Finset ℝ²} (S : SurplusCapPacket A) :
     S.capByIndex S.surplusIdx = S.surplusCap := by
@@ -376,6 +476,59 @@ theorem labelsOf_oppCap2_eq_capO2
   rw [L.toCard11Labeling.labelsOf_card_eq, hcard]
   · decide
   · exact S.capByIndex_subset S.oppIndex2
+
+@[simp] theorem mem_intS_iff_point_mem_surplusInterior
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (point : Label) :
+    point ∈ CapSelectedFiniteCode.intS ↔
+      L.pointOf point ∈ S.capInteriorByIndex S.surplusIdx := by
+  rw [← L.surplusInterior_eq, L.toCard11Labeling.mem_labelsOf]
+
+@[simp] theorem mem_intO1_iff_point_mem_oppInterior1
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (point : Label) :
+    point ∈ CapSelectedFiniteCode.intO1 ↔
+      L.pointOf point ∈ S.capInteriorByIndex S.oppIndex1 := by
+  rw [← L.oppInterior1_eq, L.toCard11Labeling.mem_labelsOf]
+  rfl
+
+@[simp] theorem mem_intO2_iff_point_mem_oppInterior2
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (point : Label) :
+    point ∈ CapSelectedFiniteCode.intO2 ↔
+      L.pointOf point ∈ S.capInteriorByIndex S.oppIndex2 := by
+  rw [← L.oppInterior2_eq, L.toCard11Labeling.mem_labelsOf]
+  rfl
+
+private theorem leftAdjacentIndex_oppIndex1_eq_oppIndex2
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    SurplusCapPacket.leftAdjacentIndex S.oppIndex1 = S.oppIndex2 := by
+  rcases hi : S.surplusIdx with ⟨index, hindex⟩
+  interval_cases index <;>
+    simp [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppIndex2, hi]
+
+private theorem rightAdjacentIndex_oppIndex1_eq_surplusIdx
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    SurplusCapPacket.rightAdjacentIndex S.oppIndex1 = S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨index, hindex⟩
+  interval_cases index <;>
+    simp [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1, hi]
+
+private theorem leftAdjacentIndex_oppIndex2_eq_surplusIdx
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    SurplusCapPacket.leftAdjacentIndex S.oppIndex2 = S.surplusIdx := by
+  rcases hi : S.surplusIdx with ⟨index, hindex⟩
+  interval_cases index <;>
+    simp [SurplusCapPacket.leftAdjacentIndex, SurplusCapPacket.oppIndex2, hi]
+
+private theorem rightAdjacentIndex_oppIndex2_eq_oppIndex1
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    SurplusCapPacket.rightAdjacentIndex S.oppIndex2 = S.oppIndex1 := by
+  rcases hi : S.surplusIdx with ⟨index, hindex⟩
+  interval_cases index <;>
+    simp [SurplusCapPacket.rightAdjacentIndex, SurplusCapPacket.oppIndex1,
+      SurplusCapPacket.oppIndex2, hi]
 
 /-- Intersecting a pulled-back row with labels of a geometric subset preserves
 the geometric intersection cardinality. -/
@@ -574,6 +727,389 @@ theorem pairCenterCountOK_patternCode
     PairCenterCountOK (patternCode L F) := by
   intro left right hne
   exact pairCenterCount_patternCode L F hconv hne
+
+private theorem exists_mem_target_of_row_card_four_of_two_oneHit
+    (selected target left right : Finset Label)
+    (hcard : selected.card = 4)
+    (hcover : selected ⊆ target ∪ (left ∪ right))
+    (hleft : (selected ∩ left).card ≤ 1)
+    (hright : (selected ∩ right).card ≤ 1) :
+    ∃ point, point ∈ target ∧ point ∈ selected := by
+  by_contra hexists
+  have hsub : selected ⊆ left ∪ right := by
+    intro point hpoint
+    rcases Finset.mem_union.mp (hcover hpoint) with htarget | hsides
+    · exact (hexists ⟨point, htarget, hpoint⟩).elim
+    · exact hsides
+  have heq : selected = (selected ∩ left) ∪ (selected ∩ right) := by
+    apply Finset.Subset.antisymm
+    · intro point hpoint
+      rcases Finset.mem_union.mp (hsub hpoint) with hpointLeft | hpointRight
+      · exact Finset.mem_union_left _ (Finset.mem_inter.mpr ⟨hpoint, hpointLeft⟩)
+      · exact Finset.mem_union_right _ (Finset.mem_inter.mpr ⟨hpoint, hpointRight⟩)
+    · intro point hpoint
+      rcases Finset.mem_union.mp hpoint with hpointLeft | hpointRight
+      · exact (Finset.mem_inter.mp hpointLeft).1
+      · exact (Finset.mem_inter.mp hpointRight).1
+  have hunion := Finset.card_union_le (selected ∩ left) (selected ∩ right)
+  rw [← heq, hcard] at hunion
+  omega
+
+private theorem exists_row_zero_mem_intS {P : PatternCode}
+    (hlocal : LocalRowsOK P) :
+    ∃ point, point ∈ CapSelectedFiniteCode.intS ∧ point ∈ row P 0 := by
+  have hcover : row P 0 ⊆
+      CapSelectedFiniteCode.intS ∪
+        (CapSelectedFiniteCode.capO1.erase 0 ∪
+          CapSelectedFiniteCode.capO2.erase 0) := by
+    intro point hpoint
+    have hcenter := (hlocal.1 0).2
+    fin_cases point <;>
+      simp_all [CapSelectedFiniteCode.intS, CapSelectedFiniteCode.capO1,
+        CapSelectedFiniteCode.capO2]
+  exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
+    (hlocal.1 0).1 hcover (hlocal.2.1.1.1) (hlocal.2.1.1.2)
+
+private theorem exists_row_one_mem_intO1 {P : PatternCode}
+    (hlocal : LocalRowsOK P) :
+    ∃ point, point ∈ CapSelectedFiniteCode.intO1 ∧ point ∈ row P 1 := by
+  have hcover : row P 1 ⊆
+      CapSelectedFiniteCode.intO1 ∪
+        (CapSelectedFiniteCode.capS.erase 1 ∪
+          CapSelectedFiniteCode.capO2.erase 1) := by
+    intro point hpoint
+    have hcenter := (hlocal.1 1).2
+    fin_cases point <;>
+      simp_all [CapSelectedFiniteCode.intO1, CapSelectedFiniteCode.capS,
+        CapSelectedFiniteCode.capO2]
+  exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
+    (hlocal.1 1).1 hcover (hlocal.2.1.2.1.1) (hlocal.2.1.2.1.2)
+
+private theorem exists_row_two_mem_intO2 {P : PatternCode}
+    (hlocal : LocalRowsOK P) :
+    ∃ point, point ∈ CapSelectedFiniteCode.intO2 ∧ point ∈ row P 2 := by
+  have hcover : row P 2 ⊆
+      CapSelectedFiniteCode.intO2 ∪
+        (CapSelectedFiniteCode.capS.erase 2 ∪
+          CapSelectedFiniteCode.capO1.erase 2) := by
+    intro point hpoint
+    have hcenter := (hlocal.1 2).2
+    fin_cases point <;>
+      simp_all [CapSelectedFiniteCode.intO2, CapSelectedFiniteCode.capS,
+        CapSelectedFiniteCode.capO1]
+  exact exists_mem_target_of_row_card_four_of_two_oneHit _ _ _ _
+    (hlocal.1 2).1 hcover (hlocal.2.1.2.2.1) (hlocal.2.1.2.2.2)
+
+private theorem row_zero_one_intO2_eq_empty
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hlocal : LocalRowsOK (patternCode L F)) :
+    row (patternCode L F) 0 ∩ row (patternCode L F) 1 ∩
+        CapSelectedFiniteCode.intO2 = ∅ := by
+  ext z
+  constructor
+  swap
+  · simp
+  intro hz
+  rcases Finset.mem_inter.mp hz with ⟨hzRows, hzInt⟩
+  rcases Finset.mem_inter.mp hzRows with ⟨hz0, hz1⟩
+  rcases exists_row_zero_mem_intS hlocal with ⟨p, hpInt, hp0⟩
+  rcases exists_row_one_mem_intO1 hlocal with ⟨q, hqInt, hq1⟩
+  have hcenter0 :
+      L.pointOf 0 = (S.triangleByIndex S.oppIndex2).v2 :=
+    L.point_zero_eq_opposite.trans
+      S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm
+  have hcenter1 :
+      L.pointOf 1 = (S.triangleByIndex S.oppIndex2).v3 :=
+    L.point_one_eq_opposite.trans
+      S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm
+  exfalso
+  exact S.q3_shared_interior_false_of_adjacent_selectedClass_membership
+    hconv S.oppIndex2
+    ((mem_intO2_iff_point_mem_oppInterior2 L z).mp hzInt)
+    (by
+      rw [leftAdjacentIndex_oppIndex2_eq_surplusIdx]
+      exact (mem_intS_iff_point_mem_surplusInterior L p).mp hpInt)
+    (by
+      rw [rightAdjacentIndex_oppIndex2_eq_oppIndex1]
+      exact (mem_intO1_iff_point_mem_oppInterior1 L q).mp hqInt)
+    (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hz0)
+    (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hp0)
+    (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hz1)
+    (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hq1)
+
+private theorem row_zero_two_intO1_eq_empty
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hlocal : LocalRowsOK (patternCode L F)) :
+    row (patternCode L F) 0 ∩ row (patternCode L F) 2 ∩
+        CapSelectedFiniteCode.intO1 = ∅ := by
+  ext z
+  constructor
+  swap
+  · simp
+  intro hz
+  rcases Finset.mem_inter.mp hz with ⟨hzRows, hzInt⟩
+  rcases Finset.mem_inter.mp hzRows with ⟨hz0, hz2⟩
+  rcases exists_row_two_mem_intO2 hlocal with ⟨p, hpInt, hp2⟩
+  rcases exists_row_zero_mem_intS hlocal with ⟨q, hqInt, hq0⟩
+  have hcenter2 :
+      L.pointOf 2 = (S.triangleByIndex S.oppIndex1).v2 :=
+    L.point_two_eq_opposite.trans
+      S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hcenter0 :
+      L.pointOf 0 = (S.triangleByIndex S.oppIndex1).v3 :=
+    L.point_zero_eq_opposite.trans
+      S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm
+  exfalso
+  exact S.q3_shared_interior_false_of_adjacent_selectedClass_membership
+    hconv S.oppIndex1
+    ((mem_intO1_iff_point_mem_oppInterior1 L z).mp hzInt)
+    (by
+      rw [leftAdjacentIndex_oppIndex1_eq_oppIndex2]
+      exact (mem_intO2_iff_point_mem_oppInterior2 L p).mp hpInt)
+    (by
+      rw [rightAdjacentIndex_oppIndex1_eq_surplusIdx]
+      exact (mem_intS_iff_point_mem_surplusInterior L q).mp hqInt)
+    (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hz2)
+    (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hp2)
+    (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hz0)
+    (by simpa only [hcenter0] using mem_selectedClass_of_mem_row L F hq0)
+
+private theorem row_one_two_intS_eq_empty
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hlocal : LocalRowsOK (patternCode L F)) :
+    row (patternCode L F) 1 ∩ row (patternCode L F) 2 ∩
+        CapSelectedFiniteCode.intS = ∅ := by
+  ext z
+  constructor
+  swap
+  · simp
+  intro hz
+  rcases Finset.mem_inter.mp hz with ⟨hzRows, hzInt⟩
+  rcases Finset.mem_inter.mp hzRows with ⟨hz1, hz2⟩
+  rcases exists_row_one_mem_intO1 hlocal with ⟨p, hpInt, hp1⟩
+  rcases exists_row_two_mem_intO2 hlocal with ⟨q, hqInt, hq2⟩
+  have hcenter1 :
+      L.pointOf 1 = (S.triangleByIndex S.surplusIdx).v2 :=
+    L.point_one_eq_opposite.trans
+      S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm
+  have hcenter2 :
+      L.pointOf 2 = (S.triangleByIndex S.surplusIdx).v3 :=
+    L.point_two_eq_opposite.trans
+      S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm
+  exfalso
+  exact S.q3_shared_interior_false_of_adjacent_selectedClass_membership
+    hconv S.surplusIdx
+    ((mem_intS_iff_point_mem_surplusInterior L z).mp hzInt)
+    (by
+      rw [← S.oppIndex1_eq_leftAdjacentIndex_surplusIdx]
+      exact (mem_intO1_iff_point_mem_oppInterior1 L p).mp hpInt)
+    (by
+      rw [← S.oppIndex2_eq_rightAdjacentIndex_surplusIdx]
+      exact (mem_intO2_iff_point_mem_oppInterior2 L q).mp hqInt)
+    (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hz1)
+    (by simpa only [hcenter1] using mem_selectedClass_of_mem_row L F hp1)
+    (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hz2)
+    (by simpa only [hcenter2] using mem_selectedClass_of_mem_row L F hq2)
+
+private theorem sharedPair_sameSide_false
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (i : Fin 3) {firstCenter secondCenter x y : Label}
+    (hfirst : L.pointOf firstCenter = (S.triangleByIndex i).v2)
+    (hsecond : L.pointOf secondCenter = (S.triangleByIndex i).v3)
+    (hxOut : L.pointOf x ∉ S.capByIndex i)
+    (hyOut : L.pointOf y ∉ S.capByIndex i)
+    (hxy : x ≠ y)
+    (hxFirst : x ∈ row (patternCode L F) firstCenter)
+    (hyFirst : y ∈ row (patternCode L F) firstCenter)
+    (hxSecond : x ∈ row (patternCode L F) secondCenter)
+    (hySecond : y ∈ row (patternCode L F) secondCenter) :
+    False := by
+  let hreal := realizes_patternCode L F
+  refine S.twoCircle_sameSide_reflection_false_of_not_mem_capByIndex
+    i (rq := dist (L.pointOf firstCenter) (L.pointOf x))
+    (rv := dist (L.pointOf secondCenter) (L.pointOf x))
+    (L.mem_carrier x) (L.mem_carrier y) hxOut hyOut
+    (L.injective.ne hxy) ?_ ?_ ?_ ?_
+  · rw [← hfirst, dist_comm]
+  · calc
+      dist (L.pointOf y) (S.triangleByIndex i).v2 =
+          dist (L.pointOf firstCenter) (L.pointOf y) := by
+            rw [← hfirst, dist_comm]
+      _ = dist (L.pointOf firstCenter) (L.pointOf x) :=
+        hreal.equidist firstCenter y hyFirst x hxFirst
+  · rw [← hsecond, dist_comm]
+  · calc
+      dist (L.pointOf y) (S.triangleByIndex i).v3 =
+          dist (L.pointOf secondCenter) (L.pointOf y) := by
+            rw [← hsecond, dist_comm]
+      _ = dist (L.pointOf secondCenter) (L.pointOf x) :=
+        hreal.equidist secondCenter y hySecond x hxSecond
+
+/-- The pulled-back rows satisfy all three K-Q3-5 emptiness clauses and all
+three K-Q3-1 alternatives in the finite incidence contract. -/
+theorem q3OK_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hM44 : S.IsM44)
+    (hsurplusCard : S.surplusCap.card = 6) :
+    Q3OK (patternCode L F) := by
+  let hlocal := localRowsOK_patternCode L F hconv hM44 hsurplusCard
+  refine ⟨row_zero_one_intO2_eq_empty L F hconv hlocal, ?_,
+    row_zero_two_intO1_eq_empty L F hconv hlocal, ?_,
+    row_one_two_intS_eq_empty L F hconv hlocal, ?_⟩
+  · by_cases hS :
+        row (patternCode L F) 0 ∩ row (patternCode L F) 1 ∩
+          CapSelectedFiniteCode.intS = ∅
+    · exact Or.inl hS
+    · apply Or.inr
+      by_contra hO1
+      rcases Finset.nonempty_iff_ne_empty.mpr hS with ⟨x, hx⟩
+      rcases Finset.nonempty_iff_ne_empty.mpr hO1 with ⟨y, hy⟩
+      rcases Finset.mem_inter.mp hx with ⟨hxRows, hxInt⟩
+      rcases Finset.mem_inter.mp hxRows with ⟨hx0, hx1⟩
+      rcases Finset.mem_inter.mp hy with ⟨hyRows, hyInt⟩
+      rcases Finset.mem_inter.mp hyRows with ⟨hy0, hy1⟩
+      have hxI := (mem_intS_iff_point_mem_surplusInterior L x).mp hxInt
+      have hyI := (mem_intO1_iff_point_mem_oppInterior1 L y).mp hyInt
+      have hxy : x ≠ y := by
+        intro h
+        subst y
+        exact Finset.disjoint_left.mp (by decide) hxInt hyInt
+      apply sharedPair_sameSide_false L F S.oppIndex2
+        (L.point_zero_eq_opposite.trans
+          S.triangleByIndex_oppIndex2_v2_eq_oppositeVertexByIndex_surplusIdx.symm)
+        (L.point_one_eq_opposite.trans
+          S.triangleByIndex_oppIndex2_v3_eq_oppositeVertexByIndex_oppIndex1.symm)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hxI
+          S.surplusIdx_ne_oppIndex2)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hyI
+          S.oppIndex1_ne_oppIndex2)
+        hxy hx0 hy0 hx1 hy1
+  · by_cases hS :
+        row (patternCode L F) 0 ∩ row (patternCode L F) 2 ∩
+          CapSelectedFiniteCode.intS = ∅
+    · exact Or.inl hS
+    · apply Or.inr
+      by_contra hO2
+      rcases Finset.nonempty_iff_ne_empty.mpr hS with ⟨x, hx⟩
+      rcases Finset.nonempty_iff_ne_empty.mpr hO2 with ⟨y, hy⟩
+      rcases Finset.mem_inter.mp hx with ⟨hxRows, hxInt⟩
+      rcases Finset.mem_inter.mp hxRows with ⟨hx0, hx2⟩
+      rcases Finset.mem_inter.mp hy with ⟨hyRows, hyInt⟩
+      rcases Finset.mem_inter.mp hyRows with ⟨hy0, hy2⟩
+      have hxI := (mem_intS_iff_point_mem_surplusInterior L x).mp hxInt
+      have hyI := (mem_intO2_iff_point_mem_oppInterior2 L y).mp hyInt
+      have hxy : x ≠ y := by
+        intro h
+        subst y
+        exact Finset.disjoint_left.mp (by decide) hxInt hyInt
+      apply sharedPair_sameSide_false L F S.oppIndex1
+        (L.point_two_eq_opposite.trans
+          S.triangleByIndex_oppIndex1_v2_eq_oppositeVertexByIndex_oppIndex2.symm)
+        (L.point_zero_eq_opposite.trans
+          S.triangleByIndex_oppIndex1_v3_eq_oppositeVertexByIndex_surplusIdx.symm)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hxI
+          S.surplusIdx_ne_oppIndex1)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hyI
+          S.oppIndex1_ne_oppIndex2.symm)
+        hxy hx2 hy2 hx0 hy0
+  · by_cases hO1 :
+        row (patternCode L F) 1 ∩ row (patternCode L F) 2 ∩
+          CapSelectedFiniteCode.intO1 = ∅
+    · exact Or.inl hO1
+    · apply Or.inr
+      by_contra hO2
+      rcases Finset.nonempty_iff_ne_empty.mpr hO1 with ⟨x, hx⟩
+      rcases Finset.nonempty_iff_ne_empty.mpr hO2 with ⟨y, hy⟩
+      rcases Finset.mem_inter.mp hx with ⟨hxRows, hxInt⟩
+      rcases Finset.mem_inter.mp hxRows with ⟨hx1, hx2⟩
+      rcases Finset.mem_inter.mp hy with ⟨hyRows, hyInt⟩
+      rcases Finset.mem_inter.mp hyRows with ⟨hy1, hy2⟩
+      have hxI := (mem_intO1_iff_point_mem_oppInterior1 L x).mp hxInt
+      have hyI := (mem_intO2_iff_point_mem_oppInterior2 L y).mp hyInt
+      have hxy : x ≠ y := by
+        intro h
+        subst y
+        exact Finset.disjoint_left.mp (by decide) hxInt hyInt
+      apply sharedPair_sameSide_false L F S.surplusIdx
+        (L.point_one_eq_opposite.trans
+          S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm)
+        (L.point_two_eq_opposite.trans
+          S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hxI
+          S.surplusIdx_ne_oppIndex1.symm)
+        (S.capInteriorByIndex_not_mem_capByIndex_of_ne hyI
+          S.surplusIdx_ne_oppIndex2.symm)
+        hxy hx1 hy1 hx2 hy2
+
+/-- Equality in the surplus-cap pair count gives the exact endpoint/interior
+cap-hit profile required by the finite code. -/
+theorem capSelectedCountsOK_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hM44 : S.IsM44)
+    (hsurplusCard : S.surplusCap.card = 6) :
+    CapSelectedCountsOK (patternCode L F) := by
+  intro center hcenter
+  have hcapS := labelsOf_surplusCap_eq_capS L hsurplusCard
+  have hcenterCap : L.pointOf center ∈ S.surplusCap := by
+    apply L.toCard11Labeling.mem_labelsOf.mp
+    rw [hcapS]
+    exact hcenter
+  have hsurplusSubset : S.surplusCap ⊆ A := by
+    rw [← capByIndex_surplusIdx_eq_surplusCap S]
+    exact S.capByIndex_subset S.surplusIdx
+  have hpointOne :
+      L.pointOf 1 = (S.triangleByIndex S.surplusIdx).v2 :=
+    L.point_one_eq_opposite.trans
+      S.triangleByIndex_surplusIdx_v2_eq_oppositeVertexByIndex_oppIndex1.symm
+  have hpointTwo :
+      L.pointOf 2 = (S.triangleByIndex S.surplusIdx).v3 :=
+    L.point_two_eq_opposite.trans
+      S.triangleByIndex_surplusIdx_v3_eq_oppositeVertexByIndex_oppIndex2.symm
+  have hendpointLabels :
+      (L.pointOf center = (S.triangleByIndex S.surplusIdx).v2 ∨
+          L.pointOf center = (S.triangleByIndex S.surplusIdx).v3) ↔
+        (center = 1 ∨ center = 2) := by
+    constructor
+    · rintro (hpoint | hpoint)
+      · exact Or.inl (L.injective (hpoint.trans hpointOne.symm))
+      · exact Or.inr (L.injective (hpoint.trans hpointTwo.symm))
+    · rintro (rfl | rfl)
+      · exact Or.inl hpointOne
+      · exact Or.inr hpointTwo
+  calc
+    (row (patternCode L F) center ∩ CapSelectedFiniteCode.capS).card =
+        ((F.classAt (L.pointOf center) (L.mem_carrier center)).support ∩
+          S.surplusCap).card := by
+      rw [← hcapS]
+      exact row_inter_labelsOf_card_eq L F center _ hsurplusSubset
+    _ = if L.pointOf center = (S.triangleByIndex S.surplusIdx).v2 ∨
+          L.pointOf center = (S.triangleByIndex S.surplusIdx).v3 then 1 else 2 :=
+      CapSelectedRowCounting.SurplusCapPacket.selectedClass_support_inter_surplusCap_card_eq
+        S hconv hM44 F hsurplusCard (L.mem_carrier center) hcenterCap
+    _ = if center = 1 ∨ center = 2 then 1 else 2 := by
+      simp only [hendpointLabels]
+
+/-- The canonical pullback of a faithful carrier satisfies every incidence
+and convex-order premise consumed by the cap-selected finite classifier. -/
+theorem incidenceOK_patternCode
+    {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) (F : FaithfulCarrierPattern A)
+    (hconv : ConvexIndep A) (hM44 : S.IsM44)
+    (hsurplusCard : S.surplusCap.card = 6) :
+    IncidenceOK (patternCode L F) := by
+  exact
+    ⟨localRowsOK_patternCode L F hconv hM44 hsurplusCard,
+      rowIntersectionsOK_patternCode L F,
+      pairCenterCountOK_patternCode L F hconv,
+      crossSeparationOK_patternCode L F,
+      q3OK_patternCode L F hconv hM44 hsurplusCard,
+      capSelectedCountsOK_patternCode L F hconv hM44 hsurplusCard⟩
 
 end CapSelectedCarrierBridge
 end Census554

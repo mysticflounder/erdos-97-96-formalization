@@ -1154,10 +1154,13 @@ and `SurplusCapPacket.surplus_card_eq_six_of_convexIndep_K4` prove that
 `5 < S.surplusCap.card` forces `S.surplusCap.card = 6`.
 `SurplusCapPacket.card_eq_eleven_of_surplus_card_gt_five` then proves
 `A.card = 11`. Finally,
-`SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts` supplies
-an ordered six-point surplus cap and proves the exact selected-row cap-hit
-counts: one at its endpoints and two at its four strict interior points. These
-are kernel-checked general theorems, not census observations.
+`SurplusCapPacket.exists_orderedSurplusCapSix_with_selected_hitCounts_and_endpoints`
+supplies an ordered six-point surplus cap, retains which ordered endpoints are
+the two Moser support endpoints, and proves the exact selected-row cap-hit
+counts: one at its endpoints and two at its four strict interior points.
+`selectedClass_support_inter_surplusCap_card_eq` transports that result to any
+named cap center. These are kernel-checked general theorems, not census
+observations.
 
 The resulting direct finite model is defined in
 `Census554.CapSelectedFiniteCode`. Its canonical labels have cap profile
@@ -1235,25 +1238,23 @@ artifact. Its compact hash-anchored record is
 `certificates/surplus/reports/cap_selected_nogood_certificate_mining.{md,json}`.
 The generic union-find proof removes that payload entirely.
 
-The canonical-label part of the geometry obligation is now closed:
+The canonical-label and incidence parts of the geometry obligation are now
+closed:
 `CapSelectedGeometry.exists_canonicalLabeling_of_isM44_surplus_card_eq_six`
 enumerates the exact boundary blocks into `Fin 11`, identifies all three
 strict-interior preimages, and carries direct or reflected hull order.
 `CapSelectedCarrierBridge` constructs and realizes the finite row code. It
-proves the complete `LocalRowsOK`, `RowIntersectionsOK`, and
-`PairCenterCountOK` conjuncts. The `LocalRowsOK` proof includes the previously
-missing non-Moser three-hit exclusion without importing U2 or a downstream
-containment theorem.
+proves all six incidence conjuncts through `incidenceOK_patternCode`:
+`LocalRowsOK`, `RowIntersectionsOK`, `PairCenterCountOK`, `CrossSeparationOK`,
+`Q3OK`, and `CapSelectedCountsOK`. The proof includes the previously missing
+non-Moser three-hit exclusion without importing U2 or a downstream containment
+theorem. Its axiom closure is exactly `propext`, `Classical.choice`, and
+`Quot.sound`.
 
-The current closure route has five explicit proof-producing adapters:
+The current closure route has two explicit proof-producing adapters:
 
-1. transport shared-pair alternation through the canonical hull order to prove
-   `CrossSeparationOK`;
-2. extract and transport the three K-Q3 cases to prove `Q3OK`;
-3. identify canonical surplus endpoints/interiors in the ordered six-cap count
-   theorem to prove `CapSelectedCountsOK`;
-4. construct `PinnedShellOK` from the aligned right/left carrier packet; and
-5. consume the returned core alternative in each orientation.
+1. construct `PinnedShellOK` from the aligned right/left carrier packet; and
+2. consume the returned core alternative in each orientation.
 
 Once these adapters are available, the total finite theorem and existing
 generic consumers close `isM44PinnedSurplusGeneralMResidualsExcluded`
@@ -1263,10 +1264,8 @@ not the current critical path.
 
 Next actions, in dependency order:
 
-1. finish `CrossSeparationOK`, `Q3OK`, and `CapSelectedCountsOK`, completing
-   `IncidenceOK`;
-2. prove `PinnedShellOK` from the aligned carrier packet in both orientations;
-3. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
+1. prove `PinnedShellOK` from the aligned carrier packet in both orientations;
+2. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
    ordered core signs from convexity, apply the generic consumer, and remove
    the sole terminal `sorry`.
 

@@ -698,9 +698,54 @@ theorem triangleByIndex_v3_mem_capByIndex
   · exact S.partition.v1_mem_C2
   · exact S.partition.v2_mem_C3
 
+/-- Every indexed cap of a surplus packet has ordered-cap data whose first and
+last points are the two indexed Moser endpoints, in one of the two possible
+orientations. -/
+theorem capByIndex_cgn4g_capData_oriented
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hconv : ConvexIndep A) (i : Fin 3) :
+    ∃ m, ∃ L : Problem97.CGN.OrderedCap m,
+      ∃ Packet : Problem97.CGN.MecCapPacket A L,
+      ∃ _ : Problem97.CGN.MinorCapSideHypotheses Packet,
+      ∃ _ : Problem97.CGN.StrictCapOrder A L,
+        Finset.univ.image L.points = S.capByIndex i ∧
+          ((L.points (Problem97.CGN.firstIndex Packet.hm) =
+                (S.triangleByIndex i).v2 ∧
+              L.points (Problem97.CGN.lastIndex Packet.hm) =
+                (S.triangleByIndex i).v3) ∨
+            (L.points (Problem97.CGN.firstIndex Packet.hm) =
+                (S.triangleByIndex i).v3 ∧
+              L.points (Problem97.CGN.lastIndex Packet.hm) =
+                (S.triangleByIndex i).v2)) := by
+  fin_cases i
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 0) (M := S.triangleByIndex 0)
+      hconv S.hncol (S.capByIndex_subset 0)
+      (S.capByIndex_arc_membership 0)
+      (S.triangleByIndex_v2_mem_capByIndex 0)
+      (S.triangleByIndex_v3_mem_capByIndex 0)
+      (by simpa [triangleByIndex] using S.circPacket)
+      (by simpa [triangleByIndex] using S.circPacket.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 1) (M := S.triangleByIndex 1)
+      hconv S.hncol (S.capByIndex_subset 1)
+      (S.capByIndex_arc_membership 1)
+      (S.triangleByIndex_v2_mem_capByIndex 1)
+      (S.triangleByIndex_v3_mem_capByIndex 1)
+      S.circPacket2
+      (by simpa [triangleByIndex] using S.circPacket2.inner_at_v1)
+  · exact Problem97.CGN.CGN4g_capData_of_supportCap_oriented
+      (A := A) (C := S.capByIndex 2) (M := S.triangleByIndex 2)
+      hconv S.hncol (S.capByIndex_subset 2)
+      (S.capByIndex_arc_membership 2)
+      (S.triangleByIndex_v2_mem_capByIndex 2)
+      (S.triangleByIndex_v3_mem_capByIndex 2)
+      S.circPacket3
+      (by simpa [triangleByIndex] using S.circPacket3.inner_at_v1)
+
 /-- Every indexed cap of a surplus packet has the ordered-cap data supplied by
-the CGN4g support-cap theorem.  This exports the existing support-cap result
-through the cyclic packet API used by the erased-pin ordered scaffold. -/
+the CGN4g support-cap theorem. This compatibility wrapper forgets the retained
+endpoint orientation. -/
 theorem capByIndex_cgn4g_capData
     {A : Finset ℝ²} (S : SurplusCapPacket A)
     (hconv : ConvexIndep A) (i : Fin 3) :
@@ -709,31 +754,9 @@ theorem capByIndex_cgn4g_capData
       ∃ _ : Problem97.CGN.MinorCapSideHypotheses Packet,
       ∃ _ : Problem97.CGN.StrictCapOrder A L,
         Finset.univ.image L.points = S.capByIndex i := by
-  fin_cases i
-  · exact Problem97.CGN.CGN4g_capData_of_supportCap
-      (A := A) (C := S.capByIndex 0) (M := S.triangleByIndex 0)
-      hconv S.hncol (S.capByIndex_subset 0)
-      (S.capByIndex_arc_membership 0)
-      (S.triangleByIndex_v2_mem_capByIndex 0)
-      (S.triangleByIndex_v3_mem_capByIndex 0)
-      (by simpa [triangleByIndex] using S.circPacket)
-      (by simpa [triangleByIndex] using S.circPacket.inner_at_v1)
-  · exact Problem97.CGN.CGN4g_capData_of_supportCap
-      (A := A) (C := S.capByIndex 1) (M := S.triangleByIndex 1)
-      hconv S.hncol (S.capByIndex_subset 1)
-      (S.capByIndex_arc_membership 1)
-      (S.triangleByIndex_v2_mem_capByIndex 1)
-      (S.triangleByIndex_v3_mem_capByIndex 1)
-      S.circPacket2
-      (by simpa [triangleByIndex] using S.circPacket2.inner_at_v1)
-  · exact Problem97.CGN.CGN4g_capData_of_supportCap
-      (A := A) (C := S.capByIndex 2) (M := S.triangleByIndex 2)
-      hconv S.hncol (S.capByIndex_subset 2)
-      (S.capByIndex_arc_membership 2)
-      (S.triangleByIndex_v2_mem_capByIndex 2)
-      (S.triangleByIndex_v3_mem_capByIndex 2)
-      S.circPacket3
-      (by simpa [triangleByIndex] using S.circPacket3.inner_at_v1)
+  rcases S.capByIndex_cgn4g_capData_oriented hconv i with
+    ⟨m, L, Packet, Hside, Hord, hcap, _⟩
+  exact ⟨m, L, Packet, Hside, Hord, hcap⟩
 
 /-- Every indexed cap of a surplus packet has the retained global block data
 supplied by the CGN4g support-cap theorem.  This is the packet-level export

@@ -800,13 +800,14 @@ orientation. The direct finite enumerator exhausts all twelve ordered
 pin-source/deleted-point placements with zero residual patterns; this is exact
 inside the declared finite model and uses no prose-only tuple exclusions.
 
-The handoff is not complete until two theorems land. First, a cap-aware
-geometric labeling must map every live card-eleven carrier to the canonical
-`Fin 11` labels and prove the full incidence, blocker, closure-color, and hull
-order contract. Second, a kernel-checked finite classifier or certificate must
-prove that every code satisfying that contract has one of the twelve closure
-cores. Those two results feed the existing generic consumers and target the
-sole remaining `isM44PinnedSurplusGeneralMResidualsExcluded` `sorry` directly.
+The finite classifier and incidence portions of this handoff are now complete.
+The canonical labeling maps every live card-eleven carrier to `Fin 11`, and
+`incidenceOK_patternCode` proves the full incidence and hull-order contract.
+The kernel-checked native classifier proves that every code satisfying
+`IncidenceOK` and `PinnedShellOK` has one of the closure cores. The remaining
+handoff is therefore the source-specific `PinnedShellOK` producer and immediate
+consumption of the returned core alternative at the sole
+`isM44PinnedSurplusGeneralMResidualsExcluded` `sorry`.
 
 Implementation checkpoint: `CapSelectedNativeClassifier` now performs direct
 row-mask DFS with deterministic equality closure instead of quantifying free
@@ -835,9 +836,10 @@ and is rejected as a Lean artifact.
 `CapSelectedGeometry` now proves both the exact `(4,2,2)` boundary-block packet
 and a canonical `Fin 11` enumeration with exact `intS`, `intO1`, and `intO2`
 preimages in either hull orientation. `CapSelectedCarrierBridge` realizes the
-pulled-back selected rows and proves three complete `IncidenceOK` conjuncts:
-`LocalRowsOK`, `RowIntersectionsOK`, and `PairCenterCountOK`. Its local-row
-proof includes the non-Moser circumcenter exclusion without downstream U2 or
-containment inputs. The remaining critical-path work is exactly
-`CrossSeparationOK`, `Q3OK`, `CapSelectedCountsOK`, `PinnedShellOK`, and source
-wiring to the existing core consumers.
+pulled-back selected rows and proves all six `IncidenceOK` conjuncts through
+`incidenceOK_patternCode`: `LocalRowsOK`, `RowIntersectionsOK`,
+`PairCenterCountOK`, `CrossSeparationOK`, `Q3OK`, and `CapSelectedCountsOK`.
+Its proof includes the non-Moser circumcenter exclusion without downstream U2
+or containment inputs, and its axiom closure is core-only (`propext`,
+`Classical.choice`, `Quot.sound`). The remaining critical-path work is exactly
+`PinnedShellOK` and source wiring to the existing core consumers.
