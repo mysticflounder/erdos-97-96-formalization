@@ -990,7 +990,7 @@ private theorem localTriggerOKAt_pointMask_of_trigger_interfaces
       simp [localTriggerOKAt, previousSstarCenters, htriggerU, htriggerQ1,
         htriggerQ2, htriggerPrevious, hfinal]
 
-private theorem mem_convexHull_three_of_same_side
+private theorem pinned_mem_convexHull_three_of_same_side
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
     (ha : 0 ≤ signedArea2 O b c * signedArea2 a b c)
@@ -1067,7 +1067,7 @@ private theorem mem_convexHull_three_of_same_side
     fin_cases i <;> simp
   · simpa [Fin.sum_univ_three] using hcombo
 
-private theorem mem_convexHull_three_of_equidistant_nonobtuse
+private theorem pinned_mem_convexHull_three_of_equidistant_nonobtuse
     {O a b c : ℝ²}
     (harea : signedArea2 a b c ≠ 0)
     (hab : dist O a = dist O b)
@@ -1083,7 +1083,7 @@ private theorem mem_convexHull_three_of_equidistant_nonobtuse
     rw [← dist_eq_norm, dist_comm b O, ← hab]
   have hcO : ‖c - O‖ = dist O a := by
     rw [← dist_eq_norm, dist_comm c O, ← hac]
-  exact mem_convexHull_three_of_same_side harea
+  exact pinned_mem_convexHull_three_of_same_side harea
     (center_same_side_as_apex_of_nonobtuse hbO hcO haO hinnerA)
     (center_same_side_as_apex_of_nonobtuse hcO haO hbO hinnerB)
     (center_same_side_as_apex_of_nonobtuse haO hbO hcO hinnerC)
@@ -1194,7 +1194,7 @@ private theorem no_nonMoser_triple_of_convexIndep_nonobtuse
     have hcenterHull :
         pointOf center ∈
           convexHull ℝ ({pointOf .u, pointOf .v, pointOf .w} : Set ℝ²) :=
-      mem_convexHull_three_of_equidistant_nonobtuse harea huv huw
+      pinned_mem_convexHull_three_of_equidistant_nonobtuse harea huv huw
         hnonobtuse.1 hnonobtuse.2.1 hnonobtuse.2.2
     have hcenterU : pointOf center ≠ pointOf .u := by
       intro h

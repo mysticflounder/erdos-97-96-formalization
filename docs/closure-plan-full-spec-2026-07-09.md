@@ -1251,23 +1251,23 @@ non-Moser three-hit exclusion without importing U2 or a downstream containment
 theorem. Its axiom closure is exactly `propext`, `Classical.choice`, and
 `Quot.sound`.
 
-The current closure route has two explicit proof-producing adapters:
+The right-oriented adapter is now implemented in
+`CapSelectedPinnedShellBridge`: it constructs `PinnedShellOK` from an aligned
+right carrier, invokes `incidenceOK_patternCode` and the total native theorem,
+and is wired into `PinnedSurplusGeneralM.lean`. The implementation exposes the
+actual post-classifier surface: duplicate-center, exact off-circle,
+perpendicular-bisector, and oriented convex-five only.
 
-1. construct `PinnedShellOK` from the aligned right/left carrier packet; and
-2. consume the returned core alternative in each orientation.
+The remaining route has two explicit proof-producing adapters:
 
-Once these adapters are available, the total finite theorem and existing
-generic consumers close `isM44PinnedSurplusGeneralMResidualsExcluded`
-directly. The previous
-shared-pair/strict-interval descent route is retained as historical fallback,
-not the current critical path.
+1. transport those four finite `Fin 11` cores to the geometric carrier and
+   consume them (including direct/reflected convex-five signed-area signs); and
+2. define and prove the left-to-right boundary reflection transport, then use
+   it to obtain the same right-oriented finite seed for the left packet.
 
-Next actions, in dependency order:
-
-1. prove `PinnedShellOK` from the aligned carrier packet in both orientations;
-2. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
-   ordered core signs from convexity, apply the generic consumer, and remove
-   the sole terminal `sorry`.
+The prior shared-pair/strict-interval descent route remains historical
+fallback, not the current critical path. The terminal `sorry` stays open until
+both orientation adapters and the geometric core consumer are kernel-checked.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 
