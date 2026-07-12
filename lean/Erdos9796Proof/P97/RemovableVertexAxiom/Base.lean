@@ -9535,27 +9535,9 @@ theorem isM44EndpointResidualsExcluded :
       exact EndpointCertificate.endpointLeft_residual_false_of_card_five hM44 hne
         hconv hK4 hcard5 hend
     · intro radius rho x hend
-      rcases
-          EndpointCertificate.endpointRight_residual_exists_false_of_metric_shadow_data
-            hM44 hconv hend with
-        ⟨p₁, p₂, q₁, q₂, s1, s2, s3, xLabel, aLabel, bLabel,
-          hdata⟩
-      let pointOf :=
-        EndpointCertificate.endpointMirrorLabelPoint S p₁ p₂ q₁ q₂ s1 s2 s3
-      rcases hdata with
-        ⟨_hxLabel, _haLabel, _hbLabel, _hinj, _hxEq, _hpointMem,
-          _hvMask, _hwMask, hfalse⟩
-      have hshadow :
-          ∃ shadow : EndpointCertificate.ShadowBank.Shadow,
-            EndpointCertificate.ShadowBank.endpointShadowInBank xLabel
-                shadow = true ∧
-              EndpointCertificate.Variables.EndpointMetricShadow pointOf
-                shadow := by
-        -- Mirror remaining endpoint producer: the same non-`.v`/`.w`
-        -- selected-class geometry package remains to be built.  `hcard5` is
-        -- in scope as in the left branch.
-        sorry
-      rcases hshadow with ⟨shadow, hinBank, hmetric⟩
-      exact hfalse shadow hinBank hmetric
+      -- Label-complete `m = 5` right endpoint producer (mirror lane, both
+      -- ambient CCW apex orientations), `hcard5 : S.surplusCap.card = 5` in scope.
+      exact EndpointCertificate.endpointRight_residual_false_of_card_five hM44 hne
+        hconv hK4 hcard5 hend
 
 end Problem97

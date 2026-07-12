@@ -31,22 +31,23 @@ consumer without its geometric producer is not a closure route.
 
 ## Current inventory (updated 2026-07-11)
 
-Six declarations / 88 textual holes after the K-B-END route-(b) split
-(commit 136ebb9b; verified by the 2026-07-11 freshness audit,
-`docs/audits/2026-07-11-closure-plan-freshness-audit.md`):
+Five declarations / 86 textual holes after the K-B-END route-(b) split
+(136ebb9b) and the K-B-END-LABEL closure (both m=5 endpoint holes proved,
+umbrella off the spine-open list; inventory verified by the 2026-07-11
+freshness audit and the post-closure spine re-mine):
 
 | # | Leaf | Current source | Textual holes | Front |
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
 | 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean:704` | 1 | B |
-| 4 | `isM44EndpointGeneralMResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9511` | 1 (`:9513`) | B |
-| 5 | `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9521` | 2 (`:9555`, `:9578`) | B |
-| 6 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
+| 4 | `isM44EndpointGeneralMResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9512` | 1 (`:9514`) | B |
+| 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
-Leaf 4 is the general-m endpoint leaf created by the split; leaf 5's umbrella
-calls it in the `m ≠ 5` branch, so it is a current proof-spine obligation
-(matrix rows K-B-END-LABEL / K-B-END-GENERAL). `sorryAx` is the synthetic
+Leaf 4 is the general-m endpoint leaf created by the split; the umbrella
+`isM44EndpointResidualsExcluded` calls it in the `m ≠ 5` branch (its own m=5
+holes were closed 2026-07-11, matrix row K-B-END-LABEL DONE), so the leaf is
+a current proof-spine obligation (matrix row K-B-END-GENERAL). `sorryAx` is the synthetic
 kernel marker reached through these declarations, not a seventh obligation.
 
 Historical snapshot (audited 2026-07-09, build fingerprint `002b0247c64e`):
@@ -54,7 +55,7 @@ five declarations / 87 holes; P97 spine 23/1827 open; P96 spine 27/1835
 open; endpoint umbrella then at `Base.lean:10070` with holes
 `:10097`/`:10119`.
 
-The 88 textual holes collapse to the six declarations above. The matrix
+The 86 textual holes collapse to the five declarations above. The matrix
 decomposes them into producer families and also records non-`sorry`
 prerequisites such as Census554 cover verification and final publication
 gates.
