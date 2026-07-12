@@ -1154,13 +1154,15 @@ This route is split by regime.
 
 General `m >= 6` route:
 
-1. Do not claim closure from exact ten-mask bank membership alone.
-2. Prove a relaxed/sub-mask bridge from the formal payload directly to a
-   relaxed singleton split row, or prove a confinement theorem that makes the
-   non-`{v,w}` centers faithful.
-3. If neither theorem is available, split off a named on-spine
-   general-`m` pinned-surplus residual instead of silently reusing the `m = 5`
-   consumer.
+1. The live branch is no longer arbitrary in `m`: kernel-checked cardinality
+   theorems force `m = 6` and `A.card = 11`.
+2. `CapSelectedGeometry` constructs the canonical `(6,4,4)` `Fin 11`
+   labeling, and `CapSelectedCarrierBridge` proves `LocalRowsOK`,
+   `RowIntersectionsOK`, and `PairCenterCountOK` for its realized row code.
+3. Finish the three remaining incidence adapters (`CrossSeparationOK`, `Q3OK`,
+   `CapSelectedCountsOK`), then prove `PinnedShellOK` and consume the total
+   `CapSelectedNativeClosureSound` alternative. Do not fall back to exact
+   ten-mask membership or import downstream containment conclusions.
 
 Current generated support:
 

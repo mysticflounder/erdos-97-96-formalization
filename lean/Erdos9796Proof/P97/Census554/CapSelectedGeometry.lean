@@ -5,6 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Census554.CapSelectedFiniteCode
+import Erdos9796Proof.P97.Census554.GeometryBridge
 import Erdos9796Proof.P97.Census554.SeparationMirror
 import Erdos9796Proof.P97.SurplusM44Packet
 
@@ -124,6 +125,375 @@ theorem BoundaryBlocks.n_eq_eleven
   rw [Finset.card_image_of_injective _ B.boundary_injective,
     Finset.card_univ, Fintype.card_fin, B.carrier_card] at hcard
   exact hcard
+
+/-- The fixed cap-index frame used by the `(6,4,4)` finite code. -/
+def capSelectedFrame {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    MultiCenter.JointCapIndexFrame S.surplusIdx S.oppIndex1 where
+  rest := S.oppIndex2
+  rest_ne_surplus := S.surplusIdx_ne_oppIndex2.symm
+  rest_ne_second := S.oppIndex1_ne_oppIndex2.symm
+
+@[simp] theorem capSelectedFrame_rest
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    (capSelectedFrame S).rest = S.oppIndex2 := rfl
+
+/-- A canonical card-eleven carrier labeling for the `(6,4,4)` branch. The
+three strict cap interiors are exactly the finite-code blocks, and the carrier
+lies in the direct or reflected hull order used by the classifier. -/
+structure CanonicalLabeling {A : Finset ℝ²} (S : SurplusCapPacket A)
+    extends Card11Labeling S.triangle (capSelectedFrame S) where
+  surplusInterior_eq :
+    toCard11Labeling.labelsOf
+        (S.capInteriorByIndex S.surplusIdx) = intS
+  oppInterior1_eq :
+    toCard11Labeling.labelsOf S.oppInterior1 = intO1
+  oppInterior2_eq :
+    toCard11Labeling.labelsOf S.oppInterior2 = intO2
+  canonicalHull : CanonicalHull toCard11Labeling.pointOf
+
+namespace CanonicalLabeling
+
+theorem point_zero_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) :
+    L.pointOf 0 = S.oppositeVertexByIndex S.surplusIdx := by
+  exact L.toCard11Labeling.point_zero.trans
+    (Card11SelectedCube.apexAt_eq_oppositeVertexByIndex S S.surplusIdx)
+
+theorem point_one_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) :
+    L.pointOf 1 = S.oppositeVertexByIndex S.oppIndex1 := by
+  exact L.toCard11Labeling.point_one.trans
+    (Card11SelectedCube.apexAt_eq_oppositeVertexByIndex S S.oppIndex1)
+
+theorem point_two_eq_opposite {A : Finset ℝ²} {S : SurplusCapPacket A}
+    (L : CanonicalLabeling S) :
+    L.pointOf 2 = S.oppositeVertexByIndex S.oppIndex2 := by
+  exact L.toCard11Labeling.point_two.trans
+    (Card11SelectedCube.apexAt_eq_oppositeVertexByIndex S S.oppIndex2)
+
+end CanonicalLabeling
+
+private def openIndices (left right : Fin 11) : Finset (Fin 11) :=
+  Finset.univ.filter fun index => left < index ∧ index < right
+
+private def afterIndices (left : Fin 11) : Finset (Fin 11) :=
+  Finset.univ.filter fun index => left < index
+
+/-- Exact block sizes force the two non-surplus apices to positions three and
+eight after cutting the eleven-point boundary at the surplus apex. -/
+private theorem forcedBlockEndpoints :
+    ∀ left right : Fin 11,
+      (0 : Fin 11) < left ∧ left < right →
+      2 ≤ (openIndices 0 left).card →
+      4 ≤ (openIndices left right).card →
+      2 ≤ (afterIndices right).card →
+      left = 3 ∧ right = 8 := by
+  decide
+
+private theorem mem_image_iff_of_injective
+    {alpha beta : Type*} [DecidableEq beta]
+    {f : alpha -> beta} (hf : Function.Injective f)
+    {s : Finset alpha} {x : alpha} :
+    f x ∈ s.image f ↔ x ∈ s := by
+  constructor
+  · intro hx
+    rcases Finset.mem_image.mp hx with ⟨y, hy, hyx⟩
+    have hxy : y = x := hf hyx
+    simpa [hxy] using hy
+  · intro hx
+    exact Finset.mem_image.mpr ⟨x, hx, rfl⟩
+
+private theorem hullIndex_surjective : Function.Surjective hullIndex :=
+  Finite.surjective_of_injective hullIndex_injective
+
+private theorem reflectedHullIndex_surjective :
+    Function.Surjective (fun label =>
+      card11BoundaryReflection (hullIndex label)) :=
+  Finite.surjective_of_injective
+    (card11BoundaryReflection.injective.comp hullIndex_injective)
+
+private theorem direct_opp2_membership :
+    ∀ label : Label,
+      hullIndex label ∈ openIndices 0 3 ↔ label ∈ intO2 := by
+  decide
+
+private theorem direct_surplus_membership :
+    ∀ label : Label,
+      hullIndex label ∈ openIndices 3 8 ↔ label ∈ intS := by
+  decide
+
+private theorem direct_opp1_membership :
+    ∀ label : Label,
+      hullIndex label ∈ afterIndices 8 ↔ label ∈ intO1 := by
+  decide
+
+private theorem mirror_opp1_membership :
+    ∀ label : Label,
+      card11BoundaryReflection (hullIndex label) ∈ openIndices 0 3 ↔
+        label ∈ intO1 := by
+  decide
+
+private theorem mirror_surplus_membership :
+    ∀ label : Label,
+      card11BoundaryReflection (hullIndex label) ∈ openIndices 3 8 ↔
+        label ∈ intS := by
+  decide
+
+private theorem mirror_opp2_membership :
+    ∀ label : Label,
+      card11BoundaryReflection (hullIndex label) ∈ afterIndices 8 ↔
+        label ∈ intO2 := by
+  decide
+
+/-- Exact boundary blocks produce the canonical finite labeling in either
+orientation. -/
+theorem BoundaryBlocks.nonempty_canonicalLabeling
+    {A : Finset ℝ²} {S : SurplusCapPacket A} (B : BoundaryBlocks S) :
+    Nonempty (CanonicalLabeling S) := by
+  classical
+  rcases B with
+    ⟨n, hn, boundary, opp1Index, opp2Index, hboundary, hboundaryImage,
+      hccw, hzero, hopp1, hopp2, hcarrierCard, hsurplusCard, hopp1Card,
+      hopp2Card, horientation⟩
+  have hn11 : n = 11 := by
+    have hcard := congrArg Finset.card hboundaryImage
+    rw [Finset.card_image_of_injective _ hboundary, Finset.card_univ,
+      Fintype.card_fin, hcarrierCard] at hcard
+    exact hcard
+  subst n
+  let frame := capSelectedFrame S
+  rcases horientation with hdirect | hmirror
+  · let qO2 := openIndices 0 opp1Index
+    let qS := openIndices opp1Index opp2Index
+    let qO1 := afterIndices opp2Index
+    have hO2subset : S.oppInterior2 ⊆ qO2.image boundary := by
+      intro x hx
+      rcases hdirect.opp2_between x hx with ⟨q, hq0, hq1, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq0, hq1⟩, hqx⟩
+    have hSsubset :
+        S.capInteriorByIndex S.surplusIdx ⊆ qS.image boundary := by
+      intro x hx
+      rcases hdirect.surplus_between x hx with ⟨q, hq1, hq2, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq1, hq2⟩, hqx⟩
+    have hO1subset : S.oppInterior1 ⊆ qO1.image boundary := by
+      intro x hx
+      rcases hdirect.opp1_after x hx with ⟨q, hq2, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq2⟩, hqx⟩
+    have hO2le : 2 ≤ qO2.card := by
+      calc
+        2 = S.oppInterior2.card := hopp2Card.symm
+        _ ≤ (qO2.image boundary).card := Finset.card_le_card hO2subset
+        _ ≤ qO2.card := Finset.card_image_le
+    have hSle : 4 ≤ qS.card := by
+      calc
+        4 = (S.capInteriorByIndex S.surplusIdx).card := hsurplusCard.symm
+        _ ≤ (qS.image boundary).card := Finset.card_le_card hSsubset
+        _ ≤ qS.card := Finset.card_image_le
+    have hO1le : 2 ≤ qO1.card := by
+      calc
+        2 = S.oppInterior1.card := hopp1Card.symm
+        _ ≤ (qO1.image boundary).card := Finset.card_le_card hO1subset
+        _ ≤ qO1.card := Finset.card_image_le
+    have hindices := forcedBlockEndpoints opp1Index opp2Index
+      hdirect.apex_order hO2le hSle hO1le
+    rcases hindices with ⟨rfl, rfl⟩
+    have hO2eq :
+        S.oppInterior2 = (openIndices 0 3).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hO2subset
+      rw [Finset.card_image_of_injective _ hboundary, hopp2Card]
+      decide
+    have hSeq :
+        S.capInteriorByIndex S.surplusIdx =
+          (openIndices 3 8).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hSsubset
+      rw [Finset.card_image_of_injective _ hboundary, hsurplusCard]
+      decide
+    have hO1eq :
+        S.oppInterior1 = (afterIndices 8).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hO1subset
+      rw [Finset.card_image_of_injective _ hboundary, hopp1Card]
+      decide
+    let pointOf : Label -> ℝ² := fun label => boundary (hullIndex label)
+    have hpoint : Function.Injective pointOf :=
+      hboundary.comp hullIndex_injective
+    let L : Card11Labeling S.triangle frame :=
+      { pointOf := pointOf
+        injective := hpoint
+        mem_carrier := by
+          intro label
+          have hmem : boundary (hullIndex label) ∈
+              Finset.univ.image boundary :=
+            Finset.mem_image.mpr ⟨hullIndex label, Finset.mem_univ _, rfl⟩
+          simpa [pointOf, hboundaryImage] using hmem
+        carrier_surjective := by
+          intro x hx
+          have hxImage : x ∈ Finset.univ.image boundary := by
+            simpa [hboundaryImage] using hx
+          rcases Finset.mem_image.mp hxImage with ⟨index, _hindex, hix⟩
+          rcases hullIndex_surjective index with ⟨label, hlabel⟩
+          exact ⟨label, by simpa [pointOf, hlabel] using hix⟩
+        point_zero := by
+          simpa [pointOf, hullIndex, zeroIndex,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hzero
+        point_one := by
+          simpa [pointOf, hullIndex,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp1
+        point_two := by
+          simpa [pointOf, hullIndex,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp2 }
+    have hSlabels :
+        L.labelsOf (S.capInteriorByIndex S.surplusIdx) = intS := by
+      ext label
+      rw [L.mem_labelsOf, hSeq]
+      change boundary (hullIndex label) ∈
+          (openIndices 3 8).image boundary ↔ label ∈ intS
+      rw [mem_image_iff_of_injective hboundary]
+      exact direct_surplus_membership label
+    have hO1labels : L.labelsOf S.oppInterior1 = intO1 := by
+      ext label
+      rw [L.mem_labelsOf, hO1eq]
+      change boundary (hullIndex label) ∈
+          (afterIndices 8).image boundary ↔ label ∈ intO1
+      rw [mem_image_iff_of_injective hboundary]
+      exact direct_opp1_membership label
+    have hO2labels : L.labelsOf S.oppInterior2 = intO2 := by
+      ext label
+      rw [L.mem_labelsOf, hO2eq]
+      change boundary (hullIndex label) ∈
+          (openIndices 0 3).image boundary ↔ label ∈ intO2
+      rw [mem_image_iff_of_injective hboundary]
+      exact direct_opp2_membership label
+    exact ⟨{
+      toCard11Labeling := L
+      surplusInterior_eq := hSlabels
+      oppInterior1_eq := hO1labels
+      oppInterior2_eq := hO2labels
+      canonicalHull := {
+        boundary := boundary
+        boundary_injective := hboundary
+        boundary_ccw := hccw
+        point_eq := Or.inl (fun _ => rfl) } }⟩
+  · let qO1 := openIndices 0 opp2Index
+    let qS := openIndices opp2Index opp1Index
+    let qO2 := afterIndices opp1Index
+    have hO1subset : S.oppInterior1 ⊆ qO1.image boundary := by
+      intro x hx
+      rcases hmirror.opp1_between x hx with ⟨q, hq0, hq2, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq0, hq2⟩, hqx⟩
+    have hSsubset :
+        S.capInteriorByIndex S.surplusIdx ⊆ qS.image boundary := by
+      intro x hx
+      rcases hmirror.surplus_between x hx with ⟨q, hq2, hq1, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq2, hq1⟩, hqx⟩
+    have hO2subset : S.oppInterior2 ⊆ qO2.image boundary := by
+      intro x hx
+      rcases hmirror.opp2_after x hx with ⟨q, hq1, hqx⟩
+      exact Finset.mem_image.mpr
+        ⟨q, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hq1⟩, hqx⟩
+    have hO1le : 2 ≤ qO1.card := by
+      calc
+        2 = S.oppInterior1.card := hopp1Card.symm
+        _ ≤ (qO1.image boundary).card := Finset.card_le_card hO1subset
+        _ ≤ qO1.card := Finset.card_image_le
+    have hSle : 4 ≤ qS.card := by
+      calc
+        4 = (S.capInteriorByIndex S.surplusIdx).card := hsurplusCard.symm
+        _ ≤ (qS.image boundary).card := Finset.card_le_card hSsubset
+        _ ≤ qS.card := Finset.card_image_le
+    have hO2le : 2 ≤ qO2.card := by
+      calc
+        2 = S.oppInterior2.card := hopp2Card.symm
+        _ ≤ (qO2.image boundary).card := Finset.card_le_card hO2subset
+        _ ≤ qO2.card := Finset.card_image_le
+    have hindices := forcedBlockEndpoints opp2Index opp1Index
+      hmirror.apex_order hO1le hSle hO2le
+    rcases hindices with ⟨rfl, rfl⟩
+    have hO1eq :
+        S.oppInterior1 = (openIndices 0 3).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hO1subset
+      rw [Finset.card_image_of_injective _ hboundary, hopp1Card]
+      decide
+    have hSeq :
+        S.capInteriorByIndex S.surplusIdx =
+          (openIndices 3 8).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hSsubset
+      rw [Finset.card_image_of_injective _ hboundary, hsurplusCard]
+      decide
+    have hO2eq :
+        S.oppInterior2 = (afterIndices 8).image boundary := by
+      apply Finset.eq_of_subset_of_card_le hO2subset
+      rw [Finset.card_image_of_injective _ hboundary, hopp2Card]
+      decide
+    let pointOf : Label -> ℝ² := fun label =>
+      boundary (card11BoundaryReflection (hullIndex label))
+    have hpoint : Function.Injective pointOf :=
+      hboundary.comp
+        (card11BoundaryReflection.injective.comp hullIndex_injective)
+    let L : Card11Labeling S.triangle frame :=
+      { pointOf := pointOf
+        injective := hpoint
+        mem_carrier := by
+          intro label
+          have hmem :
+              boundary (card11BoundaryReflection (hullIndex label)) ∈
+                Finset.univ.image boundary :=
+            Finset.mem_image.mpr
+              ⟨card11BoundaryReflection (hullIndex label),
+                Finset.mem_univ _, rfl⟩
+          simpa [pointOf, hboundaryImage] using hmem
+        carrier_surjective := by
+          intro x hx
+          have hxImage : x ∈ Finset.univ.image boundary := by
+            simpa [hboundaryImage] using hx
+          rcases Finset.mem_image.mp hxImage with ⟨index, _hindex, hix⟩
+          rcases reflectedHullIndex_surjective index with ⟨label, hlabel⟩
+          exact ⟨label, by simpa [pointOf, hlabel] using hix⟩
+        point_zero := by
+          simpa [pointOf, hullIndex, card11BoundaryReflection, zeroIndex,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hzero
+        point_one := by
+          simpa [pointOf, hullIndex, card11BoundaryReflection,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp1
+        point_two := by
+          simpa [pointOf, hullIndex, card11BoundaryReflection,
+            Card11SelectedCube.apexAt_eq_oppositeVertexByIndex] using hopp2 }
+    have hSlabels :
+        L.labelsOf (S.capInteriorByIndex S.surplusIdx) = intS := by
+      ext label
+      rw [L.mem_labelsOf, hSeq]
+      change boundary (card11BoundaryReflection (hullIndex label)) ∈
+          (openIndices 3 8).image boundary ↔ label ∈ intS
+      rw [mem_image_iff_of_injective hboundary]
+      exact mirror_surplus_membership label
+    have hO1labels : L.labelsOf S.oppInterior1 = intO1 := by
+      ext label
+      rw [L.mem_labelsOf, hO1eq]
+      change boundary (card11BoundaryReflection (hullIndex label)) ∈
+          (openIndices 0 3).image boundary ↔ label ∈ intO1
+      rw [mem_image_iff_of_injective hboundary]
+      exact mirror_opp1_membership label
+    have hO2labels : L.labelsOf S.oppInterior2 = intO2 := by
+      ext label
+      rw [L.mem_labelsOf, hO2eq]
+      change boundary (card11BoundaryReflection (hullIndex label)) ∈
+          (afterIndices 8).image boundary ↔ label ∈ intO2
+      rw [mem_image_iff_of_injective hboundary]
+      exact mirror_opp2_membership label
+    exact ⟨{
+      toCard11Labeling := L
+      surplusInterior_eq := hSlabels
+      oppInterior1_eq := hO1labels
+      oppInterior2_eq := hO2labels
+      canonicalHull := {
+        boundary := boundary
+        boundary_injective := hboundary
+        boundary_ccw := hccw
+        point_eq := Or.inr (fun _ => rfl) } }⟩
 
 private theorem capInteriorByIndex_card_eq_four_of_cap_card_eq_six
     {A : Finset ℝ²} (S : SurplusCapPacket A) (i : Fin 3)
@@ -309,6 +679,18 @@ theorem exists_boundaryBlocks_of_isM44_surplus_card_eq_six
       oppInterior1_card := hoppInterior1Card
       oppInterior2_card := hoppInterior2Card
       orientation := horientation }⟩
+
+/-- The live `(6,4,4)` hypotheses produce the canonical finite labeling and
+its direct-or-reflected hull witness in one step. -/
+theorem exists_canonicalLabeling_of_isM44_surplus_card_eq_six
+    {A : Finset ℝ²} (S : SurplusCapPacket A)
+    (hne : A.Nonempty) (hconv : ConvexIndep A)
+    (hK4 : HasNEquidistantProperty 4 A) (hM44 : S.IsM44)
+    (hsurplusCard : S.surplusCap.card = 6) :
+    Nonempty (CanonicalLabeling S) := by
+  rcases exists_boundaryBlocks_of_isM44_surplus_card_eq_six
+      S hne hconv hK4 hM44 hsurplusCard with ⟨B⟩
+  exact B.nonempty_canonicalLabeling
 
 end CapSelectedGeometry
 end Census554

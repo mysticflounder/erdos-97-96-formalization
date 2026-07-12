@@ -1235,26 +1235,38 @@ artifact. Its compact hash-anchored record is
 `certificates/surplus/reports/cap_selected_nogood_certificate_mining.{md,json}`.
 The generic union-find proof removes that payload entirely.
 
-The remaining geometry obligation is to enumerate each exact boundary block
-into the canonical `Fin 11` labels and instantiate `IncidenceOK` and
-`PinnedShellOK` from the live carrier.
+The canonical-label part of the geometry obligation is now closed:
+`CapSelectedGeometry.exists_canonicalLabeling_of_isM44_surplus_card_eq_six`
+enumerates the exact boundary blocks into `Fin 11`, identifies all three
+strict-interior preimages, and carries direct or reflected hull order.
+`CapSelectedCarrierBridge` constructs and realizes the finite row code. It
+proves the complete `LocalRowsOK`, `RowIntersectionsOK`, and
+`PairCenterCountOK` conjuncts. The `LocalRowsOK` proof includes the previously
+missing non-Moser three-hit exclusion without importing U2 or a downstream
+containment theorem.
 
-The current closure route has one proof-producing gap:
+The current closure route has five explicit proof-producing adapters:
 
-1. prove a cap-aware `(4,2,2)` labeling bridge from the arbitrary aligned
-   card-eleven carrier to the canonical `Fin 11` model, including
-   `IncidenceOK`, `PinnedShellOK`, and direct or reversed hull order.
+1. transport shared-pair alternation through the canonical hull order to prove
+   `CrossSeparationOK`;
+2. extract and transport the three K-Q3 cases to prove `Q3OK`;
+3. identify canonical surplus endpoints/interiors in the ordered six-cap count
+   theorem to prove `CapSelectedCountsOK`;
+4. construct `PinnedShellOK` from the aligned right/left carrier packet; and
+5. consume the returned core alternative in each orientation.
 
-Once it is available, the total finite theorem and existing generic consumers
-close `isM44PinnedSurplusGeneralMResidualsExcluded` directly. The previous
+Once these adapters are available, the total finite theorem and existing
+generic consumers close `isM44PinnedSurplusGeneralMResidualsExcluded`
+directly. The previous
 shared-pair/strict-interval descent route is retained as historical fallback,
 not the current critical path.
 
 Next actions, in dependency order:
 
-1. complete the proved `(4,2,2)` boundary-block packet into a canonical-label
-   and soundness bridge in both orientations;
-2. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
+1. finish `CrossSeparationOK`, `Q3OK`, and `CapSelectedCountsOK`, completing
+   `IncidenceOK`;
+2. prove `PinnedShellOK` from the aligned carrier packet in both orientations;
+3. invoke `closureCoreAlternative_of_incidenceOK_pinnedShellOK`, discharge the
    ordered core signs from convexity, apply the generic consumer, and remove
    the sole terminal `sorry`.
 

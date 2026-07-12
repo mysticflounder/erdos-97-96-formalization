@@ -126,4 +126,107 @@ theorem center_same_side_as_apex_of_nonobtuse
   rw [signedArea_prod_eq_inner_mul_dist_sq O a b c hab]
   exact mul_nonneg hmid_nn (sq_nonneg _)
 
+/-- Three compatible same-side tests give barycentric membership in the
+closed triangle. -/
+theorem mem_convexHull_three_of_same_side
+    {O a b c : ℝ²}
+    (harea : signedArea2 a b c ≠ 0)
+    (ha : 0 ≤ signedArea2 O b c * signedArea2 a b c)
+    (hb : 0 ≤ signedArea2 O c a * signedArea2 b c a)
+    (hc : 0 ≤ signedArea2 O a b * signedArea2 c a b) :
+    O ∈ convexHull ℝ ({a, b, c} : Set ℝ²) := by
+  let Δ := signedArea2 a b c
+  let α := signedArea2 O b c / Δ
+  let β := signedArea2 O c a / Δ
+  let γ := signedArea2 O a b / Δ
+  have hΔ : Δ ≠ 0 := by simpa [Δ] using harea
+  have hΔsq : 0 < Δ * Δ := mul_self_pos.mpr hΔ
+  have hcycB : signedArea2 b c a = Δ := by
+    simp only [Δ]
+    unfold signedArea2
+    ring
+  have hcycC : signedArea2 c a b = Δ := by
+    simp only [Δ]
+    unfold signedArea2
+    ring
+  have hαmul : α * (Δ * Δ) = signedArea2 O b c * Δ := by
+    simp only [α]
+    field_simp
+  have hβmul : β * (Δ * Δ) = signedArea2 O c a * Δ := by
+    simp only [β]
+    field_simp
+  have hγmul : γ * (Δ * Δ) = signedArea2 O a b * Δ := by
+    simp only [γ]
+    field_simp
+  have hα : 0 ≤ α := by
+    have ha' : 0 ≤ signedArea2 O b c * Δ := by simpa [Δ] using ha
+    nlinarith
+  have hβ : 0 ≤ β := by
+    have hb' : 0 ≤ signedArea2 O c a * Δ := by simpa [hcycB] using hb
+    nlinarith
+  have hγ : 0 ≤ γ := by
+    have hc' : 0 ≤ signedArea2 O a b * Δ := by simpa [hcycC] using hc
+    nlinarith
+  have hareaSum :
+      signedArea2 O b c + signedArea2 O c a + signedArea2 O a b = Δ := by
+    simp only [Δ]
+    unfold signedArea2
+    ring
+  have hsum : α + β + γ = 1 := by
+    calc
+      α + β + γ =
+          (signedArea2 O b c + signedArea2 O c a +
+            signedArea2 O a b) / Δ := by
+              simp only [α, β, γ]
+              ring
+      _ = Δ / Δ := by rw [hareaSum]
+      _ = 1 := div_self hΔ
+  have hcombo : α • a + β • b + γ • c = O := by
+    ext i
+    fin_cases i
+    · change α * a 0 + β * b 0 + γ * c 0 = O 0
+      simp only [α, β, γ]
+      field_simp [hΔ]
+      simp only [Δ]
+      unfold signedArea2
+      ring
+    · change α * a 1 + β * b 1 + γ * c 1 = O 1
+      simp only [α, β, γ]
+      field_simp [hΔ]
+      simp only [Δ]
+      unfold signedArea2
+      ring
+  refine mem_convexHull_of_exists_fintype (ι := Fin 3)
+    (fun i => ![α, β, γ] i) (fun i => ![a, b, c] i) ?_ ?_ ?_ ?_
+  · intro i
+    fin_cases i <;> simp [hα, hβ, hγ]
+  · simpa [Fin.sum_univ_three] using hsum
+  · intro i
+    fin_cases i <;> simp
+  · simpa [Fin.sum_univ_three] using hcombo
+
+/-- The circumcenter of a noncollinear non-obtuse triangle lies in its closed
+convex hull. The center is specified only through equal distances, so this
+form can be applied to selected same-radius classes. -/
+theorem mem_convexHull_three_of_equidistant_nonobtuse
+    {O a b c : ℝ²}
+    (harea : signedArea2 a b c ≠ 0)
+    (hab : dist O a = dist O b)
+    (hac : dist O a = dist O c)
+    (hinnerA : 0 ≤ ⟪b - a, c - a⟫_ℝ)
+    (hinnerB : 0 ≤ ⟪c - b, a - b⟫_ℝ)
+    (hinnerC : 0 ≤ ⟪a - c, b - c⟫_ℝ) :
+    O ∈ convexHull ℝ ({a, b, c} : Set ℝ²) := by
+  have haO : ‖a - O‖ = dist O a := by
+    rw [← dist_eq_norm]
+    exact dist_comm a O
+  have hbO : ‖b - O‖ = dist O a := by
+    rw [← dist_eq_norm, dist_comm b O, ← hab]
+  have hcO : ‖c - O‖ = dist O a := by
+    rw [← dist_eq_norm, dist_comm c O, ← hac]
+  exact mem_convexHull_three_of_same_side harea
+    (center_same_side_as_apex_of_nonobtuse hbO hcO haO hinnerA)
+    (center_same_side_as_apex_of_nonobtuse hcO haO hbO hinnerB)
+    (center_same_side_as_apex_of_nonobtuse haO hbO hcO hinnerC)
+
 end Problem97

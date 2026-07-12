@@ -832,8 +832,12 @@ finite classifier obligation for every valid placement. The exact certificate
 miner independently certified all 795,609 prefix kills and found 149,434
 subsumption-minimal nogoods, but the 647,221,809-byte flat bank is not needed
 and is rejected as a Lean artifact.
-`CapSelectedGeometry` separately proves the exact `(4,2,2)` boundary-block
-packet in either orientation. The only remaining critical-path work is
-canonical enumeration of those blocks, proofs of `IncidenceOK` and
-`PinnedShellOK` for the live carrier, and source wiring to the existing core
-consumers.
+`CapSelectedGeometry` now proves both the exact `(4,2,2)` boundary-block packet
+and a canonical `Fin 11` enumeration with exact `intS`, `intO1`, and `intO2`
+preimages in either hull orientation. `CapSelectedCarrierBridge` realizes the
+pulled-back selected rows and proves three complete `IncidenceOK` conjuncts:
+`LocalRowsOK`, `RowIntersectionsOK`, and `PairCenterCountOK`. Its local-row
+proof includes the non-Moser circumcenter exclusion without downstream U2 or
+containment inputs. The remaining critical-path work is exactly
+`CrossSeparationOK`, `Q3OK`, `CapSelectedCountsOK`, `PinnedShellOK`, and source
+wiring to the existing core consumers.

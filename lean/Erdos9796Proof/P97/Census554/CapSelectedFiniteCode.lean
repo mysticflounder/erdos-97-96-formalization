@@ -12,7 +12,10 @@ import Erdos9796Proof.P97.Census554.GeneralCarrierBridge
 This file defines the fixed eleven-label incidence surface used by the
 general-`m` pinned-surplus certificate.  The finite theorem is deliberately
 stated without the two prose-only local row exclusions `(2,1,0,1)` and
-`(2,2,0,0)`: every premise below has an existing geometric producer.
+`(2,2,0,0)`. The retained premises have proved geometric kernels; their
+profile-specific carrier adapters are tracked separately. In particular,
+`CrossSeparationOK`, `Q3OK`, and `CapSelectedCountsOK` are not claimed here to
+have complete source producers.
 
 Distance equalities are represented by a finite color on oriented edges.
 Rows and edge reversal must preserve colors.  A later bridge instantiates the
