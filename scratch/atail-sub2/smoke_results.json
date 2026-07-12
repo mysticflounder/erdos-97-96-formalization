@@ -1,0 +1,79 @@
+{
+ "S1_S2_proven_cuts_unsat": {
+  "systems": {
+   "m3_all_three_vertices": "unsat",
+   "KC_pair_v2v3_s1": "unsat",
+   "KC_pair_v1v2_s1": "unknown",
+   "KC_pair_v1v3_s1": "unknown",
+   "KB_v1v2_bisector_x0_ge_half_neg": "unsat",
+   "KB_v1v3_bisector_x0_le_half_neg": "unsat",
+   "KA_lens_max_v2_side": "unsat",
+   "KA_lens_max_v3_side": "unsat"
+  },
+  "pass": true
+ },
+ "S3_banked_witnesses": {
+  "checked": 13,
+  "detail": {
+   "0004": "PASS",
+   "0013": "PASS",
+   "0022": "PASS",
+   "0103": "PASS",
+   "0112": "PASS",
+   "0202": "PASS",
+   "0211": "PASS",
+   "0301": "null (killed / rides-SUB2 pre-decision)",
+   "0400": "null (killed / rides-SUB2 pre-decision)",
+   "1003": "PASS",
+   "1012": "PASS",
+   "1102": "PASS",
+   "1111": "PASS",
+   "1201": "null (killed / rides-SUB2 pre-decision)",
+   "1300": "null (killed / rides-SUB2 pre-decision)",
+   "2002": "PASS",
+   "2011": "PASS",
+   "2101": "null (killed / rides-SUB2 pre-decision)",
+   "2200": "null (killed / rides-SUB2 pre-decision)"
+  },
+  "straddle_realizable_side_pass": true,
+  "pass": true
+ },
+ "S4_near_miss": {
+  "violated": [
+   "ord_v2_wa_wb"
+  ],
+  "T123_margin": -3.9396496556709515e-06,
+  "p": -0.0060378534173040135,
+  "pass": true
+ },
+ "S5_smt2_cross_check": {
+  "samples": 24000,
+  "mismatches": 0,
+  "agree_sat": 0,
+  "atom_correspondence": false,
+  "pass": false
+ },
+ "S6_exact_control": {
+  "x": [
+   "2593/36250",
+   "-13367/72500"
+  ],
+  "wa": [
+   "2743/72500",
+   "-27407/145000"
+  ],
+  "wb": [
+   "2767/72500",
+   "-27693/145000"
+  ],
+  "rho2": "1157/1000000",
+  "pass": true
+ },
+ "S7_direct_z3_record": {
+  "mine_left": "unsat",
+  "mine_right": "unknown",
+  "artifact_left_oy0": "unsat",
+  "artifact_right_oy0": "unsat"
+ },
+ "ALL_PASS": false
+}

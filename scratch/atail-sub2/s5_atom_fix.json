@@ -1,0 +1,7 @@
+{
+ "purpose": "Re-run of the single smoke leg that failed in smoke_results.json (S5 atom correspondence).",
+ "cause_of_prior_failure": "sub2_constraints emits dyadic float literals (0.25/0.5) when oy is a sympy Symbol; the smt2 transcription uses exact rationals. Mathematically identical atoms compared unequal as sympy expressions (1.0*wax vs wax).",
+ "fix": "lossless rational normalization (sympy nsimplify) before set comparison; smoke.py updated",
+ "atom_correspondence_pass": true,
+ "distinct_atoms_per_side": 17
+}
