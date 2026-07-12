@@ -7,6 +7,7 @@ import Erdos9796Proof.P97.U2SqueezePort
 import Erdos9796Proof.P97.U2SameDistanceArcContainment
 import Erdos9796Proof.P97.N9Endpoint.N4a
 import Erdos9796Proof.P97.CircumscribedMECPacket
+import Erdos9796Proof.P97.SurplusM44Packet
 
 /-!
 # U2 non-surplus one-hit inputs
@@ -1635,10 +1636,285 @@ private noncomputable def fixedSurplusSwapPacket2 (D : CounterexampleData)
     rw [hidx] at h
     simpa [swap12Partition] using h }
 
-/-- A datum `Dsw` is the fixed-surplus non-surplus swap of `D` at the
-statement surface needed by the route-B no-escape transport.  It keeps the
-carrier and surplus cap, while exchanging the two non-surplus caps and their
-opposite Moser apices. -/
+/-- When the surplus cap is indexed by `0`, transposing the two non-surplus
+vertices turns the left pinned residual into the right pinned residual. -/
+private theorem fixedSurplusSwapPacket0_pinnedLeft_to_right
+    (D : CounterexampleData)
+    (hidx : D.packet.surplusIdx = (⟨0, by decide⟩ : Fin 3))
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : D.packet.PinnedLeftSurplusResidualAt radius x) :
+    (fixedSurplusSwapPacket0 D hidx).PinnedRightSurplusResidualAt radius x := by
+  have hcenter :
+      (fixedSurplusSwapPacket0 D hidx).oppositeVertexByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.oppositeVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hinterior :
+      (fixedSurplusSwapPacket0 D hidx).capInteriorByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.capInteriorByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23NonObtuse, swap23Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capInteriorByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm]
+  have hown :
+      (fixedSurplusSwapPacket0 D hidx).capByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.capByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, hidx]
+  have hleftOuter :
+      (fixedSurplusSwapPacket0 D hidx).leftOuterVertexByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.rightOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hrightOuter :
+      (fixedSurplusSwapPacket0 D hidx).rightOuterVertexByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.leftOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hleftAdjacent :
+      (fixedSurplusSwapPacket0 D hidx).leftAdjacentCapByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.rightAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  have hrightAdjacent :
+      (fixedSurplusSwapPacket0 D hidx).rightAdjacentCapByIndex
+          (fixedSurplusSwapPacket0 D hidx).oppIndex1 =
+        D.packet.leftAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket0, swap23Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  rcases hpinned with
+    ⟨p₁, p₂, hpne, hpair, hcard, hsub, hright, hx, hxSurplus,
+      hleftEq, hrightEq, hright_ne, hleft_ne⟩
+  refine ⟨p₁, p₂, hpne, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · rw [hinterior]
+    exact hpair
+  · rw [hcenter]
+    exact hcard
+  · rw [hinterior, hcenter]
+    exact hsub
+  · rw [hleftOuter, hcenter]
+    exact hright
+  · rw [hcenter]
+    exact hx
+  · rw [hrightAdjacent, hown, hleftAdjacent]
+    exact hxSurplus
+  · rw [hcenter, hleftAdjacent, hleftOuter]
+    exact hrightEq
+  · rw [hcenter, hrightAdjacent]
+    exact hleftEq
+  · rw [hrightOuter]
+    exact hleft_ne
+  · rw [hleftOuter]
+    exact hright_ne
+
+/-- When the surplus cap is indexed by `1`, transposing the two non-surplus
+vertices turns the left pinned residual into the right pinned residual. -/
+private theorem fixedSurplusSwapPacket1_pinnedLeft_to_right
+    (D : CounterexampleData)
+    (hidx : D.packet.surplusIdx = (⟨1, by decide⟩ : Fin 3))
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : D.packet.PinnedLeftSurplusResidualAt radius x) :
+    (fixedSurplusSwapPacket1 D hidx).PinnedRightSurplusResidualAt radius x := by
+  have hcenter :
+      (fixedSurplusSwapPacket1 D hidx).oppositeVertexByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.oppositeVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hinterior :
+      (fixedSurplusSwapPacket1 D hidx).capInteriorByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.capInteriorByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13NonObtuse, swap13Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capInteriorByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm]
+  have hown :
+      (fixedSurplusSwapPacket1 D hidx).capByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.capByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, hidx]
+  have hleftOuter :
+      (fixedSurplusSwapPacket1 D hidx).leftOuterVertexByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.rightOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hrightOuter :
+      (fixedSurplusSwapPacket1 D hidx).rightOuterVertexByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.leftOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hleftAdjacent :
+      (fixedSurplusSwapPacket1 D hidx).leftAdjacentCapByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.rightAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  have hrightAdjacent :
+      (fixedSurplusSwapPacket1 D hidx).rightAdjacentCapByIndex
+          (fixedSurplusSwapPacket1 D hidx).oppIndex1 =
+        D.packet.leftAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket1, swap13Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  rcases hpinned with
+    ⟨p₁, p₂, hpne, hpair, hcard, hsub, hright, hx, hxSurplus,
+      hleftEq, hrightEq, hright_ne, hleft_ne⟩
+  refine ⟨p₁, p₂, hpne, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · rw [hinterior]
+    exact hpair
+  · rw [hcenter]
+    exact hcard
+  · rw [hinterior, hcenter]
+    exact hsub
+  · rw [hleftOuter, hcenter]
+    exact hright
+  · rw [hcenter]
+    exact hx
+  · rw [hrightAdjacent, hown, hleftAdjacent]
+    exact hxSurplus
+  · rw [hcenter, hleftAdjacent, hleftOuter]
+    exact hrightEq
+  · rw [hcenter, hrightAdjacent]
+    exact hleftEq
+  · rw [hrightOuter]
+    exact hleft_ne
+  · rw [hleftOuter]
+    exact hright_ne
+
+/-- When the surplus cap is indexed by `2`, transposing the two non-surplus
+vertices turns the left pinned residual into the right pinned residual. -/
+private theorem fixedSurplusSwapPacket2_pinnedLeft_to_right
+    (D : CounterexampleData)
+    (hidx : D.packet.surplusIdx = (⟨2, by decide⟩ : Fin 3))
+    {radius : ℝ} {x : ℝ²}
+    (hpinned : D.packet.PinnedLeftSurplusResidualAt radius x) :
+    (fixedSurplusSwapPacket2 D hidx).PinnedRightSurplusResidualAt radius x := by
+  have hcenter :
+      (fixedSurplusSwapPacket2 D hidx).oppositeVertexByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.oppositeVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.oppositeVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hinterior :
+      (fixedSurplusSwapPacket2 D hidx).capInteriorByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.capInteriorByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12NonObtuse, swap12Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capInteriorByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx, Finset.erase_right_comm]
+  have hown :
+      (fixedSurplusSwapPacket2 D hidx).capByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.capByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.capByIndex, hidx]
+  have hleftOuter :
+      (fixedSurplusSwapPacket2 D hidx).leftOuterVertexByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.rightOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hrightOuter :
+      (fixedSurplusSwapPacket2 D hidx).rightOuterVertexByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.leftOuterVertexByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12NonObtuse,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftOuterVertexByIndex,
+      SurplusCapPacket.rightOuterVertexByIndex, SurplusCapPacket.triangle,
+      MEC.MoserTriangle.toStructural, hidx]
+  have hleftAdjacent :
+      (fixedSurplusSwapPacket2 D hidx).leftAdjacentCapByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.rightAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  have hrightAdjacent :
+      (fixedSurplusSwapPacket2 D hidx).rightAdjacentCapByIndex
+          (fixedSurplusSwapPacket2 D hidx).oppIndex1 =
+        D.packet.leftAdjacentCapByIndex D.packet.oppIndex2 := by
+    simp [fixedSurplusSwapPacket2, swap12Partition,
+      SurplusCapPacket.oppIndex1, SurplusCapPacket.oppIndex2,
+      SurplusCapPacket.leftAdjacentCapByIndex,
+      SurplusCapPacket.rightAdjacentCapByIndex,
+      SurplusCapPacket.capByIndex, hidx]
+  rcases hpinned with
+    ⟨p₁, p₂, hpne, hpair, hcard, hsub, hright, hx, hxSurplus,
+      hleftEq, hrightEq, hright_ne, hleft_ne⟩
+  refine ⟨p₁, p₂, hpne, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · rw [hinterior]
+    exact hpair
+  · rw [hcenter]
+    exact hcard
+  · rw [hinterior, hcenter]
+    exact hsub
+  · rw [hleftOuter, hcenter]
+    exact hright
+  · rw [hcenter]
+    exact hx
+  · rw [hrightAdjacent, hown, hleftAdjacent]
+    exact hxSurplus
+  · rw [hcenter, hleftAdjacent, hleftOuter]
+    exact hrightEq
+  · rw [hcenter, hrightAdjacent]
+    exact hleftEq
+  · rw [hrightOuter]
+    exact hleft_ne
+  · rw [hleftOuter]
+    exact hright_ne
+
+/-- A datum `Dsw` is the fixed-surplus non-surplus swap of `D`.  It keeps the
+carrier and surplus cap, exchanges the two non-surplus caps and their opposite
+Moser apices, and reflects a left pinned residual into a right pinned residual. -/
 structure NonSurplusSwap (D Dsw : CounterexampleData) : Prop where
   /-- The swapped datum lives on the same carrier. -/
   carrier_eq : Dsw.A = D.A
@@ -1650,6 +1926,11 @@ structure NonSurplusSwap (D Dsw : CounterexampleData) : Prop where
   oppCap2_eq : Dsw.packet.oppCap2 = D.packet.oppCap1
   /-- The surplus cap itself is unchanged. -/
   surplusCap_eq : Dsw.packet.surplusCap = D.packet.surplusCap
+  /-- The reflected residual has the right-pinned orientation on the swapped
+  datum. -/
+  pinnedLeft_to_right : ∀ {radius : ℝ} {x : ℝ²},
+    D.packet.PinnedLeftSurplusResidualAt radius x →
+      Dsw.packet.PinnedRightSurplusResidualAt radius x
 
 /-- The fixed-surplus non-surplus swap preserves the `(m,4,4)` cap-cardinality
 predicate, swapping the two non-surplus cap equalities. -/
@@ -1670,6 +1951,24 @@ theorem NonSurplusSwap.isM44_iff {D Dsw : CounterexampleData}
       exact hcard2
     · rw [hswap.oppCap2_eq]
       exact hcard1
+
+/-- A non-surplus swap preserves the minimal-counterexample predicate because
+the two data carry the same ambient finite set. -/
+theorem NonSurplusSwap.minimal_iff {D Dsw : CounterexampleData}
+    (hswap : NonSurplusSwap D Dsw) : Dsw.Minimal ↔ D.Minimal := by
+  constructor
+  · intro hmin B hBne hBconv hBK4
+    rw [← hswap.carrier_eq]
+    exact hmin B hBne hBconv hBK4
+  · intro hmin B hBne hBconv hBK4
+    rw [hswap.carrier_eq]
+    exact hmin B hBne hBconv hBK4
+
+/-- The fixed-surplus swap leaves the surplus-cap cardinality unchanged. -/
+theorem NonSurplusSwap.surplusCap_card_eq {D Dsw : CounterexampleData}
+    (hswap : NonSurplusSwap D Dsw) :
+    Dsw.packet.surplusCap.card = D.packet.surplusCap.card :=
+  congrArg Finset.card hswap.surplusCap_eq
 
 /-- Construct the fixed-surplus non-surplus swap datum by transposing the two
 non-surplus Moser vertices and cap labels, case-by-case on the surplus cap. -/
@@ -1698,7 +1997,11 @@ theorem exists_nonSurplusSwap (D : CounterexampleData) :
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       surplusCap_eq := by
         simp [Dsw, fixedSurplusSwapPacket0, swap23Partition,
-          SurplusCapPacket.surplusCap, hidx] }
+          SurplusCapPacket.surplusCap, hidx]
+      pinnedLeft_to_right := by
+        intro radius x hpinned
+        simpa [Dsw] using
+          fixedSurplusSwapPacket0_pinnedLeft_to_right D hidx hpinned }
   · let Dsw : CounterexampleData := {
       A := D.A
       nonempty := D.nonempty
@@ -1720,7 +2023,11 @@ theorem exists_nonSurplusSwap (D : CounterexampleData) :
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       surplusCap_eq := by
         simp [Dsw, fixedSurplusSwapPacket1, swap13Partition,
-          SurplusCapPacket.surplusCap, hidx] }
+          SurplusCapPacket.surplusCap, hidx]
+      pinnedLeft_to_right := by
+        intro radius x hpinned
+        simpa [Dsw] using
+          fixedSurplusSwapPacket1_pinnedLeft_to_right D hidx hpinned }
   · let Dsw : CounterexampleData := {
       A := D.A
       nonempty := D.nonempty
@@ -1742,7 +2049,11 @@ theorem exists_nonSurplusSwap (D : CounterexampleData) :
           SurplusCapPacket.oppCap1, SurplusCapPacket.oppCap2, hidx]
       surplusCap_eq := by
         simp [Dsw, fixedSurplusSwapPacket2, swap12Partition,
-          SurplusCapPacket.surplusCap, hidx] }
+          SurplusCapPacket.surplusCap, hidx]
+      pinnedLeft_to_right := by
+        intro radius x hpinned
+        simpa [Dsw] using
+          fixedSurplusSwapPacket2_pinnedLeft_to_right D hidx hpinned }
 
 /-- No strict adjacent-cap escape at the first non-surplus apex of a
 fixed-surplus swapped datum transports to no strict adjacent-cap escape at the

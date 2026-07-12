@@ -40,7 +40,7 @@ freshness audit and the post-closure spine re-mine):
 |---|------|----------------|---------------|-------|
 | 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
 | 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean:704` | 1 | B |
+| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean` | 0 source sorries; target-build refresh gated by concurrent U1 errors | B |
 | 4 | `isM44EndpointGeneralMResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9512` | 1 (`:9514`) | B |
 | 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
 
@@ -767,7 +767,7 @@ in `candidateMasks sstar center`.  The metric-shadow assembly and checked
 row-zero contradiction also close this `m = 5` regime.  The focused producer
 and bank targets build; `PinnedSurplusProducer.lean` contains no `sorry`.
 
-The one remaining leaf is
+The former remaining leaf was
 `isM44PinnedSurplusGeneralMResidualsExcluded`, stated directly with
 `5 < S.surplusCap.card`.  Do not route it through exact ten-label masks.  The
 empty-residue generator census only classifies facts after selecting a
@@ -829,9 +829,12 @@ Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
 prove `H.RowwiseConfinedQDeletedClasses` for one extracted orientation frame,
 or prove a stronger direct audit-frame obstruction.  In the confinement route,
 both q-critical-row resolution and bounded-support inclusion are mandatory.
-Remove the sole terminal `sorry` in
-`isM44PinnedSurplusGeneralMResidualsExcluded` and confirm the named general-m
-residual leaves the spine-open list.
+The terminal source is now sorry-free: its left residual is transported through
+the all-index `NonSurplusSwap.pinnedLeft_to_right` field, then the swapped
+datum is relabelled and consumed by the existing right-pinned carrier bridge.
+After the concurrent U1 owner restores a green dependency build, run the named
+target build and refresh the proof-blueprint graph before marking the general-m
+residual as spine-closed.
 
 #### PIN-GENERAL incidence-probe checkpoint (2026-07-10)
 
@@ -1258,15 +1261,16 @@ consumes all twelve `ClosureCoreAlternative` cases on the geometric carrier,
 and is wired into `PinnedSurplusGeneralM.lean` as the first terminal conjunct,
 `PinnedRightSurplusResidualAt -> False`.
 
-The remaining route has one explicit proof-producing adapter:
-
-1. define and prove the left-to-right boundary reflection transport, then use
-   it to obtain the same right-oriented finite seed, shell witness, and closure
-   contradiction for the left packet.
-
-The prior shared-pair/strict-interval descent route remains historical
-fallback, not the current critical path. The terminal `sorry` stays open until
-the left reflection adapter is kernel-checked.
+The explicit left-to-right boundary reflection adapter is implemented in
+`U2NonSurplusOneHit.lean`: each of the three fixed-surplus swaps transports the
+private cap, selected center, adjacent caps, outer endpoints, and both
+non-equidistance fields. It is exported as
+`NonSurplusSwap.pinnedLeft_to_right` and used by the terminal source to obtain
+the same right-oriented finite seed, shell witness, and closure contradiction
+for the left packet. The source elaborates directly without `sorry`; the
+remaining gate is the serialized target build and proof-blueprint refresh after
+the concurrent U1 errors are repaired. The shared-pair/strict-interval descent
+route is historical fallback, not the current critical path.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 

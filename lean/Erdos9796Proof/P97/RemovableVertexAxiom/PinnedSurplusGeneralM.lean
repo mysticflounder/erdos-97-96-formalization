@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusProducer
 import Erdos9796Proof.P97.Census554.PinnedCarrierBridge
 import Erdos9796Proof.P97.Census554.CapSelectedPinnedShellBridge
 import Erdos9796Proof.P97.CapSelectedRowCounting
+import Erdos9796Proof.P97.U2NonSurplusOneHit
 import Erdos9796Proof.P97.U1CarrierInjection
 import Erdos9796Proof.P97.U3ToU5DangerousTriple
 import Erdos9796Proof.P97.U3ToU5Terminal
@@ -754,37 +755,6 @@ theorem isM44PinnedSurplusGeneralMResidualsExcluded :
     simpa [D, CounterexampleData.skeleton] using
       D.exists_pinnedRightExtraCriticalPacket hDmin hDIsM44
         hsurplusCard hpinned
-  have hleftPacket :
-      ∀ {radius : ℝ} {x : ℝ²},
-        S.PinnedLeftSurplusResidualAt radius x →
-          ∃ y p t1 t2 t3 : ℝ²,
-            ∃ K : SelectedFourClass A
-                (S.oppositeVertexByIndex S.surplusIdx),
-            y ∈ S.capInteriorByIndex S.surplusIdx ∧
-            y ∉ SelectedClass A
-              (S.oppositeVertexByIndex S.oppIndex2) radius ∧
-            y ∈ K.support ∧
-            4 ≤ (S.capInteriorByIndex S.surplusIdx).card ∧
-            HasNEquidistantPointsAt 4
-              ((A.erase y).erase
-                (S.oppositeVertexByIndex S.oppIndex2))
-              (S.oppositeVertexByIndex S.oppIndex2) ∧
-            p ≠ S.oppositeVertexByIndex S.oppIndex2 ∧
-            (∃ t ∈ ({t1, t2, t3} : Finset ℝ²),
-              t ∉ SelectedClass A
-                (S.oppositeVertexByIndex S.oppIndex2) radius) ∧
-            ∃ C : CriticalSelectedFourClass A y p,
-              Census554.GeneralCarrierBridge.LeftPinnedSurplusAlignedCarrierData
-                D radius y p K C ∧
-              Nonempty (U3FixedTripleAuditFrame D y p t1 t2 t3) ∧
-              (∀ H : U3FixedTripleAuditFrame D y p t1 t2 t3,
-                ¬ H.RowwiseConfinedQDeletedClasses) ∧
-              U3LocalizedNoQFreePacket D y p ∧
-              U3FixedTriplePacket D y p t1 t2 t3 := by
-    intro radius x hpinned
-    simpa [D, CounterexampleData.skeleton] using
-      D.exists_pinnedLeftExtraCriticalPacket hDmin hDIsM44
-        hsurplusCard hpinned
   have hrightExcluded :
       ∀ {radius : ℝ} {x : ℝ²},
         S.PinnedRightSurplusResidualAt radius x → False := by
@@ -795,9 +765,30 @@ theorem isM44PinnedSurplusGeneralMResidualsExcluded :
     exact Census554.CapSelectedPinnedShellBridge.false_of_right_pinnedResidual_alignedCarrier
       L hDIsM44 hsurplusCard6 hpinned K hyInt hyK C hyNot hpne haligned
   refine ⟨hrightExcluded, ?_⟩
-  -- The cap double count has reduced the branch to the finite `(6,4,4)`
-  -- equality case `A.card = 11`. The remaining left-oriented obstruction
-  -- needs an explicit reflection transport into the right finite shell.
-  sorry
+  intro radius x hpinned
+  obtain ⟨Dsw, hswap⟩ := U2NonSurplusSqueeze.exists_nonSurplusSwap D
+  have hDswMin : Dsw.Minimal := (hswap.minimal_iff).2 hDmin
+  have hDswIsM44 : Dsw.IsM44 := (hswap.isM44_iff).2 hDIsM44
+  have hsurplusCardD : D.packet.surplusCap.card = 6 := by
+    simpa [D] using hsurplusCard6
+  have hsurplusCardSw : Dsw.packet.surplusCap.card = 6 :=
+    hswap.surplusCap_card_eq.trans hsurplusCardD
+  have hgtD : 5 < D.packet.surplusCap.card := by
+    simpa [D] using hsurplusCard
+  have hgtSw : 5 < Dsw.packet.surplusCap.card := by
+    rw [hswap.surplusCap_eq]
+    exact hgtD
+  rcases
+      Census554.CapSelectedGeometry.exists_canonicalLabeling_of_isM44_surplus_card_eq_six
+        Dsw.packet Dsw.nonempty Dsw.convex Dsw.K4 hDswIsM44 hsurplusCardSw with
+    ⟨Lsw⟩
+  have hpinnedSw : Dsw.packet.PinnedRightSurplusResidualAt radius x :=
+    hswap.pinnedLeft_to_right hpinned
+  rcases
+      Dsw.exists_pinnedRightExtraCriticalPacket hDswMin hDswIsM44 hgtSw hpinnedSw with
+    ⟨y, p, _t1, _t2, _t3, K, hyInt, hyNot, hyK, _hcard, _hnequi,
+      hpne, _ht, C, haligned, _haudit, _hnotConfined, _hnoQFree, _htriple⟩
+  exact Census554.CapSelectedPinnedShellBridge.false_of_right_pinnedResidual_alignedCarrier
+    Lsw hDswIsM44 hsurplusCardSw hpinnedSw K hyInt hyK C hyNot hpne haligned
 
 end Problem97
