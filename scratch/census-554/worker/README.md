@@ -26,8 +26,11 @@ cd census554-worker
 
 Options pass through to `census554_worker.py`:
 `--workers N` (default cpu_count-2), `--cert-timeout S` (default 900),
-`--poll-interval S` (default 1.0). Env `CENSUS554_QUEUE_ROOT` overrides
-the default queue root.
+`--poll-interval S` (default 1.0), `--mine-only` (claim only `mine-*`
+jobs, skipping certify/retrycert — for low-RAM hosts: retrycert
+Singular processes have been measured at 20–42G RSS, so any host
+without ~50G headroom per cert slot should mine only). Env
+`CENSUS554_QUEUE_ROOT` overrides the default queue root.
 
 Stop: `kill "$(cat worker.pid)"` — SIGTERM drains in-flight jobs, writes
 their results, removes the host's heartbeat file, then exits.
@@ -53,9 +56,13 @@ their results, removes the host's heartbeat file, then exits.
   certify failure rather than a crash), launched from
   `scratch/census-554/worker/`.
 - `flux` (16-core x86_64, 39G RAM, queue root
-  `/mnt/nfs/erdos9796-flux-bridge`): 4 slots (reduced from 16 after one
-  crash-reboot + repeated worker deaths), deployed at
-  `~/census554-worker/`, run under `supervise_worker.sh` (below).
+  `/mnt/nfs/erdos9796-flux-bridge`): **mine-only, 14 slots**
+  (2026-07-12: repeated silent worker deaths tracked to retrycert
+  memory pressure — cert Singulars run 20–42G against 39G total RAM,
+  so flux now claims only `mine-*` jobs and slot count is restored),
+  deployed at `~/census554-worker/`, run under `supervise_worker.sh`
+  (below):
+  `setsid nohup ./supervise_worker.sh /mnt/nfs/erdos9796-flux-bridge 14 --mine-only &`
   Replaces the retired `flux_worker/remote_certify_worker.py` daemon
   (stopped 2026-07-11); that legacy path
   (`CENSUS554_REMOTE_CERT`/`CENSUS554_REMOTE_MINE`) remains in
@@ -83,6 +90,12 @@ session's own remote shell (the pattern matches its command line) and
 returns 255. Stop workers with `kill "$(cat worker.pid)"`; stop the
 supervisor first (`kill "$(cat supervisor.pid)"`) or it will restart
 the drained worker.
+
+Second footgun: under the supervisor, `worker.pid` is NOT maintained
+(only `run_worker.sh` writes it), so it goes stale across supervisor
+restarts — a kill against it hits a dead pid and leaves the old worker
+running alongside the new one (observed 2026-07-12). Find the live
+worker with `ps ax | grep '[c]ensus554_worker'` and kill that pid.
 
 ## How it interacts with the driver
 

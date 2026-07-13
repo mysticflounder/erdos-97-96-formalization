@@ -3,13 +3,14 @@
 # and restarts after a short delay. Kills the mystery of silent worker deaths:
 # whatever kills the daemon, the exit status lands in worker-exits.log.
 cd "$(dirname "$0")"
-QUEUE_ROOT="${1:?usage: supervise_worker.sh <queue-root> <workers>}"
-WORKERS="${2:?usage: supervise_worker.sh <queue-root> <workers>}"
+QUEUE_ROOT="${1:?usage: supervise_worker.sh <queue-root> <workers> [extra worker args...]}"
+WORKERS="${2:?usage: supervise_worker.sh <queue-root> <workers> [extra worker args...]}"
+shift 2
 echo $$ > supervisor.pid
 while true; do
   start_ts=$(date -Is)
   python3 census554_worker.py --queue-root "$QUEUE_ROOT" \
-    --workers "$WORKERS" >> worker.log 2>&1
+    --workers "$WORKERS" "$@" >> worker.log 2>&1
   code=$?
   msg="[supervisor] worker exited code=$code (started $start_ts, died $(date -Is))"
   if [ "$code" -gt 128 ]; then

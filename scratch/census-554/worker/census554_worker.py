@@ -141,7 +141,7 @@ def mine_flag_job(pattern_json_item, timeout: int):
 
 class Worker:
     def __init__(self, queue_root: Path, workers: int, poll_interval: float,
-                 cert_timeout: int):
+                 cert_timeout: int, mine_only: bool = False):
         self.jobs_dir = queue_root / "jobs"
         self.results_dir = queue_root / "results"
         self.done_dir = queue_root / "done"
@@ -151,6 +151,7 @@ class Worker:
         self.workers = workers
         self.poll_interval = poll_interval
         self.cert_timeout = cert_timeout
+        self.mine_only = mine_only
         for d in (self.jobs_dir, self.results_dir, self.done_dir,
                   self.heartbeat_path.parent):
             try:
@@ -209,6 +210,8 @@ class Worker:
             if not name.endswith(".json") or name.startswith("."):
                 continue
             if name.endswith(CLAIM_SUFFIX):
+                continue
+            if self.mine_only and not name.startswith("mine-"):
                 continue
             claimed = entry.with_name(name + CLAIM_SUFFIX)
             try:
@@ -349,6 +352,9 @@ def parse_args(argv=None):
     p.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 2))
     p.add_argument("--poll-interval", type=float, default=DEFAULT_POLL_INTERVAL)
     p.add_argument("--cert-timeout", type=int, default=DEFAULT_CERT_TIMEOUT)
+    p.add_argument("--mine-only", action="store_true",
+                   help="claim only mine-* jobs; skip certify/retrycert "
+                        "(for low-RAM hosts — cert Singular runs 20-42G)")
     return p.parse_args(argv)
 
 
@@ -359,6 +365,7 @@ def main(argv=None):
         workers=args.workers,
         poll_interval=args.poll_interval,
         cert_timeout=args.cert_timeout,
+        mine_only=args.mine_only,
     )
     worker.run_forever()
     return 0
