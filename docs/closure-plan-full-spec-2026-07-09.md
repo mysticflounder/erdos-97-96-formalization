@@ -49,8 +49,9 @@ not part of the current inventory (matrix K-B-PIN and K-B-END-GENERAL).
 `proof-blueprint symbols --with-sorry` reports exactly the 36 symbols above.
 The full P2 fleet, downstream ERASE targets, and target-specific exact-pin gate
 pass from pushed commit `652fdfcb`. The global `CTRL-GRAPH`/publication gate
-remains open for the 36 Front-A symbols and shared-tree reproducibility; the
-live recheck found 3 uncommitted Lean paths, all outside ERASE.
+remains open for the 36 Front-A symbols and shared-tree reproducibility. At the
+2026-07-13 checkpoint the tracked Lean tree is unchanged; the two new ATAIL
+modules are unimported scratch certificates and are not yet in the mined graph.
 `sorryAx` is the synthetic kernel marker reached through those Front-A
 declarations, not a 37th source obligation.
 
@@ -60,9 +61,11 @@ open; endpoint umbrella then at `Base.lean:10070` with holes
 `:10097`/`:10119`.
 
 The matrix decomposes the 80 holes into producer families and also records
-non-`sorry` publication gates. Census554 remains tracked as optional independent
-research and engineering, but card 11 is closed and no Census row is a
-prerequisite of the remaining theorem spine.
+non-`sorry` publication gates. Front-B/ERASE card 11 is closed. Front-A card 11
+is not: the live declarations carry only `9 < D.A.card`, the two-large-cap
+bridge gives `11 ≤ D.A.card`, and no named card-11 contradiction is imported.
+Census554 is a conditional alternative: it is unnecessary only if the uniform
+ATAIL producer covers card 11.
 
 **Reproducibility checkpoint (dated 2026-07-09).** The focused pinned-surplus
 build was green, and proof-blueprint reported build fingerprint
@@ -144,16 +147,15 @@ The archive preserves detailed logs; these constraints remain active here:
   every `CubeOk` clause. At card 11 every point of `A` is labeled, so no
   additional unlabeled-point confinement condition is needed.
 
-### A.1 Optional Census554 research — paused off the proof-critical path
+### A.1 Census554 card-11 alternative — paused, conditionally critical
 
-**Dependency correction, 2026-07-13.** Card 11 is closed by the current theorem
-stack. Census554 is therefore off the proof-critical path: a terminal cover,
-Lean replay, or `false_of_cardEleven_twoLargeCaps` would be a valuable
-independent result, but none is required to close K-A-PAIR, K-A-LIVE, or the
-publication gates. The remaining open mathematical surface is card ≥ 12
-(`ATail` and the associated liveData producer families). The detailed Census
-pipeline below is retained as an operational/research specification, not as a
-card-11 closure dependency.
+**Dependency correction, 2026-07-13.** No current theorem closes the Front-A
+card-11 slice. `Census554.false_of_cardEleven_twoLargeCaps` is still absent, and
+the live declarations do not split away `D.A.card = 11`. Census554 may remain
+paused while ATAIL targets the complete card-at-least-11 signature. If ATAIL is
+weakened to card at least 12, the terminal cover, Lean replay, card-11 consumer,
+and leaf wiring become proof-critical rather than optional. The detailed
+pipeline below remains the specification for that alternate discharge.
 
 Pipeline (`scratch/census-554/frontier_loop.py`): lazy motif-embedding cover +
 CEGAR mining at genuine frontiers, to UNSAT.
@@ -391,8 +393,9 @@ lanes and must not be collapsed into one "live oracle":
    guarded writer as `pat_05898`.
 3. The stopped iteration-813 cached source and rollback clone remain
    **STOPPED-BOUNDED**. Never resume either concurrently with a successor.
-4. The mutable-bank `frontier_loop.py` is live under the single driver lease in
-   tmux `census554-loop`. The bank has 5,916 rows, SHA-256
+4. The mutable-bank `frontier_loop.py` was live at this historical snapshot
+   under the single driver lease in tmux `census554-loop`. The bank then had
+   5,916 rows, SHA-256
    `ed1e86710748fe2e6b8298557aaf07a53a272b07accfb31dcbccc17ff1e12dbd`.
    Iteration 690 reached a genuine frontier, mined 14 minimal `k=7` patterns,
    certified one `multi_pair` motif, failed the other 13, and banked the success
@@ -452,7 +455,8 @@ lanes and must not be collapsed into one "live oracle":
    and banked it as `pat_05915`. Thus all seven frozen frontiers are now mined,
    covered by newer rows, or exactly published.
 6. A fresh four-core successor
-   `cube_prefetch_runs/run-20260713T093813Z-iter690-bank5914-rebase` was live.
+   `cube_prefetch_runs/run-20260713T093813Z-iter690-bank5914-rebase` was live at
+   that snapshot and later stopped at its bounded frontier limit.
    It reuses the immutable 5,897-row CNF but matches every candidate against a
    separately hashed 5,914-row bank snapshot, so all 17 post-CNF motifs are
    filtered before a frontier can be emitted. At 02:53 PDT it had checked 516
@@ -476,7 +480,8 @@ lanes and must not be collapsed into one "live oracle":
    the bank identity, and the expanded 144-test Census-554 suite passes. Evidence and the
    two recovered patterns are in
    `retry-autos-dedup-recovery-20260713.json`. The already-running pass retains
-   its old in-memory selection; a fresh pass is required to exercise the fix.
+   its old in-memory selection at that snapshot; no drainer is live now, and a
+   fresh pass is required to exercise the fix.
 8. Flux's 14 mine slots are the dependable remote baseline. MacBook slots are
    opportunistic and exist only while its idle gate is open. This host runs the
    two-hour/high-memory certification and local fallback lanes; four local cores
@@ -535,17 +540,18 @@ The historical Census-based independent card-11 replay has seven obligations:
    split into the actual Front-A leaves.
 
 Obligations 2, 4, and 5, plus the mathematical checker core needed for
-obligation 3, are complete. A.2 tracks the remaining optional artifacts. These
-obligations no longer gate the theorem closure plan.
+obligation 3, are complete. A.2 tracks the remaining artifacts. They gate
+closure exactly when the ATAIL producer starts at card 12 or later; a uniform
+card-at-least-11 producer supersedes them.
 
 Operational code now has a shared lifetime driver lease, a separate bank
 transaction lock, max-suffix PID allocation, canonical dedupe, exact precommit
 certificate validation, a crash-recovery journal, fsynced atomic certificate
 publication, and fsynced atomic bank replacement. The child publisher used
 this path successfully for `pat_05443`. Cross-process and fault-injection tests
-pass. The current frozen probe was launched after the safe transition and holds
-its lifetime workdir lock; the stopped historical rollback process was neither
-killed nor resumed. Permanent migration is partial:
+pass. The frozen probe launched after the safe transition later reached the
+terminal combined frontier and released its lock; the historical rollback was
+neither resumed nor destroyed. Permanent migration is partial:
 `census/census_554/` owns the protocol, terminal gate, structural auditor,
 combinatorial core, and self-contained smoke/tests, while the driver, miner,
 verifier, changing bank, and large certificate artifact remain under
@@ -565,7 +571,7 @@ geometric necessity claim. The outcome record must identify its level, complete
 assumption ledger, source hashes, and independent verifier before any restart or
 route change.
 
-### A.2 Optional Census554 Lean transfer — specified steps
+### A.2 Conditional Census554 Lean transfer — specified steps
 
 Ordered; each step names a buildable artifact. Status is controlled by the
 corresponding closure-matrix gate, not by prose completion claims.
@@ -845,7 +851,7 @@ corresponding closure-matrix gate, not by prose completion claims.
    the `Pattern`/`IsGaugedRealization`/`IsDead` vocabulary steps 2–3 consume.
    The same file now contains the compiled support-injection bridge described
    in step 3. Not yet imported by the leaf — wiring is step 5.
-5. **Optional independent leaf discharge at card 11**: from steps 1–4 + `D.K4` +
+5. **Conditional leaf discharge at card 11**: from steps 1–4 + `D.K4` +
    `capProfile_eq_554_of_card_eq_eleven`, derive `False` under
    `D.A.card = 11` at the leaf, and case-split every Front-A obligation on
    `card = 11` vs `12 ≤ card`. This was the original Census wiring proposal.
@@ -854,11 +860,10 @@ corresponding closure-matrix gate, not by prose completion claims.
    `Census554/Card11.lean`; it consumes the cap frame, geometric bridge,
    `coverCore_covers`, and `not_realizesCube_of_coverCore`, and returns `False`
    without any liveData row hypotheses. Then invoke it in both Front-A
-   declarations before their card-at-least-12 residual proofs. Card 11 is now
-   closed independently, so this step is **SUPERSEDED AS A CLOSURE STEP**. It
-   may proceed only as an optional independent Census theorem after the step-1
-   necessity bridge, step-2 cover-core replay, and step-3 cover theorem are
-   kernel-checked (matrix A11-CONSUME).
+   declarations before any card-at-least-12 residual proofs. This theorem and
+   its wires are required if the ATAIL producer does not cover card 11. They
+   become unnecessary only after a uniform card-at-least-11 producer closes the
+   existing declarations directly (matrix A11-CONSUME/A11-WIRE-*).
 
 ### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, refreshed 2026-07-12)
 
@@ -870,8 +875,10 @@ corresponding closure-matrix gate, not by prose completion claims.
   `t2`-named, `t2`-row-failure, `t3`, `u`, fresh). Matrix rows LIVE-* own
   these families. The t1 band is not one polarity: six holes are the positive
   `ht1Row_l1` branch when the source slot is `l1 = t1`, and the other eighteen
-  are negative branches. Matrix LIVE-T1 therefore requires two consumers,
-  not one overgeneralized lemma.
+  are negative branches. The checked T1/T3 dangerous-triple relabel adapters
+  now bypass that historical two-consumer split: once K-A-PAIR closes, the 24
+  LIVE-T1 and 24 LIVE-T3 textual holes reduce by orbit to the existing pair
+  consumer. They inherit K-A-PAIR's `sorryAx` until that dependency closes.
 - The kernel spine additionally shows leaf 2's compiled proof reaching
   leaf 1 (`DoubleApexOffSurplusSharedRadiusPair`) through the
   `false_of_center_p_t2_t20 → … → exists_removableVertex_of_twoLargeCaps`
@@ -885,19 +892,17 @@ corresponding closure-matrix gate, not by prose completion claims.
 - **Historical Census handoff status:** `capProfile_eq_554_of_card_eq_eleven`
   terminates in profile facts ((5,5,4), interiors (3,3,2), and the
   `MultiCenter/CapProfile.lean` vocabulary translations) rather than a Census
-  cover consumer. That missing Census-specific wire is no longer a closure
-  gap because card 11 is closed independently. A.2 step 5 is optional and must
-  not be used to gate card ≥ 12 work.
+  cover consumer. That missing Census-specific wire is a real conditional gap:
+  it is required for a card-at-least-12 ATAIL split and unnecessary only for a
+  producer uniform from card 11.
 
-Before a LIVE-* family receives a new local contradiction or certificate hunt,
-`LIVE-BANK-MATCH` records a machine-readable map from each ordered leaf to an
-existing U1/U5 consumer, or records the first unavailable or circular
-antecedent. The map includes its `RowSlotLabelPacket` construction, available
-equalities/distinctness facts, theorem-bank preflight result, and immediate
-spine consumer. It is acceptable for a family to have no match; it is not
-acceptable to add a new `sorry` or repeat a certificate search without one.
+`LIVE-BANK-MATCH` is complete and terminal negative (commit `dd2f91c1`): its
+machine-readable map checked 1,422 ordered leaf/consumer pairs, with 0 MATCH,
+18 PARTIAL, and 1,404 NO-MATCH. The structural blocker is recorded in the
+matrix K-A-LIVE row. Do not rerun that decider; new work must add the missing
+packet-label-centered/full-filter producer content.
 
-### A.3 Card ≥ 12 residual
+### A.3 Card ≥ 11 residual and card-12+ computational surface
 
 Evidence sources: `scratch/census-12-gate/STATE.md` and
 `census/candidate_d_probe/report.md`, digested 2026-07-09.
@@ -908,6 +913,12 @@ replaces the 2026-07-12 defer-until-A11-outcome default. The authorization
 opens `AHEAD-SPEC` and lightweight deterministic preflights immediately; it
 does not by itself transfer the active heavy-compute lease from
 `CTRL-RESOURCE`.
+
+**Resource update, 2026-07-13.** Census554 is stopped and the bounded ATAIL
+Z3/cvc5 leases have finished, so that compute pool is available for a freshly
+manifested successor. This removes external contention but is not launch
+authorization: AHEAD remains fail-closed until AHEAD-WORKER lands and a fresh
+process/lock/load/memory/disk preflight assigns the lease.
 
 The authorized envelope is:
 
@@ -1050,6 +1061,34 @@ identity replay, Lean build, or heavy AHEAD process was launched. Consequently
 `execute` remains fail-closed on the mining/generation worker and explicit
 `CTRL-RESOURCE` transfer; no coverage claim advances.
 
+**Seventh permanent AHEAD-SPEC checkpoint, 2026-07-13 (worker-readiness
+audit).** The resource gate is no longer the first blocker. A read-only audit
+of the permanent package found that safely enabling `runner.py execute`
+requires four missing operational pieces: a cardinality-generic
+mining/certificate proposal worker; a public lock-consistent validated bank
+snapshot plus bank-to-CNF adapter; a cross-profile lifetime lease; and the
+execute orchestration from SAT decode through exact preparation,
+transactional commit, policy stop, resume, and honest unverified exhaustion.
+Deleting the fail-closed exception alone is unsound.
+
+One accounting mismatch must be fixed before the shape-staleness stop is
+trusted. `run_protocol.py` correctly defines `fresh_shape_count` from the
+pre-certification witness, while `PreparedIteration` and `bank_store.py`
+currently conflate witnessed fresh shapes with certified/banked fresh shapes.
+The worker must preserve both counts separately (or stop conservatively on any
+certificate failure). It must also bind execution to the canonical manifest,
+prevent bank-limit overshoot, derive elapsed wall from the original
+`RUN_STARTED`, and include every new source in the manifest digest set.
+
+The minimum activation order is therefore: worker unit tests; validated bank
+snapshot/CNF tests; shape-accounting repair; lifetime-lock and fake-worker
+runner lifecycle tests; full 52-test regression plus the card-12 SAT/DRAT
+smoke; then creation of exactly one final `(6,5,4)` manifest. No permanent run
+directory currently exists and no AHEAD process was launched by this audit.
+Even a verified final DRAT remains `ENGINE_EXHAUSTED_UNVERIFIED` until a
+separate hash-bound CNF/DRAT/core/LRAT publication and Lean cover consumer are
+implemented.
+
 **Current decider status, updated 2026-07-13.** ATAIL-SUB2 is PROVEN: the
 exact rational certificate, independent checker, adversarial audit, and the
 Lean theorems `ATailSub2.sub2H_left_unsat` / `sub2H_right_unsat` passed their
@@ -1067,15 +1106,25 @@ or critical-row mechanism. The exact producer target and theorem-bank audit
 are in `docs/atail-force-producer-plan-2026-07-13.md`.
 
 **Proof-priority decision, 2026-07-13.** ATAIL-FORCE is the primary closure
-lane. Census554 and AHEAD CEGAR remain bounded diagnostic or fallback lanes:
-their banks may expose reusable structural lemmas, and a checked AHEAD cover
-could remove cards 12--14, but neither should be awaited before theorem work.
-A successful AHEAD cover would still leave the card-at-least-15 tail and the
-independent LIVE families, whereas a full-filter or critical-row producer from
-the actual leaf hypotheses can close K-A-PAIR uniformly from card 12 and may
-also supply the missing LIVE producer. A nonterminal CEGAR run stops at its
+lane. Census554 and AHEAD CEGAR remain bounded alternate/fallback lanes: their
+banks may expose reusable structural lemmas, Census554 may discharge card 11,
+and a checked AHEAD cover could remove cards 12--14. Neither should be awaited
+before theorem work on a uniform producer. A successful pair of finite covers
+would still leave the card-at-least-15 tail and the independent LIVE families,
+whereas a full-filter or critical-row producer from the actual leaf hypotheses
+can close K-A-PAIR uniformly from card 11 and may also supply the missing LIVE
+producer. A nonterminal CEGAR run stops at its
 predeclared wall, bank-growth, or shape-staleness boundary; SAT progress or a
 larger bank alone does not authorize a budget extension.
+
+**Parallel-research authorization, 2026-07-13.** Adam explicitly authorized
+ATAIL/AHEAD as genuine parallel closure work and authorized creation of the
+proof-local analysis files, scratch Lean/Python artifacts, bounded
+computations, theorem-bank searches, and closure-document updates needed to
+develop the missing producer without per-artifact permission. The
+authorization preserves the separately recorded ownership of the shared
+Route-B/LIVE-T1 source and does not extend to destructive or unrelated
+external actions.
 
 The exact `ATAIL-DISTINCT-REPLAY` checkpoint now makes the computational
 boundary sharper. It constructs and exact-replays separator-satisfying
@@ -1143,8 +1192,10 @@ reduction. `CriticalRowPacket.center_ne_source` only kills subcells in which
 the extra row source `t2[0]` is also identified with its blocker center; none
 of the seven contracts supplies that equality, and none supplies K-A-PAIR's
 p-centered exact-dangerous `t2Row` hypotheses. LIVE-C remains a content-bearing
-six-row producer target. This session is anchored at LIVE-T1, while the shared
-Route-B parent is owned by another live session and is not edited by this lane.
+six-row producer target. At this checkpoint, this session's durable anchor
+metadata points to LIVE-T1 and a separate session anchor points to the Route-B
+umbrella; neither shared source is edited here. Generated
+`docs/live-blueprint.md` is not an anchor input and is never edited manually.
 
 The theorem-facing normalization has also advanced without touching the
 concurrently owned Route-B source. Two scratch modules now kernel-check: (i)
@@ -1156,6 +1207,128 @@ making the collided row the relabeled `t2Row`. They intentionally inherit
 K-A-PAIR's `sorryAx`, so this is a dependency reduction rather than closure.
 Artifacts: `scratch/atail-force/critical_row_coupling.lean` and
 `scratch/atail-force/triple_relabel_adapters.lean`.
+
+The outer wrapper's construction provenance has now also been retained in a
+third kernel-checked scratch module. `U1Depth5.LiveCriticalRowProvenance`
+records that all five source rows and `f2CriticalRow` come from the same
+`CriticalShellSystem`, rather than passing only an unrelated
+`Nonempty (CriticalShellSystem D.A)`. It recovers the row deletion-blocker
+facts and reuses the banked theorem
+`CriticalShellSystem.selectedFourClass_support_eq_shell` to show that every
+selected K4 row at the same blocker center is exactly the f2 critical support.
+
+The exact source-contract census covers all 35 live helpers and all 79 textual
+holes. The current 28 p-centered LIVE-Q/T1/T3 contracts already transfer full
+support through their comparison maps, so provenance adds no new same-center
+transfer there; it would restore f2 no-qfree to all 35 helpers. Six named LIVE-C
+branches turn that blocker fact into a packet-label-centered membership/support
+statement, but this is the positively realized f2-critical branch, not a
+contradiction. The fresh-center branch retains the same blocker fact without a
+named packet center.
+
+`f2Row_to_qCriticalTriple` now packages that surviving branch as the existing
+`U5QCriticalTripleClass` on `f2Row.support.erase f2`. It is kernel-checked and
+needs only the concrete critical-row packet; it adds no missing dangerous-point
+memberships and is normalization rather than closure.
+
+The strongest current-contract output is instead
+`two_le_f2Row_support_sdiff_dangerousBase`: since every LIVE-C f2 center is
+different from `p`, the two-circle bound forces at least two f2-support points
+outside `{q,t1,t2,t3}` in all seven helpers; the witness theorem
+`exists_two_f2Row_support_off_dangerousBase` extracts the distinct pair. This
+is a one-center off-dangerous pair. It does not prove that the points are off
+the surplus cap,
+does not relate the f2 center to either opposite Moser apex or give both apex
+radii, and does not supply the bounded-anchor or class-center fields needed by
+a U5 bank consumer. Those are now the exact producer-data targets. Artifacts:
+`scratch/atail-force/live_critical_provenance.lean` and
+`scratch/atail-force/provenance_contract_audit.py`.
+
+The corresponding finite incidence-delta census is now **DONE-NEGATIVE,
+exact within the stated abstraction**. The corrected witnesses retain the
+actual `f := t2[0]` and `f5 := t2[1]` membership in the `t2` source row, rather
+than treating those labels as unrelated atoms. They also retain source
+membership, four-point support, center/source separation, equal-center support
+coupling, all distinct-center two-circle overlap bounds, the conditional
+comparison maps, the seven LIVE-C center branches, and the `t2_named` /
+`t2_rowFailure` split. `incidence_delta_census.py --check` validates one
+explicit witness for each family: 7/7 are `SAT_INCIDENCE_ONLY`, with zero
+forced second-center collision, zero `q`-plus-two-dangerous support, and zero
+five-source support.
+The pinned witness digest is
+`78d6ea82c294e8dd2943f1dec50e9bf51a6de88bbef91c34f649c2f28a115a3e`.
+These are finite incidence structures, not Euclidean/convex realizations, and
+the current metric-consumer fields are explicitly not modeled. Therefore the
+incidence-only route is terminal at this interface; any successor must add
+cap/order/full-filter or metric information. Artifact:
+`scratch/atail-force/incidence_delta_census.py`.
+
+The first metric discriminator on the stronger finite shadow is also complete
+for its two saved card-12 candidates. Each candidate has one selected
+four-point row at every center, support intersections at most two, an explicit
+common cyclic order satisfying every shared-pair separation, and no core found
+by the current `_formalized_metric_core` catalog. Singular nevertheless returns
+`UNIT` over `QQ` as a trusted exact-arithmetic CAS result for a contained
+subsystem of each: 8 rows / 24 equalities for the internal block-profile label
+`(4,5,6)`, and 7 rows / 20 equalities on 11 active labels for `(5,5,5)`.
+The first tuple is not the closure matrix's labeled-cap tuple order, and no
+orientation bridge is claimed. Thus neither finite-shadow witness is a
+Euclidean equality model.
+This is exact within the algebraic model for the two saved systems, but its
+Nullstellensatz certificate was not independently replayed; it is not
+exhaustive, not a Lean theorem, and not K-A-PAIR. The retained subsystems are large rigidity networks, so they
+are regression examples rather than formalization targets. The next live
+theorem should instead place the already-forced pair of off-dangerous f2-row
+points in a second selected/full-filter class and consume
+`outsidePair_unique_capCenter`, or derive the opposite-apex radii directly.
+Artifacts: `scratch/atail-force/critical_row_metric_discriminator.py`, its
+pinned JSON, and
+`docs/audits/2026-07-13-atail-critical-row-metric-discriminator.md`.
+
+The existing two-circle sink has now been repackaged in the exact joint-filter
+vocabulary. The kernel-checked scratch theorem
+`doubleApexJointFiber_sdiff_surplus_card_le_one` says that every fixed pair of
+opposite-apex radii has at most one carrier realization outside the surplus
+cap. Symmetric companion theorems show that K4 nevertheless supplies a radius
+with at least three off-surplus representatives at either apex and at least two
+representatives in the strict interior of its own opposite cap. Distance to
+the other apex is injective on each such three-point marginal. Therefore no
+argument from separate marginal K4 counts can prove the needed lower bound;
+the producer must force cross-apex correlation from the remaining live
+hypotheses. Artifact:
+`scratch/atail-force/apex_filters/joint_fiber_upper_bound.lean`; full audit:
+`docs/audits/2026-07-13-atail-apex-filter-assessment.md`.
+
+The blocker-cycle route is also **DONE-NEGATIVE at its relaxed abstraction**.
+A 12-vertex exact symmetric distance-equality model has a spanning blocker
+cycle, one exact four-class per center, global deletion criticality, overlap at
+most two, and only singleton fixed two-center fibers. An independent 33-point
+integer-coordinate Euclidean witness has global K4, failure after every single
+deletion, genuine blocker cycles, and an injective fixed two-center distance
+map. The latter is non-convex, so it does not refute K-A-PAIR; it proves that
+Euclidean blocker structure alone still omits a load-bearing convex/Moser/cap
+fact. Do not spend another lane on cycle length, spanning, or surjectivity.
+Any blocker-based successor must explicitly force the off-surplus overlap at
+the two fixed opposite Moser apices from convexity, cap/order, no-M44, or the
+actual critical rows. Artifacts:
+`scratch/atail-force/blocker_graph/` and
+`docs/audits/2026-07-13-atail-blocker-graph-assessment.md`.
+
+The smaller same-cap producer boundary is now **CHECKED-SCRATCH**. In
+`scratch/atail-force/same_cap_second_center.lean`, the exact dangerous `p`
+row supplies two distinct row points outside any indexed cap containing `p`,
+the supplied `u` row is proved to have center different from `p`, and the
+generic ordered-cap adapter proves
+`DangerousRowSameCapSecondCenter.false`. Thus the remaining conjectural field
+is exact: produce a second carrier center in the same cap as `p`, distinct
+from `p`, which is equidistant from that dangerous-row outside pair. The
+existing `outsidePair_unique_capCenter` theorem then gives `False`; no
+opposite-apex identification is needed. Direct Lean validation passes, and
+the four audited endpoints depend only on `propext`, `Classical.choice`, and
+`Quot.sound`. The live declaration still includes card 11, so this producer
+must be uniform from card 11 unless A11-CONSUME and the source-visible
+cardinality split land first. Strategy and circularity audit:
+`docs/audits/2026-07-13-atail-missing-ingredient-strategy.md`.
 
 Cap profiles at card 12 (sum 15, parts ≥ 4, at least two parts ≥ 5):
 (6,5,4), (5,6,4), (5,5,5); {4,4,7} excluded (STATE.md:33-45). Only (6,5,4)
@@ -1214,13 +1387,13 @@ depth; (5,6,4) was deliberately unmeasured (STATE.md:47-52).
   token-SAT after every proved cut. Cross-center coupling beyond independently
   selected four-point windows is therefore required.
 
-Consequence, stated plainly: **Front A has no complete known route, but card 11
-is closed.** Census554 is optional independent research. The proof-critical
-surface begins at card 12 and consists of K-A-PAIR plus the independent LIVE-*
-families. Cards 12--14 may still admit a checked finite cover, but that is a
-bounded fallback rather than the primary schedule. Card ≥ 15 requires
+Consequence, stated plainly: **Front A has no complete known route, including
+card 11.** The proof-critical surface begins at card 11 and consists of
+K-A-PAIR plus the independent LIVE-* families. Census554 is the conditional
+card-11 alternate; cards 12--14 may admit an AHEAD cover. Both are bounded
+fallbacks rather than the primary schedule. Card ≥15 requires
 Candidate-D-shaped convexity/full-filter/critical-row mathematics, and the
-preferred target is uniform from card 12 so that no head split is needed.
+preferred target is uniform from card 11 so neither finite split is needed.
 
 **Decision A-HEAD (matrix AHEAD-DEC): AUTHORIZED 2026-07-13.** Adam selected
 the head-only narrowing attempt as parallel research alongside Census554/A11.
@@ -1228,7 +1401,9 @@ The route must first port and validate the exact old `all` encoding against
 the permanent post-SUB2 PROVEN cut contract, run all three labeled card-12
 profiles, then cover all six labeled card-13 and ten labeled card-14 profiles
 listed in matrix AHEAD-SPEC. Heavy runs remain under the `CTRL-RESOURCE`
-transfer and four-worker serialization recorded above.
+transfer and four-worker serialization recorded above. The resource pool is
+available after Census554 and the ATAIL pilots stopped, but AHEAD-WORKER still
+precedes any immutable run manifest or launch.
 Only a proved 12–14 cover permits AHEAD-CONSUME to introduce a named
 card-at-least-15 residual with its immediate consumer; no such residual is
 authorized earlier. More dead samples without a cover do not justify the split,
@@ -1237,7 +1412,15 @@ reason to extend the run. Partial banks are theorem-discovery inputs only.
 
 ---
 
-## Front B — M44 lane (current ERASE cluster; pinned/endpoint closed)
+## Front B — M44 lane (closed ERASE/pinned/endpoint history)
+
+**Current dispatch correction, 2026-07-13.** K-B-PIN,
+K-B-END-GENERAL, and K-B-ERASE are DONE. The only project source sorries are
+the 80 Front-A holes in `U1LargeCapRouteBTail.lean`; the pinned general-m
+declaration is source-proved and absent from the open spine. The PIN-GENERAL,
+PIN-METRIC-BRIDGE, PIN-KQ35, and PIN-EXACT-CLOSURE material below is retained
+as dated route history and a reusable theorem bank. It is not a current
+dispatch surface.
 
 ### B.0 Verified structure (2026-07-09 source + slot3 doc tail)
 
@@ -1387,16 +1570,15 @@ bounded-support confinement for each surviving q-deleted four-class.  A route
 through U2/U5 Mode A or non-surplus containment would be circular at this
 source site unless its required input is proved independently.
 
-Matrix PIN-R and PIN-L are DONE; PIN-GENERAL owns the open leaf.  Acceptance:
-prove `H.RowwiseConfinedQDeletedClasses` for one extracted orientation frame,
-or prove a stronger direct audit-frame obstruction.  In the confinement route,
-both q-critical-row resolution and bounded-support inclusion are mandatory.
-The terminal source is now sorry-free: its left residual is transported through
+Historically, PIN-R and PIN-L were DONE while PIN-GENERAL owned this leaf. The
+proposed acceptance test was to prove `H.RowwiseConfinedQDeletedClasses` for
+one extracted orientation frame, or a stronger direct audit-frame obstruction.
+That route is superseded. The terminal source is now sorry-free: its left
+residual is transported through
 the all-index `NonSurplusSwap.pinnedLeft_to_right` field, then the swapped
 datum is relabelled and consumed by the existing right-pinned carrier bridge.
-After the concurrent U1 owner restores a green dependency build, run the named
-target build and refresh the proof-blueprint graph before marking the general-m
-residual as spine-closed.
+K-B-PIN records the completed build/axiom/spine gates. Do not resume the
+historical confinement producer without a new named on-spine consumer.
 
 #### PIN-GENERAL incidence-probe checkpoint (2026-07-10)
 
@@ -2004,8 +2186,8 @@ There are two independent open-mathematics clusters. Neither has a complete
 known mechanism:
 
 1. **Front-A shared-radius tail:** Candidate-D cross-center convexity coupling
-   for `DoubleApexOffSurplusSharedRadiusPair` on the remaining card-at-least-12
-   surface.
+   for `DoubleApexOffSurplusSharedRadiusPair` on the actual card-at-least-11
+   surface. A card-at-least-12 proof leaves A11-CONSUME and wiring open.
 2. **Front-A liveData families:** the three 24-leaf permutation bands and seven
    terminal center branches in `u1_largeCap_routeB_tail_liveData_false`.
    Closing the shared-radius theorem removes only one downstream dependency;
@@ -2019,11 +2201,12 @@ repository-wide git/full-build/publication controls.
 The former endpoint/pinned cluster is closed (K-B-END-GENERAL and K-B-PIN
 DONE) and belongs to route history, not the open-mathematics count.
 
-The optional Census554 pipeline contains substantial engineering and
-finite-proof work, but it is not uniformly "bounded to 1–3 sessions": final
-cover format, cover-core size, and heavy-certificate cost are not known until
-the run freezes. Those uncertainties do not affect the theorem schedule because
-card 11 is already closed.
+The paused Census554 pipeline contains substantial engineering and finite-proof
+work, but it is not uniformly "bounded to 1–3 sessions": final cover format,
+cover-core size, and heavy-certificate cost are not known until the run freezes.
+Those uncertainties disappear from the theorem schedule only if the primary
+ATAIL producer works uniformly from card 11; otherwise Census554 is the
+declared card-11 alternate.
 
 **Historical Census554 checkpoint (2026-07-13 02:53 PDT):** the mutable
 card-11 cover loop was live on a verified 5,916-row bank. Iteration 690 contributed
@@ -2081,28 +2264,33 @@ order is:
    escalation nor continued unguided local-kernel enumeration is a next step.
    Computation resumes only behind a full-filter or critical-row forcing
    principle that explains why a checked pattern must occur.
-   Every proposed universal lemma must also be checked against the
-   W16/W20 non-convex falsifier bank and must identify the actual convexity or
-   critical-row hypothesis that excludes those witnesses. No representative
-   result is promoted without the leaf-to-inventory and certificate bridges.
-4. **Consume the producer by orbit family.** This session is anchored at
-   LIVE-T1, but the shared Route-B parent is owned by another live session and
-   must not be overwritten. After K-A-PAIR closes, wire the two checked T1/T3
+   Every proposed universal lemma must also be checked against the W16/W20
+   bank and the new blocker-graph witnesses, and must identify the actual
+   convexity, cap/full-filter, or critical-row hypothesis that excludes them.
+   No representative result is promoted without the leaf-to-inventory and
+   certificate bridges.
+4. **Consume the producer by orbit family.** This session's durable anchor is
+   LIVE-T1 and a separate anchor owns the Route-B umbrella; neither source may
+   be overwritten. After K-A-PAIR closes, wire the two checked T1/T3
    relabeling adapters, which make those 48 textual holes depend only on that
    residual. Apply any remaining six-row producer to LIVE-Q and the seven
    LIVE-C branches. Do not patch the 79 textual holes one by one.
 5. **Use AHEAD only as fallback.** If the uniform producer naturally needs
    `15 ≤ D.A.card`, a checked AHEAD cover may discharge cards 12--14 and
-   authorize AHEAD-CONSUME. If the producer works from card 12, retire the head
-   census from the closure path.
+   authorize AHEAD-CONSUME, while A11-CONSUME must separately discharge card
+   11. If the producer works from card 11, retire both finite censuses from the
+   closure path.
 
 Adam's 2026-07-13 AHEAD-DEC authorization still permits bounded parallel head
-research, while heavy AHEAD-N12/N13/N14 execution remains serialized through
-`CTRL-RESOURCE`. It is not deferred on Census554, but neither optional census
-may delay steps 1--4 above.
+research. Census554 no longer holds the resource pool, but heavy
+AHEAD-N12/N13/N14 execution remains software-gated by AHEAD-WORKER and then
+serialized through a fresh `CTRL-RESOURCE` lease. It is not deferred on
+Census554. Neither finite lane may delay work on the uniform producer; a
+thresholded producer must nevertheless carry its A11/AHEAD dependencies.
 
-The optional Census554 lane retains this internal order. It may run alongside
-proof work subject to `CTRL-RESOURCE`, but it does not gate any kernel row:
+The paused Census554 lane retains this internal order. It may run alongside
+proof work subject to `CTRL-RESOURCE`; it gates the card-11 split only when the
+primary producer starts at card 12 or later:
 
 1. **Stabilize operations and ownership.** Resolve the concurrent generated
    rewrite; refresh the mined graph and `anchor list`; move Census554 into
@@ -2115,8 +2303,8 @@ proof work subject to `CTRL-RESOURCE`, but it does not gate any kernel row:
    final bank.
 3. **Mine the adjudicated oracle-13 residual.** Oracle-13 has reached a checked
    `combined-frontier`; preserve its terminal artifacts and the iteration-813
-   rollback, and keep the active consumer bound to the exact 5,836-row bank.
-   Mine, exactly certify, and novelty-check any residual pattern before routing
+   rollback. No consumer is live. Any resumed consumer must be bound to a fresh,
+   exact bank snapshot. Mine, exactly certify, and novelty-check any residual pattern before routing
    it through the sole mutable-bank publisher. Only a later checked UNSAT
    licenses the freeze/core/replay rows. A transition to a newer mutable bank
    requires a separate measured decision and the same preservation/integrity
@@ -2124,13 +2312,14 @@ proof work subject to `CTRL-RESOURCE`, but it does not gate any kernel row:
 4. **Minimize before replay.** Extract the pattern IDs used by the checked
    cover, then generate and replay that core only. Apply certificate shrinking
    or checker optimization only to heavy certificates that survive the core.
-5. **Optional independent replay.** If the Census reaches a checked terminal
-   cover, prove `false_of_cardEleven_twoLargeCaps` as a separate theorem. Do not
-   dispatch leaf wiring from this result: card 11 is already closed and the
-   live proof work is card ≥ 12.
+5. **Conditional card-11 replay.** If the Census reaches a checked terminal
+   cover, prove `false_of_cardEleven_twoLargeCaps`. Wire it into both Front-A
+   declarations if the primary producer starts at card 12; leave it as an
+   independent theorem only if a uniform card-at-least-11 producer has already
+   closed those declarations.
 Proof work proceeds independently according to the primary order above. ERASE
-is closed and needs no further proof work; optional ERASE-P3, AHEAD, Census554,
-and MC experiments run only under their explicit decision and resource rows.
+is closed and needs no further proof work; ERASE-P3, AHEAD, Census554, and MC
+experiments run only under their explicit decision and resource rows.
 The 30,997 reduced or 167,782 raw ATAIL systems are not a license for an
 ungated bulk nonlinear sweep.
 

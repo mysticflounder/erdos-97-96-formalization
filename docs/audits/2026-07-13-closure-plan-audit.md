@@ -18,6 +18,31 @@ target docs carried uncommitted working-tree edits during the audit and a
 concurrent session landed four commits mid-audit; line numbers reference the
 audited snapshot.
 
+## Resolution status (same-day checkpoint)
+
+The authoritative plans were corrected after this audit. The findings below
+are retained as evidence of the pre-correction state, not as the current
+dispatch surface:
+
+- AUDIT-1: Front-A card 11 is again explicit and open. The primary ATAIL
+  producer is required uniformly from card 11; a higher-threshold producer
+  carries A11-CONSUME and its source-visible wiring as dependencies.
+- AUDIT-2: the PIN rows are labeled closed route history and theorem-bank
+  material, not active work.
+- AUDIT-3: LIVE-T1/T3 use the checked relabel orbit reduction; the stale
+  two-consumer instruction is removed.
+- AUDIT-4: Census554 process statements are historical and no live consumer is
+  claimed.
+- AUDIT-5: LIVE-BANK-MATCH is recorded as DONE-NEGATIVE at its tested scope.
+- AUDIT-6: the Singular result is labeled trusted exact CAS evidence within
+  the saved algebraic subsystems; no replayed certificate or Lean theorem is
+  claimed.
+
+The current status and dependency graph are in
+`docs/closure-matrix-2026-07-09.md`,
+`docs/closure-plan-full-spec-2026-07-09.md`, and
+`docs/atail-force-producer-plan-2026-07-13.md`.
+
 **Verdict: NEEDS WORK.** The factual layer is strong — every referenced
 artifact exists, every line anchor is exact, the 36-symbol/80-hole inventory
 matches the live spine precisely, and negative-result scoping is exemplary.

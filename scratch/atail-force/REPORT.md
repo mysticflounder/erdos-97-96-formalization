@@ -213,3 +213,83 @@ lake env lean -M 16384 ../scratch/atail-force/two_circle_cap_kernel.lean
 These are exact scalar implications and exact combinatorial decision-surface
 counts. They do not establish live-leaf inventory coverage, the full-filter
 shared pair, or an on-spine consumer.
+
+## Critical-row metric discriminator
+
+The next finite-shadow experiment strengthened the row vocabulary rather than
+continuing selected-four kernel scans. Two saved card-12 candidates, from the
+internal `(4,5,6)` and `(5,5,5)` block-profile labels, each retain one selected
+four-point row at every center, pairwise overlap at most two, and an explicit
+common cyclic order satisfying every shared-pair separation. The first tuple is
+not the closure matrix's labeled-cap tuple order. Both avoid every obstruction
+currently returned by `_formalized_metric_core`.
+
+`critical_row_metric_discriminator.py` reports that neither candidate is a
+metric equality model according to a trusted exact-arithmetic CAS check.
+Singular returns `UNIT` over `QQ` for an eight-row,
+24-equality subsystem of the `(4,5,6)` candidate and a seven-row,
+20-equality subsystem of the `(5,5,5)` candidate. Subsystem monotonicity then
+excludes both full 36-equality systems within the algebraic model. The
+Nullstellensatz certificate was not independently replayed. The saved JSON
+pins the rows, orders, digests, smoke gates, and epistemic scope.
+
+The subsystems are large rigidity networks, not small recurring kernels. No
+generic theorem or Lean certificate is claimed. The practical next target is a
+second-center/full-filter producer for the two off-dangerous points already
+forced in the retained LIVE-C provenance packet; that would feed the existing
+`outsidePair_unique_capCenter` theorem or the direct opposite-apex pair sink.
+
+Reproduction, from the repository root:
+
+```bash
+PYTHONPATH=. UV_CACHE_DIR=/tmp/codex-uv-cache \
+  uv run python scratch/atail-force/critical_row_metric_discriminator.py --check
+```
+
+See
+`docs/audits/2026-07-13-atail-critical-row-metric-discriminator.md` for the
+exact/nonexhaustive boundary and the rejected raw-`msolve` parser path.
+
+## Joint-fiber boundary and blocker-graph gate
+
+`apex_filters/joint_fiber_upper_bound.lean` kernel-checks the exact sink
+boundary: every fixed opposite-apex radius pair has at most one realization in
+the carrier outside the surplus cap. It also proves that K4 supplies at least
+three off-surplus points at a suitable radius from either apex, while the
+distance to the other apex is injective on that marginal. Separate K4 counts
+therefore cannot yield the desired collision by pigeonhole alone. Full audit:
+`docs/audits/2026-07-13-atail-apex-filter-assessment.md`.
+
+The two replayable blocker witnesses make the missing hypothesis explicit.
+`blocker_graph/countermodel.py` gives a 12-vertex exact distance-equality model
+with a spanning blocker cycle and singleton joint fibers.
+`blocker_graph/euclidean_countermodel.py` gives a 33-point integer-coordinate
+Euclidean set with global K4, single-deletion criticality, genuine blocker
+cycles, and an injective fixed two-center distance map. The latter is
+non-convex, so it is not a K-A-PAIR counterexample; it isolates convex/Moser/cap
+localization as load-bearing.
+
+Consequently, blocker-cycle length, spanning, or surjectivity is terminal at
+this abstraction. The next producer must force an off-surplus exact-shell
+overlap of cardinality at least two at the two fixed opposite Moser apices, or
+derive `False` directly from an explicitly used convex/cap/critical-row fact.
+See `docs/audits/2026-07-13-atail-blocker-graph-assessment.md`.
+
+## Same-cap producer boundary
+
+`same_cap_second_center.lean` kernel-checks a smaller exact closure interface.
+The dangerous `p` row supplies two distinct row points outside any indexed cap
+containing `p`; independently, the supplied `u` row has center different from
+`p` and has at least two support points outside the dangerous base. The file
+packages the only new geometric datum as
+`DangerousRowSameCapSecondCenter`: a second distinct center in the same cap as
+`p`, equidistant from a dangerous-row pair outside that cap.
+
+`DangerousRowSameCapSecondCenter.false` converts that proposition directly to
+`CapSelectedRowCounting.outsidePair_unique_capCenter`. No opposite-apex
+identification is needed. Direct Lean validation passes, and axiom audits of
+the routine extraction and consumer endpoints report only `propext`,
+`Classical.choice`, and `Quot.sound`. The proposition remains CONJECTURED; the
+checked file isolates it rather than proving it. The target-facing strategy
+and card-11 contract are audited in
+`docs/audits/2026-07-13-atail-missing-ingredient-strategy.md`.

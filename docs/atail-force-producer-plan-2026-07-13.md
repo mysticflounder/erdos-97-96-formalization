@@ -2,10 +2,21 @@
 
 ## Status and lane authorization
 
-Adam explicitly authorized this card-at-least-12 work as genuine parallel
-closure research. It remains required even if Census-554 closes card 11. The
-card-11 Census process is now stopped and is not a dependency of this lane;
-this lane does not resume it or launch card-head work.
+Adam explicitly authorized this ATAIL work as genuine parallel closure
+research. The live pair declaration is stated under `9 < D.A.card`; the two
+large-cap hypotheses imply only `11 ≤ D.A.card`. No current theorem closes its
+card-11 slice. Therefore ATAIL must be uniform from card 11, or the separate
+A11 Census cover/consumer must return as a dependency for that slice. The
+card-11 Census process is stopped at a nonterminal bank and is not resumed
+implicitly. The released compute pool is available for a freshly manifested
+successor.
+
+That authorization includes proof-local analysis files, scratch Lean/Python
+artifacts, bounded theorem-discovery computations, theorem-bank searches, and
+closure-document synchronization needed to pursue this proof without
+per-artifact permission. It does not transfer ownership of the separately
+worked Route-B/LIVE-T1 source and does not authorize destructive or unrelated
+external actions.
 
 Current status:
 
@@ -22,13 +33,39 @@ Current status:
   incompatibilities have explicit Lean proofs. Together with
   `ATAIL-ORDER-FAN-1`, the exact union matcher reaches 129 of 167,782 systems
   across 45 joint classes, with no overlap among the three cuts.
+- `ATAIL-LIVE-PROVENANCE`: CHECKED-SCRATCH; the outer wrapper's common
+  `CriticalShellSystem` is retained through the five source rows and the extra
+  `f2` row. An exact source-contract census covers all 35 helpers and all 79
+  textual holes. The same current contracts also force a two-point
+  off-dangerous subset of the `f2` support in all seven LIVE-C helpers. A
+  corrected finite incidence census gives explicit witnesses for all seven
+  families and forces none of the three modeled incidence sinks.
+- `ATAIL-JOINT-FIBER-SINK`: CHECKED-SCRATCH; every fixed pair of opposite-apex
+  radii has at most one carrier point outside the surplus cap. Each apex also
+  has a K4 radius with at least three off-surplus points, so marginal K4 counts
+  cannot produce the required collision without additional cross-apex
+  correlation.
+- `ATAIL-BLOCKER-GRAPH-GATE`: DONE-NEGATIVE at the blocker abstraction. Exact
+  finite and Euclidean non-convex witnesses show that global K4, deletion
+  criticality, blocker cycles, and overlap at most two do not force the fixed
+  opposite-apex joint pair.
+- `ATAIL-SAME-CAP-BOUNDARY`: CHECKED-SCRATCH; the dangerous `p` row supplies
+  two points outside any indexed cap containing `p`, the `u` row is proved to
+  have center different from `p`, and an exact proposition packages the only
+  remaining datum: a second distinct center in the same cap equidistant from
+  that outside pair. Its `.false` theorem immediately applies
+  `outsidePair_unique_capCenter`. All audited endpoints use only the standard
+  core axioms.
 - `ATAIL-FORCE`: OPEN-RESEARCH and load-bearing for `K-A-PAIR`.
 
-The active proof-blueprint session anchor is
-`Problem97.liveData_T1_ql1_srcl2_false`. The checked T1/T3 relabel adapters
-reduce that orbit to the shared-radius K-A-PAIR residual, which is reachable
-from `Problem97.u1_largeCap_routeB_tail_liveData_false` through
-`false_of_center_p_t2_t20`; no new off-spine `sorry` is permitted.
+At this checkpoint, session `019f5a3d` is durably anchored at
+`Problem97.u1_largeCap_routeB_tail_liveData_false`; session `019f4dd4`
+separately owns LIVE-T1. Anchor state is maintained with `proof-blueprint
+anchor`, not by editing generated `docs/live-blueprint.md`. The checked T1/T3
+relabel adapters reduce that orbit to the
+shared-radius K-A-PAIR residual, which is reachable from the umbrella through
+`false_of_center_p_t2_t20`; this lane does not edit the shared Route-B source
+or introduce a new off-spine `sorry`.
 
 ## Exact on-spine consumer
 
@@ -62,6 +99,19 @@ membership, distinctness, both off-surplus facts, and the four radius
 equalities consumed by `oppCap2_escape_gen`. It is also honest about the
 mathematical crux: the overlap must be forced for full exact-radius filters,
 not for one arbitrarily truncated selected-four support.
+
+The sink has now been repackaged in the exact finite-set vocabulary in
+`scratch/atail-force/apex_filters/joint_fiber_upper_bound.lean`. The checked
+theorem `doubleApexJointFiber_sdiff_surplus_card_le_one` proves that every such
+fixed joint fiber has cardinality at most one. The same module proves that K4
+still supplies, separately at each opposite apex, a radius with at least three
+carrier points outside the surplus cap and at least two in the strict interior
+of its own opposite cap. On each three-point marginal, distance to the other
+apex is injective. Thus the target lower bound is not a pigeonhole consequence
+of the two marginal K4 classes: it must use a hypothesis that correlates the
+two apex partitions. The complete theorem, axiom, applicability, and
+circularity audit is
+`docs/audits/2026-07-13-atail-apex-filter-assessment.md`.
 
 ## What ATAIL-Q3 decided
 
@@ -252,10 +302,13 @@ abstraction. At least one of these must become a theorem:
 
 The first concrete theorem-facing milestone, extraction from the cardinality
 target to the exact `DoubleApexOffSurplusSharedRadiusPair` conclusion, is now
-kernel-checked in the unimported scratch module. Card 11 is independently
-closed, so it has no Census554/A11 dependency. It is not marked landed until
-the pair-theorem owner can consume it on-spine without overwriting concurrent
-work. The content-bearing milestone remains the lower bound itself. On the
+kernel-checked in the unimported scratch module. Card 11 remains open on the
+live Front-A spine: no `D.A.card = 11 → False` theorem is imported
+by the leaf. The helper has no Census dependency, but a proof that starts only
+at card 12 would still require A11-CONSUME and leaf wiring. It is not marked
+landed until the pair-theorem owner can consume it on-spine without overwriting
+concurrent work. The content-bearing milestone remains the lower bound itself.
+On the
 geometric-decision branch, the symmetry/equality-skeleton reduction is now
 done. The bounded separator-saturated exact pilot is now
 **DONE-NEGATIVE-TRACTABILITY**: all seven deterministic strata hit their
@@ -350,7 +403,9 @@ is no longer the primary lane unless a new forcing theorem makes one of these
 patterns unavoidable. The next content-bearing target is the full-filter or
 critical-row producer on the actual K-A-PAIR/K-A-LIVE hypothesis surface.
 
-The seven LIVE-C helper contracts were also audited directly against
+## Retained critical-system provenance and LIVE-C delta
+
+The seven LIVE-C helper contracts were first audited directly against
 `CriticalRowPacket.center_ne_source`, K-A-PAIR's actual hypotheses, the bank
 registries, and an indexed-corpus search. Center/source equality kills only
 subcells where the extra `f2 := t2[0]` source is identified with its blocker
@@ -359,27 +414,165 @@ lack the p-centered exact-dangerous `t2Row` hypotheses required by K-A-PAIR.
 This is a negative structural checkpoint, not a proof that no new LIVE-C
 producer exists. LIVE-C therefore remains a separate six-row target.
 
-This session is anchored at LIVE-T1, while the shared Route-B parent remains
-owned by another live session. This lane therefore does not overwrite that
-source; the scratch relabel certificate and the three checked scalar kernels
-remain off-spine until their immediate consumers can be wired without an
-ownership collision.
+The outer Route-B wrapper does carry more information than those helper
+signatures expose: it constructs `rows` and `f2CriticalRow` from the same
+`CriticalShellSystem`. The checked scratch packet
+`U1Depth5.LiveCriticalRowProvenance` retains the constructor equalities and
+recovers every row's deletion-blocker fact. Its support coupling reuses the
+existing theorem-bank result
+`CriticalShellSystem.selectedFourClass_support_eq_shell`: two system rows with
+the same blocker center have the same complete support, without a source
+collision or selected-slot equality.
+
+The exact audit in
+`scratch/atail-force/provenance_contract_audit.py` pins the current boundary:
+
+- all 35 helpers receive only an unlinked
+  `Nonempty (CriticalShellSystem D.A)` and none receives the provenance packet
+  or the `f2` deletion-blocker fact;
+- the 28 p-centered LIVE-Q/T1/T3 helpers already transfer full support through
+  their current comparison maps, so provenance rederives rather than enlarges
+  that part of their contracts;
+- all 35 would regain `f2Row_no_qfree` from the retained packet;
+- six named-center LIVE-C helpers become instances of the statement that every
+  selected K4 row at the `f2` blocker center contains the `f2` source and is
+  exactly the `f2` critical support; the fresh-center helper has the same
+  blocker statement without a packet-label name.
+
+This is not itself a contradiction. It positively realizes the f2-critical
+branch of the global-K4 dichotomy: asking for another selected class at the
+same center cannot produce a different row. The checked adapter
+`f2Row_to_qCriticalTriple` packages `f2Row.support.erase f2` directly as the
+existing `U5QCriticalTripleClass`; it exposes the surviving arm in the U5
+consumer vocabulary but does not close it. The reusable positive output is
+instead the checked theorem
+`two_le_f2Row_support_sdiff_dangerousBase`. Since every LIVE-C blocker center
+is distinct from `p`, the two-circle intersection bound gives at least two
+points in
+`f2Row.support \ {q,t1,t2,t3}`. The contract census confirms that this applies
+to all seven LIVE-C helpers without widening their current signatures; the
+witness form `exists_two_f2Row_support_off_dangerousBase` extracts two distinct
+support points explicitly.
+
+The bounded incidence-only follow-up is now **DONE-NEGATIVE, exact within its
+stated finite model**. `scratch/atail-force/incidence_delta_census.py` retains
+four-point supports, source membership, the actual `f := t2[0]` and
+`f5 := t2[1]` placements in the `t2` source row, center/source separation,
+equal-center support coupling, all distinct-center two-circle overlap bounds,
+the conditional comparison maps, all seven center branches, and the two
+special `t2` subbranches. It stores one explicit witness per family. All 7/7
+validate as `SAT_INCIDENCE_ONLY`, with zero forced second center collision,
+zero support containing `q` plus two dangerous points, and zero five-source
+support. The witness digest is
+`78d6ea82c294e8dd2943f1dec50e9bf51a6de88bbef91c34f649c2f28a115a3e`.
+The witnesses deliberately choose `f` distinct from the five packet sources,
+so the live conditional comparison maps are valid vacuously; unlike the first
+draft, they correctly place both `f` and `f5` in the `t2` row.
+
+This is not a Euclidean or convex realization and does not model the metric
+fields of existing consumers. It terminates only the attempt to force a sink
+from the enumerated incidence facts alone. Any next producer must use
+additional cap/order/full-filter or metric content.
+
+The next producer must add one of the facts the row census still lacks:
+
+1. prove that those two off-dangerous points are outside the relevant surplus
+   cap and co-radial from both opposite Moser apices (either by identifying the
+   f2 center with one apex and proving the other radius, or independently),
+   which would turn them into the K-A-PAIR witness; or
+2. confine the two points to a bounded anchor/support inventory and supply the
+   missing class-center equalities needed by a banked U5 incidence consumer; or
+3. derive a second, distinct-center full-filter class whose overlap with the
+   f2 support is forced beyond the two-circle bound.
+
+The checked artifacts are
+`scratch/atail-force/live_critical_provenance.lean` and
+`scratch/atail-force/provenance_contract_audit.py`; the bounded negative census
+is `scratch/atail-force/incidence_delta_census.py`. They remain off-spine while
+the shared Route-B source and LIVE-T1 are separately owned.
+
+## Critical-row finite-shadow metric discriminator
+
+A stronger saved-row follow-up retained one selected four-point row at every
+center, pairwise support overlap at most two, a common cyclic order satisfying
+every shared-pair separation, and avoidance of all currently formalized metric
+cores. It produced one candidate for each of the `(4,5,6)` and `(5,5,5)`
+internal card-12 block-profile labels; `(4,5,6)` is not the closure matrix's
+labeled-cap tuple order. These are finite-shadow witnesses, not Euclidean
+models, and no profile-orientation bridge is claimed.
+
+`scratch/atail-force/critical_row_metric_discriminator.py` now gives the exact
+metric-model computation. Singular returns `UNIT` over `QQ` for an eight-row,
+24-equality subsystem of the `(4,5,6)` candidate and a seven-row,
+20-equality subsystem of the `(5,5,5)` candidate. Hence both full
+36-equality systems are excluded by a trusted exact-arithmetic CAS computation
+in the normalized distinct-point gauge. No Nullstellensatz certificate was
+independently replayed. The result is exact within this algebraic model for
+the two saved candidates but is not an exhaustive critical-row census or a new
+Lean theorem.
+
+Equality-level deletion exposed large rigidity networks rather than a small
+common core, and a certificate-lift attempt timed out at 180 seconds. This
+rejects verbatim formalization and further blind core mining from the two
+examples. Their useful output is a sharper producer target: start from the two
+off-dangerous `f2`-support points already forced by retained provenance, then
+use actual convex/cap localization to put that pair in the required second
+full-filter class and consume
+`CapSelectedRowCounting.outsidePair_unique_capCenter`, or identify the two
+centers with the opposite Moser apices and prove K-A-PAIR directly. A generic
+second-center or blocker-cycle statement is insufficient. Full scope and the
+`msolve` raw-parser regression are recorded in
+`docs/audits/2026-07-13-atail-critical-row-metric-discriminator.md`.
+
+## Blocker-graph gate and marginal anti-pigeonhole boundary
+
+The blocker-map route has now been tested at the strongest relaxed interface
+that it naturally supplies. `scratch/atail-force/blocker_graph/countermodel.py`
+checks a 12-vertex symmetric distance-equality structure with a spanning
+blocker cycle, one exact four-class at every center, global deletion
+criticality, and distinct-center support overlap at most two. Even with both
+fixed centers on the cycle, every two-center joint fiber has cardinality one.
+
+The independent
+`scratch/atail-force/blocker_graph/euclidean_countermodel.py` checks a fixed
+33-point integer-coordinate Euclidean set with global K4, failure of global K4
+after every single deletion, genuine blocker cycles, and an injective
+two-center distance map. This second witness is deliberately not convex
+independent, so it is not a counterexample to K-A-PAIR. It proves exactly that
+Euclidean realizability plus blocker structure still does not replace the
+live convex/Moser/cap hypotheses.
+
+Therefore no further cycle-length, spanning, or blocker-surjectivity
+classification is a closure step. Any blocker-based successor must explicitly
+derive an off-surplus overlap of cardinality at least two for exact shells at
+the two fixed opposite Moser apices from convexity, cap sizes/order, no-M44, or
+the actual critical-row packet. Otherwise it merely renames K-A-PAIR. Full
+hypothesis mapping and replay commands are in
+`docs/audits/2026-07-13-atail-blocker-graph-assessment.md`.
 
 ## Closure priority and fallback
 
 ATAIL-FORCE is the primary proof lane. The preferred theorem is uniform from
-card 12 and uses full exact-radius filters together with convexity, global
+card 11 and uses full exact-radius filters together with convexity, global
 order, no-M44, the actual five-row pair interface, or the stronger six-row live
 interface. Every proposed relaxed intermediate must be checked against the
-W16/W20 non-convex witness bank; a statement in the same equality/pattern
-vocabulary cannot be promoted merely because a bounded sample dies.
+W16/W20 bank and the new blocker-graph witnesses; it must name the live
+convex/cap/full-filter hypothesis that excludes them. A statement in the same
+equality/pattern vocabulary cannot be promoted merely because a bounded sample
+dies.
 
-AHEAD CEGAR remains a bounded cards-12--14 fallback. Its declared wall,
-bank-growth, and shape-staleness stops are binding, and a policy-stopped run is
-a durable nonterminal result rather than a reason to extend the budget. If the
+AHEAD CEGAR remains a bounded cards-12--14 fallback. Census554 no longer holds
+the compute pool, but the permanent runner is still software-gated: safe
+execution requires the cardinality-generic mining worker, a validated bank
+snapshot/CNF adapter, a cross-profile lifetime lock, and runner orchestration;
+the current witnessed-versus-banked fresh-shape accounting must also be split
+before the staleness stop is trusted. Its declared wall, bank-growth, and
+shape-staleness stops remain binding, and a policy-stopped run is a durable
+nonterminal result rather than a reason to extend the budget. If the
 uniform producer naturally requires card at least 15, a checked AHEAD cover may
-discharge the head before that threshold is introduced on-spine. If the
-producer works from card 12, the head census is unnecessary for closure.
+discharge cards 12--14 before that threshold is introduced on-spine, but card
+11 still needs A11-CONSUME. If the producer works from card 11, both finite
+census splits are unnecessary for closure.
 
 Any further bounded subsystem is justified only by a forcing principle from
 the actual full-filter or critical-row hypotheses and must also be tested as a
