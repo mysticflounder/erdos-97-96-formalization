@@ -17,6 +17,11 @@ def local_ok(c, s, deleted=None):
     if not cap_count_ok(c,s): return False
     if c==0 and deleted is not None and deleted not in s: return False
     return True
+def support_mask(s):
+    return sum(1 << label for label in s)
+def p2_support_chunk_index(support):
+    return (support % 8 + 7 * ((support // 8) % 8)
+            + 2 * ((support // 64) % 8)) % 8
 # candidateRows sizes per center (deleted irrelevant except c=0)
 for c in range(11):
     n = sum(1 for s in combinations([l for l in LABELS], 4) if local_ok(c, set(s)))
@@ -30,21 +35,44 @@ def sig_of(c, s):
     elif c in INTO2: own, left, right = INTO2, INTS, INTO1
     else: return None
     return (len(s&MOSER), len((s&own)-{c}), len(s&left), len(s&right))
-tot_p2 = 0; per = {}
+tot_p2 = 0; per = {}; p2_supports = {}
 for c in [7,8,9,10]:
     surplus_bucket = 3 if c in INTO1 else 2  # index of surplus in sig: r for O1, l for O2
-    n = 0
+    supports = []
     for s in combinations(LABELS,4):
         s = set(s)
         if not local_ok(c,s): continue
         sig = sig_of(c,s)
         if sig[surplus_bucket] < 1: continue  # pin x in surplus interior
-        n += 1
-    per[c]=n; tot_p2 += n
+        supports.append(support_mask(s))
+    p2_supports[c] = supports
+    per[c]=len(supports); tot_p2 += len(supports)
 print("P2 seed supports per center (pin-compatible, localOK):", per, "total", tot_p2)
-# P4-U: center 0, class must contain >=1 intS (the pin x)
-n0 = sum(1 for s in combinations(LABELS,4) if local_ok(0,set(s)) and set(s)&INTS)
-print("P4-U seed supports at center 0 (>=1 intS):", n0)
+assert set(per.values()) == {191}
+old_profiles = {
+    c: [sum(support // 256 == chunk for support in supports)
+        for chunk in range(8)]
+    for c, supports in p2_supports.items()
+}
+balanced_profiles = {
+    c: [sum(p2_support_chunk_index(support) == chunk for support in supports)
+        for chunk in range(8)]
+    for c, supports in p2_supports.items()
+}
+old_counts = [count for profile in old_profiles.values() for count in profile]
+balanced_counts = [
+    count for profile in balanced_profiles.values() for count in profile
+]
+print("P2 old support-bin profiles:", old_profiles,
+      "range", (min(old_counts), max(old_counts)))
+print("P2 balanced support-bin profiles:", balanced_profiles,
+      "range", (min(balanced_counts), max(balanced_counts)))
+assert min(balanced_counts) >= 21 and max(balanced_counts) <= 25
+# P4-U: center 0 plus the exact short-cap Moser-pair containment restriction.
+n0 = sum(1 for s in combinations(LABELS,4)
+         if local_ok(0,set(s)) and ((1 in s) == (2 in s)))
+print("P4-U seed supports at center 0 (Moser-pair containment):", n0)
+assert n0 == 47
 # P4-S: centers 3..6, pin x in intS => class ∩ (intS - {c}) >= 1
 tot_s = {}
 for c in [3,4,5,6]:
@@ -52,4 +80,7 @@ for c in [3,4,5,6]:
     tot_s[c]=n
 print("P4-S seed supports per center:", tot_s, "total", sum(tot_s.values()))
 grand = tot_p2 + n0 + sum(tot_s.values())
-print("grand total card-11 seed placements:", grand, "; x4 deleted choices:", grand*4)
+m1_searches = n0 + 4 * (tot_p2 + sum(tot_s.values()))
+print("grand total card-11 seed supports:", grand,
+      "; M1 searches with P4-U deleted-label folding:", m1_searches)
+assert grand == 1171 and m1_searches == 4543

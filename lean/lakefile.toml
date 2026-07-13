@@ -30,3 +30,10 @@ name = "Erdos9796"
 
 [[lean_lib]]
 name = "Erdos9796Proof"
+
+# M1 ERASE eval gate as a compiled executable: the search primitives run as
+# native code instead of through the `#eval` interpreter. Diagnostic only —
+# proves nothing, no proof artifact imports it.
+[[lean_exe]]
+name = "erase_m1_gate"
+root = "Erdos9796Proof.P97.ErasedCertificate.ErasedNativeEvalGate"

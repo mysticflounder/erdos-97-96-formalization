@@ -1,11 +1,16 @@
 import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusBank
 import Erdos9796Proof.P97.RemovableVertexAxiom.ErasedPinRowResiduals
+import Erdos9796Proof.P97.ErasedCertificate.P4UClosure
+import Erdos9796Proof.P97.ErasedCertificate.P4SClosure
 
 /-!
 # Removable-vertex continuation branch
 
 This shard wires the residual exclusions and finite row/certificate handoffs
-used by the removable-vertex continuation argument.
+used by the removable-vertex continuation argument.  Every card-ten and
+card-eleven P2/P4 arm dispatches to a proved source consumer.  The complete
+P2 fleet, both P4 families, and this downstream target are target-built on the
+current working tree; global publication remains a separate repository gate.
 -/
 
 open scoped EuclideanGeometry
@@ -13,6 +18,7 @@ open scoped EuclideanGeometry
 namespace Problem97
 
 open SurplusCOMPGBank
+open CapSelectedRowCounting.SurplusCapPacket
 
 /-- The local non-surplus Moser-cap containment input supplies the `U2`
 package needed by the U5 interface for the same counterexample datum. -/
@@ -101,6 +107,58 @@ theorem u5ExactRadiusClassCard_of_erasedPinTriple
         fun y => dist p y = dist p q).card = 3 := by
   simpa [CounterexampleData.skeleton] using htriple.2
 
+/-- Card-eleven surplus-opposite erased-pin closure.  Its card-ten arm is
+discharged by the P4U fixed-seed bank. -/
+theorem surplusOppositeErasedPinTriple_cardEleven_residual_excluded
+    {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
+    (hK4 : HasNEquidistantProperty 4 A) (hgt : 9 < A.card)
+    (hMin : ∀ B : Finset ℝ², B.card < A.card →
+      B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False)
+    {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hend1 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False)
+    (hend2 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+    (hpin1 : ∀ {radius : ℝ} {x : ℝ²},
+      S.PinnedRightSurplusResidualAt radius x → False)
+    (hpin2 : ∀ {radius : ℝ} {x : ℝ²},
+      S.PinnedLeftSurplusResidualAt radius x → False)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x : ℝ²} (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hcard6 : S.surplusCap.card = 6)
+    (htriple : ErasedPinTriple A x
+      (S.oppositeVertexByIndex S.surplusIdx)) :
+    False := by
+  exact ErasedCertificate.false_of_surplusOppositeErasedPinTriple_of_cardEleven
+    hne hconv hK4 hM44 hcontain hcard6 hMin hx htriple
+
+/-- Card-eleven surplus-interior erased-pin closure.  Its card-ten arm is
+discharged by the P4S fixed-seed bank. -/
+theorem surplusInteriorErasedPinTriple_cardEleven_residual_excluded
+    {A : Finset ℝ²} (hne : A.Nonempty) (hconv : ConvexIndep A)
+    (hK4 : HasNEquidistantProperty 4 A) (hgt : 9 < A.card)
+    (hMin : ∀ B : Finset ℝ², B.card < A.card →
+      B.Nonempty → ConvexIndep B → HasNEquidistantProperty 4 B → False)
+    {S : SurplusCapPacket A} (hM44 : S.IsM44)
+    (hend1 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeLeftAt S.oppIndex1 radius rho x → False)
+    (hend2 : ∀ {radius rho : ℝ} {x : ℝ²},
+      S.EndpointEscapeRightAt S.oppIndex2 radius rho x → False)
+    (hpin1 : ∀ {radius : ℝ} {x : ℝ²},
+      S.PinnedRightSurplusResidualAt radius x → False)
+    (hpin2 : ∀ {radius : ℝ} {x : ℝ²},
+      S.PinnedLeftSurplusResidualAt radius x → False)
+    (hcontain : S.NonSurplusMoserCapContainment)
+    {x p : ℝ²}
+    (hx : x ∈ S.capInteriorByIndex S.surplusIdx)
+    (hpI : p ∈ S.capInteriorByIndex S.surplusIdx)
+    (hpErase : p ∈ A.erase x)
+    (hcard6 : S.surplusCap.card = 6)
+    (htriple : ErasedPinTriple A x p) :
+    False := by
+  exact ErasedCertificate.false_of_surplusInteriorErasedPinTriple_of_cardEleven
+    hne hconv hK4 hM44 hcard6 hMin hx hpI hpErase htriple
+
 /-- Categorized residual concrete erasure-witness production for the `IsM44`
 containment branch reduced to U5-style erased-pin triple circles.  The
 non-surplus interior cases are discharged by exact selected-count row
@@ -178,10 +236,22 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-opposite branch now has the exact U5 dangerous
         -- triple, selected candidate, exact radius class, and auxiliary
-        -- off-circle support vertices.  The remaining producer must supply the
-        -- rowwise confined classes or same-circle export, plus Mode A, or a
-        -- direct surplus-index contradiction.
-        sorry
+        -- off-circle support vertices.  The card-ten arm is handled by the P4U
+        -- bank; the card-eleven branch remains a classifier obligation.
+        by_cases hcard5 : S.surplusCap.card = 5
+        · exact
+            ErasedCertificate.false_of_surplusOppositeErasedPinTriple_of_cardFive
+              hne hconv hK4 hM44 hcontain hcard5 hxI
+              (by simpa [D] using htriple)
+        · have hgt5 : 5 < S.surplusCap.card := by
+            have hge5 := hM44.surplus_card_ge_five
+            omega
+          have hcard6 :=
+            surplus_card_eq_six_of_convexIndep_K4
+              S hconv hK4 hM44 hgt5
+          exact surplusOppositeErasedPinTriple_cardEleven_residual_excluded
+            hne hconv hK4 hgt hMin hM44 hend1 hend2 hpin1 hpin2
+              hcontain hxI hcard6 (by simpa [D] using htriple)
       · intro p hpI hpErase htriple
         rcases exists_u3FixedTriplePacket_of_erasedPinTriple
             (D := D) hxA
@@ -206,10 +276,23 @@ theorem isM44NonSurplusContainmentErasedPinTripleResidualsExcluded :
             ha1_notin_base, ha0_off, ha1_off⟩
         -- The direct surplus-interior branch now has the exact U5 dangerous
         -- triple, selected candidate, exact radius class, and auxiliary
-        -- off-circle support vertices.  The remaining producer must supply the
-        -- rowwise confined classes or same-circle export, plus Mode A, or a
-        -- direct surplus-index contradiction.
-        sorry
+        -- off-circle support vertices.  The card-ten arm is handled by the P4S
+        -- bank; the card-eleven branch remains a classifier obligation.
+        by_cases hcard5 : S.surplusCap.card = 5
+        · exact
+            ErasedCertificate.false_of_surplusInteriorErasedPinTriple_of_cardFive
+              hne hconv hK4 hM44 hcontain hcard5 hxI hpI
+              (by simpa [D] using htriple)
+        · have hgt5 : 5 < S.surplusCap.card := by
+            have hge5 := hM44.surplus_card_ge_five
+            omega
+          have hcard6 :=
+            surplus_card_eq_six_of_convexIndep_K4
+              S hconv hK4 hM44 hgt5
+          exact surplusInteriorErasedPinTriple_cardEleven_residual_excluded
+            hne hconv hK4 hgt hMin hM44 hend1 hend2 hpin1 hpin2
+              hcontain hxI hpI (by simpa [D] using hpErase) hcard6
+              (by simpa [D] using htriple)
       · have hlabelBase :
             ∀ T : Finset ℝ²,
               x ∈ T →

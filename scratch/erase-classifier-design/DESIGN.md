@@ -1,19 +1,28 @@
 # K-B-ERASE card-{10,11} finite-closure classifier — design (2026-07-12)
 
-Design only; no Lean edits. Branch `four-point-subpacket-reduction`. This is
-the "third classifier instance" both ERASE scoping audits converge on
+Implementation is complete on the current working tree.  The
+card-10 label-complete producer, all twenty P2 consumers described in §4.2,
+and both P4 consumers described in §4.3 are implemented, wired, and
+kernel-built.  At card 11, M1 and M2 are complete and the P4-U arm is fully
+certified, soundness-transported, wired, and kernel-built.  P4-S and P2 are
+also target-built through their native fleets, semantic dispatchers, closure
+theorems, residual consumers, and downstream `Continuation` target.  The
+exact-pin ERASE subtree is kernel-complete on the current working tree.
+A final cached `scripts/build-p2-certificates.sh` rerun passed all 16 bounded
+P2 batches and the 8410-job aggregate target.
+This is the "third
+classifier instance" both ERASE scoping
+audits converge on
 (`docs/audits/2026-07-11-erase-p2-remainder-blocker-audit.md`,
 `docs/audits/2026-07-12-erase-p4-route-scoping.md`), mapped from the committed
 K-B-END-GENERAL endpoint chain
 (`lean/Erdos9796Proof/P97/EndpointCertificate/`) and the K-B-PIN chain
 (`lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean`).
 
-Constraint honored throughout: `RemovableVertexAxiom/{Base, Continuation,
-ErasedPinRowResiduals}.lean` are owned by the in-flight ERASE-P2 redraft; all
-citations to them below are `git show HEAD:` reads.
-`ErasedPinRowResiduals.lean` does not exist at HEAD (verified); every design
-element that depends on the exact final per-row statements is marked
-{{UNVALIDATED}}.
+The ERASE-P2 redraft has landed.  Its exact statements are now validated
+against `RemovableVertexAxiom/ErasedPinRowResiduals.lean`; historical
+`git show HEAD:` line references below describe the design baseline and may no
+longer be current working-tree line numbers.
 
 ## 0. Hole surface designed against
 
@@ -32,16 +41,15 @@ Leaf: `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
 
 (verified at HEAD `Base.lean:9174-9188`).
 
-Post-redraft surface (PROVISIONAL, {{UNVALIDATED}} until the redraft lands):
+Post-redraft surface (VALIDATED from the landed source):
 
 - 20 per-row refutation theorems in the new
   `RemovableVertexAxiom/ErasedPinRowResiduals.lean` — goal `False`;
   hypotheses = ambient + five-input scaffold + `hK4` + `hMin` + the row's
   `(m,s,l,r)` exact-4 counts at a non-surplus center `p` through the erased
-  pin `x`. The exact row list (why 20, not the 26 realizable rows of
-  `scratch/erased-pin-row-truth/STATE.md`) is {{UNVALIDATED}}; this design is
-  keyed by `(side, center-family, signature)` and covers the full
-  26-realizable-row surface as a superset, so any landed subset is consumable.
+  pin `x`.  The landed list is nine count rows plus one terminal payload per
+  side.  The larger 26-row bank vocabulary remains useful because it contains
+  every landed row seed.
 - 2 P4 holes (HEAD `Continuation.lean:183/:211`, stated byte-identical after
   the redraft per the coordination note): direct `ErasedPinTriple A x p` at
   `p = S.oppositeVertexByIndex S.surplusIdx` (surplus-opposite apex) and at
@@ -123,14 +131,17 @@ replica of `localCandidateOK`; EMPIRICALLY VERIFIED, re-runnable):
 | family | centers | pin-compatible candidate supports | total |
 |---|---|---|---|
 | P2 rows | 7, 8, 9, 10 | 191 per center | 764 |
-| P4-U | 0 | 79 | 79 |
+| P4-U | 0 | 47 after Moser-pair containment | 47 |
 | P4-S | 3, 4, 5, 6 | 90 per center | 360 |
 
-Grand total 1203 seed placements; × 4 `deleted` choices ⇒ **≤ 4812 searches**
-worst case (versus 12 in K-B-PIN and 64 in K-B-END-GENERAL). Per-row
-dispatch shrinks the P2 share: a single `(side, center, sig)` cell contains
-only the supports realizing that row's signature (from 1 support for
-`(0,0,0,4)` up to 36 for `(1,0,1,2)`, times 2 centers × 4 deleted).
+Grand total 1171 containment-compatible seed supports.  The M1 domain has
+**4543 searches**: 3056 P2, 1440 P4-S, and 47 P4-U.  The P4-U DFS is
+independent of which support member is named `deleted`, so M1 folds that
+choice to one representative; the proof certificate quantifies over every
+eligible deleted label. Per-row dispatch can still shrink the P2 share: a
+single `(side, center, sig)` cell contains only the supports realizing that
+row's signature (from 1 support for `(0,0,0,4)` up to 36 for `(1,0,1,2)`,
+times 2 centers × 4 deleted).
 
 ### 1.3 What gets enumerated — card 10 branch
 
@@ -190,19 +201,32 @@ centers `{0, 3, 4, 5, 6, 7, 8, 9, 10}`, so fork **once, parametrically in
 ~5 places (`docs/audits/2026-07-11-endpoint-classifier-transport-map.md`,
 headline 3); the same 5 places parametrize.
 
-Cell batching (per native_decide theorem), proposed:
+Implemented evaluation and proof batching:
 
-- P2: one cell per `(side, center, sig, deleted)` or `.all`-folded per
-  `(side, center, sig)` — 13 sigs × 4 centers = 52 cells, each a Boolean
-  `List.all` over ≤ 36 supports × 4 deleted values.
-- P4-U: cells chunked over the 79 supports (deleted folded), ~4-8 cells.
-- P4-S: one cell per `(center, sig-chunk)`, ~16-24 cells.
-
-Total ≈ 75-90 `native_decide` obligations over ≈ 4.8k DFS searches, sharded
-like `EndpointNativePlacements/` (20 files, 64 theorems there; expect
-~30-60 shard files here). Enumeration-completeness lemmas ("every 4-mask with
-these bucket counts is in this cell's list") range over 2048 masks with
-counting only — kernel-pure `decide` is feasible and preferred for those.
+- M1's compiled `erase_m1_gate` executable evaluates one task per cell.  Its
+  complete 2026-07-12 run passed all 4543 cells in 845205 ms: P4-U 47/47,
+  P4-S 1440/1440, P2 3056/3056.
+- P4-U uses one closed `native_decide` theorem over all 47 supports and all
+  eligible surplus-interior deleted labels.  Semantic support-list and
+  deleted-list completeness are proved in `P4UPlacements.lean`.
+- P4-S is split into 128 independent `(center, deleted, chunk)` native leaves;
+  their aggregators, semantic dispatcher, closure final, and standalone
+  target all build.  The terminal and semantic dispatcher have approved axiom
+  closure (core + `Lean.ofReduceBool` + `Lean.trustCompiler`, no `sorryAx`).
+- P2 uses the same 128-leaf shape.  Its original numeric support partition had
+  between 0 and 65 active searches per leaf; the balanced support key now has
+  between 21 and 25.  Each leaf also constructs its support-independent
+  candidate domains once instead of once per support.  The equality back to
+  `erasedPlacementCheckAt` is proved in Lean.  A 23-search representative leaf
+  built in 715 seconds; `compiler.small 100` produced 714 seconds and was
+  rejected as noise.  `scripts/build-p2-certificates.sh` now drives resumable
+  batches containing at most eight explicit leaf targets, because Lake's jobs
+  setting is advisory rather than a hard process cap.  Its first complete
+  eight-leaf group took 549–1064 seconds per chunk (736 seconds average), so
+  the queue is ordered by chunk index to group like-cost tails instead of
+  making every batch wait on the slowest chunk.  `domain_count.py`
+  asserts both old/new shard ranges and the exact 1171-support/4543-search M1
+  totals.
 
 ### 2.2 decide vs native_decide
 
@@ -215,8 +239,10 @@ standard): the evaluated closure is the committed
 `CapSelectedNativeClassifier` code — ordinary verified Lean, no `unsafe`, no
 `@[implemented_by]`, no `@[extern]` (already carried through the K-B-PIN and
 K-B-END-GENERAL audits) — plus the parametric fork, which must preserve that
-property. Axiom surface after wiring: core axioms + `Lean.ofReduceBool` +
-`Lean.trustCompiler`, checked via `proof-blueprint axioms` at the leaf.
+property.  The 2026-07-13 evaluated-closure source scan passes.  A
+  P2 dispatcher and all right/left aggregate terminals report `propext`,
+  `Classical.choice`, `Lean.ofReduceBool`, approved `Lean.trustCompiler`, and
+  `Quot.sound`, with no `sorryAx`.
 
 ## 3. Soundness transport (analogue of transport-map items 4-7)
 
@@ -231,9 +257,15 @@ ErasedRowShellOK P blocker (c₀ pin deleted : Label) (sig) :=
   (row P c₀ ∩ moser).card = sig.m ∧ … (four bucket-count conjuncts) ∧
   deleted ∈ intS ∧ deleted ∈ row P 0 ∧
   (∀ q, blocker q ≠ q ∧ q ∈ row P (blocker q)) ∧
-  (∀ q ∈ row P c₀, blocker q = c₀) ∧
-  blocker deleted ≠ c₀        -- needed only when c₀ ≠ 0; see §3.1(7)
+  (∀ q ∈ row P c₀, blocker q = c₀)
 ```
+
+The earlier draft copied `blocker deleted ≠ c₀` from `PinnedShellOK`.
+The committed classifier and closure soundness destructure that conjunct only
+as an unused `_hdeletedBlocker`; neither local-candidate soundness nor
+closure-core extraction consumes it.  The ERASE shell record therefore omits
+it.  This matters because the full pin-compatible domain does not ensure that
+the chosen `row 0 ∩ intS` label lies outside the prescribed ERASE row.
 
 Item-by-item analogue of transport-map items 4-7:
 
@@ -300,27 +332,33 @@ Consumer-side chain per hole, at card 11 (all cited producers committed):
    `m` bucket — the transport lemmas must bridge the two conventions
    explicitly (this is bookkeeping, but it is the single most
    error-prone step; pin it with `decide`-checked label-set identities).
-5. Blocker system — mirror of
-   `exists_shellSystem_endpointBlocker_of_endpointEscapeLeft`
-   (`EndpointCertificate/BridgeAssembly.lean:240`): the overridden
-   `CriticalShellSystem` from `hMin`, overriding at `c₀` justified by the
-   erased-pin class's exactness; exactness transport = the L11 pattern
-   `exactAt_endpointBlocker` (`BridgeAssembly.lean:119`).
+5. Blocker system — **finite-map override, not a whole-class
+   `CriticalShellSystem` override.** `ErasedPinTriple` proves that the
+   prescribed row is an exact full four-point selected class, but it does not
+   prove that deleting every member of that class destroys every possible
+   four-class at `c₀`.  Therefore the endpoint lane's
+   `overrideExactSelectedClass` premise is unavailable here.  The implemented
+   M6 replacement (`ErasedCertificate/CardElevenBlocker.lean`) starts with the
+   minimal critical-shell system and defines the finite blocker to be `c₀`
+   on the prescribed row and the canonical critical-shell blocker elsewhere.
+   It proves no fixed points, blocker-row membership, and row-`c₀` routing
+   directly.  Exactness at `c₀` follows from the prescribed full
+   `SelectedClass`; exactness elsewhere reuses `exactAt_endpointBlocker`.
+   This supplies precisely the seed-independent final consumer
+   `false_of_closureCoreAlternative_of_canonical` without asserting an
+   unjustified geometric deletion theorem.
 6. Final consumer — `false_of_closureCoreAlternative_of_canonical`
    (`BridgeAssembly.lean:326`): takes `(L, F, hconv, hexact, hcore)`,
    twelve-branch, seed-independent, **reusable as-is** (its inputs mention no
    endpoint data).
-7. P4-U special case: the seed row IS row 0, so `deleted := pin` and the
-   `blocker deleted ≠ c₀` conjunct pattern changes (at `c₀ = 0` the pinned
-   lane's conjunct-8 analogue is vacuous/different). The shell record for the
-   U family drops that conjunct; the coverage proof consumes
-   `deleted ∈ row P 0` directly from `pin ∈ row P 0`. {{NEEDS_PROOF}} that
-   no other chain step needs conjunct 8 at `c₀ = 0` (in the committed chain
-   conjunct 8 is NOT consumed — transport map, conjunct table row 8).
+7. P4-U special case: the seed row IS row 0, so `deleted := pin` and
+   `deleted ∈ row P 0` is immediate.  The stale deleted-blocker inequality is
+   absent from every ERASE shell family: the committed soundness chain never
+   consumes it, including at `c₀ = 0`.
 
 ## 4. Bridge + dispatch
 
-### 4.1 Per-row consumer shape (the 20 P2 holes) {{UNVALIDATED}} statements
+### 4.1 Per-row consumer shape (the 20 P2 holes; statements validated)
 
 For each redrafted row hole `false_of_erasedRow_<side>_<sig>`:
 
@@ -342,70 +380,109 @@ contradiction against `intS` size 3 — cheap, no search).
 
 ### 4.2 Card-10 arm (P2 rows)
 
+**Implementation checkpoint (2026-07-12).**
+
+- `ErasedCertificate/CardTenProducer.lean` now contains the source-clean
+  label-complete producer
+  `false_of_erasedPinFixedSeed_of_cardTen_selectedClasses_{ccwHull,
+  reflectedCcwHull}`.  It assembles selected classes at all ten labels,
+  derives the relaxed-shape count/no-three/separation interfaces, and invokes
+  the committed 330-seed bank consumer.
+- The right terminal row `(2,1,0,1)` and left terminal row `(2,1,1,0)` are
+  instantiated end-to-end by
+  `false_of_{right,left}OneSidedErasedPayload_of_cardFive`.  These theorems
+  handle both ambient apex orientations and are wired into the public terminal
+  residual theorems in `ErasedPinRowResiduals.lean`.
+- The pure surplus-side rows `(0,0,0,4)` and `(0,0,4,0)` are discharged at
+  card 10 by a direct cardinality contradiction: their four-point selected
+  class is confined to the three-point strict surplus-cap interior.
+- The other sixteen count rows are instantiated through normalized right/left
+  label packages, row-specific private-mask extraction, and the existing
+  candidate-to-fixed-bank coverage theorems.
+- All twenty public residuals are now source-clean card dispatchers.  Their
+  only open children are the explicitly named card-11 residual declarations;
+  the kernel-mined spines confirm that the card-10 branches do not reach
+  `sorryAx`.
+
 Consumer: `false_of_erasedPinFixedSeedRelaxedShape_pointClasses`
 (`SurplusCOMPGBankGeometry.lean:10761`). The new work is the label-complete
 producer (ten-label sibling of `GeometryProducer.lean`) discharging its side
 conditions from the hole hypotheses at `A.card = 10`:
 
-- `hv/hwMask` (exact opposite-cap masks at `.v/.w`) — from the five-input
-  scaffold (endpoint + pinned exclusions force the `v/w` classes onto the
-  opposite caps). **Here the scaffold IS load-bearing.** {{NEEDS_PROOF}} —
-  producer lemmas exist in the pinned `m = 5` lane to imitate, but the
-  erased-pin variants are new.
-- `hprivate` (seed private mask = the row's class) — from the row counts +
-  label-completeness.
+- `hv/hwMask` (exact opposite-cap masks at `.v/.w`) — now PROVEN from
+  `hK4`, `hcontain`, and the exact opposite-cap cardinalities supplied by
+  `hM44`; the endpoint/pinned residual inputs are not needed on the completed
+  terminal card-10 path.
+- `hprivate` (seed private mask = the row's class) — PROVEN for all twenty
+  rows using the existing erased-row seed/private-mask producers.
 - `hcard/hself` (card-4 mask, self-exclusion at every non-v/w center) — from
   `hK4` + label-completeness (every selected class ⊆ A = the ten labels).
   This is exactly the (Q)-flavor confinement that is FREE at card 10 and
-  unavailable at card 11.
-- `hno3/hcounts/hsep/hsearchSep` — incidence facts with committed analogues
-  in the pinned producer lane. {{NEEDS_PROOF}} per fact.
-- `hseed : seed ∈ erasedPinFixedSeeds` — a bank-coverage lemma: every
-  realizable `(row, privateMask)` at card 10 maps to a bank seed.
-  {{NEEDS_PROOF}} (`decide` over the 330-seed list once the mask transport
-  is fixed).
+  unavailable at card 11.  PROVEN in the generic producer using
+  `exists_labelCompleteSupportClasses` and the bank's certified private-mask
+  cardinality/self facts.
+- `hno3/hcounts/hsep/hsearchSep` — PROVEN generically from same-radius
+  selected classes and the generated/reflected convex hull order.
+- `hseed : seed ∈ erasedPinFixedSeeds` — PROVEN for all bank-driven rows by
+  their existing `*_seeds_candidates_subset_fixed` theorems; the two pure
+  surplus-side rows close by cardinality before invoking the bank.
 
-### 4.3 The 2 P4 holes — honest coverage assessment
+### 4.3 The 2 P4 holes — card-10 and card-11 closure
 
-- **Card 11: YES, same instrument.** Seed centers `0` (apex,
+- **Card 11: COMPLETE ON THE CURRENT WORKING TREE.** Seed centers `0` (apex,
   `point_zero_eq_opposite`) and `3..6` (`intS`) are ordinary `Fin 11` seed
-  families (§1.2); the §3.1 chain applies unchanged. The classifier does
+  families (§1.2); the §3.1 chain is implemented. The
+  classifier need
   **not** produce `RowwiseConfinedQDeletedClasses`
   (`U3ToU5Terminal.lean:296`) and does not need to: Route A's 8-point
   confinement is bypassed because `FaithfulCarrierPattern` confines every
   class to `A` = the 11 labels by construction, which is what the census
-  vocabulary needs. The holes are discharged directly; the audit-frame
+  vocabulary needs. Once built, the holes can be discharged directly; the
+  audit-frame
   derivations currently sitting above the `sorry`s
-  (`Continuation.lean:150-211`) become unused on this path (leave them; the
-  frozen file is not ours to trim).
-- **Card 10: NO, not as-is.** The committed bank has only
-  `privateCenter ∈ {.Pw, .Pu}` (verified tally, §1.3) — no `u`- or
-  `s_i`-centered seeds. Two options: (i) extend the bank pipeline
-  (python seed generation + DFS exclusion runs + new bank shards) with
-  `u`/`s`-centered seeds — same relaxed-shape machinery, and the
-  label-complete producer of §4.2 covers the side conditions;
-  {{NEEDS_PROOF}} that the DFS actually kills the new seed trees;
-  (ii) a `Fin 10` fork of the native classifier + a card-10 carrier bridge —
-  strictly more Lean surface (new vocabulary, new `incidenceOK` producer).
-  Recommend (i); it stays inside one native-checked pipeline that already
-  has its soundness bridge. So: the same *instrument family*, but a distinct
-  card-10 sub-lane that is genuinely new work.
+  (`Continuation.lean:150-211`) are unused on this path.  Both residual
+  declarations call the corresponding card-eleven finals.  P4-S and P2 build
+  through their standalone terminals and shared downstream parent; the
+  exact-pin ERASE subtree is 0/1376 open.
+- **Card 10: PROVEN and wired.** The bank extension enumerates all 504
+  relaxed-shape seeds: 168 at `.u` and 112 at each of `.s1`, `.s2`, `.s3`.
+  The independent eight-process Python DFS found zero survivors
+  (EMPIRICAL generation gate).  Lean then partitions the complete bank into
+  378 seeds contradicted immediately by one of the two fixed-cap
+  cross-separation equations and a 126-seed compatible grid.  The grid has
+  72 P4-U seeds and 18 seeds at each P4-S center; `native_decide` proves all
+  seven grid shards empty (one P4-U shard and two nine-seed shards for each
+  P4-S center).  The membership, partition, mask-extraction, and dispatcher
+  theorems are ordinary Lean proofs around those native certificates.
+- `false_of_surplusOppositeErasedPinTriple_of_cardFive` and
+  `false_of_surplusInteriorErasedPinTriple_of_cardFive` construct the complete
+  P4 seed from the geometric triple and invoke that bank.  `Continuation.lean`
+  dispatches both parent arms by surplus-cap card: card five reaches these
+  proved consumers; card six reaches explicitly named card-eleven residuals.
 
-So the answer to "does the classifier cover the P4 holes": card-11 arm yes;
-card-10 arm requires the bank extension — a real gap, sized in §6 (M9).
+Thus both card-ten and both card-eleven P4 source arms are closed.  The
+card-eleven targets and their downstream parent build with the completed P2
+fleet.
 
 ## 5. Risk list
 
-- **R1 — scale vs the template.** Endpoint had ONE forced configuration
-  family (card 11 only, 64 placements); ERASE has ~20 rows × 2 sides + 2 P4
-  site families × 2 cards: ≈1203 card-11 seed placements / ≤4.8k searches
-  (§1.2) plus a card-10 lane. Compile-budget risk at the native gate;
-  mitigations: per-row cells, `.all`-folding, sharding (~30-60 files), and
-  the fact that non-hole sigs never need cells.
-- **R2 — the searches may not all kill (the load-bearing open question).**
-  There is currently NO empirical evidence that the committed detector suite
+- **R1 — scale vs the template.** Endpoint had one forced configuration
+  family (card 11 only, 64 placements); ERASE has 4543 M1 cells.  The compiled
+  full-domain gate completed in about 14.1 minutes, so search feasibility is
+  resolved empirically.  Both proof fleets are built.  P2 cold-build risk is
+  resolved operationally by 128 independent native leaves, a balanced 21–25
+  active-search range (formerly 0–65), hoisted candidate-domain setup, and a
+  restart-safe wrapper capped at eight explicit leaves.  Late uncached batches
+  took 13m04s–18m22s; the final cached 16-batch rerun passed.  Further cold-build
+  acceleration is optional and would require an externally generated
+  killed-tree/nogood witness with a small verified Lean checker, not another
+  compiler-option tweak.
+- **R2 — all card-11 searches kill: RESOLVED EMPIRICALLY.**  The complete M1
+  run returned true on all 4543 cells for the exact committed detector suite
   (duplicate-center / exact-off-circle / perp-bisector / convex-five-point
-  cores) kills every ERASE-seeded tree. What ERASE-P3-MAP's PROVEN-tier SAT
+  cores).  P4-U, P4-S, and P2 are kernel-connected through native certificates
+  and soundness theorems.
+  What ERASE-P3-MAP's PROVEN-tier SAT
   survivors mean, precisely: the census's count-level PROVEN cuts plus its
   global count-DFS do **not** refute these classes
   (`ep3map.py:36-44` — aliveness is decided by the census LOCAL cut
@@ -414,8 +491,8 @@ card-10 arm requires the bank extension — a real gap, sized in §6 (M9).
   facts the census engine does not model (the same relationship held in the
   pinned and endpoint lanes, whose trees all died). What they DO rule out is
   any count-only shortcut; every kill must come from the core suite, so
-  expect deep trees. The eval gate (§6 M1) is a STOP-condition experiment,
-  exactly like transport-map work item 1.
+  deep trees are possible.  M1 has now discharged the STOP condition; P4-U
+  P4-U, P4-S, and P2 are kernel-connected.
 - **R3 — Route-B witnesses bound what any cut may use.** The exact-rational
   card-10 witnesses `SO_t2_PuQ1`, `SI_c-s1_Q2vPu`
   (`scratch/erased-pin-row-truth/STATE.md`, P4 audit Route B) satisfy the
@@ -425,28 +502,30 @@ card-10 arm requires the bank extension — a real gap, sized in §6 (M9).
   `hcard` at all ten labels in the bank lane). A design that only uses the
   hole's local five-input surface is provably impossible; this is a
   correctness constraint on every new producer lemma, not just a warning.
-- **R4 — parametric detector fork.** 9 seed-center literals force the
-  parametric `c₀` fork (§2.1); its soundness proofs generalize the committed
+- **R4 — parametric detector fork.** RESOLVED for the implementation and P4-U
+  consumer.  Nine seed-center literals force the parametric `c₀` fork
+  (§2.1); its soundness proofs generalize the committed
   center-1 proofs over `c₀`. The endpoint fork (1 → 2) was audited as ~5
   literal sites; a missed site produces a detector firing at the wrong
   center whose verdict the transport cannot consume (this exact failure mode
   is documented in transport-map headline 3). Mitigate: never reuse the
   committed `hasPrefixCore` when `1 ∈ variableCentersAt c₀`.
-- **R5 — provisional hole statements.** The 20-row list, exact hypothesis
-  packaging, and the `Core scaffold` interface are {{UNVALIDATED}} until the
-  redraft lands; the count-convention bridge (§3.1 item 4) must be pinned
-  against the landed statements, not this design's reconstruction.
-- **R6 — card-10 producer gap.** §4.2's `hv/hw` exact-cap producers and the
-  bank-coverage lemma are new geometry-adjacent obligations
-  ({{NEEDS_PROOF}}); §4.3's card-10 P4 bank extension is new search compute
-  (needs Adam's sign-off under the current compute constraint).
+- **R5 — landed hole statements. RESOLVED.** The 20-row list, exact hypothesis
+  packaging, and terminal payload interfaces have been checked against the
+  landed source. `CardElevenShellBridge.lean` implements the orientation-aware
+  right/left count-convention bridge and both P4 shell bridges.
+- **R6 — card-10 coverage.** RESOLVED for P2 and P4: the generic producer,
+  exact-cap masks, every row-specific P2 bank instantiation, both pure-row
+  cardinality closures, the complete 504-seed P4 bank, and both P4 consumers
+  are proved and wired.  The card-eleven lane is now complete as well.
 - **R7 — non-finiteness / undecidability: none.** The domain is masks over
   `Fin 11` / ten roles; predicates are the committed decidable code. The
   only failure mode is a `false` verdict — a mathematical outcome, not an
   encoding one.
-- **R8 — build freeze.** No Lean eval can run until the P1b + P2-redraft
-  states settle and the single full-library gate passes (coordination note);
-  M1 below is gated on that.
+- **R8 — build freeze. RESOLVED for ERASE.** Card 10, card-11 P4-U/P4-S, the
+  complete P2 placement fleet, `P2Closure`, residual shard, and downstream
+  `Continuation` target build.  Axiom and exact-pin spine gates pass.  Global
+  publication remains separately gated by Front A and shared-tree state.
 
 ## 6. Work plan (ordered; entry gates; parallelism)
 
@@ -454,39 +533,55 @@ Entry gate G-A for everything: ERASE-P2 redraft lands (holes exist as
 statements) + build freeze lifts. G-B (compute): Adam approves the eval/sweep
 compute (matrix marks the P3 lane OPTIONAL/{{NEEDS_ADAM_INPUT}}).
 
-- **M1 — eval gate (STOP condition; riskiest first).** Implement the §2.1
-  defs + `#eval` every cell (no theorems yet). Any `false` ⇒ STOP: the
-  detector set does not close ERASE; route the failing sig to cut research
-  (ERASE-P3-SWEEP vocabulary) before any transport work. Optional pre-stage
-  under the freeze: a Python replica of the native DFS (EMPIRICAL only, no
-  Lean claim) to get an early read. Scope: 1 module + eval driver.
-- **M2 — `ErasedNativeClassifier.lean`**: parametric defs + shell records
-  (§2.1, §3). Scope: 1 module, small. Gate: M1 all-true.
-- **M3 — placement shards + per-cell dispatchers** (`ErasedNativePlacements/`
-  + dispatch module; §2.1 batching). Largest native surface; parallelizable
-  per family/center across agents once M2 lands.
-- **M4 — classifier soundness** (items 4-5 analogues, §3): mask roundtrip,
-  `localCandidateSpec`, `candidateRows` membership. Parallel with M3.
-- **M5 — closure soundness** (items 6-7 analogues, §3): parametric coverage
-  + assembly + per-family finals. After M3+M4.
-- **M6 — bridge staging/carrier**: count transport (§3.1 item 4), blocker
-  assembly mirror (§3.1 item 5), prescription helpers. Independent of M3-M5;
-  can start at G-A in parallel with M2.
-- **M7 — per-row consumers** (20 rows + 2 P4, card-11 arms; §4.1, §4.3).
-  After M5+M6; embarrassingly parallel per row.
-- **M8 — card-10 P2 lane**: label-complete producer sibling + bank coverage
-  lemma + `hv/hw` producers (§4.2). Independent of M2-M7 (bank machinery is
-  committed); can start at G-A.
-- **M9 — card-10 P4 lane**: `u`/`s`-centered bank seed generation (python) +
-  DFS exclusion runs + Lean bank shards + producer wiring (§4.3). Gate: G-B
-  (new search compute) + M8's producer layer.
-- **M10 — wiring + spine check**: fill the `ErasedPinRowResiduals.lean` and
-  `Continuation.lean` holes (file ownership released by then), then
-  `proof-blueprint spine` — the deliverable is the on-spine sorry reduction,
-  not the lemma bank.
+- **M1 — eval gate (COMPLETE 2026-07-12).** The compiled executable evaluated
+  the exact 4543-cell domain with eight Lean runtime threads and returned
+  P4-U 47/47, P4-S 1440/1440, P2 3056/3056 true in 845205 ms.
+- **M2 — `ErasedNativeClassifier.lean` (COMPLETE):** parametric definitions,
+  fixed P4-U rows, and all four shell records (§2.1, §3).
+- **M3 — placement certificates (COMPLETE):**
+  `P4UPlacements.lean` supplies the closed native theorem and complete semantic
+  support/deleted dispatch.  `P4SPlacements.lean` and its 128 leaves are built.
+  `P2Placements.lean` and its 128 balanced leaves are implemented and built.
+- **M4 — classifier soundness (COMPLETE):**
+  `ErasedClassifierSound.lean`, `ErasedClassifierCoverage.lean`, and
+  `CardElevenShellBridge.lean` cover the generic transport and the fixed-row
+  P4-U specialization.  P4-S and P2 semantic dispatchers build and are audited.
+- **M5 — closure soundness (COMPLETE):**
+  `ErasedClosureSound.lean`, `P4UClosure.lean`, `P4SClosure.lean`, and
+  `P2Closure.lean` extract the closure-core alternative and consume all twelve
+  geometric branches.  P2 and both P4 families are target-built.
+- **M6 — bridge staging/carrier (COMPLETE 2026-07-12):**
+  `CardElevenBridgeStaging.lean` implements exact-count-row →
+  `ErasedPinTriple`, the prescribed faithful carrier, canonical center/pin
+  label facts, and orientation-correct Moser/same/left/right bucket transport.
+  `CardElevenBlocker.lean` implements the sound finite-map blocker replacement
+  and exactness split described in §3.1 item 5, then packages complete
+  right/left count-row geometry and both P4-U/P4-S geometry families.  Thus
+  all twenty-two consumers have a proof-facing carrier package waiting for
+  the finite classifier result.  The serialized target build passed (8173
+  jobs), proof-blueprint indexed both modules, and the principal staging and
+  geometry-package theorems have exactly the core-only axiom surface
+  (`propext`, `Classical.choice`, `Quot.sound`).  M6 remains independent of
+  M3-M5.
+- **M7 — per-row consumers (COMPLETE):**
+  `surplusOppositeErasedPinTriple_cardEleven_residual_excluded` is wired and
+  spine-closed.  The P4-S and twenty P2 residual declarations are wired,
+  target-built, and absent from the refreshed open spine.
+- **M8 — card-10 P2 lane (COMPLETE)**: generic label-complete producer,
+  `hv/hw`, all eighteen bank-driven rows, and both pure surplus-side rows are
+  PROVEN and wired (§4.2).  Independent of M2-M7.
+- **M9 — card-10 P4 lane (COMPLETE)**: complete `u`/`s`-centered seed
+  generation, empirical DFS gate, optimized Lean routing and native shards,
+  producer proofs, and `Continuation` wiring (§4.3).
+- **M10 — wiring + spine check (COMPLETE ON CURRENT WORKING TREE):** all twenty
+  P2 and both P4 parent arms dispatch to card-ten/card-eleven consumers.
+  `Continuation` builds, aggregate/downstream axiom audits contain no
+  `sorryAx`, and the exact-pin subtree is kernel-complete.
 
-Parallel-dispatchable immediately after G-A: M1, M6, M8 scoping. M3/M4 fan
-out after M2. M7 fans out after M5+M6.
+Next dependency order: preserve the accepted generated tree under CTRL-GIT,
+then run the eventual repository-wide full-build/publication sequence after
+Front A closes.  A witness-checker redesign is optional follow-on performance
+work; it is not required for ERASE logical closure.
 
 ## 7. Source index (verification trail)
 
@@ -508,6 +603,16 @@ files; `git show HEAD:` for frozen files):
   `Census554/CapSelectedGeometry.lean:143/:157/:531`.
 - ERASE finite side: `ErasedPinFixedSeedDFS.lean:22` (+ center tally);
   `SurplusCOMPGBankGeometry.lean:10761`;
+  `ErasedCertificate/CardTenProducer.lean` (implemented card-10 producer and
+  terminal consumers); `ErasedCertificate/CardTenP4SeedDefs.lean` and
+  `CardTenP4Seed{P4U,P4S1,P4S2,P4S3,DFS}.lean` (complete P4 routing and native
+  certificate bank); `scripts/erased-pin-card-ten-p4-bank.py` and
+  `certificates/surplus/erased_pin_card_ten_p4_bank.json` plus
+  `certificates/surplus/reports/erased_pin_card_ten_p4_bank.md`;
+  `ErasedCertificate/ErasedNativeClassifier.lean`,
+  `ErasedClassifier{Sound,Coverage}.lean`, `ErasedClosureSound.lean`,
+  `CardElevenShellBridge.lean`, `P4UPlacements.lean`, and `P4UClosure.lean`
+  (card-eleven P4-U certificate, transport, and final consumer);
   `WitnessPacketInterface.lean:198/:205`; `SurplusM44Packet.lean:990-1010`;
   `U3ToU5Terminal.lean:208/:296/:310`.
 - Diagnostics: `scratch/erase-p3-map/{ep3map.py, inventory.json,

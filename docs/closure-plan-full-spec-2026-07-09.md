@@ -29,36 +29,38 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Current inventory (updated 2026-07-11)
+## Current inventory (updated 2026-07-13)
 
-Five declarations / 86 textual holes after the K-B-END route-(b) split
-(136ebb9b) and the K-B-END-LABEL closure (both m=5 endpoint holes proved,
-umbrella off the spine-open list; inventory verified by the 2026-07-11
-freshness audit and the post-closure spine re-mine):
+The current source surface is **36 `sorry`-carrying symbols / 80 textual
+holes**, grouped into two Front-A proof clusters.  The liveData case tree is
+still extracted into named, independently tractable on-spine helpers.  The 22
+ERASE declarations have source proofs and no longer contribute source holes;
+their P2 native and downstream target builds now pass on the current working
+tree and remain tracked separately from global publication.
 
-| # | Leaf | Current source | Textual holes | Front |
-|---|------|----------------|---------------|-------|
-| 1 | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean:2657` | 1 | A |
-| 2 | `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean:3525` | 79 | A |
-| 3 | `isM44PinnedSurplusGeneralMResidualsExcluded` | `RemovableVertexAxiom/PinnedSurplusGeneralM.lean` | 0 source sorries; target-build refresh gated by concurrent U1 errors | B |
-| 4 | `isM44EndpointGeneralMResidualsExcluded` | `RemovableVertexAxiom/Base.lean:9512` | 1 (`:9514`) | B |
-| 5 | `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom/Continuation.lean:107` | 4 | B |
+| # | Cluster | Current source surface | Symbols | Textual holes | Front |
+|---|---|---|---:|---:|---|
+| 1 | Shared-radius pair | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 | A |
+| 2 | liveData families | 35 named `liveData_*` helper theorems; `u1_largeCap_routeB_tail_liveData_false` itself is sorry-free | 35 | 79 | A |
+| **Total** | | | **36** | **80** | |
 
-Leaf 4 is the general-m endpoint leaf created by the split; the umbrella
-`isM44EndpointResidualsExcluded` calls it in the `m ≠ 5` branch (its own m=5
-holes were closed 2026-07-11, matrix row K-B-END-LABEL DONE), so the leaf is
-a current proof-spine obligation (matrix row K-B-END-GENERAL). `sorryAx` is the synthetic
-kernel marker reached through these declarations, not a seventh obligation.
+The pinned-surplus general-m and endpoint general-m leaves are closed and are
+not part of the current inventory (matrix K-B-PIN and K-B-END-GENERAL).
+`proof-blueprint symbols --with-sorry` reports exactly the 36 symbols above.
+The full P2 fleet, downstream ERASE targets, and target-specific exact-pin gate
+now pass on the current working tree.  The global `CTRL-GRAPH`/publication gate
+remains open for the 36 Front-A symbols and shared-tree reproducibility.
+`sorryAx` is the synthetic kernel marker reached through those Front-A
+declarations, not a 37th source obligation.
 
 Historical snapshot (audited 2026-07-09, build fingerprint `002b0247c64e`):
 five declarations / 87 holes; P97 spine 23/1827 open; P96 spine 27/1835
 open; endpoint umbrella then at `Base.lean:10070` with holes
 `:10097`/`:10119`.
 
-The 86 textual holes collapse to the five declarations above. The matrix
-decomposes them into producer families and also records non-`sorry`
-prerequisites such as Census554 cover verification and final publication
-gates.
+The matrix decomposes the 80 holes into producer families and also records
+non-`sorry` prerequisites such as Census554 cover verification and final
+publication gates.
 
 **Reproducibility checkpoint (dated 2026-07-09).** The focused pinned-surplus
 build was green, and proof-blueprint reported build fingerprint
@@ -181,22 +183,81 @@ frontier result, and Lean theorem source separately; requires passed build
 evidence; and rejects transition-time orbit loss, theorem-source drift, or
 evidence downgrade.
 
-The CEGAR refinement oracle now covers the formalized structural core rather
-than only this one static seed. The catalog contains all twelve alternatives
-in `GeneralCarrierBridge`; eleven are soundly detectable from a raw equality
-cube. The exact-off-circle alternative is explicitly disabled because a raw
-cube does not supply its required `ExactAt` premise. The eligible surface is
-nine unordered theorem families plus the convex five-point and convex
-rhombus/equilateral families, with both direct and reversed cyclic-order
-detectors. Every emitted record carries a minimized equality pattern,
-replayable row/flip closure paths, the exact Lean theorem and source hash, and
-its pattern-orbit map. Unordered cores emit unconditional sparse cuts. Ordered
-cores emit clauses scoped to the compatible boundary-order selector, becoming
-unconditional only when every valid order is excluded. Bank-motif refinement
-runs first; the structural scan runs exactly when the candidate has no new
-bank embedding.
+The checked working-tree CEGAR refinement oracle now covers the formalized
+structural core rather than only this one static seed. Its catalog contains all
+thirteen alternatives in `GeneralCarrierBridge`; twelve are soundly detectable
+from a raw equality cube. The exact-off-circle alternative is explicitly
+disabled because a raw cube does not supply its required `ExactAt` premise.
+The eligible surface is ten unordered theorem families plus the convex
+five-point and convex rhombus/equilateral families, with both direct and
+reversed cyclic-order detectors. Every emitted record carries a minimized
+equality pattern, replayable row/flip closure paths, the exact Lean theorem and
+source hash, and its pattern-orbit map. Unordered cores emit unconditional
+sparse cuts. Ordered cores emit clauses scoped to the compatible
+boundary-order selector, becoming unconditional only when every valid order is
+excluded. Bank-motif refinement runs first; the structural scan runs exactly
+when the candidate has no new bank embedding. The preservation-first
+oracle-13 transition described below has now activated this complete catalog;
+this is active-run provenance, not merely a working-tree capability.
 
-The oracle snapshot also freezes ten Lean source files and the built
+**Six-point two-pair collision, formalized 2026-07-13 UTC.** The exact
+iteration-1,203 recovery on support `{0,2,3,4,5,10}` produced nine equality
+generators and a checked Singular/Rabinowitsch certificate forcing either
+`4 = 5` or `5 = 10`. The independent generic Lean theorem
+`EqualityCore.six_point_two_pair_collision` proves that the corresponding
+roles force `D = E ∨ E = F`, and
+`not_realizes_of_sixPointTwoPairCollisionCore` rules out an injective planar
+realization. The detector replays all nine closure obligations and emits the
+complete 12-image profile orbit. This is a PROVEN structural exclusion, not a
+claim that its certificate has been banked or that the launch-pinned live
+oracle already uses it. Recovery and certificate provenance are preserved at
+`scratch/census-554/frontier_recovery_runs/run-20260713T030307Z-iter1203/`.
+
+**Offline scheduling experiment, 2026-07-12.** The preservation-safe study in
+`docs/audits/2026-07-12-census-554-structural-first-experiment.md` supports a
+reversible structural-first canary, not an in-place policy rewrite. Across two
+iteration-920 repeats, structural first reduced end-to-end wall time by
+4.21--4.61%, active solver-plus-refinement time by 14.11--14.45%, and learned
+cuts from 6,234 to 939 over 20 iterations. A clean 100-iteration comparison
+showed a 34.74% wall reduction. Preseeding all 23,250 row-feasible
+perpendicular-bisector templates was counterproductive and must remain off.
+These are empirical throughput results only: they do not determine how many
+iterations remain or establish closure. The experiment itself left the live
+bank-first run untouched.
+
+**Targeted bank-core replacement experiment, 2026-07-12.** The CPU-time study
+in
+`docs/audits/2026-07-12-census-554-perpendicular-core-replacement-experiment.md`
+replaced the 1,207 bank motifs already containing the proved unordered
+perpendicular-bisector core with their minimized structural cores. Across two
+order-swapped 100-iteration repeats, solver CPU improved by 5.75%, but total
+worker CPU regressed by 2.36% because the wrapper recomputed the replacement
+map and learned more dynamic structural cuts. Therefore the current wrapper is
+not a production transition candidate. The digest-pinned cached follow-up then
+passed the same two-order gate: solver CPU improved by 5.32% and total worker
+CPU improved by 2.73%, with byte-identical CNF and zero same-treatment database
+differences. Status was **CPU-GATE PASS** for the exact frozen 5,836-row bank.
+The preservation-first production transition described below has now
+snapshotted the cache in a private successor, bound its digest and contract to
+resume metadata, and exercised it live. A changed bank still requires
+regeneration and a fresh audit.
+
+**Production transition, 2026-07-12.** The required preservation-first switch
+has now completed. The bank-first source stopped cleanly at iteration 1,873
+with 2,215,432 dynamic records and remains available with two independently
+validated rollback snapshots. Transition replay imported all 2,215,432
+records, with zero seed collisions and zero inherited order-conditional cuts,
+into
+`scratch/census-554/separation_probe_runs/run-20260712T091653Z-structural-first-iter1873`.
+The successor persists `refinement_order=structural-first`, keeps the bulk
+preseed disabled, uses the same 5,836-row bank and seed, passed SQLite integrity
+and an independent ordinary-probe replay, and then committed multiple live
+structural-only refinements. The exact rollback and validation record is
+`scratch/census-554/transition_snapshots/20260712T091653Z-bank-first-stopped/README.md`.
+The separately changing mutable bank was intentionally not merged into this
+scheduler-only handoff.
+
+The active cached-run oracle snapshot freezes ten Lean source files and the built
 `GeneralCarrierBridge.olean` (SHA-256
 `9104b9a9d466801ab0894e5e2ff993d3ec91cbee4411ffb41c3b52342e09b96b`).
 `lake-build Erdos9796Proof.P97.Census554.GeneralCarrierBridge` passed with
@@ -206,15 +267,202 @@ source snapshots, build artifact, and axiom result are evidence-bound by the
 oracle contract, and transition replay fails closed on structural provenance
 conflicts or algebra/structural provenance collisions.
 
+The thirteen-alternative successor contract freezes eleven Lean source
+files. Its focused aggregate build passed with proof-blueprint build
+fingerprint `bd78491c38fd`; the resulting `GeneralCarrierBridge.olean` has
+SHA-256
+`b4a37e979bc93b843d5f3c5d8822c6563e924b0252b73910f085ed2b610958fb`.
+The new core consumer and aggregate bridge axiom audits both report exactly
+`propext`, `Classical.choice`, and `Quot.sound`. Oracle contract SHA-256
+`5040043d196154501086163699026d48a2d9be64083fbec8c059b38656471b5d`
+now binds these facts into the active successor.
+
 A second preservation-first transition published
 `scratch/census-554/separation_probe_runs/run-20260711T204242Z-40533-f03a883e`
 with all 1,602,162 dynamic records retained, 156,278 static instances,
 1,758,440 total instances, and zero target collisions. Its independent SQLite
 reopen returned `integrity_check=ok` and the exact dynamic-record count. The
-new probe is active with a four-hour wall budget and 5,000-refinement ceiling,
-holds the run lock, and checkpoints every iteration. Treat its `progress.json`
-as the live status surface rather than copying a quickly stale iteration count
-into this plan.
+probe ran with a four-hour wall budget and 5,000-refinement ceiling and
+checkpointed every iteration. It is now the stopped, preserved bank-first
+source for the structural-first transition recorded above; do not mistake its
+historical `progress.json` for current process state.
+
+**Cached production transition, 2026-07-13 UTC.** The stopped structural-first
+source was migrated into
+`scratch/census-554/separation_probe_runs/run-20260713T015318Z-cached-perp-bank5836-from-iter1179`
+under the source workdir lock. All 2,263,978 source records were preserved:
+2,261,836 were imported as dynamic records and 2,142 were exact collisions
+with the successor's 143,500-instance seed surface. The target retained the
+same 5,836-row bank and seed, and bound the workdir-local cache SHA-256
+`0a24950c5feeb41e4a214a7deebd69865e1eca662b08dcc5e338391e82b3b9ff`
+to its run metadata. Its bank/cache hashes matched, SQLite returned
+`integrity_check=ok`, exact reopen found 2,261,836 dynamic records, all focused
+transition tests passed, and no staging or migration spool remained after
+atomic publication. The source checkpoint/WAL/SHM hashes were rechecked after
+publication and the source remains the immediate rollback. The durable record
+is
+`scratch/census-554/transition_snapshots/20260713T015318Z-cached-perp-bank5836/README.md`.
+
+**Oracle-13 production transition, 2026-07-13 UTC.** The cached source stopped
+cleanly at iteration 813 with 2,304,034 dynamic records and
+`status=interrupted`. Under its workdir lock, transition replay reconstructed
+all 2,304,034 records with zero target seed collisions and retargeted 88,350
+structural records to the 13-family contract. The atomically published target
+is
+`scratch/census-554/separation_probe_runs/run-20260713T054559Z-oracle13-from-iter813`.
+It starts from 143,500 static seeds and 2,447,534 total exclusions, binds cache
+SHA-256
+`bbd7b6aa6942b0f1b2c2c8da2365aa8a63d69a5f32edbbef7e07ddac9dbd4db0`,
+and binds oracle contract SHA-256
+`5040043d196154501086163699026d48a2d9be64083fbec8c059b38656471b5d`.
+Independent reopen returned `integrity_check=ok` and the exact dynamic count;
+all artifact hashes matched, the source hashes rechecked, and no transition
+staging or union spool remained. The source and its byte-exact clone remain
+rollback, with full evidence at
+`scratch/census-554/transition_snapshots/20260713T050037Z-oracle12-stopped-iter813/README.md`.
+
+**Oracle-13 terminal residual and mining handoff, 2026-07-13 UTC.** Oracle-13
+exited cleanly at 00:54 PDT with `status=combined-frontier`, iteration 316,
+2,464,637 total exclusions, and 4,440.017 seconds of cumulative elapsed time.
+The formalized structural scan found no applicable core for the surviving
+direct order (internal index 43); it did not report UNSAT. `result.json`,
+`combined_frontier.json`, and `progress.json` are byte-identical with SHA-256
+`63f69c20f5c166493a8bdd194c62d51b399d893d35fadb8341b74b8c7b918cad`.
+An independent consumer recomputed `cube_ok`, the direct order identity and
+labels, and the order/cube compatibility against the exact 5,836-row frozen
+bank. Full and quick SQLite integrity checks returned `ok`, and neither the
+checkpoint nor workdir lock retained a live handle. This is a terminal result
+for the bounded oracle invocation, but it is a residual cube requiring mining,
+not a Census554 closure result or geometric counterexample.
+
+The generation-bound consumer
+`scratch/census-554/frontier_mining_runs/run-20260713T081430Z-54070-30351c36`
+completed with `status=certified` after 905.431 seconds. At minimum support 6,
+Flux checked 158 of 178 candidates and the two-worker local share checked 20;
+one selected motif survived exact shrinking and then passed certificate
+structure, generator fidelity, and the exact Fraction identity gate. The
+certified-artifact SHA-256 is
+`7f8ad66760da4454785196771e2250491e1cddc03e9a4946f4a22e29ca8e47f6`.
+After an independent exact replay and a fresh canonical-novelty check against
+the then-current 5,898-row bank, the sole guarded publisher banked it as
+`pat_05898`. This is a certified new exclusion and useful closure progress, not
+coverage or a theorem by itself.
+
+**Current operational split, 2026-07-13 02:53 PDT.** These are separate lanes
+and must not be described as one "live oracle":
+
+1. Oracle-13 is **TERMINAL-COMBINED-FRONTIER**. Its tmux session exited, its
+   final artifacts passed the independent generation, cube/order, hash, lock,
+   and SQLite checks above, and it produced neither checked UNSAT nor a closure
+   theorem.
+2. The frozen residual consumer is **CERTIFIED-AND-PUBLISHED**. It exited after
+   producing one exact motif; no consumer process remains. The motif passed a
+   second current-bank novelty check and was published only through the sole
+   guarded writer as `pat_05898`.
+3. The stopped iteration-813 cached source and rollback clone remain
+   **STOPPED-BOUNDED**. Never resume either concurrently with a successor.
+4. The mutable-bank `frontier_loop.py` is live under the single driver lease in
+   tmux `census554-loop`. The bank has 5,916 rows, SHA-256
+   `ed1e86710748fe2e6b8298557aaf07a53a272b07accfb31dcbccc17ff1e12dbd`.
+   Iteration 690 reached a genuine frontier, mined 14 minimal `k=7` patterns,
+   certified one `multi_pair` motif, failed the other 13, and banked the success
+   as `pat_05897`. The driver was then stopped after that atomic boundary,
+   `pat_05898` was published, and the driver restarted from the new generation;
+   it later stopped outside a bank transaction for a second guarded publication.
+   Four independently exact-verified speculative motifs were fresh against the
+   then-current bank and became `pat_05899` through `pat_05902`. A later
+   four-record exact batch from attempt 1,475 passed the same current-bank and
+   sole-writer gates and became `pat_05903` through `pat_05906`. Seven more
+   exact records from attempt 1,486 became `pat_05907` through `pat_05913`
+   under the same gates. Its hard rank 1 later passed a 1,380-second
+   certification and the publisher's exact Fraction gate as `pat_05914`; the
+   last attempt-1,683 candidate became `pat_05915`. After each transition the
+   publisher exactly validated every admitted certificate and no transaction
+   journal remained. The sole driver restarted from the 5,916-row generation
+   and had replayed through iteration 23 at this snapshot.
+5. Mine-only work is pipelined but cannot publish. A complete generation-bound
+   scan checked all 291 iteration-690 `k=7` candidates on flux and the
+   idle-gated MacBook, finding 73 heuristic dead candidates with zero worker
+   errors. The remote greedy-shrink reached a fixed point after four complete
+   rounds and 5,108 deletion trials with zero worker errors, retaining 73
+   canonical candidates. Thirteen are exact canonical matches for the 14 live
+   certification patterns; one additional candidate strictly strengthened the
+   remaining live pattern by removing one equality center, but subsequently
+   failed exact certification and was not admitted to the pending store. A
+   four-core local producer solved an immutable iteration-690 CNF/bank snapshot,
+   clause-checked every SAT model, validated `cube_ok`, and learned compact
+   one-hot-equivalent exclusions for models hit by frozen-bank embeddings. It
+   exited cleanly at its one-hour wall limit after 1,876 diversified models,
+   1,729,607 learned speculative pattern instances, and seven preserved
+   model-checked frontiers at attempts 560, 908, 1,475, 1,486, 1,510, 1,511,
+   and 1,683. The two support-6 candidates from each of attempts 560 and 908
+   passed exact certification, a fresh 5,899-row canonical-novelty check, and
+   sole-writer publication as `pat_05899` through `pat_05902`. Attempt 1,475
+   had no dead support-4/5 pattern; four support-6 hits shrank to four distinct
+   candidates in two complete rounds, passed exact certification and a fresh
+   bank recheck, and were published as `pat_05903` through `pat_05906`.
+   Attempt 1,486 likewise had no dead support-4/5 pattern; eight support-6 hits
+   reached a fixed point after three complete shrink rounds and entered the
+   two-hour exact queue after proving distinct from both the current bank and
+   the attempt-1,475 batch. Seven passed exact certification and a fresh
+   5,907-row novelty check and were published as `pat_05907` through
+   `pat_05913`. Rank 1 later passed exact certification, remained novel
+   against the 5,914-row bank, and was published as `pat_05914`. Attempts
+   1,510 and 1,511 are now covered by all four
+   attempt-1,475 motifs. Attempt 1,510's four shrunk candidates are exact
+   canonical duplicates of `pat_05904`, `pat_05905`, `pat_05906`, and
+   `pat_05903`, so no redundant exact jobs were submitted; a direct
+   all-AUTOS containment check found the same four motifs in attempt 1,511.
+   Attempt 1,683 was the only remaining uncovered frozen frontier. It had no
+   dead support-4/5 pattern; one of 202 support-6 candidates was heuristically
+   dead, shrank twice and then fixed after 48 error-free deletion trials, and
+   remained distinct from both the current bank and the attempt-1,486 batch.
+   Its exact job passed with `kill=pair:7-9`; the publisher's Census-AUTOS
+   key correctly distinguished it from a broader unlabeled-store digest match
+   and banked it as `pat_05915`. Thus all seven frozen frontiers are now mined,
+   covered by newer rows, or exactly published.
+6. A fresh four-core successor
+   `cube_prefetch_runs/run-20260713T093813Z-iter690-bank5914-rebase` is live.
+   It reuses the immutable 5,897-row CNF but matches every candidate against a
+   separately hashed 5,914-row bank snapshot, so all 17 post-CNF motifs are
+   filtered before a frontier can be emitted. At 02:53 PDT it had checked 516
+   models, learned 612,895 bank-pattern exclusions, and found no frontier. The
+   authoritative bank has since added `pat_05914` and `pat_05915`, so every
+   future candidate still requires a fresh 5,916-row recheck. The run remains
+   read-only and capped at four cores, one hour, 2,048 attempts, and eight
+   frontiers.
+7. The retry drainer remains a separate resumable certification operation. Its
+   running in-memory pass began from 105 failures, selected 87 retries, and
+   confirmed 79 dead. A current-bank audit later proved that all 16 atomic
+   records already in `retry_certified_pending.d` are exact Census-AUTOS
+   duplicates of `pat_05868` through `pat_05883`; the 41,004,168,111 bytes of
+   certificate payload therefore require no republication. The durable mapping
+   is `retry-certified-pending-current-bank-audit.json`. That audit also exposed
+   a liveness-only deduplication bug: the store and retry selector used the
+   broader arbitrary-relabeling key rather than the bank's AUTOS key. Two
+   bank-distinct failed motifs had been suppressed solely by that coarser key;
+   both passed a fresh exact deadness recheck. The store now collision-safely
+   preserves broad-isomorphic/AUTOS-distinct records, the next retry scan uses
+   the bank identity, and the 131-test Census-554 suite passes. Evidence and the
+   two recovered patterns are in
+   `retry-autos-dedup-recovery-20260713.json`. The already-running pass retains
+   its old in-memory selection; a fresh pass is required to exercise the fix.
+8. Flux's 14 mine slots are the dependable remote baseline. MacBook slots are
+   opportunistic and exist only while its idle gate is open. This host runs the
+   two-hour/high-memory certification and local fallback lanes; four local cores
+   produced the bounded speculative run above. At 02:08 PDT the post-run audit
+   showed about 55.8 GB immediately free, 95% system memory availability, no
+   throttled pages, and 33.69 MB of stable swap use. Cube generation need not
+   pause during certification while repeated audits retain comparable headroom;
+   do not describe the current host as having literally zero swap activity.
+
+Before launching or transitioning another heavy oracle, pass `CTRL-RESOURCE`:
+enumerate native Lean evaluation, Singular retry/frontier workers, mutable-bank
+mining, speculative producers, and theorem-oracle runs. The local worker is
+cert-only with four slots; a system memory guard caps any one Singular at 64 GB
+and intervenes on memory pressure. Flux and the MacBook are mine-only. Resource
+headroom and live process ownership must be rechecked before changing these
+limits; a stale heartbeat or pid file is not capacity evidence.
 
 This mixed-source machinery is valid for externally trusted CEGAR exploration,
 not yet for final Lean publication. Python detections and boundary-order tests
@@ -581,29 +829,28 @@ corresponding closure-matrix gate, not by prose completion claims.
    necessity bridge, step-2 cover-core replay, and step-3 cover theorem are
    kernel-checked. **Status: OPEN (matrix A11-CONSUME).**
 
-### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, mapped 2026-07-09)
+### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, refreshed 2026-07-12)
 
-- All 79 case sorries (lines 3792–5887) live inside **one** declaration:
-  `u1_largeCap_routeB_tail_liveData_false` (line 3525) — leaves of a nested
-  ordered-subcube case tree over source-point identity and label
-  permutations. The exact decomposition is 24 `q = t2[0]` ordered-subcube
-  leaves, 24 `t1 = t2[0]` source-slot leaves, 24 `t3 = t2[0]` source-slot
-  leaves, and 7 terminal center branches (`q`, `t1`, `t2`-named,
-  `t2`-row-failure, `t3`, `u`, fresh). Matrix rows LIVE-* own these families;
-  a lower-level agent should factor one consumer per orbit family rather than
-  patch 79 leaves independently. The t1 band is not one polarity: six holes
-  are the positive `ht1Row_l1` branch when the source slot is `l1 = t1`, and
-  the other eighteen are negative `ht1Row_l1` branches. Matrix LIVE-T1
-  therefore requires two consumers, not one overgeneralized lemma.
+- P1b moved the 79 case holes one-for-one into **35 named on-spine helper
+  theorems**. `u1_largeCap_routeB_tail_liveData_false` itself is now
+  sorry-free and consumes those helpers. The exact decomposition remains 24
+  `q = t2[0]` ordered-subcube leaves, 24 `t1 = t2[0]` source-slot leaves, 24
+  `t3 = t2[0]` source-slot leaves, and 7 terminal center branches (`q`, `t1`,
+  `t2`-named, `t2`-row-failure, `t3`, `u`, fresh). Matrix rows LIVE-* own
+  these families. The t1 band is not one polarity: six holes are the positive
+  `ht1Row_l1` branch when the source slot is `l1 = t1`, and the other eighteen
+  are negative branches. Matrix LIVE-T1 therefore requires two consumers,
+  not one overgeneralized lemma.
 - The kernel spine additionally shows leaf 2's compiled proof reaching
   leaf 1 (`DoubleApexOffSurplusSharedRadiusPair`) through the
   `false_of_center_p_t2_t20 → … → exists_removableVertex_of_twoLargeCaps`
   chain, so closing Front A requires BOTH leaf 1 and the 79 case leaves (or
   a refactor of the case tree).
-- The declarations at lines 6075/6127 are thin re-exports into
-  `Erdos9796Proof.P97.U1LargeCapRouteBTail`, not duplicate obligations. Within
-  the leaf-1 declaration/export pair, the only proof hole is at line 2702;
-  this does not discount the 79 holes in leaf 2.
+- The namespace-level exports remain thin re-exports, not duplicate
+  obligations. Within the shared-radius declaration/export pair, the only
+  proof hole is the one in
+  `DoubleApexOffSurplusSharedRadiusPair`; this does not discount the 79 holes
+  in the liveData helper family.
 - **The card-11 handoff is not wired**: `capProfile_eq_554_of_card_eq_eleven`
   terminates in profile facts ((5,5,4), interiors (3,3,2), and the
   `MultiCenter/CapProfile.lean` vocabulary translations) with no further
@@ -624,12 +871,116 @@ acceptable to add a new `sorry` or repeat a certificate search without one.
 Evidence sources: `scratch/census-12-gate/STATE.md` and
 `census/candidate_d_probe/report.md`, digested 2026-07-09.
 
+**AHEAD-DEC — DONE 2026-07-13.** Adam explicitly authorized head-only
+card-12--14 narrowing as parallel research alongside Census554/A11. This
+replaces the 2026-07-12 defer-until-A11-outcome default. The authorization
+opens `AHEAD-SPEC` and lightweight deterministic preflights immediately; it
+does not by itself transfer the active heavy-compute lease from
+`CTRL-RESOURCE`.
+
+The authorized envelope is:
+
+- proof-tier runs use only PROVEN cuts; CONJECTURED cuts may appear only in a
+  separately labeled exploratory appendix;
+- no AHEAD-N12/N13/N14 run starts until `CTRL-RESOURCE` is explicitly assigned
+  to AHEAD, after which runs are serialized to one labeled profile at a time,
+  use at most four workers, nice long-lived processes, and publish an immutable
+  pre-run manifest with wall, bank-growth, and shape-staleness stops;
+- finite cover, SAT, and sampling results retain their exact empirical scope
+  and do not become geometric closure claims without the Lean necessity and
+  cover-replay chain; and
+- no named card-at-least-15 residual may be introduced at this stage. Such a
+  residual is permitted only after `AHEAD-COVER` is proved, and then only when
+  `AHEAD-CONSUME` introduces it together with its immediate spine consumer.
+
+**First permanent AHEAD-SPEC checkpoint, 2026-07-13.**
+`census/card_head/run_manifest.py` now defines an immutable pre-run manifest
+and freezes the exact post-SUB2 PROVEN cut contract at SHA-256
+`8e067c226a9e5fec0825d0f7461d84af3aca19baaba52d6faafcbd7d8be505cf`.
+Validation pins one of the 3/6/10 authorized labeled profiles, source-file
+digests, artifact paths, at most four workers, positive niceness, and the
+wall, bank-growth, and consecutive-shape-staleness stops; exclusive creation
+refuses to overwrite an existing manifest. The three profile tests and six
+manifest tests pass. This is an operational preflight, not a geometric proof:
+at this first checkpoint the candidate-count fixtures and permanent runner
+port remained open, and no heavy AHEAD census had launched.
+
+**Second permanent AHEAD-SPEC checkpoint, 2026-07-13.**
+`census/card_head/candidate_surface.py` is the cardinality-generic port of the
+historical per-center `all` admissibility layer, now correctly classified as
+post-SUB2 PROVEN. The committed `candidate_count_fixtures.json` exhausts all
+19 labeled profiles: 254 profile/center instances and 106,755 candidate
+classes. All three card-12 profiles reproduce the historical counts exactly,
+and every card-12--14 count independently matches the corresponding closed
+combinatorial formula. The order-free proxy drops `s >= 3` but deliberately
+does not encode or decide the position of an `s = 2` class.
+
+`run_manifest.py` now constructs the sole admitted command as the niced
+permanent runner entrypoint rather than accepting an arbitrary command.
+`runner.py` re-hashes the complete required source set, regenerates and checks
+the selected fixture, and reports the finite evidence scope. Its `execute`
+entrypoint is intentionally fail-closed until the permanent CEGAR engine
+adapter lands and `CTRL-RESOURCE` is explicitly transferred to AHEAD. The full
+card-head suite is 16/16 passing. No heavy AHEAD process was launched, and this
+checkpoint is still finite-abstraction infrastructure rather than coverage or
+geometric closure.
+
+**Third permanent AHEAD-SPEC checkpoint, 2026-07-13.**
+`census/card_head/sat_encoding.py` ports the historical one-hot/C2/C4 and raw
+pattern-exclusion CNF onto the permanent generic candidate surface. For the
+(6,5,4) card-12 profile the empty-bank base is exactly 37,310 variables and
+297,119 clauses, matching the historical `654_all` encoder; the representative
+(5,5,6) card-13 and (5,5,7) card-14 bases are pinned at
+63,966/635,654 and 101,122/1,210,260 variables/clauses respectively.
+
+The five card-12 encoding gates pass: an empty bank is SAT with its decoded
+cube independently accepted by `cube_ok`; excluding that full cube changes the
+witness; forced C2, forced C4, and forced submask violations are UNSAT with all
+three CaDiCaL DRAT proofs independently accepted by `drat-trim`; and the free
+submask instance remains SAT outside the exclusion. These are encoding smoke
+results, labeled EMPIRICALLY VERIFIED within the finite CNF, not coverage.
+The suite is now 22/22 passing. `runner.py execute` remains fail-closed because
+the CEGAR mining/certification adapter, historical-bank replay, and explicit
+`CTRL-RESOURCE` transfer are still open. No AHEAD census was launched.
+
+**Fourth permanent AHEAD-SPEC checkpoint, 2026-07-13.**
+`census/card_head/historical_bank.py` performs a read-only structural replay of
+the current historical `654_all` index. The committed report
+`historical_654_all_structural_audit.json` pins bank SHA-256
+`e65e00a1a8ac900a5608061d135fb3b46c77f79b0c78533c775119816eeb8c04`.
+All 256 bank rows are distinct profile-automorphism orbits; their 20,610
+labeled instances are candidate-compatible under the permanent post-SUB2
+surface; all 159 role-blind shape labels recompute; and all 256 referenced
+certificate files exist and agree with the bank's path inventory.
+
+This is `PASS_STRUCTURAL_ONLY`, not certificate replay. The referenced
+certificate payload totals 9,233,993,303 bytes. A fresh exact-identity verifier
+was started, found to be unsuitable as a lightweight concurrent preflight, and
+stopped before it could contend with the active resource lane. Consequently
+the permanent report says `certificate_identity_replay: NOT_RUN`; file
+existence and the old recorded verifier result are not promoted to a current
+proof. The suite is 26/26 passing. The CEGAR mining/certification adapter,
+fresh certificate replay, and `CTRL-RESOURCE` transfer remain open, and the old
+bank remains nonterminal/noncoverage.
+
+**Current decider status, 2026-07-12.** ATAIL-SUB2 is PROVEN: the exact
+rational certificate, independent checker, adversarial audit, and the Lean
+theorems `ATailSub2.sub2H_left_unsat` / `sub2H_right_unsat` passed their stated
+gates. This enlarges the PROVEN cut set but does not close the tail. ATAIL-Q3
+is the next decider; any surviving Q3 surface still feeds ATAIL-FORCE rather
+than becoming a closure claim by itself.
+
 Cap profiles at card 12 (sum 15, parts ≥ 4, at least two parts ≥ 5):
 (6,5,4), (5,6,4), (5,5,5); {4,4,7} excluded (STATE.md:33-45). Only (6,5,4)
-was measured ("654_all"; the "_all" cut set includes one CONJECTURED
-narrowing, STATE.md:192-208). Readout = **no observed convergence** over the
-measured 65+ iterations: 256 bank rows, 158 window shapes before the two
-offline full-cube additions, and 20,322 pre-addition orbit instances; the raw
+was measured ("654_all"; at run time the "_all" cut set included one
+CONJECTURED narrowing, STATE.md:192-208). That narrowing, the order-free
+`s <= 2` proxy used only to drop `s >= 3`, is now PROVEN post-SUB2 by
+`ATailSub2.sub2H_left_unsat` / `sub2H_right_unsat`. This retrospective tier
+upgrade does not make the old run terminal or permit its pre-manifest encoding
+to be reused without fidelity validation. Readout = **no observed
+convergence** over the measured 65+ iterations: 256 bank rows, 158 window
+shapes before the two offline full-cube additions, and 20,322 pre-addition
+orbit instances; the raw
 evidence is `iters12_654_all.jsonl`, `cegar12_654_all.log`, and
 `run_census12_654_all.log`; those underlying artifacts, not a volatile plan
 line range, are the authoritative digest source.
@@ -645,9 +996,10 @@ depth; (5,6,4) was deliberately unmeasured (STATE.md:47-52).
   Sampled evidence is n=13 300/300 dead and n=14 160/160 dead, with observed
   kills localizing to at most eight-point windows
   (`census/candidate_d_probe/report.md`, sections 3 and 5.C). Against that,
-  the sole n=12 profile run did not
-  converge, used a cut set containing a CONJECTURED exclusion, and omitted two
-  labeled profiles. A head census is therefore an expensive narrowing
+  the sole n=12 profile run did not converge and omitted two labeled profiles;
+  although its formerly conjectural `s <= 2` exclusion is now PROVEN
+  post-SUB2, the run also predates the immutable manifest/source-digest gate.
+  A head census is therefore an expensive narrowing
   experiment whose success criterion is a checked cover, not merely more dead
   samples.
 - **Card ≥ 15 ("the tail") — the pattern-census route is FALSIFIED.**
@@ -664,11 +1016,12 @@ depth; (5,6,4) was deliberately unmeasured (STATE.md:47-52).
   proved cuts (`m ≤ 2`; vertex-pair packets have `s = 0`; `s = 2` is
   straddle-only), but 13/19 decorated minimal-window types are realizable and
   even granting every conjectured per-type kill leaves token-level evasions at
-  n=12..16. The next finite research gates are the seven-variable `SUB2-H`
-  half-disk statement and then the Q3 two-center sweep
-  (`census/candidate_d_probe/report.md`). Neither is currently a proof route:
-  SUB2 is CONJECTURED after solver timeouts, and the probe explicitly says
-  cross-center coupling beyond per-type exclusions is required.
+  n=12..16. The seven-variable `SUB2-H` half-disk gate is now PROVEN by the
+  exact certificate and Lean theorems recorded above; the next finite research
+  gate is the Q3 two-center sweep (`census/candidate_d_probe/report.md`). SUB2
+  supplies stronger PROVEN exclusions but does not itself close the route; Q3
+  remains open, and cross-center coupling beyond per-type exclusions is still
+  required.
 
 Consequence, stated plainly: **Front A has no complete known route.** Card 11
 has a finite-census closure candidate through A.1/A.2, but it is NOT closed:
@@ -679,29 +1032,33 @@ Card 12–14 remains a finite but presently nonconvergent census research lane;
 card ≥ 15 requires Candidate-D-shaped new mathematics. Neither lane addresses
 the independent LIVE-* case families in leaf 2.
 
-**Decision A-HEAD (matrix AHEAD-DEC):** either (a) hold the entire
-card-at-least-12 residual while prioritizing Candidate-D/liveData mathematics,
-or (b) authorize a head-only narrowing attempt. Route (b) must first remove
-the CONJECTURED `all` cuts, run all three labeled card-12 profiles under PROVEN
-cuts, then cover all six labeled card-13 and ten labeled card-14 profiles listed
-in matrix AHEAD-SPEC. It must define resource and nonconvergence stops before
-launch and land a named card-at-least-15 residual as the consumer of a proved
-12–14 cover. More dead samples without a cover do not justify the split.
+**Decision A-HEAD (matrix AHEAD-DEC): AUTHORIZED 2026-07-13.** Adam selected
+the head-only narrowing attempt as parallel research alongside Census554/A11.
+The route must first port and validate the exact old `all` encoding against
+the permanent post-SUB2 PROVEN cut contract, run all three labeled card-12
+profiles, then cover all six labeled card-13 and ten labeled card-14 profiles
+listed in matrix AHEAD-SPEC. Heavy runs remain under the `CTRL-RESOURCE`
+transfer and four-worker serialization recorded above.
+Only a proved 12–14 cover permits AHEAD-CONSUME to introduce a named
+card-at-least-15 residual with its immediate consumer; no such residual is
+authorized earlier. More dead samples without a cover do not justify the split.
 
 ---
 
-## Front B — M44 lane (leaves 3, 4, 5)
+## Front B — M44 lane (current ERASE cluster; pinned/endpoint closed)
 
 ### B.0 Verified structure (2026-07-09 source + slot3 doc tail)
 
-All three leaves are producer gaps sharing one core: at M44, `A` is unbounded
+The historical three-leaf analysis shared one producer core: at M44, `A` is unbounded
 (`surplusCap.card + 5 = A.card`, `Cap/PartitionFromMEC.lean:450`) and unlabeled
 points live in the surplus cap interior. The producers demand, per non-fixed
 center, a fully-labeled equidistant 4-class whose mask is in the generated
 candidate tables — i.e. **confinement**. The pinned residual supplies exactly
 one labeled circle (the `.v` selected class, SurplusM44Packet.lean:4390);
-no non-circular producer exists in the repo (slot3 tail, six checkpoints
-2026-07-09; independently confirmed against the statements this session).
+no non-circular producer existed in the repo at the 2026-07-09 checkpoint.
+That analysis led to completed pinned-surplus and endpoint general-m
+classifiers. The only current Front-B proof cluster is ERASE; B.1 and B.2 are
+retained as closed route history and must not be dispatched.
 
 Coordination: query ownership live with `proof-blueprint anchor list`; do
 not take a row whose owner is active. Anchors are advisory, so file changes
@@ -710,6 +1067,12 @@ pinned-surplus, and liveData branches all had active owners; the erased-pin
 and liveData anchors were cleared as stale on 2026-07-11.)
 
 ### B.1 Endpoint residual producer (leaves 4 and 5)
+
+**CLOSED 2026-07-12.** K-B-END-LABEL and K-B-END-GENERAL are DONE. The m=5
+geometry producer and the general-m card-eleven endpoint classifier are
+kernel-verified under the recorded core/native trust boundary, contain no
+source `sorry`, and are absent from the open spine inventory. The remainder of
+this subsection is historical route rationale, not current work.
 
 **Updated 2026-07-11 — route (b) implemented (commit 136ebb9b).**
 `isM44EndpointResidualsExcluded` (`Base.lean:9521`) case-splits on
@@ -729,7 +1092,8 @@ and liveData anchors were cleared as stale on 2026-07-11.)
   (`SurplusCOMPGBankGeometry.lean:1498`/`:1621`) reused as-is. Producer
   staging is landed green in `EndpointCertificate/GeometryProducer.lean`
   (engine + u-bound + circumcenter families; commits 8a7e6d1b, b2183714,
-  35bc63aa); right-apex assembly in flight. Import boundary: `Base.lean` may
+  35bc63aa); right-apex assembly was then in flight and subsequently closed.
+  Import boundary: `Base.lean` may
   import the producer; the producer must not import `Base.lean` or any
   consumer of `isM44EndpointResidualsExcluded` (hull-order machinery
   relocated upstream to `PinnedHullOrder.lean`, commit 858b7e39).
@@ -749,6 +1113,12 @@ and liveData anchors were cleared as stale on 2026-07-11.)
 branches close.
 
 ### B.2 Pinned-surplus general-m residual (leaf 3)
+
+**CLOSED 2026-07-12.** K-B-PIN is DONE. The forced `m = 6`, card-eleven
+classifier, pinned-shell bridge, and left-to-right transport close the former
+general-m leaf; it contains no source `sorry` and is absent from the open spine
+inventory. The remainder of this subsection records the route that produced
+the closure and is not dispatch authority.
 
 The label-complete path is closed.  Both halves of
 `isM44PinnedSurplusNonVExactShapeProducer` now require
@@ -1117,8 +1487,9 @@ classification requires a new search for alternative assignments.
 
 Schema v5 adds those two detectors, records inherited-row provenance, reuses
 only the 167 monotone v4 `UNSAT` verdicts, and reruns every old `SAT` or
-`INDETERMINATE` packet. The rolling v5 file is active and is not a terminal
-census until `complete` is true. The shared closure-index optimization was
+`INDETERMINATE` packet. The v5 artifact now records `complete=true`; it is a
+terminal result for that exact finite packet schema, not a general geometric
+closure theorem. The shared closure-index optimization was
 differentially checked against the reference detectors and reduces the saved
 packet-177 prefix classifier by about 6.3x on this host.
 
@@ -1268,65 +1639,99 @@ non-equidistance fields. It is exported as
 `NonSurplusSwap.pinnedLeft_to_right` and used by the terminal source to obtain
 the same right-oriented finite seed, shell witness, and closure contradiction
 for the left packet. The source elaborates directly without `sorry`; the
-remaining gate is the serialized target build and proof-blueprint refresh after
-the concurrent U1 errors are repaired. The shared-pair/strict-interval descent
-route is historical fallback, not the current critical path.
+serialized target build and proof-blueprint refresh later passed. The
+shared-pair/strict-interval descent route is historical fallback, not the
+current critical path.
 
 ### B.3 Erased-pin generated row bank (leaf 5 lane)
 
-Exists in Lean (`ErasedPinFixedSeedDFS.lean`): 330 deduplicated fixed seeds,
-26 row definitions, each with a
-`*_candidates_false_of_isValidOneSidedSeedRelaxedShapeShadow` exclusion
-theorem, plus the generic bridge
-`false_of_erasedPinFixedSeedRelaxedShape_pointClasses`
-(SurplusCOMPGBankGeometry.lean, built and checked 2026-07-09).
+The ERASE-P2 redraft is complete. The broad false remainder assertions were
+removed and replaced by twenty explicit per-row refutation consumers. The
+current classifier ladder forces card `{10,11}`:
 
-The on-spine theorem contains four holes. Matrix ERASE-P4-U and ERASE-P4-S
-own the direct surplus-opposite and surplus-interior contradictions at
-`Continuation.lean:183` and `:211`; each already receives an exact
-`U5DangerousTriple`, selected candidate, exact radius-class count, and two
-off-circle auxiliary points. The missing output is `False`, via either
-row-confined classes plus Mode A or a new direct surplus-index contradiction.
+- **card 10 / P2 — DONE in the working source:**
+  `ErasedCertificate/CardTenProducer.lean` supplies the label-complete
+  producer, `hv`/`hw` classes, terminal coverage, and pure-row cardinality
+  closures. All twenty P2 consumers are wired through proved card-10 branches.
+- **card 11 / P2 — DONE ON THE CURRENT WORKING TREE:** the same twenty
+  consumers call the `P2Closure.lean` finals.  All 128 independent native
+  leaves, aggregators, semantic dispatcher, closure, residual shard, and
+  downstream `Continuation` target build.  The right/left terminals and
+  dispatcher have approved axiom closures with no `sorryAx`.  A final cached
+  rerun of `scripts/build-p2-certificates.sh` passed all 16 bounded batches and
+  the 8410-job aggregate target with exit code 0.
+- **card 10 / P4 — DONE:** M9 enumerates all 504 admissible `u`/`s`-centered
+  seeds, proves a 378/126 direct-separation/native-grid partition, and closes
+  the 72 P4-U plus three 18-seed P4-S grid families through seven native
+  shards. Both geometric consumers are wired and spine-closed.
+- **card 11 / P4-U — DONE:** the containment-specialized 47-support native
+  certificate, semantic classifier/closure transport, canonical geometry
+  consumer, and `Continuation.lean` wiring close the surplus-opposite
+  residual. The refreshed spine marks it closed.
+- **card 11 / P4-S — DONE AND DOWNSTREAM VERIFIED:** the 128 native
+  placement leaves, semantic dispatcher, family final, and source consumer are
+  implemented and built.  `P4SPlacements`, `P4SClosure`, and the importing
+  `Continuation` target build.  The terminal, semantic dispatcher, and
+  downstream parent report only core axioms plus approved `Lean.trustCompiler`,
+  with no `sorryAx`.
 
-Matrix ERASE-P2-R and ERASE-P2-L own the non-surplus ordered-scaffold holes at
-`:312` and `:337`. Their current broad local goals assert
-`OneSidedSeedCandidateRemainder` from too little data and are FALSE as general
-lemmas (the Boolean counterexample permits cross-separation while `.u` is
-absent from `candidateMasks`). Do not try to prove those local assertions.
-Refactor the consumer to take the already defined side-specific surfaces
-`ErasedPinRightFiniteCandidateOrderedScaffoldFacts` and
-`ErasedPinLeftFiniteCandidateOrderedScaffoldFacts`, prove those from the
-concrete ordered mask interface, and feed the existing
-`rightFiniteCandidateSepFacts_of_*` consumers.
+The card-eleven M6 geometry lane is now complete and target-built:
+`ErasedCertificate/CardElevenBridgeStaging.lean` and
+`CardElevenBlocker.lean` package canonical incidence, orientation-correct
+bucket counts, deleted-row selection, blocker routing, and exactness for all
+twenty count rows and both P4 families. The finite blocker override is confined
+to the prescribed proof-facing row; this avoids the unavailable claim that
+every member of an arbitrary erased-pin class has the same geometric critical
+center. The stale `blocker deleted ≠ center` condition is not part of the ERASE
+shell contract: every committed classifier/closure consumer discards it, and
+it is false in the P4-U case. The M6 target build passed 8173 jobs and its
+package theorems use only `propext`, `Classical.choice`, and `Quot.sound`.
 
-UPDATE 2026-07-11 (route audited, fails as prescribed): the ordered scaffold
-surfaces contain the same `OneSidedSeedCandidateRemainder` conjuncts, whose
-only producers bottom out at per-center mask-incidence facts with zero
-producers in `lean/` or any indexed bank; and because pinned-witness
-cross-separation is unconditional (`SurplusCOMPGBankGeometry.lean:2016`),
-the remainder goal is false in the real configuration for any `p` realizing
-row-(0,0,0,4)/(0,0,4,0) counts — any producer must contain those row
-exclusions, inverting the `Base.lean:9167` dependency. Full audit:
-`docs/audits/2026-07-11-erase-p2-remainder-blocker-audit.md`. Correct
-factoring is a per-row refutation redraft of the `Base.lean:9167`
-intermediate plus new per-row geometric content; {{NEEDS_ADAM_INPUT}} before
-executing (supersedes the paragraph above).
+The native M1 gate is complete.  The compiled `erase_m1_gate` executable ran
+the exact 4543-cell domain with eight Lean runtime threads and returned P4-U
+47/47, P4-S 1440/1440, and P2 3056/3056 true in 845205 ms.  This resolves the
+search-feasibility STOP condition empirically; it is not itself a theorem.
 
-Existing finite side:
+M2 is complete generically.  For P4-U and P4-S, M3-M5 and M7 are also complete through
+`ErasedNativeClassifier.lean`, `ErasedClassifierSound.lean`,
+`ErasedClassifierCoverage.lean`, `ErasedClosureSound.lean`,
+`CardElevenShellBridge.lean`, the corresponding placement modules, and
+`P4UClosure.lean`/`P4SClosure.lean`.  The earlier downstream `Continuation`
+target build passed 9292 jobs for P4-U.  Both P4-S standalone endpoints have
+axiom closure exactly
+`propext`, `Classical.choice`, `Lean.ofReduceBool`, `Lean.trustCompiler`, and
+`Quot.sound`, with no `sorryAx`.  P2's M3-M5 and M7 now pass the same
+build/axiom/spine gates.  `Continuation` passed 9703 jobs; the downstream
+exact-pin theorem is 0/1376 open and passes target-specific `verify-publish`.
+The ordered ladder and exact risk gates live in
+`scratch/erase-classifier-design/DESIGN.md`; M1, M2, M6, M8, M9, and P4-U are
+complete, and P4-S/P2/M10 are now complete on the current working tree.
 
-- `ErasedPinFixedSeedDFS.lean` contains 330 deduplicated fixed seeds and 26
-  row-exclusion theorems;
-- `false_of_erasedPinFixedSeedRelaxedShape_pointClasses` is the generic checked
-  bank consumer; and
-- side-specific ordered and separation scaffold adapters are already defined
-  in `RemovableVertexAxiom/Base.lean:5997-6247`.
+The P2 proof build has two measured performance mitigations.  A balanced
+support key reduces active searches per native leaf from a 0–65 range to
+21–25, and the support-independent candidate domains are constructed once per
+leaf rather than once per support, with a proved equality back to the original
+classifier.  A representative 23-search leaf built in 715 seconds.
+`compiler.small 100` took 714 seconds on the same leaf and was rejected as
+noise.  Profiling attributes the remaining cost to `native_decide`'s IR
+interpreter; a substantial later speedup would require a compact generated
+killed-tree/nogood witness checked by verified Lean rather than DFS replay.
+The representative leaf axiom audit has no `sorryAx`, and a source scan of its
+evaluated classifier closure finds no project `unsafe`, `@[implemented_by]`,
+or `@[extern]` declaration.  The aggregate dispatcher, both count-row
+terminals, both payload terminals, and both downstream parents have the same
+approved closure with no `sorryAx`.
+The resumable `scripts/build-p2-certificates.sh` driver gives Lake at most
+eight explicit leaf targets per locked `lake-build` invocation.  This target
+batching is the hard concurrency bound; Lake's jobs setting is only advisory.
+The first complete group measured 549–1064 seconds per chunk, 736 seconds on
+average.  Runtime varies more than support count, so the completed queue grouped
+equal chunk indices together.  Late fleet batches took 13m04s-18m22s under the
+eight-worker cap; chunk 5 was the slowest observed pair at 18m22s/18m08s.
 
-The optional P3 diagnostic gate is not a proof obligation. To run it, first
-implement the erased-pin row-to-multi-center-class map (matrix ERASE-P3-MAP),
-then execute the CONJECTURED-tier sweep and record whether a proposed new cut
-separates every surviving row (ERASE-P3-SWEEP). Any discovered cut becomes a
-proof task only after its geometric necessity theorem and exact consumer are
-stated. No existing census result closes any of the four holes by itself.
+The optional P3 map is DONE and remains diagnostic. ERASE-P3-SWEEP stays held
+under the resource gate; a discovered empirical cut would become proof work
+only after a necessity theorem and exact on-spine consumer are specified.
 
 ---
 
@@ -1384,7 +1789,7 @@ geometric shared-radius pair.
 
 ## Ordering and sizing
 
-There are four independent open-mathematics clusters. None has a complete
+There are two independent open-mathematics clusters. Neither has a complete
 known mechanism:
 
 1. **Front-A shared-radius tail:** Candidate-D cross-center convexity coupling
@@ -1393,48 +1798,74 @@ known mechanism:
    terminal center branches in `u1_largeCap_routeB_tail_liveData_false`.
    Closing the shared-radius theorem removes only one downstream dependency;
    it does not close these families.
-3. **Front-B endpoint/pinned confinement.** Updated 2026-07-11: the m=5
-   branches are no longer open-ended confinement — the label-complete engine
-   closes them (END-L/END-R producer assembly in flight; PIN m=5 closed).
-   The open-math content is the general-m leaves (K-B-END-GENERAL,
-   K-B-PIN general-m), both routed through the forced `m = 6` / `A.card = 11`
-   classifier/bridge machinery; the older generic non-fixed-center
-   confinement description is historical fallback.
-4. **Front-B erased-pin confinement:** the two direct surplus P4
-   contradictions and the side-specific P2 ordered-mask producers.
+
+Front-B ERASE is no longer an open-mathematics cluster.  Its card-{10,11}
+P2/P4 source, native fleets, downstream target, axiom closures, and exact-pin
+spine gate pass on the current working tree.  This does not discharge the
+repository-wide git/full-build/publication controls.
+
+The former endpoint/pinned cluster is closed (K-B-END-GENERAL and K-B-PIN
+DONE) and belongs to route history, not the open-mathematics count.
 
 The card-11 finite pipeline contains substantial engineering and finite-proof
 work, but it is not uniformly "bounded to 1–3 sessions": final cover format,
 cover-core size, and heavy-certificate cost are not known until the run freezes.
 
-**At the final 2026-07-09 audit checkpoint:** the card-11 (5,5,4) cover loop
-had 5,431 bank rows and had printed the frontier at iteration 1154. No process
-or terminal marker was live at 18:32 PDT. This is historical evidence; recheck
-A11-RUN before resuming or restarting, and do not proceed until the A11-OPS-*
-permanence, driver-lock, transaction, and terminal-artifact gates pass.
+**At the current 2026-07-13 02:53 PDT checkpoint:** the mutable card-11 cover
+loop was live on a verified 5,916-row bank. Iteration 690 contributed
+`pat_05897`; the separately validated Oracle-13 residual contributed
+`pat_05898`; and four exact-certified speculative motifs contributed
+`pat_05899` through `pat_05902` after fresh novelty checks and guarded
+publication. Four attempt-1,475 exact motifs then contributed `pat_05903`
+through `pat_05906` under the same gates. The sole driver restarted after each
+publication transition. Seven attempt-1,486 motifs then contributed
+`pat_05907` through `pat_05913`; its hard rank 1 and the final attempt-1,683
+candidate contributed `pat_05914` and `pat_05915`. The driver was replaying
+the 5,916-row generation. Oracle-13 itself remains a validated
+`combined-frontier` terminal result at iteration 316, not Census554 closure.
+The bounded four-core producer exited at its one-hour limit with seven
+preserved frontiers on the older 5,897-row generation. That batch is fully
+resolved: all productive candidates are published, and attempts 1,510 and
+1,511 were already covered by the new bank. A new four-core producer is
+running against a 5,914-row matching snapshot; its future candidates require a
+fresh current-bank novelty recheck and sole-writer publication. No speculative
+lane has bank-write authority or can by itself advance a closure row.
 
-Execution order is dependency-based, not difficulty-based:
+Execution order is dependency-based, not difficulty-based. Adam's 2026-07-13
+AHEAD-DEC authorization adds a parallel head-research lane: `AHEAD-SPEC` may
+advance alongside the steps below, while heavy AHEAD-N12/N13/N14 execution
+remains serialized through `CTRL-RESOURCE`. It is no longer deferred on the
+Census554 outcome, and it does not alter Census554 ownership or bank-write
+authority.
+
+The Census554/A11 lane retains this internal order:
 
 1. **Stabilize operations and ownership.** Resolve the concurrent generated
    rewrite; refresh the mined graph and `anchor list`; move Census554 into
-   `census/census_554/`; finish the driver/transaction locks and durable
-   terminal gate; do not start a census driver before those rows pass.
+   `census/census_554/`; finish the remaining permanence work. Keep the active
+   lifetime driver lease, transaction publisher, and durable terminal gate as
+   mandatory invariants across every restart.
 2. **Advance bank-independent card-11 proofs.** Build
    `GeometryBridge.lean` and the abstract combinatorial/geometric cover
    interfaces. The support-injection bridge is already DONE. These consume no
    final bank.
-3. **Freeze on a terminal census result.** On ALIVE, stop the cover route and
-   adjudicate the candidate. On UNSAT, persist the exact CNF/manifest/digests,
-   independently verify the frozen bank, and generate a checked cover witness.
+3. **Mine the adjudicated oracle-13 residual.** Oracle-13 has reached a checked
+   `combined-frontier`; preserve its terminal artifacts and the iteration-813
+   rollback, and keep the active consumer bound to the exact 5,836-row bank.
+   Mine, exactly certify, and novelty-check any residual pattern before routing
+   it through the sole mutable-bank publisher. Only a later checked UNSAT
+   licenses the freeze/core/replay rows. A transition to a newer mutable bank
+   requires a separate measured decision and the same preservation/integrity
+   gates.
 4. **Minimize before replay.** Extract the pattern IDs used by the checked
    cover, then generate and replay that core only. Apply certificate shrinking
    or checker optimization only to heavy certificates that survive the core.
 5. **Close and wire card 11.** Prove `false_of_cardEleven_twoLargeCaps`, invoke
    it in both Front-A declarations, and leave explicit card-at-least-12
    residuals.
-6. **Work the four open-math clusters under their active owners.** END/PIN and
-   ERASE rows may proceed independently of Front A. LIVE rows should be
-   factored by orbit family, not patched leaf by leaf.
+6. **Work the three open-math clusters under their active owners.** ERASE may
+   proceed independently of Front A once `CTRL-RESOURCE` and `CTRL-OWN` pass.
+   LIVE rows should be factored by orbit family, not patched leaf by leaf.
 7. **Run optional research gates only when their decision row authorizes
    them.** AHEAD-* is a narrowing experiment; ERASE-P3-* is diagnostic; MC-*
    remains off-spine until an exact consumer exists; SUB2/Q3 are Candidate-D
