@@ -1122,6 +1122,22 @@ There is no leaf-to-inventory extraction, full-filter pair, or on-spine
 consumer, so this is a checked narrow cut and theorem-extraction template,
 not closure of ATAIL-FORCE or K-A-PAIR.
 
+The bounded m=6 follow-up exhausts seven S3 class representatives, 25
+representative orders, and nine oriented edges per order (225 queries at 250
+ms). The order-free base statuses were 7 `SAT`, 12 `UNKNOWN`, and 6 `UNSAT`;
+the fan statuses were 26 `SAT`, 155 `UNKNOWN`, and 44 `UNSAT`. Those statuses
+are diagnostic only. The six base proposals reduce to two independently
+proved order-free Lean kernels: the eight-hypothesis `bisectorCapKernel` from
+class 2472 and the eleven-hypothesis `twoCircleCapKernel` from class 2422.
+Together with `orderFanKernel`, the exact simultaneous-S3 matcher finds three
+disjoint cuts covering respectively 39, 66, and 24 of the 167,782
+selected-four systems: 129 systems across 45 classes, leaving 167,653. This is
+new theorem-bank content, not completeness. The exact narrow reach terminates
+blind selected-four kernel mining as the primary lane; the next theorem must
+use the actual full-filter or critical-row hypotheses to force a checked
+pattern, the joint-fiber lower bound, the seven-equality obstruction, or
+`False` directly.
+
 A direct audit of the seven LIVE-C helper contracts found no routine whole-row
 reduction. `CriticalRowPacket.center_ne_source` only kills subcells in which
 the extra row source `t2[0]` is also identified with its blocker center; none
@@ -2060,7 +2076,11 @@ order is:
    separator-saturated equality-only route, so the next candidate must use
    real cap/disk/nonobtuse/global-order inequalities or the live critical
    rows. Both Z3 and cvc5 timed out on the same seven full-inequality systems,
-   so another blind cross-engine or budget escalation is not a next step.
+   and the three checked scalar kernels jointly cut only 129 of 167,782
+   selected-four systems, so neither another blind cross-engine/budget
+   escalation nor continued unguided local-kernel enumeration is a next step.
+   Computation resumes only behind a full-filter or critical-row forcing
+   principle that explains why a checked pattern must occur.
    Every proposed universal lemma must also be checked against the
    W16/W20 non-convex falsifier bank and must identify the actual convexity or
    critical-row hypothesis that excludes those witnesses. No representative

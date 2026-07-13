@@ -251,6 +251,39 @@ consumer. `edge_fan_strata.py` also gives only `UNKNOWN` at five seconds for
 each of the other six frozen strata. Thus this is a checked narrow cut and a
 theorem-extraction template, not ATAIL-FORCE.
 
+## Complete m=6 diagnostic and order-free cap kernels
+
+The bounded follow-up exhausts the entire six-interior-point quotient: seven
+S3 class representatives, 25 representative order decorations, and nine
+oriented edges per decoration, for 225 edge-fan queries at 250 ms each. Its
+order-free base histogram is 7 `SAT`, 12 `UNKNOWN`, and 6 `UNSAT`; after an
+edge fan is included the histogram is 26 `SAT`, 155 `UNKNOWN`, and 44
+`UNSAT`. These labels are solver diagnostics only. In particular, no
+`UNKNOWN` is classified, and fan contradictions inherited from an
+order-free base are not counted as new mathematical results.
+
+The six order-free `UNSAT` proposals comprise four decorations of class 2422
+and two of class 2472. Conservative deletion produced two small scalar cores,
+which were then proved independently in Lean:
+
+- `bisectorCapKernel` is an eight-hypothesis perpendicular-bisector/cap-sign
+  contradiction extracted from class 2472; and
+- `twoCircleCapKernel` is an eleven-hypothesis two-circle/cap contradiction
+  extracted from class 2422.
+
+Neither proof imports solver output, a certificate checker, a new axiom, or a
+`sorry`. The exact simultaneous-S3 union matcher scans every one of the
+167,782 selected-four decorations. It finds 39 systems / 21 classes for
+`orderFanKernel`, 66 / 18 for `bisectorCapKernel`, and 24 / 6 for
+`twoCircleCapKernel`. The cuts are disjoint, so their union reaches 129
+systems in 45 classes and leaves 167,653 systems.
+
+This is exact combinatorial coverage of the frozen decision surface, not a
+live-leaf inventory bridge or a full-filter theorem. The small union rejects
+continued blind local-kernel enumeration as the primary closure strategy.
+Further use of these kernels requires a theorem from the live full-filter or
+critical-row hypotheses that forces one of their patterns.
+
 ## Future solver verdicts
 
 A later controlled sweep must use these labels:

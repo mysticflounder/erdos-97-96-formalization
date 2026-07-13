@@ -148,3 +148,68 @@ lake env lean -M 16384 ../scratch/atail-force/order_fan_kernel.lean
 
 No leaf-to-inventory bridge, full exact-radius-filter pair, or main-source
 consumer is claimed.
+
+## Complete m=6 edge-fan diagnostic
+
+`m6_edge_fan_scan.py` exhausts the seven S3-representative classes with six
+interior points, all 25 representative order decorations, and all nine
+oriented polygon edges: 225 bounded edge-fan queries at 250 ms each. The
+order-free base histogram was 7 `SAT`, 12 `UNKNOWN`, and 6 `UNSAT`; after an
+edge fan was added, the histogram was 26 `SAT`, 155 `UNKNOWN`, and 44 `UNSAT`.
+These are solver statuses, not classifications. In particular, many fan hits
+inherit an order-free contradiction and no timeout is promoted either way.
+
+The six order-free UNSAT rows are exactly the four decorations of class 2422
+and the two decorations of class 2472. Both class-orbit proposals were then
+minimized and proved independently; no longer timeout was used to classify
+the remaining rows.
+
+## Two order-free cap kernels
+
+For class 2472, conservative deletion reduces the 45-constraint base to eight
+hypotheses. `bisector_cap_kernel.lean` proves the resulting theorem
+`bisectorCapKernel`: equal-radius data put both the Moser apex and a shared
+opposite-cap point on the base perpendicular bisector, while the two strict
+cap signs are additive inverses and cannot both be positive.
+
+For class 2422, the solver retains twelve hypotheses. The explicit proof in
+`two_circle_cap_kernel.lean` removes one further unused cap inequality and
+proves an eleven-hypothesis theorem. The shared `p2` point forces the Moser
+apex strictly left of the base midpoint; the `q2` two-circle equations and cap
+signs force it strictly right. This proof uses a bounded 800,000-heartbeat
+allowance for normalization and no solver, certificate importer, or new
+axiom.
+
+The exact simultaneous-S3 union matcher checks all 167,782 decorations:
+
+- `orderFanKernel`: 39 systems / 21 classes;
+- `bisectorCapKernel`: 66 systems / 18 classes;
+- `twoCircleCapKernel`: 24 systems / 6 classes; and
+- union: 129 systems / 45 classes, with no overlap between the three cuts.
+
+Thus 167,653 selected-four systems survive all three checked kernels. The
+order-free results are better theorem-bank seeds than the original fan, but
+the exact union count rejects continued blind local-kernel mining as a closure
+strategy unless a new forcing principle makes one of these patterns
+unavoidable. The next primary target is the live full-filter/critical-row
+producer.
+
+Reproduction, from the repository root:
+
+```bash
+PYTHONPATH=. .venv/bin/python scratch/atail-force/m6_edge_fan_scan.py --timeout-ms 250
+PYTHONPATH=. .venv/bin/python scratch/atail-force/m6_base_minimize.py --class-id 2472 --timeout 1
+PYTHONPATH=. .venv/bin/python scratch/atail-force/m6_base_minimize.py --class-id 2422 --timeout 1
+PYTHONPATH=. .venv/bin/python scratch/atail-force/kernel_union_coverage.py
+```
+
+Lean validation, from `lean/`:
+
+```bash
+lake env lean -M 16384 ../scratch/atail-force/bisector_cap_kernel.lean
+lake env lean -M 16384 ../scratch/atail-force/two_circle_cap_kernel.lean
+```
+
+These are exact scalar implications and exact combinatorial decision-surface
+counts. They do not establish live-leaf inventory coverage, the full-filter
+shared pair, or an on-spine consumer.

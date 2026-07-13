@@ -18,6 +18,10 @@ Current status:
 - `ATAIL-ORDER-FAN-1`: CHECKED-SCRATCH; one 15-hypothesis scalar
   incompatibility has a solver-free Lean proof, but its exact selected-four
   orbit matcher reaches only 39 of 167,782 systems.
+- `ATAIL-CAP-KERNELS-1`: CHECKED-SCRATCH; two order-free scalar
+  incompatibilities have explicit Lean proofs. Together with
+  `ATAIL-ORDER-FAN-1`, the exact union matcher reaches 129 of 167,782 systems
+  across 45 joint classes, with no overlap among the three cuts.
 - `ATAIL-FORCE`: OPEN-RESEARCH and load-bearing for `K-A-PAIR`.
 
 The active proof-blueprint session anchor is
@@ -320,6 +324,32 @@ realizability or impossibility. The checkpoint validates theorem extraction
 from materially smaller order subsystems, but its present reach is far too
 narrow to close K-A-PAIR and does not authorize a bulk scan.
 
+The complete bounded m=6 edge-fan diagnostic then checked all seven S3 class
+representatives, all 25 representative order decorations, and all nine
+oriented edges per decoration: 225 queries at 250 ms each. The order-free
+base histogram was 7 `SAT`, 12 `UNKNOWN`, and 6 `UNSAT`; the edge-fan
+histogram was 26 `SAT`, 155 `UNKNOWN`, and 44 `UNSAT`. These are solver
+diagnostics only. The six base `UNSAT` rows were exactly four decorations of
+class 2422 and two of class 2472, and both orbit proposals were independently
+reduced and proved instead of being promoted from solver output.
+
+`Problem97.ATAILForceScratch.bisectorCapKernel` proves the eight-hypothesis
+class-2472 core: equal-radius equations put two points on the same base
+perpendicular bisector, making the two strict cap signs additive inverses.
+`Problem97.ATAILForceScratch.twoCircleCapKernel` proves the eleven-hypothesis
+class-2422 core: one cap witness forces the Moser apex left of the base
+midpoint while the second two-circle/cap witness forces it right. Both proofs
+are solver-free and live in `scratch/atail-force/`.
+
+The exact simultaneous-S3 union matcher scans all 167,782 decorations. The
+three disjoint cuts reach 39 systems / 21 classes for `orderFanKernel`, 66 / 18
+for `bisectorCapKernel`, and 24 / 6 for `twoCircleCapKernel`: 129 systems in 45
+classes total, leaving 167,653 systems. This proves useful local theorem-bank
+content but also supplies a stopping rule: blind selected-four kernel mining
+is no longer the primary lane unless a new forcing theorem makes one of these
+patterns unavoidable. The next content-bearing target is the full-filter or
+critical-row producer on the actual K-A-PAIR/K-A-LIVE hypothesis surface.
+
 The seven LIVE-C helper contracts were also audited directly against
 `CriticalRowPacket.center_ne_source`, K-A-PAIR's actual hypotheses, the bank
 registries, and an indexed-corpus search. Center/source equality kills only
@@ -331,9 +361,9 @@ producer exists. LIVE-C therefore remains a separate six-row target.
 
 This session is anchored at LIVE-T1, while the shared Route-B parent remains
 owned by another live session. This lane therefore does not overwrite that
-source; the scratch relabel certificate and the new order-fan theorem remain
-off-spine until their immediate consumers can be wired without an ownership
-collision.
+source; the scratch relabel certificate and the three checked scalar kernels
+remain off-spine until their immediate consumers can be wired without an
+ownership collision.
 
 ## Closure priority and fallback
 
@@ -351,10 +381,11 @@ uniform producer naturally requires card at least 15, a checked AHEAD cover may
 discharge the head before that threshold is introduced on-spine. If the
 producer works from card 12, the head census is unnecessary for closure.
 
-Any bounded forced subsystem found here must also be tested as a shared
-producer for the LIVE-Q/T1/T3 permutation orbits and the seven LIVE-C branches.
-The intended consumption unit is a complete orbit family, not one of the 79
-textual holes in isolation.
+Any further bounded subsystem is justified only by a forcing principle from
+the actual full-filter or critical-row hypotheses and must also be tested as a
+shared producer for the LIVE-Q/T1/T3 permutation orbits and the seven LIVE-C
+branches. The intended consumption unit is a complete orbit family, not one
+of the 79 textual holes in isolation.
 
 ## Acceptance gates
 

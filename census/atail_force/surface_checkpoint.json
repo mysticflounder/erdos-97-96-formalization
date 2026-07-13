@@ -334,7 +334,7 @@
   },
   "input_sha256": {
     "census/atail_force/checkpoint.py": "c46468798fcd3e0286ec3a13bde868eca72eb8e8a5636d0452c77d4ce842dab2",
-    "census/atail_force/formulation.md": "b6eaf4eb8c7a2f6490350dd51c7555c9a499de3a34aae4e004e8809f77627b82",
+    "census/atail_force/formulation.md": "ed725a4e6fc865adea68258238c15900b57bbfd71149dd6bc69218edfdaced05",
     "census/atail_force/reduction.py": "d5481d7c7d7e1f4ea8207955d73b415183952b6141d9590e41fd2077dbb50e93",
     "census/atail_force/three_center_surface.py": "b7a1c8cafb69e803052ab64e40068b80a501539b7a3fe838ced7388a6abc8e50",
     "census/candidate_d_probe/encoder.py": "2697bd1f81b9c3e73e99a0e331c55c20b2b40b7b538aeab202a278fd9fbc142e",
