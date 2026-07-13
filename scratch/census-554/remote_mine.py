@@ -82,7 +82,7 @@ def queue_dead_scan(cands, target, local_workers, timeout, check, log):
     Chunks missing at the deadline are scanned locally; early stop
     cancels still-unclaimed chunks and orphans claimed ones."""
     import queue_client as qc
-    capacity = qc.live_capacity()
+    capacity = qc.live_capacity("mine")
     if capacity <= 0:
         log("    [queue-mine] no live worker heartbeats; local scan")
         return None

@@ -261,6 +261,26 @@ So the formalization value of T1/T2/T4 is to narrow or close the U4
 tail route by proving that the live `>2`-center coupling surface is a
 finite stabilized local incidence alphabet with no hidden `GLOBAL` layer.
 
+**Consumer-boundary update, 2026-07-13.** ATAIL-Q3 is now a checked negative
+terminal for the selected-four/two-center abstraction. The exact MC-CONSUMER
+target is no longer unspecified. For
+`S := leafSurplusPacket ...`, it must force radii `r, ρ` for which
+
+```text
+(((D.A.filter (dist-to-S.oppApex1 = r)) ∩
+   (D.A.filter (dist-to-S.oppApex2 = ρ))) \ S.surplusCap).card >= 2.
+```
+
+Two-element extraction feeds the existing
+`DoubleApexOffSurplusSharedRadiusPair` conclusion and the proved
+`oppCap2_escape_gen` sink. The current 3,375-row theorem does not establish
+this: it is complete only for selected-four LOCAL representatives. T1 still
+owes geometric LOCAL-to-GLOBAL completion, and a separate selection-robust
+bridge must relate those representatives to the full exact-radius filters.
+Neither persistence nor finite inventory alone is an MC-CONSUMER proof. See
+`docs/atail-force-producer-plan-2026-07-13.md` for the exact epistemic and
+acceptance gates.
+
 ## Separate PIN-GENERAL probe surface (2026-07-10)
 
 The global confinement probe in `census/global_confinement/` reuses the

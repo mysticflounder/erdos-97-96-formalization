@@ -13,7 +13,8 @@ under its transaction lock, and atomically writes ``COVERAGE_COMPLETE.json``
 last. The checked SAT result still depends on the Lean motif-transfer theorem.
 
 Usage: uv run python scratch/census-554/frontier_loop.py
-Env: CERT_WORKERS (default 8), CERT_TIMEOUT (default 900), MAX_ITERS (5000)
+Env: CERT_TIMEOUT (default 900 cumulative CPU seconds),
+CERT_RETRY_CPU_BUDGET (default 7200), MAX_ITERS (5000)
 """
 
 from __future__ import annotations
@@ -24,7 +25,6 @@ import os
 import subprocess
 import sys
 import time
-from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -33,6 +33,8 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO_ROOT))
 
 import cover_probe as cp  # noqa: E402
+import certification_backlog as certification_backlog_module  # noqa: E402
+import exact_outcome_cache  # noqa: E402
 import frontier_add  # noqa: E402
 import intracap  # noqa: E402
 import miner  # noqa: E402
@@ -57,8 +59,13 @@ def _exact_dead(pat, timeout=30):
 
 miner.pattern_dead_fast = _exact_dead
 
-WORKERS = int(os.environ.get("CERT_WORKERS", "8"))
 CERT_TIMEOUT = int(os.environ.get("CERT_TIMEOUT", "900"))
+CERT_RETRY_CPU_BUDGET = int(os.environ.get(
+    "CERT_RETRY_CPU_BUDGET", "7200"
+))
+CERT_WALL_GUARD_MULTIPLIER = int(os.environ.get(
+    "CERT_WALL_GUARD_MULTIPLIER", "12"
+))
 MAX_ITERS = int(os.environ.get("MAX_ITERS", "5000"))
 # Node budget for one motif-into-cube embedding search. A weakly-pruning
 # motif can send the backtracking factorial (observed 2026-07-11: one
@@ -81,13 +88,23 @@ REMOTE_RESULTS_DIR = Path(os.environ.get(
 REMOTE_POLL_INTERVAL = float(os.environ.get("CENSUS554_REMOTE_POLL_S", "2.0"))
 REMOTE_TIMEOUT_MARGIN = int(os.environ.get("CENSUS554_REMOTE_MARGIN_S", "120"))
 
+CERTIFICATION_BACKLOG = certification_backlog_module.CertificationBacklog(
+    HERE / "certification_backlog.d"
+)
+EXACT_OUTCOME_CACHE = exact_outcome_cache.ExactOutcomeCache(
+    HERE / "exact_cert_outcomes.sqlite3"
+)
+CERTIFIER_ID = miner.certifier_id()
+
 
 def certify_one(pattern_json):
     pattern = {int(c): frozenset(members)
                for c, members in pattern_json.items()}
     started = time.time()
-    certificate = miner.certify_pattern(pattern, timeout=CERT_TIMEOUT)
-    return pattern_json, certificate, time.time() - started
+    certificate, certification = miner.certify_pattern_with_stats(
+        pattern, timeout=CERT_TIMEOUT
+    )
+    return pattern_json, certificate, certification, time.time() - started
 
 
 def _submit_remote_job(stem, pattern_json):
@@ -123,8 +140,10 @@ def _poll_remote_results(remote_stems, deadline):
                 continue
             except (OSError, json.JSONDecodeError):
                 continue  # torn/partial read raced the atomic rename; retry
-            completed[stem] = (data["pattern"], data.get("certificate"),
-                                data.get("elapsed", 0.0))
+            completed[stem] = (
+                data["pattern"], data.get("certificate"),
+                data.get("certification"), data.get("elapsed", 0.0),
+            )
             del pending[stem]
             try:
                 result_path.unlink()
@@ -304,6 +323,13 @@ def _run():
         f"[seed] {len(added)} orbit instances ({time.time() - started:.0f}s)",
         flush=True,
     )
+    print(
+        "[cert] advance-on-first-exact enabled; "
+        f"foreground={CERT_TIMEOUT}s CPU, "
+        f"background={CERT_RETRY_CPU_BUDGET}s CPU, "
+        f"certifier={CERTIFIER_ID}",
+        flush=True,
+    )
 
     mining_cycles = 0
     embed_budget_skipped = set()
@@ -409,44 +435,112 @@ def _run():
         ]
         rows = []
         failures = 0
+        cache_skips = 0
+        deferred_keys = set()
 
-        def _handle_result(pattern_json, certificate, elapsed, tag=""):
+        def _defer(pattern_json, reason):
+            key = miner.canon_key({
+                int(center): frozenset(members)
+                for center, members in pattern_json.items()
+            })
+            if key in deferred_keys:
+                return
+            CERTIFICATION_BACKLOG.enqueue(
+                pattern_json,
+                cube=cube_sorted,
+                source=f"frontier-iter-{iteration}:{reason}",
+                requested_cpu_seconds=CERT_RETRY_CPU_BUDGET,
+            )
+            deferred_keys.add(key)
+
+        def _metrics(elapsed, certification, worker=""):
+            parts = [f"wall={elapsed:.0f}s"]
+            if isinstance(certification, dict):
+                parts.extend([
+                    f"cpu={float(certification.get('cpu_seconds', 0.0)):.1f}s",
+                    f"budget={float(certification.get('cpu_budget_seconds', CERT_TIMEOUT)):.0f}s",
+                    f"outcome={certification.get('outcome', '?')}",
+                ])
+            if worker:
+                parts.append(worker)
+            return ", ".join(parts)
+
+        def _handle_result(
+            pattern_json, certificate, certification, elapsed, worker=""
+        ):
             nonlocal failures
+            EXACT_OUTCOME_CACHE.record_result(
+                pattern_json,
+                {
+                    "certificate": certificate,
+                    "certification": certification,
+                    "elapsed": elapsed,
+                    "worker": worker,
+                },
+                requested_cpu_budget=CERT_TIMEOUT,
+            )
             if certificate is not None and "kill" in certificate:
                 print(
                     f"[iter {iteration}] certified {json.dumps(pattern_json)} "
-                    f"kill={certificate['kill']} ({elapsed:.0f}s{tag})",
+                    f"kill={certificate['kill']} "
+                    f"({_metrics(elapsed, certification, worker)})",
                     flush=True,
                 )
-                rows.append({
-                    "pattern": pattern_json,
-                    "cert": certificate,
-                    "cube": cube_sorted,
-                })
+                if not rows:
+                    rows.append({
+                        "pattern": pattern_json,
+                        "cert": certificate,
+                        "cube": cube_sorted,
+                    })
+                    return True
+                _defer(pattern_json, "extra-exact-result")
             else:
                 failures += 1
                 print(
                     f"[iter {iteration}] CERTIFY FAILED "
-                    f"{json.dumps(pattern_json)} ({elapsed:.0f}s{tag})",
+                    f"{json.dumps(pattern_json)} "
+                    f"({_metrics(elapsed, certification, worker)})",
                     flush=True,
                 )
+            return False
 
-        def _certify_locally(patterns, tag=""):
-            with ProcessPoolExecutor(max_workers=WORKERS) as executor:
-                for pattern_json, certificate, elapsed in executor.map(
-                    certify_one, patterns
-                ):
-                    _handle_result(pattern_json, certificate, elapsed, tag)
+        cert_patterns = []
+        for pattern_json in new_patterns:
+            reusable = EXACT_OUTCOME_CACHE.reusable(
+                pattern_json,
+                certifier_id=CERTIFIER_ID,
+                requested_cpu_budget=CERT_TIMEOUT,
+            )
+            if reusable is None:
+                cert_patterns.append(pattern_json)
+                continue
+            cache_skips += 1
+            _defer(pattern_json, f"cached-{reusable.outcome}")
+            CERTIFICATION_BACKLOG.mark_attempt(pattern_json, {
+                "outcome": "foreground-cache-skip",
+                "cached_outcome": reusable.outcome,
+                "cached_cpu_budget_seconds": reusable.cpu_budget_seconds,
+                "requested_cpu_budget_seconds": CERT_TIMEOUT,
+            })
+            print(
+                f"[iter {iteration}] CERTIFY CACHE SKIP "
+                f"outcome={reusable.outcome} "
+                f"budget={reusable.cpu_budget_seconds:.0f}s "
+                f"{json.dumps(pattern_json)}",
+                flush=True,
+            )
 
         queue_mode = False
         if queue_client.enabled():
-            capacity = queue_client.live_capacity()
+            capacity = queue_client.live_capacity("certify")
             if capacity > 0:
                 queue_mode = True
-                queue_client.gc_stale_results()
+                # Certificate results are recoverable exact work owned by the
+                # retry drainer.  GC only stale mining results here.
+                queue_client.gc_stale_results(prefixes=("mine-",))
                 stem_patterns = {}
                 submit_failed = []
-                for idx, pattern_json in enumerate(new_patterns):
+                for pattern_json in cert_patterns:
                     stem = queue_client.new_stem(f"cert-i{iteration:04d}")
                     try:
                         queue_client.submit(stem, pattern_json)
@@ -454,92 +548,103 @@ def _run():
                     except OSError as exc:
                         print(
                             f"[iter {iteration}] queue submit failed ({exc}); "
-                            "will certify that pattern locally",
+                            "deferring that pattern",
                             flush=True,
                         )
                         submit_failed.append(pattern_json)
-                rounds = max(1, -(-len(stem_patterns) // capacity))
-                print(
-                    f"[iter {iteration}] certifying {len(stem_patterns)} "
-                    f"motif(s) via work queue (live capacity {capacity}, "
-                    f"timeout {CERT_TIMEOUT}s)",
-                    flush=True,
-                )
-
-                def _on_cert(stem, data):
-                    pattern_json = (data.get("pattern")
-                                    or stem_patterns[stem])
-                    worker = data.get("worker", "queue")
-                    _handle_result(pattern_json, data.get("certificate"),
-                                   data.get("elapsed", 0.0),
-                                   tag=f", {worker}")
-
-                deadline = (time.time() + CERT_TIMEOUT * rounds
-                            + REMOTE_TIMEOUT_MARGIN)
-                _completed, missing = queue_client.poll(
-                    stem_patterns, deadline, _on_cert
-                )
-                leftovers = submit_failed + [stem_patterns[s] for s in missing]
-                if leftovers:
-                    queue_client.cancel(missing)
+                if stem_patterns:
+                    rounds = max(1, -(-len(stem_patterns) // capacity))
                     print(
-                        f"[iter {iteration}] {len(leftovers)} certify job(s) "
-                        "unreturned by queue deadline; falling back to local "
-                        "certification",
+                        f"[iter {iteration}] certifying {len(stem_patterns)} "
+                        f"motif(s) via work queue until first exact result "
+                        f"(live capacity {capacity}, cumulative CPU budget "
+                        f"{CERT_TIMEOUT}s)",
                         flush=True,
                     )
-                    _certify_locally(leftovers)
+
+                    def _on_cert(stem, data):
+                        pattern_json = (
+                            data.get("pattern") or stem_patterns[stem]
+                        )
+                        found = _handle_result(
+                            pattern_json,
+                            data.get("certificate"),
+                            data.get("certification"),
+                            data.get("elapsed", 0.0),
+                            worker=data.get("worker", "queue"),
+                        )
+                        return not found
+
+                    deadline = (
+                        time.time()
+                        + CERT_TIMEOUT * CERT_WALL_GUARD_MULTIPLIER * rounds
+                        + REMOTE_TIMEOUT_MARGIN
+                    )
+                    _completed, missing = queue_client.poll(
+                        stem_patterns, deadline, _on_cert
+                    )
+                    cancelled = queue_client.cancel(missing)
+                    if missing:
+                        print(
+                            f"[iter {iteration}] deferred {len(missing)} "
+                            f"unreturned certify job(s); cancelled "
+                            f"{cancelled} unclaimed and left claimed results "
+                            "for orphan recovery",
+                            flush=True,
+                        )
+                for pattern_json in submit_failed:
+                    _defer(pattern_json, "queue-submit-failed")
             else:
                 print(
                     f"[iter {iteration}] queue mode: no live worker "
-                    "heartbeats; certifying locally",
+                    "heartbeats; using sequential local foreground",
                     flush=True,
                 )
 
         if not queue_mode:
-            local_patterns = new_patterns
-            remote_patterns = []
-            if REMOTE_CERT_ENABLED and len(new_patterns) > WORKERS:
-                local_patterns = new_patterns[:WORKERS]
-                remote_patterns = new_patterns[WORKERS:]
-
-            remote_stems = {}
-            for idx, pattern_json in enumerate(remote_patterns):
-                stem = f"iter{iteration:04d}_r{idx:03d}"
-                try:
-                    _submit_remote_job(stem, pattern_json)
-                    remote_stems[stem] = pattern_json
-                except OSError as exc:
-                    print(
-                        f"[iter {iteration}] remote submit failed ({exc}); "
-                        "certifying locally instead",
-                        flush=True,
-                    )
-                    local_patterns = local_patterns + [pattern_json]
-
             print(
-                f"[iter {iteration}] certifying {len(local_patterns)} motif(s) "
-                f"locally ({WORKERS} workers, timeout {CERT_TIMEOUT}s)"
-                + (f" + {len(remote_stems)} remote (flux)" if remote_stems else ""),
+                f"[iter {iteration}] certifying up to {len(cert_patterns)} "
+                "motif(s) sequentially until first exact result "
+                f"(cumulative CPU budget {CERT_TIMEOUT}s each)",
                 flush=True,
             )
-            _certify_locally(local_patterns)
-
-            if remote_stems:
-                deadline = time.time() + CERT_TIMEOUT + REMOTE_TIMEOUT_MARGIN
-                remote_results, timed_out = _poll_remote_results(
-                    remote_stems, deadline
+            if REMOTE_CERT_ENABLED:
+                print(
+                    f"[iter {iteration}] legacy remote-cert mode is bypassed "
+                    "by the durable first-certificate scheduler; use the "
+                    "typed queue for distributed certification",
+                    flush=True,
                 )
-                for pattern_json, certificate, elapsed in remote_results.values():
-                    _handle_result(pattern_json, certificate, elapsed, tag=", flux")
-                if timed_out:
-                    print(
-                        f"[iter {iteration}] {len(timed_out)} remote job(s) did not "
-                        f"report within {CERT_TIMEOUT + REMOTE_TIMEOUT_MARGIN}s; "
-                        "falling back to local certification",
-                        flush=True,
-                    )
-                    _certify_locally(timed_out)
+            for pattern_json in cert_patterns:
+                (returned_pattern, certificate, certification,
+                 elapsed) = certify_one(pattern_json)
+                if _handle_result(
+                    returned_pattern, certificate, certification, elapsed,
+                    worker="local",
+                ):
+                    break
+
+        primary_key = None
+        if rows:
+            primary_key = miner.canon_key({
+                int(center): frozenset(members)
+                for center, members in rows[0]["pattern"].items()
+            })
+        for pattern_json in new_patterns:
+            key = miner.canon_key({
+                int(center): frozenset(members)
+                for center, members in pattern_json.items()
+            })
+            if key != primary_key:
+                _defer(pattern_json, "background-after-first")
+
+        print(
+            f"[iter {iteration}] foreground outcome: {len(rows)} exact, "
+            f"{failures} failed, {cache_skips} cache-skipped, "
+            f"{len(deferred_keys)} deferred with "
+            f"{CERT_RETRY_CPU_BUDGET}s cumulative CPU retries",
+            flush=True,
+        )
 
         if not rows:
             print(

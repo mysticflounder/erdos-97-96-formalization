@@ -1,0 +1,92 @@
+{
+  "engine_library": "/Users/adam/projects/math-projects/erdos-97-96-formalization/.venv/lib/python3.13/site-packages/z3/lib/libz3.dylib",
+  "engine_library_sha256": "752e7241ea570da619daf1fd4e5974c2638f5e83a2c19977ac2aa622bcc139c2",
+  "engine_version": "4.16.0",
+  "manifest_sha256": "a71976ad2043c0658a46d2c94d21e97c49c7258f1220669c71339df3b6414c31",
+  "results": [
+    {
+      "case_id": "ineq_m06_e51_c2256",
+      "elapsed_seconds": 30.359,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "310a55892127556c56ce4454dec06077bdd7c87412ff44a7578826b456d02050",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 30.736
+    },
+    {
+      "case_id": "ineq_m07_e19_c1216",
+      "elapsed_seconds": 30.483,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "febe47193847e850fcdc192756300d8ba011aa02334c06846cb534c06db43a11",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 30.908
+    },
+    {
+      "case_id": "ineq_m08_e04_c0521",
+      "elapsed_seconds": 30.625,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "d03ae1d5dbe41cee7318d774cc4a01eb59fd8f930fd0a1ed6073c568d4dd809f",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 31.113
+    },
+    {
+      "case_id": "ineq_m09_e00_c0009",
+      "elapsed_seconds": 30.768,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "1cddbfe7e2ccdf7c364711655442454edff101666d0e27f62fcdbd5d1b72f05a",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 31.348
+    },
+    {
+      "case_id": "ineq_m10_e01_c0008",
+      "elapsed_seconds": 30.958,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "345c73860af0a871af71668a6b98b0aa713bc96ea94b21f1db61023edfaa2857",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 31.629
+    },
+    {
+      "case_id": "ineq_m11_e02_c0018",
+      "elapsed_seconds": 31.182,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "a8a6c1e3fa5b87cdc42b36a6074c02587b1fc56cb99eb211c4ce958ce0a68685",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 31.95
+    },
+    {
+      "case_id": "ineq_m12_e03_c0082",
+      "elapsed_seconds": 31.313,
+      "reason_unknown": "timeout",
+      "schema": "p97_atail_force_inequality_pilot_worker.v1",
+      "system_input_sha256": "dd30052c4d451b3f208f82488b06f0e43a96ee3b0caa61fbd9f52fb18ad355f6",
+      "verdict": "TIMEOUT",
+      "wall_seconds": 32.206
+    }
+  ],
+  "schema": "p97_atail_force_inequality_pilot_results.v1",
+  "scope": {
+    "case_count": 7,
+    "disk_nonobtuse_cap_and_global_order_included": true,
+    "full_configuration_claim": false,
+    "full_filter_shared_radius_pair_claim": false,
+    "full_inventory_coverage_claim": false,
+    "full_three_center_window_inequalities_included": true,
+    "lean_claim": false,
+    "symmetry_reduced_surface_coverage_claim": false
+  },
+  "total_elapsed_seconds": 219.901,
+  "verdict_contract": {
+    "ERROR": "no claim",
+    "REALIZED_EXACT_RATIONAL_WINDOW": "all coordinates rational and every emitted generator passed independent exact SymPy replay; exact only within this window",
+    "SAT_UNVERIFIED": "solver SAT with no independent exact rational replay; no claim",
+    "TIMEOUT": "no claim",
+    "TOTAL_WALL_STOP": "no claim",
+    "UNKNOWN": "no claim",
+    "UNSAT_PROPOSAL": "solver UNSAT without an independently replayed certificate; no claim"
+  }
+}

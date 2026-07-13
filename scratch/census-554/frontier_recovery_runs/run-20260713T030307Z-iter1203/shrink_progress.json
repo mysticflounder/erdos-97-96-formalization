@@ -1,0 +1,33 @@
+{
+  "completed": [
+    {
+      "0": [
+        2,
+        3,
+        5
+      ],
+      "10": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "2": [
+        4,
+        10
+      ],
+      "3": [
+        2,
+        4
+      ],
+      "5": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "current": null,
+  "next_index": 1,
+  "schema": "census554_frontier_recovery_shrink_progress.v1"
+}

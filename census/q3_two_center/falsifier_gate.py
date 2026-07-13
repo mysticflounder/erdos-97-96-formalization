@@ -29,7 +29,9 @@ import sys
 from itertools import combinations
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-D3 = os.path.normpath(os.path.join(HERE, "..", "d3-formulation"))
+D3 = os.path.normpath(
+    os.path.join(HERE, "..", "..", "scratch", "d3-formulation")
+)
 EPS = 1e-7
 
 FILES = [
@@ -109,7 +111,7 @@ def in_cap(p, own, tri, O, R2):
     return True
 
 
-def check_config(tag, pts_xy, classes):
+def check_config(tag, pts_xy, classes, *, emit=True):
     O, R2 = mec(pts_xy)
     R = math.sqrt(R2)
     boundary = [p for p in pts_xy if abs(math.sqrt(d2(p, O)) - R) < 1e-6]
@@ -152,19 +154,24 @@ def check_config(tag, pts_xy, classes):
             if z_s and p_o1 and q_o2:
                 findings.append(("K-Q3-5-FALSIFIED", tag, key(V), key(W),
                                  key(U)))
-    print(f"{tag}: n={len(pts_xy)} boundary={len(boundary)} "
-          f"nonobtuse_triangles={n_tri} findings={len(findings)}",
-          flush=True)
-    return findings
+    if emit:
+        print(f"{tag}: n={len(pts_xy)} boundary={len(boundary)} "
+              f"nonobtuse_triangles={n_tri} findings={len(findings)}",
+              flush=True)
+    return findings, n_tri
 
 
-def main():
+def run_gate(*, emit=True):
     global pt_idx
     all_findings = []
+    configurations = 0
+    nonobtuse_triangles = 0
     for tag, path in FILES:
-        data = json.load(open(path))
+        with open(path, encoding="utf-8") as handle:
+            data = json.load(handle)
         entries = data if isinstance(data, list) else [data]
         for i, entry in enumerate(entries):
+            configurations += 1
             w = entry["witness"]
             lattice = tag.startswith("t1")
             raw_pts = ([tuple(p) for p in entry["subset"]] if lattice
@@ -179,9 +186,22 @@ def main():
                     kstr.replace("(", "[").replace(")", "]")))
                 classes[key(to_xy(pt, lattice))] = {
                     key(to_xy(tuple(m), lattice)) for m in members}
-            all_findings += check_config(f"{tag}[{i}]", pts_xy, classes)
-    if all_findings:
-        print("GATE FAIL — kill falsified:", all_findings)
+            findings, triangle_count = check_config(
+                f"{tag}[{i}]", pts_xy, classes, emit=emit
+            )
+            all_findings += findings
+            nonobtuse_triangles += triangle_count
+    return {
+        "configurations": configurations,
+        "nonobtuse_triangles": nonobtuse_triangles,
+        "findings": all_findings,
+    }
+
+
+def main():
+    result = run_gate()
+    if result["findings"]:
+        print("GATE FAIL — kill falsified:", result["findings"])
         sys.exit(1)
     print("GATE PASS — no configuration realizes a killed joint type "
           "under the kills' geometric hypotheses")

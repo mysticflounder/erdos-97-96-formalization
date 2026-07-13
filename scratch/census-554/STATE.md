@@ -1,4 +1,233 @@
-# census-554 working state (2026-07-06, session checkpoint)
+# census-554 working state
+
+## Dependency status (corrected 2026-07-13)
+
+Card 11 is closed by the current theorem stack. Census554 is an optional
+independent research and engineering lane, not a prerequisite for K-A-PAIR,
+K-A-LIVE, or publication. Open Census rows and the absence of a terminal cover
+must therefore not be reported as an open card-11 theorem. The remaining
+proof-critical mathematics is card ≥ 12 (`ATail` and the associated liveData
+producer families).
+
+The Census still has independent value: it can produce a checked finite cover,
+test the formalized structural cores, and bank reusable exact motifs. Every
+solver or oracle result retains its exact scope; speculative frontiers and
+learned clauses are not Lean closure claims.
+
+## Authoritative paused checkpoint (2026-07-13 11:00 PDT)
+
+Census554 is paused off the proof-critical path without discarding any durable
+state. The authoritative bank contains 5,939 rows and has SHA-256
+`02fbefc4f290458895e9ad9afbb5f7f3401f428747010ed6a47aa8479ff477b2`.
+The sole driver was interrupted outside a bank transaction after replaying
+through iteration 173 (350,209 instances in 501 seconds). No
+`.bank-transaction.json` remains.
+
+The final bounded producer reached a natural terminal rather than being
+killed mid-write:
+
+```text
+scratch/census-554/cube_prefetch_runs/
+  run-20260713T161108Z-iter690-bank5934-rebase
+```
+
+Its schema-v4 state records `status=frontier-limit`, 2,428 attempts, nine
+preserved frontier candidates, 2,113,600 learned exclusions in 499 durable
+batches, and SHA-256
+`c846a3c919d0a1573ce0900abd6e2336d4f045602f59547f9eead2eb0905fc62`.
+
+No local `frontier_loop.py`, speculative producer, retry drainer,
+certification worker, Census tmux session, or bank transaction is live. All
+substantive shared-queue jobs were moved to:
+
+```text
+/opt/nfs/erdos9796-flux-bridge/paused/
+  20260713T180000Z-off-critical-path/jobs
+```
+
+The active queue contains zero substantive jobs. AppleDouble `._*` metadata
+files may remain there but are not dispatchable work. Existing result files,
+pending stores, run directories, certificates, and bank history were
+preserved. A future resume must first recheck processes, tmux sessions, locks,
+the bank digest, pending/result reconciliation, and queue contents, then move
+only explicitly selected jobs out of quarantine under a new resource lease.
+
+The full 5,934-row immutable structural audit passed, but its
+141,467,112,677-byte all-certificate exact replay remains `NOT_RUN`.
+Individual post-audit bank admissions passed the guarded exact-admission path;
+this is not a frozen final-cover certificate or a Census-produced Lean theorem.
+
+## Historical live checkpoint (2026-07-13 02:35 PDT)
+
+The present-tense process descriptions below are retained verbatim as dated
+provenance. They are superseded by the authoritative paused checkpoint above.
+
+The 13-family cached Oracle-13 invocation has reached its terminal residual and
+is no longer running:
+
+```text
+scratch/census-554/separation_probe_runs/
+  run-20260713T054559Z-oracle13-from-iter813
+```
+
+At 00:54 PDT it exited cleanly with `status=combined-frontier`, iteration 316,
+2,464,637 total exclusions, and 4,440.017 seconds cumulative elapsed. All
+refinements in the invocation were structural (`new_algebra_instances=0`), and
+the final structural scan reported `no-applicable-core` for the surviving
+direct order. This is terminal for that bounded oracle invocation, not complete
+Census554 coverage.
+
+`result.json`, `combined_frontier.json`, and `progress.json` are byte-identical,
+SHA-256
+`63f69c20f5c166493a8bdd194c62d51b399d893d35fadb8341b74b8c7b918cad`.
+An independent `mine_frozen_frontier.validate_probe_result` call recomputed
+`cube_ok`, direct internal order 43, its exact labels
+`[0,10,9,1,3,5,4,2,6,8,7]`, and the cube/order compatibility without trusting
+the stored validation flags. Full and quick SQLite integrity checks returned
+`ok`; neither the 1.8 GB checkpoint nor the workdir lock has a live handle.
+The terminal cube is:
+
+```json
+{"0":[2,4,5,9],"1":[0,5,6,7],"2":[1,7,9,10],"3":[0,4,8,9],"4":[1,2,5,8],"5":[2,3,6,9],"6":[2,3,7,8],"7":[3,5,8,10],"8":[0,4,6,10],"9":[1,6,8,10],"10":[1,3,4,7]}
+```
+
+The successor uses the exact frozen 5,836-row bank (SHA-256
+`36348d35397a494bee5ac0ab9e423c20802e7aff45fa12f0530df36a57cfc43a`),
+the digest-pinned perpendicular-core cache SHA-256
+`bbd7b6aa6942b0f1b2c2c8da2365aa8a63d69a5f32edbbef7e07ddac9dbd4db0`,
+and oracle contract SHA-256
+`5040043d196154501086163699026d48a2d9be64083fbec8c059b38656471b5d`.
+The catalog contains all 13 formalized alternatives: 12 raw-cube-eligible
+families and the explicitly ineligible exact-off-circle family.
+
+The exact, generation-bound consumer has completed and no longer has a live
+process:
+
+```text
+scratch/census-554/frontier_mining_runs/
+  run-20260713T081430Z-54070-30351c36
+```
+
+It completed with `status=certified` in 905.431 seconds. At minimum support 6,
+Flux checked 158 of 178 candidates and the two-worker local share checked 20.
+One selected pattern passed exact certificate structure, generator fidelity,
+and Fraction identity verification (`kill=multi_pair`, 11 generators, orbit
+36). The certified artifact has SHA-256
+`7f8ad66760da4454785196771e2250491e1cddc03e9a4946f4a22e29ca8e47f6`.
+After a second independent exact replay and a canonical-novelty check against
+the then-current 5,898-row bank, its audited pending record was published by
+the sole guarded writer as `pat_05898`.
+
+The preservation-first migration retained all 2,304,034 source dynamic
+records with zero seed collisions and retargeted 88,350 structural records to
+the new aggregate contract. Together with 143,500 static seed instances, the
+published target began with 2,447,534 exclusions. Independent immutable SQLite
+reopen returned `integrity_check=ok` and exactly 2,304,034 dynamic rows; all
+bank/cache/oracle hashes matched, no staging/spool remained, and the target
+then committed live refinements. The stopped source and its byte-exact rollback
+clone remain available and must not be resumed concurrently. Full hashes and
+recovery instructions are in
+`transition_snapshots/20260713T050037Z-oracle12-stopped-iter813/README.md`.
+
+The mutable-bank lane is separate and live. Tmux session `census554-loop`
+holds the single driver lease with `CENSUS554_QUEUE=1`. At 02:35 PDT the bank
+had 5,914 rows (SHA-256
+`5fdcaf2116798a7d35991f03e2a142fbef29fe0702abc010915183c3a93cb661`).
+Iteration 690 reached a genuine frontier, found 14 minimal `k=7` patterns, and
+exactly certified one `multi_pair` motif while the other 13 failed. That success
+was banked as `pat_05897`. The driver was then stopped after the atomic bank
+boundary, the independently certified Oracle-13 residual was banked as
+`pat_05898`, and both newest bank certificates replayed exactly. No transaction
+journal remained. Later, four speculative motifs from frozen frontiers 560 and
+908 passed exact certificate verification and a fresh canonical-novelty check
+against the 5,899-row bank. The driver stopped outside a bank transaction, the
+sole guarded publisher banked them as `pat_05899` through `pat_05902`, and
+`verify_certs.py 4` replayed all four exact identities. No transaction journal
+remained. Four attempt-1,475 candidates later passed exact certification and a
+fresh 5,903-row novelty check. A second guarded transition published them as
+`pat_05903` through `pat_05906`; all four exact identities replayed, no
+transaction journal remained, and the sole driver restarted from the 5,907-row
+generation. Seven attempt-1,486 candidates then passed exact certification and
+a fresh 5,907-row novelty check. A third guarded transition published them as
+`pat_05907` through `pat_05913`; all seven exact identities replayed, no
+transaction journal remained, and the sole driver restarted from the 5,914-row
+generation. It had begun its replay at the dated snapshot.
+
+Mining and certification now overlap without creating a second writer:
+
+- a generation-bound full scan of iteration 690 checked all 291 `k=7`
+  candidates on flux and the idle-gated MacBook, finding 73 heuristic dead
+  candidates with no worker errors
+  (`mine_prefetch_runs/iter0690-k7-result.json`);
+- `census554-mine-shrink-690` completed four rounds and 5,108 heuristic
+  deletion trials with zero worker errors, reaching a fixed point of 73
+  canonical candidates. The generation audit found zero bank duplicates, 13
+  exact matches for the 14 queued live patterns, and one strictly stronger
+  shrink of the remaining pattern. That stronger candidate is queued as
+  `prefetchcert-i0690-r001-3ee371b83cf2` into a separate pending store. It
+  completed with `status=certify-failed` and no certificate, so it was not
+  admitted to the pending store or bank;
+- `census554-cube-learn` used four local cores to solve an immutable copy of
+  the iteration-690 CNF and 5,897-row bank generation. Every SAT assignment was
+  clause-checked and decoded through `cube_ok`; covered models added compact
+  auxiliary-y exclusions unit-tested equivalent to the direct one-hot
+  exclusion. The bounded run exited cleanly with `status=wall-limit` after
+  3,604.270 seconds, 1,876 diversified models, 1,729,607 learned frozen-bank
+  pattern instances, and seven model-checked frontiers:
+
+  ```text
+  attempt  560  af2cf64b98dc5f5e0761c33234b17b1519be388fe4a5044c6041c135c6f97e61
+  attempt  908  b5c92a75c40f37cf1d69a404e1c844dd42abbb33f4dda6b284c1e82c792540bc
+  attempt 1475  fe6fb46abf15cbe9af8ef75ae057bf732892ac628670e415e1a13594f009d671
+  attempt 1486  89f095caa92d2db5d30e4c94deaa5b11d4119886aac9b3debf2f6bc363b6c733
+  attempt 1510  7ac593d930c06de6354dade1460cfa414f086cfcacd2a49420023bcfd41279c8
+  attempt 1511  829ab9e5b3830409ee111da27b360d60bdc074187817d5805c69736e8f4e98ec
+  attempt 1683  8e7dec330ca2d1e267b7041fbc103886f8413a2b634ecd1d4857aac6c89b058d
+  ```
+
+  Attempts 560 and 908 each had no dead support-4/5 pattern, yielded two
+  remotely shrunk support-6 candidates, and supplied the four newly banked
+  exact motifs. Attempt 1,475 had no dead support-4/5 pattern; its four
+  support-6 hits reached a fixed point after two complete shrink rounds and 117
+  trials with no worker errors, then became the exactly verified bank rows
+  `pat_05903` through `pat_05906`. Attempt 1,486 likewise had no dead
+  support-4/5 pattern; its eight support-6 hits reached a fixed point after
+  three complete rounds and 354 trials with no worker errors. They were
+  distinct from the 5,907-row bank and the attempt-1,475 batch. Seven passed
+  exact certification and were published as `pat_05907` through
+  `pat_05913`; rank 1 remains in exact certification. Attempts 1,510 and
+  1,511 are both covered by all four
+  attempt-1,475 motifs. Attempt 1,510's four shrunk patterns are exact
+  canonical duplicates of `pat_05904`, `pat_05905`, `pat_05906`, and
+  `pat_05903`, so no redundant exact work was submitted; the direct
+  all-AUTOS containment audit records the same four hits for attempt 1,511.
+  Attempt 1,683 was the only remaining uncovered preserved cube. It had no
+  dead support-4/5 pattern. One of 202 support-6 candidates was heuristically
+  dead, shrank twice and then fixed after three complete rounds and 48 trials,
+  and remained distinct from the current bank and the attempt-1,486 batch. Its
+  one exact job is queued.
+  All unfinished artifacts remain bound to the older 5,897-row generation and
+  require fresh current-bank novelty checks after exact success.
+
+Flux's 14 mine slots are the dependable remote baseline. The MacBook is
+opportunistic and idle-gated: its advertised slots count only while Adam is not
+using it. Flux handled the Oracle residual batch, and the MacBook joined only
+when its own idle gate opened. This host runs the two-hour/high-memory
+certification and bounded fallback lanes plus four speculative cube-generation
+cores when a bounded producer is active. After the one-hour producer stopped,
+the 02:08 audit showed about 55.8 GB immediately free, 95% system memory
+availability, no throttled pages, stable 33.69 MB swap use, and the 64 GB
+per-Singular system guard active. Cube generation need not pause during
+certification while repeated audits retain comparable headroom. The retry
+drainer confirmed 79 of 87 selected failures dead and remains resumable; its
+outputs are pending records, never direct bank writes.
+
+No Census-produced checked UNSAT, completion marker, geometric counterexample,
+or Lean closure theorem has been produced. The combined and speculative
+frontiers are mining residuals, not closure claims; card 11 is closed by the
+independent theorem stack recorded above.
+
+## Historical checkpoint (2026-07-06)
 
 Task: (5,5,4) exhaustive census for the DoubleApex obligation, retained in the
 current closure plan's card-11 slice. NO git ops; NO Lean edits.
@@ -258,10 +487,18 @@ single-writer, P2 stale handoff):
   the 19:40 checkpoint predates the lifetime-lease import; enforcement begins
   when it restarts, although its `frontier_add.py` child already uses the new
   atomic publisher.
-- Certify-timeout retries: `retry_certify_queue.py` (serial,
-  `CENSUS_CERT_ALL_PAIRS_FALLBACK=1`) writes candidates to
-  `retry_certified_pending.json` ONLY; banking them is a manual
-  `frontier_add.py` call at a safe moment.
+- Certify-timeout retries: `retry_certify_drain.py` (queue-backed) stores each
+  successful candidate as one atomic frontier-add-compatible record under
+  `retry_certified_pending.d/records/`; `index.jsonl` is a compact canonical-key
+  audit index. The legacy `retry_certified_pending.json` and `.jsonl` artifacts
+  remain immutable inputs and are migrated into the per-record store while
+  `legacy-index.json` is built in a disposable helper, so their multi-gigabyte
+  decode heap is not retained by the drainer. The migration is canonical,
+  idempotent, source-drift checked, and leaves partial atomic records safe to
+  reuse after interruption. Queue-result decoding likewise runs in a
+  disposable helper. The drainer never banks: publication remains a manual
+  `uv run python frontier_add.py retry_certified_pending.d` operation at a safe
+  moment; that path consumes one record at a time under one driver lease.
 - On restart, terminal UNSAT publication requires a persisted-CNF re-solve and
   successful `drat-trim` check, emits core CNF + LRAT, records exact source-row
   and support-injection provenance, snapshots the bank under lock, and writes

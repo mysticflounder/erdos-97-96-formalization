@@ -41,8 +41,13 @@ __pycache__/
 /scratch/census-554/intracap.log
 /scratch/census-554/motif_transfer.log
 /scratch/census-554/retry_certify*.log
+/scratch/census-554/oracle13_transition_*.log
 /scratch/census-554/bank.jsonl.lock
 /scratch/census-554/retry_certified_pending.json
+/scratch/census-554/retry_certified_pending.jsonl
+/scratch/census-554/retry_certified_pending.d/
+/scratch/census-554/certification_backlog.d/
+/scratch/census-554/exact_cert_outcomes.sqlite3*
 .blueprint.db
 /census/multi_center/frontier_cache/
 /census/multi_center/*.log
@@ -53,10 +58,23 @@ __pycache__/
 /scratch/census-554/separation_probe_runs/
 /scratch/census-554/transition_snapshots/
 /scratch/census-554/frontier_analysis_runs/
+/scratch/census-554/cube_prefetch_runs/
+/scratch/census-554/frontier_mining_runs/
+/scratch/census-554/mine_prefetch_runs/
+/scratch/census-554/separation_experiments/
 
 # queue worker runtime state
 /scratch/census-554/worker/worker.log
 /scratch/census-554/worker/worker.pid
+/scratch/census-554/worker/supervisor.pid
+/scratch/census-554/worker/worker-exits.log
+
+# Disposable proof-blueprint snippets and local gate logs.
+/lean/_pb_snippet_*.lean
+/scratch/erase-m1-gate-run/
+
+# Local theorem experiments; promote finished sources into lean/ explicitly.
+/tmp/
 
 # Singular REPL history
 .singularhistory

@@ -1,0 +1,118 @@
+{
+  "classification": {
+    "all_realization_mutations_rejected": true,
+    "exact_qsqrt3_realizations": 4,
+    "exact_rational_realizations": 68,
+    "kill_proofs_replayed_by_checkpoint": false,
+    "mirror_reduced_classes": 87,
+    "reported_killed_ids": [
+      "V0o2_W0o1_o2i_o1i",
+      "V0o2_WVo1_o2i_o1i",
+      "V0o2_Wso1_o2i_o1i",
+      "VWo2_WVo1_o2i_o1i",
+      "VWo2_Wso1_o2i_o1i",
+      "Vs0_Ws0_sshared",
+      "Vs0_WsU_sshared",
+      "Vs0_Wso1_o1d_sshared",
+      "Vs0_Wso1_o1i_sshared",
+      "VsU_WsU_sshared",
+      "VsU_Wso1_o1d_sshared",
+      "VsU_Wso1_o1i_sshared",
+      "Vso2_Wso1_o2d_o1d_sshared",
+      "Vso2_Wso1_o2d_o1i_sshared",
+      "Vso2_Wso1_o2i_o1i_ssep"
+    ],
+    "reported_killed_proven": 15,
+    "unclassified": 0
+  },
+  "geometric_falsifier_gate": {
+    "configurations": 9,
+    "epistemic_scope": "EMPIRICALLY_VERIFIED_GUARD_BANDED_FLOAT",
+    "findings": [],
+    "nonobtuse_triangles": 396
+  },
+  "input_sha256": {
+    "census/candidate_d_probe/encoder.py": "2697bd1f81b9c3e73e99a0e331c55c20b2b40b7b538aeab202a278fd9fbc142e",
+    "census/candidate_d_probe/q2_token.py": "71016fc8212a386ae09e76af6920d72b064327c6e6e73ed7b51954f106fc4f48",
+    "census/q3_two_center/checkpoint.py": "a548534cd4dbfadab3524e4dc155d2f2f3c12c8aac75fd323d89cd9de1500f99",
+    "census/q3_two_center/factory_raw.json": "b83ce5d564a49757b7f533f864465a3a06ac08162df4de93987a02162de325ef",
+    "census/q3_two_center/falsifier_gate.py": "919aadcf4e98336b65b529537ce202254d1852f8a5ffc3a245c37385686f9b66",
+    "census/q3_two_center/q3_token.py": "795a9be85cc72c8f065e7764017daf8ef03733bfac32320579968f5aa27d163e",
+    "census/q3_two_center/q3_token_plus.json": "0290bc35ca09429e199a1d8f69d664a127f1495ba618fea5e628e217506fd4d8",
+    "census/q3_two_center/q3_token_proven.json": "5772acafa950a5aac54cf142bfad2cd600d8a52990b5d908c808dde856f37ac3",
+    "census/q3_two_center/q3_witnesses.json": "59292216f93c90f016acf6d3ff05fa9f8ee1c591cc1c817ca79ecd3cad3361e7",
+    "census/q3_two_center/q3lib.py": "2e8a9fb46a12fc794e265e722fe931e81888c406d12ee53ef97729a36d303e8e",
+    "census/q3_two_center/resid_witnesses.json": "200db324ed30a12db74a6f631e872d85d9a855716420901f3285fee0a5a0a8c6",
+    "census/q3_two_center/specials_witnesses.json": "e876efa326304257859607fd2446ece37a874993b33ec524afb2be21e5c3d325",
+    "scratch/d3-formulation/t1_results.json": "c9085013245ef85948d105b7a2f4142df8c5b8efc1b7555bd5ffa06f231a9f83",
+    "scratch/d3-formulation/t1b_results.json": "6252831680f51c7255cf74d43960fe5ca0ffd0f73bf86bd6c2f2c48e53a611db",
+    "scratch/d3-formulation/t9_wit_m10_0.6180.json": "764a99e7fc22eb267d0bda2849b7d85c1898e5982433140bc4f1f391170b8b17",
+    "scratch/d3-formulation/t9_wit_m8_1.4534.json": "06a4936ea9c79357c0b594076100e9f6e8469e317135c71b6e19db225ab14058",
+    "scratch/d3-formulation/t9_wit_m8_2.2853.json": "6fe026c4d0d52528949056f4a3c5aefcfae7297390fab4d2a22683650b47931c"
+  },
+  "schema": "p97_atail_q3_checkpoint.v1",
+  "scope": {
+    "exact_token_assignment_replay": true,
+    "exact_window_replay": true,
+    "full_configuration_counterexample": false,
+    "kill_proofs_independently_replayed": false,
+    "lean_shared_radius_producer": false
+  },
+  "token_composition": {
+    "base_proven": {
+      "orders": [
+        {
+          "cardinality": 12,
+          "profiles": 2
+        },
+        {
+          "cardinality": 13,
+          "profiles": 3
+        },
+        {
+          "cardinality": 14,
+          "profiles": 4
+        },
+        {
+          "cardinality": 15,
+          "profiles": 6
+        },
+        {
+          "cardinality": 16,
+          "profiles": 7
+        }
+      ],
+      "profiles_with_verified_sat_assignment": 22
+    },
+    "post_sub2_proven": {
+      "orders": [
+        {
+          "cardinality": 12,
+          "profiles": 2
+        },
+        {
+          "cardinality": 13,
+          "profiles": 3
+        },
+        {
+          "cardinality": 14,
+          "profiles": 4
+        },
+        {
+          "cardinality": 15,
+          "profiles": 6
+        },
+        {
+          "cardinality": 16,
+          "profiles": 7
+        }
+      ],
+      "profiles_with_verified_sat_assignment": 22
+    }
+  },
+  "verdict": {
+    "atail_force": "OPEN_RESEARCH",
+    "atail_q3": "DONE_NEGATIVE_WITHIN_STATED_SURFACES",
+    "required_successor": "couple more than one Moser-vertex pair, or supply a new convexity/critical-row producer"
+  }
+}

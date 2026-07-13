@@ -1,0 +1,90 @@
+{
+  "schema": "census554_retry_autos_dedup_recovery.v1",
+  "created_utc": "2026-07-13T16:22:30Z",
+  "bank": {
+    "rows": 5934,
+    "sha256": "4b5579aad55b6f43c43022680fb5ad914556243654ed451c03ccf7a2f90c2fa3"
+  },
+  "scan": {
+    "certify_failures": 129,
+    "todo_under_broad_unlabeled_digest": 111,
+    "todo_under_bank_autos_digest": 113,
+    "broad_only_suppressed_bank_distinct_candidates": 2
+  },
+  "cause": "retry deduplication used cover_probe.unlabeled_key, which is invariant under arbitrary support relabeling and is coarser than the Census-554 AUTOS identity used by bank publication",
+  "soundness": "the bug could suppress useful retry work but could not publish a false certificate or bank row",
+  "recovery": {
+    "pending_cert_store": "broad-isomorphic but AUTOS-distinct records now coexist; collisions use the exact bank digest as the alternate record name",
+    "retry_certify_drain": "bank, pending, and within-pass deduplication now use pending_cert_store.bank_pattern_digest",
+    "tests": "131 Census-554 tests passed after the transition, including the new broad-isomorph collision regression"
+  },
+  "recovered_candidates": [
+    {
+      "source_iteration": 585,
+      "broad_digest": "a20b1e227071603949b4bae229e8504fb08ec9cec3ea16e01b49e3d3b0b3c48f",
+      "bank_digest": "514b6d48ed069d70dd8ba2b8822e447241bafc5f2fa70395e87bfb6c1829edef",
+      "broad_collision": {
+        "kind": "current-bank-row",
+        "pid": "pat_05415"
+      },
+      "exact_deadness_recheck": {
+        "result": true,
+        "elapsed_seconds": 2.216449022293091
+      },
+      "pattern": {
+        "1": [4, 8, 9],
+        "2": [1, 9, 10],
+        "4": [1, 10],
+        "8": [2, 9, 10],
+        "9": [2, 4]
+      },
+      "cube": {
+        "0": [3, 4, 5, 10],
+        "1": [4, 6, 8, 9],
+        "2": [1, 7, 9, 10],
+        "3": [2, 6, 7, 8],
+        "4": [1, 2, 5, 10],
+        "5": [2, 3, 6, 9],
+        "6": [0, 1, 7, 8],
+        "7": [1, 4, 5, 8],
+        "8": [0, 2, 9, 10],
+        "9": [0, 2, 3, 4],
+        "10": [0, 5, 6, 7]
+      }
+    },
+    {
+      "source_iteration": 971,
+      "broad_digest": "425576e45e408668e9086789c9167b5066c288bb69ae261b7fde5db356c54d7a",
+      "bank_digest": "c894fd24dc00a43f5a99bb4bde86be5f027d87d132e0845398f73d475d7a9552",
+      "broad_collision": {
+        "kind": "separate-failed-motif",
+        "source_iteration": 1184,
+        "other_bank_digest": "55f37f4a6f338a24eeb9b57e50c439090d9bf9d7db989753bdceb89e9bcede47"
+      },
+      "exact_deadness_recheck": {
+        "result": true,
+        "elapsed_seconds": 3.410367012023926
+      },
+      "pattern": {
+        "1": [3, 8],
+        "3": [1, 5],
+        "5": [8, 9, 10],
+        "9": [1, 3, 8],
+        "10": [1, 5, 8]
+      },
+      "cube": {
+        "0": [5, 6, 7, 9],
+        "1": [0, 3, 7, 8],
+        "2": [3, 7, 9, 10],
+        "3": [0, 1, 4, 5],
+        "4": [0, 1, 2, 6],
+        "5": [6, 8, 9, 10],
+        "6": [4, 5, 7, 10],
+        "7": [0, 2, 3, 5],
+        "8": [2, 3, 4, 6],
+        "9": [1, 3, 8, 10],
+        "10": [1, 5, 6, 8]
+      }
+    }
+  ]
+}

@@ -45,6 +45,7 @@ from census.census_554 import combinatorics  # noqa: E402
 from census.census_554 import closure_checkpoint  # noqa: E402
 from census.census_554 import convex_structural_seeds  # noqa: E402
 from census.census_554 import formalized_structural_oracle  # noqa: E402
+from census.census_554 import perp_bisector_template_seeds  # noqa: E402
 from census.census_554 import separation_encoding  # noqa: E402
 from census.census_554.closure_checkpoint import (  # noqa: E402
     CheckpointError,
@@ -55,6 +56,8 @@ from census.census_554.closure_checkpoint import (  # noqa: E402
 SCHEMA = "census554_frozen_separation_probe.v1"
 MAX_CADICAL_SEED = 2_000_000_000
 TERMINAL_STATUSES = frozenset({"combined-frontier", "UNSAT-verified"})
+REFINEMENT_ORDERS = ("bank-first", "structural-first")
+DEFAULT_REFINEMENT_ORDER = "bank-first"
 WORKDIR_LOCK = ".frozen_separation_probe.lock"
 STRUCTURAL_SEED_SNAPSHOT = "convex_structural_seeds.json"
 STRUCTURAL_SOURCE_SNAPSHOT = "convex_structural_source_result.json"
@@ -216,6 +219,9 @@ def _runtime_fingerprint() -> dict[str, str]:
         ).resolve(),
         "formalized_structural_oracle": Path(
             formalized_structural_oracle.__file__
+        ).resolve(),
+        "perp_bisector_template_seeds": Path(
+            perp_bisector_template_seeds.__file__
         ).resolve(),
         "metric_structural_detectors": Path(
             formalized_structural_oracle.metric.__file__
@@ -938,13 +944,16 @@ def _prepare_formula(
     checkpoint: ClosureCheckpoint,
     structural_patterns: Iterable[Mapping[int, Iterable[int]]] = (),
     structural_oracle_catalog: Mapping[str, Any] | None = None,
+    *,
+    perp_template_preseed: bool = False,
 ):
     """Rebuild the exact ordered hard-clause surface.
 
     Algebra-bank profile orbits are seeded first.  Independently validated
-    convex-structural profile-orbit records follow, and only then is the ordered
-    dynamic checkpoint replayed.  The two seed classes intentionally share
-    the SAT exclusion mechanism but never share provenance or trust labels.
+    convex-structural profile-orbit records follow, and then the ordered dynamic
+    checkpoint is replayed.  The optional complete square-template preseed is
+    appended last so it can skip already-present unconditional records without
+    changing any historical auxiliary-variable or clause order.
     """
 
     instance = sat_cover.CoverInstance()
@@ -1038,6 +1047,66 @@ def _prepare_formula(
             dynamic_structural_records += 1
         else:
             dynamic_algebra_records += 1
+
+    perp_template_total = 0
+    perp_template_instances = 0
+    perp_template_duplicates = 0
+    if perp_template_preseed:
+        perp_bisector_template_seeds.assert_pinned_inventory()
+        for pattern_index, pattern in enumerate(
+            perp_bisector_template_seeds.iter_feasible_patterns()
+        ):
+            if pattern_index % 100 == 0:
+                _check_stop()
+            perp_template_total += 1
+            serialized = combinatorics.serialize_pattern(pattern)
+            if serialized in ordered_seen:
+                raise ProbeError(
+                    "perpendicular-template preseed collides with an "
+                    "order-conditional checkpoint record"
+                )
+            if serialized in seen:
+                perp_template_duplicates += 1
+                continue
+            instance.add_pattern_instance(pattern)
+            seen.add(serialized)
+            unconditional_seen.add(serialized)
+            perp_template_instances += 1
+        if perp_template_total != (
+            perp_bisector_template_seeds.FEASIBLE_PATTERN_COUNT
+        ):
+            raise ProbeError(
+                "perpendicular-template preseed enumeration is incomplete"
+            )
+        seed_instances += perp_template_instances
+
+    family = formalized_structural_oracle.FAMILY_BY_STAGE[
+        perp_bisector_template_seeds.STAGE
+    ]
+    instance.seed_inventory["perp_bisector_template"] = {
+        "enabled": bool(perp_template_preseed),
+        "schema": perp_bisector_template_seeds.SCHEMA,
+        "candidate_row_feasible_patterns": perp_template_total,
+        "new_instances": perp_template_instances,
+        "already_present_instances": perp_template_duplicates,
+        "artifact_sha256": (
+            perp_bisector_template_seeds.EXPECTED_ARTIFACT_SHA256
+        ),
+        **perp_bisector_template_seeds.inventory_hashes(),
+        "family_id": family.family_id,
+        "theorem_id": family.theorem_id,
+        "theorem_source": family.theorem_source,
+        "theorem_source_sha256": (
+            formalized_structural_oracle.THEOREM_SOURCE_SHA256[
+                family.theorem_source
+            ]
+        ),
+        "trust": (
+            "complete pinned card-11 injection enumeration of a "
+            "theorem-backed perpendicular-bisector template; generated "
+            "outside the algebra/Nullstellensatz bank"
+        ),
+    }
 
     instance.unconditional_seen = unconditional_seen
     instance.ordered_seen = ordered_seen
@@ -1169,6 +1238,8 @@ def _commit_structural_orbit(
 def _add_formalized_structural_refinements(
     instance, separation, seen, cube, selected_orders,
     catalog: Mapping[str, Any] | None,
+    *,
+    allow_order_conditional: bool = True,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     if catalog is None:
         raise ProbeError("formalized structural oracle is absent from this run")
@@ -1219,6 +1290,21 @@ def _add_formalized_structural_refinements(
         }
     all_valid = len(killed_by_key) == len(scan.valid_orders)
     cut_scope = "all-valid-orders" if all_valid else "order-conditional"
+    if cut_scope == "order-conditional" and not allow_order_conditional:
+        return [], {
+            "status": "deferred-order-conditional",
+            "cut_scope": cut_scope,
+            "stages": sorted({
+                killed_by_key[key]["stage"] for key in selected_killed
+            }),
+            "valid_orders": len(scan.valid_orders),
+            "ordered_orders_killed": len(killed_by_key),
+            "selected_orders_killed": len(selected_killed),
+            "reason": (
+                "the v1 checkpoint keys records only by pattern; a partial "
+                "order cut must not suppress a later unconditional algebra cut"
+            ),
+        }
     detections = [killed_by_key[key] for key in sorted(killed_by_key)]
     orbit = formalized_structural_oracle.profile_orbit_ordered(
         scan.pattern, detections
@@ -1243,6 +1329,64 @@ def _add_formalized_structural_refinements(
         "selected_orders_killed": len(selected_killed),
         "profile_orbit_records": len(records),
     }
+
+
+def _refine_candidate(
+    instance, separation, representatives, seen, cube, selected_orders,
+    catalog: Mapping[str, Any] | None, refinement_order: str,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    """Refine one candidate using the run's frozen scheduling policy."""
+
+    if refinement_order not in REFINEMENT_ORDERS:
+        raise ProbeError(f"unknown refinement order: {refinement_order}")
+    if refinement_order == "bank-first":
+        algebra_records = _add_lazy_embeddings(
+            instance, representatives, seen, cube
+        )
+        if algebra_records:
+            return (
+                algebra_records,
+                [],
+                {"status": "not-run-bank-refinement"},
+            )
+        structural_records, structural_summary = (
+            _add_formalized_structural_refinements(
+                instance,
+                separation,
+                seen,
+                cube,
+                selected_orders,
+                catalog,
+                allow_order_conditional=True,
+            )
+        )
+        return [], structural_records, structural_summary
+
+    structural_records, structural_summary = (
+        _add_formalized_structural_refinements(
+            instance,
+            separation,
+            seen,
+            cube,
+            selected_orders,
+            catalog,
+            allow_order_conditional=False,
+        )
+    )
+    if structural_records:
+        return [], structural_records, structural_summary
+    algebra_records = _add_lazy_embeddings(
+        instance, representatives, seen, cube
+    )
+    if not algebra_records and (
+        structural_summary.get("status") == "deferred-order-conditional"
+    ):
+        raise ProbeError(
+            "candidate requires an order-conditional refinement, but the v1 "
+            "checkpoint cannot safely coexist with a later unconditional "
+            "algebra record for the same pattern"
+        )
+    return algebra_records, [], structural_summary
 
 
 def _assert_no_seen_exclusion(
@@ -1295,6 +1439,12 @@ def _base_payload(
         "bank_sha256": metadata["bank_sha256"],
         "bank_rows": metadata["bank_rows"],
         "seed": metadata["seed"],
+        "refinement_order": metadata.get(
+            "refinement_order", DEFAULT_REFINEMENT_ORDER
+        ),
+        "perp_bisector_template_preseed": bool(
+            metadata.get("perp_bisector_template_preseed", False)
+        ),
         "caps": {
             "wall_seconds": args.wall_seconds,
             "max_iterations": args.max_iterations,
@@ -1461,6 +1611,9 @@ def _execute(
         checkpoint,
         () if structural_artifact is None else structural_artifact.patterns,
         structural_oracle_catalog,
+        perp_template_preseed=bool(
+            metadata.get("perp_bisector_template_preseed", False)
+        ),
     )
     seed_inventory = getattr(instance, "seed_inventory", {
         "algebra_bank": {
@@ -1475,6 +1628,12 @@ def _execute(
                 "separately validated theorem-backed convex-realization "
                 "exclusions; not algebra-bank deadness"
             ),
+        },
+        "perp_bisector_template": {
+            "enabled": False,
+            "candidate_row_feasible_patterns": 0,
+            "new_instances": 0,
+            "already_present_instances": 0,
         },
     })
     structural_metadata = metadata.get("convex_structural_seeds")
@@ -1495,6 +1654,11 @@ def _execute(
                 }
             ),
             "formalized_structural_oracle": oracle_metadata,
+            "perp_bisector_template": (
+                seed_inventory["perp_bisector_template"]
+                if metadata.get("perp_bisector_template_preseed", False)
+                else None
+            ),
         },
     }
     start_iteration = checkpoint.progress().iteration + 1
@@ -1621,23 +1785,22 @@ def _execute(
             selected_orders,
             instance.ordered_seen,
         )
-        algebra_records = _add_lazy_embeddings(
-            instance, representatives, seen, cube
-        )
-        structural_records = []
-        if algebra_records:
-            structural_summary = {"status": "not-run-bank-refinement"}
-        else:
-            structural_records, structural_summary = (
-                _add_formalized_structural_refinements(
-                    instance,
-                    separation,
-                    seen,
-                    cube,
-                    selected_orders,
-                    structural_oracle_catalog,
-                )
+        algebra_records, structural_records, structural_summary = (
+            _refine_candidate(
+                instance,
+                separation,
+                representatives,
+                seen,
+                cube,
+                selected_orders,
+                structural_oracle_catalog,
+                str(
+                    metadata.get(
+                        "refinement_order", DEFAULT_REFINEMENT_ORDER
+                    )
+                ),
             )
+        )
         records = [*algebra_records, *structural_records]
         if not records:
             payload = _base_payload(
@@ -1755,6 +1918,28 @@ def _run_locked(args, workdir: Path) -> int:
         if args.seed is not None and args.seed != metadata["seed"]:
             checkpoint.close()
             raise ProbeError("--seed does not match resumed run")
+        stored_refinement_order = metadata.get(
+            "refinement_order", DEFAULT_REFINEMENT_ORDER
+        )
+        requested_refinement_order = getattr(
+            args, "refinement_order", DEFAULT_REFINEMENT_ORDER
+        )
+        if requested_refinement_order != stored_refinement_order:
+            checkpoint.close()
+            raise ProbeError(
+                "--refinement-order does not match resumed run"
+            )
+        requested_perp_preseed = bool(getattr(
+            args, "perp_bisector_template_preseed", False
+        ))
+        stored_perp_preseed = bool(metadata.get(
+            "perp_bisector_template_preseed", False
+        ))
+        if requested_perp_preseed != stored_perp_preseed:
+            checkpoint.close()
+            raise ProbeError(
+                "--perp-bisector-template-preseed does not match resumed run"
+            )
         try:
             structural_artifact = _load_structural_seed_snapshot(
                 workdir, metadata
@@ -1808,6 +1993,12 @@ def _run_locked(args, workdir: Path) -> int:
             "bank_sha256": _sha256_bytes(bank_raw),
             "bank_rows": len(bank_rows),
             "seed": seed,
+            "refinement_order": getattr(
+                args, "refinement_order", DEFAULT_REFINEMENT_ORDER
+            ),
+            "perp_bisector_template_preseed": bool(getattr(
+                args, "perp_bisector_template_preseed", False
+            )),
             "created_utc": datetime.now(timezone.utc).isoformat(),
             "runtime_fingerprint": _runtime_fingerprint(),
             "convex_structural_seeds": structural_metadata,
@@ -1859,6 +2050,12 @@ def _run_locked(args, workdir: Path) -> int:
                 "formalized_structural_oracle"
             ),
             "seed": metadata["seed"],
+            "refinement_order": metadata.get(
+                "refinement_order", DEFAULT_REFINEMENT_ORDER
+            ),
+            "perp_bisector_template_preseed": bool(metadata.get(
+                "perp_bisector_template_preseed", False
+            )),
             "iteration": prior.iteration,
             "signal": _STOP_SIGNAL,
             "message": str(exc),
@@ -1886,11 +2083,28 @@ def _parse_args(argv=None):
     parser.add_argument("--resume", type=Path)
     parser.add_argument("--seed", type=int)
     parser.add_argument(
+        "--refinement-order",
+        choices=REFINEMENT_ORDERS,
+        default=DEFAULT_REFINEMENT_ORDER,
+        help=(
+            "candidate refinement schedule; structural-first is the "
+            "experimental cheap-theorem-first arm"
+        ),
+    )
+    parser.add_argument(
         "--convex-structural-seeds",
         type=Path,
         help=(
             "validated theorem-backed convex structural seed artifact; "
             "snapshotted separately from the algebra bank"
+        ),
+    )
+    parser.add_argument(
+        "--perp-bisector-template-preseed",
+        action="store_true",
+        help=(
+            "append the pinned complete row-feasible square "
+            "perpendicular-bisector template inventory after checkpoint replay"
         ),
     )
     parser.add_argument("--wall-seconds", type=float, default=14_400)

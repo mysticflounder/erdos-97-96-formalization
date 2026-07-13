@@ -452,16 +452,16 @@ lanes and must not be collapsed into one "live oracle":
    and banked it as `pat_05915`. Thus all seven frozen frontiers are now mined,
    covered by newer rows, or exactly published.
 6. A fresh four-core successor
-   `cube_prefetch_runs/run-20260713T093813Z-iter690-bank5914-rebase` is live.
+   `cube_prefetch_runs/run-20260713T093813Z-iter690-bank5914-rebase` was live.
    It reuses the immutable 5,897-row CNF but matches every candidate against a
    separately hashed 5,914-row bank snapshot, so all 17 post-CNF motifs are
    filtered before a frontier can be emitted. At 02:53 PDT it had checked 516
    models, learned 612,895 bank-pattern exclusions, and found no frontier. The
    authoritative bank has since added `pat_05914` and `pat_05915`, so every
-   future candidate still requires a fresh 5,916-row recheck. The run remains
+   future candidate still required a fresh 5,916-row recheck. The run was
    read-only and capped at four cores, one hour, 2,048 attempts, and eight
    frontiers.
-7. The retry drainer remains a separate resumable certification operation. Its
+7. The retry drainer was a separate resumable certification operation. Its
    running in-memory pass began from 105 failures, selected 87 retries, and
    confirmed 79 dead. A current-bank audit later proved that all 16 atomic
    records already in `retry_certified_pending.d` are exact Census-AUTOS
@@ -1087,6 +1087,15 @@ full configuration, and does not prove a Lean statement. Thus the bare or
 separator-saturated equality route is DONE-NEGATIVE even over real algebraic
 coordinates, while ATAIL-FORCE remains OPEN-RESEARCH and must use the omitted
 inequalities or a direct full-filter/critical-row producer.
+
+The subsequent `ATAIL-INEQ-PILOT` exercised those omitted inequalities only as
+a bounded diagnostic. Its immutable seven-case manifest includes the complete
+disk, nonobtuse, cap-sign, and global-order generators, with one sequential Z3
+4.16.0 QF_NRA/NLSAT process, 30 seconds per case, and a 240-second aggregate
+wall. Every case timed out; total wall was 219.901 seconds. No model or UNSAT
+proposal was returned, so no geometric row is classified and no mathematical
+claim advances. This is DONE-NEGATIVE-TRACTABILITY and does not authorize a
+larger nonlinear sweep.
 
 Cap profiles at card 12 (sum 15, parts ≥ 4, at least two parts ≥ 5):
 (6,5,4), (5,6,4), (5,5,5); {4,4,7} excluded (STATE.md:33-45). Only (6,5,4)
@@ -1915,7 +1924,10 @@ orders in a common three-center polynomial frame. The exact combinatorial
 reduction has 590 S3 class orbits / 30,997 representative-order cases and 343
 raw / 70 S3 equality skeletons. Every raw equality skeleton has an
 exact-replayed collapsed `Q(sqrt(3))` witness, so unsaturated equality-ideal
-emptiness is a negative terminal. Its checkpoint invokes no solver and
+emptiness is a negative terminal. Exact constructive replay also gives all 343
+skeletons separator-satisfying real algebraic witnesses. The bounded
+full-inequality successor selected seven fixed support-size strata, but Z3
+timed out on all seven in 219.901 seconds and classified no row. The checkpoint
 deliberately reports `lean_leaf_to_inventory_extraction = false` and
 `full_filter_shared_radius_pair = false`. MC-* therefore remains
 OFF-SPINE RESEARCH until a concrete geometric extraction and selection-robust

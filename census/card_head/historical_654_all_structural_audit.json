@@ -1,0 +1,60 @@
+{
+  "bank_records": 256,
+  "bank_sha256": "e65e00a1a8ac900a5608061d135fb3b46c77f79b0c78533c775119816eeb8c04",
+  "candidate_compatible_every_orbit": true,
+  "canonical_orbits_unique": true,
+  "certificate_files_present": 256,
+  "certificate_identity_replay": {
+    "reason": "the historical certificate payload is multi-gigabyte; file existence and index fidelity are not polynomial-identity proof",
+    "status": "NOT_RUN"
+  },
+  "certificate_payload_bytes": 9233993303,
+  "current_proof_tier": "PROVEN_POST_SUB2",
+  "distinct_window_shapes": 159,
+  "historical_cut_label": "all",
+  "kill_counts": {
+    "base": 5,
+    "multi_pair": 203,
+    "pair:0-10": 1,
+    "pair:10-11": 11,
+    "pair:4-5": 1,
+    "pair:4-9": 2,
+    "pair:5-10": 1,
+    "pair:6-11": 5,
+    "pair:7-10": 1,
+    "pair:7-11": 4,
+    "pair:7-8": 6,
+    "pair:7-9": 1,
+    "pair:8-10": 1,
+    "pair:8-11": 3,
+    "pair:9-10": 6,
+    "pair:9-11": 5
+  },
+  "orbit_size_counts": {
+    "12": 19,
+    "144": 53,
+    "24": 47,
+    "288": 18,
+    "36": 13,
+    "48": 23,
+    "6": 11,
+    "72": 66,
+    "8": 6
+  },
+  "pattern_point_counts": {
+    "12": 5,
+    "4": 10,
+    "5": 122,
+    "6": 119
+  },
+  "profile": [
+    6,
+    5,
+    4
+  ],
+  "profile_orbit_instances": 20610,
+  "schema": "p97_ahead_historical_654_all_structural_audit.v1",
+  "scope": "Structural replay of the historical finite bank index only; certificate files are inventoried but their polynomial identities are not rechecked",
+  "shape_labels_recomputed": true,
+  "status": "PASS_STRUCTURAL_ONLY"
+}

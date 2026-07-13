@@ -38,6 +38,7 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 
 import cover_probe as cp  # noqa: E402
+import miner  # noqa: E402
 
 
 STORE_SCHEMA = "census554-pending-certificate-store-v1"
@@ -74,9 +75,75 @@ def canonical_pattern_payload(pattern_json) -> list[list[object]]:
 
 
 def pattern_digest(pattern_json) -> str:
+    """Legacy broad-isomorphism digest used by the v1 record layout."""
+
     payload = canonical_pattern_payload(pattern_json)
     raw = json.dumps(payload, separators=(",", ":"), ensure_ascii=True)
     return hashlib.sha256(raw.encode("ascii")).hexdigest()
+
+
+def bank_canonical_pattern_payload(pattern_json) -> list[list[object]]:
+    """JSON form of the exact AUTOS key used by ``bank.jsonl``."""
+
+    key = miner.canon_key(_pattern(pattern_json))
+    return [
+        [int(center), [int(point) for point in members]]
+        for center, members in key
+    ]
+
+
+def bank_pattern_digest(pattern_json) -> str:
+    """Digest under the bank's AUTOS action, not arbitrary relabeling."""
+
+    payload = bank_canonical_pattern_payload(pattern_json)
+    raw = json.dumps(payload, separators=(",", ":"), ensure_ascii=True)
+    return hashlib.sha256(raw.encode("ascii")).hexdigest()
+
+
+def _read_atomic_record_pattern(path: Path):
+    """Read the small trailing pattern without decoding a multi-GB cert.
+
+    ``atomic_write_json(..., sort_keys=True)`` orders a pending row as
+    ``cert``, ``cube``, ``pattern``.  The exact pattern therefore lives at the
+    tail even when the certificate occupies gigabytes.  This is used only for
+    authoritative records written by this module.
+    """
+
+    size = path.stat().st_size
+    window = min(size, 128 * 1024)
+    marker = b'"pattern":'
+    while window:
+        with path.open("rb") as handle:
+            handle.seek(size - window)
+            tail = handle.read()
+        offset = tail.rfind(marker)
+        if offset >= 0:
+            try:
+                pattern, _ = json.JSONDecoder().raw_decode(
+                    tail[offset + len(marker):].decode("utf-8").lstrip()
+                )
+            except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+                raise PendingStoreError(
+                    f"cannot decode trailing pattern in {path}: {exc}"
+                ) from exc
+            _pattern(pattern)  # structural validation
+            return pattern
+        if window == size or window >= 8 * 1024 * 1024:
+            break
+        window = min(size, window * 2)
+    raise PendingStoreError(f"atomic record has no trailing pattern: {path}")
+
+
+def read_json_pattern_tail(path: Path):
+    """Recover a sorted JSON object's trailing ``pattern`` without loading it.
+
+    Worker result files place the potentially multi-gigabyte certificate before
+    the small pattern field.  This lets a restarted drainer recover orphaned
+    results in a disposable decoder process instead of discarding completed
+    exact work or retaining the certificate heap in its supervisor.
+    """
+
+    return _read_atomic_record_pattern(Path(path))
 
 
 def _fsync_directory(path: Path) -> None:
@@ -113,6 +180,7 @@ def atomic_write_json(path: Path, value) -> None:
 @dataclass(frozen=True)
 class StoreResult:
     key_sha256: str
+    bank_key_sha256: str
     record_path: Path
     stored: bool
 
@@ -163,11 +231,34 @@ class PendingCertificateStore:
             and all(ch in "0123456789abcdef" for ch in entry.stem)
         }
 
-    def _append_index(self, digest: str, canonical_payload) -> None:
+    def done_bank_digests(self) -> set[str]:
+        """Return exact bank-identity keys from authoritative records.
+
+        Filenames in the original store use the broader unlabeled digest and
+        cannot distinguish every AUTOS orbit.  Reading only each record tail
+        recovers the original pattern without decoding its certificate.
+        """
+
+        return {
+            bank_pattern_digest(_read_atomic_record_pattern(path))
+            for path in self.records_dir.glob("*.json")
+            if len(path.stem) == 64
+            and all(ch in "0123456789abcdef" for ch in path.stem)
+        }
+
+    def _append_index(
+        self,
+        digest: str,
+        canonical_payload,
+        bank_digest: str,
+        bank_canonical_payload,
+    ) -> None:
         entry = {
             "schema": INDEX_SCHEMA,
             "key_sha256": digest,
             "canonical_pattern": canonical_payload,
+            "bank_key_sha256": bank_digest,
+            "bank_canonical_pattern": bank_canonical_payload,
             "record": f"records/{digest}.json",
         }
         raw = (json.dumps(entry, sort_keys=True, separators=(",", ":"))
@@ -196,21 +287,54 @@ class PendingCertificateStore:
         if not isinstance(cert, dict) or "kill" not in cert:
             raise PendingStoreError("pending row must contain a certified kill")
         canonical_payload = canonical_pattern_payload(pattern_json)
-        digest = hashlib.sha256(
+        broad_digest = hashlib.sha256(
             json.dumps(canonical_payload, separators=(",", ":"))
             .encode("ascii")
         ).hexdigest()
-        record_path = self.record_path(digest)
+        bank_canonical_payload = bank_canonical_pattern_payload(pattern_json)
+        bank_digest = hashlib.sha256(
+            json.dumps(bank_canonical_payload, separators=(",", ":"))
+            .encode("ascii")
+        ).hexdigest()
         with self._lock():
+            record_digest = broad_digest
+            record_path = self.record_path(record_digest)
             if record_path.exists():
-                return StoreResult(digest, record_path, False)
+                existing_bank_digest = bank_pattern_digest(
+                    _read_atomic_record_pattern(record_path)
+                )
+                if existing_bank_digest == bank_digest:
+                    return StoreResult(
+                        record_digest, bank_digest, record_path, False
+                    )
+                # Broad-isomorphic patterns can occupy different Census-AUTOS
+                # orbits.  Preserve the second record under its exact bank key
+                # instead of silently treating it as already stored.
+                record_digest = bank_digest
+                record_path = self.record_path(record_digest)
+            if record_path.exists():
+                existing_bank_digest = bank_pattern_digest(
+                    _read_atomic_record_pattern(record_path)
+                )
+                if existing_bank_digest != bank_digest:
+                    raise PendingStoreError(
+                        "pending record digest collision across bank keys"
+                    )
+                return StoreResult(
+                    record_digest, bank_digest, record_path, False
+                )
             atomic_write_json(record_path, row)
             if fault_hook is not None:
                 fault_hook("after_record_publish")
-            self._append_index(digest, canonical_payload)
+            self._append_index(
+                record_digest,
+                canonical_payload,
+                bank_digest,
+                bank_canonical_payload,
+            )
             if fault_hook is not None:
                 fault_hook("after_index_append")
-        return StoreResult(digest, record_path, True)
+        return StoreResult(record_digest, bank_digest, record_path, True)
 
     def audit(self) -> dict:
         records = self.done_digests()
@@ -427,6 +551,8 @@ def consume_queue_result(
         "elapsed": float(data.get("elapsed", 0.0)),
         "worker": data.get("worker", "?"),
     }
+    if isinstance(data.get("certification"), dict):
+        status["certification"] = data["certification"]
     if cert is not None and isinstance(cert, dict) and "kill" in cert:
         if _pattern(actual_pattern) != _pattern(expected_pattern):
             raise PendingStoreError("queue result pattern does not match request")
@@ -439,6 +565,7 @@ def consume_queue_result(
             "outcome": "certified",
             "kill": cert["kill"],
             "key_sha256": stored.key_sha256,
+            "bank_key_sha256": stored.bank_key_sha256,
             "stored": stored.stored,
         })
     else:

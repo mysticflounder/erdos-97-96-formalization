@@ -41,6 +41,15 @@ STRUCTURAL_CUBE = {
     9: [0, 5, 8, 10], 10: [1, 3, 7, 9],
 }
 
+# Captured read-only from a live algebra-hit candidate.  It also contains the
+# perpendicular-bisector core with foci 4,5 and points 3,7,10.
+LIVE_ALGEBRA_HIT_CUBE = {
+    0: [1, 2, 3, 4], 1: [0, 2, 6, 7], 2: [4, 6, 9, 10],
+    3: [1, 4, 5, 8], 4: [2, 3, 8, 10], 5: [0, 1, 3, 10],
+    6: [0, 2, 8, 9], 7: [0, 4, 5, 6], 8: [2, 5, 7, 10],
+    9: [3, 5, 7, 8], 10: [1, 6, 8, 9],
+}
+
 STRUCTURAL_SELECTED_ORDER = {
     "orientation": "direct",
     "python_internal_index": 3,
@@ -88,6 +97,26 @@ def _structural_seed_fixture(probe, root: Path):
 
 
 class FrozenSeparationProbeTest(unittest.TestCase):
+    def test_refinement_order_cli_defaults_to_bank_first(self):
+        probe = _load_probe()
+        self.assertEqual(
+            probe._parse_args([]).refinement_order, "bank-first"
+        )
+        self.assertEqual(
+            probe._parse_args(
+                ["--refinement-order", "structural-first"]
+            ).refinement_order,
+            "structural-first",
+        )
+        self.assertFalse(
+            probe._parse_args([]).perp_bisector_template_preseed
+        )
+        self.assertTrue(
+            probe._parse_args([
+                "--perp-bisector-template-preseed"
+            ]).perp_bisector_template_preseed
+        )
+
     def test_structural_seed_snapshot_hash_validation_and_runtime_fingerprint(self):
         probe = _load_probe()
         with tempfile.TemporaryDirectory() as directory:
@@ -132,10 +161,19 @@ class FrozenSeparationProbeTest(unittest.TestCase):
             self.assertEqual(artifact.record_count, 36)
             fingerprint = probe._runtime_fingerprint()
             self.assertEqual(
+                fingerprint["probe"], probe._sha256_file(PROBE_PATH)
+            )
+            self.assertEqual(
                 fingerprint["convex_structural_seeds"],
                 probe._sha256_file(
                     Path(probe.convex_structural_seeds.__file__)
                 ),
+            )
+            self.assertEqual(
+                fingerprint["perp_bisector_template_seeds"],
+                probe._sha256_file(Path(
+                    probe.perp_bisector_template_seeds.__file__
+                )),
             )
 
             tampered = bytearray(raw)
@@ -302,6 +340,7 @@ class FrozenSeparationProbeTest(unittest.TestCase):
                 "bank_sha256": hashlib.sha256(b"").hexdigest(),
                 "bank_rows": 0,
                 "seed": 17,
+                "refinement_order": "bank-first",
                 "created_utc": "2026-07-11T00:00:00+00:00",
                 "runtime_fingerprint": probe._runtime_fingerprint(),
             }
@@ -326,6 +365,43 @@ class FrozenSeparationProbeTest(unittest.TestCase):
             self.assertEqual(
                 result.read_text(), '{"status":"combined-frontier"}\n'
             )
+
+    def test_refinement_order_is_persisted_and_must_match_on_resume(self):
+        probe = _load_probe()
+        with tempfile.TemporaryDirectory() as directory:
+            workdir = Path(directory) / "run"
+            workdir.mkdir()
+            bank = Path(directory) / "bank.jsonl"
+            bank.write_bytes(b"")
+            args = SimpleNamespace(
+                resume=None,
+                bank=bank,
+                seed=41,
+                refinement_order="structural-first",
+                convex_structural_seeds=None,
+            )
+            with mock.patch.object(probe, "_execute", return_value=2):
+                self.assertEqual(probe._run_locked(args, workdir), 2)
+
+            metadata = json.loads(
+                (workdir / "run_metadata.json").read_text()
+            )
+            self.assertEqual(metadata["refinement_order"], "structural-first")
+            with ClosureCheckpoint.open(
+                workdir / "checkpoint.sqlite3", metadata
+            ):
+                pass
+
+            resume_args = SimpleNamespace(
+                resume=workdir,
+                seed=None,
+                refinement_order="bank-first",
+                convex_structural_seeds=None,
+            )
+            with self.assertRaisesRegex(
+                probe.ProbeError, "refinement-order does not match"
+            ):
+                probe._run_locked(resume_args, workdir)
 
     def test_concurrent_resume_fails_before_artifact_access(self):
         probe = _load_probe()
@@ -685,6 +761,7 @@ class FrozenSeparationProbeTest(unittest.TestCase):
                 "bank_sha256": hashlib.sha256(raw).hexdigest(),
                 "bank_rows": 0,
                 "seed": 23,
+                "refinement_order": "bank-first",
                 "created_utc": "2026-07-11T00:00:00+00:00",
                 "runtime_fingerprint": probe._runtime_fingerprint(),
             }
@@ -704,7 +781,12 @@ class FrozenSeparationProbeTest(unittest.TestCase):
             try:
                 with mock.patch.object(probe, "_execute", side_effect=interrupt):
                     code = probe._run(
-                        SimpleNamespace(resume=workdir, seed=None)
+                        SimpleNamespace(
+                            resume=workdir,
+                            seed=None,
+                            refinement_order="bank-first",
+                            convex_structural_seeds=None,
+                        )
                     )
             finally:
                 probe._STOP_SIGNAL = None
@@ -775,6 +857,199 @@ class FrozenSeparationProbeTest(unittest.TestCase):
                 self.assertEqual(replayed.dimacs(), original_dimacs)
                 self.assertEqual(len(replay_seen), 36)
                 self.assertEqual(len(replayed.unconditional_seen), 36)
+
+    def test_perp_template_preseed_is_complete_and_skips_existing_records(self):
+        probe = _load_probe()
+        first = next(
+            probe.perp_bisector_template_seeds.iter_feasible_patterns()
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            checkpoint = ClosureCheckpoint.create(
+                Path(directory) / "checkpoint.sqlite3", {"test": True}
+            )
+            try:
+                instance, _separation, _representatives, seen, seed_count = (
+                    probe._prepare_formula(
+                        [], checkpoint, (), None,
+                        perp_template_preseed=True,
+                    )
+                )
+            finally:
+                checkpoint.close()
+
+        self.assertEqual(
+            len(seen),
+            probe.perp_bisector_template_seeds.FEASIBLE_PATTERN_COUNT,
+        )
+        self.assertEqual(seed_count, len(seen))
+        self.assertIn(
+            probe.combinatorics.serialize_pattern(first),
+            instance.unconditional_seen,
+        )
+        inventory = instance.seed_inventory["perp_bisector_template"]
+        self.assertTrue(inventory["enabled"])
+        self.assertEqual(inventory["new_instances"], 23_250)
+        self.assertEqual(inventory["already_present_instances"], 0)
+
+    def test_structural_first_scheduler_catches_live_algebra_hit_before_bank(self):
+        probe = _load_probe()
+        catalog = probe.formalized_structural_oracle.catalog_manifest()
+        selected_orders = probe.separation_encoding.valid_orders(
+            LIVE_ALGEBRA_HIT_CUBE
+        )
+        self.assertEqual(
+            probe.formalized_structural_oracle.detect_stage(
+                LIVE_ALGEBRA_HIT_CUBE,
+                "equality-perpendicular-bisector-convex",
+            ),
+            {"foci": [4, 5], "points": [3, 7, 10]},
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            checkpoint = ClosureCheckpoint.create(
+                Path(directory) / "checkpoint.sqlite3", {"test": True}
+            )
+            try:
+                instance, separation, representatives, seen, _seed_count = (
+                    probe._prepare_formula([], checkpoint, (), catalog)
+                )
+                with mock.patch.object(
+                    probe, "_add_lazy_embeddings"
+                ) as algebra:
+                    result = probe._refine_candidate(
+                        instance,
+                        separation,
+                        representatives,
+                        seen,
+                        LIVE_ALGEBRA_HIT_CUBE,
+                        selected_orders,
+                        catalog,
+                        "structural-first",
+                    )
+            finally:
+                checkpoint.close()
+
+        algebra_records, structural_records, structural_summary = result
+        self.assertEqual(algebra_records, [])
+        self.assertEqual(len(structural_records), 36)
+        self.assertEqual(
+            structural_summary["stage"], "equality-three-triad-collision"
+        )
+        algebra.assert_not_called()
+
+    def test_structural_first_scheduler_uses_algebra_only_without_core(self):
+        probe = _load_probe()
+        calls = []
+        algebra_records = [{"kind": "algebra"}]
+        structural_summary = {"status": "no-applicable-core"}
+
+        def structural(*_args, **_kwargs):
+            calls.append("structural")
+            return [], structural_summary
+
+        def algebra(*_args):
+            calls.append("algebra")
+            return algebra_records
+
+        with (
+            mock.patch.object(
+                probe,
+                "_add_formalized_structural_refinements",
+                side_effect=structural,
+            ) as structural_mock,
+            mock.patch.object(
+                probe, "_add_lazy_embeddings", side_effect=algebra
+            ),
+        ):
+            result = probe._refine_candidate(
+                object(), object(), object(), set(), CUBE, (), object(),
+                "structural-first",
+            )
+
+        self.assertEqual(calls, ["structural", "algebra"])
+        self.assertEqual(result, (algebra_records, [], structural_summary))
+        self.assertFalse(
+            structural_mock.call_args.kwargs["allow_order_conditional"]
+        )
+
+    def test_bank_first_scheduler_preserves_existing_short_circuit(self):
+        probe = _load_probe()
+        algebra_records = [{"kind": "algebra"}]
+        with (
+            mock.patch.object(
+                probe,
+                "_add_lazy_embeddings",
+                return_value=algebra_records,
+            ) as algebra,
+            mock.patch.object(
+                probe, "_add_formalized_structural_refinements"
+            ) as structural,
+        ):
+            result = probe._refine_candidate(
+                object(), object(), object(), set(), CUBE, (), object(),
+                "bank-first",
+            )
+
+        self.assertEqual(
+            result,
+            (
+                algebra_records,
+                [],
+                {"status": "not-run-bank-refinement"},
+            ),
+        )
+        algebra.assert_called_once()
+        structural.assert_not_called()
+
+    def test_bank_first_preserves_conditional_structural_fallback(self):
+        probe = _load_probe()
+        structural_records = [{"kind": "conditional-structural"}]
+        summary = {
+            "status": "refined",
+            "cut_scope": "order-conditional",
+        }
+        with (
+            mock.patch.object(
+                probe, "_add_lazy_embeddings", return_value=[]
+            ),
+            mock.patch.object(
+                probe,
+                "_add_formalized_structural_refinements",
+                return_value=(structural_records, summary),
+            ) as structural,
+        ):
+            result = probe._refine_candidate(
+                object(), object(), object(), set(), CUBE, (), object(),
+                "bank-first",
+            )
+
+        self.assertEqual(result, ([], structural_records, summary))
+        self.assertTrue(
+            structural.call_args.kwargs["allow_order_conditional"]
+        )
+
+    def test_structural_first_refuses_false_frontier_after_deferred_order_cut(self):
+        probe = _load_probe()
+        summary = {
+            "status": "deferred-order-conditional",
+            "cut_scope": "order-conditional",
+        }
+        with (
+            mock.patch.object(
+                probe, "_add_lazy_embeddings", return_value=[]
+            ),
+            mock.patch.object(
+                probe,
+                "_add_formalized_structural_refinements",
+                return_value=([], summary),
+            ),
+        ):
+            with self.assertRaisesRegex(
+                probe.ProbeError, "order-conditional refinement"
+            ):
+                probe._refine_candidate(
+                    object(), object(), object(), set(), CUBE, (), object(),
+                    "structural-first",
+                )
 
     def test_order_conditional_structural_clause_replay_and_backstop(self):
         probe = _load_probe()

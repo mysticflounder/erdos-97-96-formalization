@@ -15,7 +15,7 @@ Queue layout under --queue-root (env CENSUS554_QUEUE_ROOT):
     done/        consumed job files (archive)
     heartbeats/  <hostname>.json, refreshed every poll cycle:
                  {"worker": <host>, "workers": N, "ts": <unix>,
-                  "inflight": M}
+                  "inflight": M, "capabilities": ["mine"|"certify", ...]}
                  The driver reads these to decide whether any live capacity
                  exists (skip the queue entirely when none) and to size
                  result deadlines.
@@ -71,6 +71,34 @@ HEARTBEAT_EVERY = 5.0
 CLAIM_SUFFIX = ".claimed"
 
 
+def worker_capabilities(*, mine_only: bool, cert_only: bool) -> tuple[str, ...]:
+    if mine_only and cert_only:
+        raise ValueError("mine-only and cert-only modes are mutually exclusive")
+    if mine_only:
+        return ("mine",)
+    if cert_only:
+        return ("certify",)
+    return ("mine", "certify")
+
+
+def accepts_job(name: str, capabilities: tuple[str, ...]) -> bool:
+    """Filter by the producer's stable filename class before claiming."""
+
+    is_mine = name.startswith("mine-")
+    return (is_mine and "mine" in capabilities) or (
+        not is_mine and "certify" in capabilities
+    )
+
+
+def retry_slot_available(inflight_names, max_retry_inflight: int) -> bool:
+    """Whether another long-timeout retry may occupy a worker slot."""
+
+    running = sum(
+        1 for name in inflight_names if name.startswith("retrycert-")
+    )
+    return running < max_retry_inflight
+
+
 # ---------------- atomic write (mirrors io_protocol.atomic_write_json) ------
 
 def atomic_write_json(path: Path, value) -> None:
@@ -107,19 +135,23 @@ def certify_job(claimed_path_str: str, cert_timeout: int):
     try:
         pattern_json = json.loads(claimed_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        return claimed_path_str, None, None, time.time() - started, repr(exc)
+        return (claimed_path_str, None, None, None,
+                time.time() - started, repr(exc))
     if isinstance(pattern_json, dict) and pattern_json.get("type") == "certify":
         cert_timeout = int(pattern_json.get("timeout", cert_timeout))
         pattern_json = pattern_json.get("pattern") or {}
     try:
         pattern = {int(c): frozenset(members)
                    for c, members in pattern_json.items()}
-        certificate = miner.certify_pattern(pattern, timeout=cert_timeout)
+        certificate, certification = miner.certify_pattern_with_stats(
+            pattern, timeout=cert_timeout
+        )
         error = None
     except Exception as exc:  # noqa: BLE001 -- surface any failure to the job
         certificate = None
+        certification = None
         error = repr(exc)
-    return (claimed_path_str, pattern_json, certificate,
+    return (claimed_path_str, pattern_json, certificate, certification,
             time.time() - started, error)
 
 
@@ -141,7 +173,9 @@ def mine_flag_job(pattern_json_item, timeout: int):
 
 class Worker:
     def __init__(self, queue_root: Path, workers: int, poll_interval: float,
-                 cert_timeout: int, mine_only: bool = False):
+                 cert_timeout: int, mine_only: bool = False,
+                 cert_only: bool = False,
+                 max_retry_inflight: int | None = None):
         self.jobs_dir = queue_root / "jobs"
         self.results_dir = queue_root / "results"
         self.done_dir = queue_root / "done"
@@ -151,7 +185,16 @@ class Worker:
         self.workers = workers
         self.poll_interval = poll_interval
         self.cert_timeout = cert_timeout
-        self.mine_only = mine_only
+        if max_retry_inflight is None:
+            max_retry_inflight = workers
+        if not 0 <= max_retry_inflight <= workers:
+            raise ValueError(
+                "max_retry_inflight must be between zero and workers"
+            )
+        self.max_retry_inflight = max_retry_inflight
+        self.capabilities = worker_capabilities(
+            mine_only=mine_only, cert_only=cert_only
+        )
         for d in (self.jobs_dir, self.results_dir, self.done_dir,
                   self.heartbeat_path.parent):
             try:
@@ -185,6 +228,7 @@ class Worker:
                 "workers": self.workers,
                 "ts": now,
                 "inflight": len(self.inflight) + len(self.mine_inflight),
+                "capabilities": list(self.capabilities),
             })
         except OSError:
             pass  # heartbeat is advisory; never let it kill the worker
@@ -211,7 +255,14 @@ class Worker:
                 continue
             if name.endswith(CLAIM_SUFFIX):
                 continue
-            if self.mine_only and not name.startswith("mine-"):
+            if not accepts_job(name, self.capabilities):
+                continue
+            if (
+                name.startswith("retrycert-")
+                and not retry_slot_available(
+                    self.inflight.values(), self.max_retry_inflight
+                )
+            ):
                 continue
             claimed = entry.with_name(name + CLAIM_SUFFIX)
             try:
@@ -303,17 +354,20 @@ class Worker:
             claimed_name = self.inflight.pop(fut)
             stem = claimed_name[:-len(".json" + CLAIM_SUFFIX)]
             try:
-                (_claimed_path_str, pattern_json, certificate, elapsed,
-                 error) = fut.result()
+                (_claimed_path_str, pattern_json, certificate, certification,
+                 elapsed, error) = fut.result()
             except Exception as exc:  # noqa: BLE001
-                pattern_json, certificate, elapsed, error = (None, None, 0.0,
-                                                             repr(exc))
+                pattern_json, certificate, certification, elapsed, error = (
+                    None, None, None, 0.0, repr(exc)
+                )
             result = {
                 "pattern": pattern_json,
                 "certificate": certificate,
                 "elapsed": elapsed,
                 "worker": self.hostname,
             }
+            if certification is not None:
+                result["certification"] = certification
             if error is not None:
                 result["error"] = error
             atomic_write_json(self.results_dir / f"{stem}.json", result)
@@ -326,7 +380,9 @@ class Worker:
         signal.signal(signal.SIGTERM, self.request_stop)
         signal.signal(signal.SIGINT, self.request_stop)
         print(f"[worker] host={self.hostname} queue={self.jobs_dir.parent} "
-              f"workers={self.workers} cert_timeout={self.cert_timeout}",
+              f"workers={self.workers} cert_timeout={self.cert_timeout} "
+              f"max_retry_inflight={self.max_retry_inflight} "
+              f"capabilities={','.join(self.capabilities)}",
               flush=True)
         try:
             while not self._stop:
@@ -351,10 +407,27 @@ def parse_args(argv=None):
                    help="NFS queue root (jobs/, results/, done/, heartbeats/)")
     p.add_argument("--workers", type=int, default=max(1, os.cpu_count() - 2))
     p.add_argument("--poll-interval", type=float, default=DEFAULT_POLL_INTERVAL)
-    p.add_argument("--cert-timeout", type=int, default=DEFAULT_CERT_TIMEOUT)
-    p.add_argument("--mine-only", action="store_true",
-                   help="claim only mine-* jobs; skip certify/retrycert "
-                        "(for low-RAM hosts — cert Singular runs 20-42G)")
+    p.add_argument(
+        "--cert-timeout", type=int, default=DEFAULT_CERT_TIMEOUT,
+        help="cumulative process-plus-child CPU seconds across all exact "
+             "certification stages (default: 900)",
+    )
+    p.add_argument(
+        "--max-retry-inflight",
+        type=int,
+        help="cap retrycert jobs so regular cert jobs retain reserved slots "
+             "(default: workers)",
+    )
+    roles = p.add_mutually_exclusive_group()
+    roles.add_argument(
+        "--mine-only", action="store_true",
+        help="claim only mine-* jobs; skip certify/retrycert "
+             "(for low-RAM hosts — cert Singular runs 20-42G)",
+    )
+    roles.add_argument(
+        "--cert-only", action="store_true",
+        help="claim only regular and retry certificate jobs; skip mine-*",
+    )
     return p.parse_args(argv)
 
 
@@ -366,6 +439,8 @@ def main(argv=None):
         poll_interval=args.poll_interval,
         cert_timeout=args.cert_timeout,
         mine_only=args.mine_only,
+        cert_only=args.cert_only,
+        max_retry_inflight=args.max_retry_inflight,
     )
     worker.run_forever()
     return 0

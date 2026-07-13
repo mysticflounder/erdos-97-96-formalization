@@ -1,6 +1,6 @@
 active anchors (2):
-  ⚓ 17ed85d2 (YOU)  Problem97.isM44EndpointGeneralMResidualsExcluded  [closed]
-  ⚓ 019f401b  Problem97.isM44PinnedSurplusGeneralMResidualsExcluded  [closed]  — Auditing and closing the explicit general-m pinned-surplus residual after the m=5 bank closure
+  ⚓ 019f5a3d (YOU)  Problem97.u1_largeCap_routeB_tail_liveData_false  [open]  — ATAIL-FORCE card>=12 parallel research; Q3 and equality-only routes DONE-NEGATIVE; 7-case full-inequality Z3 pilot DONE-NEGATIVE-TRACTABILITY (7/7 timeout, 219.901s); lease exhausted; next is full-filter/critical-row theorem extraction; no U1 Lean edits or bulk sweep
+  ⚓ 17ed85d2  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A card>=12 pair producer. W2 smoke test is MOOT: census/q3_two_center probe COMPLETE 2026-07-07 (87 joint classes: 72 REALIZED exact, 15 KILLED-PROVEN, kills SAT n=12-16). => hcritical load-bearing (pure-convex conjecture NOT provable from minimal window); two-center not closing granularity. Card>=12 tail routes: >=15 census FALSIFIED, 12-14 census nonconvergent+AHEAD-DEC-gated, only non-excluded = Candidate-D new math. Card-11 slice = census-554/A11-RUN (STOPPED-BOUNDED). No local lever left.
 target spine view: 2 configured target_symbol(s)
 
 ════════════════════════════════════════════════════════════════
@@ -9,23 +9,12 @@ target spine view: 2 configured target_symbol(s)
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 75/1866 node(s)
-trusted leaves: 10 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 61337 line(s) of lean across 1874 decl(s)
+open: 49/2387 node(s)
+trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 72531 line(s) of lean across 2395 decl(s)
 
-open obligations (58):
+open obligations (37):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
-  💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
-  💧 Problem97.left_row0031_residual_excluded  [sorry]
-  💧 Problem97.left_row0040_residual_excluded  [sorry]
-  💧 Problem97.left_row0121_residual_excluded  [sorry]
-  💧 Problem97.left_row0130_residual_excluded  [sorry]
-  💧 Problem97.left_row1021_residual_excluded  [sorry]
-  💧 Problem97.left_row1030_residual_excluded  [sorry]
-  💧 Problem97.left_row1111_residual_excluded  [sorry]
-  💧 Problem97.left_row1120_residual_excluded  [sorry]
-  💧 Problem97.left_row2020_residual_excluded  [sorry]
-  💧 Problem97.left_terminal2110_payload_residual_excluded  [sorry]
   💧 Problem97.liveData_C_center_fresh_false  [sorry]
   💧 Problem97.liveData_C_center_q_false  [sorry]
   💧 Problem97.liveData_C_center_t1_false  [sorry]
@@ -61,16 +50,6 @@ open obligations (58):
   💧 Problem97.liveData_T3_ql4_srcl1_false  [sorry]
   💧 Problem97.liveData_T3_ql4_srcl2_false  [sorry]
   💧 Problem97.liveData_T3_ql4_srcl3_false  [sorry]
-  💧 Problem97.right_row0004_residual_excluded  [sorry]
-  💧 Problem97.right_row0013_residual_excluded  [sorry]
-  💧 Problem97.right_row0103_residual_excluded  [sorry]
-  💧 Problem97.right_row0112_residual_excluded  [sorry]
-  💧 Problem97.right_row1003_residual_excluded  [sorry]
-  💧 Problem97.right_row1012_residual_excluded  [sorry]
-  💧 Problem97.right_row1102_residual_excluded  [sorry]
-  💧 Problem97.right_row1111_residual_excluded  [sorry]
-  💧 Problem97.right_row2002_residual_excluded  [sorry]
-  💧 Problem97.right_terminal2101_payload_residual_excluded  [sorry]
   ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
@@ -80,82 +59,9 @@ open obligations (58):
         │   ├── Problem97.descent_contradicts_minimality
         │   │   ├── Problem97.RemovableVertexOfLarge
         │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
-        │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
-        │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
-        │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
-        │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
-        │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
-        │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0013_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0004_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0112_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0103_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1012_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1003_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1111_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1102_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row2002_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_terminal2101_payload_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0031_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0040_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0121_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0130_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1021_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1030_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1111_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1120_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row2020_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_terminal2110_payload_residual_excluded  [💧]
-        │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-        │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-        │   │   │   │   │   │   │   │   │   │   └── ✓ 72 closed dep(s)
-        │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-        │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-        │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-        │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-        │   │   │   │   │   └── ✓ 4 closed dep(s)
         │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
         │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
-        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
+        │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  ⚓ (YOU)
         │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false  [💧]
         │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
@@ -275,14 +181,14 @@ open obligations (58):
         │   │   │   │   │   │   │   └── ✓ 36 closed dep(s)
         │   │   │   │   │   │   └── ✓ 46 closed dep(s)
         │   │   │   │   │   └── ✓ 25 closed dep(s)
-        │   │   │   │   └── ✓ 3 closed dep(s)
+        │   │   │   │   └── ✓ 4 closed dep(s)
         │   │   │   └── ✓ 2 closed dep(s)
         │   │   └── ✓ 3 closed dep(s)
         │   └── ✓ 3 closed dep(s)
         └── ✓ 2 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem97.erdos97_rhs` has:
-  - reaches sorry via 57 symbol(s)
+  - reaches sorry via 36 symbol(s)
   - unapproved axiom on spine: sorryAx
 
 ════════════════════════════════════════════════════════════════
@@ -291,23 +197,12 @@ open obligations (58):
 spine rooted at: Problem96.erdos96_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 79/1874 node(s)
-trusted leaves: 10 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 61530 line(s) of lean across 1882 decl(s)
+open: 53/2395 node(s)
+trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
+spine source: 72724 line(s) of lean across 2403 decl(s)
 
-open obligations (58):
+open obligations (37):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
-  💧 Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [sorry]
-  💧 Problem97.left_row0031_residual_excluded  [sorry]
-  💧 Problem97.left_row0040_residual_excluded  [sorry]
-  💧 Problem97.left_row0121_residual_excluded  [sorry]
-  💧 Problem97.left_row0130_residual_excluded  [sorry]
-  💧 Problem97.left_row1021_residual_excluded  [sorry]
-  💧 Problem97.left_row1030_residual_excluded  [sorry]
-  💧 Problem97.left_row1111_residual_excluded  [sorry]
-  💧 Problem97.left_row1120_residual_excluded  [sorry]
-  💧 Problem97.left_row2020_residual_excluded  [sorry]
-  💧 Problem97.left_terminal2110_payload_residual_excluded  [sorry]
   💧 Problem97.liveData_C_center_fresh_false  [sorry]
   💧 Problem97.liveData_C_center_q_false  [sorry]
   💧 Problem97.liveData_C_center_t1_false  [sorry]
@@ -343,16 +238,6 @@ open obligations (58):
   💧 Problem97.liveData_T3_ql4_srcl1_false  [sorry]
   💧 Problem97.liveData_T3_ql4_srcl2_false  [sorry]
   💧 Problem97.liveData_T3_ql4_srcl3_false  [sorry]
-  💧 Problem97.right_row0004_residual_excluded  [sorry]
-  💧 Problem97.right_row0013_residual_excluded  [sorry]
-  💧 Problem97.right_row0103_residual_excluded  [sorry]
-  💧 Problem97.right_row0112_residual_excluded  [sorry]
-  💧 Problem97.right_row1003_residual_excluded  [sorry]
-  💧 Problem97.right_row1012_residual_excluded  [sorry]
-  💧 Problem97.right_row1102_residual_excluded  [sorry]
-  💧 Problem97.right_row1111_residual_excluded  [sorry]
-  💧 Problem97.right_row2002_residual_excluded  [sorry]
-  💧 Problem97.right_terminal2101_payload_residual_excluded  [sorry]
   ❌ sorryAx  [unapproved axiom]
 
 (open branches only — closed subtrees collapsed; --full for everything)
@@ -366,82 +251,9 @@ open obligations (58):
             │   │   │   │   ├── Problem97.descent_contradicts_minimality
             │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge
             │   │   │   │   │   │   ├── Problem97.RemovableVertexOfLarge_from_pinnedSurplusCOMPGBank
-            │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_isM44PinnedSurplus
-            │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentRemovable
-            │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasureWitnesses
-            │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentResidualErasureWitnesses
-            │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentExactPinResidualsExcluded
-            │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0013_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0004_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0112_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row0103_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1012_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1003_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1111_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row1102_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_row2002_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.right_terminal2101_payload_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0031_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0040_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0121_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row0130_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1021_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1030_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1111_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row1120_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_row2020_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.left_terminal2110_payload_residual_excluded  [💧]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 12 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 72 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 16 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   │   └── ✓ 17 closed dep(s)
-            │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
-            │   │   │   │   │   │   │   │   │   └── ✓ 14 closed dep(s)
-            │   │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
             │   │   │   │   │   │   │   ├── Problem97.removableVertexOfLarge_of_nonIsM44
             │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_false
-            │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false
+            │   │   │   │   │   │   │   │   │   ├── Problem97.u1_largeCap_routeB_tail_liveData_false  ⚓ (YOU)
             │   │   │   │   │   │   │   │   │   │   ├── Problem97.liveData_Q_l1_false  [💧]
             │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
@@ -561,7 +373,7 @@ open obligations (58):
             │   │   │   │   │   │   │   │   │   │   └── ✓ 36 closed dep(s)
             │   │   │   │   │   │   │   │   │   └── ✓ 46 closed dep(s)
             │   │   │   │   │   │   │   │   └── ✓ 25 closed dep(s)
-            │   │   │   │   │   │   │   └── ✓ 3 closed dep(s)
+            │   │   │   │   │   │   │   └── ✓ 4 closed dep(s)
             │   │   │   │   │   │   └── ✓ 2 closed dep(s)
             │   │   │   │   │   └── ✓ 3 closed dep(s)
             │   │   │   │   └── ✓ 3 closed dep(s)
@@ -571,9 +383,9 @@ open obligations (58):
             └── ✓ 3 closed dep(s)
 
 ❌ NOT kernel-complete — spine of `Problem96.erdos96_rhs` has:
-  - reaches sorry via 57 symbol(s)
+  - reaches sorry via 36 symbol(s)
   - unapproved axiom on spine: sorryAx
 
-unimported files (163 file(s), 1684 symbol(s) — never reached by any lake import chain) — --full to list
+unimported files (165 file(s), 1704 symbol(s) — never reached by any lake import chain) — --full to list
 
 targets summary: 2/2 target(s) still open

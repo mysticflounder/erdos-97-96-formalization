@@ -40,6 +40,8 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO_ROOT))
 
 import frozen_separation_probe as probe  # noqa: E402
+import perp_subsumption_cache as perp_cache  # noqa: E402
+import perp_subsumption_cached_probe as cached_probe  # noqa: E402
 from census.census_554.closure_checkpoint import (  # noqa: E402
     CheckpointError,
     ClosureCheckpoint,
@@ -64,7 +66,40 @@ LEGACY_RUNTIME_FINGERPRINTS = ({
     "closure_checkpoint": "cc53c2f4dc50d950187537a77347f5c40ce81ff1151fadf5987dd7d1a18752ce",
     "convex_structural_seeds": "b32d915189b196964563f1719157f3519691f3ff2e1f2d3ee17885b82bd1f766",
     "separation_encoding": "7fcd0ec01d7c429e72749a18913ace06345d46f4c2506e0f192e8141de0cb98d",
+}, {
+    # Preservation source for the active bank-first oracle started on
+    # 2026-07-11.  Transition still strictly replays every stored record.
+    "probe": "770a3281d5566eba403352104a26c1a4433f0fc92e4211a8903fc6ff356f6e59",
+    "profile": "11a2e0c4a8520c77d2eddf2da5907102f4c73050c5e5c8459caf8ad1d7a6e89b",
+    "sat_cover": "68ff60a7ea5e9f1ce5455ee3575f8f45230bec1d193404d679b76aa8d7358b9c",
+    "combinatorics": "7dbff611c58be4614f0496aba0c67e33be669155e1ea28f8a29ab23bf59b01e0",
+    "closure_checkpoint": "cc53c2f4dc50d950187537a77347f5c40ce81ff1151fadf5987dd7d1a18752ce",
+    "convex_structural_seeds": "b32d915189b196964563f1719157f3519691f3ff2e1f2d3ee17885b82bd1f766",
+    "formalized_structural_oracle": "693259f73697a93dca9b22fae4e860ec217c4749bd66649158dc5136337c487e",
+    "metric_structural_detectors": "d7a727f2130cc28f5d7c5d92af9e58a6e9f40179aa2490e5c0eab5b890e2382e",
+    "separation_encoding": "7fcd0ec01d7c429e72749a18913ace06345d46f4c2506e0f192e8141de0cb98d",
+}, {
+    # Cached perpendicular-core successor launched on 2026-07-13. Its exact
+    # runtime is an immutable source for the thirteen-family transition.
+    "probe": "af976f294cb251b2a1c3795f2a9f9629f3f27faa09b287f60fb773a2a2004bc3",
+    "profile": "11a2e0c4a8520c77d2eddf2da5907102f4c73050c5e5c8459caf8ad1d7a6e89b",
+    "sat_cover": "68ff60a7ea5e9f1ce5455ee3575f8f45230bec1d193404d679b76aa8d7358b9c",
+    "combinatorics": "7dbff611c58be4614f0496aba0c67e33be669155e1ea28f8a29ab23bf59b01e0",
+    "closure_checkpoint": "cc53c2f4dc50d950187537a77347f5c40ce81ff1151fadf5987dd7d1a18752ce",
+    "convex_structural_seeds": "b32d915189b196964563f1719157f3519691f3ff2e1f2d3ee17885b82bd1f766",
+    "formalized_structural_oracle": "693259f73697a93dca9b22fae4e860ec217c4749bd66649158dc5136337c487e",
+    "perp_bisector_template_seeds": "1145b21cb918c240e680302a1f99413f4e884a5ac59147490f9bebc3be794325",
+    "metric_structural_detectors": "d7a727f2130cc28f5d7c5d92af9e58a6e9f40179aa2490e5c0eab5b890e2382e",
+    "separation_encoding": "7fcd0ec01d7c429e72749a18913ace06345d46f4c2506e0f192e8141de0cb98d",
+    "perp_subsumption_cached_probe": "0f208c9b1b92a46b29a3dd6d4db52aac4c6986bd6cff1ba9498748be26c9e751",
+    "perp_subsumption_cache_code": "cb983b57d97ac4067b0fa930bad3401737a0278a9265d30176615c925ef4e4b0",
+    "perp_subsumption_cache_artifact": "0a24950c5feeb41e4a214a7deebd69865e1eca662b08dcc5e338391e82b3b9ff",
+    "perp_subsumption_policy": "7127956003c533beae75686aab86303a9c12ff3217b64383aa57e200aa1c445e",
 },)
+
+STRUCTURAL_ORACLE_AGGREGATE_SOURCE = (
+    "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean"
+)
 
 
 class TransitionError(RuntimeError):
@@ -245,6 +280,14 @@ class _OrderedUnion:
                     normalized = dict(value)
                     normalized.pop("clause", None)
                     normalized.pop("additional_clauses", None)
+                    provenance = normalized.get("provenance")
+                    if isinstance(provenance, Mapping):
+                        provenance = dict(provenance)
+                        # Each source record has already replayed against its
+                        # snapshotted catalog. The target will replay it again
+                        # after rebinding this catalog digest.
+                        provenance.pop("oracle_contract_sha256", None)
+                        normalized["provenance"] = provenance
                     return _canonical_json(normalized)
 
                 if semantic(old_record) != semantic(record):
@@ -380,9 +423,9 @@ def _require_structural_oracle_preservation(
     if source_metadata is None:
         return
     required_equal = (
-        "schema", "contract_sha256", "ordering_policy", "build_status",
+        "schema", "ordering_policy", "build_status",
         "build_target", "axiom_audit_theorem", "expected_axioms",
-        "theorem_sources",
+        "trust",
     )
     if any(source_metadata.get(field) != target_metadata.get(field)
            for field in required_equal):
@@ -390,12 +433,90 @@ def _require_structural_oracle_preservation(
             "target formalized structural oracle drifts or downgrades "
             f"source {source}"
         )
-    if not set(source_metadata.get("eligible_family_ids", ())) <= set(
-        target_metadata.get("eligible_family_ids", ())
+    expected_axioms = source_metadata.get("expected_axioms")
+    if (
+        source_metadata.get("axiom_audit_result") != expected_axioms
+        or target_metadata.get("axiom_audit_result") != expected_axioms
+    ):
+        raise TransitionError(
+            "target structural oracle axiom evidence drifts or downgrades "
+            f"source {source}"
+        )
+
+    source_eligible = set(source_metadata.get("eligible_family_ids", ()))
+    target_eligible = set(target_metadata.get("eligible_family_ids", ()))
+    source_families = source_eligible | set(
+        source_metadata.get("ineligible_family_ids", ())
+    )
+    target_families = target_eligible | set(
+        target_metadata.get("ineligible_family_ids", ())
+    )
+    if not source_families <= target_families or not (
+        source_eligible <= target_eligible
     ):
         raise TransitionError(
             f"target structural oracle drops a source family: {source}"
         )
+
+    def evidence_by_path(metadata, field):
+        entries = metadata.get(field)
+        if not isinstance(entries, list):
+            raise TransitionError(
+                f"structural oracle {field} evidence is malformed: {source}"
+            )
+        result = {}
+        for entry in entries:
+            if (
+                not isinstance(entry, Mapping)
+                or not isinstance(entry.get("path"), str)
+                or not _is_sha256(entry.get("sha256"))
+                or entry["path"] in result
+            ):
+                raise TransitionError(
+                    f"structural oracle {field} evidence is malformed: {source}"
+                )
+            result[entry["path"]] = dict(entry)
+        return result
+
+    source_sources = evidence_by_path(source_metadata, "theorem_sources")
+    target_sources = evidence_by_path(target_metadata, "theorem_sources")
+    if not set(source_sources) <= set(target_sources):
+        raise TransitionError(
+            f"target structural oracle drops a theorem source: {source}"
+        )
+    for path, source_evidence in source_sources.items():
+        target_evidence = target_sources[path]
+        if path != STRUCTURAL_ORACLE_AGGREGATE_SOURCE and (
+            source_evidence["sha256"] != target_evidence["sha256"]
+        ):
+            raise TransitionError(
+                "target structural theorem evidence drifts or downgrades "
+                f"source {source}: {path}"
+            )
+
+    source_artifacts = evidence_by_path(source_metadata, "build_artifacts")
+    target_artifacts = evidence_by_path(target_metadata, "build_artifacts")
+    if not set(source_artifacts) <= set(target_artifacts):
+        raise TransitionError(
+            f"target structural oracle drops a build artifact: {source}"
+        )
+
+
+def _retarget_structural_record_contract(
+    record: Mapping[str, Any], target_catalog: Mapping[str, Any]
+) -> tuple[dict[str, Any], bool]:
+    """Bind a source-validated record to a monotone successor catalog."""
+
+    rebuilt = dict(record)
+    provenance = rebuilt.get("provenance")
+    if not isinstance(provenance, Mapping):
+        raise TransitionError("structural record has malformed provenance")
+    provenance = dict(provenance)
+    old_contract = provenance.get("oracle_contract_sha256")
+    new_contract = target_catalog["contract_sha256"]
+    provenance["oracle_contract_sha256"] = new_contract
+    rebuilt["provenance"] = provenance
+    return rebuilt, old_contract != new_contract
 
 
 def _artifact_hashes(source: Path) -> dict[str, str]:
@@ -521,6 +642,7 @@ def _scan_source(
     target_digests: tuple[tuple[str, str], ...],
     union: _OrderedUnion,
     staging: Path,
+    reject_order_conditional: bool,
 ) -> tuple[SourceManifest, frozenset[tuple]]:
     metadata, metadata_sha256 = _load_source_metadata(source)
     snapshot = source / "bank_snapshot.jsonl"
@@ -565,8 +687,34 @@ def _scan_source(
             # This is the probe's strict source-row, support-injection, and
             # insertion-order clause replay.  Do not accept merely parseable
             # checkpoint JSON here.
+            source_prepare_formula = probe._prepare_formula
+            source_cache_metadata = metadata.get("perp_subsumption_cache")
+            if source_cache_metadata is not None:
+                if (
+                    not isinstance(source_cache_metadata, Mapping)
+                    or not _is_sha256(source_cache_metadata.get("sha256"))
+                    or not isinstance(
+                        source_cache_metadata.get("runtime_contract"), Mapping
+                    )
+                ):
+                    raise TransitionError(
+                        "source replacement-cache metadata is malformed: "
+                        f"{source}"
+                    )
+
+                def source_prepare_formula(*prepare_args, **prepare_kwargs):
+                    return cached_probe._prepare_formula_with_cache_contract(
+                        *prepare_args,
+                        expected_cache_sha256=source_cache_metadata["sha256"],
+                        expected_runtime_contract=(
+                            source_cache_metadata["runtime_contract"]
+                        ),
+                        snapshot_workdir=source,
+                        **prepare_kwargs,
+                    )
+
             try:
-                prepared = probe._prepare_formula(
+                prepared = source_prepare_formula(
                     rows,
                     checkpoint,
                     () if structural_artifact is None
@@ -575,7 +723,8 @@ def _scan_source(
                 )
             except (CheckpointError, probe.ProbeError, KeyError, ValueError) as exc:
                 raise TransitionError(
-                    f"source checkpoint provenance/replay failed: {source}"
+                    "source checkpoint provenance/replay failed: "
+                    f"{source}: {exc}"
                 ) from exc
             del prepared
 
@@ -589,9 +738,19 @@ def _scan_source(
                 # pattern for the ordered union.  _prepare_formula above has
                 # independently checked the stored clause as well.
                 if probe._is_structural_checkpoint_record(record):
-                    probe._structural_checkpoint_info(
-                        record, structural_oracle_catalog
+                    _pattern, cut_scope, _detections = (
+                        probe._structural_checkpoint_info(
+                            record, structural_oracle_catalog
+                        )
                     )
+                    if reject_order_conditional and (
+                        cut_scope == "order-conditional"
+                    ):
+                        raise TransitionError(
+                            "structural-first target cannot inherit an "
+                            f"order-conditional checkpoint record: {source} "
+                            f"seq={source_seq}"
+                        )
                 else:
                     probe._validate_checkpoint_provenance(record, source_lookup)
                 encoded = _canonical_json(record).encode("utf-8")
@@ -678,14 +837,19 @@ def _target_metadata(
     union_records: int,
     structural_metadata: Mapping[str, Any] | None,
     structural_oracle_metadata: Mapping[str, Any],
+    refinement_order: str,
+    runtime_fingerprint: Mapping[str, str],
+    perp_subsumption_cache_metadata: Mapping[str, Any] | None,
 ) -> dict[str, Any]:
-    return {
+    metadata = {
         "schema": probe.SCHEMA,
         "bank_sha256": _sha256_bytes(target_raw),
         "bank_rows": target_rows,
         "seed": seed,
         "created_utc": datetime.now(timezone.utc).isoformat(),
-        "runtime_fingerprint": probe._runtime_fingerprint(),
+        "runtime_fingerprint": dict(runtime_fingerprint),
+        "refinement_order": refinement_order,
+        "perp_bisector_template_preseed": False,
         "convex_structural_seeds": (
             None if structural_metadata is None else dict(structural_metadata)
         ),
@@ -702,6 +866,11 @@ def _target_metadata(
             "union_dynamic_records": union_records,
         },
     }
+    if perp_subsumption_cache_metadata is not None:
+        metadata["perp_subsumption_cache"] = dict(
+            perp_subsumption_cache_metadata
+        )
+    return metadata
 
 
 def _publish_target(
@@ -719,6 +888,8 @@ def _publish_target(
     structural_oracle_catalog: Mapping[str, Any],
     structural_oracle_raw: bytes,
     structural_oracle_sources: Mapping[str, bytes],
+    target_prepare_formula,
+    perp_subsumption_cache_raw: bytes | None,
 ) -> dict[str, Any]:
     probe._atomic_write_bytes(staging / "bank_snapshot.jsonl", target_raw)
     if structural_raw is not None:
@@ -740,13 +911,18 @@ def _publish_target(
     probe._write_structural_oracle_snapshot(
         staging, structural_oracle_raw, structural_oracle_sources
     )
+    if perp_subsumption_cache_raw is not None:
+        probe._atomic_write_bytes(
+            staging / perp_cache.SNAPSHOT,
+            perp_subsumption_cache_raw,
+        )
     probe._atomic_write_json(staging / "run_metadata.json", metadata)
     checkpoint = ClosureCheckpoint.create(
         staging / "checkpoint.sqlite3", metadata
     )
     try:
         instance, separation, _representatives, seen, seed_instances = (
-            probe._prepare_formula(
+            target_prepare_formula(
                 target_rows,
                 checkpoint,
                 () if structural_artifact is None
@@ -759,9 +935,14 @@ def _publish_target(
         target_lookup = probe._source_lookup(target_sources)
         imported = 0
         seed_collisions = 0
+        structural_contract_rewrites = 0
         batch = []
         for record, _source_ordinal, _source_seq in union.records():
             if probe._is_structural_checkpoint_record(record):
+                record, rewritten = _retarget_structural_record_contract(
+                    record, structural_oracle_catalog
+                )
+                structural_contract_rewrites += int(rewritten)
                 pattern, cut_scope, detections = probe._structural_checkpoint_info(
                     record, structural_oracle_catalog
                 )
@@ -824,20 +1005,24 @@ def _publish_target(
         "bank_sha256": metadata["bank_sha256"],
         "bank_rows": metadata["bank_rows"],
         "seed": metadata["seed"],
+        "refinement_order": metadata["refinement_order"],
+        "perp_bisector_template_preseed": False,
         "seed_instances": seed_instances,
         "seed_inventory": seed_inventory,
         "convex_structural_seeds": metadata.get("convex_structural_seeds"),
         "formalized_structural_oracle": metadata.get(
             "formalized_structural_oracle"
         ),
+        "perp_subsumption_cache": metadata.get("perp_subsumption_cache"),
         "source_checkpoint_records": metadata["migration_provenance"][
             "source_checkpoint_records"
         ],
         "union_dynamic_records": metadata["migration_provenance"][
-            "union_dynamic_records"
+        "union_dynamic_records"
         ],
         "imported_dynamic_records": imported,
         "target_seed_collisions": seed_collisions,
+        "structural_contract_rewrites": structural_contract_rewrites,
         "instances": len(seen),
         "iteration": 0,
         "updated_utc": datetime.now(timezone.utc).isoformat(),
@@ -874,6 +1059,44 @@ def transition(args) -> tuple[Path, dict[str, Any]]:
 
     target_rows, target_raw = probe.read_frozen_bank(args.bank.resolve())
     target_digests = _bank_row_digests(target_rows, target_raw)
+    cache_path = getattr(args, "perp_subsumption_cache", None)
+    if cache_path is None:
+        target_prepare_formula = probe._prepare_formula
+        target_runtime_fingerprint = probe._runtime_fingerprint()
+        cache_raw = None
+        cache_metadata = None
+    else:
+        cache_path = cache_path.resolve()
+        try:
+            cache_raw = cache_path.read_bytes()
+        except OSError as exc:
+            raise TransitionError(
+                "target perpendicular-subsumption cache is absent"
+            ) from exc
+        try:
+            cache_artifact, decoded_cache = perp_cache.load_pinned_cache(
+                probe,
+                cache_path,
+                expected_sha256=cached_probe._EXPECTED_CACHE_SHA256,
+                bank_rows=target_rows,
+                bank_path=args.bank.resolve(),
+            )
+        except perp_cache.CacheError as exc:
+            raise TransitionError(
+                f"target perpendicular-subsumption cache is invalid: {exc}"
+            ) from exc
+        if len(decoded_cache) != cache_artifact["counts"][
+            "targeted_source_rows"
+        ]:
+            raise TransitionError(
+                "decoded perpendicular-subsumption cache count drifted"
+            )
+        cache_metadata = perp_cache.snapshot_metadata(
+            cache_artifact,
+            sha256=cached_probe._EXPECTED_CACHE_SHA256,
+        )
+        target_prepare_formula = cached_probe._prepare_formula
+        target_runtime_fingerprint = cached_probe._runtime_fingerprint()
     structural_path = getattr(args, "convex_structural_seeds", None)
     if structural_path is None:
         structural_artifact = None
@@ -904,6 +1127,13 @@ def transition(args) -> tuple[Path, dict[str, Any]]:
     seed = args.seed
     if seed is None:
         seed = secrets.randbelow(probe.MAX_CADICAL_SEED + 1)
+    refinement_order = getattr(
+        args, "refinement_order", probe.DEFAULT_REFINEMENT_ORDER
+    )
+    if refinement_order not in probe.REFINEMENT_ORDERS:
+        raise TransitionError(
+            f"unknown target refinement order: {refinement_order}"
+        )
 
     final, staging = _allocate_paths(
         work_root=args.work_root, output=args.output
@@ -925,6 +1155,9 @@ def transition(args) -> tuple[Path, dict[str, Any]]:
                     target_digests=target_digests,
                     union=union,
                     staging=staging,
+                    reject_order_conditional=(
+                        refinement_order == "structural-first"
+                    ),
                 )
                 _require_structural_seed_preservation(
                     source=source,
@@ -952,6 +1185,9 @@ def transition(args) -> tuple[Path, dict[str, Any]]:
                 union_records=union.count(),
                 structural_metadata=structural_metadata,
                 structural_oracle_metadata=structural_oracle_metadata,
+                refinement_order=refinement_order,
+                runtime_fingerprint=target_runtime_fingerprint,
+                perp_subsumption_cache_metadata=cache_metadata,
             )
             manifest = _publish_target(
                 final=final,
@@ -967,6 +1203,8 @@ def transition(args) -> tuple[Path, dict[str, Any]]:
                 structural_oracle_catalog=structural_oracle_catalog,
                 structural_oracle_raw=structural_oracle_raw,
                 structural_oracle_sources=structural_oracle_sources,
+                target_prepare_formula=target_prepare_formula,
+                perp_subsumption_cache_raw=cache_raw,
             )
         finally:
             union.close()
@@ -996,11 +1234,28 @@ def _parse_args(argv=None):
     parser.add_argument("--output", type=Path)
     parser.add_argument("--seed", type=int)
     parser.add_argument(
+        "--refinement-order",
+        choices=probe.REFINEMENT_ORDERS,
+        default=probe.DEFAULT_REFINEMENT_ORDER,
+        help=(
+            "persist the target refinement scheduling policy; resumes must "
+            "request the same value"
+        ),
+    )
+    parser.add_argument(
         "--convex-structural-seeds",
         type=Path,
         help=(
             "validated theorem-backed convex structural seeds for the target; "
             "kept separate from the algebra bank"
+        ),
+    )
+    parser.add_argument(
+        "--perp-subsumption-cache",
+        type=Path,
+        help=(
+            "digest-pinned targeted perpendicular-core cache to snapshot into "
+            "the target; target resumes must use the cached probe"
         ),
     )
     args = parser.parse_args(argv)

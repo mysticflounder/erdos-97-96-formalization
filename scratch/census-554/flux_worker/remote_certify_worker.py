@@ -133,16 +133,20 @@ def certify_job(claimed_path_str: str, cert_timeout: int):
     try:
         pattern_json = json.loads(claimed_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError) as exc:
-        return claimed_path_str, None, None, time.time() - started, repr(exc)
+        return (claimed_path_str, None, None, None,
+                time.time() - started, repr(exc))
     try:
         pattern = {int(c): frozenset(members)
                    for c, members in pattern_json.items()}
-        certificate = miner.certify_pattern(pattern, timeout=cert_timeout)
+        certificate, certification = miner.certify_pattern_with_stats(
+            pattern, timeout=cert_timeout
+        )
         error = None
     except Exception as exc:  # noqa: BLE001 -- surface any failure to the job
         certificate = None
+        certification = None
         error = repr(exc)
-    return (claimed_path_str, pattern_json, certificate,
+    return (claimed_path_str, pattern_json, certificate, certification,
             time.time() - started, error)
 
 
@@ -277,16 +281,20 @@ class Worker:
             claimed_path = self.jobs_dir / claimed_name
             stem = claimed_name[:-len(".json" + CLAIM_SUFFIX)]
             try:
-                (claimed_path_str, pattern_json, certificate, elapsed,
-                 error) = fut.result()
+                (claimed_path_str, pattern_json, certificate, certification,
+                 elapsed, error) = fut.result()
             except Exception as exc:  # noqa: BLE001
-                pattern_json, certificate, elapsed, error = None, None, 0.0, repr(exc)
+                pattern_json, certificate, certification, elapsed, error = (
+                    None, None, None, 0.0, repr(exc)
+                )
             result = {
                 "pattern": pattern_json,
                 "certificate": certificate,
                 "elapsed": elapsed,
                 "worker": "flux",
             }
+            if certification is not None:
+                result["certification"] = certification
             if error is not None:
                 result["error"] = error
             atomic_write_json(self.results_dir / f"{stem}.json", result)

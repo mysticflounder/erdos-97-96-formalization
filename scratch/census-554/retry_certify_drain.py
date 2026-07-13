@@ -35,12 +35,16 @@ sys.path.insert(0, HERE)
 # queue_client.submit imports census.census_554.io_protocol -> repo root
 sys.path.insert(0, os.path.dirname(os.path.dirname(HERE)))
 import cover_probe as cp  # noqa: E402
+import certification_backlog as cb  # noqa: E402
+import exact_outcome_cache as eoc  # noqa: E402
 import pending_cert_store as pcs  # noqa: E402
 import queue_client as qc  # noqa: E402
 import retry_certify_queue as rq  # noqa: E402
 from concurrent.futures import ThreadPoolExecutor  # noqa: E402
 
 PENDING_STORE = Path(HERE) / "retry_certified_pending.d"
+BACKLOG = cb.CertificationBacklog(Path(HERE) / "certification_backlog.d")
+OUTCOME_CACHE = eoc.ExactOutcomeCache(Path(HERE) / "exact_cert_outcomes.sqlite3")
 LEGACY_INDEX = PENDING_STORE / "legacy-index.json"
 LEGACY_SOURCES = (
     Path(HERE) / "retry_certified_pending.json",
@@ -54,9 +58,8 @@ CLAIM_MARGIN_S = 3600  # queue wait + NFS latency headroom past the timeout
 
 def load_done_all():
     store = pcs.PendingCertificateStore(PENDING_STORE)
-    done = store.done_digests()
     try:
-        legacy = pcs.load_legacy_index(
+        pcs.load_legacy_index(
             LEGACY_INDEX, LEGACY_SOURCES, store_root=PENDING_STORE
         )
     except (FileNotFoundError, pcs.PendingStoreError,
@@ -68,12 +71,93 @@ def load_done_all():
         )
         print(f"legacy pending migration/index ready: {len(legacy)} "
               "canonical records", flush=True)
-    done.update(legacy)
-    return done
+    # Migration guarantees every legacy success has an atomic store record.
+    # Use the bank's exact AUTOS key from those records; the legacy filename
+    # digest is broader and can conflate bank-distinct patterns.
+    return store.done_bank_digests()
 
 
-def gc_own_stale_results():
-    qc.gc_stale_results(prefixes=("retrycert-",))
+def recover_orphan_results(requested_cpu_budget: int) -> tuple[int, int]:
+    """Consume completed retry results left by an interrupted drainer.
+
+    The queue result contains its exact pattern, so cube provenance may be
+    absent without affecting certificate soundness or future bank novelty
+    checks.  Result decoding remains isolated because certificates can be
+    multiple gigabytes.
+    """
+
+    recovered = failed = 0
+    try:
+        bank_motifs = {
+            pcs.bank_pattern_digest(pattern) for pattern in cp.load_bank()
+        }
+    except (OSError, ValueError, json.JSONDecodeError):
+        bank_motifs = set()
+    try:
+        entries = sorted(qc.RESULTS_DIR.iterdir())
+    except OSError:
+        return recovered, failed
+    for path in entries:
+        if (
+            not path.name.startswith(("retrycert-", "cert-i"))
+            or path.suffix != ".json"
+        ):
+            continue
+        try:
+            pattern_json = pcs.read_json_pattern_tail(path)
+            if pcs.bank_pattern_digest(pattern_json) in bank_motifs:
+                try:
+                    path.unlink()
+                except (FileNotFoundError, OSError):
+                    pass
+                BACKLOG.complete(pattern_json, disposition="already-banked")
+                print(
+                    f"RECOVERED ORPHAN already banked ({path.name})",
+                    flush=True,
+                )
+                continue
+            status = pcs.consume_queue_result_isolated(
+                path, pattern_json, None, PENDING_STORE
+            )
+        except (OSError, pcs.PendingStoreError) as exc:
+            print(f"ORPHAN RESULT RETAINED ({path.name}): {exc}", flush=True)
+            continue
+        try:
+            path.unlink()
+        except (FileNotFoundError, OSError):
+            pass
+        result = {
+            "certificate": (
+                {"kill": status["kill"]}
+                if status["outcome"] == "certified" else None
+            ),
+            "certification": status.get("certification"),
+            "elapsed": status.get("elapsed", 0.0),
+            "worker": status.get("worker", "?"),
+        }
+        OUTCOME_CACHE.record_result(
+            pattern_json, result,
+            requested_cpu_budget=requested_cpu_budget,
+        )
+        if status["outcome"] == "certified":
+            BACKLOG.complete(pattern_json, disposition="certified-pending")
+            recovered += 1
+            print(
+                f"RECOVERED ORPHAN kill={status['kill']} "
+                f"{'stored' if status['stored'] else 'existing'} "
+                f"({status.get('elapsed', 0.0):.0f}s, "
+                f"{status.get('worker', '?')})",
+                flush=True,
+            )
+        else:
+            BACKLOG.mark_attempt(pattern_json, {
+                "outcome": "failed-orphan-result",
+                "elapsed": status.get("elapsed", 0.0),
+                "worker": status.get("worker", "?"),
+                "certification": status.get("certification"),
+            })
+            failed += 1
+    return recovered, failed
 
 
 def main():
@@ -81,30 +165,67 @@ def main():
     ap.add_argument("--max-inflight", type=int, default=20,
                     help="sliding window size; keep below fleet capacity "
                          "so the hot loop retains slots")
-    ap.add_argument("--timeout", type=int, default=rq.RETRY_TIMEOUT,
-                    help="per-job certify timeout (worker-side)")
+    ap.add_argument(
+        "--timeout", type=int, default=rq.RETRY_TIMEOUT,
+        help="cumulative process-plus-child CPU budget per retry job",
+    )
     args = ap.parse_args()
 
-    capacity = qc.live_capacity()
+    recovered, recovered_failures = recover_orphan_results(args.timeout)
+    if recovered or recovered_failures:
+        print(
+            f"orphan recovery: {recovered} certified, "
+            f"{recovered_failures} failed results",
+            flush=True,
+        )
+    capacity = qc.live_capacity("certify")
     if capacity <= 0:
-        print("no live worker heartbeats; start workers first", flush=True)
+        print(
+            "orphan recovery complete; no live certificate worker "
+            "heartbeats, so no new retries were submitted",
+            flush=True,
+        )
         return 1
-    gc_own_stale_results()
 
     fails = rq.scan_failures()
-    bank_motifs = {pcs.pattern_digest(p) for p in cp.load_bank()}
+    for task in BACKLOG.pending():
+        record = task.record
+        fails.append((record["pattern"], record.get("cube")))
+    bank_motifs = {pcs.bank_pattern_digest(p) for p in cp.load_bank()}
     done = load_done_all()
     todo, seen = [], set()
+    cache_skipped = 0
+    certifier_id = rq.miner.certifier_id()
     for pj, cube in fails:
         pat = {int(c): frozenset(M) for c, M in pj.items()}
-        key = pcs.pattern_digest(pat)
-        if key in bank_motifs or key in done or key in seen:
+        key = pcs.bank_pattern_digest(pat)
+        if key in bank_motifs:
+            BACKLOG.complete(pj, disposition="already-banked")
+            continue
+        if key in done:
+            BACKLOG.complete(pj, disposition="already-certified-pending")
+            continue
+        if key in seen:
+            continue
+        reusable = OUTCOME_CACHE.reusable(
+            pj,
+            certifier_id=certifier_id,
+            requested_cpu_budget=args.timeout,
+        )
+        if reusable is not None:
+            cache_skipped += 1
+            BACKLOG.mark_attempt(pj, {
+                "outcome": "cache-skip",
+                "cached_outcome": reusable.outcome,
+                "cached_cpu_budget_seconds": reusable.cpu_budget_seconds,
+                "requested_cpu_budget_seconds": args.timeout,
+            })
             continue
         seen.add(key)
         todo.append((pj, pat, cube))
     print(f"{len(fails)} failures in log, {len(todo)} to retry "
           f"(fleet capacity {capacity}, window {args.max_inflight}, "
-          f"timeout {args.timeout}s)", flush=True)
+          f"CPU budget {args.timeout}s, cache skips {cache_skipped})", flush=True)
     if not todo:
         return 0
 
@@ -159,11 +280,34 @@ def main():
                 dt = status.get("elapsed", 0.0)
                 who = status.get("worker", "?")
                 if status["outcome"] == "certified":
+                    OUTCOME_CACHE.record_result(
+                        pj, {
+                            "certificate": {"kill": status["kill"]},
+                            "certification": status.get("certification"),
+                            "elapsed": dt,
+                            "worker": who,
+                        }, requested_cpu_budget=args.timeout,
+                    )
+                    BACKLOG.complete(pj, disposition="certified-pending")
                     certified += 1
                     disposition = "stored" if status["stored"] else "existing"
                     print(f"CERTIFIED kill={status['kill']} {disposition} "
                           f"({dt:.0f}s, {who}) {json.dumps(pj)}", flush=True)
                 else:
+                    OUTCOME_CACHE.record_result(
+                        pj, {
+                            "certificate": None,
+                            "certification": status.get("certification"),
+                            "elapsed": dt,
+                            "worker": who,
+                        }, requested_cpu_budget=args.timeout,
+                    )
+                    BACKLOG.mark_attempt(pj, {
+                        "outcome": "failed",
+                        "elapsed": dt,
+                        "worker": who,
+                        "certification": status.get("certification"),
+                    })
                     failed += 1
                     err = status.get("error")
                     print(f"FAILED again ({dt:.0f}s, {who}"
@@ -173,6 +317,10 @@ def main():
                 del window[stem]
                 orphaned += 1
                 qc.cancel([stem])
+                BACKLOG.mark_attempt(pj, {
+                    "outcome": "orphaned",
+                    "requested_cpu_budget_seconds": args.timeout,
+                })
                 print(f"NO RESULT by deadline (orphaned {stem}) "
                       f"{json.dumps(pj)}", flush=True)
         if window or queue:

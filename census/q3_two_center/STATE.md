@@ -93,6 +93,15 @@ Read formulation.md, then kill_notes.md, then this file.
        label-level check false-alarms — the gate must be geometric.
 10. [x] report.md written; verdict folded into the current closure plan's
        A.3/Candidate-D narrative. PROBE COMPLETE.
+11. [x] Permanent checkpoint (2026-07-13): `checkpoint.py` exact-replays
+       all 68 rational and 4 Q(sqrt(3)) realized windows with mutation
+       rejection, verifies all 44 stored profile/tier SAT assignments,
+       pins input SHA-256 digests, and re-runs the repaired falsifier gate
+       (9 configurations, 396 nonobtuse triangles, zero findings). The
+       checkpoint explicitly does not replay the 15 hand/Z3 kill proofs and
+       does not promote token SAT to a full configuration. ATAIL-Q3 is a
+       DONE-NEGATIVE decider; ATAIL-FORCE remains open on a selection-robust
+       full-filter, multi-window, or critical-row producer.
 
 ## Environment
 

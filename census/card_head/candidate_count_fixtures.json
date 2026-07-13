@@ -1,0 +1,446 @@
+{
+  "cut_contract": "p97_ahead_proven_cuts_post_sub2.v1",
+  "cut_contract_sha256": "8e067c226a9e5fec0825d0f7461d84af3aca19baaba52d6faafcbd7d8be505cf",
+  "profiles": [
+    {
+      "automorphism_count": 216,
+      "candidate_total": 2715,
+      "cardinality": 12,
+      "interior_sizes": [3, 3, 3],
+      "profile": [5, 5, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 283,
+        "O2_INTERIOR": 283,
+        "S_INTERIOR": 283,
+        "U": 56,
+        "V": 56,
+        "W": 56
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 288,
+      "candidate_total": 2665,
+      "cardinality": 12,
+      "interior_sizes": [3, 4, 2],
+      "profile": [5, 6, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 260,
+        "O2_INTERIOR": 301,
+        "S_INTERIOR": 283,
+        "U": 53,
+        "V": 101,
+        "W": 20
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 288,
+      "candidate_total": 2665,
+      "cardinality": 12,
+      "interior_sizes": [4, 3, 2],
+      "profile": [6, 5, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 283,
+        "O2_INTERIOR": 301,
+        "S_INTERIOR": 260,
+        "U": 101,
+        "V": 53,
+        "W": 20
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 864,
+      "candidate_total": 4569,
+      "cardinality": 13,
+      "interior_sizes": [3, 3, 4],
+      "profile": [5, 5, 6],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 441,
+        "O2_INTERIOR": 414,
+        "S_INTERIOR": 441,
+        "U": 69,
+        "V": 69,
+        "W": 129
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 4,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 864,
+      "candidate_total": 4569,
+      "cardinality": 13,
+      "interior_sizes": [3, 4, 3],
+      "profile": [5, 6, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 414,
+        "O2_INTERIOR": 441,
+        "S_INTERIOR": 441,
+        "U": 69,
+        "V": 129,
+        "W": 69
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 1440,
+      "candidate_total": 4404,
+      "cardinality": 13,
+      "interior_sizes": [3, 5, 2],
+      "profile": [5, 7, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 375,
+        "O2_INTERIOR": 462,
+        "S_INTERIOR": 441,
+        "U": 63,
+        "V": 195,
+        "W": 24
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 5,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 864,
+      "candidate_total": 4569,
+      "cardinality": 13,
+      "interior_sizes": [4, 3, 3],
+      "profile": [6, 5, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 441,
+        "O2_INTERIOR": 441,
+        "S_INTERIOR": 414,
+        "U": 129,
+        "V": 69,
+        "W": 69
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 1152,
+      "candidate_total": 4507,
+      "cardinality": 13,
+      "interior_sizes": [4, 4, 2],
+      "profile": [6, 6, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 414,
+        "O2_INTERIOR": 462,
+        "S_INTERIOR": 414,
+        "U": 123,
+        "V": 123,
+        "W": 25
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 1440,
+      "candidate_total": 4404,
+      "cardinality": 13,
+      "interior_sizes": [5, 3, 2],
+      "profile": [7, 5, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 441,
+        "O2_INTERIOR": 462,
+        "S_INTERIOR": 375,
+        "U": 195,
+        "V": 63,
+        "W": 24
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 5,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 4320,
+      "candidate_total": 7223,
+      "cardinality": 14,
+      "interior_sizes": [3, 3, 5],
+      "profile": [5, 5, 7],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 654,
+        "O2_INTERIOR": 578,
+        "S_INTERIOR": 654,
+        "U": 82,
+        "V": 82,
+        "W": 245
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 5,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 3456,
+      "candidate_total": 7345,
+      "cardinality": 14,
+      "interior_sizes": [3, 4, 4],
+      "profile": [5, 6, 6],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 623,
+        "O2_INTERIOR": 623,
+        "S_INTERIOR": 654,
+        "U": 85,
+        "V": 157,
+        "W": 157
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 4,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 4320,
+      "candidate_total": 7223,
+      "cardinality": 14,
+      "interior_sizes": [3, 5, 3],
+      "profile": [5, 7, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 578,
+        "O2_INTERIOR": 654,
+        "S_INTERIOR": 654,
+        "U": 82,
+        "V": 245,
+        "W": 82
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 5,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 8640,
+      "candidate_total": 6844,
+      "cardinality": 14,
+      "interior_sizes": [3, 6, 2],
+      "profile": [5, 8, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 515,
+        "O2_INTERIOR": 678,
+        "S_INTERIOR": 654,
+        "U": 73,
+        "V": 335,
+        "W": 28
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 6,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 3,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 3456,
+      "candidate_total": 7345,
+      "cardinality": 14,
+      "interior_sizes": [4, 3, 4],
+      "profile": [6, 5, 6],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 654,
+        "O2_INTERIOR": 623,
+        "S_INTERIOR": 623,
+        "U": 157,
+        "V": 85,
+        "W": 157
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 4,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 3456,
+      "candidate_total": 7345,
+      "cardinality": 14,
+      "interior_sizes": [4, 4, 3],
+      "profile": [6, 6, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 623,
+        "O2_INTERIOR": 654,
+        "S_INTERIOR": 623,
+        "U": 157,
+        "V": 157,
+        "W": 85
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 5760,
+      "candidate_total": 7148,
+      "cardinality": 14,
+      "interior_sizes": [4, 5, 2],
+      "profile": [6, 7, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 578,
+        "O2_INTERIOR": 678,
+        "S_INTERIOR": 623,
+        "U": 145,
+        "V": 235,
+        "W": 30
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 5,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 4,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 4320,
+      "candidate_total": 7223,
+      "cardinality": 14,
+      "interior_sizes": [5, 3, 3],
+      "profile": [7, 5, 5],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 654,
+        "O2_INTERIOR": 654,
+        "S_INTERIOR": 578,
+        "U": 245,
+        "V": 82,
+        "W": 82
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 3,
+        "S_INTERIOR": 5,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 5760,
+      "candidate_total": 7148,
+      "cardinality": 14,
+      "interior_sizes": [5, 4, 2],
+      "profile": [7, 6, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 623,
+        "O2_INTERIOR": 678,
+        "S_INTERIOR": 578,
+        "U": 235,
+        "V": 145,
+        "W": 30
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 4,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 5,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    },
+    {
+      "automorphism_count": 8640,
+      "candidate_total": 6844,
+      "cardinality": 14,
+      "interior_sizes": [6, 3, 2],
+      "profile": [8, 5, 4],
+      "role_candidate_counts": {
+        "O1_INTERIOR": 654,
+        "O2_INTERIOR": 678,
+        "S_INTERIOR": 515,
+        "U": 335,
+        "V": 73,
+        "W": 28
+      },
+      "role_multiplicities": {
+        "O1_INTERIOR": 3,
+        "O2_INTERIOR": 2,
+        "S_INTERIOR": 6,
+        "U": 1,
+        "V": 1,
+        "W": 1
+      }
+    }
+  ],
+  "proof_tier": "PROVEN",
+  "schema": "p97_ahead_candidate_count_fixtures.v1",
+  "scope": "Exhaustive per-center class counts within the labeled finite card-head admissibility abstraction; not a geometric closure theorem"
+}

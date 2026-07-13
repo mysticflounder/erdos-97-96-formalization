@@ -1,0 +1,140 @@
+{
+  "bank": {
+    "normalized_rows": 5933,
+    "normalized_sha256": "e7a0514d95adc33f23fc91fd01d39df1d53c950f4918a6d0039f98ce2f1924c9",
+    "raw_rows": 5934,
+    "raw_sha256": "4b5579aad55b6f43c43022680fb5ad914556243654ed451c03ccf7a2f90c2fa3"
+  },
+  "certificates": {
+    "bytes": {
+      "maximum": 6968818007,
+      "over_100_mib": 208,
+      "p50": 65770,
+      "p90": 10766447,
+      "p99": 506505835,
+      "total": 141467112677
+    },
+    "files": 5933,
+    "largest": [
+      {
+        "bytes": 6968818007,
+        "path": "certs/pat_05876.json"
+      },
+      {
+        "bytes": 5816765610,
+        "path": "certs/pat_05868.json"
+      },
+      {
+        "bytes": 5511771002,
+        "path": "certs/pat_05874.json"
+      },
+      {
+        "bytes": 4385024533,
+        "path": "certs/pat_05878.json"
+      },
+      {
+        "bytes": 4117142917,
+        "path": "certs/pat_05869.json"
+      },
+      {
+        "bytes": 3901112134,
+        "path": "certs/pat_05929.json"
+      },
+      {
+        "bytes": 3900162365,
+        "path": "certs/pat_05870.json"
+      },
+      {
+        "bytes": 2281208887,
+        "path": "certs/pat_02155.json"
+      },
+      {
+        "bytes": 2175234398,
+        "path": "certs/pat_05871.json"
+      },
+      {
+        "bytes": 2057349287,
+        "path": "certs/pat_03827.json"
+      },
+      {
+        "bytes": 1727162804,
+        "path": "certs/pat_05162.json"
+      },
+      {
+        "bytes": 1679474115,
+        "path": "certs/pat_01444.json"
+      },
+      {
+        "bytes": 1638260492,
+        "path": "certs/pat_05883.json"
+      },
+      {
+        "bytes": 1511782909,
+        "path": "certs/pat_05879.json"
+      },
+      {
+        "bytes": 1465787700,
+        "path": "certs/pat_05914.json"
+      },
+      {
+        "bytes": 1420026990,
+        "path": "certs/pat_03327.json"
+      },
+      {
+        "bytes": 1367706423,
+        "path": "certs/pat_02141.json"
+      },
+      {
+        "bytes": 1338263399,
+        "path": "certs/pat_05393.json"
+      },
+      {
+        "bytes": 1334632505,
+        "path": "certs/pat_01154.json"
+      },
+      {
+        "bytes": 1331631728,
+        "path": "certs/pat_05880.json"
+      }
+    ],
+    "missing": [],
+    "orphans": [],
+    "referenced_paths": 5933
+  },
+  "duplicates": {
+    "canonical_motifs": {
+      "52e9d7f84ba123e5b6313d3695c508e4e0b2d7743b5e04aaed0a85b27aaf1aea": {
+        "content_identical": false,
+        "pids": [
+          "pat_00003",
+          "pat_00003"
+        ],
+        "proof_identical": true,
+        "rows": [
+          4,
+          192
+        ]
+      }
+    },
+    "ids": {
+      "pat_00003": {
+        "content_identical": false,
+        "proof_identical": true,
+        "rows": [
+          4,
+          192
+        ]
+      }
+    },
+    "unexplained_canonical_motifs": [],
+    "unexplained_ids": []
+  },
+  "exact_identity": {
+    "failures": [],
+    "status": "NOT_RUN",
+    "verified": 0
+  },
+  "root": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/census-554",
+  "schema": "census554_bank_audit.v1",
+  "status": "STRUCTURAL_PASS"
+}

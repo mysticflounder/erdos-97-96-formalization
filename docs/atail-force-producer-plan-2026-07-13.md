@@ -4,14 +4,16 @@
 
 Adam explicitly authorized this card-at-least-12 work as genuine parallel
 closure research. It remains required even if Census-554 closes card 11. The
-card-11 owner may therefore continue A11-WIRE-PAIR independently; this lane
-does not edit that source split or launch card-head work.
+card-11 Census process is now stopped and is not a dependency of this lane;
+this lane does not resume it or launch card-head work.
 
 Current status:
 
 - `ATAIL-SUB2`: PROVEN, audited, and landed in Lean.
 - `ATAIL-Q3`: DONE-NEGATIVE within its stated selected-four/two-center
   abstraction.
+- `ATAIL-DISTINCT-REPLAY`: DONE-NEGATIVE for all equality-only routes.
+- `ATAIL-EQ-PILOT` and `ATAIL-INEQ-PILOT`: DONE-NEGATIVE-TRACTABILITY.
 - `ATAIL-FORCE`: OPEN-RESEARCH and load-bearing for `K-A-PAIR`.
 
 The proof-blueprint session anchor remains
@@ -173,6 +175,29 @@ wrapper therefore cannot be used as closure evidence.
 No searched bank theorem forces the required full-filter overlap from the
 current two-large-cap, no-M44, critical-shell, and convexity hypotheses.
 
+## Five-row pair surface versus six-row live surface
+
+The current source interfaces are not interchangeable. The pair theorem takes
+`CriticalSourceRows`, whose fields are exactly the five rows sourced at
+`q,t1,t2,t3,u`. The liveData theorem additionally takes the sixth row sourced
+at `f2 := t2[0]` plus two comparison maps that certify same-critical-system
+agreement when `f2` equals one of those five sources. Those three live inputs
+are absent from `DoubleApexOffSurplusSharedRadiusPair`.
+
+In particular, `hcritical : Nonempty (CriticalShellSystem D.A)` in the pair
+statement does not relate the abstract five supplied rows to a chosen global
+system. A new row can be selected from it, but the live comparison maps cannot
+be reconstructed. The existing `false_of_center_p_t2_t20` adapter uses the
+sixth row and one comparison map first, then calls the narrower pair theorem in
+the specialized collapse branch.
+
+Therefore ATAIL has two honest proof surfaces: prove the current five-row pair
+theorem from exactly its statement, or consume the six-row inputs directly at
+`u1_largeCap_routeB_tail_liveData_false` (possibly widening and immediately
+threading the pair interface). The completed three-center census contains
+neither the dangerous `p` row nor the sixth `f2` row. Full audit:
+`docs/audits/2026-07-13-atail-sixth-row-scope.md`.
+
 ## Required strengthening beyond Q3
 
 Any viable producer must add information lost by the selected-four Q3
@@ -187,10 +212,13 @@ abstraction. At least one of these must become a theorem:
    order. Independent per-pair Q3 predicates are insufficient; the stored
    token assignments already satisfy all three simultaneously. The
    `census/atail_force/` surface now gives this route a fixed 167,782-case
-   decision boundary, but none of those cases has been solver-classified.
-3. **Critical-row producer.** Use the live `rows`, `hcenter`, `hsupport`, and
-   `H` hypotheses to force either the full-filter overlap directly or the
-   seven equalities consumed by `u1TwoLargeCapObstruction`.
+   decision boundary. A manifest-bound seven-case full-inequality pilot
+   classified none of them: all seven reached the 30-second solver timeout.
+3. **Critical-row producer.** On the pair surface, use the five `rows`,
+   `hcenter`, `hsupport`, and `H` hypotheses. On the live surface, also consume
+   `f2CriticalRow` and its same-system comparison maps. Force either the
+   full-filter overlap directly or the seven equalities consumed by
+   `u1TwoLargeCapObstruction`.
 4. **Direct contradiction.** Derive `False` from the same on-spine hypotheses
    without naming the pair, then eliminate into the existing existential.
 
@@ -222,14 +250,27 @@ cap/disk/nonobtuse/global-order inequalities or a direct full-filter or
 critical-row producer. No bulk 30,997- or 167,782-case nonlinear run is
 authorized.
 
+`ATAIL-INEQ-PILOT` is also complete as a
+**DONE-NEGATIVE-TRACTABILITY** diagnostic. Its immutable manifest selected the
+same seven representatives, one in each interior-support stratum 6 through 12,
+and included every emitted disk, nonobtuse, cap-sign, and global-order
+inequality. One sequential Z3 4.16.0 QF_NRA/NLSAT process ran for at most 30
+seconds per case and 240 seconds overall. All seven cases returned `TIMEOUT`;
+the run consumed 219.901 seconds and produced neither a model nor an UNSAT
+proposal. The result is bound to every exact generator digest and gives no
+mathematical verdict. Increasing this budget or extending the run to the
+30,997- or 167,782-case surfaces is rejected. The useful next step is theorem
+extraction from the full-filter/critical-row hypotheses, not a larger blind
+nonlinear sweep.
+
 ## Closure priority and fallback
 
 ATAIL-FORCE is the primary proof lane. The preferred theorem is uniform from
 card 12 and uses full exact-radius filters together with convexity, global
-order, no-M44, or the six critical rows. Every proposed relaxed intermediate
-must be checked against the W16/W20 non-convex witness bank; a statement in the
-same equality/pattern vocabulary cannot be promoted merely because a bounded
-sample dies.
+order, no-M44, the actual five-row pair interface, or the stronger six-row live
+interface. Every proposed relaxed intermediate must be checked against the
+W16/W20 non-convex witness bank; a statement in the same equality/pattern
+vocabulary cannot be promoted merely because a bounded sample dies.
 
 AHEAD CEGAR remains a bounded cards-12--14 fallback. Its declared wall,
 bank-growth, and shape-staleness stops are binding, and a policy-stopped run is

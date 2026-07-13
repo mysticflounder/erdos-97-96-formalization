@@ -9,9 +9,12 @@ under <queue-root>/results/. Claim-by-rename makes the race safe; the
 worker package's README documents the wire formats.
 
 Liveness: workers refresh <queue-root>/heartbeats/<host>.json every ~5s.
-live_capacity() sums process slots across fresh heartbeats; the driver
-skips the queue entirely (pure local compute) when it returns 0, so the
-census never stalls because workers went away.
+Heartbeats advertise ``mine`` and/or ``certify`` capabilities, and
+live_capacity(capability) sums only matching fresh slots.  A legacy heartbeat
+without capabilities is treated as mine-only for filtered queries: this keeps
+old low-memory workers useful without ever routing a high-memory certificate
+to them.  The driver skips the queue entirely (pure local compute) when the
+relevant capacity is 0, so the census never stalls because workers went away.
 
 All result polling goes through directory listings, never per-name
 lookups: a lookup that races the remote write plants a macOS NFS negative
@@ -48,8 +51,17 @@ def _atomic_write_json(path, value):
     atomic_write_json(path, value)
 
 
-def live_capacity() -> int:
-    """Total process slots across workers with a fresh heartbeat."""
+def live_capacity(capability: str | None = None) -> int:
+    """Fresh process slots, optionally filtered by worker capability.
+
+    Missing capability metadata is legacy and therefore eligible only for
+    mining.  Under-counting old certificate capacity merely triggers the
+    driver's checked local fallback; over-counting could strand high-memory
+    jobs on a mine-only host.
+    """
+
+    if capability not in (None, "mine", "certify"):
+        raise ValueError(f"unknown worker capability: {capability}")
     now = time.time()
     total = 0
     try:
@@ -65,8 +77,19 @@ def live_capacity() -> int:
             data = json.loads(entry.read_text(encoding="utf-8"))
         except (OSError, UnicodeDecodeError, json.JSONDecodeError):
             continue
-        if now - float(data.get("ts", 0)) <= HEARTBEAT_FRESH_S:
-            total += int(data.get("workers", 0))
+        if now - float(data.get("ts", 0)) > HEARTBEAT_FRESH_S:
+            continue
+        if capability is not None:
+            capabilities = data.get("capabilities")
+            if capabilities is None:
+                if capability != "mine":
+                    continue
+            elif (
+                not isinstance(capabilities, list)
+                or capability not in capabilities
+            ):
+                continue
+        total += int(data.get("workers", 0))
     return total
 
 
@@ -139,14 +162,19 @@ def poll(stems, deadline, on_result=None):
                     data = json.load(handle)
             except (OSError, json.JSONDecodeError):
                 continue  # torn read raced the atomic rename; retry
+            pending.discard(stem)
+            completed[stem] = data
+            if on_result is not None and on_result(stem, data) is False:
+                # Preserve the result across the early-stop handoff.  For
+                # certification this is a durable fallback if the driver dies
+                # before publishing its in-memory first certificate; the
+                # retry drainer later consumes it idempotently.  Mine results
+                # are harmless and covered by the stale-result GC policy.
+                return completed, sorted(pending)
             try:
                 result_path.unlink()
             except (FileNotFoundError, OSError):
                 pass
-            pending.discard(stem)
-            completed[stem] = data
-            if on_result is not None and on_result(stem, data) is False:
-                return completed, sorted(pending)
         if pending:
             time.sleep(POLL_INTERVAL)
     return completed, sorted(pending)

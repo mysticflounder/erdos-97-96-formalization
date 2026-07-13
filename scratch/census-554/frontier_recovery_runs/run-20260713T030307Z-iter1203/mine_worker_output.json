@@ -1,0 +1,113 @@
+{
+  "bank_sha256": "0d5ef140da27c709d21392db4fdc090ea7ef613585d0257d9a5bde8556c0cafe",
+  "cube": {
+    "0": [
+      2,
+      3,
+      5,
+      6
+    ],
+    "1": [
+      0,
+      3,
+      7,
+      8
+    ],
+    "10": [
+      0,
+      3,
+      4,
+      5
+    ],
+    "2": [
+      4,
+      7,
+      9,
+      10
+    ],
+    "3": [
+      2,
+      4,
+      7,
+      8
+    ],
+    "4": [
+      1,
+      3,
+      6,
+      9
+    ],
+    "5": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "6": [
+      1,
+      5,
+      7,
+      10
+    ],
+    "7": [
+      6,
+      8,
+      9,
+      10
+    ],
+    "8": [
+      0,
+      1,
+      2,
+      10
+    ],
+    "9": [
+      0,
+      4,
+      6,
+      8
+    ]
+  },
+  "elapsed_s": 865.5022114589992,
+  "min_support_k": 6,
+  "miner_policy": {
+    "CENSUS_MINE_BATCH": 24,
+    "CENSUS_MINE_TARGET_DEAD": 12,
+    "CENSUS_MINE_TARGET_MIN_K": 6,
+    "CENSUS_MINE_WORKERS": 8,
+    "oracle": "intracap.pattern_dead3",
+    "oracle_timeout_s": 60,
+    "recovery": "resumable-exact-local-v1",
+    "remote_queue_used": false
+  },
+  "patterns": [
+    {
+      "0": [
+        2,
+        3,
+        5
+      ],
+      "10": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "2": [
+        4,
+        10
+      ],
+      "3": [
+        2,
+        4
+      ],
+      "5": [
+        2,
+        3,
+        4
+      ]
+    }
+  ],
+  "probe_result_sha256": "17ac133322132482064bb25e6f65bb709372f4c5d448ab0b65654a8edf2d0e46",
+  "schema": "census554_frozen_frontier_mine_worker.v1"
+}

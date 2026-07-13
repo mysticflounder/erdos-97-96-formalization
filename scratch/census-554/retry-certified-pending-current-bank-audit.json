@@ -1,0 +1,48 @@
+{
+  "schema": "census554_retry_pending_bank_audit.v1",
+  "created_utc": "2026-07-13T16:16:32Z",
+  "bank": {
+    "rows": 5934,
+    "sha256": "4b5579aad55b6f43c43022680fb5ad914556243654ed451c03ccf7a2f90c2fa3"
+  },
+  "pending_store": {
+    "path": "retry_certified_pending.d",
+    "record_count": 16,
+    "index_count": 16,
+    "index_sha256": "bf3a78751a9c67ef28ea57cc9707032ac18d5f78acf3e171437bf4016280629a",
+    "record_bytes": 41004168111,
+    "records_missing_from_index": [],
+    "index_entries_missing_records": [],
+    "malformed_index_lines": []
+  },
+  "method": {
+    "pattern_source": "exact pattern field read from the tail of each atomic record",
+    "duplicate_key": "miner.canon_key under the Census-554 AUTOS action",
+    "warning": "pending_cert_store.pattern_digest uses the broader cover_probe.unlabeled_key and was not used to decide bank duplication"
+  },
+  "result": {
+    "status": "all-current-bank-canonical-duplicates",
+    "distinct_pending_autos_keys": 16,
+    "pending_self_duplicates": 0,
+    "current_bank_duplicates": 16,
+    "publication_required": false
+  },
+  "record_to_bank_pid": {
+    "17bf7203264ff117366d2b5fc0af81600ba1a1bbfc927a5ed847f96dae792feb": "pat_05868",
+    "25cf4dbc26468dce3fd27fd7d4daa90891c63f1b4245eb723a394d4235f53e73": "pat_05869",
+    "27ba9b1bc28f96d59510d871ca5c21035e339c84f693971a89dcae9df5eb978b": "pat_05870",
+    "2b8924be71e8e7749f847024efb1a359ad92336c7512baf24a9c16bea98d8649": "pat_05871",
+    "39b59781ae23e8e78a1d97deb28f18af7899d39fd3ac802a89819a6e74c663e4": "pat_05872",
+    "3c259726d80b41ba6266788cfc74608229a4a39824eccbe536d47c0fa759c48e": "pat_05873",
+    "8cbee728597431f08259071e6e95a4910e0b792a2bb85920774ae3a8ec23bf0b": "pat_05874",
+    "9e12060991b676cf595d4843a2f94971b7e7bd043e107c5bd7814ff6a831ee6b": "pat_05875",
+    "a420d5427a8538c6f8147ec4e29633064d91248b6fc2dae1705d91f7f9f676da": "pat_05876",
+    "aacd586d153278bfe0e94b16c6c8f6c5a476e2c8b0ab8f2e7580db8db0a6a817": "pat_05877",
+    "b45d210fdc31a64afff0d1bb8e4f2f536e02a8e0a33d37207d5d50a80f212ec4": "pat_05878",
+    "d2841314ce11d4f75e855a15520abfc7b1ffb1b816172b3b6e226db8497968f7": "pat_05879",
+    "d5b59cf4bdec97364f8b110a9b1e8d13c0f3209676d5b8747332fd25b90ff2e9": "pat_05880",
+    "eacc3bc18b16a48adeeee98610ebba4377b3bd4366be2c7bcc33eb375a678f58": "pat_05881",
+    "ef30fcc01bf862cf374b09253978894ab1adecd98dba2df6f5fe0938774f5486": "pat_05882",
+    "f5e8fff70f370deb354b0a3428f3baa4c4239364ecbab507651357c4ebbce1fb": "pat_05883"
+  }
+}

@@ -84,9 +84,110 @@ two-ring); surviving route is Candidate-D two-center coupling. Deciders:
 **ATAIL-SUB2** (seven-variable SUB2-H half-disk statement by hand proof or
 independently checked CAD/QE; encoding must reproduce the three PROVEN
 probe cuts and keep banked witnesses SAT), then **ATAIL-Q3** (two-center
-coupling sweep with exact certificates). AHEAD-DEC (head narrowing rerun
-under PROVEN cuts only) is an Adam-gated decision row; the existing
-`654_all` run is invalid evidence.
+coupling sweep with exact certificates). ATAIL-Q3 is now a DONE-NEGATIVE
+decider (2026-07-13): all 87 joint classes are classified, 72 realized windows
+and 44 token assignments replay exactly through the permanent checkpoint, and
+the enlarged proved cut set remains SAT at token level for every profile at
+cards 12--16. This does not falsify the full leaf; it proves that the
+selected-four/single-pair abstraction is insufficient. ATAIL-FORCE now targets
+a card-at-least-two off-surplus overlap of the two full apex exact-radius
+filters, or an equivalent multi-window/critical-row contradiction
+(`docs/atail-force-producer-plan-2026-07-13.md`). AHEAD-DEC was authorized by
+Adam on 2026-07-13 as parallel head-only research under PROVEN cuts and the
+separate CTRL-RESOURCE gate. The historical `654_all` run remains nonterminal
+and is not coverage: its order-free `s <= 2` exclusion is now PROVEN post-SUB2 for
+dropping `s >= 3`, but it covered only (6,5,4), did not converge, and predates
+the immutable manifest/source-digest gate. Its exact encoding must be ported
+and revalidated before reuse.
+
+The first order-coupled successor checkpoint landed on 2026-07-13 in
+`census/atail_force/`. It replays every row of the pinned 3,375-class
+L2/full-participant inventory and restores every membership-distinct order of
+the three cap blocks in one common MEC frame, for exactly 167,782 polynomial
+systems. The dimensions range from 19--31 variables with exactly 14
+equalities. The checkpoint is `PREFLIGHT_COMPLETE_NO_SOLVER_RUN`: it constructs
+only representative smoke systems, proves no geometric inventory coverage,
+and supplies neither the Lean extraction nor the full-filter producer. A bulk
+nonlinear run is not authorized. The exact combinatorial reduction is now
+complete: 590 S3 class orbits with 30,997 representative-order cases, and 343
+raw / 70 S3 equality skeletons. The checkpoint validates all 20,250 class
+permutation edges and canonical-order round trips, while explicitly withholding
+an independent fixed-gauge similarity transfer certificate. A separate
+manifest-bound CTRL-RESOURCE pilot gate comes next. The unsaturated equality
+layer itself is already terminal negative: one exact collapsed equilateral
+`Q(sqrt(3))` witness replays for all 343 raw skeletons, with all 1,029 radius
+mutations rejected. Only a separator-saturated pilot or full inequalities can
+still discriminate cases.
+
+The first permanent AHEAD-SPEC checkpoint landed on 2026-07-13 in
+`census/card_head/run_manifest.py`: the post-SUB2 PROVEN cut contract is
+pinned at SHA-256
+`8e067c226a9e5fec0825d0f7461d84af3aca19baaba52d6faafcbd7d8be505cf`,
+and the manifest validator enforces exact labeled profiles, source digests,
+safe paths, worker/nice bounds, wall/bank-growth/shape-staleness stops, and
+exclusive creation. Three profile tests plus six manifest tests pass. The
+candidate-count fixtures and execution adapter remained open at that first
+checkpoint; no heavy run had begun.
+
+The second AHEAD-SPEC checkpoint on 2026-07-13 ports the post-SUB2 PROVEN
+per-center surface into `census/card_head/candidate_surface.py` and commits
+exact fixtures for all 19 labeled profiles: 254 profile/center instances and
+106,755 candidate classes. All three n=12 profiles match the historical `all`
+counts exactly, while every n=12--14 count also matches an independent closed
+formula. The manifest now constructs the niced permanent runner command;
+`runner.py` re-hashes every required source and checks the selected fixture,
+but `execute` fails closed until the CEGAR adapter lands and CTRL-RESOURCE is
+transferred. All 16 card-head tests pass. This is exhaustive only within the
+stated finite candidate abstraction; no heavy run or geometric closure claim
+has occurred.
+
+The third AHEAD-SPEC checkpoint on 2026-07-13 ports the generic finite CNF in
+`census/card_head/sat_encoding.py`. Its card-12 (6,5,4) base reproduces the
+historical 37,310 variables and 297,119 clauses exactly; representative
+card-13 and card-14 structural sizes are pinned as regressions. The five
+card-12 smoke gates pass: SAT models are independently checked by `cube_ok`,
+and the forced C2, C4, and submask UNSAT cases each have a `drat-trim`-verified
+CaDiCaL proof. This is EMPIRICALLY VERIFIED encoder evidence only. The suite is
+22/22 passing, while the CEGAR mining/certification adapter, historical-bank
+replay, and CTRL-RESOURCE transfer remain open; no census run has started.
+
+The fourth AHEAD-SPEC checkpoint on 2026-07-13 adds a permanent read-only
+structural audit of the historical `654_all` bank. Bank SHA-256
+`e65e00a1a8ac900a5608061d135fb3b46c77f79b0c78533c775119816eeb8c04`
+contains 256 unique profile-automorphism rows, expanding to 20,610
+candidate-compatible instances and 159 independently recomputed role-blind
+shape labels; all 256 referenced certificate files are present. The committed
+audit is deliberately `PASS_STRUCTURAL_ONLY`: the certificate directory is
+9,233,993,303 bytes and its exact polynomial identities were NOT freshly
+replayed under the active resource gate. The attempted legacy verifier was
+stopped rather than allowed to contend. The suite is 26/26 passing; neither
+the historical bank nor its file inventory is coverage or a current proof.
+
+The fifth AHEAD-SPEC checkpoint on 2026-07-13 adds
+`census/card_head/run_protocol.py`: an immutable, manifest-bound, hash-chained
+event stream whose state is derived by strict replay rather than copied into a
+mutable status file. Start events freeze the bank/shape baselines; chunk events
+record one SAT witness's pre-certification fresh-shape count and derive the
+historical shape-stale predicate from that count, independently of whether a
+fresh shape was later certified and banked. They also derive wall time and
+new-bank growth. Hitting any declared limit is terminal and later appends are
+rejected. Engine exhaustion is named `ENGINE_EXHAUSTED_UNVERIFIED`, not
+coverage. `runner.py status` performs
+the full source/fixture preflight and reads the derived state without starting
+a run. All 35 tests pass; `execute`, fresh 9.23 GB identity replay, and heavy
+AHEAD work remain gated, and no census process was launched.
+
+The sixth AHEAD-SPEC checkpoint on 2026-07-13 makes the exact certificate and
+publication boundary permanent. `pattern_certificate.py` reconstructs the
+pattern's equidistance/Rabinowitsch generators and independently checks every
+cofactor identity in rational arithmetic; `cegar_adapter.py` binds the source
+cube and profile orbit to that replay; and `bank_store.py` journal-couples the
+certificate files, bank rows, and run measurement with crash recovery across
+each publication window. This demotes msolve and Singular to proposal
+generators rather than trusted bank writers. Fault injection and exact-identity
+regressions pass, bringing the card-head suite to 52/52. The heavy
+mining/generation worker, full historical identity replay, and
+`CTRL-RESOURCE` transfer remain open, so no AHEAD run or coverage claim follows.
 
 ## Card-{10,11} instrument applicability
 
@@ -107,9 +208,16 @@ touches the leaves.
    existing sibling consumers before new math).
 2. A11 lane to terminal + A11-WIRE-PAIR/LIVE (closes the card-11 slice of
    both rows; leaves named 12 ≤ card residuals).
-3. ATAIL-SUB2 → ATAIL-Q3 (PAIR-tail deciders; any bounded-forced-subsystem
-   theorem must immediately be tested as a liveData producer).
-4. AHEAD-DEC — {{NEEDS_ADAM_INPUT}}; and note the cross-front convergence:
-   K-B-ERASE's proposed third classifier lane and these rows all funnel
-   toward finite-closure instruments — a plan-level view across all four
-   fronts is warranted before committing compute.
+3. ATAIL-SUB2 → ATAIL-Q3 are decided: SUB2 PROVEN, Q3 DONE-NEGATIVE. Continue
+   ATAIL-FORCE on the selection-robust full-filter/multi-window/critical-row
+   producer. Its three-center/global-order surface and finite reduction are
+   DONE, and bare equality-ideal emptiness is ruled out by exact witnesses.
+   Next run only a bounded, manifest-controlled separator-saturated pilot, not
+   a bulk inequality sweep. Any bounded-forced-subsystem theorem must
+   immediately be tested as a liveData producer.
+4. AHEAD-DEC — DONE 2026-07-13: Adam authorized head-only card-12--14
+   narrowing as parallel research alongside Census554/A11. AHEAD-SPEC and
+   lightweight preflights may proceed now; heavy AHEAD-N12/N13/N14 runs remain
+   serialized through CTRL-RESOURCE at one profile and at most four workers.
+   No named card-at-least-15 residual is authorized before a proved AHEAD-COVER
+   and its immediate AHEAD-CONSUME spine consumer.

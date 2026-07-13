@@ -1,0 +1,140 @@
+{
+  "bank_snapshot": {
+    "path": "bank.snapshot.jsonl",
+    "rows": 5884,
+    "sha256": "0d5ef140da27c709d21392db4fdc090ea7ef613585d0257d9a5bde8556c0cafe"
+  },
+  "candidate": {
+    "candidate_id": "candidate_00000",
+    "canonical_profile_key": [
+      [
+        0,
+        [
+          2,
+          3,
+          4
+        ]
+      ],
+      [
+        2,
+        [
+          5,
+          9
+        ]
+      ],
+      [
+        3,
+        [
+          2,
+          4,
+          5
+        ]
+      ],
+      [
+        4,
+        [
+          2,
+          5
+        ]
+      ],
+      [
+        9,
+        [
+          0,
+          3,
+          4,
+          5
+        ]
+      ]
+    ],
+    "generator_count": 9,
+    "novel_against_snapshot": true,
+    "orbit_size": 12,
+    "pattern": {
+      "0": [
+        2,
+        3,
+        5
+      ],
+      "10": [
+        0,
+        3,
+        4,
+        5
+      ],
+      "2": [
+        4,
+        10
+      ],
+      "3": [
+        2,
+        4
+      ],
+      "5": [
+        2,
+        3,
+        4
+      ]
+    },
+    "support_size": 6,
+    "unlabeled_motif_key": [
+      [
+        1,
+        [
+          0,
+          5
+        ]
+      ],
+      [
+        2,
+        [
+          0,
+          1
+        ]
+      ],
+      [
+        3,
+        [
+          1,
+          2,
+          4
+        ]
+      ],
+      [
+        4,
+        [
+          0,
+          1,
+          2
+        ]
+      ],
+      [
+        5,
+        [
+          0,
+          2,
+          3,
+          4
+        ]
+      ]
+    ]
+  },
+  "certificate": "verified_certificate.json",
+  "certificate_generator": "miner.certify_pattern Singular lift",
+  "certificate_sha256": "955f41b1cd04f07ab7d3ddfac7b6e47dd4ce2216f98cec2caf4b4d90ab9b0360",
+  "exact_verifier": "verify_certs.verify_cert Fraction identity",
+  "frontier_cube": "frontier_cube.json",
+  "kill": "multi_pair",
+  "live_bank_modified": false,
+  "mined_candidates": "mined_candidates.json",
+  "publication_note": "Recovered and verified only; not appended to the mutable bank.",
+  "schema": "census554_frontier_recovery_result.v1",
+  "selection_oracle": "intracap.pattern_dead3 iterated exact Singular saturation",
+  "source": {
+    "artifact": "scratch/census-554/frontier_loop.log",
+    "iteration": 1203,
+    "line": 14687
+  },
+  "status": "certified-not-published",
+  "verified_generator_count": 11
+}

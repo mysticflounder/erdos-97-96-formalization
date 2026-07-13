@@ -28,10 +28,10 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
     def setUpClass(cls):
         cls.cube = LATEST_CUBE
 
-    def test_catalog_has_eleven_eligible_and_one_explicitly_ineligible_family(self):
+    def test_catalog_has_twelve_eligible_and_one_explicitly_ineligible_family(self):
         manifest = oracle.catalog_manifest()
-        self.assertEqual(len(manifest["families"]), 12)
-        self.assertEqual(len(manifest["eligible_family_ids"]), 11)
+        self.assertEqual(len(manifest["families"]), 13)
+        self.assertEqual(len(manifest["eligible_family_ids"]), 12)
         self.assertEqual(
             manifest["ineligible_family_ids"],
             ["equality-exact-off-circle.v1"],
@@ -109,6 +109,20 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
             ):
                 oracle.validate_catalog_manifest(manifest, require_passed=True)
 
+    def test_recovered_six_point_two_pair_core_and_orbit_are_exact(self):
+        pattern = {
+            0: [2, 3, 5], 2: [4, 10], 3: [2, 4],
+            5: [2, 3, 4], 10: [0, 3, 4, 5],
+        }
+        stage = "equality-six-point-two-pair-collision"
+        detection = oracle.build_detection(pattern, stage)
+        self.assertEqual(
+            detection["core"],
+            {"a": 0, "b": 2, "c": 3, "d": 4, "e": 5, "f": 10},
+        )
+        self.assertEqual(len(detection["closure_paths"]), 9)
+        self.assertEqual(len(oracle.profile_orbit_unordered(pattern, stage)), 12)
+
     def test_all_unordered_family_path_schemas_replay(self):
         fixtures = {
             "equality-duplicate-center": {
@@ -130,6 +144,10 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
             "equality-six-row-anchor-collision": {
                 0: [7, 9], 1: [0, 7, 8], 7: [1, 9],
                 8: [0, 10], 9: [1, 8, 10], 10: [1, 7, 9],
+            },
+            "equality-six-point-two-pair-collision": {
+                0: [2, 3, 5], 2: [4, 10], 3: [2, 4],
+                5: [2, 3, 4], 10: [0, 3, 4, 5],
             },
             "equality-seven-point-orbit-collision": {
                 0: [1, 3, 4], 1: [0, 3, 8, 9], 3: [4, 5, 8],

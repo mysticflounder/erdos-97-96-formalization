@@ -87,3 +87,22 @@ All in `census/q3_two_center/`: `formulation.md` (read first),
 `q3_token.py` + results, `falsifier_gate.py`, `eq_ideal.py` (moot —
 witnesses settle non-emptiness), `smoke.py` + `smoke_results.json`,
 `residue*.txt/.log`, `runs/` (solver files, gitignored).
+
+## Permanent checkpoint addendum (2026-07-13)
+
+`checkpoint.py` / `checkpoint.json` now make the negative Q3 verdict
+reproducible and fail closed. The checkpoint exact-replays all 72 realized
+windows (68 rational and 4 over `Q(sqrt(3))`), requires every radius mutation
+to fail, validates the stored token assignments for all 22 profiles under both
+the base and post-SUB2 proved cut sets, and pins every runtime input digest.
+The formerly stale falsifier gate path now resolves the five tracked
+`scratch/d3-formulation/` inputs and passes on 9 configurations / 396
+nonobtuse boundary triangles; regression tests cover the path and gate.
+
+Epistemic boundary: the token assignments are exact only within the token
+model, the falsifier gate remains guard-banded floating evidence, and the
+checkpoint does not independently replay the 15 hand/Z3 kill proofs. Thus Q3
+is DONE-NEGATIVE as a selected-four/two-center decider, not a closure proof.
+ATAIL-FORCE still requires a selection-robust full exact-radius overlap,
+multi-window, or critical-row producer; see
+`docs/atail-force-producer-plan-2026-07-13.md`.

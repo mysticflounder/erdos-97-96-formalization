@@ -1,0 +1,313 @@
+{
+  "cases": [
+    {
+      "case_id": "ineq_m06_e51_c2256",
+      "class_id": 2256,
+      "class_key_sha256": "f3af0239676b56ab0ac8e0cd4abca001ac8694ad5841f1246ea21a69409919db",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 37,
+        "interior_points": 6,
+        "polygon_points": 9,
+        "strict_inequalities": 106,
+        "variables": 19,
+        "weak_inequalities": 9
+      },
+      "interior_points": 6,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          4,
+          4
+        ],
+        "S": [
+          3,
+          5
+        ]
+      },
+      "source_separator_case_id": "m06_e51_c2256",
+      "strict_inequalities": 106,
+      "system_input_sha256": "310a55892127556c56ce4454dec06077bdd7c87412ff44a7578826b456d02050",
+      "variables": 19,
+      "weak_inequalities": 9
+    },
+    {
+      "case_id": "ineq_m07_e19_c1216",
+      "class_id": 1216,
+      "class_key_sha256": "5b65fe10847d85e1c980fea2d6ecbc9434ac6327cdf9749f3e24187674ed82a2",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 46,
+        "interior_points": 7,
+        "polygon_points": 10,
+        "strict_inequalities": 145,
+        "variables": 21,
+        "weak_inequalities": 10
+      },
+      "interior_points": 7,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          2,
+          4,
+          4
+        ],
+        "S": [
+          3,
+          5
+        ]
+      },
+      "source_separator_case_id": "m07_e19_c1216",
+      "strict_inequalities": 145,
+      "system_input_sha256": "febe47193847e850fcdc192756300d8ba011aa02334c06846cb534c06db43a11",
+      "variables": 21,
+      "weak_inequalities": 10
+    },
+    {
+      "case_id": "ineq_m08_e04_c0521",
+      "class_id": 521,
+      "class_key_sha256": "350e55a3e56380cecd70d8ad950b70bf92d4728525bf31d875f2c242fc2908b0",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 56,
+        "interior_points": 8,
+        "polygon_points": 11,
+        "strict_inequalities": 193,
+        "variables": 23,
+        "weak_inequalities": 11
+      },
+      "interior_points": 8,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          2,
+          4,
+          4,
+          5
+        ],
+        "S": [
+          1,
+          3
+        ]
+      },
+      "source_separator_case_id": "m08_e04_c0521",
+      "strict_inequalities": 193,
+      "system_input_sha256": "d03ae1d5dbe41cee7318d774cc4a01eb59fd8f930fd0a1ed6073c568d4dd809f",
+      "variables": 23,
+      "weak_inequalities": 11
+    },
+    {
+      "case_id": "ineq_m09_e00_c0009",
+      "class_id": 9,
+      "class_key_sha256": "7467099dada9a5ef69f4c2c91f26a843ee1ef3f830dd2478b4b117784db86536",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 67,
+        "interior_points": 9,
+        "polygon_points": 12,
+        "strict_inequalities": 251,
+        "variables": 25,
+        "weak_inequalities": 12
+      },
+      "interior_points": 9,
+      "order": {
+        "O1": [
+          2,
+          3,
+          4
+        ],
+        "O2": [
+          1,
+          4,
+          6
+        ],
+        "S": [
+          1,
+          2,
+          5
+        ]
+      },
+      "source_separator_case_id": "m09_e00_c0009",
+      "strict_inequalities": 251,
+      "system_input_sha256": "1cddbfe7e2ccdf7c364711655442454edff101666d0e27f62fcdbd5d1b72f05a",
+      "variables": 25,
+      "weak_inequalities": 12
+    },
+    {
+      "case_id": "ineq_m10_e01_c0008",
+      "class_id": 8,
+      "class_key_sha256": "3780a153ae0f6a39b59d3197a1b3a5558350c6edb6536a767354d2ef72a21d39",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 79,
+        "interior_points": 10,
+        "polygon_points": 13,
+        "strict_inequalities": 320,
+        "variables": 27,
+        "weak_inequalities": 13
+      },
+      "interior_points": 10,
+      "order": {
+        "O1": [
+          2,
+          3,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          2,
+          5
+        ]
+      },
+      "source_separator_case_id": "m10_e01_c0008",
+      "strict_inequalities": 320,
+      "system_input_sha256": "345c73860af0a871af71668a6b98b0aa713bc96ea94b21f1db61023edfaa2857",
+      "variables": 27,
+      "weak_inequalities": 13
+    },
+    {
+      "case_id": "ineq_m11_e02_c0018",
+      "class_id": 18,
+      "class_key_sha256": "ec4e66072a1111e965a6e932e0d1c3b1a23ff6822c65182666c1ca32642a72ec",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 92,
+        "interior_points": 11,
+        "polygon_points": 14,
+        "strict_inequalities": 401,
+        "variables": 29,
+        "weak_inequalities": 14
+      },
+      "interior_points": 11,
+      "order": {
+        "O1": [
+          1,
+          2,
+          2,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          3
+        ]
+      },
+      "source_separator_case_id": "m11_e02_c0018",
+      "strict_inequalities": 401,
+      "system_input_sha256": "a8a6c1e3fa5b87cdc42b36a6074c02587b1fc56cb99eb211c4ce958ce0a68685",
+      "variables": 29,
+      "weak_inequalities": 14
+    },
+    {
+      "case_id": "ineq_m12_e03_c0082",
+      "class_id": 82,
+      "class_key_sha256": "ebd589bf84e54a1373e1d19824073fd9a775aaca355834cc2de906b165edcda5",
+      "equalities": 14,
+      "expected_dimensions": {
+        "equalities": 14,
+        "equality_separators": 106,
+        "interior_points": 12,
+        "polygon_points": 15,
+        "strict_inequalities": 495,
+        "variables": 31,
+        "weak_inequalities": 15
+      },
+      "interior_points": 12,
+      "order": {
+        "O1": [
+          1,
+          2,
+          2,
+          2,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          1
+        ]
+      },
+      "source_separator_case_id": "m12_e03_c0082",
+      "strict_inequalities": 495,
+      "system_input_sha256": "dd30052c4d451b3f208f82488b06f0e43a96ee3b0caa61fbd9f52fb18ad355f6",
+      "variables": 31,
+      "weak_inequalities": 15
+    }
+  ],
+  "command": ".venv/bin/python -m census.atail_force.inequality_pilot --run",
+  "input_sha256": {
+    "census/atail_force/inequality_pilot.py": "855862abe54f397a00793c89aff5782a228c778e5d373a4b13aacdda2c8ebce9",
+    "census/atail_force/separator_pilot_manifest.json": "ab0cac5059ba61c6d38adf2440fefd684caf14960d8895a634d52845c35b6f69",
+    "census/atail_force/surface_checkpoint.json": "396669c33af0588210f1f3bf62793d9d05cd05e89834a6f42296613b8e9f5bfc",
+    "census/atail_force/three_center_surface.py": "b7a1c8cafb69e803052ab64e40068b80a501539b7a3fe838ced7388a6abc8e50",
+    "certificates/multi_center/reports/l2_class_inventory_certificate.json": "6a41f668d910ce0de89560f9c4ee48200eb494ca85d490a4d2d648539f893895"
+  },
+  "manifest_sha256": "a71976ad2043c0658a46d2c94d21e97c49c7258f1220669c71339df3b6414c31",
+  "owner": "ATAIL-FORCE full-inequality bounded pilot",
+  "policy": {
+    "case_count": 7,
+    "case_selection": "the same immutable seven representatives used by the prior separator pilot, one at each interior-support size 6 through 12",
+    "engine": "Z3 SolverFor(QF_NRA) / nlsat",
+    "engine_library_sha256": "752e7241ea570da619daf1fd4e5974c2638f5e83a2c19977ac2aa622bcc139c2",
+    "engine_processes": 1,
+    "engine_version": "4.16.0",
+    "hard_timeout_grace_seconds": 5,
+    "parallel_cases": 1,
+    "stop_condition": "stop after all seven cases or the 240-second aggregate wall, whichever occurs first; no automatic extension or bulk sweep",
+    "timeout_seconds_per_case": 30,
+    "total_wall_stop_seconds": 240
+  },
+  "schema": "p97_atail_force_inequality_pilot_manifest.v1",
+  "scope": {
+    "case_count": 7,
+    "disk_nonobtuse_cap_and_global_order_included": true,
+    "full_configuration_claim": false,
+    "full_filter_shared_radius_pair_claim": false,
+    "full_inventory_coverage_claim": false,
+    "full_three_center_window_inequalities_included": true,
+    "lean_claim": false,
+    "symmetry_reduced_surface_coverage_claim": false
+  },
+  "verdict_contract": {
+    "ERROR": "no claim",
+    "REALIZED_EXACT_RATIONAL_WINDOW": "all coordinates rational and every emitted generator passed independent exact SymPy replay; exact only within this window",
+    "SAT_UNVERIFIED": "solver SAT with no independent exact rational replay; no claim",
+    "TIMEOUT": "no claim",
+    "TOTAL_WALL_STOP": "no claim",
+    "UNKNOWN": "no claim",
+    "UNSAT_PROPOSAL": "solver UNSAT without an independently replayed certificate; no claim"
+  }
+}

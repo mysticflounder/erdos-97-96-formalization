@@ -405,6 +405,68 @@ def _six_row_anchor_collision_core_from_closure(
     return None
 
 
+def _six_point_two_pair_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the six-role two-pair collision equality core.
+
+    The Lean theorem needs only ``A != B``, ``D != E``, and ``E != F``.
+    This finite detector deliberately returns pairwise-distinct roles, which
+    is a sufficient and deterministic specialization for injective census
+    realizations and avoids diagonal-edge aliases.
+    """
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for b in labels:
+            if a == b:
+                continue
+            a_circle = circle_masks[a][b]
+            for c in labels_in(a_circle):
+                if c in (a, b):
+                    continue
+                for e in labels_in(a_circle):
+                    if e in (a, b, c):
+                        continue
+                    if roots[e][b] != roots[e][c]:
+                        continue
+                    d_mask = circle_masks[e][b] & circle_masks[c][b]
+                    for d in labels_in(d_mask):
+                        if d in (a, b, c, e):
+                            continue
+                        for f in labels_in(circle_masks[b][d]):
+                            if f in (a, b, c, d, e):
+                                continue
+                            f_root = roots[f][a]
+                            if (
+                                roots[f][c] == f_root
+                                and roots[f][d] == f_root
+                                and roots[f][e] == f_root
+                            ):
+                                return {
+                                    "a": a,
+                                    "b": b,
+                                    "c": c,
+                                    "d": d,
+                                    "e": e,
+                                    "f": f,
+                                }
+    return None
+
+
 def _seven_point_orbit_collision_core_from_closure(
     closure: _EdgeClosure,
     n: int,
@@ -796,6 +858,10 @@ def _formalized_metric_core(
                 )),
             ("equality-six-row-anchor-collision", lambda:
                 _six_row_anchor_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-six-point-two-pair-collision", lambda:
+                _six_point_two_pair_collision_core_from_closure(
                     closure, n, index=shared_closure_index()
                 )),
             ("equality-seven-point-orbit-collision", lambda:

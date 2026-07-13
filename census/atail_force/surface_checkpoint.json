@@ -1,0 +1,493 @@
+{
+  "bare_equality_surface": {
+    "bare_equality_ideal_can_be_empty": false,
+    "exact_qsqrt3_collapsed_witnesses": 343,
+    "radius_mutations_rejected": 1029,
+    "raw_equality_skeletons": 343,
+    "representative_class_ids_sha256": "3f2f2c98299f86f2f12fd53629ac103d6b0a74f3679d61bac975c9c3426ed60f",
+    "required_successor": "separator-saturated equality analysis or the full geometric inequality system",
+    "witness_satisfies_distinctness_separators": false,
+    "witness_satisfies_geometric_inequalities": false
+  },
+  "construction_samples": [
+    {
+      "class_id": 0,
+      "class_key_sha256": "f7450214ddcf62c19bbce9ca08d6968c1d945a42f5b1d8558e7664889698e781",
+      "order_decorations": 432,
+      "separators_materialized": 79,
+      "system": {
+        "class_id": 0,
+        "class_key_sha256": "f7450214ddcf62c19bbce9ca08d6968c1d945a42f5b1d8558e7664889698e781",
+        "equalities": 14,
+        "equality_separators": 79,
+        "interior_points": 10,
+        "order": {
+          "O1": [
+            1,
+            2,
+            6
+          ],
+          "O2": [
+            1,
+            2,
+            4,
+            4
+          ],
+          "S": [
+            1,
+            2,
+            5
+          ]
+        },
+        "polygon_points": 13,
+        "schema": "p97_atail_force_three_center_system.v1",
+        "sigma": [
+          "v2",
+          "s1",
+          "s2",
+          "s3",
+          "v3",
+          "p1",
+          "p2",
+          "p3",
+          "v1",
+          "q1",
+          "q2",
+          "q3",
+          "q4"
+        ],
+        "strict_inequalities": 320,
+        "variables": 27,
+        "weak_inequalities": 13
+      }
+    },
+    {
+      "class_id": 82,
+      "class_key_sha256": "ebd589bf84e54a1373e1d19824073fd9a775aaca355834cc2de906b165edcda5",
+      "order_decorations": 400,
+      "separators_materialized": 106,
+      "system": {
+        "class_id": 82,
+        "class_key_sha256": "ebd589bf84e54a1373e1d19824073fd9a775aaca355834cc2de906b165edcda5",
+        "equalities": 14,
+        "equality_separators": 106,
+        "interior_points": 12,
+        "order": {
+          "O1": [
+            1,
+            2,
+            2,
+            2,
+            4
+          ],
+          "O2": [
+            1,
+            2,
+            4,
+            4,
+            4
+          ],
+          "S": [
+            1,
+            1
+          ]
+        },
+        "polygon_points": 15,
+        "schema": "p97_atail_force_three_center_system.v1",
+        "sigma": [
+          "v2",
+          "s1",
+          "s2",
+          "v3",
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "p5",
+          "v1",
+          "q1",
+          "q2",
+          "q3",
+          "q4",
+          "q5"
+        ],
+        "strict_inequalities": 495,
+        "variables": 31,
+        "weak_inequalities": 15
+      }
+    },
+    {
+      "class_id": 146,
+      "class_key_sha256": "7b0aba69e009733914182c1432a269416ea6d3ceb8dcd175383b5b95e317b54b",
+      "order_decorations": 1728,
+      "separators_materialized": 106,
+      "system": {
+        "class_id": 146,
+        "class_key_sha256": "7b0aba69e009733914182c1432a269416ea6d3ceb8dcd175383b5b95e317b54b",
+        "equalities": 14,
+        "equality_separators": 106,
+        "interior_points": 12,
+        "order": {
+          "O1": [
+            1,
+            2,
+            2,
+            4
+          ],
+          "O2": [
+            1,
+            2,
+            4,
+            4
+          ],
+          "S": [
+            1,
+            1,
+            2,
+            4
+          ]
+        },
+        "polygon_points": 15,
+        "schema": "p97_atail_force_three_center_system.v1",
+        "sigma": [
+          "v2",
+          "s1",
+          "s2",
+          "s3",
+          "s4",
+          "v3",
+          "p1",
+          "p2",
+          "p3",
+          "p4",
+          "v1",
+          "q1",
+          "q2",
+          "q3",
+          "q4"
+        ],
+        "strict_inequalities": 495,
+        "variables": 31,
+        "weak_inequalities": 15
+      }
+    },
+    {
+      "class_id": 3374,
+      "class_key_sha256": "ed3ee8d0329dfc122dfef269781943ea2f9ab90e5b9d3401b8b7de31f3bb108d",
+      "order_decorations": 1,
+      "separators_materialized": 37,
+      "system": {
+        "class_id": 3374,
+        "class_key_sha256": "ed3ee8d0329dfc122dfef269781943ea2f9ab90e5b9d3401b8b7de31f3bb108d",
+        "equalities": 14,
+        "equality_separators": 37,
+        "interior_points": 6,
+        "order": {
+          "O1": [
+            2,
+            2
+          ],
+          "O2": [
+            4,
+            4
+          ],
+          "S": [
+            1,
+            1
+          ]
+        },
+        "polygon_points": 9,
+        "schema": "p97_atail_force_three_center_system.v1",
+        "sigma": [
+          "v2",
+          "s1",
+          "s2",
+          "v3",
+          "p1",
+          "p2",
+          "v1",
+          "q1",
+          "q2"
+        ],
+        "strict_inequalities": 106,
+        "variables": 19,
+        "weak_inequalities": 9
+      }
+    }
+  ],
+  "exact_reduction": {
+    "class_action": {
+      "all_permutation_edges_in_inventory": 20250,
+      "canonical_decoration_round_trips": 20250,
+      "input_classes": 3375,
+      "orbit_size_histogram": {
+        "1": 3,
+        "2": 6,
+        "3": 42,
+        "6": 539
+      },
+      "orbits": 590,
+      "representative_manifest_sha256": "cfbce0855950561e0f8dedef3e8b43dcfddefd7c5e93ca4ddcd12ef5cea3eb40"
+    },
+    "decorated_surface": {
+      "combinatorial_order_action_verified": true,
+      "gauge_similarity_transfer_certificate": false,
+      "input_systems": 167782,
+      "orbit_representative_systems": 30997,
+      "orders_per_representative_histogram": {
+        "1": 16,
+        "10": 3,
+        "108": 17,
+        "12": 62,
+        "120": 12,
+        "144": 16,
+        "15": 7,
+        "16": 17,
+        "160": 1,
+        "1728": 1,
+        "18": 32,
+        "180": 5,
+        "192": 1,
+        "2": 11,
+        "20": 13,
+        "216": 9,
+        "24": 39,
+        "240": 5,
+        "25": 1,
+        "27": 10,
+        "270": 1,
+        "288": 4,
+        "3": 24,
+        "30": 5,
+        "32": 5,
+        "36": 50,
+        "360": 2,
+        "4": 28,
+        "40": 8,
+        "400": 1,
+        "432": 5,
+        "45": 2,
+        "48": 23,
+        "480": 1,
+        "5": 8,
+        "54": 10,
+        "6": 29,
+        "60": 14,
+        "64": 1,
+        "72": 32,
+        "720": 1,
+        "8": 19,
+        "80": 7,
+        "864": 1,
+        "9": 25,
+        "90": 2,
+        "96": 4
+      },
+      "reduction_scope": "one class-orbit representative with its complete order menu; no inequality-system equivalence beyond the explicit S3 action"
+    },
+    "equality_skeletons": {
+      "input_classes": 3375,
+      "raw_skeletons": 343,
+      "raw_skeletons_per_orbit_histogram": {
+        "1": 3,
+        "2": 2,
+        "3": 18,
+        "6": 47
+      },
+      "representative_manifest_sha256": "86e721808340729e45de00ae496f5e85f3127411d95c44520852c692dffb73cb",
+      "s3_orbits": 70,
+      "scope": "cap locations and global order omitted; an equality-ideal kill transfers to every class/order with that skeleton"
+    },
+    "group": "S3 simultaneous Moser-vertex/center relabeling",
+    "permutations": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        0,
+        2,
+        1
+      ],
+      [
+        1,
+        0,
+        2
+      ],
+      [
+        1,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        1
+      ],
+      [
+        2,
+        1,
+        0
+      ]
+    ]
+  },
+  "input_sha256": {
+    "census/atail_force/checkpoint.py": "c46468798fcd3e0286ec3a13bde868eca72eb8e8a5636d0452c77d4ce842dab2",
+    "census/atail_force/formulation.md": "c6e2b86b791a5d8a0f30ea3df0e29750f6ed28b9b4894e942a0b58f516b3bfe3",
+    "census/atail_force/reduction.py": "d5481d7c7d7e1f4ea8207955d73b415183952b6141d9590e41fd2077dbb50e93",
+    "census/atail_force/three_center_surface.py": "b7a1c8cafb69e803052ab64e40068b80a501539b7a3fe838ced7388a6abc8e50",
+    "census/candidate_d_probe/encoder.py": "2697bd1f81b9c3e73e99a0e331c55c20b2b40b7b538aeab202a278fd9fbc142e",
+    "census/multi_center/analyze_sweeps.py": "cd5c4785ce5f683d459434dab7a884de1a1f3a61bad742ae586e0487fb5dcf2d",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "census/q3_two_center/checkpoint.json": "c3681da8f32d31f2bde3cabfbc2060f6b81af4ef5e58f3d28eae9cade8984dcb",
+    "census/q3_two_center/q3_token.py": "795a9be85cc72c8f065e7764017daf8ef03733bfac32320579968f5aa27d163e",
+    "certificates/multi_center/reports/l2_class_inventory_certificate.json": "6a41f668d910ce0de89560f9c4ee48200eb494ca85d490a4d2d648539f893895",
+    "scripts/multi-center-sweep-certificate.py": "cb623b0f154b17cc9e04f2f09de4e18ee1abf829479eeca3005d9864908ba46f"
+  },
+  "inventory": {
+    "all_rows_replayed": true,
+    "class_count": 3375,
+    "full_inventory_sha256": "888df36a194fd54a1a81adde336c50be295fcfa507b981b4c1f0286d196bcb40",
+    "local_cuts_replayed": [
+      "selected-four at each Moser center",
+      "own-center exclusion",
+      "H1 containing-cap bounds",
+      "C2 pairwise class overlap",
+      "C4 three-center consequence",
+      "K-Q3-1 on all Moser pairs",
+      "K-Q3-5 on all Moser pairs"
+    ],
+    "schema": "multi_center_l2_class_inventory_certificate.v1",
+    "terminal_n": 32
+  },
+  "order_surface": {
+    "aggregate_interior_points_by_cap": {
+      "O1": 10350,
+      "O2": 10350,
+      "S": 10350
+    },
+    "aggregate_interior_points_by_membership_mask": {
+      "1": 9000,
+      "2": 9000,
+      "3": 1350,
+      "4": 9000,
+      "5": 1350,
+      "6": 1350
+    },
+    "classes": 3375,
+    "decorated_systems": 167782,
+    "equivalence": "permutations of equal membership masks are quotiented",
+    "interior_points_per_class": {
+      "histogram": {
+        "10": 912,
+        "11": 384,
+        "12": 64,
+        "6": 27,
+        "7": 216,
+        "8": 684,
+        "9": 1088
+      },
+      "maximum": 12,
+      "minimum": 6
+    },
+    "orders_per_class": {
+      "histogram": {
+        "1": 64,
+        "10": 18,
+        "108": 90,
+        "12": 360,
+        "120": 72,
+        "144": 90,
+        "15": 42,
+        "16": 87,
+        "160": 6,
+        "1728": 1,
+        "18": 186,
+        "180": 30,
+        "192": 3,
+        "2": 60,
+        "20": 78,
+        "216": 50,
+        "24": 234,
+        "240": 30,
+        "25": 3,
+        "27": 52,
+        "270": 3,
+        "288": 21,
+        "3": 144,
+        "30": 24,
+        "32": 27,
+        "36": 297,
+        "360": 12,
+        "4": 165,
+        "40": 48,
+        "400": 3,
+        "432": 27,
+        "45": 12,
+        "48": 135,
+        "480": 6,
+        "5": 48,
+        "54": 60,
+        "6": 174,
+        "60": 84,
+        "64": 2,
+        "72": 192,
+        "720": 6,
+        "8": 110,
+        "80": 42,
+        "864": 6,
+        "9": 135,
+        "90": 12,
+        "96": 24
+      },
+      "maximum": 1728,
+      "maximum_class_count": 1,
+      "maximum_class_ids": [
+        146
+      ],
+      "minimum": 1
+    }
+  },
+  "schema": "p97_atail_force_surface_checkpoint.v1",
+  "scope": {
+    "all_geometric_systems_materialized": false,
+    "complete_order_surface_count": true,
+    "exact_inventory_and_local_cut_replay": true,
+    "exact_s3_and_equality_skeleton_reduction": true,
+    "exact_sat_witnesses": false,
+    "exact_unsat_certificates": false,
+    "full_configuration_realization": false,
+    "full_filter_shared_radius_pair": false,
+    "geometric_solver_invoked": false,
+    "independent_gauge_similarity_transfer_certificate": false,
+    "lean_leaf_to_inventory_extraction": false
+  },
+  "system_dimensions": {
+    "equalities": {
+      "maximum": 14,
+      "minimum": 14
+    },
+    "equality_separators": {
+      "maximum": 106,
+      "minimum": 37
+    },
+    "strict_inequalities": {
+      "maximum": 495,
+      "minimum": 106
+    },
+    "variables": {
+      "maximum": 31,
+      "minimum": 19
+    },
+    "weak_inequalities": {
+      "maximum": 15,
+      "minimum": 9
+    }
+  },
+  "verdict": {
+    "atail_force": "OPEN_RESEARCH",
+    "atail_force_surface": "PREFLIGHT_COMPLETE_NO_SOLVER_RUN",
+    "next_gate": "controlled exact geometric decision sweep or a direct full-filter/critical-row producer"
+  }
+}

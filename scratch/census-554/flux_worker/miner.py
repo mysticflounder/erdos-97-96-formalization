@@ -29,6 +29,7 @@ Nullstellensatz identity  Σ coeff_i · gen_i = 1  is re-verified in exact
 Fraction arithmetic in python (independent of Singular).
 """
 
+import hashlib
 import json
 import os
 import subprocess
@@ -38,6 +39,7 @@ from fractions import Fraction
 from itertools import combinations
 
 import census554_lib as L
+from certifier_runtime import CpuBudget
 
 # msolve cofactor coefficients can exceed Python's default 4300-digit
 # int-string conversion limit (seen: 8026 digits in the n=12 gate port).
@@ -63,6 +65,17 @@ MINE_TARGET_DEAD = _env_int("CENSUS_MINE_TARGET_DEAD", 12)
 MINE_TARGET_MIN_K = _env_int("CENSUS_MINE_TARGET_MIN_K", 6)
 CERT_SHRINK_TIMEOUT = _env_int("CENSUS_CERT_SHRINK_TIMEOUT", 10)
 CERT_ALL_PAIRS_FALLBACK = os.environ.get("CENSUS_CERT_ALL_PAIRS_FALLBACK") == "1"
+CERTIFIER_SCHEMA = "census554-exact-certifier-v2-cumulative-cpu"
+
+
+def certifier_id():
+    payload = {"schema": CERTIFIER_SCHEMA,
+               "shrink_cpu_slice_seconds": CERT_SHRINK_TIMEOUT,
+               "all_pairs_fallback": CERT_ALL_PAIRS_FALLBACK,
+               "singular_order": "dp(t),dp(geometry)",
+               "exact_recheck": "Fraction"}
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+    return f"{CERTIFIER_SCHEMA}:{hashlib.sha256(raw.encode('ascii')).hexdigest()}"
 
 
 # ---------------- pattern algebra ----------------
@@ -121,7 +134,7 @@ def var_name(i, tnames):
 
 # ---------------- oracles ----------------
 
-def msolve_empty(polys, timeout=30):
+def msolve_empty(polys, timeout=30, cpu_budget=None):
     """True iff msolve char-0 reports the ideal ℂ-empty ([-1])."""
     vs = used_vars(polys)
     tnames = {}
@@ -141,9 +154,20 @@ def msolve_empty(polys, timeout=30):
         path = f.name
     out = path + ".out"
     try:
-        subprocess.run(["msolve", "-f", path, "-o", out, "-t", "1"],
-                       capture_output=True, text=True, timeout=timeout)
-        raw = open(out).read().strip()
+        command = ["msolve", "-f", path, "-o", out, "-t", "1"]
+        if cpu_budget is None:
+            subprocess.run(command, capture_output=True, text=True,
+                           timeout=timeout)
+        else:
+            run = cpu_budget.run(command, capture_output=True, text=True,
+                                 cpu_slice_seconds=timeout)
+            if run.completed is None:
+                return False
+        try:
+            with open(out, encoding="utf-8") as handle:
+                raw = handle.read().strip()
+        except OSError:
+            return False
         return raw.startswith("[-1]")
     except subprocess.TimeoutExpired:
         return False
@@ -300,10 +324,17 @@ def mine_pattern(cube, log=lambda *a: None):
 
 # ---------------- exact certification (Singular lift + python re-check) ----
 
-def sing_run(script, timeout=300):
+def sing_run(script, timeout=300, cpu_budget=None):
     try:
-        pr = subprocess.run(["Singular", "-q"], input=script,
-                            capture_output=True, text=True, timeout=timeout)
+        if cpu_budget is None:
+            pr = subprocess.run(["Singular", "-q"], input=script,
+                                capture_output=True, text=True, timeout=timeout)
+        else:
+            run = cpu_budget.run(["Singular", "-q"], input=script,
+                                 capture_output=True, text=True)
+            pr = run.completed
+            if pr is None:
+                return None
         return pr.stdout
     except subprocess.TimeoutExpired:
         return None
@@ -349,15 +380,19 @@ def parse_poly_str(s, name_to_idx):
     return {m: c for m, c in poly.items() if c}
 
 
-def certify_pattern(pat, timeout=240):
+def certify_pattern_with_stats(pat, timeout=240):
     """Exact certificate for a dead pattern.  Tries, in order:
       base kill:  1 ∈ ⟨pattern polys⟩
       pair kill:  1 ∈ ⟨pattern polys + one Rabinowitsch⟩   (each pair)
       multi kill: 1 ∈ ⟨pattern polys + all Rabinowitsch⟩
-    Returns payload dict or None.  Identity re-verified in exact Fractions."""
+    Returns ``(payload_or_none, scheduling_stats)``.  Any payload identity is
+    re-verified in exact Fractions."""
+    budget = CpuBudget(timeout)
     polys, tags = pattern_polys(pat)
 
     def attempt(rabs):
+        if budget.exhausted:
+            return None
         gens = polys + [r[0] for r in rabs]
         vs = used_vars(gens)
         tnames = {i: f"t{i - len(L.VARS)}" for i in vs if i >= len(L.VARS)}
@@ -413,7 +448,7 @@ def certify_pattern(pat, timeout=240):
                 "if (r1 == 0) {",
                 "matrix T = lift(I, ideal(1));"] + cof_lines + ["}", "exit;"]
             require_red1 = True
-        out = sing_run("\n".join(script_lines), timeout)
+        out = sing_run("\n".join(script_lines), timeout, cpu_budget=budget)
         if out is None:
             return None
         if require_red1 and "RED1:0" not in out:
@@ -466,8 +501,11 @@ def certify_pattern(pat, timeout=240):
                 break
             trial = [p for p in cur if p != e]
             rabs = rabinowitsch_polys(pat, pairs=trial)
+            if budget.exhausted:
+                break
             if msolve_empty(polys + [r[0] for r in rabs],
-                            timeout=CERT_SHRINK_TIMEOUT):
+                            timeout=CERT_SHRINK_TIMEOUT,
+                            cpu_budget=budget):
                 cur = trial
         payload = attempt(rabinowitsch_polys(pat, pairs=cur))
         if payload is not None:
@@ -477,13 +515,26 @@ def certify_pattern(pat, timeout=240):
         kill = (f"pair:{pairs[0][0]}-{pairs[0][1]}" if len(pairs) == 1
                 else "multi_pair")
     if payload is None:
-        return None
+        stats = budget.snapshot()
+        stats.update({"certifier_id": certifier_id(),
+                      "outcome": ("wall_guard" if stats["wall_guard_tripped"]
+                                  else "budget_exhausted" if stats["cpu_budget_exhausted"]
+                                  else "no_certificate")})
+        return None, stats
     payload["schema"] = "census554_pattern_certificate.v1"
     payload["kill"] = kill
     payload["pattern"] = {str(c): sorted(pat[c]) for c in sorted(pat)}
     payload["identity"] = "sum_i coefficients[i]*generators[i] = 1"
     payload["gauge"] = "pt0=(0,0), pt1=(1,0)"
-    return payload
+    stats = budget.snapshot()
+    stats.update({"certifier_id": certifier_id(), "outcome": "certified",
+                  "kill": kill})
+    return payload, stats
+
+
+def certify_pattern(pat, timeout=240):
+    certificate, _stats = certify_pattern_with_stats(pat, timeout=timeout)
+    return certificate
 
 
 # ---------------- orbit closure ----------------

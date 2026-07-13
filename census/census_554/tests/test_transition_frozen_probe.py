@@ -46,6 +46,15 @@ STRUCTURAL_CUBE = {
     10: [1, 3, 7, 9],
 }
 
+PERP_SUBSUMED_PATTERN = {
+    "0": [4, 8],
+    "1": [0, 6, 8],
+    "2": [4, 8, 9],
+    "6": [0, 2, 4],
+    "8": [0, 2, 9],
+    "9": [0, 1, 4],
+}
+
 
 def _load_transition():
     name = "census554_transition_frozen_probe_test"
@@ -282,6 +291,83 @@ class TransitionFrozenProbeTest(unittest.TestCase):
             )
         return run, metadata, records
 
+    def _order_conditional_source(self, root: Path, name: str):
+        run = root / name
+        run.mkdir()
+        rows = [self.row]
+        raw = _bank_bytes(rows)
+        (run / "bank_snapshot.jsonl").write_bytes(raw)
+        (
+            catalog,
+            oracle_raw,
+            oracle_sources,
+            oracle_metadata,
+        ) = self.probe._prepare_structural_oracle_snapshot()
+        self.probe._write_structural_oracle_snapshot(
+            run, oracle_raw, oracle_sources
+        )
+        metadata = {
+            "schema": self.probe.SCHEMA,
+            "bank_sha256": self.transition._sha256_bytes(raw),
+            "bank_rows": len(rows),
+            "seed": 17,
+            "created_utc": "2026-07-11T00:00:00+00:00",
+            "runtime_fingerprint": self.probe._runtime_fingerprint(),
+            "convex_structural_seeds": None,
+            "formalized_structural_oracle": oracle_metadata,
+        }
+        self.probe._atomic_write_json(run / "run_metadata.json", metadata)
+
+        cube = self.probe.formalized_structural_oracle.normalize_pattern(
+            STRUCTURAL_CUBE, require_full_cube=True
+        )
+        detection = None
+        for order in self.probe.separation_encoding.valid_orders(cube):
+            for family in self.probe.formalized_structural_oracle.ORDERED_FAMILIES:
+                if self.probe.formalized_structural_oracle.detect_stage(
+                    cube, family.stage, order
+                ) is not None:
+                    detection = (
+                        self.probe.formalized_structural_oracle.build_detection(
+                            cube, family.stage, order
+                        )
+                    )
+                    break
+            if detection is not None:
+                break
+        self.assertIsNotNone(detection)
+        orbit = self.probe.formalized_structural_oracle.profile_orbit_ordered(
+            cube, [detection]
+        )
+        with ClosureCheckpoint.create(
+            run / "checkpoint.sqlite3", metadata
+        ) as checkpoint:
+            instance, separation, _reps, seen, _seed_count = (
+                self.probe._prepare_formula(rows, checkpoint, (), catalog)
+            )
+            records = self.probe._commit_structural_orbit(
+                instance,
+                separation,
+                seen,
+                catalog,
+                source_pattern=cube,
+                cut_scope="order-conditional",
+                orbit=orbit,
+            )
+            checkpoint.append_batch(
+                records,
+                iteration=1,
+                elapsed_seconds=1.5,
+                status="budget",
+            )
+        (run / self.probe.WORKDIR_LOCK).touch(mode=0o600)
+        self.assertTrue(records)
+        self.assertTrue(all(
+            record["provenance"]["cut_scope"] == "order-conditional"
+            for record in records
+        ))
+        return run, metadata, records
+
     def _args(
         self, root, bank, sources, output_name="merged",
         structural_seed_path=None,
@@ -293,6 +379,7 @@ class TransitionFrozenProbeTest(unittest.TestCase):
             output=root / output_name,
             seed=29,
             convex_structural_seeds=structural_seed_path,
+            perp_subsumption_cache=None,
         )
 
     def _child_can_lock(self, run: Path) -> bool:
@@ -337,11 +424,13 @@ class TransitionFrozenProbeTest(unittest.TestCase):
                 "clause": [-10],
                 "provenance": {
                     "source_kind": "formalized_structural_core",
+                    "oracle_contract_sha256": "a" * 64,
                     "contract": "first",
                 },
             }
             same_semantics = copy.deepcopy(first)
             same_semantics["clause"] = [-20]
+            same_semantics["provenance"]["oracle_contract_sha256"] = "b" * 64
             conflicting = copy.deepcopy(first)
             conflicting["provenance"]["contract"] = "second"
             try:
@@ -367,6 +456,90 @@ class TransitionFrozenProbeTest(unittest.TestCase):
             finally:
                 union.close()
 
+    def test_structural_oracle_extension_preserves_and_retargets_old_records(self):
+        (
+            target_catalog,
+            _target_raw,
+            _target_sources,
+            target_metadata,
+        ) = self.probe._prepare_structural_oracle_snapshot()
+        source_metadata = copy.deepcopy(target_metadata)
+        added_family = "equality-six-point-two-pair-collision.v1"
+        source_metadata["eligible_family_ids"].remove(added_family)
+        source_metadata["contract_sha256"] = "1" * 64
+        source_metadata["theorem_sources"] = [
+            entry for entry in source_metadata["theorem_sources"]
+            if not entry["path"].endswith("SixPointTwoPairCollision.lean")
+        ]
+        for entry in source_metadata["theorem_sources"]:
+            if entry["path"] == self.transition.STRUCTURAL_ORACLE_AGGREGATE_SOURCE:
+                entry["sha256"] = "2" * 64
+        for entry in source_metadata["build_artifacts"]:
+            entry["sha256"] = "3" * 64
+
+        self.transition._require_structural_oracle_preservation(
+            source=Path("old-oracle"),
+            source_metadata=source_metadata,
+            target_metadata=target_metadata,
+        )
+
+        drifted = copy.deepcopy(target_metadata)
+        for entry in drifted["theorem_sources"]:
+            if entry["path"].endswith("EqualityCore.lean"):
+                entry["sha256"] = "4" * 64
+        with self.assertRaisesRegex(
+            self.transition.TransitionError, "theorem evidence drifts"
+        ):
+            self.transition._require_structural_oracle_preservation(
+                source=Path("old-oracle"),
+                source_metadata=source_metadata,
+                target_metadata=drifted,
+            )
+
+        pattern = {
+            2: [0, 1, 5, 6],
+            3: [0, 1, 5, 6],
+            4: [0, 1, 5, 6],
+        }
+        stage = "equality-perpendicular-bisector-convex"
+        detection = self.probe.formalized_structural_oracle.build_detection(
+            pattern, stage
+        )
+        old_catalog = dict(target_catalog)
+        old_catalog["contract_sha256"] = source_metadata["contract_sha256"]
+        record = {
+            "pattern": self.probe._json_pattern(pattern),
+            "clause": [-1],
+            "provenance": self.probe._structural_record_provenance(
+                catalog=old_catalog,
+                cut_scope="unconditional",
+                source_pattern=pattern,
+                support_map=[[point, point] for point in sorted(
+                    self.probe.combinatorics.support(pattern)
+                )],
+                detections=[detection],
+            ),
+        }
+        retargeted, rewritten = (
+            self.transition._retarget_structural_record_contract(
+                record, target_catalog
+            )
+        )
+        self.assertTrue(rewritten)
+        self.assertEqual(
+            retargeted["provenance"]["oracle_contract_sha256"],
+            target_catalog["contract_sha256"],
+        )
+        checked, scope, detections = self.probe._structural_checkpoint_info(
+            retargeted, target_catalog
+        )
+        self.assertEqual(
+            self.probe.combinatorics.serialize_pattern(checked),
+            self.probe.combinatorics.serialize_pattern(pattern),
+        )
+        self.assertEqual(scope, "unconditional")
+        self.assertEqual(len(detections), 1)
+
     def test_ordered_union_deduplicates_and_rebuilds_clauses(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
@@ -379,10 +552,14 @@ class TransitionFrozenProbeTest(unittest.TestCase):
                 root, "second", [self.row], self.injections[1:]
             )
 
-            output, manifest = self.transition.transition(
-                self._args(root, target, [first, second])
-            )
+            args = self._args(root, target, [first, second])
+            args.refinement_order = "structural-first"
+            output, manifest = self.transition.transition(args)
             metadata = json.loads((output / "run_metadata.json").read_text())
+            self.assertEqual(metadata["refinement_order"], "structural-first")
+            self.assertFalse(metadata["perp_bisector_template_preseed"])
+            self.assertEqual(manifest["refinement_order"], "structural-first")
+            self.assertFalse(manifest["perp_bisector_template_preseed"])
             migration = metadata["migration_provenance"]
             self.assertEqual(migration["source_checkpoint_records"], 4)
             self.assertEqual(migration["union_dynamic_records"], 3)
@@ -474,6 +651,96 @@ class TransitionFrozenProbeTest(unittest.TestCase):
                 [record["pattern"] for record in stored],
                 [record["pattern"] for record in source_records],
             )
+
+    def test_exact_live_legacy_fingerprint_is_accepted_but_drift_is_rejected(self):
+        expected_live = {
+            "probe": "770a3281d5566eba403352104a26c1a4433f0fc92e4211a8903fc6ff356f6e59",
+            "profile": "11a2e0c4a8520c77d2eddf2da5907102f4c73050c5e5c8459caf8ad1d7a6e89b",
+            "sat_cover": "68ff60a7ea5e9f1ce5455ee3575f8f45230bec1d193404d679b76aa8d7358b9c",
+            "combinatorics": "7dbff611c58be4614f0496aba0c67e33be669155e1ea28f8a29ab23bf59b01e0",
+            "closure_checkpoint": "cc53c2f4dc50d950187537a77347f5c40ce81ff1151fadf5987dd7d1a18752ce",
+            "convex_structural_seeds": "b32d915189b196964563f1719157f3519691f3ff2e1f2d3ee17885b82bd1f766",
+            "formalized_structural_oracle": "693259f73697a93dca9b22fae4e860ec217c4749bd66649158dc5136337c487e",
+            "metric_structural_detectors": "d7a727f2130cc28f5d7c5d92af9e58a6e9f40179aa2490e5c0eab5b890e2382e",
+            "separation_encoding": "7fcd0ec01d7c429e72749a18913ace06345d46f4c2506e0f192e8141de0cb98d",
+        }
+        self.assertIn(
+            expected_live, self.transition.LEGACY_RUNTIME_FINGERPRINTS
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target-bank.jsonl"
+            target.write_bytes(_bank_bytes([self.row]))
+            accepted, _metadata, _records = self._source(
+                root,
+                "accepted-live-legacy",
+                [self.row],
+                self.injections[:1],
+                runtime_fingerprint=expected_live,
+            )
+            output, _manifest = self.transition.transition(
+                self._args(
+                    root, target, [accepted], "accepted-live-legacy-target"
+                )
+            )
+            self.assertTrue(output.is_dir())
+
+            altered = dict(expected_live)
+            altered["probe"] = "0" * 64
+            rejected, _metadata, _records = self._source(
+                root,
+                "rejected-live-legacy",
+                [self.row],
+                self.injections[:1],
+                runtime_fingerprint=altered,
+            )
+            with self.assertRaisesRegex(
+                self.transition.TransitionError, "runtime fingerprint"
+            ):
+                self.transition.transition(
+                    self._args(
+                        root,
+                        target,
+                        [rejected],
+                        "rejected-live-legacy-target",
+                    )
+                )
+
+    def test_structural_first_rejects_conditional_source_but_bank_first_allows_it(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target-bank.jsonl"
+            target.write_bytes(_bank_bytes([self.row]))
+            source, _metadata, records = self._order_conditional_source(
+                root, "conditional-source"
+            )
+
+            structural_args = self._args(
+                root, target, [source], "structural-first-rejected"
+            )
+            structural_args.refinement_order = "structural-first"
+            with self.assertRaisesRegex(
+                self.transition.TransitionError,
+                "structural-first target cannot inherit",
+            ):
+                self.transition.transition(structural_args)
+
+            bank_args = self._args(
+                root, target, [source], "bank-first-accepted"
+            )
+            bank_args.refinement_order = "bank-first"
+            output, manifest = self.transition.transition(bank_args)
+            self.assertEqual(manifest["imported_dynamic_records"], len(records))
+            metadata = json.loads((output / "run_metadata.json").read_text())
+            with ClosureCheckpoint.open(
+                output / "checkpoint.sqlite3", metadata
+            ) as checkpoint:
+                stored = list(checkpoint.records())
+            self.assertEqual(len(stored), len(records))
+            self.assertTrue(all(
+                record["provenance"]["cut_scope"] == "order-conditional"
+                for record in stored
+            ))
 
     def test_transition_refuses_to_drop_source_structural_seed_surface(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -695,6 +962,151 @@ class TransitionFrozenProbeTest(unittest.TestCase):
             self.assertEqual(observed["records"], 1)
             self.assertEqual(observed["bank_rows"], 1)
             self.assertEqual(observed["metadata"]["seed"], 29)
+            self.assertIsNone(observed["structural_artifact"])
+
+    def test_cached_target_snapshots_cache_and_reopens_exactly(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            cached_row = {
+                "pid": "pat_cached",
+                "pattern": PERP_SUBSUMED_PATTERN,
+                "cert": "certs/pat_cached.json",
+            }
+            target_rows = [self.row, cached_row]
+            target = root / "target-bank.jsonl"
+            target.write_bytes(_bank_bytes(target_rows))
+            source, _source_metadata, _records = self._source(
+                root,
+                "cache-source",
+                [self.row],
+                self.injections[:1],
+            )
+            cache_path = root / "perp-cache.json"
+            digest = self.transition.perp_cache.write_cache_artifact(
+                self.probe, target, cache_path
+            )
+            args = self._args(root, target, [source], "cached-target")
+            args.refinement_order = "structural-first"
+            args.perp_subsumption_cache = cache_path
+
+            with mock.patch.object(
+                self.transition.cached_probe,
+                "_EXPECTED_CACHE_SHA256",
+                digest,
+            ):
+                output, manifest = self.transition.transition(args)
+                metadata = json.loads(
+                    (output / "run_metadata.json").read_text()
+                )
+                cache_metadata = metadata["perp_subsumption_cache"]
+                self.assertEqual(cache_metadata["sha256"], digest)
+                self.assertEqual(
+                    cache_metadata["snapshot"],
+                    self.transition.perp_cache.SNAPSHOT,
+                )
+                self.assertEqual(
+                    (output / self.transition.perp_cache.SNAPSHOT).read_bytes(),
+                    cache_path.read_bytes(),
+                )
+                self.assertEqual(
+                    manifest["perp_subsumption_cache"], cache_metadata
+                )
+                self.assertEqual(
+                    metadata["runtime_fingerprint"],
+                    self.transition.cached_probe._runtime_fingerprint(),
+                )
+
+                catalog = self.probe._load_structural_oracle_snapshot(
+                    output, metadata
+                )
+                with ClosureCheckpoint.open(
+                    output / "checkpoint.sqlite3", metadata
+                ) as checkpoint:
+                    prepared = self.transition.cached_probe._prepare_formula(
+                        target_rows, checkpoint, (), catalog
+                    )
+                    instance = prepared[0]
+                    self.assertEqual(
+                        instance.seed_inventory["algebra_bank"][
+                            "replacement_cache_sha256"
+                        ],
+                        digest,
+                    )
+
+                snapshot = output / self.transition.perp_cache.SNAPSHOT
+                snapshot.write_bytes(snapshot.read_bytes() + b" ")
+                with ClosureCheckpoint.open(
+                    output / "checkpoint.sqlite3", metadata
+                ) as checkpoint:
+                    with self.assertRaisesRegex(
+                        self.probe.ProbeError, "cache rejected"
+                    ):
+                        self.transition.cached_probe._prepare_formula(
+                            target_rows, checkpoint, (), catalog
+                        )
+
+    def test_structural_first_target_resume_requires_matching_policy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            target = root / "target-bank.jsonl"
+            target.write_bytes(_bank_bytes([self.row]))
+            source, _source_metadata, _records = self._source(
+                root,
+                "structural-first-source",
+                [self.row],
+                self.injections[:1],
+            )
+            transition_args = self._args(
+                root, target, [source], "structural-first-target"
+            )
+            transition_args.refinement_order = "structural-first"
+            output, _manifest = self.transition.transition(transition_args)
+
+            mismatch = SimpleNamespace(
+                resume=output,
+                seed=None,
+                refinement_order="bank-first",
+                perp_bisector_template_preseed=False,
+                convex_structural_seeds=None,
+            )
+            with self.assertRaisesRegex(
+                self.probe.ProbeError,
+                "refinement-order does not match",
+            ):
+                self.probe._run(mismatch)
+
+            observed = {}
+
+            def accept_resume(
+                workdir, checkpoint, execution_metadata, _args, bank_rows,
+                structural_artifact, _started,
+            ):
+                observed["workdir"] = workdir
+                observed["records"] = len(list(checkpoint.records()))
+                observed["metadata"] = execution_metadata
+                observed["bank_rows"] = len(bank_rows)
+                observed["structural_artifact"] = structural_artifact
+                return 37
+
+            matching = SimpleNamespace(
+                resume=output,
+                seed=None,
+                refinement_order="structural-first",
+                perp_bisector_template_preseed=False,
+                convex_structural_seeds=None,
+            )
+            with mock.patch.object(
+                self.probe, "_execute", side_effect=accept_resume
+            ):
+                code = self.probe._run(matching)
+            self.assertEqual(code, 37)
+            self.assertEqual(observed["workdir"], output)
+            self.assertEqual(observed["records"], 1)
+            self.assertEqual(observed["bank_rows"], 1)
+            self.assertEqual(
+                observed["metadata"]["refinement_order"],
+                "structural-first",
+            )
             self.assertIsNone(observed["structural_artifact"])
 
     def test_all_source_locks_are_held_through_later_scan_and_publish(self):

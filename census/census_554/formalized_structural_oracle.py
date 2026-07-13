@@ -36,18 +36,18 @@ AXIOM_AUDIT_COMMAND = (
     "proof-blueprint axioms " + AXIOM_AUDIT_THEOREM + " --memory-mb 16384"
 )
 EXPECTED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
-VALIDATED_UTC = "2026-07-11T20:36:52Z"
-PROOF_BLUEPRINT_BUILD_FINGERPRINT = "294acadba613"
+VALIDATED_UTC = "2026-07-13T04:03:40Z"
+PROOF_BLUEPRINT_BUILD_FINGERPRINT = "bd78491c38fd"
 AGGREGATE_OLEAN = (
     "lean/.lake/build/lib/lean/Erdos9796Proof/P97/Census554/"
     "GeneralCarrierBridge.olean"
 )
 BUILD_ARTIFACT_SHA256 = {
     AGGREGATE_OLEAN:
-        "9104b9a9d466801ab0894e5e2ff993d3ec91cbee4411ffb41c3b52342e09b96b",
+        "b4a37e979bc93b843d5f3c5d8822c6563e924b0252b73910f085ed2b610958fb",
 }
 
-# The focused aggregate build and live kernel axiom query passed on 2026-07-11
+# The focused aggregate build and live kernel axiom query passed on 2026-07-13
 # against the exact theorem-source hashes below.
 BUILD_STATUS = "passed"
 
@@ -62,6 +62,8 @@ THEOREM_SOURCE_SHA256 = {
         "b27066440f9f83889b22614d995b03173496537f4172107934fcc935f7623053",
     "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean":
         "2214db347504aafbaf408ba994f00cac10f3794e5bb2c5e21869594748a08250",
+    "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean":
+        "4b1b0165e487885edfb31a0b6a08e848b129116ea0b8a8cd26181b05212467f1",
     "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean":
         "db880406ab8ebd62a71f9df27784145af7c08569603357cb43b0efcfcdb3e8b8",
     "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean":
@@ -71,7 +73,7 @@ THEOREM_SOURCE_SHA256 = {
     "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean":
         "eb31b3cf6b7294aff42f4a56cb16ae70b765e5bff2a883ef2ac37e41aec91047",
     "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean":
-        "acdb8b1e2288940413b95449411da0d8ca3b405a306a3cb9591a21c186342d66",
+        "279fec0f8cd84bf2808c7f0bd40dcf0e857107190c6cf9461ab73bf52bc98443",
 }
 
 
@@ -140,6 +142,12 @@ FAMILIES = (
         "equality-six-row-anchor-collision",
         "Problem97.Census554.EqualityCore.not_realizes_of_sixRowAnchorCollisionCore",
         "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-six-point-two-pair-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sixPointTwoPairCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean",
         "no injective planar realization",
     ),
     Family(
@@ -344,6 +352,8 @@ def _finder(stage: str, closure: metric._EdgeClosure, n: int, order):
             metric._surplus_source_collision_core_from_closure,
         "equality-six-row-anchor-collision":
             metric._six_row_anchor_collision_core_from_closure,
+        "equality-six-point-two-pair-collision":
+            metric._six_point_two_pair_collision_core_from_closure,
         "equality-seven-point-orbit-collision":
             metric._seven_point_orbit_collision_core_from_closure,
         "equality-seven-point-circle-network-collision":
@@ -461,6 +471,21 @@ def _obligations(stage: str, core: Mapping[str, Any]):
             ("CV_CA", edge(c, v), edge(c, a)),
             ("VB_VA", edge(v, b), edge(v, a)),
             ("VC_VA", edge(v, c), edge(v, a)),
+        )
+    if stage == "equality-six-point-two-pair-collision":
+        a, b, c, d, e, f = (
+            core[key] for key in ("a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("AB_AC", edge(a, b), edge(a, c)),
+            ("AB_AE", edge(a, b), edge(a, e)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+            ("FA_FD", edge(f, a), edge(f, d)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+            ("BD_BF", edge(b, d), edge(b, f)),
+            ("CB_CD", edge(c, b), edge(c, d)),
+            ("EB_EC", edge(e, b), edge(e, c)),
+            ("EB_ED", edge(e, b), edge(e, d)),
         )
     if stage == "equality-seven-point-orbit-collision":
         o, a, b, c, u, v, w = (

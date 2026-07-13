@@ -1,0 +1,4411 @@
+{
+  "input_sha256": {
+    "census/atail_force/distinct_equality_checkpoint.py": "7961314cf3e5faec90e194df2a5522f6119f06b397ba51990056ca10265048f3",
+    "census/atail_force/distinct_equality_witness.py": "5c850e162990bf6b8f9256c0e8895e36049fdf1609e5de052f9b890cfef67f3e",
+    "census/atail_force/reduction.py": "d5481d7c7d7e1f4ea8207955d73b415183952b6141d9590e41fd2077dbb50e93",
+    "census/atail_force/separator_pilot_manifest.json": "ab0cac5059ba61c6d38adf2440fefd684caf14960d8895a634d52845c35b6f69",
+    "census/atail_force/separator_pilot_results.json": "970fca33b8ca0558169dcc10ac4141a486e07a252b562ab9cb807c1d8474751e",
+    "census/atail_force/surface_checkpoint.json": "0c7efdf54104ec930b04ffb16db31e3c5dace52b0748a689fe7052d5cf63654e",
+    "census/atail_force/three_center_surface.py": "b7a1c8cafb69e803052ab64e40068b80a501539b7a3fe838ced7388a6abc8e50",
+    "certificates/multi_center/reports/l2_class_inventory_certificate.json": "6a41f668d910ce0de89560f9c4ee48200eb494ca85d490a4d2d648539f893895"
+  },
+  "replay": {
+    "distinctness_and_area_separators_verified_nonzero": 19978,
+    "exact_equations_verified": 4802,
+    "free_radius_choice_histogram": {
+      "[\"2\", \"2\", \"2\"]": 8,
+      "[\"2\", \"2\"]": 72,
+      "[\"2\"]": 168,
+      "[]": 95
+    },
+    "interior_point_histogram": {
+      "10": 36,
+      "11": 9,
+      "12": 1,
+      "6": 27,
+      "7": 81,
+      "8": 108,
+      "9": 81
+    },
+    "raw_equality_skeletons": 343,
+    "row_manifest_sha256": "47c007d0735d5f4353cf47888566e60e963465c90b542fd92d6ed1c5a23c46bd",
+    "rows": [
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 9,
+        "class_key_sha256": "7467099dada9a5ef69f4c2c91f26a843ee1ef3f830dd2478b4b117784db86536",
+        "equality_signature_sha256": "548e956957651a51652194e02095ad46063150918bf40cfcf5fe210758e474fc",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 0,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "2178bc11053fe1387916eae66414676e961ca8b2ecb3b13253ce1ce756d097d1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 8,
+        "class_key_sha256": "3780a153ae0f6a39b59d3197a1b3a5558350c6edb6536a767354d2ef72a21d39",
+        "equality_signature_sha256": "3d0305c4590677824ce67c6b5879c14f91b8ec92fa7642470831b28fe69e3e08",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 1,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "49841892c45f54a2751ec5f0279676a380b29d6a3cb2c01330108b3234df7062"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 16,
+        "class_key_sha256": "8f783715d901e26d4cc194e7ac70502982ceef3832c9ceba40665051b31d99bb",
+        "equality_signature_sha256": "c879235470842d65eeb04fbab6134e69f0be8cb8030a9c32dcae4708c7a76c94",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 2,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "5e8c9b32e285a679590bd1b674ff4514b3cefcb545137967dd5139c96fe2da23"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 18,
+        "class_key_sha256": "ec4e66072a1111e965a6e932e0d1c3b1a23ff6822c65182666c1ca32642a72ec",
+        "equality_signature_sha256": "ff3d21927ef210122e666f61fe25e98526f06985bd0e82ea15b37c684e4182c2",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 3,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "eb97a3425ff092ba9f1b9c1c08e31bfc3ce2945cb2dc95c48d9aeed12541594e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 0,
+        "class_key_sha256": "f7450214ddcf62c19bbce9ca08d6968c1d945a42f5b1d8558e7664889698e781",
+        "equality_signature_sha256": "6de8555cbf282149daae604f8bcba620bbdf5ed7da72b369a9b2c59ae37f2b1a",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 4,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "aff23b747e04c9fdfdcec66c7d60d2d715f8241ab78048905e6bc3ade5780c9c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1,
+        "class_key_sha256": "212ccef767b1c1b2828d224ac9a3e3e9f81a15982835cda3921882cab99abba8",
+        "equality_signature_sha256": "668baaab352964dbc14eee7ac46dad79efb7faa50dc4641fc8c65bbaf1a5656d",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 5,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "44c16d636a611de6e42035d11e5c0573365ebc5b4f51d756e5fe9763c778dfad"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 80,
+        "class_key_sha256": "04558f55f0ee5359273f388ee540516217a4f65cc5eb34554653fe5f0ddb35a3",
+        "equality_signature_sha256": "bcdc499305ff4f323a48cc11f05943cbdc28cb1f72bffe5c0b7fbfd6516899a0",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 6,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "171131a34a36f5c698e1a93798a4c3f58081852d965f132f170b4b57f2097dd9"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 82,
+        "class_key_sha256": "ebd589bf84e54a1373e1d19824073fd9a775aaca355834cc2de906b165edcda5",
+        "equality_signature_sha256": "bb71bafb2b8474355fd18984b3329de12d0403d6dad3d6f881ef71691243af40",
+        "free_radius_choices": [
+          "2",
+          "2",
+          "2"
+        ],
+        "interior_points": 12,
+        "raw_skeleton_id": 7,
+        "separators_verified_nonzero": 106,
+        "substitution_sha256": "ed1012012ae079e5c4a511cc50a18f5c40edb91f88a5635db11c11111b7cede6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 521,
+        "class_key_sha256": "350e55a3e56380cecd70d8ad950b70bf92d4728525bf31d875f2c242fc2908b0",
+        "equality_signature_sha256": "44810cac5fdabb9872566796d92ea57536f7e087a5cc9ca5c3b4e0cc99163cb8",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 8,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "78ff567d0d8dab804959f869ffb760d3d38ba19dd38906cf5d9ff51f76755773"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 524,
+        "class_key_sha256": "6fb45b302e42305408f904f8bbd450dab20b4671678427e2fe6c6a6b541926db",
+        "equality_signature_sha256": "c859b19ecbf8633e6ffc03b73e8ca1b4eba6c04f8ad62b8f8090219d4ba3b278",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 9,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "272bd088e5e6eea7d01c2beeee585ded9e46249945b64959d28e64d4cf514ee1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 520,
+        "class_key_sha256": "ab58d148066a651becca1fd1c6ab0125cb55fd50c4504e0a78f963ffdc3221ac",
+        "equality_signature_sha256": "060e50ddf57493b862b2db91ddd0df85ef27297b3c43d70e7f2a6f710fbabb88",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 10,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "c10b8bfabfeb7a102f30bcf2f5b02245b8b43f78cb0da2a9501edf54425cf4a0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 522,
+        "class_key_sha256": "e8ed72601822fc62c53eb7beb691a5c4abdcc713c7befa720ff79765beaa5e12",
+        "equality_signature_sha256": "b5d614d96ec9bdd69e1aceb5e26563ae6c18c7dee07d0ec11a1f3f177e72bd92",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 11,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "0593aaad372edf7ecc39f8d3666cd7e7f770cbde793c89bd093abfa3fb160420"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 512,
+        "class_key_sha256": "b40142a386b6fa867040d751e3d383bdfec247397ac83c829ef6ffe13208d886",
+        "equality_signature_sha256": "7ab0e56d3a0883b044728473a4e69ea2528558ea4cfd0a17807e358b3168cf8f",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 12,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "359f438e790d6dc7fa096e7aef249e75f8f5db11cc09050fa2ef3f9a089c53da"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 513,
+        "class_key_sha256": "737042806e0b382d91b06bc7a37e8a6962e7ee5e6acd2e5fc20fea7fea4007dc",
+        "equality_signature_sha256": "10eb601678fd54b8dc7a2d86d672ac18659ecddd6d03f5e4f1ee33de89479ee8",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 13,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "4b48fcdda9e27be933e9f747e1f528b25fb5eb0d99b3f4cfcc152779e5e07958"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 568,
+        "class_key_sha256": "7ac6e2ccb14e3702fef984995f72bb4daad852668511efcc657d59695d23b2c4",
+        "equality_signature_sha256": "778cf25f26b4997937538e119353967fd9775c59a2fb3ffd4d5b5f25b05d032d",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 14,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "3e63d2385b72425d56f3ad3713aff8501a351aa9174df3c84fb5c0839288fe8f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 570,
+        "class_key_sha256": "d638b5f41102f7b5fe2670ab2f769ba1b85c67ef5cbe805b49e73d3479a23759",
+        "equality_signature_sha256": "7d826b630af9b333545e52c0794c67cbc84a142694901634c6870b4ead1f0883",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 15,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "428e91cca8c6ca4081dfa0791a98f55459d55d39172997b993908cdd90932ffe"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 713,
+        "class_key_sha256": "45afc96c82f875d66a2b9adcb85b6b08579921e65dabed4dba8c94ece5b08c5b",
+        "equality_signature_sha256": "3aaeb88023a5d8fa7a6bfbe0f092ccfa2d5b841efcc3996e14f7842949ac2e26",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 16,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "59b3e27da55b5cc28e75d1e2bb823ab2f3ae1ebbcb70611c98fef12f92782c65"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 712,
+        "class_key_sha256": "aeab092dc5705fd61f79cf678ea7ac85474ee2b570ed5577e757fc7424ee8980",
+        "equality_signature_sha256": "c1fc6ad030ca35e5944ee9a3754b787b5d07de5532cd18902c2e7304fd4ff1b8",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 17,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "32165dc45a20ec3a522460537bf98959b02cd72bd4d0e86b2c2c0fe8ed354123"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 737,
+        "class_key_sha256": "91b0c93ead6a7c1a3634c2026a18b5c11927fcd15823afc0fee5afd609a56f73",
+        "equality_signature_sha256": "52fd2a2a9af5d2dbbde05cf93a55b333ab8c21fcac4440892fa57685f19b1580",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 18,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "3b368f9c826209c880c0f2de36dea06edf7afc2fbf08f367a03639ccfe74b62f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 736,
+        "class_key_sha256": "4ed40acc3a4d0be9490d3dadf4fa9a7d3fefe935fb1d8f48c6affef1a1a9c54b",
+        "equality_signature_sha256": "82ab56a9b82d3a9444ebd48f53fb7df9199aad4a94bdcd18dd8fe22b2b04892f",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 19,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "86f42c716a13f7beb3373e80703fc5ba1e55960537f3a6262bed159873c28a85"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 704,
+        "class_key_sha256": "d781b5b4a4f03685797f49161a870a391f77402c17f36a9dbb3c422dbe852eff",
+        "equality_signature_sha256": "e4ea2ef825ee73f67498a8851dab4d10e98ca8e4645469006817a5b7cd75901e",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 20,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "ebdab36ae3066f86720502c5bf4a1754ed1e6b5f0aeacd86b3dec8c6ae704fe6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 705,
+        "class_key_sha256": "c2b3027e78c5b29ac7f39900a3eac8bb2bd2299fcef5f1799781ebd70eddfd76",
+        "equality_signature_sha256": "a88fd1c3e9af32cb267627ea32694bec5226c7b51b58254e55631d9f217191d2",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 21,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "3b432558672c8e3a483355720929055d000a11d98fde9ec2acb541b8880956c9"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 720,
+        "class_key_sha256": "c21b2653a649affbbeccec5765b5d03c1f0aba0e86073504063320cf4e580bf1",
+        "equality_signature_sha256": "54f41ca72a98b7f6f9ff56b72ea432ab285fc2367a417e2a6e4e22c6fa811b42",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 22,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "a0886c5f4a8f2ba5df9e3682523409dd94d1b8cec9d5a3552af7e92b7d67f5dd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 722,
+        "class_key_sha256": "c3a65d79f0a67e88e3b89e92e1495ac38c7f21b007b6c2c364064c2b8e066ee8",
+        "equality_signature_sha256": "1f6993f22a39e3f4da81e3108dab782248779cea9652b01f5e22f671b70af8ac",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 23,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "bce660f68b8162287a5255f5027af6d1b08aff884eed971026d8ae40b6cc4a62"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 896,
+        "class_key_sha256": "e6844801fcf315fc50c1265395691961fcdecc8e63a92df92b281d6b361df61a",
+        "equality_signature_sha256": "b663f4c3fab29c050a01c2f412863a98137fd14554bcb16f3dd240a94b1b3dab",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 24,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0b3535429bd3e33842ecf2ded5e4a63afd22854a4b002fe39f022fcd326d281f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 897,
+        "class_key_sha256": "00f0f1a4785ea39f4b3ce8063f56e99d77c6bb0656f8050d985211a2e5538191",
+        "equality_signature_sha256": "0621a648bdc2634f80b989920f998bda754b1ead1873edcdbb391c9ea13eee75",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 25,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "1d97ab8c62baa84ae484cf18e1a71526a7f266f711ddbecfd60208538987e396"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 904,
+        "class_key_sha256": "eb87af60dd7e05cc099284a511fd9f6efe877eb7615586d5edfc44cbae0dae86",
+        "equality_signature_sha256": "2ef7254c7cdfe613368beeffce638345a461da67ae48ab85770bfa58e9001205",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 26,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "98e3fa13cdd1e04d2be9cabc64a7780b6b826b6dae81552e3dc0e70c7e56681f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 906,
+        "class_key_sha256": "5d8cbac01eaa1242e9bf62c359da440f966189c9271d50ebdc0d722100519171",
+        "equality_signature_sha256": "25db97065449fb825fa74a1915fd7492ffe21ee20708e4a5ea1ef5c304fc6109",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 27,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "75f44a6c108bd6b3e7d3776456e14b6f8319874583001f1b2e81e88473159038"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 969,
+        "class_key_sha256": "ae7406c91e2e302879f64555b1f48a0f3c287a26eccee3cc2f46616ec513f44e",
+        "equality_signature_sha256": "cfeda4773f77ea491d1ed8c31f6a7a9fb08c37dd5be47f5803d9ca71b3878fe4",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 28,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "bd66cad47638dd9ecd5cfc254a418b4f0045156d55d3d30971c7fca1600b4dcd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 968,
+        "class_key_sha256": "961ee89ca3920356d0dc799ff4184d0da352d4d87a70ff0734fc226a0f0dce2a",
+        "equality_signature_sha256": "1500ad3844fae6c97cf59fb8569ed7b44d4adac81baed07ac2a8642d8caf4400",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 29,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "277d265422ccf6bd8bbfb532785aefcf8871009a86200cd3cf7135ce326e7611"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 976,
+        "class_key_sha256": "412868a2259e1ec0a2aae4960332fc7ec1b5e5d714c1cea75da2b893b0494219",
+        "equality_signature_sha256": "7aa04a89aa1b8dbd0c1ae2a9795f165dfa739b312dd759ce93b8a6eb131b96cf",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 30,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "fa8c676fb5ee96cf834a3842e89a68c9896f6ac0fcd5b4f902b35cfdada8a9f9"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 977,
+        "class_key_sha256": "ddccfb982a0660ebe8717b89eefe08b6660fa9e5abaf7f0d9e8ce1b92feafbb1",
+        "equality_signature_sha256": "ba6ee92c31c39aa45a637880e80a6fa2c52aec16bc483f152f402f9c5a815691",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 31,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "5ee8d65f6dc3a61a4717341df9bca991263ad23d6593353db204ecf89bdcb889"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 960,
+        "class_key_sha256": "e7364a3732a5acf173e6113997ded8bc18c935c5b14a88c6460e5314d6ba6be3",
+        "equality_signature_sha256": "04336208865160f9395933947a5dd3e1e540a280c31dc715e50f999e0594b2b4",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 32,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "ef1bce6caf46d5a3a4373a4e98c2622bfe51adee17e6ccf6845722f69c194cc7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 961,
+        "class_key_sha256": "ca1c31e404919ba760ad55f857b6da64c961634bce02e3ade3d35343c2a00e18",
+        "equality_signature_sha256": "49ab0f760c2468f8d84ca31909ef8662f4cf3bcba148d1fdc010a5ffce7213c0",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 33,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "48448c29ce4c36c34ae17f6c9dc8e602087767dc993c8651acc6dfe5f8b58245"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1016,
+        "class_key_sha256": "67e0a600d581f31c4dcf4de9b9c7cb67836035873693a84551242c813e891020",
+        "equality_signature_sha256": "278b8a3f6a79a3e2dafa9b66bb8de943e0aa154f89139d065edc830d42831819",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 34,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "4022ef35475fb4acf7eb1f4ef9e6a9abceeb7e9b01a3bef13f4bd0bf66197252"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1017,
+        "class_key_sha256": "4cc659460170cb51d5a0fc289322c8b2123d3a32c679abb9e00034bd58c77410",
+        "equality_signature_sha256": "881d5d0026d62768cd9cb9158c4a3d804cb801c76a2294842424b67305ddc7d7",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 35,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "2351594d9263ba59ae3d01e96d07a45b3ec927163a8c937217d52ccf342036c5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1160,
+        "class_key_sha256": "69c548e91b5baee4ad00c05008cd682edd36ff2b547a1d3e4ecd7c040c8d892f",
+        "equality_signature_sha256": "8c22f9020c3c3bc380d456e2cadf54f304538f1be141e35525a3eaef8d28c06a",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 36,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "4405d61b28268335e652c60f95f32be6c2b8019f2fe90d0e1e2e4411ffa06c43"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1161,
+        "class_key_sha256": "3a95c1b94f8cb00bd89506fbccf8997d3437bfe73700ce54db714ee9609f79c0",
+        "equality_signature_sha256": "75abe321a73ac31fddd8c2a1d4028f40ba8c7b9eefa3c8b0db882a8b1ab1cbe9",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 37,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "ac6b2bd5f3d36a0588a11ddcc05ea8e612f8caf1de4a0897f4d14918502e3a33"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1152,
+        "class_key_sha256": "a0249989150941754ce5b8aa7a3a3793f1887018463f6a7afa32bb6b252ef29a",
+        "equality_signature_sha256": "a025e42b0ff703ff2482f1cc1f5e6462c88d956893fd5a3416db00d29f1184dd",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 38,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "49d063275374b3330b18540c9eb581452b9169fa1c2fb6fae2826651d862035e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1153,
+        "class_key_sha256": "f7ef3fea38e351bae5b375c21f27c120c856585a2a5d8ac81f6f4f1c7a64904e",
+        "equality_signature_sha256": "973af8e2240047d1ca42f82dd648e1dc6243fe45bb46ca50ab251b6056bd1dd7",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 39,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "482503afc3c4539f4ef4576f8ffc540c2b65a37d79fe2a68ae8b35196ddde5e1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1184,
+        "class_key_sha256": "3b1785bb06a1df599277994642305f2a15815fc94b1a4748fbe58aacd88482bf",
+        "equality_signature_sha256": "06df88e66b44e316fa6a5aea20f4b8c33e8986f42fc146492538c61d4992748b",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 40,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "bcf05146b2e537a84b4f7d63db4e59f8f015f5e72bf10ece5c6d87d4b5b33b94"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1185,
+        "class_key_sha256": "cbbb8cefd77cac14ab546ac3d022f27f2a007ac4806852a9a2221f7a354bf112",
+        "equality_signature_sha256": "dd3cdfe6a59fefaf2d6c9a9ad4baac10f5f92e1e68e3003e37fc24a1ceb73dfa",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 41,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "51015196717c70d626727212cc021f0b2cbf68afc778de073ef203aa65d9222f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1216,
+        "class_key_sha256": "5b65fe10847d85e1c980fea2d6ecbc9434ac6327cdf9749f3e24187674ed82a2",
+        "equality_signature_sha256": "76020f411144c8cd4e34f2cd4f9420943e5a2b120b9c8f2099394a51ea7b2efd",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 42,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "575c264c03e9d11a86de57237ec15667292a47ca768ac294cbcf5811d70bb367"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1217,
+        "class_key_sha256": "d7585e7a9881664dbf3c5ee41196f5d6ff98fd442da12ebefbe804b5e42e99ab",
+        "equality_signature_sha256": "bc6d2e93a40f943da57bde145ecd8122658f21544736b69c5e3ca2b3c4833361",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 43,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "5185ed3b21cc04e2b98954cc2888141ddf065046e0f32e31cf00498b7ea54cdc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1233,
+        "class_key_sha256": "6f97cf9b2b8dea8fcf5181b3e5efd8cc9131b026a575a2c3b1faa99d5f518ab4",
+        "equality_signature_sha256": "2e6af69e7c41349e30f4cfeab699f705d86ec77e0558b11c80fb5e015cf81fa4",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 44,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "7752049b30da00d1eb0451f041a505c1157f854691fae505b29bdb2dc6787dd2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1232,
+        "class_key_sha256": "3fd22275e9d9e7c63eff1339aba6d931308d32bbbd319b4a6edcd922a2735ba6",
+        "equality_signature_sha256": "704b15dba9f1bc166392c46e72e59d4db2721b8fbb927bcf9e02f22ec14a1123",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 45,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "e79da8eec3f7c7cfaec4ef09ca61b873b00c96bc0cfab7a2e3e2bda071fe772d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1249,
+        "class_key_sha256": "48b494445fa5c22736641a80f8754e0eda588cae0d81d6d8e8d180eefbcee7ee",
+        "equality_signature_sha256": "53de46feb03c5410241b3eea09d81025575af5ad01acf25e102baa0cdc4237b3",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 46,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "92b6e9eef81ffc1b1233bfcbf318bb5fc2066c699d8658c3921d8ca3c33ba3c8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1248,
+        "class_key_sha256": "98389ad2ec339a55287018e40171455137bcf188bc7cfcd06c0390fa0462c22a",
+        "equality_signature_sha256": "c68c602766e7d9b1ca48ea0998d5ac9ec9161cf1c8efdb2302ba8ab1dc03d2f6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 47,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "5c34e50476c30ab479b6bf60f852dc96c2095dddd513803df9c1aee0a9143e81"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1224,
+        "class_key_sha256": "e0e0cdea83342505aad1bec1c018c40977d88610be628264784464fcd243ae9d",
+        "equality_signature_sha256": "0a2a9189071fa04c69849ba59574e92ea55db6e4140e1de1f3d94bdb10677c49",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 48,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "77dccce16eac71d362b018a4b8813ee65908bbd662a51800d35b292bdc13acfb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1225,
+        "class_key_sha256": "d7916ef7fcea8e51a6eaf2f18db734633141a42f0aae575a88510f27484cf952",
+        "equality_signature_sha256": "cebf13822dd7c21281b4e94067cca13f311448f1c4172f138e731de1039cb294",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 49,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "b17c584b28f2762cabed443b298d1a3a3063546634fd811382f0058ad119dd3f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1240,
+        "class_key_sha256": "3363b30bc46127502450cc0450bc7e3e79f5680b4b32543ec81b1257a6e0005f",
+        "equality_signature_sha256": "0e6e4a0cb6c6cc575fa29a9fbd85596f492f66c0fe315f42762234efa2e72aa4",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 50,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "bc514c2cf52913704a4d0f224d55093fe1ac58851c423572cf34d4260af29e6e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1241,
+        "class_key_sha256": "58a40e8d84757120dbaab02b01ccec7001357f7a5b3df6f72f6aa8cf29b0f894",
+        "equality_signature_sha256": "2dc35d2467f7167194072d5e22cde943b25817bad22ad9466665a5008740f544",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 51,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "8a6ba10ca9f221fd646d6a77e420d9177e254ceab5e5a1c3f5505c2f37594d8d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1296,
+        "class_key_sha256": "97c164785c81c21e2894e5ead721908c0d48d3bd93db0654e7438ce7c1c7004c",
+        "equality_signature_sha256": "8f5b9ebaefbddad6955b819dda0e5a8502f56eada0bc1966b8ed2cd0e50e75ad",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 52,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d4dc12822799715cc4a13879443246e93f2ea018e36e37f0271c95762715ce1e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1297,
+        "class_key_sha256": "a948d6f9fd83c4ea686cbd0ce3c7700114e13895a58a3b095d536f2876c652d8",
+        "equality_signature_sha256": "4f9f95ffc6c2b793e540782144eb12fcff4bae7b8ba06a70e2d07b229846d8ea",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 53,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "781ca3fcf96d754723869e7f52b24746b7579372800cab6e8c44e96970aabf00"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1304,
+        "class_key_sha256": "b6bd958fd15d486f0b927a1bd85dca2435f583f6e3a1390cd66080e69f989122",
+        "equality_signature_sha256": "d0d4b7b8d355a89b1b7cb34723861ada87addef3bf42ba2f134b91a3b18e1b37",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 54,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "da3ea815e7d7a261b56f968b89f8f0aeb73103e9a1fadb2ff721b6fe23b58b60"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1305,
+        "class_key_sha256": "77cc4bab970d0b8eeaa08f6642d310626bdcceb2e706f777a51b41d80978f569",
+        "equality_signature_sha256": "af6b62d87ab06d01cdc45c98dcbd5a4bb63848c00cde5d11448e230321391ef0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 55,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "14e0771af9e0dddad8f3627f5298f93fcd1770e479d5a542b7e9e2448fd9c9bd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1321,
+        "class_key_sha256": "0f5badf8c1511da94c483399e0f1bf24321d183da9c651281fc8879c03b43e46",
+        "equality_signature_sha256": "b549a26d5b76a44efe048412190af5ded9e3dd892baaacf712d3882f1e174a2e",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 56,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "daf5cb2fa721f93d813bfec07a6116ab82edea9c62d161b4a84029a2b1506e5f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1324,
+        "class_key_sha256": "25b921603c6ca567d1ee69bdfce25797fee6ed67256b77a9eb90dd717a9d4bec",
+        "equality_signature_sha256": "39f9e1c18670da5ae66bcc566ef50a1e8c4f9d27438ceb257debcdc72eec6685",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 57,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "beb69337a49b29c52d9542317ef8532b9654d990b3110c700d1fdc91e3ec36c6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1320,
+        "class_key_sha256": "afa396b9028986d6f4d87e8d638447bf772072bb9f1562c77f24b36820af36fb",
+        "equality_signature_sha256": "9774f4d6ed7a048f32d812d1326ce16a1ec74e0ba8cd3b3e14cc9e447c8c8e59",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 58,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "4fed1713d377e4c5ce680704646db28716e6416592effed4a249f39380652dfc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1322,
+        "class_key_sha256": "c2ba685368648913493d74378e7bfe4279618317b1948521449d58c6e279b31a",
+        "equality_signature_sha256": "f0a71f659f1d6331272b08565da6b6aad080ec95fd7426bb1adc1a13841dddda",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 59,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "b41f8082563d3be76ade7ffbb57f5b1bef03654bb9e44c17ad1e4c5e2ddbaecc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1337,
+        "class_key_sha256": "4c95e161408557cfc12b66a2edd4845c5308a8b7fc5d4fd858e6303da6212e79",
+        "equality_signature_sha256": "ec9f550094334a4472d9d0f51d40e49b6e3a088e7fa0729c7665065bc5b5d42d",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 60,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "85518061f446f81a8a868bba1f39ce1a77a85f2a7ea06bb8a85728a1ecdc19d4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1340,
+        "class_key_sha256": "354b41e9bc5e7d021b8dee385291e90769bceea7193e24efc714e9254b115713",
+        "equality_signature_sha256": "e99927d99fe0afbfdc510cbfcacb645dd420a71651cd2ddb82ccfa7c2977808b",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 61,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "ddfe5d602516893e41aa487f1d710ed09e1992254038439ab54130fdbb2066ab"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1336,
+        "class_key_sha256": "ae6d2cc58375f4aaca4ffe6f060d6ffb1e4c070405808b1176f0f1c14eb70b97",
+        "equality_signature_sha256": "8f68bd4819401e93401dff99d3366d4a5a727437720004a3af4abde55d93452a",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 62,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "067d295d7ec5a55214667be1ecef493b8a5e8ebee8347b73d10eb4a02029a4cd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1338,
+        "class_key_sha256": "f8d9a94d8b674efcdb64273c12a954e91d47becca25d4d758dab47e73e1cee50",
+        "equality_signature_sha256": "7123afb73bc5222ee0d69d78b7f785326308ef45d71681f04b472599beddd046",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 63,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "2cbb4560982eb6870b867f76423f1c001cb7d306e1641ec06150c7f040a1764f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1513,
+        "class_key_sha256": "e1d895b46764650c338a866030d50b1658809e63785dd5022ee57c8e3fbd78fa",
+        "equality_signature_sha256": "594e80e7338dd71fd38385d26bced2f360b2fd7b58616797edf83eabfe2f08d7",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 64,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "6f76e0f09ae005a2109ccc842f9a818a27320ee35cb4dddf8ad4a6f1ea808ee6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1516,
+        "class_key_sha256": "79834bfa393e20dc305fc9d01f67afc30299b3fa5977d6ae9f2fbd2343668401",
+        "equality_signature_sha256": "38bed133955b596a639a9e972a7d9212c7e5bcdaf6a01ba6e47ab78951144ea0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 65,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "6fb94936da3448bd5c98dda748445056cbc1d12831cd3a82e7ef4248d80ea34d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1512,
+        "class_key_sha256": "ec844028259166c07be797e4e6c554ce94bec284182c163687c9c9e7ed6881bf",
+        "equality_signature_sha256": "c781398f5c3d513cbf73791b108e2cb4e19f54215f24d18b178e54866fb844ff",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 66,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "c8738014a23bedd02380f1883ce497ce8a674ab3f322fc8343af6a7f5b08b516"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1514,
+        "class_key_sha256": "694c81b4dc2ae94c9238e5a49347a86cd2dd1feb01e4fff077f4aaeb976557f6",
+        "equality_signature_sha256": "b81bc407fb0d24669f0db5d4da1a086d3076689787cd44872dbd91bc9f324839",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 67,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "794c646d7ea62c618f2497b5beb21a65c4c891493834989dfcc2e4c6333aca0d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1529,
+        "class_key_sha256": "f48851e9e139ab1fa937285a5129ca92efd1654f68642eff450e6e888ee59f5b",
+        "equality_signature_sha256": "9cb26b0c43021046a44d0f9bfaa4590f200a2e5a8b1a60650bc2e45df5a9b77b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 68,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "4eb1bc64dc41841bcdd75fd6203a08eb158126025155960294799da61d5c9e0a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1532,
+        "class_key_sha256": "5d1dd3af23c1657b010efd24991a1ef7d2992a43cac9eaae064ad525cff445f8",
+        "equality_signature_sha256": "65fd0de4e2a1b43ae21e5077462caea3c7e4bf2741b34d60f3833a1bae69eda9",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 69,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "2d45a0605eedfce85fa0f87e19539643e4864530dc41af0fdbda931f3523eccc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1528,
+        "class_key_sha256": "3fcec74baaa62a85e5a0906d751da05c943d5caf9ce7f1b058c9f857f41599a6",
+        "equality_signature_sha256": "12c0e49d8b866c35fdb5438d24ff0ddeb3c99783eb0f1338551063e56938eb4b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 70,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "8a2627d4bb998a12d9077c7a65cbe2d9f0bf24285f536956d925f995e7e131d0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1530,
+        "class_key_sha256": "4465a5dd5d58bffe31ceaa71ca030ac93f166cb7a1b2dd4c15772d483901ace9",
+        "equality_signature_sha256": "70ce83e1cc79817973ffd17452799fddc68ccfac569fae09087dda4c4ac787b8",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 71,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "f9a44c45ca6b04a3282ebe53684c92e825fd6bbae4ba2aae4e5270f367a63963"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1603,
+        "class_key_sha256": "b59a8a57bc1ef046cd73863573a909b395f6dd0a4099cbcb857deb873ddd81e1",
+        "equality_signature_sha256": "15f5a58495ab296751b46f4e16db8045a625b9fb30dbbf152a2232b8f3d8c7aa",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 72,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "59a41f9fcdf5c358bb49b137678106d79a91b01af0cdbeb88efecdba6282dbb2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1602,
+        "class_key_sha256": "f506d4bfba5680b6427b91240d9f1098df6cff752c012b711783df3e518dcab6",
+        "equality_signature_sha256": "a22c4a1360ff4c924de7a6ec47a2ce6a19da8a66223f2853b28de96a15bf5807",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 73,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "3de5a42bddf8aecd4377814f6ed6381ebb96359fbd58e8f9c79fbc71fceafd33"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1601,
+        "class_key_sha256": "ba7ad0b586b0b5857ff80cad77a8cedc6f461d511c42337158ef914f156a3600",
+        "equality_signature_sha256": "d5e02bc3e3f75ea0521899d870b2525a556d7c8211890623387c5a23de3104f1",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 74,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7a494563fbc93263bf3a51f354053a18e763da09202a6e599d816bbc466e129e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1600,
+        "class_key_sha256": "4dcc537a63cf80f9892b5ac4d5d787490487a571d2b55c16a537c64a3d91aa84",
+        "equality_signature_sha256": "2058229fc7b004574cee005f081eeb1005c3fc7bcacb7b18f4796ac67195502e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 75,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "74663cee7f1b7fe07172b40cc321739a097167dd1a4073a1ed2f41a512fc039a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1585,
+        "class_key_sha256": "723047e89ace5bb14497c45a2d9f8b41b33b43cc48756eb03a6d46734b1be020",
+        "equality_signature_sha256": "c6172bb6f449e29a5d9126591f45f037ac9e06f90b68817ff96b2d52ca9c62e0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 76,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ef5fa42a5f9f8da780ce5a02d748cc496692664ca64721e90b79c4be359a7bc2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1588,
+        "class_key_sha256": "dfb3dcdc52af1fb7a443bdd1e64c2775db8f34d744d5f008fae6de44e043e2c7",
+        "equality_signature_sha256": "b4283536eb7491aa8648d7a6d6a212239a2906123791104b0a7583012f6a2c6f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 77,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "36f61dafb0cb6583079931ed711d3547e210337a21bb0b5eba51d4a062e97ff6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1584,
+        "class_key_sha256": "bdae2187a22c0a0a9f44fe6bfc67da0844965d7eded610cb3c6ca12f14eee7a8",
+        "equality_signature_sha256": "0e67d57df7a297ad02fa21b5c40361dfbacd7dee8780885e4bf7e7fd8c3c4306",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 78,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "a94b2d226449c9ec6f4787f0574d9e2e6d9cbc877cd2a1a03a65c791c88bf68d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1586,
+        "class_key_sha256": "3c8f7f4e6a495c9b578a4b8fe74f0657fea1490a4f0a5036cbbb21b4d5762b0c",
+        "equality_signature_sha256": "97b81c3e3d69712b428f6713da8f02cf7808f1af3b204f0848873575f99cc7b2",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 79,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "07d7cebf26b7d23b5f150052dadf0b5e79915b2de85f978d3c78a42b43c48c48"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1657,
+        "class_key_sha256": "0df05e217c5799083904b478487e2963ffd479d3794adb2b58decb6cc3e3132b",
+        "equality_signature_sha256": "48553710faf41139b67adf5615f6801c482700370c8e04c2638dd6670d36fe0f",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 80,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "34b030df25bb4d461dc63c56d067854225042d7e6fc394eb742570a50b53ed7e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1660,
+        "class_key_sha256": "330adb0554d6c2f6873872856b4f15599c0c1cd8e0b17995eca62b7596fe6f4d",
+        "equality_signature_sha256": "cc73eb3117738e4935c8dca04aa36440fc3034a129075f5552a7bd159a5156c3",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 81,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ca16b301337377014ed10fe8c444647bc43e5f6b81328b020fb0745a56327362"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1656,
+        "class_key_sha256": "cdc5ad502e7b1ab3e7dae96f704187325c09b6c3b606e0855095573d45454f56",
+        "equality_signature_sha256": "0426c7c9f73d1343d889d82d745218ba3c6538ae94e3e1b5e9090ac2552e16c3",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 82,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "e74ec969ab0dda272ad41d20c522712eae3075dd73207a8bb49f38a1cc3758ff"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1658,
+        "class_key_sha256": "9f3c3fb9a4fab31a69693b2125bfff5f39615cfd720dbcf40a622f2325643b5b",
+        "equality_signature_sha256": "1b8e3356ec9d39052c9ef57c1e14889bd70fdf6805ea3ec34c3759a876359d7d",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 83,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "6c8ec826a3cfb0e5f04bd0cadb8fe5fd220b6591776026d32049749b077667dd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1680,
+        "class_key_sha256": "fd12b4d4372de493fe6777342f3ff5358f22d2a7d8505ac63b7fa307836c94f5",
+        "equality_signature_sha256": "df9a45a00674708b694f0fd7311708b5ae265194465b3d3f850ebe9e54b3fd40",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 84,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "92dc81603099dd311eef255a930a709af019407c079c568e428cdafb7f7df6dd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1681,
+        "class_key_sha256": "3dbb0a89de0763dcec3d4923cfc1f6336939e80f9c04f29df20a2ca77f50c82a",
+        "equality_signature_sha256": "77fd4c78ace14186546fb3ae5918e5ca377aee37e4831efbd1cf594339d50b77",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 85,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "deaa388a014170a1215797cba9abbe163f24fcd454de01fc0be5b0868a599158"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1688,
+        "class_key_sha256": "ec81f32db59773e35e7bb4c60dd9e146c34fe3ce1a3469874a3d98e56d4800b2",
+        "equality_signature_sha256": "ec9fb80d662f517beebbd8e583496867d3fc78bc1cf20da1e90cdf63131aebdd",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 86,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "736a34995c51de6ac68b00ef175b355682f9aa48fe5ac0cfd5149b69175e08ce"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1689,
+        "class_key_sha256": "ed16ed6a2ca27e62fb9440fca9790d0895a9b6c6a85ee021933a555d3ac2d298",
+        "equality_signature_sha256": "19b40315fde7a70e36dc33e9678256a9ec188288e54675afd75be53b95ff2c82",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 87,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "cc98ea7144fb7a29ebca628e1b451108296b63c945f94ffa6b69b8b3ca80cb6c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1744,
+        "class_key_sha256": "6f4bb32d8cc0eedba569f83424745f9dc2f2135f60761ff40cb22a6cba52fb10",
+        "equality_signature_sha256": "b9270aa1ca383ea625ae399465864d9dec6e04fa6789d8b8b033d7dd5d695da0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 88,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "ea9fb21ca19a8259337f455164099545de254d4ba6c86a69e4cd5a86503de97a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1745,
+        "class_key_sha256": "35e4760371a352c01469d85719c2c9582ac4b830fe52b3d51bdae5bdeadd4b71",
+        "equality_signature_sha256": "aebcdd9583da205d48fe289f0867dcd8695884ff494e8f745706daf8f3843c46",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 89,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "985e8740db7151c266de962ebc97ae72933939afc3179b1ae6decfdeec7db32e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1752,
+        "class_key_sha256": "5b98fa8d4106329d74b4d0e1631a928e42f05f8836f3355d393cc769b2c12c05",
+        "equality_signature_sha256": "4b31f0e3ddc79a03e7925d0b2782f2dc168ff761ec46e403c3efbc3fb2b13702",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 90,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7516fc7ebf90257040ca3deec9fe8068d25effb93f3e580b75b5c2d873704b0b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1753,
+        "class_key_sha256": "739b8507caa85b816292ff3193a061927a19ef4538dc29f3d639f2ebeaf0d6e1",
+        "equality_signature_sha256": "678fc18c4b5cb65f85d8a06a0cf497be853b302d4c7ecb9bb45f840020d9e5a3",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 91,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "bb512d01d10bfd6cda954d400e149dc65abf004484a5282880cd2bd31c72fef8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1777,
+        "class_key_sha256": "17b08b6027e5d9471bef469de9daff4d6c66b36659b6a4bbb794a296e123df2d",
+        "equality_signature_sha256": "45ef5affbf18c413c235a312d8de4e6d63eb9c5eb2b068ed6881a90d64fd4be1",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 92,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "56139ffe8c42569a8e0586b10c7d697a77efcd2329620172ccb51e824e2b11a5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1776,
+        "class_key_sha256": "26b47df63876c50152e791e0cf4598e006fc91ec87b18565fc47d1872c71fc6d",
+        "equality_signature_sha256": "74d8e221cfaf449c953ff08a3344b38ae91636b756f9872b650ec070f0247bfb",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 93,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "3d4f0a3db1faefec65a13d5b410087d3beef78f338b0e2a2e4a566105e563ec0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1768,
+        "class_key_sha256": "1eb58813a7d516423fdc9f015e896cb75190a4040dbda44470f7c42818891057",
+        "equality_signature_sha256": "e363e08907fdee91e6e1a5d26e944e6e06cf01d877c300bc6c67dce4a32261f2",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 94,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "52e0ff67d1d47cb525fe905aea6414feb2cc87ec07650534320d842def5450c1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1769,
+        "class_key_sha256": "30b7ba8f645134f69b11519e200cfb68ae343749e357151e0211458f45447fb3",
+        "equality_signature_sha256": "0c749c50f55bf04aef80f26decf7e2a28f5759d9d203bd1df2d5cdbecf2308e8",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 95,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "b75e4dae4436e32e5ec80f6277072a8670adfefc3a01bb658240670da5cbf983"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1792,
+        "class_key_sha256": "2f6875b1ff9eb052e0ddce6e7c14cb1fd0d62d757f3acacc83a15b0a45103abd",
+        "equality_signature_sha256": "8d135d8c2375e0fd9b947acbb3585ac0886ae9ead14547328757684f4850ff5f",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 96,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d817dcdde039dbab4ee4816dee823c06ba2bc0982651be20f717b4658165f76f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1793,
+        "class_key_sha256": "48e0c491184079492519c83d2d0160e6962a2f5d6ab6a82b00cc25d08e40f4ab",
+        "equality_signature_sha256": "50a91ce0fc90a00edfbb41e4dd737d8239ee198527de5f1648283d33377e1f13",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 97,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "fb7c1650a72a97ac0f08e4024c38867b8f4ea7a5051d5e4514688b4e6becfb28"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1805,
+        "class_key_sha256": "c296a5e4505d031511cd0e3b604094883b21c1899f2fc5c0d7b466fd606f4d11",
+        "equality_signature_sha256": "d3c3456459a9f92f89aa71714566b691ddaaf0a29dbb8a941f44a613e54cb43f",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 98,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "c8df7901b4e9ca746618bb46becc42fa9aec1dc6554518a32cbf5b33aed9618f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1803,
+        "class_key_sha256": "b5ab232f8f586af3c2e6393f7cc4bf1b8e83dc58ff870390ca6b1092ad6859dd",
+        "equality_signature_sha256": "8797b9d46c3b22020552082a4026207bd828085fa9ad01b2c97b7f253e073b49",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 99,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "193f9cab297119c46b25a689b76cc0d24a8ac8ac0dc5c8db1d9a615c90f54807"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1806,
+        "class_key_sha256": "19d432d237a8b4b9b2ba597a2838ecb8f9b560505e7d1c9e86f661fc632b17e9",
+        "equality_signature_sha256": "04c0c8f0b3efd5760fd4223af2a0b6a9e424fbee70c6ce00ed9ccad032cdfb30",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 100,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "83c67a1c0081facc90af2d35434878a04456710353dbe2acd2bc42cf1e4a4d73"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1808,
+        "class_key_sha256": "4c10d76a1f5c2642567402233fb2f8659d5ce196e76d401c80032a15f7b98ce1",
+        "equality_signature_sha256": "718edcae6468b92272be13203a47a5d8e5474c845e29ed90a38b15c16b8f2642",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 101,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "a9f32d4cb36c63f9a3dc0bd705bd37c16496db09a51540e62b3c45cb75ddbad7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1800,
+        "class_key_sha256": "234f718e8c7e5605c24703ff0b7279b96fc8485b7abd5130f7e3a81d0502f72e",
+        "equality_signature_sha256": "cffbf4191c1714ff7a28e5af1c87e0384aa1a5e9ba53f43bae2f4d6d1808b9f0",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 102,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "6cc50829bf93185c972cf4741393710bec2299044d529852d0b18db9998263d8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1801,
+        "class_key_sha256": "0c6773fa5da93a37a5a1dd3ea85ef1d9cba0b3c5f69c0d8575b1436c0416013e",
+        "equality_signature_sha256": "c890621f154e8d61499bc386b4934d3acf59e01626e73d0a6dc6aa8d11362b93",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 103,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "7fa56d2a97d248187ce75d2fe595a79c2f2af80db8d1b5bb0c870b8cfe244093"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1830,
+        "class_key_sha256": "a908f676dd023d654efaad322d5e7d5a97f2fef2e61abbf241ca54bfe515c8c3",
+        "equality_signature_sha256": "c51ecb7e0e39f45d8dd19d5de7d5f7e41a90759795e6c8fe4a59e85bbe2c7e79",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 104,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "81b0c23475b2375f5b0d004cd2c61912e9ef57511f8a82caf3e21ec34671e23f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1832,
+        "class_key_sha256": "a659d07b329f3b14b214e2e5260ff2447d5aa8ce22c6227c929307988321703e",
+        "equality_signature_sha256": "a7401e3bacd74599cfcdac7052ef6376a19babd0650d675349a893052df62573",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 105,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "e1538c8b9b80cb6b379301fa140ed112b638b9ee5adaa0ba846e5036cbee1a6e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1996,
+        "class_key_sha256": "b4ec20dc49d22ba32f2db3e59c2106198d51b52f454553cd6a8a4e4c2530e556",
+        "equality_signature_sha256": "455735d4fb7955de3f8b8f9203ea82e2420bd712de45790abe082187950ca2f2",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 106,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "42b9f9a680d84d046e3ded5f09d99523bd333c3ba182b59a46458b7e510b5b35"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1998,
+        "class_key_sha256": "8daebff8ce4809bee861cad77b62fe8126fbd2337128c340d5b89a1b4c34b0b8",
+        "equality_signature_sha256": "0e43a2338144460f13e91d7f79d8865ff8a0ea695a8dee2899cb78faeaa18dab",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 107,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "80ac01159b7fdc61637d965ef96b33a98e03d4463c62f0a31ce22374590705da"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1995,
+        "class_key_sha256": "5b2fa526fa9cebd492b1e6d1a9c0c83dd2f455bc0af6948c9568092a6cef2c5f",
+        "equality_signature_sha256": "43d4fa47f3e649c46455d7c0d587d8271d927f1159c2cbabb749658dace4a328",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 108,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "f1271e34d1afae80d2f5f707498894a3f14b8df03943c876d7f2429b88221a7b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1997,
+        "class_key_sha256": "d8fdd72d36f96d7624a9cd25f9bd09d0d78bca529a0bf0be9c75cdc7b3dcfb6f",
+        "equality_signature_sha256": "fca095a4a33bf139485b1ce97e46042362d393c4b8c15417ddcea2b6ea520719",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 109,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "cecf32c502d43b66fbe479d888133b98469cc5a65db6b9a05dbecbc870b49df4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1992,
+        "class_key_sha256": "5d24eaa64ea20c5d7f1369a16a6f0e1282516f662e35b97141c3d7f67bbceb94",
+        "equality_signature_sha256": "6b358fd487d31c845e66d106e50c55dab4d0a032744276ef908988825fa1563e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 110,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "a679f84c31c2cf589dbaf5d5b0c0ad533d40a9c0ab5c751b470cc0bd1118613f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 1993,
+        "class_key_sha256": "c39323ee3c13c5e119a51846eb7963ca63d192a586acad68bc9227c7c3e2845a",
+        "equality_signature_sha256": "80ac5f06cb37a2f748487080c1c3f3d80bdc6f7566e1bac2dbdb06427fef1843",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 111,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "364959492f23cfa13e68c2941459e7f73638d8e248c9610cf52000c145174810"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2013,
+        "class_key_sha256": "c797bd0343fe0db4fab9e45d11ab61bcddfc7c8e4b288ec46597a607642847d4",
+        "equality_signature_sha256": "d7d2303542546186e83a71713f87b8b03a6340295c458333e6059f90441a2544",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 112,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "769e868b03596418a6cbad986b588e56fa19571723e11c35ee43c1859e99a212"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2015,
+        "class_key_sha256": "de0a7363a6f616ac403c1fe206d994226338cfac04ec6cf25e63b5911cfc1af4",
+        "equality_signature_sha256": "145849648b7070a3efb5025209b21b73eda2b3be6b3d0a91a5aee9063b9cace0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 113,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "ff4e6c2b77579ab41947d59df25590a2a1bd52193244ffbea13ffffe4f405b3c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2067,
+        "class_key_sha256": "68229c51a413ddb3bab3de9e6f22c816e87f05c61b39f0d6524e847ed39fd951",
+        "equality_signature_sha256": "50dbac831840e95da05a246569ccf8583d62d403068472e9ddb1fd1f02132eaa",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 114,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "17f5ef5509f699e0da1f883da534cc88dd1f7ac66830b5ec911c26c26d5ee3cf"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2069,
+        "class_key_sha256": "8e722a2e1e97b1cac53c553a12a7a1b3d2947048d1e7bb48c1c6f37a1bc2852b",
+        "equality_signature_sha256": "d01bab23369ab4927fcc13bf489e0be144ccc244dc342f5ccb6a8e529d0d9489",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 115,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "fe1b11233d1ea434a8f0eec7377e5a57f907e05fbceaded3a9ccccb0aaaaeee8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2076,
+        "class_key_sha256": "3e7c767e5aef91b22a1c58f10245aaa27235cde429dcc57868ab2ed60247f5e6",
+        "equality_signature_sha256": "74c783fbc5b24c072a2159f7776fa40e7dcddd93deeb6bd79837d42e6b16e86b",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 116,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "1e22d6c1f4d1196e887ccf5a0d075e6c71e66d22aef2c500de7f7b06b07d20f7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2064,
+        "class_key_sha256": "e323e6d12ea314114dbd210476f0c6a74a81f2547cdd7e17f144452ea35b00a0",
+        "equality_signature_sha256": "85d725d7bb640814033bb39b7a373fd0b6385c1d5301898a71d6ae74cc940278",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 117,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "02fc281a289c28022c5cd2f696fcdf762550db3db4fd9d2808bdba3ad6453db4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2065,
+        "class_key_sha256": "3e158fee8f42fa4ab598fc010be9bfd2b15da812c77549a99f95409d9b2a2e76",
+        "equality_signature_sha256": "07d014d3794776a7bee8d862c82e1075b20d062de0a6c31342d41f5b6597e471",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 118,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "37568370409fa5ec6aca120fe2e1a45bb02827eec47274d798123e67a9211dc4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2080,
+        "class_key_sha256": "44eabd7b75b839636f71e3bc9a60b0a4c290b8a1bd43e298505871f809ba893c",
+        "equality_signature_sha256": "bfa2a042fd172c200449876789c9ced243e7503f88faa636965a0fac7bb507f0",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 119,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "eb3cce50f3494a68f41f5fa48db8f7394eb6bbd20758d12b7f218b4a04cb4bd6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2070,
+        "class_key_sha256": "3b40840fa1ad2f3b15d0e2f44431290f740b3f1a365c09a2c2b57340c40d9fda",
+        "equality_signature_sha256": "b6306678328d4a492c167c68469ceb64b99b2450886dbc544763c9fc56a26006",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 120,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "c453692897115e4f859c4150db476f9f0cf3debf91ae7bd711d02f18ec078b99"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2072,
+        "class_key_sha256": "d89fb04b8b2dcfb9f393e577802be7c8f06ef28e2313a0f20036c9dfb775c12d",
+        "equality_signature_sha256": "58287411f0292b1fe2fb8a915a424af765fdee0f2fe756f6d2cf4a7238ca5efa",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 121,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "32ee2160a620ba9ddd1ec03b4de24eb1735c420db05d575803c09744f3a6ee62"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2136,
+        "class_key_sha256": "ee964ed37bfa42023e76cc186bfa4dcbe5f0e6b6a8d24c30dc8f06da9b0cf08f",
+        "equality_signature_sha256": "2234f29f6ebedafd302f886cc46bdf96406c2f09a2ef3ba3dd70fe306d9cc373",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 122,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "0b98ab08e13ece9e08ee9d372c292bca6f77050ef43297b473d09f6faacaaa44"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2137,
+        "class_key_sha256": "a515f587004c6f8921ab91f713dcea9cea652ca466e816c6fb4bdad7d6efc1e2",
+        "equality_signature_sha256": "fe99a57dedc6a83addfaa558681e504a742de3fed95582896c62f54344cd7f47",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 123,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "efaacb3d1768f527501faa5847f03ac484423cba6d515ebab7ed22764361dc2b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2139,
+        "class_key_sha256": "c4ca9529e47e9bfebe9388b30cb5c3faa5913433b97ab9cbd306c32cfceaf06f",
+        "equality_signature_sha256": "ad9b33d041d0b94b16fe8d200d4a5a027e7deff12a5ba681412687a04ef794cc",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 124,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ca054fb8226da0fd112750dfc53a580aa6f1e8c8239217a0b204b18a26fceee5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2141,
+        "class_key_sha256": "7a77df6aa8460b33a5e890cd4b7d4846306ce42187a7c918bbd8c386d36988ff",
+        "equality_signature_sha256": "4b63fe16be8ff65c712d3d9fa02835fd61e1d4bb9b451c65d0620250d324de9c",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 125,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "27d6286f00d667003198a229061102238ae1a5ef717e35d9eb72e28637429263"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2165,
+        "class_key_sha256": "f5c1b8aa3ac3fb50b7f997da3b3f0ce4100556bfd5951aa078a66ae54fc846e1",
+        "equality_signature_sha256": "431818ec2a6bbc6b5f96506d2fc3a12fba1604cdc72045bb56d3624bf437c33f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 126,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "f86bf481929e6ddc748fb3aefe61c4aa13b946b5063ce4042d16c884f99e81cd"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2163,
+        "class_key_sha256": "2d2953eb5489ace869f9617f80186cd400b365fa45fc3a21975b6303d7869d98",
+        "equality_signature_sha256": "68969381f453d04ec92c0d1555ff0f94399e9f1752e3fff6cd409912b31f52d6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 127,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "eb783dee47aefdd879f9ba3203872592e7106dec646ec389eb53041067b26866"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2166,
+        "class_key_sha256": "ab770e5614e697b089bc9bc9660f76d16605cd731947d21bcafc56f0d0a9e7c6",
+        "equality_signature_sha256": "78e9506103644567487f4f14a9dae96d3bdc7622693a5f79332672aa9d9bf3d0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 128,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "5f904a802c0c70e7c3fe4573333b74cea89c2c213ad81f34c3918961719ef498"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2167,
+        "class_key_sha256": "a41975b787cd4b9afbc9edf30a2387785c28d6672b595f6d78181ef4ca647f9f",
+        "equality_signature_sha256": "cb9b181b95669f812cfbf92e900b156b17ac248a591e2b2d893ab0d98b5d12da",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 129,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "71b57df88f19c9a20a5f2c028e48ae0f24f3945f935313f2d9713ed7fc54bcef"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2160,
+        "class_key_sha256": "24c9ab6dfe657e8be81fe0e3cd7768fe64def0aa7647dc0f35e193abff85847e",
+        "equality_signature_sha256": "8e56791b3440d55aadc156b0b10a2e20ba4f9b01435405ef6bd474c6d712caf6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 130,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7e460d9f4a7c84733d1c62699e586d9443f9b288eabbca0209decf0969965985"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2161,
+        "class_key_sha256": "0b7322424270093be14a14c29332bf26a97017775094d8a76ddbad3516d2a4e9",
+        "equality_signature_sha256": "960cff7fa98d46efd887814d5cd0b6a50e3ba2878f72ccfe1e56e1d6be003dfc",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 131,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "277f98669ed1fecf2c9079add92129ea6f9cc76c94da356d70f482afc45c549c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2181,
+        "class_key_sha256": "297d74cc5a3abef6ef64959b4662874b3e5518a5d5755474a5911c0f5525dea0",
+        "equality_signature_sha256": "dccf943a65f57a13960641205a712f3e56e2eb4c994a6403b0d5af2874974b0f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 132,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "aa152896309ee24b8e4770e6aff843e4fcbbe73b5945ddc90ee545e9407bfdb7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2182,
+        "class_key_sha256": "02f30245fd41705e1937c737ecc3ac08e653bc541a1eaae672095676843c6801",
+        "equality_signature_sha256": "ad3792a6cbc8cbd4c2206cae84a88bf3f75c9673ca93e97377bbfae7ca812c4b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 133,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "ec65a643227f6a6496b67f97d589075fd176c19243e53cc64ec3c3a662bd05c0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2235,
+        "class_key_sha256": "0495651de6211d7894aed3deecdb7041fa2a8a01cde3df722a1bc6920dc9cefc",
+        "equality_signature_sha256": "1f8f3c1247b97fb2eaad7098000467a6776e4e4c28a7eaf2e6fa130d91f8a35e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 134,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "7d1e61f80b4e0b075e0739a611b4f5904bdfc53c39b11ea95219fde68b1e8fea"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2236,
+        "class_key_sha256": "58fc8daf14f075220b586acfb1c56328253fdf236f100f00fd13032083764b26",
+        "equality_signature_sha256": "5af2fafba42ac729b837244c8b268d265fe91378cb4a431bb9b4253642c84804",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 135,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "81d62f9fcff54ece2f9d1785d3c6b96b1c89a29358eefa5ae9d8dc11a82405ad"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2232,
+        "class_key_sha256": "2b8a0f828295f9235a11adf9095c32ec65e088fb1fd3f031634fe5c14a368b0e",
+        "equality_signature_sha256": "59b18e94befadbd04c2f2e77c4c12e3d29b4bf6adcce938084c6909dcd351b15",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 136,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "afe281342b0c9c006f8bbc0a75ac1d10772e8070ef018b7e75903cdedc174ebb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2233,
+        "class_key_sha256": "ca9ff686ae613a81f6d75fa1ddc3d6f57bdd795ac7a587b442f76d0116d471cb",
+        "equality_signature_sha256": "e192a25d85260d3773e9affa4ad4b108181d9a2d3b7a7c665aee07e84c1b3e65",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 137,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ca625c571374d6070dbeb2dbeb5837145f8ba29241a2c8dcaabf0f9864354da2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2244,
+        "class_key_sha256": "5ac39d86dc039a7330803f07d19ccb1c9d975cc891139cb34cb3e9e088425893",
+        "equality_signature_sha256": "b5ab126c58d1a9e8c38e1cdb5dd8b140b8d5ac5f4e2df7aad211f0e137079ca6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 138,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "54b8949eddfc4f5bcdd9afb3937b016889f9f28cddc93e2e152744967a849a5d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2245,
+        "class_key_sha256": "27c88ab8fb8ea360cdff0e05596cb55894a9fc2ed17287b4c0d1559b1a20179f",
+        "equality_signature_sha256": "084d55aa04b03dc40aeb373e2dcb3a71c5463952e3b134c59a42cad79a515bea",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 139,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "769a26dbb8b41e619311a5286d7ab324728d0c3225728363e0dc35342f2f6c50"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2256,
+        "class_key_sha256": "f3af0239676b56ab0ac8e0cd4abca001ac8694ad5841f1246ea21a69409919db",
+        "equality_signature_sha256": "a4a4517e8e2944eae4c52ed4e204921375d7b8f55259c609fe7a4545b39530bb",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 140,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "75423561ff055dd24f5ce8c7beb583e0e09ce94d0506249c75af114aaa4dca42"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2257,
+        "class_key_sha256": "d61f6a9f088db273e0a9526eb56d30552758c348092629f51fe7fa3b7d46301d",
+        "equality_signature_sha256": "ea4198c1140e78782c73f8eed205d91a8c980dcc9917ccbd5349aada0abe8497",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 141,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "dbe36315565efb35295936e335272b25f6ae4481b3ddfdefdc9c34ff1f384ed2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2262,
+        "class_key_sha256": "785190048c57f9c94766cc087ea5eacb9e750a2017f27df11825a4f622ddb9ec",
+        "equality_signature_sha256": "8fc6bf5b20f208c3be96916dc2ba1f5672dc5afbc4799c92afacab5a8463c023",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 142,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "cd9f6c733c7ad0d2ae5081e3272529706c040f5a2d8b7ac65873cfa5d2857930"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2264,
+        "class_key_sha256": "f1e6887ca2aa0500b15425e981f32c368ee6ccf175ce13771d98a3e846736a22",
+        "equality_signature_sha256": "52df8cc9f6ce6b8a4565083583dd1fe0eacc42e70f6ff4ade7c57707f9b56904",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 143,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "84715789dd3ddb42d5153d976ef35d1db2998a0a3eb34874a188dc3af5613be0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2268,
+        "class_key_sha256": "02dbda8ac2128ef704077e5c0e3dea59d31d8437eed9ee8560736f878b7d4b02",
+        "equality_signature_sha256": "be13ce94f3a6176bc507b64455f5ab32e255e118916b41e526c3bfcb8e187b2f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 144,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "e49f0c04b26b798968b2a2571479a980e542ae5ef64d1e09940a458d96472dfc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2259,
+        "class_key_sha256": "26b145ef85b030807698054ce3080c3723019c80838a2dd458890ed01ea0a614",
+        "equality_signature_sha256": "f9e4e31a563307d7378299536aacf9a4ecd5a01fe90b62cb4d4dca01861c7789",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 145,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "94f36d7f98b684904b6858ab7400a55edb9091d84a3413f0e01f904d950ff17a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2260,
+        "class_key_sha256": "2068e3585e459d500806a128f112e16adf4b6c3eca9e033f393c9d3902b38fc1",
+        "equality_signature_sha256": "e1ceb446038fb22d0a25cc427fd287be989b31bc1230515bd87d9c48dd257e97",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 146,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "27bd6cd1d67b17802658b98b81bb034495d2e722b259588ac344496ca7a8ebcc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2270,
+        "class_key_sha256": "d5a938792b527d6c11674e8e53764eb6363879bcba526878df407c114423189f",
+        "equality_signature_sha256": "b06ed98233bcf81dae70f590a5f677e65617a83f586791a886eda236c2ec254c",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 147,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "4bd8126db7cae290fca8c0166f5be6b1f6ed3af06c53338ad32e939e97b0fefa"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2265,
+        "class_key_sha256": "134744f40e9f39874d47ce46be0275df51333978e654abd4c54e122fa9833dd2",
+        "equality_signature_sha256": "a8a7cc2ef0505612d6a6b0d50c7da5655eea67b5689d8287ff0549e158221e9b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 148,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "cb24b2c712e4710d8654b9e1da3d95cb78521e6d944a2e5556ba3a350a5ac5e4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2266,
+        "class_key_sha256": "2c80575fe6b76a027d67f366e97a3a3c4dc8fafa2d41294162aee978082c28f9",
+        "equality_signature_sha256": "9c5c0ecaf21eaa3fa8e36a4d95991908d6a34cf77849dcd19739787fff5f26d1",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 149,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "15d6c648deaccc1ea59cfd46f84963238e48793023c7c211d4432097f77b700a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2286,
+        "class_key_sha256": "2fc5be53c58ca8f1551c39e74461f9e719afe3e70175e5680ac128b309c52730",
+        "equality_signature_sha256": "1f2b83d7c114a2b64441e05af743bc5b320fc4575bed65ceeca1ff187198f76d",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 150,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "d3d387424613291aebc74b34d8bc6eecb3ca418e6e5b6842bc187c0e6c8cfa1c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2287,
+        "class_key_sha256": "bfd6808e2241d9d68d7881a4fd831db0ae800d0c3abfb5fabbbe203482a305d8",
+        "equality_signature_sha256": "010f8491d673f928d47aec2f308d51950eebb4b2ac673e6e3ff7424ee03da8e1",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 151,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d77e727b22b871e83d291a56e8b29a11dcc178765ca69aa665383c8c2c248eb5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2289,
+        "class_key_sha256": "06524503e31b41055cb438aba6d1f225d268c72e4a729545c844cafee05133ea",
+        "equality_signature_sha256": "95ec5ce732f3c425f6470c7b6ee07374d95d83e3ecdd28883afc546980dc6e97",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 152,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "69ab641831156a62f8fd6ce0cf466ca79bab1edb8a116a22114fea05ab62ee28"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2290,
+        "class_key_sha256": "da46695233276a1171dfe22a13d47b9a8cc4d0b5fdcff30a0d4c8cd59d289192",
+        "equality_signature_sha256": "f83ed06d0a5e163683722b6bb00b5c3b213635fccf8809ba0d0434bfda11a727",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 153,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0169034067e831faf4b9e873a0e36f11ea74ba25083f24fc617d8528799082a2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2296,
+        "class_key_sha256": "07e664093c14d7c9fa565802b4f3836ab34c86177754fe51f61a176f60931068",
+        "equality_signature_sha256": "e00f6cf0069461f9cc387d2680188618011bf199c69eb92511b15a628da38a0f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 154,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "a37b30fbdbf9f1098544a03ce9c0ac232584aa0028df5bd0ed31ea08b5321021"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2298,
+        "class_key_sha256": "c2ff567935afbbd4b30eb079563a0955c734507fdba0fcc1939300100511e0e1",
+        "equality_signature_sha256": "a47406ebc5c0e8a973ed1d68f9a5fc2b81c581d578215ec24872954227617a71",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 155,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "b106f98d8b4c3bbe832f0e4c3b30ef3a98c4425acf63e772e3637c8a60b2e8cf"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2295,
+        "class_key_sha256": "f7227f74404207f8c56946896a562836db1234f9de395293a02fc38ff98e6fda",
+        "equality_signature_sha256": "edd3c7af95f55bc12c43c7d58d234bfe224862cf9859ab19a8f49e8702e799b0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 156,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "f72a25fc5ce4c077cac1b3099f0eefac6b996a5d231ba0a5b297ff6c7df15ad2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2297,
+        "class_key_sha256": "ee21a2a4aaa5d32f835211c271b87098ecfb22498cae6c6537048f3aa84bb3fa",
+        "equality_signature_sha256": "778026b2c07ef416c0eb795632321bd9f0e80ff9963600aeb98c894af7786e64",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 157,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "62fb03f3739bb7c81b60b7164b25c50ced4ab5bd893077831260bbe71b67c473"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2302,
+        "class_key_sha256": "d33a9f5e49da62034ac93f561070db9f37c973b5447710f5760a7b5de1186f78",
+        "equality_signature_sha256": "26ffb96430cf90d76eb860c74a0b128615ed6ed1b277be5148ebe3439ee6b46e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 158,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "9984c6abd38f682bead314f5fae0c6cd9338a6c897a55694bd1c60e0a27747e8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2304,
+        "class_key_sha256": "0d368caea5c8c1864a9f24aafda4863fb6512e0e7e3537291af61413219acade",
+        "equality_signature_sha256": "1ca9b61dd450ec481a36442d2eefb5fa6ea2b0c8b64c9fe790d3deeac9f26420",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 159,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "9cb6d538b9cfcdbf79b7d30171e802a6bbdde33f667d38b6c371098cb6b05518"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2301,
+        "class_key_sha256": "8ff005c2e0e910d76fd92cca16f4054887f8b2d74faa7f2f92c481d68f896468",
+        "equality_signature_sha256": "137605520a6a7dbb31382de721e0355018b069482721972de2af000dca1c3b20",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 160,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "49a4481ae1ff7cf3bc90b9ba4dd066d02a6175359052ca457535d9485e69880f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2303,
+        "class_key_sha256": "f75b5aad27579b5d871a16f362bdf67da41dc8d5c25451d71ffaece74b875b10",
+        "equality_signature_sha256": "f9e2e03fb3d9b0ce60e3db87d3edddddc30098379b9b092672aee8c5757976d6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 161,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "35f9d010e7b39a25da7ebebecb97dfb0b1826b6d9175311ad713f4f78fce704e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2368,
+        "class_key_sha256": "5b9ea20a1d35a7aa5bd648aeb52a4f91ee53babb898241f9af40010b961ced89",
+        "equality_signature_sha256": "60d0c5a0e6230e8ee20bed4e19607f9197b167705e2467a87db66a0b1e0ecf2b",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 162,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "37200358894953180a44f1c5db8fec3abe30a1d7a9f5c14b23d02179c52bb33d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2370,
+        "class_key_sha256": "ee4cf83f6aeb1f65de98113bf37a8436e75466de799c0bcc7ab6041e754628fe",
+        "equality_signature_sha256": "111a993fb0699964591045fbd17977bcaa95590bf03512bf72ca424eec1acf27",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 163,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "19c9acd3bb916eb75b11e21cc3a0be5d6d02ad59de301563b92898987d3cbe9c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2367,
+        "class_key_sha256": "2141a8aa5b0fd7ed92733585a9b0b38994ddb106e9a4c056ce6846ac4f72fdca",
+        "equality_signature_sha256": "e040b42c7e6a0dedac3f38eb2701c1a3e5f88f8c6a061262478f12cdd92f242d",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 164,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "25471efc709142dfa06f66bee026d5f6a2fa01e73c37e735960bb323524afe1b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2369,
+        "class_key_sha256": "f6b3238e8ff2efffcfcf55c72000fcc490b5aa6dc61e7bda42347466531a62dd",
+        "equality_signature_sha256": "5e4557789f996f137fab091a82b9cf566fce1f697eed5a0d6be304e1004286ba",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 165,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "b3cca2d7c0ded6899f475205d291b65b0a91cfcee1a55b1b7f83cfc5f5180b77"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2374,
+        "class_key_sha256": "6a81cb043473768a2cf332c3159e27d1c76b3ba8146032fd4785ac9baadc6045",
+        "equality_signature_sha256": "d53f3a7a0f7ef6b95c8e83a0d444a59cccbd33bb6f905754d12d58d177075a4f",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 166,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "651ebeaa7619fa45b2d9e210cc4a1f0345a1243f6794d38a8d446d2e13f0887c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2376,
+        "class_key_sha256": "c497d5f758c7fdffa7136726eb662861d40027f9f985b37c87b94eef7b2b7413",
+        "equality_signature_sha256": "51f5015bbe3f46ff1ae2925b6fd5334a30bcd6e8e1d06db5b6c4825eb6692b67",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 167,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "906c83c158c5a0948e2b8dc5981226c59ae33227460e413fae52d3d9ae7d32e7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2373,
+        "class_key_sha256": "b80253f1e3c33e1205bc25dbff018977c77eaeb2f7134288b01f40ae4757deeb",
+        "equality_signature_sha256": "677e1a7ed2c1450a3dfd1a302e039236afa2228f179de7527038eccd0e3bb5ea",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 168,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "21fa6c0cb82235aef31226621ef8f6fdf84aca56e88936317862b0890f2e6254"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2375,
+        "class_key_sha256": "b7c8151d269334e3e54e7aac4309cc8dd7e4c5933b560524163931835d34f093",
+        "equality_signature_sha256": "c864f8f99bc3d75c109539081fc7322f11793069d907e40a334f0020b5534888",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 169,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "370688c9bb89153ac75f11da22fcff95a54cdea986dc1366d228ab6322860a64"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2401,
+        "class_key_sha256": "b86c434346d9babff98afc367b04803265c517e9fe38b6f57f456ee0d564e845",
+        "equality_signature_sha256": "35a83d54430472b86bef7fcc38f570c052fc657b951c26afb0dea4d9e2955541",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 170,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "a1334220a06c6bb79f75bea047559eb0ffa610f9a8bd9daf4b14043f66cf0338"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2405,
+        "class_key_sha256": "4ae038ad9af8c5865b585a048562acb6de14f4d5d035767e08bf5f307f7317e2",
+        "equality_signature_sha256": "4fadb72c0c49d767ce51f8138550b2925d6b72b25340c1bb2962f6883ff29de4",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 171,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "18e8bd53934219e61d0b0b1e03fa86384fcd29ecab0f80eaec0339095f9f5b41"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2400,
+        "class_key_sha256": "1f0cdccb7a38479faa4d310d03e22f19299cd3ee39b28d6c53c75e9db2578728",
+        "equality_signature_sha256": "589a207d79f0cd9208cacbdf13c29c2be947811547800dde842aa1329c56ec58",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 172,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "21c210584b1737d7713819ae5549a614b218e5cc94abe7f159ef503c76095822"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2395,
+        "class_key_sha256": "820f55d052d9cf61842e61c143d78680c970fdb8c8a4e879c5966f0ef56c736a",
+        "equality_signature_sha256": "790acb62c182e9e1a640df88fff177c8f697b8c339941a9a67608573da22de10",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 173,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "bc4a80bb0e4ba36ce7c15ce938f5caed7987db80394d1e1274b5b9351be978ae"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2397,
+        "class_key_sha256": "be6af62f3ee1853a207f1520b27b59e3e5dced515eb5cf5710d500a3ab76ecc6",
+        "equality_signature_sha256": "48ebc69ba7a98ffaf5cd3dd50517352a94352b69eae1eb751b0956d713902730",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 174,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "a367ee2ca2aa061819d6075161ee80c394e98e57d7b7c02d9f6e96259dbf6d05"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2404,
+        "class_key_sha256": "8566d3a8fd20b83f4733d696efa3b00e70458266774030e73f80d249904bd29e",
+        "equality_signature_sha256": "447e6c96b3fb0cb4bc2780b8c80a59dd89a9e1df901435f6249204889e96a12e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 175,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "0036c49bcd4241ea2de21f0be726b505fa476b959351e6bb339e4bba34850550"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2394,
+        "class_key_sha256": "1558fefffc733ad6af49ab5e21bf2092aa728ab0c18a068dbd56aa5922ef2e1e",
+        "equality_signature_sha256": "cc3659b19a2a8cfe242ed57c488c6aa8d630dc8cc7030d910246ec0e188e00e4",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 176,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7eee04c1a1166a8202e98345e9b53d7eb02c321a94e56aba5a205176fd72098f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2396,
+        "class_key_sha256": "a949fcebe842b158ebb1594d6f9fe306d0c7cfde96b84048ff9f26978f32a467",
+        "equality_signature_sha256": "b3a1b8da59187ff37ac4f8830bf00480a09758b2b58868ff602e1fd5463a35b9",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 177,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "93dbe48c29dcc74b509fbe1f1d31668f7ba7a32493d9a193267c9d60d11e8b56"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2422,
+        "class_key_sha256": "14059a47329cba46beba256ae503e86c46afc0abcd10099310badf8cde2e2e57",
+        "equality_signature_sha256": "a6165b1d671194c68b7288538e9934ec3636efd6dbe43446cb296976e8fe6d81",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 178,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "df95835c9a28a51f5625112ca81488ae5c2d67ed69406986daf98d34f601a8e9"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2424,
+        "class_key_sha256": "e296947f00afd9f16916c494777bd2f5802ebdd96f1ddb5ff886491fae9cba87",
+        "equality_signature_sha256": "97498cd0143d51af943d37d1a0a17c7f14a0561cca11be63b2d455eb3a46b93a",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 179,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "3f2ad3de716612adc4b10760b2a476f81a720a991214ff2a1a356ee41ef3aa67"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2421,
+        "class_key_sha256": "e8e4b312ad996b75c6e81573d2c7bfb89008a45087c4e7c9709d0ac15cac090b",
+        "equality_signature_sha256": "1da62f3a3cc28108ffa2b351dc45a5400592c4d567826a7a12af252de3169fb5",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 180,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "cd36b6253fe1419126271c592364de7725b353ebb6731724d68c3233abdadffb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2423,
+        "class_key_sha256": "3855184066df4ca3300a007b89deee016ce5db3d6ec5b72a9ca5179b6e12847b",
+        "equality_signature_sha256": "0afc8d68db67f04114318a6e4714c6875a42563a618a56db868a9fcf74413a45",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 181,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "8062883de74dec01e7f23a9c95e7f30fe6b8d262d0afde87670b947299b5b011"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2430,
+        "class_key_sha256": "c26968bf4af56cc4860ef843cde265be60871fb3a896226410c1098f4fb1a051",
+        "equality_signature_sha256": "b6d83ac4da3bf504d42a2f94714023c889851ab68dc33b9560f2fda49ab0f89c",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 182,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "71c5a3965ef09e79c471c9633f452974a3cc551df61aef0ee7f898da8084d101"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2431,
+        "class_key_sha256": "3cbe3d0a58cd750893fd62cf49e77516a352f83e4aa414ba194d2061752acb03",
+        "equality_signature_sha256": "c89638995129fb96930b3b00bbf9d97f6ff17baedaad9cdd10890c0d37a72ae9",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 183,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "3dd6e81adf36ccff917cfe7201ae8fdb8ba5e7198a11b4181350743c996359d3"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2433,
+        "class_key_sha256": "81a2e49f0e03ffcb91c030c17a821edd1ed22110145bfc60f45049faf853d5f9",
+        "equality_signature_sha256": "7bafd17ab2b9c3a90c8bcbc7e18949bcbbdc66cefa082a4c54b60bf582204701",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 184,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "a51f5eb75458c443c5ab7aed2e276051b44a49cea1abb4b96e852aea8a8d5137"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2434,
+        "class_key_sha256": "f6e5fcf593e557b2577b5e7e1a060454f81db45ea5ffa7e791413e2efb5f0628",
+        "equality_signature_sha256": "94918a310ac93f3f3daea969fce0853209529a5e5b0d71e3d8df55b550df46e0",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 185,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "4e87e16514c9aa4fb78b7f190580bf9375b2cb5b6eb3d8e639831ac17971b37d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2454,
+        "class_key_sha256": "f349ab95d506062f4f777897eaa59de986df6b873402499e3dfe45fb54ad672b",
+        "equality_signature_sha256": "b7b3d434a90060d19636577764b32217138a4aefd61e9fe323d0c7905d7c08da",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 186,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "f510ad42e5ee99bd7ab27446a9fb7556a9ce27037975d0278dd079c4f1a506a0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2455,
+        "class_key_sha256": "ebf45a538246de881b26a250985f5135f4cac849b1edc144ee7d5cdd82114ddf",
+        "equality_signature_sha256": "38c2e13452832177a13caf01e2217b7fe21f6fa539b8ded72cdcf7f5e645c25c",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 187,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "a5fc61a81574bc707048d0858d82b012c1fb0ea5dd00f118b62480ae8ec92304"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2457,
+        "class_key_sha256": "e718ea3cad21e8b3efc6c85517c019f01f10ebc4b061ac03ac120ae93e5b5cc2",
+        "equality_signature_sha256": "3243b1435f01cda78d73b7cf6fdf72c11db21114393368364aacf2583e2a750b",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 188,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "5c8f48003563b3a8f0906ee6013120fa75caeb2247fd44f72abda3bacfc04e94"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2458,
+        "class_key_sha256": "e16c4a446447cd35b27c45d22720369d2c84ff6f19d21c8705165a3731a7b755",
+        "equality_signature_sha256": "d979bfe27bc3bfd85b348ca3338812ad6667fce4b83a6d3bf3adbf180a5496dc",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 189,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "fd8fef3fec9b9e9a80ad986d84e524546424bb0e185e7d33d115e7ff473cc0c2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2466,
+        "class_key_sha256": "22445a1a14e8426f5eefe7a62b27c998aca9cc55351a111f23b05774446839a0",
+        "equality_signature_sha256": "539772b05ee3b81676cde0c0791ee0860e6cfe9a559a788f636876c472ede522",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 190,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "c54c67a7b355edb58fa4e4c7d6a59ec44657e0b0e8c13ff1eac1190ae8749a90"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2468,
+        "class_key_sha256": "d79e683a817fd212501c5ef14d4f2aeb3ff024a68266aa98a594a692f053243e",
+        "equality_signature_sha256": "26761d3d9338668b5bcb7a6dab413bc07c5b4041bd3f269c858a194f3e6817a2",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 191,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "b39978a253d7323cd514fffa0d50b2b5d9cb1c17642f1256795f7cb71b47bb89"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2463,
+        "class_key_sha256": "01c19f4f1f17543892e1ab944fd2e0f3cd801f9909983bee7c07aa19780eff7b",
+        "equality_signature_sha256": "c31f033fae0c289bfcbfcf208092497307806cb84ba0a6a4a42f86fbf6785c65",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 192,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "eadea1230742374cc2a7488677ffa7c1fcc33e5f7a2a85c98166fa9191b270a0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2464,
+        "class_key_sha256": "5446fd3452a28cc3ceb7e506f5b0b4aea3a0aa8b4d58370f5b1bbd9bb8000050",
+        "equality_signature_sha256": "971a4df24a89de795fe240bf5ae4e942e326554b76631962dee903db124ab45d",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 193,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "03f4625d7f0173057eff40cbb630749970e938dde87333caa17bcdb9a768e684"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2472,
+        "class_key_sha256": "467e2ea9c59fb15125c47ecf1411fcf375a3b3355e2f79ebdb31dc9f519d6b15",
+        "equality_signature_sha256": "d2627b804fdc3f093ff6e31961fb4946b3de20e390bcda65350162bd0c0f3b61",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 194,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "c8339753376ecfa68c0d09edee164b28dcf5a1731cee049a260982a63496ad34"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2473,
+        "class_key_sha256": "94952e2df37118c80cf35950306c87be2c8c10083db55f08214d31bd24d5c0bf",
+        "equality_signature_sha256": "215ffa422f31e9d45d3ca4ad9860cad0ad9be6793b125fd6e7659e01a52fc87f",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 195,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "52eceb3198b3fdc128eb3c2f9e9dbc325648b29925124fa5bd23907e0608b96f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2479,
+        "class_key_sha256": "f3e79dc36521bc547d7e34e1f2b0d3e5a0c43448d2fb8ddcb2b05a7c7e16ff95",
+        "equality_signature_sha256": "61c78e5f44c6002f8e3dd23d60d2319e3eb1f0dfb37064968d35cce267aa2fe8",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 196,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "64785354de0a540b267b849df94a499166d76e08ba29c85585e32596c35dc1be"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2478,
+        "class_key_sha256": "58f66e3cbce7eb694f0f3354b3612f03365057aefa620cc7c84a8475743a208c",
+        "equality_signature_sha256": "e83760b8646338ddee5c0b2f401815b5ad6d65609107270a02fde73b4193eda8",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 197,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "d6fb12b113bc1870a6d73a969c3eb85513dbaee8d618b45c09f114e72ae59c9a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2482,
+        "class_key_sha256": "c1602571227060d4a93d8c2d70e50a0d74ec6a3feb098c4326ce53750b08cc48",
+        "equality_signature_sha256": "5ffc83795b262db91383bee40b214e026ff8088bb74c50afa0cded72966578d5",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 198,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "43ede53fcb7040f4f8646a985768023a1984b93b691b4a8a657fd7979cd332cb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2481,
+        "class_key_sha256": "7c7839ab00f2f1fa47a85165a7862e02df16b1abe94e3b2a740362c967a30a35",
+        "equality_signature_sha256": "e34f74a6dcaa6a08cc2b49bb3dbdc06103f9f9d3a54dcc3ec369d571de5b7ad9",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 199,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "bfe7357c50c91e2020f09279fbcd0f0e256c7f42da5785927375af1b47f642e8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2476,
+        "class_key_sha256": "ee443a6d79186e97ed112c45972f2fe233809544c5555b07d7c0777b04c03628",
+        "equality_signature_sha256": "0284477da4bd9025a2fc8f49c72698b3d6bc225335737bd250ac31b26168e622",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 200,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "1c0f5996eac43d895e3120edb719026dfdfb0fa620c075d470fd65aa4f375863"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2475,
+        "class_key_sha256": "7d33b4c31f9f6809f107519987ca91930ed1a5a83d65bec1b706e64d7b1a2804",
+        "equality_signature_sha256": "f2849c2554abb56fc3b8e1b89fa6510ef2f6201ece70e238275e1761097b6cc1",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 201,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "22dc9465010b8bf58a48f44a85edd8168dea945150a5a67941e0bfdf660c1c75"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2506,
+        "class_key_sha256": "51040ad24b0b182ea9eaa842de5d2b559a441064e59b8e1f770f5e1f2105da95",
+        "equality_signature_sha256": "c71f0dcb3fd9c82198d3cfddefe3e165fd298f84583241e0014b913b0f0feac4",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 202,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "e1305770df85fc8d8b0c9daf4ae900c7f986617c3cdbbfd222976a4c78aa5483"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2505,
+        "class_key_sha256": "ce1cc6a7ec012cfc556242a126856dc7279d6210c803b2b9a341c9b6625092b1",
+        "equality_signature_sha256": "1241a921d941e76272a1a70de6b3b1fe1a29e836c89759e5bc9941b3889f0514",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 11,
+        "raw_skeleton_id": 203,
+        "separators_verified_nonzero": 92,
+        "substitution_sha256": "65e8aacd3319121bbc9c15ed58bcec2a92b188f812b5097f2c97715bc380a671"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2673,
+        "class_key_sha256": "c1de9e9545dc141ab8f2f106d308b5d7db9609dcec5883943d74d753829c1bab",
+        "equality_signature_sha256": "552a85a3f499ae26a82f0ed42a2284a3f0b6e0d2efd87b4fc5176cc7f4d47f83",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 204,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "9b4d8ad5e3c2df7250c831a38eed3a9e9670ee7e5f81fa58a3db90f29f448acf"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2672,
+        "class_key_sha256": "ca33994b22c7d03ffacf8e0b16f75a98018580133cba9e619d05fb52cd067bdc",
+        "equality_signature_sha256": "9fa162c763611435485701de1bb0aad8220ed0662a3e15fa2294732a12bbadc3",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 205,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7d4a43cde4c1b5f17222baa123d52af07db1164233c8b5fce05b64fdd99f09e7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2671,
+        "class_key_sha256": "5e3c58862f8e7824a8594886627671e58c2a2dd61ccb55ef26c275bf61c07243",
+        "equality_signature_sha256": "0022ab98e44e8ed2a2f5255ff372effd71da997002162e598eac56b1c43b0420",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 206,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "019c9e1700c941ab01f21d4d0e100285e674b52dce044b188a9505f5ee17ff80"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2670,
+        "class_key_sha256": "56e1c9929f6d02e24e79d39883a6a28ab54660822a7fa5cabe77522644564972",
+        "equality_signature_sha256": "9671766767294f4e18e18e7d475e8b34fdda21bbf32add248795c6604cadc552",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 207,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "b26894e125df1a62057eb5e8ff42a79ca3343a1208c6ba6f3d80f0ff22371424"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2668,
+        "class_key_sha256": "7c4e4ad538dd6992bdbeb4db460f7f19cd48037926baf5cef36071059603c44e",
+        "equality_signature_sha256": "b910cd3841e2c0d95f4ba83b12a30ae2b672ba0e276ce0cc2fbdcad16c46a849",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 208,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "1b796151a587fa00e54b721184b19cdc5b5bed6e6a65e4e8aa4f500b6861c7b0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2667,
+        "class_key_sha256": "a606b806a0f17324ccf2637eb197923bee7f2ce0116479dc5e8eaabf5c196afa",
+        "equality_signature_sha256": "521bb007aa9bc4efc93cabccfb2b3d79e81fec026e4a94f3b0e4aa475bac7363",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 209,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "f20b526de0f61aa2e140e4edc7aa73c2b9c79da63c6adf45e913d4844078a7d1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2689,
+        "class_key_sha256": "b8b9b37c55036c428bf0cdef0e04f83468eb5dd3e01abccadacbe7a2cf8b85f8",
+        "equality_signature_sha256": "7e43c9e645e6d68ff42f52648a971075e6a68a0c60ddcda543556aa79a21f7b4",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 210,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "20c1bc08e3602225f4bd0243de357c8a52823c456d1d3806d3766ae21568c413"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2688,
+        "class_key_sha256": "849b7eb5e8ac6d28ee7f55a067addb4b1b4e841618a2d2c105d7d536fe9d94a3",
+        "equality_signature_sha256": "11c06c5d7808424152c78758b79da9a07ee5f4bf40dc76f18c8052f06a2480f2",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 211,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "51dc9859edc6f76926f9276030b61ba4c13ba74845326ebd6eecf6d0453842f6"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2743,
+        "class_key_sha256": "a673b9bc49d86b200292805bee1d9d3ae4d15fc39eb036369c2d17cb391d9798",
+        "equality_signature_sha256": "c596c94983aff50a038f8c450f5522bdcbe1382434b9798794c89f20967488b2",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 212,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "bd88b89961d397061ad9f8e53171ffefff5b0541966c7a48923b65caea8f7c6f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2742,
+        "class_key_sha256": "e3e2b1c2ef90edeb5cf6a3c4a055fcc048d7d6bdfa28bf976bdc7bf81d93678b",
+        "equality_signature_sha256": "11044e4bf386a04899e2259a3c68a18356222e00cf9a0c9e0908e95c7da605a7",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 213,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "4ec25747d6cdb78be35d19e76cc9573bda347fff45c952b3f9aa02b839ff0e5e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2752,
+        "class_key_sha256": "709f4d00c8ff0f4b4de26dcab5270a0dc0347895f640ae87247171ec5dd98828",
+        "equality_signature_sha256": "f42ecd0d0d694c9c36e679373bcd2b0266eb7d363873689f5cc7139aa96bea64",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 214,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "31b0292b5abc676b9718586469f51df85f7b6912809b00ec547a57ba594c8370"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2751,
+        "class_key_sha256": "3e12b7baeafeec9a5ed1f871736b9681e7620f88fa77603131f978eafac413e1",
+        "equality_signature_sha256": "9d9432408ca7aff4e9f20cedb1b5beaa2b75547a39d74bf71b902a6cdd744fd9",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 215,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "f8e944a8f3d9391fbc234a071688d663be602a8b909df0d675eb3bd3d2120028"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2740,
+        "class_key_sha256": "b4ff9b977c7d48eba6786542e7ad9b08d08cd9cc0183e67c1235e5f9160cd03d",
+        "equality_signature_sha256": "ae0ee30a570b1ca2d70d3fdf2a1e6b08440b35dea5f0b84d5cc80bf836a4461c",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 216,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7fdefce0ff2f47afe68d4734994f402d1f58e011acd3ee126b1ea27e004d7066"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2739,
+        "class_key_sha256": "07f19824d6b4fe954676e36cdc0c7f414b91d6e634392b3044bb3fd6a8bd06c0",
+        "equality_signature_sha256": "70419e5bef598908f843b4cad377d70f6d4ddb76ebb61d5eef3188a81acafbc1",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 217,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "280e67cd48cbd3d4f04cbd868f0b4947672594c676e279bc78ed2fea7c06de51"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2746,
+        "class_key_sha256": "6ffba84cd8ef17a0a9ce5e2d4fd40ac55ada51387b57182feef419e2b6d60472",
+        "equality_signature_sha256": "ff4fe338d021bcf10d39d0c9d878fdac3f33bd7c64bf2c25748ee24a2f610356",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 218,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "f016fbd3f618c806a4a254d3fa11924b7ab4cffb4c527f0ba2c213d4f59225a5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2745,
+        "class_key_sha256": "f6e676894727bc947a0c3c8acce1f86ffb6adb3da684dfe87a2985f06c08fc4e",
+        "equality_signature_sha256": "62911b5cb5a484b425d3c1484886886b79129379d77583e5ba44e9bbff1ce462",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 219,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "174867e56b9ae85dfd363da626843d0ab98a5bf37f4029611a6e983449eba781"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2812,
+        "class_key_sha256": "48f63ce646b10339b9590b724b5097ba481622ea382d68bf615b1ad561929203",
+        "equality_signature_sha256": "63c0c39aeda868fa415dfe9f7cdb9e00456ff80a1a70099995d331d90110398c",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 220,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "652a4bf568377fae5fe3142da7af4901e1fb2efd0ea4f8f39749cf3b2f4a533c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2811,
+        "class_key_sha256": "e1072b5fc6d8d99849fa694b080c83fc1b4493a0cea7c7696b576ee6c81bc7c6",
+        "equality_signature_sha256": "9cc9a7b4ce4a2e03c0cfe5ca51e34c80431cd660e954dddaf84868a01fb029ec",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 221,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "a6d8b71d21db725a49e645359bf5d69edab0ca0b354bd39cdaf558e17c649878"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2815,
+        "class_key_sha256": "6a190fd8be1d2a1a28928c71f7616e3ec133ec2c4889f0a918b11b45d63b6832",
+        "equality_signature_sha256": "27cd213aae74159954c996b907af62f3398bb868d20f372cd67bf709f4f01518",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 222,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "047648ca5075a2999ecc8a9562bad754bdfe8921eda7f7871fa95754930ec7e1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2814,
+        "class_key_sha256": "2ee94021767c7e7cc18dc2606a7b71b18274e3e6fceab7bfce44d322632c6c8c",
+        "equality_signature_sha256": "8747f27b1d4bffad7b6839acba9de4458e223edc2d04c899d3688982c2dd88f3",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 223,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "73f9fc4c52baa9355dee31ebaf061974134a02453090dfa1d3e27c6da707077d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2839,
+        "class_key_sha256": "cd925148c6bb809a77213d6c6fd41cd85458d6cbc035f8578607e3fe03404586",
+        "equality_signature_sha256": "8d401d508eb71d0b8b1e3ff81271256e34e2d39722d1a6cb733a64ee4289565f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 224,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d40979b04b6f968ad1390bfd1b28775a6597e2c7b283e351ce4a5a12e07a163d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2838,
+        "class_key_sha256": "862b288dc80482507cf8bde5cdef74108967cd54753cc1ab27c3c6ade2507406",
+        "equality_signature_sha256": "2f7a24f3bdfe208653ddc5bf13f3908d56d8400b08ecc3251a06cbb71b3c4a72",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 225,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "e3fd2e5645b5073a01c79aa16efce34c3bdda6886fcfb7567041effc285003fe"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2842,
+        "class_key_sha256": "9a7bf62ab57861159bf3fb28629aae2982252299abea0a42e91aa484399332e2",
+        "equality_signature_sha256": "62a400e3a59ee8de9428bf2f3337922714451fda6cd56b3067b49f5e4cd37162",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 226,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "76b29b19e176dc135915e1d945c0911f73847069622f1a455be5dbb0bffde0f2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2841,
+        "class_key_sha256": "d9224bab4f3842d858699275958b54df48bea3f5ab88ebea9e60767a862d15d1",
+        "equality_signature_sha256": "378336b9c3812f3d2d1dc57c43c997bcbcae61f7fb7a978f20cd52a6aa163b85",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 227,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "b317eec9b0b5414176b159a2094f5d55a45ec03bdca2da985ae3a90e05ffba1d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2836,
+        "class_key_sha256": "6a35b356d5019bba584fd2448a8c858a6422a12e04048677c6630c6b062bf9cc",
+        "equality_signature_sha256": "e3e6d46e21aeccc70815c4bdededee2e478da58ce1d4f257dbd2ffa33d653fa5",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 228,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0828799bb7a959011a321527a7a3eb02c2fdb2a75f011e635934c7ca53ada031"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2835,
+        "class_key_sha256": "da88d121ba4fbc810434c95631069450c858621b04e1d06b8877611dcb23e0ef",
+        "equality_signature_sha256": "94f7a84263603b60c86099e07ee99c44acebc13ba6a11479ddfaf142ddba3c40",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 229,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "f2326cfaad72e84c332af6909a5809f3063fc2688d0f36d898c1a1f9e030b18d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2857,
+        "class_key_sha256": "cdb653252933cefe96d8e4816f893b6c0290541e858c98ca5556ff9e49dfebd3",
+        "equality_signature_sha256": "3267e5f5db1f9113577e86cc32f858297c7aabb492cd4037e0a6aa081b99f8db",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 230,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "3cc50717401fe756995feab8ce978a6a8bde6ad85c72c47ed168f6bd9a7e94cb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2856,
+        "class_key_sha256": "5b7f51769e5a69bf50e9765a6114f81d16d86dc4f3809c6757862f92d73415c6",
+        "equality_signature_sha256": "6d5dc71feb4db40aa4dc6f7b936e20bc3f03f954bf7e02e4e82124805d690233",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 231,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "e4307e2f2fbe8f96d02744547f9002d1d1a75b94835a31d41518d02da62138e5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2911,
+        "class_key_sha256": "256d2bf5ab2d639547b096cc756d162b8d995336bfd21abf0fa777c5b53d3450",
+        "equality_signature_sha256": "d12868b7f1a486928a41bb70a02a469cd80c727cae5639443a50a06c35f20f5d",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 232,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "958651c375300a132b04540f4bfc776e5572ebeee82d59449e7a7df61b1804e0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2910,
+        "class_key_sha256": "2ef00cd8cebad901f4cd4e61b9265ea820689346645254b291d7239323cf58e1",
+        "equality_signature_sha256": "8bc32a2107ef6b30f07e41dbf7e1ff2a472877a6caa54e5bc96af28135205e47",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 233,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "5157c1b40c3d2d982c4fa561233d3e5824baf58cced2fd8b67bfcf475e0741c0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2908,
+        "class_key_sha256": "de3e9a28aa345dad1b48e4454a7e3b28051de573119de2db12d0eec019fb1959",
+        "equality_signature_sha256": "ae2679f0c533c816849bae4d01b3277cd55d9c33ea303c56bf73914d721b7250",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 234,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "8e51e5e84772fa1a2274a2b3c4e15782459672f95e08427f9bb9e7a6065a312c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2907,
+        "class_key_sha256": "ac0e492160930cffea5e0ad6a9aab3990ece1edc32a6936aa4723af5c33a8b94",
+        "equality_signature_sha256": "5e2311e62ba8119d5ffc992d5a286af755a904c4e897a7780002b3dab48a8002",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 235,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "cb4a0590b0b0eace9ea88902ab98c6ef8ad66b3f265f7ac0da320f0e4ec0567a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2920,
+        "class_key_sha256": "079e24dc5829b16dbc0d1adb9b210625b97d74cba9e27413e93503e752cdd7f6",
+        "equality_signature_sha256": "219fdf42abbd6d2e802991e5d27cb62004763a85a3247bdf111110801aa89ab6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 236,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "a43b65c25a4526e018e63e3b9f758e6b37ef0f933bdf5cc95110e8c26ae64534"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2919,
+        "class_key_sha256": "2f2e62fa8b2c95f1f80131a33713604ed90ddba0635b298f2be48f6ee240b320",
+        "equality_signature_sha256": "5739c53b7c80f167702c44777ebebab9b175995d5fe947c115c97ec6d53d5045",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 237,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "e95cd52ea7470651225d84497abf4f5e8359bc28746a680b07eacbfa46e177d4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2932,
+        "class_key_sha256": "c06852585dff7509387536869191938cae1474b632549c75561235948ef64378",
+        "equality_signature_sha256": "ea6dee9034e303824ef90c8874d70ad3e935a5018a71e77b3e554586f8af9bfb",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 238,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "13ec7e9360a5bf9fb7dc51d9c93c43006f1c0b1478e0619f98c305b35e718545"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2931,
+        "class_key_sha256": "c5b43965e36af85abe70865868aabe48b2493a232f930f27e75806cc5a657124",
+        "equality_signature_sha256": "b829217a0c827a0277f2fa3d77b8a71ddead46b4b716fdc7b97e6fe815be20b8",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 239,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "f5099e3bbd1862ce639778ef8eb0a3b78f54979b0b07c1c2531d51ac167c756b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2938,
+        "class_key_sha256": "1ba7fd1b050767423710fa644e6d02f4276bb7e7fc0894c639b2c607ef37b6e7",
+        "equality_signature_sha256": "7ff61bf4af0cbdaca97c78a83d531a0fe8fe9786ae1108ff6c8420a5f6279b1e",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 240,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "a439b90108cf7329c7cc51de1882f13fd6285f4889ed78fc4a182070b3a7536d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2937,
+        "class_key_sha256": "6a14a60283d8d182e77d38aa2a06b08d45bec6cfd6749ded8cb2b4407ac40acf",
+        "equality_signature_sha256": "97d45f9d32178dbab2c53299aeee54569126d861da2ee5eab864ad2f90090f44",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 241,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "91b2543fa657874a165c3ee4676c0535a176d191e35968c6b7bed3cd009a1b80"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2944,
+        "class_key_sha256": "265cc70b791865164ad972bfb389dd830a5668a29019d44aab2bab266fbecb21",
+        "equality_signature_sha256": "279cff8eac61202a882101ae005ac482a0e57849fc39357985ea4733d6e653f8",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 242,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "dd53697fc1f9b2d6b4771d7df4272fd51cdaef12de5db01ce02113e4ba47028c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2943,
+        "class_key_sha256": "e5623c9609f106410538d41e5b0a6ec720b12df708f7e20f74fd01926faa2af3",
+        "equality_signature_sha256": "ecd0d0ee40bcab7233451f4802be8091ace2c17cc8676cf47f503b81cd6fa3fd",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 243,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "f58fc2766fe480a8395db1f7a0b5703952bd5cf6555683c54e49cf33056f9640"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2935,
+        "class_key_sha256": "ee58283acc7fe9f78d4fdd66b407ec87fe30b135a5e35aa03f1054fd18337a98",
+        "equality_signature_sha256": "be1c50deb70a7a805ee43cf804d56fd7a4447d9a3f260b30fcb4a65ce1b39ddf",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 244,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "b55aad661426fa9c9caaab5f85d23e29b03a4c2e32e21e0ef56626b28875dda0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2934,
+        "class_key_sha256": "9d91f5d95488c64b8a6dd73fe26b5118cf0205e4ee28a5001d74624a2b0f2f2d",
+        "equality_signature_sha256": "59fbdb5dc982e4c179de69651cbe1d623ee4ba71c481673aeb4f8a3c81099f42",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 245,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "83e6d87e31f636893b848050fa54051d011398ef4cbf26cc28eade3c2a406cc0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2941,
+        "class_key_sha256": "84ab58fb4b0ff741baf682d8eb2e8a4f27d7e99e77ed54fb01e7ab29504fc741",
+        "equality_signature_sha256": "2a674b73d3e3986281a05312f8f1bd58bde25d3e567db192a0570172c4536ce6",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 246,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "6fdb1bb19666ac8b2ae1125258259400c218dd022cf57db8775eeb0624ce5c3f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2940,
+        "class_key_sha256": "5c07b59f53f9f22b1ed00d04b997a306448ce6a3bb570691a89292867f474b0c",
+        "equality_signature_sha256": "b003cd920e014d311e79238c58ac60e8b64d998d1a71d1312882beda3fba8784",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 247,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "6d175af46094370153e2017460d48a9f2c56c4ce3b86c2a91591165a244836ed"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2962,
+        "class_key_sha256": "15a54a1cb4a3302f967c8d109326aec141e7c2cd9e37804dd39665f96267c259",
+        "equality_signature_sha256": "7a27688d2e4dce390ae5b8c930c518f159da4e49cb28d3efc20b6507e4561bb5",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 248,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "31132c1a96611bab0f8a12181418bc9591d278df5a286b45c7b11779a4526937"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2961,
+        "class_key_sha256": "cf3cf7643abcc82fca0ad08e02fdc136117df166bd91923f337e848828a630e3",
+        "equality_signature_sha256": "2fa873276d77e5b85cc435ea2e0a1133ce22d61a992783043fe3b23a88e524f3",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 249,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "c0068451b0ab01e19682dada5adf5e87e311e6a1c55ab01a1157b5fde10cd2ca"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2965,
+        "class_key_sha256": "271d0dc963366c6b9eaa11c529debee4c93d21a0e72e68914a6d5f150e5b412b",
+        "equality_signature_sha256": "8ce4f703057c8cd18da69428394ae45cd20122e26b997126f659527a393427de",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 250,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "7ea9e6a001f665cfadba2d18c4d11f43d9680abf8033cfa184be873ed64d0f21"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2964,
+        "class_key_sha256": "06cdb3dfb45a41cb1d012480392659c24de95e684188e352fda5e0ea7b3e4276",
+        "equality_signature_sha256": "5711b9caf3b8b5ece597d0cb488f4141f155e2e9205f84c2f0294f7374941586",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 251,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "bc66572d5163507dc66dcddf30db1e11fdb46900074a952ec08a11da8f483429"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2973,
+        "class_key_sha256": "6a6ac9e927486d45a3dc3e79e78bf6d2430442644e5f5f728b7c668939e9c649",
+        "equality_signature_sha256": "4b44627fe73cdeb60b6f72b9698d2e3eaaef27570d9c0ec8766b3cba8f3a244a",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 252,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "3ce2b0c473eb45a5d3dcbb312e704bf4a9cfafed269d7ccbba2b0bb2b8d7380d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2972,
+        "class_key_sha256": "1a82a41d4ef66305cbfce8c85ae427c9463200db43cfce04bce0dea1c765c536",
+        "equality_signature_sha256": "cafac24caa8bb6cc0cce9cb79301d36aa3032f52bda9d0c5a0ca8bd027f8f5a2",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 253,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "09735e60329f8e8414bae809f1bfe69a4146cf7dbaeaf5c7b987fe60ecf41a5a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2971,
+        "class_key_sha256": "92df130f61672514b9a100ded012d4613f8f665160d275fa57a492c7d1ae7642",
+        "equality_signature_sha256": "2d2a68edbf4db2758bafd9f23a88315bd0d360ba1394fc4585ce3fcbf870be7e",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 254,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "49a756371bd1e0551028599cb96f48d22b44386e10d8d29e66a8bbf40b8a833c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2970,
+        "class_key_sha256": "db22e1bcf4ec934f50ed476da69b92eb4d8904e1a0dafe077a7e6cd7bc81e05e",
+        "equality_signature_sha256": "243ee66873c6c3764ec2d2ef6a15110db7516923405f800e337fd8e038091ab7",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 255,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "266f6863a2d9e01cd05892acdab81a49c0cc3e9ffc518e25f2c47ff08ca51584"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2979,
+        "class_key_sha256": "4c79b5570899c8bcb42a5c1eb0a6f1ede6334e451320ac452e6bcbe253a8b431",
+        "equality_signature_sha256": "fa698f8437f6cb49a9332254e3e29db0f6aff646df04d1e2722fa3f56ab4775e",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 256,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "8af68eda3eeff28b60a38cf19da565009cfb370186c5b974160b593bbb2e1d08"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2978,
+        "class_key_sha256": "4d089da4514d983c0a806eb1958a50567e1168568954c0e19db18ed51d0fbe8a",
+        "equality_signature_sha256": "27bdb6eb8594ce4c4a81b1aff46d0844da8f5c44a29924bd6baab2e406743181",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 257,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "c610b476f599e69ee0971e90305a601a1d1fda055792d54daf0cb3aeef531424"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2977,
+        "class_key_sha256": "9af935c6f9c0e7f10148a35e3802da97fd5e58305c969a962042dc1d8d57a4bf",
+        "equality_signature_sha256": "5b363af9b04f72770ce1e091278bb50ffef41918d0028da5306c5d26bc4b888c",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 258,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "a93a6509a105441f8808a4fbaf08df64fee65018d6c1c4e3e0ef6934d0cf0a1e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 2976,
+        "class_key_sha256": "7c0c760acda6414ffdd67bd69da51404fe033c139108d051c2b11eab6070edb6",
+        "equality_signature_sha256": "4cd6efaffc8eff2e1aa3ac8e9dc7ecc9ed6c87cae5b8cdd7d43d1abed3361c6d",
+        "free_radius_choices": [
+          "2",
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 259,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "034a06e4d6d29fd053917e3b47096b681d210999f3ad3e420b6f27c141676dba"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3045,
+        "class_key_sha256": "8aaf55723b255272296296991c4eeb27a845e234dab55798a99da79adc92a247",
+        "equality_signature_sha256": "65af9655f05adc17daa826905670932c08820aedf96588a3c6ae3fbec6a54438",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 260,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "8a93e64ab0b438c18d411fe2e7d7af79b81242a58ab880604e49118b8cdb1010"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3044,
+        "class_key_sha256": "aaa5e39bda3f8ac3d0404eb624f032c40bcaa0d0e8b1fd4c9b42bd229f807f3e",
+        "equality_signature_sha256": "96b7bed01fbbbdbaf01a074c7ae4332e69106e991d649de4a88401aece613de6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 261,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "b9021a6593a87620bfcbaace01a193bf7a5108c4d87460417cf6b3642e44566a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3043,
+        "class_key_sha256": "940ac91c5624d6a3aa6b3cf6ca16e69eae2777f1dfad7a8d6b0c28e8d1282abe",
+        "equality_signature_sha256": "35802002087a5185f994355ffbf2f1b66ad77ad093281508057f9be4d39ca38a",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 262,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "3a41eb4a2169b99177158c0804121035b2f961777e3f88f6a54882ea8cd2f013"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3042,
+        "class_key_sha256": "07568ddeca84af1720c08c11ff62cb7b7ca5441d8cfb7e99db7063b822a05020",
+        "equality_signature_sha256": "8a9bb4d37d120c4b66259d47dcc37bf051c7f082bac58fb6ea43c224f3fe74d2",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 263,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "22e4223955228a135b732147cbca7f44a327e4cea6c7344ad28e851123c2370a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3051,
+        "class_key_sha256": "c892767d66822a2130672463e1b8546da47fa59560cb64d96e910ea7a42c9133",
+        "equality_signature_sha256": "8fb4b930ccce1714d5a72c23362913fba09da82f5bf2d009dd925623bf83b7d3",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 264,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "824c35dcb72a39b4d15628bd6c031dce562bc3bf086966113c438dc6ab67d916"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3050,
+        "class_key_sha256": "22e76ee3f2c1e4326d56c0adf02b1580c778ad2405fa71bea683f98787e3ff2c",
+        "equality_signature_sha256": "e1a2610d9e622567e00efad253a0c8f59da7e005eb3d0eaee7853de90cd3ecc6",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 265,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "987119e93720d2fbbc3fc99dee88d421b199c5b776e5ae75095b6072c22ab442"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3049,
+        "class_key_sha256": "ef16317ad425d06bb73df1c03bf4408401a4ff207bef96c7fc403afe912d9d7d",
+        "equality_signature_sha256": "ce4628ed6bfd7cfb5c3af64c1a9e949c0ced9af8b9a4b10677423c2a6d065aac",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 266,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "be0c7d716f59858dd6caa01301883bffc6badb1677000c811c43eb2f4c1f40d8"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3048,
+        "class_key_sha256": "3cd8cf27e860eed95ab9374959e7b1c07007994168272dbceba613083058d565",
+        "equality_signature_sha256": "e126b4777411027bd0f99379a8348a02f0ec1afdfba63e336e19007100964825",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 267,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "74b3a0d010fef2760ae7d266c5e53f69e955cb6a1d9e2b5bc1d647008df0a97d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3078,
+        "class_key_sha256": "0dbec5114c25443841918e1486da35e6a4562ed432c1207977940b11907f2a03",
+        "equality_signature_sha256": "69e3c8cecfd9ef733db22bdca8cea1318da541896cf493ff8c8dc7587e9ca08d",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 268,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "38a3dc812669f9dceedc8989af6cca7a8b029b7ee36b2976e555a7ebb6996905"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3077,
+        "class_key_sha256": "c7e84545ef11263c504b06edb5af820449c74e6e240083a556194b56302eb769",
+        "equality_signature_sha256": "996863bd1e7330e42eee3d8b22d1f52b6c59565d27d2e1f2d9ec584144f464ef",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 269,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "75974f7dc59f5f47bb0489c8e633671a0f99545e0fced9c92b0fa2623a9d2aca"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3076,
+        "class_key_sha256": "0d569e97dfafbafbd0ab17cc4b6ba77f0defc1b68edd491a5a74d716921dc11e",
+        "equality_signature_sha256": "21731b7397ceb6e42910a218417ff68aa94db708a31ca4af2d8c18717e6e7a0b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 270,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "9182207cbe8828bf41e05acaee9792c65b98f882e826abf5bc418a47e586a3bc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3075,
+        "class_key_sha256": "2e8cee1a84412e84d2d70c73939372c0f6c23469fbd8937e89810c84c5d1b11d",
+        "equality_signature_sha256": "62301bb339105c5b9004ca7cc6a5c0cd4cc5f5cf748594e1c930ec0694559add",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 271,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "cf1c2e5309ccb017b9f4b3681edabfc031c494bd57b4ce30ce4a5702de23cd52"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3072,
+        "class_key_sha256": "53041130fc9564c416538f58fb65e753347307b44ba92955ceed5693d49f797e",
+        "equality_signature_sha256": "172370117ba94928ba659918dd79327043ef3fa7ed7f27c288ae9e9424f98c64",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 272,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "423b50e5a6a656c033f9c45bd737c8fd149087b63311bf84aa7a82e589b9021c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3071,
+        "class_key_sha256": "a80513ab14c46f4e2a43f27d34a2db22564e6accf5190be444ed9e37d26de8cc",
+        "equality_signature_sha256": "a7462d030870222bbf21ab3d9b95c2fed52132c584f53479ab91b25fadc853ae",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 273,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "b4af663b22c09c9f80dc38b09552a39caab4beca4afa3fcde2b00d21c8ef457a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3070,
+        "class_key_sha256": "74941ec3213d62b6280ae4c9bc21ee6dc9476c26c14e2533edc6d705d55f5117",
+        "equality_signature_sha256": "0fa460f5ff569ada124c6d27b567d1463e30e6692ae7d7ebf535d64a6734fd17",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 274,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "998f49183ba5854d69b129610e011e5056bf3d6a66623703dbf05e08834d6f72"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3069,
+        "class_key_sha256": "4998959ec3814308576e84a1e1ce727fcc89ef0d218da34e7e3f7f6e8646c0f9",
+        "equality_signature_sha256": "048f262b56cb6e937fe380bc86fa05b0c11a202dfd5a37640673b1c58dd2a29b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 275,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "e7e3551053d22e233fd96736609cb683f29685dc58e712904de219d508ba0df7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3099,
+        "class_key_sha256": "464bc9b062e7785d81a44194524f296042f238dd5449d8d085cc695dc162641a",
+        "equality_signature_sha256": "e3292d9feeb6bc92133f21d952ebb32814730b31b5c3e8333387cefb1b5714e1",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 276,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "e51641909ea6ff4efedf9616b271ddc12ca410408f8667a723c22a68cecee24d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3098,
+        "class_key_sha256": "3a7ed998655395cbf73e165f7aba5a0b20d1547e242d77f41bdd56266c5ef2bc",
+        "equality_signature_sha256": "010585708b0e4bc6655670974d4bfffebcda6bc900fd4c58452a2985ed7d56bf",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 277,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "f317e5de3a514a6994377880af58e09775c74031fb4c4777c2ae10f1b5efc7f0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3097,
+        "class_key_sha256": "6ee2167b520770eae78735a752357f4f1cf5dd91ad51f406dfde2e4528eccd95",
+        "equality_signature_sha256": "c768268b9c437e4352196f558c6f8b7c2d1edcfbead06be6097552e9ca01f49d",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 278,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "37032e430a54db081aeee5e447343d2b81075fb5235a326d0555fecc8377af8c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3096,
+        "class_key_sha256": "d2b7d37ca6223ac796f29d1b29d3832e722bbfad751ac1e02f93cfe03fc17416",
+        "equality_signature_sha256": "9b60005b1e98a72e2de98aa1c5fa356e2f958585af03cfb11e9c7db9a94b498b",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 279,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "1eb196f3528a92483ed44bf929f15a8b8b0e48a6509a3ffbfa1eeb101c096c96"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3106,
+        "class_key_sha256": "b9b62b4448af7a60649c3e266f36f93b94306f755b7136c3d43f38a28e972a51",
+        "equality_signature_sha256": "9919c226c57228724226bc05f4fc155859cc87d5b6f89a1ebd1b5041052d550e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 280,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "3ce2b0c473eb45a5d3dcbb312e704bf4a9cfafed269d7ccbba2b0bb2b8d7380d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3105,
+        "class_key_sha256": "065637eb4c9376cce081a9d1d7c113f591d85d836c7513af05ed32aeaac5d444",
+        "equality_signature_sha256": "54e6f0f9da1d4e747d8e484aaf420566bce6da9aa79205b40a6cae1b76924b4b",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 281,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "cd6e22ab9e70a8f02eabbebd46bbd1f92e2b3ec5d565a0016f0454b860be2aa2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3109,
+        "class_key_sha256": "8ad4335acc02c3ffed66cf9ed0108636e5c7cd0f65eedd0b8cbc6e0b29ba7d8c",
+        "equality_signature_sha256": "82e9887a03095e867893b5744ee566e4ee94712c3553477cfdd1da43dd33b707",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 282,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "8af68eda3eeff28b60a38cf19da565009cfb370186c5b974160b593bbb2e1d08"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3108,
+        "class_key_sha256": "cad6670f8183eff364a017ab9a3891521d4b16e2bf5f042ad3cb79da6e8a44eb",
+        "equality_signature_sha256": "fba68afcbb53e92afc54b6906a30f3b345ff32a035e75d3fbdd116e846ba7fba",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 283,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "ab6c7af191ad699e0aaa63974fa73e4a983d0eba294944935e0eef2227f41f46"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3130,
+        "class_key_sha256": "0d12319d20f7ab1d851211dd56ea7c6c7bdbe775c1807995c8ad3344ece61c36",
+        "equality_signature_sha256": "6996bd39e8dc3a7368c3c5c3e9a12cc50ec8c42033a0571c4b3aa982b5e66a11",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 284,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "252cc2ac9214dee9140f7865572d450eba416425cd6062dff6704b8724fa75e7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3129,
+        "class_key_sha256": "0bb22dcfd464b216e49bbdeff5fb67b81b3f09798f13860a255a4a8097d5ebdc",
+        "equality_signature_sha256": "89a7ae4c916f06bc393063bae892a263d06828465f583d31f453ce7ddae2876f",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 285,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "cb88d6d7e461e6dc1c2f7019cb6e1b1f2d6f4e1464864e0727314cc9cacd3fe7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3133,
+        "class_key_sha256": "21a25d2fc8275294d22eeb5797055cac2b51f656d1cce50c1d31f93b6f7854cd",
+        "equality_signature_sha256": "9250ee06cc96140223136d5d10417e2cb55b09e8caf2178b1dc84af219aaf2d8",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 286,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d98ee75bbc6f5e0aefc4bbb3277ad0637dcfd7fe49bc505d7804d04991ed8979"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3132,
+        "class_key_sha256": "7ae71ab304e550420cdf97ec865d90d923661b26c63ab56116ed546c7fcccfe7",
+        "equality_signature_sha256": "bd8f16d29c53ec2705c2821214787a5ea235393051503508d3a41d6b0a969d17",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 287,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0475a3d9b11524f126584bbae4eb2c4a150eff057cb973aaff556a76c0dcb916"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3142,
+        "class_key_sha256": "01bda0aebcdd9ae4b62874534d3ecf87d2231fe17a597a20eba59723e84a3ac4",
+        "equality_signature_sha256": "9399429cc21b100a332e7edcfaa322c3c3b710e7513f88f2890e381f4d54675f",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 288,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "38a3dc812669f9dceedc8989af6cca7a8b029b7ee36b2976e555a7ebb6996905"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3141,
+        "class_key_sha256": "79a9a6a89b6ade698047b6efb1f28baac68ce632f5c7fef013b8eb6c4ac1a24e",
+        "equality_signature_sha256": "3fd6cc648d5ab9cf9e33972c1f4700619c875879ae2761b35d07dbb6c8eba85b",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 289,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "e9129cf5646554b46763051c7dfed6581e337ef625cd8d28563bd3520e4ad48e"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3139,
+        "class_key_sha256": "d8cb399878e0c23fde422414ea4de57a0813ba2fc80e9a341bb8e8aed772fae9",
+        "equality_signature_sha256": "9608a38053bfafa40a3d8fd435d529b199dfa829e0f446abc0cd84c2a4231bb6",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 290,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "423b50e5a6a656c033f9c45bd737c8fd149087b63311bf84aa7a82e589b9021c"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3138,
+        "class_key_sha256": "7d4b940f5d58efc459fdabaad1dbb4a38e19e870534b1bc1a1cb0996ac5517bd",
+        "equality_signature_sha256": "eb651ca399fcee663eff4fd4e5b92bbc584c1634c1839d3f7c2be3494ee12dc9",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 291,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "746b1cefccdcdbd24d3ee8578a32a2e979fb7fbb682e0ce9efb9a62ae80c0984"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3148,
+        "class_key_sha256": "757a0f6f99f3288073214e0a096e110ea0052dc90e3694a278fe5682666a71cc",
+        "equality_signature_sha256": "e5e28b5ec4ecdde3a357dbedf27d6aa93dcdfd033564f606f954f1f69856da08",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 292,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "8fd744865bcd3932db45554e995b419fd39798e28b24bce3661baeb65c55cb45"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3147,
+        "class_key_sha256": "b4bfae12f0c9e64aeb0bdc1b12e9c4e9dc5acbaa3a777d5f15e60658e1b5e67f",
+        "equality_signature_sha256": "15375c1ffb1c1296678f750f41ec8a63b50cd01dfd0e3c9bafad66d30ccba2da",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 293,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "f35d6e6d4f8866d97c91525fdbd3ebc9ea5ea7ab0d3786db736e66a5424d39f5"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3151,
+        "class_key_sha256": "f0b19a6cee34738b7f84eed68bd5ff153544e4434db7121c6822a9827babd341",
+        "equality_signature_sha256": "aef7140e847bb0a77ccca2e80025ad2be912f3a8a125a7aecb313ba7da9d0936",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 294,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "5c66d36e8cb624d8b3983fef814610ed355467b0733d2db040d457cbc469ceea"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3152,
+        "class_key_sha256": "66840315577cafa4f6244497d022e05244b6e1fc316d4ca558db48693ab0ef20",
+        "equality_signature_sha256": "63e240cb6c1934b0a2db0e39d49a3129aa9dde97c8a78a5afb822a635de430d0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 295,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "c8452ceb313375c8107b6dc5a67f9cb556048ae6fcc5fbdc041a7fb4cd21ad52"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3150,
+        "class_key_sha256": "48b78249372bfd22133ad520a1c4682d0503ba4cf9b39744bc33c9561f0fb1d5",
+        "equality_signature_sha256": "c0aafc78522303a09c21dc22c8e8ff89a28ea4237364fbd8b531f1055bfedae7",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 296,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "592c0a09f373169a6f3b91c329346e8bc02dd1cdab36d28af8c037b53650cba2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3160,
+        "class_key_sha256": "0c83af9cd21a956631d7030064ceb65d7aeeb040a86f350e04f43c63c1c2d4db",
+        "equality_signature_sha256": "87732cc181f8c1d8b99a52be16becd0c934dbdd3a08c3dad406f7037060f2504",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 10,
+        "raw_skeleton_id": 297,
+        "separators_verified_nonzero": 79,
+        "substitution_sha256": "668c43c426ae6bad2ba7663ac7196f6a480caa4fd9610cdd2a980bd5794746fb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3216,
+        "class_key_sha256": "4f2cde64b47a4657b36e84efff2b63abd84415ff0936f0631f642fe311d03bac",
+        "equality_signature_sha256": "9b9d5f01541b410db45166b6c2d81175e0322d3b87f750595caec4af355acad7",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 298,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "18a1eb2fb36ae8304829b8577b47fc165abb2bde66810ad43b8d8f50b1a1d084"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3215,
+        "class_key_sha256": "d36bd7771908010b222cf73afc9f69282380fac7394da81828d2af36d6746333",
+        "equality_signature_sha256": "7616654b89adf2652738f5cc4ba49237af10e7a0ab9a1cee873dc354bc57539b",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 299,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0eb68e6d2a3f4b23ee1020ec1bdf30e520993f5e74a97a5aec0f3e3e928645a7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3214,
+        "class_key_sha256": "0b235b4cc562fde71f473f54066893e98c18a3ae0fa8939b3d60abdb5ebe9fe5",
+        "equality_signature_sha256": "7224fdea89e24c946c055b7824df0771e4bd6bf59306d214ad729ee3c418ffba",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 300,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "0c343e4b1798cf31f3196e0b27945573472fb4841d46fbafece77b97aed244b7"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3221,
+        "class_key_sha256": "5ee9ad4d5faa0bdba011a20772b3f6a5e99caefeaa4031856a5f56f670b2f89f",
+        "equality_signature_sha256": "2861eb0696cf25bf213270f11a42f933b9b719abb0b7cfdf90ea6d66511a1125",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 301,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "c134e2a7031bfef3bc68db68ea23bb56d9dacc7f4f1a136cd172ad2cd661fd45"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3239,
+        "class_key_sha256": "7a0033e06b290031bd58878eb4c947897bda542e69c41f21982dc13ab15db923",
+        "equality_signature_sha256": "3e929466a216e40bc5e98124a1ae300336dbab5b6efa0119364be164b814e41a",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 302,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "1392fd5db19a7e1020d4232abd703cbf137e246c58c16846cf593f1cff4bfaa3"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3242,
+        "class_key_sha256": "e6b7ecf589c0cfd08eec060dff7bd1f7da17c88962d6623857fbc15d07f5610b",
+        "equality_signature_sha256": "498acc7a67592779b3de7d271147384a355e1b922355d491e284fbd3c127aa88",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 303,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "fe6d70f2db28e097369033d192c59923efc65bea47c99615d822abac9a47ce90"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3238,
+        "class_key_sha256": "cd8cc4c74ee49c2f52ab4d9e706c0c78b9711e7637440589bc38e491555dc591",
+        "equality_signature_sha256": "74e6844f343a3cbfff184f5833259cd2c38dc9b58a884a73cd4f7d15a1cb919e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 304,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "e164268b5cf8ca908b769b842ba1a294ba15c537cb5a819c1447718ea769b89a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3240,
+        "class_key_sha256": "f2543669c789410e5ac67dd1d530bfeda966c747c157285ea21483a8a2719e12",
+        "equality_signature_sha256": "d80a58ae9bd442f09a10291b657be2d246827e23edce04f23d628562a0e25127",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 305,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "f542939562a68de65e482f771c094aa2a3eda5f68e23defee274767412ff4289"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3262,
+        "class_key_sha256": "a4f9eceb6fcbe5462c99b5d7ec776ae9ddc03a8d940bbbb7c150ea13ca108a9b",
+        "equality_signature_sha256": "9425d4802a5f6aee9b50e43762dcaf1ff98edea58eda2f8153460f023968a59b",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 306,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "e540b64058faf7160c2e862fd4f969612e562bed5ae4b20d855ac69316b48db4"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3263,
+        "class_key_sha256": "14c6b8f2ccd976545ceb4a215be70bb69657dd5a2f4e85adc8aed32c054a8c75",
+        "equality_signature_sha256": "7fa4945c58cbd909a2b717b06e8cbb839b5713f1bc3aa61bf075250105b2a1c3",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 307,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ad2b92af9ed7fdebae490aa041cfae113e9f00bf928a8e9281239cbd8d49116a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3271,
+        "class_key_sha256": "e66bbc9660cd03db0994a9360fe168eb36d18dff361705dcb9370e1f45caf13f",
+        "equality_signature_sha256": "5074e7b87d680531d438db037e0e9ea6a1c73ae72d09bfcd6da3833a6c8ebd3b",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 308,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "a25e70f0ccaa0331906324392654f20c9737568284ed830d03325f12fe190686"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3272,
+        "class_key_sha256": "7e7e17d773b9974166a21be1bcbe81bad1228019f0fb2e1d372f774a12239ed0",
+        "equality_signature_sha256": "19156eae95bccebbf6d7e779a57368d40c1f81c201fcca05b5416958966bc62c",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 309,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "ada0229a7a79e523957722a8ba251354bf68d15233988fcd926addabe91dc080"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3270,
+        "class_key_sha256": "dcbb6287d7ad5590f7a6fc3da11a567572f7f18eefe477f81054258ecc961fe8",
+        "equality_signature_sha256": "d43cff00c578c4ad88f332c404a2ac6b4dde10b5195c27456a532c9412ebc8cf",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 310,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "4c6bd51395b6fcf05ee73cd4072b67b454a1f693265c866c113cdd0a0d370d6d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3277,
+        "class_key_sha256": "2cb8dc620cbafdbaaa324f43328592300bce3e81f7194d94eb6ea717554ca9ce",
+        "equality_signature_sha256": "4d5f54af2f3612523a612020e2d5f9b24c76557813717207892d6364b011610c",
+        "free_radius_choices": [],
+        "interior_points": 9,
+        "raw_skeleton_id": 311,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "22429988efc62f1bbed7ac55ea586b9a95f7b670a9491f9f67ada203f7514038"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3295,
+        "class_key_sha256": "0e8de7bd57ff14280fb813ece1d5e47f1721c6ed5fd8379ee97abd6db9b9c9ee",
+        "equality_signature_sha256": "0f7f01f7b5cdef98dc6077a40258fd1d335ac6fc64075dbcdeda17bbc6eb98a8",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 312,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "3e269078c7fc49ccf61e26352bcfbfa865e24a0af18ef8d6e2d0c061bc293b9a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3294,
+        "class_key_sha256": "3e9e45f76ae263be7f0524961e8d8c4a1d339e25b6c63c7fd3563791205a9133",
+        "equality_signature_sha256": "5b93f23109eb22b3650ecd5843e13deff46bae6a7cf90fa3f4231ea50aa100f0",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 313,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "64ac01838c7b53bc92f33d609e1e337b052988bac7fd56ef9c51c0867d7b6590"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3298,
+        "class_key_sha256": "0f64dfd7a2668603285644a392dfc83e0660226328a91af1545497d07676917d",
+        "equality_signature_sha256": "339acc9eef0934944930f952dcfc8d5e4d45ac0dc0f9e5fdf68e96e99359849f",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 314,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "4597be107585c62b85a0909505912d8f3ba417a9898510cbc8afc0f6a31e15ce"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3302,
+        "class_key_sha256": "c493ed7ce5e35024cd0fb7464ebd60699138de781fe4c083b5e4a4affb2cdb6c",
+        "equality_signature_sha256": "e2a1e5cb10d1eed2561e089d7811beb781e1b4139449e8cc026a4612bfc5452d",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 315,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "55232a220877327a4a6159934e34e86dd4dde3eee1988d064d5a8baf2f956f44"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3304,
+        "class_key_sha256": "234515ee014c4fa0c6cb04352768aa73bcbe45a3e1060523afcc26365e291754",
+        "equality_signature_sha256": "a62460ecfcd603149793ceac08b0052bd178cc0a220c43b3a6b484afcc71e60c",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 316,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "93502608377d8b3c7853b3b46bccd21a1793340c75c49fec3efc4ae4e14d5f3b"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3306,
+        "class_key_sha256": "ccaa3954814d2c51195a11e5da8cf90ff847e3d313bfe91d5d3c598d87e60181",
+        "equality_signature_sha256": "9095ba09cbbc13b0a2f2294e2ef53f12d293e906196bdfe1abe2ca60525d20bd",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 317,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "89650e003dace76dae5e5209184e5e54242412681ed4544b197ae373994d4763"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3303,
+        "class_key_sha256": "2a371c58b50719af8bfdd4762f4c875bb51cd10b7ee6a2a92365cf8e68d5abae",
+        "equality_signature_sha256": "a07404e92ad489076c7b954e93b9552df4b3089c410c500727d11ad3a1077010",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 318,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "03f16f959192af267126c32b49a5a45cc42238811b2769261e7416c6f25ecf08"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3305,
+        "class_key_sha256": "db8c4b48772cf504a1732ddb153f606a195dd6b31e0373a3eeb8509fffeef362",
+        "equality_signature_sha256": "9deb71dada11922abb495f778d17b7f4561114baeaf00a2f20b7b4cd109b04b9",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 319,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "101cac034099e2068960b7c172825d3e13fbc3d64f279426f0cd7261164a7e4a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3312,
+        "class_key_sha256": "2827063cb87c9f2fa6ac092a2e438967ac1463412e17e2b5cc7388b96588ebcf",
+        "equality_signature_sha256": "f3db8631e74a9bf2cdcf5715f43cebe35d0b0b9aed3e34227bc71c460f6863ac",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 320,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "3df75e2853def53b0a186e0b6af585fe237414b484a1e2138497a8015fd5fcf2"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3313,
+        "class_key_sha256": "533c505856e9ea7f68b8a27287095d9c985746adb406c0ad7dea119ca0459cff",
+        "equality_signature_sha256": "65671b6dc1822ec9c92f5408f70ba6ebc4e5102e22064923f876605da489b702",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 321,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "2e8a7e98324ebba353503e8778dc7550814b20d746adc880c7120837812e0892"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3316,
+        "class_key_sha256": "6509f5992b766241d029a721d695d4762177094c646925a1768f882a40b476b5",
+        "equality_signature_sha256": "fe5a8a509793d8dbd6c300e19f0ced190cc2d11913cabd8ae74de9d65221e81e",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 322,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "8d5060e80bdd46a88590dc4d93feb1ae33219b23b46bc479191b84534544c156"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3315,
+        "class_key_sha256": "dc1cdea2127d9583ce75fb6bf7d75a1fb6334850661818c1095093cc3fef0325",
+        "equality_signature_sha256": "b1936c9e650a2cc31869076f8f45e0758bcbe11f372ad215bbdcbd0410ec8d72",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 323,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "fa1d92da08420600796da293017f0ab49c7749ba527a0af8af9271201ee7f9da"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3318,
+        "class_key_sha256": "33bfeb759094ea2f33a6ca8f1bbc0e17c7f005eeb6312eab7b943834e8e1b86f",
+        "equality_signature_sha256": "e05a9e1fd062449a3d131af71120015557aab781561bff74e87f37ef9536bd76",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 324,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "96672ddeb9b56fe17ed9f392c931823adedc42b284e59ea6cc6eacb8dfa5ceb0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3317,
+        "class_key_sha256": "47e4052f2f52efa87f6ea74e5ab8769b5d6c53dd72b651fca363140a88dcad3c",
+        "equality_signature_sha256": "64e38638d85e630a180a6c6b4010f1155f1c17dff7d66058f825502f57d46c7d",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 9,
+        "raw_skeleton_id": 325,
+        "separators_verified_nonzero": 67,
+        "substitution_sha256": "069c1558719ad898316604fbdb9a1e2a796e8197061b948227c6255fd6b8ee6f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3340,
+        "class_key_sha256": "6edc3072f5a2bbf360021e3eeaca343f37bca559f06d45a8ae024e4bed14bc6a",
+        "equality_signature_sha256": "51d2dc89ce09cd66b9151fca613fce6414e70f3733c5598491e70eacd33ecac0",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 326,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "af8ea43f6412bbd709c642bc235c312016995b2cf13c1c508b38f8e9e81fbad1"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3339,
+        "class_key_sha256": "17f680d5fc79e66e09c223a2627144b0251b10cbad4bb7c8915a5f37a00cbb97",
+        "equality_signature_sha256": "d357e5d97761e0e355e26fdff14f39e0b709c5986f23f6fb6a4a454ed825a111",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 327,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "d1feb599b99f20d810b9d60aef2599d71929ba23d467fb8fc270308dbd6040e9"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3342,
+        "class_key_sha256": "ef4d77d324beea430c66a0b64a967a21fb9ded3de5014b72f99ce79fad8d97d2",
+        "equality_signature_sha256": "5362a0df37088c4158df01a3f9a840274e9a0b88de0109dfe05868180a244972",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 328,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "928866f622af0da64fc3c0eaf36f4cc67a9ce78fa7f070e94bbca681da9fa9f0"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3341,
+        "class_key_sha256": "027eaead15c52b6fb6b5c96235105b88c8cc419b3da5ac95f128fbdbc4cc1eb4",
+        "equality_signature_sha256": "b8ba1d5d48d49539be95314c15e0b9f271c7e7ea34ed662df7a5881d946b3375",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 329,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "81f70b6b5feb3680996b3e5643c522dac5c4e5b652609d12618f861eae5680bc"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3351,
+        "class_key_sha256": "0236ee8c86d318ebb70691071fb7b26ced7a4a2f8d0bb2d2447c32f23f331486",
+        "equality_signature_sha256": "5bb299aaa552c4e9257eb81888732b3ae259fb13c16d65ada6e2a7cde895b187",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 6,
+        "raw_skeleton_id": 330,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "41552bd5777408b5aaab3bcc1cf076944311a4d10d7cc79123c42d90af7a81ed"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3350,
+        "class_key_sha256": "faa4bb51744c0c548f67594d91438724bda2cc39a65b909d5237494b1e9df3be",
+        "equality_signature_sha256": "2571edb97303030a180be93c537e321c89a4f77c4dc262a40a98612bd005c25a",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 331,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "715d22fb0da21075ebdc1952aa681ae1d81b913c852aa96d67a3e1f80889dc60"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3349,
+        "class_key_sha256": "cbb3e50c1643b1879635f6149de654dfcafe49f0c38ea50e0266b09305185a77",
+        "equality_signature_sha256": "d373013fc56208ff3a533a4a596c4e1778098b853437ee1c834da670e13f646a",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 7,
+        "raw_skeleton_id": 332,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "13295a11586a2270aa6997a8d02b41a1664ecff043383a94be0b2cd1fac55a38"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3348,
+        "class_key_sha256": "7a6f967a6e08fdecc84514748b6e9a24361d39654bddf57bac68bfca070f9cb4",
+        "equality_signature_sha256": "a4e9cd15b932d35c4a0d221d87ea710a783dc28692ce429c153d261c023254e0",
+        "free_radius_choices": [
+          "2"
+        ],
+        "interior_points": 8,
+        "raw_skeleton_id": 333,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "07eea940de1b085ec05771f073fed7392eb98ccbf54c7a02e6d82f653d603601"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3358,
+        "class_key_sha256": "d7b227507f1e96c9e111e94325328bbb37a78ade1d49c0db7a9e60bc4108cf85",
+        "equality_signature_sha256": "f7440c279374674c3b8f50f87371fc780063f35cd4f629857bcf5b5022253b03",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 334,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "2dd78a5f6e9cb11ff529f05ab438ea3eae98c402bfcabe438ee9ec8b67fdc8ec"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3357,
+        "class_key_sha256": "7023090377173a9826155fa60846b701feccea9ea29f099fd18b966ebc348970",
+        "equality_signature_sha256": "8071169c513e3ef754cff1c903032569cb873ed45f7df77f8cf764e41adc77f7",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 335,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "bd6561755aa56604dc1889307b2f85838b14b5cc7f76719c8842034449bd2d68"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3360,
+        "class_key_sha256": "d2aae7bcb57de0026dcc48e58e788fdf917726d66bdc0d2ced968d9d986a1b88",
+        "equality_signature_sha256": "987dca27a2051d332384be199016932496402cb7f6ff382d35827a911837c055",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 336,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "fac9707d4524d77fbacf4f77cfcf715235dae8eb83b41d459ce65621d8f7851d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3361,
+        "class_key_sha256": "8a19f04eb4fed84a87e07286c96af1ef5cc61e0750b7b41bac707ab9c9e8e675",
+        "equality_signature_sha256": "e7ca4541bf177d1aa932e678180d96c59877d4de59094674cd63919fb31cccbd",
+        "free_radius_choices": [],
+        "interior_points": 8,
+        "raw_skeleton_id": 337,
+        "separators_verified_nonzero": 56,
+        "substitution_sha256": "7d7c36c59dc8d94edf5952f54aa6bfaac0d640073a1d3921c4b52f5f243d130a"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3368,
+        "class_key_sha256": "4c8162e28f44de5b286c704f952241f8d17ebe75aaeb4fbf36f2f797b2360644",
+        "equality_signature_sha256": "cb8a8093c72c3c106257b9b89fd55bb23348502f7d333db99c07ff263f819227",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 338,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "e61e4e0af888f62ec8563eb4b14707a789b626a542b1d9fd960ee87d9d0ba40d"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3369,
+        "class_key_sha256": "f98b0165a2051bbd06ff1b2de4aefa29f145a2e860bdb4fba26f04756c25e11f",
+        "equality_signature_sha256": "fb1715e205e5c4d138e2c85c3bb5a019ec00c264bf145c5ead62e3619aacd0eb",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 339,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "8471ea7638b94347698240da9f0fd23f4a6afea5edb243758f05495c6fa6e107"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3372,
+        "class_key_sha256": "9d6eddeafcb624d679b4282b0576a9679537f9de5f24d2b437097c079120e93e",
+        "equality_signature_sha256": "28d94151818fdb3d584dd85809a7a2c23cacc3c140eba33ff730886a1ca5980a",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 340,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "6a34542d351f8a6f56a0fa76dc705d99785d97b67b7ec98ac86ac591d0ef679f"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3371,
+        "class_key_sha256": "de428fe9327b0ac901fddb64bdda6c5c73f71b6d50e151ea255b829b686ee77e",
+        "equality_signature_sha256": "08a11397e03ae581c114ee7a6fc588222aaf028746b654286faf12ad0dcc81d0",
+        "free_radius_choices": [],
+        "interior_points": 7,
+        "raw_skeleton_id": 341,
+        "separators_verified_nonzero": 46,
+        "substitution_sha256": "b1027edd6f748386c3f89e766948ddd4da9b0446c05c1ff67b7e7d1cb1c035eb"
+      },
+      {
+        "all_coordinates_proven_real": true,
+        "class_id": 3374,
+        "class_key_sha256": "ed3ee8d0329dfc122dfef269781943ea2f9ab90e5b9d3401b8b7de31f3bb108d",
+        "equality_signature_sha256": "4e2f63a1e4ee3f3e8bdc6abcf43779646295f293dda97bf749c151049cbce78a",
+        "free_radius_choices": [],
+        "interior_points": 6,
+        "raw_skeleton_id": 342,
+        "separators_verified_nonzero": 37,
+        "substitution_sha256": "02be3d1cb8f1eecddc805c316e823952393204313aae259ad4e603a09458d7f6"
+      }
+    ],
+    "witnesses_requiring_complex_algebraic_coordinates": 0,
+    "witnesses_with_all_coordinates_proven_real": 343
+  },
+  "schema": "p97_atail_force_distinct_equality_checkpoint.v1",
+  "scope": {
+    "all_raw_equality_skeletons": true,
+    "all_witnesses_real": true,
+    "disk_nonobtuse_cap_and_order_inequalities": false,
+    "exact_algebraic_arithmetic": true,
+    "full_configuration_realization": false,
+    "full_filter_shared_radius_pair": false,
+    "lean_claim": false,
+    "pairwise_distinct_support_and_nondegenerate_triangle": true
+  },
+  "verdict": {
+    "atail_force": "OPEN_RESEARCH",
+    "bare_or_saturated_equality_route": "DONE_NEGATIVE",
+    "required_successor": "real cap/disk/nonobtuse/global-order inequalities or a direct full-filter/critical-row producer",
+    "separator_saturated_equality_surface": "NONEMPTY_OVER_REAL_ALGEBRAIC_NUMBERS"
+  }
+}

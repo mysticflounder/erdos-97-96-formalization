@@ -1,0 +1,247 @@
+{
+  "cases": [
+    {
+      "augmented_equalities": 51,
+      "augmented_variables": 56,
+      "base_equalities": 14,
+      "base_variables": 19,
+      "case_id": "m06_e51_c2256",
+      "class_id": 2256,
+      "class_key_sha256": "f3af0239676b56ab0ac8e0cd4abca001ac8694ad5841f1246ea21a69409919db",
+      "equality_orbit_id": 51,
+      "interior_points": 6,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          4,
+          4
+        ],
+        "S": [
+          3,
+          5
+        ]
+      },
+      "raw_equality_signature_sha256": "a4a4517e8e2944eae4c52ed4e204921375d7b8f55259c609fe7a4545b39530bb",
+      "separators": 37
+    },
+    {
+      "augmented_equalities": 60,
+      "augmented_variables": 67,
+      "base_equalities": 14,
+      "base_variables": 21,
+      "case_id": "m07_e19_c1216",
+      "class_id": 1216,
+      "class_key_sha256": "5b65fe10847d85e1c980fea2d6ecbc9434ac6327cdf9749f3e24187674ed82a2",
+      "equality_orbit_id": 19,
+      "interior_points": 7,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          2,
+          4,
+          4
+        ],
+        "S": [
+          3,
+          5
+        ]
+      },
+      "raw_equality_signature_sha256": "76020f411144c8cd4e34f2cd4f9420943e5a2b120b9c8f2099394a51ea7b2efd",
+      "separators": 46
+    },
+    {
+      "augmented_equalities": 70,
+      "augmented_variables": 79,
+      "base_equalities": 14,
+      "base_variables": 23,
+      "case_id": "m08_e04_c0521",
+      "class_id": 521,
+      "class_key_sha256": "350e55a3e56380cecd70d8ad950b70bf92d4728525bf31d875f2c242fc2908b0",
+      "equality_orbit_id": 4,
+      "interior_points": 8,
+      "order": {
+        "O1": [
+          2,
+          6
+        ],
+        "O2": [
+          2,
+          4,
+          4,
+          5
+        ],
+        "S": [
+          1,
+          3
+        ]
+      },
+      "raw_equality_signature_sha256": "44810cac5fdabb9872566796d92ea57536f7e087a5cc9ca5c3b4e0cc99163cb8",
+      "separators": 56
+    },
+    {
+      "augmented_equalities": 81,
+      "augmented_variables": 92,
+      "base_equalities": 14,
+      "base_variables": 25,
+      "case_id": "m09_e00_c0009",
+      "class_id": 9,
+      "class_key_sha256": "7467099dada9a5ef69f4c2c91f26a843ee1ef3f830dd2478b4b117784db86536",
+      "equality_orbit_id": 0,
+      "interior_points": 9,
+      "order": {
+        "O1": [
+          2,
+          3,
+          4
+        ],
+        "O2": [
+          1,
+          4,
+          6
+        ],
+        "S": [
+          1,
+          2,
+          5
+        ]
+      },
+      "raw_equality_signature_sha256": "548e956957651a51652194e02095ad46063150918bf40cfcf5fe210758e474fc",
+      "separators": 67
+    },
+    {
+      "augmented_equalities": 93,
+      "augmented_variables": 106,
+      "base_equalities": 14,
+      "base_variables": 27,
+      "case_id": "m10_e01_c0008",
+      "class_id": 8,
+      "class_key_sha256": "3780a153ae0f6a39b59d3197a1b3a5558350c6edb6536a767354d2ef72a21d39",
+      "equality_orbit_id": 1,
+      "interior_points": 10,
+      "order": {
+        "O1": [
+          2,
+          3,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          2,
+          5
+        ]
+      },
+      "raw_equality_signature_sha256": "3d0305c4590677824ce67c6b5879c14f91b8ec92fa7642470831b28fe69e3e08",
+      "separators": 79
+    },
+    {
+      "augmented_equalities": 106,
+      "augmented_variables": 121,
+      "base_equalities": 14,
+      "base_variables": 29,
+      "case_id": "m11_e02_c0018",
+      "class_id": 18,
+      "class_key_sha256": "ec4e66072a1111e965a6e932e0d1c3b1a23ff6822c65182666c1ca32642a72ec",
+      "equality_orbit_id": 2,
+      "interior_points": 11,
+      "order": {
+        "O1": [
+          1,
+          2,
+          2,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          3
+        ]
+      },
+      "raw_equality_signature_sha256": "ff3d21927ef210122e666f61fe25e98526f06985bd0e82ea15b37c684e4182c2",
+      "separators": 92
+    },
+    {
+      "augmented_equalities": 120,
+      "augmented_variables": 137,
+      "base_equalities": 14,
+      "base_variables": 31,
+      "case_id": "m12_e03_c0082",
+      "class_id": 82,
+      "class_key_sha256": "ebd589bf84e54a1373e1d19824073fd9a775aaca355834cc2de906b165edcda5",
+      "equality_orbit_id": 3,
+      "interior_points": 12,
+      "order": {
+        "O1": [
+          1,
+          2,
+          2,
+          2,
+          4
+        ],
+        "O2": [
+          1,
+          2,
+          4,
+          4,
+          4
+        ],
+        "S": [
+          1,
+          1
+        ]
+      },
+      "raw_equality_signature_sha256": "bb71bafb2b8474355fd18984b3329de12d0403d6dad3d6f881ef71691243af40",
+      "separators": 106
+    }
+  ],
+  "input_sha256": {
+    "census/atail_force/reduction.py": "d5481d7c7d7e1f4ea8207955d73b415183952b6141d9590e41fd2077dbb50e93",
+    "census/atail_force/separator_pilot.py": "34edf2c992e72bde25b859a074842d78b9e47dc374483754cd8a57b3a0aa192c",
+    "census/atail_force/surface_checkpoint.json": "6a63ea94edc020d7c846c56ec78327b4e0fe40f11cf98151966828401161270a",
+    "census/atail_force/three_center_surface.py": "90d56e5a6e1de16ab8778c51587e7d3473bd0c018c16e5d7b11f2dfed2888073",
+    "certificates/multi_center/reports/l2_class_inventory_certificate.json": "6a41f668d910ce0de89560f9c4ee48200eb494ca85d490a4d2d648539f893895"
+  },
+  "manifest_sha256": "95a983e84f4001fda1e054341c1a43c733b05f9be09efa0bc0f9c173fa8e42fc",
+  "policy": {
+    "case_count": 7,
+    "case_selection": "lexicographically first S3 equality orbit in each interior-support stratum 6 through 12",
+    "engine": "msolve",
+    "engine_threads": 1,
+    "saturation": "one Rabinowitsch variable per pairwise-distinctness or triangle-area separator",
+    "timeout_seconds_per_case": 20,
+    "total_wall_stop_seconds": 180
+  },
+  "schema": "p97_atail_force_separator_pilot_manifest.v1",
+  "scope": {
+    "bare_equalities_skipped_due_to_exact_witnesses": true,
+    "coverage_claim": false,
+    "full_inequalities_included": false,
+    "lean_claim": false,
+    "separator_saturated": true
+  },
+  "verdict_contract": {
+    "C_EMPTY_PROPOSAL": "engine proposal only; requires independent exact replay",
+    "ERROR": "no claim",
+    "POSITIVE_DIMENSION_SIGNAL": "complex-algebraic signal, not a witness",
+    "TIMEOUT": "no claim",
+    "UNPARSED": "no claim",
+    "ZERO_DIMENSION_SIGNAL": "complex-algebraic signal, not a witness"
+  }
+}
