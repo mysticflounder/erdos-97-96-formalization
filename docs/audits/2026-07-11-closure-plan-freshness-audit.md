@@ -6,6 +6,10 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Closure-plan freshness audit (2026-07-11)
 
+> **Status update (2026-07-13):** the ERASE hole counts and OPEN findings in
+> this dated audit are superseded. ERASE is closed and pushed at `652fdfcb`;
+> the current project inventory is 36 symbols / 80 holes, all in Front A.
+
 Audited documents:
 
 - `docs/closure-plan-full-spec-2026-07-09.md`

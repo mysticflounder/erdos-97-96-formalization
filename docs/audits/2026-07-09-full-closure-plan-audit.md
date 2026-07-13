@@ -6,6 +6,11 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Audit note: full Problem 97/96 closure plan (2026-07-09)
 
+> **Status update (2026-07-13):** retain this audit as dated plan evidence.
+> Its ERASE OPEN rows are superseded by pushed commit `652fdfcb`; current
+> dispatch truth is the closure plan and matrix, with only the two Front-A
+> clusters remaining.
+
 Audited document:
 
 - `docs/closure-plan-full-spec-2026-07-09.md`

@@ -1,5 +1,10 @@
 # ERASE M1 pre-stage: Python replica of the native classifier DFS over the card-11 seed domain
 
+> **Status update (2026-07-13):** this empirical pre-stage was followed by the
+> compiled M1 gate and kernel-connected P4-U/P4-S/P2 native certificates. The
+> complete ERASE lane is closed and pushed at `652fdfcb`; this report remains
+> evidence for the earlier decision gate only.
+
 Date: 2026-07-12. Branch `four-point-subpacket-reduction`.
 Design basis: `scratch/erase-classifier-design/DESIGN.md` (section 6, M1 optional
 pre-stage under the build freeze).

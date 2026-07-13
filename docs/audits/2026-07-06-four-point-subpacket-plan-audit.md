@@ -6,6 +6,10 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Plan audit: four-point-subpacket-plan.md (2026-07-06)
 
+> **Status update (2026-07-13):** all three slot-2 branches audited here are
+> closed. The ERASE implementation is pushed at `652fdfcb`; findings below are
+> retained as historical route analysis, not current task status.
+
 Audited document: `docs/four-point-subpacket-plan.md` (3,283 lines at snapshot).
 Snapshot caveat: the file carries uncommitted working-tree modifications from
 active agent sessions; line numbers are snapshot-stamped and will drift.

@@ -13,7 +13,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 > conclusions from the Lean source — extend it. Fast orientation:
 > `nthdegree recall "SHARPENED boundary for the 4 erased-pin sorries"`.
 >
-> **Current boundary (2026-07-08, spine 1/797 open):** 4 open sorries in
+> **Historical boundary (2026-07-08, spine 1/797 open; superseded at tail):** 4 open sorries in
 > `RemovableVertexAxiom/Continuation.lean` — 303/328 (left/right own-kind
 > `OneSidedSeedCandidateRemainder` for `.Pw/.Pu`) and 174/202 (direct
 > surplus-opposite / surplus-interior `ErasedPinTriple` exclusions). ALL FOUR are
@@ -23,6 +23,10 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 > (`u5NoAuditedBoundedBadPattern`); the open work is the confinement producer.
 > The row-truth relay (lines 914+) proved the five ambient inputs are realizable,
 > so 174/202 must be derived from global `HasNEquidistantProperty 4 A`.
+
+> **Current shortcut (2026-07-13):** this ERASE/slot-2 lane is closed and
+> pushed in commit `652fdfcb`. The authoritative closure checkpoint is at the
+> tail of this append-only file; all earlier OPEN tables are historical.
 
 This is the short agent-facing status owner for the slot-2 / certificate side
 of `Problem97.erdos97_rhs`.  The append-only history remains in
@@ -1911,3 +1915,37 @@ proof-blueprint spine Problem97.isM44NonSurplusContainmentErasedPinTripleResidua
 
 The producer commands succeeded.  The proof-blueprint spine remains
 `1/797` open, with the same on-spine local `sorry`.
+
+## ERASE closure checkpoint (2026-07-13 10:09 PDT)
+
+The historical frontier above is closed. Commit `652fdfcb` on
+`four-point-subpacket-reduction` contains and pushes the complete card-{10,11}
+ERASE classifier lane:
+
+```text
+card-10 P2 and P4 producer/consumer branches             CLOSED
+card-11 P4-U native certificate and semantic closure     CLOSED
+card-11 P4-S 128-leaf fleet and semantic closure         CLOSED
+card-11 P2 128-leaf fleet and semantic closure           CLOSED
+all 20 P2 and 2 P4 residual consumers                    CLOSED
+Continuation downstream target                           BUILT (9703 jobs)
+exact-pin ERASE spine                                    0/1376 open
+```
+
+The final bounded `scripts/build-p2-certificates.sh` rerun passed all 16
+batches and the 8410-job `P2Closure` aggregate. The ERASE target-specific
+`proof-blueprint verify-publish` gate passes with core axioms plus approved
+`Lean.trustCompiler`; the audited terminals contain no `sorryAx`. The evaluated
+classifier closure has no project `unsafe`, `@[implemented_by]`, or `@[extern]`
+declaration.
+
+The original producer blockers were not solved by asserting the overstrong
+whole-class confinement or one-sided remainder interfaces. They were bypassed
+by the label-complete card-10 producers and the faithful-carrier card-11
+classifier/closure chain documented in
+`scratch/erase-classifier-design/DESIGN.md`.
+
+This file no longer owns an open proof anchor. The remaining project proof
+surface is entirely Front A: 36 `sorry`-carrying symbols / 80 textual holes in
+`U1LargeCapRouteBTail.lean`. Global publication remains separate from this
+lane's closure.

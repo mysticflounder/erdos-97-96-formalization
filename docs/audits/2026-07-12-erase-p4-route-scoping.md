@@ -1,5 +1,10 @@
 # ERASE-P4-U/S route scoping (2026-07-12)
 
+> **Status update (2026-07-13):** both scoped P4 branches are closed and pushed
+> in commit `652fdfcb`. P4-U and the 128-leaf P4-S fleet are kernel-connected
+> through their semantic closure theorems; the exact-pin ERASE target is
+> 0/1376 open. Route comparisons below are historical design evidence.
+
 Read-only prover-agent scoping of the two direct surplus erased-pin holes
 (`Continuation.lean:183` ERASE-P4-U, `:211` ERASE-P4-S) inside
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.

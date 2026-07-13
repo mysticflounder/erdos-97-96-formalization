@@ -4,11 +4,12 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The proof is **complete except for five named residual lemmas**, all
-descending from the removable-vertex core of the descent step
-(`Problem97.RemovableVertexOfLarge`, now assembled from a three-way split
-with the residuals as its remaining `sorry`-backed inputs). **This is the
-main repo where the proof is being closed.** The former companion repo
+The remaining proof surface is **36 `sorry`-carrying symbols / 80 textual
+holes in two Front-A clusters**, both descending from the route-B tail of the
+removable-vertex core. The endpoint, pinned-surplus, and erased-pin Front-B
+branches are closed; the ERASE card-{10,11} classifier closure is committed at
+`652fdfcb`. **This is the main repo where the proof is being closed.** The
+former companion repo
 `p97-rvol` is historical as of 2026-07-06: its U-lane route-B tail was
 imported here on 2026-07-05, and its status docs are superseded by this
 repo. See **Proof status** below for the kernel-reported state.
@@ -55,34 +56,40 @@ convex `A` ([`unit_distance_pairs_bound`](lean/Erdos9796Proof/P96/EuclideanPeeli
 
 ## Proof status
 
-**Both theorems are complete modulo five named residual lemmas.** The hard
-core of the descent step —
+**Both published claims still reach `sorryAx` through two Front-A proof
+clusters.** The hard core of the descent step —
 [`RemovableVertexOfLarge`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean#L546)
 (*every nonempty convex `HasNEquidistantProperty 4` set with `9 < |A|` that is
 minimal under the strong-induction hypothesis contains a removable vertex*) —
 is assembled from a three-way split (surplus-cap packet extraction, the
 `IsM44` pinned-surplus branch, the non-`IsM44` descent branch). The
-`sorry`-backed obligations remaining under it, all on the publish spine:
+current source obligations are all in `U1LargeCapRouteBTail.lean`:
 
-| Obligation (`Problem97.*`) | File | Role |
-|---|---|---|
-| `isM44EndpointResidualsExcluded` | `RemovableVertexAxiom.lean` | endpoint-escape exclusion against the 117 certified endpoint patterns |
-| `isM44PinnedSurplusResidualsExcluded` | `RemovableVertexAxiom.lean` | pinned surplus-family exclusion via the finite COMP-G bank |
-| `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` | `RemovableVertexAxiom.lean` | erased-pin triple residuals for the containment branch |
-| `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | `U1LargeCapRouteBTail.lean` | two-large-cap metric residual (imported U-lane route-B tail) |
-| `u1_largeCap_routeB_tail_liveData_false` | `U1LargeCapRouteBTail.lean` | route-B live-data branch exclusion |
+| Cluster | Source surface | Symbols | Textual holes |
+|---|---|---:|---:|
+| Shared-radius pair | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 |
+| liveData families | 35 named `liveData_*` helpers consumed by the now-sorry-free `u1_largeCap_routeB_tail_liveData_false` | 35 | 79 |
+| **Total** | | **36** | **80** |
+
+`proof-blueprint symbols --with-sorry` reports exactly those 36 symbols. The
+former Front-B obligations `isM44EndpointResidualsExcluded`,
+`isM44PinnedSurplusResidualsExcluded`, and
+`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
+and kernel-connected. The downstream exact-pin ERASE target is 0/1376 open
+and passes target-specific `proof-blueprint verify-publish` under the approved
+axiom set.
 
 The Lean kernel reports the axiom closure of both published claims as the
 Lean core axioms plus:
 
-- `sorryAx` — traces exactly to the five obligations above;
+- `sorryAx` — traces exactly to the 36 Front-A symbols above;
 - `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
   generated finite-bank certificate shards (`SurplusCOMPGBank*`,
   `EndpointCertificate/*`), allowed under the project's `native_decide`
   policy (kernel-checked closure + the evaluated checkers are plain verified
   Lean with no `unsafe` / `@[implemented_by]` / `@[extern]`).
 
-Once the five obligations are proven, `sorryAx` drops out and both closures
+Once those two clusters are proven, `sorryAx` drops out and both closures
 become the core axioms plus the two compiler axioms — the declared trust
 boundary of the certificate infrastructure.
 
@@ -122,9 +129,9 @@ lock so concurrent invocations serialize:
 ./scripts/lake-build.sh
 ```
 
-A successful build prints `declaration uses 'sorry'` warnings for the files
-carrying the open obligations (`RemovableVertexAxiom.lean`,
-`U1LargeCapRouteBTail.lean`, `U2OppCap2Escape.lean`) and nothing else of
+A successful build prints `declaration uses 'sorry'` warnings for
+`U1LargeCapRouteBTail.lean`, the sole current source file carrying proof holes,
+and nothing else of
 substance. (Lean's mathlib-style linters emit a handful of cosmetic
 style/`simp` hints; these are not errors.)
 
@@ -287,8 +294,8 @@ a final single-apex exhaustion:
 
 - [`RemovableVertexAxiom.lean`](lean/Erdos9796Proof/P97/RemovableVertexAxiom.lean)
   - assembles `RemovableVertexOfLarge` (every minimal counterexample with
-  `|A| > 9` has a removable vertex) from the three-way split, and carries the
-  three slot-2 residual `sorry`s.
+  `|A| > 9` has a removable vertex) from the three-way split. Its three former
+  slot-2 residual branches are now closed.
 - [`SmallerCounterexample.lean`](lean/Erdos9796Proof/P97/SmallerCounterexample.lean)
   - turns a removable vertex into a strictly smaller counterexample.
 - [`Descent.lean`](lean/Erdos9796Proof/P97/Descent.lean) - packages the two into
@@ -296,7 +303,7 @@ a final single-apex exhaustion:
 
 ### Status of the removable-vertex lemma: current residuals
 
-The five obligations in the **Proof status** table are the open frontier;
+The two Front-A clusters in the **Proof status** table are the open frontier;
 everything else on the descent path is closed and kernel-audited: the base
 case `FiniteN9Closure` (axiom closure: `propext, Classical.choice,
 Quot.sound`), the cap-sum bridge (`|A| > 9 ⇒ some opposite cap is surplus`),
@@ -318,7 +325,7 @@ a route and acceptance test. The lane execution logs are
 [`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
 (the two slot-3 U-lane residuals) and
 [`docs/four-point-subpacket-plan.md`](docs/four-point-subpacket-plan.md)
-(the three slot-2 census residuals; status matrix + implemented-lemma
+(the now-closed slot-2 lane; historical status matrix + implemented-lemma
 ledger). Analysis snapshots live under [`docs/audits/`](docs/audits).
 [`docs/dead-ends.md`](docs/dead-ends.md) is the don't-repeat log for closed
 proof routes.
@@ -329,10 +336,9 @@ repo `p97-rvol` and imported here on 2026-07-05 (58 modules,
 other companion repos are historical — frozen references, not live work
 targets; their status docs are superseded by this repo.
 
-Two additional `sorry`s in
-[`U2OppCap2Escape.lean`](lean/Erdos9796Proof/P97/U2OppCap2Escape.lean) are
-**off the publish spine** (not reachable from either published theorem); they
-become adapter work once the slot-2 obligations close.
+The former off-spine `U2OppCap2Escape.lean` work is archived under `attic/`.
+No current source file outside `U1LargeCapRouteBTail.lean` carries a proof
+`sorry`.
 
 ### Problem 96
 

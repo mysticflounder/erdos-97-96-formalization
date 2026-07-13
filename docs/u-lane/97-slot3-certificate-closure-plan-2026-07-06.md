@@ -25,7 +25,14 @@ Audit correction, 2026-07-06:
   The general-`m` route must use a relaxed/sub-mask bridge, a confinement
   theorem, or leave an explicit on-spine general-`m` residual.
 
-## Current state
+Status correction (2026-07-13): workstream C is closed. Endpoint,
+pinned-surplus, and ERASE are source-clean and kernel-connected; the complete
+ERASE lane is pushed at `652fdfcb` and its exact-pin target is 0/1376 open.
+The remaining slot-3 surface is 36 symbols / 80 textual holes in the
+shared-radius and liveData Front-A clusters. Historical workstream-C OPEN text
+below is retained as execution history, not current dispatch truth.
+
+## Historical state at the 2026-07-06 checkpoint
 
 The p97-rvol route-B tail import has already landed in this repo.  The two
 copies of `U1LargeCapRouteBTail.lean` are semantically identical apart from

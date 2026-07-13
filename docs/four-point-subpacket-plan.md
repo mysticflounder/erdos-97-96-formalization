@@ -15,6 +15,12 @@ execution log; it contains stale historical "next step" text that is preserved
 for provenance.  When status differs, the live frontier plus proof-blueprint
 output wins.
 
+Current ERASE status (2026-07-13): the slot-2 endpoint, pinned-surplus, and
+erased-pin branches are closed. The complete ERASE card-{10,11} lane is pushed
+at `652fdfcb`; its exact-pin target is 0/1376 open and target-verified. All
+OPEN/next-step ERASE text below is historical unless a later entry says
+otherwise.
+
 Scope: the reduction is a normalization lemma inside the existing convex-shell
 framework.  The incidence census does not independently encode convexity; it
 assumes the cap/Moser/cyclic setup already produced from `ConvexIndep A`.  This

@@ -306,11 +306,13 @@ Problem97.SurplusCOMPGBank
 
 The latter is consumed in `SurplusCOMPGBankGeometry.lean`. It requires the
 exact opposite-cap masks, the seed's private mask, four-label/no-self shape for
-the remaining classes, no-three, prefix-count, and separation facts. The P2
-holes are precisely the geometric production of those bundled
-`OneSidedSeedCandidateRemainder` facts. The ordered producer's 26 exact-shadow
-row theorems are subsumed for the live route by this fixed-seed relaxed-shape
-consumer.
+the remaining classes, no-three, prefix-count, and separation facts. At the
+mining checkpoint, the P2 holes were the geometric production of those bundled
+`OneSidedSeedCandidateRemainder` facts. They are now closed without asserting
+that overstrong interface: commit `652fdfcb` uses label-complete card-10
+producers and the faithful-carrier card-11 classifier/closure chain. The
+ordered producer's 26 exact-shadow row theorems remain subsumed by the
+fixed-seed relaxed-shape consumer on the historical route.
 
 ## Multi-center bank
 

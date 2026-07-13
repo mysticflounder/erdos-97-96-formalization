@@ -1,5 +1,10 @@
 # Closure risk-mitigation implementation checkpoint
 
+> **Status update (2026-07-13):** the five-leaf proof-state sentence below is
+> historical. Endpoint, pinned-surplus, and ERASE are closed; ERASE is pushed
+> at `652fdfcb`. The current source surface is 36 symbols / 80 holes in the two
+> Front-A clusters.
+
 Date: 2026-07-09 (PDT)
 
 This checkpoint records implemented mitigations and the remaining admissible

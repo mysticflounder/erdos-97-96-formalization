@@ -26,6 +26,11 @@
 
 # Erased-pin row-truth probe — final report (2026-07-07)
 
+> **Status update (2026-07-13):** retain these witness verdicts as constraints
+> on admissible proofs. The ERASE lane itself is now closed and pushed at
+> `652fdfcb` through the card-{10,11} classifier route; no row in this report is
+> a current proof obligation.
+
 ## What was investigated
 
 Realizability of the local exact-count configurations behind the 28

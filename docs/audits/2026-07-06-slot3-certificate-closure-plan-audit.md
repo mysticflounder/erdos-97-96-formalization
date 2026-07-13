@@ -6,6 +6,10 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Plan audit: 97-slot3-certificate-closure-plan-2026-07-06.md (2026-07-06)
 
+> **Status update (2026-07-13):** workstream C, including ERASE, is closed;
+> ERASE is pushed at `652fdfcb`. The two Front-A clusters remain open, so the
+> slot-3 findings below remain historical input for those clusters only.
+
 Audited document:
 `docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md` (536 lines at
 snapshot). Snapshot caveat: the file carries uncommitted working-tree

@@ -58,11 +58,12 @@ inventory, not the per-artifact `fresh_*`/`cumulative_*` fields. Those
 fields reset when a range sweep is restarted, so the canonical readout is
 `uv run python census/multi_center/analyze_sweeps.py`.
 
-For the active erased-pin leaf, use
-`uv run python census/multi_center/frontier_report.py`.  It preserves the
-same inventory readout and records that the completed multi-center data does
-not supply the producer facts required by
-`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
+The historical erased-pin comparison is available through
+`uv run python census/multi_center/frontier_report.py`. It preserves the same
+inventory readout and records why the completed multi-center data did not
+supply that leaf's producer facts. The erased-pin leaf is no longer active: it
+closed independently in commit `652fdfcb` through the card-{10,11} classifier
+lane.
 
 ## Interpretation
 

@@ -1,5 +1,11 @@
 # ERASE-P2-R/L remainder blocker — adversarial audit (2026-07-11)
 
+> **Status update (2026-07-13):** this blocker analysis remains valid for the
+> overstrong remainder route, but it is no longer an open obligation. Commit
+> `652fdfcb` closes P2 through the label-complete card-10 producer and
+> faithful-carrier card-11 classifier/closure chain. The exact-pin ERASE target
+> is 0/1376 open and target-verified.
+
 Skeptic audit of the blocker report produced by the §B.3 consumer-refactor
 dispatch on `Continuation.lean:312/:337` (matrix rows ERASE-P2-R/L, inside
 `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`).

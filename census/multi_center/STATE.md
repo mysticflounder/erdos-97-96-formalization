@@ -74,16 +74,18 @@ Started 2026-07-07 from
    surface, not geometric GLOBAL realization or quantitative eventual
    stabilization.
 8. [x] Active-leaf report:
-   `frontier_report.py` wraps the sweep analyzer with the current erased-pin
-   proof boundary.  It reports completed L2 GLOBAL / PROVEN evidence, flags
+   `frontier_report.py` wraps the sweep analyzer with the historical erased-pin
+   proof boundary. It reports completed L2 GLOBAL / PROVEN evidence, flags
    partial artifacts, checks for either pending `n28_32` or `n29_32` extension
-   artifact, and states whether the loaded incidence data supplies any of the
-   three producer facts still needed by
-   `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
-9. [ ] CONJECTURED-tier appendix:
+   artifact, and records why the loaded incidence data did not supply that
+   leaf's producer facts. The leaf later closed independently in ERASE commit
+   `652fdfcb`.
+9. [ ] OPTIONAL CONJECTURED-tier appendix:
    Bounded smoke through n = 15 has been run for L2 GLOBAL /
-   CONJECTURED cuts: 11,223/11,223 SAT, 0 UNSAT, 0 INDETERMINATE.  The full
-   targeted appendix and erased-pin row-to-class mapping remain open.
+   CONJECTURED cuts: 11,223/11,223 SAT, 0 UNSAT, 0 INDETERMINATE. The erased-pin
+   row-to-class mapping is complete in `scratch/erase-p3-map/` (commit
+   `54b7950f`). The full targeted appendix remains optional and held; it is not
+   required for ERASE closure.
 
 ## Commands
 

@@ -1,5 +1,10 @@
 # Lean Codebase Audit
 
+> **Status update (2026-07-13):** this five-leaf snapshot is superseded.
+> Endpoint, pinned-surplus, and ERASE are closed; ERASE is pushed at
+> `652fdfcb`. The current source inventory is 36 symbols / 80 holes, all in
+> `U1LargeCapRouteBTail.lean`.
+
 Audit date: 2026-07-09
 
 Scope: the Lean source tree, certificate and census boundaries, proof-blueprint

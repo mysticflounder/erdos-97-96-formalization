@@ -245,10 +245,12 @@ required by:
 - `Problem97.isM44PinnedSurplusResidualsExcluded`;
 - `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`.
 
-The erased-pin frontier explicitly remains blocked on a local producer
-surface of different shape (`ErasedPinFiniteCandidateSepScaffoldFacts`
-and direct surplus-side erased-pin exclusions), so the census does not
-close any current slot-2 spine `sorry` by itself.
+At this plan's checkpoint, the erased-pin frontier was blocked on a local
+producer surface of different shape (`ErasedPinFiniteCandidateSepScaffoldFacts`
+and direct surplus-side erased-pin exclusions), so the census did not close
+that slot-2 spine `sorry` by itself. That frontier is now closed independently
+by the card-{10,11} ERASE classifier in commit `652fdfcb`; there is no current
+slot-2 `sorry` for this census line to discharge.
 
 Where this line should pay off is the slot-3 large-cardinality tail:
 

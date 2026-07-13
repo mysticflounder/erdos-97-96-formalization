@@ -1,5 +1,10 @@
 # Erased-pin row-truth probe — STATE
 
+> **Status update (2026-07-13):** the probe's realizability findings remain
+> valid, but the associated ERASE proof lane is closed. Commit `652fdfcb`
+> bypasses the false/overstrong local producer routes with card-{10,11}
+> classifier closures; the exact-pin target is 0/1376 open.
+
 Purpose: realizability reality-check over the 28 non-terminal erased-pin count
 rows (+ 2 surplus-side ErasedPinTriple obligations) BEFORE per-row exclusion
 lemmas are attempted.  Template: `scratch/two-hit-probe/` (encoding reused, not

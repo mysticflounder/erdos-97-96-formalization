@@ -1,13 +1,13 @@
 # K-B-ERASE card-{10,11} finite-closure classifier — design (2026-07-12)
 
-Implementation is complete on the current working tree.  The
+Implementation is complete and pushed in commit `652fdfcb`. The
 card-10 label-complete producer, all twenty P2 consumers described in §4.2,
 and both P4 consumers described in §4.3 are implemented, wired, and
 kernel-built.  At card 11, M1 and M2 are complete and the P4-U arm is fully
 certified, soundness-transported, wired, and kernel-built.  P4-S and P2 are
 also target-built through their native fleets, semantic dispatchers, closure
 theorems, residual consumers, and downstream `Continuation` target.  The
-exact-pin ERASE subtree is kernel-complete on the current working tree.
+exact-pin ERASE subtree is kernel-complete at 0/1376 open nodes.
 A final cached `scripts/build-p2-certificates.sh` rerun passed all 16 bounded
 P2 batches and the 8410-job aggregate target.
 This is the "third
@@ -19,16 +19,17 @@ K-B-END-GENERAL endpoint chain
 (`lean/Erdos9796Proof/P97/EndpointCertificate/`) and the K-B-PIN chain
 (`lean/Erdos9796Proof/P97/Census554/CapSelectedNativeClosureSound.lean`).
 
-The ERASE-P2 redraft has landed.  Its exact statements are now validated
+The ERASE-P2 redraft and its closure implementation have landed. Its exact statements are validated
 against `RemovableVertexAxiom/ErasedPinRowResiduals.lean`; historical
-`git show HEAD:` line references below describe the design baseline and may no
-longer be current working-tree line numbers.
+line references below describe the pre-closure design baseline and are not
+current source locations.
 
-## 0. Hole surface designed against
+## 0. Historical hole surface designed against
 
-Leaf: `Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
-(HEAD `Continuation.lean:107`), holes at HEAD `:183`, `:211` (P4), `:312`,
-`:337` (P2). Intermediate statement
+At the design checkpoint, leaf
+`Problem97.isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
+had P4 holes at `Continuation.lean:183/:211` and P2 holes at `:312/:337`.
+All four are now closed. The historical intermediate statement was
 `IsM44NonSurplusContainmentErasedPinTripleRoutedSeedFiniteResidualRowsFactsStatement`
 (HEAD `Base.lean:9168-9192`): ambient
 `A hne hconv hK4 (hgt : 9 < A.card) hMin S hM44` plus the five-input scaffold
@@ -358,9 +359,9 @@ Consumer-side chain per hole, at card 11 (all cited producers committed):
 
 ## 4. Bridge + dispatch
 
-### 4.1 Per-row consumer shape (the 20 P2 holes; statements validated)
+### 4.1 Per-row consumer shape (the 20 former P2 holes)
 
-For each redrafted row hole `false_of_erasedRow_<side>_<sig>`:
+For each redrafted row theorem `false_of_erasedRow_<side>_<sig>`:
 
 ```
 intro (ambient) (scaffold) (row facts: p-membership, x-membership, counts)
@@ -399,10 +400,9 @@ contradiction against `intS` size 3 — cheap, no search).
 - The other sixteen count rows are instantiated through normalized right/left
   label packages, row-specific private-mask extraction, and the existing
   candidate-to-fixed-bank coverage theorems.
-- All twenty public residuals are now source-clean card dispatchers.  Their
-  only open children are the explicitly named card-11 residual declarations;
-  the kernel-mined spines confirm that the card-10 branches do not reach
-  `sorryAx`.
+- All twenty public residuals are source-clean card dispatchers. Their card-10
+  and card-11 children are closed, and the kernel-mined spines confirm that
+  neither branch reaches `sorryAx`.
 
 Consumer: `false_of_erasedPinFixedSeedRelaxedShape_pointClasses`
 (`SurplusCOMPGBankGeometry.lean:10761`). The new work is the label-complete
@@ -427,9 +427,9 @@ conditions from the hole hypotheses at `A.card = 10`:
   their existing `*_seeds_candidates_subset_fixed` theorems; the two pure
   surplus-side rows close by cardinality before invoking the bank.
 
-### 4.3 The 2 P4 holes — card-10 and card-11 closure
+### 4.3 The 2 former P4 holes — card-10 and card-11 closure
 
-- **Card 11: COMPLETE ON THE CURRENT WORKING TREE.** Seed centers `0` (apex,
+- **Card 11: COMPLETE in `652fdfcb`.** Seed centers `0` (apex,
   `point_zero_eq_opposite`) and `3..6` (`intS`) are ordinary `Fin 11` seed
   families (§1.2); the §3.1 chain is implemented. The
   classifier need
@@ -437,10 +437,9 @@ conditions from the hole hypotheses at `A.card = 10`:
   (`U3ToU5Terminal.lean:296`) and does not need to: Route A's 8-point
   confinement is bypassed because `FaithfulCarrierPattern` confines every
   class to `A` = the 11 labels by construction, which is what the census
-  vocabulary needs. Once built, the holes can be discharged directly; the
-  audit-frame
-  derivations currently sitting above the `sorry`s
-  (`Continuation.lean:150-211`) are unused on this path.  Both residual
+  vocabulary needs. The holes are discharged directly; the historical
+  audit-frame derivations above the former holes were unused on this path.
+  Both residual
   declarations call the corresponding card-eleven finals.  P4-S and P2 build
   through their standalone terminals and shared downstream parent; the
   exact-pin ERASE subtree is 0/1376 open.
@@ -529,9 +528,9 @@ fleet.
 
 ## 6. Work plan (ordered; entry gates; parallelism)
 
-Entry gate G-A for everything: ERASE-P2 redraft lands (holes exist as
-statements) + build freeze lifts. G-B (compute): Adam approves the eval/sweep
-compute (matrix marks the P3 lane OPTIONAL/{{NEEDS_ADAM_INPUT}}).
+Historical entry gates G-A (ERASE-P2 redraft and lifted build freeze) and G-B
+(approved classifier computation) both passed. The P3 diagnostic lane remains
+optional and separately gated.
 
 - **M1 — eval gate (COMPLETE 2026-07-12).** The compiled executable evaluated
   the exact 4543-cell domain with eight Lean runtime threads and returned
@@ -557,8 +556,8 @@ compute (matrix marks the P3 lane OPTIONAL/{{NEEDS_ADAM_INPUT}}).
   `CardElevenBlocker.lean` implements the sound finite-map blocker replacement
   and exactness split described in §3.1 item 5, then packages complete
   right/left count-row geometry and both P4-U/P4-S geometry families.  Thus
-  all twenty-two consumers have a proof-facing carrier package waiting for
-  the finite classifier result.  The serialized target build passed (8173
+  all twenty-two consumers have the proof-facing carrier package consumed by
+  the finite classifier result. The serialized target build passed (8173
   jobs), proof-blueprint indexed both modules, and the principal staging and
   geometry-package theorems have exactly the core-only axiom surface
   (`propext`, `Classical.choice`, `Quot.sound`).  M6 remains independent of
@@ -573,25 +572,26 @@ compute (matrix marks the P3 lane OPTIONAL/{{NEEDS_ADAM_INPUT}}).
 - **M9 — card-10 P4 lane (COMPLETE)**: complete `u`/`s`-centered seed
   generation, empirical DFS gate, optimized Lean routing and native shards,
   producer proofs, and `Continuation` wiring (§4.3).
-- **M10 — wiring + spine check (COMPLETE ON CURRENT WORKING TREE):** all twenty
+- **M10 — wiring + spine check (COMPLETE in `652fdfcb`):** all twenty
   P2 and both P4 parent arms dispatch to card-ten/card-eleven consumers.
   `Continuation` builds, aggregate/downstream axiom audits contain no
   `sorryAx`, and the exact-pin subtree is kernel-complete.
 
-Next dependency order: preserve the accepted generated tree under CTRL-GIT,
-then run the eventual repository-wide full-build/publication sequence after
-Front A closes.  A witness-checker redesign is optional follow-on performance
+The accepted generated tree is preserved under CTRL-GIT at `652fdfcb`. The
+next repository-wide step is the full-build/publication sequence after Front A
+closes. A witness-checker redesign is optional follow-on performance
 work; it is not required for ERASE logical closure.
 
 ## 7. Source index (verification trail)
 
-All verified this session from committed state (working tree for non-frozen
-files; `git show HEAD:` for frozen files):
+The current implementation is committed at `652fdfcb`. The historical source
+locations below record the design inputs; declaration names, not old line
+numbers, are authoritative:
 
 - Cards: `CapSelectedRowCounting.lean:765/:802/:813`;
   `Cap/PartitionFromMEC.lean:443/:448/:457`.
-- Holes/scaffold: HEAD `Continuation.lean:107/:183/:211/:312/:337`; HEAD
-  `Base.lean:9168-9192`.
+- Historical holes/scaffold: `Continuation.lean:107/:183/:211/:312/:337` and
+  `Base.lean:9168-9192`; all cited ERASE holes are now closed.
 - Template chain: `Census554/CapSelectedFiniteCode.lean:33-229/:472`;
   `Census554/CapSelectedNativeClassifier.lean:108/:116/:215/:260/:304-322`;
   `Census554/CapSelectedNativeClosureSound.lean:751/:765/:825/:839/:852`;

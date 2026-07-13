@@ -6,6 +6,11 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Lean codebase analysis (2026-07-11)
 
+> **Status update (2026-07-13):** this proof-state snapshot is historical.
+> Endpoint, pinned-surplus, and ERASE are now closed; ERASE is pushed at
+> `652fdfcb`. The live source inventory is 36 symbols / 80 holes, all in
+> `U1LargeCapRouteBTail.lean`.
+
 Whole-project review of `lean/`: proof-state snapshot, per-obligation closure
 assessment, subagent-swarm feasibility, and suboptimal-pattern /
 restructuring findings. Evidence: `proof-blueprint` (status/spine/symbols,

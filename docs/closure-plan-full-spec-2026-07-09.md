@@ -48,8 +48,9 @@ The pinned-surplus general-m and endpoint general-m leaves are closed and are
 not part of the current inventory (matrix K-B-PIN and K-B-END-GENERAL).
 `proof-blueprint symbols --with-sorry` reports exactly the 36 symbols above.
 The full P2 fleet, downstream ERASE targets, and target-specific exact-pin gate
-now pass on the current working tree.  The global `CTRL-GRAPH`/publication gate
-remains open for the 36 Front-A symbols and shared-tree reproducibility.
+pass from pushed commit `652fdfcb`. The global `CTRL-GRAPH`/publication gate
+remains open for the 36 Front-A symbols and shared-tree reproducibility; the
+live recheck found 3 uncommitted Lean paths, all outside ERASE.
 `sorryAx` is the synthetic kernel marker reached through those Front-A
 declarations, not a 37th source obligation.
 
@@ -1649,11 +1650,11 @@ The ERASE-P2 redraft is complete. The broad false remainder assertions were
 removed and replaced by twenty explicit per-row refutation consumers. The
 current classifier ladder forces card `{10,11}`:
 
-- **card 10 / P2 — DONE in the working source:**
+- **card 10 / P2 — DONE in commit `652fdfcb`:**
   `ErasedCertificate/CardTenProducer.lean` supplies the label-complete
   producer, `hv`/`hw` classes, terminal coverage, and pure-row cardinality
   closures. All twenty P2 consumers are wired through proved card-10 branches.
-- **card 11 / P2 — DONE ON THE CURRENT WORKING TREE:** the same twenty
+- **card 11 / P2 — DONE in commit `652fdfcb`:** the same twenty
   consumers call the `P2Closure.lean` finals.  All 128 independent native
   leaves, aggregators, semantic dispatcher, closure, residual shard, and
   downstream `Continuation` target build.  The right/left terminals and
@@ -1705,7 +1706,9 @@ build/axiom/spine gates.  `Continuation` passed 9703 jobs; the downstream
 exact-pin theorem is 0/1376 open and passes target-specific `verify-publish`.
 The ordered ladder and exact risk gates live in
 `scratch/erase-classifier-design/DESIGN.md`; M1, M2, M6, M8, M9, and P4-U are
-complete, and P4-S/P2/M10 are now complete on the current working tree.
+complete, and P4-S/P2/M10 are included in the committed closure checkpoint.
+The complete ERASE lane, including the generated certificate fleets and
+bounded rebuild driver, is pushed at `652fdfcb`.
 
 The P2 proof build has two measured performance mitigations.  A balanced
 support key reduces active searches per native leaf from a 0–65 range to
@@ -1801,7 +1804,7 @@ known mechanism:
 
 Front-B ERASE is no longer an open-mathematics cluster.  Its card-{10,11}
 P2/P4 source, native fleets, downstream target, axiom closures, and exact-pin
-spine gate pass on the current working tree.  This does not discharge the
+spine gate pass from pushed commit `652fdfcb`. This does not discharge the
 repository-wide git/full-build/publication controls.
 
 The former endpoint/pinned cluster is closed (K-B-END-GENERAL and K-B-PIN
@@ -1863,9 +1866,11 @@ The Census554/A11 lane retains this internal order:
 5. **Close and wire card 11.** Prove `false_of_cardEleven_twoLargeCaps`, invoke
    it in both Front-A declarations, and leave explicit card-at-least-12
    residuals.
-6. **Work the three open-math clusters under their active owners.** ERASE may
-   proceed independently of Front A once `CTRL-RESOURCE` and `CTRL-OWN` pass.
-   LIVE rows should be factored by orbit family, not patched leaf by leaf.
+6. **Work the two open-math clusters under their active owners.** Both are
+   Front A: the shared-radius pair and the LIVE families. ERASE is closed and
+   needs no further proof work; only optional performance or P3 diagnostics
+   may proceed under their own resource gates. LIVE rows should be factored by
+   orbit family, not patched leaf by leaf.
 7. **Run optional research gates only when their decision row authorizes
    them.** AHEAD-* is a narrowing experiment; ERASE-P3-* is diagnostic; MC-*
    remains off-spine until an exact consumer exists; SUB2/Q3 are Candidate-D

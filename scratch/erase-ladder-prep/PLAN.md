@@ -1,5 +1,10 @@
 # ERASE card-{10,11} classifier ladder — M2–M8 execution plan (2026-07-12)
 
+> **Status update (2026-07-13):** this pre-stage plan has been fully executed.
+> M1-M10, both native fleets, downstream wiring, and the exact-pin gate pass;
+> the complete lane is pushed at `652fdfcb`. All pending/OPEN language below is
+> historical sequencing, not current work.
+
 Pre-stage of milestones M2–M8 of the ERASE card-{10,11} classifier
 (`scratch/erase-classifier-design/DESIGN.md`). Plan only; **no `.lean` created
 or modified, no `lake build` run** while M1 (the `#eval` STOP-gate in
