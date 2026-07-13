@@ -1,0 +1,167 @@
+{
+  "engine_path": "/Users/adam/.local/bin/cvc5",
+  "engine_sha256": "fae4cef47a4e82e3b37f8928b5cb275c8a86d138a33e49d54a9933a157b57f74",
+  "engine_version": "This is cvc5 version 1.3.3 [git 8ff882e on branch HEAD]",
+  "manifest_sha256": "fe1a96612510e03d1e0033a47446fcf6c0ef5b049d06cda6d72a69487fa6b4f9",
+  "nice_preflight": {
+    "effective_nice": 10,
+    "passed": true,
+    "returncode": 0,
+    "stderr": ""
+  },
+  "results": [
+    {
+      "case_id": "ineq_m06_e51_c2256",
+      "constraint_counts": {
+        "assertions": 129,
+        "equalities": 14,
+        "strict_inequalities": 106,
+        "variables": 19,
+        "weak_inequalities": 9
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.009,
+      "returncode": -6,
+      "smt2_sha256": "dc5405628366426113c83644f66a4e63f93247b6d8a3542231398ba0057ef518",
+      "solver_status": null,
+      "system_input_sha256": "310a55892127556c56ce4454dec06077bdd7c87412ff44a7578826b456d02050",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m07_e19_c1216",
+      "constraint_counts": {
+        "assertions": 169,
+        "equalities": 14,
+        "strict_inequalities": 145,
+        "variables": 21,
+        "weak_inequalities": 10
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.014,
+      "returncode": -6,
+      "smt2_sha256": "3db4d1403d787cca5bf55338980049b9d255ff472eae742523be2e03f84fd5f3",
+      "solver_status": null,
+      "system_input_sha256": "febe47193847e850fcdc192756300d8ba011aa02334c06846cb534c06db43a11",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m08_e04_c0521",
+      "constraint_counts": {
+        "assertions": 218,
+        "equalities": 14,
+        "strict_inequalities": 193,
+        "variables": 23,
+        "weak_inequalities": 11
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.008,
+      "returncode": -6,
+      "smt2_sha256": "3e5f719d31c253f5e0371e58277b99714c7c47abfe976ff258340cca9aca05a4",
+      "solver_status": null,
+      "system_input_sha256": "d03ae1d5dbe41cee7318d774cc4a01eb59fd8f930fd0a1ed6073c568d4dd809f",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m09_e00_c0009",
+      "constraint_counts": {
+        "assertions": 277,
+        "equalities": 14,
+        "strict_inequalities": 251,
+        "variables": 25,
+        "weak_inequalities": 12
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.013,
+      "returncode": -6,
+      "smt2_sha256": "9cc4049f494e49ef7898d3fe7cf6ab57422b78d8d3124da0d073495f91795532",
+      "solver_status": null,
+      "system_input_sha256": "1cddbfe7e2ccdf7c364711655442454edff101666d0e27f62fcdbd5d1b72f05a",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m10_e01_c0008",
+      "constraint_counts": {
+        "assertions": 347,
+        "equalities": 14,
+        "strict_inequalities": 320,
+        "variables": 27,
+        "weak_inequalities": 13
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.015,
+      "returncode": -6,
+      "smt2_sha256": "f2e6c2ecd8820e253ffa6fb3a47eeef0a18db12a60d446775c4bf1c0973c531f",
+      "solver_status": null,
+      "system_input_sha256": "345c73860af0a871af71668a6b98b0aa713bc96ea94b21f1db61023edfaa2857",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m11_e02_c0018",
+      "constraint_counts": {
+        "assertions": 429,
+        "equalities": 14,
+        "strict_inequalities": 401,
+        "variables": 29,
+        "weak_inequalities": 14
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.012,
+      "returncode": -6,
+      "smt2_sha256": "f9c310817d3871a725d08c83dbf67bdb1adcea7a9b270401d0092f9d2734281e",
+      "solver_status": null,
+      "system_input_sha256": "a8a6c1e3fa5b87cdc42b36a6074c02587b1fc56cb99eb211c4ce958ce0a68685",
+      "verdict": "ERROR"
+    },
+    {
+      "case_id": "ineq_m12_e03_c0082",
+      "constraint_counts": {
+        "assertions": 524,
+        "equalities": 14,
+        "strict_inequalities": 495,
+        "variables": 31,
+        "weak_inequalities": 15
+      },
+      "diagnostic_suffix": "cvc5 interrupted by timeout.",
+      "elapsed_seconds": 30.01,
+      "returncode": -6,
+      "smt2_sha256": "7f4b56ec9cc96e706075b90a85f81d6e40071b1d4e84201a6ffeda7208824e07",
+      "solver_status": null,
+      "system_input_sha256": "dd30052c4d451b3f208f82488b06f0e43a96ee3b0caa61fbd9f52fb18ad355f6",
+      "verdict": "ERROR"
+    }
+  ],
+  "schema": "p97_atail_force_cvc5_pilot_results.v2",
+  "scope": {
+    "cross_engine_same_frozen_cases": true,
+    "full_configuration_claim": false,
+    "full_filter_shared_radius_pair_claim": false,
+    "full_inventory_coverage_claim": false,
+    "full_three_center_window_inequalities_included": true,
+    "lean_claim": false,
+    "symmetry_reduced_surface_coverage_claim": false
+  },
+  "smoke": {
+    "passed": true,
+    "sat": {
+      "elapsed_seconds": 0.006,
+      "returncode": 0,
+      "solver_status": "SAT",
+      "verdict": "SAT_CANDIDATE"
+    },
+    "unsat": {
+      "elapsed_seconds": 0.006,
+      "returncode": 0,
+      "solver_status": "UNSAT",
+      "verdict": "UNSAT_PROPOSAL"
+    }
+  },
+  "total_elapsed_seconds": 219.217,
+  "verdict_contract": {
+    "ERROR": "no claim",
+    "SAT_CANDIDATE": "cvc5 returned SAT; no independent exact model replay, so no claim",
+    "TIMEOUT": "no claim",
+    "TOTAL_WALL_STOP": "no claim",
+    "UNKNOWN": "no claim",
+    "UNSAT_PROPOSAL": "cvc5 returned UNSAT; no independently replayed certificate, so no claim"
+  }
+}

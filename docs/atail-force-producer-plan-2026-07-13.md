@@ -13,13 +13,18 @@ Current status:
 - `ATAIL-Q3`: DONE-NEGATIVE within its stated selected-four/two-center
   abstraction.
 - `ATAIL-DISTINCT-REPLAY`: DONE-NEGATIVE for all equality-only routes.
-- `ATAIL-EQ-PILOT` and `ATAIL-INEQ-PILOT`: DONE-NEGATIVE-TRACTABILITY.
+- `ATAIL-EQ-PILOT`, `ATAIL-INEQ-PILOT`, and `ATAIL-CVC5-PILOT`:
+  DONE-NEGATIVE-TRACTABILITY.
+- `ATAIL-ORDER-FAN-1`: CHECKED-SCRATCH; one 15-hypothesis scalar
+  incompatibility has a solver-free Lean proof, but its exact selected-four
+  orbit matcher reaches only 39 of 167,782 systems.
 - `ATAIL-FORCE`: OPEN-RESEARCH and load-bearing for `K-A-PAIR`.
 
-The proof-blueprint session anchor remains
-`Problem97.u1_largeCap_routeB_tail_liveData_false`. The shared-radius theorem
-is reachable from that parent through `false_of_center_p_t2_t20`; no new
-off-spine `sorry` is permitted.
+The active proof-blueprint session anchor is
+`Problem97.liveData_T1_ql1_srcl2_false`. The checked T1/T3 relabel adapters
+reduce that orbit to the shared-radius K-A-PAIR residual, which is reachable
+from `Problem97.u1_largeCap_routeB_tail_liveData_false` through
+`false_of_center_p_t2_t20`; no new off-spine `sorry` is permitted.
 
 ## Exact on-spine consumer
 
@@ -198,6 +203,25 @@ threading the pair interface). The completed three-center census contains
 neither the dangerous `p` row nor the sixth `f2` row. Full audit:
 `docs/audits/2026-07-13-atail-sixth-row-scope.md`.
 
+The live comparison maps now have a kernel-checked scratch normalization. If
+`f2 = rows.sourcePoint source`, equality of the two centers and selected `l1`
+points forces equality of the complete exact four-shell supports. The proof is
+in `scratch/atail-force/critical_row_coupling.lean` and checks without a
+`sorry`. This is useful provenance extraction, but it is not the producer:
+different slot permutations of the common support survive in the T1/T3 cells.
+The same scratch module also checks the routine implication from a joint
+full-filter card lower bound of two to the exact distinct off-surplus pair and
+four radius equalities consumed by the existing sink.
+
+A second kernel-checked scratch module,
+`scratch/atail-force/triple_relabel_adapters.lean`, shows that those T1/T3 slot
+permutations do not require separate geometry. When `f2` equals `t1` or `t3`,
+permute the dangerous triple so the transferred row becomes the existing pair
+consumer's `t2Row`. The fixed-triple, rows, live data, and base pairwise packet
+all transport. Once wired, this replaces all 48 LIVE-T1/T3 textual holes by
+two orbit adapters depending on K-A-PAIR. It does not close K-A-PAIR and it
+does not address LIVE-Q or LIVE-C.
+
 ## Required strengthening beyond Q3
 
 Any viable producer must add information lost by the selected-four Q3
@@ -222,12 +246,12 @@ abstraction. At least one of these must become a theorem:
 4. **Direct contradiction.** Derive `False` from the same on-spine hypotheses
    without naming the pair, then eliminate into the existing existential.
 
-The first concrete theorem-facing milestone is an extraction lemma from the
-cardinality target above to the exact `DoubleApexOffSurplusSharedRadiusPair`
-conclusion. Card 11 is independently closed, so this routine helper is now the
-immediate Lean milestone and has no Census554/A11 dependency. Before editing
-the shared source file, refresh `proof-blueprint anchor list` and inspect its
-current diff. The content-bearing milestone is the lower bound itself. On the
+The first concrete theorem-facing milestone, extraction from the cardinality
+target to the exact `DoubleApexOffSurplusSharedRadiusPair` conclusion, is now
+kernel-checked in the unimported scratch module. Card 11 is independently
+closed, so it has no Census554/A11 dependency. It is not marked landed until
+the pair-theorem owner can consume it on-spine without overwriting concurrent
+work. The content-bearing milestone remains the lower bound itself. On the
 geometric-decision branch, the symmetry/equality-skeleton reduction is now
 done. The bounded separator-saturated exact pilot is now
 **DONE-NEGATIVE-TRACTABILITY**: all seven deterministic strata hit their
@@ -262,6 +286,54 @@ mathematical verdict. Increasing this budget or extending the run to the
 30,997- or 167,782-case surfaces is rejected. The useful next step is theorem
 extraction from the full-filter/critical-row hypotheses, not a larger blind
 nonlinear sweep.
+
+The released Census-554 resources funded one same-budget cross-engine check,
+not a larger surface. `ATAIL-CVC5-PILOT` replayed the exact seven frozen system
+digests with cvc5 1.3.3 nonlinear coverings, one effective-nice-10 process,
+30 seconds per case, and the same 240-second aggregate wall. The nice/smoke
+preflights passed; all seven cases reached the exact cvc5 timeout diagnostic in
+219.217 seconds, with no SAT or UNSAT status. The immutable raw artifact's
+statusless-timeout parser bug is independently normalized by
+`cvc5_pilot_checkpoint.py`, which validates every manifest/system/SMT2 digest,
+constraint ledger, return code, elapsed bound, and diagnostic and reports 7/7
+`TIMEOUT`. This is again no mathematical verdict and closes the blind
+cross-engine escalation option at this granularity.
+
+`ATAIL-ORDER-FAN-1` then tested the prescribed smaller-subsystem successor.
+For the frozen six-interior-point case, the equality, disk, nonobtuse, and
+cap-side base is immediately SAT. Adding only the first seven cyclic-order
+inequalities, the edge fan based at `v2 -> s1`, is repeatably Z3-UNSAT.
+Conservative deletion reduces that proposal to 15 scalar hypotheses involving
+only the Moser frame and three support points. The independent, solver-free
+theorem `Problem97.ATAILForceScratch.orderFanKernel` proves that implication
+in `scratch/atail-force/order_fan_kernel.lean`: two ordered surplus points
+shared with the two adjacent apex classes are incompatible with the indicated
+opposite-cap member of the second class.
+
+The exact S3 matcher in `order_fan_coverage.py` finds that hypothesis pattern
+in only 39 of the 167,782 selected-four order decorations, across 21 of the
+3,375 joint classes. This is exact combinatorial coverage of that decision
+surface, not live-leaf inventory coverage and not a full-filter producer.
+A five-second bounded replay of the analogous edge fan on the other six frozen
+interior-size strata returned `UNKNOWN` throughout; that is no evidence of
+realizability or impossibility. The checkpoint validates theorem extraction
+from materially smaller order subsystems, but its present reach is far too
+narrow to close K-A-PAIR and does not authorize a bulk scan.
+
+The seven LIVE-C helper contracts were also audited directly against
+`CriticalRowPacket.center_ne_source`, K-A-PAIR's actual hypotheses, the bank
+registries, and an indexed-corpus search. Center/source equality kills only
+subcells where the extra `f2 := t2[0]` source is identified with its blocker
+center; none of the seven helper contracts supplies that equality. They also
+lack the p-centered exact-dangerous `t2Row` hypotheses required by K-A-PAIR.
+This is a negative structural checkpoint, not a proof that no new LIVE-C
+producer exists. LIVE-C therefore remains a separate six-row target.
+
+This session is anchored at LIVE-T1, while the shared Route-B parent remains
+owned by another live session. This lane therefore does not overwrite that
+source; the scratch relabel certificate and the new order-fan theorem remain
+off-spine until their immediate consumers can be wired without an ownership
+collision.
 
 ## Closure priority and fallback
 

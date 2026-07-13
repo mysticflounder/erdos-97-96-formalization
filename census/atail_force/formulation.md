@@ -195,6 +195,62 @@ The immutable run is **DONE-NEGATIVE-TRACTABILITY**: all seven cases returned
 proposal, and no mathematical classification. The artifact therefore rejects
 an immediate budget increase or bulk sweep, not any geometric row.
 
+## Bounded cvc5 cross-engine checkpoint
+
+After Census-554 stopped and released compute to ATAIL, `cvc5_pilot.py`
+translated exactly those same seven immutable full-inequality systems to
+SMT-LIB and submitted them sequentially to cvc5 1.3.3 `QF_NRA --nl-cov`.
+The V2 manifest required one process, effective nice at least 10, 30 seconds
+per case, and a 240-second aggregate wall. A fail-closed priority preflight
+verified effective nice 10 before either smoke query or a case ran.
+
+The terminal checkpoint is again **DONE-NEGATIVE-TRACTABILITY**: all seven
+queries reached cvc5's internal timeout in 219.217 seconds, with no SAT status,
+no UNSAT status, and no model. cvc5 terminates this timeout path by signal after
+printing `cvc5 interrupted by timeout.` without a status line. The immutable
+raw V2 result retained that evidence but the first parser labeled it `ERROR`;
+`cvc5_pilot_checkpoint.py` binds the raw result, manifest, nice/smoke gates,
+system digests, SMT2 digests, constraint ledgers, return code, elapsed bounds,
+and exact diagnostic, then normalizes only that shape to 7/7 `TIMEOUT`.
+Mutation tests reject any diagnostic drift. No solver rerun was used for the
+normalization.
+
+The result/checkpoint artifacts are:
+
+- `cvc5_pilot_manifest_v2.json`;
+- `cvc5_pilot_results_v2.json`; and
+- `cvc5_pilot_checkpoint.json`.
+
+The earlier V1 launch was aborted when a live process audit found sandbox
+`setpriority` denial and effective nice 0. It wrote no result and carries no
+verdict. Neither cvc5 artifact classifies a row or changes the rejection of a
+blind nonlinear surface sweep.
+
+## First bounded order-fan kernel
+
+The next diagnostic shrank the frozen six-interior-point system instead of
+raising a solver budget. Its equality, disk, nonobtuse, and cap-side base is
+SAT. Adding only the first seven cyclic-order inequalities, the fan based at
+the oriented edge `v2 -> s1`, gives a repeatable Z3 UNSAT proposal. The
+conservative deletion script `scratch/atail-force/order_fan_minimize.py`
+retains 15 scalar constraints.
+
+That proposal no longer depends on solver trust: the explicit theorem
+`Problem97.ATAILForceScratch.orderFanKernel` in
+`scratch/atail-force/order_fan_kernel.lean` proves the retained implication in
+Lean. Geometrically, it excludes one order pattern containing two surplus
+points shared with the adjacent apex classes and an indicated opposite-cap
+member of the second class. No generated SAT/UNSAT certificate is imported by
+the proof.
+
+The exact simultaneous-S3 matcher `order_fan_coverage.py` scans all 167,782
+order decorations and finds 39 matches in 21 joint classes. Its claim is only
+combinatorial coverage of this selected-four surface: there is no live-leaf
+inventory bridge, full exact-radius-filter conclusion, or on-spine Lean
+consumer. `edge_fan_strata.py` also gives only `UNKNOWN` at five seconds for
+each of the other six frozen strata. Thus this is a checked narrow cut and a
+theorem-extraction template, not ATAIL-FORCE.
+
 ## Future solver verdicts
 
 A later controlled sweep must use these labels:

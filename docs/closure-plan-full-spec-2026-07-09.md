@@ -1097,6 +1097,50 @@ proposal was returned, so no geometric row is classified and no mathematical
 claim advances. This is DONE-NEGATIVE-TRACTABILITY and does not authorize a
 larger nonlinear sweep.
 
+After Census554 stopped and released compute, `ATAIL-CVC5-PILOT` used the same
+seven frozen full-inequality systems as a cross-engine diagnostic, not a
+surface expansion. One sequential cvc5 1.3.3 nonlinear-coverings process ran
+at verified effective nice 10, 30 seconds per case, under the same 240-second
+aggregate wall. All seven reached cvc5's exact statusless timeout diagnostic;
+total wall was 219.217 seconds, with no SAT or UNSAT status. The immutable raw
+result's parser labeled those signal exits `ERROR`; a solver-free checkpoint
+binds every manifest, system, SMT2, and constraint-ledger digest and normalizes
+only that exact raw shape to 7/7 `TIMEOUT`. No row is classified and no claim
+advances. The blind cross-engine route is therefore also
+DONE-NEGATIVE-TRACTABILITY at this granularity.
+
+The first materially smaller forced subsystem is now
+`ATAIL-ORDER-FAN-1`. In the frozen six-interior-point representative, the
+metric/disk/cap base is SAT, whereas adding a seven-inequality oriented edge
+fan gives a repeatable Z3 UNSAT proposal. Conservative deletion leaves 15
+scalar hypotheses, and `scratch/atail-force/order_fan_kernel.lean` gives an
+explicit solver-free Lean proof of their inconsistency. The exact S3 matcher
+finds this pattern in 39 of 167,782 selected-four order decorations, spanning
+21 joint classes; the other six frozen size strata remain `UNKNOWN` under a
+five-second diagnostic. These counts are exact only for the decision surface.
+There is no leaf-to-inventory extraction, full-filter pair, or on-spine
+consumer, so this is a checked narrow cut and theorem-extraction template,
+not closure of ATAIL-FORCE or K-A-PAIR.
+
+A direct audit of the seven LIVE-C helper contracts found no routine whole-row
+reduction. `CriticalRowPacket.center_ne_source` only kills subcells in which
+the extra row source `t2[0]` is also identified with its blocker center; none
+of the seven contracts supplies that equality, and none supplies K-A-PAIR's
+p-centered exact-dangerous `t2Row` hypotheses. LIVE-C remains a content-bearing
+six-row producer target. This session is anchored at LIVE-T1, while the shared
+Route-B parent is owned by another live session and is not edited by this lane.
+
+The theorem-facing normalization has also advanced without touching the
+concurrently owned Route-B source. Two scratch modules now kernel-check: (i)
+the joint-fiber card-two extraction and the fact that equal critical-row
+centers plus equal selected `l1` identify the full exact supports; and (ii)
+dangerous-triple relabeling adapters for `f2=t1` and `f2=t3`. The latter reduce
+all 24 LIVE-T1 plus 24 LIVE-T3 textual holes to the single K-A-PAIR residual by
+making the collided row the relabeled `t2Row`. They intentionally inherit
+K-A-PAIR's `sorryAx`, so this is a dependency reduction rather than closure.
+Artifacts: `scratch/atail-force/critical_row_coupling.lean` and
+`scratch/atail-force/triple_relabel_adapters.lean`.
+
 Cap profiles at card 12 (sum 15, parts ≥ 4, at least two parts ≥ 5):
 (6,5,4), (5,6,4), (5,5,5); {4,4,7} excluded (STATE.md:33-45). Only (6,5,4)
 was measured ("654_all"; at run time the "_all" cut set included one
@@ -1993,7 +2037,8 @@ claim. Census554 subsequently stopped at the authoritative 5,939-row bank
 before `CTRL-RESOURCE` transferred to the bounded ATAIL diagnostics. The last
 producer reached `frontier-limit` with nine preserved candidates; all
 substantive shared-queue jobs are quarantined and no Census worker is live.
-The ATAIL diagnostics have reached their recorded terminal checkpoints.
+The ATAIL Z3 and cvc5 diagnostics have reached their recorded terminal
+checkpoints.
 Consult the matrix `CTRL-RESOURCE` and A11 rows, then perform a fresh
 process/lock/queue/hash check, before resuming Census554 or assigning another
 heavy lane.
@@ -2001,10 +2046,10 @@ heavy lane.
 Execution order is dependency-based, not difficulty-based. The proof-critical
 order is:
 
-1. **Normalize the on-spine target.** Define the two-apex full joint-radius
-   fiber and prove the routine extraction theorem `ATAIL-FIBER-EXTRACT`: fiber
-   card at least two gives the two distinct off-surplus points and all four
-   radius equalities required by `DoubleApexOffSurplusSharedRadiusPair`.
+1. **Wire the checked normalization.** The two-apex card-two extraction and
+   sixth-row full-support transfer are kernel-checked in scratch. Import them
+   only when the current pair/live owner can give each an immediate on-spine
+   consumer; do not overwrite the concurrently owned source.
 2. **Prove the content-bearing producer.** From exactly the current leaf
    hypotheses, prove the fiber lower bound, force the seven equalities consumed
    by `u1TwoLargeCapObstruction`, or derive `False` directly. Audit the six
@@ -2014,14 +2059,18 @@ order is:
    skeletons. The completed 343-skeleton replay rules out the bare and
    separator-saturated equality-only route, so the next candidate must use
    real cap/disk/nonobtuse/global-order inequalities or the live critical
-   rows. Every proposed universal lemma must also be checked against the
+   rows. Both Z3 and cvc5 timed out on the same seven full-inequality systems,
+   so another blind cross-engine or budget escalation is not a next step.
+   Every proposed universal lemma must also be checked against the
    W16/W20 non-convex falsifier bank and must identify the actual convexity or
    critical-row hypothesis that excludes those witnesses. No representative
    result is promoted without the leaf-to-inventory and certificate bridges.
-4. **Consume the producer by orbit family.** Apply the resulting bounded forced
-   subsystem or critical-row theorem to LIVE-Q/T1/T3 by permutation orbit and
-   then to the seven LIVE-C branches. Do not patch the 79 textual holes one by
-   one.
+4. **Consume the producer by orbit family.** This session is anchored at
+   LIVE-T1, but the shared Route-B parent is owned by another live session and
+   must not be overwritten. After K-A-PAIR closes, wire the two checked T1/T3
+   relabeling adapters, which make those 48 textual holes depend only on that
+   residual. Apply any remaining six-row producer to LIVE-Q and the seven
+   LIVE-C branches. Do not patch the 79 textual holes one by one.
 5. **Use AHEAD only as fallback.** If the uniform producer naturally needs
    `15 ≤ D.A.card`, a checked AHEAD cover may discharge cards 12--14 and
    authorize AHEAD-CONSUME. If the producer works from card 12, retire the head
