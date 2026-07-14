@@ -322,6 +322,9 @@ executable task register.
 is the dated full prose proof of the Problem 97 target — the self-contained
 end-to-end mathematical narrative with per-component proved/open status,
 kernel axiom closures, and a completion matrix stating each obligation.
+[`docs/sms-ccl-application-recommendation-2026-07-13.md`](docs/sms-ccl-application-recommendation-2026-07-13.md)
+is a research recommendation mapping SAT-modulo-symmetries and co-certificate
+learning onto the census/mining lanes (papers mirrored in `docs/references/`).
 The former July 6 master plan is a historical record
 under [`archive/2026-07-10-closure-plan-consolidation/`](archive/2026-07-10-closure-plan-consolidation/).
 [`docs/sorry-closure-ledger-2026-07-06.md`](docs/sorry-closure-ledger-2026-07-06.md)
