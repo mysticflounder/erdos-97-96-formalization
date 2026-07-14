@@ -419,13 +419,178 @@ RVOL is assembled by a three-way split
 > **Statement.** If the two caps opposite the surplus cap have exactly 4
 > points each, then A contains a removable vertex.
 
-`removableVertexOfLarge_of_isM44PinnedSurplus`. The proof is a finite
-classification of the admissible pinned configurations, each impossible
-case refuted by an exact polynomial infeasibility certificate; the
-enumeration and certificate checks are evaluated by the compiler, which is
-why — and only why — the two compiler axioms `Lean.ofReduceBool` and
-`Lean.trustCompiler` appear in its kernel closure (no `sorryAx`; checked
-2026-07-13).
+`removableVertexOfLarge_of_isM44PinnedSurplus`
+(`RemovableVertexAxiom/Continuation.lean:723`). Kernel closure: core axioms
+plus `Lean.ofReduceBool` and `Lean.trustCompiler`, no `sorryAx` (checked
+2026-07-13); the compiler axioms enter only through the finite enumeration
+and certificate evaluations described below.
+
+Write m = |surplus cap| (closed-cap convention, Moser endpoints included).
+The cap-sum identity specializes under (m,4,4) to m + 5 = n
+(`IsM44.surplus_card_eq`, `Cap/PartitionFromMEC.lean:448`), and m ≥ 5
+because the cap is surplus. So the branch hypothesis a priori covers every
+n > 9. It closes by a trichotomy on m:
+
+- **m ≥ 7 (n ≥ 12)** is impossible outright — one counting theorem kills
+  the entire regime (the card-≥12 part below);
+- **m = 5 (n = 10)** is label-complete and closes by fixed finite seed
+  banks (the card-10 arm);
+- **m = 6 (n = 11)** closes by the card-11 classifier chains (the card-11
+  arm).
+
+**Branch shape.** The assembly
+(`removableVertexOfLarge_of_isM44PinnedSurplus_from_residualSplit`,
+`Continuation.lean:708`) composes three residual exclusions, each of which
+is itself discharged through the trichotomy:
+
+1. **Endpoint escapes excluded** (`isM44EndpointResidualsExcluded`,
+   `RemovableVertexAxiom/Base.lean:9526`): no selected 4-class at a Moser
+   apex opposite a non-surplus cap escapes into an adjacent cap through the
+   shared-endpoint configuration (`EndpointEscapeLeftAt`/`…RightAt`,
+   `SurplusM44Packet.lean:2800`).
+2. **Pinned surplus residuals excluded**
+   (`isM44PinnedSurplusResidualsExcluded`,
+   `RemovableVertexAxiom/PinnedSurplusBank.lean:26`): no such class is
+   pinned to the two interior points of its own 4-cap plus one shared Moser
+   endpoint plus one surplus escapee
+   (`PinnedRightSurplusResidualAt`/`…Left…`, `SurplusM44Packet.lean:4499`).
+3. **Containment → removable vertex**
+   (`isM44NonSurplusContainmentRemovable`, `Continuation.lean:698`).
+   Exclusions 1 and 2 force N4e-style containment at both non-surplus Moser
+   apices (`NonSurplusMoserCapContainment`): every ≥4 selected class there
+   lies inside its opposite cap. From containment, a vertex x in the
+   surplus-cap interior is removable. The only obstruction to removability
+   is the **erased-pin triple** (`ErasedPinTriple A x p`,
+   `WitnessPacketInterface.lean:198`): a center p all of whose 4-point
+   witness classes pass through x, so that exactly three co-radial points
+   survive x's deletion. These are excluded for every possible location of
+   p in the cap frame — the Moser apex opposite the surplus cap (the P4-U
+   family), the surplus-cap interior (P4-S), and the two non-surplus cap
+   interiors (the P2 count rows, classified by their exact
+   Moser/same-cap/left/right occupancy counts,
+   `RemovableVertexAxiom/ErasedPinRowResiduals.lean`) — while the two
+   Moser endpoints of the surplus cap carry direct containment-derived
+   erase witnesses.
+
+**The card-≥12 part: no (m,4,4) counterexample has n ≥ 12.**
+`SurplusCapPacket.surplus_card_le_six_of_convexIndep_K4`
+(`CapSelectedRowCounting.lean:765`) proves m ≤ 6 — equivalently n ≤ 11 —
+from convex independence and K4 alone, by a pair-incidence double count on
+the ordered surplus cap:
+
+- The complement B = A ∖ (surplus cap) has exactly n − m = 5 points: the
+  Moser apex opposite the surplus cap and the two interior points of each
+  opposite 4-cap.
+- K4 fixes one selected 4-class per point of A (a faithful carrier
+  pattern, `exists_faithfulCarrierPattern_of_globalK4`); order the surplus
+  cap along its arc, which is minor because the MEC support triangle is
+  non-obtuse (Part I, D1).
+- By the CGN6 one-sided distance injectivity transported to the cap
+  (`oneSidedDistanceInjective_of_mecCapPacket`,
+  `CapSelectedRowCounting.lean:29`), distances from a cap point to the cap
+  points after it in cap order are pairwise distinct, and likewise before
+  it. A 4-class centered at a cap point is co-radial, so it contains at
+  most one cap point on each side of its center: at least 2 of its 4
+  points land in B. At the two extreme points of the cap order one side is
+  empty, so their classes meet the cap in at most one point and place at
+  least 3 points in B.
+- Each cap center therefore marks at least C(2,2) = 1 unordered pair of
+  B-points on its circle, and each of the two extreme centers at least
+  C(3,2) = 3.
+- Marked pairs are private to their center
+  (`outsidePair_unique_capCenter`, `CapSelectedRowCounting.lean:283`): if
+  two distinct cap centers were both equidistant from the same pair
+  {a, b} ⊆ B, both centers would lie on the perpendicular bisector of ab,
+  so the cap subchord through them **is** that bisector and a, b are
+  mirror images across it — strictly on opposite sides. But every point of
+  A off the cap lies strictly on the outer side of every cap subchord: the
+  strict cap order places any A-point strictly on the inner side between
+  the two chord endpoints in cap order
+  (`StrictCapOrder.subchord_open_side_iff_A`), and a point on the chord
+  line would give three collinear points of a strictly convex set.
+- Summing the disjoint pair families
+  (`orderedCap_card_add_four_le_choose_outside`,
+  `CapSelectedRowCounting.lean:579`): m + 4 ≤ C(5,2) = 10, so m ≤ 6.
+
+Consequently the non-label-complete regime is forced to the single value
+m = 6, i.e. n = 11 exactly (`card_eq_eleven_of_surplus_card_gt_five`,
+`CapSelectedRowCounting.lean:813`). This is the entire card-≥12 part:
+there is nothing to classify at n ≥ 12 because no (m,4,4) decomposition
+survives the count there.
+
+**The card-10 arm (m = 5, n = 10).** The frame is label-complete: the ten
+roles — three Moser vertices, three surplus-interior points, and two
+interior points in each opposite cap — name every point of A. Each residual
+family then reduces to finitely many labelled row shapes with exact bucket
+counts, refuted by generated fixed banks: the ten-label endpoint producers
+(both ambient CCW orientations,
+`EndpointCertificate/GeometryProducer.lean`), the row-zero bank for the
+pinned residuals (`SurplusCertificate/RowZeros/Bank.lean`, consumed through
+the COMP-G metric-shadow bridge), and the 330-seed fixed-seed DFS bank for
+the erased-pin rows (`ErasedPinFixedSeedDFS.lean`, P2 rows;
+`ErasedCertificate/CardTenProducer.lean`, P4 direct triples). Bank
+membership and DFS checks are compiler-evaluated; the metric leaves are
+refuted by exact polynomial infeasibility certificates.
+
+**The card-11 arm (m = 6, n = 11).** With n = 11 forced, the configuration
+is compressed to a finite object and classified:
+
+- **Canonical labeling.** Every (6,4,4) configuration carries a bijection
+  A ↔ Fin 11 with fixed roles
+  (`exists_canonicalLabeling_of_isM44_surplus_card_eq_six`,
+  `Census554/CapSelectedGeometry.lean:685`): label 0 is the Moser apex
+  opposite the surplus cap, labels 1, 2 its two Moser endpoints, 3–6 the
+  surplus-cap interior, 7–8 and 9–10 the opposite-cap interiors, with the
+  CCW hull order fixed.
+- **Pattern code.** The faithful carrier pattern transports to an 11 × 11
+  Boolean incidence matrix — for each label, the label set of its selected
+  4-class (`patternCode`, `Census554/CapSelectedCarrierBridge.lean:33`).
+  The soundness bridge proves the real configuration's code satisfies
+  `IncidenceOK` (`Census554/CapSelectedFiniteCode.lean:209`): center-free
+  four-point rows; at most two cap hits per non-Moser center and the
+  one-hit constraints at the Moser centers (the CGN6 counting above);
+  pairwise row intersections of size at most two and every pair selected
+  at no more than two centers (the D4 bisector bound); and the cyclic
+  hull-alternation constraints from convex position. Each residual family
+  adds its own finite shell predicate recording the hypothesis under
+  refutation (`PinnedShellOK`, `EndpointLeftShellOK`/`…Right…`,
+  `ErasedRowShellOK`).
+- **Finite refutation.** A native classifier
+  (`Census554/CapSelectedNativeClassifier.lean` and its endpoint/erased
+  forks) runs a DFS over the candidate rows of the ten non-seed centers,
+  maintaining a bounded union-find equality closure over the 121 oriented
+  edge codes, and drives every completion of every admissible seed
+  placement into one of **twelve finite obstruction families**
+  (`ClosureCoreAlternative`, `Census554/CapSelectedFiniteCode.lean:472`):
+  duplicate-center, exact-row off-circle, equal-K4, convex
+  perpendicular-bisector, order-sensitive five-point and convex-rhombus
+  cores, and six collision cores (equilateral-bisector, three-triad,
+  seven-role surplus-source, six-row anchor, seven-point orbit,
+  seven-point circle network). Each family has a separately proved
+  geometric refutation under the canonical labeling, so the classifier
+  verdict closes the configuration in `False`
+  (the twelve-branch consumers, e.g.
+  `false_of_closureCoreAlternative_of_canonical`,
+  `EndpointCertificate/BridgeAssembly.lean`).
+- **Per-family closures.** The pinned residuals close through twelve
+  native placement theorems, one per ordered choice of pinned and deleted
+  surplus-interior labels (`placementCheck_of_interior`,
+  `Census554/CapSelectedNativeClosureSound.lean:836`, consumed by
+  `isM44PinnedSurplusGeneralMResidualsExcluded`,
+  `RemovableVertexAxiom/PinnedSurplusGeneralM.lean:706`). The endpoint
+  escapes close through the endpoint native classifier
+  (`false_of_endpointEscapeLeft_cardEleven`/`…Right…`,
+  `EndpointCertificate/BridgeAssembly.lean:376`). The erased-pin families
+  close through the ERASE fleets: one native theorem over all 47
+  admissible seed supports for P4-U
+  (`ErasedCertificate/P4UClosure.lean:60`), and 128 independently compiled
+  native leaves each for P4-S (`ErasedCertificate/P4SClosure.lean:57`) and
+  the P2 rows.
+
+The native evaluations in both finite arms are the sole source of the two
+compiler axioms, and they satisfy the `bv_decide`-standard policy: the
+evaluated closure is ordinary verified Lean — no `unsafe`, no
+`@[implemented_by]`, no `@[extern]`.
 
 ### IV.c The remaining branch (no (m,4,4) decomposition) — blocked on Part V
 
