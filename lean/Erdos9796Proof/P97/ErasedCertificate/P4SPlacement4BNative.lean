@@ -12,6 +12,7 @@ import Erdos9796Proof.P97.ErasedCertificate.P4SPlacement4BSecondNative
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
+set_option maxRecDepth 100000 in
 theorem p4sPlacementsAt_four_b_native_chunks_eq_true :
     p4sPlacementsAtDeletedPairChunks 4 5 6 = true := by
   exact p4sPlacementsAtDeletedPairChunks_eq_true_of_halves

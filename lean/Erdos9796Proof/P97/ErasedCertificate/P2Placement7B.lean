@@ -11,6 +11,7 @@ import Erdos9796Proof.P97.ErasedCertificate.P2Placement7BNative
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
+set_option maxRecDepth 100000 in
 theorem p2PlacementsAt_seven_b_chunks_eq_true :
     p2PlacementsAtDeletedPairChunks 7 5 6 = true :=
   p2PlacementsAt_seven_b_native_chunks_eq_true
