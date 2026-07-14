@@ -1949,3 +1949,35 @@ This file no longer owns an open proof anchor. The remaining project proof
 surface is entirely Front A: 36 `sorry`-carrying symbols / 80 textual holes in
 `U1LargeCapRouteBTail.lean`. Global publication remains separate from this
 lane's closure.
+
+## ERASE build-performance checkpoint (2026-07-14 01:14 PDT)
+
+This is build maintenance only; it changes no classifier predicate, public
+certificate statement, or ERASE closure claim above. The original P2 bank used
+128 one-chunk native leaves and required 16 bounded waves totaling 14,330
+seconds. P4-S used another 128 one-chunk leaves.
+
+Whole-center, whole-pair, four-chunk, and one-module runtime-task
+consolidations were tested and rejected because they failed to produce
+restartable `.olean` artifacts within their declared cutoffs. The current
+layout instead uses 64 two-chunk native leaves, 32 proof-only half
+aggregators, 16 proof-only pair aggregators, and the unchanged 256 public chunk
+projections. The build drivers schedule four P2 and four P4-S waves at batch
+size eight, down from 32 P2/P4-S waves.
+
+The first clean two-chunk target,
+`P4SPlacement6AFirstPart1Native` for chunks `[1,3]`, built successfully:
+
+```text
+native target time    1,297 seconds
+lake-build wall time  21m39s
+artifact              56 KiB .olean
+cached rerun          6.34s
+cutoff margin         8m21s below the 30-minute per-module ceiling
+```
+
+This proves restartability only for the measured leaf. The other 63 native
+leaves, their concrete aggregators, all projection modules, and the stable
+aggregate remain pending build validation. No full-bank speedup factor is
+claimed. Detailed evidence and the larger evaluator-optimization boundary are
+in `docs/audits/2026-07-13-erased-certificate-build-performance.md`.

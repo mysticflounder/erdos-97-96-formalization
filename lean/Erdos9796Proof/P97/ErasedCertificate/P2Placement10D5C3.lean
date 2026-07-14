@@ -4,19 +4,18 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ErasedCertificate.P2PlacementDefs
+import Erdos9796Proof.P97.ErasedCertificate.P2Placement10BNative
 
-/-! Native P2 placement certificate for center 10, deleted label 5,
-and support-mask bin 3. -/
+/-! P2 placement projection for center 10, deleted label 5,
+and support-mask bin 3 from the pair-wide native certificate. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
-set_option maxHeartbeats 0 in
--- Native evaluation closes one bounded finite certificate shard.
-set_option maxRecDepth 100000 in
-set_option linter.style.nativeDecide false in
 theorem p2PlacementsAt_10_deleted_5_chunk_3_eq_true :
     p2PlacementsAtDeletedChunk 10 5 3 = true := by
-  native_decide
+  exact
+    (p2PlacementsAtDeletedChunks_eq_true_of_pairChunks
+      p2PlacementsAt_ten_b_native_chunks_eq_true
+      (by norm_num : 3 < 8)).1
 
 end Problem97.ErasedCertificate.ErasedNativeClassifier

@@ -4,19 +4,18 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ErasedCertificate.P4SPlacementDefs
+import Erdos9796Proof.P97.ErasedCertificate.P4SPlacement4ANative
 
-/-! Native P4-S placement certificate for center 4, deleted label 4,
-and support-mask bin 1. -/
+/-! P4-S placement projection for center 4, deleted label 4,
+and support-mask bin 1 from the pair-wide native certificate. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
-set_option maxHeartbeats 0 in
--- Native evaluation closes one bounded finite certificate shard.
-set_option maxRecDepth 100000 in
-set_option linter.style.nativeDecide false in
 theorem p4sPlacementsAt_4_deleted_4_chunk_1_eq_true :
     p4sPlacementsAtDeletedChunk 4 4 1 = true := by
-  native_decide
+  exact
+    (p4sPlacementsAtDeletedChunks_eq_true_of_pairChunks
+      p4sPlacementsAt_four_a_native_chunks_eq_true
+      (by norm_num : 1 < 8)).2
 
 end Problem97.ErasedCertificate.ErasedNativeClassifier

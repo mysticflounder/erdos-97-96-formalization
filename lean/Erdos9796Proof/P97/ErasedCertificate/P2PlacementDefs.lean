@@ -66,9 +66,8 @@ theorem erasedPlacementCheckAtWithBaseDomains_p2BaseDomains
   rfl
 
 /-- P2 placement predicate for one deleted label and support-mask bin. -/
-def p2PlacementsAtDeletedChunk
-    (center deleted chunk : Nat) : Bool :=
-  let baseDomains := p2BaseDomains center deleted
+def p2PlacementsAtDeletedChunkWithBaseDomains
+    (center deleted chunk : Nat) (baseDomains : List Domain) : Bool :=
   (p2SupportChunk chunk).all fun support =>
     if intSNats.any fun pin => has support pin then
       if localCandidateOK center deleted support then
@@ -77,6 +76,12 @@ def p2PlacementsAtDeletedChunk
         true
     else
       true
+
+/-- P2 placement predicate for one deleted label and support-mask bin. -/
+def p2PlacementsAtDeletedChunk
+    (center deleted chunk : Nat) : Bool :=
+  p2PlacementsAtDeletedChunkWithBaseDomains center deleted chunk
+    (p2BaseDomains center deleted)
 
 /-- Pair two deleted-label certificates on one support-mask bin. -/
 def p2PlacementsAtDeletedPairChunk
@@ -89,6 +94,98 @@ def p2PlacementsAtDeletedPairChunks
     (center deleted₁ deleted₂ : Nat) : Bool :=
   (List.range 8).all fun chunk =>
     p2PlacementsAtDeletedPairChunk center deleted₁ deleted₂ chunk
+
+/-- A selected set of support-mask bins for one center/deleted-label pair. -/
+def p2PlacementsAtDeletedPairChunkSet
+    (center deleted₁ deleted₂ : Nat) (chunks : List Nat) : Bool :=
+  chunks.all fun chunk =>
+    p2PlacementsAtDeletedPairChunk center deleted₁ deleted₂ chunk
+
+/-- Evaluation-equivalent chunk-set predicate that constructs each deleted
+label's support-independent domains once for the full chunk set. -/
+def p2PlacementsAtDeletedPairChunkSetHoisted
+    (center deleted₁ deleted₂ : Nat) (chunks : List Nat) : Bool :=
+  let baseDomains₁ := p2BaseDomains center deleted₁
+  let baseDomains₂ := p2BaseDomains center deleted₂
+  chunks.all fun chunk =>
+    p2PlacementsAtDeletedChunkWithBaseDomains center deleted₁ chunk
+        baseDomains₁ &&
+      p2PlacementsAtDeletedChunkWithBaseDomains center deleted₂ chunk
+        baseDomains₂
+
+/-- Hoisting the two P2 domain lists across a chunk set does not change its
+Boolean certificate. -/
+theorem p2PlacementsAtDeletedPairChunkSetHoisted_eq
+    (center deleted₁ deleted₂ : Nat) (chunks : List Nat) :
+    p2PlacementsAtDeletedPairChunkSetHoisted
+        center deleted₁ deleted₂ chunks =
+      p2PlacementsAtDeletedPairChunkSet
+        center deleted₁ deleted₂ chunks := by
+  rfl
+
+/-- Two proved P2 chunk sets concatenate without re-running the classifier. -/
+theorem p2PlacementsAtDeletedPairChunkSet_append_eq_true
+    {center deleted₁ deleted₂ : Nat} {first second : List Nat}
+    (hfirst :
+      p2PlacementsAtDeletedPairChunkSet
+        center deleted₁ deleted₂ first = true)
+    (hsecond :
+      p2PlacementsAtDeletedPairChunkSet
+        center deleted₁ deleted₂ second = true) :
+    p2PlacementsAtDeletedPairChunkSet
+      center deleted₁ deleted₂ (first ++ second) = true := by
+  simpa only [p2PlacementsAtDeletedPairChunkSet, List.all_append,
+    Bool.and_eq_true] using And.intro hfirst hsecond
+
+/-- All eight P2 support chunks, with each deleted-label domain list built
+once for the whole pair certificate. -/
+def p2PlacementsAtDeletedPairChunksHoisted
+    (center deleted₁ deleted₂ : Nat) : Bool :=
+  p2PlacementsAtDeletedPairChunkSetHoisted
+    center deleted₁ deleted₂ (List.range 8)
+
+/-- The hoisted full P2 evaluator computes the existing pair certificate. -/
+theorem p2PlacementsAtDeletedPairChunksHoisted_eq
+    (center deleted₁ deleted₂ : Nat) :
+    p2PlacementsAtDeletedPairChunksHoisted center deleted₁ deleted₂ =
+      p2PlacementsAtDeletedPairChunks center deleted₁ deleted₂ := by
+  rfl
+
+/-- The two four-bin halves reassemble the eight-bin pair certificate. -/
+theorem p2PlacementsAtDeletedPairChunks_eq_true_of_halves
+    {center deleted₁ deleted₂ : Nat}
+    (hfirst :
+      p2PlacementsAtDeletedPairChunkSet center deleted₁ deleted₂
+        [0, 1, 5, 6] = true)
+    (hsecond :
+      p2PlacementsAtDeletedPairChunkSet center deleted₁ deleted₂
+        [2, 3, 4, 7] = true) :
+    p2PlacementsAtDeletedPairChunks center deleted₁ deleted₂ = true := by
+  simp only [p2PlacementsAtDeletedPairChunkSet] at hfirst hsecond
+  apply List.all_eq_true.mpr
+  intro chunk hchunk
+  have hchunkLt : chunk < 8 := List.mem_range.mp hchunk
+  interval_cases chunk
+  · exact List.all_eq_true.mp hfirst 0 (by simp)
+  · exact List.all_eq_true.mp hfirst 1 (by simp)
+  · exact List.all_eq_true.mp hsecond 2 (by simp)
+  · exact List.all_eq_true.mp hsecond 3 (by simp)
+  · exact List.all_eq_true.mp hsecond 4 (by simp)
+  · exact List.all_eq_true.mp hfirst 5 (by simp)
+  · exact List.all_eq_true.mp hfirst 6 (by simp)
+  · exact List.all_eq_true.mp hsecond 7 (by simp)
+
+/-- A pair-wide certificate projects to either deleted-label certificate in
+each of its eight support-mask bins. -/
+theorem p2PlacementsAtDeletedChunks_eq_true_of_pairChunks
+    {center deleted₁ deleted₂ chunk : Nat}
+    (hchunks :
+      p2PlacementsAtDeletedPairChunks center deleted₁ deleted₂ = true)
+    (hchunk : chunk < 8) :
+    p2PlacementsAtDeletedChunk center deleted₁ chunk = true ∧
+      p2PlacementsAtDeletedChunk center deleted₂ chunk = true := by
+  have hpair := List.all_eq_true.mp hchunks chunk (List.mem_range.mpr hchunk)
+  simpa only [p2PlacementsAtDeletedPairChunk, Bool.and_eq_true] using hpair
 
 /-- P2 placement predicate at one center for two deleted labels. -/
 def p2PlacementsAtDeletedPair (center deleted₁ deleted₂ : Nat) : Bool :=

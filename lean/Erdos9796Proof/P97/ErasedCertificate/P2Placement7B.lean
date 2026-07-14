@@ -4,33 +4,16 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B0
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B1
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B2
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B3
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B4
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B5
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B6
-import Erdos9796Proof.P97.ErasedCertificate.P2Placement7B7
+import Erdos9796Proof.P97.ErasedCertificate.P2Placement7BNative
 
-/-! Native P2 placement certificate for center 7 and deleted labels 5-6. -/
+/-! P2 placement certificate for center 7 and deleted labels
+5-6, projected directly from the pair-wide native result. -/
 
 namespace Problem97.ErasedCertificate.ErasedNativeClassifier
 
 theorem p2PlacementsAt_seven_b_chunks_eq_true :
-    p2PlacementsAtDeletedPairChunks 7 5 6 = true := by
-  apply List.all_eq_true.mpr
-  intro chunk hchunk
-  have hchunkLt : chunk < 8 := List.mem_range.mp hchunk
-  interval_cases chunk
-  · exact p2PlacementsAt_seven_b_chunk_0_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_1_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_2_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_3_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_4_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_5_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_6_eq_true
-  · exact p2PlacementsAt_seven_b_chunk_7_eq_true
+    p2PlacementsAtDeletedPairChunks 7 5 6 = true :=
+  p2PlacementsAt_seven_b_native_chunks_eq_true
 
 theorem p2PlacementsAt_seven_b_eq_true :
     p2PlacementsAtDeletedPair 7 5 6 = true := by
