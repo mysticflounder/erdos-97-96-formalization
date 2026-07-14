@@ -854,6 +854,8 @@ card-11 scope), LIVE-Q, and LIVE-C are open.
 
 ## Appendix — the posted conditional reduction vs. RVOL as built
 
+### The original post
+
 An earlier conditional reduction was posted to the Problem 97 page:
 
 > **The claim.** The following three statements together reduce Problem 97
@@ -938,6 +940,60 @@ exactly as claimed; (1) and the n = 9 statement are now unconditionally
 closed; and the entire remaining difficulty of Problem 97 sits inside
 premise (2), in the two-large-cap branch that its wording did not
 distinguish from the rest.
+
+### The followup post
+
+A followup posted to the same page restated the state of the development:
+
+> Proved unconditionally (formalized in Lean): (1) the counting
+> obstruction; (2) the cap-sum bridge — |A| > 9 ⇒ some opposite cap is
+> surplus; (3) the finite N9 closure — no 9-point counterexample exists.
+>
+> Open frontier, both in the "descent" part:
+>
+> 1. **Removable-Vertex Existence Theorem (conjectured).** Let A be a
+>    nonempty, strictly convex (convex-independent), finite point set in
+>    ℝ² with |A| > 9, satisfying PerVertexK4, such that no strictly
+>    smaller set with these properties exists (minimality induction
+>    hypothesis). Then A contains a removable vertex: a point x ∈ A whose
+>    deletion preserves PerVertexK4 on the erased set.
+> 2. **Uniform surplus-cap removability (conjectured).** Let P be a
+>    cardinality-minimal strict-convex PerVertexK4 counterexample. Choose
+>    a Moser triangle, later promoted to the equilateral MEC-boundary
+>    packet, with its three closed opposite caps C₁, C₂, C₃. If some cap
+>    Cᵢ has |Cᵢ| > 4, then Cᵢ contains a removable vertex.
+
+Status of each piece against the development as it stands.
+
+**The unconditional list — unchanged.** Items (1), (2), (3) are Parts I,
+III, and II of this document respectively; all three remain proved on core
+axioms alone.
+
+**Conjecture 1 is RVOL verbatim** (Theorem IV, including the minimality
+hypothesis — the correction the followup made to the original post's
+cap-local package). Its status has since split: the (m,4,4) branch is
+PROVED (Part IV.b, core plus the two compiler axioms), and the open
+remainder is exactly the branch with no (m,4,4) decomposition
+(Part IV.c), reduced by complete kernel-checked case analysis to the 24
+obligations of Part V. The frontier posted as "all of descent" is today
+V.2, LIVE-Q, and LIVE-C.
+
+**Conjecture 2 is a strengthening the spine does not consume.** In the
+(m,4,4) branch it holds as proved: the removable vertex is produced in the
+surplus-cap interior (Part IV.b, containment arm). In the two-large-cap
+branch the wiring needs only conjecture 1's conclusion — in fact only its
+collision with minimality: the tail consumes "no removable vertex"
+(`hnoRem`) and derives `False`. The branch's removable-vertex producer
+(`exists_removableVertex_of_twoLargeCaps`, `U1LargeCapRouteBTail.lean:2585`)
+concludes bare existence with no cap-membership constraint. Closing
+conjecture 1's residual branch closes the problem; conjecture 2 is not
+load-bearing beyond its proved (m,4,4) instance.
+
+One vocabulary correction to the followup's wording: the general-n Moser
+triangle is promoted to the **non-obtuse** circumscribed MEC support
+triangle (`NonObtuseCircumscribedMoserTriangle`; Part I, D1). The
+equilateral rigidity belongs to the n = 9 endpoint packet (N6/N7,
+Part II), not to the general-n promotion.
 
 ## References
 
