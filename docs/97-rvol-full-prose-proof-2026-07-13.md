@@ -1,8 +1,10 @@
 # Problem 97 full prose proof — the RVOL route (2026-07-13)
 
 Status: current full prose proof of the Problem 97 formalization target,
-written against kernel ground truth at commit `fd9f062f` (spine build
-`1e7682fe7015`, mined 2026-07-13).
+written against kernel ground truth of the working tree on
+`four-point-subpacket-reduction` (spine build `4305dbbef395`, refreshed
+2026-07-14; counts cross-checked against the generated
+`docs/live-blueprint.md` and the source).
 
 **RVOL** = `RemovableVertexOfLarge`, the removable-vertex theorem for large
 counterexamples (`lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:54`).
@@ -12,14 +14,14 @@ argument for the published theorem; each component carries its statement and
 its status (proved or open), with kernel evidence for the proved ones.
 
 **Overall status: OPEN.** The published claim reaches `sorryAx` through
-exactly 36 named obligations (80 textual holes), all in
+exactly 24 named obligations (56 textual holes), all in
 `lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean`, all inside the branch of
 RVOL in which no (m,4,4) cap decomposition exists (Part IV.c). Every other
 layer is kernel-closed. The open content is exactly Part V.
 
 Evidential basis for every "proved" below: the kernel-mined dependency spine
-of the published theorem (49/2390 nodes open — every spine node not
-descending from the 36 open obligations is sorry-free) plus the
+of the published theorem (50/2392 nodes open — every spine node not
+descending from the 24 open obligations is sorry-free) plus the
 `#print axioms` checks reproduced in the trust-boundary section.
 
 ---
@@ -77,7 +79,7 @@ Scope notes.
 - This document covers Problem 97 only. The repo's second published theorem,
   `Problem96.erdos96_rhs` (unit distances in convex position, explicit
   constant 3), consumes `Problem97.UniversalProblem97` through its peeling
-  step (`P96/EuclideanPeeling.lean`), so the same 36 open obligations gate
+  step (`P96/EuclideanPeeling.lean`), so the same 24 open obligations gate
   both targets. Problem 96's own layer is otherwise closed and is not
   treated here.
 - Terminology: "Moser triangle" and "Moser cap" are project shorthand, not
@@ -202,11 +204,11 @@ The instantiation `UniversalProblem97` (`UniversalLocal.lean:36`) supplies
 `descent_contradicts_minimality` for `descent`; `erdos97_rhs` is that theorem
 under the definitional bridge.
 
-Kernel state at commit `fd9f062f`:
+Kernel state (working tree, spine build `4305dbbef395`, 2026-07-14):
 
-- the spine of `erdos97_rhs` has 2390 nodes over 2398 declarations
-  (72,860 lines of Lean);
-- 49 nodes are open, all descending from 36 sorry-carrying symbols in
+- the spine of `erdos97_rhs` has 2392 nodes over 2400 declarations
+  (72,783 lines of Lean);
+- 50 nodes are open, all descending from 24 sorry-carrying symbols in
   `U1LargeCapRouteBTail.lean`;
 - 20 trusted certificate-shard leaves are excluded from mining but covered
   by `#print axioms` on the target.
@@ -611,7 +613,7 @@ historical labels of this workstream). The wiring is complete Lean code:
    branch hypothesis;
 5. the remaining branch — a surplus cap whose opposite pair is **not**
    exact — is closed by `u1_largeCap_routeB_tail_false`
-   (`U1LargeCapRouteBTail.lean:9200`).
+   (`U1LargeCapRouteBTail.lean:9212`).
 
 **The route-B tail.** Terminology, as carried by the declaration names:
 
@@ -622,7 +624,7 @@ historical labels of this workstream). The wiring is complete Lean code:
 
 `u1_largeCap_routeB_tail_false` reduces (complete Lean, no own holes) to the
 structural bridge `u1_largeCap_routeB_tail_liveData_false`
-(`U1LargeCapRouteBTail.lean:7764`), whose inputs are the **live data** of the
+(`U1LargeCapRouteBTail.lean:7776`), whose inputs are the **live data** of the
 configuration (`U1LargeCapRouteBTailLiveData`, `:256`):
 
 ```lean
@@ -657,8 +659,10 @@ obligations of Part V.
 
 ## Part V — The open obligations
 
-**Status: OPEN.** All remaining `sorry`s: 36 symbols / 80 textual holes in
-`U1LargeCapRouteBTail.lean`.
+**Status: OPEN.** All remaining `sorry`s: 24 symbols / 56 textual holes in
+`U1LargeCapRouteBTail.lean`. (The twelve LIVE-T1 helpers, formerly 24
+further holes, are now source-sorry-free: they are production-wired through
+the orbit adapter below and remain open only transitively, through V.2.)
 
 ### V.1 Branch algebra
 
@@ -674,15 +678,23 @@ obligations of Part V.
     label slot, each holding the six orderings of the remaining labels onto
     {t₁, t₂, t₃} (24 holes);
   - t₁ = t₂₀: **LIVE-T1**, twelve helpers `liveData_T1_ql{i}_srcl{j}_false`
-    (q at label i, source at label j ≠ i), two orderings each (24 holes);
+    (q at label i, source at label j ≠ i), two orderings each —
+    **source-sorry-free (0 holes)**: every case now calls the orbit adapter
+    `U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair`
+    (`U1LargeCapRouteBTail.lean:3481`), which permutes the dangerous triple
+    so the collided row is the t₂ row and lands in the t₂ chain below; the
+    family is open only through V.2;
   - t₂ = t₂₀: **blocked on V.2** — the chain `false_of_center_p_t2_t20 →
     false_of_largeCap_pCentered_t2Source_exactDangerousRow →
     false_of_twoLargeCaps_pCentered_t2Source →
     exists_removableVertex_of_twoLargeCaps` is complete Lean whose sole open
     dependency is `DoubleApexOffSurplusSharedRadiusPair` (1 hole);
-  - t₃ = t₂₀: **LIVE-T3**, twelve helpers, two orderings each (24 holes).
+  - t₃ = t₂₀: **LIVE-T3**, twelve helpers, two orderings each (24 holes); a
+    checked mirror of the T1 orbit adapter exists
+    (`scratch/atail-force/triple_relabel_adapters.lean`) but is not yet
+    production-wired, so the holes remain textual.
 
-Total: 7 + 24 + 24 + 1 + 24 = 80 holes across 36 symbols.
+Total: 7 + 24 + 0 + 1 + 24 = 56 holes across 24 symbols.
 
 ### V.2 The shared-radius pair obligation — OPEN
 
@@ -746,8 +758,14 @@ contradictory.
   > leftover label pair carries the two remaining base points in either
   > order.
 
-  A kernel-checked orbit adapter derives all 48 cases from the shared-radius
-  pair statement (V.2), so these cases close exactly when V.2 does.
+  Both orbits reduce to the shared-radius pair statement (V.2) by relabel
+  adapters that permute the dangerous triple onto the t₂ chain. The T1
+  adapter is production-wired: the twelve LIVE-T1 declarations carry no
+  source holes and inherit `sorryAx` only through V.2. The T3 mirror
+  adapter is checked (it builds against V.2 in
+  `scratch/atail-force/triple_relabel_adapters.lean`) but not yet wired, so
+  the twelve LIVE-T3 declarations still carry their 24 textual holes. In
+  both cases the mathematical content is exactly V.2.
 
 - **LIVE-C (7 declarations, 7 cases) — OPEN.**
 
@@ -763,12 +781,13 @@ open content of the entire proof is: **V.2, LIVE-Q, and LIVE-C.**
 
 ## Trust boundary and axiom audit
 
-Checked 2026-07-13 (reproducible via `#print axioms` after `lake build`):
+Checked 2026-07-13, symbol counts refreshed 2026-07-14 (reproducible via
+`#print axioms` after `lake build`):
 
 - `Problem97.erdos97_rhs` today: `propext, Classical.choice, Quot.sound,
   Lean.ofReduceBool, Lean.trustCompiler, sorryAx` — the `sorryAx` traces
-  exactly to the 36 Part-V symbols.
-- After the 36 obligations close, the closure becomes the Lean core axioms
+  exactly to the 24 Part-V symbols.
+- After the 24 obligations close, the closure becomes the Lean core axioms
   plus `Lean.ofReduceBool` and `Lean.trustCompiler`, which enter only
   through the certificate evaluation in the (m,4,4) branch (Part IV.b).
 - The counting engine and the n = 9 base case individually close on
@@ -795,7 +814,7 @@ row must (or does) discharge.
 | O9 | RVOL remaining branch | blocked (O10–O13) | If no (m,4,4) decomposition exists, a removable vertex exists — the case analysis is complete Lean; its leaves are O10–O13. |
 | O10 | Shared-radius pair | open | In the two-large-cap configuration, two distinct points off the surplus cap are co-radial from both opposite Moser apices (V.2). |
 | O11 | LIVE-Q | open | The tail configuration with the f₂ row centred at p and q as the f₂ source point is contradictory, for each label slot of q and each ordering of the remaining labels (V.3). |
-| O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering; kernel-checked to follow from O10 (V.3). |
+| O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering. The T1 orbit adapter is production-wired (no source holes, open only through O10); the T3 mirror adapter is checked but not yet wired, so its 24 textual holes remain (V.3). |
 | O13 | LIVE-C | open | The tail configuration with the f₂ row centred anywhere other than p is contradictory, in all seven centre cases (V.3). |
 | O14 | Card-11 slice | open | O10 holds uniformly from card 11 — or, alternatively, no two-large-cap configuration has exactly 11 points (V.2, cardinality scope). |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
@@ -817,9 +836,11 @@ Unconditionally PROVED (Lean, kernel-checked):
    decomposition has both opposite caps of size exactly 4 contains a
    removable vertex (core axioms plus the two compiler axioms).
 4. In the remaining case, the configuration is reduced — by complete,
-   kernel-checked case analysis — to the 36 obligations of Part V, of which
-   25 (the T1/T3 orbit and the t₂ branch) further reduce to the single
-   shared-radius pair statement (V.2).
+   kernel-checked case analysis — to the 24 obligations of Part V. The
+   t₂ branch and the twelve LIVE-T3 helpers further reduce to the single
+   shared-radius pair statement (V.2) — the T3 reduction checked but not
+   yet wired — and the twelve LIVE-T1 helpers are already production-wired
+   through that reduction, carrying no source holes of their own.
 
 Conditionally: if the obligations of Part V are discharged, then
 `erdos97_rhs` — and with it the Problem 96 target — closes with axiom set
