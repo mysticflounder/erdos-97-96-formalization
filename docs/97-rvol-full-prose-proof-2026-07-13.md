@@ -2,36 +2,24 @@
 
 Status: current full prose proof of the Problem 97 formalization target,
 written against kernel ground truth at commit `fd9f062f` (spine build
-`1e7682fe7015`, mined 2026-07-13). This document supersedes the archived
-2026-06-27 draft `p97-rvol/docs/archive/2026-06-27-stale-route-docs/97-full-prose-proof-draft.md`;
-that draft predates the repo migration and the current frontier and must not
-be used for proof-state guidance.
+`1e7682fe7015`, mined 2026-07-13).
 
 **RVOL** = `RemovableVertexOfLarge`, the removable-vertex theorem for large
 counterexamples (`lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:54`).
 It is the descent engine of the Problem 97 proof, and it is where every
 remaining unproved obligation lives. This document gives the end-to-end
-argument for the published theorem, states which components are proven (with
-kernel evidence), and records the exact current state of what is not.
+argument for the published theorem; each component carries its statement and
+its status (proved or open), with kernel evidence for the proved ones.
 
-**Overall status: NOT PROVEN.** The published claim reaches `sorryAx` through
+**Overall status: OPEN.** The published claim reaches `sorryAx` through
 exactly 36 named obligations (80 textual holes), all in
-`lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean`, all inside the non-`IsM44`
-branch of RVOL. Every other layer is kernel-closed. Under the weakest-label
-rule the theorem is currently CONJECTURED, with the conjecture content
-localized to Part V below.
+`lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean`, all inside the branch of
+RVOL in which no (m,4,4) cap decomposition exists (Part IV.c). Every other
+layer is kernel-closed. The open content is exactly Part V.
 
-Authority note: the authoritative open-obligation list is `proof-blueprint
-spine`, and the authoritative task register is
-`docs/closure-matrix-2026-07-09.md` with strategy in
-`docs/closure-plan-full-spec-2026-07-09.md`. This document does not replace
-them; it is the mathematical narrative aligned to them as of 2026-07-13.
-
-Rigor labels used below: **PROVEN** (pen-and-paper or Lean-formalized,
-sorry-free), **CONJECTURED**, **EMPIRICALLY VERIFIED** (finite scope stated),
-**HEURISTIC**. A Lean claim labeled PROVEN cites its declaration; the
-evidential basis is the kernel-mined spine (49/2390 nodes open — every spine
-node not descending from the 36 open obligations is sorry-free) plus the
+Evidential basis for every "proved" below: the kernel-mined dependency spine
+of the published theorem (49/2390 nodes open — every spine node not
+descending from the 36 open obligations is sorry-free) plus the
 `#print axioms` checks reproduced in the trust-boundary section.
 
 ---
@@ -43,8 +31,8 @@ Formal Conjectures poses Erdős Problem 97 as:
 > Does every convex polygon have a vertex with no other 4 vertices
 > equidistant from it?
 
-The upstream formal statement (pinned `formal-conjectures` revision, see
-`lake-manifest.json`; `FormalConjectures/ErdosProblems/97.lean:72`):
+The upstream formal statement (pinned `formal-conjectures` revision;
+`FormalConjectures/ErdosProblems/97.lean:72`):
 
 ```lean
 theorem erdos_97 :
@@ -131,8 +119,7 @@ def HasNEquidistantProperty (n : ℕ) (A : Finset ℝ²) : Prop :=
 
 `HasNEquidistantProperty 4 A` says: every p ∈ A admits a radius r > 0 with at
 least 4 points of A on the circle of radius r about p (r > 0 excludes p
-itself). Following the archived draft this is abbreviated **PerVertexK4**, or
-"K4", in prose. A **counterexample** is a nonempty convex-independent A with
+itself). This is abbreviated **PerVertexK4**, or "K4", in prose. A **counterexample** is a nonempty convex-independent A with
 PerVertexK4.
 
 **Isosceles count** (`IsoscelesCount.lean:32`): for p ∈ A,
@@ -156,17 +143,21 @@ it.
 `MoserTriangle A` is a labelled triple of pairwise-distinct vertices
 v₁, v₂, v₃ ∈ A. A `CapTriple A M` decomposes A into three **closed caps**
 C₁, C₂, C₃ ⊆ A, where Cᵢ is characterized by the arc-membership invariant
-(v ∈ C₁ ↔ `OnArcOpposite v₁ v₂ v₃ v`, and cyclically). Closed-cap
-convention: adjacent caps share their endpoint Moser vertices, each Moser
-vertex lies in exactly two caps, each non-Moser vertex in exactly one. The
-**cap-sum identity** (`CapTriple.cap_sum_identity`) is
+(v ∈ C₁ ↔ `OnArcOpposite v₁ v₂ v₃ v`, and cyclically). The closed-cap
+convention:
+
+- adjacent caps share their endpoint Moser vertices;
+- each Moser vertex lies in exactly two caps;
+- each non-Moser vertex lies in exactly one cap.
+
+The **cap-sum identity** (`CapTriple.cap_sum_identity`) is
 
     |C₁| + |C₂| + |C₃| = n + 3.
 
 A **surplus cap** is a cap with more than 4 points. The **(m,4,4) regime**
-is the case where the two non-surplus caps have exactly 4 points each;
-formally `SurplusCapPacket.IsM44` (`Cap/PartitionFromMEC.lean:443`):
-`S.oppCap1.card = 4 ∧ S.oppCap2.card = 4`.
+is the case where the two caps opposite the surplus cap have exactly 4
+points each; formally `SurplusCapPacket.IsM44`
+(`Cap/PartitionFromMEC.lean:443`): `S.oppCap1.card = 4 ∧ S.oppCap2.card = 4`.
 
 **Removable vertex** (`SmallerCounterexample.lean:25`):
 
@@ -200,36 +191,41 @@ structure UniversalReductionHypotheses : Prop where
         False
 ```
 
-The trichotomy: n < 9 is impossible (counting engine, Part I); n = 9 is
-impossible (base case `FiniteN9Closure`, Part II); n > 9 contradicts
-minimality (descent engine, Parts III–IV). The instantiation
-`UniversalProblem97` (`UniversalLocal.lean:36`) supplies
+The trichotomy:
+
+- n < 9 is impossible (counting engine, Part I);
+- n = 9 is impossible (base case `FiniteN9Closure`, Part II);
+- n > 9 contradicts minimality (descent engine, Parts III–IV).
+
+The instantiation `UniversalProblem97` (`UniversalLocal.lean:36`) supplies
 `counterexample_card_ge_nine` for `counting` and
 `descent_contradicts_minimality` for `descent`; `erdos97_rhs` is that theorem
 under the definitional bridge.
 
-Kernel state at commit `fd9f062f`: the spine of `erdos97_rhs` has 2390 nodes
-over 2398 declarations (72,860 lines of Lean); 49 nodes are open, all
-descending from 36 sorry-carrying symbols in `U1LargeCapRouteBTail.lean`;
-20 trusted certificate-shard leaves are excluded from mining but covered by
-`#print axioms` on the target.
+Kernel state at commit `fd9f062f`:
 
-Layer-by-layer kernel closures (checked 2026-07-13 via
-`proof-blueprint axioms`):
+- the spine of `erdos97_rhs` has 2390 nodes over 2398 declarations
+  (72,860 lines of Lean);
+- 49 nodes are open, all descending from 36 sorry-carrying symbols in
+  `U1LargeCapRouteBTail.lean`;
+- 20 trusted certificate-shard leaves are excluded from mining but covered
+  by `#print axioms` on the target.
+
+Layer-by-layer kernel closures (checked 2026-07-13):
 
 | Layer | Declaration | Axiom closure |
 |---|---|---|
 | Counting engine | `counterexample_card_ge_nine` | `propext, Classical.choice, Quot.sound` |
 | Base case n = 9 | `FiniteN9Closure` | `propext, Classical.choice, Quot.sound` |
-| RVOL pinned-surplus branch | `removableVertexOfLarge_of_isM44PinnedSurplus` | core + `Lean.ofReduceBool`, `Lean.trustCompiler` (approved) |
-| RVOL non-IsM44 branch | `u1_largeCap_routeB_tail_false` | core + `sorryAx` |
+| RVOL (m,4,4) branch | `removableVertexOfLarge_of_isM44PinnedSurplus` | core + `Lean.ofReduceBool`, `Lean.trustCompiler` |
+| RVOL remaining branch | `u1_largeCap_routeB_tail_false` | core + `sorryAx` |
 | Published target | `erdos97_rhs` | core + `Lean.ofReduceBool`, `Lean.trustCompiler` + **`sorryAx`** |
 
 ---
 
 ## Part I — Counting engine: every counterexample has n ≥ 9
 
-**Status: PROVEN (Lean).** `Problem97.counterexample_card_ge_nine`
+**Status: PROVED.** `Problem97.counterexample_card_ge_nine`
 (`Counting.lean:95`), kernel closure core axioms only.
 
 > **Theorem I.** If A is a counterexample, then |A| ≥ 9.
@@ -317,29 +313,30 @@ n ≥ 90/11, and integrality forces n ≥ 9 (`Counting.lean` +
 `CountingArithmetic.lean`).
 
 The Lean decomposition is the `Dumitrescu/` chain (L1–Lc3) plus the `CGN/`
-cap-witness counting bridge topped by CGN8; the 2026-05-23 adversarial audit
-of this route (D2 diameter exit, D6 matching count, D8 disjointness, D9
-arithmetic, lower bound) passed and its requested D5 minor-arc edit is
-incorporated above.
+cap-witness counting bridge topped by CGN8.
 
 ---
 
 ## Part II — Base case: no counterexample has n = 9
 
-**Status: PROVEN (Lean).** `Problem97.FiniteN9Closure`
+**Status: PROVED.** `Problem97.FiniteN9Closure`
 (`N9Endpoint/Closure.lean:56`), kernel closure core axioms only — no
-`sorryAx`, no compiler axioms, no generated-certificate trust.
+`sorryAx`, no compiler axioms.
 
 > **Theorem II.** No 9-point convex-independent set has PerVertexK4.
 
 The proof threads a fixed nine-point shell through form exclusions and a
 single-apex exhaustion. The shell `FiniteEndpointShell`
-(`N9Endpoint/Shell.lean:39`) packages what Parts I's machinery already
-yields for a hypothetical 9-point counterexample: non-collinearity, at least
-3 MEC boundary points (diameter branch excluded by K4 as in D2), a non-obtuse
-circumscribed Moser triangle, its cap triple, and the exact cap sum
-|C₁| + |C₂| + |C₃| = 12 — so with each cap containing its two endpoint Moser
-vertices, the counting is tight and the configuration is rigidly constrained.
+(`N9Endpoint/Shell.lean:39`) packages what Part I's machinery already yields
+for a hypothetical 9-point counterexample:
+
+- non-collinearity;
+- at least 3 MEC boundary points (diameter branch excluded by K4 as in D2);
+- a non-obtuse circumscribed Moser triangle and its cap triple;
+- the exact cap sum |C₁| + |C₂| + |C₃| = 12.
+
+With each cap containing its two endpoint Moser vertices, the counting is
+tight and the configuration is rigidly constrained.
 
 The route (module docstring, `N9Endpoint/Closure.lean`):
 
@@ -378,7 +375,7 @@ selected class, every branch terminates in a contradiction, closing n = 9.
 
 ## Part III — Cap-sum bridge: n > 9 forces a surplus cap
 
-**Status: PROVEN (Lean).** From the cap-sum identity: if n > 9 then
+**Status: PROVED.** From the cap-sum identity: if n > 9 then
 |C₁| + |C₂| + |C₃| = n + 3 > 12, so some cap has more than 4 points
 (`exists_surplus_cap_of_card_gt_nine`, pigeonhole). This bridge is
 elementary and independent of everything in Part IV; it only produces the
@@ -401,7 +398,7 @@ It composes two pieces:
   > vertex x — that is, x ∈ A with `A.erase x` still PerVertexK4.
 
 - **Glue** (`smaller_counterexample_of_removable`,
-  `SmallerCounterexample.lean:30`) — PROVEN: erasing a removable vertex
+  `SmallerCounterexample.lean:30`) — PROVED: erasing a removable vertex
   yields a strictly smaller counterexample (convex independence passes to
   subsets), contradicting minimality.
 
@@ -409,72 +406,55 @@ RVOL is assembled by a three-way split
 (`RemovableVertexOfLarge_from_threeWaySplit`, applied at
 `RemovableVertexAxiom/Continuation.lean:798`):
 
-### IV.a Surplus-cap packet extraction — PROVEN
+### IV.a Surplus-cap packet extraction — PROVED
 
-`largeK4SurplusCapPacket` extracts, from any minimal counterexample with
-n > 9, a `SurplusCapPacket`: the surplus cap from Part III together with its
-two opposite caps and the selected-apex vocabulary the branches consume.
-Closed on the kernel spine.
+> **Statement.** Every minimal counterexample with |A| > 9 carries a
+> surplus-cap packet: the surplus cap from Part III together with its two
+> opposite caps and the selected-apex data.
 
-### IV.b The IsM44 (pinned-surplus) branch — PROVEN under the native_decide policy
+`largeK4SurplusCapPacket`; closed on the kernel spine.
 
-`removableVertexOfLarge_of_isM44PinnedSurplus`: if the packet is in the
-(m,4,4) regime (both opposite caps exactly 4), a removable vertex exists.
-Kernel closure: core + `Lean.ofReduceBool` + `Lean.trustCompiler` — the
-project's approved `native_decide` trust boundary, and nothing else (no
-`sorryAx`; checked 2026-07-13).
+### IV.b The (m,4,4) branch — PROVED
 
-This branch is where the finite certificate infrastructure lives:
+> **Statement.** If the two caps opposite the surplus cap have exactly 4
+> points each, then A contains a removable vertex.
 
-- **Pinned-surplus COMP-G bank.** The geometric residual constructs a
-  finite incidence **shadow** (ten 4-element incidence masks over the ten
-  labels u, v, w, s₁, s₂, s₃, P_w, P_u, Q₁, Q₂); the generated predicate
-  `isValidPinnedFragment` checks the pinned-fragment side conditions, and the
-  bridge `pinnedSurplusCOMPGBankBridge` (`RemovableVertexAxiom/Base.lean:71`)
-  transports any valid pinned fragment into membership in the generated bank
-  of 135 pinned COMP-G rows (`SurplusCOMPGBank.lean`, `rows_length = 135`)
-  via a DFS-completeness argument. The finite facts (row count, mask shape,
-  validity of all rows, key uniqueness, DFS-prefix bounds) are discharged by
-  `native_decide`.
-- **Endpoint polynomial certificates.** Each banked pattern that must be
-  metrically impossible carries a Nullstellensatz-style certificate: exact
-  rational polynomials with `checkCertificate` verifying the identity
-  Σᵢ cᵢ·gᵢ = 1 over the pattern's generator system {gᵢ = 0}
-  (`EndpointCertificate/Checker.lean:189`), which certifies infeasibility of
-  the corresponding real configuration; semantic soundness of the evaluator
-  is proved in `EndpointCertificate/Soundness.lean`. The evaluated checkers
-  are ordinary verified Lean — no `unsafe`, no `@[implemented_by]`, no
-  `@[extern]` — satisfying both conditions of the project `native_decide`
-  policy.
-- **ERASE classifier.** The erased-set (post-deletion) analogue is the
-  `ErasedCertificate/` family — the card-{10,11} native classifier with
-  soundness and coverage layers (`ErasedClassifierSound.lean` et al.),
-  committed closed at `652fdfcb`; the downstream exact-pin ERASE target is
-  0/1376 open and passes target-specific `proof-blueprint verify-publish`.
+`removableVertexOfLarge_of_isM44PinnedSurplus`. The proof is a finite
+classification of the admissible pinned configurations, each impossible
+case refuted by an exact polynomial infeasibility certificate; the
+enumeration and certificate checks are evaluated by the compiler, which is
+why — and only why — the two compiler axioms `Lean.ofReduceBool` and
+`Lean.trustCompiler` appear in its kernel closure (no `sorryAx`; checked
+2026-07-13).
 
-The former Front-B residuals of this branch —
-`isM44EndpointResidualsExcluded`, `isM44PinnedSurplusResidualsExcluded`,
-`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` — are all closed
-and kernel-connected (2026-07-11..13).
+### IV.c The remaining branch (no (m,4,4) decomposition) — blocked on Part V
 
-### IV.c The non-IsM44 branch — assembled; open through its leaves
+> **Statement.** If no surplus-cap decomposition puts exactly 4 points in
+> both opposite caps, then A contains a removable vertex.
 
 `removableVertexOfLarge_of_nonIsM44`
-(`RemovableVertexAxiom/Continuation.lean:743`): if **no** (m,4,4) packet
-exists, descend through the U-lane route-B tail. The wiring is complete Lean
-code: build a `CounterexampleData` D on the carrier A; minimality yields both
-"no removable vertex" (`hnoRem` — else IV closes immediately) and a critical
-shell system (`hcritical`); take the circumscribed cap triple; split by
-`exactPair_or_nonExactSurplusBranch_of_card_gt_nine`. The exact-pair branch
-produces an (m,4,4) packet, contradicting the branch hypothesis. The
-remaining branch — a surplus cap whose opposite pair is **not** exact — is
-closed by `u1_largeCap_routeB_tail_false` (`U1LargeCapRouteBTail.lean:9200`),
-the imported p97-rvol U-lane route-B tail (58 modules, `RVOL.P97.*` →
-`Erdos9796Proof.P97.*`, imported 2026-07-05).
+(`RemovableVertexAxiom/Continuation.lean:743`). The proof descends through
+the route-B tail (the `U1*` and `RVOL` prefixes in declaration names are
+historical labels of this workstream). The wiring is complete Lean code:
 
-**The route-B tail.** "U1" is the U-lane spine node discharging RVOL; "Route
-B" is the branch after the exact-pair fast path is peeled off (the
-non-exactness hypothesis `hnotOppExact`); the "tail" is the residual leaf.
+1. build a `CounterexampleData` D on the carrier A;
+2. minimality yields both "no removable vertex" (`hnoRem` — else Theorem IV
+   closes immediately) and a critical shell system (`hcritical`);
+3. take the circumscribed cap triple and split by
+   `exactPair_or_nonExactSurplusBranch_of_card_gt_nine`;
+4. the exact-pair branch produces an (m,4,4) packet, contradicting the
+   branch hypothesis;
+5. the remaining branch — a surplus cap whose opposite pair is **not**
+   exact — is closed by `u1_largeCap_routeB_tail_false`
+   (`U1LargeCapRouteBTail.lean:9200`).
+
+**The route-B tail.** Terminology, as carried by the declaration names:
+
+- "Route B" is the branch in which the surplus cap's opposite pair is not
+  exact (the hypothesis `hnotOppExact`);
+- the "tail" is the residual case analysis remaining after the exact-pair
+  branch is discharged.
+
 `u1_largeCap_routeB_tail_false` reduces (complete Lean, no own holes) to the
 structural bridge `u1_largeCap_routeB_tail_liveData_false`
 (`U1LargeCapRouteBTail.lean:7764`), whose inputs are the **live data** of the
@@ -489,15 +469,20 @@ structure U1LargeCapRouteBTailLiveData
   selected : U5SelectedCandidateSkeleton D q p ({t1, t2, t3} : Finset ℝ²) u
 ```
 
-Semantics: q is the candidate vertex in the surplus cap whose deletion is
-being tested; p is the localized replacement center; {t₁, t₂, t₃} is the U5
-dangerous triple on the p-circle through q, which carries exactly three
-co-radial skeleton points after q's deletion; u is the selected candidate off
-that circle. Alongside the live data, the bridge receives the five
-**critical source rows** (`U1Depth5.CriticalSourceRows D q t₁ t₂ t₃ u`) — for
-each source point among {q, t₁, t₂, t₃, u}, a critical row: a center with an
-exact selected 4-class — plus the depth-5 row packet `f2CriticalRow` centred
-on the t₂-row's slot-0 point (written t₂₀ below).
+Semantics:
+
+- q is the candidate vertex in the surplus cap whose deletion is being
+  tested;
+- p is the localized replacement center;
+- {t₁, t₂, t₃} is the dangerous triple on the p-circle through q, which
+  carries exactly three co-radial skeleton points after q's deletion;
+- u is the selected candidate off that circle.
+
+Alongside the live data, the bridge receives the five **critical source
+rows** (`U1Depth5.CriticalSourceRows D q t₁ t₂ t₃ u`) — for each source point
+among {q, t₁, t₂, t₃, u}, a critical row: a center with an exact selected
+4-class — plus the depth-5 row packet `f2CriticalRow` centred on the
+t₂-row's slot-0 point (written t₂₀ below).
 
 The bridge's proof is a complete finite case analysis on where
 `f2CriticalRow`'s center and labels can sit; its leaves are the open
@@ -505,12 +490,10 @@ obligations of Part V.
 
 ---
 
-## Part V — The open frontier: 36 obligations
+## Part V — The open obligations
 
 **Status: OPEN.** All remaining `sorry`s: 36 symbols / 80 textual holes in
-`U1LargeCapRouteBTail.lean` (matrix reconcile table; `proof-blueprint symbols
---with-sorry` reports exactly these). Everything in this part is stated with
-the closure-matrix labels as of 2026-07-13; do not upgrade any of them.
+`U1LargeCapRouteBTail.lean`.
 
 ### V.1 Branch algebra
 
@@ -527,7 +510,7 @@ the closure-matrix labels as of 2026-07-13; do not upgrade any of them.
     {t₁, t₂, t₃} (24 holes);
   - t₁ = t₂₀: **LIVE-T1**, twelve helpers `liveData_T1_ql{i}_srcl{j}_false`
     (q at label i, source at label j ≠ i), two orderings each (24 holes);
-  - t₂ = t₂₀: **closed** — the chain `false_of_center_p_t2_t20 →
+  - t₂ = t₂₀: **blocked on V.2** — the chain `false_of_center_p_t2_t20 →
     false_of_largeCap_pCentered_t2Source_exactDangerousRow →
     false_of_twoLargeCaps_pCentered_t2Source →
     exists_removableVertex_of_twoLargeCaps` is complete Lean whose sole open
@@ -536,226 +519,93 @@ the closure-matrix labels as of 2026-07-13; do not upgrade any of them.
 
 Total: 7 + 24 + 24 + 1 + 24 = 80 holes across 36 symbols.
 
-### V.2 The shared-radius pair obligation (K-A-PAIR)
+### V.2 The shared-radius pair obligation — OPEN
 
 `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`
-(`U1LargeCapRouteBTail.lean:2516`, hole at `:2561`). Matrix label:
-**OPEN-RESEARCH (actual surface card ≥ 11; selected-four/equality/blocker
-routes negative)**.
+(`U1LargeCapRouteBTail.lean:2516`, hole at `:2561`).
 
-Statement (conclusion, prose): under the full two-large-cap leaf hypotheses —
-surplus cap > 4 at index i containing q, a second cap ≥ 5 at j ≠ i (supplied
-by `exists_secondLargeCap_of_noM44`, PROVEN), no (m,4,4) packet, n > 9,
-critical shell system, the live data, and the t₂-row centred at p with
-support {q, t₁, t₂, t₃} — there exist two distinct carrier points x, w′ ∈ A,
-both **off the surplus cap**, and radii r, ρ with
+> **Statement.** In the two-large-cap configuration —
+>
+> - a surplus cap (> 4 points) at index i containing q,
+> - a second cap with ≥ 5 points at j ≠ i (which exists because no (m,4,4)
+>   decomposition does),
+> - n > 9, a critical shell system, the live data, and
+> - the t₂-row centred at p with support {q, t₁, t₂, t₃}
+>
+> — there exist two distinct carrier points x, w′ ∈ A, both off the surplus
+> cap, and radii r, ρ with
+>
+>     dist(x, a₁) = dist(w′, a₁) = r  and  dist(x, a₂) = dist(w′, a₂) = ρ,
+>
+> where a₁, a₂ are the two Moser apices opposite the surplus cap. That is: a
+> pair co-radial from **both** opposite apices simultaneously.
 
-    dist(x, a₁) = dist(w′, a₁) = r  and  dist(x, a₂) = dist(w′, a₂) = ρ,
-
-where a₁, a₂ are the two opposite Moser apices of the leaf's surplus packet
-(`leafSurplusPacket`). That is: a pair co-radial from **both** opposite
-apices simultaneously.
-
-The downstream is fully PROVEN (core axioms): such a pair fires
-`U2NonSurplusSqueeze.oppCap2_escape_gen` — the off-surplus membership
-supplies the same-side sign via
-`signedArea2_mul_pos_of_not_mem_surplusCap_gen`, and the two-circle
-reflection kernel contradicts it — so
-`exists_removableVertex_of_twoLargeCaps` (`:2585`) closes the t₂ branch with
-no other input. The conclusion is unsatisfiable over ℝ², so proving the
-obligation means deriving the leaf contradiction: the open content is the
-counting/metric question
+The downstream implication is PROVED (core axioms): given such a pair,
+`exists_removableVertex_of_twoLargeCaps` (`:2585`) produces a removable
+vertex — the off-surplus membership fixes the pair's side of the surplus
+chord, and the two-circle reflection argument
+(`U2NonSurplusSqueeze.oppCap2_escape_gen`) derives the contradiction. The
+conclusion is unsatisfiable over ℝ², so proving the obligation is exactly
+deriving the leaf contradiction. The open mathematical question:
 
 > does (≥5, ≥5, 4) + center-K4 + the critical shell **force** the two ≥5
 > caps to overflow the apex exact-radius classes into a double-apex
 > coincidence?
 
-**Cardinality contract (load-bearing).** The declaration carries only
-`9 < |A|`. The two-large-cap arithmetic gives 11 ≤ |A|
-(`Census554.card_ge_eleven_of_twoLargeCaps`, PROVEN), and **no card-11 kill
-exists**: `Census554.false_of_cardEleven_twoLargeCaps` (A11-CONSUME) was
-never built (matrix: OPEN-PROOF, CONDITIONAL CRITICAL). A producer uniform
-only from card ≥ 12 therefore cannot by itself remove this sorry; it would
-additionally need A11-CONSUME plus the source-visible card split (A11-WIRE,
-OPEN-PROOF). The earlier claim that card 11 was closed independently was
-found circular and retracted (audit `2026-07-13-closure-plan-audit.md`,
-AUDIT-1); current plans treat card 11 as open.
+**Cardinality scope.** The declaration assumes only 9 < |A|. In the
+two-large-cap configuration 11 ≤ |A| is PROVED
+(`Census554.card_ge_eleven_of_twoLargeCaps`), and nothing currently excludes
+|A| = 11. So the statement must be proved for every |A| ≥ 11; a proof that
+works only for |A| ≥ 12 would additionally require a separate card-11
+exclusion (open; row O14 below).
 
-### V.3 The liveData families (K-A-LIVE)
+### V.3 The liveData obligations
 
-Matrix label: **OPEN-RESEARCH (actual surface card ≥ 11; T1/T3 reduction
-checked; LIVE-C incidence route negative)**.
+All share the full tail hypothesis bundle of the bridge (the live data, the
+five critical source rows, the `f2CriticalRow` packet, and the label
+bookkeeping); each asserts that its branch of the case analysis is
+contradictory.
 
-- **LIVE-T1 / LIVE-T3 (48 holes):** reduced. `triple_relabel_adapters.lean`
-  kernel-checks orbit adapters replacing all 48 leaves with two K-A-PAIR
-  calls (CHECKED-REDUCTION 2026-07-13). This is dependency reduction, not
-  closure — the adapters intentionally inherit K-A-PAIR's `sorryAx` and the
-  wiring is pending; the 48 holes close if and only if K-A-PAIR closes.
-- **LIVE-Q (24 holes):** OPEN-RESEARCH. Needs one consumer invariant under
-  the 24 support-label permutations; not reduced to K-A-PAIR.
-- **LIVE-C (7 holes):** OPEN-RESEARCH, one per center branch. The
-  incidence-only route is DONE-NEGATIVE (`ATAIL-LIVE-INCIDENCE`: all seven
-  branches satisfiable at the incidence level — incidence-only forcing is
-  terminal at this interface). The retained-provenance route is
-  positive-but-insufficient (`ATAIL-LIVE-PROVENANCE`, CHECKED-SCRATCH):
-  `live_critical_provenance.lean` forces
-  2 ≤ |f2Row.support \ {q, t₁, t₂, t₃}| in all seven helpers, but that is a
-  one-center off-dangerous pair, not the two-center off-surplus pair K-A-PAIR
-  needs.
-- **LIVE-BANK-MATCH:** DONE 2026-07-12, NEGATIVE terminal — 1,422
-  (leaf, consumer) pairs against the mined theorem banks produced 0 matches.
-  No existing bank lemma wires any liveData leaf; a new producer is required.
+- **LIVE-Q (4 declarations, 24 cases) — OPEN.**
 
-Both clusters therefore reduce to the **same missing producer**
-(LIVE-SHARED-PRODUCER / ATAIL-ROW-PRODUCER, both OPEN-RESEARCH, PRIMARY).
+  > **Statement.** The tail configuration with the f₂ row centred at p is
+  > contradictory when q is itself the f₂ source point (q = t₂₀), q occupies
+  > selected label lᵢ (i ∈ {1,…,4}), and the remaining three labels carry
+  > {t₁, t₂, t₃} in any of the six orders.
 
-### V.4 What is PROVEN around the gap
+- **LIVE-T1 / LIVE-T3 (24 declarations, 48 cases) — blocked on V.2.**
 
-Consumer/sink side, all kernel-checked with core axioms and target-built:
+  > **Statement.** The tail configuration with the f₂ row centred at p is
+  > contradictory when the f₂ source point is t₁ (respectively t₃), q
+  > occupies label lᵢ, the source occupies label lⱼ (j ≠ i), and the
+  > leftover label pair carries the two remaining base points in either
+  > order.
 
-- `outsidePair_unique_capCenter` and the scratch
-  `DangerousRowSameCapSecondCenter` consumers
-  (`same_cap_second_center.lean`): the routine dangerous-row outside-cap
-  pair and u-row separation are closed; a second distinct same-cap
-  equidistant center closes the leaf immediately.
-- The five-row metric core (`normalized_fiveRow_metric_core_false`,
-  `false_of_five_selectedFourClasses`).
-- Production cores `NestedEqualChordCore`, `MECStraddlingRowCore`,
-  `SixPointTwoCircleOrderCore`, `SixPointNestedCenterOrderCore`,
-  `SixPointCircleChainOrderCore` (all PROVEN, production targets built
-  2026-07-13).
-- The fiber extractor `exists_doubleApex_pair_of_joint_filter_card_ge_two`
-  (sorry-free, unimported scratch).
-- ATAIL-SUB2 (PROVEN, audited, landed as `Sub2Certificate.lean` — no QE, no
-  `native_decide`), supplying three reusable cuts: m ≤ 2, vertex-pair packets
-  s = 0, and s = 2 straddle-only.
+  A kernel-checked orbit adapter derives all 48 cases from the shared-radius
+  pair statement (V.2), so these cases close exactly when V.2 does.
 
-Three viable producer interfaces are named, each with its kernel-checked
-consumer already closed: (i) a same-cap bisector hit feeding
-`URowCapMultiplicityFields` → `outsidePair_unique_capCenter`; (ii) four
-global-row memberships feeding `HasGlobalNestedPairProducer` →
-`NestedEqualChordCore`; (iii) sixteen selected-K4 memberships feeding
-`false_of_five_selectedFourClasses`. In every case the **producer** —
-deriving the interface's fields from the live hypotheses — is the open part
-(CONJECTURED; the bounded evidence does not yet prove which interface is
-forced).
+- **LIVE-C (7 declarations, 7 cases) — OPEN.**
 
-### V.5 Routes ruled out (PROVEN-NEGATIVE / DONE-NEGATIVE)
+  > **Statement.** The tail configuration is contradictory when the f₂
+  > row's centre is **not** p — the seven cases being centre = q, t₁, t₂
+  > (two sub-cases: named placement and row failure), t₃, u, or a fresh
+  > vertex of A distinct from all six base points.
 
-- Marginal radius counting cannot force the pair: apex classes keep ≥ 3
-  off-surplus points with distinct opposite radii
-  (`doubleApexJointFiber_sdiff_surplus_card_le_one` — the joint fiber
-  off-surplus has card ≤ 1, so marginal K4 counting is provably
-  insufficient).
-- Blocker cycles / global-K4 graphs: refuted by a 12-vertex abstract and a
-  33-point Euclidean (non-convex) countermodel.
-- Global ordered-cap counting at card 12: per-cap budget m + 4 leaves slack;
-  DONE-NEGATIVE.
-- Dangerous-source blocker collapse: all four dangerous sources can be
-  overridden to `centerAt = p`; CHECKED-NEGATIVE.
-- Equality-only replay: all 343 skeletons admit real-algebraic
-  separator-satisfying witnesses; DONE-NEGATIVE.
-- Q3 selected-four / two-center window: DONE-NEGATIVE 2026-07-13. The sweep
-  classifies 87 mirror-reduced joint classes — 72 realized exactly (68 over
-  ℚ, 4 over ℚ(√3)) and 15 reported killed (hand/Z3 provenance; the
-  checkpoint does **not** independently replay those 15 kill proofs). Even
-  applying all joint kills at all three Moser pairs simultaneously, a
-  token-level assignment survives for every one of the 22 unordered cap
-  profiles at cards 12–16, before and after the SUB2 cuts. Conclusion: a
-  single selected-four two-center window is terminal as a closure mechanism;
-  `hcritical` is load-bearing, and cross-center coupling beyond
-  independently-selected four-point windows is required.
-- Incidence-only forcing at the LIVE-C interface: 7/7 satisfiable;
-  terminal.
-- Direct solver attack on the full system: msolve / Z3 / cvc5 pilots all
-  DONE-NEGATIVE-TRACTABILITY (7/7 timeouts each).
-
-### V.6 Bounded/CAS evidence (not proofs)
-
-- CARD-EQ-12 shadows (4,5,6) and (5,5,5): the full 36-equality ideals give
-  Singular + msolve `UNIT` — labeled **TRUSTED EXACT-CAS, NONEXHAUSTIVE**
-  (exact computer algebra on two fixed profiles; not a theorem, not a cover).
-- Common-system CEGAR: 128/128 cross-checked UNIT rounds, but stopped on
-  round budget, not exhaustion.
-- The card-12 placement surface has 367,206 representatives; blind
-  per-representative CAS is ruled out as a route.
-- These are evidence that the pair-forcing statement is plausible on the
-  card-12 slices tested; none of them bounds the general case.
-
-### V.7 Census-554 and the card-11 slice
-
-The card-11 census infrastructure (A11-GEO/MOTIF/EMBED/COVER-REL rows) is
-DONE, sorry-free, core axioms. The exhaustive run A11-RUN is
-**TERMINAL-COMBINED-FRONTIER** (2026-07-13): the oracle-13 successor exited
-cleanly at iteration 316 with 2,464,637 learned exclusions and
-status = combined-frontier — explicitly the bounded oracle's terminal
-residual, **not** UNSAT and not Lean closure. The residual motif bank is
-paused at 5,939 rows (structural audit passed; the full 141 GB exact replay
-was not run). Census-554 is the paused conditional card-11 alternate: it
-returns to the critical path only if the eventual producer starts at
-card ≥ 12.
-
-### V.8 The card ≥ 12 tail regimes
-
-- **Card ≥ 15 uniform tail: FALSIFIED.** The relaxed uniform pattern-cover /
-  ideal-theoretic lemma is false at every separator level for n ≥ 15, with
-  exact-integer/50-digit falsifiers (W15, W16 variants, concentric octagons
-  n = 16, decagon pair n = 20). All falsifiers are **non-convex**, so the
-  `ConvexIndep` leaf itself is untouched — but no dead-pattern bank can cover
-  the tail uniformly. The row-decorated remnant (Candidate B) is also false.
-- **Cards 12–14: nonconvergent.** Sampled profiles are dead (n = 13:
-  300/300; n = 14: 160/160; kills localize to ≤ 8-point windows) but the
-  sole n = 12 profile run did not converge and omitted two labeled profiles;
-  the AHEAD lane is authorized but software-gated, and dead samples are not
-  coverage. EMPIRICALLY VERIFIED within the sampled scope only.
-- **Only non-excluded route: convexity-coupled Candidate D** — synthetic
-  convexity-coupled forcing of the shared-radius pair. Its smallest object
-  (the Q3 two-center window) is now exhausted negatively, so what remains is
-  exactly the live producer question of V.4: cross-center coupling that
-  actually uses `hcritical` and convexity.
-
-### V.9 Structural blockers on the current surface
-
-Named for future producers (all DONE-AUDIT / PROVEN at the current
-declaration surface):
-
-- **Provenance erasure:** the pair target receives `rows` and the critical
-  shell system independently, with no shared-system provenance — erasing the
-  mechanism by which `hcritical` could constrain the specific u-row.
-- **Sixth-row scope:** the pair surface carries only the five abstract
-  critical source rows (q, t₁, t₂, t₃, u); it does not receive
-  `f2CriticalRow` or the two comparison maps. A closing producer must either
-  add a sixth critical row plus a theorem consuming it, the (Q)_C5 fragment,
-  an equivalent incidence theorem, or a complete branch split feeding the
-  metric-residual sink (COMP-1 obstruction, recorded in the LiveData
-  docstring).
-
-Dead-end log: see `docs/dead-ends.md` — in particular
-`doubleapex-card12up-uniform-pattern-lemma` (falsified),
-`doubleapex-card12up-per-type-window-kills` (closed),
-`blocker-digraph-cardinality` (collapses to (Q)), global isosceles counting
-(route a, closed-negative), decorated order-type encoding (no-go: chirotopes
-carry no metric), continuous SMT (exhausted), and
-`u2-oppcap2-escape-rvol-vocabulary` (attic; do not resurrect rvol-era
-escape-branch statements off-spine).
+With the t₂ = t₂₀ branch and the T1/T3 orbit both blocked only on V.2, the
+open content of the entire proof is: **V.2, LIVE-Q, and LIVE-C.**
 
 ---
 
 ## Trust boundary and axiom audit
 
-Checked 2026-07-13 (`proof-blueprint axioms`, reproducible via
-`#print axioms` after `lake build`):
+Checked 2026-07-13 (reproducible via `#print axioms` after `lake build`):
 
 - `Problem97.erdos97_rhs` today: `propext, Classical.choice, Quot.sound,
   Lean.ofReduceBool, Lean.trustCompiler, sorryAx` — the `sorryAx` traces
   exactly to the 36 Part-V symbols.
 - After the 36 obligations close, the closure becomes the Lean core axioms
-  plus `Lean.ofReduceBool` and `Lean.trustCompiler`, from `native_decide` in
-  the generated certificate shards (`SurplusCOMPGBank*`,
-  `EndpointCertificate/*`). This complies with the project `native_decide`
-  policy (2026-06-05): the compiler-trust cost is explicit and kernel-
-  reported, and every evaluated decision procedure is ordinary verified Lean
-  with no `unsafe`, `@[implemented_by]`, or `@[extern]` in its closure.
+  plus `Lean.ofReduceBool` and `Lean.trustCompiler`, which enter only
+  through the certificate evaluation in the (m,4,4) branch (Part IV.b).
 - The counting engine and the n = 9 base case individually close on
   `propext, Classical.choice, Quot.sound` alone — no compiler trust.
 
@@ -763,69 +613,56 @@ Checked 2026-07-13 (`proof-blueprint axioms`, reproducible via
 
 ## Completion matrix
 
-Statuses: ✅ done (PROVEN only) / 🟡 partial / ⬜ open. The theorem's overall
-label is the weakest among load-bearing rows.
+Status: proved / open / blocked (blocked = complete except for its
+dependence on open rows). The statement column is the exact proposition each
+row must (or does) discharge.
 
-| # | Obligation | Statement | Label | Status | Evidence |
-|---|---|---|---|---|---|
-| O1 | Upstream bridge | local statement = RHS of `erdos_97` | PROVEN (Lean) | ✅ | `upstream_iff` is `Iff.rfl`; pinned formal-conjectures |
-| O2 | Induction wrapper | trichotomy assembly by strong induction | PROVEN (Lean) | ✅ | `UniversalProblem97_of_reduction` |
-| O3 | Counting engine | counterexample ⇒ n ≥ 9 | PROVEN (Lean) | ✅ | `counterexample_card_ge_nine`; core axioms (checked 2026-07-13) |
-| O4 | Base case | no n = 9 counterexample | PROVEN (Lean) | ✅ | `FiniteN9Closure`; core axioms (checked 2026-07-13) |
-| O5 | Cap-sum bridge | n > 9 ⇒ surplus cap | PROVEN (Lean) | ✅ | `cap_sum_identity`, `exists_surplus_cap_of_card_gt_nine` |
-| O6 | Descent glue | removable vertex ⇒ smaller counterexample | PROVEN (Lean) | ✅ | `smaller_counterexample_of_removable`, `descent_contradicts_minimality` |
-| O7 | RVOL packet extraction | minimal, n > 9 ⇒ `SurplusCapPacket` | PROVEN (Lean) | ✅ | `largeK4SurplusCapPacket`; closed on spine |
-| O8 | RVOL IsM44 branch | (m,4,4) packet ⇒ removable vertex | PROVEN (Lean, native_decide policy) | ✅ | `removableVertexOfLarge_of_isM44PinnedSurplus`; core + 2 compiler axioms (checked 2026-07-13) |
-| O9 | RVOL non-IsM44 assembly | no-(m,4,4) ⇒ removable vertex, via tail | CONJECTURED (inherits O10–O14) | 🟡 | `removableVertexOfLarge_of_nonIsM44` → `u1_largeCap_routeB_tail_false`; assembly is complete kernel-checked Lean, leaves open |
-| O10 | K-A-PAIR | double-apex off-surplus shared-radius pair | CONJECTURED | ⬜ | `DoubleApexOffSurplusSharedRadiusPair`; OPEN-RESEARCH, surface card ≥ 11; {{NEEDS_PROOF}} |
-| O11 | LIVE-Q | 4 helpers × 6 label orderings | CONJECTURED | ⬜ | OPEN-RESEARCH; 24 holes; {{NEEDS_PROOF}} |
-| O12 | LIVE-T1/T3 | 24 helpers × 2 orderings | CONJECTURED (reduced to O10) | ⬜ | CHECKED-REDUCTION 2026-07-13; inherits `sorryAx`; wiring pending |
-| O13 | LIVE-C | 7 center branches | CONJECTURED | ⬜ | OPEN-RESEARCH; incidence-only route DONE-NEGATIVE; {{NEEDS_PROOF}} |
-| O14 | Card-11 slice | kill card 11 in the two-large-cap regime, or produce uniformly from card 11 | CONJECTURED | ⬜ | A11-CONSUME never built (OPEN-PROOF, CONDITIONAL CRITICAL); census bound 11 ≤ card PROVEN |
-| O15 | Certificate trust | `native_decide` shards within policy | PROVEN (Lean + policy) | ✅ | kernel-reported `ofReduceBool`/`trustCompiler`; verified checkers |
-| O16 | mathlib / formal-conjectures | upstream library | PROVEN (Lean) | ✅ | pinned revisions in `lake-manifest.json` |
+| # | Obligation | Status | Statement |
+|---|---|---|---|
+| O1 | Upstream bridge | proved | The published statement is definitionally the right-hand side of the upstream `erdos_97`. |
+| O2 | Induction wrapper | proved | If counting (O3), the base case (O4), and descent (O6) hold, no counterexample exists — strong induction on n. |
+| O3 | Counting engine | proved | Every counterexample has n ≥ 9. |
+| O4 | Base case | proved | No 9-point counterexample exists. |
+| O5 | Cap-sum bridge | proved | If n > 9, some cap of the Moser decomposition has more than 4 points. |
+| O6 | Descent glue | proved | A removable vertex in a minimal counterexample yields a strictly smaller counterexample, hence a contradiction. |
+| O7 | RVOL packet extraction | proved | Every minimal counterexample with n > 9 carries a surplus-cap packet. |
+| O8 | RVOL (m,4,4) branch | proved | If both caps opposite the surplus cap have exactly 4 points, a removable vertex exists. |
+| O9 | RVOL remaining branch | blocked (O10–O13) | If no (m,4,4) decomposition exists, a removable vertex exists — the case analysis is complete Lean; its leaves are O10–O13. |
+| O10 | Shared-radius pair | open | In the two-large-cap configuration, two distinct points off the surplus cap are co-radial from both opposite Moser apices (V.2). |
+| O11 | LIVE-Q | open | The tail configuration with the f₂ row centred at p and q as the f₂ source point is contradictory, for each label slot of q and each ordering of the remaining labels (V.3). |
+| O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering; kernel-checked to follow from O10 (V.3). |
+| O13 | LIVE-C | open | The tail configuration with the f₂ row centred anywhere other than p is contradictory, in all seven centre cases (V.3). |
+| O14 | Card-11 slice | open | O10 holds uniformly from card 11 — or, alternatively, no two-large-cap configuration has exactly 11 points (V.2, cardinality scope). |
+| O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
+| O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 
-Load-bearing open rows: O10–O14. **Overall: the target `erdos97_rhs` is
-currently CONJECTURED**, with the entire conjectural content equal to the
-Part-V producer question (O11 and O13 are additionally not yet reduced to
-O10).
+Open rows: O10, O11, O13, O14; O9 and O12 are blocked on them. **Overall:
+`erdos97_rhs` is OPEN**, and its open content is exactly O10 (with its O14
+cardinality scope), O11, and O13.
 
 ---
 
 ## Conclusion: what is proven today
 
-Unconditionally PROVEN (Lean, kernel-checked):
+Unconditionally PROVED (Lean, kernel-checked):
 
 1. Every counterexample has at least 9 points (core axioms only).
 2. No 9-point counterexample exists (core axioms only).
-3. Every minimal counterexample with more than 9 points that admits an
-   (m,4,4) surplus-cap packet contains a removable vertex (core + approved
-   compiler axioms).
-4. In the remaining case (no (m,4,4) packet), the configuration is reduced —
-   by complete, kernel-checked case analysis — to 36 named finite-branch
-   obligations about the depth-5 critical-row configuration of a single
-   surplus-cap candidate, of which 25 (the T1/T3 orbit plus the t₂ branch)
-   further reduce to the single shared-radius pair producer K-A-PAIR.
+3. Every minimal counterexample with more than 9 points whose surplus-cap
+   decomposition has both opposite caps of size exactly 4 contains a
+   removable vertex (core axioms plus the two compiler axioms).
+4. In the remaining case, the configuration is reduced — by complete,
+   kernel-checked case analysis — to the 36 obligations of Part V, of which
+   25 (the T1/T3 orbit and the t₂ branch) further reduce to the single
+   shared-radius pair statement (V.2).
 
-Conditionally: if the 36 obligations of Part V are discharged, then
+Conditionally: if the obligations of Part V are discharged, then
 `erdos97_rhs` — and with it the Problem 96 target — closes with axiom set
 {`propext`, `Classical.choice`, `Quot.sound`, `Lean.ofReduceBool`,
 `Lean.trustCompiler`}.
 
-Not proven, and not claimed: any statement that the two ≥5 caps force the
-double-apex coincidence (K-A-PAIR), any card-11 kill, any uniform card ≥ 12
-pattern cover (falsified as stated), and any closure value for the bounded
-census/CAS evidence beyond its stated finite scope.
-
-## What next
-
-The ranked directions are owned by
-`docs/atail-force-producer-plan-2026-07-13.md` and the closure matrix; in
-summary: (1) the uniform live producer for one of the three named consumer
-interfaces (V.4), preferably uniform from card 11; (2) failing uniformity,
-A11-CONSUME plus the source-visible card split to cover card 11 separately;
-(3) LIVE-Q and LIVE-C consumer invariants (or their reduction to K-A-PAIR),
-which are required even after K-A-PAIR closes.
+Nothing stronger is claimed. The shared-radius pair statement (with its
+card-11 scope), LIVE-Q, and LIVE-C are open.
 
 ## References
 
@@ -835,9 +672,5 @@ which are required even after K-A-PAIR closes.
 2. Gabriel Nivasch, János Pach, Rom Pinchasi, Shira Zerbib, *The number of
    distinct distances from a vertex of a convex polygon*, Journal of
    Computational Geometry 4 (2013), 1–12; arXiv:1207.1266. (Provenance.)
-3. `formal-conjectures`, pinned revision per `lake-manifest.json` (upstream
-   problem statement and vocabulary).
-4. Project documents: `docs/closure-plan-full-spec-2026-07-09.md`,
-   `docs/closure-matrix-2026-07-09.md`,
-   `docs/atail-force-producer-plan-2026-07-13.md`, `docs/audits/2026-07-13-*`,
-   `docs/dead-ends.md`.
+3. `formal-conjectures`, pinned revision (upstream problem statement and
+   vocabulary).

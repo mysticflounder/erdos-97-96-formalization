@@ -319,9 +319,9 @@ specs, uncertainty register), and
 [`docs/closure-matrix-2026-07-09.md`](docs/closure-matrix-2026-07-09.md) is its
 executable task register.
 [`docs/97-rvol-full-prose-proof-2026-07-13.md`](docs/97-rvol-full-prose-proof-2026-07-13.md)
-is the dated full prose proof of the Problem 97 target — the end-to-end
-mathematical narrative with per-component rigor labels, kernel axiom
-closures, and a completion matrix covering the open frontier.
+is the dated full prose proof of the Problem 97 target — the self-contained
+end-to-end mathematical narrative with per-component proved/open status,
+kernel axiom closures, and a completion matrix stating each obligation.
 The former July 6 master plan is a historical record
 under [`archive/2026-07-10-closure-plan-consolidation/`](archive/2026-07-10-closure-plan-consolidation/).
 [`docs/sorry-closure-ledger-2026-07-06.md`](docs/sorry-closure-ledger-2026-07-06.md)
