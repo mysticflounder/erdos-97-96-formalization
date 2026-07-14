@@ -850,6 +850,95 @@ Conditionally: if the obligations of Part V are discharged, then
 Nothing stronger is claimed. The shared-radius pair statement (with its
 card-11 scope), LIVE-Q, and LIVE-C are open.
 
+---
+
+## Appendix — the posted conditional reduction vs. RVOL as built
+
+An earlier conditional reduction was posted to the Problem 97 page:
+
+> **The claim.** The following three statements together reduce Problem 97
+> to the case |P| = 9.
+>
+> 1. **Counting obstruction.** Any counterexample P has |P| ≥ 9.
+> 2. **Surplus removable-vertex package.** Suppose P is a counterexample
+>    with |P| ≥ 10. Fix a Moser triangle T ⊆ P and its three opposite caps
+>    C₁, C₂, C₃. A closed cap-sum identity gives
+>    |C₁| + |C₂| + |C₃| = |P| + 3 ≥ 13, so some opposite cap has size ≥ 5.
+>    From any opposite cap of size ≥ 5 one can extract a vertex v ∈ P whose
+>    deletion preserves the counterexample property.
+> 3. **Strict-convex convention.** Read "convex polygon" as "finite set of
+>    extreme vertices in strict convex position." (The alternative reading
+>    that allows redundant 180° boundary vertices needs a separate, routine
+>    degenerate-interface reduction.)
+>
+> **Theorem (conditional).** Under (1), (2) and (3), Problem 97 is
+> equivalent to the single finite statement: no 9-point set in strict
+> convex position is a counterexample.
+
+Status of each piece against the development as it stands.
+
+**The conditional theorem itself — PROVED.** It is this document's
+induction wrapper, verbatim: `UniversalReductionHypotheses` packages (1)
+as `counting` and (2) as `descent`, and `UniversalProblem97_of_reduction`
+(`UniversalProblem97.lean:60`) derives the full statement from them plus
+the n = 9 base case. The reduction was never the exposed part; the exposed
+part was premise (2).
+
+**Item 1 — PROVED** as stated (Part I), core axioms only.
+
+**Item 3 — dissolved at the interface.** The upstream formal statement
+already fixes the strict reading: `ConvexIndep` is strict convex position,
+and the published theorem is definitionally the upstream right-hand side
+(Preamble). No degenerate-interface reduction is needed for the formal
+target; the 180°-vertex reading concerns only the informal polygon
+wording, which the upstream formalization resolves by convention.
+
+**The n = 9 finite statement — PROVED** (Part II). The "computational
+results" pending at posting time were replaced by the N4c → N4d → N4e →
+N6/N7 → N8 chain; the closure is kernel-checked on core axioms alone — no
+compiler axioms and no residual computation.
+
+**Item 2 — this is RVOL, and it is where the posted account and the built
+proof diverge.** Three changes:
+
+1. **The pigeonhole survives; the extraction claim does not.** The cap-sum
+   pigeonhole is Part III, proved as posted. But "from any opposite cap of
+   size ≥ 5 one can extract a removable vertex" is not a theorem of the
+   development. Removability is a global property — the deleted vertex
+   must leave a 4-class at every remaining vertex — and no cap-local
+   extraction argument materialized. What is actually proved splits on the
+   sizes of the two caps opposite the surplus cap, not on the surplus cap
+   alone.
+
+2. **The proved branch closes by finite classification, not by a short
+   deletion argument.** When both opposite caps have exactly 4 points —
+   the (m,4,4) regime, Part IV.b — a removable vertex does exist in the
+   surplus-cap interior, but establishing it takes the full residual
+   machinery (endpoint-escape and pinned-residual exclusions, N4e-style
+   containment, erased-pin-triple exclusions) and the cardinality
+   trichotomy (card-10 banks, card-11 classifier fleets, the card-≥12
+   counting exclusion), with the two compiler axioms entering through the
+   evaluated certificates.
+
+3. **The open branch inverts the quantifier: contradiction, not
+   construction.** When no (m,4,4) decomposition exists — two caps of size
+   ≥ 5 — no extraction is known. The built proof instead consumes
+   minimality twice: a minimal counterexample has no removable vertex at
+   all (`not_isRemovableVertex_of_minimal`) and carries a critical shell
+   system, and the route-B tail must derive `False` from that data
+   (Part IV.c). This branch is exactly the open content of the proof — the
+   24 obligations of Part V, with the shared-radius pair statement (V.2)
+   at the bottom. The configuration the posted package treated uniformly
+   ("any opposite cap of size ≥ 5") is precisely the configuration that
+   remains open.
+
+Net effect: the posted reduction's conclusion — Problem 97 is equivalent
+to the finite n = 9 statement — is proved conditional on (1) and (2),
+exactly as claimed; (1) and the n = 9 statement are now unconditionally
+closed; and the entire remaining difficulty of Problem 97 sits inside
+premise (2), in the two-large-cap branch that its wording did not
+distinguish from the rest.
+
 ## References
 
 1. Adrian Dumitrescu, *On Distinct Distances from a Vertex of a Convex
