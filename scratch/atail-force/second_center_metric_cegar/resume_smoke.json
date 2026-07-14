@@ -1,0 +1,32 @@
+{
+  "case_profiles": [
+    [
+      4,
+      5,
+      6
+    ],
+    [
+      5,
+      5,
+      5
+    ]
+  ],
+  "fresh_cases_sha256": "b4aa18a573a0963942352d4da344c74d9ae2956826456e3c252bbac438f8a3ab",
+  "method": {
+    "fresh_round_budget_per_case": 2,
+    "incidence_solver": "production deterministic DFS",
+    "minimizer": "deterministic full-row retention",
+    "oracle": "deterministic smoke oracle returning crosschecked UNIT",
+    "prefix_round_budget_per_case": 1
+  },
+  "prefix_checkpoint_canonical_sha256": "9244864c9f8f166eafc1ac5c3fe687c60b9fed3f59745c471d46b92842b87cde",
+  "resumed_cases_sha256": "b4aa18a573a0963942352d4da344c74d9ae2956826456e3c252bbac438f8a3ab",
+  "schema": "p97-atail-second-center-metric-cegar-resume-smoke-v1",
+  "scope": {
+    "production_cas_replayed": false,
+    "production_incidence_solver_used": true,
+    "resume_prefix_replayed": true,
+    "resume_source_hash_bound": true
+  },
+  "status": "RESUMED_CASES_EQUAL_FRESH_CASES"
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "p97-atail-pair-second-center-manifest-v1",
+  "scope": {
+    "cardinality": 12,
+    "profiles": [
+      [4, 5, 6],
+      [5, 5, 5]
+    ],
+    "excluded_cardinalities": [11],
+    "query": "Q-C-row-witnessed-negation",
+    "placement_coverage": "one explicit admitted named-label placement per profile",
+    "target_faithful": false
+  },
+  "encoded": [
+    "one common cyclic carrier order and its three closed Moser caps",
+    "six distinct named labels p,q,t1,t2,t3,u with q in the strict interior of the declared surplus cap",
+    "the exact supplied t2 row centered at p with support exactly {q,t1,t2,t3}",
+    "five supplied source-indexed rows as independent exact four-point filters with source membership and center distinct from source",
+    "one selected K4 row at every carrier center; the saved witnesses choose these rows exact, which is stronger than required",
+    "one source-indexed CriticalShellSystem row per carrier point, with source membership, center distinct from source, and support equal to the selected row at its blocker center",
+    "the CriticalShellSystem no-q-free consequence against every encoded selected row at each chosen blocker center",
+    "the current ATAIL inventory local row constraints, proven killed row types, Moser-pair Q3 cuts, cyclic two-common-point separation, and at-most-two-centers-per-point-pair bound",
+    "the card-12 cap profile, a surplus cap of size at least five, a distinct second cap of size at least five, and the cap-size consequence of no-M44",
+    "Q-C negation for encoded rows: no pair of dangerous-row points outside a cap containing p is co-supported by an encoded row at a distinct center of that cap"
+  ],
+  "unimplemented_fail_closed": [
+    "Euclidean coordinates and all metric equality, inequality, and full-radius-class disequality constraints",
+    "strict convexity, signed-area orientation, and the geometric StrictCapOrder theorem beyond the fixed cyclic order",
+    "minimum-enclosing-circle, non-obtuse, and circumscribed-Moser geometry",
+    "arbitrary equal-distance pairs at a center that are not witnessed by one of the encoded four-point rows",
+    "the full U1LargeCapRouteBTailLiveData fields, U3FixedTriplePacket fields, and localized no-q-free fields outside the encoded CriticalShellSystem blocker consequence",
+    "the exact geometric no-M44 predicate beyond its card-profile consequence",
+    "named-slot ordering inside each CriticalSelectedFourClass",
+    "all named-label placements or orbit representatives within either profile",
+    "Q-A and Q-E",
+    "an exact real-algebraic realizability oracle",
+    "the separately owned card-11 profile"
+  ],
+  "verdict_policy": {
+    "sat": "SAT_FINITE_SHADOW_ONLY",
+    "unsat": "INDETERMINATE_NOT_TARGET_FAITHFUL",
+    "node_cap": "INDETERMINATE_NODE_CAP",
+    "note": "No result from this manifest is a Euclidean counterexample or a proof of the producer."
+  }
+}

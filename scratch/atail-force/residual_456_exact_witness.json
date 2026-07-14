@@ -1,0 +1,568 @@
+{
+  "cap_arc_audit": {
+    "cap_labels": {
+      "O1": [
+        0,
+        2,
+        5,
+        6,
+        7
+      ],
+      "O2": [
+        0,
+        1,
+        8,
+        9,
+        10,
+        11
+      ],
+      "S": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    "checked_predicates": 36,
+    "matches_profile_caps": true
+  },
+  "construction": {
+    "coordinate_decimal_midpoints": {
+      "0": [
+        "0",
+        "0"
+      ],
+      "1": [
+        "1",
+        "0"
+      ],
+      "10": [
+        "1.07506570526241546742127",
+        "-0.298416091352126178330125"
+      ],
+      "11": [
+        "1.10494976620272961242043",
+        "-0.287950072065524295380024"
+      ],
+      "2": [
+        "0.527625098097047535262010",
+        "0.881397726371117907655187"
+      ],
+      "3": [
+        "0.759513108940104581412315",
+        "0.650491996375156663748133"
+      ],
+      "4": [
+        "0.714703499343752963489907",
+        "0.699427557382316833807533"
+      ],
+      "5": [
+        "0.5",
+        "0.866025403784438646763723"
+      ],
+      "6": [
+        "0.133977999740618592502162",
+        "0.500005895031988587218070"
+      ],
+      "7": [
+        "-0.0525258203813567492118703",
+        "0.0668887259367065592495178"
+      ],
+      "8": [
+        "0.175470119859441310178797",
+        "-0.0545439765690123789670958"
+      ],
+      "9": [
+        "0.346974808417596150852688",
+        "-0.102149665897668650499863"
+      ]
+    },
+    "coordinates_by_basis_coefficients": {
+      "0": {
+        "x": [
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "1": {
+        "x": [
+          "1/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "0/1",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "10": {
+        "x": [
+          "18577799715470958/17280617942264521",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "-5156814462480000/17280617942264521",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "11": {
+        "x": [
+          "29872168159262/27034865360369",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "-7784691428800/27034865360369",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "2": {
+        "x": [
+          "8000000/15162281",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "13364000/15162281",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "3": {
+        "x": [
+          "86332191/113667809",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "73940000/113667809",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "4": {
+        "x": [
+          "83361759/116638241",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "81580000/116638241",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "5": {
+        "x": [
+          "1/2",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "0/1",
+          "1/2",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "6": {
+        "x": [
+          "125000/932989",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "466500/932989",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "7": {
+        "x": [
+          "2218335411287671/3446926521424658",
+          "0/1",
+          "-397957542336000/1723463260712329",
+          "0/1"
+        ],
+        "y": [
+          "1320077828308000/1723463260712329",
+          "0/1",
+          "-399650467287671/1723463260712329",
+          "0/1"
+        ]
+      },
+      "8": {
+        "x": [
+          "821346826799671/4680835845200329",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "-255311400664000/4680835845200329",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      },
+      "9": {
+        "x": [
+          "80260746401719/231315774098281",
+          "0/1",
+          "0/1",
+          "0/1"
+        ],
+        "y": [
+          "-23628829041000/231315774098281",
+          "0/1",
+          "0/1",
+          "0/1"
+        ]
+      }
+    },
+    "cyclic_order": [
+      0,
+      8,
+      9,
+      10,
+      11,
+      1,
+      3,
+      4,
+      2,
+      5,
+      6,
+      7
+    ],
+    "rational_circle_parameters": {
+      "p10_from_p3": "-7213/10000",
+      "p11_from_p3": "-279/400",
+      "p2_from_p1": "3341/2000",
+      "p3_from_p0": "3697/10000",
+      "p4_from_p0": "4079/10000",
+      "p6_from_p1": "933/250",
+      "p8_from_p2": "-14447/10000",
+      "p9_from_p2": "-3001/2500"
+    }
+  },
+  "critical_shell_audit": {
+    "blocker_of_source": {
+      "0": 1,
+      "1": 0,
+      "10": 3,
+      "11": 3,
+      "2": 1,
+      "3": 0,
+      "4": 0,
+      "5": 0,
+      "6": 1,
+      "7": 2,
+      "8": 2,
+      "9": 2
+    },
+    "conclusion": "The exact geometry supports the saved source-indexed blocker map and its no-q-free condition; common critical-shell provenance itself does not exclude this residual.",
+    "every_source_deletion_kills_K4_at_its_blocker": true,
+    "every_source_lies_in_its_exact_blocker_row": true,
+    "maximum_distance_multiplicity_after_source_deletion": {
+      "0": 3,
+      "1": 3,
+      "10": 3,
+      "11": 3,
+      "2": 3,
+      "3": 3,
+      "4": 3,
+      "5": 3,
+      "6": 3,
+      "7": 3,
+      "8": 3,
+      "9": 3
+    }
+  },
+  "epistemic_status": "EXACT_BIQUADRATIC_IDENTITIES_AND_RATIONAL_INTERVAL_CERTIFICATE; STANDALONE_CHECKER; NOT_LEAN_KERNEL_CHECKED",
+  "exact_row_and_convex_verification": {
+    "certified_minimum_abs_exact_squared_gap_lower": "837719/15162281",
+    "certified_minimum_convex_cross_lower": "26473477600/27034865360369",
+    "certified_minimum_pair_squared_distance_lower": "94712547809524058120044325722010551102191175487958041638722041277294762692476659/94764256250000000000000000000000000000000000000000000000000000000000000000000000000",
+    "decimal_lower_bounds": {
+      "convex_cross": "0.000979234675191245798194514",
+      "exact_squared_gap": "0.0552501961940950705240194",
+      "pair_squared_distance": "0.000999454346580428716444913"
+    },
+    "exact_off_support_disequalities": 32,
+    "pairwise_positive_squared_distances": 66,
+    "strict_convex_edge_halfplanes": 120,
+    "support_distances_squared_equal_one": 16
+  },
+  "field": {
+    "K": "6709288214136987/738259314849316",
+    "basis": [
+      "1",
+      "sqrt(3)",
+      "sqrt(K)",
+      "sqrt(3*K)"
+    ],
+    "sqrt3_bounds": [
+      "173205080756887729352744634150587236694280525381038062805580697945193301690880003/100000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "43301270189221932338186158537646809173570131345259515701395174486298325422720001/25000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "sqrtK_bounds": [
+      "150731409721211369578665191953433283041557835343829712736999598633306306386275563/50000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "301462819442422739157330383906866566083115670687659425473999197266612612772551127/100000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "sqrt_interval_decimal_digits": 80
+  },
+  "global_k4_audit": {
+    "centers_with_K4": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "centers_without_K4": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "conclusion": "The witness concretely violates the all-centers K4 field: centers 4 through 11 have maximum distance multiplicity at most two.",
+    "counterexample_data_K4_property_holds": false,
+    "faithful_carrier_pattern_exists": false,
+    "maximum_distance_multiplicity_by_center": {
+      "0": 4,
+      "1": 4,
+      "10": 1,
+      "11": 1,
+      "2": 4,
+      "3": 4,
+      "4": 1,
+      "5": 2,
+      "6": 1,
+      "7": 2,
+      "8": 1,
+      "9": 1
+    },
+    "repeated_distance_classes_by_center": {
+      "0": [
+        [
+          1,
+          3,
+          4,
+          5
+        ]
+      ],
+      "1": [
+        [
+          0,
+          2,
+          5,
+          6
+        ]
+      ],
+      "10": [],
+      "11": [],
+      "2": [
+        [
+          1,
+          7,
+          8,
+          9
+        ]
+      ],
+      "3": [
+        [
+          0,
+          7,
+          10,
+          11
+        ]
+      ],
+      "4": [],
+      "5": [
+        [
+          0,
+          1
+        ]
+      ],
+      "6": [],
+      "7": [
+        [
+          2,
+          3
+        ]
+      ],
+      "8": [],
+      "9": []
+    }
+  },
+  "mec_audit": {
+    "all_three_triangle_inner_products_positive": true,
+    "conclusion": "The fixed Moser labels form a nonobtuse triangle, but their circumcircle does not contain the carrier, so they cannot all be boundary points of its minimum enclosing circle.",
+    "moser_circle_center": [
+      "1/2",
+      "1000/3341"
+    ],
+    "moser_circle_radius_squared": [
+      "15162281/44649124",
+      "0/1",
+      "0/1",
+      "0/1"
+    ],
+    "outside_labels": [
+      7,
+      10,
+      11
+    ],
+    "point_classification": {
+      "0": "boundary",
+      "1": "boundary",
+      "10": "outside",
+      "11": "outside",
+      "2": "boundary",
+      "3": "inside",
+      "4": "inside",
+      "5": "inside",
+      "6": "inside",
+      "7": "outside",
+      "8": "inside",
+      "9": "inside"
+    },
+    "squared_radius_gaps": {
+      "0": [
+        "0/1",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "1": [
+        "0/1",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "10": [
+        "20114225415994587966/57734544545105764661",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "11": [
+        "2579451472408998/6947960397614833",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "2": [
+        "0/1",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "3": [
+        "-56551700262/379764149869",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "4": [
+        "-51983273638/389688363181",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "5": [
+        "1/2",
+        "-1000/3341",
+        "0/1",
+        "0/1"
+      ],
+      "6": [
+        "-515375000/3117116249",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "7": [
+        "10042097644951673567/11516181508079782378",
+        "0/1",
+        "-1627899678781450000/5758090754039891189",
+        "0/1"
+      ],
+      "8": [
+        "-1705460165315401622/15638672558814299189",
+        "0/1",
+        "0/1",
+        "0/1"
+      ],
+      "9": [
+        "-119787705623786358/772826001262356821",
+        "0/1",
+        "0/1",
+        "0/1"
+      ]
+    }
+  },
+  "producer_implication": "No contradiction can follow from only the four exact rows, the saved source-to-blocker map, cap arc membership, nonobtuseness, and strict convex order. A closing producer must use at least one omitted live ingredient that rejects this witness, concretely the all-centers FaithfulCarrierPattern/K4 rows, the MEC disk field, or stronger live full-filter/no-M44 data.",
+  "schema": "p97-atail-residual-456-exact-witness-v1",
+  "scope": {
+    "cap_arc_membership_realized_by_checker": true,
+    "counterexample_data_realized": false,
+    "faithful_selected_four_class_at_every_center_realized": false,
+    "lean_kernel_checked": false,
+    "live_dangerous_selected_full_filter_fields_realized": false,
+    "minimum_enclosing_circle_frame_realized": false,
+    "nonobtuse_fixed_moser_triangle_realized_by_checker": true,
+    "producer_proved": false,
+    "saved_critical_shell_blocker_map_realized_by_checker": true,
+    "strict_convex_exact_four_row_realization_proved_by_checker": true
+  },
+  "source": {
+    "assignment_sha256": "cfeff7b85bf3bb68c5d5195600cf64d1578e16322bc79ce94ddcfc140727b03e",
+    "formalized_core_stage": "equality-mec-straddling-row-fixed-frame",
+    "metric_rows": [
+      "0:1,3,4,5",
+      "1:0,2,5,6",
+      "2:1,7,8,9",
+      "3:0,7,10,11"
+    ],
+    "path": "scratch/atail-force/common_system_metric_probe.json",
+    "profile": [
+      4,
+      5,
+      6
+    ],
+    "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+    "residual_round": 5,
+    "sha256": "5cdb8883bf02ccde64b6b9ba0bfe34786f2a7158efb29ba0d4e045767bdf1940"
+  }
+}

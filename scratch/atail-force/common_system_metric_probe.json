@@ -1,0 +1,7855 @@
+{
+  "budgets": {
+    "cas_timeout_seconds_per_call": 30.0,
+    "max_incidence_nodes_per_round": 500000,
+    "max_rounds_per_case": 32
+  },
+  "cases": [
+    {
+      "accepted_cut_count": 6,
+      "final_status": "FOUND_UNCOVERED_CROSSCHECKED_NONUNIT_EQUALITY_SHADOW",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "rounds": [
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 1,
+                "off_support": 3,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "beb6f0d46c8735454dd0a4f9725c3eae2b0f39c5753b686e3aa2814703654536",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  1,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                1,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "1db806dacee592510f689e99458fe4bd38185e2950eaea20f95b76e8b5b10458",
+          "equality_ideal_diagnostic": {
+            "status": "CROSSCHECKED_NONUNIT",
+            "verdicts": [
+              "NONUNIT",
+              "NONUNIT",
+              "NONUNIT"
+            ]
+          },
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 3,
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,1,10,11"
+          ],
+          "nodes": 300,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 0
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 5,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "56923e80fcfdba9a24280dcbdba2f7fb3318b3e70a7ec3a8cd55bb2925f8e070",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  7,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                4,
+                7,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                3,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "ed26d6c539c348e54a0436b59d631b6215b141aff0eb6cc069ee82866cc1d08a",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "b": 3,
+              "c": 4,
+              "d": 5,
+              "o": 0
+            },
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "stage": "equality-convex-nested-equal-chords"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,4,7,10",
+            "4:0,3,8,11"
+          ],
+          "nodes": 303,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 1
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 5,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "497d5adbee72bfb918901355eb870c79eaef463252a026105644e334bba4cbf8",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  8,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                4,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                3,
+                7,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "5fb448e6fd4b2fbb595d2515616e076d30ff8fde1370c457f78476cb54575713",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "b": 3,
+              "c": 4,
+              "d": 5,
+              "o": 0
+            },
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "stage": "equality-convex-nested-equal-chords"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,4,8,10",
+            "4:0,3,7,11"
+          ],
+          "nodes": 304,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 2
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 5,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "3570c872c0d5f815cc2dc97ca2c9900e83afd3730e8f22175521f850a72f23be",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  9,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                4,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                3,
+                7,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "b19454473724d4d86bca21ef0a715a8cde80f705454dd9420fef1edfd8e9c9c7",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "b": 3,
+              "c": 4,
+              "d": 5,
+              "o": 0
+            },
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "stage": "equality-convex-nested-equal-chords"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,4,9,10",
+            "4:0,3,7,11"
+          ],
+          "nodes": 305,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 3
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 5,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "eb336810e2b42106ea29a7894ad381178f063027d1e290b5ec8115190e842b1d",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                4,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                4,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "df99bb34309bb3ff8c4bf21b36570a3238b6ceda44216c03e17f8a495efabf94",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "b": 3,
+              "c": 4,
+              "d": 5,
+              "o": 0
+            },
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "stage": "equality-convex-nested-equal-chords"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,4,10,11"
+          ],
+          "nodes": 304,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 4
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "o": 0,
+                "p": 2,
+                "s": 3,
+                "x": 10,
+                "y": 7
+              },
+              "cyclic_orientation_in_saved_order": "forward",
+              "lean_consumers": {
+                "negative_global_orientation": "Problem97.Census554.MECStraddlingRowCore.false_of_core_of_neg",
+                "positive_global_orientation": "Problem97.Census554.MECStraddlingRowCore.false_of_core"
+              },
+              "non_equality_dependencies": {
+                "mec_disk_labels": [
+                  10,
+                  7
+                ],
+                "moser_mec_boundary_labels": [
+                  0,
+                  1,
+                  2
+                ],
+                "nonobtuse_moser_vertex": 1,
+                "profile": [
+                  4,
+                  5,
+                  6
+                ],
+                "saved_hull_order": [
+                  0,
+                  8,
+                  9,
+                  10,
+                  11,
+                  1,
+                  3,
+                  4,
+                  2,
+                  5,
+                  6,
+                  7
+                ],
+                "status": "REQUIRED_FROM_LIVE_FIXED_FRAME_NOT_EQUALITY_ROWS",
+                "strict_cyclic_orientation_triples": [
+                  [
+                    0,
+                    1,
+                    2
+                  ],
+                  [
+                    0,
+                    1,
+                    3
+                  ],
+                  [
+                    0,
+                    10,
+                    3
+                  ],
+                  [
+                    0,
+                    3,
+                    7
+                  ]
+                ]
+              },
+              "stage": "equality-mec-straddling-row-fixed-frame"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "246a8da6d24d02125ef8fac2600dc1538ca3cecdcfdd588b71ee67b773b1fbb9",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  3,
+                  4,
+                  5
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  5,
+                  6
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  7,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                7,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                7,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "cfeff7b85bf3bb68c5d5195600cf64d1578e16322bc79ce94ddcfc140727b03e",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "o": 0,
+              "p": 2,
+              "s": 3,
+              "x": 10,
+              "y": 7
+            },
+            "cyclic_orientation_in_saved_order": "forward",
+            "lean_consumers": {
+              "negative_global_orientation": "Problem97.Census554.MECStraddlingRowCore.false_of_core_of_neg",
+              "positive_global_orientation": "Problem97.Census554.MECStraddlingRowCore.false_of_core"
+            },
+            "non_equality_dependencies": {
+              "mec_disk_labels": [
+                10,
+                7
+              ],
+              "moser_mec_boundary_labels": [
+                0,
+                1,
+                2
+              ],
+              "nonobtuse_moser_vertex": 1,
+              "profile": [
+                4,
+                5,
+                6
+              ],
+              "saved_hull_order": [
+                0,
+                8,
+                9,
+                10,
+                11,
+                1,
+                3,
+                4,
+                2,
+                5,
+                6,
+                7
+              ],
+              "status": "REQUIRED_FROM_LIVE_FIXED_FRAME_NOT_EQUALITY_ROWS",
+              "strict_cyclic_orientation_triples": [
+                [
+                  0,
+                  1,
+                  2
+                ],
+                [
+                  0,
+                  1,
+                  3
+                ],
+                [
+                  0,
+                  10,
+                  3
+                ],
+                [
+                  0,
+                  3,
+                  7
+                ]
+              ]
+            },
+            "stage": "equality-mec-straddling-row-fixed-frame"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,7,10,11"
+          ],
+          "nodes": 305,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 5
+        },
+        {
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                3,
+                4,
+                5
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "268f0efa08c29ad02c622b5eabe9d9c221737680117c84015eebe05e70ba89f9",
+          "formalized_structural_core": null,
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_NONUNIT",
+            "verdicts": [
+              "NONUNIT",
+              "NONUNIT",
+              "NONUNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,3,4,5",
+            "1:0,2,5,6",
+            "2:1,7,8,9",
+            "3:0,8,10,11"
+          ],
+          "nodes": 306,
+          "reported_status": "FOUND_NONUNIT_WITHOUT_FORMALIZED_CORE_REAL_FEASIBILITY_UNDECIDED",
+          "round": 6
+        }
+      ]
+    },
+    {
+      "accepted_cut_count": 21,
+      "final_status": "FOUND_UNCOVERED_CROSSCHECKED_NONUNIT_EQUALITY_SHADOW",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "rounds": [
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 2,
+                "off_support": 0,
+                "support": [
+                  1,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "beb82f8fd27270f7844c049a480c8ba31e1cb12615583bae609a2c5ea99374c6",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  1,
+                  8,
+                  9,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                1,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "17f8872bf845fe5c40c69cc826ae15b3f612a08d1edb35ff5f7b9d8f91d52b93",
+          "equality_ideal_diagnostic": {
+            "status": "CROSSCHECKED_NONUNIT",
+            "verdicts": [
+              "NONUNIT",
+              "NONUNIT",
+              "NONUNIT"
+            ]
+          },
+          "formalized_structural_core": {
+            "core": {
+              "center": 2,
+              "off_support": 0,
+              "support": [
+                1,
+                8,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:1,8,9,10",
+            "3:0,4,5,11"
+          ],
+          "nodes": 16,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 0
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 2,
+                "off_support": 0,
+                "support": [
+                  1,
+                  8,
+                  9,
+                  11
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "6a57cdbc316711adfe471c79fbacede71abc0dc53a0b9cf77f7e3189a0836fe6",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  1,
+                  8,
+                  9,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                0,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                1,
+                8,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                8,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                1,
+                8,
+                9,
+                11
+              ]
+            }
+          ],
+          "assignment_sha256": "07a3a8b83b0343110b05731863073f9c5f8716a10b909a7f3d289e417184d3d0",
+          "formalized_structural_core": {
+            "core": {
+              "center": 2,
+              "off_support": 0,
+              "support": [
+                1,
+                8,
+                9,
+                11
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:1,8,9,11",
+            "3:0,4,5,10"
+          ],
+          "nodes": 17,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 1
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 2,
+                "off_support": 0,
+                "support": [
+                  1,
+                  8,
+                  10,
+                  11
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "72418bcec86b15a289d1e31970852404ec15b192320e8bf2dbe5fc38ab0c77aa",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  1,
+                  8,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                1,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                1,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                1,
+                8,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                0,
+                4,
+                5,
+                9
+              ]
+            }
+          ],
+          "assignment_sha256": "b59ae0a2b9b85368fb626f094105657fef3d115ffefc512d55fb695a0d01eddd",
+          "formalized_structural_core": {
+            "core": {
+              "center": 2,
+              "off_support": 0,
+              "support": [
+                1,
+                8,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:1,8,10,11",
+            "3:0,4,5,9"
+          ],
+          "nodes": 18,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 2
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 2,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "8de24f629060d1e61f5fbad7051a0c266e53137e98f2d4a497c8ea37a922ded2",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  5,
+                  8
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "24a73b9eb8ffa18054822728620d6e9fa7e88270260ef7b9078096c4e151c894",
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 4,
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,4,5,8",
+            "4:0,1,9,11"
+          ],
+          "nodes": 25,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 3
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 2,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "860a30506af05b98f713e72bf4ec72ef4ea67e1936a26a9a34b8eb897f465605",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  5,
+                  9
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "2890ab24a8c82e61be88e06bd39869db2558d2d32bd9b2ff968d614cc73d8664",
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 4,
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,4,5,9",
+            "4:0,1,8,11"
+          ],
+          "nodes": 26,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 4
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 2,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "c504110bacd67a3dd045808321745584d89b5ad9b3dd78a00209bec1738d65c5",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  5,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "9540438e38c6e691254d9d8ac4aafc201450eb4dfcbae9be63795d37b8c1e2cb",
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 4,
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,4,5,10",
+            "4:0,1,8,11"
+          ],
+          "nodes": 27,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 5
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 2,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "36fd1c2624c3503960eafc805afc0a5204a470fb1c837e7f9cb7399fc01052b3",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  4,
+                  5,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "c02b16daa78fffb305b91f2464381b0c5feb3c0981d64c643b647dd0f0fec9e1",
+          "formalized_structural_core": {
+            "core": {
+              "a": 1,
+              "b": 3,
+              "c": 4,
+              "d": 2,
+              "o": 0
+            },
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "stage": "equality-convex-nested-equal-chords"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,4,5,11"
+          ],
+          "nodes": 22,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 6
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 0,
+                "B": 1,
+                "C": 2,
+                "D": 3,
+                "P": 9,
+                "Q": 11
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 4,
+            "row_set_sha256": "22c2f312f2a1825cefe0a1680a3b04d921959f3ba31f9f240f8cbbab3cdbcc64",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  3,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  5,
+                  8,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                5,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                5,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                5,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "b6dea0b54a611bed67a49862a4264b06eed12efbf31f35a2e4cb154c1fb7a8ce",
+          "formalized_structural_core": {
+            "core": {
+              "A": 0,
+              "B": 1,
+              "C": 2,
+              "D": 3,
+              "P": 9,
+              "Q": 11
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,5,8,11"
+          ],
+          "nodes": 23,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 7
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 0,
+                "B": 1,
+                "C": 2,
+                "D": 3,
+                "P": 9,
+                "Q": 11
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 4,
+            "row_set_sha256": "42a521b72bd42180426d426754672a2e06b6a694e272f05dbbba4fba853fbefe",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  3,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  5,
+                  9,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                5,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                5,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                5,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "d0a8e02f8a9d8fd882f7d8e6234e42055a8aab6ed53c9fd176aab2b4602a98e8",
+          "formalized_structural_core": {
+            "core": {
+              "A": 0,
+              "B": 1,
+              "C": 2,
+              "D": 3,
+              "P": 9,
+              "Q": 11
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,5,9,11"
+          ],
+          "nodes": 24,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 8
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 0,
+                "B": 1,
+                "C": 2,
+                "D": 3,
+                "P": 9,
+                "Q": 10
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 4,
+            "row_set_sha256": "91676d67f7e28b27c3a3b9dfe4b02e91ef3df9dc4dc08e8976fbf07c4716f95a",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  3,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  0,
+                  5,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                0,
+                5,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                5,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                0,
+                5,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "2849d2bcf05ee01656a020360e0f0883713c4748782630e92597a0cc17a2ea74",
+          "formalized_structural_core": {
+            "core": {
+              "A": 0,
+              "B": 1,
+              "C": 2,
+              "D": 3,
+              "P": 9,
+              "Q": 10
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:0,5,10,11"
+          ],
+          "nodes": 25,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 9
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "42e071bbdb1ac10953afc4d2667d208b15c1bc23e6ca36ade14601d8c7b835ec",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  6
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                6
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "a48f53fcc24b4a6856838fc858da2dc5c082a5d876aabf5508f61261fdb12d26",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,6",
+            "4:0,1,8,11"
+          ],
+          "nodes": 26,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 10
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "9843185ba5c313429fbf3c290d9776179bfe901433d4408757dcd7976a7c8d85",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  7
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "733633a0a9cb0f2994f1c2bd03c4413f6d1dbb8391fadd99a72f34aa73ff5dba",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,7",
+            "4:0,1,8,11"
+          ],
+          "nodes": 27,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 11
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "bc49544b9d06a85e7a462d55a2d510b71a68d962eca6177b50720fa2d2dac055",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  8
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "ca7f169d411ed9c6785a23ebc72ed90860c061a31d0c06fb493c51be04e44817",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,8",
+            "4:0,1,9,11"
+          ],
+          "nodes": 28,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 12
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "2e46926efa3c1c697f45518b38de6b8bf2628014eff2ac3c1a5de975b98dca3c",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  9
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                9
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "155182d2825e0200dad082b331af1bf1025af19f4f7b4ec770f4e65ee39bcafc",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,9",
+            "4:0,1,8,11"
+          ],
+          "nodes": 29,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 13
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "3f5f25dfd5a220463f6ec986ea1f85c6e532e95e0b0f4a96ba8d343fbf4e86db",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  10
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                10
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "1e71b3b1b770a65501f7ec7e077078bf55e82c1ef80a32163844e86814d278da",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,10",
+            "4:0,1,8,11"
+          ],
+          "nodes": 30,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 14
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "F": 5,
+                "O": 0
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+              "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "aad1645e722fca0147a7d42b72fe7b1d850fdb3b64d41a29d94f1b2cfddff13f",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  4,
+                  5,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                1,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                4,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "34a0d84dd851922b54929508d2888666dbb5c10ed8a2c2ee9cc804ea120106d2",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "F": 5,
+              "O": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core",
+            "stage": "equality-convex-six-point-two-circle-arc-overtake-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 4,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,4,5,11"
+          ],
+          "nodes": 31,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 15
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 1,
+                "off_support": 4,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "25eb99862f3e2d69bb35c1f5222015ce32de909de05ac38d23dbd0b47a8bbb24",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 4,
+                "exact": true,
+                "support": [
+                  0,
+                  1,
+                  9,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "e4ef16b64046326b8cd009c906a1b13ec703fc3c1d033726438dda9ede50ebcf",
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 4,
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:0,1,9,11"
+          ],
+          "nodes": 36,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 16
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "center": 1,
+                "off_support": 4,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              "stage": "equality-exact-off-circle"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "cc03b892725f8135ad7c2cf60661b9c768ca0882bfe8f2f1118fd71e7403f30c",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 4,
+                "exact": true,
+                "support": [
+                  0,
+                  1,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                1,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "e02602e3f8814def0227207269e2b77e3dbcc659b656003eb9505cdd79602ea6",
+          "formalized_structural_core": {
+            "core": {
+              "center": 1,
+              "off_support": 4,
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:0,1,10,11"
+          ],
+          "nodes": 37,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 17
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "a": 1,
+                "b": 3,
+                "c": 4,
+                "d": 2,
+                "o": 0
+              },
+              "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+              "stage": "equality-convex-nested-equal-chords"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 3,
+            "row_set_sha256": "ed987bf5f878f484f33bd4a53b09ad4964700ff490589f6c6534ae40fd25271f",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 4,
+                "exact": true,
+                "support": [
+                  0,
+                  3,
+                  5,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                3,
+                5,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "095226ecb0603a307f276347a187e9b8f4321ae0e7b3bf9db15d0be57516b9d7",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "X5": 5,
+              "X6": 6,
+              "X9": 3
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+            "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:0,3,5,11"
+          ],
+          "nodes": 38,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 18
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "O": 0,
+                "X5": 5,
+                "X6": 6,
+                "X9": 9
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+              "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 5,
+            "row_set_sha256": "9e47e17072a736ff296dad4d493b05e73b32d13dd11cc6e411c8e6669865f222",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  3,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  5,
+                  6,
+                  8
+                ]
+              },
+              {
+                "center": 4,
+                "exact": true,
+                "support": [
+                  0,
+                  5,
+                  9,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                5,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "ef90d3234ee6a42eaebe1728d27a771812e33262b8b098c457f295ef5314d96d",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "X5": 5,
+              "X6": 6,
+              "X9": 9
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+            "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:0,5,9,11"
+          ],
+          "nodes": 39,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 19
+        },
+        {
+          "accepted_cut": {
+            "core": {
+              "core": {
+                "A": 1,
+                "C": 2,
+                "D": 3,
+                "E": 4,
+                "O": 0,
+                "X5": 5,
+                "X6": 6,
+                "X9": 10
+              },
+              "cyclic_orientation": "forward",
+              "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+              "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+            },
+            "origin": "greedy_formalized_structural_core",
+            "row_count": 5,
+            "row_set_sha256": "2649eb0f7468d29bbbe1e15fe9084df316b71cf42da1fda0747cd88de2c89f23",
+            "rows": [
+              {
+                "center": 0,
+                "exact": true,
+                "support": [
+                  1,
+                  2,
+                  3,
+                  4
+                ]
+              },
+              {
+                "center": 1,
+                "exact": true,
+                "support": [
+                  0,
+                  2,
+                  6,
+                  7
+                ]
+              },
+              {
+                "center": 2,
+                "exact": true,
+                "support": [
+                  3,
+                  8,
+                  9,
+                  10
+                ]
+              },
+              {
+                "center": 3,
+                "exact": true,
+                "support": [
+                  1,
+                  5,
+                  6,
+                  8
+                ]
+              },
+              {
+                "center": 4,
+                "exact": true,
+                "support": [
+                  0,
+                  5,
+                  10,
+                  11
+                ]
+              }
+            ]
+          },
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                0,
+                5,
+                10,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "a283fbb55a6fd8415b413931c794fd4993489f13b5ad95856553a6761d1f4110",
+          "formalized_structural_core": {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "X5": 5,
+              "X6": 6,
+              "X9": 10
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+            "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:0,5,10,11"
+          ],
+          "nodes": 40,
+          "reported_status": "FORMALIZED_STRUCTURAL_CUT_ACCEPTED",
+          "round": 20
+        },
+        {
+          "assignment": [
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:q",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "supplied:t3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "supplied:u",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:0",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:1",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:10",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 4,
+              "exact": true,
+              "name": "system:11",
+              "support": [
+                1,
+                2,
+                9,
+                11
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:2",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:3",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 0,
+              "exact": true,
+              "name": "system:4",
+              "support": [
+                1,
+                2,
+                3,
+                4
+              ]
+            },
+            {
+              "center": 3,
+              "exact": true,
+              "name": "system:5",
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:6",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 1,
+              "exact": true,
+              "name": "system:7",
+              "support": [
+                0,
+                2,
+                6,
+                7
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:8",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            },
+            {
+              "center": 2,
+              "exact": true,
+              "name": "system:9",
+              "support": [
+                3,
+                8,
+                9,
+                10
+              ]
+            }
+          ],
+          "assignment_sha256": "2854f002275620851be4b86b064d3f0fb02cb60099c6a60d36f241dd19fb82ec",
+          "formalized_structural_core": null,
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_NONUNIT",
+            "verdicts": [
+              "NONUNIT",
+              "NONUNIT",
+              "NONUNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 5,
+          "metric_rows": [
+            "0:1,2,3,4",
+            "1:0,2,6,7",
+            "2:3,8,9,10",
+            "3:1,5,6,8",
+            "4:1,2,9,11"
+          ],
+          "nodes": 41,
+          "reported_status": "FOUND_NONUNIT_WITHOUT_FORMALIZED_CORE_REAL_FEASIBILITY_UNDECIDED",
+          "round": 21
+        }
+      ]
+    }
+  ],
+  "epistemic_status": "FINITE_NECESSARY_CONDITION_SHADOW_ONLY",
+  "schema": "p97-atail-common-critical-system-metric-cegar-v2",
+  "scope": {
+    "formalized_cores_are_monotone_cuts": true,
+    "formalized_metric_core_scan": true,
+    "global_row_at_every_center_assumed": false,
+    "lean_critical_shell_system_constructed": false,
+    "mec_geometry_dependencies_recorded": true,
+    "mec_geometry_derived_from_equality_rows": false,
+    "mec_geometry_required_from_live_target_frame": true,
+    "mec_straddling_fixed_frame_scan": true,
+    "one_exact_row_per_source": true,
+    "producer_proved": false,
+    "q_c_negation": true,
+    "real_feasibility_decided": false,
+    "same_center_exact_row_coupling": true,
+    "target_faithful": false,
+    "unencoded_radius_classes_excluded": false
+  }
+}

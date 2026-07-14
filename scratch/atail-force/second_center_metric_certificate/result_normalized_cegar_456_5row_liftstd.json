@@ -1,0 +1,18 @@
+{
+  "certificate_payload_sha256": "ec396fef7bb830e94dc523b04e4e998edeb2ff38e1a45ea100d7c629db59e2ad",
+  "elapsed_seconds": 2.196,
+  "generator_sha256": "cfa015ef232fb3306cded3edcb734a7435416cc214c80248b02de48e7e3956fa",
+  "method": "liftstd_slimgb",
+  "operation": "certificate_extraction",
+  "returncode": 0,
+  "smoke_gates": {
+    "known_nonunit_membership": "NONUNIT",
+    "known_unit_certificate": "CANDIDATE_CERTIFICATE_EXTRACTED",
+    "known_unit_membership": "UNIT"
+  },
+  "status": "CANDIDATE_CERTIFICATE_EXTRACTED",
+  "stderr_bytes": 0,
+  "stdout_bytes": 115524,
+  "target": "normalized_cegar_456_5row",
+  "timeout_seconds": 120.0
+}

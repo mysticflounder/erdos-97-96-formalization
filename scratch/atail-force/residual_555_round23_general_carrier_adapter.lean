@@ -1,0 +1,181 @@
+/-
+Copyright (c) 2026 Adam McKenna. All rights reserved.
+Released under Apache 2.0 license as described in the file LICENSE.
+Authors: Adam McKenna
+-/
+
+import Erdos9796Proof.P97.ArcBlockContiguity
+import Erdos9796Proof.P97.Census554.GeneralCarrierBridge
+import four_point_two_circle_bisector_order_core
+
+/-!
+# General-carrier adapter for the round-23 `(5,5,5)` residual
+
+The pinned labels are `(Q,V,U,Y) = (0,5,3,4)`, with the test apex chosen as
+`U = 3`.  Row `Q` gives `QU = QY`.  Rows `U,Y`, through their shared edge
+`UY`, give `UV = YV`.  The cyclic subsequence `Q,U,Y,V` puts `U,Y` on the
+same strict side of the center chord.  Thus only three rows and six support
+memberships are used.
+-/
+
+open scoped EuclideanGeometry
+
+namespace Problem97
+namespace Census554
+namespace Round23GeneralCarrierAdapter
+
+open EqualityCore GeneralCarrierBridge
+
+private def CyclicThree {n : ℕ} (i j k : Fin n) : Prop :=
+  (i < j ∧ j < k) ∨ (j < k ∧ k < i) ∨ (k < i ∧ i < j)
+
+private def CyclicFourIndices {n : ℕ}
+    (q u y v : Fin n) : Prop :=
+  (q < u ∧ u < y ∧ y < v) ∨
+  (u < y ∧ y < v ∧ v < q) ∨
+  (y < v ∧ v < q ∧ q < u) ∨
+  (v < q ∧ q < u ∧ u < y)
+
+/-- The four distinguished labels occur in cyclic order `Q,U,Y,V`. -/
+def CyclicSubsequence {carrier : Finset ℝ²}
+    (boundary : BoundaryIndexing carrier)
+    (q u y v : CarrierLabel carrier) : Prop :=
+  CyclicFourIndices (boundary.indexOf q) (boundary.indexOf u)
+    (boundary.indexOf y) (boundary.indexOf v)
+
+private theorem cyclicFour_required_triples {n : ℕ}
+    {q u y v : Fin n} (h : CyclicFourIndices q u y v) :
+    CyclicThree u v q ∧ CyclicThree y v q := by
+  unfold CyclicFourIndices at h
+  unfold CyclicThree
+  omega
+
+private theorem cyclicFour_u_ne_y {n : ℕ}
+    {q u y v : Fin n} (h : CyclicFourIndices q u y v) : u ≠ y := by
+  unfold CyclicFourIndices at h
+  omega
+
+private theorem signedArea2_swap12 (a b c : ℝ²) :
+    signedArea2 a b c = -signedArea2 b a c := by
+  simp only [signedArea2]
+  ring
+
+private theorem signedArea2_swap23 (a b c : ℝ²) :
+    signedArea2 a b c = -signedArea2 a c b := by
+  simp only [signedArea2]
+  ring
+
+private theorem signedArea2_rotate (a b c : ℝ²) :
+    signedArea2 a b c = signedArea2 b c a := by
+  simp only [signedArea2]
+  ring
+
+private theorem signedArea2_neg_of_lt {n : ℕ} {boundary : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (hinj : Function.Injective boundary) {i j k : Fin n}
+    (hij : i < j) (hjk : j < k) :
+    signedArea2 (boundary i) (boundary j) (boundary k) < 0 := by
+  have hpos := signedArea2_pos_of_between hccw hinj hij hjk
+  rw [signedArea2_swap12 (boundary i) (boundary j) (boundary k)]
+  linarith
+
+private theorem signedArea2_neg_of_cyclic {n : ℕ}
+    {boundary : Fin n → ℝ²}
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon boundary)
+    (hinj : Function.Injective boundary) {i j k : Fin n}
+    (hcyc : CyclicThree i j k) :
+    signedArea2 (boundary i) (boundary j) (boundary k) < 0 := by
+  rcases hcyc with ⟨hij, hjk⟩ | ⟨hjk, hki⟩ | ⟨hki, hij⟩
+  · exact signedArea2_neg_of_lt hccw hinj hij hjk
+  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k)]
+    exact signedArea2_neg_of_lt hccw hinj hjk hki
+  · rw [signedArea2_rotate (boundary i) (boundary j) (boundary k),
+      signedArea2_rotate (boundary j) (boundary k) (boundary i)]
+    exact signedArea2_neg_of_lt hccw hinj hki hij
+
+private theorem boundary_signedArea2_neg
+    {carrier : Finset ℝ²} (boundary : BoundaryIndexing carrier)
+    {p q r : CarrierLabel carrier}
+    (hcyc : CyclicThree (boundary.indexOf p) (boundary.indexOf q)
+      (boundary.indexOf r)) :
+    signedArea2 (pointOf p) (pointOf q) (pointOf r) < 0 := by
+  rw [← boundary.point_eq p, ← boundary.point_eq q, ← boundary.point_eq r]
+  exact signedArea2_neg_of_cyclic boundary.boundary_ccw
+    boundary.boundary_injective hcyc
+
+/-- The exact three selected supports used by the round-23 adapter. -/
+structure ThreeRowSupportData {carrier : Finset ℝ²}
+    (F : FaithfulCarrierPattern carrier) where
+  q : CarrierLabel carrier
+  v : CarrierLabel carrier
+  u : CarrierLabel carrier
+  y : CarrierLabel carrier
+  u_mem_q : u.1 ∈ (F.classAt q.1 q.2).support
+  y_mem_q : y.1 ∈ (F.classAt q.1 q.2).support
+  y_mem_u : y.1 ∈ (F.classAt u.1 u.2).support
+  v_mem_u : v.1 ∈ (F.classAt u.1 u.2).support
+  u_mem_y : u.1 ∈ (F.classAt y.1 y.2).support
+  v_mem_y : v.1 ∈ (F.classAt y.1 y.2).support
+
+/-- Assemble the two equality closures from the three carrier rows. -/
+def ThreeRowSupportData.toCore {carrier : Finset ℝ²}
+    {F : FaithfulCarrierPattern carrier} (data : ThreeRowSupportData F)
+    (boundary : BoundaryIndexing carrier)
+    (hcyc : CyclicSubsequence boundary data.q data.u data.y data.v) :
+    FourPointTwoCircleBisectorOrderCore.Core (rowPattern F) := by
+  have huyIndex : boundary.indexOf data.u ≠ boundary.indexOf data.y :=
+    cyclicFour_u_ne_y hcyc
+  have huy : data.u ≠ data.y := by
+    intro heq
+    exact huyIndex (congrArg boundary.indexOf heq)
+  have huq : data.u ∈ rowPattern F data.q :=
+    (mem_rowPattern_iff F data.q data.u).mpr data.u_mem_q
+  have hyq : data.y ∈ rowPattern F data.q :=
+    (mem_rowPattern_iff F data.q data.y).mpr data.y_mem_q
+  have hyu : data.y ∈ rowPattern F data.u :=
+    (mem_rowPattern_iff F data.u data.y).mpr data.y_mem_u
+  have hvu : data.v ∈ rowPattern F data.u :=
+    (mem_rowPattern_iff F data.u data.v).mpr data.v_mem_u
+  have huyRow : data.u ∈ rowPattern F data.y :=
+    (mem_rowPattern_iff F data.y data.u).mpr data.u_mem_y
+  have hvy : data.v ∈ rowPattern F data.y :=
+    (mem_rowPattern_iff F data.y data.v).mpr data.v_mem_y
+  exact {
+    Q := data.q
+    V := data.v
+    U := data.u
+    Y := data.y
+    hUY := huy
+    QU_QY := EdgeClosure.row data.q data.u data.y huq hyq
+    UV_YV := EdgeClosure.trans
+      (EdgeClosure.symm (EdgeClosure.row data.u data.y data.v hyu hvu))
+      (EdgeClosure.trans (EdgeClosure.flip data.u data.y)
+        (EdgeClosure.row data.y data.u data.v huyRow hvy)) }
+
+/-- The three rows and cyclic subsequence `Q,U,Y,V` are incompatible on any
+faithfully realized convex carrier. -/
+theorem false_of_three_rows_and_cyclic_subsequence
+    {carrier : Finset ℝ²} (F : FaithfulCarrierPattern carrier)
+    (boundary : BoundaryIndexing carrier) (data : ThreeRowSupportData F)
+    (hcyc : CyclicSubsequence boundary data.q data.u data.y data.v) :
+    False := by
+  let core := data.toCore boundary hcyc
+  have htriples := cyclicFour_required_triples hcyc
+  rcases htriples with ⟨hUVQ, hYVQ⟩
+  have hUside :
+      0 < signedArea2 (pointOf data.u) (pointOf data.q) (pointOf data.v) := by
+    rw [signedArea2_swap23]
+    exact neg_pos.mpr (boundary_signedArea2_neg boundary hUVQ)
+  have hYside :
+      0 < signedArea2 (pointOf data.y) (pointOf data.q) (pointOf data.v) := by
+    rw [signedArea2_swap23]
+    exact neg_pos.mpr (boundary_signedArea2_neg boundary hYVQ)
+  exact FourPointTwoCircleBisectorOrderCore.false_of_core
+    (realizes F) core hUside hYside
+
+#print axioms ThreeRowSupportData.toCore
+#print axioms false_of_three_rows_and_cyclic_subsequence
+
+end Round23GeneralCarrierAdapter
+end Census554
+end Problem97

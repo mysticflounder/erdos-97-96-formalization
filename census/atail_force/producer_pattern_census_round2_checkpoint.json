@@ -1,0 +1,3400 @@
+{
+  "checkpoint_sha256": "2ab12c0b155935550fd62272b9cfeeab83e1b2b832bd796cbc034a26b27e3f5e",
+  "epistemic_status": "BOUNDED_SOLVER_DISCOVERY_EVIDENCE_NOT_LEAN_PROOF",
+  "policy": {
+    "automatic_extension": false,
+    "cvc5_retries": 0,
+    "cvc5_timeout_seconds_per_query": 3.0,
+    "query_count": 36,
+    "selection": "centered quantiles of deterministic coverage-classified survivor stream",
+    "survivors_per_case": 12,
+    "timeout_normalization": "cvc5 internal-tlimit abort is fail-closed TIMEOUT",
+    "z3_crosscheck_count": 1
+  },
+  "results": [
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000004",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.250205,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "8f14fbc9bb9c9c2301c4a844dd5701048a65b48f582baf9c2ed4e6f3e93fc50f",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 4
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000012",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.242171,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "39094679b1e0ed05b3aae47c34195fef1d5b4a4bf61ecbe7ef942153429f4d28",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 12
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000020",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.245924,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "8ea182647f89c915320dd108dface3dcc086081153a60dcf1dc61ad623c775bc",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 20
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000028",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.245158,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "d7c453ec9a45956e87b78fc8d30381050bdca69bbe424d1311f013f46712b0f1",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 28
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000036",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.242204,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4a602843eed1e5b91598e6341dd50d46da42241f4f919c5b4c2ac8797fe945cb",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 36
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000044",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.241139,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "8856608b55e543f7762b142cbfc6d5db5f471c8ef00cf484bcbe4044aff2156b",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 44
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000052",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.242175,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "8987f4c0ed63c0a1dc440bbd685d3c3c440ecdadd65cb09084e4f3f64a30cf21",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 52
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000060",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.24997,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "40055623829904abf4d3615339aefdff430dafe5aa211ee14229a7ec4c6183e2",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 60
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000068",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.249961,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "e7e4bf4240c0c52c076c864c1f88bbd48d7eca4903fe63229bf64be426093b49",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 68
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000076",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.241184,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "d6ae53a053fa5721178569532f9be933ffc1ad339b1b757a84ad273d1c737982",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 76
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              4,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              4,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000084",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.242128,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4874fe0c51760eaa5005f44e91978817c563391836adcac714b89b4a5aebb302",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 84
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_round2_s000092",
+      "case_id": "card11_profile_554",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.245378,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "aea5776c08a86098d2c2b32c52bdbba25f01bd4979b1d7801dd8f949ddd0d0be",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 96,
+      "survivor_ordinal": 92
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              8,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              8,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000006",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.300624,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "78d86ec37e850d00f231210d383d4df7ef68552bb38e2e75705732dbbee5eff4",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 6
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              6,
+              8,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              6,
+              8,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000018",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.278489,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "3fb4c55e0de338f77ebe4883d5f9cd6991ed274c5b29e76ea54fba4643417ade",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 18
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              7,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              7,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000031",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.283341,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "5a1f3ceaf870b1f94c82fb85ced048d53ad77f3f29d4c0b2892685e8c6cd75fc",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 31
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000043",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.275477,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "34364d51ea0180ec17719ad74fde15f475221a589ed847d0928906d5e1aee012",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 43
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              9,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000056",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.283324,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4aedd266df7d3995330429bd98c34f7d27a4dbbe717dd9a429cd72f54d3223c2",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 56
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000068",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.283339,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "ef7f5996bf37ace9225645078cd42c51c8c876d6088e6d3fd8a38047bb8f41a0",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 68
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000081",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.277324,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "696ee720888869240406b6b612ffe10d1f08dc3ac590a302b81ba87029745bd7",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 81
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              9,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000093",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.272626,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "63ff945b3b2900605f5b31cb43bee05d7bec7ac537dd3f737ed4003e0c701b5a",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 93
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              7,
+              8,
+              9,
+              11
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000106",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.283394,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "e59e39cef59b16ab30292b453f260fa7cacaf102401982dc58db7ed4f35e914b",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 106
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              7,
+              8,
+              9,
+              11
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000118",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.274418,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "724367b049906b66be17dff8b387bdac1d2f76bd6471c7aa1896d9cb9deec0cd",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 118
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000131",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.275526,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "9f81fa2b1dc66b04e0680ed3a510e79b362b5e7cf702935ca0e290a622fcf053",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 131
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_round2_s000143",
+      "case_id": "card12_profile_654",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 3.274508,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "5bdf74921152ea2f1c26d9afd4e68748928abeef7cf23b6fea375cb49afdf7de",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 150,
+      "survivor_ordinal": 143
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000028",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283275,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "bd24ae3a918ab06011bb2426039d613aea71686198b7d1c9d3c133e4cfc3e0c0",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 28
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000085",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.286989,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "2808e87e97b5b7ac40e668cabf8dbd2f45a04715b200a14d370fdfd244cc24cd",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 85
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 5,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              7,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              7,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000142",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.288507,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "b207a2bf5236c1c8c74fb0ef192001923feb3651bb0a713c908d05bbeaf8fe1a",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 142
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              8,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              8,
+              9,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000199",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283324,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "53682976cae216ce7d51f6ec00f225a28402b1636427dc721db33b6bca94006e",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 199
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              5,
+              6,
+              7
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              8,
+              9,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000256",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.28342,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "327b2344570cdba48adf5e808930d0b44b14d9c138c05919784b1e27c5060b8d",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 256
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              6,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              5,
+              6,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000313",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283177,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4e7dd3cfe47b02a127dd0396e1bad80011d2b0d2f8d8fa9f86b5b8e33c35c061",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 313
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8,
+              11
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              2,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              9,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000370",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283459,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "62bae48e22d0a40c5933d9acc6704065bb60b4414b2b53b0b81c650d6f44dd5c",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 370
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              4,
+              9,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              4,
+              9,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000427",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283255,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "d33c49cb4eae10c6486c57c8031df5a690852f5c91343f35f015f39e5ae033bc",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 427
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8,
+              11
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 5,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              4,
+              9,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              4,
+              9,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000484",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283409,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4843fad00014bc882db8902ce14b1956e0209a192385e1812580f547c26b5a14",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 484
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              4,
+              6,
+              7,
+              8,
+              10
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              7,
+              9,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              4,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              4,
+              7,
+              9,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000541",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.28322,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4ab27ee8f60739246ecf1319883e2c0e6cd22da879c7837e0777d2976dbe7eb5",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 541
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8,
+              9
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              10,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              1,
+              6,
+              10,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000598",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283327,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "72c4a3ed8e5b9ab6d44e1d546664dcb02db6aec1fb4ab531907be539aff1ca4f",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 598
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8,
+              11
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              9,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              5,
+              6,
+              7,
+              8
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              3,
+              9,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_round2_s000655",
+      "case_id": "card12_profile_555",
+      "coverage_classification": "survivor",
+      "coverage_patterns": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 3.283334,
+      "evidence_scope": "bounded cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "a4faf01dba361f23612dff3d0fc9c3afb327e10125a65fe768bedc9f95d3661c",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "raw_solver_status": "ERROR",
+      "solver_returncode": -6,
+      "solver_stderr_tail": "cvc5 interrupted by timeout.\n",
+      "status": "TIMEOUT",
+      "status_normalization": "cvc5 internal timeout is fail-closed TIMEOUT",
+      "survivor_count": 684,
+      "survivor_ordinal": 655
+    }
+  ],
+  "schema": "p97_atail_force_producer_pattern_census_round2.v1",
+  "summary": {
+    "elapsed_seconds": 117.709222,
+    "recurring_cores": [],
+    "solver_survivors": [
+      {
+        "assignment_id": "card11_profile_554_round2_s000004",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000012",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000020",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000028",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000036",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000044",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000052",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000060",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000068",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000076",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000084",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card11_profile_554_round2_s000092",
+        "case_id": "card11_profile_554",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000006",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000018",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000031",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000043",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000056",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000068",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000081",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000093",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000106",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000118",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000131",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_654_round2_s000143",
+        "case_id": "card12_profile_654",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000028",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000085",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000142",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000199",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000256",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000313",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000370",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000427",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000484",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000541",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000598",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      },
+      {
+        "assignment_id": "card12_profile_555_round2_s000655",
+        "case_id": "card12_profile_555",
+        "status": "TIMEOUT"
+      }
+    ],
+    "status_counts": {
+      "TIMEOUT": 36
+    }
+  }
+}

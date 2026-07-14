@@ -1,0 +1,38 @@
+{
+  "schema": "p97-atail-second-center-metric-oracle-manifest-v1",
+  "scope": {
+    "cardinality": 12,
+    "profiles": [
+      [4, 5, 6],
+      [5, 5, 5]
+    ],
+    "source": "the two independently validated witnesses in ../second_center_query",
+    "placement_coverage": "one explicit admitted named-label placement per profile",
+    "question": "whether each saved 29-row equality shadow has coordinates after the gauge point 0=(0,0), point 1=(1,0)",
+    "target_faithful": false
+  },
+  "encoded": [
+    "all squared-distance equalities from every one of the 29 serialized rows",
+    "exact deduplication of repeated rows with identical center and support",
+    "two-dimensional coordinates over QQ polynomial equations",
+    "the normalization point 0=(0,0), point 1=(1,0)",
+    "unit-ideal checks over QQ with Singular and msolve in forward and reverse variable order"
+  ],
+  "omitted_fail_closed": [
+    "off-radius disequalities asserted by exact rows",
+    "pairwise distinctness except for the noncollapsed 0/1 coordinate gauge",
+    "strict convexity, cyclic orientation inequalities, and cap geometry",
+    "minimum-enclosing-circle, non-obtuse, circumscribed-Moser, and liveData geometry",
+    "equal-distance pairs not represented by the saved rows",
+    "all other named-label placements or orbit representatives",
+    "the separately owned card-11 profile",
+    "a replayed Nullstellensatz certificate",
+    "a Lean theorem or a producer theorem"
+  ],
+  "verdict_policy": {
+    "crosschecked_unit": "NO_NORMALIZED_COMPLEX_OR_REAL_EQUALITY_REALIZATION_FOR_THIS_SAVED_SHADOW",
+    "crosschecked_nonunit": "COMPLEX_VARIETY_NONEMPTY_BUT_REAL_REALIZATION_UNDECIDED_WITHOUT_AN_EXACT_REAL_WITNESS",
+    "timeout_error_or_disagreement": "UNDECIDED_FAIL_CLOSED",
+    "note": "No verdict is an exhaustive card-12 result, a target-faithful counterexample, or a proof of the same-cap producer."
+  }
+}

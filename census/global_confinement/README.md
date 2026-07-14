@@ -159,9 +159,10 @@ finite checkpoint. Unlike the packet-stratified scans, it uses the
 kernel-proved reduction to the single card-eleven `(6,4,4)` profile and the
 kernel-proved exact selected-row cap-hit counts. It chooses one row at every
 center, enforces the pinned and source-indexed blocker conditions, and checks
-all twelve formalized metric cores without either prose-only tuple exclusion.
+all 23 current formalized metric-core families (26 detector stages after the
+three reversed-order variants) without either prose-only tuple exclusion.
 All twelve ordered choices of distinct pinned and deleted strict-surplus labels
-are `EXHAUSTIVE`; no placement is capped, the largest visits 315,503 nodes, and
+are `EXHAUSTIVE`; no placement is capped, the largest visits 299,801 nodes, and
 the deduplicated residual bank is empty.
 
 An earlier forward-only diagnostic reported three residual row patterns in five
@@ -169,7 +170,7 @@ placements. Each was an existing convex five-point core in the reversed cyclic
 orientation. `_formalized_metric_core` and the exact-system probe now check both
 orientations, and the regression suite includes that witness. The final
 artifact SHA-256 is
-`5d084bf9b5e9cca3f76418d30efde7ec9251915715ba85599be425d8442dd673`.
+`98b1ebe08279337e5dbded3ec1911edb7be505ec84506d6de7eadcf2300d247f`.
 This is exact coverage of the declared finite model, not yet a Lean proof of
 the target theorem: a verified classifier/certificate and a geometric
 carrier-to-canonical-label soundness bridge remain open.

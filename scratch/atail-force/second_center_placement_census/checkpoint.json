@@ -1,0 +1,378 @@
+{
+  "cases": [
+    {
+      "automorphism_count": 1,
+      "automorphism_group_sha256": "c9112fffad782fb7e96cf3310f08432d6b14e0f5de611639b417123244765162",
+      "automorphisms": [
+        {
+          "cap_mapping": {
+            "O1": "O1",
+            "O2": "O2",
+            "S": "S"
+          },
+          "image": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "induced_moser_permutation": [
+            0,
+            1,
+            2
+          ],
+          "mapping_sha256": "bc04adf5bcefb4d0d6d92548c048867a98e9134d8cedb53ac5ea1010d5016801",
+          "name": "rotation_0",
+          "orientation": 1,
+          "shift": 0
+        }
+      ],
+      "burnside_numerator": 253302,
+      "fixed_placement_counts": {
+        "rotation_0": 253302
+      },
+      "orbit_count": 253302,
+      "orbit_size_histogram": {
+        "1": 253302
+      },
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "raw_counts_by_cap_roles": {
+        "O1->O2": 111006,
+        "O2->O1": 142296
+      },
+      "raw_counts_by_p": {
+        "0": 1302,
+        "1": 6468,
+        "10": 21798,
+        "11": 21798,
+        "2": 12516,
+        "3": 34104,
+        "4": 34104,
+        "5": 25872,
+        "6": 25872,
+        "7": 25872,
+        "8": 21798,
+        "9": 21798
+      },
+      "raw_placement_count": 253302,
+      "representative_codes_sha256": "16dde5cec0b906c48326e196ac941dad53054c105de13ec7284eb84eea5cb242",
+      "representative_count": 253302,
+      "source_domain_nonempty": {
+        "0": true,
+        "1": true,
+        "10": true,
+        "11": true,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true,
+        "8": true,
+        "9": true
+      }
+    },
+    {
+      "automorphism_count": 6,
+      "automorphism_group_sha256": "7c1defdab0091612689c28cb3e74fbfd0efb0c5805d88dfec184bd28e1b21119",
+      "automorphisms": [
+        {
+          "cap_mapping": {
+            "O1": "O1",
+            "O2": "O2",
+            "S": "S"
+          },
+          "image": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "induced_moser_permutation": [
+            0,
+            1,
+            2
+          ],
+          "mapping_sha256": "bc04adf5bcefb4d0d6d92548c048867a98e9134d8cedb53ac5ea1010d5016801",
+          "name": "rotation_0",
+          "orientation": 1,
+          "shift": 0
+        },
+        {
+          "cap_mapping": {
+            "O1": "O2",
+            "O2": "S",
+            "S": "O1"
+          },
+          "image": [
+            1,
+            2,
+            0,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            3,
+            4,
+            5
+          ],
+          "induced_moser_permutation": [
+            1,
+            2,
+            0
+          ],
+          "mapping_sha256": "ee0442b5bf4af0c5ca16dfe84264f47e64cf877a0d837d03d21e049cf873abac",
+          "name": "rotation_4",
+          "orientation": 1,
+          "shift": 4
+        },
+        {
+          "cap_mapping": {
+            "O1": "S",
+            "O2": "O1",
+            "S": "O2"
+          },
+          "image": [
+            2,
+            0,
+            1,
+            9,
+            10,
+            11,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "induced_moser_permutation": [
+            2,
+            0,
+            1
+          ],
+          "mapping_sha256": "5e356c7b30de3f90034826f0764e871c1ce81aca4a96b7393066307b5f2155e0",
+          "name": "rotation_8",
+          "orientation": 1,
+          "shift": 8
+        },
+        {
+          "cap_mapping": {
+            "O1": "O2",
+            "O2": "O1",
+            "S": "S"
+          },
+          "image": [
+            0,
+            2,
+            1,
+            5,
+            4,
+            3,
+            11,
+            10,
+            9,
+            8,
+            7,
+            6
+          ],
+          "induced_moser_permutation": [
+            0,
+            2,
+            1
+          ],
+          "mapping_sha256": "3212c1cec0883273e21b48014601424f6674f385b9df4372e480c4e44bdac753",
+          "name": "reflection_0",
+          "orientation": -1,
+          "shift": 0
+        },
+        {
+          "cap_mapping": {
+            "O1": "S",
+            "O2": "O2",
+            "S": "O1"
+          },
+          "image": [
+            1,
+            0,
+            2,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            11,
+            10,
+            9
+          ],
+          "induced_moser_permutation": [
+            1,
+            0,
+            2
+          ],
+          "mapping_sha256": "7ba690a785839ce5bced28f11c67fc0b30309d4af0a24b159fffe69ec3f89dc7",
+          "name": "reflection_4",
+          "orientation": -1,
+          "shift": 4
+        },
+        {
+          "cap_mapping": {
+            "O1": "O1",
+            "O2": "S",
+            "S": "O2"
+          },
+          "image": [
+            2,
+            1,
+            0,
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3
+          ],
+          "induced_moser_permutation": [
+            2,
+            1,
+            0
+          ],
+          "mapping_sha256": "fbf3c87499c0b7917c2a9c9113e7a97af6dceb1c7a0bdf710f4f123d678a3be3",
+          "name": "reflection_8",
+          "orientation": -1,
+          "shift": 8
+        }
+      ],
+      "burnside_numerator": 683424,
+      "fixed_placement_counts": {
+        "reflection_0": 0,
+        "reflection_4": 0,
+        "reflection_8": 0,
+        "rotation_0": 683424,
+        "rotation_4": 0,
+        "rotation_8": 0
+      },
+      "orbit_count": 113904,
+      "orbit_size_histogram": {
+        "6": 113904
+      },
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "raw_counts_by_cap_roles": {
+        "O1->O2": 113904,
+        "O1->S": 113904,
+        "O2->O1": 113904,
+        "O2->S": 113904,
+        "S->O1": 113904,
+        "S->O2": 113904
+      },
+      "raw_counts_by_p": {
+        "0": 16632,
+        "1": 16632,
+        "10": 70392,
+        "11": 70392,
+        "2": 16632,
+        "3": 70392,
+        "4": 70392,
+        "5": 70392,
+        "6": 70392,
+        "7": 70392,
+        "8": 70392,
+        "9": 70392
+      },
+      "raw_placement_count": 683424,
+      "representative_codes_sha256": "c9cd57ce9363f4c51765128579771dad6aa751af5f15506f753a10ae9e5b61d5",
+      "representative_count": 113904,
+      "source_domain_nonempty": {
+        "0": true,
+        "1": true,
+        "10": true,
+        "11": true,
+        "2": true,
+        "3": true,
+        "4": true,
+        "5": true,
+        "6": true,
+        "7": true,
+        "8": true,
+        "9": true
+      }
+    }
+  ],
+  "epistemic_status": "EXACT_PLACEMENT_SURFACE_ONLY",
+  "manifest_sha256": "da90eb0c7bda480ee45feda202411e58ac246c8ff0096e41899e1b11402a023c",
+  "representatives": {
+    "file": "representatives.json",
+    "file_sha256": "1b19b5521144ab6957b6dd3764dc90162dcbb8dd30c6ffbcd7e2c4bca55cd648",
+    "total_count": 367206
+  },
+  "schema": "p97-atail-second-center-placement-census-v1",
+  "scope": {
+    "placement_surface_exhaustive": true,
+    "producer_proved": false,
+    "profiles": [
+      [
+        4,
+        5,
+        6
+      ],
+      [
+        5,
+        5,
+        5
+      ]
+    ],
+    "row_system_existence_checked": false,
+    "target_faithful": false
+  },
+  "source": {
+    "global_shadow_py_sha256": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62",
+    "multi_center_census_py_sha256": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "second_center_checkpoint_sha256": "f8608bc9b70576254cf1def8cd510f1e021c06ee0127c1b6ae767c3d620b4809",
+    "second_center_manifest_sha256": "ad02273cdba024d5e45c8c30d751ef932d16efdca05de114199a2a9ef58c78d9",
+    "second_center_query_py_sha256": "bcf3368bd1c733100d04ebc1118f344396f6c7ab6a85ac497a8164d778dc2b5d",
+    "second_center_validator_py_sha256": "789c886835d01b500eeadc7bf2e32fda7a47ef2cb93e8125a9d9e8e9f98290f0"
+  },
+  "totals": {
+    "orbit_count": 367206,
+    "raw_placement_count": 936726
+  },
+  "validation": {
+    "burnside_orbit_count_checked": true,
+    "candidate_domain_invariance_checked": true,
+    "cyclic_action_checked": true,
+    "group_closure_and_inverses_checked": true,
+    "placement_predicate_invariance_checked_exhaustively": true,
+    "representative_minimality_checked": true,
+    "source_hashes_checked": true
+  }
+}

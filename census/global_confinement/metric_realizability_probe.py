@@ -252,18 +252,66 @@ def _three_triad_collision_core_from_closure(
 ) -> dict[str, int] | None:
     """Find the generic five-label three-triad collision core."""
 
-    roots, _ = index if index is not None else _closure_circle_index(closure, n)
-    for a, b, c, d, e in permutations(range(n), 5):
-        if not (
-            roots[b][c] == roots[b][d] == roots[d][a]
-        ):
-            continue
-        if not (
-            roots[c][a] == roots[c][d] == roots[c][e]
-        ):
-            continue
-        if roots[e][a] == roots[e][b] == roots[e][d]:
-            return {"a": a, "b": b, "c": c, "d": d, "e": e}
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+
+    # ``root_masks[center][root]`` records every point whose incident edge at
+    # ``center`` belongs to ``root``.  Unlike ``circle_masks``, it also lets us
+    # query a root first encountered at another center.
+    root_masks: list[dict[tuple[int, int], int]] = []
+    for center in labels:
+        masks: dict[tuple[int, int], int] = {}
+        for point in labels:
+            root = roots[center][point]
+            masks[root] = masks.get(root, 0) | (1 << point)
+        root_masks.append(masks)
+
+    # Centers on the perpendicular bisector of each ordered point pair.  Two
+    # intersections below encode the final three-edge triad without a fifth
+    # nested label loop.
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for b in labels:
+        for c in labels:
+            if b == c:
+                continue
+            first_root = roots[b][c]
+            d_mask = circle_masks[b][c] & ~((1 << b) | (1 << c))
+            for d in labels_in(d_mask):
+                excluded_bcd = (1 << b) | (1 << c) | (1 << d)
+                a_mask = (
+                    root_masks[d].get(first_root, 0)
+                    & circle_masks[c][d]
+                    & ~excluded_bcd
+                )
+                for a in labels_in(a_mask):
+                    e_mask = (
+                        circle_masks[c][a]
+                        & bisector_masks[a][b]
+                        & bisector_masks[a][d]
+                        & ~(excluded_bcd | (1 << a))
+                    )
+                    if e_mask:
+                        e = (e_mask & -e_mask).bit_length() - 1
+                        return {"a": a, "b": b, "c": c, "d": d, "e": e}
     return None
 
 
@@ -464,6 +512,616 @@ def _six_point_two_pair_collision_core_from_closure(
                                     "e": e,
                                     "f": f,
                                 }
+    return None
+
+
+def _six_point_circle_chain_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the generic six-role circle-chain collision equality core.
+
+    The Lean theorem needs only ``A != B``; every other role may alias.  The
+    detector follows the five circle classes instead of trying all six-label
+    assignments, because this check runs in the monotone prefix hot path.
+    """
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for b in labels:
+            if a == b:
+                continue
+            # BA = BC = BD.
+            b_circle = circle_masks[b][a]
+            for c in labels_in(b_circle):
+                # CA = CB = CE = CF.
+                c_circle = circle_masks[c][a]
+                if not c_circle & (1 << b):
+                    continue
+                for e in labels_in(c_circle):
+                    # DC = DE, while D remains on B's A-circle.
+                    d_mask = b_circle & bisector_masks[c][e]
+                    for d in labels_in(d_mask):
+                        # EA = EF and FB = FD = FE, with F also on C's
+                        # A-circle.
+                        f_mask = (
+                            c_circle
+                            & circle_masks[e][a]
+                            & bisector_masks[b][d]
+                            & bisector_masks[b][e]
+                        )
+                        if f_mask:
+                            f = (f_mask & -f_mask).bit_length() - 1
+                            return {
+                                "a": a,
+                                "b": b,
+                                "c": c,
+                                "d": d,
+                                "e": e,
+                                "f": f,
+                            }
+    return None
+
+
+def _six_point_five_circle_collision_core_a_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find six-point five-circle collision core A."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            for o in labels:
+                a_circle = circle_masks[a][o]
+                if not a_circle & (1 << e):
+                    continue
+                # OA = OB and AO = AB.
+                b_mask = circle_masks[o][a] & a_circle
+                e_circle = circle_masks[e][o]
+                for b in labels_in(b_mask):
+                    # AO = AC, CB = CE, and EO = EC.
+                    c_mask = a_circle & bisector_masks[b][e] & e_circle
+                    for c in labels_in(c_mask):
+                        c_circle = circle_masks[c][b]
+                        if not c_circle & (1 << e):
+                            continue
+                        # CB = CF, EO = EF, and FO = FA.
+                        f_mask = c_circle & e_circle & bisector_masks[o][a]
+                        if f_mask:
+                            f = (f_mask & -f_mask).bit_length() - 1
+                            return {
+                                "o": o, "a": a, "b": b,
+                                "c": c, "e": e, "f": f,
+                            }
+    return None
+
+
+def _six_point_five_circle_collision_core_b_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find six-point five-circle collision core B."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            for o in labels:
+                a_circle = circle_masks[a][o]
+                if not a_circle & (1 << e):
+                    continue
+                for b in labels_in(a_circle):
+                    b_circle = circle_masks[b][o]
+                    if not b_circle & (1 << a):
+                        continue
+                    if not bisector_masks[o][b] & (1 << e):
+                        continue
+                    # BO = BF and FA = FE.
+                    f_mask = b_circle & bisector_masks[a][e]
+                    for f in labels_in(f_mask):
+                        # BO = BC, CO = CF, and FA = FC.
+                        c_mask = (
+                            b_circle
+                            & bisector_masks[o][f]
+                            & circle_masks[f][a]
+                        )
+                        if c_mask:
+                            c = (c_mask & -c_mask).bit_length() - 1
+                            return {
+                                "o": o, "a": a, "b": b,
+                                "c": c, "e": e, "f": f,
+                            }
+    return None
+
+
+def _six_point_five_circle_collision_core_c_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find six-point five-circle collision core C."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            for o in labels:
+                a_circle = circle_masks[a][o]
+                if not a_circle & (1 << e):
+                    continue
+                # AO = AC and CO = CE.
+                c_base = a_circle & bisector_masks[o][e]
+                for b in labels_in(a_circle):
+                    b_circle = circle_masks[b][o]
+                    if not b_circle & (1 << a):
+                        continue
+                    e_circle = circle_masks[e][b]
+                    c_mask = c_base & e_circle
+                    # BO = BF, EB = EF, and FA = FE.
+                    f_mask = b_circle & e_circle & bisector_masks[a][e]
+                    if c_mask and f_mask:
+                        c = (c_mask & -c_mask).bit_length() - 1
+                        f = (f_mask & -f_mask).bit_length() - 1
+                        return {
+                            "o": o, "a": a, "b": b,
+                            "c": c, "e": e, "f": f,
+                        }
+    return None
+
+
+def _seven_point_five_circle_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the generic seven-point five-circle collision core."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            e_circle = circle_masks[e][a]
+            # BA = BE.
+            for b in labels_in(bisector_masks[a][e]):
+                b_circle = circle_masks[b][a]
+                a_circle = circle_masks[a][b]
+                # AB = AC and BA = BC.
+                c_mask = a_circle & b_circle
+                # BA = BF and EA = EF.
+                f_mask = b_circle & e_circle
+                # AB = AD and EA = ED.
+                d_mask = a_circle & e_circle
+                for c in labels_in(c_mask):
+                    for f in labels_in(f_mask):
+                        f_circle = circle_masks[f][c]
+                        if not f_circle & (1 << e):
+                            continue
+                        g_base = f_circle & e_circle
+                        for d in labels_in(d_mask):
+                            # FC = FG, EA = EG, and GA = GD.
+                            g_mask = g_base & bisector_masks[a][d]
+                            if g_mask:
+                                g = (g_mask & -g_mask).bit_length() - 1
+                                return {
+                                    "a": a, "b": b, "c": c, "d": d,
+                                    "e": e, "f": f, "g": g,
+                                }
+    return None
+
+
+def _eight_point_five_circle_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the generic eight-point five-circle collision core."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            for o in labels:
+                a_circle = circle_masks[a][o]
+                if not a_circle & (1 << e):
+                    continue
+                for b in labels_in(a_circle):
+                    b_circle = circle_masks[b][o]
+                    if not b_circle & (1 << a):
+                        continue
+                    e_circle = circle_masks[e][b]
+                    d_mask = a_circle & e_circle
+                    f_mask = b_circle & e_circle
+                    g_mask = b_circle & bisector_masks[a][e]
+                    for d in labels_in(d_mask):
+                        for f in labels_in(f_mask):
+                            f_circle = circle_masks[f][d]
+                            for g in labels_in(g_mask):
+                                if not circle_masks[g][a] & (1 << f):
+                                    continue
+                                if not f_circle & (1 << g):
+                                    continue
+                                c = (f_circle & -f_circle).bit_length() - 1
+                                return {
+                                    "o": o, "a": a, "b": b, "c": c,
+                                    "d": d, "e": e, "f": f, "g": g,
+                                }
+    return None
+
+
+def _seven_point_six_circle_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the generic seven-role six-circle collision equality core.
+
+    The Lean theorem needs only ``O != A``; every other role may alias.  The
+    detector intersects circle and perpendicular-bisector masks so it remains
+    suitable for the monotone prefix hot path.
+    """
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for o in labels:
+        for a in labels:
+            if o == a:
+                continue
+            # OA = OB.
+            for b in labels_in(circle_masks[o][a]):
+                # BO = BA = BD = BE.
+                b_circle = circle_masks[b][o]
+                if not b_circle & (1 << a):
+                    continue
+                # EO = EA, with E also on B's O-circle.
+                e_mask = b_circle & bisector_masks[o][a]
+                for e in labels_in(e_mask):
+                    # CO = CB = CF.
+                    for c in labels_in(bisector_masks[o][b]):
+                        c_circle = circle_masks[c][o]
+                        # DB = DC = DE, with D also on B's O-circle.
+                        d_mask = (
+                            b_circle
+                            & bisector_masks[b][c]
+                            & bisector_masks[b][e]
+                        )
+                        if not d_mask:
+                            continue
+                        # FA = FC = FE, with F also on C's O-circle.
+                        f_mask = (
+                            c_circle
+                            & bisector_masks[a][c]
+                            & bisector_masks[a][e]
+                        )
+                        if f_mask:
+                            d = (d_mask & -d_mask).bit_length() - 1
+                            f = (f_mask & -f_mask).bit_length() - 1
+                            return {
+                                "o": o,
+                                "a": a,
+                                "b": b,
+                                "c": c,
+                                "d": d,
+                                "e": e,
+                                "f": f,
+                            }
+    return None
+
+
+def _seven_point_six_circle_collision_core_b_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the second generic seven-role six-circle collision core."""
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            # AE = AB and EA = EC.
+            for b in labels_in(circle_masks[a][e]):
+                for c in labels_in(circle_masks[e][a]):
+                    # CA = CB = CD.
+                    c_circle = circle_masks[c][a]
+                    if not c_circle & (1 << b):
+                        continue
+                    for d in labels_in(c_circle):
+                        # DA = DB = DG.
+                        d_circle = circle_masks[d][a]
+                        if not d_circle & (1 << b):
+                            continue
+                        # FE = FC = FD = FG.
+                        f_mask = (
+                            bisector_masks[e][c]
+                            & bisector_masks[e][d]
+                        )
+                        for f in labels_in(f_mask):
+                            # GA = GE = GF, with G also on the F- and D-circles.
+                            g_mask = (
+                                circle_masks[f][e]
+                                & d_circle
+                                & bisector_masks[a][e]
+                                & bisector_masks[a][f]
+                            )
+                            if g_mask:
+                                g = (g_mask & -g_mask).bit_length() - 1
+                                return {
+                                    "a": a,
+                                    "b": b,
+                                    "c": c,
+                                    "d": d,
+                                    "e": e,
+                                    "f": f,
+                                    "g": g,
+                                }
+    return None
+
+
+def _seven_point_twin_four_circle_collision_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the generic seven-role twin-four-circle collision core.
+
+    The Lean theorem needs only ``A != E``; every other role may alias.  The
+    two four-point circles are centered at ``D`` and ``E``.  Mask
+    intersections keep the detector cheap enough for monotone prefix pruning.
+    """
+
+    labels = tuple(range(n))
+    roots, circle_masks = (
+        index if index is not None else _closure_circle_index(closure, n)
+    )
+    bisector_masks = [
+        [
+            sum(
+                1 << center
+                for center in labels
+                if roots[center][left] == roots[center][right]
+            )
+            for right in labels
+        ]
+        for left in labels
+    ]
+
+    def labels_in(mask: int) -> Iterable[int]:
+        while mask:
+            bit = mask & -mask
+            yield bit.bit_length() - 1
+            mask ^= bit
+
+    for a in labels:
+        for e in labels:
+            if a == e:
+                continue
+            e_circle = circle_masks[e][a]
+            # BA = BE can be imposed before selecting B: B is a center on
+            # the perpendicular bisector of A and E.
+            b_bisector = bisector_masks[a][e]
+            for o in labels:
+                # OA = OB and BA = BE.
+                b_mask = circle_masks[o][a] & b_bisector
+                # EA = EF and FO = FA; D's O-circle supplies the final
+                # intersection condition below.
+                f_base = e_circle & bisector_masks[o][a]
+                if not b_mask or not f_base:
+                    continue
+                for b in labels_in(b_mask):
+                    # BA = BC, AO = AC, and EA = EC.  Only existence is
+                    # needed until the other roles have also been found.
+                    b_circle = circle_masks[b][a]
+                    c_mask = circle_masks[a][o] & b_circle & e_circle
+                    if not c_mask:
+                        continue
+                    # EA = ED, while DO = DB = DE = DF.
+                    for d in labels_in(e_circle):
+                        d_circle = circle_masks[d][o]
+                        if not (
+                            d_circle & (1 << b)
+                            and d_circle & (1 << e)
+                        ):
+                            continue
+                        f_mask = d_circle & f_base
+                        if f_mask:
+                            c = (c_mask & -c_mask).bit_length() - 1
+                            f = (f_mask & -f_mask).bit_length() - 1
+                            return {
+                                "o": o,
+                                "a": a,
+                                "b": b,
+                                "c": c,
+                                "d": d,
+                                "e": e,
+                                "f": f,
+                            }
     return None
 
 
@@ -782,6 +1440,71 @@ def _convex_rhombus_equilateral_core_from_closure(
     return None
 
 
+def _five_row_circle_intersection_order_core_from_closure(
+    closure: _EdgeClosure,
+    n: int,
+    order: Sequence[int],
+    *,
+    index: _ClosureCircleIndex | None = None,
+) -> dict[str, int] | None:
+    """Find the ordered five-row circle-intersection obstruction.
+
+    Five distinct spine labels occur in cyclic order ``O,A,D,E,C``.  Three
+    auxiliary labels may occur anywhere.  The transitive equality closure
+    supplies the ten edge relations in
+    ``FiveRowCircleIntersectionOrderCore.Core``.
+    """
+
+    if sorted(order) != list(range(n)):
+        raise ValueError("order is not a permutation of the ambient labels")
+    roots, _ = index if index is not None else _closure_circle_index(closure, n)
+    labels = tuple(range(n))
+    cyclic_order = tuple(order)
+
+    for start in range(n):
+        rotated = cyclic_order[start:] + cyclic_order[:start]
+        o = rotated[0]
+        for a_pos, d_pos, e_pos, c_pos in combinations(range(1, n), 4):
+            a, d, e, c = (
+                rotated[a_pos], rotated[d_pos], rotated[e_pos], rotated[c_pos]
+            )
+            base_root = roots[o][a]
+            d_root = roots[d][a]
+            if not (
+                roots[o][c] == base_root
+                and roots[o][d] == base_root
+                and roots[o][e] == base_root
+                and roots[a][c] == base_root
+            ):
+                continue
+            x5 = next((
+                label for label in labels
+                if roots[d][label] == d_root
+                and roots[e][label] == base_root
+            ), None)
+            if x5 is None:
+                continue
+            x6 = next((
+                label for label in labels
+                if roots[a][label] == base_root
+                and roots[d][label] == d_root
+            ), None)
+            if x6 is None:
+                continue
+            x9 = next((
+                label for label in labels
+                if roots[c][label] == roots[c][d]
+                and roots[e][label] == base_root
+            ), None)
+            if x9 is None:
+                continue
+            return {
+                "O": o, "A": a, "C": c, "D": d, "E": e,
+                "X5": x5, "X6": x6, "X9": x9,
+            }
+    return None
+
+
 def _formalized_metric_core(
     rows: Sequence[MetricRow], n: int, order: Sequence[int],
     *, include_extended: bool = True, include_ordered: bool = True,
@@ -790,9 +1513,9 @@ def _formalized_metric_core(
 
     Duplicate-center, exact-off-circle, and perpendicular-bisector detection
     are suitable for frequent monotone prefix pruning. ``include_ordered``
-    adds the more expensive cyclic five-point and rhombus scans. At a complete
-    assignment, ``include_extended`` adds seven further proved equality-only
-    Census554 cores.
+    adds the more expensive cyclic five-point, rhombus, and five-row
+    circle-intersection scans. At a complete assignment, ``include_extended``
+    adds the further proved equality-only Census554 cores.
     """
 
     closure = _row_equality_closure(n, rows)
@@ -829,6 +1552,13 @@ def _formalized_metric_core(
                 _convex_rhombus_equilateral_core_from_closure(
                     closure, n, order, index=shared_closure_index()
                 )),
+            (
+                "equality-convex-eight-point-"
+                "five-row-circle-intersection-order",
+                lambda: _five_row_circle_intersection_order_core_from_closure(
+                    closure, n, order, index=shared_closure_index()
+                ),
+            ),
             ("equality-convex-five-point-reverse", lambda:
                 _five_point_bisector_circle_core_from_closure(
                     closure, n, reverse_order, index=shared_closure_index()
@@ -837,6 +1567,13 @@ def _formalized_metric_core(
                 _convex_rhombus_equilateral_core_from_closure(
                     closure, n, reverse_order, index=shared_closure_index()
                 )),
+            (
+                "equality-convex-eight-point-"
+                "five-row-circle-intersection-order-reverse",
+                lambda: _five_row_circle_intersection_order_core_from_closure(
+                    closure, n, reverse_order, index=shared_closure_index()
+                ),
+            ),
         ])
     if include_extended:
         checks[2:2] = [
@@ -862,6 +1599,42 @@ def _formalized_metric_core(
                 )),
             ("equality-six-point-two-pair-collision", lambda:
                 _six_point_two_pair_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-six-point-five-circle-collision-a", lambda:
+                _six_point_five_circle_collision_core_a_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-six-point-five-circle-collision-b", lambda:
+                _six_point_five_circle_collision_core_b_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-six-point-five-circle-collision-c", lambda:
+                _six_point_five_circle_collision_core_c_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-seven-point-five-circle-collision", lambda:
+                _seven_point_five_circle_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-eight-point-five-circle-collision", lambda:
+                _eight_point_five_circle_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-six-point-circle-chain-collision", lambda:
+                _six_point_circle_chain_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-seven-point-six-circle-collision", lambda:
+                _seven_point_six_circle_collision_core_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-seven-point-six-circle-collision-b", lambda:
+                _seven_point_six_circle_collision_core_b_from_closure(
+                    closure, n, index=shared_closure_index()
+                )),
+            ("equality-seven-point-twin-four-circle-collision", lambda:
+                _seven_point_twin_four_circle_collision_core_from_closure(
                     closure, n, index=shared_closure_index()
                 )),
             ("equality-seven-point-orbit-collision", lambda:

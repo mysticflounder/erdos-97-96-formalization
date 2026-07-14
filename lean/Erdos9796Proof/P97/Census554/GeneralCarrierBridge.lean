@@ -5,11 +5,18 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.Census554.EqualityCore
+import Erdos9796Proof.P97.Census554.FiveRowCircleIntersectionOrderCore
 import Erdos9796Proof.P97.Census554.FivePointCollision
 import Erdos9796Proof.P97.Census554.ThreeTriadCollision
 import Erdos9796Proof.P97.Census554.SurplusSourceCollision
 import Erdos9796Proof.P97.Census554.SixRowAnchorCollision
 import Erdos9796Proof.P97.Census554.SixPointTwoPairCollision
+import Erdos9796Proof.P97.Census554.SixPointCircleChainCollision
+import Erdos9796Proof.P97.Census554.SixPointFiveCircleCollisions
+import Erdos9796Proof.P97.Census554.SevenEightPointFiveCircleCollisions
+import Erdos9796Proof.P97.Census554.SevenPointSixCircleCollision
+import Erdos9796Proof.P97.Census554.SevenPointSixCircleCollisionB
+import Erdos9796Proof.P97.Census554.SevenPointTwinFourCircleCollision
 import Erdos9796Proof.P97.Census554.SevenPointOrbitCollision
 import Erdos9796Proof.P97.Census554.SevenPointCircleNetworkCollision
 import Erdos9796Proof.P97.Census554.ConvexFivePointCore
@@ -215,12 +222,15 @@ theorem exactAt_blocker
     z.2 hzRadius
 
 /-- The obstruction families used by the bounded metric-core miner, stated on
-an arbitrary canonical carrier pattern. The seven additional equality-only
+an arbitrary canonical carrier pattern. The additional equality-only
 families reuse generic Census554 collision theorems proved before this bridge.
-The two order-sensitive families use the negative signed-area convention of
+The three order-sensitive families use the negative signed-area convention of
 the live convex boundary enumeration. -/
 def MetricCoreAlternative {A : Finset ℝ²}
     (F : FaithfulCarrierPattern A) : Prop :=
+  Nonempty (SevenPointSixCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (SevenPointSixCircleCollisionCoreB (rowPattern F)) ∨
+  Nonempty (SixPointCircleChainCollisionCore (rowPattern F)) ∨
   Nonempty (DuplicateCenterCore (rowPattern F)) ∨
   (∃ core : ExactOffCircleCore (rowPattern F),
     ExactAt (rowPattern F) (pointOf (A := A)) core.c) ∨
@@ -236,13 +246,26 @@ def MetricCoreAlternative {A : Finset ℝ²}
   (∃ core : ConvexFivePointCore.Core (rowPattern F),
     signedArea2 (pointOf core.a) (pointOf core.x) (pointOf core.b) < 0 ∧
     signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y) < 0) ∨
-  ∃ core : ConvexRhombusCore.Core (rowPattern F),
+  (∃ core : ConvexRhombusCore.Core (rowPattern F),
     signedArea2 (pointOf core.a) (pointOf core.b) (pointOf core.c) < 0 ∧
     signedArea2 (pointOf core.a) (pointOf core.b) (pointOf core.d) < 0 ∧
     signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y) < 0 ∧
     signedArea2 (pointOf core.x) (pointOf core.d) (pointOf core.a) < 0 ∧
     signedArea2 (pointOf core.c) (pointOf core.x) (pointOf core.y) < 0 ∧
-    signedArea2 (pointOf core.x) (pointOf core.y) (pointOf core.d) < 0
+    signedArea2 (pointOf core.x) (pointOf core.y) (pointOf core.d) < 0) ∨
+  Nonempty (SevenPointTwinFourCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreA (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreB (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreC (rowPattern F)) ∨
+  Nonempty (SevenPointFiveCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (EightPointFiveCircleCollisionCore (rowPattern F)) ∨
+  (∃ core : FiveRowCircleIntersectionOrderCore.Core (rowPattern F),
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.C) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.D) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.E) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.E) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.C) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0)
 
 /-- Any arbitrary-cardinality carrier pattern satisfying the metric-core
 alternative is contradictory.  This is the complete generic consumer; a
@@ -253,9 +276,20 @@ theorem false_of_metricCoreAlternative
     (hconv : ConvexIndep A) (hcore : MetricCoreAlternative F) :
     False := by
   have hreal : Realizes (rowPattern F) (pointOf (A := A)) := realizes F
+  rcases hcore with hsevenSixCircle | hcore
+  · rcases hsevenSixCircle with ⟨core⟩
+    exact not_realizes_of_sevenPointSixCircleCollisionCore core ⟨_, hreal⟩
+  rcases hcore with hsevenSixCircleB | hcore
+  · rcases hsevenSixCircleB with ⟨core⟩
+    exact not_realizes_of_sevenPointSixCircleCollisionCoreB core ⟨_, hreal⟩
+  rcases hcore with hsixCircleChain | hcore
+  · rcases hsixCircleChain with ⟨core⟩
+    exact not_realizes_of_sixPointCircleChainCollisionCore core ⟨_, hreal⟩
   rcases hcore with hduplicate | hexact | hequalK4 | hequilateral |
-    hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
-    hcircleNetwork | hperp | hfive | hrhombus
+      hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
+      hcircleNetwork | hperp | hfive | hrhombus | htwinFourCircle |
+      hfiveCircleA | hfiveCircleB | hfiveCircleC | hsevenFiveCircle |
+      heightFiveCircle | hfiveRow
   · rcases hduplicate with ⟨core⟩
     exact not_realizes_of_duplicateCenterCore core ⟨_, hreal⟩
   · rcases hexact with ⟨core, hcoreExact⟩
@@ -284,12 +318,30 @@ theorem false_of_metricCoreAlternative
   · rcases hrhombus with ⟨core, habc, habd, hbcy, hxda, hcxy, hxyd⟩
     exact ConvexRhombusCore.false_of_core_of_neg hreal core
       habc habd hbcy hxda hcxy hxyd
+  · rcases htwinFourCircle with ⟨core⟩
+    exact not_realizes_of_sevenPointTwinFourCircleCollisionCore core ⟨_, hreal⟩
+  · rcases hfiveCircleA with ⟨core⟩
+    exact not_realizes_of_sixPointFiveCircleCollisionCoreA core ⟨_, hreal⟩
+  · rcases hfiveCircleB with ⟨core⟩
+    exact not_realizes_of_sixPointFiveCircleCollisionCoreB core ⟨_, hreal⟩
+  · rcases hfiveCircleC with ⟨core⟩
+    exact not_realizes_of_sixPointFiveCircleCollisionCoreC core ⟨_, hreal⟩
+  · rcases hsevenFiveCircle with ⟨core⟩
+    exact not_realizes_of_sevenPointFiveCircleCollisionCore core ⟨_, hreal⟩
+  · rcases heightFiveCircle with ⟨core⟩
+    exact not_realizes_of_eightPointFiveCircleCollisionCore core ⟨_, hreal⟩
+  · rcases hfiveRow with ⟨core, hOAC, hOAD, hOAE, hODE, hODC, hOEC⟩
+    exact FiveRowCircleIntersectionOrderCore.false_of_core_of_neg
+      hreal core hOAC hOAD hOAE hODE hODC hOEC
 
 /-- Shell-aware form of the metric-core alternative.  Its exact-row branch
 only has to identify the core center as a chosen blocker; exactness is then a
 proved consequence of `CriticalShellSystem`. -/
 def ShellMetricCoreAlternative {A : Finset ℝ²}
     (F : FaithfulCarrierPattern A) (H : CriticalShellSystem A) : Prop :=
+  Nonempty (SevenPointSixCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (SevenPointSixCircleCollisionCoreB (rowPattern F)) ∨
+  Nonempty (SixPointCircleChainCollisionCore (rowPattern F)) ∨
   Nonempty (DuplicateCenterCore (rowPattern F)) ∨
   (∃ (q : ℝ²) (hq : q ∈ A) (core : ExactOffCircleCore (rowPattern F)),
     core.c = blockerLabel H q hq) ∨
@@ -305,13 +357,26 @@ def ShellMetricCoreAlternative {A : Finset ℝ²}
   (∃ core : ConvexFivePointCore.Core (rowPattern F),
     signedArea2 (pointOf core.a) (pointOf core.x) (pointOf core.b) < 0 ∧
     signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y) < 0) ∨
-  ∃ core : ConvexRhombusCore.Core (rowPattern F),
+  (∃ core : ConvexRhombusCore.Core (rowPattern F),
     signedArea2 (pointOf core.a) (pointOf core.b) (pointOf core.c) < 0 ∧
     signedArea2 (pointOf core.a) (pointOf core.b) (pointOf core.d) < 0 ∧
     signedArea2 (pointOf core.b) (pointOf core.c) (pointOf core.y) < 0 ∧
     signedArea2 (pointOf core.x) (pointOf core.d) (pointOf core.a) < 0 ∧
     signedArea2 (pointOf core.c) (pointOf core.x) (pointOf core.y) < 0 ∧
-    signedArea2 (pointOf core.x) (pointOf core.y) (pointOf core.d) < 0
+    signedArea2 (pointOf core.x) (pointOf core.y) (pointOf core.d) < 0) ∨
+  Nonempty (SevenPointTwinFourCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreA (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreB (rowPattern F)) ∨
+  Nonempty (SixPointFiveCircleCollisionCoreC (rowPattern F)) ∨
+  Nonempty (SevenPointFiveCircleCollisionCore (rowPattern F)) ∨
+  Nonempty (EightPointFiveCircleCollisionCore (rowPattern F)) ∨
+  (∃ core : FiveRowCircleIntersectionOrderCore.Core (rowPattern F),
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.C) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.D) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.A) (pointOf core.E) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.E) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.D) (pointOf core.C) < 0 ∧
+    signedArea2 (pointOf core.O) (pointOf core.E) (pointOf core.C) < 0)
 
 /-- A shell-aware core alternative supplies the generic metric-core
 alternative, with exactness discharged by the blocker-row theorem. -/
@@ -320,33 +385,69 @@ theorem metricCoreAlternative_of_shellMetricCoreAlternative
     (H : CriticalShellSystem A)
     (hcore : ShellMetricCoreAlternative F H) :
     MetricCoreAlternative F := by
-  rcases hcore with hduplicate | hexact | hequalK4 | hequilateral |
-    hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
-    hcircleNetwork | hperp | hfive | hrhombus
-  · exact Or.inl hduplicate
-  · rcases hexact with ⟨q, hq, core, hc⟩
-    exact Or.inr <| Or.inl ⟨core, by
-      rw [hc]
-      exact exactAt_blocker F H q hq⟩
-  · exact Or.inr <| Or.inr <| Or.inl hequalK4
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inl hequilateral
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hthreeTriad
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inl hsurplusSource
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inl hsixRow
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inl hsixPoint
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inr <| Or.inl hsevenPoint
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inr <| Or.inr <| Or.inl hcircleNetwork
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hperp
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hfive
-  · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
-      Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr hrhombus
+  rcases hcore with hsevenSixCircle | hcore
+  · exact Or.inl hsevenSixCircle
+  · apply Or.inr
+    rcases hcore with hsevenSixCircleB | hcore
+    · exact Or.inl hsevenSixCircleB
+    · apply Or.inr
+      rcases hcore with hsixCircleChain | hcore
+      · exact Or.inl hsixCircleChain
+      · apply Or.inr
+        rcases hcore with hduplicate | hexact | hequalK4 | hequilateral |
+          hthreeTriad | hsurplusSource | hsixRow | hsixPoint | hsevenPoint |
+          hcircleNetwork | hperp | hfive | hrhombus | htwinFourCircle |
+          hfiveCircleA | hfiveCircleB | hfiveCircleC | hsevenFiveCircle |
+          heightFiveCircle | hfiveRow
+        · exact Or.inl hduplicate
+        · rcases hexact with ⟨q, hq, core, hc⟩
+          exact Or.inr <| Or.inl ⟨core, by
+            rw [hc]
+            exact exactAt_blocker F H q hq⟩
+        · exact Or.inr <| Or.inr <| Or.inl hequalK4
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inl hequilateral
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hthreeTriad
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inl hsurplusSource
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inl hsixRow
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inl hsixPoint
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inl hsevenPoint
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inl hcircleNetwork
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hperp
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hfive
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inl hrhombus
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inl htwinFourCircle
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inl hfiveCircleA
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inl hfiveCircleB
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inl hfiveCircleC
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inl hsevenFiveCircle
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inl heightFiveCircle
+        · exact Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr <| Or.inr <| Or.inr <| Or.inr <|
+            Or.inr <| Or.inr hfiveRow
 
 /-- Complete shell-aware consumer for the arbitrary-cardinality metric-core
 route. -/

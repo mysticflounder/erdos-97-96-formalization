@@ -1,0 +1,236 @@
+{
+  "epistemic_status": "NUMERICAL_DISCOVERY_ONLY_NOT_A_PROOF",
+  "input": "scratch/atail-force/common_system_metric_probe.json",
+  "input_sha256": "5cdb8883bf02ccde64b6b9ba0bfe34786f2a7158efb29ba0d4e045767bdf1940",
+  "mec_acceptance_tolerance": 1e-08,
+  "multistart_budget": 16,
+  "numerical_input": "scratch/atail-force/common_system_residual_optimizer.json",
+  "numerical_input_sha256": "b44adb6a8c0c08a81f8e4c9e6a2c09589223acff2cc96d52cf0b2727afd6043c",
+  "required_convex_margin": 0.001,
+  "required_moser_orientation_margin": 0.0001,
+  "required_pairwise_squared_distance": 0.001,
+  "result": {
+    "attempt_summaries": [
+      {
+        "accepted": false,
+        "iterations": 17,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 0
+      },
+      {
+        "accepted": false,
+        "iterations": 25,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 1
+      },
+      {
+        "accepted": false,
+        "iterations": 8,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 2
+      },
+      {
+        "accepted": false,
+        "iterations": 49,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 3
+      },
+      {
+        "accepted": false,
+        "iterations": 57,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 4
+      },
+      {
+        "accepted": false,
+        "iterations": 45,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 5
+      },
+      {
+        "accepted": false,
+        "iterations": 5,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 6
+      },
+      {
+        "accepted": false,
+        "iterations": 181,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 7
+      },
+      {
+        "accepted": false,
+        "iterations": 52,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 8
+      },
+      {
+        "accepted": false,
+        "iterations": 53,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 9
+      },
+      {
+        "accepted": false,
+        "iterations": 32,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 10
+      },
+      {
+        "accepted": false,
+        "iterations": 39,
+        "optimizer_message": "Inequality constraints incompatible",
+        "optimizer_status": 4,
+        "optimizer_success": false,
+        "start": 11
+      },
+      {
+        "accepted": false,
+        "iterations": 28,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 12
+      },
+      {
+        "accepted": false,
+        "iterations": 22,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 13
+      },
+      {
+        "accepted": false,
+        "iterations": 39,
+        "optimizer_message": "Inequality constraints incompatible",
+        "optimizer_status": 4,
+        "optimizer_success": false,
+        "start": 14
+      },
+      {
+        "accepted": false,
+        "iterations": 17,
+        "optimizer_message": "Inequality constraints incompatible",
+        "optimizer_status": 4,
+        "optimizer_success": false,
+        "start": 15
+      }
+    ],
+    "attempts_run": 16,
+    "best_attempt": {
+      "accepted": false,
+      "diagnostics": {
+        "coordinates": {
+          "0": [
+            0.0,
+            0.0
+          ],
+          "1": [
+            1.0,
+            0.0
+          ],
+          "10": [
+            0.5763558335958896,
+            -0.21654173820345038
+          ],
+          "11": [
+            0.726694757055379,
+            -0.26150745334401887
+          ],
+          "2": [
+            0.5194804126704439,
+            0.8639485359814365
+          ],
+          "3": [
+            0.6515107393755215,
+            0.7812385810691659
+          ],
+          "4": [
+            0.5564702102551788,
+            0.8475863773748542
+          ],
+          "5": [
+            0.4914476834890824,
+            0.8493141212472125
+          ],
+          "6": [
+            0.15232325468859526,
+            0.5403003279469288
+          ],
+          "7": [
+            -0.021676424584782826,
+            0.041131323104240294
+          ],
+          "8": [
+            0.053138622445915114,
+            -0.02252358412271776
+          ],
+          "9": [
+            0.2937682699552295,
+            -0.10830703239672594
+          ]
+        },
+        "max_abs_row_equality_residual": 0.05817196472630526,
+        "min_convex_margin": -0.0018031434580998845,
+        "min_exact_squared_distance_gap": 0.0162669719727222,
+        "min_mec_disk_margin": -0.02014833546295547,
+        "min_moser_constraint_margin": 0.48051958732955613,
+        "min_pairwise_squared_distance": 0.0009999999999688268,
+        "moser_circumcenter": [
+          0.5,
+          0.2875093472656528
+        ],
+        "moser_circumradius_squared": 0.33266162476512173
+      },
+      "iterations": 17,
+      "optimizer_message": "Inequality constraints incompatible",
+      "optimizer_status": 4,
+      "optimizer_success": false,
+      "start": 15
+    },
+    "status": "NO_NUMERICAL_WITNESS_WITHIN_MULTISTART_BUDGET"
+  },
+  "schema": "p97-atail-common-system-mec-numerical-probe-v1",
+  "scope": {
+    "all_center_K4": false,
+    "mec_circumdisk": true,
+    "moser_triangle_labels": [
+      0,
+      1,
+      2
+    ],
+    "nonobtuse_moser_triangle": true,
+    "producer_proved": false,
+    "profile": [
+      4,
+      5,
+      6
+    ],
+    "strict_convexity": true,
+    "target_faithful": false
+  }
+}

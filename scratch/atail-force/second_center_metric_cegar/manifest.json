@@ -1,0 +1,36 @@
+{
+  "schema": "p97-atail-second-center-metric-cegar-manifest-v1",
+  "scope": {
+    "cardinality": 12,
+    "profiles": [[4, 5, 6], [5, 5, 5]],
+    "placement_coverage": "the same one fixed named-label placement per profile used by ../second_center_query",
+    "search": "incidence CEGAR with exact equality-ideal no-good cuts",
+    "target_faithful": false
+  },
+  "encoded": [
+    "all incidence, Q-C-negation, critical-blocker-system, cap-profile, and named-label constraints of ../second_center_query",
+    "all squared-distance equalities of every proposed supplied/global row",
+    "the normalized coordinate gauge point 0=(0,0), point 1=(1,0)",
+    "monotone pruning by row subsets whose equality ideal is independently cross-checked UNIT",
+    "bounded deterministic incidence DFS with a node cap and a fixed CEGAR round cap"
+  ],
+  "omitted_fail_closed": [
+    "all other named-label placements and orbit representatives",
+    "the separately owned card-11 profile",
+    "off-radius disequalities of exact rows",
+    "pairwise distinctness except for the normalized 0/1 gauge",
+    "strict convexity, orientation inequalities, and geometric cap order beyond the fixed cyclic shadow",
+    "minimum-enclosing-circle, non-obtuse, circumscribed-Moser, and unencoded liveData geometry",
+    "arbitrary equal-distance pairs not represented by proposed rows",
+    "a real witness when an equality ideal is merely NONUNIT over the complex variety",
+    "a replayed Nullstellensatz certificate or independently certified finite-search proof",
+    "a same-cap producer theorem or Lean proof"
+  ],
+  "verdict_policy": {
+    "exhausted": "EXHAUSTED_FIXED_PLACEMENT_FINITE_SHADOW_BY_CROSSCHECKED_UNIT_CUTS_ONLY",
+    "nonunit": "FOUND_COMPLEX_NONUNIT_EQUALITY_SHADOW_REAL_FEASIBILITY_UNDECIDED",
+    "node_or_round_budget": "STOPPED_AT_DECLARED_BUDGET_UNDECIDED",
+    "oracle_timeout_error_or_disagreement": "UNDECIDED_FAIL_CLOSED",
+    "note": "No outcome is exhaustive over card 12, target-faithful, or a proof of the producer."
+  }
+}

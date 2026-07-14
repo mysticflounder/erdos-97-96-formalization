@@ -1,0 +1,621 @@
+#!/usr/bin/env python3
+"""Narrow finite-shadow search for the exact-card-five interior branch.
+
+This is a theorem-discovery search, not a proof checker.  It adds one exact
+five-point first-apex class to the existing cap/incidence row model, retains
+all three points in the strict interior of the first non-surplus cap, and
+asks whether a total deletion-critical four-row selector can evade
+``CardFiveCapOrMutualFields`` on every surviving interior pair.
+
+The first apex is omitted from the exact-four global rows: its unique K4
+radius is the pinned five-point class.  Every other carrier center receives
+one exact four-point class from the already checked local candidate bank.
+"""
+
+from __future__ import annotations
+
+import argparse
+import importlib.util
+import itertools
+import json
+import sys
+import subprocess
+from pathlib import Path
+from collections import Counter, defaultdict
+from dataclasses import dataclass
+from typing import Mapping, Sequence
+
+from census.global_confinement import shadow
+from census.global_confinement import metric_realizability_probe as formal_metric
+from census.multi_center import multi_center_census as mc
+
+
+PROFILES = ((5, 5, 4), (6, 5, 4), (5, 5, 5))
+FIRST_APEX = 1
+SECOND_APEX = 2
+MAX_NODES_PER_CARD_FIVE_ROW = 500_000
+ROOT = Path(__file__).resolve().parents[3]
+METRIC_ORACLE_PATH = (
+    ROOT / "scratch/atail-force/second_center_metric_oracle/oracle.py"
+)
+
+
+@dataclass(frozen=True)
+class Witness:
+    profile: tuple[int, int, int]
+    card_five_support: frozenset[int]
+    rows: Mapping[int, frozenset[int]]
+    survivor_sources: tuple[int, ...]
+    blocker_map: Mapping[int, int]
+    nodes: int
+
+
+def load_metric_oracle():
+    spec = importlib.util.spec_from_file_location(
+        "card_five_interior_metric_oracle", METRIC_ORACLE_PATH
+    )
+    require(spec is not None and spec.loader is not None,
+            "metric oracle import failed")
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def card_five_candidates(frame: mc.Frame) -> tuple[frozenset[int], ...]:
+    """All exact-card-five rows certified by the live adjacent one-hit bound."""
+
+    own_interior = frozenset(frame.ints["O1"])
+    require(len(own_interior) == 3, "the searched O1 cap must have card five")
+    candidates = []
+    for support_tuple in itertools.combinations(
+        (point for point in range(frame.n) if point != FIRST_APEX), 5
+    ):
+        support = frozenset(support_tuple)
+        if not own_interior <= support:
+            continue
+        if not mc.h1_moser_ok(frame, FIRST_APEX, support):
+            continue
+        candidates.append(support)
+    return tuple(candidates)
+
+
+def pseudo_compatible(
+    frame: mc.Frame, pseudo: shadow.ClassRow, row: shadow.ClassRow
+) -> bool:
+    """Pairwise circle/cyclic constraints between the five-row and a K4 row."""
+
+    if pseudo.center == row.center:
+        return pseudo.support.isdisjoint(row.support)
+    if len(pseudo.support & row.support) > 2:
+        return False
+    if row.center in mc.MOSER_SET:
+        if not mc.q3.joint_ok(
+            pseudo.center,
+            pseudo.support,
+            row.center,
+            row.support,
+            frame.caps_int,
+        ):
+            return False
+    return shadow.cross_separation_ok(shadow.hull_order(frame), pseudo, row)
+
+
+def pseudo_pair_bound_ok(
+    pseudo: shadow.ClassRow, rows: Sequence[shadow.ClassRow]
+) -> bool:
+    """No point pair has three distinct bisector centers including the apex."""
+
+    for pair in itertools.combinations(sorted(pseudo.support), 2):
+        centers = {
+            row.center for row in rows if set(pair) <= row.support
+        }
+        centers.add(pseudo.center)
+        if len(centers) > 2:
+            return False
+    return True
+
+
+def blocker_choices(
+    frame: mc.Frame,
+    rows: Mapping[int, frozenset[int]],
+    pseudo: shadow.ClassRow,
+) -> tuple[dict[int, tuple[int, ...]], tuple[int, ...]] | None:
+    """Find retained interior survivors and eligible rows at their blockers."""
+
+    interior = tuple(frame.ints["O1"])
+    second_row = rows[SECOND_APEX]
+    survivors = tuple(source for source in interior if source not in second_row)
+    if len(survivors) < 2:
+        return None
+    require(set(survivors) <= pseudo.support, "an interior source left the five-row")
+    eligible = {
+        source: tuple(
+            center
+            for center, support in sorted(rows.items())
+            if center != source and source in support
+        )
+        for source in survivors
+    }
+    if any(not centers for centers in eligible.values()):
+        return None
+    return eligible, survivors
+
+
+def target_negating_blockers(
+    frame: mc.Frame,
+    rows: Mapping[int, frozenset[int]],
+    eligible: Mapping[int, tuple[int, ...]],
+    survivors: tuple[int, ...],
+) -> dict[int, int] | None:
+    """Choose distinct survivor blockers evading every accepted card-five arm."""
+
+    surplus = frame.S
+    for chosen in itertools.product(*(eligible[source] for source in survivors)):
+        if len(set(chosen)) != len(chosen):
+            continue
+        survivor_blockers = dict(zip(survivors, chosen, strict=True))
+        target_hit = False
+        for q, w in itertools.combinations(survivors, 2):
+            bq = survivor_blockers[q]
+            bw = survivor_blockers[w]
+            cross_q = w in rows[bq]
+            cross_w = q in rows[bw]
+            if (
+                (cross_q and bq in surplus)
+                or (cross_w and bw in surplus)
+                or (cross_q and cross_w)
+            ):
+                target_hit = True
+                break
+        if target_hit:
+            continue
+        return survivor_blockers
+    return None
+
+
+def solve_card_five_row(
+    frame: mc.Frame,
+    candidates: Mapping[int, Sequence[frozenset[int]]],
+    support: frozenset[int],
+    *,
+    bank_negative: bool,
+) -> tuple[dict[str, object], int, Counter[str]]:
+    pseudo = shadow.ClassRow(
+        "first-apex-card-five", FIRST_APEX, support, exact=True
+    )
+    choice_rows = tuple(
+        shadow.ChoiceRow(
+            f"global:{center}",
+            tuple(
+                shadow.RowChoice(center, candidate)
+                for candidate in candidates[center]
+            ),
+            exact=True,
+        )
+        for center in range(frame.n)
+        if center != FIRST_APEX
+    )
+
+    result_payload: dict[str, object] = {}
+    rejected_bank_cores: Counter[str] = Counter()
+
+    def prefix_ok(rows: Sequence[shadow.ClassRow]) -> bool:
+        return (
+            all(pseudo_compatible(frame, pseudo, row) for row in rows)
+            and pseudo_pair_bound_ok(pseudo, rows)
+        )
+
+    def complete_ok(rows_seq: Sequence[shadow.ClassRow]) -> bool:
+        rows = {row.center: row.support for row in rows_seq}
+        require(len(rows) == frame.n - 1, "global row center repeated")
+        boundary = blocker_choices(frame, rows, pseudo)
+        if boundary is None:
+            return False
+        eligible, survivors = boundary
+        blocker_map = target_negating_blockers(
+            frame, rows, eligible, survivors
+        )
+        if blocker_map is None:
+            return False
+        if bank_negative:
+            metric_rows = (
+                formal_metric.MetricRow(
+                    pseudo.center, tuple(sorted(pseudo.support)), exact=True
+                ),
+                *(formal_metric.MetricRow(
+                    row.center, tuple(sorted(row.support)), exact=True
+                ) for row in rows_seq),
+            )
+            detection = formal_metric._formalized_metric_core(
+                metric_rows,
+                frame.n,
+                shadow.hull_order(frame),
+                include_extended=True,
+                include_ordered=True,
+            )
+            if detection is not None:
+                rejected_bank_cores[
+                    json.dumps(detection, sort_keys=True, separators=(",", ":"))
+                ] += 1
+                return False
+        result_payload.update(
+            rows=rows,
+            survivor_sources=survivors,
+            blocker_map=blocker_map,
+        )
+        return True
+
+    result = shadow.solve_choice_rows(
+        frame,
+        set(mc.PROVEN_ROWS),
+        fixed_rows=(),
+        choice_rows=choice_rows,
+        max_nodes=MAX_NODES_PER_CARD_FIVE_ROW,
+        want_assignment=True,
+        prefix_compatible=prefix_ok,
+        complete_compatible=complete_ok,
+    )
+    if result["status"] != "SAT":
+        return {}, int(result["nodes"]), rejected_bank_cores
+    require(result_payload, "SAT assignment did not retain its target audit")
+    return result_payload, int(result["nodes"]), rejected_bank_cores
+
+
+def validate_witness(witness: Witness) -> None:
+    frame = mc.build_frame(witness.profile)
+    pseudo = shadow.ClassRow(
+        "first-apex-card-five",
+        FIRST_APEX,
+        witness.card_five_support,
+        exact=True,
+    )
+    require(len(pseudo.support) == 5, "first-apex row is not card five")
+    require(
+        frozenset(frame.ints["O1"]) <= pseudo.support,
+        "strict O1 interior is not contained in the first-apex class",
+    )
+    require(
+        mc.h1_moser_ok(frame, FIRST_APEX, pseudo.support),
+        "first-apex row violates adjacent one-hit",
+    )
+    require(set(witness.rows) == set(range(frame.n)) - {FIRST_APEX},
+            "wrong global-row center set")
+    rows_seq = tuple(
+        shadow.ClassRow(f"global:{center}", center, support, exact=True)
+        for center, support in sorted(witness.rows.items())
+    )
+    ok, reason = shadow.verify_assignment(
+        frame, set(mc.PROVEN_ROWS), rows_seq
+    )
+    require(ok, f"global rows failed independent replay: {reason}")
+    require(all(pseudo_compatible(frame, pseudo, row) for row in rows_seq),
+            "pseudo-row pairwise replay failed")
+    require(pseudo_pair_bound_ok(pseudo, rows_seq),
+            "pseudo-row bisector-center bound failed")
+    require(len(witness.survivor_sources) >= 2, "fewer than two survivors")
+    require(len({witness.blocker_map[q] for q in witness.survivor_sources})
+            == len(witness.survivor_sources),
+            "survivor blockers are not distinct")
+    require(set(witness.blocker_map) == set(witness.survivor_sources),
+            "blocker map contains non-survivor sources")
+    for source, center in witness.blocker_map.items():
+        require(center != source, "a source blocks itself")
+        require(source in witness.rows[center], "source absent from blocker row")
+    for q, w in itertools.combinations(witness.survivor_sources, 2):
+        bq = witness.blocker_map[q]
+        bw = witness.blocker_map[w]
+        cross_q = w in witness.rows[bq]
+        cross_w = q in witness.rows[bw]
+        require(
+            not (
+                (cross_q and bq in frame.S)
+                or (cross_w and bw in frame.S)
+                or (cross_q and cross_w)
+            ),
+            "an accepted CardFiveCapOrMutualFields arm survived",
+        )
+
+
+def summarize_rejected_bank_cores(
+    rejected: Counter[str],
+) -> dict[str, object]:
+    """Keep deterministic solver output small without discarding cut provenance."""
+
+    by_stage: Counter[str] = Counter()
+    for encoded, count in rejected.items():
+        by_stage[json.loads(encoded)["stage"]] += count
+    summary: dict[str, object] = {
+        "total_assignments": sum(rejected.values()),
+        "distinct_core_instances": len(rejected),
+        "by_stage": dict(sorted(by_stage.items())),
+    }
+    if len(rejected) <= 8:
+        summary["instances"] = {
+            key: count for key, count in sorted(rejected.items())
+        }
+    return summary
+
+
+def search_profile(
+    profile: tuple[int, int, int], *, bank_negative: bool
+) -> tuple[Witness | None, dict[str, object]]:
+    frame, candidates = mc.cached_candidate_lists(profile, set(mc.PROVEN_ROWS))
+    require(candidates is not None, "candidate bank unexpectedly empty")
+    tried = 0
+    total_nodes = 0
+    node_caps = 0
+    rejected_bank_cores: Counter[str] = Counter()
+    for support in card_five_candidates(frame):
+        tried += 1
+        payload, nodes, rejected = solve_card_five_row(
+            frame, candidates, support, bank_negative=bank_negative
+        )
+        rejected_bank_cores.update(rejected)
+        total_nodes += nodes
+        if not payload:
+            if nodes > MAX_NODES_PER_CARD_FIVE_ROW:
+                node_caps += 1
+            continue
+        witness = Witness(
+            profile=profile,
+            card_five_support=support,
+            rows=payload["rows"],
+            survivor_sources=payload["survivor_sources"],
+            blocker_map=payload["blocker_map"],
+            nodes=nodes,
+        )
+        validate_witness(witness)
+        return witness, {
+            "card_five_rows_tried": tried,
+            "total_nodes": total_nodes,
+            "node_caps": node_caps,
+            "rejected_formalized_bank_cores":
+                summarize_rejected_bank_cores(rejected_bank_cores),
+        }
+    return None, {
+        "card_five_rows_tried": tried,
+        "total_nodes": total_nodes,
+        "node_caps": node_caps,
+        "rejected_formalized_bank_cores":
+            summarize_rejected_bank_cores(rejected_bank_cores),
+    }
+
+
+def encode_witness(
+    witness: Witness | None, stats: Mapping[str, object]
+) -> dict[str, object]:
+    if witness is None:
+        exhaustive = int(stats["node_caps"]) == 0
+        return {
+            "status": (
+                "EXHAUSTIVE_UNSAT_IN_FINITE_SHADOW"
+                if exhaustive
+                else "NO_WITNESS_WITHIN_BOUNDED_FINITE_SHADOW"
+            ),
+            "stats": dict(stats),
+        }
+    frame = mc.build_frame(witness.profile)
+    survivor_audit = []
+    for q, w in itertools.combinations(witness.survivor_sources, 2):
+        bq = witness.blocker_map[q]
+        bw = witness.blocker_map[w]
+        survivor_audit.append({
+            "pair": [q, w],
+            "blockers": [bq, bw],
+            "cross_memberships": [w in witness.rows[bq], q in witness.rows[bw]],
+            "blockers_in_surplus": [bq in frame.S, bw in frame.S],
+            "accepted_target": False,
+        })
+    return {
+        "status": "SAT_TARGET_NEGATING_FINITE_SHADOW_ONLY",
+        "profile": list(witness.profile),
+        "card_five_support": sorted(witness.card_five_support),
+        "strict_opp1_interior": list(frame.ints["O1"]),
+        "survivor_sources": list(witness.survivor_sources),
+        "blocker_map": {
+            str(source): center
+            for source, center in sorted(witness.blocker_map.items())
+        },
+        "rows": {
+            str(center): sorted(support)
+            for center, support in sorted(witness.rows.items())
+        },
+        "survivor_pair_audit": survivor_audit,
+        "nodes_for_witness_row": witness.nodes,
+        "stats": dict(stats),
+        "trust_boundary": (
+            "finite cap/incidence/equality shadow only; omits Euclidean coordinate "
+            "realizability, MEC predicates, and the coincident-blocker residual K4 packet"
+        ),
+    }
+
+
+def metric_audit(witness: Witness, metric_oracle) -> dict[str, object]:
+    """Cross-check the pinned equality ideal in Singular and two msolve orders."""
+
+    rows = [
+        metric_oracle.MetricRow(
+            FIRST_APEX,
+            tuple(sorted(witness.card_five_support)),
+            exact=False,
+        )
+    ]
+    rows.extend(
+        metric_oracle.MetricRow(
+            center, tuple(sorted(support)), exact=False
+        )
+        for center, support in sorted(witness.rows.items())
+    )
+    n = mc.build_frame(witness.profile).n
+    result = metric_oracle.crosscheck_system(
+        n,
+        tuple(rows),
+        budget=metric_oracle.CaseBudget(seconds=45.0),
+    )
+    audit = {
+        "status": result["status"],
+        "row_count": len(rows),
+        "equality_count": sum(len(row.support) - 1 for row in rows),
+        "expanded_polynomial_sha256": metric_oracle.canonical_sha256(
+            list(metric_oracle.serialized_system(
+                n, tuple(rows)
+            ))
+        ),
+        "oracles": result,
+        "interpretation": (
+            "UNIT excludes this fixed normalized complex equality shadow; "
+            "NONUNIT is not a real Euclidean witness"
+        ),
+    }
+    audit["formalized_metric_core_scan"] = formal_metric._formalized_metric_core(
+        tuple(rows),
+        n,
+        shadow.hull_order(mc.build_frame(witness.profile)),
+        include_extended=True,
+        include_ordered=True,
+    )
+    if result["status"] == "CROSSCHECKED_UNIT":
+        deletion = metric_oracle.bounded_row_deletion(
+            n,
+            tuple(rows),
+            budget=metric_oracle.CaseBudget(seconds=45.0),
+        )
+        retained = tuple(
+            metric_oracle.row_from_dict(row)
+            for row in deletion["retained_rows"]
+        )
+        deletion["retained_core_crosscheck"] = metric_oracle.crosscheck_system(
+            n,
+            retained,
+            budget=metric_oracle.CaseBudget(seconds=45.0),
+        )
+        audit["bounded_row_deletion"] = deletion
+    elif result["status"] == "CROSSCHECKED_NONUNIT":
+        audit["singular_direct_membership"] = singular_direct_membership_audit(
+            n, tuple(rows), metric_oracle
+        )
+    return audit
+
+
+def singular_direct_membership_audit(n: int, rows, metric_oracle) -> dict[str, object]:
+    """Check dimension and direct ideal membership of every squared distance."""
+
+    variables = tuple(str(variable) for variable in metric_oracle.variable_symbols(n))
+    polynomials = metric_oracle.serialized_system(n, rows)
+    points = metric_oracle.coordinate_symbols(n)
+    sympy_variables = metric_oracle.variable_symbols(n)
+    pair_polynomials = {}
+    for left, right in itertools.combinations(range(n), 2):
+        poly = metric_oracle.sp.Poly(
+            metric_oracle.squared_distance(points, left, right),
+            *sympy_variables,
+            domain=metric_oracle.sp.QQ,
+        )
+        pair_polynomials[(left, right)] = metric_oracle.serialize_poly(poly)
+    lines = [
+        f"ring R=0,({','.join(variables)}),dp;",
+        f"ideal I={','.join(polynomials)};",
+        "ideal G=std(I);",
+        'print("DIM_BEGIN");',
+        "print(dim(G));",
+        'print("DIM_END");',
+        f"ideal P={','.join(pair_polynomials.values())};",
+        "ideal Z=reduce(P,G);",
+    ]
+    for index, (left, right) in enumerate(pair_polynomials, start=1):
+        lines.append(
+            f'if (Z[{index}]==0) '
+            f'{{ print("FORCED_ZERO_{left}_{right}"); }}'
+        )
+    lines.append("quit;")
+    try:
+        process = subprocess.run(
+            ["Singular", "-q"],
+            input="\n".join(lines) + "\n",
+            capture_output=True,
+            text=True,
+            timeout=30.0,
+            check=False,
+        )
+    except subprocess.TimeoutExpired:
+        return {
+            "status": "TIMEOUT_NO_VERDICT",
+            "timeout_seconds": 30,
+            "verdict_scope": "no membership or dimension claim",
+        }
+    require(process.returncode == 0,
+            f"Singular membership audit failed: {process.stderr.strip()}")
+    output = process.stdout.splitlines()
+    begin = output.index("DIM_BEGIN")
+    end = output.index("DIM_END")
+    require(end == begin + 2, "malformed Singular dimension output")
+    forced = []
+    for line in output:
+        if not line.startswith("FORCED_ZERO_"):
+            continue
+        _, _, left, right = line.split("_")
+        forced.append([int(left), int(right)])
+    return {
+        "status": "COMPLETED",
+        "ideal_dimension": int(output[begin + 1]),
+        "forced_zero_squared_distance_pairs": forced,
+        "verdict_scope": (
+            "direct membership in the generated equality ideal; a listed pair "
+            "collapses in every complex realization of this fixed shadow"
+        ),
+    }
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--profile", choices=["554", "654", "555"])
+    parser.add_argument("--check", action="store_true")
+    parser.add_argument("--metric", action="store_true")
+    parser.add_argument(
+        "--bank-negative",
+        action="store_true",
+        help="reject every complete assignment hit by the current formalized metric-core scanner",
+    )
+    args = parser.parse_args()
+    profile_map = {"554": (5, 5, 4), "654": (6, 5, 4), "555": (5, 5, 5)}
+    profiles = (profile_map[args.profile],) if args.profile else PROFILES
+    metric_oracle = None
+    smoke = None
+    if args.metric:
+        metric_oracle = load_metric_oracle()
+        smoke = metric_oracle.smoke_gates()
+    reports = []
+    for profile in profiles:
+        witness, stats = search_profile(
+            profile, bank_negative=args.bank_negative
+        )
+        report = encode_witness(witness, stats)
+        report["requested_profile"] = list(profile)
+        report["formalized_bank_negative_required"] = args.bank_negative
+        if args.metric and witness is not None:
+            report["metric_equality_audit"] = metric_audit(
+                witness, metric_oracle
+            )
+        reports.append(report)
+    if args.check:
+        for report in reports:
+            require(report["status"] in {
+                "SAT_TARGET_NEGATING_FINITE_SHADOW_ONLY",
+                "EXHAUSTIVE_UNSAT_IN_FINITE_SHADOW",
+                "NO_WITNESS_WITHIN_BOUNDED_FINITE_SHADOW",
+            }, "fail-closed status drift")
+    print(json.dumps({
+        "schema": "p97-atail-card-five-interior-shadow-search-v1",
+        "metric_smoke_gates": smoke,
+        "reports": reports,
+    }, indent=2, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

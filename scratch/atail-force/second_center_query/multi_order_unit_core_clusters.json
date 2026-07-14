@@ -1,0 +1,1642 @@
+{
+  "clusters": [
+    {
+      "canonical_sha256": "064369cae308c2f0d221cb29c9382e5974397e1ea158aa0f341b8bf6b1526918",
+      "members": [
+        {
+          "core_index": 2,
+          "row_count": 6,
+          "shard_index": 2
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "0e577ddca087b7f4c96a296d221ce6b736dfd8c5b3a9be347785206a972a7129",
+      "members": [
+        {
+          "core_index": 4,
+          "row_count": 7,
+          "shard_index": 3
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "1cadc3611b297166354a9635556346125d602b279579db30eb8c66aa8779c437",
+      "members": [
+        {
+          "core_index": 1,
+          "row_count": 6,
+          "shard_index": 2
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "20c398cfce03357e45ac4e66ba783f95425177fec46e07c2f8afc70296decda0",
+      "members": [
+        {
+          "core_index": 2,
+          "row_count": 6,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "2f661fedd11c69c5fea4afdbcb16be39c8654a03ddd38f13fab6d9f909374777",
+      "members": [
+        {
+          "core_index": 0,
+          "row_count": 5,
+          "shard_index": 2
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "39742400d647a42c93a3bed3b4eceaec96bab73f970572a9166d89b667e8ef7d",
+      "members": [
+        {
+          "core_index": 1,
+          "row_count": 5,
+          "shard_index": 3
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "3a7260bd28b52be0aeb66b59dcc6d6924159c6481a712602efd45f4c480f672a",
+      "members": [
+        {
+          "core_index": 0,
+          "row_count": 5,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "44bf472e585fa4f6012e91ea6bfe19ff02508bab64f86993472c3765270b6399",
+      "members": [
+        {
+          "core_index": 3,
+          "row_count": 6,
+          "shard_index": 2
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "6e3016748b922370737a9304c36de953a464a3c53f7ef1e0ccee301bfe699024",
+      "members": [
+        {
+          "core_index": 3,
+          "row_count": 6,
+          "shard_index": 3
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "755dc1da8a4e63e1f88d73b2b021d82292c1df84e9c12ab8c5ba14cbcb3984c8",
+      "members": [
+        {
+          "core_index": 4,
+          "row_count": 8,
+          "shard_index": 2
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "79f1dc2600af54ba5287eca2e2f8a77cac92bac1056a1d61453f5ec3b45ad694",
+      "members": [
+        {
+          "core_index": 2,
+          "row_count": 6,
+          "shard_index": 3
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "7eee163face0852ea20f0fecf2f5d414e71c81cac465446206f9b969d0ad870d",
+      "members": [
+        {
+          "core_index": 3,
+          "row_count": 7,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "aa34d5880e721b4b35f738d752b96aba9f6824c046ffcc914878340f3a98b6cc",
+      "members": [
+        {
+          "core_index": 4,
+          "row_count": 7,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "d106d524666e238f685853e5323c495cb1d8679fb2f92facf4befba9ddcc66be",
+      "members": [
+        {
+          "core_index": 1,
+          "row_count": 6,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "e246c1156b4cffb0b88ffe78325dc1840e963a2ef01078f429c444d28ad3d23b",
+      "members": [
+        {
+          "core_index": 5,
+          "row_count": 9,
+          "shard_index": 6
+        }
+      ]
+    },
+    {
+      "canonical_sha256": "e96bac3f0d81cb3589c1ed052b1a3401ba2d95beef66991aa0ae41ce34dfa73c",
+      "members": [
+        {
+          "core_index": 0,
+          "row_count": 5,
+          "shard_index": 3
+        }
+      ]
+    }
+  ],
+  "core_count": 16,
+  "cores": [
+    {
+      "core_index": 0,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:5,7,8,10",
+          "1:0,3,6,9",
+          "3:0,2,7,9",
+          "8:1,3,4,7",
+          "9:0,1,8,10"
+        ],
+        "canonical_sha256": "2f661fedd11c69c5fea4afdbcb16be39c8654a03ddd38f13fab6d9f909374777",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "1b3fd90e2f9858ba67e4bb2cb005a8e923ef62e3b18da4486d95c380e45af33d"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "4:2,7,9,10",
+          "5:0,4,7,8",
+          "6:3,4,5,8",
+          "8:2,4,6,9",
+          "9:1,5,6,7"
+        ],
+        "canonical_sha256": "98c1e2f8e1e6511b6b8f577aa1d455fce7c6d0c0e3de3a6803edfe9f4d9d98df",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "ae5e97a0a5340818638c6989977f79cd52f0263b886b8da64a5a286cf59445a2"
+      },
+      "row_count": 5,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "core_index": 1,
+      "free_canonical": {
+        "canonical_rows": [
+          "11:3,7,9,10",
+          "2:0,4,7,11",
+          "3:1,5,7,8",
+          "5:2,3,7,11",
+          "6:2,4,5,9",
+          "8:5,6,9,11"
+        ],
+        "canonical_sha256": "1cadc3611b297166354a9635556346125d602b279579db30eb8c66aa8779c437",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "75b92718f8aa9450702383f25af407ee680321ec56a1324b08be9815d501f36f"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "10:3,5,8,11",
+          "4:0,1,6,11",
+          "5:0,4,6,8",
+          "6:0,2,5,9",
+          "8:0,3,4,7",
+          "9:4,5,10,11"
+        ],
+        "canonical_sha256": "c00e49637cdc40a106c41371ff6432bb06972439fb8076e5fe1131ffdfdc035e",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d82b19d1b40084c80e2865a449b84778ee8978b77fc4208ea483c214a71964e9"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "core_index": 2,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:1,5,6,10",
+          "3:0,7,8,9",
+          "6:2,3,5,8",
+          "7:0,1,2,9",
+          "8:0,4,6,7",
+          "9:0,3,5,10"
+        ],
+        "canonical_sha256": "064369cae308c2f0d221cb29c9382e5974397e1ea158aa0f341b8bf6b1526918",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "0682c28f220607ef6ecb13c2899dc79efc7d6f2025141d491fa09184fe0aabbc"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "1:0,3,5,6",
+          "3:1,5,7,8",
+          "5:0,2,6,9",
+          "7:4,5,8,9",
+          "8:1,2,5,10",
+          "9:0,3,7,10"
+        ],
+        "canonical_sha256": "942f7dbd1951387c313bd962dfe5fc0d6a3b44b679cf71da0fd7227d413fb3d6",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "0f7443229caef5698e524aa1ed18516cef8a327f755075f740ca711ecebc4e9e"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "core_index": 3,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:4,6,10,11",
+          "10:0,2,5,6",
+          "11:1,3,6,10",
+          "2:3,6,8,9",
+          "4:6,7,9,11",
+          "7:0,2,3,4"
+        ],
+        "canonical_sha256": "44bf472e585fa4f6012e91ea6bfe19ff02508bab64f86993472c3765270b6399",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "368dc65dc1f4f41655cae401cbc65cc595e63e0ab8d9437fa26646066a59daca"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "11:1,8,9,10",
+          "1:0,2,6,9",
+          "2:3,4,7,9",
+          "3:0,5,9,10",
+          "4:1,2,9,11",
+          "8:0,3,4,11"
+        ],
+        "canonical_sha256": "d292298c5d749137686e3fd7b3d6e3ae53b4842d6415ac7367d31217cdabad42",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "cab16bfa368054e44bdd7a77213a6787fdb5eb4573be667642d820abaaf9a0b6"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "core_index": 4,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:3,4,5,6",
+          "11:0,1,5,9",
+          "2:6,7,10,11",
+          "3:1,4,7,9",
+          "4:0,1,2,10",
+          "5:3,4,8,11",
+          "6:2,5,9,11",
+          "7:0,6,8,11"
+        ],
+        "canonical_sha256": "755dc1da8a4e63e1f88d73b2b021d82292c1df84e9c12ab8c5ba14cbcb3984c8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "1f7efb8937eec19c6a6d477ddb701457e40441aef4bceff6c40c61a5680a05b4"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:2,6,8,9",
+          "10:0,7,9,11",
+          "2:0,3,4,5",
+          "5:3,7,9,10",
+          "6:2,7,8,11",
+          "7:0,1,4,6",
+          "8:1,2,4,10",
+          "9:1,5,6,7"
+        ],
+        "canonical_sha256": "84ff126166940338f0f637f4ccdd064900280f0c0c2167fafc2e8ce9092857ef",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "6347cfff87965f4e313e8823078e02bb47c3c2c057b0617d52c7f8e52f0ca61a"
+      },
+      "row_count": 8,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            3,
+            7,
+            8
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "core_index": 0,
+      "free_canonical": {
+        "canonical_rows": [
+          "1:3,5,6,7",
+          "3:7,8,9,10",
+          "5:1,3,8,9",
+          "7:2,3,4,5",
+          "9:0,1,2,7"
+        ],
+        "canonical_sha256": "e96bac3f0d81cb3589c1ed052b1a3401ba2d95beef66991aa0ae41ce34dfa73c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7e8159e29fb0b0c021c40cc5cf45992616dd7bfb58f6a34fc57de0387845cf47"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "10:0,3,4,9",
+          "3:0,1,8,9",
+          "4:3,6,8,10",
+          "8:2,3,5,10",
+          "9:2,4,7,8"
+        ],
+        "canonical_sha256": "a0451d1883c0aa4e6a6c2b67faf8a4ac82749d0e09e4bf31e30ddded6a0bfeb6",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "1d21f7fdcd5cf6c9af0dc02607c117a3afbf20011c213ea150a587e8b746f840"
+      },
+      "row_count": 5,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            3,
+            6,
+            11
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "core_index": 1,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:1,2,3,9",
+          "1:3,4,5,6",
+          "2:4,7,8,9",
+          "6:0,2,4,8",
+          "9:0,1,4,6"
+        ],
+        "canonical_sha256": "39742400d647a42c93a3bed3b4eceaec96bab73f970572a9166d89b667e8ef7d",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "aa3f10bf9b15f7e1cf7d205ed8a7c0e91296701892ff708932de9fdddf219456"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:2,5,7,8",
+          "2:0,3,6,8",
+          "6:0,3,4,7",
+          "7:2,3,4,9",
+          "8:1,3,5,6"
+        ],
+        "canonical_sha256": "1d4853156d319490032c3d3d9d327025207de373ede740d22651c0755f205840",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "cc0f7079e68516237f754478b473f39573e541c9b33d868746229fe8a557260b"
+      },
+      "row_count": 5,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            2,
+            4,
+            10
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "core_index": 2,
+      "free_canonical": {
+        "canonical_rows": [
+          "10:2,6,7,8",
+          "1:0,5,7,10",
+          "2:0,1,4,6",
+          "5:0,2,3,10",
+          "6:1,8,9,10",
+          "8:1,3,7,9"
+        ],
+        "canonical_sha256": "79f1dc2600af54ba5287eca2e2f8a77cac92bac1056a1d61453f5ec3b45ad694",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "86e82e37454001200bfc980f24bd2908012560fc4d128e2c1d31e82bf3ef564e"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:1,4,6,8",
+          "10:0,3,4,6",
+          "3:0,8,9,10",
+          "6:2,3,7,8",
+          "7:1,2,3,9",
+          "9:2,5,6,10"
+        ],
+        "canonical_sha256": "923931aa31e23454734400aa571894d268ad00e69c45c3f40b7e3b083adf345c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "97e968c3a26997925b9d20d988a900e0bf38ca2e00b054fca166d68107db77d5"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            9,
+            11
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "core_index": 3,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:3,4,5,11",
+          "10:2,3,4,9",
+          "11:1,2,3,10",
+          "1:6,9,10,11",
+          "3:0,1,2,6",
+          "4:3,6,7,8"
+        ],
+        "canonical_sha256": "6e3016748b922370737a9304c36de953a464a3c53f7ef1e0ccee301bfe699024",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4a87b2017ea3086cb86c36abd558f72e2421f609be86b044f8ed3e921357b36b"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "10:1,5,6,7",
+          "11:1,3,8,9",
+          "1:3,4,5,9",
+          "4:0,1,10,11",
+          "8:1,2,3,10",
+          "9:2,5,8,11"
+        ],
+        "canonical_sha256": "881b834a487b5eec21bb01df307c9334a6e0125fab428c6e00919b54fcf66a26",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "dff764a16cf60b8cbe67af39b7d789a215754f334cd6212dfa9044a34846f966"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            2,
+            4,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "core_index": 4,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:1,5,9,11",
+          "10:2,3,8,11",
+          "11:1,6,7,8",
+          "2:6,7,10,11",
+          "4:0,8,9,10",
+          "5:1,3,4,10",
+          "8:0,2,5,11"
+        ],
+        "canonical_sha256": "0e577ddca087b7f4c96a296d221ce6b736dfd8c5b3a9be347785206a972a7129",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "03ef090316f5e9a4fc539812a7cccffed9a182905d4e4d5bd4847af2695b4c44"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:1,4,7,11",
+          "10:5,6,7,8",
+          "2:0,4,7,10",
+          "4:1,3,8,9",
+          "7:1,2,5,6",
+          "8:2,3,7,10",
+          "9:0,2,8,11"
+        ],
+        "canonical_sha256": "c634cf2f0cf80fa9a6b692116f80530d61546f8d3422fdee4762eb36716b848d",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "8b08d2b6510b74c199b623b4dc9a1d5f94b0810361283231776dd73f31b8e96b"
+      },
+      "row_count": 7,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "core_index": 0,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:3,6,8,9",
+          "3:1,4,6,7",
+          "4:0,7,8,9",
+          "8:1,2,4,9",
+          "9:1,3,5,7"
+        ],
+        "canonical_sha256": "3a7260bd28b52be0aeb66b59dcc6d6924159c6481a712602efd45f4c480f672a",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "919ba9a552eb4cb4fe24211468c4b7d773a50ba57233f3274d490c319f980a2c"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:5,6,7,9",
+          "1:2,3,7,9",
+          "2:0,4,6,7",
+          "8:0,1,2,5",
+          "9:1,2,6,8"
+        ],
+        "canonical_sha256": "2ee989766b6acec7f9a87cfb133978190d0a78964920d8304787ff3eb1ff9bb5",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "0b66bb750aaea0c0a63c774b62e2e1e51e97f8490b29daaa3ce3e28b2e3e22cc"
+      },
+      "row_count": 5,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "core_index": 1,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:3,6,8,10",
+          "1:2,3,4,9",
+          "4:0,5,7,10",
+          "5:0,1,6,9",
+          "8:1,3,5,11",
+          "9:0,4,5,8"
+        ],
+        "canonical_sha256": "d106d524666e238f685853e5323c495cb1d8679fb2f92facf4befba9ddcc66be",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c56828f132713049f03794d5d2d9751fe0df1ee7ac005821381062d034283e12"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:6,7,9,10",
+          "10:4,8,9,11",
+          "1:0,2,7,11",
+          "6:0,1,8,10",
+          "7:3,4,6,10",
+          "9:1,5,6,11"
+        ],
+        "canonical_sha256": "955a327a5a940748130d4257bfbb9873b46c2c473f2dc937198c1aee15d767d7",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "854bbabd5fd6304b8271d0982bdb2c92b2e3d676074cd85c2850eda96fbfa14b"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "core_index": 2,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:1,4,7,8",
+          "1:3,4,5,10",
+          "3:0,6,8,11",
+          "4:0,2,3,8",
+          "7:1,3,6,9",
+          "8:2,6,7,10"
+        ],
+        "canonical_sha256": "20c398cfce03357e45ac4e66ba783f95425177fec46e07c2f8afc70296decda0",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "51366f059902434642a80cfcaf6b1b69dec04a078ff984ad38829aaa32f9e4ec"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:1,6,10,11",
+          "10:0,2,4,11",
+          "11:1,2,3,7",
+          "1:3,4,6,8",
+          "4:0,3,9,11",
+          "6:4,5,7,10"
+        ],
+        "canonical_sha256": "71d2f83ea29bac90a41a71d73d8cb77fcab646bd7600e08288b942a1be3dbd7a",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d243c85134ef382a2a6478b87b931ec2c732c605d4932d6a88c9f9c5ac7358e2"
+      },
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            3,
+            7,
+            10
+          ]
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "core_index": 3,
+      "free_canonical": {
+        "canonical_rows": [
+          "0:3,6,10,11",
+          "10:0,2,7,11",
+          "11:2,4,6,8",
+          "5:4,6,7,9",
+          "6:5,7,8,10",
+          "7:0,3,8,9",
+          "9:0,1,3,4"
+        ],
+        "canonical_sha256": "7eee163face0852ea20f0fecf2f5d414e71c81cac465446206f9b969d0ad870d",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c31dd7fe28e52280b82c8fafa7237172ebf4d55e6202d6091de67824e45f7d37"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:3,4,5,11",
+          "1:0,2,3,10",
+          "2:0,1,8,11",
+          "3:4,5,7,10",
+          "4:2,5,8,9",
+          "8:0,4,6,9",
+          "9:2,6,10,11"
+        ],
+        "canonical_sha256": "24fdb41ae35f61e2eb67ef6ac9b7dd1e48c15bd71dd0b292359b7e4479168d72",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "cc4b80efe708b4bdbd377cc72589cc30c16eb2606dd9d1d8f469cc74bc82d1bd"
+      },
+      "row_count": 7,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            2,
+            4,
+            7,
+            8
+          ]
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "core_index": 4,
+      "free_canonical": {
+        "canonical_rows": [
+          "11:3,4,7,9",
+          "2:3,6,8,9",
+          "3:4,6,10,11",
+          "4:2,5,6,9",
+          "5:0,1,4,8",
+          "6:1,5,7,11",
+          "9:1,2,7,10"
+        ],
+        "canonical_sha256": "aa34d5880e721b4b35f738d752b96aba9f6824c046ffcc914878340f3a98b6cc",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "8d2d789f91a4ebca0b01a87e4d0265d60b0f9e0228a8e0c049fe15b74ea5f8e1"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:1,2,4,7",
+          "11:3,4,5,10",
+          "2:0,4,6,8",
+          "4:6,7,9,11",
+          "6:0,1,10,11",
+          "7:1,8,9,10",
+          "9:2,5,6,7"
+        ],
+        "canonical_sha256": "0276902b6584544f4c898c7d49daa1d2e8deef688448a7691ac292dd828fb4b9",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "b2dab4b458b55137bcc5404beea22b6f9a6de787abaf4bd6c481131f240c696e"
+      },
+      "row_count": 7,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "core_index": 5,
+      "free_canonical": {
+        "canonical_rows": [
+          "10:2,3,5,9",
+          "1:0,3,8,10",
+          "2:0,1,10,11",
+          "3:0,1,6,7",
+          "4:2,3,6,10",
+          "5:3,4,7,11",
+          "6:1,4,8,9",
+          "7:0,2,4,5",
+          "9:1,2,7,8"
+        ],
+        "canonical_sha256": "e246c1156b4cffb0b88ffe78325dc1840e963a2ef01078f429c444d28ad3d23b",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "e6bab5abb1c088cbbc51762421d22179e810fec00bac1e694c560fc671d9ef8f"
+      },
+      "pinned_01_canonical": {
+        "canonical_rows": [
+          "0:1,2,8,9",
+          "10:1,4,6,11",
+          "11:6,7,8,10",
+          "2:4,5,8,11",
+          "3:0,5,6,9",
+          "4:0,1,2,7",
+          "5:0,4,9,10",
+          "6:2,3,4,8",
+          "8:0,1,3,10"
+        ],
+        "canonical_sha256": "1a4dc44d73bd83e25b0d99edc4751f6883ce9a111e2d6dcf48a8576aca56ce21",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4cfdfd5ed370ee93d4abc2af009dc93d08ddd62d981b38dc549f1c997d591f01"
+      },
+      "row_count": 9,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            2,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "shard_index": 6
+    }
+  ],
+  "free_isomorphism_class_count": 16,
+  "schema": "p97-atail-multi-order-unit-core-clusters-v1",
+  "scope": {
+    "exact_canonical_when_status_says_exact": true,
+    "lean_consumer_proved": false,
+    "unit_certificate_replay_is_in_source_artifacts": true
+  }
+}

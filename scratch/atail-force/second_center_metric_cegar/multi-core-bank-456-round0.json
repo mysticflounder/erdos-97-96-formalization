@@ -1,0 +1,157 @@
+{
+  "budgets": {
+    "max_map_iterations": 64,
+    "max_minimal_cores": 2,
+    "max_oracle_calls": 18,
+    "per_solver_timeout_seconds": 30.0
+  },
+  "oracle_records": [
+    {
+      "crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "row_count": 12,
+      "rows": [
+        "0:1,3,4,5",
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "3:4,6,10,11",
+        "4:2,3,7,10",
+        "5:2,4,6,9",
+        "6:1,2,8,11",
+        "7:0,3,6,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ],
+      "verdict": "UNSAT"
+    },
+    {
+      "crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "row_count": 11,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "3:4,6,10,11",
+        "4:2,3,7,10",
+        "5:2,4,6,9",
+        "6:1,2,8,11",
+        "7:0,3,6,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ],
+      "verdict": "UNSAT"
+    },
+    {
+      "crosscheck": {
+        "status": "UNDECIDED_ORACLE_DISAGREEMENT_OR_TIMEOUT",
+        "verdicts": [
+          "TIMEOUT",
+          "NONUNIT",
+          "NONUNIT"
+        ]
+      },
+      "row_count": 10,
+      "rows": [
+        "2:0,1,9,10",
+        "3:4,6,10,11",
+        "4:2,3,7,10",
+        "5:2,4,6,9",
+        "6:1,2,8,11",
+        "7:0,3,6,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ],
+      "verdict": "UNKNOWN"
+    }
+  ],
+  "result": {
+    "cache_hits": 0,
+    "map_iterations": 1,
+    "minimal_cores": [],
+    "oracle_calls": 3,
+    "status": "UNKNOWN_FAIL_CLOSED",
+    "unknown_subset": [
+      "2:0,1,9,10",
+      "3:4,6,10,11",
+      "4:2,3,7,10",
+      "5:2,4,6,9",
+      "6:1,2,8,11",
+      "7:0,3,6,11",
+      "8:0,3,7,9",
+      "9:0,4,8,10",
+      "10:1,6,7,8",
+      "11:2,3,8,9"
+    ]
+  },
+  "schema": "p97-atail-second-center-multi-core-bank-v1",
+  "scope": {
+    "cores_require_separate_bank_or_lean_consumer_check": true,
+    "fixed_placement_finite_shadow_only": true,
+    "solver_output_is_not_a_lean_producer": true,
+    "target_faithful": false,
+    "unknown_is_fail_closed": true
+  },
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve": {
+        "verdict": "NONUNIT"
+      },
+      "singular": {
+        "verdict": "NONUNIT"
+      }
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve": {
+        "verdict": "UNIT"
+      },
+      "singular": {
+        "verdict": "UNIT"
+      }
+    }
+  },
+  "source": {
+    "checkpoint": "scratch/atail-force/second_center_metric_cegar/checkpoint-round64.json",
+    "checkpoint_sha256": "e6304b556ec3645c3ca541df0d63313d67f4a4c556f59e420e3ce387737f1e9a",
+    "full_metric_rows": [
+      "0:1,3,4,5",
+      "1:0,2,5,6",
+      "2:0,1,9,10",
+      "3:4,6,10,11",
+      "4:2,3,7,10",
+      "5:2,4,6,9",
+      "6:1,2,8,11",
+      "7:0,3,6,11",
+      "8:0,3,7,9",
+      "9:0,4,8,10",
+      "10:1,6,7,8",
+      "11:2,3,8,9"
+    ],
+    "full_metric_rows_sha256": "d6dd445dd53898eaf7e102acfd468534aee2debc12e946d877976f10cdeca9c6",
+    "profile": [
+      4,
+      5,
+      6
+    ],
+    "round": 0
+  }
+}

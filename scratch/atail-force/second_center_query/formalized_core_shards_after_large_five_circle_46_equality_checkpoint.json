@@ -1,0 +1,3481 @@
+{
+  "aggregate_status": "ALL_CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEMS",
+  "cases": [
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            6,
+            8,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "407296f870be415858d097105693927cdea011bc236bfaedd78f7a99a454eb14",
+      "minimization": {
+        "attempt_count": 30,
+        "attempts_sha256": "37e8a05861a8bb34846e1f5e6120d08ad59afbfa55bc8f719d315ea238c0faf7",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 3,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 1,
+            "left": 3,
+            "right": 8,
+            "row_index": 1
+          },
+          {
+            "center": 1,
+            "left": 3,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 2
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 2
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 2,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 2,
+            "right": 9,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 10,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 8,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "961c9229c3043766f5449c93cc6438f54c9b821d7d888b9d232f3881f17f51d3",
+        "retained_equality_count": 12,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 5,
+      "source_witness_sha256": "ce6b04e015956c5676604eaefe03ed30f3fcb96a04bc7b0454b6cde14b18551d"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            2,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "9f2a68a8dee1eee74d098377c4d87a9b9bad44811d1aa46cbea037b825212d61",
+      "minimization": {
+        "attempt_count": 32,
+        "attempts_sha256": "60a1bc23add6d80514a0b4beaa673c38a858a9a762de8bf7ca945d2b69ae5f99",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 2,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 5,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 6,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 11,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 5,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 9,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 5,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "190d499dc2d1b1b42a84ab54aef3e26cc46f2fb12ebdf9e9de7d82316ca337e3",
+        "retained_equality_count": 14,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 6,
+      "source_witness_sha256": "7c90a5d8449c3d3a654daceed5c6bfc43cbd3b90027c52ad395b8761ed05ecf3"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            4,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            1,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            5,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7,
+            8,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "937732bb36bf14bcf54e1d796f564da0f039210916f94dbdeb43d0f15f09da96",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "03c08afeee4eb970ba2a493330fdd09a20106226b9c6779bda38c07a7485a497",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 6,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 5,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 8,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 11,
+            "row_index": 1
+          },
+          {
+            "center": 7,
+            "left": 1,
+            "right": 6,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 1,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 1,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 3,
+            "right": 5,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 3,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 8,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "665dab9c38a49022ca2e419e5ad32b703863ac9c23a474d75a4a9a708ed0ce20",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 8,
+      "source_witness_sha256": "33625234fe75485d3653f5499b6e87c6d863e76638dda9a97b65eb06262c2008"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            7,
+            10,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "9aee846400a4a1553838b5f5f28b105ab11c8329c604cce3bc037bc32a089b5e",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "1ed60d50f5f341a05df6a73a5d0203ea78d48d65e4c5c60941b14e4721e8e665",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 1
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 2,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 9,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 3,
+            "right": 8,
+            "row_index": 3
+          },
+          {
+            "center": 7,
+            "left": 3,
+            "right": 11,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 9,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 9,
+            "left": 1,
+            "right": 11,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "66385874e5f7d9e79af68300cee48f0bdb27fd2435781ab82b61e1a53d127418",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 10,
+      "source_witness_sha256": "4a75578ab741caf15945b3cfcf3172d057f667d5b59f1cdd30c0a0b61d69d959"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            4,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            1,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        }
+      ],
+      "input_rows_sha256": "aa9ec76dbf4ea93ca68dee21a9332bf7a8aec341af0fd12a91ba7c3992ab950b",
+      "minimization": {
+        "attempt_count": 31,
+        "attempts_sha256": "793252670081d7ec160a38f2ceb957fec58e309184287183210529eddf0cad59",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 3,
+            "left": 0,
+            "right": 4,
+            "row_index": 1
+          },
+          {
+            "center": 3,
+            "left": 0,
+            "right": 5,
+            "row_index": 1
+          },
+          {
+            "center": 5,
+            "left": 0,
+            "right": 1,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 0,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 3,
+            "row_index": 3
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 5,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "b14b191bed21f8fc585a41be7433c2af70486b37e34a35d42ba944cde017fa61",
+        "retained_equality_count": 13,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 11,
+      "source_witness_sha256": "19400e62417889b2222884b0e3ab1bf16ee0995ad6205db28aef731afb398307"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            1,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "39c4bdd94f524ab75a81f8372049393519d37f849f186649f9aac8c77853e207",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "4f03c7623b1ae333b11b57a2327b89f0f85dd1bf9dc0b5fc9780551848ee4319",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 3,
+            "left": 1,
+            "right": 4,
+            "row_index": 1
+          },
+          {
+            "center": 3,
+            "left": 1,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 3,
+            "left": 1,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 5,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 0,
+            "right": 1,
+            "row_index": 3
+          },
+          {
+            "center": 5,
+            "left": 0,
+            "right": 8,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 3,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 5,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 8,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 11,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "c76dc1b643c4b14ad4054091f22ec6a58a47cc54e531280ae033ff966089cba6",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 14,
+      "source_witness_sha256": "8436bdb8973a549737e69d759e7f6411c85d9872160c9247c33d863b9c2a4091"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            1,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            9,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "3420a1aba068c136a1754cf347bc329a90811de6b09861bf41e86b5afbf1b909",
+      "minimization": {
+        "attempt_count": 29,
+        "attempts_sha256": "0efda69976269847f09aedc4425bc2f39772a20532b85c08c2ead46f5881a65b",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 4,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 9,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 1,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 8,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 4,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 9,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "a653ceff9da3b187771d00a78d3224cd2d0f74e1ff63ee1ef7bb423120d6169a",
+        "retained_equality_count": 11,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 15,
+      "source_witness_sha256": "b40b14461698cb3bb1c7e4ce8fbc45771616d920c3a224315949f03c1911eab6"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "9cee77b0f5ec0972bb0d6980f10cb8e228ef30725358871c60c2475249509f6e",
+      "minimization": {
+        "attempt_count": 31,
+        "attempts_sha256": "1550f55bc13fdd5b12a93c43bac4a9bb2225fecf8969e40df32bac1c3e2f4659",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 3,
+            "left": 0,
+            "right": 4,
+            "row_index": 1
+          },
+          {
+            "center": 3,
+            "left": 0,
+            "right": 5,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 5,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 7,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 3,
+            "row_index": 3
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 9,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 3,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 9,
+            "left": 3,
+            "right": 8,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "1e9f1eb3a308f6758f39b0b340c7a580419be098945184009c2d0bb1b2bd89d4",
+        "retained_equality_count": 13,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 17,
+      "source_witness_sha256": "813c88f3e9fa847d171ab13904d8f5a0de0183e9bf3778acdb4dd2720baa929f"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "bcb5320a5117efb172420a208691dc3a5b7e1d862561c4713bd5d6ebabe6a461",
+      "minimization": {
+        "attempt_count": 29,
+        "attempts_sha256": "8672f90c94eb33d623378424c41a8d58c8f80097fc37f45dcf501cd3acf0f807",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 11,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 9,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "ac3f9e14ec7cd9083864ed4284877617ef595e7f7dccd26d4ec3bcf4f0033434",
+        "retained_equality_count": 11,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 20,
+      "source_witness_sha256": "5d2bc40eea5ef9310f3d5348250ddcfdb375ab9f066f8037ce46b40bb42bd77d"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            7,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        }
+      ],
+      "input_rows_sha256": "fbf1960a74929c07a90bd067cf473c14bb977bd48984326133655df98decfc5e",
+      "minimization": {
+        "attempt_count": 30,
+        "attempts_sha256": "7680edf3915089ac6a52f3813f5216144ff3893f751e85bbf0a39756f54c5abe",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 6,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 11,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 7,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 2,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 9,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "c6a92bfe09ac192a82be68f2353ca92c2a36ca0e3648ed402d2c75cc41a203a9",
+        "retained_equality_count": 12,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 22,
+      "source_witness_sha256": "d194ddcbfc968564779f073090f01151f211f43058ebb74dbd3aa5f10ce70a47"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "7378a4fc443b02724540bbcd6885f1fc806097edb0042ebb85a80b541d107ad3",
+      "minimization": {
+        "attempt_count": 32,
+        "attempts_sha256": "4ba506398c464c9f36b14d407e88004c21460d1d409eed3393d38491e9cd84d0",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 11,
+            "row_index": 1
+          },
+          {
+            "center": 7,
+            "left": 2,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 2,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 4,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 4,
+            "right": 9,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 4,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 8,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "4fa363bfda623bd7b402d5e89f055e131f46181cea2d74cad24f6ee2385ed286",
+        "retained_equality_count": 14,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 23,
+      "source_witness_sha256": "81d062b90d649a50e6b96705baa80bd23b5db9012bd6b0ae99dc1a5ddbf3b8c1"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            6,
+            9,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "93def8f490572c216f205651fc47da71488579fa22b1b1bc18903eb0b99fa6de",
+      "minimization": {
+        "attempt_count": 32,
+        "attempts_sha256": "f3eff6ade21a23924fadabec54e692614d88d10c0842926ee55794d9fbe1881d",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 6,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 6,
+            "row_index": 3
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 8,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 3,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 3,
+            "right": 8,
+            "row_index": 4
+          },
+          {
+            "center": 9,
+            "left": 3,
+            "right": 10,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 6,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 1,
+            "right": 9,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "acb3e526b96673535336d618cc1306bbf8c280faad6aec0607bb326e743d0d30",
+        "retained_equality_count": 14,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 25,
+      "source_witness_sha256": "3b4960634fc724624394d84fb5a1377419488d1aa2565e36fb6adf190857c02f"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            7,
+            8,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "65c61c6f771308b4c99ba4089d08d4c27080f690cc1568aa54b1d57c429ccd78",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "7817fb1132f0709d71b4bcf6f75353d6fd5975a191e965ecc5c207cd0a071c33",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 6,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 4,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 7,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 8,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 5,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 8,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "474f25a4b02879e1398fc917bfff75ac4a8f5e3b034e965cb88872b0e48a9b68",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 26,
+      "source_witness_sha256": "3d7e450edc10a3d4aea7629dd72a4ae5afb9f070e921f2ef143a306bc50fd161"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            3,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            7,
+            8,
+            11
+          ]
+        }
+      ],
+      "input_rows_sha256": "a70710766c2f57f7c6c04802314dde77e8482cee0d1ba0fbaaf59a19435a4dbd",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "2c825310b63d83989adf8a6cc55f07e120e08594dbada7335d89dbc9632c0ddc",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 6,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 8,
+            "row_index": 1
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 4,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 5,
+            "left": 2,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 3,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 5,
+            "row_index": 4
+          },
+          {
+            "center": 7,
+            "left": 0,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 8,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "636a4bd937244c0898c5536c6e7c2a4d6e27bae97bd3d15c788de42765253428",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 27,
+      "source_witness_sha256": "2c099f86f206e1c0199d04bd208f1085d2b0d176148edc07affcca6c491a7cd8"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6,
+            7,
+            9
+          ]
+        }
+      ],
+      "input_rows_sha256": "79bd162c31bfe2cf78ed9f5ec1788798e6c3d18aa94345805bcdbac6acda70e5",
+      "minimization": {
+        "attempt_count": 32,
+        "attempts_sha256": "3df575e3271fd4d25273b48d35c5d7bdeee5f2c152e739fbaaad93918b3afd3e",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 2,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 8,
+            "row_index": 0
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 1,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 9,
+            "row_index": 1
+          },
+          {
+            "center": 2,
+            "left": 0,
+            "right": 11,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 9,
+            "row_index": 2
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 10,
+            "row_index": 3
+          },
+          {
+            "center": 9,
+            "left": 0,
+            "right": 11,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 3,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 3,
+            "right": 8,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 3,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 6,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 9,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "7afadc2b3d31efb08fbec87cee34d45b0f6b0bdc72068e04b2f733549e702285",
+        "retained_equality_count": 14,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 29,
+      "source_witness_sha256": "3ae7608e4e4d1b21a4b0e17335857bd2c858e208de534ce55f31c46ed89b7188"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            4,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "7216453a5fa09d8337e7e282beeac1f5a3b0c0a7f4737581c1030e7504020fc7",
+      "minimization": {
+        "attempt_count": 29,
+        "attempts_sha256": "0510f96873e57897f69573bfe02ada7c10965c3cdccf7e57f2d179ade0b52af8",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 4,
+            "right": 6,
+            "row_index": 1
+          },
+          {
+            "center": 1,
+            "left": 4,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 7,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 4,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 8,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 7,
+            "row_index": 4
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 6,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 8,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "ef50ad6ab3ec79de041652af6b6ad6a95bef5a7a35079a08c288e6fe0b04350a",
+        "retained_equality_count": 11,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 34,
+      "source_witness_sha256": "1135a573200179841ba62f51e696fa2fc050519b57810d1882b9433f0fb5fd86"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            3,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6,
+            7,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "a4ad1ae1503deec15c745ecf04ca9c96ba3ad528d67f88d48a869f38f74e4250",
+      "minimization": {
+        "attempt_count": 31,
+        "attempts_sha256": "71b8ffd2c78aa54ec734131de683c49049d4dff1e38a807c779c7fab647ecede",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 0,
+            "left": 1,
+            "right": 3,
+            "row_index": 0
+          },
+          {
+            "center": 0,
+            "left": 1,
+            "right": 4,
+            "row_index": 0
+          },
+          {
+            "center": 3,
+            "left": 1,
+            "right": 7,
+            "row_index": 1
+          },
+          {
+            "center": 3,
+            "left": 1,
+            "right": 11,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 3,
+            "row_index": 2
+          },
+          {
+            "center": 4,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 4,
+            "row_index": 3
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 4,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 6,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 1,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "2ff00f3b763f1528acfae32fbb3f30fedb5a03c32fa49d01c7c3bf68f76b05ef",
+        "retained_equality_count": 13,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 37,
+      "source_witness_sha256": "e4556f8e5af0271bdd29ea46e4ba6cfb1e604079df498a57e8cd7ca7c139cba9"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            3,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            1,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "70311591873a00b76c1032678c77256b6a7e2e799fc425c3b7b3b86488a5fea8",
+      "minimization": {
+        "attempt_count": 33,
+        "attempts_sha256": "1219bd6ba561eb7d01f63a74d4b8586ab8ac8d3871b1544e22267a0dc49cea94",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 6,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 5,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 2,
+            "right": 8,
+            "row_index": 1
+          },
+          {
+            "center": 7,
+            "left": 1,
+            "right": 6,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 1,
+            "right": 8,
+            "row_index": 2
+          },
+          {
+            "center": 7,
+            "left": 1,
+            "right": 10,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 1,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 5,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 0,
+            "right": 11,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 8,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 5,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 6,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 4,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "17914deb6231318cb2c2e72072cad74ee8806d1b70fbf14dc8319a64ea1480e3",
+        "retained_equality_count": 15,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 40,
+      "source_witness_sha256": "631a4ea13cfeaa2863983a3293c44229cd90c270a0f749613ace6eb0c98191d3"
+    },
+    {
+      "input_row_deletion_complete": false,
+      "input_row_irredundant": false,
+      "input_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            3,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            1,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "input_rows_sha256": "3bd20f2a4758ce51c7024afe13a3848252f28e0386e81003c8aa0ca06bb3ee70",
+      "minimization": {
+        "attempt_count": 32,
+        "attempts_sha256": "69f25fbb4a64eeb882253e17f3ec1fd93bdae05408c27ee2a6695dc76d3480b5",
+        "budget_exhausted": false,
+        "completed_passes": 2,
+        "final_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_crosscheck": {
+          "msolve_qq_forward_variables": {
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "verdict": "UNIT"
+          },
+          "singular_qq": {
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "initial_equality_count": 18,
+        "retained_equalities": [
+          {
+            "center": 1,
+            "left": 0,
+            "right": 7,
+            "row_index": 0
+          },
+          {
+            "center": 1,
+            "left": 0,
+            "right": 8,
+            "row_index": 0
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 6,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 8,
+            "row_index": 1
+          },
+          {
+            "center": 4,
+            "left": 1,
+            "right": 10,
+            "row_index": 1
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 1,
+            "row_index": 2
+          },
+          {
+            "center": 6,
+            "left": 0,
+            "right": 11,
+            "row_index": 2
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 6,
+            "row_index": 3
+          },
+          {
+            "center": 8,
+            "left": 1,
+            "right": 7,
+            "row_index": 3
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 4,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 6,
+            "row_index": 4
+          },
+          {
+            "center": 10,
+            "left": 0,
+            "right": 11,
+            "row_index": 4
+          },
+          {
+            "center": 11,
+            "left": 2,
+            "right": 7,
+            "row_index": 5
+          },
+          {
+            "center": 11,
+            "left": 2,
+            "right": 10,
+            "row_index": 5
+          }
+        ],
+        "retained_equalities_sha256": "c02e0fbc0ff8a21de5ecf821fbe44069f1b872de8be7969c1457690ad2e36f90",
+        "retained_equality_count": 14,
+        "status": "CROSSCHECKED_UNIT_EQUALITY_SUBSYSTEM",
+        "strategy": "repeated-greedy-equality-deletion-msolve-proposal-singular-confirmation",
+        "wall_budget_seconds": 240.0
+      },
+      "shard_index": 42,
+      "source_witness_sha256": "1ef4d151b1ee5cee028a34d056485603689f0235fd2a0f89da4b8bcec124eef5"
+    }
+  ],
+  "configuration": {
+    "call_timeout_seconds": 12.0,
+    "wall_budget_seconds_per_case": 240.0,
+    "workers": 19
+  },
+  "schema": "p97-atail-formalized-core-shard-equality-minimization-v1",
+  "scope": {
+    "card_11_included": false,
+    "fixed_placement_only": true,
+    "formalized_metric_core_bank_clean": true,
+    "nullstellensatz_certificate_replayed": false,
+    "producer_proved": false,
+    "target_faithful": false,
+    "trusted_exact_cas_computation": true
+  },
+  "selection": {
+    "case_count": 19,
+    "retained_row_count": 6
+  },
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_large_five_circle_46_oracle_checkpoint.json",
+  "source_checkpoint_sha256": "3db3e9689afe39ab17d4663a50b527d22767e5d7209949a9655d9837b2e4a9d9"
+}

@@ -1,0 +1,1786 @@
+{
+  "conclusions": [
+    "The exact (4,5,6) convex residual falsifies the literal fields: its only common p/u-row-center cap contains only one dangerous u-row point outside the cap.",
+    "That exact residual is a genuine Euclidean counterexample to the weaker implication using strict convexity, exact rows, the saved blocker map, cap-arc membership, and only the two-large-cap cardinality consequence; it is not merely a finite incidence shadow.",
+    "Both current common-system survivors and both strengthened global-count shadows also falsify the literal fields inside their weaker finite abstractions.",
+    "The serialized W16/W20 embeddings contain many literal falsifiers after cap memberships are rematerialized, but all fail convex-independence; named-Moser circumdisk containment varies and is reported without promotion to a full MEC audit.",
+    "The blocker-graph artifacts cannot evaluate the proposition because they name neither a cap packet nor the live dangerous/u placement.",
+    "No target-faithful counterexample was found. Whether the full live hypotheses imply URowCapMultiplicityFields remains conjectural; any proof must visibly use a field missing from the exact residual, especially MEC disk containment, all-center K4, or stronger live no-M44/full-filter coupling."
+  ],
+  "epistemic_status": {
+    "blocker_model_unevaluability": "PROVEN_FROM_MISSING_SERIALIZED_FIELDS",
+    "literal_artifact_evaluations": "EMPIRICALLY_VERIFIED_EXACT_WITHIN_EACH_STATED_FINITE_ARTIFACT",
+    "live_implication": "CONJECTURED_AND_UNDECIDED"
+  },
+  "results": {
+    "blocker_graph_models": [
+      {
+        "epistemic_status": "PROVEN_UNEVALUABLE_FROM_SERIALIZED_MODEL_FIELDS",
+        "evaluable": false,
+        "missing_fields": [
+          "a SurplusCapPacket or three indexed cap memberships",
+          "named p,q,t1,t2,t3,u live placement",
+          "the designated u-source row relative to those caps and dangerous labels"
+        ],
+        "name": "abstract-blocker-graph",
+        "source": "scratch/atail-force/blocker_graph/countermodel.py",
+        "source_sha256": "1fd2a6efe5c72cf833429bd66ca5ca848cc32b811b76211504301ca6a20890b3",
+        "source_status": {
+          "apex_support_intersection": [
+            5
+          ],
+          "apices": [
+            0,
+            4
+          ],
+          "blocker_cycle": [
+            0,
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          "cardinality": 12,
+          "max_distinct_center_support_intersection": 2,
+          "max_joint_fiber_all_points": 1,
+          "max_joint_fiber_off_surplus": 1,
+          "offsets": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "scope": "finite symmetric distance-equality abstraction; not Euclidean",
+          "status": "PASS",
+          "surplus": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "target_faithful": false
+      },
+      {
+        "epistemic_status": "PROVEN_UNEVALUABLE_FROM_SERIALIZED_MODEL_FIELDS",
+        "evaluable": false,
+        "missing_fields": [
+          "a SurplusCapPacket or three indexed cap memberships",
+          "named p,q,t1,t2,t3,u live placement",
+          "the designated u-source row relative to those caps and dangerous labels"
+        ],
+        "name": "euclidean-blocker-graph",
+        "source": "scratch/atail-force/blocker_graph/euclidean_countermodel.py",
+        "source_sha256": "0d5f0da94588e752c418b735437bd110de3f38adf1bb7ee129fac9761f798a97",
+        "source_status": {
+          "apices": [
+            [
+              3,
+              4
+            ],
+            [
+              5,
+              1
+            ]
+          ],
+          "cardinality": 33,
+          "chosen_blocker_cycle_lengths": [
+            2,
+            2,
+            2
+          ],
+          "chosen_blocker_cycles": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                5
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                6
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                6,
+                0
+              ]
+            ]
+          ],
+          "construction_sha256": "a78922fbf1a30e7642019a65859c93d34d45f668e06e0f60310bf780b45c55c5",
+          "convex_independent": false,
+          "every_single_deletion_breaks_global_k4": true,
+          "global_k4": true,
+          "max_distinct_chosen_center_shell_overlap": 2,
+          "max_two_apex_joint_fiber": 1,
+          "nonconvex_midpoint_witness": [
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              3
+            ],
+            [
+              3,
+              5
+            ]
+          ],
+          "status": "PASS",
+          "trust_boundary": "exhaustive exact integer arithmetic in Python; not Lean-kernel checked"
+        },
+        "target_faithful": false
+      }
+    ],
+    "common_system_current_survivors": [
+      {
+        "assignment_sha256": "268f0efa08c29ad02c622b5eabe9d9c221737680117c84015eebe05e70ba89f9",
+        "caps_materialized": {
+          "O1": [
+            0,
+            2,
+            5,
+            6,
+            7
+          ],
+          "O2": [
+            0,
+            1,
+            8,
+            9,
+            10,
+            11
+          ],
+          "S": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        "epistemic_status": "EMPIRICALLY_VERIFIED_EXACT_WITHIN_FINITE_NECESSARY_CONDITION_SHADOW",
+        "evaluation": {
+          "cap_reports": [
+            {
+              "cap": "S",
+              "contains_p": false,
+              "contains_urow_center": true,
+              "dangerous_outside": [
+                5
+              ],
+              "is_common_cap": false,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                5
+              ]
+            },
+            {
+              "cap": "O1",
+              "contains_p": true,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                1,
+                3,
+                4
+              ],
+              "is_common_cap": false,
+              "multiplicity": 0,
+              "urow_dangerous_outside": []
+            },
+            {
+              "cap": "O2",
+              "contains_p": true,
+              "contains_urow_center": true,
+              "dangerous_outside": [
+                3,
+                4,
+                5
+              ],
+              "is_common_cap": true,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                5
+              ]
+            }
+          ],
+          "center_cap_support_counts": {
+            "O2": 1,
+            "S": 1
+          },
+          "common_cap_count": 1,
+          "dangerous": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+          "first_conjunct_common_cap": true,
+          "generic_selected_row_center_cap_le_two": true,
+          "holds": false,
+          "large_caps": [
+            "O1",
+            "O2"
+          ],
+          "no_M44_cardinality_consequence_two_large_caps": true,
+          "p": 0,
+          "second_conjunct_multiplicity_in_a_common_cap": false,
+          "urow_center": 1,
+          "urow_support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        "fidelity_boundary": {
+          "formalized_cores_are_monotone_cuts": true,
+          "formalized_metric_core_scan": true,
+          "global_row_at_every_center_assumed": false,
+          "lean_critical_shell_system_constructed": false,
+          "mec_geometry_dependencies_recorded": true,
+          "mec_geometry_derived_from_equality_rows": false,
+          "mec_geometry_required_from_live_target_frame": true,
+          "mec_straddling_fixed_frame_scan": true,
+          "one_exact_row_per_source": true,
+          "producer_proved": false,
+          "q_c_negation": true,
+          "real_feasibility_decided": false,
+          "same_center_exact_row_coupling": true,
+          "target_faithful": false,
+          "unencoded_radius_classes_excluded": false
+        },
+        "labels_recovered_from": "scratch/atail-force/second_center_query/query.py",
+        "profile": [
+          4,
+          5,
+          6
+        ],
+        "round": 6,
+        "target_faithful": false
+      },
+      {
+        "assignment_sha256": "5dac7824ce5ab4dd7c6f18e2fb3c88306d64dc2cefe1bce2d3d696b8ad4e49f8",
+        "caps_materialized": {
+          "O1": [
+            0,
+            2,
+            6,
+            7,
+            8
+          ],
+          "O2": [
+            0,
+            1,
+            9,
+            10,
+            11
+          ],
+          "S": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        "epistemic_status": "EMPIRICALLY_VERIFIED_EXACT_WITHIN_FINITE_NECESSARY_CONDITION_SHADOW",
+        "evaluation": {
+          "cap_reports": [
+            {
+              "cap": "S",
+              "contains_p": false,
+              "contains_urow_center": true,
+              "dangerous_outside": [],
+              "is_common_cap": false,
+              "multiplicity": 0,
+              "urow_dangerous_outside": []
+            },
+            {
+              "cap": "O1",
+              "contains_p": true,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                1,
+                3,
+                4
+              ],
+              "is_common_cap": false,
+              "multiplicity": 2,
+              "urow_dangerous_outside": [
+                1,
+                4
+              ]
+            },
+            {
+              "cap": "O2",
+              "contains_p": true,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                2,
+                3,
+                4
+              ],
+              "is_common_cap": false,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                4
+              ]
+            }
+          ],
+          "center_cap_support_counts": {
+            "S": 3
+          },
+          "common_cap_count": 0,
+          "dangerous": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "failure_kind": "NO_COMMON_CAP",
+          "first_conjunct_common_cap": false,
+          "generic_selected_row_center_cap_le_two": false,
+          "holds": false,
+          "large_caps": [
+            "S",
+            "O1",
+            "O2"
+          ],
+          "no_M44_cardinality_consequence_two_large_caps": true,
+          "p": 0,
+          "second_conjunct_multiplicity_in_a_common_cap": false,
+          "urow_center": 3,
+          "urow_support": [
+            1,
+            4,
+            5,
+            6
+          ]
+        },
+        "fidelity_boundary": {
+          "formalized_cores_are_monotone_cuts": true,
+          "formalized_metric_core_scan": true,
+          "global_row_at_every_center_assumed": false,
+          "lean_critical_shell_system_constructed": false,
+          "mec_geometry_dependencies_recorded": true,
+          "mec_geometry_derived_from_equality_rows": false,
+          "mec_geometry_required_from_live_target_frame": true,
+          "mec_straddling_fixed_frame_scan": true,
+          "one_exact_row_per_source": true,
+          "producer_proved": false,
+          "q_c_negation": true,
+          "real_feasibility_decided": false,
+          "same_center_exact_row_coupling": true,
+          "target_faithful": false,
+          "unencoded_radius_classes_excluded": false
+        },
+        "labels_recovered_from": "scratch/atail-force/second_center_query/query.py",
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "round": 18,
+        "target_faithful": false
+      }
+    ],
+    "exact_456_residual": {
+      "caps": {
+        "O1": [
+          0,
+          2,
+          5,
+          6,
+          7
+        ],
+        "O2": [
+          0,
+          1,
+          8,
+          9,
+          10,
+          11
+        ],
+        "S": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "epistemic_status": "EMPIRICALLY_VERIFIED_BY_EXACT_BIQUADRATIC_AND_RATIONAL_INTERVAL_CHECKER",
+      "evaluation": {
+        "cap_reports": [
+          {
+            "cap": "S",
+            "contains_p": false,
+            "contains_urow_center": true,
+            "dangerous_outside": [
+              5
+            ],
+            "is_common_cap": false,
+            "multiplicity": 1,
+            "urow_dangerous_outside": [
+              5
+            ]
+          },
+          {
+            "cap": "O1",
+            "contains_p": true,
+            "contains_urow_center": false,
+            "dangerous_outside": [
+              1,
+              3,
+              4
+            ],
+            "is_common_cap": false,
+            "multiplicity": 0,
+            "urow_dangerous_outside": []
+          },
+          {
+            "cap": "O2",
+            "contains_p": true,
+            "contains_urow_center": true,
+            "dangerous_outside": [
+              3,
+              4,
+              5
+            ],
+            "is_common_cap": true,
+            "multiplicity": 1,
+            "urow_dangerous_outside": [
+              5
+            ]
+          }
+        ],
+        "center_cap_support_counts": {
+          "O2": 1,
+          "S": 1
+        },
+        "common_cap_count": 1,
+        "dangerous": [
+          1,
+          3,
+          4,
+          5
+        ],
+        "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+        "first_conjunct_common_cap": true,
+        "generic_selected_row_center_cap_le_two": true,
+        "holds": false,
+        "large_caps": [
+          "O1",
+          "O2"
+        ],
+        "no_M44_cardinality_consequence_two_large_caps": true,
+        "p": 0,
+        "second_conjunct_multiplicity_in_a_common_cap": false,
+        "urow_center": 1,
+        "urow_support": [
+          0,
+          2,
+          5,
+          6
+        ]
+      },
+      "labels_recovered_from": "scratch/atail-force/second_center_query/query.py",
+      "mec_outside_labels": [
+        7,
+        10,
+        11
+      ],
+      "missing_live_fields": [
+        "minimum-enclosing-circle disk containment",
+        "K4 or FaithfulCarrierPattern at every carrier center",
+        "the full live dangerous/full-filter/no-M44 package"
+      ],
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "residual_round": 5,
+      "scope": {
+        "cap_arc_membership_realized_by_checker": true,
+        "counterexample_data_realized": false,
+        "faithful_selected_four_class_at_every_center_realized": false,
+        "lean_kernel_checked": false,
+        "live_dangerous_selected_full_filter_fields_realized": false,
+        "minimum_enclosing_circle_frame_realized": false,
+        "nonobtuse_fixed_moser_triangle_realized_by_checker": true,
+        "producer_proved": false,
+        "saved_critical_shell_blocker_map_realized_by_checker": true,
+        "strict_convex_exact_four_row_realization_proved_by_checker": true
+      },
+      "source_assignment_sha256": "cfeff7b85bf3bb68c5d5195600cf64d1578e16322bc79ce94ddcfc140727b03e",
+      "strongest_realized_fields": [
+        "strict convex independent carrier",
+        "three ordered cap memberships",
+        "four exact Euclidean four-point rows",
+        "source-indexed deletion-critical blocker map",
+        "nonobtuse named Moser triangle"
+      ],
+      "target_faithful": false
+    },
+    "global_count_shadows": [
+      {
+        "case_sha256": "0f3d1cf14f1ada1f782f8da5ad550b0aa997fc4b6a932de43b9e137efbcfee6f",
+        "encoded": [
+          "one cyclic order and three ordered closed cap arcs with the declared card-12 profile",
+          "one exact abstract four-point radius class at every carrier center",
+          "symmetric abstract distance labels with no reciprocal row edges, making every chosen row an exact full filter",
+          "the ordered-cap one-sided row-injectivity consequence and the stronger endpoint-row one-hit consequence",
+          "pairwise selected-row overlap at most two",
+          "cyclic cross-separation whenever two distinct-center rows share two points",
+          "outside-pair uniqueness for distinct centers of each ordered cap",
+          "the exact ordered-cap outside-pair incidence sum and its m+4 lower bound",
+          "one common critical-shell blocker map on every carrier point, including source membership, no fixed blocker, blocker fibers of size at most four, and deletion no-q-free in the abstract distance model",
+          "the dangerous p-row with support exactly {q,t1,t2,t3}, common-system provenance t2 maps to p, and u off that abstract p-radius",
+          "a surplus cap of size at least five containing q strictly away from its endpoints and a distinct cap of size at least five",
+          "absence of an abstract two-point joint opposite-endpoint radius fiber outside the surplus cap",
+          "absence of every legacy wrong-side endpoint-spending row configuration",
+          "the displayed consecutive opposite-endpoint blocker chain in the (5,5,5) witness"
+        ],
+        "epistemic_status": "EMPIRICALLY_VERIFIED_EXACT_WITHIN_STRENGTHENED_FINITE_SHADOW",
+        "evaluation": {
+          "cap_reports": [
+            {
+              "cap": "S",
+              "contains_p": true,
+              "contains_urow_center": true,
+              "dangerous_outside": [
+                6,
+                7,
+                9
+              ],
+              "is_common_cap": true,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                7
+              ]
+            },
+            {
+              "cap": "O1",
+              "contains_p": false,
+              "contains_urow_center": true,
+              "dangerous_outside": [
+                3,
+                9
+              ],
+              "is_common_cap": false,
+              "multiplicity": 0,
+              "urow_dangerous_outside": []
+            },
+            {
+              "cap": "O2",
+              "contains_p": true,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                3,
+                6,
+                7
+              ],
+              "is_common_cap": false,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                7
+              ]
+            }
+          ],
+          "center_cap_support_counts": {
+            "O1": 1,
+            "S": 1
+          },
+          "common_cap_count": 1,
+          "dangerous": [
+            3,
+            6,
+            7,
+            9
+          ],
+          "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+          "first_conjunct_common_cap": true,
+          "generic_selected_row_center_cap_le_two": true,
+          "holds": false,
+          "large_caps": [
+            "S",
+            "O1",
+            "O2"
+          ],
+          "no_M44_cardinality_consequence_two_large_caps": true,
+          "p": 0,
+          "second_conjunct_multiplicity_in_a_common_cap": false,
+          "urow_center": 4,
+          "urow_support": [
+            1,
+            7,
+            10,
+            11
+          ]
+        },
+        "missing_live_fields": [
+          "coordinates in the Euclidean plane",
+          "triangle inequalities or squared-distance realizability",
+          "ConvexIndep and noncollinearity as geometric predicates rather than a fixed cyclic-order shadow",
+          "the full StrictCapOrder signed-area and subchord geometry beyond the explicitly checked consequences",
+          "the full MinorCapChainModel analytic geometry beyond one-sided injectivity and endpoint one-hit",
+          "minimum-enclosing-circle, non-obtuse, and circumscribed-Moser geometry",
+          "geometric construction of CapTriple, SurplusCapPacket, or leafSurplusPacket",
+          "the exact no-M44 geometric predicate beyond the card-profile consequence",
+          "all U1LargeCapRouteBTailLiveData fields beyond the dangerous exact radius class and the selected point being off that class",
+          "all possible card-12 named-label placements or all possible row systems",
+          "card 11, which is outside this ATAIL card-at-least-12 checkpoint",
+          "a Lean-kernel proof of either finite shadow",
+          "a Euclidean counterexample to K-A-PAIR or a proof of the proposed producer"
+        ],
+        "name": "card12-profile-5-5-5",
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "target_faithful": false
+      },
+      {
+        "case_sha256": "1544cd68315da0d66332d7d4f38125ff8f17429d36c813f23f31e4844499277e",
+        "encoded": [
+          "one cyclic order and three ordered closed cap arcs with the declared card-12 profile",
+          "one exact abstract four-point radius class at every carrier center",
+          "symmetric abstract distance labels with no reciprocal row edges, making every chosen row an exact full filter",
+          "the ordered-cap one-sided row-injectivity consequence and the stronger endpoint-row one-hit consequence",
+          "pairwise selected-row overlap at most two",
+          "cyclic cross-separation whenever two distinct-center rows share two points",
+          "outside-pair uniqueness for distinct centers of each ordered cap",
+          "the exact ordered-cap outside-pair incidence sum and its m+4 lower bound",
+          "one common critical-shell blocker map on every carrier point, including source membership, no fixed blocker, blocker fibers of size at most four, and deletion no-q-free in the abstract distance model",
+          "the dangerous p-row with support exactly {q,t1,t2,t3}, common-system provenance t2 maps to p, and u off that abstract p-radius",
+          "a surplus cap of size at least five containing q strictly away from its endpoints and a distinct cap of size at least five",
+          "absence of an abstract two-point joint opposite-endpoint radius fiber outside the surplus cap",
+          "absence of every legacy wrong-side endpoint-spending row configuration",
+          "the displayed consecutive opposite-endpoint blocker chain in the (5,5,5) witness"
+        ],
+        "epistemic_status": "EMPIRICALLY_VERIFIED_EXACT_WITHIN_STRENGTHENED_FINITE_SHADOW",
+        "evaluation": {
+          "cap_reports": [
+            {
+              "cap": "S",
+              "contains_p": true,
+              "contains_urow_center": true,
+              "dangerous_outside": [
+                4,
+                5,
+                9
+              ],
+              "is_common_cap": true,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                5
+              ]
+            },
+            {
+              "cap": "O1",
+              "contains_p": false,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                2,
+                9
+              ],
+              "is_common_cap": false,
+              "multiplicity": 0,
+              "urow_dangerous_outside": []
+            },
+            {
+              "cap": "O2",
+              "contains_p": true,
+              "contains_urow_center": false,
+              "dangerous_outside": [
+                2,
+                4,
+                5
+              ],
+              "is_common_cap": false,
+              "multiplicity": 1,
+              "urow_dangerous_outside": [
+                5
+              ]
+            }
+          ],
+          "center_cap_support_counts": {
+            "S": 2
+          },
+          "common_cap_count": 1,
+          "dangerous": [
+            2,
+            4,
+            5,
+            9
+          ],
+          "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+          "first_conjunct_common_cap": true,
+          "generic_selected_row_center_cap_le_two": true,
+          "holds": false,
+          "large_caps": [
+            "O1",
+            "O2"
+          ],
+          "no_M44_cardinality_consequence_two_large_caps": true,
+          "p": 0,
+          "second_conjunct_multiplicity_in_a_common_cap": false,
+          "urow_center": 2,
+          "urow_support": [
+            1,
+            3,
+            5,
+            8
+          ]
+        },
+        "missing_live_fields": [
+          "coordinates in the Euclidean plane",
+          "triangle inequalities or squared-distance realizability",
+          "ConvexIndep and noncollinearity as geometric predicates rather than a fixed cyclic-order shadow",
+          "the full StrictCapOrder signed-area and subchord geometry beyond the explicitly checked consequences",
+          "the full MinorCapChainModel analytic geometry beyond one-sided injectivity and endpoint one-hit",
+          "minimum-enclosing-circle, non-obtuse, and circumscribed-Moser geometry",
+          "geometric construction of CapTriple, SurplusCapPacket, or leafSurplusPacket",
+          "the exact no-M44 geometric predicate beyond the card-profile consequence",
+          "all U1LargeCapRouteBTailLiveData fields beyond the dangerous exact radius class and the selected point being off that class",
+          "all possible card-12 named-label placements or all possible row systems",
+          "card 11, which is outside this ATAIL card-at-least-12 checkpoint",
+          "a Lean-kernel proof of either finite shadow",
+          "a Euclidean counterexample to K-A-PAIR or a proof of the proposed producer"
+        ],
+        "name": "card12-profile-4-5-6",
+        "profile": [
+          4,
+          5,
+          6
+        ],
+        "target_faithful": false
+      }
+    ],
+    "w16_w20_saved_embeddings": [
+      {
+        "caps_materialized": {
+          "O1": [
+            1,
+            4,
+            5,
+            6,
+            10,
+            14
+          ],
+          "O2": [
+            1,
+            7,
+            8,
+            11,
+            12,
+            13
+          ],
+          "S": [
+            0,
+            2,
+            3,
+            5,
+            9,
+            12,
+            15
+          ]
+        },
+        "epistemic_status": "EMPIRICALLY_VERIFIED_ON_SERIALIZED_EXACT_ROW_EMBEDDINGS",
+        "evaluation_counts": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": 82,
+          "HOLDS": 2,
+          "NO_COMMON_CAP": 116
+        },
+        "fidelity_boundary": {
+          "K4_at_every_center": true,
+          "convex_independent": false,
+          "critical_exact_shell_coverage": true,
+          "exact_Euclidean_row_identites": "source bank; independently sympy-verified elsewhere",
+          "full_live_no_M44_and_selected_packet": false,
+          "minimum_enclosing_circle_frame": "not fully audited here; disk containment is recorded separately",
+          "named_Moser_circumcircle_contains_carrier": false,
+          "nonconvex_two_ring_inside_margin": 0.3427719663353963,
+          "points_outside_named_Moser_circumcircle": 7
+        },
+        "first_by_kind": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    6,
+                    14
+                  ],
+                  "is_common_cap": true,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    9
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    9
+                  ]
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    6,
+                    9,
+                    14
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    9
+                  ]
+                }
+              ],
+              "center_cap_support_counts": {
+                "S": 3
+              },
+              "common_cap_count": 1,
+              "dangerous": [
+                2,
+                6,
+                9,
+                14
+              ],
+              "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+              "first_conjunct_common_cap": true,
+              "generic_selected_row_center_cap_le_two": false,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 3,
+              "urow_support": [
+                1,
+                5,
+                9,
+                12
+              ]
+            },
+            "saved_solution_index": 0,
+            "solution": {
+              "T": [
+                6,
+                9,
+                14
+              ],
+              "T_det_num": "-1.49368438789143376406801490382914342073145673774220441542246798754170284860525237128423644",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": true,
+              "u": 1,
+              "u_shell_center": 3,
+              "u_shell_members": [
+                1,
+                5,
+                9,
+                12
+              ]
+            }
+          },
+          "HOLDS": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    7,
+                    11,
+                    14
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    7
+                  ]
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": true,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    3,
+                    7,
+                    11
+                  ],
+                  "is_common_cap": true,
+                  "multiplicity": 2,
+                  "urow_dangerous_outside": [
+                    3,
+                    7
+                  ]
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    3,
+                    14
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    3
+                  ]
+                }
+              ],
+              "center_cap_support_counts": {
+                "O1": 1,
+                "O2": 1
+              },
+              "common_cap_count": 1,
+              "dangerous": [
+                3,
+                7,
+                11,
+                14
+              ],
+              "failure_kind": null,
+              "first_conjunct_common_cap": true,
+              "generic_selected_row_center_cap_le_two": true,
+              "holds": true,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 5,
+              "second_conjunct_multiplicity_in_a_common_cap": true,
+              "urow_center": 1,
+              "urow_support": [
+                3,
+                7,
+                10,
+                15
+              ]
+            },
+            "saved_solution_index": 194,
+            "solution": {
+              "T": [
+                7,
+                11,
+                14
+              ],
+              "T_det_num": "1.49368438789143376406801490382914342073145673774220441542246798754170284860525237128423644",
+              "p": 5,
+              "q": 3,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": true,
+              "u": 10,
+              "u_shell_center": 1,
+              "u_shell_members": [
+                3,
+                7,
+                10,
+                15
+              ]
+            }
+          },
+          "NO_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    6,
+                    14
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    2,
+                    9
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    2,
+                    6,
+                    9,
+                    14
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                }
+              ],
+              "center_cap_support_counts": {
+                "O1": 1,
+                "O2": 1
+              },
+              "common_cap_count": 0,
+              "dangerous": [
+                2,
+                6,
+                9,
+                14
+              ],
+              "failure_kind": "NO_COMMON_CAP",
+              "first_conjunct_common_cap": false,
+              "generic_selected_row_center_cap_le_two": true,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 1,
+              "urow_support": [
+                3,
+                7,
+                10,
+                15
+              ]
+            },
+            "saved_solution_index": 1,
+            "solution": {
+              "T": [
+                6,
+                9,
+                14
+              ],
+              "T_det_num": "-1.49368438789143376406801490382914342073145673774220441542246798754170284860525237128423644",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": true,
+              "u": 3,
+              "u_shell_center": 1,
+              "u_shell_members": [
+                3,
+                7,
+                10,
+                15
+              ]
+            }
+          }
+        },
+        "name": "W16a",
+        "preencoding_checks": {
+          "cap_membership_rematched_to_source_coordinates": true,
+          "committed_exact_class_at_every_center": true,
+          "dangerous_row_matches_committed_p_class": true,
+          "source_membership_and_center_separation": true,
+          "urow_matches_committed_center_class": true
+        },
+        "results": "scratch/d3-formulation/candidateB/results_W16a.json",
+        "results_sha256": "e8dc18697129934b1f650cc80f132c43f4fb7ef1cc58cb74800318c7030b1683",
+        "serialized_solution_limit": 200,
+        "source": "scratch/d3-formulation/t9_wit_m8_1.4534.json",
+        "source_sha256": "06a4936ea9c79357c0b594076100e9f6e8469e317135c71b6e19db225ab14058",
+        "target_faithful": false,
+        "total_source_solutions": 572
+      },
+      {
+        "caps_materialized": {
+          "O1": [
+            3,
+            4,
+            6,
+            7,
+            11,
+            13,
+            14
+          ],
+          "O2": [
+            8,
+            10,
+            12,
+            13,
+            15
+          ],
+          "S": [
+            0,
+            1,
+            2,
+            5,
+            9,
+            14,
+            15
+          ]
+        },
+        "epistemic_status": "EMPIRICALLY_VERIFIED_ON_SERIALIZED_EXACT_ROW_EMBEDDINGS",
+        "evaluation_counts": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": 84,
+          "HOLDS": 4,
+          "NO_COMMON_CAP": 112
+        },
+        "fidelity_boundary": {
+          "K4_at_every_center": true,
+          "convex_independent": false,
+          "critical_exact_shell_coverage": true,
+          "exact_Euclidean_row_identites": "source bank; independently sympy-verified elsewhere",
+          "full_live_no_M44_and_selected_packet": false,
+          "minimum_enclosing_circle_frame": "not fully audited here; disk containment is recorded separately",
+          "named_Moser_circumcircle_contains_carrier": true,
+          "nonconvex_two_ring_inside_margin": 1.1113716529772106,
+          "points_outside_named_Moser_circumcircle": 0
+        },
+        "first_by_kind": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    6,
+                    8
+                  ],
+                  "is_common_cap": true,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    8
+                  ]
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    8,
+                    15
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 1,
+                  "urow_dangerous_outside": [
+                    8
+                  ]
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    6
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                }
+              ],
+              "center_cap_support_counts": {
+                "S": 1
+              },
+              "common_cap_count": 1,
+              "dangerous": [
+                2,
+                6,
+                8,
+                15
+              ],
+              "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+              "first_conjunct_common_cap": true,
+              "generic_selected_row_center_cap_le_two": true,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 1,
+              "urow_support": [
+                3,
+                7,
+                8,
+                9
+              ]
+            },
+            "saved_solution_index": 1,
+            "solution": {
+              "T": [
+                6,
+                8,
+                15
+              ],
+              "T_det_num": "-3.69303720803701949966002354462472483933468924832952661725590824849891601391687426991508950",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": true,
+              "u": 3,
+              "u_shell_center": 1,
+              "u_shell_members": [
+                3,
+                7,
+                8,
+                9
+              ]
+            }
+          },
+          "HOLDS": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    3,
+                    7,
+                    8
+                  ],
+                  "is_common_cap": true,
+                  "multiplicity": 2,
+                  "urow_dangerous_outside": [
+                    3,
+                    7
+                  ]
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    8,
+                    9
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    3,
+                    7,
+                    9
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 2,
+                  "urow_dangerous_outside": [
+                    3,
+                    7
+                  ]
+                }
+              ],
+              "center_cap_support_counts": {
+                "S": 0
+              },
+              "common_cap_count": 1,
+              "dangerous": [
+                3,
+                7,
+                8,
+                9
+              ],
+              "failure_kind": null,
+              "first_conjunct_common_cap": true,
+              "generic_selected_row_center_cap_le_two": true,
+              "holds": true,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 1,
+              "second_conjunct_multiplicity_in_a_common_cap": true,
+              "urow_center": 5,
+              "urow_support": [
+                3,
+                7,
+                12,
+                13
+              ]
+            },
+            "saved_solution_index": 41,
+            "solution": {
+              "T": [
+                7,
+                8,
+                9
+              ],
+              "T_det_num": "3.69303720803701949966002354462472483933468924832952661725590824849891601391687426991508950",
+              "p": 1,
+              "q": 3,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": false,
+              "u": 13,
+              "u_shell_center": 5,
+              "u_shell_members": [
+                3,
+                7,
+                12,
+                13
+              ]
+            }
+          },
+          "NO_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    6,
+                    8
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    2,
+                    8,
+                    15
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    6
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                }
+              ],
+              "center_cap_support_counts": {
+                "O1": 1
+              },
+              "common_cap_count": 0,
+              "dangerous": [
+                2,
+                6,
+                8,
+                15
+              ],
+              "failure_kind": "NO_COMMON_CAP",
+              "first_conjunct_common_cap": false,
+              "generic_selected_row_center_cap_le_two": true,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 3,
+              "urow_support": [
+                1,
+                5,
+                10,
+                11
+              ]
+            },
+            "saved_solution_index": 0,
+            "solution": {
+              "T": [
+                6,
+                8,
+                15
+              ],
+              "T_det_num": "-3.69303720803701949966002354462472483933468924832952661725590824849891601391687426991508950",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "2",
+              "r2_num": "2",
+              "strict_q_in_S": true,
+              "u": 1,
+              "u_shell_center": 3,
+              "u_shell_members": [
+                1,
+                5,
+                10,
+                11
+              ]
+            }
+          }
+        },
+        "name": "W16b",
+        "preencoding_checks": {
+          "cap_membership_rematched_to_source_coordinates": true,
+          "committed_exact_class_at_every_center": true,
+          "dangerous_row_matches_committed_p_class": true,
+          "source_membership_and_center_separation": true,
+          "urow_matches_committed_center_class": true
+        },
+        "results": "scratch/d3-formulation/candidateB/results_W16b.json",
+        "results_sha256": "186e7b90e698eabf94fe6f3344bfc8160697c0a8c4d85b1822a1f38808b3ca85",
+        "serialized_solution_limit": 200,
+        "source": "scratch/d3-formulation/t9_wit_m8_2.2853.json",
+        "source_sha256": "6fe026c4d0d52528949056f4a3c5aefcfae7297390fab4d2a22683650b47931c",
+        "target_faithful": false,
+        "total_source_solutions": 572
+      },
+      {
+        "caps_materialized": {
+          "O1": [
+            1,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12,
+            13
+          ],
+          "O2": [
+            6,
+            7,
+            8,
+            13,
+            15,
+            16,
+            18
+          ],
+          "S": [
+            0,
+            2,
+            9,
+            10,
+            14,
+            15,
+            17,
+            19
+          ]
+        },
+        "epistemic_status": "EMPIRICALLY_VERIFIED_ON_SERIALIZED_EXACT_ROW_EMBEDDINGS",
+        "evaluation_counts": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": 63,
+          "NO_COMMON_CAP": 137
+        },
+        "fidelity_boundary": {
+          "K4_at_every_center": true,
+          "convex_independent": false,
+          "critical_exact_shell_coverage": true,
+          "exact_Euclidean_row_identites": "source bank; independently sympy-verified elsewhere",
+          "full_live_no_M44_and_selected_packet": false,
+          "minimum_enclosing_circle_frame": "not fully audited here; disk containment is recorded separately",
+          "named_Moser_circumcircle_contains_carrier": false,
+          "nonconvex_two_ring_inside_margin": 0.33302252754525863,
+          "points_outside_named_Moser_circumcircle": 10
+        },
+        "first_by_kind": {
+          "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    8,
+                    12
+                  ],
+                  "is_common_cap": true,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    8,
+                    17
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    12,
+                    17
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                }
+              ],
+              "center_cap_support_counts": {
+                "S": 3
+              },
+              "common_cap_count": 1,
+              "dangerous": [
+                2,
+                8,
+                12,
+                17
+              ],
+              "failure_kind": "DANGEROUS_MULTIPLICITY_LT_TWO_IN_EVERY_COMMON_CAP",
+              "first_conjunct_common_cap": true,
+              "generic_selected_row_center_cap_le_two": false,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 2,
+              "urow_support": [
+                0,
+                4,
+                14,
+                19
+              ]
+            },
+            "saved_solution_index": 2,
+            "solution": {
+              "T": [
+                8,
+                12,
+                17
+              ],
+              "T_det_num": "0.38196601125010515179541316563436188227969082019423713786455137729473953718109755029279280",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "5/2 + -1/2*u",
+              "r2_num": "1.38196601125010515179541316563436188227969082019423713786455137729473953718109755029279280",
+              "strict_q_in_S": true,
+              "u": 4,
+              "u_shell_center": 2,
+              "u_shell_members": [
+                0,
+                4,
+                14,
+                19
+              ]
+            }
+          },
+          "NO_COMMON_CAP": {
+            "evaluation": {
+              "cap_reports": [
+                {
+                  "cap": "S",
+                  "contains_p": true,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    8,
+                    12
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O1",
+                  "contains_p": false,
+                  "contains_urow_center": true,
+                  "dangerous_outside": [
+                    2,
+                    8,
+                    17
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                },
+                {
+                  "cap": "O2",
+                  "contains_p": false,
+                  "contains_urow_center": false,
+                  "dangerous_outside": [
+                    2,
+                    12,
+                    17
+                  ],
+                  "is_common_cap": false,
+                  "multiplicity": 0,
+                  "urow_dangerous_outside": []
+                }
+              ],
+              "center_cap_support_counts": {
+                "O1": 3
+              },
+              "common_cap_count": 0,
+              "dangerous": [
+                2,
+                8,
+                12,
+                17
+              ],
+              "failure_kind": "NO_COMMON_CAP",
+              "first_conjunct_common_cap": false,
+              "generic_selected_row_center_cap_le_two": false,
+              "holds": false,
+              "large_caps": [
+                "S",
+                "O1",
+                "O2"
+              ],
+              "no_M44_cardinality_consequence_two_large_caps": true,
+              "p": 0,
+              "second_conjunct_multiplicity_in_a_common_cap": false,
+              "urow_center": 3,
+              "urow_support": [
+                1,
+                5,
+                10,
+                15
+              ]
+            },
+            "saved_solution_index": 0,
+            "solution": {
+              "T": [
+                8,
+                12,
+                17
+              ],
+              "T_det_num": "0.38196601125010515179541316563436188227969082019423713786455137729473953718109755029279280",
+              "p": 0,
+              "q": 2,
+              "r2_key_pretty": "5/2 + -1/2*u",
+              "r2_num": "1.38196601125010515179541316563436188227969082019423713786455137729473953718109755029279280",
+              "strict_q_in_S": true,
+              "u": 1,
+              "u_shell_center": 3,
+              "u_shell_members": [
+                1,
+                5,
+                10,
+                15
+              ]
+            }
+          }
+        },
+        "name": "W20",
+        "preencoding_checks": {
+          "cap_membership_rematched_to_source_coordinates": true,
+          "committed_exact_class_at_every_center": true,
+          "dangerous_row_matches_committed_p_class": true,
+          "source_membership_and_center_separation": true,
+          "urow_matches_committed_center_class": true
+        },
+        "results": "scratch/d3-formulation/candidateB/results_W20.json",
+        "results_sha256": "f85245f5af4a66a813c7b7ee62aa2cdbd1ffa2a4444ecd7a45fc4a296cc8eca6",
+        "serialized_solution_limit": 200,
+        "source": "scratch/d3-formulation/t9_wit_m10_0.6180.json",
+        "source_sha256": "764a99e7fc22eb267d0bda2849b7d85c1898e5982433140bc4f1f391170b8b17",
+        "target_faithful": false,
+        "total_source_solutions": 1020
+      }
+    ]
+  },
+  "schema": "p97-atail-urow-cap-multiplicity-falsifier-v1",
+  "scope": {
+    "claim": "audit URowCapMultiplicityFields, not K-A-PAIR or the live theorem",
+    "new_solver_search": false,
+    "reason_no_timeout": "pure bounded replay; no subprocess or solver is invoked",
+    "smoke_test_count": 3,
+    "solver_timeout_seconds": null,
+    "target_faithful_counterexample_found": false,
+    "w_ring_records_checked": 600
+  },
+  "source_sha256": {
+    "scratch/atail-force/blocker_graph/countermodel.py": "1fd2a6efe5c72cf833429bd66ca5ca848cc32b811b76211504301ca6a20890b3",
+    "scratch/atail-force/blocker_graph/euclidean_countermodel.py": "0d5f0da94588e752c418b735437bd110de3f38adf1bb7ee129fac9761f798a97",
+    "scratch/atail-force/common_system_metric_probe.json": "5cdb8883bf02ccde64b6b9ba0bfe34786f2a7158efb29ba0d4e045767bdf1940",
+    "scratch/atail-force/global_count_boundary/manifest.json": "4cd32ca9bcdc904e6e016fbdf896ccb04310a1f1e9a58e239e2261e2d97dc50d",
+    "scratch/atail-force/global_count_boundary/shadows.json": "e771d39cd7291aaf8e6adb7a7853495623e54439b2205d5fcdac4a085161064c",
+    "scratch/atail-force/residual_456_exact_witness.json": "0c59485be06467015681daea1f144b2a40cc3602df5538eba4265be68b61afe9",
+    "scratch/atail-force/second_center_query/query.py": "bcf3368bd1c733100d04ebc1118f344396f6c7ab6a85ac497a8164d778dc2b5d",
+    "scratch/d3-formulation/candidateB/results_W16a.json": "e8dc18697129934b1f650cc80f132c43f4fb7ef1cc58cb74800318c7030b1683",
+    "scratch/d3-formulation/candidateB/results_W16b.json": "186e7b90e698eabf94fe6f3344bfc8160697c0a8c4d85b1822a1f38808b3ca85",
+    "scratch/d3-formulation/candidateB/results_W20.json": "f85245f5af4a66a813c7b7ee62aa2cdbd1ffa2a4444ecd7a45fc4a296cc8eca6",
+    "scratch/d3-formulation/t9_wit_m10_0.6180.json": "764a99e7fc22eb267d0bda2849b7d85c1898e5982433140bc4f1f391170b8b17",
+    "scratch/d3-formulation/t9_wit_m8_1.4534.json": "06a4936ea9c79357c0b594076100e9f6e8469e317135c71b6e19db225ab14058",
+    "scratch/d3-formulation/t9_wit_m8_2.2853.json": "6fe026c4d0d52528949056f4a3c5aefcfae7297390fab4d2a22683650b47931c"
+  }
+}

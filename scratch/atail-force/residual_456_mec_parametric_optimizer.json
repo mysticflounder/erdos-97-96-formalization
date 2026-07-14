@@ -1,0 +1,92 @@
+{
+  "encoded": [
+    "all four residual rows by exact circle parametrization",
+    "saved strict convex cyclic order",
+    "all points in the circumdisk through labels 0,1,2",
+    "nonobtuse triangle 0,1,2",
+    "pairwise distinctness",
+    "exact-row off-support gap audit"
+  ],
+  "epistemic_status": "NUMERICAL_DISCOVERY_ONLY_NOT_A_PROOF",
+  "omitted": [
+    "all-center K4/FaithfulCarrierPattern",
+    "live dangerous/full-filter/no-M44 fields"
+  ],
+  "result": {
+    "angles": [
+      0.8150356910275238,
+      0.9821319256199681,
+      2.0943951023931953,
+      2.6080232812894653,
+      4.189907838380567,
+      4.191221074352152,
+      4.496158375312034,
+      4.590786751070637
+    ],
+    "branch": -1,
+    "circumcenter": [
+      0.5,
+      0.288675134594813
+    ],
+    "circumradius_squared": 0.33333333333333337,
+    "coordinates": {
+      "0": [
+        0.0,
+        0.0
+      ],
+      "1": [
+        1.0,
+        0.0
+      ],
+      "10": [
+        0.47129288118708246,
+        -0.24896303060089287
+      ],
+      "11": [
+        0.5645396596964839,
+        -0.2648654777059162
+      ],
+      "2": [
+        0.5000000000000002,
+        0.8660254037844387
+      ],
+      "3": [
+        0.685842419745527,
+        0.7277500774837475
+      ],
+      "4": [
+        0.555250723622962,
+        0.8316830128818173
+      ],
+      "5": [
+        0.5,
+        0.8660254037844386
+      ],
+      "6": [
+        0.13900285861448103,
+        0.5086097939736951
+      ],
+      "7": [
+        -1.1102230246251565e-16,
+        3.3306690738754696e-16
+      ],
+      "8": [
+        0.0009682111593581899,
+        -0.0005582758025408641
+      ],
+      "9": [
+        0.0021066700049094944,
+        -0.0012128748601328843
+      ]
+    },
+    "min_convex_cross": 2.6049803153834824e-19,
+    "min_disk_margin": 5.551115123125783e-17,
+    "min_exact_squared_gap": 0.0,
+    "min_nonobtuse_inner_product": 0.4999999999999998,
+    "min_pairwise_squared_distance": 6.162975822039155e-32,
+    "optimizer_message": "Optimization terminated successfully.",
+    "optimizer_success": true,
+    "score": 6.162975822039155e-32
+  },
+  "schema": "p97-atail-residual-456-mec-parametric-search-v1"
+}

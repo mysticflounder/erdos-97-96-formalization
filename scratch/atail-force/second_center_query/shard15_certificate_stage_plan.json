@@ -1,0 +1,73 @@
+{
+  "final_terms": [
+    {
+      "coefficient": "1",
+      "powers": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "optimized_max_partial_term_count": 1306,
+  "optimized_order_zero_based": [
+    9,
+    0,
+    2,
+    3,
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10
+  ],
+  "optimized_partial_term_counts": [
+    1230,
+    1306,
+    989,
+    792,
+    1066,
+    812,
+    1296,
+    1013,
+    914,
+    624,
+    1
+  ],
+  "original_partial_term_counts": [
+    1374,
+    1841,
+    1923,
+    2036,
+    1837,
+    2317,
+    2181,
+    2115,
+    1837,
+    624,
+    1
+  ],
+  "schema": "p97-shard15-certificate-stage-plan-v1",
+  "summand_term_counts": [
+    1374,
+    685,
+    898,
+    775,
+    861,
+    822,
+    602,
+    699,
+    362,
+    1230,
+    623
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "active_points": [
+    0,
+    1,
+    2,
+    6,
+    7,
+    11
+  ],
+  "best_unit_pairs": [
+    {
+      "elapsed_seconds": 0.03453424999315757,
+      "lift_max_coefficient_char_count": 3382,
+      "lift_total_char_count": 13379,
+      "normalization_anchors": [
+        1,
+        7
+      ]
+    },
+    {
+      "elapsed_seconds": 0.04166000000259373,
+      "lift_max_coefficient_char_count": 5241,
+      "lift_total_char_count": 18211,
+      "normalization_anchors": [
+        0,
+        1
+      ]
+    },
+    {
+      "elapsed_seconds": 0.02950375000364147,
+      "lift_max_coefficient_char_count": 5351,
+      "lift_total_char_count": 24675,
+      "normalization_anchors": [
+        7,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.029335291997995228,
+      "lift_max_coefficient_char_count": 10020,
+      "lift_total_char_count": 26247,
+      "normalization_anchors": [
+        0,
+        2
+      ]
+    },
+    {
+      "elapsed_seconds": 0.027910624994547106,
+      "lift_max_coefficient_char_count": 8916,
+      "lift_total_char_count": 32059,
+      "normalization_anchors": [
+        0,
+        7
+      ]
+    },
+    {
+      "elapsed_seconds": 0.02320595800119918,
+      "lift_max_coefficient_char_count": 10001,
+      "lift_total_char_count": 33858,
+      "normalization_anchors": [
+        1,
+        2
+      ]
+    },
+    {
+      "elapsed_seconds": 0.02158954100741539,
+      "lift_max_coefficient_char_count": 7981,
+      "lift_total_char_count": 35891,
+      "normalization_anchors": [
+        6,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.030848208989482373,
+      "lift_max_coefficient_char_count": 7721,
+      "lift_total_char_count": 39225,
+      "normalization_anchors": [
+        2,
+        6
+      ]
+    },
+    {
+      "elapsed_seconds": 0.018952541999169625,
+      "lift_max_coefficient_char_count": 6353,
+      "lift_total_char_count": 42312,
+      "normalization_anchors": [
+        1,
+        6
+      ]
+    },
+    {
+      "elapsed_seconds": 0.06372258299961686,
+      "lift_max_coefficient_char_count": 11545,
+      "lift_total_char_count": 65010,
+      "normalization_anchors": [
+        6,
+        7
+      ]
+    }
+  ],
+  "completed_unit_count": 10,
+  "pair_count": 15,
+  "results": [
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.04166000000259373,
+      "lift_max_coefficient_char_count": 5241,
+      "lift_total_char_count": 18211,
+      "normalization_anchors": [
+        0,
+        1
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.029335291997995228,
+      "lift_max_coefficient_char_count": 10020,
+      "lift_total_char_count": 26247,
+      "normalization_anchors": [
+        0,
+        2
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.024825000000419095,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.027910624994547106,
+      "lift_max_coefficient_char_count": 8916,
+      "lift_total_char_count": 32059,
+      "normalization_anchors": [
+        0,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.06847624998772517,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.02320595800119918,
+      "lift_max_coefficient_char_count": 10001,
+      "lift_total_char_count": 33858,
+      "normalization_anchors": [
+        1,
+        2
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.018952541999169625,
+      "lift_max_coefficient_char_count": 6353,
+      "lift_total_char_count": 42312,
+      "normalization_anchors": [
+        1,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.03453424999315757,
+      "lift_max_coefficient_char_count": 3382,
+      "lift_total_char_count": 13379,
+      "normalization_anchors": [
+        1,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.040836542000761256,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        1,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.030848208989482373,
+      "lift_max_coefficient_char_count": 7721,
+      "lift_total_char_count": 39225,
+      "normalization_anchors": [
+        2,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.029375333004281856,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        2,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.022055832989281043,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        2,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.06372258299961686,
+      "lift_max_coefficient_char_count": 11545,
+      "lift_total_char_count": 65010,
+      "normalization_anchors": [
+        6,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.02158954100741539,
+      "lift_max_coefficient_char_count": 7981,
+      "lift_total_char_count": 35891,
+      "normalization_anchors": [
+        6,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.02950375000364147,
+      "lift_max_coefficient_char_count": 5351,
+      "lift_total_char_count": 24675,
+      "normalization_anchors": [
+        7,
+        11
+      ],
+      "status": "COMPLETED"
+    }
+  ],
+  "schema": "p97-atail-shard-anchor-pair-certificate-profile-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "shard_index": 10,
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_twin_four_circle_46_equality_checkpoint.json",
+  "source_checkpoint_sha256": "75ead90e669edacb4eab071c6363c1ddc15a03b76f4a23527ed7b1234af6fd13"
+}

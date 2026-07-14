@@ -1,0 +1,3113 @@
+{
+  "case_count": 192,
+  "cases": [
+    {
+      "case_id": "ra4d0_rb4d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb4d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb4d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb4d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb4d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb4d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb4d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb4d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb4d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb4d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb4d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb4d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb4d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb4d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb4d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb4d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb4d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb4d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb4d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb4d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb4d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb4d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb4d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb4d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb4d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb4d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb4d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb4d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb4d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb4d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb4d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb4d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb4d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb4d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb4d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb4d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb4d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb4d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb4d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb4d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb4d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb4d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb4d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb4d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb4d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb4d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb4d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb4d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb5d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb5d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb5d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb5d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb5d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb5d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb5d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb5d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb5d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d0_rb5d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d0_rb5d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d0_rb5d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb5d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb5d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb5d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb5d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb5d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb5d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb5d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb5d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb5d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d1_rb5d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d1_rb5d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d1_rb5d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb5d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb5d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb5d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb5d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb5d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb5d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb5d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb5d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb5d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d2_rb5d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d2_rb5d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d2_rb5d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb5d0_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb5d0_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb5d0_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb5d1_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb5d1_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb5d1_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb5d2_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb5d2_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb5d2_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra4d3_rb5d3_i0",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra4d3_rb5d3_i1",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra4d3_rb5d3_i2",
+      "ra_card": 4,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb4d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb4d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb4d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb4d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb4d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb4d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb4d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb4d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb4d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb4d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb4d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb4d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb4d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb4d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb4d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb4d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb4d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb4d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb4d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb4d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb4d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb4d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb4d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb4d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb4d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb4d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb4d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb4d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb4d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb4d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb4d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb4d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb4d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb4d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb4d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb4d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb4d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb4d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb4d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb4d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb4d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb4d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb4d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb4d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb4d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb4d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb4d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb4d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 4,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 2,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb5d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb5d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb5d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb5d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb5d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb5d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb5d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb5d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb5d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d0_rb5d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d0_rb5d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d0_rb5d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb5d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb5d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb5d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb5d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb5d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb5d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb5d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb5d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb5d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d1_rb5d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d1_rb5d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d1_rb5d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb5d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb5d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb5d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb5d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb5d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb5d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb5d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb5d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb5d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d2_rb5d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d2_rb5d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d2_rb5d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb5d0_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb5d0_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb5d0_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 5,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb5d1_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb5d1_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb5d1_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 4,
+        "surplus_cap": 0
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb5d2_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb5d2_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb5d2_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 0,
+        "own_strict_cap": 4,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    },
+    {
+      "case_id": "ra5d3_rb5d3_i0",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 0
+    },
+    {
+      "case_id": "ra5d3_rb5d3_i1",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 1
+    },
+    {
+      "case_id": "ra5d3_rb5d3_i2",
+      "ra_card": 5,
+      "ra_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "rb_card": 5,
+      "rb_distribution": {
+        "other_opposite_cap": 1,
+        "own_strict_cap": 3,
+        "surplus_cap": 1
+      },
+      "row_intersection_card": 2
+    }
+  ],
+  "claim_scope": "finite outer-case enumeration only; no realizability, unsatisfiability, Lean, or closure claim",
+  "encoded_here": {
+    "adjacent_cap_one_hit_counts": true,
+    "distinct_center_circle_intersection_card_at_most_two": true,
+    "own_strict_cap_count_at_least_two": true,
+    "selected_row_cardinality_four_or_five": true
+  },
+  "generator_sha256": "45013d7b2a6a3f000c6d861ce96be72bda05db9008b90be7cd8438188e38ead1",
+  "manifest_sha256": "30a09cc06a6722e7bc4d58a9966fc32494478c2135a44db1ca7e0685b296d5ac",
+  "not_encoded_here": {
+    "all_center_k4": true,
+    "convex_order": true,
+    "coordinates": true,
+    "critical_shell_system": true,
+    "mec_or_nonobtuse_geometry": true,
+    "solver_query": true
+  },
+  "outer_axes": {
+    "cap_piece_distribution_count_per_row_card": 4,
+    "ra_card": [
+      4,
+      5
+    ],
+    "rb_card": [
+      4,
+      5
+    ],
+    "row_intersection_card": [
+      0,
+      1,
+      2
+    ]
+  },
+  "owner": "ATAIL-FORCE crossed small apex-row SAT-first pilot",
+  "schema": "p97_atail_crossed_small_apex_rows_manifest.v1",
+  "status": "SPECIFIED_NOT_RUN"
+}

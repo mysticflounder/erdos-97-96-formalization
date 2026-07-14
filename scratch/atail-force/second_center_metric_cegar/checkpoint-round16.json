@@ -1,0 +1,2059 @@
+{
+  "budgets": {
+    "cas_timeout_seconds_per_call": 6.0,
+    "max_incidence_nodes_per_round": 250000,
+    "max_rounds_per_case": 16,
+    "minimization_wall_seconds_per_unit_candidate": 18.0
+  },
+  "cases": [
+    {
+      "bootstrap_cut": {
+        "crosscheck": {
+          "status": "CROSSCHECKED_UNIT",
+          "verdicts": [
+            "UNIT",
+            "UNIT",
+            "UNIT"
+          ]
+        },
+        "equality_count": 18,
+        "expanded_polynomial_sha256": "e48fb4ff55578eb10eb12d98e54243995a8631407f48bb32559592adcaf4cf88",
+        "origin": "second_center_metric_oracle_checkpoint",
+        "row_count": 6,
+        "row_set_sha256": "6c8607f5f4512ffd981867c4f385e3578760287200771dc885b4b57946a2bb00",
+        "rows": [
+          "1:0,2,5,6",
+          "3:2,7,10,11",
+          "6:1,2,8,11",
+          "7:0,3,6,11",
+          "8:0,3,7,9",
+          "10:1,6,7,8"
+        ]
+      },
+      "final_status": "STOPPED_ROUND_BUDGET",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "rounds": [
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "d28a953c39caf01950e072fa0d3248da0438e13dac33bf2e8a2d6fbd8306bdc7",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "d3b7f451b0437225604abc88cda97e8191e210ee5f846c3c535d9b3e1cbe3195",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "7:0,3,6,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "2242e21de42164bead215cca8b3703598a4a84731b1022021ffcd38934999e05",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "0b4aed241b46638c57de59cf85dda00039079d1ea6275f560fbd94bd978da1f6",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "d6dd445dd53898eaf7e102acfd468534aee2debc12e946d877976f10cdeca9c6",
+          "minimization": {
+            "attempts_sha256": "3aeb6b320ebc989b1a04d886cf757b0e065868d542754ed2bce233cb1d31baf4",
+            "incomplete_attempt_count": 4,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 20,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 0
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 15,
+            "expanded_polynomial_sha256": "cfa015ef232fb3306cded3edcb734a7435416cc214c80248b02de48e7e3956fa",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 5,
+            "row_set_sha256": "583594c8e55bdf7d3e91734e9c3aa61451131664abea1540c78c660a599e6a63",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:1,2,8,11",
+              "9:0,4,8,10",
+              "10:1,6,7,8"
+            ]
+          },
+          "assignment_sha256": "8a69bacd30d8c6c53f577e4616e091720c89db992ac6917be7869c8d453dcd20",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "d320cb5aa9d62184905ffb13643c8eb519abccaf12094cadb9df2bf4dcacffe2",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "1ab3e3155156da442de0ef2db9e12eb56bc0f9a26faf2515545c30af4d1da402",
+          "minimization": {
+            "attempts_sha256": "cd6afeceb113dd13a4d2980861867892246aa14982dff04ae11d769534fe5bb9",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 7,
+            "retained_row_count": 5,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 20,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 1
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "d056bd0eab9230b5d1ba64977d1daf945dbb6b14eb60def276a49fd0b4ff4eef",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "76c19eae465d42ff9a440b03e5ba8d65ff681f166396af3fb7983e98a79d52d3",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:2,4,7,9",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8"
+            ]
+          },
+          "assignment_sha256": "7dab86420ec1e4e0a20c8fb83e94c5166316753e9f35206123704b828193d334",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "a35bc03c377442bc0fa06975c238028a61b6c65064ef05f8f23668394864d94d",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "9a97e8713af31d83f8c800983bd1ba005906a35ce3995ae5edaf0da7c68e9ce8",
+          "minimization": {
+            "attempts_sha256": "1a573a079a9616f57b5bdfca16fa97740ad931bdee1592fa001eca539d4fc5a8",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 21,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 2
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "c0f5132fb8385fe89515909d6759904c38f610a654ffc630b22772d97ace7f38",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "501274bd71daf70a8226bcb28b40e125d45d4f99968b20fa4e23405fb5c51308",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:2,7,9,11",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "b3f92adeef420495d9726f12c4402bf727dd34c954a80c355637ed08663aa166",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "27793e15fc9ba8eb75fd4308ba86a7726244bfa0ecdb0576f0e25719f090385f",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "8c12d807f9184cf17c2f574c4d70bbc495fb362f3ec566578e2d6485bcb68dfe",
+          "minimization": {
+            "attempts_sha256": "f5afa99d313d4cf68f95f17d764ab9a526d96f31d3fc62d85baed07ceb168463",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 31,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 3
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 15,
+            "expanded_polynomial_sha256": "c25e3c45343ce409b0d9ae43acf19227a0e775e4ac11f717c40425455227eeac",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 5,
+            "row_set_sha256": "6314ac8ea2380da616fa0fcff4270b61ae40f6e88d26b1b9ea8880d95288678e",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:2,8,10,11",
+              "9:0,4,8,10",
+              "10:1,6,7,8"
+            ]
+          },
+          "assignment_sha256": "4e8f17b2948726dd1c4d77132090e23e8382a18d871cce10a1bcf2469b44334d",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "d1c8e759c0c6637f7ae602237727a7dffe945ca5c2c9594399e982e1d106b4d3",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "03bdb1365c28e737f2f6818c3ba51c06f879d604ecdc749ee77eec345853e43d",
+          "minimization": {
+            "attempts_sha256": "7d39d2118f85cd7b2dbc416a0f0123dcfe2d583804abf76dd7e2ecde7d8185dd",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 7,
+            "retained_row_count": 5,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 42,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 4
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "e44e622f1c76a26d42c08af5ead560009983e8c85022bbae8bf9c14aa48b5bfd",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "b51245862aacc1023600669d40d68848799a3afd9809db05a0f4967ebabba0ca",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:3,8,10,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8"
+            ]
+          },
+          "assignment_sha256": "183f1d5edbe54018f273a60bdf7134157added4b621dc3da4b9002223d4cb39b",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "b7bb904cf1c9032c2f6aba03735c506bc450e785ff6b3b85147c8b5ec4d3ef20",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "026d870229f5095315a303fcf8c1acaa37cfd2e78a26e7628d5a7fbfc5e9da1f",
+          "minimization": {
+            "attempts_sha256": "0afa92fbd0b7d129b7b71a706b6f2092789e6f3f4294a1c81609432f4d5e2b2b",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 49,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 5
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 24,
+            "expanded_polynomial_sha256": "1429375f0946d5067ecc9546597f0158e963b996d2903034c2d112895b964669",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 8,
+            "row_set_sha256": "f300328ea5c46f89d629609fec0405024b576391403850eb20958792b0676f45",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "6:4,7,9,11",
+              "7:3,6,8,10",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "9a98223184e9899ce3289989c492f2a72de77a0362c33a18b4174cc83267ebe6",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "951069145b5dec0b773cc374c1aa25cd52f65c13436efb14466225d6ade21d0a",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "76075d89d087e1fb1541084a9c9f2e08eabdcb2b611e6176c32757d9f0a624ed",
+          "minimization": {
+            "attempts_sha256": "9c342df75c036b0deb4d615f0e6139ff5e79fba5515367eaaadb29055ea787a0",
+            "incomplete_attempt_count": 0,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 4,
+            "retained_row_count": 8,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 67,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 6
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "a1c10d41b723455d8059fe97c8e94e7e0d809718f59ce0dbb86dcd1cffeaadc7",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "635251319c92eb99fa0afbc7b55e8b0ebb21030aafc7b12ff0d02cb88ff712b9",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "7:3,6,8,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "c938cca45f11bc536e8bc9c4f12c5410728d71d450851159c468649ab1eed435",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "43ff6d92cd50059232f53a157f09ddc65ef3c3b66d9ddf07a0dc116cc6a0e912",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "f0be85bf5086c14f97395ce11a09c2892a16f48416d12778571ddd95672c457c",
+          "minimization": {
+            "attempts_sha256": "2c772baea09bae58efd251edff15aadffddc5eba10fa0bba54d5dcc23cf7e452",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 81,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 7
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "e4b8744542f908adcadc28861533826e4fa3191548111011b4302dbe0b85bdae",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "9dc4053d3c8cbe72754938e61273c609faed3b217c10ff3919c0145d42e03736",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "5:0,2,4,11",
+              "6:5,7,9,11",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "a0efb07281d32a34946e3ea26ba974099fd3fcf18ac4950fb35b891100102e89",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "b0814ae1fecaf8bd02bb9ba6eabfb45137b6460f3bdcf2434fca3bdbe3d74adf",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "919915ab8ba94ddfdee60203fc25a89fb6339f3e64eb3d32036dfd5e8b6a2bf0",
+          "minimization": {
+            "attempts_sha256": "b7b4dcfb6f82549bb789ce035d63b911ddf513fa12658967f33d1b115bebc1b8",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 84,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 8
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "c8eb4153e1d4169cff0cc3e0bc47f8f277a1d80179ece12744973dd6adf66306",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "a9801f8ba4ae7d47e2e4568c584c94be3df4b33fc1091f4852c779b401d84c37",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "4:2,3,7,10",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8"
+            ]
+          },
+          "assignment_sha256": "820d22ea3a98909be6f2b10d98e0c981c65452925012d968e70794dd8db13602",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "9f0d80f00c7bc04007f80ac94a89310489c18a708ac9996a6aa7f3cbcae7d46c",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "c90e3ad9dbfd8f885d6ef75ef007ca592cbad0bc6d5d55537cf99673bcd2de2b",
+          "minimization": {
+            "attempts_sha256": "d8c14096f3ee4fb383191f4ded2c024f34fe2cfcd8b7acf3b975b0a2df464a0e",
+            "incomplete_attempt_count": 4,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 82,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 9
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "90226ec2a04d04dc2f28cb6536ab9f37e26249f457319265226bbe7428623a41",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "be8f275e980f07022b7616cd66d3f61788d1a008b52895142950e2140506849c",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "3:1,4,6,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "b015078ab6194b7e36161c3a2f62f8025590fbcad4a7bfd29742ec4b74bd2193",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "2354c8fc77f89f80f12f342130ba454bf9b7db22697202cd45c770b82b83dca5",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "3402b1175fc94aac7ce608548a032f60a082b11b4ba5af220654c0a9f3be7993",
+          "minimization": {
+            "attempts_sha256": "a7e4a0a52860ed5318e8cc108a62b75661d77d78dc09e418e2515a4f63be08eb",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 82,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 10
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "3307982160a21c30277fa2d9daec89e2f6527d95a75db948cca8a5eb326a3f95",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "ffe13f84e954813fa983d85a937eecf1231b844b922000497aa510f6128cc729",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "4:2,3,10,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "c833f385aff3c87bd693c1b0c57da61ff428449df1d2ca74ec4fd0adfd17b7bf",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "ff33c82c01819a3e9ba11fe49f81737d437212c44fbae1adf270a4f99931041d",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "6f0986e3472de0d84c714a88ee80d1fbfe32e3d4fc4af4e85e589fa86ab574a2",
+          "minimization": {
+            "attempts_sha256": "090f0371bdc7900a0e9f656237b040bdfce07729593d4f0b5f727347e2154681",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 79,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 11
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "0c6cd013eabc6ee295e2b71c878e0c81800bbc5188e0e04cd0499c77193e4f3b",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "19ade4ca4ab7170fa2dfb21261ec228655e0898bdb51442b94d90fcda9f8052b",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "3:1,5,8,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "1b14224d5bbcecf9a29f2158ded32dd13c317a03c748e29d9a4628f89cc1a583",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "9b9be3b8a53a58ac65b13e3b94a34aada252314c58232b651bba75d46d1fe617",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "c65e76b6d0c61d928578cdfcfd057dcafe7fd5708b756db3cac1ba3201c63551",
+          "minimization": {
+            "attempts_sha256": "69659167af6de9759ba635cf2d83f7a7055ac1625f5a1d15cca1ee59734c9b9f",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 81,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 12
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "a5ceb45891154092e85c9249dc9acbdcff5124a06ec41ae0e0aa77901c11bc03",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "faa1b1d9e394760511e9c67c90b1e31cd315714f5045b3f2c5ca5cc3c8632182",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "5:1,2,8,11",
+              "7:0,4,6,11",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "2eff5f8b3772b9d1d45a82962beccc91a7bbd9fcbc7a85541fa181b825643f7a",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "e3b9818c8512511c3795858fd8ef8cd765a40676de1bfc828f45cbc0da0aaa01",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "cc12aeafc4c4906ead2edefc20379bf847cc4a33317543e8ebd30843ed28161c",
+          "minimization": {
+            "attempts_sha256": "c33929ed1425e16f503bc7a1b52a376567a128521953df18454dceedd529a733",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 76,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 13
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "7933a4b57b972fa02ba1c6059c573d93e770a51eddf9a984deb9ce09c0be5bcd",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "1e6144926a3ad32dfcd15fd1b3e4dd9e844a8d3f11358ffef99619112e6a0b69",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "5:2,6,10,11",
+              "6:5,7,9,11",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "5157bf43e7d74a5735e5b73b3a7cc1735f135d991db6fcc3941fd3835f3f0800",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "92aae430ce73605fe4faf50766514cc2e58ab3e72fa0feeb57fb8222c88321b2",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "108ef8066897c6b06e218004a24d3a4a1c45004e975dd30af391b77ea5b8f6d9",
+          "minimization": {
+            "attempts_sha256": "31778580217bfa2461cbf2190c2725cc027f375f5db60f0e8dd196e478f4a506",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 84,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 14
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "56bc3a7cdbecead5ce833e23370c8052074f91edec816e6358c5dfb6c52cb03d",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "abaf971214ebf87e3e99b5975dd253de72cfd5dc332261dcceb553a8b3b370a3",
+            "rows": [
+              "1:0,2,5,6",
+              "2:0,1,9,10",
+              "5:3,6,10,11",
+              "8:0,3,7,9",
+              "9:0,4,8,10",
+              "10:1,6,7,8",
+              "11:2,3,8,9"
+            ]
+          },
+          "assignment_sha256": "c1ab23a1e125ceaf8758bd4ee3a928b9db3675c9d212bb738a493e0ae1fe5a06",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "a1b5cfa05a34725633bcbca672cd909e9335780cd0a166c4baa4c3a3934298d7",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "ab52cc35471d7c31faacd3673f7194b12bc27c5171a6135ca79d0e98bf5911fe",
+          "minimization": {
+            "attempts_sha256": "eeeede1eeb77a71d2489c36b5ac153b32fb388dd025885b21e300b5590844d53",
+            "incomplete_attempt_count": 4,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 85,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 15
+        }
+      ],
+      "schema": "p97-atail-second-center-metric-cegar-case-v1",
+      "seed": {
+        "labels": {
+          "p": 0,
+          "q": 5,
+          "t1": 3,
+          "t2": 1,
+          "t3": 4,
+          "u": 2
+        },
+        "profile": [
+          4,
+          5,
+          6
+        ],
+        "second_large_cap": "O2",
+        "surplus_cap": "O1"
+      },
+      "seed_sha256": "8a70996f6ae44066141d196c2d4036293275c2951bea85a53ba9e4130f4c8dfb"
+    },
+    {
+      "bootstrap_cut": {
+        "crosscheck": {
+          "status": "CROSSCHECKED_UNIT",
+          "verdicts": [
+            "UNIT",
+            "UNIT",
+            "UNIT"
+          ]
+        },
+        "equality_count": 21,
+        "expanded_polynomial_sha256": "be83946641ac1a2fd8ced60284ca367e879337b1cc125f9ea94099da2d9d03f8",
+        "origin": "second_center_metric_oracle_checkpoint",
+        "row_count": 7,
+        "row_set_sha256": "b8c776e95c9019bc234713894ee30c99afe1f3c09caf38fdcf75c55793ba2519",
+        "rows": [
+          "1:0,2,6,7",
+          "5:0,3,8,11",
+          "6:1,5,7,11",
+          "7:2,5,8,9",
+          "8:4,7,9,11",
+          "10:3,5,7,9",
+          "11:1,7,8,10"
+        ]
+      },
+      "final_status": "STOPPED_ROUND_BUDGET",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "rounds": [
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "151bf2bceff41e21b440966ab1df435bacd3b16bda7b7a54a8bc5e0d0e339f1a",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "edc2c4f7f08c64cd1c1fbed826766e12d0dba40c2cd65a5f625e06ad0fcd8128",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:4,7,9,11",
+              "9:0,3,5,10",
+              "10:1,5,9,11",
+              "11:1,7,8,10"
+            ]
+          },
+          "assignment_sha256": "943b7148e9a242891916eb877a4238553399ca0c1ea9970e2bcc5c064abe23d8",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "2643ed7df9c2ebe74402feac708070aebed1dcf7b4358da6c8dadb484a1f9214",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "63a4f882323559297c33d48788286b523a0b33c511972e5804a4d47fce19b9ac",
+          "minimization": {
+            "attempts_sha256": "b2655f5d73f494df4630e7ba564abeed7c0ab2b14afad64e661a39aba3e16821",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 58,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 0
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "c8d0b7af916a4bb0633d6673046141f5bb442d3fddc35d7ad9c18a8ae105fa9e",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "3e4953372e71f563733988a912c035c87d5b73b65c67791f5294c8034a8e65e7",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:4,7,9,11",
+              "9:0,3,5,10",
+              "10:1,6,9,11",
+              "11:1,7,8,10"
+            ]
+          },
+          "assignment_sha256": "ac9c7f3f071fe4014a57c63dd720b42d6ce6e26fd0d232d743f3869b30b34e69",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "c3aa343599bc1e598549d7857b1659d849f41debad2c3747f98040d5484ad2b6",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "e90bb3735f9ea901f207d47981d6b1d493f28d1c54b7b33889251138f0e0d110",
+          "minimization": {
+            "attempts_sha256": "477895e4e1918ca52d4466891c78f732f4c019d26644bceaa87bfa56538c7d4f",
+            "incomplete_attempt_count": 0,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 63,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 1
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 24,
+            "expanded_polynomial_sha256": "108c126a49a2fd63f8b6fcbe171e895c047affc30adab59626213370da18a805",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 8,
+            "row_set_sha256": "ed666ba35081b4585bbadcfbc6c586abac7d79fbce70f8064dd34aa85d61ac05",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:4,7,9,11",
+              "7:2,5,8,9",
+              "8:0,4,5,7",
+              "9:0,3,5,10",
+              "10:1,5,9,11",
+              "11:3,7,8,10"
+            ]
+          },
+          "assignment_sha256": "8c6635991e1f02a7204de3d4914c951a2291bfaf6f3266c11315fffabbde96ab",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "6456e38ee107d795beb66dc5fae2719ffb8f49dd28ee1cfe148b01c72b4a0496",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "076e3b765438e67cfc8bd35498cca388060de5200b60929d535cab39b6bc2650",
+          "minimization": {
+            "attempts_sha256": "8c1f54bdb6acfcd79c4e40d20a51c114e68cd87173f26e3874d5da6901df4dce",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 4,
+            "retained_row_count": 8,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 158,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 2
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 24,
+            "expanded_polynomial_sha256": "a5d157c201ab26b0b45616d059cc0290f6d9212e825d2c5d14354e6fca785ac6",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 8,
+            "row_set_sha256": "c7b7fe2b195ea8a3fb2f530ba5b2ca90e6db2d42cb84b573f4a50ad92a92b456",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:4,7,9,11",
+              "7:2,5,8,9",
+              "8:0,4,5,7",
+              "9:0,3,5,10",
+              "10:1,6,9,11",
+              "11:3,7,8,10"
+            ]
+          },
+          "assignment_sha256": "24814b97345cb10eb2793179d4e24f7959bb8778cf32ed56ad1aeb52355283f4",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "0625e7407817ff18ba69f5070e6bbf59a72d6d1cba7bfda6dca61a6969d513e9",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "2f2b32d8afc817432871533cb9f2ef6fddfd88f59f643059f1f26fc57fc23e98",
+          "minimization": {
+            "attempts_sha256": "8c1f54bdb6acfcd79c4e40d20a51c114e68cd87173f26e3874d5da6901df4dce",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 4,
+            "retained_row_count": 8,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 159,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 3
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 15,
+            "expanded_polynomial_sha256": "292100ed4ceca38058fd25cea42b889086c17c2f852cd4cb55b826bdebedfade",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 5,
+            "row_set_sha256": "5ed9236fc8aea31161a428f52d37b36c24e5f8b735649b8d2bbce1420c5c9fa4",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "9:2,8,10,11",
+              "10:1,7,9,11",
+              "11:4,7,8,10"
+            ]
+          },
+          "assignment_sha256": "cd57f1393d0b8f0ed9a1f755fff5a086c15caf9077b2b2f5380798e8f34336d9",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "406586f432688f3df9c4c86dc03e4387886f4ccc29b9da3f6036bf9ee9dc3a0b",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "4502619d5389ce8afd9e4532521bff01517218d1f651b1ce4fcb26dd9d8c4cd7",
+          "minimization": {
+            "attempts_sha256": "10a24a7a6dd9cf6382c9847e84b90d0ba8e22e93ab1829c3734280a6d2a08bf6",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 7,
+            "retained_row_count": 5,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 231,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 4
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "e7957e6931f82c994dd814cf48405aa312bf3ff413ac7638f9208e09f2afe0cb",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "7c3979df6ba8fd5c577841af7d2226f3546dd8a91a1557cf19d548e8e76eefd5",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "7:2,5,8,10",
+              "8:4,6,9,11",
+              "10:2,8,9,11",
+              "11:1,5,7,10"
+            ]
+          },
+          "assignment_sha256": "691becb96e5dd42e68982d4d35dc96e56ce847253f1a218e3f9556e9cffabeee",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "69237acc9196a356da19040e1c4fc2b1990e6736e278673d69bf08da8236b7cf",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "a708750d95e54400a89a98759673252671328988a838c10b44acdf363d0d151a",
+          "minimization": {
+            "attempts_sha256": "f4972f42ee21ef4ac7f33f243f6d1bc9e86c40eef7db9a5836420487d129cbd5",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 766,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 5
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "ef3337ab971f207d2b367b0ab8706419885dc6940fb20641e6e47b3c25566d91",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "490c5519ca61752505bee2419e38ce7cdf9aa40f0238230bd8f34ad7d54c9778",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "7:2,5,8,10",
+              "9:3,7,8,10",
+              "10:1,8,9,11",
+              "11:1,5,7,10"
+            ]
+          },
+          "assignment_sha256": "3b4072837418b77c463c5c70dcb05c4e7aa7025259140eb2a619714f507e16c5",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "f652fbd19faaa0fd30c042e64012a55e6143041ea81df85e16435290401bff53",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "54fe3143cda7a8767f6229fcc13f5d8994019eceaf77739e8e7354408e31f54f",
+          "minimization": {
+            "attempts_sha256": "db25d97459a07db4cec3b8fcaaaed98bcb89f3efbd1e57afe21b34fece04869c",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 770,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 6
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "24dadd263288868ebd10d9eb10653dc9750918ac113df49ec17330c29dde817f",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "f1edb135c18fd91f722ebc9a53910a0d5d4e0dff26bc2c750c84bf0c79b8526f",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "7:2,5,8,10",
+              "8:4,6,10,11",
+              "9:3,7,8,10",
+              "10:2,8,9,11",
+              "11:1,5,7,10"
+            ]
+          },
+          "assignment_sha256": "79dc5e778cd55e49d266b6297a469a3f6338cb00fdf2fead97de54a553839a7d",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "7d7cb68ab8f66de8974646b2a42a7dcc260878fffedefa9c6b292291bbfa86c1",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "23ef83ec8f067d093a7b1b4492b8e3bd1cb86157c2d24e02beab11dde0da1610",
+          "minimization": {
+            "attempts_sha256": "f97748b0ecd876e264a3e5a2831aaa446875c4a95edf226783669914de899d0f",
+            "incomplete_attempt_count": 0,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 771,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 7
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "ecd6ea02ea1f6a68b3be25cb75563ed05696cc0fedcb06545e27951f7b61da6b",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "5449317e670aea1cc88f8f865963e7030cdcdd47281ec82acb2b0066750d1389",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "7:2,5,8,10",
+              "9:3,7,8,10",
+              "10:1,6,9,11",
+              "11:1,5,7,10"
+            ]
+          },
+          "assignment_sha256": "584fdde1988e9d9b66c8510698a6c27b20b72d3ed1080a182e6db74ae0ba7064",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "7a866b7aad973da453fbd7ca6ffc665f8e12c74f594679c9a3c3e40d7cfc55e0",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "de72417b201adf37cb7344bcefb6d763a99fe7328e26f1533f58037139e3bc76",
+          "minimization": {
+            "attempts_sha256": "db25d97459a07db4cec3b8fcaaaed98bcb89f3efbd1e57afe21b34fece04869c",
+            "incomplete_attempt_count": 1,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 774,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 8
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "359591dbaf4fbf5598298e53f448c4c725a36100104f013ce1114c65e5c8c2af",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "a4d728a0274c4ef40dea3f2d13da4c2113adfd11f2b996096a920fcf220d3ef8",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "8:4,7,9,11",
+              "9:3,7,8,10",
+              "10:2,8,9,11",
+              "11:1,5,7,10"
+            ]
+          },
+          "assignment_sha256": "67dc57e2851343cc1ea23b9bde674d123bdd506e48e2517ed373f8d0894f30b9",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "f3ccda86513db5055e2b26a4dcea1eaf200cb74295595aa59419f2e0a63c8fea",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "2a9694461d8853d394ec5998cd05285105bbe77c5626e4dfaeec08f7d60c8bb7",
+          "minimization": {
+            "attempts_sha256": "c6ac6d6c317130414002ee93c6604f4cddacf4ab0d81fad799497b673d11f708",
+            "incomplete_attempt_count": 0,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 776,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 9
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 27,
+            "expanded_polynomial_sha256": "af43c421139556a28f679cd50c4149471d8dacbb7169989be041c6020a907406",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 9,
+            "row_set_sha256": "aee0044f561a8692b779dcd4d40d30b912519a0a7aedd0596cc2d50d24dd21e7",
+            "rows": [
+              "1:0,2,6,7",
+              "3:4,5,10,11",
+              "4:1,5,6,8",
+              "6:1,5,7,11",
+              "7:2,5,8,10",
+              "8:4,6,9,11",
+              "9:4,7,8,10",
+              "10:2,8,9,11",
+              "11:3,5,7,9"
+            ]
+          },
+          "assignment_sha256": "1748c3935a5588c814af42b18ea18b50c8b1fe039a32ad06e864c62c36cbc415",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "fad51c50645158c97af01adf3ba5d57ae582dd160d06f09bd43332c6fc42060b",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "287e87a8de78a91b6cb223205dcf9be692260f88e1b5227b9f50d6109617034f",
+          "minimization": {
+            "attempts_sha256": "fc758bf772a9093dd015f9fe4c098b7f03e8b8cce08430caf1f392612d5d25c9",
+            "incomplete_attempt_count": 8,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 3,
+            "retained_row_count": 9,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 900,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 10
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "2196af0735c453dec3aa7ab4e90c0ead0bb1aeda72432ed02eb9b6b520e9cd2a",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "89b6ed380ced9e2b12181808614e3919e43aa8172a4fea6dc89109923d2afbbf",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:2,7,9,11",
+              "8:1,5,7,11",
+              "9:0,3,5,10",
+              "10:4,6,9,11",
+              "11:3,7,8,10"
+            ]
+          },
+          "assignment_sha256": "5e03c4134fb0fa1b2dee981e7f7bb567091385179f5e699b981be4eef7003d5e",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "4b17733bb24386682b08812c73b978cc24833a8daa07569bdfd0fc25a435bbe2",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "8482f94ac27f2fc66b48506038867430df00a0e7deec559aef149c376c2e7401",
+          "minimization": {
+            "attempts_sha256": "7c9b65aa4b22e6d865fdd176bfd88732f35259bed181da172a611651aa8c1a0a",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 2129,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 11
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "e0baf4d7242e67acfd3ee58647ef37beb7c3a7e0c852160286d04b2166eddbf1",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "d4143095bd89ec44f43879b840cbdaaabb06d5981885fd8ea767d7e06e0ab097",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "6:2,7,9,11",
+              "8:1,5,7,11",
+              "9:0,3,5,10",
+              "10:4,6,9,11",
+              "11:4,7,8,10"
+            ]
+          },
+          "assignment_sha256": "0be4946d0f7a2cbb11dbac6ec9c56e37c759449c2cf9103c4b596c564aee12c3",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "d0c18eb2610c3295fdca0b652aafa686b18e5878f66e010f6bfd7451be7b785f",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "35db0cb46a3ef20cebdb215ee3d279a132d4ce31a8e1ede51d4f369c7a628594",
+          "minimization": {
+            "attempts_sha256": "6f3885eced039993e031b43a2e57b161211df1b36a0c7e46c26dc2dad035a5b6",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 2133,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 12
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "d12a25747a5526e3d3219556554bdfe0e162bd6cce4099eeecacb2296447cddf",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "792fdaf3af04c0331e4e30b3bd420b6f90c79d53d5f31063f209d5199d19d609",
+            "rows": [
+              "1:0,2,6,7",
+              "6:1,5,7,11",
+              "8:3,5,7,10",
+              "9:2,8,10,11",
+              "10:4,6,9,11",
+              "11:1,7,8,10"
+            ]
+          },
+          "assignment_sha256": "0fd60bb26c3e0e17bf45ca63e83304f99e10c6f826571527e9e37ed62e7f4c8a",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "9e813e15a07c9ba9ad4927a2315fb512d735272f40c9f167924943f7812fd4f2",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "a381ec6d4cce3483b6ae5b5b077bde1be57bb48445f24ff730080d546b943c2f",
+          "minimization": {
+            "attempts_sha256": "b774736a9df4ae1c4408cc43223eaa08c3f66ba8b44e86c4eb76679a7f7b4d8a",
+            "incomplete_attempt_count": 3,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 2140,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 13
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 18,
+            "expanded_polynomial_sha256": "552cf939200bf58a13265a45cff5cbb681e8134d7826c0f74558e4193dd12815",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 6,
+            "row_set_sha256": "2889994420751dc4e2b9c205e880161f54281b6caf2fe9597d91dbc9a0e6b4d5",
+            "rows": [
+              "1:0,2,6,7",
+              "6:1,5,7,11",
+              "8:3,5,7,10",
+              "9:2,8,10,11",
+              "10:4,7,9,11",
+              "11:1,7,8,10"
+            ]
+          },
+          "assignment_sha256": "57efd77620f0d3c8bd058b9ee3167a0f70fdcb0241cc233444350930fcdc25be",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "85b0a52301a5d576ce9d6ece54e96df001a0aa0881de7c5465a7f7f69c3af67a",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "31bee03f9aaab92e1b4fd7804b88ef2e6031f3a5ce87fb18fe9dfdbe5c22d13d",
+          "minimization": {
+            "attempts_sha256": "c3b9a8a37c839f68311286f8cb7f7c1ada6e195b0c40b0ef60377b9508a18705",
+            "incomplete_attempt_count": 2,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 6,
+            "retained_row_count": 6,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 2142,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 14
+        },
+        {
+          "accepted_cut": {
+            "crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "equality_count": 21,
+            "expanded_polynomial_sha256": "133592c4483d665dc761f08f8fedbbb5ed1bad5fa923debc9e5f9b8262257db6",
+            "origin": "bounded_minimized_full_unit_assignment",
+            "row_count": 7,
+            "row_set_sha256": "d0519dc303598a6198318e6333058672661bb1bd87a083f5de1a11dfa0961164",
+            "rows": [
+              "1:0,2,6,7",
+              "2:0,1,9,10",
+              "7:4,5,8,9",
+              "8:3,5,7,10",
+              "9:2,8,10,11",
+              "10:4,6,9,11",
+              "11:4,7,8,10"
+            ]
+          },
+          "assignment_sha256": "082c453835e16ae9d0b3ca38d56a725bb2368f79f9e50ba07cb4ec54b3cea404",
+          "equality_count": 36,
+          "expanded_polynomial_sha256": "c0b168fc40e1727321392c4be78c685cc163544575f0dae0b6db3b49ec932bf5",
+          "full_equality_ideal": {
+            "status": "CROSSCHECKED_UNIT",
+            "verdicts": [
+              "UNIT",
+              "UNIT",
+              "UNIT"
+            ]
+          },
+          "incidence_status": "SAT",
+          "metric_row_count": 12,
+          "metric_rows_sha256": "274330971ea938649469fc4a1f544b62523ac861a3d2025b54170113da42cf86",
+          "minimization": {
+            "attempts_sha256": "3aa9ff5c8eb778ffc94f8f4ae671bd5d11d13c4974fdfc72c0f72d08db4b96d1",
+            "incomplete_attempt_count": 4,
+            "initial_row_count": 12,
+            "proposed_core_crosscheck": {
+              "status": "CROSSCHECKED_UNIT",
+              "verdicts": [
+                "UNIT",
+                "UNIT",
+                "UNIT"
+              ]
+            },
+            "removed_count": 5,
+            "retained_row_count": 7,
+            "strategy": "msolve-proposal-singular-confirmed-greedy-row-deletion",
+            "wall_budget_seconds": 18.0
+          },
+          "nodes": 2177,
+          "reported_status": "CROSSCHECKED_UNIT_CUT_ACCEPTED",
+          "round": 15
+        }
+      ],
+      "schema": "p97-atail-second-center-metric-cegar-case-v1",
+      "seed": {
+        "labels": {
+          "p": 0,
+          "q": 3,
+          "t1": 2,
+          "t2": 1,
+          "t3": 4,
+          "u": 5
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "second_large_cap": "O1",
+        "surplus_cap": "S"
+      },
+      "seed_sha256": "3b621303cf31d92b9078d2fcccbb0903f95dde90f439a0ca4eb84cef20bb4d40"
+    }
+  ],
+  "manifest_sha256": "e8fe9a0a7e45b300ffffacbd56a0c510815bf8f19fccf8d316c2ae5538c0952c",
+  "schema": "p97-atail-second-center-metric-cegar-v1",
+  "scope": {
+    "card_11_included": false,
+    "finite_search_python_trusted": true,
+    "fixed_placements_only": true,
+    "lean_theorem_proved": false,
+    "nullstellensatz_certificate_replayed": false,
+    "producer_proved": false,
+    "singular_qq_and_msolve_two_order_crosscheck": true,
+    "target_faithful": false,
+    "unit_cuts_monotone": true
+  },
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve": {
+        "verdict": "NONUNIT"
+      },
+      "singular": {
+        "verdict": "NONUNIT"
+      }
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve": {
+        "verdict": "UNIT"
+      },
+      "singular": {
+        "verdict": "UNIT"
+      }
+    }
+  },
+  "source": {
+    "metric_oracle_checkpoint_sha256": "5791754f879aa25eb3de7b7d751d88f4bf24a05bc0a52cebf6d3857c60d9e5af",
+    "metric_oracle_manifest_sha256": "84c19c092e657d09e14b666ed43ae90646d6edee14330a769508d5499d948381",
+    "second_center_query_checkpoint_sha256": "f8608bc9b70576254cf1def8cd510f1e021c06ee0127c1b6ae767c3d620b4809"
+  }
+}

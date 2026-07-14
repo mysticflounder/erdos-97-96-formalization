@@ -2,7 +2,7 @@
 
 ## Verdict
 
-The card-at-least-12 pair residual and the liveData residual do **not** expose
+The `CARD-GE-12` pair residual and the liveData residual do **not** expose
 the same critical-row interface.
 
 - `DoubleApexOffSurplusSharedRadiusPair` receives the five rows packaged by

@@ -2,7 +2,7 @@
 
 ## Verdict
 
-Two saved card-12 critical-row shadow witnesses survive the strengthened
+Two saved `CARD-EQ-12` critical-row shadow witnesses survive the strengthened
 finite checks used in this experiment:
 
 - one selected four-point row at every center;

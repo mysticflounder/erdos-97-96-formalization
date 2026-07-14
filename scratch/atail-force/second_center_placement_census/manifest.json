@@ -1,0 +1,69 @@
+{
+  "schema": "p97-atail-second-center-placement-census-manifest-v1",
+  "scope": {
+    "cardinality": 12,
+    "profiles": [[4, 5, 6], [5, 5, 5]],
+    "excluded_cardinalities": [11],
+    "placement_surface_exhaustive": true,
+    "row_system_existence_checked": false,
+    "target_faithful": false,
+    "producer_proved": false,
+    "parallel_research_authorized_by_user": true
+  },
+  "source": {
+    "second_center_query_py_sha256": "bcf3368bd1c733100d04ebc1118f344396f6c7ab6a85ac497a8164d778dc2b5d",
+    "second_center_validator_py_sha256": "789c886835d01b500eeadc7bf2e32fda7a47ef2cb93e8125a9d9e8e9f98290f0",
+    "second_center_manifest_sha256": "ad02273cdba024d5e45c8c30d751ef932d16efdca05de114199a2a9ef58c78d9",
+    "second_center_checkpoint_sha256": "f8608bc9b70576254cf1def8cd510f1e021c06ee0127c1b6ae767c3d620b4809",
+    "multi_center_census_py_sha256": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "global_shadow_py_sha256": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62"
+  },
+  "encoded_placement_predicates": [
+    "the six named roles p,q,t1,t2,t3,u are pairwise distinct carrier labels",
+    "the dangerous support is exactly {q,t1,t2,t3} and is a current PROVEN_ROWS-admissible four-point candidate at center p",
+    "the declared surplus and second-large caps are distinct and each has closed-cap cardinality at least five",
+    "q lies in the strict interior of the declared surplus cap and is not a Moser apex",
+    "the current source-indexed row-choice domain is nonempty for q,t1,t3,u; the t2 supplied row is the dangerous row centered at p",
+    "for every declared cap containing p, at least two dangerous-support labels lie outside that cap, matching the source validator's Q-C well-formedness gate",
+    "the other two caps are not both cardinality four, matching the current no-M44 profile consequence"
+  ],
+  "quotient": {
+    "carrier_action": "dihedral automorphisms of the concrete cyclic hull order whose induced Moser permutation is size-preserving for the profile and maps every closed cap and strict cap interior exactly",
+    "role_policy": "carrier labels and declared cap values are transported; the semantic surplus-cap and second-large-cap fields remain respectively surplus and second",
+    "named_roles_fixed": ["p", "q", "t1", "t2", "t3", "u"],
+    "verified": [
+      "bijection and cyclic rotation-or-reflection form",
+      "agreement with multi_center_census.allowed_profile_perms and cap_image",
+      "closed-cap and strict-interior images",
+      "full local candidate-domain invariance in both directions",
+      "group identity, closure, and inverses",
+      "exhaustive admitted-placement predicate invariance",
+      "Burnside orbit count and canonical-representative minimality"
+    ]
+  },
+  "bounds": {
+    "max_raw_placements_per_profile": 1000000,
+    "profiles": 2,
+    "carrier_points": 12,
+    "solver_calls": 0,
+    "network_calls": 0
+  },
+  "omitted_fail_closed": [
+    "existence or enumeration of compatible supplied/global/critical row assignments at any placement",
+    "SAT or UNSAT of the second_center_query row-system DFS away from its two saved seeds",
+    "Euclidean coordinates, metric equalities and disequalities, strict convexity, cap orientation, MEC, non-obtuse, or circumscribed-Moser geometry",
+    "arbitrary equal-distance pairs not witnessed by an encoded selected-four row",
+    "the full U1LargeCapRouteBTailLiveData, U3FixedTriplePacket, localized no-q-free, and full-filter fields",
+    "Q-A, Q-C truth beyond placement well-formedness, and Q-E",
+    "card 11 and every cardinality other than 12",
+    "permutations of the named roles, including any t1/t3 swap not induced solely by the carrier action",
+    "cap/profile permutations not induced by a verified cyclic carrier automorphism",
+    "a Lean proof that these Python automorphisms are complete",
+    "a shared-radius producer, same-cap second-center producer, target-faithful counterexample, or closure of any live sorry"
+  ],
+  "verdict_policy": {
+    "result": "EXACT_PLACEMENT_SURFACE_ONLY",
+    "representative": "canonical only under the explicitly verified carrier automorphism group",
+    "note": "No placement count or representative asserts a compatible row system, a Euclidean realization, or producer closure."
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "candidate_signatures": [
+    {
+      "consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+      "id": "ordered_two_hit_critical_row",
+      "missing_fields": [
+        "choose an off-surplus source q and distinct w in the first exact apex class",
+        "w belongs to the exact critical shell selected at q",
+        "the selected blocker center and q,w place q,w on one open cyclic arc between that center and oppApex1"
+      ],
+      "rank": 1,
+      "static_coverage": 930
+    },
+    {
+      "consumer": "Problem97.ATAILCardFiveCapOrMutualScratch.false_of_cardFive_exists_capLocal_or_mutualIncidence",
+      "id": "card_five_cap_or_mutual",
+      "missing_fields": [
+        "the two chosen source blocker centers are distinct",
+        "either one source row contains the other source and its blocker lies in the surplus cap, or both reciprocal source-row incidences hold"
+      ],
+      "rank": 2,
+      "static_coverage": 930
+    },
+    {
+      "consumer": "Problem97.ATAILCardFourParentBoundary.false_of_existsSurplusPairCriticalBlocker",
+      "id": "exists_surplus_pair_critical_blocker",
+      "missing_fields": [
+        "a deletion-blocking exact four-shell centered at a non-apex point of the surplus cap",
+        "that shell contains both chosen off-surplus first-apex-class points"
+      ],
+      "rank": 3,
+      "static_coverage": 930
+    },
+    {
+      "consumer": "Problem97.ATAILCoincidentBlockerFourShell.false_of_residual_member_class_contains_common_pair",
+      "id": "coincident_blocker_branch_complete",
+      "missing_fields": [
+        "on distinct blockers, both reciprocal source-row incidences",
+        "on coincident blockers, one residual shell member x has a selected global-K4 class centered at x containing both common points"
+      ],
+      "rank": 4,
+      "static_coverage": 930
+    },
+    {
+      "consumer": "Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction",
+      "id": "u1_two_large_cap_completion",
+      "missing_fields": [
+        "for each residue, choose an injective assignment of a,c,d,e,f",
+        "supply the 3, 4, or 5 h1-through-h7 distance equalities not already in the two apex-row equality closure",
+        "the inequality a != c is automatic for the injective assignment"
+      ],
+      "rank": 5,
+      "static_coverage_by_additional_equality_budget": {
+        "3": 49,
+        "4": 519,
+        "5": 930
+      }
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "card11_profile_554",
+      "current_two_apex_row_bank_hits": 0,
+      "profile": [
+        5,
+        5,
+        4
+      ],
+      "residue_coverage_if_missing_signature_is_produced": {
+        "card_five_cap_or_mutual": 96,
+        "coincident_blocker_branch_complete": 96,
+        "duplicate_triple_hit_critical_row": 96,
+        "exists_surplus_pair_critical_blocker": 96,
+        "ordered_two_hit_critical_row": 96
+      },
+      "residues": 96,
+      "second_exact_class_size_counts": {
+        "4": 96
+      },
+      "static_pair_embeddings": {
+        "card_five_cap_or_mutual": 576,
+        "coincident_blocker_branch_complete": 576,
+        "duplicate_triple_hit_critical_row": 16128,
+        "exists_surplus_pair_critical_blocker": 576,
+        "ordered_two_hit_critical_row": 8160
+      },
+      "u1_two_large_cap_obstruction": {
+        "best_embedding_multiplicity_total": 69768,
+        "canonical_minimum_missing_hypothesis_set_distribution": {
+          "h1,h2,h3,h4": 36,
+          "h1,h2,h3,h4,h6": 36,
+          "h1,h2,h7": 6,
+          "h2,h3,h4,h7": 18
+        },
+        "lexicographic_example": {
+          "missing_equality_count": 3,
+          "missing_hypotheses": [
+            "h1",
+            "h2",
+            "h7"
+          ],
+          "variables_a_c_d_e_f": [
+            6,
+            9,
+            2,
+            0,
+            1
+          ]
+        },
+        "minimum_additional_equality_distribution": {
+          "3": 6,
+          "4": 54,
+          "5": 36
+        }
+      }
+    },
+    {
+      "case_id": "card12_profile_654",
+      "current_two_apex_row_bank_hits": 0,
+      "profile": [
+        6,
+        5,
+        4
+      ],
+      "residue_coverage_if_missing_signature_is_produced": {
+        "card_five_cap_or_mutual": 150,
+        "coincident_blocker_branch_complete": 150,
+        "duplicate_triple_hit_critical_row": 150,
+        "exists_surplus_pair_critical_blocker": 150,
+        "ordered_two_hit_critical_row": 150
+      },
+      "residues": 150,
+      "second_exact_class_size_counts": {
+        "4": 150
+      },
+      "static_pair_embeddings": {
+        "card_five_cap_or_mutual": 900,
+        "coincident_blocker_branch_complete": 900,
+        "duplicate_triple_hit_critical_row": 28800,
+        "exists_surplus_pair_critical_blocker": 900,
+        "ordered_two_hit_critical_row": 14550
+      },
+      "u1_two_large_cap_obstruction": {
+        "best_embedding_multiplicity_total": 155760,
+        "canonical_minimum_missing_hypothesis_set_distribution": {
+          "h1,h2,h3,h4": 48,
+          "h1,h2,h3,h4,h6": 72,
+          "h1,h2,h7": 6,
+          "h2,h3,h4,h7": 24
+        },
+        "lexicographic_example": {
+          "missing_equality_count": 3,
+          "missing_hypotheses": [
+            "h1",
+            "h2",
+            "h7"
+          ],
+          "variables_a_c_d_e_f": [
+            7,
+            10,
+            2,
+            0,
+            1
+          ]
+        },
+        "minimum_additional_equality_distribution": {
+          "3": 6,
+          "4": 72,
+          "5": 72
+        }
+      }
+    },
+    {
+      "case_id": "card12_profile_555",
+      "current_two_apex_row_bank_hits": 0,
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "residue_coverage_if_missing_signature_is_produced": {
+        "card_five_cap_or_mutual": 684,
+        "coincident_blocker_branch_complete": 684,
+        "duplicate_triple_hit_critical_row": 684,
+        "exists_surplus_pair_critical_blocker": 684,
+        "ordered_two_hit_critical_row": 684
+      },
+      "residues": 684,
+      "second_exact_class_size_counts": {
+        "4": 572,
+        "5": 112
+      },
+      "static_pair_embeddings": {
+        "card_five_cap_or_mutual": 4104,
+        "coincident_blocker_branch_complete": 4104,
+        "duplicate_triple_hit_critical_row": 131328,
+        "exists_surplus_pair_critical_blocker": 4104,
+        "ordered_two_hit_critical_row": 63648
+      },
+      "u1_two_large_cap_obstruction": {
+        "best_embedding_multiplicity_total": 696846,
+        "canonical_minimum_missing_hypothesis_set_distribution": {
+          "h1,h2,h3,h4": 229,
+          "h1,h2,h3,h4,h6": 255,
+          "h1,h2,h3,h4,h7": 48,
+          "h1,h2,h3,h7": 4,
+          "h1,h2,h7": 37,
+          "h2,h3,h4,h7": 111
+        },
+        "lexicographic_example": {
+          "missing_equality_count": 3,
+          "missing_hypotheses": [
+            "h1",
+            "h2",
+            "h7"
+          ],
+          "variables_a_c_d_e_f": [
+            6,
+            9,
+            2,
+            0,
+            1
+          ]
+        },
+        "minimum_additional_equality_distribution": {
+          "3": 37,
+          "4": 344,
+          "5": 303
+        }
+      }
+    }
+  ],
+  "epistemic_status": "EXHAUSTIVE_WITHIN_CURRENT_FINITE_SUPPORT_EQUALITY_ABSTRACTION",
+  "input": {
+    "current_two_apex_row_bank_hits": 0,
+    "post_adjacent_cap_one_hit_residues": 930,
+    "profile_counts": {
+      "card11_profile_554": 96,
+      "card12_profile_555": 684,
+      "card12_profile_654": 150
+    }
+  },
+  "parent_common_critical_map_boundary": {
+    "not_present": [
+      "any cross-source shell membership",
+      "blocker-center equality or inequality for a chosen pair",
+      "blocker localization in the surplus cap",
+      "a chosen pair's open-arc placement relative to its blocker",
+      "common-pair membership in a residual member's global-K4 class",
+      "the five additional cross-row equalities of a fixed-prefix u1TwoLargeCapObstruction embedding",
+      "constructor provenance identifying rows/hfixed/hsupport with the same existential critical-shell system"
+    ],
+    "present": [
+      "Nonempty (CriticalShellSystem D.A)",
+      "after choosing H, one deletion-blocking exact four-shell for every carrier source",
+      "automatic source membership in its selectedAt shell",
+      "selected blocker center lies in D.A, differs from its source, and the shell has exact cardinality four",
+      "D.K4 supplies a global K4 witness at every carrier center",
+      "D.convex and the leaf surplus packet supply cap order in principle"
+    ]
+  },
+  "schema": "p97_atail_residue930_bridge.v1",
+  "set_cover": {
+    "minimum_signature_count_given_each_full_signature": 1,
+    "singleton_covers": [
+      "ordered_two_hit_critical_row",
+      "card_five_cap_or_mutual",
+      "exists_surplus_pair_critical_blocker",
+      "coincident_blocker_branch_complete",
+      "u1_two_large_cap_completion_with_budget_five"
+    ],
+    "universe": 930,
+    "warning": "Coverage is conditional on producing every listed missing field; no producer implication is asserted."
+  },
+  "u1_minimum_additional_equality_distribution": {
+    "3": 49,
+    "4": 470,
+    "5": 411
+  }
+}

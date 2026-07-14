@@ -1,0 +1,1182 @@
+{
+  "families": [
+    {
+      "assignments_satisfying_declared_inequalities": 64800,
+      "declared_inequalities": [
+        [
+          "p",
+          "q"
+        ],
+        [
+          "p",
+          "r"
+        ],
+        [
+          "q",
+          "r"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "family": "DuplicateCenterCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "a",
+          "p",
+          "a",
+          "q"
+        ],
+        [
+          "a",
+          "p",
+          "a",
+          "r"
+        ],
+        [
+          "b",
+          "p",
+          "b",
+          "q"
+        ],
+        [
+          "b",
+          "p",
+          "b",
+          "r"
+        ]
+      ],
+      "roles": [
+        "p",
+        "q",
+        "r",
+        "a",
+        "b"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 100000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 64800,
+      "declared_inequalities": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "p",
+          "q"
+        ],
+        [
+          "p",
+          "r"
+        ],
+        [
+          "q",
+          "r"
+        ]
+      ],
+      "family": "PerpBisectorCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "p",
+          "a",
+          "p",
+          "b"
+        ],
+        [
+          "q",
+          "a",
+          "q",
+          "b"
+        ],
+        [
+          "r",
+          "a",
+          "r",
+          "b"
+        ]
+      ],
+      "roles": [
+        "a",
+        "b",
+        "p",
+        "q",
+        "r"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 100000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 9000,
+      "declared_inequalities": [
+        [
+          "p",
+          "t1"
+        ]
+      ],
+      "family": "EqualK4Core",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "p",
+          "t1",
+          "p",
+          "t2"
+        ],
+        [
+          "p",
+          "t1",
+          "p",
+          "t3"
+        ],
+        [
+          "p",
+          "t1",
+          "t1",
+          "t2"
+        ],
+        [
+          "p",
+          "t1",
+          "t1",
+          "t3"
+        ],
+        [
+          "p",
+          "t1",
+          "t2",
+          "t3"
+        ]
+      ],
+      "roles": [
+        "p",
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 10000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 72900,
+      "declared_inequalities": [
+        [
+          "p",
+          "a"
+        ],
+        [
+          "p",
+          "x"
+        ],
+        [
+          "c",
+          "b"
+        ]
+      ],
+      "family": "EquilateralBisectorCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "p",
+          "a",
+          "p",
+          "b"
+        ],
+        [
+          "p",
+          "a",
+          "p",
+          "c"
+        ],
+        [
+          "p",
+          "a",
+          "a",
+          "b"
+        ],
+        [
+          "p",
+          "a",
+          "a",
+          "x"
+        ],
+        [
+          "p",
+          "a",
+          "b",
+          "x"
+        ],
+        [
+          "c",
+          "x",
+          "c",
+          "a"
+        ]
+      ],
+      "roles": [
+        "p",
+        "a",
+        "b",
+        "c",
+        "x"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 100000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 90000,
+      "declared_inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "family": "ThreeTriadCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "B",
+          "C",
+          "B",
+          "D"
+        ],
+        [
+          "B",
+          "D",
+          "D",
+          "A"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "D"
+        ],
+        [
+          "C",
+          "D",
+          "C",
+          "E"
+        ],
+        [
+          "E",
+          "A",
+          "E",
+          "B"
+        ],
+        [
+          "E",
+          "B",
+          "E",
+          "D"
+        ]
+      ],
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 100000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 9000000,
+      "declared_inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "family": "SurplusSourceCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "O",
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "O",
+          "B",
+          "O",
+          "C"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "O"
+        ],
+        [
+          "U",
+          "A",
+          "U",
+          "B"
+        ],
+        [
+          "B",
+          "U",
+          "B",
+          "A"
+        ],
+        [
+          "B",
+          "C",
+          "B",
+          "A"
+        ],
+        [
+          "C",
+          "V",
+          "C",
+          "O"
+        ],
+        [
+          "V",
+          "B",
+          "V",
+          "O"
+        ],
+        [
+          "W",
+          "U",
+          "W",
+          "O"
+        ],
+        [
+          "W",
+          "C",
+          "W",
+          "O"
+        ],
+        [
+          "W",
+          "V",
+          "W",
+          "O"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 10000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 900000,
+      "declared_inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "family": "SixRowAnchorCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "O",
+          "B",
+          "O",
+          "C"
+        ],
+        [
+          "A",
+          "B",
+          "A",
+          "O"
+        ],
+        [
+          "A",
+          "U",
+          "A",
+          "O"
+        ],
+        [
+          "B",
+          "C",
+          "B",
+          "A"
+        ],
+        [
+          "U",
+          "V",
+          "U",
+          "O"
+        ],
+        [
+          "C",
+          "U",
+          "C",
+          "A"
+        ],
+        [
+          "C",
+          "V",
+          "C",
+          "A"
+        ],
+        [
+          "V",
+          "B",
+          "V",
+          "A"
+        ],
+        [
+          "V",
+          "C",
+          "V",
+          "A"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 1000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 729000,
+      "declared_inequalities": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ]
+      ],
+      "family": "SixPointTwoPairCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "A",
+          "B",
+          "A",
+          "C"
+        ],
+        [
+          "A",
+          "B",
+          "A",
+          "E"
+        ],
+        [
+          "F",
+          "A",
+          "F",
+          "C"
+        ],
+        [
+          "F",
+          "A",
+          "F",
+          "D"
+        ],
+        [
+          "F",
+          "A",
+          "F",
+          "E"
+        ],
+        [
+          "B",
+          "D",
+          "B",
+          "F"
+        ],
+        [
+          "C",
+          "B",
+          "C",
+          "D"
+        ],
+        [
+          "E",
+          "B",
+          "E",
+          "C"
+        ],
+        [
+          "E",
+          "B",
+          "E",
+          "D"
+        ]
+      ],
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 1000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 9000000,
+      "declared_inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "family": "SevenPointOrbitCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "O",
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "O",
+          "A",
+          "O",
+          "C"
+        ],
+        [
+          "A",
+          "O",
+          "A",
+          "B"
+        ],
+        [
+          "A",
+          "O",
+          "A",
+          "V"
+        ],
+        [
+          "A",
+          "O",
+          "A",
+          "W"
+        ],
+        [
+          "B",
+          "C",
+          "B",
+          "U"
+        ],
+        [
+          "B",
+          "C",
+          "B",
+          "V"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "V"
+        ],
+        [
+          "U",
+          "C",
+          "U",
+          "W"
+        ],
+        [
+          "V",
+          "A",
+          "V",
+          "U"
+        ],
+        [
+          "V",
+          "A",
+          "V",
+          "W"
+        ],
+        [
+          "W",
+          "O",
+          "W",
+          "B"
+        ],
+        [
+          "W",
+          "O",
+          "W",
+          "U"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 10000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 9000000,
+      "declared_inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "family": "SevenPointCircleNetworkCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "O",
+          "A",
+          "O",
+          "B"
+        ],
+        [
+          "O",
+          "A",
+          "O",
+          "U"
+        ],
+        [
+          "A",
+          "O",
+          "A",
+          "V"
+        ],
+        [
+          "B",
+          "O",
+          "B",
+          "C"
+        ],
+        [
+          "B",
+          "O",
+          "B",
+          "W"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "U"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "W"
+        ],
+        [
+          "U",
+          "B",
+          "U",
+          "V"
+        ],
+        [
+          "U",
+          "B",
+          "U",
+          "W"
+        ],
+        [
+          "V",
+          "B",
+          "V",
+          "W"
+        ],
+        [
+          "W",
+          "O",
+          "W",
+          "U"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 10000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 900000,
+      "declared_inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "family": "SixPointCircleChainCollisionCore",
+      "match_count": 1,
+      "matches": [
+        {
+          "A": 0,
+          "B": 1,
+          "C": 2,
+          "D": 6,
+          "E": 9,
+          "F": 10
+        }
+      ],
+      "required_edge_closures": [
+        [
+          "B",
+          "A",
+          "B",
+          "C"
+        ],
+        [
+          "B",
+          "A",
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "B"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "E"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "F"
+        ],
+        [
+          "D",
+          "C",
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "A",
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "B",
+          "F",
+          "D"
+        ],
+        [
+          "F",
+          "B",
+          "F",
+          "E"
+        ]
+      ],
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean",
+      "tier": "requested_equality_bank",
+      "total_role_assignments": 1000000
+    },
+    {
+      "assignments_satisfying_declared_inequalities": 9000000,
+      "declared_inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "family": "SevenPointFiveCircleCollisionCore",
+      "match_count": 0,
+      "matches": [],
+      "required_edge_closures": [
+        [
+          "B",
+          "A",
+          "B",
+          "C"
+        ],
+        [
+          "B",
+          "A",
+          "B",
+          "D"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "B"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "E"
+        ],
+        [
+          "C",
+          "A",
+          "C",
+          "F"
+        ],
+        [
+          "D",
+          "C",
+          "D",
+          "G"
+        ],
+        [
+          "D",
+          "C",
+          "D",
+          "F"
+        ],
+        [
+          "E",
+          "A",
+          "E",
+          "G"
+        ],
+        [
+          "E",
+          "A",
+          "E",
+          "F"
+        ],
+        [
+          "F",
+          "B",
+          "F",
+          "D"
+        ],
+        [
+          "F",
+          "B",
+          "F",
+          "G"
+        ]
+      ],
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean",
+      "tier": "supplemental_indexed_equality_family",
+      "total_role_assignments": 10000000
+    }
+  ],
+  "match": {
+    "family": "SixPointCircleChainCollisionCore",
+    "instantiated_required_edge_closures": [
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          1
+        ],
+        "right_edge": [
+          1,
+          2
+        ],
+        "roles": [
+          "B",
+          "A",
+          "B",
+          "C"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          1
+        ],
+        "right_edge": [
+          1,
+          6
+        ],
+        "roles": [
+          "B",
+          "A",
+          "B",
+          "D"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          2
+        ],
+        "right_edge": [
+          1,
+          2
+        ],
+        "roles": [
+          "C",
+          "A",
+          "C",
+          "B"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          2
+        ],
+        "right_edge": [
+          2,
+          9
+        ],
+        "roles": [
+          "C",
+          "A",
+          "C",
+          "E"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          2
+        ],
+        "right_edge": [
+          2,
+          10
+        ],
+        "roles": [
+          "C",
+          "A",
+          "C",
+          "F"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          2,
+          6
+        ],
+        "right_edge": [
+          6,
+          9
+        ],
+        "roles": [
+          "D",
+          "C",
+          "D",
+          "E"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          0,
+          9
+        ],
+        "right_edge": [
+          9,
+          10
+        ],
+        "roles": [
+          "E",
+          "A",
+          "E",
+          "F"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          1,
+          10
+        ],
+        "right_edge": [
+          6,
+          10
+        ],
+        "roles": [
+          "F",
+          "B",
+          "F",
+          "D"
+        ]
+      },
+      {
+        "closure_equivalent": true,
+        "left_edge": [
+          1,
+          10
+        ],
+        "right_edge": [
+          9,
+          10
+        ],
+        "roles": [
+          "F",
+          "B",
+          "F",
+          "E"
+        ]
+      }
+    ],
+    "source": "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean",
+    "unique_role_assignment": {
+      "A": 0,
+      "B": 1,
+      "C": 2,
+      "D": 6,
+      "E": 9,
+      "F": 10
+    }
+  },
+  "method": {
+    "assignment_policy": "exhaustive assignments into the ten active labels; repetition allowed except declared inequalities",
+    "closure": "undirected edge quotient generated by complete row equalities",
+    "family_count": 12,
+    "indexed_corpus_preflight_command": "nthdegree docs search --lean \"five row equal-distance core centers 1 2 6 9 10 repeated card 12 EdgeClosure seven point collision\""
+  },
+  "schema": "p97-atail-repeated-five-row-core-bank-audit-v1",
+  "scope": {
+    "consumer_instantiation_written_in_lean": false,
+    "exact_within_listed_families_and_closure_model": true,
+    "fixed_core_only": true,
+    "new_mathematical_family_needed_for_this_core": false,
+    "producer_covering_all_fixed_placements_proved": false
+  },
+  "source": {
+    "bank_reuse_audit_sha256": "fe8898a42ba784f07eb8b76590717936225b43b41957e47f0296d069aa1ce123",
+    "checkpoint_round64_sha256": "e6304b556ec3645c3ca541df0d63313d67f4a4c556f59e420e3ce387737f1e9a",
+    "core_shapes_round64_sha256": "f2580ecb7825201720b1169c040c161a5342da26bafec9d53049d746dec9bd90",
+    "lean_source_sha256": {
+      "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean": "d69d734942d6dfcfd7341a5d84c254f388e7be7be4fccf26926caf47100c4d82",
+      "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean": "4324a776d90ee729e5666ac31c65b6f20dbee2d248fc89a34534f087a595e36c",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean": "3bcff770c0e720673f41b628f679514e3aa8a95d7d078cacad6afbfe4ad6f13e",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean": "32e65b1afb5cecc4620dfd70f6ae0d42414576d4eb245d55c0efec10fe4bc017",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean": "db880406ab8ebd62a71f9df27784145af7c08569603357cb43b0efcfcdb3e8b8",
+      "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean": "cb2493e26e16302803b40844f193b26fab18a861c36ff247b4645867f2600fb3",
+      "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean": "4b1b0165e487885edfb31a0b6a08e848b129116ea0b8a8cd26181b05212467f1",
+      "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean": "2214db347504aafbaf408ba994f00cac10f3794e5bb2c5e21869594748a08250",
+      "lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean": "b27066440f9f83889b22614d995b03173496537f4172107934fcc935f7623053",
+      "lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean": "df0f862273992da09c988cd8b7c19646b8e7b97ae8e04b496f44e2efa93f10c0"
+    }
+  },
+  "subject": {
+    "active_labels_round40": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11
+    ],
+    "exact_relabeling_round40_to_round62": {
+      "3": 4,
+      "4": 3
+    },
+    "members": [
+      {
+        "round": 40,
+        "rows": [
+          "1:0,2,6,7",
+          "2:0,1,9,10",
+          "6:2,7,9,11",
+          "9:0,3,5,10",
+          "10:1,6,9,11"
+        ]
+      },
+      {
+        "round": 62,
+        "rows": [
+          "1:0,2,6,7",
+          "2:0,1,9,10",
+          "6:2,7,9,11",
+          "9:0,4,5,10",
+          "10:1,6,9,11"
+        ]
+      }
+    ],
+    "profile": [
+      5,
+      5,
+      5
+    ]
+  },
+  "summary": {
+    "existing_lean_family_identified": true,
+    "matched_family_count": 1,
+    "status": "UNIQUE_EXISTING_SIX_POINT_CHAIN_MATCH",
+    "total_match_count": 1
+  }
+}

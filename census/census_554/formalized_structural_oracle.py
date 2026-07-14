@@ -7,7 +7,7 @@ paths, and keeps the hypotheses that live outside bare row equality explicit.
 
 In particular, exact-off-circle is catalogued but deliberately ineligible:
 the cover cube does not say that a selected four-member row is an exact metric
-circle.  The two cyclic families are order-sensitive and therefore must not be
+circle.  The three cyclic families are order-sensitive and therefore must not be
 turned into unconditional pattern clauses by a caller.
 """
 
@@ -36,18 +36,18 @@ AXIOM_AUDIT_COMMAND = (
     "proof-blueprint axioms " + AXIOM_AUDIT_THEOREM + " --memory-mb 16384"
 )
 EXPECTED_AXIOMS = ("propext", "Classical.choice", "Quot.sound")
-VALIDATED_UTC = "2026-07-13T04:03:40Z"
-PROOF_BLUEPRINT_BUILD_FINGERPRINT = "bd78491c38fd"
+VALIDATED_UTC = "2026-07-14T05:56:34Z"
+PROOF_BLUEPRINT_BUILD_FINGERPRINT = "d91e58238956"
 AGGREGATE_OLEAN = (
     "lean/.lake/build/lib/lean/Erdos9796Proof/P97/Census554/"
     "GeneralCarrierBridge.olean"
 )
 BUILD_ARTIFACT_SHA256 = {
     AGGREGATE_OLEAN:
-        "b4a37e979bc93b843d5f3c5d8822c6563e924b0252b73910f085ed2b610958fb",
+        "a48b4cd34fdee302b092965254fa57905c21cebc8a4c77e9ea7bba0c11e374a5",
 }
 
-# The focused aggregate build and live kernel axiom query passed on 2026-07-13
+# The focused aggregate build and live kernel axiom query passed on 2026-07-14 UTC
 # against the exact theorem-source hashes below.
 BUILD_STATUS = "passed"
 
@@ -64,6 +64,18 @@ THEOREM_SOURCE_SHA256 = {
         "2214db347504aafbaf408ba994f00cac10f3794e5bb2c5e21869594748a08250",
     "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean":
         "4b1b0165e487885edfb31a0b6a08e848b129116ea0b8a8cd26181b05212467f1",
+    "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean":
+        "4484a2c8638cbe2dda68d9f8553d1323b7785b2a01be0e7315cf23b7818ba826",
+    "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean":
+        "d2298ca6d132712aa8683979879b6f33b93fd4d8147d5aaa9237b276eb53eec9",
+    "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean":
+        "cb2493e26e16302803b40844f193b26fab18a861c36ff247b4645867f2600fb3",
+    "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean":
+        "656809ad6d568afaefabf9aae233448c9d707a8bc849754bff8503cd4054a90c",
+    "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean":
+        "14bde4c621e901f324ea4d0acdd654adb7374f52a2189c969641db442fabd603",
+    "lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean":
+        "b5be5253c7669e3a024f2889e704d4d2e05179d49dfd6e8d7fd9aad83f676668",
     "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean":
         "db880406ab8ebd62a71f9df27784145af7c08569603357cb43b0efcfcdb3e8b8",
     "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean":
@@ -72,8 +84,10 @@ THEOREM_SOURCE_SHA256 = {
         "c48c09543f96ca1fbef4c4e1bcb1869151aa726b43e9cacd71f462606ba9580c",
     "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean":
         "eb31b3cf6b7294aff42f4a56cb16ae70b765e5bff2a883ef2ac37e41aec91047",
+    "lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean":
+        "a10d2d269b127e0bbd1530bd130905a7e1a42974483b628ec9eaea814fe7998e",
     "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean":
-        "279fec0f8cd84bf2808c7f0bd40dcf0e857107190c6cf9461ab73bf52bc98443",
+        "10f14c3a11267585448fd3b4b2ecf1b82225deddf7c245c91de800a315d50729",
 }
 
 
@@ -151,6 +165,60 @@ FAMILIES = (
         "no injective planar realization",
     ),
     Family(
+        "equality-six-point-five-circle-collision-a",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sixPointFiveCircleCollisionCoreA",
+        "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-six-point-five-circle-collision-b",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sixPointFiveCircleCollisionCoreB",
+        "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-six-point-five-circle-collision-c",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sixPointFiveCircleCollisionCoreC",
+        "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-seven-point-five-circle-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointFiveCircleCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-eight-point-five-circle-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_eightPointFiveCircleCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-six-point-circle-chain-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sixPointCircleChainCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-seven-point-six-circle-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointSixCircleCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-seven-point-six-circle-collision-b",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointSixCircleCollisionCoreB",
+        "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean",
+        "no injective planar realization",
+    ),
+    Family(
+        "equality-seven-point-twin-four-circle-collision",
+        "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointTwinFourCircleCollisionCore",
+        "lean/Erdos9796Proof/P97/Census554/SevenPointTwinFourCircleCollision.lean",
+        "no injective planar realization",
+    ),
+    Family(
         "equality-seven-point-orbit-collision",
         "Problem97.Census554.EqualityCore.not_realizes_of_sevenPointOrbitCollisionCore",
         "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean",
@@ -182,6 +250,22 @@ FAMILIES = (
         "requires the recorded compatible convex cyclic order",
         order_sensitive=True,
     ),
+    Family(
+        (
+            "equality-convex-eight-point-"
+            "five-row-circle-intersection-order"
+        ),
+        (
+            "Problem97.Census554.FiveRowCircleIntersectionOrderCore."
+            "false_of_core_of_neg"
+        ),
+        (
+            "lean/Erdos9796Proof/P97/Census554/"
+            "FiveRowCircleIntersectionOrderCore.lean"
+        ),
+        "requires the recorded compatible convex cyclic order",
+        order_sensitive=True,
+    ),
 )
 
 FAMILY_BY_STAGE = {family.stage: family for family in FAMILIES}
@@ -193,6 +277,15 @@ REVERSE_ORDER_VARIANTS = {
     "equality-convex-rhombus-equilateral-reverse": (
         FAMILY_BY_STAGE["equality-convex-rhombus-equilateral"],
         "Problem97.Census554.ConvexRhombusCore.false_of_core",
+    ),
+    "equality-convex-eight-point-five-row-circle-intersection-order-reverse": (
+        FAMILY_BY_STAGE[
+            "equality-convex-eight-point-five-row-circle-intersection-order"
+        ],
+        (
+            "Problem97.Census554.FiveRowCircleIntersectionOrderCore."
+            "false_of_core"
+        ),
     ),
 }
 for _stage, (_family, _theorem) in REVERSE_ORDER_VARIANTS.items():
@@ -207,8 +300,10 @@ ORDERED_FAMILIES = tuple(
 ORDERED_STAGE_VARIANTS = (
     "equality-convex-five-point",
     "equality-convex-rhombus-equilateral",
+    "equality-convex-eight-point-five-row-circle-intersection-order",
     "equality-convex-five-point-reverse",
     "equality-convex-rhombus-equilateral-reverse",
+    "equality-convex-eight-point-five-row-circle-intersection-order-reverse",
 )
 
 
@@ -354,6 +449,24 @@ def _finder(stage: str, closure: metric._EdgeClosure, n: int, order):
             metric._six_row_anchor_collision_core_from_closure,
         "equality-six-point-two-pair-collision":
             metric._six_point_two_pair_collision_core_from_closure,
+        "equality-six-point-five-circle-collision-a":
+            metric._six_point_five_circle_collision_core_a_from_closure,
+        "equality-six-point-five-circle-collision-b":
+            metric._six_point_five_circle_collision_core_b_from_closure,
+        "equality-six-point-five-circle-collision-c":
+            metric._six_point_five_circle_collision_core_c_from_closure,
+        "equality-seven-point-five-circle-collision":
+            metric._seven_point_five_circle_collision_core_from_closure,
+        "equality-eight-point-five-circle-collision":
+            metric._eight_point_five_circle_collision_core_from_closure,
+        "equality-six-point-circle-chain-collision":
+            metric._six_point_circle_chain_collision_core_from_closure,
+        "equality-seven-point-six-circle-collision":
+            metric._seven_point_six_circle_collision_core_from_closure,
+        "equality-seven-point-six-circle-collision-b":
+            metric._seven_point_six_circle_collision_core_b_from_closure,
+        "equality-seven-point-twin-four-circle-collision":
+            metric._seven_point_twin_four_circle_collision_core_from_closure,
         "equality-seven-point-orbit-collision":
             metric._seven_point_orbit_collision_core_from_closure,
         "equality-seven-point-circle-network-collision":
@@ -373,6 +486,12 @@ def _finder(stage: str, closure: metric._EdgeClosure, n: int, order):
         return metric._convex_rhombus_equilateral_core_from_closure(
             closure, n, order.labels, index=index
         )
+    if stage == (
+        "equality-convex-eight-point-five-row-circle-intersection-order"
+    ):
+        return metric._five_row_circle_intersection_order_core_from_closure(
+            closure, n, order.labels, index=index
+        )
     reverse_labels = tuple(reversed(order.labels))
     if stage == "equality-convex-five-point-reverse":
         return metric._five_point_bisector_circle_core_from_closure(
@@ -380,6 +499,13 @@ def _finder(stage: str, closure: metric._EdgeClosure, n: int, order):
         )
     if stage == "equality-convex-rhombus-equilateral-reverse":
         return metric._convex_rhombus_equilateral_core_from_closure(
+            closure, n, reverse_labels, index=index
+        )
+    if stage == (
+        "equality-convex-eight-point-"
+        "five-row-circle-intersection-order-reverse"
+    ):
+        return metric._five_row_circle_intersection_order_core_from_closure(
             closure, n, reverse_labels, index=index
         )
     raise StructuralOracleError(f"stage is not eligible for raw cube scanning: {stage}")
@@ -487,6 +613,153 @@ def _obligations(stage: str, core: Mapping[str, Any]):
             ("EB_EC", edge(e, b), edge(e, c)),
             ("EB_ED", edge(e, b), edge(e, d)),
         )
+    if stage == "equality-six-point-five-circle-collision-a":
+        o, a, b, c, e, f = (
+            core[key] for key in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("CB_CE", edge(c, b), edge(c, e)),
+            ("CB_CF", edge(c, b), edge(c, f)),
+            ("EO_EC", edge(e, o), edge(e, c)),
+            ("EO_EF", edge(e, o), edge(e, f)),
+            ("FO_FA", edge(f, o), edge(f, a)),
+        )
+    if stage == "equality-six-point-five-circle-collision-b":
+        o, a, b, c, e, f = (
+            core[key] for key in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BC", edge(b, o), edge(b, c)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("EO_EB", edge(e, o), edge(e, b)),
+            ("CO_CF", edge(c, o), edge(c, f)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+        )
+    if stage == "equality-six-point-five-circle-collision-c":
+        o, a, b, c, e, f = (
+            core[key] for key in ("o", "a", "b", "c", "e", "f")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("EB_EC", edge(e, b), edge(e, c)),
+            ("EB_EF", edge(e, b), edge(e, f)),
+            ("CO_CE", edge(c, o), edge(c, e)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+        )
+    if stage == "equality-seven-point-five-circle-collision":
+        a, b, c, d, e, f, g = (
+            core[key] for key in ("a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AB_AC", edge(a, b), edge(a, c)),
+            ("AB_AD", edge(a, b), edge(a, d)),
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BF", edge(b, a), edge(b, f)),
+            ("BA_BE", edge(b, a), edge(b, e)),
+            ("FC_FE", edge(f, c), edge(f, e)),
+            ("FC_FG", edge(f, c), edge(f, g)),
+            ("EA_ED", edge(e, a), edge(e, d)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("EA_EG", edge(e, a), edge(e, g)),
+            ("GA_GD", edge(g, a), edge(g, d)),
+        )
+    if stage == "equality-eight-point-five-circle-collision":
+        o, a, b, c, d, e, f, g = (
+            core[key]
+            for key in ("o", "a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AO_AB", edge(a, o), edge(a, b)),
+            ("AO_AE", edge(a, o), edge(a, e)),
+            ("AO_AD", edge(a, o), edge(a, d)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BF", edge(b, o), edge(b, f)),
+            ("BO_BG", edge(b, o), edge(b, g)),
+            ("EB_ED", edge(e, b), edge(e, d)),
+            ("EB_EF", edge(e, b), edge(e, f)),
+            ("FC_FD", edge(f, c), edge(f, d)),
+            ("FC_FG", edge(f, c), edge(f, g)),
+            ("GA_GE", edge(g, a), edge(g, e)),
+            ("GA_GF", edge(g, a), edge(g, f)),
+        )
+    if stage == "equality-six-point-circle-chain-collision":
+        a, b, c, d, e, f = (
+            core[key] for key in ("a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BD", edge(b, a), edge(b, d)),
+            ("CA_CB", edge(c, a), edge(c, b)),
+            ("CA_CE", edge(c, a), edge(c, e)),
+            ("CA_CF", edge(c, a), edge(c, f)),
+            ("DC_DE", edge(d, c), edge(d, e)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("FB_FD", edge(f, b), edge(f, d)),
+            ("FB_FE", edge(f, b), edge(f, e)),
+        )
+    if stage == "equality-seven-point-six-circle-collision":
+        o, a, b, c, d, e, f = (
+            core[key] for key in ("o", "a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("BO_BA", edge(b, o), edge(b, a)),
+            ("BO_BD", edge(b, o), edge(b, d)),
+            ("BO_BE", edge(b, o), edge(b, e)),
+            ("CO_CB", edge(c, o), edge(c, b)),
+            ("CO_CF", edge(c, o), edge(c, f)),
+            ("DB_DC", edge(d, b), edge(d, c)),
+            ("DB_DE", edge(d, b), edge(d, e)),
+            ("EO_EA", edge(e, o), edge(e, a)),
+            ("FA_FC", edge(f, a), edge(f, c)),
+            ("FA_FE", edge(f, a), edge(f, e)),
+        )
+    if stage == "equality-seven-point-six-circle-collision-b":
+        a, b, c, d, e, f, g = (
+            core[key] for key in ("a", "b", "c", "d", "e", "f", "g")
+        )
+        return (
+            ("AE_AB", edge(a, e), edge(a, b)),
+            ("EA_EC", edge(e, a), edge(e, c)),
+            ("CA_CB", edge(c, a), edge(c, b)),
+            ("CA_CD", edge(c, a), edge(c, d)),
+            ("FE_FC", edge(f, e), edge(f, c)),
+            ("FE_FG", edge(f, e), edge(f, g)),
+            ("FE_FD", edge(f, e), edge(f, d)),
+            ("GA_GE", edge(g, a), edge(g, e)),
+            ("GA_GF", edge(g, a), edge(g, f)),
+            ("DA_DB", edge(d, a), edge(d, b)),
+            ("DA_DG", edge(d, a), edge(d, g)),
+        )
+    if stage == "equality-seven-point-twin-four-circle-collision":
+        o, a, b, c, d, e, f = (
+            core[key] for key in ("o", "a", "b", "c", "d", "e", "f")
+        )
+        return (
+            ("OA_OB", edge(o, a), edge(o, b)),
+            ("AO_AC", edge(a, o), edge(a, c)),
+            ("BA_BC", edge(b, a), edge(b, c)),
+            ("BA_BE", edge(b, a), edge(b, e)),
+            ("DO_DB", edge(d, o), edge(d, b)),
+            ("DO_DE", edge(d, o), edge(d, e)),
+            ("DO_DF", edge(d, o), edge(d, f)),
+            ("EA_EC", edge(e, a), edge(e, c)),
+            ("EA_ED", edge(e, a), edge(e, d)),
+            ("EA_EF", edge(e, a), edge(e, f)),
+            ("FO_FA", edge(f, o), edge(f, a)),
+        )
     if stage == "equality-seven-point-orbit-collision":
         o, a, b, c, u, v, w = (
             core[key] for key in ("o", "a", "b", "c", "u", "v", "w")
@@ -551,6 +824,29 @@ def _obligations(stage: str, core: Mapping[str, Any]):
             ("ab_da", base, edge(d, a)), ("ab_by", base, edge(b, y)),
             ("ab_cy", base, edge(c, y)), ("ab_xd", base, edge(x, d)),
             ("ab_xa", base, edge(x, a)),
+        )
+    if stage in (
+        "equality-convex-eight-point-five-row-circle-intersection-order",
+        (
+            "equality-convex-eight-point-"
+            "five-row-circle-intersection-order-reverse"
+        ),
+    ):
+        o, a, c, d, e, x5, x6, x9 = (
+            core[key] for key in ("O", "A", "C", "D", "E", "X5", "X6", "X9")
+        )
+        base = edge(o, a)
+        return (
+            ("OA_OC", base, edge(o, c)),
+            ("OA_OD", base, edge(o, d)),
+            ("OA_OE", base, edge(o, e)),
+            ("OA_AC", base, edge(a, c)),
+            ("DA_DX5", edge(d, a), edge(d, x5)),
+            ("OA_EX5", base, edge(e, x5)),
+            ("OA_AX6", base, edge(a, x6)),
+            ("DA_DX6", edge(d, a), edge(d, x6)),
+            ("CD_CX9", edge(c, d), edge(c, x9)),
+            ("OA_EX9", base, edge(e, x9)),
         )
     raise StructuralOracleError(f"no closure obligations registered for {stage}")
 

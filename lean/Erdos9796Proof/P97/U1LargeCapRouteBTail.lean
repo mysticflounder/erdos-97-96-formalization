@@ -15,6 +15,7 @@ import Erdos9796Proof.P97.U1OppositeCapLowerBounds
 import Erdos9796Proof.P97.U3ToU5Terminal
 import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 import Erdos9796Proof.P97.U2NonSurplusOneHit
+import Erdos9796Proof.P97.ATail.CriticalPairFrontier
 
 /-!
 # U1 large-cap Route-B tail
@@ -24,8 +25,8 @@ This module contains the extracted U1.2 large-cap Route-B tail consumed by
 exact-pair fast path; after a large-cap witness is supplied, this tail theorem
 intentionally has no non-exactness hypothesis.
 
-The remaining `sorry` is the current U1.2 spine leaf: it marks the
-packet-label producer / manifest-certificate bridge still to be proved.
+The remaining source holes are K-A-PAIR and the LIVE-Q/T3/C families;
+LIVE-T1 is source-sorry-free but still depends transitively on K-A-PAIR.
 -/
 
 open scoped EuclideanGeometry
@@ -3396,6 +3397,298 @@ theorem perm_of_finset_eq_triple {α : Type*} [DecidableEq α]
   rcases ha with rfl | rfl | rfl <;> rcases hb with rfl | rfl | rfl <;>
     rcases hc with rfl | rfl | rfl <;> simp_all
 
+namespace U1LargeCapRouteBTailRelabel
+
+private theorem support_eq_of_center_eq_l1
+    {D : CounterexampleData} {source₁ source₂ : ℝ²}
+    (R₁ : U1Depth5.CriticalRowPacket D source₁)
+    (R₂ : U1Depth5.CriticalRowPacket D source₂)
+    (hcenter : R₁.center = R₂.center)
+    (hl1 : R₁.selected.l1 = R₂.selected.l1) :
+    R₁.selected.toCriticalFourShell.support =
+      R₂.selected.toCriticalFourShell.support := by
+  have hradius :
+      R₁.selected.toCriticalFourShell.radius =
+        R₂.selected.toCriticalFourShell.radius := by
+    calc
+      R₁.selected.toCriticalFourShell.radius =
+          dist R₁.center R₁.selected.l1 := R₁.selected.l1_dist.symm
+      _ = dist R₂.center R₁.selected.l1 :=
+        congrArg (fun center : ℝ² => dist center R₁.selected.l1) hcenter
+      _ = dist R₂.center R₂.selected.l1 :=
+        congrArg (fun z : ℝ² => dist R₂.center z) hl1
+      _ = R₂.selected.toCriticalFourShell.radius := R₂.selected.l1_dist
+  rw [R₁.selected.toCriticalFourShell.support_eq,
+    R₂.selected.toCriticalFourShell.support_eq]
+  ext z
+  simp only [Finset.mem_filter]
+  constructor
+  · rintro ⟨hzA, hzdist⟩
+    exact ⟨hzA, (congrArg (fun center : ℝ² => dist center z) hcenter).symm.trans
+      (hzdist.trans hradius)⟩
+  · rintro ⟨hzA, hzdist⟩
+    exact ⟨hzA, (congrArg (fun center : ℝ² => dist center z) hcenter).trans
+      (hzdist.trans hradius.symm)⟩
+
+private def swapT1T2Fixed
+    {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
+    (P : U3FixedTriplePacket D q p t1 t2 t3) :
+    U3FixedTriplePacket D q p t2 t1 t3 where
+  q_mem := P.q_mem
+  p_mem := P.p_mem
+  t1_mem := P.t2_mem
+  t2_mem := P.t1_mem
+  t3_mem := P.t3_mem
+  t1_ne_t2 := P.t1_ne_t2.symm
+  t1_ne_t3 := P.t2_ne_t3
+  t2_ne_t3 := P.t1_ne_t3
+  q_radius_pos := P.q_radius_pos
+  t1_same_radius := P.t2_same_radius
+  t2_same_radius := P.t1_same_radius
+  t3_same_radius := P.t3_same_radius
+
+private def swapT1T2Rows
+    {D : CounterexampleData} {q t1 t2 t3 u : ℝ²}
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u) :
+    U1Depth5.CriticalSourceRows D q t2 t1 t3 u where
+  qRow := rows.qRow
+  t1Row := rows.t2Row
+  t2Row := rows.t1Row
+  t3Row := rows.t3Row
+  uRow := rows.uRow
+
+private def swapT1T2LiveData
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u) :
+    U1LargeCapRouteBTailLiveData D p q t2 t1 t3 u where
+  dangerous := by simpa [Finset.insert_comm] using H.dangerous
+  exactQDeletedRadius := H.exactQDeletedRadius
+  selected := by simpa [Finset.insert_comm] using H.selected
+
+private theorem swapT1T2Base
+    {p q t1 t2 t3 u : ℝ²}
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t2, t3, u]) :
+    List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t2, t1, t3, u] := by
+  simp only [List.pairwise_cons, List.mem_cons, List.not_mem_nil, or_false,
+    forall_eq_or_imp, forall_eq, IsEmpty.forall_iff, implies_true,
+    List.Pairwise.nil, and_true] at hbase ⊢
+  aesop
+
+open U1LargeCapRouteBTailMetricResidualTarget in
+/-- A sixth-row collision with `t1` reduces to the existing `t2` pair sink by
+permuting the dangerous triple. -/
+theorem false_of_center_p_t1_t20_via_pair
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) {i : Fin 3}
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hnotOppExact : ¬ CP.OppositePairExactAt i)
+    (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
+    (hcard : 9 < D.A.card)
+    (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t2, t3, u])
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (f2CriticalRow :
+      U1Depth5.CriticalRowPacket D
+        (rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 }))
+    (hf2Center_eq_rowAt_center :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.center = (rows.rowAt source).center)
+    (hf2Selected_l1_eq_rowAt_l1 :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+    (hcenter_p : f2CriticalRow.center = p)
+    (hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²))
+    (ht1_t20 :
+      t1 = rows.pointOfChoice
+        { source := U1Depth5.CriticalSource.t2, slot := 0 }) :
+    False := by
+  let rows' := swapT1T2Rows rows
+  have hsource :
+      rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+        rows.sourcePoint U1Depth5.CriticalSource.t1 := by
+    simpa [U1Depth5.CriticalSourceRows.sourcePoint] using ht1_t20.symm
+  have hcenter_t1 : rows.t1Row.center = p := by
+    have h := hf2Center_eq_rowAt_center U1Depth5.CriticalSource.t1 hsource
+    simpa [U1Depth5.CriticalSourceRows.rowAt] using h.symm.trans hcenter_p
+  have hsupport_t1 :
+      rows.t1Row.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) := by
+    have hsame := support_eq_of_center_eq_l1 f2CriticalRow rows.t1Row
+      (hf2Center_eq_rowAt_center U1Depth5.CriticalSource.t1 hsource)
+      (hf2Selected_l1_eq_rowAt_l1 U1Depth5.CriticalSource.t1 hsource)
+    exact hsame.symm.trans hsupport
+  apply false_of_largeCap_pCentered_t2Source_exactDangerousRow
+    (p := p) MT hCirc CP i rows'
+      hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+      hcritical hlocalNoQFree (swapT1T2Fixed hfixed) (swapT1T2Base hbase)
+      (swapT1T2LiveData H)
+  · simpa [rows', swapT1T2Rows, U1Depth5.CriticalSourceRows.rowAt] using
+      hcenter_t1
+  · simpa [rows', swapT1T2Rows, U1Depth5.CriticalSourceRows.rowAt,
+      Finset.insert_comm] using hsupport_t1
+
+private def swapT2T3Fixed
+    {D : CounterexampleData} {q p t1 t2 t3 : ℝ²}
+    (P : U3FixedTriplePacket D q p t1 t2 t3) :
+    U3FixedTriplePacket D q p t1 t3 t2 where
+  q_mem := P.q_mem
+  p_mem := P.p_mem
+  t1_mem := P.t1_mem
+  t2_mem := P.t3_mem
+  t3_mem := P.t2_mem
+  t1_ne_t2 := P.t1_ne_t3
+  t1_ne_t3 := P.t1_ne_t2
+  t2_ne_t3 := P.t2_ne_t3.symm
+  q_radius_pos := P.q_radius_pos
+  t1_same_radius := P.t1_same_radius
+  t2_same_radius := P.t3_same_radius
+  t3_same_radius := P.t2_same_radius
+
+private def swapT2T3Rows
+    {D : CounterexampleData} {q t1 t2 t3 u : ℝ²}
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u) :
+    U1Depth5.CriticalSourceRows D q t1 t3 t2 u where
+  qRow := rows.qRow
+  t1Row := rows.t1Row
+  t2Row := rows.t3Row
+  t3Row := rows.t2Row
+  uRow := rows.uRow
+
+private def swapT2T3LiveData
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u) :
+    U1LargeCapRouteBTailLiveData D p q t1 t3 t2 u where
+  dangerous := by
+    have hset :
+        ({t1, t3, t2} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²) := by
+      ext x
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+    simpa only [hset] using H.dangerous
+  exactQDeletedRadius := H.exactQDeletedRadius
+  selected := by
+    have hset :
+        ({t1, t3, t2} : Finset ℝ²) = ({t1, t2, t3} : Finset ℝ²) := by
+      ext x
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+    simpa only [hset] using H.selected
+
+private theorem swapT2T3Base
+    {p q t1 t2 t3 u : ℝ²}
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t2, t3, u]) :
+    List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t3, t2, u] := by
+  simp only [List.pairwise_cons, List.mem_cons, List.not_mem_nil, or_false,
+    forall_eq_or_imp, forall_eq, IsEmpty.forall_iff, implies_true,
+    List.Pairwise.nil, and_true] at hbase ⊢
+  aesop
+
+open U1LargeCapRouteBTailMetricResidualTarget in
+/-- A sixth-row collision with `t3` reduces to the existing `t2` pair sink
+by permuting the dangerous triple. -/
+theorem false_of_center_p_t3_t20_via_pair
+    {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
+    {hncol : ¬ Collinear ℝ (D.A : Set ℝ²)}
+    (MT : MEC.NonObtuseCircumscribedMoserTriangle D.A D.nonempty hncol)
+    (hCirc : ∃ h12 h23 h13,
+      MT.toMoserTriangle.case_split = Or.inl ⟨h12, h23, h13⟩)
+    {M : MoserTriangle D.A} (CP : CapTriple D.A M) {i : Fin 3}
+    (hM : M = MT.toMoserTriangle.toStructural hCirc)
+    (hqCap : q ∈ CP.capAt i)
+    (hsurplus : 4 < (CP.capAt i).card)
+    (hqNonMoser : q ∉ M.verts)
+    (hnotOppExact : ¬ CP.OppositePairExactAt i)
+    (hNoM44 : ¬ ∃ S : SurplusCapPacket D.A, S.IsM44)
+    (hcard : 9 < D.A.card)
+    (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
+    (hcritical : Nonempty (CriticalShellSystem D.A))
+    (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
+    (hfixed : U3FixedTriplePacket D q p t1 t2 t3)
+    (hbase : List.Pairwise (fun x y : ℝ² => x ≠ y)
+      [p, q, t1, t2, t3, u])
+    (rows : U1Depth5.CriticalSourceRows D q t1 t2 t3 u)
+    (f2CriticalRow :
+      U1Depth5.CriticalRowPacket D
+        (rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 }))
+    (hf2Center_eq_rowAt_center :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.center = (rows.rowAt source).center)
+    (hf2Selected_l1_eq_rowAt_l1 :
+      ∀ source : U1Depth5.CriticalSource,
+        rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+          rows.sourcePoint source →
+        f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
+    (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
+    (hcenter_p : f2CriticalRow.center = p)
+    (hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²))
+    (ht3_t20 :
+      t3 = rows.pointOfChoice
+        { source := U1Depth5.CriticalSource.t2, slot := 0 }) :
+    False := by
+  let rows' := swapT2T3Rows rows
+  have hsource :
+      rows.pointOfChoice
+          { source := U1Depth5.CriticalSource.t2, slot := 0 } =
+        rows.sourcePoint U1Depth5.CriticalSource.t3 := by
+    simpa [U1Depth5.CriticalSourceRows.sourcePoint] using ht3_t20.symm
+  have hcenter_t3 : rows.t3Row.center = p := by
+    have h := hf2Center_eq_rowAt_center U1Depth5.CriticalSource.t3 hsource
+    simpa [U1Depth5.CriticalSourceRows.rowAt] using h.symm.trans hcenter_p
+  have hsupport_t3 :
+      rows.t3Row.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) := by
+    have hsame := support_eq_of_center_eq_l1 f2CriticalRow rows.t3Row
+      (hf2Center_eq_rowAt_center U1Depth5.CriticalSource.t3 hsource)
+      (hf2Selected_l1_eq_rowAt_l1 U1Depth5.CriticalSource.t3 hsource)
+    exact hsame.symm.trans hsupport
+  apply false_of_largeCap_pCentered_t2Source_exactDangerousRow
+    (p := p) MT hCirc CP i rows'
+      hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+      hcritical hlocalNoQFree (swapT2T3Fixed hfixed) (swapT2T3Base hbase)
+      (swapT2T3LiveData H)
+  · simpa [rows', swapT2T3Rows, U1Depth5.CriticalSourceRows.rowAt] using
+      hcenter_t3
+  · change rows.t3Row.selected.toCriticalFourShell.support =
+      ({q, t1, t3, t2} : Finset ℝ²)
+    have hset :
+        ({q, t1, t3, t2} : Finset ℝ²) = ({q, t1, t2, t3} : Finset ℝ²) := by
+      ext x
+      simp only [Finset.mem_insert, Finset.mem_singleton]
+      tauto
+    rw [hset]
+    exact hsupport_t3
+
+end U1LargeCapRouteBTailRelabel
+
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-Q orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -3920,10 +4213,16 @@ theorem liveData_Q_l4_false
           -- `l2 = t2`, `l3 = t1`.
           sorry
 
+section LiveDataT1Relabel
+
+-- The public LIVE-T1 leaf signatures are retained for their existing callers;
+-- the orbit-level reduction intentionally no longer consumes the old slot-local premises.
+set_option linter.unusedVariables false
+
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l2`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l2`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql1_srcl2_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -3960,7 +4259,6 @@ theorem liveData_T1_ql1_srcl2_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4039,31 +4337,22 @@ theorem liveData_T1_ql1_srcl2_false
   (htail_set : ({f2CriticalRow.selected.l3, f2CriticalRow.selected.l4} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l3_ne_l4 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl3_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l2`, `l3 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl3_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l2`, `l3 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inl hq_slot0)
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l3`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l3`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql1_srcl3_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4100,7 +4389,6 @@ theorem liveData_T1_ql1_srcl3_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4179,31 +4467,22 @@ theorem liveData_T1_ql1_srcl3_false
   (htail_set : ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l4} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l2_ne_l4 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl2_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l3`, `l2 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl2_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l3`, `l2 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inl hq_slot0)
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l4`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l1`, `t20 = l4`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql1_srcl4_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4240,7 +4519,6 @@ theorem liveData_T1_ql1_srcl4_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4319,31 +4597,22 @@ theorem liveData_T1_ql1_srcl4_false
   (htail_set : ({f2CriticalRow.selected.l2, f2CriticalRow.selected.l3} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l2_ne_l3 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl2_t2, hl3_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l4`, `l2 = t2`, `l3 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl2_t3, hl3_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l1`,
-                -- `t20 = l4`, `l2 = t3`, `l3 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_q_slot0_t1Row_l1 hq_slot0 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inl hq_slot0)
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l1`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l1`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql2_srcl1_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4380,7 +4649,6 @@ theorem liveData_T1_ql2_srcl1_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4463,31 +4731,22 @@ theorem liveData_T1_ql2_srcl1_false
   (htail_set : ({f2CriticalRow.selected.l3, f2CriticalRow.selected.l4} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l3_ne_l4 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl3_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l1`, `l3 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
-              · rcases hordered with ⟨hl3_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l1`, `l3 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inr (Or.inl hq_slot1))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l3`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l3`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql2_srcl3_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4524,7 +4783,6 @@ theorem liveData_T1_ql2_srcl3_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4603,31 +4861,22 @@ theorem liveData_T1_ql2_srcl3_false
   (htail_set : ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l4} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l1_ne_l4 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l3`, `l1 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l3`, `l1 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inr (Or.inl hq_slot1))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l4`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l2`, `t20 = l4`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql2_srcl4_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4664,7 +4913,6 @@ theorem liveData_T1_ql2_srcl4_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4743,31 +4991,22 @@ theorem liveData_T1_ql2_srcl4_false
   (htail_set : ({f2CriticalRow.selected.l1, f2CriticalRow.selected.l3} : Finset ℝ²)
       = ({t2, t3} : Finset ℝ²)) :
     False := by
-              rcases
-                  pair_eq_or_swap_of_pair_finset_eq
-                    f2CriticalRow.selected.l1_ne_l3 htail_set with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl3_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l4`, `l1 = t2`, `l3 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl3_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l2`,
-                -- `t20 = l4`, `l1 = t3`, `l3 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p (Or.inr (Or.inl hq_slot1))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l1`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l1`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql3_srcl1_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4804,7 +5043,6 @@ theorem liveData_T1_ql3_srcl1_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -4881,37 +5119,23 @@ theorem liveData_T1_ql3_srcl1_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl1_t1 : f2CriticalRow.selected.l1 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot2.symm hl1_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
-                    f2CriticalRow.selected.l3_ne_l4
-                    f2CriticalRow.selected.l1_ne_l2
-                    f2CriticalRow.selected.l1_ne_l4
-                    f2CriticalRow.selected.l2_ne_l4
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl2_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l1`, `l2 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
-              · rcases hordered with ⟨hl2_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l1`, `l2 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inl hq_slot2)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l2`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l2`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql3_srcl2_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -4948,7 +5172,6 @@ theorem liveData_T1_ql3_srcl2_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -5025,37 +5248,23 @@ theorem liveData_T1_ql3_srcl2_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl2_t1 : f2CriticalRow.selected.l2 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot2.symm hl2_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
-                    f2CriticalRow.selected.l3_ne_l4
-                    (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
-                    f2CriticalRow.selected.l2_ne_l4
-                    f2CriticalRow.selected.l1_ne_l4
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl4_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l2`, `l1 = t2`, `l4 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl4_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l2`, `l1 = t3`, `l4 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inl hq_slot2)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l4`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l3`, `t20 = l4`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql3_srcl4_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -5092,7 +5301,6 @@ theorem liveData_T1_ql3_srcl4_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -5169,37 +5377,23 @@ theorem liveData_T1_ql3_srcl4_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl4_t1 : f2CriticalRow.selected.l4 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot2.symm hl4_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
-                    (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
-                    (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
-                    f2CriticalRow.selected.l1_ne_l2
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl2_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l4`, `l1 = t2`, `l2 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl2_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l3`,
-                -- `t20 = l4`, `l1 = t3`, `l2 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inl hq_slot2)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l1`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l1`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql4_srcl1_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -5236,7 +5430,6 @@ theorem liveData_T1_ql4_srcl1_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -5313,37 +5506,23 @@ theorem liveData_T1_ql4_srcl1_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl1_t1 : f2CriticalRow.selected.l1 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot3.symm hl1_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
-                    f2CriticalRow.selected.l1_ne_l2
-                    f2CriticalRow.selected.l1_ne_l3
-                    f2CriticalRow.selected.l2_ne_l3
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl2_t2, hl3_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l1`, `l2 = t2`, `l3 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
-              · rcases hordered with ⟨hl2_t3, hl3_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l1`, `l2 = t3`, `l3 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · sorry
-                · exact False.elim
-                    (hfalse_of_l1_t1_not_t1Row_l1 hl1_t1 ht1Row_l1)
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inr hq_slot3)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l2`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l2`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql4_srcl2_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -5380,7 +5559,6 @@ theorem liveData_T1_ql4_srcl2_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -5457,37 +5635,23 @@ theorem liveData_T1_ql4_srcl2_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl2_t1 : f2CriticalRow.selected.l2 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot3.symm hl2_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l3_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l1_ne_l2 h.symm)
-                    f2CriticalRow.selected.l2_ne_l3
-                    f2CriticalRow.selected.l1_ne_l3
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl3_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l2`, `l1 = t2`, `l3 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl3_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l2`, `l1 = t3`, `l3 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inr hq_slot3)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T1 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
-`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l3`, holding the
-pair-ordered `ht1Row_l1`-negative subgoals (two holes). -/
+`t1_t20` source-slot cube `q = f2CriticalRow.selected.l4`, `t20 = l3`; its former
+pair-ordered subgoals now reduce uniformly to the `t2` pair sink. -/
 theorem liveData_T1_ql4_srcl3_false
     {D : CounterexampleData} {p q t1 t2 t3 u : ℝ²}
     (hlocalNoQFree : U3LocalizedNoQFreePacket D q p)
@@ -5524,7 +5688,6 @@ theorem liveData_T1_ql4_srcl3_false
           rows.sourcePoint source →
         f2CriticalRow.selected.l1 = (rows.rowAt source).selected.l1)
     (H : U1LargeCapRouteBTailLiveData D p q t1 t2 t3 u)
-
   (hsource_ne_selected_of_target_ne_q :
     ∀ {z l : ℝ²},
       z = rows.pointOfChoice { source := U1Depth5.CriticalSource.t2, slot := 0 } →
@@ -5601,32 +5764,20 @@ theorem liveData_T1_ql4_srcl3_false
       ({q, t1, t2, t3} : Finset ℝ²))
   (hl3_t1 : f2CriticalRow.selected.l3 = t1) :
     False := by
-              rcases
-                  pair_order_or_swap_of_four_labels_mem
-                    hlabels_base hq_slot3.symm hl3_t1 (by simp) (by simp)
-                    (fun h => f2CriticalRow.selected.l1_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l2_ne_l4 h.symm)
-                    (fun h => f2CriticalRow.selected.l1_ne_l3 h.symm)
-                    (fun h => f2CriticalRow.selected.l2_ne_l3 h.symm)
-                    f2CriticalRow.selected.l1_ne_l2
-                    hfixed.t2_ne_t3 with
-                hordered | hordered
-              · rcases hordered with ⟨hl1_t2, hl2_t3⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l3`, `l1 = t2`, `l2 = t3`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t2_t1Row_l1 hl1_t2 ht1Row_l1)
-                · sorry
-              · rcases hordered with ⟨hl1_t3, hl2_t2⟩
-                -- Ordered source-slot subcube: `t1_t20`, `q = l4`,
-                -- `t20 = l3`, `l1 = t3`, `l2 = t2`.
-                by_cases ht1Row_l1 :
-                    t1 = (rows.rowAt U1Depth5.CriticalSource.t1).selected.l1
-                · exact False.elim
-                    (hfalse_of_l1_t3_t1Row_l1 hl1_t3 ht1Row_l1)
-                · sorry
+  have hsupport :
+      f2CriticalRow.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset ℝ²) :=
+    f2CriticalRow_selected_support_eq_dangerous_of_center_p_q_named
+      hfixed f2CriticalRow H hcenter_p
+        (Or.inr (Or.inr (Or.inr hq_slot3)))
+  exact
+    U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair
+      (p := p) MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact
+      hNoM44 hcard hnoRem hcritical hlocalNoQFree hfixed hbase rows
+      f2CriticalRow hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H
+      hcenter_p hsupport ht1_t20
+
+end LiveDataT1Relabel
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -5746,11 +5897,19 @@ theorem liveData_T3_ql1_srcl2_false
                   · rcases hordered with ⟨hl3_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l2`, `l3 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl3_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l2`, `l3 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -5870,11 +6029,19 @@ theorem liveData_T3_ql1_srcl3_false
                   · rcases hordered with ⟨hl2_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l3`, `l2 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl2_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l3`, `l2 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -5994,11 +6161,19 @@ theorem liveData_T3_ql1_srcl4_false
                   · rcases hordered with ⟨hl2_t1, hl3_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l4`, `l2 = t1`, `l3 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl2_t2, hl3_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l1`,
                     -- `t20 = l4`, `l2 = t2`, `l3 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6118,11 +6293,19 @@ theorem liveData_T3_ql2_srcl1_false
                   · rcases hordered with ⟨hl3_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l1`, `l3 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl3_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l1`, `l3 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6242,11 +6425,19 @@ theorem liveData_T3_ql2_srcl3_false
                   · rcases hordered with ⟨hl1_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l3`, `l1 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l3`, `l1 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6366,11 +6557,19 @@ theorem liveData_T3_ql2_srcl4_false
                   · rcases hordered with ⟨hl1_t1, hl3_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l4`, `l1 = t1`, `l3 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl3_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l2`,
                     -- `t20 = l4`, `l1 = t2`, `l3 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6490,11 +6689,19 @@ theorem liveData_T3_ql3_srcl1_false
                   · rcases hordered with ⟨hl2_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l1`, `l2 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl2_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l1`, `l2 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6614,11 +6821,19 @@ theorem liveData_T3_ql3_srcl2_false
                   · rcases hordered with ⟨hl1_t1, hl4_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l2`, `l1 = t1`, `l4 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl4_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l2`, `l1 = t2`, `l4 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6738,11 +6953,19 @@ theorem liveData_T3_ql3_srcl4_false
                   · rcases hordered with ⟨hl1_t1, hl2_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l4`, `l1 = t1`, `l2 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl2_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l3`,
                     -- `t20 = l4`, `l1 = t2`, `l2 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6862,11 +7085,19 @@ theorem liveData_T3_ql4_srcl1_false
                   · rcases hordered with ⟨hl2_t1, hl3_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l1`, `l2 = t1`, `l3 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl2_t2, hl3_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l1`, `l2 = t2`, `l3 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -6986,11 +7217,19 @@ theorem liveData_T3_ql4_srcl2_false
                   · rcases hordered with ⟨hl1_t1, hl3_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l2`, `l1 = t1`, `l3 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl3_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l2`, `l1 = t2`, `l3 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-T3 orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the `hcenter_p`
@@ -7110,11 +7349,19 @@ theorem liveData_T3_ql4_srcl3_false
                   · rcases hordered with ⟨hl1_t1, hl2_t2⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l3`, `l1 = t1`, `l2 = t2`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
                   · rcases hordered with ⟨hl1_t2, hl2_t1⟩
                     -- Ordered source-slot subcube: `t3_t20`, `q = l4`,
                     -- `t20 = l3`, `l1 = t2`, `l2 = t1`.
-                    sorry
+                    exact U1LargeCapRouteBTailRelabel.false_of_center_p_t3_t20_via_pair
+                      MT hCirc CP hM hqCap hsurplus hqNonMoser hnotOppExact hNoM44 hcard hnoRem
+                      hcritical hlocalNoQFree hfixed hbase rows f2CriticalRow
+                      hf2Center_eq_rowAt_center hf2Selected_l1_eq_rowAt_l1 H hcenter_p
+                      hselected_support_eq_base ht3_t20
 
 open U1LargeCapRouteBTailMetricResidualTarget in
 /-- LIVE-C orbit leaf of `u1_largeCap_routeB_tail_liveData_false`: the outer

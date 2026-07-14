@@ -1,0 +1,3261 @@
+{
+  "checkpoint_sha256": "ff0bfe8bd4e2c20ea553690497c72d02b9221273878a88079856435ef7ee1ae8",
+  "epistemic_status": "BOUNDED_CVC5_DISCOVERY_EVIDENCE_NOT_LEAN_PROOF",
+  "ledger": {
+    "ENCODED": [
+      "producer_surface exact classes and selected-four witnesses",
+      "producer_geometry named QF_NRA atoms",
+      "producer_bank all-match preflight with zero accepted matches",
+      "named cvc5 core parsing and cap-role shape normalization"
+    ],
+    "OMITTED": [
+      "literal hNoM44 over every possible SurplusCapPacket; only a chosen-case cap profile is encoded",
+      "the unrelated CounterexampleData.packet is not identified with leafSurplusPacket",
+      "arbitrary CriticalShellSystem.centerAt selector diversity and canonicality",
+      "critical-blocker deletion failure and choice-invariant blocker outputs (milestone 3)",
+      "live U3/U5 dangerous-row and CriticalSourceRows-to-cap coupling (phase 2)",
+      "the quantified minimum-radius clause of MEC; the exposed disk/boundary/nonobtuse packet is encoded",
+      "rational-coordinate restrictions; one explicit cyclic label order is encoded, but exhaustive order-orbit coverage is not yet claimed",
+      "no-removable-vertex, which is not a hypothesis of DoubleApexOffSurplusSharedRadiusPair"
+    ]
+  },
+  "policy": {
+    "assignments_per_case": 8,
+    "automatic_extension": false,
+    "case_count": 3,
+    "query_count": 24,
+    "retries": 0,
+    "selection": "first deterministic target-negating theorem-bank-clean assignments",
+    "timeout_seconds_per_query": 3.0
+  },
+  "results": [
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a00",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.341285,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "29bbd2f33f7055f9013fd0c22341e4baf42074572ec37694cffaaebfb6c0b665",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_6_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_6",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a01",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.351469,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "d7a7a387d51784d715c37af683e7d69a44e9283a742e3a63c761860e61f4da83",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a02",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.390466,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "c6a3ca013bba81234b60b439045839dede0eb84a00c671e5dce457d7a1ebf0f8",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a03",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.343825,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "7d56841dc5b04d6224f951f397e9a37f9311d9009aafc000794b4049734a6c29",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a04",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.339621,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "284d8dabe8218ddcbb28449ab7e580ed668b38f6a7990ad34f7312525851a7e8",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_10",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_10_1_2",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_10",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_10",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O2_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O2_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O2_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_O2_INTERIOR_OPP_APEX1_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a05",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.331587,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "693e8dfeac2bc90f1183a9144483357667c659585a6da176736ec07b37541e82",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_5",
+        "CONVEX_EDGE_5_2_1",
+        "CONVEX_EDGE_2_6_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_5",
+        "MEC_DISK_6",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_5",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_S_INTERIOR_OPP_APEX2_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a06",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.340917,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "bd1fc94cc40ccc6f9e1da8eb37c722baeb158e04ba035e0f812a85339afee534",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              8
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              8
+            ]
+          }
+        }
+      },
+      "assignment_id": "card11_profile_554_a07",
+      "bank_matches": [],
+      "case_id": "card11_profile_554",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.349935,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "0e247f504b82afce1edd84cc850f41e83c765a3514c538dae2a25fce917da281",
+        "named_atoms": 258,
+        "variables": 29
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a00",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.423961,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "4ee85cab270f597c7014df5ad18e50215e4783e548d7df5699b11279b7cfc6ed",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a01",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.395338,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "96fb4cd8618f51e16779b890fdc639d2524fefa7ebc6bc33c3c4f5c510a0eb45",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_7",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_7_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_7",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_7",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a02",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.391917,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "67e6b3f79d374fc2a6b3535a086591752a1018c24b72d1551988a6ac14a7f097",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a03",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.401839,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "d8ddeb97f63d5bd22c2932c6ddd7d70cbe4fa1cf8f582edfa3351b2e5bf2ed49",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a04",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.388712,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "564070da311c1865e348c9d01a7359f25ddf660d59177dc60166b3a1d52d7a6d",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a05",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.390977,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "abe5c915359e5588c861dca8890bf0ebee87ccb7d17ffef016dfd8e8021835cd",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_11",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_11_1_2",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_11",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_11",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O2_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O2_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O2_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_O2_INTERIOR_OPP_APEX1_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a06",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.417476,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "6cd491265a7adbeabc75a3c921bc72b523dfc315421d251141a06b5486b4ad5b",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_654_a07",
+      "bank_matches": [],
+      "case_id": "card12_profile_654",
+      "cyclic_order": [
+        0,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        6,
+        2,
+        7,
+        8,
+        9
+      ],
+      "elapsed_seconds": 0.391628,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "54fc81a3ac88a86db8365ce6ac028d3c761bee032ca761794edf898b6d1dc8fe",
+        "named_atoms": 296,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_7",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_7_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_7",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_7",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a00",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.400382,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "1f1a9c74ed22e30fcd007b51339708be304d22ae3ce3dca43ee7bd9d46026589",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_6_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_6",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a01",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.412953,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "489667a98e24234436b69e1a011d7c451e5756f61d2a85fd1530adeb8aeb0e8b",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              8
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a02",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.421997,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "47d8e255a37a64238bfa87299c4a2811b018ff513733eef7cdbf2b6116ed0749",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              9
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a03",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.445431,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "fbb78edb4519d301c912dc0f539e9c549ba43062c80e3fbdb03f010c2c6db212",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              10
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a04",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.429572,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "6f46a67a1865ea1e5dac552b2513c8b2143b89fa817b994c015143fffd1c525d",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              11
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              11
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a05",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.416956,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "e8048de63ca8084e76dcbc12fb251210aef953d78ab267e5f70e527f36b33dd8",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_11",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_11_1_2",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_11",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_11",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O2_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O2_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O2_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_O2_INTERIOR_OPP_APEX1_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              6
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a06",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.422764,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "c47cfb4589f856f7884246e6710bdc958370abadf1f477e162201261a5294aad",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_6_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_6",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_O1_INTERIOR",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              4,
+              7
+            ]
+          }
+        }
+      },
+      "assignment_id": "card12_profile_555_a07",
+      "bank_matches": [],
+      "case_id": "card12_profile_555",
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "elapsed_seconds": 0.440261,
+      "evidence_scope": "cvc5 discovery evidence only; not a Lean proof",
+      "geometry": {
+        "input_sha256": "2d98f11952893a06cc19b90545280f58c77a312bf1b6f37769e06072f4948c6b",
+        "named_atoms": 302,
+        "variables": 31
+      },
+      "named_unsat_core": [
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "CONVEX_EDGE_1_3_2",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1"
+      ],
+      "normalized_core_shape": [
+        "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+        "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+        "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+        "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+        "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+        "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+        "gauge:GAUGE_OPP_APEX1_X",
+        "gauge:GAUGE_OPP_APEX1_Y",
+        "gauge:GAUGE_OPP_APEX2_X",
+        "gauge:GAUGE_OPP_APEX2_Y",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+        "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+        "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+        "mec-disk:MEC_DISK_S_INTERIOR",
+        "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+        "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+        "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+      ],
+      "solver_returncode": 0,
+      "solver_stderr_tail": "",
+      "status": "UNSAT",
+      "target_negation_holds": true
+    }
+  ],
+  "schema": "p97_atail_force_producer_pattern_census.v1",
+  "summary": {
+    "elapsed_seconds": 9.391613,
+    "recurring_cores": [
+      {
+        "assignments": [
+          "card11_profile_554_a01",
+          "card11_profile_554_a06",
+          "card12_profile_654_a00",
+          "card12_profile_654_a02",
+          "card12_profile_654_a06"
+        ],
+        "count": 5,
+        "normalized_core_shape": [
+          "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+          "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+          "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+          "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+          "gauge:GAUGE_OPP_APEX1_X",
+          "gauge:GAUGE_OPP_APEX1_Y",
+          "gauge:GAUGE_OPP_APEX2_X",
+          "gauge:GAUGE_OPP_APEX2_Y",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+          "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+          "mec-disk:MEC_DISK_S_INTERIOR",
+          "mec-nonobtuse:NONOBT_SURPLUS_APEX",
+          "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+          "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+          "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+        ]
+      },
+      {
+        "assignments": [
+          "card11_profile_554_a02",
+          "card11_profile_554_a03",
+          "card11_profile_554_a07",
+          "card12_profile_654_a03",
+          "card12_profile_654_a04",
+          "card12_profile_555_a01",
+          "card12_profile_555_a02",
+          "card12_profile_555_a03",
+          "card12_profile_555_a04",
+          "card12_profile_555_a07"
+        ],
+        "count": 10,
+        "normalized_core_shape": [
+          "cap-iff-sign:CAP_IFF_SURPLUS_SURPLUS_APEX",
+          "cap-iff-sign:CAP_IFF_SURPLUS_S_INTERIOR",
+          "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+          "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+          "gauge:GAUGE_OPP_APEX1_X",
+          "gauge:GAUGE_OPP_APEX1_Y",
+          "gauge:GAUGE_OPP_APEX2_X",
+          "gauge:GAUGE_OPP_APEX2_Y",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+          "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+          "mec-disk:MEC_DISK_S_INTERIOR",
+          "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+          "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+          "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+        ]
+      },
+      {
+        "assignments": [
+          "card11_profile_554_a00",
+          "card12_profile_654_a01",
+          "card12_profile_654_a07",
+          "card12_profile_555_a00",
+          "card12_profile_555_a06"
+        ],
+        "count": 5,
+        "normalized_core_shape": [
+          "distinctness:DISTINCT_OPP_APEX1_O1_INTERIOR",
+          "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+          "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O1_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+          "gauge:GAUGE_OPP_APEX1_X",
+          "gauge:GAUGE_OPP_APEX1_Y",
+          "gauge:GAUGE_OPP_APEX2_X",
+          "gauge:GAUGE_OPP_APEX2_Y",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+          "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+          "mec-disk:MEC_DISK_O1_INTERIOR",
+          "mec-disk:MEC_DISK_S_INTERIOR",
+          "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+          "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+          "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2",
+          "strict-convex-order:CONVEX_EDGE_OPP_APEX2_O1_INTERIOR_OPP_APEX1"
+        ]
+      },
+      {
+        "assignments": [
+          "card11_profile_554_a04",
+          "card12_profile_654_a05",
+          "card12_profile_555_a05"
+        ],
+        "count": 3,
+        "normalized_core_shape": [
+          "distinctness:DISTINCT_OPP_APEX1_O2_INTERIOR",
+          "distinctness:DISTINCT_OPP_APEX2_S_INTERIOR",
+          "distinctness:DISTINCT_SURPLUS_APEX_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_OPP_APEX2",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_SURPLUS_APEX",
+          "exact-apex-filter:EXACT_FILTER_opp_apex1_exact_S_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_O2_INTERIOR",
+          "exact-apex-filter:EXACT_FILTER_opp_apex2_exact_OPP_APEX1",
+          "gauge:GAUGE_OPP_APEX1_X",
+          "gauge:GAUGE_OPP_APEX1_Y",
+          "gauge:GAUGE_OPP_APEX2_X",
+          "gauge:GAUGE_OPP_APEX2_Y",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX1",
+          "mec-boundary:MEC_BOUNDARY_OPP_APEX2",
+          "mec-boundary:MEC_BOUNDARY_SURPLUS_APEX",
+          "mec-disk:MEC_DISK_O2_INTERIOR",
+          "mec-disk:MEC_DISK_S_INTERIOR",
+          "pinned-global-k4:K4_ROW_opp_apex1_selected_four_SURPLUS_APEX",
+          "pinned-global-k4:K4_ROW_opp_apex2_selected_four_OPP_APEX1",
+          "strict-convex-order:CONVEX_EDGE_O2_INTERIOR_OPP_APEX1_OPP_APEX2",
+          "strict-convex-order:CONVEX_EDGE_OPP_APEX1_S_INTERIOR_OPP_APEX2"
+        ]
+      }
+    ],
+    "status_counts": {
+      "UNSAT": 24
+    },
+    "survivors": []
+  }
+}

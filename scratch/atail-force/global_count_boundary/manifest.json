@@ -1,0 +1,48 @@
+{
+  "schema": "p97-atail-global-count-boundary-manifest-v1",
+  "scope": {
+    "cardinality": 12,
+    "profiles": [
+      [4, 5, 6],
+      [5, 5, 5]
+    ],
+    "target_faithful": false,
+    "verdict": "STRENGTHENED_FINITE_SHADOW_ONLY"
+  },
+  "encoded": [
+    "one cyclic order and three ordered closed cap arcs with the declared card-12 profile",
+    "one exact abstract four-point radius class at every carrier center",
+    "symmetric abstract distance labels with no reciprocal row edges, making every chosen row an exact full filter",
+    "the ordered-cap one-sided row-injectivity consequence and the stronger endpoint-row one-hit consequence",
+    "pairwise selected-row overlap at most two",
+    "cyclic cross-separation whenever two distinct-center rows share two points",
+    "outside-pair uniqueness for distinct centers of each ordered cap",
+    "the exact ordered-cap outside-pair incidence sum and its m+4 lower bound",
+    "one common critical-shell blocker map on every carrier point, including source membership, no fixed blocker, blocker fibers of size at most four, and deletion no-q-free in the abstract distance model",
+    "the dangerous p-row with support exactly {q,t1,t2,t3}, common-system provenance t2 maps to p, and u off that abstract p-radius",
+    "a surplus cap of size at least five containing q strictly away from its endpoints and a distinct cap of size at least five",
+    "absence of an abstract two-point joint opposite-endpoint radius fiber outside the surplus cap",
+    "absence of every legacy wrong-side endpoint-spending row configuration",
+    "the displayed consecutive opposite-endpoint blocker chain in the (5,5,5) witness"
+  ],
+  "unimplemented_fail_closed": [
+    "coordinates in the Euclidean plane",
+    "triangle inequalities or squared-distance realizability",
+    "ConvexIndep and noncollinearity as geometric predicates rather than a fixed cyclic-order shadow",
+    "the full StrictCapOrder signed-area and subchord geometry beyond the explicitly checked consequences",
+    "the full MinorCapChainModel analytic geometry beyond one-sided injectivity and endpoint one-hit",
+    "minimum-enclosing-circle, non-obtuse, and circumscribed-Moser geometry",
+    "geometric construction of CapTriple, SurplusCapPacket, or leafSurplusPacket",
+    "the exact no-M44 geometric predicate beyond the card-profile consequence",
+    "all U1LargeCapRouteBTailLiveData fields beyond the dangerous exact radius class and the selected point being off that class",
+    "all possible card-12 named-label placements or all possible row systems",
+    "card 11, which is outside this ATAIL card-at-least-12 checkpoint",
+    "a Lean-kernel proof of either finite shadow",
+    "a Euclidean counterexample to K-A-PAIR or a proof of the proposed producer"
+  ],
+  "verdict_policy": {
+    "validated": "VALIDATED_STRENGTHENED_FINITE_SHADOW_ONLY",
+    "invalid": "REJECTED",
+    "note": "A validated witness refutes only a derivation from the encoded finite consequences. It is neither a Euclidean counterexample nor a proof about the live K-A hypotheses."
+  }
+}

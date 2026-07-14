@@ -1,0 +1,43 @@
+{
+  "schema": "p97-atail-pair-second-center-formalized-core-shards-summary-v1",
+  "aggregate_status": "SAT_FINITE_SHADOW_ONLY",
+  "profile": [5, 5, 5],
+  "scope": {
+    "placements_per_profile": 1,
+    "card_11_included": false,
+    "formalized_metric_core_prefix_pruning": true,
+    "target_faithful": false,
+    "producer_proved": false,
+    "full_survivor_cases_persisted": false
+  },
+  "partition": {
+    "row": "supplied:q",
+    "shard_count": 23,
+    "partition_verified": true,
+    "original_choice_count": 940,
+    "original_domain_sha256": "ddf7ac41e39f15e11eef615792727517f480bce9a1fbaad62317d00541d0ea86"
+  },
+  "solver": {
+    "workers": 23,
+    "max_nodes_per_shard": 100000,
+    "total_nodes": 232367,
+    "status_counts": {"SAT": 23},
+    "error_count": 0
+  },
+  "formalized_core_prefix_rejections": {
+    "equality-convex-five-point": 27596,
+    "equality-convex-five-point-reverse": 15358,
+    "equality-convex-rhombus-equilateral": 82,
+    "equality-duplicate-center": 45966,
+    "equality-equilateral-bisector-collision": 1649,
+    "equality-exact-off-circle": 39498,
+    "equality-perpendicular-bisector-convex": 18063,
+    "equality-seven-point-six-circle-collision": 7,
+    "equality-seven-point-twin-four-circle-collision": 390,
+    "equality-six-point-circle-chain-collision": 1385,
+    "equality-six-point-two-pair-collision": 88,
+    "equality-six-row-anchor-collision": 1,
+    "equality-surplus-source-collision": 18,
+    "equality-three-triad-collision": 837
+  }
+}

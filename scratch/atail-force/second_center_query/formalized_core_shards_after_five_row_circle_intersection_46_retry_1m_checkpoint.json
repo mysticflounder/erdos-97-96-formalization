@@ -1,0 +1,7569 @@
+{
+  "aggregate_status": "SAT_FINITE_SHADOW_ONLY",
+  "cases": [
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "fdfab1ea25eb40d70bf5ba1123909575b44c6eac67eab852bf6d92f53a5094fe",
+        "shard_count": 46,
+        "shard_index": 0
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 58997,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "42e2f7d8658d19759640fe817f2a7b70f8ed8c82489a4f16a57103d9f3c2d151",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "42437144cb195319405bd27c7cf201f799491123e0333abdb4010ed850bf4160"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "ee213dc742c26986bf9d1c35e65d69923c04cf2e3c213ba779272552f7e26daf",
+        "shard_count": 46,
+        "shard_index": 1
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 4640,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "32e12f5bd4e7d2fab7cece402dec9da56c28f9d6c53166680f6c18ee55d2240a",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "4246b50080baabbfbaeb9b6f87b4a446d90f75dadf0d2d677d35aba2ace1a6cf"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "a0910f1e592e9412e1d134af4d79d0bc33cc6a1f19ea5e7ca6616f685f948be7",
+        "shard_count": 46,
+        "shard_index": 2
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 926,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "396dc5504fddc45d874fbe799f866239960c27e2de58e519d7fd688be00f571c",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "375733ea4d1693d7f26a74d7380abce81c58376391fd9a8ceb17f4714f7fe8f8"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "bdcaee5c01ffa36ffdb10ab7d1bf12445d76ea5a171b186a511530b7ca472d03",
+        "shard_count": 46,
+        "shard_index": 3
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 20449,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              6,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "d0c66b666d2c8da664cf3538bdda3998e475570140cc79236ed14ac5df525a1a",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "a18e4dd8f90818bb970669aca795fecd265b3794a5c19287e9a351d1e3878835"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "ef8f87d45109d4b67cc51e1ee1de0ffbb2192971351b04c555cc5ffa9d04234f",
+        "shard_count": 46,
+        "shard_index": 4
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 11443,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              6,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "1521438986a95ecafcfa117d9c2d4f73b2bc09d19484c4aaf3cb080513b4c4a3",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "7b1c88bb6a836d8d63ccb286cf85a89be9517b38821a9398e09236c8b34e98d2"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "bddff3e3a4c53697033887f9330f8cdf6cfb00910e49078a8d9e956cf6f4d695",
+        "shard_count": 46,
+        "shard_index": 5
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 2460,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "4907e1df151e26db918412ce3e8f939a8b0f5f70b85769ce5ec684f11747d6f7",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "ce6b04e015956c5676604eaefe03ed30f3fcb96a04bc7b0454b6cde14b18551d"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "bf5e805963b1562b649dc4f723bea376c31a4ce9338c6ab7ab0dbaedb3bd7b94",
+        "shard_count": 46,
+        "shard_index": 6
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 121,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "744fac68e895ceae5544f3dfb52e590339ecc2c2f9b60dcefe00ea6ccff8d47a",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "7c90a5d8449c3d3a654daceed5c6bfc43cbd3b90027c52ad395b8761ed05ecf3"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "319a97f6702dfb9520cbfe0a684255855f2d8266178f2434eb24c46c86a6f2c5",
+        "shard_count": 46,
+        "shard_index": 7
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 15515,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              6,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "b98e186bbb38a0fbd297da0124a8ba1e99d8a144c3dc022587f820fdf8e65bbf",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "a3a76cef42d1e9eba6e65da07421f09644b104f1a5479ef9e68dc2b71cd01b63"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "dfec1d1e19301d8f4cfaaf8eb00561d8b2fc9f19f0174533efc7895fc4caf013",
+        "shard_count": 46,
+        "shard_index": 8
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 80,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "54d07470e436e6f1f51006328be0a1fd3b77520b59a3bcb7a3ed3a7c7b70e949",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "33625234fe75485d3653f5499b6e87c6d863e76638dda9a97b65eb06262c2008"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "2f69ea3d09f3c8dc5994be2dda6a91e37d2e8687f9c51021ef739ae7f5485503",
+        "shard_count": 46,
+        "shard_index": 9
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 22655,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              5,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "69f34234cbb8576da39939a36d64da9d6f9affacf6b6a2176f772b4d4285e19d",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "88f89b5193a8a15a0158ed751bd0f64d2826f53b819d46722b6b2136c7718520"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "ad9f78a4e531eca0923b1486d44d5fc63ccea052fa1b9dc8ee52c278add8a8ee",
+        "shard_count": 46,
+        "shard_index": 10
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 31740,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "7e59c3bf196e5e1a7669a38b77298a6a464dc5aec915bb86dc971a92e9d8844a",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "4a75578ab741caf15945b3cfcf3172d057f667d5b59f1cdd30c0a0b61d69d959"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "bb1b009d09d68afded76acf3f99f4e8438eabc69977d6341d5b6e915a2f3ff8b",
+        "shard_count": 46,
+        "shard_index": 11
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 7005,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "0072c07f7730d6f0a01e024c324ff2e0b49621b78b6b5646c3515b3abcd71bb5",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "f0dd65750954ae32ac07e45c469298a2aa92a40903b23f549e92e6d5f09b7647"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "2c5069fbc727f2797458badca7063715f55b5cf800bb3de93a0f9dc5e2e4d24f",
+        "shard_count": 46,
+        "shard_index": 12
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 39344,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "e63800bfa668985e898b6232719844854b90a4bfcced989e91db9532313179e7",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "f267672e7cebc12b1f370e4f8426b74385bc23e126301105c862cd00c6119130"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "ddb006471cec2a0fd12480f9d93f67b948afc335114d6044152e6c7c35a748c5",
+        "shard_count": 46,
+        "shard_index": 13
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 1896,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "2ab1118237fc337107c7ad6c067955341c7421f1d03761e92a9d3594f9206121",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "08939443cc50a31380cf8609aada3a696d2bff657f22a6ee778152fe11b0d020"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "06ac2c111420a669762298b26285e512e4dca7177b1a911ddc00f4aca7ef8e01",
+        "shard_count": 46,
+        "shard_index": 14
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 9765,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "9d3d258db1a9bbb70eb0b29354335012d381b13a2a63677b19706f51a8688027",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "e0d323442bb8134f3c4d198bcba0620818a8f10e7ed95b311d79d80e021e9cda"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "1a1dc105740e8a601f186c19fc4d72866db43d3e81835ddf6c44c9d31b72fac1",
+        "shard_count": 46,
+        "shard_index": 15
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 13920,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "256f6dbb5a5cdac2f0d58d007a38528f54fff94d01644a73147786ebc3e627b1",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "5c91b103740eb30fa07d3f7578e343b745b4a20d0ae76ad50f79a8b1a1f55da1"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "9bf189faf24cabe0b8e59ea366046fc180a79f349260cfba02c165a6e7452aae",
+        "shard_count": 46,
+        "shard_index": 16
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 291,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "f00c4dc6919285e610dfb3afd9b752436af99e263ee0b4f88c9079f6647eb763",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "11ad566a610ab4870b06a82e1161bf67a33ec180e6aefb66eecd55de9f1b9157"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "f98e1ca0fbec5d7506c883fb1ada93d9b7a7b8aebd38deb27c70cf7bdbf458c4",
+        "shard_count": 46,
+        "shard_index": 17
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 4585,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "8d1f42c47a99232728311356c0eaab65b45b475074b4d58c3a4a9520800b9c84",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "813c88f3e9fa847d171ab13904d8f5a0de0183e9bf3778acdb4dd2720baa929f"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "cdb3cf8d106d34af6c6fdc5a6a533f0bcc03849d4ae6e1e55a580cb4212b44ea",
+        "shard_count": 46,
+        "shard_index": 18
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 16915,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "105c99842b93d5eb94aaf511de4b8f7931d13ae5200818a62b64864924eb2440",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "deae10fa83ca03f89658722be928b9697e218d0f4f46e6d23c5205a58affe2d0"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 21,
+        "selected_domain_sha256": "1d8996b189df36f658cbc2e37e3dff7aab0c19d5bc5553110bbc67c585483e8e",
+        "shard_count": 46,
+        "shard_index": 19
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 9630,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              9,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              5,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "aec37e860a27c6233710a4631cf7d93c9ea2da05171fe217807d3e2d60e6958f",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "2d17c559d9cc437c471bfefa7f09324ffafb0b2e3f2fdbe29b2d114555636479"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "2886db202b8be2885a85eaee07c2298a34ea243c84efc837dc77e1f4fe203ac2",
+        "shard_count": 46,
+        "shard_index": 20
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 74390,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "0b9d2a8245316d414408c09c3a5dd819d2fd7aa322f5744f829a0a1fbdfeddf6",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "a62443a119c162432abbbf04f279e5986ea3d4daa68f07bf3ab33e31abcef168"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "8302ec96f43ec3cbc1bb38a11aba842a8159ecfcb3970b033a6a54f1b75566f2",
+        "shard_count": 46,
+        "shard_index": 21
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 13573,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "c3c296de0c90cb5736ea31cd77f594cfa58e15bb2fd58108922b0711ae903fd4",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "9410a11d0cdbc56c4f578c18ab4e37877475920c686b2614e4c29cb4733a59da"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "808b4acda4b9fbfaccab130a2f4cf764aa90d33d59fc211857ff752897754619",
+        "shard_count": 46,
+        "shard_index": 22
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 71342,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "cb2eb0d07eb998dd0913576e3b9f31873276a2bc75e91c0246e58fb7e5fefea2",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "c1fd8ad5954cadd9bff0545416ac58f5ac2d66f8d05ea9f60f7231898f33ad46"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "97ba997cdfdec0bfde3baf06272586923ef6e424788d95d1f68464befbb6a9d4",
+        "shard_count": 46,
+        "shard_index": 23
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 58529,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              5,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "1593997f038a4aa45a237f1a5999cc6f8cdf37edf8783eb953daf285a1c3cc1b",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "81d062b90d649a50e6b96705baa80bd23b5db9012bd6b0ae99dc1a5ddbf3b8c1"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "ad304f42dd4b4eb83fd28c68a68b6ff209868cf0f3473848a3e64d7433994ef1",
+        "shard_count": 46,
+        "shard_index": 24
+      },
+      "solver": {
+        "max_nodes": 1000000,
+        "nodes": 108537,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "16dd62a4935bd20709c99024a3e40d32a6bfe84b00ba47990a795dfb624be0de",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "851099b683f2a45873f185c0833fce56dadf31eb4767c46308e21444ca06869f"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "aeabe6797bfe5b8d65814547987a61936e8e4d36b55949afe57a33143e0bdf32",
+        "shard_count": 46,
+        "shard_index": 25
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 36067,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "7eabd28903f30caf60e16ae9da711c8d8f844916ad1983a5b9b33db0ccaa53c0",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "3b4960634fc724624394d84fb5a1377419488d1aa2565e36fb6adf190857c02f"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "67e6769985b1fab97a94872b473e085ad699655f2acad0d86d2db5a74de489e6",
+        "shard_count": 46,
+        "shard_index": 26
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 93043,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "692181de86a7d609e7c18b3fdcd2c4010206cf4be2631bef6ff2d8871a481c8d",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "3d7e450edc10a3d4aea7629dd72a4ae5afb9f070e921f2ef143a306bc50fd161"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "d8d90048f12a30d6e97afc7a12d0efabf4842a9a7c1da1fc63a3b05af82b6a61",
+        "shard_count": 46,
+        "shard_index": 27
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 52753,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "276996c13f00863a21aea83743a5871ef06b005e20ed655f4fa824d77ecf4e75",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "2c099f86f206e1c0199d04bd208f1085d2b0d176148edc07affcca6c491a7cd8"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "789916ab78f60cf41fa42d86f5da4265f7802f583302ba9fc4ebc815412fa381",
+        "shard_count": 46,
+        "shard_index": 28
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 800,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "98c0412b5c9b29cd2637ac6ba6eeec999454560dbc222eca13736dc747ea7d83",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "f6650b60f02fde8c0e1bb18565ae2531552a86f39814adca4102816a516fdd29"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "924a1e26cde77d3fcd5539f1f9c40ea7bca8f3cdc85dc2360c2d3b7fc560b64d",
+        "shard_count": 46,
+        "shard_index": 29
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 90984,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "5bb5cda048bfe35360ffe09f50e460cf52a50c5bc003e7498a6f77680d111a9a",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "4a6dcd1d6ff636064beead4a6422aec4e24789c2e99523d3287c64597f366988"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "02533e49b72dcfd02758c0c4c42b4b27b28b144b7b4106154e7de174078b02e9",
+        "shard_count": 46,
+        "shard_index": 30
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 7457,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "62b5082c647f20a9ed211b1741f1be5f646c4e5bbdfc119554968aade7318f4d",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "c82acac3974f94d58287c841e01dd32277a807aa3b7bdff628953b9a18ceb83f"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "7bb6b849fa028c604e571f975d127620c9d8bb9da6b12bbcc758d3afce9c770c",
+        "shard_count": 46,
+        "shard_index": 31
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 60090,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "347789d758633a58618639c63594c2af1fe75599d59aa89e3ea1edffd7a82ccb",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "1bfe07f12582331a0fa032248b318b45b0199c14570f3d0df68a91e46737a00d"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "a2c38c7c6b7357c7dfc177bd2d7d55534db49f7145de8efe66343529760664b7",
+        "shard_count": 46,
+        "shard_index": 32
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 3823,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "79e5280320e26b9ba7a81e876651bd29d35ef2fe06674edba08d0e1bfff95b0c",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "c1773081ea6abdc38b1fbada5e2c7aef2384f8e7c8aaf728b1429bebca0b7513"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "720ad1511c9ce69079f8418d33be9b150c77427c067515da781d7aabc3789e45",
+        "shard_count": 46,
+        "shard_index": 33
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 441,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "485dd9e9ad90c46ed7e58e0f9821e134b4d91b42dd3027ee43edcb44e2f6c674",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "3e158b4bc1aa06bddccf313cf95d48d5393aa7cc6819ff7505182b84a88c3092"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "6742b19b6164e84a0d64d74c4cad326fcb80f5fc40dc9f7d542cef31c6e6786c",
+        "shard_count": 46,
+        "shard_index": 34
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 33769,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "1a6f692753966957a48dc37038662f11a16d5629e8ab9dcb60496acb7552a324",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "cdd8de769df99aca9620334c0257a46d66b00e298956a267b42d1dcd3768e524"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "fafc0154359ccab49fa8e355f72887fdf9f532adddf7459e412ffcc9863dd4e3",
+        "shard_count": 46,
+        "shard_index": 35
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 11720,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              5,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              7,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "5d8a6ba4293b734ec72a7d86d75b2d9ebde56d018ae72cf684932f49e2377de6",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "34173e37683c7b4669fec5120c59b773f318e32ef073a4fef47c9b3a93d7e3e4"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "6854931c6e16a929188a5eb4497351253642bf6ef88510fc92c5fd05e5ad40e1",
+        "shard_count": 46,
+        "shard_index": 36
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 8915,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              5,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "0a1feaf96a5a69675454b4a50e74b95a0df147f7d400370b323ec517dd2afc7f",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "979c1b3fe1c60b6cd1cfbff54ff17251c8ffdb1d43ba449fc4409780f17bb8f4"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "b78ef7c20e42b1edc8bf209feb91f7275722c31186fcdcbf6dc1e1486de58b72",
+        "shard_count": 46,
+        "shard_index": 37
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 24576,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "5a476ba65ce0b72e3f32245f095d9af30c4632b52a4e23e001f8b83f4c559448",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "e4556f8e5af0271bdd29ea46e4ba6cfb1e604079df498a57e8cd7ca7c139cba9"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "c3bc3bdb1e5e368c04b1ca80fd1dc595ebba88f5be7bd4cec831e1402012b2de",
+        "shard_count": 46,
+        "shard_index": 38
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 4075,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "3b2ccb73b762a5322c45faae070f99a876acb4277482b06360d74876d4a5d2a1",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "35293f0ede293cf8ce83bfa0d76ab963d89e8b912208782a049f0a9bb9b1db89"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "2e7c005f1489a9274f56ab19c5cae9dc82f29ec605d1c4b9f9a01a10169713c0",
+        "shard_count": 46,
+        "shard_index": 39
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 33075,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "6202410777dfe2a4c098ca58aa36cc2e27a9957ace5a01e09bae31e3150eb4ae",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "54d35487f6a4066dc741357f935bfcfd2a6e2cab65d8664e53955481f48b6d34"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "4ef3d66f9cdd91ec63c22456efb3e9b6b93a047f92ce0a5e58444589222289ce",
+        "shard_count": 46,
+        "shard_index": 40
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 6943,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              5,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              6,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "8f9573e65ad7c0b3174fe49e05fec0d9122ff573de7236bd317ef2e05e88dc18",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "631a4ea13cfeaa2863983a3293c44229cd90c270a0f749613ace6eb0c98191d3"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "6f6f5d0851f20ccd17488233194b9cfa27c2824e8eb39e7ed7135ad0df17a432",
+        "shard_count": 46,
+        "shard_index": 41
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 664,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              7
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "7ce35840e2fbaf8ad0129a7de250c041110cfddc668bf6554517196031f625ab",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "fa2319a24b2dc3724339d5e740160df4968ee42ca066bd1cc2d1d952e6c2bf24"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "689127280bf96f02f61a3fcf36af59eb2933376042bff1a3caa40d10181e9dd5",
+        "shard_count": 46,
+        "shard_index": 42
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 10454,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "79def9b1f8570ce29c3b9ebe756872e71171a98ba99ba7f0d45e03a9541dbf9d",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "9059380f572e3ff1e0d4d6480127cde02e27123b72da52c04de28b69f7f1f1d1"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "46a14bc476e08d8a11ff958db0aa64073fa7d2da7211bf686ca0a006b0d9e8e3",
+        "shard_count": 46,
+        "shard_index": 43
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 504,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "48d90bb3bac8c5b83299140e76d2de6496fa3a1cb9c5333c9842b71f678dfbe7",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "fda93d89fe6bae365e341b61666da6828dc5646b2c14c4cad33aa6e944e405de"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "05647006feef846cb450fa4d377dd1323c1c3b650b1a79c6ac8568572d358c56",
+        "shard_count": 46,
+        "shard_index": 44
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 10716,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "424d0757f2df426f60d98949201695a7569b6ef9c1afa63b450999701ddf5005",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "7157f6d4a343df2071192515455608ae3bdf1c08dc4a16e9ca5797b58cd10cb1"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 20,
+        "selected_domain_sha256": "92e74e55578b018e24801fbd21722d6a4a1fe63b9e8fe091ba389c3811af2dca",
+        "shard_count": 46,
+        "shard_index": 45
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 11097,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "a99338cc15ad44ec95b9b7f4d9597aa10129a2ce564fcabfd6570091430678c0",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "103a66522b55b4e9699fa82746266128f23ae28cc00f055e234a79ba72098f4d"
+      }
+    }
+  ],
+  "formalized_core_prefix_rejections_in_rerun_slices": {
+    "equality-convex-eight-point-five-row-circle-intersection-order": 2513,
+    "equality-convex-eight-point-five-row-circle-intersection-order-reverse": 66,
+    "equality-convex-five-point": 5310,
+    "equality-convex-five-point-reverse": 3531,
+    "equality-convex-rhombus-equilateral": 115,
+    "equality-duplicate-center": 27501,
+    "equality-eight-point-five-circle-collision": 126,
+    "equality-equilateral-bisector-collision": 707,
+    "equality-exact-off-circle": 28333,
+    "equality-perpendicular-bisector-convex": 4692,
+    "equality-seven-point-five-circle-collision": 36,
+    "equality-seven-point-six-circle-collision-b": 3,
+    "equality-seven-point-twin-four-circle-collision": 3,
+    "equality-six-point-circle-chain-collision": 289,
+    "equality-six-point-five-circle-collision-a": 16,
+    "equality-six-point-five-circle-collision-b": 29,
+    "equality-six-point-five-circle-collision-c": 81,
+    "equality-three-triad-collision": 314
+  },
+  "partition": {
+    "original_choice_count": 940,
+    "original_domain_sha256": "ddf7ac41e39f15e11eef615792727517f480bce9a1fbaad62317d00541d0ea86",
+    "partition_verified": true,
+    "row": "supplied:q",
+    "shard_count": 46
+  },
+  "profile": [
+    5,
+    5,
+    5
+  ],
+  "refresh": {
+    "rerun_shard_count": 1,
+    "rerun_shard_indices": [
+      24
+    ],
+    "reused_shard_count": 45,
+    "reused_shard_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45
+    ],
+    "stale_detection_counts": {
+      "indeterminate-retry": 1
+    }
+  },
+  "schema": "p97-atail-formalized-core-shards-incremental-refresh-v1",
+  "scope": {
+    "card_11_included": false,
+    "formalized_metric_core_prefix_pruning": true,
+    "monotone_clean_survivor_reuse": true,
+    "placements_per_profile": 1,
+    "producer_proved": false,
+    "target_faithful": false
+  },
+  "solver": {
+    "error_count": 0,
+    "max_nodes_per_rerun_shard": 1000000,
+    "node_count_mixes_reused_and_rerun_slices": true,
+    "rerun_total_nodes": 108537,
+    "status_counts": {
+      "SAT": 46
+    },
+    "stored_total_nodes": 1100714,
+    "workers": 1
+  },
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_five_row_circle_intersection_46_checkpoint.json",
+  "source_checkpoint_schema": "p97-atail-formalized-core-shards-incremental-refresh-v1",
+  "source_checkpoint_sha256": "ff270dfbe29a8aee40aca871c7d46071abd610cac8243d3821db156f724b2824"
+}

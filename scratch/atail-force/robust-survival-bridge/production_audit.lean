@@ -1,0 +1,15 @@
+import Erdos9796Proof.P97.ATail.CriticalPairFrontier
+
+/-! # Production audit for the promoted robust-survival normal forms -/
+
+open scoped EuclideanGeometry
+
+#check Problem97.ATailCriticalPairFrontier.cumulative_deletion_blocked_at_source_blocker
+#check Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support
+#check Problem97.ATailCriticalPairFrontier.SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+#check Problem97.ATailCriticalPairFrontier.cross_survival_unique_radius_and_exact_support
+
+#print axioms Problem97.ATailCriticalPairFrontier.cumulative_deletion_blocked_at_source_blocker
+#print axioms Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support
+#print axioms Problem97.ATailCriticalPairFrontier.SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+#print axioms Problem97.ATailCriticalPairFrontier.cross_survival_unique_radius_and_exact_support

@@ -1,0 +1,60 @@
+{
+  "active_points": [
+    0,
+    1,
+    4,
+    7,
+    8,
+    9,
+    10
+  ],
+  "equality_count": 11,
+  "monomial_order": "ds",
+  "normalization_anchors": [
+    0,
+    1
+  ],
+  "polynomials_sha256": "cffd7121f93e380b540e7ec32fbc689f3df6eb2e1892ea9032d6d8a3d88aa26e",
+  "relabeling": {
+    "0": 0,
+    "1": 1,
+    "10": 6,
+    "4": 2,
+    "7": 3,
+    "8": 4,
+    "9": 5
+  },
+  "schema": "p97-atail-shard-equality-certificate-profile-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "shard_index": 15,
+  "singular": {
+    "basis": "1",
+    "basis_is_unit": true,
+    "elapsed_seconds": 0.04539212500094436,
+    "lift_max_coefficient_char_count": 9,
+    "lift_nonzero_coefficient_count": 1,
+    "lift_total_char_count": 101,
+    "returncode": 0,
+    "status": "COMPLETED",
+    "stderr": "",
+    "stdout_sha256": "15bdaf01b016634b579f62ba3427ee4ce844d9bcbe9aaebec0233f8bcd6bb173"
+  },
+  "variables": [
+    "x2x",
+    "x2y",
+    "x3x",
+    "x3y",
+    "x4x",
+    "x4y",
+    "x5x",
+    "x5y",
+    "x6x",
+    "x6y"
+  ]
+}

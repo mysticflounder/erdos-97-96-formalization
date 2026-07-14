@@ -1,0 +1,11 @@
+import Erdos9796Proof.P97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge
+
+/-!
+# Production axiom audit for the six-point arc-overtake family
+-/
+
+#print axioms Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.metric_orientation_incompatibility
+#print axioms Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core
+#print axioms Problem97.Census554.SixPointTwoCircleArcOvertakeOrderCore.false_of_core_of_neg
+#print axioms Problem97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge.ThreeRowSupportData.toCore
+#print axioms Problem97.Census554.SixPointTwoCircleArcOvertakeCarrierBridge.false_of_three_rows_and_cyclic_subsequence

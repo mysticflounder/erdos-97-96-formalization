@@ -1,0 +1,39 @@
+{
+  "certificate_file_sha256": "8433b3a6b0a1cbd0c5c2b9087f4a4ca55408c3fce0f251155cd327f704cbff74",
+  "generator_sha256": "cfa015ef232fb3306cded3edcb734a7435416cc214c80248b02de48e7e3956fa",
+  "independently_reconstructed_generators": true,
+  "lean_translation": {
+    "lean_nlinarith_translation": "NOT_DIRECT: the certificate uses nonconstant polynomial multipliers; nlinarith does not synthesize this ideal-membership identity",
+    "lean_ring_translation": "UNREALISTIC_VERBATIM"
+  },
+  "row_set_sha256": "583594c8e55bdf7d3e91734e9c3aa61451131664abea1540c78c660a599e6a63",
+  "schema": "p97-atail-nullstellensatz-verification-v1",
+  "smoke_gates": {
+    "known_nonunit_false_identity_rejected": true,
+    "known_unit_identity_accepted": true,
+    "mutated_unit_identity_rejected": true
+  },
+  "source_hashes": {
+    "metric_cegar_checkpoint_sha256": "087a5a751a0f23454825f84556e5c774cf4c081ef3a3b34224a2230a0b27c179",
+    "metric_cegar_manifest_sha256": "fcc4d3fdb307ff724cea705caa3e32be7e6384990df5910b277b7e48d91b20c4",
+    "metric_oracle_checkpoint_sha256": "5791754f879aa25eb3de7b7d751d88f4bf24a05bc0a52cebf6d3857c60d9e5af",
+    "metric_oracle_manifest_sha256": "84c19c092e657d09e14b666ed43ae90646d6edee14330a769508d5499d948381"
+  },
+  "statistics": {
+    "certificate_file_bytes": 117107,
+    "expanded_identity_term_count": 1,
+    "generator_count": 15,
+    "max_abs_numerator": 38248429,
+    "max_denominator": 12,
+    "max_denominator_bits": 4,
+    "max_multiplier_degree": 8,
+    "max_multiplier_terms": 1396,
+    "max_numerator_bits": 26,
+    "max_product_degree": 9,
+    "nonzero_multiplier_count": 11,
+    "total_generator_terms": 67,
+    "total_multiplier_terms": 4302
+  },
+  "target": "normalized_cegar_456_5row",
+  "verified_exact_identity": true
+}

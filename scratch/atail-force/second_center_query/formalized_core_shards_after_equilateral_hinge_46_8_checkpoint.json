@@ -1,0 +1,156 @@
+{
+  "schema": "p97-atail-pair-second-center-all-eight-production-sinks-rerun-v1",
+  "source_schema": "p97-atail-pair-second-center-formalized-core-shards-v1",
+  "epistemic_status": "FINITE_SHADOW_BOUNDED_RUN_ONE_SAT_SEVEN_NODE_CAPPED_NOT_LIVE_CLOSURE",
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "scratch/atail-force/second_center_query/run_formalized_core_shards.py",
+    "--profile-index",
+    "0",
+    "--shards",
+    "8",
+    "--workers",
+    "8",
+    "--max-nodes",
+    "100000",
+    "--extended-production-cores"
+  ],
+  "source_sha256": {
+    "census/global_confinement/shadow.py": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62",
+    "scratch/atail-force/common_system_metric_probe.py": "18b1a91a3326b975c8baa16f82e7c692fafd5b979450bb305d4c31895cde1334",
+    "scratch/atail-force/second_center_query/formalized_core_shard.py": "d8d4846d4e6009de6b7bd2b691e204a1c5c8f43660644de2568e452aa6d98511",
+    "scratch/atail-force/second_center_query/query.py": "bcf3368bd1c733100d04ebc1118f344396f6c7ab6a85ac497a8164d778dc2b5d",
+    "scratch/atail-force/second_center_query/run_formalized_core_shards.py": "e93815f54f76fa25b6d40dc6b3a0502eeb9c91c574799f66bac21765f8ba9a7a"
+  },
+  "scope": {
+    "profile": [4, 5, 6],
+    "placements_per_profile": 1,
+    "card_11_included": false,
+    "formalized_metric_core_prefix_pruning": true,
+    "extended_production_core_prefix_pruning": false,
+    "extended_production_core_complete_leaf_pruning": true,
+    "complete_leaf_sink_count": 8,
+    "target_faithful": false,
+    "producer_proved": false
+  },
+  "partition": {
+    "row": "supplied:q",
+    "shard_count": 8,
+    "partition_verified": true,
+    "original_choice_count": 933,
+    "original_domain_sha256": "f631b80547a139d7ba60a68c1294ffb2298b4b4396545a32dd6a9ffac11d23a3"
+  },
+  "solver": {
+    "workers": 8,
+    "max_nodes_per_shard": 100000,
+    "total_nodes": 760861,
+    "status_counts": {
+      "SAT": 1,
+      "INDETERMINATE": 7,
+      "UNSAT": 0
+    },
+    "exhausted_shard_count": 0,
+    "error_count": 0,
+    "aggregate_status": "SAT_FINITE_SHADOW_ONLY"
+  },
+  "all_current_sink_rejections": {
+    "equality-convex-four-point-two-circle-bisector-order": 4925,
+    "equality-convex-four-point-two-circle-bisector-order-reverse": 0,
+    "equality-convex-six-point-two-circle-arc-overtake-order": 0,
+    "equality-convex-six-point-two-circle-arc-overtake-order-reverse": 0,
+    "equality-convex-six-point-two-circle-order": 140,
+    "equality-convex-six-point-two-circle-order-reverse": 0,
+    "equality-convex-nested-equal-chords": 378,
+    "equality-five-point-hinge-cycle": 864,
+    "equality-six-point-hinge-tail": 616,
+    "equality-six-point-hinge-double-spoke": 80,
+    "equality-seven-point-hinge-closed-tail": 112
+  },
+  "cases": [
+    {
+      "shard_index": 0,
+      "selected_choice_count": 117,
+      "selected_domain_sha256": "3ee1a35e76b60fc79633501b690006e24b02dfbbad8761f360e2b4c6914326be",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 1,
+      "selected_choice_count": 117,
+      "selected_domain_sha256": "7453ebe0206a4a7aefdf8016b5f031630385431197791b5e309ee91f06f29b7a",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 2,
+      "selected_choice_count": 117,
+      "selected_domain_sha256": "863fdc5c769230f40aee50546cddee0625f04960eabf75cb38829250eb9031ca",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 3,
+      "selected_choice_count": 117,
+      "selected_domain_sha256": "21844222f00d3467a90d39184436f12650f09391f7485f9b2db5f153786bdbb2",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 4,
+      "selected_choice_count": 117,
+      "selected_domain_sha256": "9bf4002240a1e7cb10104360b55e438f2263461d6c08c970ba25366c41b9e19f",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 5,
+      "selected_choice_count": 116,
+      "selected_domain_sha256": "6f18dfbd34f9eec8a6d2c1c71d61e6f521fc100bd97e4cc9d854827412e890f8",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    },
+    {
+      "shard_index": 6,
+      "selected_choice_count": 116,
+      "selected_domain_sha256": "97e8deb90603ea574972836d26d0c1bca9e227ac24dc3f660edecc750c012a74",
+      "raw_status": "SAT",
+      "reported_status": "SAT_FINITE_SHADOW_ONLY",
+      "nodes": 60854,
+      "survivor": {
+        "witness_sha256": "dcda24a075e248ce975475f75b8d8b26a9eae44bf37a70380cf56997422cd396",
+        "distinct_metric_rows_sha256": "21f781cba97ac95e2203abcd79a06660f1f0be3367b69940740f91878d0dfc94",
+        "cyclic_order": [0, 8, 9, 10, 11, 1, 3, 4, 2, 5, 6, 7],
+        "distinct_metric_rows": [
+          {"center": 0, "support": [1, 3, 4, 5], "exact": true},
+          {"center": 1, "support": [0, 2, 5, 6], "exact": true},
+          {"center": 2, "support": [0, 3, 8, 9], "exact": true},
+          {"center": 3, "support": [1, 5, 7, 11], "exact": true},
+          {"center": 4, "support": [1, 2, 9, 10], "exact": true},
+          {"center": 5, "support": [2, 6, 7, 9], "exact": true},
+          {"center": 6, "support": [2, 4, 8, 11], "exact": true},
+          {"center": 7, "support": [0, 4, 6, 10], "exact": true},
+          {"center": 8, "support": [0, 4, 7, 9], "exact": true},
+          {"center": 9, "support": [5, 8, 10, 11], "exact": true},
+          {"center": 10, "support": [2, 3, 7, 8], "exact": true},
+          {"center": 11, "support": [1, 6, 8, 10], "exact": true}
+        ]
+      }
+    },
+    {
+      "shard_index": 7,
+      "selected_choice_count": 116,
+      "selected_domain_sha256": "e6f5952a32decb4a85e9a68095b90e3ac906f39980bb7321a6e588ef717d41fc",
+      "raw_status": "INDETERMINATE",
+      "reported_status": "INDETERMINATE_NODE_CAP",
+      "nodes": 100001
+    }
+  ]
+}

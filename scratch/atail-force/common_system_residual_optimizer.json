@@ -1,0 +1,432 @@
+{
+  "cases": [
+    {
+      "attempt_summaries": [
+        {
+          "accepted": false,
+          "iterations": 43,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 0
+        },
+        {
+          "accepted": false,
+          "iterations": 321,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 1
+        },
+        {
+          "accepted": false,
+          "iterations": 29,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 2
+        },
+        {
+          "accepted": false,
+          "iterations": 86,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 3
+        },
+        {
+          "accepted": false,
+          "iterations": 20,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 4
+        },
+        {
+          "accepted": false,
+          "iterations": 91,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 5
+        },
+        {
+          "accepted": false,
+          "iterations": 48,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 6
+        },
+        {
+          "accepted": false,
+          "iterations": 65,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 7
+        },
+        {
+          "accepted": false,
+          "iterations": 61,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 8
+        },
+        {
+          "accepted": false,
+          "iterations": 52,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 9
+        },
+        {
+          "accepted": false,
+          "iterations": 63,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 10
+        },
+        {
+          "accepted": false,
+          "iterations": 54,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 11
+        },
+        {
+          "accepted": false,
+          "iterations": 87,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 12
+        },
+        {
+          "accepted": false,
+          "iterations": 92,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 13
+        },
+        {
+          "accepted": false,
+          "iterations": 74,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 14
+        },
+        {
+          "accepted": false,
+          "iterations": 68,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 15
+        }
+      ],
+      "attempts_run": 16,
+      "best_attempt": {
+        "accepted": false,
+        "diagnostics": {
+          "coordinates": {
+            "0": [
+              0.0,
+              0.0
+            ],
+            "1": [
+              1.0,
+              0.0
+            ],
+            "10": [
+              0.8031479642399466,
+              -0.2147886870634618
+            ],
+            "11": [
+              0.9093544044320162,
+              -0.18794123170408014
+            ],
+            "2": [
+              0.5215312710221213,
+              0.8631780298273675
+            ],
+            "3": [
+              0.6592922983185872,
+              0.7769637237647596
+            ],
+            "4": [
+              0.5680260035868996,
+              0.8413394070843287
+            ],
+            "5": [
+              0.4906894713967397,
+              0.8561935187344142
+            ],
+            "6": [
+              0.1364629171008883,
+              0.5054440332301688
+            ],
+            "7": [
+              -0.07611671693016955,
+              0.05740115971369098
+            ],
+            "8": [
+              0.03033617186141899,
+              -0.008928419583528462
+            ],
+            "9": [
+              0.5264905382789016,
+              -0.1448453435772683
+            ]
+          },
+          "max_abs_row_equality_residual": 0.04476633266639907,
+          "min_convex_margin": 0.00030667519642549323,
+          "min_exact_squared_distance_gap": 0.017071177830604967,
+          "min_pairwise_squared_distance": 0.000999999999339775
+        },
+        "iterations": 43,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 0
+      },
+      "metric_rows": [
+        "0:1,3,4,5",
+        "1:0,2,5,6",
+        "2:1,7,8,9",
+        "3:0,8,10,11"
+      ],
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "residual_round": 6,
+      "status": "NO_NUMERICAL_WITNESS_WITHIN_MULTISTART_BUDGET"
+    },
+    {
+      "attempt_summaries": [
+        {
+          "accepted": false,
+          "iterations": 39,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 0
+        },
+        {
+          "accepted": false,
+          "iterations": 54,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 1
+        },
+        {
+          "accepted": false,
+          "iterations": 22,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 2
+        },
+        {
+          "accepted": false,
+          "iterations": 37,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 3
+        },
+        {
+          "accepted": false,
+          "iterations": 82,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 4
+        },
+        {
+          "accepted": false,
+          "iterations": 34,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 5
+        },
+        {
+          "accepted": false,
+          "iterations": 130,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 6
+        },
+        {
+          "accepted": false,
+          "iterations": 46,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 7
+        },
+        {
+          "accepted": false,
+          "iterations": 5,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 8
+        },
+        {
+          "accepted": false,
+          "iterations": 10,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 9
+        },
+        {
+          "accepted": false,
+          "iterations": 16,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 10
+        },
+        {
+          "accepted": false,
+          "iterations": 60,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 11
+        },
+        {
+          "accepted": false,
+          "iterations": 22,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 12
+        },
+        {
+          "accepted": false,
+          "iterations": 36,
+          "optimizer_message": "Positive directional derivative for linesearch",
+          "optimizer_status": 8,
+          "optimizer_success": false,
+          "start": 13
+        },
+        {
+          "accepted": false,
+          "iterations": 25,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 14
+        },
+        {
+          "accepted": false,
+          "iterations": 22,
+          "optimizer_message": "Inequality constraints incompatible",
+          "optimizer_status": 4,
+          "optimizer_success": false,
+          "start": 15
+        }
+      ],
+      "attempts_run": 16,
+      "best_attempt": {
+        "accepted": false,
+        "diagnostics": {
+          "coordinates": {
+            "0": [
+              0.0,
+              0.0
+            ],
+            "1": [
+              1.0,
+              0.0
+            ],
+            "10": [
+              0.5423113329096245,
+              -0.1714622297422677
+            ],
+            "11": [
+              0.9707176045504631,
+              -0.25310649285593956
+            ],
+            "2": [
+              0.6215395223951091,
+              0.9157901037833025
+            ],
+            "3": [
+              1.0353162863918877,
+              0.33941106612334143
+            ],
+            "4": [
+              0.9649364166099058,
+              0.6701290321079001
+            ],
+            "5": [
+              0.8502014424289915,
+              0.7551208098131206
+            ],
+            "6": [
+              0.4675995696211446,
+              0.9500416466740372
+            ],
+            "7": [
+              0.023079367291604994,
+              0.5651552087386851
+            ],
+            "8": [
+              -0.20000908515872953,
+              0.1755013418922951
+            ],
+            "9": [
+              0.310332456649365,
+              -0.07928417916167661
+            ]
+          },
+          "max_abs_row_equality_residual": 0.7195455600783033,
+          "min_convex_margin": -0.010213586098681435,
+          "min_exact_squared_distance_gap": 0.0063555645100230596,
+          "min_pairwise_squared_distance": 0.020387716577788678
+        },
+        "iterations": 130,
+        "optimizer_message": "Positive directional derivative for linesearch",
+        "optimizer_status": 8,
+        "optimizer_success": false,
+        "start": 6
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,8,9,10",
+        "3:1,4,5,6",
+        "4:1,2,9,11"
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "residual_round": 18,
+      "status": "NO_NUMERICAL_WITNESS_WITHIN_MULTISTART_BUDGET"
+    }
+  ],
+  "epistemic_status": "NUMERICAL_DISCOVERY_ONLY_NOT_A_PROOF",
+  "input": "scratch/atail-force/common_system_metric_probe.json",
+  "input_sha256": "5cdb8883bf02ccde64b6b9ba0bfe34786f2a7158efb29ba0d4e045767bdf1940",
+  "multistart_budget_per_case": 16,
+  "required_convex_margin": 0.001,
+  "required_pairwise_squared_distance": 0.001,
+  "schema": "p97-atail-common-system-residual-numerical-probe-v1"
+}

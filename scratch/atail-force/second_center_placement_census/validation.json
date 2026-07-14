@@ -1,0 +1,32 @@
+{
+  "reports": [
+    {
+      "automorphism_count": 1,
+      "orbit_count": 253302,
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "raw_placement_count": 253302,
+      "saved_seed_orbit_representative": 15038978,
+      "status": "INDEPENDENTLY_REENUMERATED"
+    },
+    {
+      "automorphism_count": 6,
+      "orbit_count": 113904,
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "raw_placement_count": 683424,
+      "saved_seed_orbit_representative": 3051845,
+      "status": "INDEPENDENTLY_REENUMERATED"
+    }
+  ],
+  "row_system_existence_checked": false,
+  "schema": "p97-atail-second-center-placement-census-validation-v1",
+  "status": "INDEPENDENT_EXACT_REENUMERATION_PASSED",
+  "target_faithful": false
+}

@@ -8,6 +8,7 @@ import Erdos9796Proof.P97.U2SameDistanceArcContainment
 import Erdos9796Proof.P97.N9Endpoint.N4a
 import Erdos9796Proof.P97.CircumscribedMECPacket
 import Erdos9796Proof.P97.SurplusM44Packet
+import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 
 /-!
 # U2 non-surplus one-hit inputs
@@ -246,6 +247,65 @@ theorem oppApex1_surplusCap_one_hit (D : CounterexampleData) (r : ℝ) :
       P312 P312.inner_at_v1 r
     simpa [CP, P312, SurplusCapPacket.oppApex1, SurplusCapPacket.surplusCap,
       triangle312, hi] using hle
+
+/-- Membership in a surplus cap is exactly the corresponding oriented-arc
+condition, in a form parameterized by an arbitrary packet over the carrier. -/
+theorem mem_surplusCap_iff_onArc (D : CounterexampleData)
+    (S : SurplusCapPacket D.A) {x : ℝ²} (hxA : x ∈ D.A) :
+    x ∈ S.surplusCap ↔
+      OnArcOpposite S.surplusApex S.oppApex1 S.oppApex2 x := by
+  set CP := S.partition with hCP
+  rcases hi : S.surplusIdx with ⟨i, hilt⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
+      SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
+      using (CP.arc_membership x hxA).1
+  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
+      SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
+      using (CP.arc_membership x hxA).2.1
+  · simpa [SurplusCapPacket.surplusCap, SurplusCapPacket.surplusApex,
+      SurplusCapPacket.oppApex1, SurplusCapPacket.oppApex2, CP, hi]
+      using (CP.arc_membership x hxA).2.2
+
+/-- Two distinct carrier points outside the surplus cap cannot share both
+opposite-apex radii.  This predecessor-level form is independent of the U1
+large-cap tail and is the acyclic escape kernel used by ATAIL extraction. -/
+theorem oppCap2_escape_gen (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    {r ρ : ℝ} {x w' : ℝ²}
+    (hxA : x ∈ D.A) (hw'A : w' ∈ D.A)
+    (hx_notsurp : x ∉ S.surplusCap)
+    (hw'_notsurp : w' ∉ S.surplusCap)
+    (hne : x ≠ w')
+    (hxv : dist x S.oppApex1 = r) (hw'v : dist w' S.oppApex1 = r)
+    (hxw : dist x S.oppApex2 = ρ) (hw'w : dist w' S.oppApex2 = ρ) :
+    False := by
+  have hmid :
+      signedArea2 (midpoint ℝ w' x) S.oppApex1 S.oppApex2 = 0 :=
+    twoCircle_midpoint_collinear hxv hw'v hxw hw'w hne
+  have hflip :
+      signedArea2 x S.oppApex1 S.oppApex2 =
+        - signedArea2 w' S.oppApex1 S.oppApex2 :=
+    signedArea2_reflection_neg hmid
+  have hxpos :
+      0 < signedArea2 x S.oppApex1 S.oppApex2 *
+        signedArea2 S.surplusApex S.oppApex1 S.oppApex2 := by
+    rw [mem_surplusCap_iff_onArc D S hxA] at hx_notsurp
+    unfold OnArcOpposite at hx_notsurp
+    exact not_le.mp hx_notsurp
+  have hw'pos :
+      0 < signedArea2 w' S.oppApex1 S.oppApex2 *
+        signedArea2 S.surplusApex S.oppApex1 S.oppApex2 := by
+    rw [mem_surplusCap_iff_onArc D S hw'A] at hw'_notsurp
+    unfold OnArcOpposite at hw'_notsurp
+    exact not_le.mp hw'_notsurp
+  have hkey :
+      signedArea2 x S.oppApex1 S.oppApex2 *
+          signedArea2 S.surplusApex S.oppApex1 S.oppApex2
+        = -(signedArea2 w' S.oppApex1 S.oppApex2 *
+          signedArea2 S.surplusApex S.oppApex1 S.oppApex2) := by
+    rw [hflip]
+    ring
+  linarith [hxpos, hw'pos, hkey]
 
 /-- Exact-radius classes at `oppApex1` meet the other non-surplus cap in at
 most one point. -/

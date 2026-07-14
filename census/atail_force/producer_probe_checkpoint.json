@@ -1,0 +1,540 @@
+{
+  "budgets": {
+    "automatic_retries": false,
+    "cvc5_timeout_seconds_per_case": 5.0,
+    "one_assignment_per_case": true,
+    "z3_timeout_ms_per_case": 5000
+  },
+  "cases": [
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "atom_count": 258,
+      "atom_family_counts": {
+        "cap-iff-sign": 33,
+        "distinctness": 55,
+        "exact-apex-filter": 24,
+        "gauge": 4,
+        "mec": 1,
+        "mec-boundary": 3,
+        "mec-disk": 11,
+        "mec-nonobtuse": 3,
+        "pinned-global-k4": 10,
+        "strict-convex-order": 99,
+        "target-negation": 15
+      },
+      "case": {
+        "cap_roles": {
+          "remaining": "O2",
+          "second_large": "O1",
+          "surplus": "S"
+        },
+        "cardinality": 11,
+        "case_id": "card11_profile_554",
+        "exact_class_sizes": {
+          "opp_apex1": [
+            5
+          ],
+          "opp_apex2": [
+            4
+          ]
+        },
+        "opposite_apices": {
+          "opp_apex1": 1,
+          "opp_apex2": 2
+        },
+        "profile": [
+          5,
+          5,
+          4
+        ]
+      },
+      "cvc5_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "returncode": 0,
+        "status": "UNSAT",
+        "stderr": "",
+        "stdout": "unsat\n(\nGAUGE_1_X\nGAUGE_1_Y\nGAUGE_2_X\nGAUGE_2_Y\nDISTINCT_0_2\nDISTINCT_1_6\nDISTINCT_2_3\nCONVEX_EDGE_1_3_2\nCONVEX_EDGE_2_6_1\nMEC_BOUNDARY_0\nMEC_BOUNDARY_1\nMEC_BOUNDARY_2\nMEC_DISK_3\nMEC_DISK_6\nEXACT_FILTER_opp_apex1_exact_0\nEXACT_FILTER_opp_apex1_exact_2\nEXACT_FILTER_opp_apex1_exact_3\nEXACT_FILTER_opp_apex2_exact_1\nEXACT_FILTER_opp_apex2_exact_6\nK4_ROW_opp_apex1_selected_four_0\nK4_ROW_opp_apex2_selected_four_1\n)\n",
+        "timeout_seconds": 5.0
+      },
+      "cvc5_named_core": [
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_6_1",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_6"
+      ],
+      "formalized_bank_matches": [],
+      "z3_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "canceled",
+        "status": "UNKNOWN",
+        "timeout_ms": 5000,
+        "unsat_core": []
+      },
+      "z3_on_cvc5_core": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "",
+        "status": "UNSAT",
+        "timeout_ms": 5000,
+        "unsat_core": [
+          "CONVEX_EDGE_1_3_2",
+          "CONVEX_EDGE_2_6_1",
+          "DISTINCT_1_6",
+          "DISTINCT_2_3",
+          "EXACT_FILTER_opp_apex1_exact_2",
+          "EXACT_FILTER_opp_apex1_exact_3",
+          "EXACT_FILTER_opp_apex2_exact_1",
+          "EXACT_FILTER_opp_apex2_exact_6",
+          "GAUGE_1_X",
+          "GAUGE_1_Y",
+          "GAUGE_2_X",
+          "GAUGE_2_Y",
+          "MEC_BOUNDARY_1",
+          "MEC_BOUNDARY_2",
+          "MEC_DISK_3",
+          "MEC_DISK_6"
+        ]
+      }
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "atom_count": 296,
+      "atom_family_counts": {
+        "cap-iff-sign": 36,
+        "distinctness": 66,
+        "exact-apex-filter": 26,
+        "gauge": 4,
+        "mec": 1,
+        "mec-boundary": 3,
+        "mec-disk": 12,
+        "mec-nonobtuse": 3,
+        "pinned-global-k4": 10,
+        "strict-convex-order": 120,
+        "target-negation": 15
+      },
+      "case": {
+        "cap_roles": {
+          "remaining": "O2",
+          "second_large": "O1",
+          "surplus": "S"
+        },
+        "cardinality": 12,
+        "case_id": "card12_profile_654",
+        "exact_class_sizes": {
+          "opp_apex1": [
+            5
+          ],
+          "opp_apex2": [
+            4
+          ]
+        },
+        "opposite_apices": {
+          "opp_apex1": 1,
+          "opp_apex2": 2
+        },
+        "profile": [
+          6,
+          5,
+          4
+        ]
+      },
+      "cvc5_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "returncode": 0,
+        "status": "UNSAT",
+        "stderr": "",
+        "stdout": "unsat\n(\nGAUGE_1_X\nGAUGE_1_Y\nGAUGE_2_X\nGAUGE_2_Y\nDISTINCT_0_2\nDISTINCT_2_3\nCONVEX_EDGE_1_3_2\nMEC_BOUNDARY_0\nMEC_BOUNDARY_1\nMEC_BOUNDARY_2\nMEC_DISK_3\nNONOBT_0\nCAP_IFF_SURPLUS_0\nCAP_IFF_SURPLUS_3\nEXACT_FILTER_opp_apex1_exact_0\nEXACT_FILTER_opp_apex1_exact_2\nEXACT_FILTER_opp_apex1_exact_3\nEXACT_FILTER_opp_apex2_exact_1\nK4_ROW_opp_apex1_selected_four_0\nK4_ROW_opp_apex2_selected_four_1\n)\n",
+        "timeout_seconds": 5.0
+      },
+      "cvc5_named_core": [
+        "CAP_IFF_SURPLUS_0",
+        "CAP_IFF_SURPLUS_3",
+        "CONVEX_EDGE_1_3_2",
+        "DISTINCT_0_2",
+        "DISTINCT_2_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "NONOBT_0"
+      ],
+      "formalized_bank_matches": [],
+      "z3_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "canceled",
+        "status": "UNKNOWN",
+        "timeout_ms": 5000,
+        "unsat_core": []
+      },
+      "z3_on_cvc5_core": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "",
+        "status": "UNSAT",
+        "timeout_ms": 5000,
+        "unsat_core": [
+          "CAP_IFF_SURPLUS_0",
+          "CAP_IFF_SURPLUS_3",
+          "CONVEX_EDGE_1_3_2",
+          "DISTINCT_0_2",
+          "DISTINCT_2_3",
+          "EXACT_FILTER_opp_apex1_exact_0",
+          "EXACT_FILTER_opp_apex1_exact_2",
+          "EXACT_FILTER_opp_apex1_exact_3",
+          "GAUGE_1_X",
+          "GAUGE_1_Y",
+          "GAUGE_2_X",
+          "GAUGE_2_Y",
+          "MEC_BOUNDARY_0",
+          "MEC_BOUNDARY_1",
+          "MEC_BOUNDARY_2",
+          "MEC_DISK_3"
+        ]
+      }
+    },
+    {
+      "assignment": {
+        "exact_classes": {
+          "opp_apex1": {
+            "cardinality": 5,
+            "center": 1,
+            "full_exact_radius_class": true,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": true,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        },
+        "selected_four_witnesses": {
+          "opp_apex1": {
+            "cardinality": 4,
+            "center": 1,
+            "full_exact_radius_class": false,
+            "role": "opp_apex1",
+            "support": [
+              0,
+              2,
+              3,
+              4
+            ]
+          },
+          "opp_apex2": {
+            "cardinality": 4,
+            "center": 2,
+            "full_exact_radius_class": false,
+            "role": "opp_apex2",
+            "support": [
+              0,
+              1,
+              3,
+              6
+            ]
+          }
+        }
+      },
+      "atom_count": 302,
+      "atom_family_counts": {
+        "cap-iff-sign": 36,
+        "distinctness": 66,
+        "exact-apex-filter": 26,
+        "gauge": 4,
+        "mec": 1,
+        "mec-boundary": 3,
+        "mec-disk": 12,
+        "mec-nonobtuse": 3,
+        "pinned-global-k4": 10,
+        "strict-convex-order": 120,
+        "target-negation": 21
+      },
+      "case": {
+        "cap_roles": {
+          "remaining": "O2",
+          "second_large": "O1",
+          "surplus": "S"
+        },
+        "cardinality": 12,
+        "case_id": "card12_profile_555",
+        "exact_class_sizes": {
+          "opp_apex1": [
+            5
+          ],
+          "opp_apex2": [
+            4,
+            5
+          ]
+        },
+        "opposite_apices": {
+          "opp_apex1": 1,
+          "opp_apex2": 2
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ]
+      },
+      "cvc5_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "returncode": 0,
+        "status": "UNSAT",
+        "stderr": "",
+        "stdout": "unsat\n(\nGAUGE_1_X\nGAUGE_1_Y\nGAUGE_2_X\nGAUGE_2_Y\nDISTINCT_0_2\nDISTINCT_1_6\nDISTINCT_2_3\nCONVEX_EDGE_1_3_2\nCONVEX_EDGE_2_6_1\nMEC_BOUNDARY_0\nMEC_BOUNDARY_1\nMEC_BOUNDARY_2\nMEC_DISK_3\nMEC_DISK_6\nEXACT_FILTER_opp_apex1_exact_0\nEXACT_FILTER_opp_apex1_exact_2\nEXACT_FILTER_opp_apex1_exact_3\nEXACT_FILTER_opp_apex2_exact_1\nEXACT_FILTER_opp_apex2_exact_6\nK4_ROW_opp_apex1_selected_four_0\nK4_ROW_opp_apex2_selected_four_1\n)\n",
+        "timeout_seconds": 5.0
+      },
+      "cvc5_named_core": [
+        "CONVEX_EDGE_1_3_2",
+        "CONVEX_EDGE_2_6_1",
+        "DISTINCT_0_2",
+        "DISTINCT_1_6",
+        "DISTINCT_2_3",
+        "EXACT_FILTER_opp_apex1_exact_0",
+        "EXACT_FILTER_opp_apex1_exact_2",
+        "EXACT_FILTER_opp_apex1_exact_3",
+        "EXACT_FILTER_opp_apex2_exact_1",
+        "EXACT_FILTER_opp_apex2_exact_6",
+        "GAUGE_1_X",
+        "GAUGE_1_Y",
+        "GAUGE_2_X",
+        "GAUGE_2_Y",
+        "K4_ROW_opp_apex1_selected_four_0",
+        "K4_ROW_opp_apex2_selected_four_1",
+        "MEC_BOUNDARY_0",
+        "MEC_BOUNDARY_1",
+        "MEC_BOUNDARY_2",
+        "MEC_DISK_3",
+        "MEC_DISK_6"
+      ],
+      "formalized_bank_matches": [],
+      "z3_full_surface": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "canceled",
+        "status": "UNKNOWN",
+        "timeout_ms": 5000,
+        "unsat_core": []
+      },
+      "z3_on_cvc5_core": {
+        "evidence_scope": "trusted QF_NRA computation; not a Lean proof",
+        "reason_unknown": "",
+        "status": "UNSAT",
+        "timeout_ms": 5000,
+        "unsat_core": [
+          "CONVEX_EDGE_1_3_2",
+          "CONVEX_EDGE_2_6_1",
+          "DISTINCT_0_2",
+          "DISTINCT_1_6",
+          "DISTINCT_2_3",
+          "EXACT_FILTER_opp_apex1_exact_0",
+          "EXACT_FILTER_opp_apex1_exact_2",
+          "EXACT_FILTER_opp_apex1_exact_3",
+          "EXACT_FILTER_opp_apex2_exact_1",
+          "EXACT_FILTER_opp_apex2_exact_6",
+          "GAUGE_1_X",
+          "GAUGE_1_Y",
+          "GAUGE_2_X",
+          "GAUGE_2_Y",
+          "MEC_BOUNDARY_0",
+          "MEC_BOUNDARY_1",
+          "MEC_BOUNDARY_2",
+          "MEC_DISK_3",
+          "MEC_DISK_6"
+        ]
+      }
+    }
+  ],
+  "inputs": {
+    "census/atail_force/producer_bank.py": "b6cf53f6950231e39d9f2fa8ea855587d17445b6630a7ed8d825b4caaf70f2a0",
+    "census/atail_force/producer_geometry.py": "82305c58c8d17a76f028cf1f3eb17e6dfab24ba2b615c30310b127989771d595",
+    "census/atail_force/producer_mus.py": "09be0aae7a34bf0b697180616637a3e043e374907872d8a2d9a5b62bde4fc710",
+    "census/atail_force/producer_probe.py": "00faa910b70b6bda13826ebcf7cb3807b4a5b45996cb1713a5711a3a75e81fe7",
+    "census/atail_force/producer_surface.py": "cfbfd28589e1b0357b071f50c73b56b7c42235206363cef556a8753ebfca3e0c"
+  },
+  "schema": "p97_atail_force_producer_probe.v1",
+  "scope": {
+    "bank_matches_have_named_lean_consumers": true,
+    "encoded_geometry_atoms_are_live_consequences": true,
+    "encoded_omitted_ledger": {
+      "ENCODED": [
+        "three explicit role-aware surviving cases: card11 (5,5,4), card12 (6,5,4), and card12 (5,5,5)",
+        "canonical labeled Moser-cap frame and closed surplus-cap complement",
+        "full exact first- and second-apex radius classes with allowed cardinalities four or five",
+        "selected four-point K4 witnesses represented separately as subsets of the full exact classes",
+        "finite negation of the producer on every unordered pair of distinct off-surplus carrier labels",
+        "deterministic enumeration and canonical JSON serialization"
+      ],
+      "OMITTED": [
+        "literal hNoM44 over every possible SurplusCapPacket; only a chosen-case cap profile is encoded",
+        "the unrelated CounterexampleData.packet is not identified with leafSurplusPacket",
+        "arbitrary CriticalShellSystem.centerAt selector diversity and canonicality",
+        "critical-blocker deletion failure and choice-invariant blocker outputs (milestone 3)",
+        "live U3/U5 dangerous-row and CriticalSourceRows-to-cap coupling (phase 2)",
+        "the quantified minimum-radius clause of MEC; the exposed disk/boundary/nonobtuse packet is encoded",
+        "rational-coordinate restrictions; one explicit cyclic label order is encoded, but exhaustive order-orbit coverage is not yet claimed",
+        "no-removable-vertex, which is not a hypothesis of DoubleApexOffSurplusSharedRadiusPair"
+      ]
+    },
+    "finite_assignment_exhaustive": false,
+    "full_live_hypothesis_surface_encoded": false,
+    "solver_result_is_not_a_lean_proof": true
+  },
+  "smoke_gates": {
+    "cvc5": {
+      "passed": true,
+      "sat": "sat",
+      "unsat": "unsat"
+    },
+    "z3": {
+      "passed": true,
+      "sat_probe": "sat",
+      "unsat_probe": "unsat"
+    }
+  }
+}

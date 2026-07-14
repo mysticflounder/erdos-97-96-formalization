@@ -14,6 +14,13 @@ authority.
 
 ## Authority and snapshot protocol
 
+Cardinality terminology is fixed across the active closure plan:
+`CARD-GE-12` / `card-ge-12` means a theorem uniform under
+`12 ≤ D.A.card`, while `CARD-EQ-12` / `card-eq-12` means an exact-cardinality
+census, placement, or profile under `D.A.card = 12`. Bare “card-12 producer”
+is retired from current-status prose; historical file names and immutable
+artifact identifiers keep their original spelling.
+
 The numerical snapshots in this plan and the matrix are dated evidence, not
 current truth. Before dispatching or reporting a row, run the matrix's
 `CTRL-GRAPH` and `CTRL-OWN` gates and record the timestamp, source-index state,
@@ -29,11 +36,13 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Current inventory (updated 2026-07-13)
+## Current inventory (updated 2026-07-14)
 
-The current source surface is **36 `sorry`-carrying symbols / 80 textual
+The current source surface is **12 direct `sorry` declarations / 32 textual
 holes**, grouped into two Front-A proof clusters.  The liveData case tree is
-still extracted into named, independently tractable on-spine helpers.  The 22
+still extracted into named helpers, but the T1 and T3 permutation orbits are
+now source-sorry-free after production relabel wiring and remain only
+transitively open through K-A-PAIR.  The 22
 ERASE declarations have source proofs and no longer contribute source holes;
 their P2 native and downstream target builds now pass on the current working
 tree and remain tracked separately from global publication.
@@ -41,19 +50,22 @@ tree and remain tracked separately from global publication.
 | # | Cluster | Current source surface | Symbols | Textual holes | Front |
 |---|---|---|---:|---:|---|
 | 1 | Shared-radius pair | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 | A |
-| 2 | liveData families | 35 named `liveData_*` helper theorems; `u1_largeCap_routeB_tail_liveData_false` itself is sorry-free | 35 | 79 | A |
-| **Total** | | | **36** | **80** | |
+| 2 | liveData families | Four LIVE-Q helpers and seven LIVE-C center helpers carry direct holes; all LIVE-T1/LIVE-T3 helpers and `u1_largeCap_routeB_tail_liveData_false` itself are source-sorry-free | 11 | 31 | A |
+| **Total** | | | **12** | **32** | |
 
 The pinned-surplus general-m and endpoint general-m leaves are closed and are
 not part of the current inventory (matrix K-B-PIN and K-B-END-GENERAL).
-`proof-blueprint symbols --with-sorry` reports exactly the 36 symbols above.
+The refreshed source/graph checkpoint reports exactly the 12 declarations
+above.  The T1 and T3 declarations still inherit `sorryAx` through K-A-PAIR,
+but they are not direct source obligations.
 The full P2 fleet, downstream ERASE targets, and target-specific exact-pin gate
 pass from pushed commit `652fdfcb`. The global `CTRL-GRAPH`/publication gate
-remains open for the 36 Front-A symbols and shared-tree reproducibility. At the
-2026-07-13 checkpoint the tracked Lean tree is unchanged; the two new ATAIL
-modules are unimported scratch certificates and are not yet in the mined graph.
-`sorryAx` is the synthetic kernel marker reached through those Front-A
-declarations, not a 37th source obligation.
+remains open for the 12 direct Front-A declarations and shared-tree
+reproducibility. Both production relabel theorems and all 24 T1/T3 helper
+consumers are now in the source graph.
+`sorryAx` is the synthetic kernel marker reached through the remaining
+Front-A declarations and through the source-clean LIVE-T1 helpers' K-A-PAIR
+dependency, not a 25th source obligation.
 
 Historical snapshot (audited 2026-07-09, build fingerprint `002b0247c64e`):
 five declarations / 87 holes; P97 spine 23/1827 open; P96 spine 27/1835
@@ -153,7 +165,7 @@ The archive preserves detailed logs; these constraints remain active here:
 card-11 slice. `Census554.false_of_cardEleven_twoLargeCaps` is still absent, and
 the live declarations do not split away `D.A.card = 11`. Census554 may remain
 paused while ATAIL targets the complete card-at-least-11 signature. If ATAIL is
-weakened to card at least 12, the terminal cover, Lean replay, card-11 consumer,
+weakened to `CARD-GE-12`, the terminal cover, Lean replay, card-11 consumer,
 and leaf wiring become proof-critical rather than optional. The detailed
 pipeline below remains the specification for that alternate discharge.
 
@@ -536,12 +548,12 @@ The historical Census-based independent card-11 replay has seven obligations:
 5. apply the proved similarity/relabeling theorem
    `Problem97.Census554.motif_transfer`;
 6. kernel-check that the motif-closed bank covers every `CubeOk` cube; and
-7. package the resulting contradiction and wire the card-11/card-at-least-12
+7. package the resulting contradiction and wire the card-11/`CARD-GE-12`
    split into the actual Front-A leaves.
 
 Obligations 2, 4, and 5, plus the mathematical checker core needed for
 obligation 3, are complete. A.2 tracks the remaining artifacts. They gate
-closure exactly when the ATAIL producer starts at card 12 or later; a uniform
+closure exactly when the ATAIL producer starts at `CARD-GE-12` or later; a uniform
 card-at-least-11 producer supersedes them.
 
 Operational code now has a shared lifetime driver lease, a separate bank
@@ -860,40 +872,44 @@ corresponding closure-matrix gate, not by prose completion claims.
    `Census554/Card11.lean`; it consumes the cap frame, geometric bridge,
    `coverCore_covers`, and `not_realizesCube_of_coverCore`, and returns `False`
    without any liveData row hypotheses. Then invoke it in both Front-A
-   declarations before any card-at-least-12 residual proofs. This theorem and
+   declarations before any `CARD-GE-12` residual proofs. This theorem and
    its wires are required if the ATAIL producer does not cover card 11. They
    become unnecessary only after a uniform card-at-least-11 producer closes the
    existing declarations directly (matrix A11-CONSUME/A11-WIRE-*).
 
-### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, refreshed 2026-07-12)
+### A.2b Leaf wiring facts (U1LargeCapRouteBTail.lean, refreshed 2026-07-14)
 
-- P1b moved the 79 case holes one-for-one into **35 named on-spine helper
-  theorems**. `u1_largeCap_routeB_tail_liveData_false` itself is now
-  sorry-free and consumes those helpers. The exact decomposition remains 24
+- P1b originally moved 79 case holes one-for-one into **35 named on-spine
+  helper theorems**. `u1_largeCap_routeB_tail_liveData_false` itself is
+  sorry-free and consumes those helpers. Production LIVE-T1 orbit wiring has
+  since removed 48 direct holes from all 24 T1/T3 helpers, leaving 31 direct
+  liveData holes in 11 helpers. The historical decomposition was 24
   `q = t2[0]` ordered-subcube leaves, 24 `t1 = t2[0]` source-slot leaves, 24
   `t3 = t2[0]` source-slot leaves, and 7 terminal center branches (`q`, `t1`,
   `t2`-named, `t2`-row-failure, `t3`, `u`, fresh). Matrix rows LIVE-* own
   these families. The t1 band is not one polarity: six holes are the positive
   `ht1Row_l1` branch when the source slot is `l1 = t1`, and the other eighteen
-  are negative branches. The checked T1/T3 dangerous-triple relabel adapters
-  now bypass that historical two-consumer split: once K-A-PAIR closes, the 24
-  LIVE-T1 and 24 LIVE-T3 textual holes reduce by orbit to the existing pair
-  consumer. They inherit K-A-PAIR's `sorryAx` until that dependency closes.
+  are negative branches. The production theorem
+  `Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair`
+  now bypasses that historical T1 split in every helper. The 12 T1 helpers are
+  source-sorry-free but inherit K-A-PAIR's `sorryAx`. The production T3
+  adapter now does the same for all 12 T3 helpers.
 - The kernel spine additionally shows leaf 2's compiled proof reaching
   leaf 1 (`DoubleApexOffSurplusSharedRadiusPair`) through the
   `false_of_center_p_t2_t20 → … → exists_removableVertex_of_twoLargeCaps`
-  chain, so closing Front A requires BOTH leaf 1 and the 79 case leaves (or
-  a refactor of the case tree).
+  chain. The preferred parent-level producer now bypasses that chain before
+  case enumeration; after it lands, reference mining should delete the 31
+  dead Q/C holes rather than prove branches with no remaining caller.
 - The namespace-level exports remain thin re-exports, not duplicate
   obligations. Within the shared-radius declaration/export pair, the only
   proof hole is the one in
-  `DoubleApexOffSurplusSharedRadiusPair`; this does not discount the 79 holes
-  in the liveData helper family.
+  `DoubleApexOffSurplusSharedRadiusPair`; this does not discount the 31 direct
+  holes still present in the liveData helper family.
 - **Historical Census handoff status:** `capProfile_eq_554_of_card_eq_eleven`
   terminates in profile facts ((5,5,4), interiors (3,3,2), and the
   `MultiCenter/CapProfile.lean` vocabulary translations) rather than a Census
   cover consumer. That missing Census-specific wire is a real conditional gap:
-  it is required for a card-at-least-12 ATAIL split and unnecessary only for a
+  it is required for a `CARD-GE-12` ATAIL split and unnecessary only for a
   producer uniform from card 11.
 
 `LIVE-BANK-MATCH` is complete and terminal negative (commit `dd2f91c1`): its
@@ -902,7 +918,7 @@ machine-readable map checked 1,422 ordered leaf/consumer pairs, with 0 MATCH,
 matrix K-A-LIVE row. Do not rerun that decider; new work must add the missing
 packet-label-centered/full-filter producer content.
 
-### A.3 Card ≥ 11 residual and card-12+ computational surface
+### A.3 Card ≥ 11 residual and `CARD-EQ-{12,13,14}` computational surfaces
 
 Evidence sources: `scratch/census-12-gate/STATE.md` and
 `census/candidate_d_probe/report.md`, digested 2026-07-09.
@@ -1192,21 +1208,24 @@ reduction. `CriticalRowPacket.center_ne_source` only kills subcells in which
 the extra row source `t2[0]` is also identified with its blocker center; none
 of the seven contracts supplies that equality, and none supplies K-A-PAIR's
 p-centered exact-dangerous `t2Row` hypotheses. LIVE-C remains a content-bearing
-six-row producer target. At this checkpoint, this session's durable anchor
-metadata points to LIVE-T1 and a separate session anchor points to the Route-B
-umbrella; neither shared source is edited here. Generated
-`docs/live-blueprint.md` is not an anchor input and is never edited manually.
+six-row producer target.  LIVE-T1 and LIVE-T3 are now source-sorry-free and
+inherit openness only through K-A-PAIR; the active proof cursor is anchored
+directly at K-A-PAIR.  Both relabel adapters are production-wired, while the
+K-A-PAIR body remains the open producer declaration. The target build refreshed generated
+`docs/live-blueprint.md`, which is not an anchor input and was not edited by
+hand.
 
-The theorem-facing normalization has also advanced without touching the
-concurrently owned Route-B source. Two scratch modules now kernel-check: (i)
+The theorem-facing normalization began in two kernel-checked scratch modules:
+(i)
 the joint-fiber card-two extraction and the fact that equal critical-row
 centers plus equal selected `l1` identify the full exact supports; and (ii)
-dangerous-triple relabeling adapters for `f2=t1` and `f2=t3`. The latter reduce
-all 24 LIVE-T1 plus 24 LIVE-T3 textual holes to the single K-A-PAIR residual by
-making the collided row the relabeled `t2Row`. They intentionally inherit
-K-A-PAIR's `sorryAx`, so this is a dependency reduction rather than closure.
-Artifacts: `scratch/atail-force/critical_row_coupling.lean` and
-`scratch/atail-force/triple_relabel_adapters.lean`.
+dangerous-triple relabeling adapters for `f2=t1` and `f2=t3`. Both halves are
+now promoted to production and remove all 48 direct LIVE-T1/T3 holes by
+making the collided row the relabeled `t2Row`. Both intentionally inherit K-A-PAIR's
+`sorryAx`, so this is a dependency reduction rather than kernel closure.
+Artifacts: `scratch/atail-force/critical_row_coupling.lean`,
+`scratch/atail-force/triple_relabel_adapters.lean`, and
+`Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair`.
 
 The outer wrapper's construction provenance has now also been retained in a
 third kernel-checked scratch module. `U1Depth5.LiveCriticalRowProvenance`
@@ -1217,8 +1236,10 @@ facts and reuses the banked theorem
 `CriticalShellSystem.selectedFourClass_support_eq_shell` to show that every
 selected K4 row at the same blocker center is exactly the f2 critical support.
 
-The exact source-contract census covers all 35 live helpers and all 79 textual
-holes. The current 28 p-centered LIVE-Q/T1/T3 contracts already transfer full
+The exact source-contract census records the historical P1b surface of all 35
+live helpers and 79 textual holes. After T1/T3 production wiring, 11 helpers
+and 31 direct holes remain. The 28 p-centered LIVE-Q/T1/T3 contracts already
+transfer full
 support through their comparison maps, so provenance adds no new same-center
 transfer there; it would restore f2 no-qfree to all 35 helpers. Six named LIVE-C
 branches turn that blocker fact into a packet-label-centered membership/support
@@ -1244,6 +1265,17 @@ a U5 bank consumer. Those are now the exact producer-data targets. Artifacts:
 `scratch/atail-force/live_critical_provenance.lean` and
 `scratch/atail-force/provenance_contract_audit.py`.
 
+The later consumer audit in `live_q_c_shared_consumer_boundary.lean` sharpens
+this boundary without closing a helper.  It proves the same off-dangerous
+pair uniformly from the seven center contracts, lets the fixed dangerous
+`p`-circle serve directly as the first center in the same-cap sink, and
+extracts the equilateral-star prefix from `center_t2_named`.  LIVE-Q still
+lacks any distinct aligned row center.  LIVE-C supplies two points outside
+the dangerous base, while the sink needs two dangerous-base points of the
+second-center row outside a common cap.  The special named branch next lacks
+a dangerous-centered cross-row incidence.  Exact consumer-by-consumer map:
+`scratch/atail-force/live_q_c_consumer_match_audit_2026-07-13.md`.
+
 The corresponding finite incidence-delta census is now **DONE-NEGATIVE,
 exact within the stated abstraction**. The corrected witnesses retain the
 actual `f := t2[0]` and `f5 := t2[1]` membership in the `t2` source row, rather
@@ -1264,7 +1296,7 @@ cap/order/full-filter or metric information. Artifact:
 `scratch/atail-force/incidence_delta_census.py`.
 
 The first metric discriminator on the stronger finite shadow is also complete
-for its two saved card-12 candidates. Each candidate has one selected
+for its two saved `CARD-EQ-12` candidates. Each candidate has one selected
 four-point row at every center, support intersections at most two, an explicit
 common cyclic order satisfying every shared-pair separation, and no core found
 by the current `_formalized_metric_core` catalog. Singular nevertheless returns
@@ -1314,6 +1346,20 @@ actual critical rows. Artifacts:
 `scratch/atail-force/blocker_graph/` and
 `docs/audits/2026-07-13-atail-blocker-graph-assessment.md`.
 
+The stronger ordered-cap double count is likewise **DONE-NEGATIVE at the
+finite count abstraction**. The current Lean lower bound is `m+4` distinct
+outside pairs for a cap of size `m`; at card 12 the summed lower is 27 against
+summed capacities 63 for `(5,5,5)` and 64 for `(4,5,6)`. Common critical
+provenance bounds blocker fibers by four but does not add another row copy,
+because the global selected class at a blocker center equals its critical
+support. `scratch/atail-force/global_count_boundary/` validates strengthened
+finite shadows for both profiles with the current count, blocker cover,
+one-sided ordered-cap bounds, cyclic separation, outside-pair uniqueness, and
+singleton fixed joint fibers. The artifacts are non-Euclidean, nonexhaustive,
+and fail-closed. They require a real metric/order-realizability coupling rather
+than a larger finite count. Audit:
+`docs/audits/2026-07-13-atail-global-count-boundary.md`.
+
 The smaller same-cap producer boundary is now **CHECKED-SCRATCH**. In
 `scratch/atail-force/same_cap_second_center.lean`, the exact dangerous `p`
 row supplies two distinct row points outside any indexed cap containing `p`,
@@ -1329,6 +1375,397 @@ the four audited endpoints depend only on `propext`, `Classical.choice`, and
 must be uniform from card 11 unless A11-CONSUME and the source-visible
 cardinality split land first. Strategy and circularity audit:
 `docs/audits/2026-07-13-atail-missing-ingredient-strategy.md`.
+
+The same scratch file now also kernel-checks
+`DangerousRowSameCapSecondCenter.of_criticalShell_capMultiplicity`: it is
+enough to produce one source-indexed critical shell with a non-`p` center in
+`p`'s cap and at least two support points in the dangerous set outside that
+cap. This is the current exact producer field. A size-only localization of
+dangerous sources into `cap \ {p}` is insufficient except in the extremal
+cap-size-4/all-four-outside case, so the remaining proof must add geometric
+non-injectivity, direct support overlap, or a useful critical source outside
+the dangerous row. The companion
+`false_of_criticalShell_sameCap_capMultiplicity` is the checked one-call
+consumer for exactly this field.
+
+`scratch/atail-force/dangerous_blocker_collapse.lean` closes the corresponding
+choice audit in the negative. It proves the dangerous selected class is
+exactly `{q,t1,t2,t3}`, every deletion from that class blocks `p`, and any
+critical-shell system may be overridden so all four dangerous sources choose
+`p`. Therefore no arbitrary-system argument may infer the needed non-`p`
+center from a dangerous source. This does not rule out another useful system;
+it requires the producer to use an outside source, independently construct a
+non-`p` blocker, or retain common provenance which supplies additional
+load-bearing structure.
+
+The honest outside-source successor is now **CHECKED-SCRATCH to its exact two
+open fields**. `scratch/atail-force/outside_source_cap_multiplicity.lean`
+proves the live selected point `u` lies outside the dangerous class and that
+both its supplied row and any common-system blocker row at `u` have center
+different from `p`. It separately proves cap coverage for `p` and the center,
+at least two `u`-row points outside the dangerous class, and at least two
+outside any cap containing the center. Those facts do not align the cap
+indices or complements. The exact remaining `URowCapMultiplicityFields`
+requires one cap containing both centers and two dangerous support points
+outside it. `URowCommonCapOffDangerousConfinement` is a kernel-checked
+sufficient condition: every off-dangerous `u`-row support point lies in that
+common cap. This confinement is not a current theorem. Common provenance adds
+center separation/support locking, not either missing cap-alignment field.
+
+The subsequent geometric and falsifier audit closes this *local route* in the
+negative. An exact strictly convex Euclidean `(4,5,6)` relaxed residual has the
+common cap and satisfies the generic center-cap support bound, yet only one
+dangerous `u`-row support point lies outside that cap. Therefore the two
+separate complement inequalities cannot be combined to prove MULT. The saved
+`(5,5,5)` finite shadow independently fails ALIGN. These are not live
+counterexamples: the Euclidean residual does not have the named Moser triangle
+as an MEC frame, fails all-center K4 at eight centers, and omits the full
+no-M44/full-filter coupling. The full live implication remains CONJECTURED.
+There is also a contract loss: the outer live caller constructs the five rows
+from `Hcritical`, whereas the pair residual accepts `rows` and a nonempty
+critical-shell system independently. Restoring that provenance is a necessary
+interface repair for any common-system continuation, but the audit proves it
+does not by itself create ALIGN or MULT. The primary lane therefore moves to
+the wrap-order six-point/global-row producers; URow is retained only as a
+conditional MEC/all-center-coupling route.
+The existing `MECStraddlingRowCore` already gives the exact structural
+exclusion for that residual (and the saved coordinates have a positive
+rational circumdisk power at label 10), but the core uses only one equality
+from the `u` row and no dangerous-count or cap field. It is therefore a valid
+CEGAR cut, not the missing URow producer.
+
+The first target-specific `CARD-EQ-12` Q-C incidence preflight is also complete.
+`scratch/atail-force/second_center_query/query.py --check` validates one
+29-row finite shadow for each profile: `(4,5,6)` in 19 nodes and `(5,5,5)` in
+26 nodes. Each shadow retains the dangerous exact row, five independent
+supplied rows, a selected exact row at every center, and a source-indexed
+critical-system row at every point, yet has no second-center witness carried
+by an encoded row. The result is strictly `SAT_FINITE_SHADOW_ONLY`; its
+manifest explicitly omits Euclidean metric constraints, strict convexity,
+MEC geometry, arbitrary bisector hits, exhaustive placements, full live data,
+Q-A/Q-E, and card 11. It terminates incidence-only forcing at these placements
+but does not falsify `DangerousRowSameCapSecondCenter` or close any `sorry`.
+
+The exact metric successor is now complete for those two saved shadows.
+`scratch/atail-force/second_center_metric_oracle/oracle.py --check` validates
+that each deduplicates to 12 circles / 36 quadratic equalities, and Singular
+plus msolve in two variable orders all return `UNIT` over `QQ`. Thus neither
+fixed normalized real equality variety exists. Cross-checked bounded cores
+contain 6 rows / 18 equalities for `(4,5,6)` and 7 rows / 21 equalities for
+`(5,5,5)`. The original oracle is trusted exact CAS and the placements are not
+exhaustive, but one compact successor is now fully kernel checked.
+
+`scratch/atail-force/five_row_metric_core.lean` proves the `(4,5,6)` round-1
+five-row obstruction by a compact real branch argument. Eleven equal-distance
+comparisons force labels `0` and `1` to coincide. The file exposes the direct
+`SelectedFourClass` consumer `false_of_five_selectedFourClasses`, the abstract
+`FiveRowCollisionCore`, and its no-injective-realization theorem; all printed
+axiom sets are core-only. A separate rational certificate replays
+`1 = Σ h_i g_i` exactly and its generated Lean fallback also checks. The
+required theorem-bank preflight checks twelve equality-only families and finds
+no match for this particular compact core.
+
+The bounded metric CEGAR continuation reaches 64 rounds for each of the two
+fixed placements. All 128 saved full ideals and all 128 accepted cuts fully
+replay as `CROSSCHECKED_UNIT`; both cases stop at `STOPPED_ROUND_BUDGET`, not
+exhaustion, with no nonunit candidate. The first repeated whole-core type is
+the `(5,5,5)` round-40/62 five-row shape, which exactly matches the existing
+`SixPointCircleChainCollisionCore`. This is theorem-family reuse, not finite
+coverage.
+
+The row-origin replay gives the integration boundary. Zero of 64 learned cuts
+in either profile has a supplied-source alias for every retained row. The new
+compact `(4,5,6)` core uses one row which aliases `supplied:u` and four
+global-only selected rows. Therefore the five live `CriticalSourceRows` do not
+directly instantiate either metric consumer; a selected-K4/global-row support
+incidence theorem is still required.
+
+The archived pre-subsumption common-system CEGAR removed that
+global-row-at-every-center
+assumption. It chooses one exact source-indexed row for every point of a single
+finite critical-system abstraction and learns only kernel-backed structural
+cuts. That historical hash-bound replay accepted 6 cuts for `(4,5,6)` and 23 for
+`(5,5,5)`, preserving every earlier assignment digest and cut stage. Its bank
+is `ExactOffCircleCore`, `NestedEqualChordCore`, `MECStraddlingRowCore`,
+`SixPointTwoCircleOrderCore`, `SixPointNestedCenterOrderCore`, and
+`SixPointCircleChainOrderCore`, plus the checked-scratch
+`SixPointCircleChainWrapOrderCore` and `SevenPointSplitBridgeOrderCore`. The
+nested-equal-chord adapter proves that
+three blocker rows plus cyclic order `o,a,b,c,d` instantiate its
+`EdgeClosure` consumer. This closes the metric/convex and live-vocabulary lift
+for that motif, not its incidence/order producer. The archived checkpoint is
+SHA-256 `861d4a41141a26c0f6a1afb4fefe52156813c6890ad5eb3bc4b3a084d6b30ee9`.
+
+The deeper checked live adapter discharges the order component automatically:
+every critical blocker row has a canonical cyclic enumeration `o,a,b,c,d`.
+With global selected rows already present at centers `a` and `b`, the exact
+remaining nested-chord producer is only
+`o,d ∈ rowPattern F a` and `o,c ∈ rowPattern F b` for one ordered blocker row.
+`HasGlobalNestedPairProducer` packages these four memberships, and
+`false_of_hasGlobalNestedPairProducer` is its kernel-checked immediate
+consumer. No additional critical sources or blocker-center alignment fields
+are required.
+
+Restoring one global selected row at a time is checked insufficient within the
+fixed `(4,5,6)` frame. Exhaustive support enumeration at centers 4--11 leaves
+128--176 candidates per center after every current formalized core, and each
+center has a proper exact equality-ideal survivor in both msolve orders. This
+is not a real convex or target-faithful extension, but it rules out proving that
+one predetermined missing-center row must already instantiate the bank. The
+next bounded global-row layer is the coupled `a,b` pair in
+`GlobalNestedPairFields`, or MEC disk geometry first.
+
+The coupled finite census is also negative on the saved placement: none of the
+twelve critical-source choices admits `GlobalNestedPairFields`. Three blocker
+patterns conflict with locked exact rows; all 15 candidates in the sole
+unlocked pattern are covered by existing duplicate-center or exact-off-circle
+cores. This is exact only for the saved placement and blocker map. It shows
+that bare global-K4 incidence does not force the nested producer there, making
+MEC/cap/full-filter geometry the required next discriminator.
+
+The historical `(4,5,6)` round-5 residual has an external exact
+`Q(sqrt(3),sqrt(K))` certificate: rational interval arithmetic and an
+independent exact Z3 QF_NRA replay certify its exact rows, strict convexity,
+cap arcs, nonobtuse Moser triangle, and saved common blocker/no-`q`-free map.
+It is not Lean-kernel checked or target-faithful. Concretely, centers 4--11
+have no global K4 row and labels 7, 10, and 11 violate the MEC circumdisk.
+Those omissions, not exact cardinality 12, explain that relaxed witness. The
+production `MECStraddlingRowCore` proves actual MEC/nonobtuse/cyclic-order data
+excludes the residual: with `o=0,a=1,p=2,s=3,x=10,y=7`, three rows give
+`oa=ap=os=sx=sy`, and the two in-disk points force opposite signs for one
+determinant. Its generic metric, equality-closure, geometry, and reflected
+consumers target-build with core axioms only. The current honest `(4,5,6)`
+checkpoint is instead a round-6 four-row `CROSSCHECKED_NONUNIT` survivor with
+digest `268f0efa...ba89f9`; 16 numerical starts find no witness, which is not a
+proof of infeasibility.
+
+The `(5,5,5)` replay first uses `SixPointTwoCircleOrderCore` on rounds 7--9.
+Its next family, `SixPointNestedCenterOrderCore`, maps
+`(O,A,D,E,X,C)=(0,1,3,4,5,2)` and closes rounds 14--16 with a production
+metric theorem, reflected `EdgeClosure` consumer, and actual GeneralCarrier
+adapter. `SixPointCircleChainOrderCore` then closes round 17 under
+`(O,A,D,E,C,Y)=(0,1,3,4,2,8)`, using all five rows and the four signs
+`OAC,OAE,OAD,CYO`. All three production modules target-build with only the
+standard core axioms and are integrated after the earlier matchers. The
+checked-scratch `SixPointCircleChainWrapOrderCore` proves the same equality
+graph impossible in cyclic order `O,Y,A,D,E,C`, using
+`OAC,OAE,OAD,OYA`; its generic theorem, reflected consumer, and actual
+GeneralCarrier adapter elaborate with the standard core axioms. Its matcher
+closes rounds 18 and 19.
+
+In the archived pre-subsumption trace, round 20 changed the graph rather than
+merely changing the placement. The old
+shared circle-chain point splits into `U` and `W`. The exact analysis extracts
+the seven-point core `(O,A,C,D,E,U,W)=(0,1,2,3,4,6,8)`, nine row equalities,
+and cyclic signs `OAC,OAD,OAE,OEC`; a normalized Euclidean argument gives a
+triangle-inequality contradiction. An explicit positive-norm real realization
+of the same equalities with the wrong cyclic order proves that equality-only
+Gram certificates cannot close this residual. The generic Lean theorem,
+reflected `EdgeClosure` consumer, and actual GeneralCarrier adapter now
+elaborate with exactly the standard core axioms and have passed an independent
+antecedent/source audit. The historical monotone matcher closed rounds 20--22
+with the same spine and `W=8,9,10`. The archived round-23 survivor had digest
+`d1c0773c...e4e5971` and final row `4:{2,3,5,11}`; its equality ideal remains
+`CROSSCHECKED_NONUNIT` and real feasibility was undecided. Archived checkpoint SHA-256 is
+`861d4a41141a26c0f6a1afb4fefe52156813c6890ad5eb3bc4b3a084d6b30ee9`.
+
+That round numbering is now an archived pre-subsumption trace.  The checked
+`SixPointTwoCircleArcOvertakeOrderCore` and its GeneralCarrier adapter subsume
+all old `(5,5,5)` rounds 10--28: under
+`(O,A,D,E,F,C)=(0,1,3,4,5,2)`, the three exact rows centered at `O`, `A`, and
+`D` and cyclic order `O,A,D,E,F,C` are already contradictory.  The preserved
+pre-subsumption replay has SHA-256
+`fcb0b93588ad95dac43aa2a1bf1364d5f7a3a24cc5cb5f15739c8541cd11ca09`.
+After integrating the monotone arc-overtake and five-row circle-intersection
+matchers, the clean replay has six cuts for `(4,5,6)` and twenty-one cuts for
+`(5,5,5)`.  The latter consumer closes rounds 19 and 20.  Its first uncovered
+`(5,5,5)` shadow is round 21, digest
+`2854f002275620851be4b86b064d3f0fb02cb60099c6a60d36f241dd19fb82ec`.
+
+The live boundary is also checked: `LiveArcOvertakeFields` preserves the
+dangerous `p`-row, one selected critical `p`-source row, and the independent
+`uRow` on the existing five-row pair surface, and
+`false_of_liveArcOvertakeFields` feeds those rows to the GeneralCarrier
+adapter.  This is a conditional producer, not closure.  The former round-19 shadow
+avoids it in exactly one incidence: its supplied `u`-row meets the dangerous
+four-class in only one aligned point, omitting the second hit required by the
+arc-overtake packet.  The later forcing audit shows that a two-hit lower bound
+alone is still insufficient: it must also localize the `u`-row center in the
+dangerous class and align a critical `p`-source row through one hit and another
+dangerous point.  An exact nine-point strictly convex algebraic model realizes
+those three local rows in a non-overtaking cyclic order, so order is a second
+genuine MEC/cap stage rather than routine bookkeeping.
+
+That Stage-I boundary is now explicit and checked.
+`LiveArcOvertakeStageOneFields` is the live packet with only cyclic order
+removed; it proves the dangerous u-row intersection has cardinality exactly
+two and converts definitionally to the final packet once order is supplied.
+A separate `Fin 12` common-provenance incidence model retains every current
+support-cardinality/source/same-center/intersection consequence and both
+blocker-center alignments but has exactly one dangerous u-row hit.  This is a
+kernel-checked dependency boundary, not a Euclidean counterexample: Stage I
+must use omitted metric/MEC/cap/no-`M44` geometry or a named alternate.
+
+The same-cap alternate is now split at two exact checked escape packets.
+`stage1_common_cap_alignment_boundary.lean` gives common-cap alignment or
+`URowSeparatedCapPlacement` on the actual K-A-PAIR leaf packet; a `Fin 12`
+cap model shows that current cap arithmetic, coverage, incidence, and
+complement bounds do not exclude separation.  Assuming alignment,
+`stage1_common_cap_confinement_boundary.lean` gives confinement or
+`URowOffDangerousSeparatedPairFields`: two outside `uRow` points have equal
+distance from its center but unequal distances from `p`.  Existing
+outside-pair uniqueness proves the inequality at `p`; another finite shadow
+shows cap counting cannot remove the packet.  The next positive geometry is
+therefore an exclusion of separated-cap placement followed, if needed, by a
+classification of the separated outside pair into a named MEC/nested/order
+consumer.
+
+The subsequent geometry pass exhausts the routine refinement of both packets.
+Separated caps are either strict-interior centers in different caps or an
+opposite-Moser endpoint case. The endpoint case now has no cap-cardinality
+escape: its exact four-point row contains two distinct points of the facing
+strict cap interior, its whole carrier radius filter is retained, and both
+outer Moser endpoints separate that pair's distances. The old card-four versus
+card-at-least-five split is superseded. The surviving separated outside pair has exact full-shell
+support, a unique common-cap bisector center, and an explicit global boundary
+block.  A checked Dumitrescu consumer would close if two more carrier centers
+lay on that perpendicular bisector. The critical-system reduction now makes
+the missing data exact: reciprocal membership of the escaped pair in the rows
+sourced at its two points, plus pairwise distinctness of those two blocker
+centers and `uRow.center`. The corresponding one-call adapter back to
+confinement is kernel-checked, but current fields do not prove those
+incidences or inequalities. If reciprocal incidence is obtained without the
+inequalities, Dumitrescu forces one of three blocker-center collisions and
+exactness identifies the corresponding complete supports; those support
+collapse branches are the named complement that must be consumed.
+The positive producer targets are now the distinct-interior placement, the
+endpoint exact-filter interior pair, and additional bisector centers for the
+outside-pair packet. Another marginal cap theorem or cyclic-order extraction
+alone cannot close them.
+
+The remaining ATAIL task is therefore a two-stage live coverage theorem:
+full-filter/critical/cap/no-`M44` data must first produce the aligned incidence
+packet or a named consumed alternate; MEC/cap order must then produce the
+arc-overtake order or a named order-failure alternate.  The round-19
+order-failure alternate is now proved through its five-row geometry boundary:
+in positive half-arc gaps summing to
+`pi/6`, the three necessary lower circle-intersection margins are
+incompatible, and a kernel-checked theorem gives the uniform bound
+`tau < -4/25`.  Its five public endpoints use only the standard core axioms.
+The positive and reflected geometry endpoints derive the two minor-arc
+angles, four chord identities, and lower margins from the five row equalities
+and six cyclic signs; they do not require MEC, nonobtuse, or disk hypotheses.
+The label-generic core, reflected carrier adapter, and monotone matcher are
+now checked and registered; deterministic replay banks the former round-19
+pattern and its round-20 sibling.
+The earlier
+32-start / `401 x 401` optimizer remains discovery evidence only and makes no
+optimality claim.  Further blind CEGAR rounds are diagnostic and are not a
+prerequisite for either proof stage.  Audits:
+`scratch/atail-force/second_dangerous_hit_forcing_analysis.md` and
+`scratch/atail-force/residual_555_round19_mec_scalar_core_analysis.md`.
+
+Therefore there is still no basis for raising the uniform producer threshold
+above `CARD-GE-12`; a higher threshold would add AHEAD coverage obligations
+for cards 12--14 without resolving the current card-12 producer.
+
+The exact placement census also rejects naive scaling of this search. Under the
+current `CARD-EQ-12` preconditions, `(4,5,6)` has 253,302 raw/orbit representatives,
+while `(5,5,5)` has 683,424 raw placements and 113,904 six-element orbits:
+936,726 raw placements and 367,206 representatives total. Independent
+re-enumeration, Burnside checks, and six tests pass. This is strictly a
+placement-level result: it checks no row system, metric realization, target
+faithfulness, producer, or card 11.
+
+The certificate-bank synthesis sharpens the reusable back end without changing
+that boundary. The sibling theorem `u5_gram_cert_checker_sound` is a fixed
+`Fin 6` / `Fin 8` instance of a natural arbitrary-finite-row/label Gram
+certificate soundness theorem; its archived checker handled 37,278 of 37,350
+targeted U5 residual patterns. Generalizing it would provide one kernel-checked
+compiler for changing equality graphs, but it would not select live rows or
+encode the cyclic inequalities essential at round 20. Separately, the validated
+critical-system fiber theorem proves every `centerAt` fiber has card at most
+four and `|A| <= 4 * |image(centerAt)|`. This forces three centers under the
+live `9 < |A|` hypothesis and four only above card 12; the strongest generic
+same-cap pigeonhole remains arithmetically slack at card 12 and even card 13.
+Full audit:
+`docs/audits/2026-07-13-atail-certificate-bank-generalization-audit.md`.
+
+The paused 5,939-row Census-554 bank does not currently contradict that
+choice of abstraction. A fresh arbitrary-relabeling audit of rows 5,633--5,939
+finds 307 rows and 306 motifs, all 306 new versus the 5,632-row prefix, with no
+hit in the original four equality-core families. Thirty-two rows minimize to
+four already-known perpendicular-bisector cores; only one other unlabeled motif
+repeats, twice, and it hits no current unordered detector. Thus the current
+tail supports reuse of general certificate and order-aware consumers, not a
+new fixed unordered theorem family. This is deterministic census evidence, not
+a stabilization or completeness theorem; the full exact 142 GB replay remains
+`NOT_RUN`. Audit:
+`scratch/census-554/current_tail_pattern_audit_2026-07-13.md`.
+
+The next equality-only frontier consumer is now kernel checked without changing
+that producer boundary. `Census554/SevenPointSixCircleCollisionB.lean` proves
+that its eleven equality closures on seven labels have no injective planar
+realization. Its exact rational UNIT identity is split across 26 generated
+summand modules so the certificate, wrapper, and aggregate
+`GeneralCarrierBridge` all build under the project memory cap. The aggregate
+axiom audit is exactly `propext`, `Classical.choice`, and `Quot.sound`.
+The monotone detector is the twenty-first raw-cube-eligible family in the
+22-family catalog; exact-off-circle remains the sole ineligible raw-cube
+family.
+
+Its measured effect is deliberately bounded. Against the 46-shard
+`CARD-EQ-12` formalized-core checkpoint, only stale shard 15 is rerun. The new
+family rejects nine branches but does not exhaust the shard: all 46 shards
+still end in `SAT_FINITE_SHADOW_ONLY`. The refreshed exact oracle rules out a
+normalized complex or real equality realization for 44/46 survivors; shards
+12 and 19 remain `UNDECIDED_FAIL_CLOSED` because Singular times out while both
+msolve variable orders return UNIT. The formalized-core checkpoint SHA-256 is
+`cbe6dcf835203b930f61223101ed9504653852efde599190a84da9a3460204d9`;
+the oracle checkpoint SHA-256 is
+`3962fd952661524de566e35cdf7d5659913c5e33bd654c63927653f115c6c4e7`.
+This banks one reusable consumer, not a producer or coverage theorem. It
+closed no shard and no named on-spine `sorry`; at that checkpoint the live
+blueprint still reported 36 named on-spine `sorry` declarations. The later
+2026-07-14 LIVE-T1 wiring first reduced the inventory to 24; subsequent T3
+wiring reduced the current direct inventory to 12 without changing this
+finite-shadow verdict.
+
+The subsequent five-row circle-intersection order checkpoint supersedes those
+frontier counts without changing that conclusion. The round-19 scalar and
+geometry argument now lives in the production modules
+`CircleIntersectionInequalityCore`, `FiveRowCircleIntersectionGeometry`, and
+`FiveRowCircleIntersectionOrderCore`; the positive and reflected endpoints are
+consumed by `GeneralCarrierBridge`. The aggregate endpoint builds with exactly
+`propext`, `Classical.choice`, and `Quot.sound`. Its ordered detector is the
+twenty-second raw-cube-eligible family in the 23-family catalog and contributes
+two orientations, bringing the production oracle to 26 detector stages;
+exact-off-circle remains the sole raw-cube-ineligible family.
+
+Incremental replay invalidates the saved first survivor in 12 of the 46
+`CARD-EQ-12` shards. Each slice nevertheless has a later finite-shadow
+survivor. The only 100,000-node indeterminate, shard index 24, becomes `SAT` at
+108,537 nodes under the declared 1,000,000-node retry, so the final status is
+again 46/46 `SAT_FINITE_SHADOW_ONLY`. The final formalized-core checkpoint
+SHA-256 is
+`7b5736a36506bf234d87b52b638b6b8c9d32f77985e170255ca52267d6651fec`.
+The trusted exact-CAS refresh excludes normalized complex or real equality
+realizations for 45/46 saved survivors. Shard index 19 is the sole
+`UNDECIDED_FAIL_CLOSED` case: both msolve variable orders return `UNIT`, while
+Singular times out. Its oracle checkpoint SHA-256 is
+`6b2b67726d383b949f8bf6a248fecc5496877a8439d3b9d4bb48483bde4c1acd`.
+This is an exact bounded-frontier advance plus a kernel-checked reusable
+consumer, not a producer or cover: it closes zero shards and zero named
+on-spine `sorry` declarations.
+
+The sharpened missing ingredient is therefore a live incidence producer, not
+more scalar algebra or a blind per-placement CAS sweep. It must force the
+sixteen memberships consumed by `false_of_five_selectedFourClasses`, the
+reused cyclic-order pattern family (including the split-bridge successor), or
+the four memberships in `HasGlobalNestedPairProducer`, and then be consumed
+immediately. `URowCapMultiplicityFields` is no longer a primary alternative:
+it may be reopened only with retained common-system provenance and a new
+MEC/all-center geometric coupling that excludes the audited relaxed residual.
 
 Cap profiles at card 12 (sum 15, parts ≥ 4, at least two parts ≥ 5):
 (6,5,4), (5,6,4), (5,5,5); {4,4,7} excluded (STATE.md:33-45). Only (6,5,4)
@@ -1925,10 +2362,14 @@ The orientation-complete run in
 `direct_cap_selected_metric_core_residuals_n11.json` exhausts all twelve
 ordered choices of distinct pinned and deleted surplus-interior labels. Every
 placement is `EXHAUSTIVE`, no search is capped, the largest search visits
-315,503 nodes, and the residual bank is empty. The artifact SHA-256 is
-`5d084bf9b5e9cca3f76418d30efde7ec9251915715ba85599be425d8442dd673`;
+299,801 nodes, and the residual bank is empty. The 2026-07-14 provenance
+refresh checks 23 theorem families through 26 detector stages. The artifact
+SHA-256 is
+`98b1ebe08279337e5dbded3ec1911edb7be505ec84506d6de7eadcf2300d247f`;
 the probe-source SHA-256 recorded by the artifact is
-`92bd8177e519fff2a4cf3aa82bcae2d75236c01b0c1d5495bab6ca75a91ccc37`.
+`1a6eff0ab3e99e9e8038f951f6465c37613eafcdff6163ecc8d47ba3c0ae0c35`,
+and its metric-detector dependency SHA-256 is
+`f7a92776f9cee02eda2265467d77a0bbd5254d1dd335bc7a70713203239d3373`.
 This is exact within the declared finite model. It is not yet a Lean theorem.
 
 #### PIN-GENERAL native-classifier checkpoint (2026-07-11)
@@ -2187,7 +2628,7 @@ known mechanism:
 
 1. **Front-A shared-radius tail:** Candidate-D cross-center convexity coupling
    for `DoubleApexOffSurplusSharedRadiusPair` on the actual card-at-least-11
-   surface. A card-at-least-12 proof leaves A11-CONSUME and wiring open.
+   surface. A `CARD-GE-12` proof leaves A11-CONSUME and wiring open.
 2. **Front-A liveData families:** the three 24-leaf permutation bands and seven
    terminal center branches in `u1_largeCap_routeB_tail_liveData_false`.
    Closing the shared-radius theorem removes only one downstream dependency;
@@ -2245,10 +2686,11 @@ heavy lane.
 Execution order is dependency-based, not difficulty-based. The proof-critical
 order is:
 
-1. **Wire the checked normalization.** The two-apex card-two extraction and
-   sixth-row full-support transfer are kernel-checked in scratch. Import them
-   only when the current pair/live owner can give each an immediate on-spine
-   consumer; do not overwrite the concurrently owned source.
+1. **Finish wiring the checked normalization.** The T1 relabel adapter is now
+   production-wired through all 12 LIVE-T1 helpers. The two-apex card-two
+   extraction, sixth-row full-support transfer, and T3 relabel adapter remain
+   kernel-checked in scratch; import each only with an immediate on-spine
+   consumer and without editing the K-A-PAIR body owned by the producer lane.
 2. **Prove the content-bearing producer.** From exactly the current leaf
    hypotheses, prove the fiber lower bound, force the seven equalities consumed
    by `u1TwoLargeCapObstruction`, or derive `False` directly. Audit the six
@@ -2269,12 +2711,13 @@ order is:
    convexity, cap/full-filter, or critical-row hypothesis that excludes them.
    No representative result is promoted without the leaf-to-inventory and
    certificate bridges.
-4. **Consume the producer by orbit family.** This session's durable anchor is
-   LIVE-T1 and a separate anchor owns the Route-B umbrella; neither source may
-   be overwritten. After K-A-PAIR closes, wire the two checked T1/T3
-   relabeling adapters, which make those 48 textual holes depend only on that
-   residual. Apply any remaining six-row producer to LIVE-Q and the seven
-   LIVE-C branches. Do not patch the 79 textual holes one by one.
+4. **Consume the producer at the parent boundary.** Both T1 and T3 relabel
+   orbits are already production-wired. Prove the common-critical-map parent
+   contradiction and call it before slot enumeration. Then reference-mine and
+   delete the obsolete K-A residual chain and LIVE helper tree; preserve only
+   sorry-free compatibility wrappers for declarations with real external
+   callers. Do not close the remaining 31 Q/C holes one by one if the parent
+   theorem makes them dead code.
 5. **Use AHEAD only as fallback.** If the uniform producer naturally needs
    `15 ≤ D.A.card`, a checked AHEAD cover may discharge cards 12--14 and
    authorize AHEAD-CONSUME, while A11-CONSUME must separately discharge card
@@ -2290,7 +2733,7 @@ thresholded producer must nevertheless carry its A11/AHEAD dependencies.
 
 The paused Census554 lane retains this internal order. It may run alongside
 proof work subject to `CTRL-RESOURCE`; it gates the card-11 split only when the
-primary producer starts at card 12 or later:
+primary producer starts at `CARD-GE-12` or later:
 
 1. **Stabilize operations and ownership.** Resolve the concurrent generated
    rewrite; refresh the mined graph and `anchor list`; move Census554 into
@@ -2314,7 +2757,7 @@ primary producer starts at card 12 or later:
    or checker optimization only to heavy certificates that survive the core.
 5. **Conditional card-11 replay.** If the Census reaches a checked terminal
    cover, prove `false_of_cardEleven_twoLargeCaps`. Wire it into both Front-A
-   declarations if the primary producer starts at card 12; leave it as an
+   declarations if the primary producer starts at `CARD-GE-12`; leave it as an
    independent theorem only if a uniform card-at-least-11 producer has already
    closed those declarations.
 Proof work proceeds independently according to the primary order above. ERASE
@@ -2327,6 +2770,128 @@ The closure matrix is the dispatch surface. A low-level agent takes exactly
 one row, verifies that its dependencies are DONE, claims the corresponding
 spine branch when applicable, and returns the named deliverable plus its gate
 output. It must not silently substitute an easier statement.
+
+## 2026-07-14 Front-A producer decision
+
+The authoritative Front-A route is now a parent-level common-critical-map
+contradiction, not an unconditional cap-confinement theorem and not a census
+of the two opposite-apex marginals.
+
+The reasons are checked and separate:
+
+- the outer wrapper already constructs all source rows from one concrete
+  `CriticalShellSystem`; restoring provenance is not an open theorem;
+- `URowCommonCapOffDangerousConfinement` fails in a finite shadow retaining
+  every currently extracted incidence/count consequence, with the desired
+  dangerous multiplicity equal to one; and
+- the solver-free exact-pair classifier exhausts 369,743 target-negating
+  card-11/card-12 exact-class pairs and, after the bank, endpoint-containment,
+  and production adjacent-cap one-hit stages, leaves 930 survivors
+  (96 / 150 / 684), including survivors in all three profiles.  Therefore a
+  pair of apex marginals plus the current order bank is not a coverage proof.
+
+The next content theorem is provisionally
+`false_of_twoLargeCaps_commonCriticalMap`.  It must consume the actual
+MEC-derived cap packet, `hNoM44`, full exact filters, the concrete critical
+map, and the fixed/live row data, and return `False`.  It is called at
+`u1_largeCap_routeB_tail_false` before the LIVE-Q/C slot split.
+
+Work is decomposed as follows:
+
+1. **FRONTIER-EXTRACT, DONE-PRODUCTION:** the sorry-free
+   `CriticalPairFrontier` packet retains the survivor pair and both apex
+   splits.  Its defining module and full U1 target build with core axioms only.
+2. **ROBUST-COUPLING, primary open theorem:** cumulative-erasure recurrence is
+   now formally excluded, and an exact local model excludes any theorem which
+   localizes the arbitrary blocker from only the three-center MEC/cap packet.
+   Production Lean proves that, under first-apex deletion survival (or a
+   five-point first-apex class), common blocker is equivalent to mutual cross
+   membership.  The remaining branches are therefore common/mutual,
+   distinct/one-way, and distinct/reciprocal-omission.  Card 11 lands in the
+   robust arm, so the next producer must couple both actual blockers or another
+   global row and return a cap-local hit, common-blocker residual hit, compact
+   metric-core contradiction, or the target double-apex pair.  The current
+   bank now kills the historical `(5,5,5)` total-map shadow by the reverse
+   equality-convex-five-point core, so its separate 11-equality certificate is
+   superseded fixed evidence rather than the next promotion target.  An
+   eight-way fresh `(4,5,6)` extended run returned five SAT shadows and three
+   node-capped indeterminate shards.  Two SAT shadows replay to a production
+   six-point order core; the remaining three full row systems are exact
+   `CROSSCHECKED_UNIT` over `QQ`.  MARCO-style multi-order deletion banked 16
+   exact UNIT subsets, including four five-row subsets, but all 16 have
+   distinct free-incidence shapes.  Exact minimization of the four five-row
+   subsets retains 9, 7, 9, and 11 equality generators, all cross-checked UNIT;
+   exhaustive alias-permitting role assignment is diagonal-only.  They share
+   an equilateral hinge normalization but require four distinct tail
+   contradictions.  All four tails are now kernel-proved in scratch Lean with
+   core axioms only and no trusted CAS step.  Their production `EdgeClosure`
+   packaging now builds in `EquilateralHingeCollisions.lean`; all five saved
+   SAT shadows from the first eight-way run classify by production consumers.
+   A corrected all-eight-sink rerun at the same cap returns one new SAT shadow,
+   seven node-capped indeterminate shards, zero exhausted shards, and 760,861
+   nodes total.  Live extraction and finite exhaustion remain open.  A scratch
+   Lean contract now packages both the ordered-only four-way disjunction and
+   the all-current eight-way production-Core alternative.
+   Its smallest FourPoint branch requires only two arbitrary `EdgeClosure`
+   paths and cyclic order `q,u,y,v`.  The active frontier blocker cannot fill
+   that role: a cross hit forces opposite-side placement, while cross survival
+   forces unequal blocker distances.  Thus the first missing live packet is
+   an off-frontier nonalternating shared-pair continuation, not another fixed
+   certificate or direct-membership adapter.  A full-live scratch adapter now
+   constructs the global faithful system, the off-frontier blocker `v != p`,
+   and its exact row.  The first atomic gap is precisely a lower bound of two
+   on that row's intersection with `{q,t1,t2,t3}`, followed by cap/order
+   nonalternation.  A `Fin 12` shadow refutes deriving this from cardinality,
+   all-center-row, common-provenance, and intersection data alone.
+   Exact Euclidean global-K4/deletion/full-filter data still does not make the
+   two-hit selector-independent: a pinned 33-point carrier has a legal common
+   selector with maximum one dangerous hit off-frontier, while another legal
+   selector on the same carrier has two.  The carrier is nonconvex, so this
+   isolates convex/MEC/cap/noM44 geometry as the load-bearing layer.  The
+   shortest bank-facing route additionally needs blocker-apex and
+   dangerous-interior alignment before the available cap-interior lower bound
+   can apply.
+   Endpoint-blocker geometry is likewise settled at this interface: card five
+   excludes both blockers from both surplus endpoints, while in card four the
+   first apex is a valid critical blocker for both sources and selector
+   override can choose it twice.  That landing is the common-blocker/cross-hit
+   arm, not a terminal.  The next statement must therefore be choice-invariant:
+   produce a non-apex surplus critical shell containing both sources, or
+   eliminate card four before choosing the critical system.
+   A cycle-free scratch theorem now supplies the strongest positive
+   apex-alignment split: two distinct off-surplus points in one non-surplus
+   Moser-apex radius class either both survive deletion at the other apex, or
+   an adapted critical system selects that other apex as an actual blocker for
+   one source.  This is adaptive alignment only; it does not put the second
+   point in the shell or identify the arbitrary live selector.
+3. **UNIQUE-ROW-CLASSIFIER, open theorem:** on the unique card-four/card-five
+   arm, produce exactly one checked consumer packet: choice-invariant
+   `ExistsSurplusPairCriticalBlocker`; `CardFiveCapOrMutualFields`; or the
+   coincident-blocker residual-member class containing the common pair.  The
+   card-five/distinct-blocker adapter is now kernel-checked: it needs only
+   `CardFiveDistinctCapLocalCrossHypothesis`, one directed cross hit whose
+   actual blocker lies in the surplus cap.  This identifies the exact first
+   missing source-indexed geometric field; it does not yet produce that field
+   from the live hypotheses.
+4. **PARENT-WIRE:** combine the branches into the parent `False` theorem and
+   call it before case enumeration.  Reference-mine and delete the obsolete
+   K-A residual chain and LIVE helper tree when they have no external callers;
+   do not preserve dead direct sorries.
+
+All candidate branch theorems must use a field absent from the known
+countermodels, namely MEC/cap order, a full exact filter, or a source-indexed
+metric incidence.  They must be tested against the exact-pair survivors, the
+apex-flip cycle, the card-four blocker falsifier, and the coincident-blocker
+falsifier.  The saved `(5,5,5)` total-critical-map shadow is now eliminated
+directly by the current reverse equality-convex-five-point bank core; its
+independent 11-equality characteristic-zero certificate remains exact but
+superseded.  The fresh sharded `(4,5,6)` evidence instead banks 16 exact UNIT
+row subsets across 16 incidence types, with no uniform extraction yet.  Adam explicitly authorized
+parallel ATAIL research, analysis artifacts, theorem-bank search, and closure
+document updates.  The detailed theorem signatures, branch consumers, counts, and
+deletion order are in
+`docs/atail-force-producer-plan-2026-07-13.md`, section
+“2026-07-14 producer decision after exact-pair coverage.”
 
 ## Change control
 

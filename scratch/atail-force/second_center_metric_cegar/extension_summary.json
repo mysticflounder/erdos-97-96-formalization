@@ -1,0 +1,607 @@
+{
+  "checkpoints": [
+    {
+      "cases": [
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 8
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            6,
+            7,
+            5,
+            6,
+            6,
+            5,
+            8,
+            8,
+            7
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            1,
+            4
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 8
+          },
+          "incidence_status_counts": {
+            "SAT": 8
+          },
+          "last_round_incidence_nodes": 89,
+          "max_incidence_nodes": 89,
+          "max_node_cap_fraction": 0.000356,
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round_count": 8
+        },
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 8
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            7,
+            6,
+            6,
+            8,
+            8,
+            5,
+            6,
+            6,
+            7
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            4
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 8
+          },
+          "incidence_status_counts": {
+            "SAT": 8
+          },
+          "last_round_incidence_nodes": 771,
+          "max_incidence_nodes": 771,
+          "max_node_cap_fraction": 0.003084,
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round_count": 8
+        }
+      ],
+      "discovery_mode": "fresh_discovery",
+      "manifest_sha256": "e8fe9a0a7e45b300ffffacbd56a0c510815bf8f19fccf8d316c2ae5538c0952c",
+      "path": "scratch/atail-force/second_center_metric_cegar/checkpoint.json",
+      "resume_provenance": null,
+      "round_budget_per_case": 8,
+      "sha256": "087a5a751a0f23454825f84556e5c774cf4c081ef3a3b34224a2230a0b27c179",
+      "structural_validation": "PASSED"
+    },
+    {
+      "cases": [
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 16
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            6,
+            7,
+            5,
+            6,
+            6,
+            5,
+            6,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            1,
+            4
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 16
+          },
+          "incidence_status_counts": {
+            "SAT": 16
+          },
+          "last_round_incidence_nodes": 85,
+          "max_incidence_nodes": 85,
+          "max_node_cap_fraction": 0.00034,
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round_count": 16
+        },
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 16
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            7,
+            6,
+            6,
+            8,
+            8,
+            5,
+            6,
+            6,
+            7,
+            6,
+            6,
+            9,
+            7,
+            7,
+            6,
+            6,
+            7
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            4
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 16
+          },
+          "incidence_status_counts": {
+            "SAT": 16
+          },
+          "last_round_incidence_nodes": 2177,
+          "max_incidence_nodes": 2177,
+          "max_node_cap_fraction": 0.008708,
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round_count": 16
+        }
+      ],
+      "discovery_mode": "fresh_discovery",
+      "manifest_sha256": "e8fe9a0a7e45b300ffffacbd56a0c510815bf8f19fccf8d316c2ae5538c0952c",
+      "path": "scratch/atail-force/second_center_metric_cegar/checkpoint-round16.json",
+      "resume_provenance": null,
+      "round_budget_per_case": 16,
+      "sha256": "6eee04a8a3e395f5436f7f116b680aeab5514cc721c1361e646d2d51616ab03f",
+      "structural_validation": "PASSED"
+    },
+    {
+      "cases": [
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 32
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            6,
+            7,
+            5,
+            6,
+            6,
+            5,
+            6,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            6,
+            8,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            6
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            1,
+            4
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 32
+          },
+          "incidence_status_counts": {
+            "SAT": 32
+          },
+          "last_round_incidence_nodes": 381,
+          "max_incidence_nodes": 381,
+          "max_node_cap_fraction": 0.001524,
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round_count": 32
+        },
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 32
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            7,
+            6,
+            6,
+            8,
+            8,
+            5,
+            6,
+            6,
+            7,
+            6,
+            6,
+            9,
+            7,
+            7,
+            6,
+            6,
+            7,
+            5,
+            5,
+            6,
+            7,
+            7,
+            6,
+            7,
+            6,
+            8,
+            7,
+            7,
+            7,
+            6,
+            5,
+            6,
+            6
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            4,
+            16,
+            17,
+            29
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 32
+          },
+          "incidence_status_counts": {
+            "SAT": 32
+          },
+          "last_round_incidence_nodes": 2581,
+          "max_incidence_nodes": 2581,
+          "max_node_cap_fraction": 0.010324,
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round_count": 32
+        }
+      ],
+      "discovery_mode": "fresh_discovery",
+      "manifest_sha256": "e8fe9a0a7e45b300ffffacbd56a0c510815bf8f19fccf8d316c2ae5538c0952c",
+      "path": "scratch/atail-force/second_center_metric_cegar/checkpoint-round32.json",
+      "resume_provenance": null,
+      "round_budget_per_case": 32,
+      "sha256": "72f00a1aec133be635798d4aaf62cf1899c44c3223f52b10d0c2af5a0311e94f",
+      "structural_validation": "PASSED"
+    },
+    {
+      "cases": [
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 64
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            6,
+            7,
+            5,
+            6,
+            6,
+            5,
+            6,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            7,
+            6,
+            7,
+            6,
+            8,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            7,
+            8,
+            8,
+            6,
+            8,
+            8,
+            6,
+            7,
+            8,
+            7,
+            6,
+            7,
+            7,
+            7,
+            8,
+            8,
+            8,
+            6,
+            8,
+            7,
+            7,
+            6,
+            7,
+            7,
+            7,
+            8,
+            8,
+            7,
+            8,
+            7,
+            7,
+            8,
+            7,
+            8,
+            6,
+            5
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            1,
+            4,
+            63
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 64
+          },
+          "incidence_status_counts": {
+            "SAT": 64
+          },
+          "last_round_incidence_nodes": 4644,
+          "max_incidence_nodes": 4644,
+          "max_node_cap_fraction": 0.018576,
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round_count": 64
+        },
+        {
+          "accepted_cut_status_counts": {
+            "CROSSCHECKED_UNIT": 64
+          },
+          "bootstrap_and_learned_cut_sizes": [
+            7,
+            6,
+            6,
+            8,
+            8,
+            5,
+            6,
+            6,
+            7,
+            6,
+            6,
+            9,
+            7,
+            7,
+            6,
+            6,
+            7,
+            5,
+            5,
+            6,
+            7,
+            7,
+            6,
+            7,
+            6,
+            8,
+            7,
+            7,
+            7,
+            6,
+            5,
+            6,
+            6,
+            6,
+            7,
+            6,
+            7,
+            7,
+            6,
+            7,
+            6,
+            5,
+            6,
+            7,
+            7,
+            5,
+            6,
+            5,
+            7,
+            7,
+            7,
+            7,
+            6,
+            6,
+            7,
+            6,
+            7,
+            8,
+            6,
+            6,
+            6,
+            6,
+            6,
+            5,
+            6
+          ],
+          "final_status": "STOPPED_ROUND_BUDGET",
+          "five_row_learned_rounds": [
+            4,
+            16,
+            17,
+            29,
+            40,
+            44,
+            46,
+            62
+          ],
+          "full_equality_ideal_status_counts": {
+            "CROSSCHECKED_UNIT": 64
+          },
+          "incidence_status_counts": {
+            "SAT": 64
+          },
+          "last_round_incidence_nodes": 4380,
+          "max_incidence_nodes": 4380,
+          "max_node_cap_fraction": 0.01752,
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round_count": 64
+        }
+      ],
+      "discovery_mode": "hash_bound_resume",
+      "manifest_sha256": "e8fe9a0a7e45b300ffffacbd56a0c510815bf8f19fccf8d316c2ae5538c0952c",
+      "path": "scratch/atail-force/second_center_metric_cegar/checkpoint-round64.json",
+      "resume_provenance": {
+        "checkpoint_sha256": "72f00a1aec133be635798d4aaf62cf1899c44c3223f52b10d0c2af5a0311e94f",
+        "round_budget_per_case": 32
+      },
+      "round_budget_per_case": 64,
+      "sha256": "e6304b556ec3645c3ca541df0d63313d67f4a4c556f59e420e3ce387737f1e9a",
+      "structural_validation": "PASSED"
+    }
+  ],
+  "raw_incidence_choice_surface": [
+    {
+      "choice_counts": [
+        933,
+        941,
+        941,
+        779,
+        53,
+        101,
+        301,
+        301,
+        283,
+        283,
+        283,
+        268,
+        268,
+        268,
+        268
+      ],
+      "choice_row_count": 15,
+      "note": "before prefix, Q-C, critical-system, and no-good pruning",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "raw_cartesian_product": "36494470390734263281519817474889338112",
+      "raw_cartesian_product_decimal_digits": 38
+    },
+    {
+      "choice_counts": [
+        940,
+        800,
+        940,
+        940,
+        56,
+        56,
+        283,
+        283,
+        283,
+        283,
+        283,
+        283,
+        283,
+        283,
+        283
+      ],
+      "choice_row_count": 15,
+      "note": "before prefix, Q-C, critical-system, and no-good pruning",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "raw_cartesian_product": "24262051571001496767542749340057600000",
+      "raw_cartesian_product_decimal_digits": 38
+    }
+  ],
+  "schema": "p97-atail-second-center-metric-cegar-extension-summary-v2",
+  "scope": {
+    "cas_crosschecks_replayed_here": false,
+    "fresh_discovery_round_budgets": [
+      8,
+      16,
+      32
+    ],
+    "producer_proved": false,
+    "round_64_hash_bound_resume_from_round_32": true,
+    "structural_validation_replayed_here": true,
+    "target_faithful": false,
+    "time_bounded_minimization_can_change_early_cut_sequences": true
+  },
+  "summary": {
+    "any_crosschecked_nonunit_candidate": false,
+    "any_fixed_placement_exhausted": false,
+    "assessment": "Incidence remains far below its node cap, but one-cut-per-round CEGAR shows no exhaustion signal by 64 rounds; continued CAS enumeration is not a closure proof.",
+    "largest_checkpoint_all_cases_stopped_at_round_budget": true,
+    "largest_checkpoint_all_proposals_and_cuts_crosschecked_unit": true,
+    "largest_checkpoint_max_nodes_by_profile": {
+      "[4, 5, 6]": 4644,
+      "[5, 5, 5]": 4380
+    },
+    "largest_checkpoint_sha256": "e6304b556ec3645c3ca541df0d63313d67f4a4c556f59e420e3ce387737f1e9a",
+    "largest_round_budget_per_case": 64
+  }
+}

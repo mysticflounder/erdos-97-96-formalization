@@ -1,0 +1,445 @@
+{
+  "active_points": [
+    0,
+    1,
+    2,
+    4,
+    6,
+    7,
+    10,
+    11
+  ],
+  "best_unit_pairs": [
+    {
+      "elapsed_seconds": 0.021851750003406778,
+      "lift_max_coefficient_char_count": 6735,
+      "lift_total_char_count": 28816,
+      "normalization_anchors": [
+        1,
+        6
+      ]
+    },
+    {
+      "elapsed_seconds": 0.022524957996211015,
+      "lift_max_coefficient_char_count": 6443,
+      "lift_total_char_count": 38412,
+      "normalization_anchors": [
+        2,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.036077249998925254,
+      "lift_max_coefficient_char_count": 7300,
+      "lift_total_char_count": 45193,
+      "normalization_anchors": [
+        10,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.023196249996544793,
+      "lift_max_coefficient_char_count": 7883,
+      "lift_total_char_count": 68342,
+      "normalization_anchors": [
+        1,
+        2
+      ]
+    },
+    {
+      "elapsed_seconds": 0.11126962500566151,
+      "lift_max_coefficient_char_count": 15875,
+      "lift_total_char_count": 70021,
+      "normalization_anchors": [
+        7,
+        10
+      ]
+    },
+    {
+      "elapsed_seconds": 0.045758166001178324,
+      "lift_max_coefficient_char_count": 15289,
+      "lift_total_char_count": 70717,
+      "normalization_anchors": [
+        1,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.04676691700296942,
+      "lift_max_coefficient_char_count": 19593,
+      "lift_total_char_count": 81407,
+      "normalization_anchors": [
+        2,
+        10
+      ]
+    },
+    {
+      "elapsed_seconds": 0.02901737501088064,
+      "lift_max_coefficient_char_count": 15359,
+      "lift_total_char_count": 132267,
+      "normalization_anchors": [
+        6,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.07468741601041984,
+      "lift_max_coefficient_char_count": 22767,
+      "lift_total_char_count": 177156,
+      "normalization_anchors": [
+        1,
+        7
+      ]
+    },
+    {
+      "elapsed_seconds": 0.44777879198954906,
+      "lift_max_coefficient_char_count": 250804,
+      "lift_total_char_count": 1153390,
+      "normalization_anchors": [
+        0,
+        1
+      ]
+    },
+    {
+      "elapsed_seconds": 0.3012782920122845,
+      "lift_max_coefficient_char_count": 321499,
+      "lift_total_char_count": 1556369,
+      "normalization_anchors": [
+        0,
+        2
+      ]
+    },
+    {
+      "elapsed_seconds": 7.830210375002935,
+      "lift_max_coefficient_char_count": 1261549,
+      "lift_total_char_count": 14334724,
+      "normalization_anchors": [
+        4,
+        10
+      ]
+    }
+  ],
+  "completed_unit_count": 12,
+  "pair_count": 28,
+  "results": [
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.44777879198954906,
+      "lift_max_coefficient_char_count": 250804,
+      "lift_total_char_count": 1153390,
+      "normalization_anchors": [
+        0,
+        1
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.3012782920122845,
+      "lift_max_coefficient_char_count": 321499,
+      "lift_total_char_count": 1556369,
+      "normalization_anchors": [
+        0,
+        2
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 120.00956266700814,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        4
+      ],
+      "status": "TIMEOUT"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.46736658399458975,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 1.7200952499988489,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.4060719160042936,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.5552158329956001,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        0,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.023196249996544793,
+      "lift_max_coefficient_char_count": 7883,
+      "lift_total_char_count": 68342,
+      "normalization_anchors": [
+        1,
+        2
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 120.01106375000381,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        1,
+        4
+      ],
+      "status": "TIMEOUT"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.021851750003406778,
+      "lift_max_coefficient_char_count": 6735,
+      "lift_total_char_count": 28816,
+      "normalization_anchors": [
+        1,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.07468741601041984,
+      "lift_max_coefficient_char_count": 22767,
+      "lift_total_char_count": 177156,
+      "normalization_anchors": [
+        1,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.06647316699672956,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        1,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.045758166001178324,
+      "lift_max_coefficient_char_count": 15289,
+      "lift_total_char_count": 70717,
+      "normalization_anchors": [
+        1,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 120.01163633399119,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        2,
+        4
+      ],
+      "status": "TIMEOUT"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.034447625002940185,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        2,
+        6
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.06276383300428279,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        2,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.04676691700296942,
+      "lift_max_coefficient_char_count": 19593,
+      "lift_total_char_count": 81407,
+      "normalization_anchors": [
+        2,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.022524957996211015,
+      "lift_max_coefficient_char_count": 6443,
+      "lift_total_char_count": 38412,
+      "normalization_anchors": [
+        2,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 120.0119934999966,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        4,
+        6
+      ],
+      "status": "TIMEOUT"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 120.02045129099861,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        4,
+        7
+      ],
+      "status": "TIMEOUT"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 7.830210375002935,
+      "lift_max_coefficient_char_count": 1261549,
+      "lift_total_char_count": 14334724,
+      "normalization_anchors": [
+        4,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 80.28936316698673,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        4,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.059412041009636596,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        6,
+        7
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.12880762499116827,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        6,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.02901737501088064,
+      "lift_max_coefficient_char_count": 15359,
+      "lift_total_char_count": 132267,
+      "normalization_anchors": [
+        6,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.11126962500566151,
+      "lift_max_coefficient_char_count": 15875,
+      "lift_total_char_count": 70021,
+      "normalization_anchors": [
+        7,
+        10
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.24159912500181235,
+      "lift_max_coefficient_char_count": null,
+      "lift_total_char_count": null,
+      "normalization_anchors": [
+        7,
+        11
+      ],
+      "status": "COMPLETED"
+    },
+    {
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.036077249998925254,
+      "lift_max_coefficient_char_count": 7300,
+      "lift_total_char_count": 45193,
+      "normalization_anchors": [
+        10,
+        11
+      ],
+      "status": "COMPLETED"
+    }
+  ],
+  "schema": "p97-atail-shard-anchor-pair-certificate-profile-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "shard_index": 23,
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_twin_four_circle_46_equality_checkpoint.json",
+  "source_checkpoint_sha256": "75ead90e669edacb4eab071c6363c1ddc15a03b76f4a23527ed7b1234af6fd13"
+}

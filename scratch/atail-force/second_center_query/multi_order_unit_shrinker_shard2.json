@@ -1,0 +1,1287 @@
+{
+  "distinct_crosschecked_unit_cores": [
+    {
+      "order_indices": [
+        1
+      ],
+      "row_count": 5,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "order_indices": [
+        2,
+        5
+      ],
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "order_indices": [
+        3
+      ],
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "order_indices": [
+        4
+      ],
+      "row_count": 6,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "order_indices": [
+        0
+      ],
+      "row_count": 8,
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            3,
+            7,
+            8
+          ]
+        }
+      ]
+    }
+  ],
+  "orders": 6,
+  "profile": [
+    4,
+    5,
+    6
+  ],
+  "results": [
+    {
+      "attempts": [
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 0,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 1,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 2,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 3,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "TIMEOUT",
+          "original_index": 5,
+          "proposal": "UNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "TIMEOUT",
+          "original_index": 6,
+          "proposal": "UNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 7,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 8,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 9,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 10,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "TIMEOUT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "order_index": 0,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 8,
+      "retained_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            3,
+            7,
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "attempts": [
+        {
+          "confirmation": "UNIT",
+          "original_index": 0,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 1,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 2,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 3,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 5,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 6,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 7,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 8,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 9,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 10,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "TIMEOUT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "order_index": 1,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 5,
+      "retained_rows": [
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "attempts": [
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 0,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 1,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 2,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 3,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "TIMEOUT",
+          "original_index": 5,
+          "proposal": "UNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 6,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 7,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 8,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 9,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 10,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "NONUNIT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        0,
+        5,
+        7,
+        6,
+        10,
+        3,
+        9,
+        8,
+        11,
+        1,
+        2,
+        4
+      ],
+      "order_index": 2,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 6,
+      "retained_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "attempts": [
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 0,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 1,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 2,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 3,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 5,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 6,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 7,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 8,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 9,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 10,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "NONUNIT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        0,
+        8,
+        9,
+        2,
+        11,
+        3,
+        10,
+        1,
+        7,
+        6,
+        4,
+        5
+      ],
+      "order_index": 3,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 6,
+      "retained_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6,
+            7,
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "attempts": [
+        {
+          "confirmation": "UNIT",
+          "original_index": 0,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 1,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 2,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 3,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 5,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 6,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 7,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 8,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 9,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 10,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "NONUNIT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        5,
+        9,
+        0,
+        10,
+        2,
+        8,
+        1,
+        7,
+        11,
+        4,
+        3,
+        6
+      ],
+      "order_index": 4,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 6,
+      "retained_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8,
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "attempts": [
+        {
+          "confirmation": "UNIT",
+          "original_index": 0,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 1,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 2,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "TIMEOUT",
+          "original_index": 3,
+          "proposal": "UNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 4,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 5,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 6,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "UNIT",
+          "original_index": 7,
+          "proposal": "UNIT",
+          "removed": true
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 8,
+          "proposal": "NONUNIT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 9,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 10,
+          "proposal": "TIMEOUT",
+          "removed": false
+        },
+        {
+          "confirmation": "NOT_RUN",
+          "original_index": 11,
+          "proposal": "TIMEOUT",
+          "removed": false
+        }
+      ],
+      "input_centers": [
+        9,
+        11,
+        7,
+        2,
+        5,
+        10,
+        8,
+        6,
+        4,
+        1,
+        0,
+        3
+      ],
+      "order_index": 5,
+      "retained_crosscheck": {
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "retained_row_count": 6,
+      "retained_rows": [
+        {
+          "center": 2,
+          "support": [
+            0,
+            3,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            5,
+            6
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            5,
+            9,
+            10
+          ]
+        }
+      ]
+    }
+  ],
+  "schema": "p97-atail-multi-order-unit-shrinker-v1",
+  "scope": {
+    "deletion_minimality_proved": false,
+    "fixed_placement_finite_shadow_only": true,
+    "lean_consumer_proved": false,
+    "only_crosschecked_unit_subsets_are_banked": true
+  },
+  "shard_index": 2,
+  "source_row_sha256": "722db7faaf17c276a293944eb87de60c69df2b543ece13f598c8258c4a67903c",
+  "workers": 2
+}

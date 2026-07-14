@@ -1,0 +1,217 @@
+{
+  "equalities": [
+    {
+      "center": 0,
+      "left": 1,
+      "right": 4,
+      "row_index": 0
+    },
+    {
+      "center": 1,
+      "left": 0,
+      "right": 7,
+      "row_index": 1
+    },
+    {
+      "center": 7,
+      "left": 0,
+      "right": 4,
+      "row_index": 2
+    },
+    {
+      "center": 7,
+      "left": 0,
+      "right": 10,
+      "row_index": 2
+    },
+    {
+      "center": 8,
+      "left": 1,
+      "right": 7,
+      "row_index": 3
+    },
+    {
+      "center": 8,
+      "left": 1,
+      "right": 9,
+      "row_index": 3
+    },
+    {
+      "center": 8,
+      "left": 1,
+      "right": 10,
+      "row_index": 3
+    },
+    {
+      "center": 9,
+      "left": 0,
+      "right": 1,
+      "row_index": 4
+    },
+    {
+      "center": 9,
+      "left": 0,
+      "right": 8,
+      "row_index": 4
+    },
+    {
+      "center": 10,
+      "left": 0,
+      "right": 4,
+      "row_index": 5
+    },
+    {
+      "center": 10,
+      "left": 0,
+      "right": 9,
+      "row_index": 5
+    }
+  ],
+  "normalization_anchors": [
+    0,
+    1
+  ],
+  "polynomials_sha256": "cffd7121f93e380b540e7ec32fbc689f3df6eb2e1892ea9032d6d8a3d88aa26e",
+  "relabeling": {
+    "0": 0,
+    "1": 1,
+    "10": 6,
+    "4": 2,
+    "7": 3,
+    "8": 4,
+    "9": 5
+  },
+  "results": [
+    {
+      "constant": "161392/81",
+      "constant_nonzero": true,
+      "degree": 8,
+      "elimination_generators": [
+        "81*u^8+10152*u^7+142002*u^6+164025*u^5-3726747*u^4-8551932*u^3+8845014*u^2-2707236*u+161392"
+      ],
+      "omitted": 8,
+      "primitive_consequence": "(9*u**2 + 102*u - 8)*(9*u**6 + 1026*u**5 + 4158*u**4 - 27987*u**3 - 93201*u**2 + 81186*u - 20174)/81",
+      "serialized_char_count": 100,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "1441/4",
+      "constant_nonzero": true,
+      "degree": 10,
+      "elimination_generators": [
+        "16*u^10-44*u^9-663*u^8+1649*u^7+7988*u^6-9477*u^5-20320*u^4+26801*u^3+6288*u^2-18002*u+5764"
+      ],
+      "omitted": 0,
+      "primitive_consequence": "(u - 1)*(u + 2)*(u**2 + 2*u - 2)*(16*u**2 + 4*u - 11)*(u**4 - 6*u**3 - 20*u**2 + 165*u - 131)/16",
+      "serialized_char_count": 96,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "-1441/4",
+      "constant_nonzero": true,
+      "degree": 16,
+      "elimination_generators": [
+        "64*u^16+6144*u^15+28384*u^14-161004*u^13-568120*u^12+1505413*u^11+1928330*u^10-6167819*u^9+219500*u^8+14372529*u^7-3785993*u^6-10319265*u^5+5316932*u^4+1079698*u^3-1269113*u^2+299528*u-23056"
+      ],
+      "omitted": 10,
+      "primitive_consequence": "(u**2 - 4*u + 1)*(u**2 + 4*u - 1)*(4*u**2 - 4*u - 11)*(16*u**10 + 1552*u**9 + 8948*u**8 - 2587*u**7 - 14650*u**6 + 44461*u**5 + 33312*u**4 - 49214*u**3 - 2987*u**2 + 11224*u - 2096)/64",
+      "serialized_char_count": 184,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "92224/9",
+      "constant_nonzero": true,
+      "degree": 16,
+      "elimination_generators": [
+        "9*u^16-105*u^15-314*u^14+7149*u^13+7650*u^12-196215*u^11+17308*u^10+1865354*u^9-500788*u^8-6798764*u^7+1317775*u^6+7553191*u^5-2292190*u^4-764888*u^3+1339496*u^2-806960*u+92224"
+      ],
+      "omitted": 4,
+      "primitive_consequence": "(9*u**16 - 105*u**15 - 314*u**14 + 7149*u**13 + 7650*u**12 - 196215*u**11 + 17308*u**10 + 1865354*u**9 - 500788*u**8 - 6798764*u**7 + 1317775*u**6 + 7553191*u**5 - 2292190*u**4 - 764888*u**3 + 1339496*u**2 - 806960*u + 92224)/9",
+      "serialized_char_count": 227,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "-1441",
+      "constant_nonzero": true,
+      "degree": 18,
+      "elimination_generators": [
+        "8*u^18+32*u^17-56*u^16-563*u^15-996*u^14+1932*u^13+10075*u^12+10225*u^11-18787*u^10-58572*u^9-24479*u^8+81077*u^7+49253*u^6-91779*u^5-33942*u^4+84956*u^3+30452*u^2-27308*u-11528"
+      ],
+      "omitted": 9,
+      "primitive_consequence": "(u - 1)*(u + 1)*(u + 2)*(2*u + 1)*(u**2 - 2*u - 2)*(u**2 + 2*u - 2)*(4*u**2 - 2*u - 11)*(u**8 + 2*u**7 + u**6 - 23*u**5 - 52*u**4 - 68*u**3 - 14*u**2 + 41*u - 131)/8",
+      "serialized_char_count": 165,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "-92224/625",
+      "constant_nonzero": true,
+      "degree": 19,
+      "elimination_generators": [
+        "625*u^19+16675*u^18-422596*u^17+3698306*u^16-18039362*u^15+56582937*u^14-120715544*u^13+174429977*u^12-150267559*u^11+10123498*u^10+196554109*u^9-357815392*u^8+393863040*u^7-316461207*u^6+196268826*u^5-95352333*u^4+35495748*u^3-9306148*u^2+1438624*u-92224"
+      ],
+      "omitted": 3,
+      "primitive_consequence": "(u - 1)*(u**2 - u + 1)**2*(u**2 + 44*u - 44)*(u**4 - 7*u**3 + 14*u**2 - 8*u + 1)*(625*u**8 - 4575*u**7 + 10454*u**6 - 7180*u**5 - 8541*u**4 + 18821*u**3 - 7839*u**2 + 7544*u - 2096)/625",
+      "serialized_char_count": 185,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "92224",
+      "constant_nonzero": true,
+      "degree": 22,
+      "elimination_generators": [
+        "u^22+35*u^21+443*u^20+2250*u^19-155*u^18-56027*u^17-299107*u^16-818421*u^15-1205396*u^14+6066*u^13+5078413*u^12+13664666*u^11+17132709*u^10+4532944*u^9-15333657*u^8-16967855*u^7+170929*u^6+9124936*u^5+3073868*u^4-1894908*u^3-979964*u^2+136864*u+92224"
+      ],
+      "omitted": 6,
+      "primitive_consequence": "(u**4 - 4*u**2 + 1)*(u**4 - 16*u**2 - 48*u - 44)*(u**14 + 35*u**13 + 463*u**12 + 2998*u**11 + 10764*u**10 + 25230*u**9 + 43474*u**8 + 45445*u**7 + 1108*u**6 - 50716*u**5 - 33145*u**4 + 13961*u**3 + 15549*u**2 - 824*u - 2096)",
+      "serialized_char_count": 224,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "constant": "-92224",
+      "constant_nonzero": true,
+      "degree": 23,
+      "elimination_generators": [
+        "u^23+20*u^22-141*u^21+42*u^20+97073*u^19+152261*u^18-11060949*u^17-8582393*u^16+392820670*u^15-830434204*u^14-202060693*u^13+2109867672*u^12-1753650119*u^11-518019339*u^10+1143166975*u^9-59078724*u^8-341194015*u^7+9369071*u^6+50026930*u^5+31067538*u^4-9373480*u^3-2893376*u^2-1280880*u-92224"
+      ],
+      "omitted": 5,
+      "primitive_consequence": "u**23 + 20*u**22 - 141*u**21 + 42*u**20 + 97073*u**19 + 152261*u**18 - 11060949*u**17 - 8582393*u**16 + 392820670*u**15 - 830434204*u**14 - 202060693*u**13 + 2109867672*u**12 - 1753650119*u**11 - 518019339*u**10 + 1143166975*u**9 - 59078724*u**8 - 341194015*u**7 + 9369071*u**6 + 50026930*u**5 + 31067538*u**4 - 9373480*u**3 - 2893376*u**2 - 1280880*u - 92224",
+      "serialized_char_count": 359,
+      "status": "CONSEQUENCE"
+    },
+    {
+      "omitted": 1,
+      "status": "NO_CONSEQUENCE"
+    },
+    {
+      "omitted": 2,
+      "status": "TIMEOUT"
+    },
+    {
+      "omitted": 7,
+      "status": "TIMEOUT"
+    }
+  ],
+  "schema": "p97-atail-shard-omitted-residual-search-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_elimination": true
+  },
+  "shard_index": 15,
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_large_five_circle_46_equality_checkpoint.json",
+  "source_checkpoint_sha256": "e9401708df27cfd779d6d42b51b5e89acf32f2b6da9717bc9315f74741b37222",
+  "variables": [
+    "x2x",
+    "x2y",
+    "x3x",
+    "x3y",
+    "x4x",
+    "x4y",
+    "x5x",
+    "x5y",
+    "x6x",
+    "x6y"
+  ]
+}

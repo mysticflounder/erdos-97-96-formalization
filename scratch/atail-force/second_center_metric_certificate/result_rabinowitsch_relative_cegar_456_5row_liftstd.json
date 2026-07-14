@@ -1,0 +1,17 @@
+{
+  "elapsed_seconds": 120.05,
+  "generator_sha256": "12185b487ef2f69c5d5b449c8d285d5ca7b9bf784fcdf9455edd7305777155e1",
+  "method": "liftstd_slimgb",
+  "operation": "certificate_extraction",
+  "returncode": -9,
+  "smoke_gates": {
+    "known_nonunit_membership": "NONUNIT",
+    "known_unit_certificate": "CANDIDATE_CERTIFICATE_EXTRACTED",
+    "known_unit_membership": "UNIT"
+  },
+  "status": "TIMEOUT_NO_VERDICT",
+  "stderr_bytes": 0,
+  "stdout_bytes": 0,
+  "target": "rabinowitsch_relative_cegar_456_5row",
+  "timeout_seconds": 120.0
+}

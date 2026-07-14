@@ -217,7 +217,7 @@ two-point strict opposite cap.  It supplies no uniform no-M44 replacement.
 
 **Conclusion: PROVEN as an applicability audit.**  The endpoint/strict-escape
 surface is useful in the exact-four cap branch but does not supply the missing
-card-at-least-12 producer.
+`CARD-GE-12` producer.
 
 ## Circularity audit
 
@@ -302,7 +302,7 @@ large cap is not contradictory.
 
 ## Smallest deciding computation if the critical-row route stalls
 
-The next finite computation should be a **card-12 exhaustive critical-row
+The next finite computation should be a **`CARD-EQ-12` exhaustive critical-row
 system census**, not another selected-four Q3 or scalar-kernel scan.  Card 12
 has only the cap profiles `(6,5,4)` and `(5,5,5)` after the existing ordered
 cap inequality.  For both profiles, quotient by simultaneous carrier/cap
@@ -320,7 +320,7 @@ symmetry and retain:
 6. the real coordinate equalities, disk/nonobtuse conditions, and
    distinctness separators.
 
-The decision question is whether every such card-12 system contains either:
+The decision question is whether every such `CARD-EQ-12` system contains either:
 
 - a repeated outside pair at two ordered-cap centers;
 - one of the already formalized metric cores; or

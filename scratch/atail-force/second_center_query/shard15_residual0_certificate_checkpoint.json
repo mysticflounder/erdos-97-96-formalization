@@ -1,0 +1,45 @@
+{
+  "normalization_anchors": [
+    0,
+    1
+  ],
+  "omitted": 0,
+  "omitted_polynomial": "-x2x^2-x2y^2+1",
+  "relabeling": {
+    "0": 0,
+    "1": 1,
+    "10": 6,
+    "4": 2,
+    "7": 3,
+    "8": 4,
+    "9": 5
+  },
+  "residual_constant": "1441/4",
+  "residual_degree": 10,
+  "residual_in_u": "16*u^10-44*u^9-663*u^8+1649*u^7+7988*u^6-9477*u^5-20320*u^4+26801*u^3+6288*u^2-18002*u+5764",
+  "schema": "p97-atail-shard-residual-certificate-profile-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "shard_index": 15,
+  "singular": {
+    "elapsed_seconds": 128.59472599999572,
+    "lift_max_coefficient_char_count": 57290260,
+    "lift_nonzero_coefficient_count": 10,
+    "lift_total_char_count": 186551878,
+    "remainder": "0",
+    "remainder_is_zero": true,
+    "returncode": 0,
+    "status": "COMPLETED",
+    "stderr": "",
+    "stdout_sha256": "c68ae55efb90c04e865d3dfb52a20262cbc708522b5c404d170771f1f3010986"
+  },
+  "source_equality_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_large_five_circle_46_equality_checkpoint.json",
+  "source_residual_checkpoint": "scratch/atail-force/second_center_query/shard15_omitted_residual_checkpoint.json",
+  "source_residual_checkpoint_sha256": "5d681105eb634724c90fee9edfb588804f757aa0fa8bc72d4fbfafaa40d4ad87",
+  "target_sha256": "b7ba63fb106f8f47cf8f63317cf21ec7bcc0f862a034d8a4395ea2135ea9a873"
+}

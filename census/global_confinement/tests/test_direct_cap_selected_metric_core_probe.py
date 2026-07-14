@@ -8,10 +8,16 @@ import hashlib
 import json
 import unittest
 
+from census.census_554.formalized_structural_oracle import (
+    FAMILIES,
+    FAMILY_BY_STAGE,
+)
 from census.global_confinement.direct_cap_selected_metric_core_probe import (
     DEFAULT_RESIDUAL_OUT,
     DEPENDENCIES,
     HERE,
+    METRIC_CORE_DETECTOR_STAGE_COUNT,
+    METRIC_CORE_FAMILY_COUNT,
     RESIDUAL_SCHEMA,
     _cap_filtered_rows,
     _residual_bank,
@@ -123,6 +129,15 @@ class DirectCapSelectedMetricCoreProbeTests(unittest.TestCase):
         )
         self.assertEqual(artifact["residual_pattern_count"], 0)
         self.assertEqual(artifact["residual_bank"], [])
+        self.assertEqual(METRIC_CORE_FAMILY_COUNT, len(FAMILIES))
+        self.assertEqual(METRIC_CORE_DETECTOR_STAGE_COUNT, len(FAMILY_BY_STAGE))
+        self.assertEqual(
+            artifact["scope"]["metric_core_count"], METRIC_CORE_FAMILY_COUNT
+        )
+        self.assertEqual(
+            artifact["scope"]["metric_core_detector_stage_count"],
+            METRIC_CORE_DETECTOR_STAGE_COUNT,
+        )
 
         for entry in artifact["residual_bank"]:
             canonical = json.dumps(

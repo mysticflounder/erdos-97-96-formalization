@@ -1,0 +1,3902 @@
+{
+  "cegar_checkpoint_sha256": "6eee04a8a3e395f5436f7f116b680aeab5514cc721c1361e646d2d51616ab03f",
+  "core_count": 34,
+  "cores": [
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "8edc8e998fdb63574310862c34b7f22da79b613ecdd9a0661fc261e0d44f9b2f",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,3,6,9",
+          "2:0,1,3,8",
+          "4:3,5,6,7",
+          "5:0,1,4,6",
+          "7:0,2,5,9",
+          "9:1,4,5,10"
+        ],
+        "canonical_sha256": "f35667af1ad1d93290e74666a2adac9de629e941ce885a3e4060bbb3bd228e93",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "58135b1e45525f5612093df78cc0b3dbefdbb34cd46c79cb590732b625ea2eea"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,6,8,9",
+          "2:4,5,8,9",
+          "3:0,2,7,8",
+          "6:0,1,3,4",
+          "7:0,6,9,10",
+          "8:1,2,4,7"
+        ],
+        "canonical_sha256": "bbc3251cd54359767a2dc5bcf00003239a63c322bf91b90695fe9c0ebf2606ae",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "a31f7b0f37e79eab8f2ac865999dc301e0c0a342188ec975f5d29b75ba8e154c"
+      },
+      "origin": "bootstrap",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": null,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "3:2,7,10,11",
+        "6:1,2,8,11",
+        "7:0,3,6,11",
+        "8:0,3,7,9",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "9b9f550293a7badabb53b6064dc8b5ff437b5cec02e34d5ca630631bd1886f33",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:3,5,6,8",
+          "11:0,2,6,7",
+          "1:4,5,7,11",
+          "2:5,6,9,10",
+          "3:0,1,5,11",
+          "7:1,2,5,10",
+          "9:1,3,7,10"
+        ],
+        "canonical_sha256": "329bff89a85e905e853522da7c60128174faeb87fc20bc3ce383eb0230e74d9d",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "42e4c56127998020fb5937a6bd63e84b18546a41598ed049d11254f3f5f2dd6f"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "11:1,2,4,8",
+          "1:5,6,8,11",
+          "2:1,3,5,9",
+          "3:0,5,7,8",
+          "4:2,8,9,10",
+          "7:0,4,9,11",
+          "9:0,3,4,8"
+        ],
+        "canonical_sha256": "e981e4c25d9dd506c76fec3f29e989325020e6b57ba5a5ad32e6637ec4afae2c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "658ecc5c94a8f8aeb5fbfe57dd6570ad44eaf4ce404796fef9d62532f5365479"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 0,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "7:0,3,6,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "281da0a18d786db79b8085b15313e8ae7e3b12e45b72e02e4eec1ba11e0dec84",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:3,5,6,10",
+          "10:4,5,6,7",
+          "1:0,3,4,8",
+          "3:0,1,2,6",
+          "5:1,3,4,9"
+        ],
+        "canonical_sha256": "ddb7b2b64eb399038d5c5d6428f4172a4423697a725594aa45af56ae8b861f96",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "6512452522f8a80941810e3f2437eb3db2e19d3b69fa93874e8d8cb80ae49cae"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:0,5,7,9",
+          "1:0,3,6,10",
+          "2:1,6,7,10",
+          "7:2,6,8,9",
+          "9:0,2,4,7"
+        ],
+        "canonical_sha256": "855823a7a16c9bf6464ba803d968734518c5076a6d5614040b1df1db51cd8890",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "29a740a792dec78dd32830a6f904ad7b868da7cd2237e6f5dc9ea4c8c1a0d466"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 1,
+      "row_count": 5,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:1,2,8,11",
+        "9:0,4,8,10",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "e70d613fda0286798cbc20cede40a11f8495a12d9ce380d5befb23ae975e0b95",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:1,7,8,9",
+          "1:2,3,5,8",
+          "2:0,3,4,9",
+          "4:0,1,5,7",
+          "5:2,4,6,7",
+          "8:0,3,7,10"
+        ],
+        "canonical_sha256": "9daac13bc7dfba0efbd99acf0cd7d1fc1a57e95844c59f8afdcf467fa83fe8d0",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "8841d5ff1b6f06a3b9b54f570472390fe47d3fcc10fe057c2ed29380c5b76e9c"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:2,3,4,5",
+          "3:4,6,9,10",
+          "4:1,2,6,8",
+          "5:2,7,8,9",
+          "6:0,3,8,9",
+          "8:0,1,5,9"
+        ],
+        "canonical_sha256": "605397e1bf8ccf00503d4fdd307db83466b54fba03f7442a44e1e5ca36a9e693",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7c19362eab72d6e94f8f2d8e39a32562206e7e5802346c8a830006b1d4cac417"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 2,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:2,4,7,9",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "db7312da953c8f10f73bcd3c3e066c00437f3006bc47824bf6d23f25e50b40a2",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:4,7,8,9",
+          "11:1,3,9,10",
+          "4:0,1,2,5",
+          "5:2,7,10,11",
+          "8:2,4,6,9",
+          "9:1,4,5,11"
+        ],
+        "canonical_sha256": "0ba6a4b59f57808ffeced0ea1327ef0fc6ee9b75b0f2f4916f219964a76ef65c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4ada534e6dcdcf64596ad5bd7f2dbb5779dc84a8461693669d179b45a3fa8e0a"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "11:3,6,8,9",
+          "3:2,7,8,10",
+          "4:1,3,6,11",
+          "5:0,4,6,10",
+          "6:3,5,7,10",
+          "7:1,4,5,8"
+        ],
+        "canonical_sha256": "6005b44443c628eb03d4a6c7db700a1af41c898490a22fb9d669d1cc2d6e2bed",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "003376d60c8cf8fa87e6da35c4f75ff098d5b94b1b9c8e19247cbc3e564468ae"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 3,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:2,7,9,11",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "bd039e9b35a092f4dfde244f5ac9fd0831f70986c9c1c3b13fbb4d4d5825bbb5",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "3:1,2,8,10",
+          "5:6,7,8,10",
+          "6:1,3,8,9",
+          "8:0,5,9,10",
+          "9:1,4,5,6"
+        ],
+        "canonical_sha256": "cd3df4aba23386400031207222ac9972d188334a82bb0836fcc4bc819ff07efa",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4371a3121e7d67c107b8de2b546842317e5a6cc2b4542522104de7bdbc2d5a41"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "1:4,6,7,10",
+          "5:1,2,3,6",
+          "6:0,3,5,7",
+          "7:1,4,5,8",
+          "8:3,4,5,9"
+        ],
+        "canonical_sha256": "ec95642528fb86b7cdc838ba54c06db9c085ed793ed60fa807ae032859bd1dcc",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "cbbc0b1e69dbc19d65eb7b4d5bdb2e0355a5a452ae0ba992b9fddb2cff577d5f"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 4,
+      "row_count": 5,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:2,8,10,11",
+        "9:0,4,8,10",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "5696f0ab21ff662199a6bd064006adb1e74954401b1786b0bb029b9a37328c69",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,4,7,11",
+          "2:3,4,6,11",
+          "3:2,9,10,11",
+          "4:3,5,7,9",
+          "5:3,4,8,10",
+          "7:0,1,5,11"
+        ],
+        "canonical_sha256": "ca1eb829a684cefcf48eaf712a02c3e89283e3ad75fc832b9a90afc1412ea2f7",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "438d968629a000afe2513697553fef1a6f77a63ef0882e572ea653ce22873794"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,4,5,8",
+          "11:0,4,6,9",
+          "2:5,7,8,9",
+          "7:2,5,10,11",
+          "8:0,3,5,9",
+          "9:0,1,7,11"
+        ],
+        "canonical_sha256": "4fce3156f98e58fb6dde2fc9c2200436454495242495bff5a5023b7d1e2739af",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "71978774c53ec895f8556cbf9ae7c0a3d8c76361030dc94f04b0c86dbfd43e59"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 5,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:3,8,10,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "8c234313b8fbcdb2b61c583a32b122a0036a9e0a737cea0bb81821991d3fceb1",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:4,5,7,10",
+          "10:1,2,4,8",
+          "11:0,3,4,9",
+          "2:1,6,10,11",
+          "3:5,7,8,11",
+          "4:1,7,8,9",
+          "7:1,3,4,5",
+          "8:2,3,7,11"
+        ],
+        "canonical_sha256": "2959ddae136d1598a42c50ea4ec32d125f69e1e323ba7a235694a3bd54ec7ba4",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "94f6725436a5ecd01bdf410204bd3f34a6ec5e1cc9a64d1aa41879986d651361"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,2,9,11",
+          "1:4,5,9,11",
+          "2:0,3,8,11",
+          "3:1,4,6,7",
+          "5:1,6,10,11",
+          "6:3,5,9,10",
+          "7:0,1,5,10",
+          "9:2,3,5,6"
+        ],
+        "canonical_sha256": "a6be9d5cc4c0c8e67c671bc1cd05d71a3cb17000dc41fca9e5b1a00d1c83c516",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "64198a9857c970bdcbe05eafd2881ecc838f10aa418a6d0cbf9ecfcf4f3e966b"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 6,
+      "row_count": 8,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "6:4,7,9,11",
+        "7:3,6,8,10",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "b99dc142f85bd229cf90e6649e695f6c58b22dd6ce25ce89edd80bbbe89c0724",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:0,3,5,9",
+          "11:1,2,3,4",
+          "2:4,5,7,10",
+          "4:3,6,7,11",
+          "7:4,5,6,8",
+          "8:4,6,9,11",
+          "9:2,3,10,11"
+        ],
+        "canonical_sha256": "620865c23f25b32f479fffcf21bb42760de85152a5478360f1ebedde6815270c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "856644f8ff6cfb14d406027018d543df28bee8c504daa84276a7b6e6c48b5d7d"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,7,8,9",
+          "2:4,7,10,11",
+          "3:0,1,4,9",
+          "5:2,3,4,9",
+          "7:2,5,8,10",
+          "8:5,6,9,10",
+          "9:1,3,8,10"
+        ],
+        "canonical_sha256": "eaa13362ab048ac1b2a0ed4b90ea14d28b0e1aeb6ff69e6016251fb9ca781188",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "9397a4e385ddc75984a68c083deafaf1a09e40e5ae1e016814306739456b3c22"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 7,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "7:3,6,8,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "99c236b868c45e4e4bd3e51e957cb467afdb7fbc95d2a2c5ec6a1cca9970eb60",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:5,7,8,11",
+          "11:2,3,5,9",
+          "1:4,6,9,10",
+          "3:1,7,8,9",
+          "4:0,5,6,8",
+          "5:1,3,4,8",
+          "6:0,3,10,11"
+        ],
+        "canonical_sha256": "6b625ab9c182075ef99434e793a353eaedef2c0e5617e0b1dee561863ecd3429",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "959527ec48d865660a3234a45bc11595423a850f3350489a72b289d0dbd9f572"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "11:2,5,7,8",
+          "1:3,5,6,11",
+          "2:0,6,7,9",
+          "4:0,1,8,11",
+          "5:2,3,6,10",
+          "6:1,3,4,7",
+          "7:0,3,4,10"
+        ],
+        "canonical_sha256": "7dbf737363035517f34fb38601b447ba6f24019299f75f32b6bc1045327f95ad",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "f3e9676d8746bc1a87af18f2fd381eed438966f2531f9d3710556f2703fd5ee3"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 8,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "5:0,2,4,11",
+        "6:5,7,9,11",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "6aedf83c68af8cc5d10898a88c947e6d88a85e548bcb451e3071653dd367e809",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "UNIT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "1:0,4,5,10",
+          "3:1,5,6,8",
+          "4:2,6,8,10",
+          "5:0,3,7,8",
+          "6:1,4,8,9",
+          "9:1,2,3,10"
+        ],
+        "canonical_sha256": "0ee34ac34618a5784a0d2fcd7c7c240d68164c1c94023af7f8d48f6e77b217c9",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "556469be5709e5c513029edb0bd9ebe6181bb65ac945a73351eaf4655a64bde4"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:5,8,9,10",
+          "1:0,2,5,7",
+          "2:4,6,7,9",
+          "3:1,4,7,8",
+          "6:1,2,3,9",
+          "8:0,1,6,9"
+        ],
+        "canonical_sha256": "1f8b862b10b9dc1829a25ef439a452cdda9bb0c2464fce274f0a5188b249408f",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "83e8c19c5ccb3d99d758eb68ba421721c94fe059e4a721b74e062fad3ad6bc36"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 9,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "4:2,3,7,10",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "e0c02577c9dec9735a21036760345c9d9e9a9145836cf274a89374c11f0cf9fe",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,5,7,11",
+          "10:2,4,5,6",
+          "1:0,4,7,9",
+          "3:0,1,5,9",
+          "5:2,3,8,9",
+          "6:1,3,7,10",
+          "7:1,9,10,11"
+        ],
+        "canonical_sha256": "d6c9187932485708bfb366cdff90018eb53e4d68be0ac9408bfff91a8dcb2bd9",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "a4cddd78048dbc74659489b8057ae3ca3bbe9b89ff9faa2b5f111e6f804ebf92"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,6,7,9",
+          "10:2,4,5,7",
+          "3:4,5,9,10",
+          "4:7,8,10,11",
+          "5:0,3,6,11",
+          "8:0,2,6,10",
+          "9:0,4,7,8"
+        ],
+        "canonical_sha256": "915d6446a7c7d4dcf36b2ff78ef58403c6943e069264f65fac7cdb8ee9b4c5e0",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "5c75d1ac48e8c214e8c76e9f87e1f8af07608b24c73ad7919f948faf1c977ba5"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 10,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "3:1,4,6,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "0fbe02f6ea55b7902c9c9d2ef7f979c7b7b3e3240f032b1e59b5829f35202657",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:4,5,8,11",
+          "10:0,1,6,7",
+          "11:1,3,8,9",
+          "1:0,2,9,11",
+          "2:0,5,9,10",
+          "5:2,4,6,9",
+          "7:1,2,5,6"
+        ],
+        "canonical_sha256": "2c5884c58d719a5e297651f64a760785e05e5703bc78ccf170afadb78a001987",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7e0db904c6ac7202fbc01a9d24828f640a191f0d01edb653ac6560c60ea9f372"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,3,4,5",
+          "10:2,3,7,9",
+          "1:3,8,10,11",
+          "3:1,2,4,11",
+          "5:1,9,10,11",
+          "8:0,4,5,10",
+          "9:5,6,7,11"
+        ],
+        "canonical_sha256": "f5eadd099abf9f92a0cb8c49c1b741767c88baccf94a9485107689211e4781d8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "f1dcb8b5c70d74fa74bce4c2bda54bc06afce430aa36c22e2631c0b549bd7ea4"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 11,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "4:2,3,10,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "adc2d5627a9e564b755a6f8ad6f05bf4cb3371a225f180c708778ada44ecf818",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:5,6,8,9",
+          "1:4,5,10,11",
+          "2:1,4,6,8",
+          "3:2,6,9,10",
+          "4:2,7,8,11",
+          "6:0,1,8,10",
+          "9:3,4,7,10"
+        ],
+        "canonical_sha256": "b6cce9443e169d8a64dbc9ad67aa665ca12104ce0930dd9fe6453de65b7758c8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c90d3f70391452f1713308b29c70150a3e95cdb3fa77a61b23e97b4165343158"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "1:3,4,5,10",
+          "2:7,9,10,11",
+          "3:0,1,6,10",
+          "4:1,2,7,8",
+          "6:1,2,5,11",
+          "8:1,3,4,9",
+          "9:2,3,6,10"
+        ],
+        "canonical_sha256": "3a23fbe3281a7ccd32bb2c931ee945f9d799ec1416e87b3e487521cc49c518ae",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c65c320133ab41931e934bc5bd337f1d61cf398319bab279b6425fa297d0d02f"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 12,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "3:1,5,8,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "94eaa99fd6c9f2c75b5d132dc0628ecebf8f53ef353f65cb080f05e799486e1a",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "11:3,6,8,10",
+          "1:2,5,6,11",
+          "3:0,4,10,11",
+          "4:1,2,3,11",
+          "6:2,7,8,10",
+          "8:0,2,3,9",
+          "9:0,1,7,10"
+        ],
+        "canonical_sha256": "cb9843c001fc6ddefc48f37903db25d54c5adce1722dff4109e217a386dbb7f3",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "6f7a654e9314dd5ddbde4e749809bb9fd9e403bc78893d95d678a56fa1116130"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,2,3,4",
+          "10:3,7,9,11",
+          "1:0,3,7,10",
+          "3:0,4,6,9",
+          "5:2,4,8,10",
+          "6:0,2,5,7",
+          "9:4,6,7,8"
+        ],
+        "canonical_sha256": "e49c43a500b59bdfe4663538b35b548a3c06a13476f07fb2f07b42e474af2f2b",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d6ecbc7126cbbd1ca0af5888ca281a44cb3a561752ae2923e105b0708075382c"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 13,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "5:1,2,8,11",
+        "7:0,4,6,11",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "5d9686da26f57429738fe15e8b56120e8c6abac35e1725596ba7ac58fa15d0c3",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,7,9,10",
+          "2:1,3,6,9",
+          "3:5,6,7,8",
+          "4:0,2,3,8",
+          "6:1,2,4,8",
+          "8:0,4,5,9"
+        ],
+        "canonical_sha256": "7a7e1820c1883d144d26f697b796fcbc59a703f4cd58693bea8085e1fa634f91",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "e8b9f107c8af1f26ff9e20749838e1480bee70636560b1887ba238e53d0da638"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:3,4,6,9",
+          "3:2,5,8,9",
+          "5:0,3,7,8",
+          "6:1,3,5,7",
+          "7:0,1,2,6",
+          "8:2,4,7,10"
+        ],
+        "canonical_sha256": "23f926791ae7ca6e6ee51ecf40d55bce4cf5cf05d2bea6a63ac4da1bbf0a7bbd",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "320f15d448648e2171598bef77569b30bf02108c8fc57bfc30f1ce6ab02e5623"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 14,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "5:2,6,10,11",
+        "6:5,7,9,11",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "2037dea4264d6d565574fabd5953a03ae48ffdfff743f82d59c158e9a9069594",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "11:1,2,4,5",
+          "2:5,6,9,10",
+          "3:0,4,7,10",
+          "4:2,3,6,10",
+          "5:1,2,8,10",
+          "6:0,3,5,8",
+          "7:0,1,6,11"
+        ],
+        "canonical_sha256": "f2492a9c7be4c52a030563a504c0b1f13d886f2bc82e6b5dd0fc4841115e2cba",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "33578bddf9a1d49f8c4640ec403caf1af9b41a62c9eca19ceb3b2a11363e670f"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "11:1,4,7,10",
+          "1:0,3,10,11",
+          "2:6,8,9,10",
+          "4:0,1,2,8",
+          "5:1,3,6,11",
+          "6:2,4,10,11",
+          "9:3,4,5,8"
+        ],
+        "canonical_sha256": "fccd29140a36570447eb75fd3a2160156078c97b34122f0ceb65ca58cc6b6daa",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "bd91a8b25f6f50be3fd6ad2b92f94b63cf7a3cd97e349a76e4f7f73825cd5c84"
+      },
+      "origin": "learned",
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "round": 15,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,5,6",
+        "2:0,1,9,10",
+        "5:3,6,10,11",
+        "8:0,3,7,9",
+        "9:0,4,8,10",
+        "10:1,6,7,8",
+        "11:2,3,8,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "b69307357d247d191246adc418bcafe375c8636ae5cd1d9939394f2aff05e86c",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:0,2,8,9",
+          "3:0,4,5,11",
+          "4:5,6,9,10",
+          "5:1,4,7,9",
+          "6:1,3,9,11",
+          "8:3,4,9,10",
+          "9:1,2,3,5"
+        ],
+        "canonical_sha256": "757991d3e7675ab12aeb7bc4a7c1f89390641bb3bc7e130cf3891dca8c4b3f19",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "640580a88bab6a94ca5259b3e59d68bddd0ad1df5399225bd6d3a5651d1aeb31"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:3,4,5,8",
+          "11:1,3,5,6",
+          "1:0,2,3,11",
+          "3:0,4,5,7",
+          "5:2,6,7,8",
+          "6:1,3,7,10",
+          "7:3,4,6,9"
+        ],
+        "canonical_sha256": "d03bc118241a3c0a6954e8399433123875b36f77d7ab4996cf81620b57041539",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "40b8f4f879087a1440e2867ff4fe521cdabe3870109ced4a7b8fd520bec5e0d0"
+      },
+      "origin": "bootstrap",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": null,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,6,7",
+        "5:0,3,8,11",
+        "6:1,5,7,11",
+        "7:2,5,8,9",
+        "8:4,7,9,11",
+        "10:3,5,7,9",
+        "11:1,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "7758aa88b0e305ad92b6cc04eb4102f6a1db94f1ae46bd6fb3099f77235294be",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "UNIT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:5,6,7,11",
+          "1:4,6,7,8",
+          "6:1,2,4,10",
+          "7:1,3,8,11",
+          "8:0,2,9,11",
+          "9:1,2,6,8"
+        ],
+        "canonical_sha256": "34ed13b103dcb7fc0d5956b2e3550705239b26a93130104f09229070ba34c6fd",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4d2eab27bd29e3c0cf251b8344fc7c6ed1661a1502b2bfcf34b7ff479d3e4af4"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:6,8,9,11",
+          "11:1,3,5,8",
+          "3:0,4,8,10",
+          "4:1,2,6,7",
+          "5:1,4,6,11",
+          "6:0,4,7,11"
+        ],
+        "canonical_sha256": "07719075d9bd8440a4d6716540d46c6cde1fce19897d43b604ac851ecc505198",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d0e4572b6646f7116a50a6df18264812173aafc7bb6ed3f566e225b4f0cd593f"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 0,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:4,7,9,11",
+        "9:0,3,5,10",
+        "10:1,5,9,11",
+        "11:1,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "929e54edc6acc9efc669ee5deec0b423f13b516e39373b6af9b8a6b6f695dbf4",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:1,2,3,11",
+          "10:4,5,7,11",
+          "11:0,2,6,10",
+          "2:1,6,7,9",
+          "6:0,1,8,10",
+          "9:2,7,10,11"
+        ],
+        "canonical_sha256": "690113191e74b9fc9ae79b9bb6439b55d5feac38ee7775a065acf5b4256485b2",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "3db93ec448cef078cf7a512a3d59194cf68ba499decb7b6c2f2f11e84c3210c7"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "1:0,2,9,10",
+          "2:1,3,4,6",
+          "3:0,4,5,8",
+          "4:1,5,6,7",
+          "6:2,3,5,11",
+          "8:0,1,2,3"
+        ],
+        "canonical_sha256": "2faa256f210b45187a10bcaac6d2b1cc494cb5c6db5578a9a68c3008b352fd19",
+        "permutation_count": 2,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "fbd22415b82de47abede2bf36059bcfba6c4205e2a8cc0ead53e3716c41776c0"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 1,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:4,7,9,11",
+        "9:0,3,5,10",
+        "10:1,6,9,11",
+        "11:1,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "879ee61cc338b68a287528cf8ea828d05775c9ab12c2181a3f888c6cd1229325",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:0,3,4,8",
+          "11:1,4,8,10",
+          "1:6,7,8,11",
+          "2:3,4,6,9",
+          "4:0,1,2,10",
+          "6:0,9,10,11",
+          "7:2,5,6,10",
+          "9:0,5,6,8"
+        ],
+        "canonical_sha256": "928a61e7ff22ef03bc41f12fb726abff8a7acb30fdb8ba1c47623e1a3a548ee4",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4d66579c99cb74bfefb464395579782575aa7470cf7160688d13898fd1947996"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:0,2,3,6",
+          "1:0,5,9,11",
+          "2:4,8,9,11",
+          "3:1,7,9,10",
+          "4:3,5,6,9",
+          "6:0,7,10,11",
+          "8:2,6,10,11",
+          "9:0,1,6,8"
+        ],
+        "canonical_sha256": "8afa3869f51bfeabec7d77c89ca405884bec21951909785311a1b2abcf154e81",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7202ee099888315e40b2c501fa701596fdafb014f5bb61bb0d4b7475db3ebaeb"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 2,
+      "row_count": 8,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:4,7,9,11",
+        "7:2,5,8,9",
+        "8:0,4,5,7",
+        "9:0,3,5,10",
+        "10:1,5,9,11",
+        "11:3,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "0c1b16586b7b08eedda387e9324d67fc3ce269c03347550e4351a14966f55750",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:1,5,8,9",
+          "10:2,6,8,11",
+          "11:0,1,3,10",
+          "1:0,4,7,9",
+          "2:0,4,8,11",
+          "5:6,7,8,10",
+          "6:0,2,5,7",
+          "8:3,7,9,10"
+        ],
+        "canonical_sha256": "6385674402205c84dd11c29013538e4b4ba56d478356b3973b654020bf122e21",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "e64bca982e2cf545f0b1cebe424dc8e043cbe88f7fbb6cdf83ba1e5b6d73379e"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:3,4,6,7",
+          "10:2,3,9,11",
+          "11:0,5,7,10",
+          "4:2,6,8,10",
+          "5:4,8,9,11",
+          "6:0,3,10,11",
+          "7:1,4,5,10",
+          "8:1,2,3,4"
+        ],
+        "canonical_sha256": "c2fe8aff7d3e6e0634d4f68d8f9f7cf297b044b6f8245f435b10e7038654015d",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "4db16414da7e2edf9c45b15fc66bea38eefe01cfcfe8d0e50a039ea958dd27d7"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 3,
+      "row_count": 8,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:4,7,9,11",
+        "7:2,5,8,9",
+        "8:0,4,5,7",
+        "9:0,3,5,10",
+        "10:1,6,9,11",
+        "11:3,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "6952669364c56fa23ad5e4cc603a4858231a4ee3bbec371de9d17744961c5f2f",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "1:0,6,7,8",
+          "3:2,4,8,9",
+          "6:0,1,2,5",
+          "7:1,3,8,9",
+          "8:2,3,6,7"
+        ],
+        "canonical_sha256": "905c6517c15ef43d2ee15bc4824c14e8d9adc800938ffb233deb80697aaf74f4",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "2316eb2f678d97faffc7ebb3c8165ae02d870058c51ac7c14cacac71d84e4f16"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "3:2,4,6,8",
+          "4:0,6,8,9",
+          "6:0,2,3,7",
+          "8:3,4,5,9",
+          "9:0,1,4,5"
+        ],
+        "canonical_sha256": "0ae48f11b471bc60cc4da2178eff8f855b2d5bf22653687bca91c819c43e5487",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c1f671013b140c5ff81cd715bc11e57ce4701d8cdb0275cda1a5dc537d8461a9"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 4,
+      "row_count": 5,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "9:2,8,10,11",
+        "10:1,7,9,11",
+        "11:4,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "a16b69e5c5491d4ce07eb8b3e55d3bb9c283b3649430d300443457e4ed248f53",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:1,2,8,10",
+          "1:2,3,7,9",
+          "2:1,4,7,8",
+          "3:0,1,5,9",
+          "4:0,2,3,10",
+          "8:4,5,6,7"
+        ],
+        "canonical_sha256": "ef644ad109b0aceea2da429d358b3f5ee7d8d738dbe147ec85878a4672476e5c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "a2c25904d7ba8d825c593bc1bfbe758a46496ea16befe8eb413b7cff5a2bf5dc"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:1,2,3,8",
+          "1:2,4,5,8",
+          "2:0,6,9,10",
+          "3:7,8,9,10",
+          "6:0,1,3,10",
+          "9:3,5,6,7"
+        ],
+        "canonical_sha256": "d1beb9b5eb2ce7345a794a9ab01838512ec23145efa244206cdd3ce3fcf102e3",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "a6411bbaf41d9613b2921137414c84369054b3e192b1ff199a7e73d66cdaaf88"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 5,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "7:2,5,8,10",
+        "8:4,6,9,11",
+        "10:2,8,9,11",
+        "11:1,5,7,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "57af7f5ee946ef681916f46dcf2fb14dc7e67e0c0211ad88eb7e003b03d34895",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:5,7,8,9",
+          "2:4,6,8,9",
+          "5:0,3,6,8",
+          "6:3,4,8,10",
+          "8:2,3,5,9",
+          "9:1,6,7,10"
+        ],
+        "canonical_sha256": "d1e2b36f05380c9b80e9be31e889f6614105b978e8529d87cb16b28e929b4fc8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d7390167b74cc380ca93b9cbc4020bb743f831e5b12f61e489ebc4e8e909b0c8"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,8,9,10",
+          "1:0,4,5,8",
+          "3:0,5,6,9",
+          "4:2,5,7,9",
+          "5:0,2,3,4",
+          "9:1,2,5,6"
+        ],
+        "canonical_sha256": "2ad92585d56de18fafdb3fa39582ee4c274cc6a8370abb9878e161765286e480",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d8eafb3d6de11f0e7e97fcdf98dded0f1f98802060e185fefdfb0544eb4d9e0c"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 6,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "7:2,5,8,10",
+        "9:3,7,8,10",
+        "10:1,8,9,11",
+        "11:1,5,7,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "7d16632633f325ca675b4ce90909f1622d0dc61b059208b026e60fd30d74d0d5",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:2,5,7,11",
+          "11:3,4,5,7",
+          "2:1,4,6,11",
+          "3:1,7,9,10",
+          "4:2,6,7,8",
+          "7:3,4,8,10",
+          "8:0,3,7,11"
+        ],
+        "canonical_sha256": "c029f265ce22c564d3eed007eec8a2283e8ab31680b2fd59c1e1cf179429d53a",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "8ed9b90a947bccb2c7059068b9902025b469eef32c3e5a27df17c8997d71a64d"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,6,7,11",
+          "10:0,1,2,3",
+          "1:0,7,8,10",
+          "3:0,1,4,8",
+          "5:3,6,8,9",
+          "7:1,3,4,5",
+          "8:1,5,9,10"
+        ],
+        "canonical_sha256": "415f07d775b94e91e8d2cac3ba939601dfb17e71e11aa0bf85f3fa7ddb77b9c9",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "3fa345d40b440ad2b98aafc6e4f574bfd04ca3258ef76c84a4ee84a805a42e0d"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 7,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "7:2,5,8,10",
+        "8:4,6,10,11",
+        "9:3,7,8,10",
+        "10:2,8,9,11",
+        "11:1,5,7,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "03f9ed8f2de6d13d716234a544f401cd48d5747f82dfbae1db6f3d073cca61d5",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:4,5,6,8",
+          "2:0,1,8,10",
+          "3:4,5,7,10",
+          "5:0,2,3,9",
+          "8:1,2,3,5",
+          "9:2,5,6,10"
+        ],
+        "canonical_sha256": "5f7f35e888b606b8773a2e82582e6a85c7b4ddf44616894a00180f0ee983cff2",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "21e8ffaf287b542cd5f0c5d406e997cf10cbfb00358464fa8996d085b8d5aebf"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:2,3,9,10",
+          "1:0,2,7,10",
+          "2:1,4,6,8",
+          "6:0,4,5,9",
+          "8:0,2,3,6",
+          "9:1,2,5,6"
+        ],
+        "canonical_sha256": "b9889ef0a747350bba95fa08ca49a87ec0f78094393a7d865f0ae2f57697a9b6",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7e4b5a12abf30506656aa9b8830fd08bc0282c572825683bc4e60ad28b7972f0"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 8,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "7:2,5,8,10",
+        "9:3,7,8,10",
+        "10:1,6,9,11",
+        "11:1,5,7,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "94b2360d63dbc20f5177569237a6c2253c2ce059305330edfdd06ac05cec6c85",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:0,3,5,9",
+          "11:2,3,4,9",
+          "2:1,3,10,11",
+          "5:3,6,7,8",
+          "7:5,8,9,11",
+          "9:2,7,10,11"
+        ],
+        "canonical_sha256": "94120de9c89e1fe3ab8f24e842652763d264f78acad3d6f1f6845482e459961a",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "bac8a5e13422d61fa4fe65c10e2299bdfe3ef18d610bd87b3123b504c4d4d68f"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:3,5,6,10",
+          "3:0,1,6,8",
+          "4:2,6,7,9",
+          "5:0,3,8,9",
+          "8:4,5,6,11",
+          "9:0,4,5,7"
+        ],
+        "canonical_sha256": "cab61cd41ac9cdfa14a61a5edc6b7b1890064fee01f8f9305149b0d218cef765",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "c892424ea4a04472dd3598d1138fc40b001bb4c5251304d1d709ad63d5951217"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 9,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "8:4,7,9,11",
+        "9:3,7,8,10",
+        "10:2,8,9,11",
+        "11:1,5,7,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "5580c6a4f25e54665fc4b503c4aa239cb8ba79090d4cd0ac2fb2c90aedc538e3",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,4,8,10",
+          "10:0,7,8,11",
+          "11:1,5,6,8",
+          "1:0,4,6,11",
+          "2:1,7,8,9",
+          "4:1,2,7,11",
+          "5:2,3,6,9",
+          "6:0,2,5,8",
+          "7:0,1,4,9"
+        ],
+        "canonical_sha256": "d145ad00ebc54b4c8aa0748b6e6618da26c317a0ca3b4659facc6c9fb00eb1d8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "34192d212058e0386a83f691f7bbe85dad35d7ada2306aeaf2d70b564ab0aae2"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:2,6,7,8",
+          "1:0,3,9,11",
+          "2:0,1,7,9",
+          "4:1,8,10,11",
+          "5:3,6,7,9",
+          "6:1,2,3,5",
+          "7:0,3,4,8",
+          "8:1,3,4,6",
+          "9:0,2,6,11"
+        ],
+        "canonical_sha256": "49b6a625d16f4510858e7d2782aa2823ba3e5895c3e4f8031a80cad2e55bd79c",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d4227842421c519e046126762867c8daa5dfaf163e50e9145440c3a2e6308271"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 10,
+      "row_count": 9,
+      "rows": [
+        "1:0,2,6,7",
+        "3:4,5,10,11",
+        "4:1,5,6,8",
+        "6:1,5,7,11",
+        "7:2,5,8,10",
+        "8:4,6,9,11",
+        "9:4,7,8,10",
+        "10:2,8,9,11",
+        "11:3,5,7,9"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "2c7931c50054a608d1cec4bff4d7255cd5b8fcdabd82ebe56032457f4c2f9742",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:2,5,9,10",
+          "10:2,6,8,9",
+          "11:0,4,7,10",
+          "1:4,5,6,7",
+          "2:3,4,10,11",
+          "4:1,2,7,8",
+          "5:0,7,9,11"
+        ],
+        "canonical_sha256": "c0c991ed021f60f21ddff3cc601ab6b712e04b523eb484d9ee1fe847d7e02b04",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7b22ade525465e4331767800cefd05510700109edd21485d9e679846024ed552"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,5,7,10",
+          "10:0,4,7,8",
+          "11:0,2,5,6",
+          "1:5,6,8,10",
+          "4:1,3,6,8",
+          "6:4,5,9,11",
+          "8:2,4,7,9"
+        ],
+        "canonical_sha256": "67ca1ce4d3bbc77cbf17c4d5c83ad5aafa198739eec24fe63efa221a6497abbe",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "aea3c6497c471a9488fbe67e50c82ebd392e2106f241fd94f0e52568eb009d23"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 11,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:2,7,9,11",
+        "8:1,5,7,11",
+        "9:0,3,5,10",
+        "10:4,6,9,11",
+        "11:3,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "UNDECIDED",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "7fa2b12b75e910c56ae1c5a314ebfd49999f5ff6f024f7fdc76a55b808860f1e",
+        "real_consequence": "UNDECIDED",
+        "status": "UNDECIDED_FAIL_CLOSED",
+        "verdicts_singular_msolve_forward_reverse": [
+          "TIMEOUT",
+          "TIMEOUT",
+          "TIMEOUT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "10:1,2,4,5",
+          "11:2,3,8,9",
+          "1:0,6,9,10",
+          "2:5,8,10,11",
+          "3:0,4,7,8",
+          "4:1,2,7,8",
+          "7:0,1,3,10"
+        ],
+        "canonical_sha256": "d5aaf1e106403fb6b57a5e142c845801b8195efee1f81c4c0f5d3bf068ad5df7",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "23e9fbffa2c8ab3d6f3bdaa7b8722be74a6325cf97aae41447422e6319620ff2"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:1,4,7,11",
+          "11:0,6,8,10",
+          "1:3,4,5,11",
+          "2:3,4,6,9",
+          "4:0,2,3,7",
+          "5:0,8,9,11",
+          "9:1,3,5,8"
+        ],
+        "canonical_sha256": "a01bd5f0e663be96a66e76e91083669955fc2f70984349c97199ecd62852b5b8",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "a6aa3d6858a08f2c636ac8d43f95e1dab609bc452c2718282e8d64f9a1a9b408"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 12,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "6:2,7,9,11",
+        "8:1,5,7,11",
+        "9:0,3,5,10",
+        "10:4,6,9,11",
+        "11:4,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "ed64ec2e0ce6ca9730d6a70ed94f0e03b1e233e23569041dd20a8b0e10f3feca",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:1,4,5,6",
+          "10:6,7,8,9",
+          "11:0,4,6,10",
+          "2:0,4,8,11",
+          "4:2,3,7,11",
+          "7:5,6,10,11"
+        ],
+        "canonical_sha256": "56042a51d215cf7094f69cb77f4cff2ca85172e284cdb35a73c627871dee6445",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "d6b78e9eb076b1a9fca1208d461e7c3aca3ddc53b82bfa5608279a97dff6cd4a"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:1,4,8,9",
+          "11:1,2,6,9",
+          "3:0,4,6,11",
+          "4:1,6,8,11",
+          "6:3,4,7,10",
+          "8:0,1,5,10"
+        ],
+        "canonical_sha256": "2615bb6814e91171068d41a3006846006bcde642861e4094de2e853d6c2d1482",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "71fb6469e2990f68fbc523d983077aff6d0b538f4a9f733dd71ef4adfe2de2bd"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 13,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "6:1,5,7,11",
+        "8:3,5,7,10",
+        "9:2,8,10,11",
+        "10:4,6,9,11",
+        "11:1,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "e58681b967dcd5265aa95afa705f9bc40ec439e5b26d2c0509416541db4e6bd1",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "0:5,6,8,11",
+          "10:2,5,7,11",
+          "2:0,5,6,7",
+          "4:0,2,6,9",
+          "6:1,2,4,5",
+          "7:3,5,9,10"
+        ],
+        "canonical_sha256": "67ba11a58042762a4f55b7fed39c9ec23033d98944d0b04b41c5afc72ac212ac",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "06bb92968a6f2d69d76808c3766ada80fd52c5b33025a1a075344ed2e36f2168"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "0:2,4,9,10",
+          "11:0,1,8,10",
+          "2:0,4,6,11",
+          "3:1,4,7,10",
+          "4:0,7,10,11",
+          "7:3,5,6,10"
+        ],
+        "canonical_sha256": "f68171d05dac1dd8afd58b22a998238f81600b796c6e885ec632b086bfd24e16",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "db87998e1fcaff94184699fccca10534703bbcacddda41d9f0c58aee69724c8b"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 14,
+      "row_count": 6,
+      "rows": [
+        "1:0,2,6,7",
+        "6:1,5,7,11",
+        "8:3,5,7,10",
+        "9:2,8,10,11",
+        "10:4,7,9,11",
+        "11:1,7,8,10"
+      ]
+    },
+    {
+      "collapse_01": {
+        "complex_consequence": "SQUARED_SEPARATION_0_1_IS_ZERO_NOT_LITERAL_POINT_EQUALITY",
+        "distinguished_pair": [
+          0,
+          1
+        ],
+        "expanded_rabinowitsch_system_sha256": "00f0c14d480f7dc2142539d3d516ac726606184bf1597128a9e08030ba5373cf",
+        "real_consequence": "POINT_0_EQUALS_POINT_1",
+        "status": "CROSSCHECKED_FORCED_ZERO_SQUARED_DISTANCE",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "distinguished_01_incidence": {
+        "canonical_rows": [
+          "11:0,1,5,8",
+          "3:5,6,9,11",
+          "4:2,7,10,11",
+          "5:3,4,8,11",
+          "7:0,2,4,5",
+          "8:0,4,7,11",
+          "9:1,3,6,7"
+        ],
+        "canonical_sha256": "5036a1231be073d051d383b9fa659a9cc98bec63478d03401f5fcf90dc02a74b",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "3c7a81c6e55219f77727cad13bf2acce18c88d618d60b6d969b902a06d141c91"
+      },
+      "free_relabeling_incidence": {
+        "canonical_rows": [
+          "10:4,5,9,11",
+          "11:1,2,3,4",
+          "3:1,6,10,11",
+          "4:5,6,8,10",
+          "5:3,4,6,11",
+          "7:0,3,8,9",
+          "9:0,4,7,10"
+        ],
+        "canonical_sha256": "ec0997f47c5644f5dd6a4d4c35d60342274379d879201c819aea10234b112131",
+        "permutation_count": 1,
+        "status": "EXACT_CANONICAL",
+        "wl_sha256": "7916c88974effaae1ec16a636f13df856a58260cb768134d5741961aae950fc3"
+      },
+      "origin": "learned",
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "round": 15,
+      "row_count": 7,
+      "rows": [
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "7:4,5,8,9",
+        "8:3,5,7,10",
+        "9:2,8,10,11",
+        "10:4,6,9,11",
+        "11:4,7,8,10"
+      ]
+    }
+  ],
+  "five_row_motifs": {
+    "core_count": 3,
+    "distinct_exact_types_preserving_0_and_1": 3,
+    "distinct_exact_types_under_free_point_relabeling": 3,
+    "largest_literal_shared_row_backbone": {
+      "note": "Literal means the original card-12 labels are fixed; this is not an additional isomorphism claim.",
+      "pairs": [
+        {
+          "left": {
+            "origin": "learned",
+            "profile": [
+              4,
+              5,
+              6
+            ],
+            "round": 1
+          },
+          "right": {
+            "origin": "learned",
+            "profile": [
+              4,
+              5,
+              6
+            ],
+            "round": 4
+          },
+          "shared_row_count": 4,
+          "shared_rows": [
+            "10:1,6,7,8",
+            "1:0,2,5,6",
+            "2:0,1,9,10",
+            "9:0,4,8,10"
+          ]
+        }
+      ],
+      "row_count": 4
+    },
+    "recurring_distinguished_hinge": {
+      "description": "row(center=1) supports {0,2}; row(center=2) supports {0,1}",
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 1
+        },
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 4
+        },
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 4
+        }
+      ],
+      "multiplicity": 3
+    },
+    "repeated_exact_types_preserving_0_and_1": 0,
+    "repeated_exact_types_under_free_point_relabeling": 0
+  },
+  "groups_preserving_0_and_1": [
+    {
+      "canonical_rows": [
+        "10:4,7,8,9",
+        "11:1,3,9,10",
+        "4:0,1,2,5",
+        "5:2,7,10,11",
+        "8:2,4,6,9",
+        "9:1,4,5,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 3,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "0ba6a4b59f57808ffeced0ea1327ef0fc6ee9b75b0f2f4916f219964a76ef65c"
+    },
+    {
+      "canonical_rows": [
+        "1:0,4,5,10",
+        "3:1,5,6,8",
+        "4:2,6,8,10",
+        "5:0,3,7,8",
+        "6:1,4,8,9",
+        "9:1,2,3,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 9,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "0ee34ac34618a5784a0d2fcd7c7c240d68164c1c94023af7f8d48f6e77b217c9"
+    },
+    {
+      "canonical_rows": [
+        "0:4,5,7,10",
+        "10:1,2,4,8",
+        "11:0,3,4,9",
+        "2:1,6,10,11",
+        "3:5,7,8,11",
+        "4:1,7,8,9",
+        "7:1,3,4,5",
+        "8:2,3,7,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 6,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "2959ddae136d1598a42c50ea4ec32d125f69e1e323ba7a235694a3bd54ec7ba4"
+    },
+    {
+      "canonical_rows": [
+        "0:4,5,8,11",
+        "10:0,1,6,7",
+        "11:1,3,8,9",
+        "1:0,2,9,11",
+        "2:0,5,9,10",
+        "5:2,4,6,9",
+        "7:1,2,5,6"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 11,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "2c5884c58d719a5e297651f64a760785e05e5703bc78ccf170afadb78a001987"
+    },
+    {
+      "canonical_rows": [
+        "0:3,5,6,8",
+        "11:0,2,6,7",
+        "1:4,5,7,11",
+        "2:5,6,9,10",
+        "3:0,1,5,11",
+        "7:1,2,5,10",
+        "9:1,3,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 0,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "329bff89a85e905e853522da7c60128174faeb87fc20bc3ce383eb0230e74d9d"
+    },
+    {
+      "canonical_rows": [
+        "0:5,6,7,11",
+        "1:4,6,7,8",
+        "6:1,2,4,10",
+        "7:1,3,8,11",
+        "8:0,2,9,11",
+        "9:1,2,6,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 0,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "34ed13b103dcb7fc0d5956b2e3550705239b26a93130104f09229070ba34c6fd"
+    },
+    {
+      "canonical_rows": [
+        "11:0,1,5,8",
+        "3:5,6,9,11",
+        "4:2,7,10,11",
+        "5:3,4,8,11",
+        "7:0,2,4,5",
+        "8:0,4,7,11",
+        "9:1,3,6,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 15,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "5036a1231be073d051d383b9fa659a9cc98bec63478d03401f5fcf90dc02a74b"
+    },
+    {
+      "canonical_rows": [
+        "0:1,4,5,6",
+        "10:6,7,8,9",
+        "11:0,4,6,10",
+        "2:0,4,8,11",
+        "4:2,3,7,11",
+        "7:5,6,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 13,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "56042a51d215cf7094f69cb77f4cff2ca85172e284cdb35a73c627871dee6445"
+    },
+    {
+      "canonical_rows": [
+        "10:4,5,6,8",
+        "2:0,1,8,10",
+        "3:4,5,7,10",
+        "5:0,2,3,9",
+        "8:1,2,3,5",
+        "9:2,5,6,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 8,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "5f7f35e888b606b8773a2e82582e6a85c7b4ddf44616894a00180f0ee983cff2"
+    },
+    {
+      "canonical_rows": [
+        "10:0,3,5,9",
+        "11:1,2,3,4",
+        "2:4,5,7,10",
+        "4:3,6,7,11",
+        "7:4,5,6,8",
+        "8:4,6,9,11",
+        "9:2,3,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 7,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "620865c23f25b32f479fffcf21bb42760de85152a5478360f1ebedde6815270c"
+    },
+    {
+      "canonical_rows": [
+        "0:1,5,8,9",
+        "10:2,6,8,11",
+        "11:0,1,3,10",
+        "1:0,4,7,9",
+        "2:0,4,8,11",
+        "5:6,7,8,10",
+        "6:0,2,5,7",
+        "8:3,7,9,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 3,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "6385674402205c84dd11c29013538e4b4ba56d478356b3973b654020bf122e21"
+    },
+    {
+      "canonical_rows": [
+        "0:5,6,8,11",
+        "10:2,5,7,11",
+        "2:0,5,6,7",
+        "4:0,2,6,9",
+        "6:1,2,4,5",
+        "7:3,5,9,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 14,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "67ba11a58042762a4f55b7fed39c9ec23033d98944d0b04b41c5afc72ac212ac"
+    },
+    {
+      "canonical_rows": [
+        "0:1,2,3,11",
+        "10:4,5,7,11",
+        "11:0,2,6,10",
+        "2:1,6,7,9",
+        "6:0,1,8,10",
+        "9:2,7,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 1,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "690113191e74b9fc9ae79b9bb6439b55d5feac38ee7775a065acf5b4256485b2"
+    },
+    {
+      "canonical_rows": [
+        "0:5,7,8,11",
+        "11:2,3,5,9",
+        "1:4,6,9,10",
+        "3:1,7,8,9",
+        "4:0,5,6,8",
+        "5:1,3,4,8",
+        "6:0,3,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 8,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "6b625ab9c182075ef99434e793a353eaedef2c0e5617e0b1dee561863ecd3429"
+    },
+    {
+      "canonical_rows": [
+        "10:0,2,8,9",
+        "3:0,4,5,11",
+        "4:5,6,9,10",
+        "5:1,4,7,9",
+        "6:1,3,9,11",
+        "8:3,4,9,10",
+        "9:1,2,3,5"
+      ],
+      "members": [
+        {
+          "origin": "bootstrap",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": null,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "757991d3e7675ab12aeb7bc4a7c1f89390641bb3bc7e130cf3891dca8c4b3f19"
+    },
+    {
+      "canonical_rows": [
+        "0:2,7,9,10",
+        "2:1,3,6,9",
+        "3:5,6,7,8",
+        "4:0,2,3,8",
+        "6:1,2,4,8",
+        "8:0,4,5,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 14,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "7a7e1820c1883d144d26f697b796fcbc59a703f4cd58693bea8085e1fa634f91"
+    },
+    {
+      "canonical_rows": [
+        "1:0,6,7,8",
+        "3:2,4,8,9",
+        "6:0,1,2,5",
+        "7:1,3,8,9",
+        "8:2,3,6,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 4,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "905c6517c15ef43d2ee15bc4824c14e8d9adc800938ffb233deb80697aaf74f4"
+    },
+    {
+      "canonical_rows": [
+        "10:0,3,4,8",
+        "11:1,4,8,10",
+        "1:6,7,8,11",
+        "2:3,4,6,9",
+        "4:0,1,2,10",
+        "6:0,9,10,11",
+        "7:2,5,6,10",
+        "9:0,5,6,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 2,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "928a61e7ff22ef03bc41f12fb726abff8a7acb30fdb8ba1c47623e1a3a548ee4"
+    },
+    {
+      "canonical_rows": [
+        "10:0,3,5,9",
+        "11:2,3,4,9",
+        "2:1,3,10,11",
+        "5:3,6,7,8",
+        "7:5,8,9,11",
+        "9:2,7,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 9,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "94120de9c89e1fe3ab8f24e842652763d264f78acad3d6f1f6845482e459961a"
+    },
+    {
+      "canonical_rows": [
+        "0:1,7,8,9",
+        "1:2,3,5,8",
+        "2:0,3,4,9",
+        "4:0,1,5,7",
+        "5:2,4,6,7",
+        "8:0,3,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 2,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "9daac13bc7dfba0efbd99acf0cd7d1fc1a57e95844c59f8afdcf467fa83fe8d0"
+    },
+    {
+      "canonical_rows": [
+        "10:5,6,8,9",
+        "1:4,5,10,11",
+        "2:1,4,6,8",
+        "3:2,6,9,10",
+        "4:2,7,8,11",
+        "6:0,1,8,10",
+        "9:3,4,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 12,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "b6cce9443e169d8a64dbc9ad67aa665ca12104ce0930dd9fe6453de65b7758c8"
+    },
+    {
+      "canonical_rows": [
+        "10:2,5,7,11",
+        "11:3,4,5,7",
+        "2:1,4,6,11",
+        "3:1,7,9,10",
+        "4:2,6,7,8",
+        "7:3,4,8,10",
+        "8:0,3,7,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 7,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "c029f265ce22c564d3eed007eec8a2283e8ab31680b2fd59c1e1cf179429d53a"
+    },
+    {
+      "canonical_rows": [
+        "0:2,5,9,10",
+        "10:2,6,8,9",
+        "11:0,4,7,10",
+        "1:4,5,6,7",
+        "2:3,4,10,11",
+        "4:1,2,7,8",
+        "5:0,7,9,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 11,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "c0c991ed021f60f21ddff3cc601ab6b712e04b523eb484d9ee1fe847d7e02b04"
+    },
+    {
+      "canonical_rows": [
+        "0:2,4,7,11",
+        "2:3,4,6,11",
+        "3:2,9,10,11",
+        "4:3,5,7,9",
+        "5:3,4,8,10",
+        "7:0,1,5,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 5,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "ca1eb829a684cefcf48eaf712a02c3e89283e3ad75fc832b9a90afc1412ea2f7"
+    },
+    {
+      "canonical_rows": [
+        "11:3,6,8,10",
+        "1:2,5,6,11",
+        "3:0,4,10,11",
+        "4:1,2,3,11",
+        "6:2,7,8,10",
+        "8:0,2,3,9",
+        "9:0,1,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 13,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "cb9843c001fc6ddefc48f37903db25d54c5adce1722dff4109e217a386dbb7f3"
+    },
+    {
+      "canonical_rows": [
+        "3:1,2,8,10",
+        "5:6,7,8,10",
+        "6:1,3,8,9",
+        "8:0,5,9,10",
+        "9:1,4,5,6"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 4,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "cd3df4aba23386400031207222ac9972d188334a82bb0836fcc4bc819ff07efa"
+    },
+    {
+      "canonical_rows": [
+        "0:2,4,8,10",
+        "10:0,7,8,11",
+        "11:1,5,6,8",
+        "1:0,4,6,11",
+        "2:1,7,8,9",
+        "4:1,2,7,11",
+        "5:2,3,6,9",
+        "6:0,2,5,8",
+        "7:0,1,4,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 10,
+          "row_count": 9
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d145ad00ebc54b4c8aa0748b6e6618da26c317a0ca3b4659facc6c9fb00eb1d8"
+    },
+    {
+      "canonical_rows": [
+        "10:5,7,8,9",
+        "2:4,6,8,9",
+        "5:0,3,6,8",
+        "6:3,4,8,10",
+        "8:2,3,5,9",
+        "9:1,6,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 6,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d1e2b36f05380c9b80e9be31e889f6614105b978e8529d87cb16b28e929b4fc8"
+    },
+    {
+      "canonical_rows": [
+        "10:1,2,4,5",
+        "11:2,3,8,9",
+        "1:0,6,9,10",
+        "2:5,8,10,11",
+        "3:0,4,7,8",
+        "4:1,2,7,8",
+        "7:0,1,3,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 12,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d5aaf1e106403fb6b57a5e142c845801b8195efee1f81c4c0f5d3bf068ad5df7"
+    },
+    {
+      "canonical_rows": [
+        "0:2,5,7,11",
+        "10:2,4,5,6",
+        "1:0,4,7,9",
+        "3:0,1,5,9",
+        "5:2,3,8,9",
+        "6:1,3,7,10",
+        "7:1,9,10,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 10,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d6c9187932485708bfb366cdff90018eb53e4d68be0ac9408bfff91a8dcb2bd9"
+    },
+    {
+      "canonical_rows": [
+        "0:3,5,6,10",
+        "10:4,5,6,7",
+        "1:0,3,4,8",
+        "3:0,1,2,6",
+        "5:1,3,4,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 1,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "ddb7b2b64eb399038d5c5d6428f4172a4423697a725594aa45af56ae8b861f96"
+    },
+    {
+      "canonical_rows": [
+        "0:1,2,8,10",
+        "1:2,3,7,9",
+        "2:1,4,7,8",
+        "3:0,1,5,9",
+        "4:0,2,3,10",
+        "8:4,5,6,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 5,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "ef644ad109b0aceea2da429d358b3f5ee7d8d738dbe147ec85878a4672476e5c"
+    },
+    {
+      "canonical_rows": [
+        "11:1,2,4,5",
+        "2:5,6,9,10",
+        "3:0,4,7,10",
+        "4:2,3,6,10",
+        "5:1,2,8,10",
+        "6:0,3,5,8",
+        "7:0,1,6,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 15,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "f2492a9c7be4c52a030563a504c0b1f13d886f2bc82e6b5dd0fc4841115e2cba"
+    },
+    {
+      "canonical_rows": [
+        "0:2,3,6,9",
+        "2:0,1,3,8",
+        "4:3,5,6,7",
+        "5:0,1,4,6",
+        "7:0,2,5,9",
+        "9:1,4,5,10"
+      ],
+      "members": [
+        {
+          "origin": "bootstrap",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": null,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "f35667af1ad1d93290e74666a2adac9de629e941ce885a3e4060bbb3bd228e93"
+    }
+  ],
+  "groups_under_free_point_relabeling": [
+    {
+      "canonical_rows": [
+        "0:6,8,9,11",
+        "11:1,3,5,8",
+        "3:0,4,8,10",
+        "4:1,2,6,7",
+        "5:1,4,6,11",
+        "6:0,4,7,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 0,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "07719075d9bd8440a4d6716540d46c6cde1fce19897d43b604ac851ecc505198"
+    },
+    {
+      "canonical_rows": [
+        "3:2,4,6,8",
+        "4:0,6,8,9",
+        "6:0,2,3,7",
+        "8:3,4,5,9",
+        "9:0,1,4,5"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 4,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "0ae48f11b471bc60cc4da2178eff8f855b2d5bf22653687bca91c819c43e5487"
+    },
+    {
+      "canonical_rows": [
+        "0:5,8,9,10",
+        "1:0,2,5,7",
+        "2:4,6,7,9",
+        "3:1,4,7,8",
+        "6:1,2,3,9",
+        "8:0,1,6,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 9,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "1f8b862b10b9dc1829a25ef439a452cdda9bb0c2464fce274f0a5188b249408f"
+    },
+    {
+      "canonical_rows": [
+        "0:3,4,6,9",
+        "3:2,5,8,9",
+        "5:0,3,7,8",
+        "6:1,3,5,7",
+        "7:0,1,2,6",
+        "8:2,4,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 14,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "23f926791ae7ca6e6ee51ecf40d55bce4cf5cf05d2bea6a63ac4da1bbf0a7bbd"
+    },
+    {
+      "canonical_rows": [
+        "10:1,4,8,9",
+        "11:1,2,6,9",
+        "3:0,4,6,11",
+        "4:1,6,8,11",
+        "6:3,4,7,10",
+        "8:0,1,5,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 13,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "2615bb6814e91171068d41a3006846006bcde642861e4094de2e853d6c2d1482"
+    },
+    {
+      "canonical_rows": [
+        "0:1,8,9,10",
+        "1:0,4,5,8",
+        "3:0,5,6,9",
+        "4:2,5,7,9",
+        "5:0,2,3,4",
+        "9:1,2,5,6"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 6,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "2ad92585d56de18fafdb3fa39582ee4c274cc6a8370abb9878e161765286e480"
+    },
+    {
+      "canonical_rows": [
+        "1:0,2,9,10",
+        "2:1,3,4,6",
+        "3:0,4,5,8",
+        "4:1,5,6,7",
+        "6:2,3,5,11",
+        "8:0,1,2,3"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 1,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "2faa256f210b45187a10bcaac6d2b1cc494cb5c6db5578a9a68c3008b352fd19"
+    },
+    {
+      "canonical_rows": [
+        "1:3,4,5,10",
+        "2:7,9,10,11",
+        "3:0,1,6,10",
+        "4:1,2,7,8",
+        "6:1,2,5,11",
+        "8:1,3,4,9",
+        "9:2,3,6,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 12,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "3a23fbe3281a7ccd32bb2c931ee945f9d799ec1416e87b3e487521cc49c518ae"
+    },
+    {
+      "canonical_rows": [
+        "0:1,6,7,11",
+        "10:0,1,2,3",
+        "1:0,7,8,10",
+        "3:0,1,4,8",
+        "5:3,6,8,9",
+        "7:1,3,4,5",
+        "8:1,5,9,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 7,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "415f07d775b94e91e8d2cac3ba939601dfb17e71e11aa0bf85f3fa7ddb77b9c9"
+    },
+    {
+      "canonical_rows": [
+        "0:2,6,7,8",
+        "1:0,3,9,11",
+        "2:0,1,7,9",
+        "4:1,8,10,11",
+        "5:3,6,7,9",
+        "6:1,2,3,5",
+        "7:0,3,4,8",
+        "8:1,3,4,6",
+        "9:0,2,6,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 10,
+          "row_count": 9
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "49b6a625d16f4510858e7d2782aa2823ba3e5895c3e4f8031a80cad2e55bd79c"
+    },
+    {
+      "canonical_rows": [
+        "0:1,4,5,8",
+        "11:0,4,6,9",
+        "2:5,7,8,9",
+        "7:2,5,10,11",
+        "8:0,3,5,9",
+        "9:0,1,7,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 5,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "4fce3156f98e58fb6dde2fc9c2200436454495242495bff5a5023b7d1e2739af"
+    },
+    {
+      "canonical_rows": [
+        "11:3,6,8,9",
+        "3:2,7,8,10",
+        "4:1,3,6,11",
+        "5:0,4,6,10",
+        "6:3,5,7,10",
+        "7:1,4,5,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 3,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "6005b44443c628eb03d4a6c7db700a1af41c898490a22fb9d669d1cc2d6e2bed"
+    },
+    {
+      "canonical_rows": [
+        "0:2,3,4,5",
+        "3:4,6,9,10",
+        "4:1,2,6,8",
+        "5:2,7,8,9",
+        "6:0,3,8,9",
+        "8:0,1,5,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 2,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "605397e1bf8ccf00503d4fdd307db83466b54fba03f7442a44e1e5ca36a9e693"
+    },
+    {
+      "canonical_rows": [
+        "0:1,5,7,10",
+        "10:0,4,7,8",
+        "11:0,2,5,6",
+        "1:5,6,8,10",
+        "4:1,3,6,8",
+        "6:4,5,9,11",
+        "8:2,4,7,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 11,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "67ca1ce4d3bbc77cbf17c4d5c83ad5aafa198739eec24fe63efa221a6497abbe"
+    },
+    {
+      "canonical_rows": [
+        "11:2,5,7,8",
+        "1:3,5,6,11",
+        "2:0,6,7,9",
+        "4:0,1,8,11",
+        "5:2,3,6,10",
+        "6:1,3,4,7",
+        "7:0,3,4,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 8,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "7dbf737363035517f34fb38601b447ba6f24019299f75f32b6bc1045327f95ad"
+    },
+    {
+      "canonical_rows": [
+        "10:0,5,7,9",
+        "1:0,3,6,10",
+        "2:1,6,7,10",
+        "7:2,6,8,9",
+        "9:0,2,4,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 1,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "855823a7a16c9bf6464ba803d968734518c5076a6d5614040b1df1db51cd8890"
+    },
+    {
+      "canonical_rows": [
+        "10:0,2,3,6",
+        "1:0,5,9,11",
+        "2:4,8,9,11",
+        "3:1,7,9,10",
+        "4:3,5,6,9",
+        "6:0,7,10,11",
+        "8:2,6,10,11",
+        "9:0,1,6,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 2,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "8afa3869f51bfeabec7d77c89ca405884bec21951909785311a1b2abcf154e81"
+    },
+    {
+      "canonical_rows": [
+        "0:1,6,7,9",
+        "10:2,4,5,7",
+        "3:4,5,9,10",
+        "4:7,8,10,11",
+        "5:0,3,6,11",
+        "8:0,2,6,10",
+        "9:0,4,7,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 10,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "915d6446a7c7d4dcf36b2ff78ef58403c6943e069264f65fac7cdb8ee9b4c5e0"
+    },
+    {
+      "canonical_rows": [
+        "0:1,4,7,11",
+        "11:0,6,8,10",
+        "1:3,4,5,11",
+        "2:3,4,6,9",
+        "4:0,2,3,7",
+        "5:0,8,9,11",
+        "9:1,3,5,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 12,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "a01bd5f0e663be96a66e76e91083669955fc2f70984349c97199ecd62852b5b8"
+    },
+    {
+      "canonical_rows": [
+        "0:1,2,9,11",
+        "1:4,5,9,11",
+        "2:0,3,8,11",
+        "3:1,4,6,7",
+        "5:1,6,10,11",
+        "6:3,5,9,10",
+        "7:0,1,5,10",
+        "9:2,3,5,6"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 6,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "a6be9d5cc4c0c8e67c671bc1cd05d71a3cb17000dc41fca9e5b1a00d1c83c516"
+    },
+    {
+      "canonical_rows": [
+        "0:2,3,9,10",
+        "1:0,2,7,10",
+        "2:1,4,6,8",
+        "6:0,4,5,9",
+        "8:0,2,3,6",
+        "9:1,2,5,6"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 8,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "b9889ef0a747350bba95fa08ca49a87ec0f78094393a7d865f0ae2f57697a9b6"
+    },
+    {
+      "canonical_rows": [
+        "0:1,6,8,9",
+        "2:4,5,8,9",
+        "3:0,2,7,8",
+        "6:0,1,3,4",
+        "7:0,6,9,10",
+        "8:1,2,4,7"
+      ],
+      "members": [
+        {
+          "origin": "bootstrap",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": null,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "bbc3251cd54359767a2dc5bcf00003239a63c322bf91b90695fe9c0ebf2606ae"
+    },
+    {
+      "canonical_rows": [
+        "0:3,4,6,7",
+        "10:2,3,9,11",
+        "11:0,5,7,10",
+        "4:2,6,8,10",
+        "5:4,8,9,11",
+        "6:0,3,10,11",
+        "7:1,4,5,10",
+        "8:1,2,3,4"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 3,
+          "row_count": 8
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "c2fe8aff7d3e6e0634d4f68d8f9f7cf297b044b6f8245f435b10e7038654015d"
+    },
+    {
+      "canonical_rows": [
+        "0:3,5,6,10",
+        "3:0,1,6,8",
+        "4:2,6,7,9",
+        "5:0,3,8,9",
+        "8:4,5,6,11",
+        "9:0,4,5,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 9,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "cab61cd41ac9cdfa14a61a5edc6b7b1890064fee01f8f9305149b0d218cef765"
+    },
+    {
+      "canonical_rows": [
+        "10:3,4,5,8",
+        "11:1,3,5,6",
+        "1:0,2,3,11",
+        "3:0,4,5,7",
+        "5:2,6,7,8",
+        "6:1,3,7,10",
+        "7:3,4,6,9"
+      ],
+      "members": [
+        {
+          "origin": "bootstrap",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": null,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d03bc118241a3c0a6954e8399433123875b36f77d7ab4996cf81620b57041539"
+    },
+    {
+      "canonical_rows": [
+        "10:1,2,3,8",
+        "1:2,4,5,8",
+        "2:0,6,9,10",
+        "3:7,8,9,10",
+        "6:0,1,3,10",
+        "9:3,5,6,7"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 5,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "d1beb9b5eb2ce7345a794a9ab01838512ec23145efa244206cdd3ce3fcf102e3"
+    },
+    {
+      "canonical_rows": [
+        "0:1,2,3,4",
+        "10:3,7,9,11",
+        "1:0,3,7,10",
+        "3:0,4,6,9",
+        "5:2,4,8,10",
+        "6:0,2,5,7",
+        "9:4,6,7,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 13,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "e49c43a500b59bdfe4663538b35b548a3c06a13476f07fb2f07b42e474af2f2b"
+    },
+    {
+      "canonical_rows": [
+        "11:1,2,4,8",
+        "1:5,6,8,11",
+        "2:1,3,5,9",
+        "3:0,5,7,8",
+        "4:2,8,9,10",
+        "7:0,4,9,11",
+        "9:0,3,4,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 0,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "e981e4c25d9dd506c76fec3f29e989325020e6b57ba5a5ad32e6637ec4afae2c"
+    },
+    {
+      "canonical_rows": [
+        "0:1,7,8,9",
+        "2:4,7,10,11",
+        "3:0,1,4,9",
+        "5:2,3,4,9",
+        "7:2,5,8,10",
+        "8:5,6,9,10",
+        "9:1,3,8,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 7,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "eaa13362ab048ac1b2a0ed4b90ea14d28b0e1aeb6ff69e6016251fb9ca781188"
+    },
+    {
+      "canonical_rows": [
+        "10:4,5,9,11",
+        "11:1,2,3,4",
+        "3:1,6,10,11",
+        "4:5,6,8,10",
+        "5:3,4,6,11",
+        "7:0,3,8,9",
+        "9:0,4,7,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 15,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "ec0997f47c5644f5dd6a4d4c35d60342274379d879201c819aea10234b112131"
+    },
+    {
+      "canonical_rows": [
+        "1:4,6,7,10",
+        "5:1,2,3,6",
+        "6:0,3,5,7",
+        "7:1,4,5,8",
+        "8:3,4,5,9"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 4,
+          "row_count": 5
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "ec95642528fb86b7cdc838ba54c06db9c085ed793ed60fa807ae032859bd1dcc"
+    },
+    {
+      "canonical_rows": [
+        "0:1,3,4,5",
+        "10:2,3,7,9",
+        "1:3,8,10,11",
+        "3:1,2,4,11",
+        "5:1,9,10,11",
+        "8:0,4,5,10",
+        "9:5,6,7,11"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 11,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "f5eadd099abf9f92a0cb8c49c1b741767c88baccf94a9485107689211e4781d8"
+    },
+    {
+      "canonical_rows": [
+        "0:2,4,9,10",
+        "11:0,1,8,10",
+        "2:0,4,6,11",
+        "3:1,4,7,10",
+        "4:0,7,10,11",
+        "7:3,5,6,10"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            5,
+            5,
+            5
+          ],
+          "round": 14,
+          "row_count": 6
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "f68171d05dac1dd8afd58b22a998238f81600b796c6e885ec632b086bfd24e16"
+    },
+    {
+      "canonical_rows": [
+        "11:1,4,7,10",
+        "1:0,3,10,11",
+        "2:6,8,9,10",
+        "4:0,1,2,8",
+        "5:1,3,6,11",
+        "6:2,4,10,11",
+        "9:3,4,5,8"
+      ],
+      "members": [
+        {
+          "origin": "learned",
+          "profile": [
+            4,
+            5,
+            6
+          ],
+          "round": 15,
+          "row_count": 7
+        }
+      ],
+      "multiplicity": 1,
+      "signature_sha256": "fccd29140a36570447eb75fd3a2160156078c97b34122f0ceb65ca58cc6b6daa"
+    }
+  ],
+  "schema": "p97-atail-second-center-core-analysis-v2",
+  "scope": {
+    "canonical_permutation_cap": 1000000,
+    "collapse_forcing_singular_and_msolve_two_orders": true,
+    "exact_canonicalization_when_below_permutation_cap": true,
+    "producer_proved": false,
+    "target_faithful": false
+  },
+  "summary": {
+    "all_cores_crosschecked_force_real_0_1_collapse": false,
+    "crosschecked_force_zero_squared_distance_count": 14,
+    "distinct_groups_preserving_0_and_1": 34,
+    "distinct_groups_under_free_point_relabeling": 34,
+    "epistemic_note": "Real zero squared distance forces point equality; over complex coordinates it permits a nonzero isotropic separation.",
+    "repeated_groups_preserving_0_and_1": 0,
+    "repeated_groups_under_free_point_relabeling": 0,
+    "undecided_fail_closed_collapse_count": 20
+  }
+}

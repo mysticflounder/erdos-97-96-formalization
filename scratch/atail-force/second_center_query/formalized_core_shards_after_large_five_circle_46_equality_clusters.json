@@ -1,0 +1,4161 @@
+{
+  "case_count": 19,
+  "cases": [
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "closure_equality_count": 20,
+      "retained_equality_count": 12,
+      "shard_index": 5
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 25,
+      "retained_equality_count": 14,
+      "shard_index": 6
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "closure_equality_count": 27,
+      "retained_equality_count": 15,
+      "shard_index": 8
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "closure_equality_count": 27,
+      "retained_equality_count": 15,
+      "shard_index": 10
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 21,
+      "retained_equality_count": 13,
+      "shard_index": 11
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "closure_equality_count": 28,
+      "retained_equality_count": 15,
+      "shard_index": 14
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "closure_equality_count": 17,
+      "retained_equality_count": 11,
+      "shard_index": 15
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "closure_equality_count": 21,
+      "retained_equality_count": 13,
+      "shard_index": 17
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "closure_equality_count": 17,
+      "retained_equality_count": 11,
+      "shard_index": 20
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 20,
+      "retained_equality_count": 12,
+      "shard_index": 22
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 24,
+      "retained_equality_count": 14,
+      "shard_index": 23
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "closure_equality_count": 24,
+      "retained_equality_count": 14,
+      "shard_index": 25
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "closure_equality_count": 27,
+      "retained_equality_count": 15,
+      "shard_index": 26
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "closure_equality_count": 27,
+      "retained_equality_count": 15,
+      "shard_index": 27
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 24,
+      "retained_equality_count": 14,
+      "shard_index": 29
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 16,
+      "retained_equality_count": 11,
+      "shard_index": 34
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "closure_equality_count": 21,
+      "retained_equality_count": 13,
+      "shard_index": 37
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "closure_equality_count": 27,
+      "retained_equality_count": 15,
+      "shard_index": 40
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 24,
+      "retained_equality_count": 14,
+      "shard_index": 42
+    }
+  ],
+  "classes": [
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "class_size": 2,
+      "closure_equality_count": 27,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            8
+          ]
+        }
+      ],
+      "representative_shard": 26,
+      "shard_indices": [
+        26,
+        27
+      ]
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 16,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            4,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            8
+          ]
+        }
+      ],
+      "representative_shard": 34,
+      "shard_indices": [
+        34
+      ]
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 17,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            9
+          ]
+        }
+      ],
+      "representative_shard": 15,
+      "shard_indices": [
+        15
+      ]
+    },
+    {
+      "active_point_count": 7,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          2
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 17,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 20,
+      "shard_indices": [
+        20
+      ]
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          2
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 20,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            3,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            7,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            8
+          ]
+        }
+      ],
+      "representative_shard": 5,
+      "shard_indices": [
+        5
+      ]
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          2
+        ],
+        [
+          9,
+          2
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 20,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            9
+          ]
+        }
+      ],
+      "representative_shard": 22,
+      "shard_indices": [
+        22
+      ]
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 21,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            5
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            7
+          ]
+        }
+      ],
+      "representative_shard": 11,
+      "shard_indices": [
+        11
+      ]
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 21,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            5
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            5,
+            7
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            7,
+            8
+          ]
+        }
+      ],
+      "representative_shard": 17,
+      "shard_indices": [
+        17
+      ]
+    },
+    {
+      "active_point_count": 8,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 21,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 37,
+      "shard_indices": [
+        37
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 24,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 23,
+      "shard_indices": [
+        23
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 24,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            6
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            7,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            6,
+            9
+          ]
+        }
+      ],
+      "representative_shard": 25,
+      "shard_indices": [
+        25
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 24,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            8,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            9
+          ]
+        }
+      ],
+      "representative_shard": 29,
+      "shard_indices": [
+        29
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 24,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            7,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            2,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 42,
+      "shard_indices": [
+        42
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 25,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            5,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 6,
+      "shard_indices": [
+        6
+      ]
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 27,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            6
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            5,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            8,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 8,
+      "shard_indices": [
+        8
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 27,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            2,
+            3
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            2,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            2,
+            7
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            7,
+            11
+          ]
+        }
+      ],
+      "representative_shard": 10,
+      "shard_indices": [
+        10
+      ]
+    },
+    {
+      "active_point_count": 10,
+      "center_component_sizes": [
+        [
+          1,
+          3
+        ],
+        [
+          6,
+          3
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 27,
+      "representative_closure": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            6,
+            10
+          ]
+        }
+      ],
+      "representative_shard": 40,
+      "shard_indices": [
+        40
+      ]
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          3
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          10,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 28,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            3,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            8,
+            11
+          ]
+        }
+      ],
+      "representative_shard": 14,
+      "shard_indices": [
+        14
+      ]
+    }
+  ],
+  "isomorphism_class_count": 18,
+  "schema": "p97-atail-formalized-core-shard-equality-clusters-v1",
+  "scope": {
+    "closure_normalized_for_pivot_independence": true,
+    "equality_subsystems_crosschecked_unit": true,
+    "fixed_placement_only": true,
+    "isomorphism_exact_under_point_relabeling": true,
+    "target_faithful": false
+  }
+}

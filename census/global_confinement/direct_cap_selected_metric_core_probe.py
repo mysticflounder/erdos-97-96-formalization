@@ -14,7 +14,7 @@ surplus-interior labels it chooses:
 * one selected four-row at every other center.
 
 It enforces the exact cap-selected hit counts and rejects every assignment
-containing one of the twelve formalized metric cores.  At a complete
+containing one of the current formalized metric-core families.  At a complete
 assignment it derives a critical-shell blocker map using exactly those
 centers whose selected row remains exact-compatible with the equality
 closure.  No local tuple kill is used.  Thus a complete all-UNSAT result
@@ -63,6 +63,8 @@ DEFAULT_RESIDUAL_OUT = (
 SCHEMA = "p97-direct-cap-selected-metric-core-v1"
 RESIDUAL_SCHEMA = "p97-direct-cap-selected-metric-core-residual-bank-v1"
 STATUSES = ("SAT", "UNSAT", "INDETERMINATE")
+METRIC_CORE_FAMILY_COUNT = 23
+METRIC_CORE_DETECTOR_STAGE_COUNT = 26
 DEPENDENCIES = (
     HERE / "metric_realizability_probe.py",
     HERE / "probe.py",
@@ -333,7 +335,10 @@ def run(*, workers: int, max_nodes: int, enumerate_residuals: bool = False) -> d
             "workers": workers,
             "max_nodes": max_nodes,
             "local_row_kills": [],
-            "metric_core_count": 12,
+            "metric_core_count": METRIC_CORE_FAMILY_COUNT,
+            "metric_core_detector_stage_count": (
+                METRIC_CORE_DETECTOR_STAGE_COUNT
+            ),
             "cap_selected_exact_counts": True,
             "one_selected_row_per_center": True,
             "blocker_map": "derived-from-exact-compatible-centers",

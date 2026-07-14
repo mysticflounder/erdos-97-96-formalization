@@ -689,12 +689,14 @@ the orbit adapter below and remain open only transitively, through V.2.)
     false_of_twoLargeCaps_pCentered_t2Source →
     exists_removableVertex_of_twoLargeCaps` is complete Lean whose sole open
     dependency is `DoubleApexOffSurplusSharedRadiusPair` (1 hole);
-  - t₃ = t₂₀: **LIVE-T3**, twelve helpers, two orderings each (24 holes); a
-    checked mirror of the T1 orbit adapter exists
-    (`scratch/atail-force/triple_relabel_adapters.lean`) but is not yet
-    production-wired, so the holes remain textual.
+  - t₃ = t₂₀: **LIVE-T3**, twelve helpers, two orderings each —
+    **source-sorry-free (0 holes)**: the production T3 relabel adapter is
+    wired through both orderings of every helper and, like T1, reaches only
+    the shared V.2 obligation.
 
-Total: 7 + 24 + 0 + 1 + 24 = 56 holes across 24 symbols.
+The live direct inventory is now 12 `sorry`-carrying symbols: V.2 itself,
+four LIVE-Q declarations, and seven LIVE-C declarations.  LIVE-T1 and
+LIVE-T3 have no direct source holes and inherit openness only through V.2.
 
 ### V.2 The shared-radius pair obligation — OPEN
 
@@ -758,14 +760,11 @@ contradictory.
   > leftover label pair carries the two remaining base points in either
   > order.
 
-  Both orbits reduce to the shared-radius pair statement (V.2) by relabel
-  adapters that permute the dangerous triple onto the t₂ chain. The T1
-  adapter is production-wired: the twelve LIVE-T1 declarations carry no
-  source holes and inherit `sorryAx` only through V.2. The T3 mirror
-  adapter is checked (it builds against V.2 in
-  `scratch/atail-force/triple_relabel_adapters.lean`) but not yet wired, so
-  the twelve LIVE-T3 declarations still carry their 24 textual holes. In
-  both cases the mathematical content is exactly V.2.
+  Both orbits reduce to the shared-radius pair statement (V.2) by production
+  relabel adapters that permute the dangerous triple onto the t₂ chain.  All
+  twelve LIVE-T1 and all twelve LIVE-T3 declarations carry no source holes
+  and inherit `sorryAx` only through V.2.  In both cases the mathematical
+  content is exactly V.2.
 
 - **LIVE-C (7 declarations, 7 cases) — OPEN.**
 
@@ -814,7 +813,7 @@ row must (or does) discharge.
 | O9 | RVOL remaining branch | blocked (O10–O13) | If no (m,4,4) decomposition exists, a removable vertex exists — the case analysis is complete Lean; its leaves are O10–O13. |
 | O10 | Shared-radius pair | open | In the two-large-cap configuration, two distinct points off the surplus cap are co-radial from both opposite Moser apices (V.2). |
 | O11 | LIVE-Q | open | The tail configuration with the f₂ row centred at p and q as the f₂ source point is contradictory, for each label slot of q and each ordering of the remaining labels (V.3). |
-| O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering. The T1 orbit adapter is production-wired (no source holes, open only through O10); the T3 mirror adapter is checked but not yet wired, so its 24 textual holes remain (V.3). |
+| O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering. Both orbit adapters are production-wired; neither family has direct source holes, and both remain open only through O10 (V.3). |
 | O13 | LIVE-C | open | The tail configuration with the f₂ row centred anywhere other than p is contradictory, in all seven centre cases (V.3). |
 | O14 | Card-11 slice | open | O10 holds uniformly from card 11 — or, alternatively, no two-large-cap configuration has exactly 11 points (V.2, cardinality scope). |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |

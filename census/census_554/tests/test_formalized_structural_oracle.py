@@ -28,10 +28,10 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
     def setUpClass(cls):
         cls.cube = LATEST_CUBE
 
-    def test_catalog_has_twelve_eligible_and_one_explicitly_ineligible_family(self):
+    def test_catalog_has_twenty_two_eligible_and_one_explicitly_ineligible_family(self):
         manifest = oracle.catalog_manifest()
-        self.assertEqual(len(manifest["families"]), 13)
-        self.assertEqual(len(manifest["eligible_family_ids"]), 12)
+        self.assertEqual(len(manifest["families"]), 23)
+        self.assertEqual(len(manifest["eligible_family_ids"]), 22)
         self.assertEqual(
             manifest["ineligible_family_ids"],
             ["equality-exact-off-circle.v1"],
@@ -149,6 +149,42 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
                 0: [2, 3, 5], 2: [4, 10], 3: [2, 4],
                 5: [2, 3, 4], 10: [0, 3, 4, 5],
             },
+            "equality-six-point-five-circle-collision-a": {
+                0: [1, 2], 1: [0, 2, 3, 4], 3: [2, 4, 5],
+                4: [0, 3, 5], 5: [0, 1],
+            },
+            "equality-six-point-five-circle-collision-b": {
+                1: [0, 2, 4], 2: [0, 1, 3, 5], 3: [0, 5],
+                4: [0, 2], 5: [1, 3, 4],
+            },
+            "equality-six-point-five-circle-collision-c": {
+                1: [0, 2, 3, 4], 2: [0, 1, 5], 3: [0, 4],
+                4: [2, 3, 5], 5: [1, 4],
+            },
+            "equality-seven-point-five-circle-collision": {
+                0: [1, 2, 3], 1: [0, 2, 4, 5], 4: [0, 3, 5, 6],
+                5: [2, 4, 6], 6: [0, 3],
+            },
+            "equality-eight-point-five-circle-collision": {
+                1: [0, 2, 4, 5], 2: [0, 1, 6, 7], 5: [2, 4, 6],
+                6: [3, 4, 7], 7: [1, 5, 6],
+            },
+            "equality-six-point-circle-chain-collision": {
+                1: [0, 2, 6], 2: [0, 1, 9, 10], 6: [2, 9],
+                9: [0, 10], 10: [1, 6, 9],
+            },
+            "equality-seven-point-six-circle-collision": {
+                0: [1, 2], 2: [0, 1, 4, 5], 3: [0, 2, 6],
+                4: [2, 3, 5], 5: [0, 1], 6: [1, 3, 5],
+            },
+            "equality-seven-point-six-circle-collision-b": {
+                0: [1, 4], 1: [0, 7], 7: [0, 4, 10],
+                8: [1, 7, 9, 10], 9: [0, 1, 8], 10: [0, 4, 9],
+            },
+            "equality-seven-point-twin-four-circle-collision": {
+                0: [1, 2], 1: [0, 3], 2: [1, 3, 5],
+                4: [0, 2, 5, 6], 5: [1, 3, 4, 6], 6: [0, 1],
+            },
             "equality-seven-point-orbit-collision": {
                 0: [1, 3, 4], 1: [0, 3, 8, 9], 3: [4, 5, 8],
                 4: [1, 8], 5: [4, 9], 8: [1, 5, 9], 9: [0, 3, 5],
@@ -177,9 +213,72 @@ class FormalizedStructuralOracleTest(unittest.TestCase):
             {
                 "equality-convex-five-point",
                 "equality-convex-rhombus-equilateral",
+                (
+                    "equality-convex-eight-point-"
+                    "five-row-circle-intersection-order"
+                ),
                 "equality-convex-five-point-reverse",
                 "equality-convex-rhombus-equilateral-reverse",
+                (
+                    "equality-convex-eight-point-"
+                    "five-row-circle-intersection-order-reverse"
+                ),
             },
+        )
+        five_row_order = next(
+            order for order in separation_encoding.all_orders()
+            if order.orientation == "direct"
+            and order.positions[0] < order.positions[1] < order.positions[3]
+            < order.positions[4] < order.positions[2]
+        )
+        five_row_pattern = {
+            0: [1, 2, 3, 4],
+            1: [0, 2, 6],
+            2: [3, 9],
+            3: [1, 5, 6],
+            4: [0, 5, 9],
+        }
+        five_row_stage = (
+            "equality-convex-eight-point-"
+            "five-row-circle-intersection-order"
+        )
+        five_row_detection = oracle.build_detection(
+            five_row_pattern, five_row_stage, five_row_order
+        )
+        self.assertEqual(
+            five_row_detection["core"],
+            {
+                "O": 0, "A": 1, "C": 2, "D": 3,
+                "E": 4, "X5": 5, "X6": 6, "X9": 9,
+            },
+        )
+        self.assertEqual(len(five_row_detection["closure_paths"]), 10)
+        self.assertEqual(
+            five_row_detection["theorem_id"],
+            (
+                "Problem97.Census554.FiveRowCircleIntersectionOrderCore."
+                "false_of_core_of_neg"
+            ),
+        )
+        oracle.validate_detection(five_row_pattern, five_row_detection)
+
+        mirror_order = next(
+            order for order in separation_encoding.all_orders()
+            if order.orientation == "mirror"
+            and order.internal_index == five_row_order.internal_index
+        )
+        reverse_five_row_detection = oracle.build_detection(
+            five_row_pattern, five_row_stage + "-reverse", mirror_order
+        )
+        self.assertEqual(
+            reverse_five_row_detection["theorem_id"],
+            (
+                "Problem97.Census554.FiveRowCircleIntersectionOrderCore."
+                "false_of_core"
+            ),
+        )
+        oracle.validate_detection(
+            five_row_pattern, reverse_five_row_detection
         )
         reverse_order = separation_encoding.all_orders()[0]
         a, x, b, c, y = tuple(reversed(reverse_order.labels))[:5]

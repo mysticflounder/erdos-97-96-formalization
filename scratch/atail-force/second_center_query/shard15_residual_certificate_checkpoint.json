@@ -1,0 +1,39 @@
+{
+  "normalization_anchors": [
+    0,
+    1
+  ],
+  "omitted": 8,
+  "omitted_polynomial": "-x4x^2+2*x4x*x5x-x4y^2+2*x4y*x5y",
+  "relabeling": {
+    "0": 0,
+    "1": 1,
+    "10": 6,
+    "4": 2,
+    "7": 3,
+    "8": 4,
+    "9": 5
+  },
+  "residual_constant": "161392/81",
+  "residual_degree": 8,
+  "residual_in_u": "81*u^8+10152*u^7+142002*u^6+164025*u^5-3726747*u^4-8551932*u^3+8845014*u^2-2707236*u+161392",
+  "schema": "p97-atail-shard-residual-certificate-profile-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "shard_index": 15,
+  "singular": {
+    "elapsed_seconds": 300.02970312499383,
+    "partial_stderr_char_count": 0,
+    "partial_stdout_char_count": 40,
+    "status": "TIMEOUT"
+  },
+  "source_equality_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_large_five_circle_46_equality_checkpoint.json",
+  "source_residual_checkpoint": "scratch/atail-force/second_center_query/shard15_omitted_residual_checkpoint.json",
+  "source_residual_checkpoint_sha256": "5d681105eb634724c90fee9edfb588804f757aa0fa8bc72d4fbfafaa40d4ad87",
+  "target_sha256": "70ff2c9edc115a2aeed27f00cd2b6b9c961aa8ea60a29150d30612a9be65e169"
+}

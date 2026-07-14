@@ -196,6 +196,42 @@ def DangerousRowSameCapSecondCenter
     w ∉ S.capByIndex k ∧
     dist c x = dist c w
 
+/-- A single critical full shell whose center lies with `p` in one cap and
+whose support contains two dangerous-row points outside that cap supplies the
+entire same-cap second-center proposition. This is the exact cap-local
+support-multiplicity producer boundary; the extraction itself is routine. -/
+theorem DangerousRowSameCapSecondCenter.of_criticalShell_capMultiplicity
+    {A : Finset Plane} (S : SurplusCapPacket A)
+    {p q t1 t2 t3 source : Plane}
+    (Hsys : CriticalShellSystem A) (hsource : source ∈ A)
+    (k : Fin 3)
+    (hpCap : p ∈ S.capByIndex k)
+    (hcCap : Hsys.centerAt source hsource ∈ S.capByIndex k)
+    (hcp : Hsys.centerAt source hsource ≠ p)
+    (htwo :
+      2 ≤ ((Hsys.selectedAt source hsource).toCriticalFourShell.support ∩
+        (({q, t1, t2, t3} : Finset Plane) \ S.capByIndex k)).card) :
+    DangerousRowSameCapSecondCenter S p q t1 t2 t3 := by
+  classical
+  have hone :
+      1 < ((Hsys.selectedAt source hsource).toCriticalFourShell.support ∩
+        (({q, t1, t2, t3} : Finset Plane) \ S.capByIndex k)).card := by
+    omega
+  rcases Finset.one_lt_card.mp hone with ⟨x, hx, w, hw, hxw⟩
+  rcases Finset.mem_inter.mp hx with ⟨hxSupport, hxOutside⟩
+  rcases Finset.mem_inter.mp hw with ⟨hwSupport, hwOutside⟩
+  rcases Finset.mem_sdiff.mp hxOutside with ⟨hxB, hxOff⟩
+  rcases Finset.mem_sdiff.mp hwOutside with ⟨hwB, hwOff⟩
+  have hdist :
+      dist (Hsys.centerAt source hsource) x =
+        dist (Hsys.centerAt source hsource) w :=
+    ((Hsys.selectedAt source hsource).toCriticalFourShell.support_eq_radius
+      x hxSupport).trans
+      ((Hsys.selectedAt source hsource).toCriticalFourShell.support_eq_radius
+        w hwSupport).symm
+  exact ⟨k, Hsys.centerAt source hsource, x, w, hpCap, hcCap, hcp,
+    hxB, hwB, hxw, hxOff, hwOff, hdist⟩
+
 /-- Two distinct centers in one indexed cap cannot share an outside pair. -/
 theorem false_of_sameCap_outsidePair_twoCenters
     {A : Finset Plane} (S : SurplusCapPacket A)
@@ -274,6 +310,34 @@ theorem DangerousRowSameCapSecondCenter.false
     simpa [hcenter] using hrow
   exact false_of_sameCap_outsidePair_twoCenters
     S D.convex k hpCap hcCap hcp hxA hwA hxw hxOff hwOff hpdist hcdist
+
+/-- Lean-facing closure adapter for the exact remaining critical-system field:
+one non-`p` shell center in `p`'s cap with two dangerous support points outside
+that cap closes K-A-PAIR immediately. -/
+theorem false_of_criticalShell_sameCap_capMultiplicity
+    {D : CounterexampleData} {p q t1 t2 t3 u source : Plane}
+    (S : SurplusCapPacket D.A)
+    (rows : CriticalSourceRows D q t1 t2 t3 u)
+    (Hsys : CriticalShellSystem D.A) (hsource : source ∈ D.A)
+    (k : Fin 3)
+    (hpCap : p ∈ S.capByIndex k)
+    (hcCap : Hsys.centerAt source hsource ∈ S.capByIndex k)
+    (hcp : Hsys.centerAt source hsource ≠ p)
+    (htwo :
+      2 ≤ ((Hsys.selectedAt source hsource).toCriticalFourShell.support ∩
+        (({q, t1, t2, t3} : Finset Plane) \ S.capByIndex k)).card)
+    (hcenter : rows.t2Row.center = p)
+    (hsupport :
+      rows.t2Row.selected.toCriticalFourShell.support =
+        ({q, t1, t2, t3} : Finset Plane)) :
+    False := by
+  apply DangerousRowSameCapSecondCenter.false S rows hcenter hsupport
+  exact DangerousRowSameCapSecondCenter.of_criticalShell_capMultiplicity
+    S Hsys hsource k hpCap hcCap hcp htwo
+
+#print axioms DangerousRowSameCapSecondCenter.of_criticalShell_capMultiplicity
+#print axioms DangerousRowSameCapSecondCenter.false
+#print axioms false_of_criticalShell_sameCap_capMultiplicity
 
 end ATAILForceScratch
 end Problem97

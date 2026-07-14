@@ -1,0 +1,108 @@
+{
+  "case_count": 2,
+  "cases": [
+    {
+      "blocker_cycles": [
+        [0, 1, 4, 2, 3]
+      ],
+      "blocker_image_size": 5,
+      "cap_pair_counts": [
+        {
+          "cap_index": 0,
+          "cap_size": 5,
+          "capacity": 21,
+          "proven_lower": 9,
+          "witness_usage": 9
+        },
+        {
+          "cap_index": 1,
+          "cap_size": 5,
+          "capacity": 21,
+          "proven_lower": 9,
+          "witness_usage": 11
+        },
+        {
+          "cap_index": 2,
+          "cap_size": 5,
+          "capacity": 21,
+          "proven_lower": 9,
+          "witness_usage": 13
+        }
+      ],
+      "case_sha256": "0f3d1cf14f1ada1f782f8da5ad550b0aa997fc4b6a932de43b9e137efbcfee6f",
+      "dangerous_labels": {
+        "p": 0,
+        "q": 3,
+        "t1": 7,
+        "t2": 6,
+        "t3": 9,
+        "u": 1
+      },
+      "joint_selected_radius_points_off_surplus": [7],
+      "legacy_opposite_endpoint_chain_count": 1,
+      "legacy_wrong_side_count": 0,
+      "maximum_blocker_fiber": 4,
+      "maximum_joint_off_surplus_fiber": 1,
+      "maximum_row_overlap": 2,
+      "name": "card12-profile-5-5-5",
+      "profile": [5, 5, 5],
+      "row_count": 12,
+      "shared_two_point_row_pairs": 11,
+      "status": "VALIDATED_STRENGTHENED_FINITE_SHADOW_ONLY"
+    },
+    {
+      "blocker_cycles": [
+        [0, 1, 2]
+      ],
+      "blocker_image_size": 5,
+      "cap_pair_counts": [
+        {
+          "cap_index": 0,
+          "cap_size": 4,
+          "capacity": 28,
+          "proven_lower": 8,
+          "witness_usage": 8
+        },
+        {
+          "cap_index": 1,
+          "cap_size": 5,
+          "capacity": 21,
+          "proven_lower": 9,
+          "witness_usage": 15
+        },
+        {
+          "cap_index": 2,
+          "cap_size": 6,
+          "capacity": 15,
+          "proven_lower": 10,
+          "witness_usage": 10
+        }
+      ],
+      "case_sha256": "1544cd68315da0d66332d7d4f38125ff8f17429d36c813f23f31e4844499277e",
+      "dangerous_labels": {
+        "p": 0,
+        "q": 4,
+        "t1": 5,
+        "t2": 2,
+        "t3": 9,
+        "u": 1
+      },
+      "joint_selected_radius_points_off_surplus": [11],
+      "legacy_opposite_endpoint_chain_count": 0,
+      "legacy_wrong_side_count": 0,
+      "maximum_blocker_fiber": 4,
+      "maximum_joint_off_surplus_fiber": 1,
+      "maximum_row_overlap": 2,
+      "name": "card12-profile-4-5-6",
+      "profile": [4, 5, 6],
+      "row_count": 12,
+      "shared_two_point_row_pairs": 8,
+      "status": "VALIDATED_STRENGTHENED_FINITE_SHADOW_ONLY"
+    }
+  ],
+  "manifest_sha256": "21a7345c9249fa98959494a64ef78c151c43e8a2f982d9b7d4a77122da6d55ed",
+  "schema": "p97-atail-global-count-boundary-checkpoint-v1",
+  "shadows_sha256": "6eed843ad497cc089c3403e5fe03ad153cb3a8f57c8ebd2c34d7f8064ee7e97c",
+  "status": "VALIDATED_STRENGTHENED_FINITE_SHADOW_ONLY",
+  "target_faithful": false
+}

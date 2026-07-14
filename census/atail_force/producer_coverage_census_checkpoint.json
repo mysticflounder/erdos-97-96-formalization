@@ -1,0 +1,875 @@
+{
+  "cases": [
+    {
+      "case_id": "card11_profile_554",
+      "classification_counts": {
+        "adjacent_cap_one_hit": 19438,
+        "endpoint_radius_containment": 11336,
+        "formalized_bank": 4140,
+        "survivor": 96
+      },
+      "classification_stream_sha256": "1b151f064876866f623ef8461aa0fbcd24955c9cbc26b098383078a5933a0fc2",
+      "pattern_counts": {
+        "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep": 14469,
+        "Problem97.SurplusCapPacket.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep": 16558,
+        "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius": 7520,
+        "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius": 4662,
+        "equality-convex-four-point-two-circle-bisector-order": 4140,
+        "equality-convex-four-point-two-circle-bisector-order-reverse": 4140,
+        "equality-duplicate-center": 2145,
+        "equality-perpendicular-bisector-convex": 114
+      },
+      "raw_full_exact_class_pairs": 52920,
+      "representatives": {
+        "adjacent_cap_one_hit": [
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              5
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              9
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              10
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          }
+        ],
+        "boundary_chord_straddling_mec": [],
+        "endpoint_radius_containment": [
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              6
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              7
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              8
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          }
+        ],
+        "formalized_bank": [
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              4,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          }
+        ],
+        "survivor": [
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              9,
+              10
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              9,
+              10
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              4,
+              9,
+              10
+            ],
+            "patterns": [],
+            "witnesses": []
+          }
+        ],
+        "two_center_mec_inward": []
+      },
+      "target_negating_pairs": 35010
+    },
+    {
+      "case_id": "card12_profile_654",
+      "classification_counts": {
+        "adjacent_cap_one_hit": 69696,
+        "endpoint_radius_containment": 30156,
+        "formalized_bank": 15743,
+        "survivor": 150
+      },
+      "classification_stream_sha256": "753dd226e637779e69a9f01cbd3d6e85c2415b2f144bd7a2aaa5377df0953864",
+      "pattern_counts": {
+        "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep": 54208,
+        "Problem97.SurplusCapPacket.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep": 61930,
+        "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius": 19817,
+        "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius": 12222,
+        "equality-convex-four-point-two-circle-bisector-order": 15743,
+        "equality-convex-four-point-two-circle-bisector-order-reverse": 15743,
+        "equality-duplicate-center": 7175,
+        "equality-perpendicular-bisector-convex": 280
+      },
+      "raw_full_exact_class_pairs": 152460,
+      "representatives": {
+        "adjacent_cap_one_hit": [
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              5
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              6
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              10
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          }
+        ],
+        "boundary_chord_straddling_mec": [],
+        "endpoint_radius_containment": [
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              6
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              7
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              8
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          }
+        ],
+        "formalized_bank": [
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              4,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          }
+        ],
+        "survivor": [
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              10,
+              11
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              10,
+              11
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              7,
+              8,
+              9
+            ],
+            "opp_apex2_support": [
+              0,
+              4,
+              10,
+              11
+            ],
+            "patterns": [],
+            "witnesses": []
+          }
+        ],
+        "two_center_mec_inward": []
+      },
+      "target_negating_pairs": 115745
+    },
+    {
+      "case_id": "card12_profile_555",
+      "classification_counts": {
+        "adjacent_cap_one_hit": 126413,
+        "endpoint_radius_containment": 66943,
+        "formalized_bank": 24948,
+        "survivor": 684
+      },
+      "classification_stream_sha256": "7233f3ea6680f9c39b7d85e47310cbf71dd81a0d6f84251fb7c9488b97555ebe",
+      "pattern_counts": {
+        "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep": 102833,
+        "Problem97.SurplusCapPacket.rightAdjacentCap_at_opposite_card_le_one_of_convexIndep": 103842,
+        "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius": 39648,
+        "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius": 31843,
+        "equality-convex-four-point-two-circle-bisector-order": 24948,
+        "equality-convex-four-point-two-circle-bisector-order-reverse": 24948,
+        "equality-duplicate-center": 14364,
+        "equality-perpendicular-bisector-convex": 1085
+      },
+      "raw_full_exact_class_pairs": 365904,
+      "representatives": {
+        "adjacent_cap_one_hit": [
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              5
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              9
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "adjacent_cap_one_hit",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              3,
+              4,
+              10
+            ],
+            "patterns": [
+              "Problem97.SurplusCapPacket.leftAdjacentCap_at_opposite_card_le_one_of_convexIndep"
+            ],
+            "witnesses": []
+          }
+        ],
+        "boundary_chord_straddling_mec": [],
+        "endpoint_radius_containment": [
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              6
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              7
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "endpoint_radius_containment",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              8
+            ],
+            "patterns": [
+              "U2NonSurplusSqueeze.oppApex1_filter_subset_oppCap1_of_endpointRadius",
+              "U2NonSurplusSqueeze.oppApex2_filter_subset_oppCap2_of_endpointRadius"
+            ],
+            "witnesses": []
+          }
+        ],
+        "formalized_bank": [
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              4
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              3,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          },
+          {
+            "classification": "formalized_bank",
+            "opp_apex1_support": [
+              0,
+              2,
+              3,
+              4,
+              5
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              4,
+              5
+            ],
+            "patterns": [
+              "equality-duplicate-center",
+              "equality-perpendicular-bisector-convex",
+              "equality-convex-four-point-two-circle-bisector-order",
+              "equality-convex-four-point-two-circle-bisector-order-reverse"
+            ],
+            "witnesses": []
+          }
+        ],
+        "survivor": [
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              9,
+              10
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              9,
+              11
+            ],
+            "patterns": [],
+            "witnesses": []
+          },
+          {
+            "classification": "survivor",
+            "opp_apex1_support": [
+              0,
+              2,
+              6,
+              7,
+              8
+            ],
+            "opp_apex2_support": [
+              0,
+              1,
+              10,
+              11
+            ],
+            "patterns": [],
+            "witnesses": []
+          }
+        ],
+        "two_center_mec_inward": []
+      },
+      "target_negating_pairs": 218988
+    }
+  ],
+  "classification_precedence": [
+    "formalized_bank",
+    "endpoint_radius_containment",
+    "adjacent_cap_one_hit",
+    "two_center_mec_inward",
+    "boundary_chord_straddling_mec",
+    "survivor"
+  ],
+  "epistemic_status": "EXHAUSTIVE_FINITE_COMBINATORIAL_COVERAGE_ONLY",
+  "omitted": [
+    "Euclidean coordinates and metric realizability",
+    "production import of either scratch MEC kernel",
+    "extraction of MEC disk and signed-area hypotheses from the live leaf",
+    "a proof that every combinatorial survivor is geometrically realizable"
+  ],
+  "schema": "p97_atail_force_producer_coverage_census.v1",
+  "scope": {
+    "full_exact_class_pairs": true,
+    "geometry_kernel_production_imported": false,
+    "lean_proof_claim": false,
+    "live_extraction_theorem_proved": false,
+    "selected_four_choices_enumerated": false,
+    "solver_invoked": false,
+    "target_negation_required": true
+  },
+  "total_classification_counts": {
+    "adjacent_cap_one_hit": 215547,
+    "endpoint_radius_containment": 108435,
+    "formalized_bank": 44831,
+    "survivor": 930
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "cases": [
+    {
+      "bounded_deletion": {
+        "attempts": [
+          {"original_index": 0, "removed": true, "verdict": "UNIT"},
+          {"original_index": 1, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 2, "removed": true, "verdict": "UNIT"},
+          {"original_index": 3, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 4, "removed": true, "verdict": "UNIT"},
+          {"original_index": 5, "removed": true, "verdict": "UNIT"},
+          {"original_index": 6, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 7, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 8, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 9, "removed": true, "verdict": "UNIT"},
+          {"original_index": 10, "removed": false, "verdict": "NONUNIT"},
+          {"original_index": 11, "removed": true, "verdict": "UNIT"}
+        ],
+        "complete": false,
+        "confirmed_row_irredundant": false,
+        "initial_row_count": 12,
+        "retained_core_crosscheck": {
+          "msolve_qq_forward_variables": {"verdict": "UNIT"},
+          "msolve_qq_reverse_variables": {"verdict": "UNIT"},
+          "singular_qq": {"verdict": "UNIT"},
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "retained_equality_count": 18,
+        "retained_row_count": 6,
+        "retained_rows": [
+          {"center": 1, "support": [0, 2, 5, 6]},
+          {"center": 3, "support": [2, 7, 10, 11]},
+          {"center": 6, "support": [1, 2, 8, 11]},
+          {"center": 7, "support": [0, 3, 6, 11]},
+          {"center": 8, "support": [0, 3, 7, 9]},
+          {"center": 10, "support": [1, 6, 7, 8]}
+        ],
+        "strategy": "one-pass-canonical-row-deletion"
+      },
+      "coordinate_gauge": {"point_0": [0, 0], "point_1": [1, 0]},
+      "coordinate_variable_count": 20,
+      "distinct_metric_row_count": 12,
+      "distinct_metric_rows_sha256": "4c4c6cf898783ed14a501b5d2aaa9a143e04f5a53c65e06c16b6d4828dc659a1",
+      "duplicate_provenance_row_count": 17,
+      "equality_count": 36,
+      "expanded_polynomial_sha256": "6b945750dabf76847a64734c582fd54a7f6e24635eeddaa31718e0be90bb8c70",
+      "full_equality_ideal": {
+        "msolve_qq_forward_variables": {"verdict": "UNIT"},
+        "msolve_qq_reverse_variables": {"verdict": "UNIT"},
+        "singular_qq": {"verdict": "UNIT"},
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "profile": [4, 5, 6],
+      "reported_status": "NO_NORMALIZED_COMPLEX_OR_REAL_EQUALITY_REALIZATION",
+      "row_provenance_sha256": "1dcbac673f522d51131c2bcccd24b87ce46622e6d805e53cfd2192f8b3a9d4ef",
+      "schema": "p97-atail-second-center-metric-oracle-case-v1",
+      "serialized_row_count": 29,
+      "source_witness_sha256": "ce24f3818d0b9465ef6afadced8a957065ffb7846cd62d7f1cb52c764850fa47"
+    },
+    {
+      "bounded_deletion": {
+        "attempts": [
+          {"original_index": 0, "removed": true, "verdict": "UNIT"},
+          {"original_index": 1, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 2, "removed": true, "verdict": "UNIT"},
+          {"original_index": 3, "removed": true, "verdict": "UNIT"},
+          {"original_index": 4, "removed": true, "verdict": "UNIT"},
+          {"original_index": 5, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 6, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 7, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 8, "removed": false, "verdict": "TIMEOUT"},
+          {"original_index": 9, "removed": true, "verdict": "UNIT"},
+          {"original_index": 10, "removed": false, "verdict": "NONUNIT"},
+          {"original_index": 11, "removed": false, "verdict": "TIMEOUT"}
+        ],
+        "complete": false,
+        "confirmed_row_irredundant": false,
+        "initial_row_count": 12,
+        "retained_core_crosscheck": {
+          "msolve_qq_forward_variables": {"verdict": "UNIT"},
+          "msolve_qq_reverse_variables": {"verdict": "UNIT"},
+          "singular_qq": {"verdict": "UNIT"},
+          "status": "CROSSCHECKED_UNIT"
+        },
+        "retained_equality_count": 21,
+        "retained_row_count": 7,
+        "retained_rows": [
+          {"center": 1, "support": [0, 2, 6, 7]},
+          {"center": 5, "support": [0, 3, 8, 11]},
+          {"center": 6, "support": [1, 5, 7, 11]},
+          {"center": 7, "support": [2, 5, 8, 9]},
+          {"center": 8, "support": [4, 7, 9, 11]},
+          {"center": 10, "support": [3, 5, 7, 9]},
+          {"center": 11, "support": [1, 7, 8, 10]}
+        ],
+        "strategy": "one-pass-canonical-row-deletion"
+      },
+      "coordinate_gauge": {"point_0": [0, 0], "point_1": [1, 0]},
+      "coordinate_variable_count": 20,
+      "distinct_metric_row_count": 12,
+      "distinct_metric_rows_sha256": "83e91987ea74e21442c24a17838a78ea8f6004da67fe063ec614ec68c41a5b4f",
+      "duplicate_provenance_row_count": 17,
+      "equality_count": 36,
+      "expanded_polynomial_sha256": "706ac1a975ff2cfb9b24c6a8472513b50c5a571c6aea84f5a2ca7d78598c7278",
+      "full_equality_ideal": {
+        "msolve_qq_forward_variables": {"verdict": "UNIT"},
+        "msolve_qq_reverse_variables": {"verdict": "UNIT"},
+        "singular_qq": {"verdict": "UNIT"},
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "profile": [5, 5, 5],
+      "reported_status": "NO_NORMALIZED_COMPLEX_OR_REAL_EQUALITY_REALIZATION",
+      "row_provenance_sha256": "86295e8086858c8cc7929f0c3826821c59755ec0756304a9b022b0a6020eb9ca",
+      "schema": "p97-atail-second-center-metric-oracle-case-v1",
+      "serialized_row_count": 29,
+      "source_witness_sha256": "d1231886198381478c2ae0120c5d444b353e0b003097cc97b10c205c98883a18"
+    }
+  ],
+  "manifest_sha256": "603463ab6b13eccab7f6cf8108df1d5ff59a96ed2828b6596f4c596dc96f3cb1",
+  "schema": "p97-atail-second-center-metric-oracle-v1",
+  "scope": {
+    "all_card_12_placements_exhausted": false,
+    "card_11_included": false,
+    "lean_theorem_proved": false,
+    "normalized_complex_branch_only": true,
+    "nullstellensatz_certificate_replayed": false,
+    "producer_proved": false,
+    "real_exclusion_follows_from_complex_exclusion": true,
+    "singular_qq_and_msolve_two_order_crosscheck": true,
+    "target_faithful": false,
+    "trusted_exact_cas_computation": true
+  },
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve": {"verdict": "NONUNIT"},
+      "singular": {"verdict": "NONUNIT"}
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve": {"verdict": "UNIT"},
+      "singular": {"verdict": "UNIT"}
+    }
+  },
+  "source": {
+    "query_checkpoint_sha256": "f8608bc9b70576254cf1def8cd510f1e021c06ee0127c1b6ae767c3d620b4809",
+    "query_manifest_sha256": "ad02273cdba024d5e45c8c30d751ef932d16efdca05de114199a2a9ef58c78d9",
+    "source_artifact_manifest_sha256": "71f42f0b92a1d20ede39ee0ea3c58f7b9c71ef6a8f8d0e014365c8486d53c23c"
+  }
+}

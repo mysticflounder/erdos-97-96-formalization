@@ -1,0 +1,35 @@
+{
+  "all_witnesses_independently_validated": true,
+  "cases": [
+    {
+      "nodes": 19,
+      "profile": [
+        4,
+        5,
+        6
+      ],
+      "q_c_status": "NO_ENCODED_ROW_WITNESS",
+      "raw_status": "SAT",
+      "reported_status": "SAT_FINITE_SHADOW_ONLY",
+      "row_count": 29,
+      "witness_sha256": "ce24f3818d0b9465ef6afadced8a957065ffb7846cd62d7f1cb52c764850fa47"
+    },
+    {
+      "nodes": 26,
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "q_c_status": "NO_ENCODED_ROW_WITNESS",
+      "raw_status": "SAT",
+      "reported_status": "SAT_FINITE_SHADOW_ONLY",
+      "row_count": 29,
+      "witness_sha256": "d1231886198381478c2ae0120c5d444b353e0b003097cc97b10c205c98883a18"
+    }
+  ],
+  "epistemic_status": "SAT_FINITE_SHADOW_ONLY",
+  "manifest_sha256": "71f42f0b92a1d20ede39ee0ea3c58f7b9c71ef6a8f8d0e014365c8486d53c23c",
+  "schema": "p97-atail-pair-second-center-checkpoint-v1",
+  "target_faithful": false
+}

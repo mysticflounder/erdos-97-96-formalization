@@ -1,0 +1,391 @@
+{
+  "schema": "p97-atail-shard-anchor-pair-certificate-checkpoint-v1",
+  "scope": {
+    "certificate_replayed": false,
+    "fixed_placement_only": true,
+    "lean_theorem_proved": false,
+    "target_faithful": false,
+    "trusted_singular_computation": true
+  },
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_checkpoint.json",
+  "source_checkpoint_sha256": "938bcd74fbfe31e3d260544fe7a9cfc3b9ce5e2fe55edb96e41438be2407961e",
+  "shard_index": 13,
+  "active_points": [
+    0,
+    1,
+    4,
+    6,
+    9,
+    10,
+    11
+  ],
+  "pair_count": 21,
+  "completed_unit_count": 10,
+  "best_unit_pairs": [
+    {
+      "elapsed_seconds": 0.14674029200978111,
+      "lift_max_coefficient_char_count": 23839,
+      "lift_total_char_count": 113505,
+      "normalization_anchors": [
+        1,
+        10
+      ]
+    },
+    {
+      "elapsed_seconds": 0.1403913329995703,
+      "lift_max_coefficient_char_count": 19590,
+      "lift_total_char_count": 116226,
+      "normalization_anchors": [
+        9,
+        10
+      ]
+    },
+    {
+      "elapsed_seconds": 0.13992845801112708,
+      "lift_max_coefficient_char_count": 67360,
+      "lift_total_char_count": 201611,
+      "normalization_anchors": [
+        1,
+        6
+      ]
+    },
+    {
+      "elapsed_seconds": 0.44600941699172836,
+      "lift_max_coefficient_char_count": 74266,
+      "lift_total_char_count": 315503,
+      "normalization_anchors": [
+        9,
+        11
+      ]
+    },
+    {
+      "elapsed_seconds": 0.32035537500632927,
+      "lift_max_coefficient_char_count": 48716,
+      "lift_total_char_count": 325494,
+      "normalization_anchors": [
+        6,
+        10
+      ]
+    },
+    {
+      "elapsed_seconds": 1.4778233749966603,
+      "lift_max_coefficient_char_count": 85174,
+      "lift_total_char_count": 512987,
+      "normalization_anchors": [
+        0,
+        4
+      ]
+    },
+    {
+      "elapsed_seconds": 0.7291114999970887,
+      "lift_max_coefficient_char_count": 208139,
+      "lift_total_char_count": 1337423,
+      "normalization_anchors": [
+        0,
+        9
+      ]
+    },
+    {
+      "elapsed_seconds": 1.2099840419978136,
+      "lift_max_coefficient_char_count": 250110,
+      "lift_total_char_count": 1610456,
+      "normalization_anchors": [
+        4,
+        9
+      ]
+    },
+    {
+      "elapsed_seconds": 0.30876004199672025,
+      "lift_max_coefficient_char_count": 642022,
+      "lift_total_char_count": 2464128,
+      "normalization_anchors": [
+        0,
+        1
+      ]
+    },
+    {
+      "elapsed_seconds": 0.5025278749963036,
+      "lift_max_coefficient_char_count": 2223011,
+      "lift_total_char_count": 11312580,
+      "normalization_anchors": [
+        10,
+        11
+      ]
+    }
+  ],
+  "results": [
+    {
+      "normalization_anchors": [
+        0,
+        1
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "ed617aa75c5cee2f4b931cd6350f870b972cb3a0283b4c5714ca100d9fcc2eac",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.30876004199672025,
+      "lift_total_char_count": 2464128,
+      "lift_max_coefficient_char_count": 642022
+    },
+    {
+      "normalization_anchors": [
+        0,
+        4
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "7b687fbfbf56ad5405cd46146d6796ed9e518e74eca0c0b9c0034e1060e465d0",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 1.4778233749966603,
+      "lift_total_char_count": 512987,
+      "lift_max_coefficient_char_count": 85174
+    },
+    {
+      "normalization_anchors": [
+        0,
+        6
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "9488129e956e826e4ea1c1bff4ab5f2fe0de71ef161322f27621c310bf60231a",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.446864875004394,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        0,
+        9
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "61088d1dc5f7b891d001f6a903c89cd6c7cccda26000d26366e412df1b55dd35",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.7291114999970887,
+      "lift_total_char_count": 1337423,
+      "lift_max_coefficient_char_count": 208139
+    },
+    {
+      "normalization_anchors": [
+        0,
+        10
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "b21986839c82edbb47b4da130c2b186443ad4c48d328702e20faf064fff7fea4",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 51.84342687499884,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        0,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "98918e50d3fa8078d220efccfb1de8a616de873e0d0ab5a93659d1bf868bf712",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 16.78910937499313,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        1,
+        4
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "9bc14ba15bccde84f2522b7ff6efdfdf7bf01018ab03124a3ab92e7a72df135a",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.15108458300528582,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        1,
+        6
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "8aa823b2f8071ddf816304af65eda9f2b28e697b55d841dca759f38fa6dab5af",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.13992845801112708,
+      "lift_total_char_count": 201611,
+      "lift_max_coefficient_char_count": 67360
+    },
+    {
+      "normalization_anchors": [
+        1,
+        9
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "c283a53b88bc930d2cca3035dd7235d012f43de1f34addebe60ce906bbf62bd0",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.4348979589994997,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        1,
+        10
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "0a88dcc766b00eed5b75e9d68df68b6a2f6be2c40aea09119054e59692070227",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.14674029200978111,
+      "lift_total_char_count": 113505,
+      "lift_max_coefficient_char_count": 23839
+    },
+    {
+      "normalization_anchors": [
+        1,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "73ecd6e3299f6c28f77ae893cfaf082e3539624d1b3b47308bf23cfb15557dbd",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.5378397919994313,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        4,
+        6
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "9d9b9a5051fc7a5636bb6dfaa25a31f9724533021cca7e8cddd085fa49535345",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 9.803609499998856,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        4,
+        9
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "737455446ca8e4fd206dc820bf470bc344cadc84e0ea19394a4c32f4dec92789",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 1.2099840419978136,
+      "lift_total_char_count": 1610456,
+      "lift_max_coefficient_char_count": 250110
+    },
+    {
+      "normalization_anchors": [
+        4,
+        10
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "7f954dc1f95d5f2b96969991ff3e5680c70cfae591c23938230202c85702ea84",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.2715201669925591,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        4,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "ea744b91ba2fc951be14b5b90b39caf83a89cecd734f557f8e24b6a5dc1a9f2d",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 0.7852192920108791,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        6,
+        9
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "4681e0f1f7372a59fe69737bc9c89ad5ea33304263c7444367006253f5c110c6",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 2.642351917005726,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        6,
+        10
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "687825d9323a72a8feceb7dd398db607c8857940ce850c94abb17be8f9ea1b92",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.32035537500632927,
+      "lift_total_char_count": 325494,
+      "lift_max_coefficient_char_count": 48716
+    },
+    {
+      "normalization_anchors": [
+        6,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "c534e72928432d665d48cfb8bff1be4fbe6dc12f57d0275dbba98ad0cbef1703",
+      "status": "COMPLETED",
+      "basis_is_unit": false,
+      "elapsed_seconds": 1.406613750004908,
+      "lift_total_char_count": null,
+      "lift_max_coefficient_char_count": null
+    },
+    {
+      "normalization_anchors": [
+        9,
+        10
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "30e0b251f817ca3ef0063354a5209d758ccace9d01188329e5ac9fc419fd3f43",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.1403913329995703,
+      "lift_total_char_count": 116226,
+      "lift_max_coefficient_char_count": 19590
+    },
+    {
+      "normalization_anchors": [
+        9,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "cdfb88dce0c414efc037e0604cfe0b191b78a6030f0cda7d48ae996e47b22dbb",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.44600941699172836,
+      "lift_total_char_count": 315503,
+      "lift_max_coefficient_char_count": 74266
+    },
+    {
+      "normalization_anchors": [
+        10,
+        11
+      ],
+      "monomial_order": "dp",
+      "polynomials_sha256": "b3fc34e46656253ecd3e4bb60222f1570ac19530766fd34bef92b540d90ac9b0",
+      "status": "COMPLETED",
+      "basis_is_unit": true,
+      "elapsed_seconds": 0.5025278749963036,
+      "lift_total_char_count": 11312580,
+      "lift_max_coefficient_char_count": 2223011
+    }
+  ]
+}
