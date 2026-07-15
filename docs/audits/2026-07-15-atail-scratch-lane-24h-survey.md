@@ -3,7 +3,12 @@
 **Scope**: every file under `scratch/atail-force/` modified since
 2026-07-14T09:31 local — 113 lane directories plus ~40 standalone files —
 surveyed read-only by a search agent; each lane's own status/verdict line is
-quoted with its original rigor label. Commit-level context for the same
+quoted with its original rigor label. **Snapshot semantics**: lane state as
+read ~2026-07-15T10:00 local; active lanes move hourly, so this is a dated
+inventory, not the closure plan. Dispatch authority remains with
+`docs/closure-matrix-2026-07-09.md` and
+`docs/atail-force-producer-plan-2026-07-13.md`. Known-stale entries are
+corrected in the addendum at the end of this file. Commit-level context for the same
 window: `f01ff4a2` (producer frontier + metric bank), `9b92cc64`
 (SurplusM44Packet shard split), `e442825c` (cold-build benchmark),
 `6118e06a` (closure-plan prose skeptic audit,
@@ -455,11 +460,54 @@ hardened results (mostly dated 2026-07-15):
   `robust-all-center-marco` (all 07-15) — additional kernel-checked sinks /
   prop-equivalences / exact-CAS-UNIT terminal shadow.
 
-Recurring caveat across the corpus: the single missing ingredient is
-repeatedly named the **total all-center global-K4 / `CriticalShellSystem`
-coupling** (see `robust-four-center`, `global-critical-continuation`,
+Recurring caveat across the corpus: the missing **proof layer** is repeatedly
+named the all-center global-K4 / `CriticalShellSystem` coupling (see
+`robust-four-center`, `global-critical-continuation`,
 `second-cap-incidence-coupling`, `biapex-continuation-grid`); local
 convex/MEC/cap/no-IsM44 data is proven insufficient by multiple exact
-countermodels. `global-critical-continuation` additionally shows the *total*
-critical-shell system is not load-bearing — all-center K4 is the first
-isolated missing layer.
+countermodels. Precision: the hypotheses themselves are not missing — both
+sit on the live K-A surface, and corrected CEGAR already encodes a selected
+K4 row at every abstract center; `global-critical-continuation` shows the
+*total* critical-shell system is not load-bearing, with all-center K4 the
+first isolated omitted layer in the exact regressions. What remains open is
+the certified bridge — a uniform theorem or a finite certified disjunction —
+that turns anonymous-center K4 rows plus metric/order data into a
+contradiction.
+
+---
+
+## Addendum (2026-07-15, post-survey freshness corrections)
+
+Two entries above were already stale or incomplete when the survey landed;
+both corrections are verified against the lanes' own reports.
+
+1. **`bank-clean-lean-certificate/` (supersedes the §3 entry).** Per the lane
+   REPORT and `compact-fallback/REPORT.md`:
+   `BankCleanFirstBranchSmoke.lean` compiles (exit 0), every printed theorem
+   has axiom set exactly `propext, Classical.choice, Quot.sound`, no
+   `sorryAx`. All geometry/reflection adapters and every non-generic branch
+   are closed: both circle-intersection splits, the `G=O`, `K=Z`, and `Y=G`
+   coincidence arms, and
+   `bank_clean_core_forces_generic_double_reflection` (a checked residual
+   boundary, not yet a contradiction). The sole remaining obstruction is the
+   generic double-reflection arm; the bounded kernel replay of its `Kx = 0`
+   consequence is being packaged within Lean resource limits
+   (definition-sharded and microsharded sources pinned by SHA-256, fine
+   `LambdaKxFine` shard build in progress). The supporting radius-arm
+   evidence (`R^7·(R−1)^7·(R²−4R+1) = 0` and the all-radii-one reduction) is
+   exact Singular/msolve algebra, explicitly **not** yet a Lean theorem or a
+   real-infeasibility certificate.
+
+2. **`bank-clean-pattern-matcher/` (postdates the sweep; REPORT written
+   2026-07-15 10:00).** An exact matcher test of the newly production-built
+   `Problem97.Census554.MECStraddlingRowCore` against the corrected
+   101-shadow stream: it embeds in 36 of 101 shadows (378 positive + 384
+   reflected embeddings), every hit already bank-covered; terminal shadow
+   100 has 220 raw equality-core embeddings but **zero** with the four
+   agreeing strict signs either geometry structure requires — the missing
+   condition at the terminal is exactly cyclic straddling orientation. So
+   `MECStraddlingRowCore` is a valid future bank improvement but does not
+   replace the terminal 15-equality consumer. Matcher status:
+   `MATCHER_READY_LEAN_CONSUMER_PENDING`; not proof, must not enter the
+   production bank until the named Lean consumer compiles with audited
+   axioms.
