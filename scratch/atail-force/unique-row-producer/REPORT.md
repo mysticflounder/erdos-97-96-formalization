@@ -2914,3 +2914,17 @@ witnesses whose built-in audit times out; the 300 s scan of
 `a4914ed2…` TIMED OUT in `std(I)` (its predecessor `fa87f604…`
 finished well inside 120 s, so this ideal is materially heavier) — a
 1800 s retry is running alongside 555 iteration 6.
+
+555 iteration 6 (witness `aab3e0b5…`, apex row `{2,6,7,8,10}`, 2.71 M
+nodes) hit the first inline-audit capacity failure: msolve UNIT under
+both variable orders but inline Singular TIMEOUT, so the combined
+verdict degraded to UNDECIDED_ORACLE_DISAGREEMENT_OR_TIMEOUT and
+nothing was admissible.  New lane tool `system_unit_recheck.py`
+replays a witness fail-closed (row signature AND rebuilt
+equality-system hash must both match the search report) and re-runs
+the three-oracle crosscheck plus the one-pass row deletion and
+retained-core crosscheck under caller-chosen budgets.  Smoke gate
+against the known-UNIT iteration-5 witness `a94caeaf…`: reproduces
+CROSSCHECKED_UNIT, the hash `require` passes, and the deletion pass
+returns a crosschecked 7-row core.  A 900 s recheck of `aab3e0b5…` is
+running.
