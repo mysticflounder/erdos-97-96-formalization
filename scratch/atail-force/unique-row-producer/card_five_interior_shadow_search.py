@@ -1389,10 +1389,11 @@ REAL_INFEASIBLE_ROW_CORES = (
     # deletion retained 7 rows / 21 equalities (4 deletion TIMEOUTs),
     # retained core CROSSCHECKED_UNIT (Singular + msolve fwd/rev);
     # exactly the image of unit-core-555-24 under transposition 6<->7
-    # — the SIXTH full-core transposition pair and the second under
-    # (6 7), landing one iteration after the first ((6,7)-image of
-    # 555-22 = 555-35): the pocket is now enumerating (6,7)-images of
-    # the earlier 555-20..28 family.  Shares 5 rows with 555-35;
+    # — the SIXTH full-core transposition pair in the 555 unit family
+    # and the second under (6 7), landing one iteration after the
+    # first ((6,7)-image of 555-22 = 555-35): the pocket is now
+    # enumerating (6,7)-images of the earlier 555-20..28 family.
+    # Shares 5 rows with 555-35;
     # support 9:{4,5,6,10} new to the bank.
     {
         "id": "unit-core-555-36",
@@ -1437,7 +1438,8 @@ REAL_INFEASIBLE_ROW_CORES = (
     # 4 UNIT / 7 TIMEOUT fail-closed / 1 NONUNIT), retained core
     # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); exactly the
     # image of unit-core-555-26 under transposition 6<->7 — the
-    # SEVENTH full-core transposition pair and the third under (6 7),
+    # SEVENTH full-core transposition pair in the 555 unit family and
+    # the third under (6 7),
     # extending the (6,7)-image enumeration of the 555-20..28 family
     # (555-22 -> 555-35, 555-24 -> 555-36, 555-26 -> 555-38); support
     # 6:{0,4,5,8} new to the bank; closest kin 555-35/-36/-37
@@ -1475,6 +1477,34 @@ REAL_INFEASIBLE_ROW_CORES = (
             6: frozenset({0, 4, 8, 11}),
             7: frozenset({5, 6, 8, 9}),
             8: frozenset({2, 7, 9, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 21,
+    },
+    # 555 iter-52 witness f4f99970 (SAT at 150,678 nodes — just 60
+    # past iter-51's witness, the pocket still tightening; sources
+    # (6,7), inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 7 rows / 21 equalities (deletion verdicts
+    # 5 UNIT / 3 TIMEOUT fail-closed / 4 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); exact image of
+    # unit-core-555-28 under transposition 6<->7 — the EIGHTH
+    # full-core transposition pair in the 555 unit family (the bank
+    # also holds 654-19<->20 under (7 8) and 654-29<->30 under (3 4))
+    # and the fourth under (6 7): every even member 22/24/26/28 of the
+    # 555-20..28 family now has its (6,7)-image banked (22 -> 35,
+    # 24 -> 36, 26 -> 38, 28 -> 40).  555-28 joins 555-24 as the only
+    # cores in two image pairs (25<->28 under (7 8)).  No new
+    # supports — all seven rows already banked; closest kin
+    # 555-35/-36/-38/-39 (5 shared rows each).
+    {
+        "id": "unit-core-555-40",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({0, 4, 8, 11}),
+            7: frozenset({2, 5, 8, 9}),
+            8: frozenset({2, 7, 10, 11}),
             9: frozenset({0, 4, 6, 10}),
             11: frozenset({0, 1, 5, 7}),
         },
