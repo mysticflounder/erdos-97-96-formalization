@@ -322,19 +322,16 @@ executable task register.
 is the dated full prose proof of the Problem 97 target — the self-contained
 end-to-end mathematical narrative with per-component proved/open status,
 kernel axiom closures, and a completion matrix stating each obligation.
-[`docs/sms-ccl-application-recommendation-2026-07-13.md`](docs/sms-ccl-application-recommendation-2026-07-13.md)
+[`docs/notes/sms-ccl-application-recommendation-2026-07-13.md`](docs/notes/sms-ccl-application-recommendation-2026-07-13.md)
 is a research recommendation mapping SAT-modulo-symmetries and co-certificate
 learning onto the census/mining lanes (papers mirrored in `docs/references/`).
-The former July 6 master plan is a historical record
-under [`docs/archive/2026-07-10-closure-plan-consolidation/`](docs/archive/2026-07-10-closure-plan-consolidation/).
-[`docs/sorry-closure-ledger-2026-07-06.md`](docs/sorry-closure-ledger-2026-07-06.md)
-is the dated sorry-level companion — every then-known `sorry` in the tree with
-a route and acceptance test. The lane execution logs are
-[`docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
-(the two slot-3 U-lane residuals) and
-[`docs/four-point-subpacket-plan.md`](docs/four-point-subpacket-plan.md)
-(the now-closed slot-2 lane; historical status matrix + implemented-lemma
-ledger). Analysis snapshots live under [`docs/audits/`](docs/audits).
+The former July 6 master plan, the dated sorry-level ledger, and the two
+slot-3/slot-2 U-lane execution logs (both now-closed lanes) are historical
+records under
+[`docs/archive/2026-07-10-closure-plan-consolidation/`](docs/archive/2026-07-10-closure-plan-consolidation/)
+and
+[`docs/archive/2026-07-16-doc-sweep/`](docs/archive/2026-07-16-doc-sweep/).
+Analysis snapshots live under [`docs/audits/`](docs/audits).
 [`docs/dead-ends.md`](docs/dead-ends.md) is the don't-repeat log for closed
 proof routes.
 

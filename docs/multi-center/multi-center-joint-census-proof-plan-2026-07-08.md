@@ -7,7 +7,7 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 # Multi-center joint census proof plan (2026-07-08)
 
 This note is the proof-facing companion to
-`docs/multi-center-joint-census-2026-07-08.md`. It does not restate the
+`multi-center-joint-census-2026-07-08.md`. It does not restate the
 full census evidence; it records the theorem candidates that the data has
 made plausible and the order in which they should be attacked.
 

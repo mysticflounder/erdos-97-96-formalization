@@ -23,7 +23,9 @@ residuals in `lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean`
 (`DoubleApexOffSurplusSharedRadiusPair`,
 `u1_largeCap_routeB_tail_liveData_false`); 2 off-spine sorries in
 `U2OppCap2Escape.lean`. Working plan:
-[`../u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](../u-lane/97-slot3-certificate-closure-plan-2026-07-06.md).
+[`../archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](../archive/2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
+(now historical; see current
+[`closure-matrix-2026-07-09.md`](../closure-matrix-2026-07-09.md)).
 
 ---
 

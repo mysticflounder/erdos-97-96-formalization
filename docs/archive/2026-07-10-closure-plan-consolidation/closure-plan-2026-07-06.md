@@ -407,7 +407,7 @@ the target is a realizability criterion for near-critical bisector-incidence
 patterns with all points distinct.
 
 - **D1 — literature scan: DONE 2026-07-06**
-  ([`d1-rigidity-literature-scan-2026-07-06.md`](../../d1-rigidity-literature-scan-2026-07-06.md);
+  ([`d1-rigidity-literature-scan-2026-07-06.md`](../../notes/d1-rigidity-literature-scan-2026-07-06.md);
   verified-citations-only, 7 PROVEN-in-literature / 16 PARTIAL / 5 NO-LEAD /
   0 unverified-memory). Headline: **no theorem transfers directly** — the
   target class (near-critical equidistance frameworks, forced-coincidence

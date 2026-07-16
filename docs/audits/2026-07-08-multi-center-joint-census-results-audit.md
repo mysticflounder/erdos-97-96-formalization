@@ -8,8 +8,8 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 Audited documents:
 
-- `docs/multi-center-joint-census-2026-07-08.md` (results note)
-- `docs/multi-center-joint-census-proof-plan-2026-07-08.md` (proof plan)
+- `docs/multi-center/multi-center-joint-census-2026-07-08.md` (results note)
+- `docs/multi-center/multi-center-joint-census-proof-plan-2026-07-08.md` (proof plan)
 - [archived 2026-07-06 closure plan](../archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)
   (§7 census paragraph + U4 register row,
   uncommitted at audit time)

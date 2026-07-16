@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """C-vs-R dichotomy classification of the |A|=12 mined dead cores.
 
-Dispatch: D1 lead 1 of docs/d1-rigidity-literature-scan-2026-07-06.md (Wu 1986 /
+Dispatch: D1 lead 1 of docs/notes/d1-rigidity-literature-scan-2026-07-06.md (Wu 1986 /
 Chou 1988 saturation machinery; see scan section 4.3 FLAG) and
 archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md
 section 7. One bit per dead core: is the core
