@@ -221,6 +221,28 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-9 witness admitted 2026-07-15: source pair (6,7)
+    # forced zero, certified by membership_crosscheck.py --radical-only,
+    # Rabinowitsch UNIT in Singular and msolve (both variable orders).
+    "fd874bf26dfed39fbb53a17433b99e4852eca0c899abd696bededd820f879319": {
+        "equality_sha256":
+            "b3a25241eb7909133e001cabfaff8ed39cd2f9358776a4febbe6e2d71b59540f",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
+    # 654 iteration-3 witness admitted 2026-07-15: source pair (7,8)
+    # forced zero, certified by membership_crosscheck.py --radical-only,
+    # Rabinowitsch UNIT in Singular and msolve (both variable orders).
+    "cb30873e7b2e23b4ce5480b1359173af2e36a993ef66b0704ef4775fa54996b0": {
+        "equality_sha256":
+            "7dc3caead23b283c343837351808e5e1412b0e0e50c5ae43df045678f12ff579",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
