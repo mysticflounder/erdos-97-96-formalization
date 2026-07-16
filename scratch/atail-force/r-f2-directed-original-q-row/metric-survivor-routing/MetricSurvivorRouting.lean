@@ -13,8 +13,15 @@ The paired original-`q` successor split retains a raw `MetricResidual`.  The
 existing non-equilateral consumer instead accepts `NonEquilateralOutput`,
 whose extra field is a common-deletion packet at the second apex.  This file
 checks that the retained concrete critical system is already enough to build
-that packet.  Thus the first genuinely missing non-equilateral field is the
-strict-first-cap common hit, not bookkeeping around the residual.
+that packet.
+
+The generic strict-first-cap common-hit consumer below remains a valid
+sufficient interface.  It is not the producer target on the actual
+equal-source-at-live-center branch: the later
+`strict-oppcap1-hit-producer/` audit proves that branch's two native supports
+meet exactly at the live center in `oppCap2`, and hence proves that the common
+hit is impossible.  That branch must instead retain the existing
+non-equilateral support dichotomy.
 
 For an equilateral residual, the existing joint-transition construction
 already produces all rows and transition packets.  The branch-local missing
@@ -149,9 +156,13 @@ theorem false_of_equilateralResidual_of_realizedClosingSelection
   rcases W with ⟨u, v, Ku, Kv, J, close⟩
   exact false_of_jointTransition_of_closingSelection J close
 
-/-- Exact producer-facing fields for one already-realized metric residual.
-This is an interface, not a producer: the two fields below are precisely the
-remaining mathematical inputs after the assumption-free routing above. -/
+/-- Generic sufficient consumer fields for one already-realized metric
+residual.
+
+This is an interface, not a producer.  In particular, its non-equilateral
+field must not be treated as the actual equal-source-at-live-center target:
+that branch proves the requested common hit false and instead continues
+through the non-equilateral support dichotomy. -/
 structure MetricConsumerSelections
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (H : CriticalShellSystem D.A)

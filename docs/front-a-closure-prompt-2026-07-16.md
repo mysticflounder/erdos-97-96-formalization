@@ -11,8 +11,13 @@ Self-contained; assumes no repository access. The claim below is the exact
 mathematical content of the 12 remaining spine obligations (K-A-PAIR plus
 the 11 LIVE-Q/C helpers); a complete proof of it closes both publish
 targets through the kernel-checked parent adapter in
-`scratch/atail-force/parent-false-surface/`. Everything after the rule is
-the prompt.
+`scratch/atail-force/parent-false-surface/`. Revised 2026-07-16 after the
+first run returned without a proof (response recorded in
+`front-a-closure-prompt-response-2026-07-16.md`, hand-verified): its five
+correct deductions are folded into the assumable-facts section below, its
+terminal gap (balanced cap sizes) is flagged as the load-bearing
+difficulty, and its dead ends are added to the mandatory adversarial
+tests. The paste-ready export is everything after the rule.
 
 ---
 
@@ -72,6 +77,11 @@ convex-position set is O(n). Every other case and reduction is already
 proven and machine-verified. Only a proof of exactly the claim above
 counts.
 
+Terminology used below: a witness circle for a point p of A is a circle
+of radius r > 0 centered at p passing through at least 4 points of A,
+and such an r is a witness radius for p. Hypothesis (H2) states
+precisely that every point of A has at least one witness circle.
+
 The following facts are already proven for every configuration
 satisfying (H1)–(H7) and may be assumed without proof:
 
@@ -90,9 +100,110 @@ both outside C, with dist(x,u) = dist(y,u) and dist(x,w) = dist(y,w).
 (Two such points would be reflections of one another in the line through
 u and w; this situation has already been refuted.)
 
-Consequently, any of the following finishes the task: derive from
-(H1)–(H7) the existence of such a shared-radius pair; or exhibit a
-removable point, contradicting (H3); or derive any other contradiction.
+- (Cap chains.) Let C be any cap and let u and w be the two of v1, v2,
+v3 belonging to C. The points of C form a contiguous chain along the
+boundary of the convex hull of A from u to w. For any three points x,
+y, z of C appearing in this chain order, the angle at y in the triangle
+x y z is at least a right angle, so dist(x,z)^2 >= dist(x,y)^2 +
+dist(y,z)^2. In particular, from any fixed point of C the distances to
+the other points of C strictly increase moving away from it along the
+chain in either direction. Consequently a circle centered at a point of
+C passes through at most two other points of C (at most one on each
+side of the center along the chain), and a circle centered at u or at w
+passes through at most one other point of C. (This uses (H4): the
+triangle angle at the third distinguished vertex is at most a right
+angle, which places C inside the closed disk having the segment uw as a
+diameter.)
+
+- (Cap sizes.) Every cap contains at least 2 points besides its two
+distinguished vertices, so every cap has at least 4 points. Every
+witness circle centered at a non-endpoint point of a cap C passes
+through at least 2 points of A outside C, and every witness circle
+centered at an endpoint of C (one of its two distinguished vertices)
+passes through at least 3 points of A outside C. These conclusions hold
+for every triangle-and-caps structure on A satisfying (H4) and (H5),
+not only the distinguished one. Since the cap sizes of any such
+structure sum to |A| + 3 >= 13, some cap always has at least 5 points,
+so (H7) is equivalent to: in every structure on A satisfying (H4) and
+(H5), at least two caps have at least 5 points.
+
+- (Strong connectivity of witness digraphs.) For each point p of A,
+choose one radius r > 0 whose circle about p passes through at least 4
+points of A, choose 4 of those points, and direct an arc from p to each
+of the 4. Every directed graph obtainable by such choices is strongly
+connected. (Otherwise a sink strongly connected component of its
+condensation would be a proper subset of A that is itself in convex
+position and has the four-equidistant property, contradicting (H3).)
+
+- (Cross-cap bisector injectivity.) For any cap C and any two distinct
+points x and y of A outside C, at most one point of C is equidistant
+from x and y. (The perpendicular bisector of x and y meets the boundary
+of the convex hull of A in exactly two points, one on each of the two
+boundary arcs joining x to y, and all of C lies on one of those arcs.)
+This strictly generalizes the shared-radius pair exclusion above: that
+exclusion is the special case in which the two equidistant centers are
+the two distinguished vertices of C.
+
+- (Pair budget.) Fix a cap C and let X be the set of points of A
+outside C, of size |A| - |C|. Say an unordered pair {x,y} of distinct
+points of X is charged to a point p of C if dist(p,x) = dist(p,y). By
+cross-cap bisector injectivity no pair is charged to two points of C,
+so the total number of charged pairs — summed over all centers p in C
+and over all radii simultaneously, including any additional witness
+radii and the critical-shell circles centered in C — is at most
+|X| (|X| - 1) / 2. The witness circles alone charge at least 1 pair to
+each non-endpoint point of C and at least 3 pairs to each endpoint, so
+
+  (|A| - |C|) (|A| - |C| - 1) / 2 >= |C| + 4   for every cap C.
+
+- (Witness-circle crossing at the distinguished vertices.) For each i
+let Ii be the core of cap Ci, that is, Ci minus its two distinguished
+vertices. Choose any witness circle Gi centered at vi, of radius ri,
+and let Pi be the set of points of Ii lying on Gi; then |Pi| >= 2. For
+all i != j and all x in Pi, y in Pj, the segments from vi to x and from
+vj to y cross, and therefore ri + rj > dist(vj,x) + dist(vi,y).
+Consequently, for every pair i != j, at least one of the following
+holds: every point of Pi lies strictly inside the disk of radius rj
+about vj, or every point of Pj lies strictly inside the disk of radius
+ri about vi.
+
+A first extended attempt proved exactly the facts above and nothing
+more. Its terminal gap is recorded here so that no effort is spent
+rediscovering it: the pair-budget inequality eliminates only
+sufficiently unbalanced cap-size triples. For balanced triples it is
+slack — for cap sizes 5, 5, 4 on |A| = 11 the three instances read
+15 >= 9, 15 >= 9, and 21 >= 8 — and it stays slack for cap sizes 5, 5,
+5 and for every larger balanced triple, with the slack growing
+quadratically in |A|. The guaranteed charges (1 per non-endpoint
+center, 3 per endpoint) can never exceed the budget on their own.
+Likewise, the disk-containment alternatives from the crossing fact are
+not contradictory on their own: cyclic and mutual containment patterns
+among the three disks are geometrically realizable. The critical-shells
+fact was not used anywhere in that attempt. The load-bearing difficulty
+is the balanced cap-size regime: a complete proof must in particular
+close the minimal balanced patterns (cap sizes 5, 5, 4 and 5, 5, 5) and
+every larger balanced pattern.
+
+Consequently, any of the following finishes the task:
+
+- force, for some cap C, strictly more charged pairs outside C than the
+budget |X| (|X| - 1) / 2 allows — for example by extracting additional
+equal-distance pairs from the strong-connectivity structure, from
+further witness radii, or from critical-shell circles whose centers lie
+in C — since by pigeonhole some pair would then be charged to two
+centers of C, contradicting cross-cap bisector injectivity;
+
+- exhibit two distinct points outside some cap that are equidistant
+from two points of that cap (the shared-radius pair at the two
+endpoints is the already-refuted special case);
+
+- exhibit a proper nonempty subset B of A such that every point of B
+has some circle about it passing through at least 4 points of B,
+contradicting (H3);
+
+- exhibit a removable point, contradicting (H3); or
+
+- derive any other contradiction from (H1)–(H7).
 
 Assume for purposes of this task that a complete proof of the claim
 exists. A complete solution must prove exactly the claim: nonexistence
@@ -133,6 +244,19 @@ non-obtuseness of the triangle, and the cap memberships — are
 load-bearing. A purely algebraic impossibility argument over the
 equality constraints alone cannot succeed.
 
+- Reproving the assumable facts above, in any formulation, is not
+progress. A submission whose mathematical content amounts to a
+rediscovery of the cap-chain, cap-size, strong-connectivity,
+bisector-injectivity, pair-budget, or witness-circle-crossing facts
+must be rejected; those are the starting point.
+
+- Every candidate argument must be tested against the balanced
+cap-size regime: cap sizes 5, 5, 4 at |A| = 11; cap sizes 5, 5, 5 at
+|A| = 12; and balanced triples of unbounded size. Two argument shapes
+are known to fail there: refining the pair-budget count without
+producing new charged pairs, and claiming a contradiction from the
+three-disk containment alternatives alone.
+
 Use your multiagent harness aggressively and dynamically. Do not use a
 fixed assignment such as "N agents for strategy X." Instead, manage the
 search using the following heuristics:
@@ -142,8 +266,11 @@ explore substantially different formulations: counting incidences
 between points of A and circles centered at v1, v2, v3; counting points
 of A by their distances to v1, v2, v3; convex-order and arc-interleaving
 arguments around the polygon; reflection and perpendicular-bisector
-structure; extremal counting over the critical shells; algebraic and
-analytic viewpoints; exchange arguments between the two large caps; and
+structure; extremal counting over the critical shells (unused in the
+first attempt and therefore a priority); structural arguments on the
+strongly connected witness digraphs (arc counting across cap
+boundaries, degree and cycle constraints); algebraic and analytic
+viewpoints; exchange arguments between the two large caps; and
 computational sanity checks on small candidate configurations.
 
 - Do not tell most agents the currently favored approach. Preserve

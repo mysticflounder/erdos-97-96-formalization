@@ -2,9 +2,10 @@
 
 Date: 2026-07-16
 
-Status: **THE RAW METRIC SURVIVORS NOW REACH THE EXACT CURRENT CONSUMER
-SURFACES.  NEITHER SURVIVOR IS CLOSED BY THE RETAINED FULL-PARENT FIELDS;
-THE FIRST NEW FIELD IN EACH ARM IS IDENTIFIED BELOW.**
+Status: **THE RAW METRIC ROUTING IS KERNEL CHECKED.  A LATER
+BRANCH-SPECIFIC CHECK PROVES THAT `StrictOppCap1CommonHit` HAS THE WRONG
+POLARITY ON THE ACTUAL EQUAL-SOURCE LIVE-CENTER BRANCH; THE CORRECT
+NON-EQUILATERAL TARGET IS THE EXISTING SUPPORT DICHOTOMY.**
 
 ## Scope and preflight
 
@@ -81,15 +82,28 @@ omission preserves the selected four-class after deleting the apex, and the
 retained concrete `H` packages the two survival facts into the required
 common-deletion packet.
 
-Therefore the first genuinely missing non-equilateral field is exactly:
+For an arbitrary pair of continuation rows, the following remains a valid
+sufficient terminal antecedent:
 
 ```text
 StrictOppCap1CommonHit C.
 ```
 
-The equal source `p` does not provide it.  The checked live-heavy cap facts
-put `p` in `strictSecondCap S`, which is contained in `S.oppCap2` and excludes
-`S.oppCap1`; the hit requires a point in strict `oppCap1`.
+It is not the producer target on the actual
+`equalSource_atLiveCenter` branch.  The subsequent checked module
+`strict-oppcap1-hit-producer/StrictOppCap1HitProducer.lean` proves:
+
+```text
+C.row₁.support ∩ C.row₂.support = {p}
+p ∈ S.oppCap2
+¬ StrictOppCap1CommonHit C.
+```
+
+The equal source belongs to both generated rows.  The non-equilateral
+intersection bound therefore makes it their unique common support point, and
+the live-heavy cap facts place that point in `strictSecondCap S`, hence in
+`oppCap2`.  Asking for a strict-`oppCap1` common hit on this branch is asking
+for an already contradictory packet.
 
 ### Equilateral
 
@@ -158,7 +172,7 @@ metricConsumerRoute_of_metricResidual
 where the displayed disjunction is represented by the named inductive
 `MetricConsumerRoute`.
 
-The exact two-field consumer adapter is:
+The generic two-field sufficient consumer adapter is:
 
 ```lean
 structure MetricConsumerSelections H C where
@@ -173,9 +187,12 @@ theorem false_of_metricResidual_of_consumerSelections
     (fields : MetricConsumerSelections H C) : False
 ```
 
-This structure is explicitly an open producer interface, not a claimed
-producer.  Its value is that all residual/common-deletion/joint-packet
-bookkeeping has been removed from the mathematical frontier.
+This structure is a valid consumer adapter, not a claim that both fields are
+realizable producer objects.  Its value is that all
+residual/common-deletion/joint-packet bookkeeping has been removed.  The
+later live-center audit shows that its non-equilateral callback is logically
+equivalent to closing that whole branch, so it must not be mined as an
+intermediate incidence packet.
 
 ## Full-parent verdict
 
@@ -185,22 +202,17 @@ no-removability, frontier, anchored origin, aligned F2 packet, and generated
 successor.  The paired construction at the same live-heavy reduction reaches
 the five-way `SourceSplit`.
 
-No retained field has either consumer type:
+No retained field has the equilateral consumer type:
 
 ```text
-StrictOppCap1CommonHit C
 JointTransitionClosingSelection ... J.
 ```
 
-No source-current theorem maps the retained full-parent hypotheses to either
+No source-current theorem maps the retained full-parent hypotheses to that
 field.  In particular:
 
-- source equality supplies one common row point but not its required strict
-  first-cap placement;
 - deletion survival supplies continuation rows, not common support
   incidence;
-- the global critical map supplies the non-equilateral common-deletion
-  packet, but not the strict common hit;
 - global K4 supplies the joint packet's selected rows, but not a LowHit fresh
   pair or third mixed-pair bisector center; and
 - no-M44 and cap order do not choose a joint-transition closing disjunct.
@@ -209,7 +221,16 @@ Thus neither whole survivor arm is mechanically contradictory from the
 current full-parent surface.  The route is now exact, however:
 
 1. `equalSource_atLiveCenter` splits its `MetricResidual`.
-   - Non-equilateral: produce `StrictOppCap1CommonHit C`.
+   - Non-equilateral: use `nonEquilateralSupportDichotomy`, or its
+     `NonEquilateralGeometryTerminal` refinement.  The honest outputs are a
+     surplus-heavy native row or two exclusive strict-`oppCap1` witnesses
+     with a metric hinge.  In the latter arm, the equal source fixes the
+     common point to `f = p`; only the three reverse equalities
+     `dist p x = dist p z₂`, `dist p x = dist p y`, and
+     `dist y x = dist y z₁` remain before the import-reachable production
+     theorem `Problem97.u5_equilateral_opposite_point_metric_incompatibility`
+     gives `False`.  The exhaustive fixed-`f = p` role audit finds no
+     assignment with fewer missing equalities.
    - Equilateral: produce one realized `JointTransitionClosingSelection`.
 2. `equalSource_atSecondApex` is already equilateral.
    - Produce one realized `JointTransitionClosingSelection`; do not mine a
@@ -240,3 +261,7 @@ Quot.sound
 
 The owned Lean source contains no `sorry`, `admit`, declared axiom,
 `unsafe`, or `native_decide`.  No full Lake build was run.
+
+The superseding live-center correction was independently checked in
+`strict-oppcap1-hit-producer/`; its four printed declarations have the same
+three-axiom closure and its source is likewise clean.

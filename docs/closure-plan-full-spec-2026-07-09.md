@@ -251,14 +251,40 @@ parent surface and has one genuine terminal:
   chosen source plus its reciprocal generated-row membership suffices.  Bare
   cross-deletion survival supplies neither cap placement nor reciprocal
   membership, so those remain producer facts;
+- `qcritical-cross-sink-match/` sends either oriented q-critical
+  cross-survival arm into the strongest existing source-faithful global
+  selection normal form.  Its exact endpoints are three
+  `CommonDeletionTwoCenterPacket` variants, `ApexDoubleCriticalResidual`, or
+  `DeletedBlockerApexAlignment`.  This is a checked downstream connection,
+  not `False`: the direct ordered-cap sink would still need membership in the
+  independently selected survivor row, which deletion survival does not
+  supply;
+- `qcritical-rank-integration/` combines both source-exact rank classifiers
+  with the q-critical common-outside terminal.  An outside-`oppCap2` source is
+  now explicitly omitted by the opposite generated row.  If the two chosen
+  sources are equal, a single shared ordered-cap presentation proves that the
+  two companions cannot both occur: the two equal-radius statements would
+  put `x` between `y` and the source and simultaneously put `y` between `x`
+  and the source.  Thus the equal-source q-critical residual has at least one
+  opposite companion omitted, in addition to cross survival;
 - `metric-survivor-routing/` removes the remaining bookkeeping from the
   constructor pairs with at least one q-deleted row.  A raw
   `NonEquilateralResidual` plus the retained concrete critical system already
-  constructs the required `NonEquilateralOutput`; the first open field is
-  exactly `StrictOppCap1CommonHit`.  A realized equilateral residual already
-  constructs its joint-transition packet, so its branch-local open field is
-  one `JointTransitionClosingSelection` for that packet rather than a
-  uniform eliminator over every possible row choice;
+  constructs the required `NonEquilateralOutput`.  The generic
+  `StrictOppCap1CommonHit` callback remains a sufficient consumer interface,
+  but `strict-oppcap1-hit-producer/` proves that hit impossible on the actual
+  equal-source-at-live-center branch: the two native supports intersect
+  exactly at `{p}`, and `p ∈ oppCap2`.  The honest non-equilateral route is
+  therefore `nonEquilateralSupportDichotomy`: a surplus-heavy row or two
+  exclusive strict witnesses with the checked metric hinge.  With the common
+  point fixed to `p`, `equal-source-non-equilateral/` proves that the latter
+  arm reaches the already import-reachable production kernel
+  `Problem97.u5_equilateral_opposite_point_metric_incompatibility` after
+  exactly three additional reverse equalities.  Its exhaustive fixed-`f = p`
+  role audit checks all 24 bijections and finds no map needing fewer than
+  three.  A realized equilateral residual already constructs its
+  joint-transition packet, so its branch-local open field remains one
+  `JointTransitionClosingSelection`;
 - `generated-successor-rank/CapRankOppositeSide.lean` and
   `generated-successor-geometry-rank/GeneratedSuccessorGeometryRank.lean`
   give the strongest honest ordered-cap handoff at each named center.  The
@@ -274,8 +300,8 @@ parent surface and has one genuine terminal:
   q-critical/q-critical specialization, the existing common point `q`
   reduces this to one additional common outside-cap point, and in an
   equal-source cross arm to the shared source lying outside `oppCap2`.
-  Surviving live-center metric cases route to
-  `StrictOppCap1CommonHit` in the non-equilateral arm and
+  Surviving live-center metric cases route to the non-equilateral
+  support/geometry dichotomy, not to the impossible common-hit packet, and to
   `JointTransitionClosingSelection` (or the uniform
   `JointTransitionCoreEliminator`) in the equilateral arm.  A surviving
   second-apex/equilateral case needs the joint-transition selection; mining a
@@ -297,6 +323,26 @@ outside-cap/companion-omitted arms still need a full-parent cap/order or
 global-critical-map consumer.  Do not revert to an anonymous
 `CommonDeletionTwoCenterPacket → False` target or restart local selected-four
 mining.
+
+The independent global-minimality/cap-count proposal has also been audited
+against the current theorem bank and corrected structural census.  Its
+nonacute cap chain, one-sided cap distance injectivity, cap-cardinality lower
+bounds, cross-cap outside-pair center injectivity, and resulting count bound
+already have production Lean counterparts.  Its strong-connectivity claim
+for an arbitrary selected witness digraph is valid, but production already
+contains the stronger closure form
+`FaithfulCarrierPattern.eq_carrier_of_nonempty_closed`; all 101 corrected
+structural survivors satisfy full closure from every one-point seed, so this
+minimality condition removes 0/101 at that abstraction.  The proposed
+semicomplete strict disk-containment alternative is a credible metric lead:
+the implication from the stated crossing inequality is kernel-checked.
+However, the bridge from the current `CapTriple` cyclic-order interface to
+that crossing inequality is still missing, and no existing on-spine consumer
+accepts the resulting strict inequalities.  Record it as a longer-horizon
+metric lead, not as an immediate producer and not as a reason to pivot the
+source-faithful generated-successor lane.
+The complete evidence and the two source-clean scratch corollaries are in
+`scratch/atail-force/global-minimality-connectivity-audit/`.
 
 Every endpoint above fresh-compiles with only `propext`,
 `Classical.choice`, and `Quot.sound`.  They sharpen the producer boundary but
@@ -3730,10 +3776,16 @@ The chosen branches now have exact checked normal forms:
   center and provably not at the other center.  The exact sibling-bank target
   is `StrictWitnessBankCompletion`, consisting of one common native point and
   three reverse-row equalities; its checked adapter constructs all hypotheses
-  of `u1TwoLargeCapObstruction`.  A kernel-checked twelve-label incidence
-  model shows that all-center row existence and a total prescribed critical
-  map alone do not force those reverse incidences.  The surplus-heavy arm
-  remains a distinct second-cap placement problem.
+  of `u1TwoLargeCapObstruction`.  The later
+  `equal-source-non-equilateral/` audit shows that no sibling import is
+  required: the same packet closes through the current production theorem
+  `Problem97.u5_equilateral_opposite_point_metric_incompatibility`.
+  With the live common point fixed to `p`, exactly three reverse equalities
+  remain, and an exhaustive 24-map role audit finds no better fixed-`f = p`
+  assignment.  A kernel-checked twelve-label incidence model shows that
+  all-center row existence and a total prescribed critical map alone do not
+  force those reverse incidences.  The surplus-heavy arm remains a distinct
+  second-cap placement problem.
   The required-bank and indexed-corpus follow-up finds no producer for this
   structure.  The first missing step is common-support nonemptiness
   `∃ f, f ∈ P.row₁.support ∧ f ∈ P.row₂.support`; the current native theorem is
@@ -4070,14 +4122,17 @@ an unsourced conditional contradiction; the original-U5 role has no legal map
 from the live surplus source to an off-surplus R endpoint; and a raw same-cap
 edge is nonterminal and lacks its endpoint equality.
 
-The correct closing interface remains the branch-indexed
-`UnifiedFrontierParentCoupling F`, whose three required outputs are
-`CrossSurvivalClosingSelection`, `StrictOppCap1CommonHit`, and
-`JointTransitionClosingSelection`.  No parent theorem constructs it.  The
-next admissible theorem must instead turn directed R omission/deletion
-survival into an immediate checked terminal or an invariant-preserving strict
-same-cap rank/adjacent-cap lap transition.  It must produce the actual-blocker
-endpoint equality and preserve the R/full-parent invariant at its successor.
+`UnifiedFrontierParentCoupling F` remains a valid sufficient adapter, but it
+is not the correct producer interface on the actual live-center branch: its
+`StrictOppCap1CommonHit` field is now kernel-checked to be impossible there.
+The branch-exact interface uses the cross-survival global-source normal form,
+the non-equilateral support/geometry dichotomy, and the realized
+`JointTransitionClosingSelection`.  The next admissible theorem must consume
+one of those honest outputs or turn directed R omission/deletion survival
+into an immediate checked terminal or an invariant-preserving strict
+same-cap rank/adjacent-cap lap transition.  It must preserve the
+R/full-parent invariant and any actual-blocker endpoint equality at its
+successor.
 
 The pinned `G,K` labels are not a solver-ready substitute: the exact 35-point
 model fails K4 at both centers, the live theorem has no fixed-35-cardinality
@@ -5051,9 +5106,15 @@ The current coherent-R work queue is now:
    boundary by perpendicular-bisector localization plus `q ∉ M.verts`.
    The remaining live-heavy work is therefore to consume the surviving
    constructor/continuation arms together with the source and rank splits;
-   no whole `SourceSplit` constructor is terminal.  Distinct/cross arms target
-   the audited repeated common outside-cap pair, while surviving metric arms
-   target `StrictOppCap1CommonHit` or the branch-indexed
+   no whole `SourceSplit` constructor is terminal.  Q-critical cross-survival
+   now reaches the existing global-source-selection normal form, while its
+   source/rank refinement proves that an equal chosen source forces at least
+   one opposite companion omission.  Distinct/cross arms still target the
+   audited repeated common outside-cap pair or the exact global-source
+   endpoints.  Surviving non-equilateral metric arms use the honest
+   surplus-heavy-versus-exclusive-strict-witness dichotomy; do not mine
+   `StrictOppCap1CommonHit`, which is false on the live-center branch.
+   Equilateral arms target the branch-indexed
    `JointTransitionClosingSelection`.  The equilateral second-apex arm must
    not mine a second common outside-cap point, which its singleton theorem
    forbids.  A rank move still needs a cycle-wide no-wrap or well-founded
