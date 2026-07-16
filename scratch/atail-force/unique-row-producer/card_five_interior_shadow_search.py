@@ -210,6 +210,17 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-8 witness admitted 2026-07-15: source pair (6,7)
+    # forced zero, certified by membership_crosscheck.py --radical-only,
+    # Rabinowitsch UNIT in Singular and msolve (both variable orders).
+    "79a04c0fcc6b3b8cf905628a8595015519afc68dd062c1623183002e0680a25f": {
+        "equality_sha256":
+            "c4745615d3ecf02dc2a63fe192427b9be76788ce5772ae99c266dc6b33f2af67",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.

@@ -2905,6 +2905,7 @@ retained core, admitted immediately):
 | 7 | 555 | `84ac8d4a…` | NONUNIT (first on 555); `--scan` timed out at 900 s; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.73 M nodes) | signature admitted |
 | 1 | 654 | `a4914ed2…` (cont.) | scans timed out at 300 s AND 1800 s in `std(I)`; pair (7,8) certified via `--radical-only`, Rabinowitsch UNIT x3 | signature admitted |
 | 2 | 654 | `9095f635…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only`, UNIT x3 (5.09 M nodes, 11 rows tried) | signature admitted |
+| 8 | 555 | `79a04c0f…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.73 M nodes) | signature admitted |
 
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
 `0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex
