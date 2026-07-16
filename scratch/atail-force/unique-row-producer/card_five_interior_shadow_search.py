@@ -195,6 +195,52 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 22,
     },
+    # 555 iteration-1 witness e93c0b50… admitted 2026-07-15: same shape —
+    # CROSSCHECKED_UNIT 12-row system, 7-row retained core (itself
+    # CROSSCHECKED_UNIT), blocker rows deleted, not confirmed irredundant.
+    {
+        "id": "unit-core-555-02",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            1: frozenset({0, 2, 6, 7, 8}),
+            7: frozenset({0, 3, 6, 9}),
+            8: frozenset({0, 7, 10, 11}),
+            9: frozenset({0, 3, 5, 10}),
+            10: frozenset({4, 6, 9, 11}),
+            11: frozenset({1, 5, 6, 10}),
+        },
+        "equality_count": 22,
+    },
+    # 555 iteration-2 witness c6557e4d… admitted 2026-07-15: same audit
+    # shape (CROSSCHECKED_UNIT system and retained core, not confirmed
+    # irredundant).
+    {
+        "id": "unit-core-555-03",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            1: frozenset({0, 2, 6, 7, 8}),
+            5: frozenset({1, 2, 9, 11}),
+            8: frozenset({0, 4, 5, 7}),
+            9: frozenset({0, 3, 5, 10}),
+            10: frozenset({4, 8, 9, 11}),
+            11: frozenset({1, 5, 8, 10}),
+        },
+        "equality_count": 22,
+    },
+    # 555 iteration-3 witness 1560c698… admitted 2026-07-15: 6-row
+    # retained core, CROSSCHECKED_UNIT system and core.
+    {
+        "id": "unit-core-555-04",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            1: frozenset({0, 2, 6, 7, 8}),
+            6: frozenset({2, 5, 7, 9}),
+            8: frozenset({0, 4, 6, 9}),
+            9: frozenset({0, 4, 10, 11}),
+            10: frozenset({1, 5, 8, 9}),
+        },
+        "equality_count": 19,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {

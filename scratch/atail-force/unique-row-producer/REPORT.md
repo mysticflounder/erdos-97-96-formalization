@@ -2885,3 +2885,26 @@ witness, admit its UNIT retained core when crosschecked, else run
 `membership_crosscheck.py` on a forced-zero pair; stop at exhaustive
 UNSAT on 555 and 654 or at a witness that survives exact CAS (a genuine
 geometry frontier).  Iteration results follow.
+
+## 2026-07-15 loop iterations (in progress)
+
+Iteration log (all runs `--bank-negative --real-cas-negative --metric
+--check`; every 555 audit so far CROSSCHECKED_UNIT with a crosschecked
+retained core, admitted immediately):
+
+| iter | profile | witness sig | audit | admitted as |
+|---|---|---|---|---|
+| 1 | 554 | — | EXHAUSTIVE_UNSAT (regression holds, 22,498 nodes) | — |
+| 1 | 555 | `e93c0b50…` | UNIT; 7-row core | `unit-core-555-02` |
+| 2 | 555 | `c6557e4d…` | UNIT; 7-row core | `unit-core-555-03` |
+| 3 | 555 | `1560c698…` | UNIT; 6-row core | `unit-core-555-04` |
+| 1 | 654 | `a4914ed2…` | NONUNIT; built-in 30 s membership audit TIMEOUT | pending scan |
+
+Every 555 witness so far shares the apex row `1:{0,2,6,7,8}` and the
+Moser row `0:{1,2,3,4}`; every retained core keeps both and drops the
+blocker rows.  `membership_crosscheck.py` gained a `--scan` mode (one
+`std(I)`, reduce all 66 squared pair distances, longer timeout) for
+NONUNIT witnesses whose built-in audit times out; a 300 s scan of
+`a4914ed2…` is running.  555 iteration 4 is searching against cores
+01–04.  Next session: read `iter4_555.json` and `654_iter1_scan.json` in
+the session scratchpad, admit whatever certified, continue the loop.

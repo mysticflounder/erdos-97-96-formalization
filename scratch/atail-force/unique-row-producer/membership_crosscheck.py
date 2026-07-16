@@ -72,12 +72,18 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--witness", required=True,
                         help="path to a --metric search report JSON")
-    parser.add_argument("--pair", nargs=2, type=int, required=True,
+    parser.add_argument("--pair", nargs=2, type=int,
                         metavar=("L", "R"))
+    parser.add_argument("--scan", action="store_true",
+                        help="reduce every squared pair distance against one "
+                        "std(I) and print the forced-zero pairs (Singular "
+                        "only; certify a chosen pair with --pair afterwards)")
     parser.add_argument("--expect-signature", required=True,
                         help="expected canonical row signature (fail-closed)")
     parser.add_argument("--timeout", type=float, default=120.0)
     args = parser.parse_args()
+    require(args.scan != (args.pair is not None),
+            "pass exactly one of --pair or --scan")
 
     document = json.loads(Path(args.witness).read_text(encoding="utf-8"))
     report = document["reports"][0]
@@ -88,8 +94,6 @@ def main() -> None:
     signature = replay_row_signature(report)
     require(signature == args.expect_signature,
             f"row signature mismatch: replayed {signature}")
-    left, right = args.pair
-    require(left != right, "the forced-zero pair must be two distinct labels")
 
     oracle = load_metric_oracle()
     n = len(report["rows"]) + 1
@@ -108,6 +112,63 @@ def main() -> None:
     polynomials = list(oracle.serialized_system(n, tuple(rows)))
     points = oracle.coordinate_symbols(n)
     sympy_variables = oracle.variable_symbols(n)
+
+    if args.scan:
+        import itertools
+        pair_polys = {}
+        for scan_left, scan_right in itertools.combinations(range(n), 2):
+            pair_polys[(scan_left, scan_right)] = oracle.serialize_poly(
+                oracle.sp.Poly(
+                    oracle.squared_distance(points, scan_left, scan_right),
+                    *sympy_variables,
+                    domain=oracle.sp.QQ,
+                )
+            )
+        lines = [
+            f"ring R=0,({','.join(variables)}),dp;",
+            f"ideal I={','.join(polynomials)};",
+            "ideal G=std(I);",
+            f"ideal P={','.join(pair_polys.values())};",
+            "ideal Z=reduce(P,G);",
+        ]
+        for index, (scan_left, scan_right) in enumerate(pair_polys, start=1):
+            lines.append(
+                f'if (Z[{index}]==0) '
+                f'{{ print("FORCED_ZERO_{scan_left}_{scan_right}"); }}'
+            )
+        lines.append('print("SCAN_DONE");')
+        lines.append("quit;")
+        process = subprocess.run(
+            ["Singular", "-q"],
+            input="\n".join(lines) + "\n",
+            capture_output=True,
+            text=True,
+            timeout=args.timeout,
+            check=False,
+        )
+        require(process.returncode == 0,
+                f"Singular scan failed: {process.stderr.strip()}")
+        require("SCAN_DONE" in process.stdout.splitlines(),
+                "Singular scan did not complete")
+        forced = [
+            [int(chunk.split("_")[2]), int(chunk.split("_")[3])]
+            for chunk in process.stdout.splitlines()
+            if chunk.startswith("FORCED_ZERO_")
+        ]
+        print(json.dumps({
+            "schema": "p97-atail-forced-zero-pair-scan-v1",
+            "row_signature_sha256": signature,
+            "equality_sha256": oracle.canonical_sha256(polynomials),
+            "forced_zero_squared_distance_pairs": forced,
+            "verdict_scope": (
+                "Singular-only scan; certify a chosen pair with --pair "
+                "for the dual-oracle admission grade"
+            ),
+        }, indent=2, sort_keys=True))
+        return
+
+    left, right = args.pair
+    require(left != right, "the forced-zero pair must be two distinct labels")
     pair_expr = oracle.squared_distance(points, left, right)
     pair_poly = oracle.serialize_poly(
         oracle.sp.Poly(pair_expr, *sympy_variables, domain=oracle.sp.QQ)
