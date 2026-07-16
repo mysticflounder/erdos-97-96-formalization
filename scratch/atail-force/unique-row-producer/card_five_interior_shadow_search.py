@@ -2073,6 +2073,30 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
     },
+    # 555 iter-68 witness cac11455 (SAT at 59,940 nodes — +1 past
+    # iter-67, fourth witness in the ~59.9k pocket; sources (6,7),
+    # inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 8 rows / 24 equalities (deletion verdicts
+    # 4 UNIT / 7 TIMEOUT fail-closed / 1 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # 555-55 at 7 shared rows — tightest kin pair in the 555 bank
+    # (no prior pair shares more than 6), differing from 555-55
+    # only in row 7's support; ONE new support 7:{3,5,6,8}.
+    {
+        "id": "unit-core-555-56",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({2, 5, 7, 9}),
+            7: frozenset({3, 5, 6, 8}),
+            8: frozenset({2, 6, 10, 11}),
+            9: frozenset({0, 3, 8, 10}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
