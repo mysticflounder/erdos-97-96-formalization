@@ -683,6 +683,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-47 witness: nineteenth NONUNIT-track 654 witness
+    # (11,836,463 nodes — 19 past iteration 46's — 20 M run, caps=0;
+    # inline audit decided NONUNIT directly); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core; its
+    # retained 6-row deletion core (6 deletion timeouts fail-closed)
+    # is forced-pair-core-654-29.
+    "a170733b29f2567deef1e8b699e5098b262e561138731ff4d91d0369a8e3fbf0": {
+        "equality_sha256":
+            "337df5699a8030b63cfbfe795ca36ea00b4fd9eb9cdd74a59fb0b0ebe7067029",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -2841,6 +2855,33 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({3, 5, 7, 10}),
         },
         "equality_count": 22,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-47 witness a170733b… admitted 2026-07-16: 6-row /
+    # 19-equality core forcing pair (7,8) — nineteenth NONUNIT-track
+    # 654 witness (11,836,463 nodes — 19 past iteration 46's, pocket
+    # steps now 3/23/19; 20 M run, caps=0); inline audit
+    # CROSSCHECKED_NONUNIT directly; deletion verdicts 6 UNIT /
+    # 6 TIMEOUT fail-closed — witness rows 2, 3, 4, 5, 6, 11 dropped;
+    # surplus row 1:{0,2,7,8,9} retained (second consecutive after
+    # fp-654-28); 6-row grade matches fp-654-13/-15/-17/-24 (only
+    # fp-654-01 at 5 rows is smaller); not a transposition image of
+    # any banked core; kin at 3 shared rows: unit-654-23/-30,
+    # fp-654-20/-22/-28; row 9:{0,3,6,8} previously only in
+    # fp-654-20, row 7:{2,4,5,8} returns after fp-654-27 dropped it;
+    # support 0:{4,6,7,10} new to the bank.
+    {
+        "id": "forced-pair-core-654-29",
+        "rows": {
+            0: frozenset({4, 6, 7, 10}),
+            1: frozenset({0, 2, 7, 8, 9}),
+            7: frozenset({2, 4, 5, 8}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({0, 3, 6, 8}),
+            10: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 19,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
