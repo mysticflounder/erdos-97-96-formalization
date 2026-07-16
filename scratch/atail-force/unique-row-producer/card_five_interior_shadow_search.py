@@ -170,6 +170,19 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "0",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-1 witness admitted 2026-07-15: std(I) defeats 1800 s,
+    # so certified at radical grade by membership_crosscheck.py
+    # --radical-only — Rabinowitsch I + (1 - t*dist2(7,8)) is UNIT in
+    # Singular and msolve (both variable orders); dist2(7,8) vanishes on
+    # every complex realization, so no distinct-point realization exists.
+    "a4914ed295b4d1f0f507a8c8cf9233f1238604aaa63c5da52dd9fa58c3d742f9": {
+        "equality_sha256":
+            "4a75ebc112edfe2e533d9f0f51110c047be22622aa5d20fc6ec9943119a8d972",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.

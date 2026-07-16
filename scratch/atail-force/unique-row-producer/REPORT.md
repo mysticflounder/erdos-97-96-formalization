@@ -2902,6 +2902,8 @@ retained core, admitted immediately):
 | 4 | 555 | `3d9a6b04…` | UNIT; 6-row core; new apex row `{0,5,6,7,8}` (1.88 M nodes) | `unit-core-555-05` |
 | 5 | 555 | `a94caeaf…` | UNIT; 7-row core; apex row `{2,6,7,8,10}`; first core with NO apex row (2.71 M nodes) | `unit-core-555-06` |
 | 6 | 555 | `aab3e0b5…` | inline UNDECIDED (Singular TIMEOUT, msolve UNIT x2); settled UNIT at 900 s via `system_unit_recheck.py`; 7-row core, no apex row (2.71 M nodes) | `unit-core-555-07` |
+| 7 | 555 | `84ac8d4a…` | NONUNIT (first on 555); forced-zero `--scan` running (2.73 M nodes) | pending |
+| 1 | 654 | `a4914ed2…` (cont.) | scans timed out at 300 s AND 1800 s in `std(I)`; pair (7,8) certified via `--radical-only`, Rabinowitsch UNIT x3 | signature admitted |
 
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
 `0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex
@@ -2931,3 +2933,21 @@ returns a crosschecked 7-row core.  The 900 s recheck of `aab3e0b5…`
 settled it: CROSSCHECKED_UNIT, 7-row / 21-equality retained core
 (centers 0,3,4,7,9,10,11 — again no apex row), core CROSSCHECKED_UNIT;
 admitted as `unit-core-555-07`.
+
+555 iteration 7 (witness `84ac8d4a…`, apex row `{2,6,7,8,10}`, 2.73 M
+nodes) is the profile's first CROSSCHECKED_NONUNIT — the kill route is
+a forced-zero pair, as for 654; a 900 s `--scan` is running.  The
+1800 s `--scan` retry of 654 witness `a4914ed2…` ALSO timed out in
+`std(I)`, so `membership_crosscheck.py` gained `--radical-only`: skip
+the `std(I)` direct reduction and certify from the Rabinowitsch UNIT
+crosscheck alone (Singular + msolve forward/reverse — still
+dual-oracle, and radical membership is exactly the property the
+forced-zero conclusion consumes; the extended ideal is unit when the
+pair is forced, and unit Gröbner runs collapse without computing
+`std(I)`).  Emitted status for this grade:
+`CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP`.  Smoke gates
+against the fa87f604 controls both pass (pair (7,8) certifies at
+radical grade; pair (3,7) rejected, NONUNIT x3).  The radical-only
+attempt on `a4914ed2…` pair (7,8) certified in minutes — Rabinowitsch
+UNIT x3 where `std(I)` had defeated 1800 s — and the signature is
+admitted (equality hash `4a75ebc1…`); 654 iteration 2 is running.

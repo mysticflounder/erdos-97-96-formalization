@@ -16,6 +16,14 @@ combined verdict is only emitted when all four oracle calls concur.  A
 forced-zero squared distance for two distinct carrier labels certifies
 that the shadow has no realization with distinct points, hence no real
 Euclidean witness.
+
+``--radical-only`` skips step 2 (the direct reduction needs ``std(I)``,
+which some witnesses defeat at any practical budget) and certifies from
+step 3 alone: Rabinowitsch UNIT in Singular AND msolve under forward
+AND reversed variable orders.  Radical membership is exactly the
+property the forced-zero conclusion consumes — ``f`` vanishes on every
+point of ``V(I)`` — so the grade is still dual-oracle; the emitted
+status string records the weaker-but-sufficient check.
 """
 
 from __future__ import annotations
@@ -80,6 +88,10 @@ def main() -> None:
                         "only; certify a chosen pair with --pair afterwards)")
     parser.add_argument("--expect-signature", required=True,
                         help="expected canonical row signature (fail-closed)")
+    parser.add_argument("--radical-only", action="store_true",
+                        help="--pair only: skip the std(I) direct reduction "
+                        "and certify from the Rabinowitsch UNIT crosscheck "
+                        "alone (Singular + msolve forward/reverse)")
     parser.add_argument("--timeout", type=float, default=120.0)
     args = parser.parse_args()
     require(args.scan != (args.pair is not None),
@@ -174,31 +186,34 @@ def main() -> None:
         oracle.sp.Poly(pair_expr, *sympy_variables, domain=oracle.sp.QQ)
     )
 
-    script = "\n".join([
-        f"ring R=0,({','.join(variables)}),dp;",
-        f"ideal I={','.join(polynomials)};",
-        "ideal G=std(I);",
-        f"poly f={pair_poly};",
-        'print("RED_BEGIN");',
-        "print(reduce(f,G));",
-        'print("RED_END");',
-        "quit;",
-    ]) + "\n"
-    process = subprocess.run(
-        ["Singular", "-q"],
-        input=script,
-        capture_output=True,
-        text=True,
-        timeout=args.timeout,
-        check=False,
-    )
-    require(process.returncode == 0,
-            f"Singular reduction failed: {process.stderr.strip()}")
-    output = process.stdout.splitlines()
-    begin = output.index("RED_BEGIN")
-    end = output.index("RED_END")
-    require(end == begin + 2, "malformed Singular reduction output")
-    direct_reduction = output[begin + 1].strip()
+    if args.radical_only:
+        direct_reduction = "SKIPPED_RADICAL_ONLY"
+    else:
+        script = "\n".join([
+            f"ring R=0,({','.join(variables)}),dp;",
+            f"ideal I={','.join(polynomials)};",
+            "ideal G=std(I);",
+            f"poly f={pair_poly};",
+            'print("RED_BEGIN");',
+            "print(reduce(f,G));",
+            'print("RED_END");',
+            "quit;",
+        ]) + "\n"
+        process = subprocess.run(
+            ["Singular", "-q"],
+            input=script,
+            capture_output=True,
+            text=True,
+            timeout=args.timeout,
+            check=False,
+        )
+        require(process.returncode == 0,
+                f"Singular reduction failed: {process.stderr.strip()}")
+        output = process.stdout.splitlines()
+        begin = output.index("RED_BEGIN")
+        end = output.index("RED_END")
+        require(end == begin + 2, "malformed Singular reduction output")
+        direct_reduction = output[begin + 1].strip()
 
     t_symbol = oracle.sp.Symbol("t")
     rabinowitsch_poly = oracle.serialize_poly(
@@ -229,21 +244,28 @@ def main() -> None:
         "rabinowitsch_msolve_forward": oracle.result_dict(msolve_forward),
         "rabinowitsch_msolve_reverse": oracle.result_dict(msolve_reverse),
     }
-    crosschecked = (
-        direct_reduction == "0"
-        and singular_unit.verdict == "UNIT"
+    rabinowitsch_unit = (
+        singular_unit.verdict == "UNIT"
         and msolve_forward.verdict == "UNIT"
         and msolve_reverse.verdict == "UNIT"
     )
+    if args.radical_only:
+        status = (
+            "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP"
+            if rabinowitsch_unit else "NOT_CROSSCHECKED"
+        )
+    else:
+        status = (
+            "CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP"
+            if direct_reduction == "0" and rabinowitsch_unit
+            else "NOT_CROSSCHECKED"
+        )
     print(json.dumps({
         "schema": "p97-atail-forced-zero-pair-membership-crosscheck-v1",
         "row_signature_sha256": signature,
         "equality_sha256": oracle.canonical_sha256(polynomials),
         "pair": [left, right],
-        "status": (
-            "CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP"
-            if crosschecked else "NOT_CROSSCHECKED"
-        ),
+        "status": status,
         "oracles": verdicts,
         "verdict_scope": (
             "dist2(pair) vanishes on every complex realization of this "
