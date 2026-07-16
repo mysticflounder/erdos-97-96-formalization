@@ -12,6 +12,11 @@ The first apex is omitted from the global rows: its unique K4 radius is the
 pinned five-point class.  Every other carrier center receives one four-point
 subset of a K4 class from the already checked local candidate bank.  Only
 the two rows chosen as critical-shell blockers are marked exact.
+
+2026-07-15: adds the kernel-checked T1 localization cut
+(``interior_pair_bisector_localization_ok``): every non-apex row center
+whose support contains a strict-interior five-class pair must itself lie in
+the O1 strict interior.
 """
 
 from __future__ import annotations
@@ -390,6 +395,28 @@ def pseudo_pair_bound_ok(
     return True
 
 
+def interior_pair_bisector_localization_ok(
+    frame: mc.Frame, rows: Sequence[shadow.ClassRow]
+) -> bool:
+    """Kernel-checked T1 cut: bisector centers of interior pairs are interior.
+
+    ``interior_pair_bisector_center_mem_capInterior``
+    (``card_five_interior_bisector_localization.lean``, core axioms only):
+    any carrier point other than the first apex equidistant from two
+    distinct strict-interior members of the first-apex class lies in the
+    strict interior of the first non-surplus cap.  A global row containing
+    both pair members witnesses that equidistance at its center, so every
+    such center must itself belong to ``ints["O1"]``.
+    """
+
+    interior = frozenset(frame.ints["O1"])
+    for pair in itertools.combinations(sorted(interior), 2):
+        for row in rows:
+            if set(pair) <= row.support and row.center not in interior:
+                return False
+    return True
+
+
 def blocker_choices(
     frame: mc.Frame,
     rows: Mapping[int, frozenset[int]],
@@ -487,6 +514,7 @@ def solve_card_five_row(
         return (
             all(pseudo_compatible(frame, pseudo, row) for row in rows)
             and pseudo_pair_bound_ok(pseudo, rows)
+            and interior_pair_bisector_localization_ok(frame, rows)
         )
 
     def complete_ok(rows_seq: Sequence[shadow.ClassRow]) -> bool:
@@ -655,6 +683,8 @@ def validate_witness(
             "pseudo-row pairwise replay failed")
     require(pseudo_pair_bound_ok(pseudo, rows_seq),
             "pseudo-row bisector-center bound failed")
+    require(interior_pair_bisector_localization_ok(frame, rows_seq),
+            "interior-pair bisector center escaped the O1 strict interior")
     require(len(witness.pair_sources) == 2, "wrong pair size")
     require(set(witness.pair_sources) <= set(frame.ints["O1"]),
             "pair source is not in the strict O1 interior")

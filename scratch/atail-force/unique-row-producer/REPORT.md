@@ -2706,3 +2706,61 @@ this session against
 `census/atail_force/producer_coverage_census_checkpoint.json` (git blob
 `8ab93e1d95f7c140fcf67f8f9fcf3152b8af4fbb`, last touched by commit
 `f01ff4a2`).
+
+## 2026-07-15 continuation: T1 as shadow cut; residual witness shapes
+
+Bank sweep for the three residual configurations: production additionally
+holds `SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives`
+(cross survival puts the blocker strictly off the pair's bisector) and
+`actual_blocker_ne_oppApex1_of_cross_deletion_survives` (no cardinality
+needed).  The robust-four-center sinks
+(`false_of_twoBlockerGlobalPairRows`,
+`false_of_supportCentersBisectFrontierPair`) are the same Dumitrescu
+saturation as D but require two unproduced bisector facts, which config 1
+explicitly denies; no existing direct-`False` consumer matches the
+cross-survival configuration.  Nothing in any bank covers a surplus-cap-
+centered exact shell through a strict-O1-interior source.
+
+Shadow experiment: added the kernel-checked T1 localization as a
+combinatorial cut (`interior_pair_bisector_localization_ok`) to
+`card_five_interior_shadow_search.py` (pre-pause mining state committed
+first as `5f6f5c36`), and compared all three profiles under
+`--bank-negative --real-cas-negative` against the pre-T1 baseline:
+
+| profile | baseline | with T1 cut |
+| --- | --- | --- |
+| 554 | `EXHAUSTIVE_UNSAT_IN_FINITE_SHADOW`, 22,498 nodes | identical |
+| 654 | SAT, 4,517,699 nodes, 9 node caps | identical witness |
+| 555 | SAT, 104,524 nodes | identical witness |
+
+T1 fires nowhere on the current frontier: the surviving witnesses already
+route at most one interior-pair bisector center, and it is interior.  The
+cut stays in the script (sound; enforced in `validate_witness` too) but
+does not obsolete the paused mining queue.
+
+Frontier witness shapes (both are config 1a, double survival, no cross
+hits):
+
+- 555 (`row_signature d48af6a7…`): pair `(6,7)`, blockers `(2,3)` — **both
+  blockers in the surplus cap**, each exact shell through one interior
+  pair member.
+- 654 (`row_signature fa87f604…`): pair `(7,8)`, blockers `(8,4)` — **the
+  blocker of source 7 is the other pair member 8** (interior, on the apex
+  circle), the other blocker in the surplus cap.  Note 654 SAT is bounded
+  (9 candidate five-rows hit the 500k node cap), not exhaustive.
+
+Theorem candidates extracted from the shapes (unmined, no bank coverage):
+
+1. {{NEEDS_PROOF}} an exact critical shell centered in the surplus cap
+   cannot pass through a strict-O1-interior source (kills the 555 witness
+   class and one blocker of the 654 witness);
+2. {{NEEDS_PROOF}} a frontier pair member cannot serve as the other
+   member's critical blocker center (kills the 654 witness class); the
+   only current exclusions are `oppApex1`/`oppApex2`;
+3. the coincident-blocker mode (config 2) is not yet searched: the
+   distinct-blocker enumeration skips `bq == bw` by construction, and the
+   D-saturation constraints are exactly the existing pair bound there.
+
+554 remains the only fully closed profile.  The exact-oracle mining pause
+stands; candidates 1–2 offer a cheaper Lean-first path than resuming the
+queue.
