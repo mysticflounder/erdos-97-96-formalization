@@ -179,11 +179,36 @@ Four source-faithful branch reductions are now checked in scratch:
    `{x,y,s,t}`, with the coherent source retained as the omitted third
    dangerous label and at least one of `x,y` outside the fixed first-apex
    marginal.  Mixed becomes the exact original-`q` dichotomy: either
-   q-critical support `{x,s,t}` or q-deleted support `{x,y,s,t}`.  No banked
-   theorem consumes either packet directly.  The missing field is now one
-   directed, source-preserving generated-row incidence naming its center and
-   the required support hit; no further anonymous cell-count mining is
-   justified.
+   q-critical support `{x,s,t}` or q-deleted support `{x,y,s,t}`.
+   `r-f2-directed-original-q-row/` now performs the source-faithful next
+   expansion.  The concrete critical system's source-`q` row remains centered
+   at `p`; global K4 after deleting that same original `q` supplies the exact
+   q-deleted/q-critical row at each named dangerous center.  Every such row
+   has two support points outside the full live row.  The checked criticality
+   bridge retains the raw full radius filter, and the checked pair classifier
+   yields the two cross-survival arms or its exact metric residual.
+   The formerly proposed uniform hit
+   `p ∈ G.support ∨ otherCenter ∈ G.support ∨ coherentSource ∈ G.support`
+   is overstrong in the local exact algebraic model and is retired.
+   The correct checked finite boundary is instead: either an off-live
+   generated point lies outside the physical middle row and constructs a
+   provenance-retaining `CommonDeletionTwoCenterPacket`, or both named
+   support-only points lie in the generated support.  Independently, every
+   live-heavy generated row is already `False` or has a support point outside
+   both the live row and `oppCap2`.
+   `confined-terminal/OriginalQConfinedTerminal.lean` kernel-checks the
+   constructor-sensitive live-heavy counting/geometry argument at both named
+   centers, so every checked live-heavy generated row now unconditionally
+   yields the provenance-retaining outside-middle successor.  The remaining
+   live-heavy consumer must give that new generated-source successor an
+   immediate cap/MEC/order/global-critical-map sink or a genuine monotone
+   measure.  The new source is outside the old middle row, while the
+   old two-off-live robustness proof requires its source inside that row; the
+   polarity is opposite, so the old handler must not receive the new witness.
+   Reclassification alone can revisit the same F2 surface.  The preferred
+   next theorem is therefore direct `False` for the generated-source
+   successor while retaining the full frontier, cap/MEC and origin packet;
+   adding a provenance tag without a consumer is not closure progress.
 
 Every endpoint above fresh-compiles with only `propext`,
 `Classical.choice`, and `Quot.sound`.  They sharpen the producer boundary but
@@ -4922,12 +4947,24 @@ The current coherent-R work queue is now:
    small-cap robust case is already routed to swapped `FA-UNIQ5`, so only the
    large-cap robust residual remains; the shared F1/F3 arm is already reduced
    to swapped `FA-UNIQ4`, swapped `FA-UNIQ5`, or
-   `6 ≤ S.oppCap2.card`; anchored F2 live-heavy/mixed now reduce to exact
-   original-`q` q-deleted/q-critical rows and need a directed
-   source-preserving generated-row incidence producer; and the eight anchored
-   support-heavy callbacks.  Reciprocal and spent F2 still require their
-   source-faithful handlers.  The final theorem must visibly cover every
-   origin and branch.  Closing only one nested packet is not the R eliminator;
+   `6 ≤ S.oppCap2.card`; anchored F2 live-heavy/mixed now retain exact
+   original-`q` generated rows, their raw q-deleted/q-critical constructors,
+   two-off-live support deficits, and the outside-middle-successor versus
+   both-support-only-hits split.  Uniform named-hit mining is retired.
+   Live-heavy also has a checked cap-escape/`False` alternative and a
+   pair-level cross-survival/metric classifier, and its confined constructor
+   is now eliminated at both named centers.  Its next honest boundary is a
+   consumer for the provenance-retaining generated-source common-deletion
+   successor; mixed must remain split by its physical and generated
+   constructors.  In the
+   mixed confined classifier, physical-q-critical/generated-q-critical and
+   every physical-q-deleted cell with the third middle-row live hit close by
+   three common points.  Three exact two-common-point residuals remain:
+   physical-q-critical/generated-q-deleted, and the two
+   physical-q-deleted constructors with the third live hit omitted.  The
+   eight anchored support-heavy callbacks, reciprocal F2, and spent F2
+   remain separate.  The final theorem must visibly cover every origin and
+   branch.  Closing only one nested packet is not the R eliminator;
 5. within the aligned F2 support-heavy leaf, continue only from the audited
    generated-row boundary.  The
    theorem-bank match is complete and has zero direct consumer; every
@@ -4950,7 +4987,7 @@ The current coherent-R work queue is now:
    named support-heavy witnesses.  Do not substitute `G \ T` for
    `G \ live`, and do not target either forbidden equality as though it were
    an available producer; and
-5. combine the branch-complete R eliminator with the protected
+6. combine the branch-complete R eliminator with the protected
    packet-polymorphic
    `FA-UNIQ4` / `FA-UNIQ5` direct-`False` results.
 
