@@ -1629,6 +1629,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-56 witness 70836825 (SAT at 399,458 nodes — a
+    # +216,661 step past iter-55, more than doubling the pocket
+    # node count, the largest jump yet; sources (6,7), inline
+    # CROSSCHECKED_UNIT): system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities (deletion verdicts 5 UNIT /
+    # 5 TIMEOUT fail-closed / 2 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); not a
+    # transposition image of any banked core; the 11:{0,1,5,7}
+    # anchor deviation persistent through 555-35..43 is replaced
+    # by NEW support 11:{1,5,6,9}; closest kin 555-37 (5 shared
+    # rows: 0, 2, 5, 9, 10) — rows 5:{2,4,7,9} and 10:{2,5,8,11}
+    # previously only in 555-37; row 8:{0,4,7,11} from the
+    # 555-25..31 sector (also 555-41, fp-555-09).
+    {
+        "id": "unit-core-555-44",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            5: frozenset({2, 4, 7, 9}),
+            8: frozenset({0, 4, 7, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            10: frozenset({2, 5, 8, 11}),
+            11: frozenset({1, 5, 6, 9}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
