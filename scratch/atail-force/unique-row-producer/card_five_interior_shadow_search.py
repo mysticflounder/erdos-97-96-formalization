@@ -411,6 +411,18 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-18 witness admitted 2026-07-15: source pair (6,7)
+    # forced zero, certified by membership_crosscheck.py --radical-only;
+    # its retained 6-row deletion core (zero deletion timeouts — the
+    # smallest 555 core to date) is forced-pair-core-555-12.
+    "0d357ae88031c6a44082d881d82687cbc903df4b99f1b0538fe7dd0caa4cc530": {
+        "equality_sha256":
+            "a0c399a1faec4798c2bba570804f19f0e68871cb49e3d270666ed23c6b3fa24b",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -661,6 +673,24 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 2, 3, 5}),
             10: frozenset({0, 1, 3, 4}),
             11: frozenset({1, 5, 8, 10}),
+        },
+        "equality_count": 19,
+    },
+    # 654 iteration-12 witness 4846a007… admitted 2026-07-15: first
+    # unit-grade 654 loop witness (found at --max-nodes 5000000 after
+    # iteration 11 capped out at 500 k per row with no witness); inline
+    # audit CROSSCHECKED_UNIT, system_unit_recheck.py 900 s deletion
+    # retained 6 rows / 19 equalities (2 deletion TIMEOUTs fail-closed),
+    # retained core CROSSCHECKED_UNIT (Singular + msolve fwd/rev).
+    {
+        "id": "unit-core-654-15",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            8: frozenset({2, 5, 9, 11}),
+            9: frozenset({0, 5, 6, 7}),
+            10: frozenset({3, 6, 9, 11}),
+            11: frozenset({1, 4, 7, 10}),
         },
         "equality_count": 19,
     },
@@ -1058,6 +1088,23 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({0, 1, 4, 7}),
         },
         "equality_count": 24,
+        "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 555 iteration-18 witness 0d357ae8… admitted 2026-07-15: 6-row /
+    # 18-equality core forcing pair (6,7) — smallest 555 core to date;
+    # retained core Rabinowitsch UNIT x3, ZERO deletion timeouts.
+    {
+        "id": "forced-pair-core-555-12",
+        "rows": {
+            5: frozenset({3, 4, 6, 9}),
+            6: frozenset({2, 4, 8, 10}),
+            7: frozenset({0, 3, 6, 8}),
+            8: frozenset({5, 7, 9, 11}),
+            9: frozenset({0, 5, 6, 10}),
+            10: frozenset({4, 8, 9, 11}),
+        },
+        "equality_count": 18,
         "forced_zero_squared_distance_pair": (6, 7),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },

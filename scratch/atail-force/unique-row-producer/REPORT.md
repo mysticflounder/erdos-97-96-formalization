@@ -2931,8 +2931,11 @@ retained core, admitted immediately):
 | 10 | 654 | `d515e684…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 22-equality core — FIRST forced-pair core retaining an apex row (center 1, five-point support) (6.49 M nodes, flat vs iter 9) | `forced-pair-core-654-10` + signature |
 | reg | 554 | — | EXHAUSTIVE_UNSAT (regression holds with 19 forced-pair cores, 22,498 nodes) | — |
 | 17 | 555 | `09fd77b8…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core (3.436 M nodes, plateau vs iter 16) | `forced-pair-core-555-11` + signature |
-| 11 | 654 | — | search running | pending |
-| 18 | 555 | — | search running | pending |
+| 11 | 654 | — | NO_WITNESS_WITHIN_BOUNDED_FINITE_SHADOW — first no-witness 654 run, but NOT exhaustive: all 15 card-five rows hit the 500 k per-row node cap (7,500,015 nodes, `node_caps` 15); re-run at `--max-nodes 5000000` in flight as iteration 12 | — |
+| 18 | 555 | `0d357ae8…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 6-row / 18-equality core — SMALLEST 555 core to date, ZERO deletion timeouts (3.437 M nodes, plateau) | `forced-pair-core-555-12` + signature |
+| 12 | 654 | `4846a007…` | SAT witness at `--max-nodes 5000000` — the iteration-11 cap starvation was depth, not exhaustion: witness found at only 1.139 M total nodes once the first-row subtree could pass 500 k; inline audit CROSSCHECKED_UNIT, the FIRST unit-grade 654 loop witness (all prior 654 kills were NONUNIT); `system_unit_recheck.py` 900 s pass retained a 6-row / 19-equality core incl. apex row 1:{0,2,7,8,9}, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed) | `unit-core-654-15` |
+| 19 | 555 | — | search running | pending |
+| 13 | 654 | — | search running (`--max-nodes 5000000` now standard for 654) | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3117,3 +3120,16 @@ NO shrinkage — every retained core is row-for-row identical to its
 definite retain verdicts (1–3 TIMEOUTs remain per run vs 1–7).  The
 60 s greedy pass appears to be finding the stable retained set;
 supersession has not yet fired.
+
+Five more 600 s re-deletion results (654 iters 1/2/5, 555 iters
+11/12; zero deletion TIMEOUTs in all five): still NO shrinkage.
+654-03, 654-04, 555-05 and 555-06 are row-for-row identical to
+their bank entries.  654 iter-5 is the one variation: the 600 s
+greedy pass retained a DIFFERENT 8-row / 24-equality set than
+banked `forced-pair-core-654-05` (drops banked row 4:{2,3,7,11},
+keeps 5:{2,4,6,9} instead) — same size, so no supersession; the
+minimal-core landscape at this witness has at least two stable
+8-row plateaus.  Nine of thirteen re-deletion jobs harvested, zero
+supersessions.  Remaining four: 555 iters 10/13, 654 iters 4/6
+(654-6 and 555-13 processes still alive; 555-10 and 654-4 have
+0-byte outputs and no live process — to re-examine).
