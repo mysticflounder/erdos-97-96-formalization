@@ -957,23 +957,42 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-23 witness 999ff6d4… admitted 2026-07-15: twelfth
+    # consecutive unit-grade 654 witness (4.19 M nodes, same pocket as
+    # iteration 22); system_unit_recheck.py 900 s deletion retained
+    # 5 rows / 16 equalities (1 deletion TIMEOUT fail-closed),
+    # retained core CROSSCHECKED_UNIT (Singular + msolve fwd/rev);
+    # same apex+row-2 family.
+    {
+        "id": "unit-core-654-26",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            7: frozenset({2, 5, 8, 10}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({4, 5, 7, 10}),
+        },
+        "equality_count": 16,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
-    # Greedy deletion kept 7 of 12 rows with the pair-(6,7) Rabinowitsch
-    # ideal UNIT; retained core CROSSCHECKED_FORCED_ZERO_PAIR_CORE
-    # (Singular + msolve forward + msolve reverse all UNIT).
+    # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
+    # pass had kept 7 rows / 21 equalities; at 600 s per attempt the
+    # greedy deletion (zero TIMEOUTs) retained 6 rows / 18 equalities
+    # with the pair-(6,7) Rabinowitsch ideal UNIT; retained core
+    # CROSSCHECKED_FORCED_ZERO_PAIR_CORE (Singular + msolve fwd/rev).
+    # The only shrinkage in the 13-witness redel600 sweep.
     {
         "id": "forced-pair-core-555-01",
         "rows": {
-            0: frozenset({4, 5, 8, 9}),
             3: frozenset({0, 4, 6, 11}),
             6: frozenset({2, 7, 9, 11}),
             7: frozenset({0, 3, 6, 8}),
+            8: frozenset({2, 3, 4, 10}),
             9: frozenset({5, 7, 10, 11}),
             10: frozenset({3, 8, 9, 11}),
-            11: frozenset({0, 1, 3, 5}),
         },
-        "equality_count": 21,
+        "equality_count": 18,
         "forced_zero_squared_distance_pair": (6, 7),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },

@@ -2949,8 +2949,21 @@ retained core, admitted immediately):
 | 21 | 654 | `572e2d89…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — TENTH consecutive unit-grade 654 witness (3.801 M nodes, new pocket past 3.22 M); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family | `unit-core-654-24` |
 | 23 | 555 | `4bd55dcb…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — fourth consecutive unit-grade 555 witness (3.669 M nodes, same pocket as iter 22); `system_unit_recheck.py` 900 s pass retained 7 rows / 21 equalities incl. Moser row, retained core CROSSCHECKED_UNIT x3 (4 deletion TIMEOUTs fail-closed); near-twin of unit-core-555-10 differing only in row 8 | `unit-core-555-11` |
 | 22 | 654 | `2b74db8e…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — ELEVENTH consecutive unit-grade 654 witness (4.164 M nodes, depth still climbing past the 3.80 M pocket); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); shares five rows with unit-core-654-24 (row 7 replaces row 8) | `unit-core-654-25` |
-| 24 | 555 | — | search running | pending |
-| 23 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+| 24 | 555 | `fc6e93e9…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — fifth consecutive unit-grade 555 witness (3.684 M nodes, same pocket) | recheck running |
+| 23 | 654 | `999ff6d4…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — TWELFTH consecutive unit-grade 654 witness (4.187 M nodes, same pocket as iter 22); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family | `unit-core-654-26` |
+| 24 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+
+Redel600 sweep FINAL (13/13 harvested): the two relaunched jobs
+completed. `iter4_654` retained a core identical to banked
+`forced-pair-core-654-02` (8 rows / 24 equalities, zero TIMEOUTs) —
+no change. `iter10_555` produced the sweep's ONLY shrinkage: at
+600 s per deletion attempt (zero TIMEOUTs) the greedy pass retained
+6 rows / 18 equalities vs the banked 7 rows / 21, status
+CROSSCHECKED_FORCED_ZERO_PAIR_CORE; `forced-pair-core-555-01` has
+been superseded in place with the smaller core (rows 3, 6, 7, 8, 9,
+10; the 60 s core's rows 0 and 11 dropped, row 8:{2,3,4,10} enters).
+Final sweep tally: 12 unchanged, 1 shrunk, 0 supersessions at equal
+size.
 
 554 regression re-verified after the unit-core-654-24 admission wave:
 `EXHAUSTIVE_UNSAT_IN_FINITE_SHADOW` at 22,498 total nodes with
