@@ -886,6 +886,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-62 witness admitted 2026-07-16: thirty-third
+    # NONUNIT-track 654 witness (13,350,144 nodes — +2 past
+    # iteration 61's, seventh witness in the ~13.35M pocket — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 7-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-43.
+    "9b85bb11b327191b4c7a2e32c9919fa31b610bc438efa9ae8c9c117578c0ee5a": {
+        "equality_sha256":
+            "926a274922f97db6d41761043d81ebd5e0f632b6890445c52b711ccb737f14f3",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3926,6 +3941,32 @@ REAL_INFEASIBLE_ROW_CORES = (
             8: frozenset({6, 7, 9, 11}),
             9: frozenset({0, 2, 3, 6}),
             10: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-62 witness 9b85bb11… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (7,8) — thirty-third
+    # NONUNIT-track 654 witness (13,350,144 nodes — +2 past
+    # iteration 61's, seventh witness in the ~13.35M pocket; 20 M
+    # run, caps=0); inline audit CROSSCHECKED_NONUNIT directly;
+    # Rabinowitsch UNIT x3 (Singular + msolve fwd/rev); deletion
+    # verdicts 5 UNIT / 7 TIMEOUT fail-closed — witness rows
+    # 0, 1, 2, 5, 7 dropped; not a transposition image of any
+    # banked core; kin capped at 3 shared rows (654-26/-27/-42,
+    # off-cluster); ONE new support 4:{3,5,9,10}; row 3:{1,4,7,10}
+    # previously only in fp-654-11.
+    {
+        "id": "forced-pair-core-654-43",
+        "rows": {
+            3: frozenset({1, 4, 7, 10}),
+            4: frozenset({3, 5, 9, 10}),
+            6: frozenset({2, 3, 4, 11}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 6}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 8, 10}),
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
