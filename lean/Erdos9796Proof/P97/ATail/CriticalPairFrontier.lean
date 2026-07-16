@@ -570,6 +570,9 @@ structure CriticalPairFrontier
     (H : CriticalShellSystem D.A) where
   pair : SurvivorPairRelocationPacket D S r H
   firstApexSplit : FirstApexSplit pair
+  secondApexDouble :
+    HasNEquidistantPointsAt 4
+      ((D.A.erase pair.q).erase pair.w) S.oppApex2
   secondApexSplit : SecondApexSplit pair
 
 private theorem oppApex1_mem_A
@@ -580,6 +583,15 @@ private theorem oppApex1_mem_A
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
   · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
+
+private theorem oppApex2_mem_A
+    {A : Finset ℝ²} (S : SurplusCapPacket A) :
+    S.oppApex2 ∈ A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
 
 private theorem blocker_mem_A
     {A : Finset ℝ²} (H : CriticalShellSystem A)
@@ -615,6 +627,113 @@ private theorem equidistant_mono
   intro z hz
   rcases Finset.mem_filter.mp hz with ⟨hzS, hzdist⟩
   exact Finset.mem_filter.mpr ⟨hsub hzS, hzdist⟩
+
+/-- A fixed second-apex selected class contains at most one point of an
+off-surplus first-apex marginal. -/
+theorem firstApex_marginal_inter_secondClass_card_le_one
+    (D : CounterexampleData) (S : SurplusCapPacket D.A)
+    (r rho : ℝ) :
+    ((((D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap).filter
+      fun x => x ∈ SelectedClass D.A S.oppApex2 rho).card ≤ 1) := by
+  classical
+  rw [Finset.card_le_one]
+  intro q hq w hw
+  rcases Finset.mem_filter.mp hq with ⟨hqT, hqSecondClass⟩
+  rcases Finset.mem_filter.mp hw with ⟨hwT, hwSecondClass⟩
+  rcases Finset.mem_sdiff.mp hqT with ⟨hqFilter, hqOff⟩
+  rcases Finset.mem_sdiff.mp hwT with ⟨hwFilter, hwOff⟩
+  rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqFirst⟩
+  rcases Finset.mem_filter.mp hwFilter with ⟨hwA, hwFirst⟩
+  by_contra hqw
+  have hqSecond : dist q S.oppApex2 = rho := by
+    simpa only [dist_comm] using (mem_selectedClass.mp hqSecondClass).2
+  have hwSecond : dist w S.oppApex2 = rho := by
+    simpa only [dist_comm] using (mem_selectedClass.mp hwSecondClass).2
+  exact U2NonSurplusSqueeze.oppCap2_escape_gen
+    D S hqA hwA hqOff hwOff hqw hqFirst hwFirst hqSecond hwSecond
+
+private theorem exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ)
+    (U : Finset ℝ²)
+    (hUT : U ⊆
+      (D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap)
+    (hthree : 3 ≤ U.card) :
+    ∃ q w : ℝ², q ∈ U ∧ w ∈ U ∧ q ≠ w ∧
+      HasNEquidistantPointsAt 4
+        ((D.A.erase q).erase w) S.oppApex2 := by
+  classical
+  let T := (D.A.filter fun x => dist x S.oppApex1 = r) \
+    S.surplusCap
+  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt
+      (D.K4 S.oppApex2 (oppApex2_mem_A S)) with
+    ⟨rho, hrho, hfour⟩
+  let hit : ℝ² → Prop := fun x => x ∈ SelectedClass D.A S.oppApex2 rho
+  have hhitT : (T.filter hit).card ≤ 1 := by
+    simpa [T, hit] using
+      firstApex_marginal_inter_secondClass_card_le_one D S r rho
+  have hhitU : (U.filter hit).card ≤ 1 := by
+    apply le_trans (Finset.card_le_card ?_) hhitT
+    intro x hx
+    rcases Finset.mem_filter.mp hx with ⟨hxU, hxHit⟩
+    exact Finset.mem_filter.mpr ⟨by simpa [T] using hUT hxU, hxHit⟩
+  have hsplit := Finset.card_filter_add_card_filter_not (s := U) hit
+  have htwo : 2 ≤ (U.filter fun x => ¬ hit x).card := by omega
+  have hone : 1 < (U.filter fun x => ¬ hit x).card := by omega
+  rcases Finset.one_lt_card.mp hone with ⟨q, hq, w, hw, hqw⟩
+  rcases Finset.mem_filter.mp hq with ⟨hqU, hqNot⟩
+  rcases Finset.mem_filter.mp hw with ⟨hwU, hwNot⟩
+  have hqNotClass : q ∉ SelectedClass D.A S.oppApex2 rho := by
+    simpa [hit] using hqNot
+  have hwNotClass : w ∉ SelectedClass D.A S.oppApex2 rho := by
+    simpa [hit] using hwNot
+  have hqCard :
+      (SelectedClass (D.A.erase q) S.oppApex2 rho).card =
+        (SelectedClass D.A S.oppApex2 rho).card :=
+    selectedClass_erase_card_eq_of_not_mem hqNotClass
+  have hwNotErase :
+      w ∉ SelectedClass (D.A.erase q) S.oppApex2 rho := by
+    intro hwErase
+    exact hwNotClass (mem_selectedClass.mpr
+      ⟨(Finset.mem_erase.mp (mem_selectedClass.mp hwErase).1).2,
+        (mem_selectedClass.mp hwErase).2⟩)
+  have hwCard :
+      (SelectedClass ((D.A.erase q).erase w) S.oppApex2 rho).card =
+        (SelectedClass (D.A.erase q) S.oppApex2 rho).card :=
+    selectedClass_erase_card_eq_of_not_mem hwNotErase
+  have hfourDouble :
+      4 ≤ (SelectedClass ((D.A.erase q).erase w)
+        S.oppApex2 rho).card := by
+    rw [hwCard, hqCard]
+    exact hfour
+  refine ⟨q, w, hqU, hwU, hqw, rho, hrho, ?_⟩
+  simpa [SelectedClass] using hfourDouble
+
+/-- Three off-surplus points on one first-apex circle contain two whose
+simultaneous deletion preserves K4 at the second apex. -/
+theorem exists_pair_double_deletion_survives_secondApex
+    (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ)
+    (hthree :
+      3 ≤ ((D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap).card) :
+    ∃ q w : ℝ²,
+      q ∈ (D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap ∧
+      w ∈ (D.A.filter fun x => dist x S.oppApex1 = r) \
+        S.surplusCap ∧
+      q ≠ w ∧
+      HasNEquidistantPointsAt 4
+        ((D.A.erase q).erase w) S.oppApex2 := by
+  classical
+  let T := (D.A.filter fun x => dist x S.oppApex1 = r) \
+    S.surplusCap
+  have hthreeT : 3 ≤ T.card := by simpa [T] using hthree
+  rcases exists_pair_in_marginal_subset_double_deletion_survives_secondApex
+      D S r T (by intro x hx; simpa [T] using hx) hthreeT with
+    ⟨q, w, hqT, hwT, hqw, hdouble⟩
+  exact ⟨q, w, by simpa [T] using hqT, by simpa [T] using hwT,
+    hqw, hdouble⟩
 
 /-- Adding a second deletion cannot restore K4 at the blocker already killed
 by deleting its source. -/
@@ -780,6 +899,28 @@ theorem cross_survival_unique_radius_and_exact_support
       rho = dist (H.centerAt q hq) q :=
         (mem_selectedClass.mp hqClass).2.symm
       _ = K.radius := K.support_eq_radius q K.q_mem_support
+
+/-- Cross-deletion survival at a source's actual blocker already separates
+that blocker from the first apex.  No class-cardinality hypothesis is
+needed. -/
+theorem SurvivorPairRelocationPacket.actual_blocker_ne_oppApex1_of_cross_deletion_survives
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hcross :
+      HasNEquidistantPointsAt 4 (D.A.erase P.w)
+        (H.centerAt P.q P.q_mem_A)) :
+    H.centerAt P.q P.q_mem_A ≠ S.oppApex1 := by
+  have hradiusNe :=
+    SurvivorPairRelocationPacket.blocker_dist_ne_of_cross_deletion_survives
+      P hcross
+  have hq : dist P.q S.oppApex1 = r :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.q_mem_marginal).1).2
+  have hw : dist P.w S.oppApex1 = r :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp P.w_mem_marginal).1).2
+  intro hcenter
+  apply hradiusNe
+  simpa [hcenter, dist_comm] using hw.trans hq.symm
 
 /-- A cross hit in the selected critical row puts the two common points on
 opposite strict sides of the chord joining the first apex to the blocker. -/
@@ -1077,7 +1218,8 @@ theorem card_five_cross_deletion_survives_or_cross_oppositeSide
         (blocker_ne_oppApex1_of_card_five P hr hcard)⟩
 
 /-- A three-point off-surplus first-apex marginal yields the complete paired
-frontier. -/
+frontier, with the pair chosen so both deletions preserve K4 at the second
+apex. -/
 theorem exists_criticalPairFrontier
     (D : CounterexampleData) (S : SurplusCapPacket D.A) (r : ℝ)
     (H : CriticalShellSystem D.A)
@@ -1085,34 +1227,63 @@ theorem exists_criticalPairFrontier
       3 ≤ ((D.A.filter fun x => dist x S.oppApex1 = r) \
         S.surplusCap).card) :
     Nonempty (CriticalPairFrontier D S r H) := by
-  rcases exists_survivorPairRelocationPacket D S r H hthree with ⟨P⟩
-  have happ1 : S.oppApex1 ∈ D.A := by
-    rcases hi : S.surplusIdx with ⟨i, hi3⟩
-    interval_cases i
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v2_mem
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v3_mem
-    · simpa [SurplusCapPacket.oppApex1, hi] using S.triangle.v1_mem
-  have hqSelected : P.q ∈ SelectedClass D.A S.oppApex1 r := by
-    rcases Finset.mem_sdiff.mp P.q_mem_marginal with ⟨hqFilter, _⟩
-    rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
+  rcases exists_pair_double_deletion_survives_secondApex D S r hthree with
+    ⟨q, w, hqT, hwT, hqw, hdouble⟩
+  have hqA : q ∈ D.A :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp hqT).1).1
+  have hwA : w ∈ D.A :=
+    (Finset.mem_filter.mp (Finset.mem_sdiff.mp hwT).1).1
+  have hqSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase q) S.oppApex2 := by
+    apply equidistant_mono (T := D.A.erase q) _ hdouble
+    intro z hz
+    exact (Finset.mem_erase.mp hz).2
+  have hdoubleSym :
+      HasNEquidistantPointsAt 4
+        ((D.A.erase w).erase q) S.oppApex2 := by
+    simpa [Finset.erase_right_comm] using hdouble
+  have hwSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase w) S.oppApex2 := by
+    apply equidistant_mono (T := D.A.erase w) _ hdoubleSym
+    intro z hz
+    exact (Finset.mem_erase.mp hz).2
+  let P : SurvivorPairRelocationPacket D S r H :=
+    { q := q
+      w := w
+      q_mem_A := hqA
+      w_mem_A := hwA
+      q_mem_marginal := hqT
+      w_mem_marginal := hwT
+      q_ne_w := hqw
+      q_survives := hqSurvives
+      w_survives := hwSurvives
+      q_blocker_ne_oppApex2 :=
+        actual_blocker_ne_of_deletion_survives H hqA hqSurvives
+      w_blocker_ne_oppApex2 :=
+        actual_blocker_ne_of_deletion_survives H hwA hwSurvives }
+  have hqSelected : q ∈ SelectedClass D.A S.oppApex1 r := by
+    rcases Finset.mem_sdiff.mp hqT with ⟨hqFilter, _⟩
+    rcases Finset.mem_filter.mp hqFilter with ⟨_, hqRadius⟩
     exact mem_selectedClass.mpr ⟨hqA, by simpa [dist_comm] using hqRadius⟩
-  have hwSelected : P.w ∈ SelectedClass D.A S.oppApex1 r := by
-    rcases Finset.mem_sdiff.mp P.w_mem_marginal with ⟨hwFilter, _⟩
-    rcases Finset.mem_filter.mp hwFilter with ⟨hwA, hwRadius⟩
+  have hwSelected : w ∈ SelectedClass D.A S.oppApex1 r := by
+    rcases Finset.mem_sdiff.mp hwT with ⟨hwFilter, _⟩
+    rcases Finset.mem_filter.mp hwFilter with ⟨_, hwRadius⟩
     exact mem_selectedClass.mpr ⟨hwA, by simpa [dist_comm] using hwRadius⟩
   have hfirst : FirstApexSplit P :=
     ATAILSameRadiusDoubleErase.sameRadius_double_erase_survives_or_unique_class_card_four_or_five
-      (D.K4 S.oppApex1 happ1) hqSelected hwSelected P.q_ne_w
-  have hsecond : SecondApexSplit P :=
-    P.double_erase_or_exact_eight_packet
-  exact ⟨⟨P, hfirst, hsecond⟩⟩
+      (D.K4 S.oppApex1 (oppApex1_mem_A S))
+      hqSelected hwSelected hqw
+  exact ⟨⟨P, hfirst, hdouble, Or.inl hdouble⟩⟩
 
-/-- Global K4 and the surplus-cap one-hit theorem choose a positive radius
+/-- Global K4 and the surplus-cap one-hit theorem choose a positive radius,
+retain that its full first-apex selected class has cardinality at least four,
 and supply the parent-facing critical-pair frontier. -/
 theorem exists_criticalPairFrontier_of_K4
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     (H : CriticalShellSystem D.A) :
-    ∃ r : ℝ, 0 < r ∧ Nonempty (CriticalPairFrontier D S r H) := by
+    ∃ r : ℝ, 0 < r ∧
+      4 ≤ (SelectedClass D.A S.oppApex1 r).card ∧
+      Nonempty (CriticalPairFrontier D S r H) := by
   classical
   have happ1 : S.oppApex1 ∈ D.A := by
     rcases hi : S.surplusIdx with ⟨i, hi3⟩
@@ -1136,7 +1307,7 @@ theorem exists_criticalPairFrontier_of_K4
   have hsplit := Finset.card_sdiff_add_card_inter F S.surplusCap
   have hthree : 3 ≤ (F \ S.surplusCap).card := by
     omega
-  exact ⟨r, hr,
+  exact ⟨r, hr, hfour,
     exists_criticalPairFrontier D S r H (by simpa [F] using hthree)⟩
 
 end ATailCriticalPairFrontier
