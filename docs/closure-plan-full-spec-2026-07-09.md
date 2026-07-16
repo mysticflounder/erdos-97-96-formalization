@@ -238,6 +238,27 @@ parent surface and has one genuine terminal:
   `q ≠ S.oppApex2` from the retained parent hypothesis `q ∉ M.verts`.
   `ParentQCriticalMetricTerminal.lean` kernel-checks the complete
   full-parent composition with no free exclusion premise;
+- `qcritical-continuation-reduction/` composes that terminal with the exact
+  continuation classifier.  At full-parent strength, two q-critical
+  constructors now reduce assumption-free to the two oriented
+  cross-deletion-survival arms.  This is the complete surviving continuation
+  surface for that constructor pair, not `False`;
+- `qcritical-common-outside-terminal/` consumes the first useful part of that
+  surface.  The common q-critical point `q` is already outside `oppCap2`, so
+  any second common generated-row point outside that cap is contradictory.
+  In particular, an equal chosen successor source closes as soon as it is
+  explicitly outside `oppCap2`; in the distinct-source case, one off-cap
+  chosen source plus its reciprocal generated-row membership suffices.  Bare
+  cross-deletion survival supplies neither cap placement nor reciprocal
+  membership, so those remain producer facts;
+- `metric-survivor-routing/` removes the remaining bookkeeping from the
+  constructor pairs with at least one q-deleted row.  A raw
+  `NonEquilateralResidual` plus the retained concrete critical system already
+  constructs the required `NonEquilateralOutput`; the first open field is
+  exactly `StrictOppCap1CommonHit`.  A realized equilateral residual already
+  constructs its joint-transition packet, so its branch-local open field is
+  one `JointTransitionClosingSelection` for that packet rather than a
+  uniform eliminator over every possible row choice;
 - `generated-successor-rank/CapRankOppositeSide.lean` and
   `generated-successor-geometry-rank/GeneratedSuccessorGeometryRank.lean`
   give the strongest honest ordered-cap handoff at each named center.  The
@@ -263,11 +284,15 @@ parent surface and has one genuine terminal:
 
 All of these declarations fresh-check with only `propext`,
 `Classical.choice`, and `Quot.sound`.  This closes the
-q-critical/q-critical metric subcase, not a production `sorry`.  The
-remaining live-heavy frontier is now the explicit product of the surviving
+q-critical/q-critical metric subcase and reduces that constructor pair to
+two exact cross-survival orientations, not a production `sorry`.  The
+remaining live-heavy frontier is now the explicit product of those
+cross-survival orientations, the other surviving
 generated-constructor/continuation arms, the paired successor-source split,
-and the source-exact cap/rank alternatives.  A rank move is not terminal
-until a cycle-wide no-wrap or well-founded argument is proved, and the
+and the source-exact cap/rank alternatives.  The immediate q-critical target
+is now explicit off-`oppCap2` placement plus one common-row membership, not a
+new anonymous survivor packet.  A rank move is not terminal until a
+cycle-wide no-wrap or well-founded argument is proved, and the
 outside-cap/companion-omitted arms still need a full-parent cap/order or
 global-critical-map consumer.  Do not revert to an anonymous
 `CommonDeletionTwoCenterPacket → False` target or restart local selected-four
