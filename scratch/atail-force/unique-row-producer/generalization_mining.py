@@ -1,20 +1,25 @@
 """Generalization-mining over the banked infeasible row cores.
 
 A banked core certifies its FULL row set (UNIT ideal, or Rabinowitsch
-(7,8) radical membership). Any subset certificate generalizes: if a
-shared row subset is itself UNIT (resp. forces the pair), that single
-certificate covers every banked core containing the subset — promoting
-instance-level certificates toward family certificates.
+radical membership of the core's banked forced pair — (6,7) for twelve
+fp-555 cores, (7,8) for fp-654 and fp-555-09). Any subset certificate
+generalizes: if a shared row subset is itself UNIT (resp. forces the
+pair), that single certificate covers every banked core containing the
+subset — promoting instance-level certificates toward family
+certificates.
 
 Candidates: for every pair of cores in the same family bank, the shared
 row subset, kept when it has at least --min-shared-unit rows (unit
 banks, UNIT test) or --min-shared-fp rows (forced-pair banks,
-Rabinowitsch (7,8) test). Coverage is recomputed against the whole
-family bank, not just the generating pair.
+Rabinowitsch test of the parents' common banked pair; parents with
+differing banked pairs are skipped). Coverage is recomputed against the
+whole family bank — for forced-pair candidates, restricted to cores
+banked with the same forced pair.
 
---smoke re-runs two banked certificates (unit-core-555-65 UNIT,
-forced-pair-core-654-47 Rabinowitsch) and must reproduce them before
-any mining run is trusted.
+--smoke re-runs three banked certificates (unit-core-555-65 UNIT,
+forced-pair-core-654-47 Rabinowitsch (7,8), forced-pair-core-555-01
+Rabinowitsch (6,7)) and must reproduce them before any mining run is
+trusted.
 
 Emits line-delimited JSON records on stdout (one per candidate, written
 as each finishes).
@@ -36,7 +41,6 @@ ORACLE = (
     REPO + "/scratch/atail-force/second_center_metric_oracle/oracle.py"
 )
 N = 12
-PAIR = (7, 8)
 
 
 def load_module(name, path):
@@ -76,13 +80,13 @@ def unit_test(oracle, keys, timeout):
     }
 
 
-def rabinowitsch_test(oracle, keys, timeout):
+def rabinowitsch_test(oracle, keys, timeout, pair):
     rows = metric_rows(oracle, keys)
     points = oracle.coordinate_symbols(N)
     sympy_variables = oracle.variable_symbols(N)
     variables = [str(v) for v in sympy_variables]
     polynomials = list(oracle.serialized_system(N, rows))
-    pair_expr = oracle.squared_distance(points, *PAIR)
+    pair_expr = oracle.squared_distance(points, *pair)
     t_symbol = oracle.sp.Symbol("t")
     rabinowitsch_poly = oracle.serialize_poly(
         oracle.sp.Poly(
@@ -109,7 +113,8 @@ def rabinowitsch_test(oracle, keys, timeout):
         and reverse.verdict == "UNIT"
     )
     return {
-        "test": "RABINOWITSCH_PAIR_7_8",
+        "test": "RABINOWITSCH_PAIR_%d_%d" % pair,
+        "pair": list(pair),
         "status": (
             "CROSSCHECKED_FORCED_ZERO_PAIR_SUBSET"
             if unit
@@ -142,21 +147,32 @@ def candidates(cores, min_shared_unit, min_shared_fp):
         is_fp = family.startswith("forced-pair")
         floor = min_shared_fp if is_fp else min_shared_unit
         sets = {c["id"]: rowset(c) for c in members}
+        pairs = {
+            c["id"]: tuple(c["forced_zero_squared_distance_pair"])
+            for c in members
+        } if is_fp else {}
         for (id_a, rs_a), (id_b, rs_b) in combinations(
             sorted(sets.items()), 2
         ):
             shared = rs_a & rs_b
             if len(shared) < floor:
                 continue
+            if is_fp and pairs[id_a] != pairs[id_b]:
+                continue
             key = (family, shared)
             if key in seen:
                 continue
             coverage = sorted(
-                cid for cid, rs in sets.items() if shared <= rs
+                cid for cid, rs in sets.items()
+                if shared <= rs
+                and (not is_fp or pairs[cid] == pairs[id_a])
             )
-            seen[key] = {
+            record = {
                 "family": family,
-                "test": "RABINOWITSCH_PAIR_7_8" if is_fp else "UNIT",
+                "test": (
+                    "RABINOWITSCH_PAIR_%d_%d" % pairs[id_a]
+                    if is_fp else "UNIT"
+                ),
                 "rows": sorted(
                     [center, list(support)] for center, support in shared
                 ),
@@ -164,6 +180,9 @@ def candidates(cores, min_shared_unit, min_shared_fp):
                 "generating_pair": [id_a, id_b],
                 "coverage": coverage,
             }
+            if is_fp:
+                record["pair"] = list(pairs[id_a])
+            seen[key] = record
     return sorted(
         seen.values(),
         key=lambda c: (-len(c["coverage"]), -c["row_count"]),
@@ -193,12 +212,21 @@ def main():
         result = unit_test(oracle, unit_core, args.timeout)
         emit({"smoke": "unit-core-555-65", **result})
         ok_unit = result["status"] == "CROSSCHECKED_UNIT"
-        fp_core = rowset(cores["forced-pair-core-654-47"])
-        result = rabinowitsch_test(oracle, fp_core, args.timeout)
-        emit({"smoke": "forced-pair-core-654-47", **result})
-        ok_fp = result["status"] == "CROSSCHECKED_FORCED_ZERO_PAIR_SUBSET"
-        emit({"smoke_gate": "PASS" if ok_unit and ok_fp else "FAIL"})
-        if not (ok_unit and ok_fp):
+        oks = [ok_unit]
+        for fp_id in (
+            "forced-pair-core-654-47", "forced-pair-core-555-01",
+        ):
+            core = cores[fp_id]
+            result = rabinowitsch_test(
+                oracle, rowset(core), args.timeout,
+                tuple(core["forced_zero_squared_distance_pair"]),
+            )
+            emit({"smoke": fp_id, **result})
+            oks.append(
+                result["status"] == "CROSSCHECKED_FORCED_ZERO_PAIR_SUBSET"
+            )
+        emit({"smoke_gate": "PASS" if all(oks) else "FAIL"})
+        if not all(oks):
             sys.exit(1)
         return
 
@@ -219,7 +247,9 @@ def main():
         if cand["test"] == "UNIT":
             result = unit_test(oracle, keys, args.timeout)
         else:
-            result = rabinowitsch_test(oracle, keys, args.timeout)
+            result = rabinowitsch_test(
+                oracle, keys, args.timeout, tuple(cand["pair"])
+            )
         emit({**cand, **result})
 
 
