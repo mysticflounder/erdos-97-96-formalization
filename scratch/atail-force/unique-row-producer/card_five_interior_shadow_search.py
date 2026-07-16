@@ -367,6 +367,28 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-9 witness admitted 2026-07-15: source pair (7,8)
+    # forced zero, certified by membership_crosscheck.py --radical-only;
+    # its retained 7-row deletion core is forced-pair-core-654-09.
+    "9bd971a6d31f3cd8db7c39e8d930990d0efae2c49de8143a195c2c1995068200": {
+        "equality_sha256":
+            "dbaf633cced7e288fc601d357e90c7beaa2dfd57eafbb632f5a6630ba8477bfa",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
+    # 555 iteration-16 witness admitted 2026-07-15: source pair (6,7)
+    # forced zero, certified by membership_crosscheck.py --radical-only;
+    # its retained 7-row deletion core is forced-pair-core-555-10.
+    "25e8cc56a2a3326c7b53aed5619aa8c6044f6cd6ce29eeb8aec0ce2e516454df": {
+        "equality_sha256":
+            "1285327c27bcac48cdb9772f1eb6fe95c22e52de0cdd195d9d748e979b325648",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -939,6 +961,43 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-9 witness 9bd971a6… admitted 2026-07-15: 7-row /
+    # 21-equality core forcing pair (7,8); no row centered at 3, 4, or
+    # 5; retained core Rabinowitsch UNIT x3 (5 deletion TIMEOUTs
+    # retained fail-closed).
+    {
+        "id": "forced-pair-core-654-09",
+        "rows": {
+            2: frozenset({0, 1, 10, 11}),
+            6: frozenset({4, 5, 8, 10}),
+            7: frozenset({0, 5, 6, 9}),
+            8: frozenset({2, 7, 9, 10}),
+            9: frozenset({1, 2, 3, 5}),
+            10: frozenset({2, 4, 9, 11}),
+            11: frozenset({0, 1, 4, 8}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 555 iteration-16 witness 25e8cc56… admitted 2026-07-15: 7-row /
+    # 21-equality core forcing pair (6,7); retained core Rabinowitsch
+    # UNIT x3 (6 deletion TIMEOUTs retained fail-closed).
+    {
+        "id": "forced-pair-core-555-10",
+        "rows": {
+            0: frozenset({1, 3, 5, 8}),
+            6: frozenset({2, 4, 7, 10}),
+            7: frozenset({0, 5, 6, 8}),
+            8: frozenset({5, 7, 9, 11}),
+            9: frozenset({0, 3, 6, 11}),
+            10: frozenset({4, 8, 9, 11}),
+            11: frozenset({0, 1, 4, 7}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (6, 7),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
 )

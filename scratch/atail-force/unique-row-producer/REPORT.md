@@ -2925,9 +2925,11 @@ retained core, admitted immediately):
 | 7 | 654 | `e99adf80…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 7 | `forced-pair-core-654-07` + signature |
 | 14 | 555 | `67cd332a…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core (6 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-08` + signature |
 | 8 | 654 | `0fe506e4…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 9-row / 27-equality core (8 deletion TIMEOUTs retained fail-closed under box load) (5.87 M nodes) | `forced-pair-core-654-08` + signature |
-| 9 | 654 | — | search running | pending |
+| 9 | 654 | `9bd971a6…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 3/4/5 (6.48 M nodes) | `forced-pair-core-654-09` + signature |
 | 15 | 555 | `1e81296b…` | NONUNIT (3.33 M nodes); source-pair route FAILS — dist²(6,7) radical membership NONUNIT in all three oracles, first such witness since 555 iter-7; all-pairs `--scan` then found 49/66 pairs DIRECTLY forced (dist² ∈ I); point 6 nearly isolated in the forced graph (only (6,11)); kill pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core (8 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-09` + signature |
-| 16 | 555 | — | search running | pending |
+| 16 | 555 | `25e8cc56…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core (3.44 M nodes) | `forced-pair-core-555-10` + signature |
+| 10 | 654 | — | search running | pending |
+| 17 | 555 | — | search running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3098,3 +3100,17 @@ Rabinowitsch UNIT x3, admitted as `forced-pair-core-555-09`.  The
 loop's kill criterion is therefore now explicitly "some pair is
 forced", not "the source pair is forced"; when the source-pair route
 fails, the all-pairs `--scan` picks the replacement pair.
+
+The anomaly did not recur immediately: 555 iteration 16 and 654
+iteration 9 both certified on their source pairs (7-row / 21-equality
+cores each; `forced-pair-core-555-10`, `forced-pair-core-654-09`,
+nineteen cores total).  Node cost is now rising on both profiles:
+555 3.22 M → 3.33 M → 3.44 M (iterations 14–16), 654 5.72 M → 5.87 M
+→ 6.48 M (iterations 7–9).
+
+First four 600 s re-deletion results (555 iters 7/8/9, 654 iter 3):
+NO shrinkage — every retained core is row-for-row identical to its
+60 s bank entry, with most former deletion TIMEOUTs now resolving to
+definite retain verdicts (1–3 TIMEOUTs remain per run vs 1–7).  The
+60 s greedy pass appears to be finding the stable retained set;
+supersession has not yet fired.
