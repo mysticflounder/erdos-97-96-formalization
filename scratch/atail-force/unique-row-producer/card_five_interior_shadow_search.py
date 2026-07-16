@@ -272,6 +272,23 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iteration-6 witness aab3e0b5… admitted 2026-07-15: inline
+    # Singular audit timed out (msolve UNIT x2); settled at 900 s via
+    # system_unit_recheck.py, CROSSCHECKED_UNIT system and core; again
+    # no apex row in the retained core.
+    {
+        "id": "unit-core-555-07",
+        "rows": {
+            0: frozenset({1, 4, 5, 7}),
+            3: frozenset({0, 4, 6, 11}),
+            4: frozenset({1, 5, 8, 11}),
+            7: frozenset({0, 3, 5, 8}),
+            9: frozenset({3, 4, 8, 10}),
+            10: frozenset({0, 3, 7, 11}),
+            11: frozenset({1, 3, 6, 9}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {

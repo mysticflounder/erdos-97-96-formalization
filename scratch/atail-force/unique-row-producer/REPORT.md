@@ -2901,6 +2901,7 @@ retained core, admitted immediately):
 | 1 | 654 | `a4914ed2…` | NONUNIT; built-in 30 s membership audit TIMEOUT | pending scan |
 | 4 | 555 | `3d9a6b04…` | UNIT; 6-row core; new apex row `{0,5,6,7,8}` (1.88 M nodes) | `unit-core-555-05` |
 | 5 | 555 | `a94caeaf…` | UNIT; 7-row core; apex row `{2,6,7,8,10}`; first core with NO apex row (2.71 M nodes) | `unit-core-555-06` |
+| 6 | 555 | `aab3e0b5…` | inline UNDECIDED (Singular TIMEOUT, msolve UNIT x2); settled UNIT at 900 s via `system_unit_recheck.py`; 7-row core, no apex row (2.71 M nodes) | `unit-core-555-07` |
 
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
 `0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex
@@ -2926,5 +2927,7 @@ the three-oracle crosscheck plus the one-pass row deletion and
 retained-core crosscheck under caller-chosen budgets.  Smoke gate
 against the known-UNIT iteration-5 witness `a94caeaf…`: reproduces
 CROSSCHECKED_UNIT, the hash `require` passes, and the deletion pass
-returns a crosschecked 7-row core.  A 900 s recheck of `aab3e0b5…` is
-running.
+returns a crosschecked 7-row core.  The 900 s recheck of `aab3e0b5…`
+settled it: CROSSCHECKED_UNIT, 7-row / 21-equality retained core
+(centers 0,3,4,7,9,10,11 — again no apex row), core CROSSCHECKED_UNIT;
+admitted as `unit-core-555-07`.
