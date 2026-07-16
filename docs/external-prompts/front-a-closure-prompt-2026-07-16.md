@@ -17,7 +17,10 @@ first run returned without a proof (response recorded in
 correct deductions are folded into the assumable-facts section below, its
 terminal gap (balanced cap sizes) is flagged as the load-bearing
 difficulty, and its dead ends are added to the mandatory adversarial
-tests. The paste-ready export is everything after the rule.
+tests. Extended later the same day: the general crossing inequalities
+with their ordinal consequences, and the exact-arithmetic-verified
+nine-point mutual-containment configuration, are folded in. The
+paste-ready export is everything after the rule.
 
 ---
 
@@ -167,6 +170,25 @@ holds: every point of Pi lies strictly inside the disk of radius rj
 about vj, or every point of Pj lies strictly inside the disk of radius
 ri about vi.
 
+- (General crossing inequalities and their ordinal consequences.) No
+three points of A are collinear: the middle of three collinear points
+would lie in the convex hull of the other two, contradicting convex
+position. For any four distinct points a, b, c, d of A appearing in
+this cyclic order around the boundary of the convex hull of A, the
+diagonals of the quadrilateral a b c d cross at an interior point, and
+
+  dist(a,c) + dist(b,d) > dist(a,b) + dist(c,d),
+  dist(a,c) + dist(b,d) > dist(a,d) + dist(b,c).
+
+In particular, if dist(a,c) = dist(a,d), then dist(b,c) < dist(b,d):
+every equal-distance pair at one point forces a strict distance
+comparison at every point lying in the appropriate arc of the cyclic
+order. As an instance, if x and y both lie in a core Ii on one witness
+circle centered at vi, with x closer to vj along the boundary, then
+dist(vj,x) < dist(vj,y) and dist(vk,x) > dist(vk,y). These facts use
+only convex position and the cap structure, not the non-obtuseness of
+the triangle or the minimum enclosing circle.
+
 A first extended attempt proved exactly the facts above and nothing
 more. Its terminal gap is recorded here so that no effort is spent
 rediscovering it: the pair-budget inequality eliminates only
@@ -178,7 +200,9 @@ quadratically in |A|. The guaranteed charges (1 per non-endpoint
 center, 3 per endpoint) can never exceed the budget on their own.
 Likewise, the disk-containment alternatives from the crossing fact are
 not contradictory on their own: cyclic and mutual containment patterns
-among the three disks are geometrically realizable. The critical-shells
+among the three disks are geometrically realizable, and an explicit
+nine-point configuration realizing all six strict containments
+simultaneously appears among the adversarial tests below. The critical-shells
 fact was not used anywhere in that attempt. The load-bearing difficulty
 is the balanced cap-size regime: a complete proof must in particular
 close the minimal balanced patterns (cap sizes 5, 5, 4 and 5, 5, 5) and
@@ -256,6 +280,24 @@ cap-size regime: cap sizes 5, 5, 4 at |A| = 11; cap sizes 5, 5, 5 at
 are known to fail there: refining the pair-budget count without
 producing new charged pairs, and claiming a contradiction from the
 three-disk containment alternatives alone.
+
+- The following nine-point configuration has been verified in exact
+arithmetic. Take v1 = (0, 1), v2 = (-sqrt(3)/2, -1/2),
+v3 = (sqrt(3)/2, -1/2) (an equilateral triangle inscribed in the unit
+circle), let P1 consist of the two points (-1/4, -3/5) and
+(1/4, -3/5), and let P2 and P3 be the images of P1 under rotation
+about the origin through 120 and 240 degrees. The nine points are in
+strict convex position; each pair Pi lies beyond the chord opposite
+vi; each Pi is equidistant from vi, with all three squared radii equal
+to 1049/400; and every Pi lies strictly inside BOTH disks of the
+corresponding radius about the other two distinguished vertices — all
+six strict containments hold at once. This configuration is not a
+counterexample to the claim (it does not have the four-equidistant
+property), but it proves that no argument consuming only the
+disk-containment alternatives — via a tournament, an
+orientation-count, or a cyclic-containment analysis — can reach a
+contradiction. Any candidate argument in that family must identify a
+hypothesis this configuration violates and use it essentially.
 
 Use your multiagent harness aggressively and dynamically. Do not use a
 fixed assignment such as "N agents for strategy X." Instead, manage the
