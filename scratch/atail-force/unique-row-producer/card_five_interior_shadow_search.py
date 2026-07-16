@@ -435,6 +435,19 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-28 witness admitted 2026-07-15: source pair (7,8)
+    # forced zero — first 654 NONUNIT since iteration-10 (inline audit
+    # UNDECIDED, 900 s recheck CROSSCHECKED_NONUNIT); certified by
+    # membership_crosscheck.py --radical-only; its retained 7-row
+    # deletion core (zero deletion timeouts) is forced-pair-core-654-11.
+    "8f8cdfed03433593c85048346ee276fdbc02fce35ae791d0bbef9a7ea652b4d9": {
+        "equality_sha256":
+            "c06cf2fbb039d8450ad790316ca19be80a65c6187235bf0ba91ff4bbb4cb372d",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -1576,6 +1589,25 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-28 witness 8f8cdfed… admitted 2026-07-15: 7-row /
+    # 21-equality core forcing pair (7,8) — first 654 NONUNIT since
+    # iteration-10, arriving with the no-row-2 family edge; retained
+    # core Rabinowitsch UNIT x3, ZERO deletion timeouts; no apex row.
+    {
+        "id": "forced-pair-core-654-11",
+        "rows": {
+            0: frozenset({3, 6, 9, 10}),
+            3: frozenset({1, 4, 7, 10}),
+            6: frozenset({1, 5, 9, 11}),
+            7: frozenset({2, 6, 8, 11}),
+            9: frozenset({0, 3, 5, 7}),
+            10: frozenset({0, 4, 5, 6}),
+            11: frozenset({1, 3, 8, 10}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
 )
