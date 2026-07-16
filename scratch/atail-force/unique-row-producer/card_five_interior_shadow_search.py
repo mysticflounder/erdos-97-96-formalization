@@ -1106,6 +1106,24 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 16,
     },
+    # 654 iteration-27 witness 780ac81b… admitted 2026-07-15:
+    # sixteenth consecutive unit-grade 654 witness (6.72 M nodes,
+    # same pocket as iteration 26); system_unit_recheck.py 900 s
+    # deletion retained 5 rows / 16 equalities (4 deletion TIMEOUTs
+    # fail-closed), retained core CROSSCHECKED_UNIT (Singular +
+    # msolve fwd/rev); second consecutive no-row-2 core, near-twin
+    # of unit-core-654-29 differing in rows 5 and 7.
+    {
+        "id": "unit-core-654-30",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            5: frozenset({1, 3, 6, 7}),
+            7: frozenset({2, 4, 5, 8}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({1, 5, 7, 10}),
+        },
+        "equality_count": 16,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
