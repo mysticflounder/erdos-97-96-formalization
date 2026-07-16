@@ -2805,3 +2805,49 @@ as the 49 admitted 554 cuts.  Audits of `d48af6a7` (555) and `fa87f604`
 (654) were launched; results in the next section.  Whether to resume the
 iterative mine–admit–rerun loop on 555/654 remains Adam's call; these
 audits are one-shot diagnosis of the two standing witnesses only.
+
+## 2026-07-15 exact-CAS audits of the standing frontier witnesses
+
+One-shot `--metric` audits of both standing witnesses (diagnosis only; the
+iterative mine–admit–rerun loop stays paused pending Adam's decision).
+Metric smoke gates (known UNIT and known NONUNIT references) passed on
+both runs.
+
+**555 `d48af6a7…`: CROSSCHECKED_UNIT.**  The pinned 37-equation equality
+ideal (expanded-polynomial sha256 `618d6f58…`) is the unit ideal in
+characteristic zero — Singular and msolve, both variable orders.  The
+fixed shadow has no complex realization at all, independent of blocker
+choice (exactness flags do not change the equality count).  Bounded row
+deletion retains a 7-row core (22 equalities, itself CROSSCHECKED_UNIT):
+
+```text
+1:{0,2,6,7,8}  0:{1,2,3,4}  7:{4,6,8,9}  8:{0,7,9,10}
+9:{0,3,5,10}  10:{3,7,9,11}  11:{1,5,8,10}
+```
+
+Both surplus-cap blocker rows (centers 2, 3) were deleted — the
+infeasibility never touches the blocker rows.  The deletion pass is
+incomplete (rows 8 and 10 hit the 45 s budget), so the core is not
+confirmed irredundant, but it is a valid literal subrow cut in the
+`REAL_INFEASIBLE_ROW_CORES` format, and the first such core at 555.
+
+**654 `fa87f604…`: CROSSCHECKED_NONUNIT, but every complex realization
+collapses the frontier pair.**  The equality ideal (sha256 `574867866…`)
+has dimension 4, and Singular direct membership finds 53 of 66 squared
+point distances forced to zero — including pair `(7,8)`, the frontier
+pair itself.  Any realization with twelve distinct points is impossible;
+in particular no real Euclidean witness exists.  Trust note: this is
+Singular-only membership (`COMPLETED`, 30 s); the admitted-bank standard
+(`CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP`) would additionally need the
+msolve reduced-basis membership crosscheck before this signature could be
+admitted as a cut.
+
+**Combined assessment.**  Both standing 555/654 witnesses are dead as
+real configurations, while surviving every finite-pattern cut including
+both demoted theorem candidates.  This inverts the previous section's
+closing line: the Lean-first blocker-shape path is not viable (whack-a-
+mole over blocker selections inside surviving row assignments), whereas
+the exact-oracle mining path demonstrably kills the standing witnesses
+wholesale.  Whether to resume that loop on 555/654 — admit the 555 core
+and (after msolve crosscheck) the 654 membership kill, then re-search —
+is Adam's call; nothing has been admitted in this session.
