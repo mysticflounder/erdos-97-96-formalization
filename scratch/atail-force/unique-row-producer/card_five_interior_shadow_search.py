@@ -641,6 +641,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-44 witness: sixteenth NONUNIT-track 654 witness
+    # (11,836,418 nodes, 20 M run, caps=0; inline audit decided
+    # NONUNIT directly); certified by membership_crosscheck.py
+    # --pair 7 8 --radical-only --core; its retained 8-row deletion
+    # core (6 deletion timeouts fail-closed) is
+    # forced-pair-core-654-26.
+    "9bc4457383d2842793c4fb6cf7a19384bc73486a0529c84fcbf6a8d831d78b41": {
+        "equality_sha256":
+            "7e4ea12e691453bd05a8325d2d0907ad3373889a80d8498687f8355c222162c1",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -2608,6 +2622,37 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 3, 6, 7}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({4, 6, 8, 10}),
+        },
+        "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-44 witness 9bc44573… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — sixteenth NONUNIT-track
+    # 654 witness (11,836,418 nodes, ~296 k past iteration 43; 20 M
+    # run, caps=0); inline audit CROSSCHECKED_NONUNIT directly;
+    # deletion verdicts 4 UNIT / 6 TIMEOUT fail-closed / 2 NONUNIT —
+    # witness rows 1 (surplus), 2, 4, 6 dropped (second consecutive
+    # core without the surplus row; all supports cardinality 4); not
+    # a transposition image of any banked core; unlike the
+    # iteration-42/-43 fresh sector this one bridges BACK into the
+    # older orbit — closest kin forced-pair-core-654-22 (3 shared
+    # rows: 7, 9, 10), row 8:{6,7,9,11} previously only in
+    # unit-core-654-22, row 5:{1,3,6,9} links to the fresh sector via
+    # forced-pair-core-654-24, row 3:{1,4,8,10} previously only in
+    # forced-pair-core-654-19; supports 0:{3,4,9,10} and 11:{3,5,7,10}
+    # new to the bank.
+    {
+        "id": "forced-pair-core-654-26",
+        "rows": {
+            0: frozenset({3, 4, 9, 10}),
+            3: frozenset({1, 4, 8, 10}),
+            5: frozenset({1, 3, 6, 9}),
+            7: frozenset({2, 4, 5, 8}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 6}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({3, 5, 7, 10}),
         },
         "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
