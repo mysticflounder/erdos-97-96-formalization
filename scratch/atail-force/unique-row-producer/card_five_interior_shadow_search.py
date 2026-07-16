@@ -528,6 +528,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-35 witness admitted 2026-07-16: source pair (7,8)
+    # forced zero — eighth consecutive 654 NONUNIT-track witness
+    # (inline audit decided NONUNIT directly); certified by
+    # membership_crosscheck.py --radical-only; its retained 7-row
+    # deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-654-18.
+    "429495325247ef89abfe573983a85a5b90000c6499cbcd3f13f2ba9257fe9d5d": {
+        "equality_sha256":
+            "04dbf93f163422a5163592b918d4f3af23258b68455517766eac301faa337df2",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -1995,6 +2009,29 @@ REAL_INFEASIBLE_ROW_CORES = (
             10: frozenset({0, 1, 3, 4}),
         },
         "equality_count": 18,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-35 witness 42949532… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (7,8) — eighth consecutive 654
+    # NONUNIT-track witness (inline audit decided NONUNIT directly,
+    # 7.809 M nodes — past the 7.559 M pocket); retained core
+    # Rabinowitsch UNIT x3, 5 deletion TIMEOUTs fail-closed; no apex
+    # row; shares three rows with EACH of 654-15/-16/-17, and swaps
+    # points 8 and 9 in rows 0/5 relative to 654-17 — the NONUNIT
+    # family presents as one connected orbit.
+    {
+        "id": "forced-pair-core-654-18",
+        "rows": {
+            0: frozenset({5, 6, 8, 11}),
+            5: frozenset({1, 6, 9, 10}),
+            6: frozenset({2, 3, 5, 10}),
+            7: frozenset({2, 4, 5, 8}),
+            9: frozenset({0, 2, 3, 6}),
+            10: frozenset({0, 1, 3, 4}),
+            11: frozenset({1, 5, 7, 10}),
+        },
+        "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
