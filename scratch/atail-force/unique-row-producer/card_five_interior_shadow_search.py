@@ -2408,6 +2408,30 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-77 witness ac23742c (SAT at 149,747 nodes — +5,040
+    # past iter-76; caps=12; sources (6,7), inline
+    # CROSSCHECKED_UNIT): system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities (deletion verdicts 5 UNIT /
+    # 3 TIMEOUT fail-closed / 4 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin 5
+    # shared rows with the immediately preceding core 555-64 (rows
+    # 0,2,8,9,11); ONE new support 7:{0,4,8,10}; row 2:{0,1,9,11}
+    # in three consecutive cores (555-63/-64/here); rows 8:{0,3,5,7}
+    # and 9:{0,7,10,11} repeat from 555-64.
+    {
+        "id": "unit-core-555-65",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 11}),
+            7: frozenset({0, 4, 8, 10}),
+            8: frozenset({0, 3, 5, 7}),
+            9: frozenset({0, 7, 10, 11}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
