@@ -846,6 +846,26 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iteration-32 witness 4eb64017… admitted 2026-07-15:
+    # thirteenth consecutive unit-grade 555 witness (4.00 M nodes,
+    # first 555 witness past 4 M); system_unit_recheck.py 900 s
+    # deletion retained 7 rows / 21 equalities incl. the Moser row
+    # 0:{1,2,3,4} (5 deletion TIMEOUTs fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); row 2 returns to
+    # the original {0,1,9,10} after six consecutive {0,1,9,11} cores.
+    {
+        "id": "unit-core-555-20",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({2, 5, 7, 9}),
+            7: frozenset({2, 6, 10, 11}),
+            9: frozenset({4, 5, 8, 10}),
+            10: frozenset({0, 4, 7, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
