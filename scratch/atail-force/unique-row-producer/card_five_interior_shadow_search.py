@@ -256,6 +256,22 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 555 iteration-5 witness a94caeaf… admitted 2026-07-15: apex row
+    # {2,6,7,8,10}; first retained core with NO apex row (7 non-apex
+    # rows, 21 equalities), CROSSCHECKED_UNIT system and core.
+    {
+        "id": "unit-core-555-06",
+        "rows": {
+            0: frozenset({1, 3, 4, 8}),
+            3: frozenset({0, 4, 6, 11}),
+            6: frozenset({4, 5, 7, 9}),
+            7: frozenset({0, 3, 6, 8}),
+            9: frozenset({4, 7, 10, 11}),
+            10: frozenset({5, 6, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {

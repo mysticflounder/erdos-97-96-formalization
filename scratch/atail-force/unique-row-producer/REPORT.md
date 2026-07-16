@@ -2899,12 +2899,18 @@ retained core, admitted immediately):
 | 2 | 555 | `c6557e4d…` | UNIT; 7-row core | `unit-core-555-03` |
 | 3 | 555 | `1560c698…` | UNIT; 6-row core | `unit-core-555-04` |
 | 1 | 654 | `a4914ed2…` | NONUNIT; built-in 30 s membership audit TIMEOUT | pending scan |
+| 4 | 555 | `3d9a6b04…` | UNIT; 6-row core; new apex row `{0,5,6,7,8}` (1.88 M nodes) | `unit-core-555-05` |
+| 5 | 555 | `a94caeaf…` | UNIT; 7-row core; apex row `{2,6,7,8,10}`; first core with NO apex row (2.71 M nodes) | `unit-core-555-06` |
 
-Every 555 witness so far shares the apex row `1:{0,2,6,7,8}` and the
-Moser row `0:{1,2,3,4}`; every retained core keeps both and drops the
-blocker rows.  `membership_crosscheck.py` gained a `--scan` mode (one
-`std(I)`, reduce all 66 squared pair distances, longer timeout) for
-NONUNIT witnesses whose built-in audit times out; a 300 s scan of
-`a4914ed2…` is running.  555 iteration 4 is searching against cores
-01–04.  Next session: read `iter4_555.json` and `654_iter1_scan.json` in
-the session scratchpad, admit whatever certified, continue the loop.
+The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
+`0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex
+`{0,5,6,7,8}` / Moser `{1,2,3,5}`, and iteration 5's retained core
+(21 equalities across seven non-apex centers) does not use the apex
+row at all — the contradiction lives entirely in the O1/O2 row
+network.  Search cost is rising (0.2 M → 1.9 M → 2.7 M nodes).
+`membership_crosscheck.py` gained a `--scan` mode (one `std(I)`,
+reduce all 66 squared pair distances, longer timeout) for NONUNIT
+witnesses whose built-in audit times out; the 300 s scan of
+`a4914ed2…` TIMED OUT in `std(I)` (its predecessor `fa87f604…`
+finished well inside 120 s, so this ideal is materially heavier) — a
+1800 s retry is running alongside 555 iteration 6.
