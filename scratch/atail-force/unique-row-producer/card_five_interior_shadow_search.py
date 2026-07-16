@@ -2188,6 +2188,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-71 witness 4253de5d (SAT at 95,510 nodes — +1,806
+    # past iter-70, post-pocket regime; sources (6,7), inline
+    # CROSSCHECKED_UNIT): system_unit_recheck.py 900 s deletion
+    # retained 8 rows / 24 equalities (deletion verdicts 4 UNIT /
+    # 7 TIMEOUT fail-closed / 1 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; the core IS the transposition (7,8) image of
+    # unit-core-555-55 — banked anyway per policy on its literal
+    # row set (--bank-negative blocks literal row sets only); kin
+    # capped at 4 shared rows (555-21/-51/-52); ONE new support
+    # 8:{0,3,5,6}; row 11:{0,1,5,8} previously only in
+    # unit-cores 555-08/-09.
+    {
+        "id": "unit-core-555-59",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({2, 5, 8, 9}),
+            7: frozenset({2, 6, 10, 11}),
+            8: frozenset({0, 3, 5, 6}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 8}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
