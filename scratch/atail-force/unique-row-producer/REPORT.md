@@ -2920,6 +2920,8 @@ retained core, admitted immediately):
 | 11 | 555 | `38a642e3…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core | `forced-pair-core-555-05` + signature |
 | 5 | 654 | `080287b2…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-654-05` + signature |
 | 12 | 555 | `5d2b6e65…` | inline audit UNDECIDED (msolve NONUNIT x2, Singular TIMEOUT); pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 7 | `forced-pair-core-555-06` + signature |
+| 6 | 654 | `f8dd433b…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core sharing five rows with 654-05 | `forced-pair-core-654-06` + signature |
+| 13 | 555 | `78b4d1af…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-555-07` + signature |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3045,3 +3047,13 @@ second witness whose inline audit came back UNDECIDED, this time with
 msolve NONUNIT x2 (iteration 6 had msolve UNIT x2): the pair route
 certified directly, so no long-budget UNIT recheck was needed.  Its
 core again avoids any row centered at 7.
+
+654 iteration 6 and 555 iteration 13 continued the one-witness-per-run
+NONUNIT pattern (`forced-pair-core-654-06`, `forced-pair-core-555-07`,
+thirteen cores total).  Node-cost trend with the forced-pair cores
+firing in-search (`exact-algebraic-unit-core` stage hits 81 → 104 on
+555, 180 → 191 on 654 across recent runs): 555 total nodes 2.80 M →
+3.10 M → 3.22 M → 3.22 M (iterations 10–13), 654 flat at ~5.72 M
+(iterations 3–6).  The cores prune, but each run still reaches one
+fresh near-neighbour witness; no convergence signal yet in node
+counts.
