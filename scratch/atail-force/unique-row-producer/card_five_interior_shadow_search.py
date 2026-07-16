@@ -241,6 +241,21 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 555 iteration-4 witness 3d9a6b04… admitted 2026-07-15: first
+    # witness off the {0,2,6,7,8} apex row; 6-row retained core,
+    # CROSSCHECKED_UNIT system and core.
+    {
+        "id": "unit-core-555-05",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            1: frozenset({0, 5, 6, 7, 8}),
+            3: frozenset({1, 4, 5, 9}),
+            9: frozenset({1, 4, 7, 11}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 3, 4, 10}),
+        },
+        "equality_count": 19,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
