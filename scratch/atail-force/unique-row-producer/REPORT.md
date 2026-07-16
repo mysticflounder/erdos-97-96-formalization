@@ -2956,7 +2956,8 @@ retained core, admitted immediately):
 | 23 | 654 | `999ff6d4…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — TWELFTH consecutive unit-grade 654 witness (4.187 M nodes, same pocket as iter 22); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family | `unit-core-654-26` |
 | 24 | 654 | `01edc0f1…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — THIRTEENTH consecutive unit-grade 654 witness (4.594 M nodes, nearing the 5 M cap); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed); same apex+row-2 family | `unit-core-654-27` |
 | 25 | 654 | `08395232…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — FOURTEENTH consecutive unit-grade 654 witness (4.594 M nodes, same depth as iter 24 — plateau pocket; first run at `--max-nodes 10000000`); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family | `unit-core-654-28` |
-| 26 | 654 | — | search running (`--max-nodes 10000000`) | pending |
+| 26 | 654 | `cbf173d2…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — FIFTEENTH consecutive unit-grade 654 witness (6.580 M nodes, big depth jump past the 4.59 M plateau); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (4 deletion TIMEOUTs fail-closed); FIRST loop 654 unit core WITHOUT row 2:{0,1,10,11} — keeps apex row 1:{0,2,7,8,9} but departs from the apex+row-2 family | `unit-core-654-29` |
+| 27 | 654 | — | search running (`--max-nodes 10000000`) | pending |
 
 Redel600 sweep FINAL (13/13 harvested): the two relaunched jobs
 completed. `iter4_654` retained a core identical to banked
