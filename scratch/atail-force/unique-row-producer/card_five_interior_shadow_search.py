@@ -1013,6 +1013,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-95 witness admitted 2026-07-16: second consecutive
+    # NONUNIT-track 555 witness; 52,942 nodes, caps=14; inline msolve
+    # NONUNIT x2; certified by membership_crosscheck.py --pair 6 7
+    # --radical-only --core at the production order; its retained
+    # 8-row deletion core (7 deletion timeouts fail-closed) is
+    # forced-pair-core-555-15.
+    "cd5f382b17510b8d7cb86250a72bb80624c6a12bfa0ced8e876942ed9d806fd2": {
+        "equality_sha256":
+            "e8f56191fee4302c302f4e711f4493cdcf493a84caf11119a350a91bab84cb14",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3887,6 +3901,35 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({0, 3, 5, 9}),
         },
         "equality_count": 21,
+        "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 555 iteration-95 witness cd5f382b… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (6,7) — second consecutive
+    # NONUNIT-track 555 witness; 52,942 nodes, caps=14; inline msolve
+    # NONUNIT x2; cert passed at the production order; Rabinowitsch
+    # UNIT x3 on full system and retained core; deletion verdicts
+    # 4 UNIT / 7 TIMEOUT / 1 NONUNIT fail-closed — apex/surplus row
+    # and witness rows 2, 4, 5 dropped, Moser row 0:{1,2,3,4}
+    # retained; not a transposition image of any banked core; kin
+    # reaches 3 shared rows with unit-core-555-53 (rows 0, 6, 9 —
+    # 6:{0,3,5,8} and 9:{0,3,6,10} previously ONLY there); TWO new
+    # supports 8:{2,5,10,11}, 11:{0,4,5,9}; row 3:{1,4,8,11}
+    # previously only in fp-654-24; 8-row/24-eq ties the largest
+    # existing fp-555 grade (4 prior).
+    {
+        "id": "forced-pair-core-555-15",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            3: frozenset({1, 4, 8, 11}),
+            6: frozenset({0, 3, 5, 8}),
+            7: frozenset({2, 6, 8, 9}),
+            8: frozenset({2, 5, 10, 11}),
+            9: frozenset({0, 3, 6, 10}),
+            10: frozenset({3, 7, 9, 11}),
+            11: frozenset({0, 4, 5, 9}),
+        },
+        "equality_count": 24,
         "forced_zero_squared_distance_pair": (6, 7),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
