@@ -2918,7 +2918,8 @@ retained core, admitted immediately):
 | retro | 654 | `a4914ed2…` (iter 1) | 10-row / 30-equality core, pair (7,8) — the ideal whose `std(I)` defeated 1800 s | `forced-pair-core-654-03` |
 | retro | 654 | `9095f635…` (iter 2) | 7-row / 21-equality core, pair (7,8) | `forced-pair-core-654-04` |
 | 11 | 555 | `38a642e3…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core | `forced-pair-core-555-05` + signature |
-| 5 | 654 | `080287b2…` | NONUNIT; SOURCE pair (7,8); `--radical-only --core` certification running | pending |
+| 5 | 654 | `080287b2…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-654-05` + signature |
+| 12 | 555 | `5d2b6e65…` | inline audit UNDECIDED (msolve NONUNIT x2, Singular TIMEOUT); pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 7 | `forced-pair-core-555-06` + signature |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3035,3 +3036,12 @@ the cores are valid cuts but not confirmed minimal; a longer-budget
 re-deletion pass could shrink them.  The bank now carries nine
 transferable forced-pair cores; each future witness containing any of
 them is pruned in-search rather than mined, certified, and admitted.
+
+654 iteration 5 (witness `080287b2…`) and 555 iteration 12 (witness
+`5d2b6e65…`) continued the pattern and were admitted as
+`forced-pair-core-654-05` and `forced-pair-core-555-06` with their
+signatures — eleven forced-pair cores total.  Iteration 12 is the
+second witness whose inline audit came back UNDECIDED, this time with
+msolve NONUNIT x2 (iteration 6 had msolve UNIT x2): the pair route
+certified directly, so no long-budget UNIT recheck was needed.  Its
+core again avoids any row centered at 7.
