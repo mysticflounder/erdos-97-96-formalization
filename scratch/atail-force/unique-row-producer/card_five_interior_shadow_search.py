@@ -725,6 +725,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-50 witness: twenty-second NONUNIT-track 654
+    # witness (11,995,904 nodes — 158,755 past iteration 49's, the
+    # largest 654 step yet — 20 M run, caps=0; inline audit decided
+    # NONUNIT directly); certified by membership_crosscheck.py
+    # --pair 7 8 --radical-only --core; its retained 6-row deletion
+    # core (6 deletion timeouts fail-closed) is
+    # forced-pair-core-654-32.
+    "fb1e0dd98436f49670a06e989a92a2486bd22607289633c98290d2cbb1f0e527": {
+        "equality_sha256":
+            "963bc0e0861d8de474f7906b56e97d2ca55ea5c668b1190957704f8e9afe2b3d",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3067,6 +3082,33 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({3, 5, 7, 10}),
         },
         "equality_count": 22,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-50 witness fb1e0dd9… admitted 2026-07-16: 6-row /
+    # 18-equality core forcing pair (7,8) — twenty-second
+    # NONUNIT-track 654 witness (11,995,904 nodes — 158,755 past
+    # iteration 49's, the largest 654 step yet; 20 M run, caps=0);
+    # inline audit CROSSCHECKED_NONUNIT directly; Rabinowitsch UNIT
+    # x3 (Singular + msolve fwd/rev); deletion verdicts 6 UNIT /
+    # 6 TIMEOUT fail-closed — witness rows 0, 1, 2, 4, 7, 9 dropped,
+    # ending the surplus row's four-core retention streak
+    # (fp-654-28..31); 6-row grade matches fp-654-13/-15/-17/-24/-29
+    # and 18-equality grade matches fp-654-15/-17 (only fp-654-01 at
+    # 5 rows / 15 equalities is smaller on both counts); not a
+    # transposition image of any banked core; only kin fp-654-27
+    # (3 shared rows); TWO new supports 5:{3,6,8,11}, 8:{0,3,6,7}.
+    {
+        "id": "forced-pair-core-654-32",
+        "rows": {
+            3: frozenset({1, 4, 8, 10}),
+            5: frozenset({3, 6, 8, 11}),
+            6: frozenset({1, 4, 7, 11}),
+            8: frozenset({0, 3, 6, 7}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 9, 10}),
+        },
+        "equality_count": 18,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
