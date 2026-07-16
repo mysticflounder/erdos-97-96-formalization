@@ -657,6 +657,25 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iteration-25 witness 0f041710… admitted 2026-07-15: sixth
+    # consecutive unit-grade 555 witness (3.68 M nodes, same pocket);
+    # system_unit_recheck.py 900 s deletion retained 7 rows / 21
+    # equalities incl. the Moser row 0:{1,2,3,4} (6 deletion TIMEOUTs
+    # fail-closed), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); differs from unit-core-555-10 only in rows 9 and 11.
+    {
+        "id": "unit-core-555-13",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 4, 6, 8}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({0, 3, 10, 11}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({4, 5, 8, 10}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
@@ -1005,6 +1024,25 @@ REAL_INFEASIBLE_ROW_CORES = (
             2: frozenset({0, 1, 10, 11}),
             8: frozenset({5, 7, 9, 10}),
             9: frozenset({0, 2, 3, 4}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({4, 5, 8, 10}),
+        },
+        "equality_count": 19,
+    },
+    # 654 iteration-25 witness 08395232… admitted 2026-07-15:
+    # fourteenth consecutive unit-grade 654 witness (4.594 M nodes,
+    # same depth as iteration 24 — plateau pocket; searched at
+    # --max-nodes 10000000); system_unit_recheck.py 900 s deletion
+    # retained 6 rows / 19 equalities (1 deletion TIMEOUT
+    # fail-closed), retained core CROSSCHECKED_UNIT (Singular +
+    # msolve fwd/rev); same apex+row-2 family.
+    {
+        "id": "unit-core-654-28",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            7: frozenset({2, 6, 8, 11}),
+            8: frozenset({2, 4, 9, 10}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({4, 5, 8, 10}),
         },
