@@ -2928,8 +2928,11 @@ retained core, admitted immediately):
 | 9 | 654 | `9bd971a6…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 3/4/5 (6.48 M nodes) | `forced-pair-core-654-09` + signature |
 | 15 | 555 | `1e81296b…` | NONUNIT (3.33 M nodes); source-pair route FAILS — dist²(6,7) radical membership NONUNIT in all three oracles, first such witness since 555 iter-7; all-pairs `--scan` then found 49/66 pairs DIRECTLY forced (dist² ∈ I); point 6 nearly isolated in the forced graph (only (6,11)); kill pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core (8 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-09` + signature |
 | 16 | 555 | `25e8cc56…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core (3.44 M nodes) | `forced-pair-core-555-10` + signature |
-| 10 | 654 | — | search running | pending |
-| 17 | 555 | — | search running | pending |
+| 10 | 654 | `d515e684…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 22-equality core — FIRST forced-pair core retaining an apex row (center 1, five-point support) (6.49 M nodes, flat vs iter 9) | `forced-pair-core-654-10` + signature |
+| reg | 554 | — | EXHAUSTIVE_UNSAT (regression holds with 19 forced-pair cores, 22,498 nodes) | — |
+| 17 | 555 | `09fd77b8…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core (3.436 M nodes, plateau vs iter 16) | `forced-pair-core-555-11` + signature |
+| 11 | 654 | — | search running | pending |
+| 18 | 555 | — | search running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
