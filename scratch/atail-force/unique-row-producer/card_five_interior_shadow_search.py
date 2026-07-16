@@ -1966,6 +1966,34 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-65 witness 7234a008 (SAT at 59,780 nodes — +33,289
+    # past iter-64, breaking the ~26.5k post-555-46 pocket; sources
+    # (6,7), inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 8 rows / 24 equalities (deletion verdicts
+    # 4 UNIT / 7 TIMEOUT fail-closed / 1 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; DOUBLE image hit — IS both the (3,4)-transposition
+    # image of unit-core-555-38 and the (6,7)-transposition image of
+    # unit-core-555-51 (so 555-38 and 555-51 are related by the
+    # double transposition (3,4)(6,7), outside the single-
+    # transposition census scope) — banked in its own right because
+    # --bank-negative blocks literal row sets only (precedent
+    # 555-51/fp-654-37); kin 555-38 and 555-42 at 5 shared rows;
+    # TWO new supports 6:{0,3,5,8}, 9:{0,3,6,10}.
+    {
+        "id": "unit-core-555-53",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({0, 3, 5, 8}),
+            7: frozenset({2, 5, 6, 9}),
+            8: frozenset({2, 7, 10, 11}),
+            9: frozenset({0, 3, 6, 10}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
