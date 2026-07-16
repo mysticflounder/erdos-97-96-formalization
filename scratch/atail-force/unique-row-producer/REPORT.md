@@ -2941,8 +2941,9 @@ retained core, admitted immediately):
 | 20 | 555 | `d4521f84…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — FIRST unit-grade 555 witness since iteration 6, ending a 13-iteration NONUNIT run (3.518 M nodes, above plateau); `system_unit_recheck.py` 900 s pass retained 7 rows / 21 equalities incl. Moser row 0:{1,2,3,4}, retained core CROSSCHECKED_UNIT x3 (4 deletion TIMEOUTs fail-closed) | `unit-core-555-08` |
 | 16 | 654 | `3dfbe849…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — FIFTH consecutive unit-grade 654 witness (1.511 M nodes); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed); same apex+row-2 family | `unit-core-654-19` |
 | 17 | 654 | `62a1cfb7…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — SIXTH consecutive unit-grade 654 witness (1.511 M nodes, ~same as iter 16); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed); differs from unit-core-654-15 only in row 10 | `unit-core-654-20` |
-| 21 | 555 | — | search running | pending |
-| 18 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+| 21 | 555 | `0c979445…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — second consecutive unit-grade 555 witness (3.519 M nodes, same pocket as iter 20); `system_unit_recheck.py` pass in flight | pending |
+| 18 | 654 | `2e78700a…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — SEVENTH consecutive unit-grade 654 witness; node cost jumped 1.51 M → 2.98 M (the 1.5 M pocket appears drained); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed) | `unit-core-654-21` |
+| 19 | 654 | — | search running (`--max-nodes 5000000`) | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
