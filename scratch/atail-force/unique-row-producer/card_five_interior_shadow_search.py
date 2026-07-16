@@ -901,6 +901,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-63 witness admitted 2026-07-16: thirty-fourth
+    # NONUNIT-track 654 witness (13,350,167 nodes — +23 past
+    # iteration 62's, eighth witness in the ~13.35M pocket — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 8-row deletion core (5 deletion timeouts
+    # fail-closed) is forced-pair-core-654-44.
+    "e2fca9d51fc38eb4be2f46f9eee5bee730aeb6549b4c53c09dbcbab11a83c89e": {
+        "equality_sha256":
+            "558146cb3b7e2a3329c93196c3db499d90510a4d3ff3a57feeb62e844f070e14",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3993,6 +4008,35 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 3, 8, 10}),
         },
         "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-63 witness e2fca9d5… admitted 2026-07-16: 8-row /
+    # 25-equality core forcing pair (7,8) — thirty-fourth
+    # NONUNIT-track 654 witness (13,350,167 nodes — +23 past
+    # iteration 62's, eighth witness in the ~13.35M pocket; 20 M
+    # run, caps=0); inline audit CROSSCHECKED_NONUNIT directly;
+    # Rabinowitsch UNIT x3 (Singular + msolve fwd/rev); deletion
+    # verdicts 4 UNIT / 5 TIMEOUT fail-closed / 3 NONUNIT — witness
+    # rows 0, 3, 4, 6 dropped; not a transposition image of any
+    # banked core; kin at 5 shared rows (fp-654-22/-30/-42); ONE
+    # new support 11:{3,5,9,10}; surplus row 1:{0,2,7,8,9} retained
+    # (last fp appearance fp-654-40); second 25-equality fp-654
+    # core (prior: fp-654-22); row 5:{1,4,6,9} in its seventh fp
+    # core of the last nine.
+    {
+        "id": "forced-pair-core-654-44",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 5, 10, 11}),
+            5: frozenset({1, 4, 6, 9}),
+            7: frozenset({2, 4, 5, 8}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 6}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({3, 5, 9, 10}),
+        },
+        "equality_count": 25,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
