@@ -6,9 +6,16 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Full-tree sorry closure ledger (2026-07-06)
 
+> **Historical record — archived 2026-07-16.** Moved out of `docs/` alongside
+> the master plan it companions
+> ([`../2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md`](../2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md)).
+> Its own "current inventory" note below (36 symbols / 80 holes, as of
+> 2026-07-13) is itself now superseded — the live count is 12 symbols / 32
+> holes, per [`closure-matrix-2026-07-09.md`](../../closure-matrix-2026-07-09.md).
+
 Historical companion to the archived 2026-07-06 master plan. Current dispatch
-uses [`closure-plan-full-spec-2026-07-09.md`](closure-plan-full-spec-2026-07-09.md)
-and [`closure-matrix-2026-07-09.md`](closure-matrix-2026-07-09.md); as of
+uses [`closure-plan-full-spec-2026-07-09.md`](../../closure-plan-full-spec-2026-07-09.md)
+and [`closure-matrix-2026-07-09.md`](../../closure-matrix-2026-07-09.md); as of
 2026-07-13 the current inventory is 36 symbols / 80 textual holes, all in the
 two Front-A clusters in `U1LargeCapRouteBTail.lean`. The three Front-B rows in
 the historical table below are closed; ERASE is committed at `652fdfcb`.

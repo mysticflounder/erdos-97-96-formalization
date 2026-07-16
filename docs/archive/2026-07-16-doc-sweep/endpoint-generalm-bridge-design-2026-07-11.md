@@ -1,5 +1,12 @@
 # Endpoint general-m bridge design (2026-07-11)
 
+> **Historical record — archived 2026-07-16.** The workstream this document
+> designed — closing `Problem97.isM44EndpointGeneralMResidualsExcluded`
+> (row K-B-END-GENERAL) — is DONE (closed 2026-07-12, commit `3114fb1f`; see
+> [`closure-matrix-2026-07-09.md`](../../closure-matrix-2026-07-09.md)).
+> This record is retained for its lemma-by-lemma design trail (L1–L13) and
+> rigor ledger.
+
 Proof design for the geometry → `Fin 11` combinatorics bridge of
 `Problem97.isM44EndpointGeneralMResidualsExcluded`
 (`RemovableVertexAxiom/Base.lean:9511`, hole `:9513`). Produced by a

@@ -3,7 +3,7 @@
 Source: session scratchpad of the 2026-07-06 math-prover minimal-core census
 (`/private/tmp/claude-501/-Users-adam-projects-math-projects-erdos-97-96-formalization/f1cc942b-5f16-4d74-a071-8d71886e1f01/scratchpad/`),
 the run cited by the archived 2026-07-06 closure plan
-(`archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md` §7; "minimal infeasible
+(`docs/archive/2026-07-10-closure-plan-consolidation/closure-plan-2026-07-06.md` §7; "minimal infeasible
 cores form hundreds of classes … 10 cubes→35 classes … 70→146") and by the
 nthdegree memory "Minimal-core class census for |A|=12 dead center-K4 cubes
 (2026-07-06)". Session scratchpads are volatile temp storage; copied here to

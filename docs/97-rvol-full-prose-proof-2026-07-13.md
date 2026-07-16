@@ -1,10 +1,9 @@
 # Problem 97 full prose proof — the RVOL route (2026-07-13)
 
 Status: current full prose proof of the Problem 97 formalization target,
-written against kernel ground truth of the working tree on
-`four-point-subpacket-reduction` (spine build `4305dbbef395`, refreshed
-2026-07-14; counts cross-checked against the generated
-`docs/live-blueprint.md` and the source).
+written against kernel ground truth of the working tree on `main` (spine
+build `4305dbbef395`, refreshed 2026-07-16; counts cross-checked against the
+generated `docs/live-blueprint.md` and the source).
 
 **RVOL** = `RemovableVertexOfLarge`, the removable-vertex theorem for large
 counterexamples (`lean/Erdos9796Proof/P97/RemovableVertexAxiom/Base.lean:54`).
@@ -14,14 +13,14 @@ argument for the published theorem; each component carries its statement and
 its status (proved or open), with kernel evidence for the proved ones.
 
 **Overall status: OPEN.** The published claim reaches `sorryAx` through
-exactly 24 named obligations (56 textual holes), all in
+exactly 12 named obligations (32 textual holes), all in
 `lean/Erdos9796Proof/P97/U1LargeCapRouteBTail.lean`, all inside the branch of
 RVOL in which no (m,4,4) cap decomposition exists (Part IV.c). Every other
 layer is kernel-closed. The open content is exactly Part V.
 
 Evidential basis for every "proved" below: the kernel-mined dependency spine
-of the published theorem (50/2392 nodes open — every spine node not
-descending from the 24 open obligations is sorry-free) plus the
+of the published theorem (51/2263 nodes open — every spine node not
+descending from the 12 open obligations is sorry-free) plus the
 `#print axioms` checks reproduced in the trust-boundary section.
 
 ---
@@ -79,7 +78,7 @@ Scope notes.
 - This document covers Problem 97 only. The repo's second published theorem,
   `Problem96.erdos96_rhs` (unit distances in convex position, explicit
   constant 3), consumes `Problem97.UniversalProblem97` through its peeling
-  step (`P96/EuclideanPeeling.lean`), so the same 24 open obligations gate
+  step (`P96/EuclideanPeeling.lean`), so the same 12 open obligations gate
   both targets. Problem 96's own layer is otherwise closed and is not
   treated here.
 - Terminology: "Moser triangle" and "Moser cap" are project shorthand, not
@@ -206,9 +205,9 @@ under the definitional bridge.
 
 Kernel state (working tree, spine build `4305dbbef395`, 2026-07-14):
 
-- the spine of `erdos97_rhs` has 2392 nodes over 2400 declarations
-  (72,783 lines of Lean);
-- 50 nodes are open, all descending from 24 sorry-carrying symbols in
+- the spine of `erdos97_rhs` has 2263 nodes over 2271 declarations
+  (72,099 lines of Lean);
+- 51 nodes are open, all descending from 12 sorry-carrying symbols in
   `U1LargeCapRouteBTail.lean`;
 - 20 trusted certificate-shard leaves are excluded from mining but covered
   by `#print axioms` on the target.
@@ -659,7 +658,7 @@ obligations of Part V.
 
 ## Part V — The open obligations
 
-**Status: OPEN.** All remaining `sorry`s: 24 symbols / 56 textual holes in
+**Status: OPEN.** All remaining `sorry`s: 12 symbols / 32 textual holes in
 `U1LargeCapRouteBTail.lean`. (The twelve LIVE-T1 helpers, formerly 24
 further holes, are now source-sorry-free: they are production-wired through
 the orbit adapter below and remain open only transitively, through V.2.)
@@ -780,13 +779,13 @@ open content of the entire proof is: **V.2, LIVE-Q, and LIVE-C.**
 
 ## Trust boundary and axiom audit
 
-Checked 2026-07-13, symbol counts refreshed 2026-07-14 (reproducible via
+Checked 2026-07-13, symbol counts refreshed 2026-07-16 (reproducible via
 `#print axioms` after `lake build`):
 
 - `Problem97.erdos97_rhs` today: `propext, Classical.choice, Quot.sound,
   Lean.ofReduceBool, Lean.trustCompiler, sorryAx` — the `sorryAx` traces
-  exactly to the 24 Part-V symbols.
-- After the 24 obligations close, the closure becomes the Lean core axioms
+  exactly to the 12 Part-V symbols.
+- After the 12 obligations close, the closure becomes the Lean core axioms
   plus `Lean.ofReduceBool` and `Lean.trustCompiler`, which enter only
   through the certificate evaluation in the (m,4,4) branch (Part IV.b).
 - The counting engine and the n = 9 base case individually close on
@@ -835,7 +834,7 @@ Unconditionally PROVED (Lean, kernel-checked):
    decomposition has both opposite caps of size exactly 4 contains a
    removable vertex (core axioms plus the two compiler axioms).
 4. In the remaining case, the configuration is reduced — by complete,
-   kernel-checked case analysis — to the 24 obligations of Part V. The
+   kernel-checked case analysis — to the 12 obligations of Part V. The
    t₂ branch and the twelve LIVE-T3 helpers further reduce to the single
    shared-radius pair statement (V.2) — the T3 reduction checked but not
    yet wired — and the twelve LIVE-T1 helpers are already production-wired
@@ -928,7 +927,7 @@ proof diverge.** Three changes:
    all (`not_isRemovableVertex_of_minimal`) and carries a critical shell
    system, and the route-B tail must derive `False` from that data
    (Part IV.c). This branch is exactly the open content of the proof — the
-   24 obligations of Part V, with the shared-radius pair statement (V.2)
+   12 obligations of Part V, with the shared-radius pair statement (V.2)
    at the bottom. The configuration the posted package treated uniformly
    ("any opposite cap of size ≥ 5") is precisely the configuration that
    remains open.
@@ -973,7 +972,7 @@ hypothesis — the correction the followup made to the original post's
 cap-local package). Its status has since split: the (m,4,4) branch is
 PROVED (Part IV.b, core plus the two compiler axioms), and the open
 remainder is exactly the branch with no (m,4,4) decomposition
-(Part IV.c), reduced by complete kernel-checked case analysis to the 24
+(Part IV.c), reduced by complete kernel-checked case analysis to the 12
 obligations of Part V. The frontier posted as "all of descent" is today
 V.2, LIVE-Q, and LIVE-C.
 

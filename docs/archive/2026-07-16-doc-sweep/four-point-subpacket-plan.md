@@ -6,6 +6,14 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Four-Point Subpacket Reduction Plan
 
+> **Historical record — archived 2026-07-16.** ERASE (the workstream this
+> plan and its live-frontier companion tracked) is closed — see row
+> K-B-ERASE in
+> [`closure-matrix-2026-07-09.md`](../../closure-matrix-2026-07-09.md). The
+> live-frontier companion this file points to below is archived alongside it
+> at [`four-point-subpacket-live-frontier.md`](four-point-subpacket-live-frontier.md).
+> This record is retained for its design and execution log.
+
 This plan turns the incidence deduplication observation into proof-facing Lean
 infrastructure.
 

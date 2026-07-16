@@ -8,8 +8,8 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 > **Historical record — archived 2026-07-10.** This was the master plan at its
 > 2026-07-06 snapshot. It is not a dispatch authority. The single current plan
-> is the [2026-07-09 closure plan](../../docs/closure-plan-full-spec-2026-07-09.md)
-> together with its [closure matrix](../../docs/closure-matrix-2026-07-09.md).
+> is the [2026-07-09 closure plan](../../closure-plan-full-spec-2026-07-09.md)
+> together with its [closure matrix](../../closure-matrix-2026-07-09.md).
 > This record is retained for its solver evidence, rejected routes, and dated
 > decisions.
 
@@ -19,12 +19,12 @@ named at that snapshot.
 
 Historical ownership: this document then owned cross-cutting strategy, gates,
 dispatch-ready specs, and the uncertainty register. The two lane plans —
-[`u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](../../docs/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
-and [`four-point-subpacket-plan.md`](../../docs/four-point-subpacket-plan.md) —
+[`u-lane/97-slot3-certificate-closure-plan-2026-07-06.md`](../2026-07-16-doc-sweep/u-lane/97-slot3-certificate-closure-plan-2026-07-06.md)
+and [`four-point-subpacket-plan.md`](../2026-07-16-doc-sweep/four-point-subpacket-plan.md) —
 owned per-lane execution logs. Corrections they should fold in are in §11.
 Audit basis: the three 2026-07-06 audit docs under
-[`docs/audits/`](../../docs/audits/). The sorry-level companion —
-[`sorry-closure-ledger-2026-07-06.md`](../../docs/sorry-closure-ledger-2026-07-06.md) —
+[`docs/audits/`](../../audits/). The sorry-level companion —
+[`sorry-closure-ledger-2026-07-06.md`](../2026-07-16-doc-sweep/sorry-closure-ledger-2026-07-06.md) —
 enumerates every `sorry` in the tree (including in-proof case sorries and the
 off-spine pair) with a route and acceptance test each.
 
@@ -407,7 +407,7 @@ the target is a realizability criterion for near-critical bisector-incidence
 patterns with all points distinct.
 
 - **D1 — literature scan: DONE 2026-07-06**
-  ([`d1-rigidity-literature-scan-2026-07-06.md`](../../docs/d1-rigidity-literature-scan-2026-07-06.md);
+  ([`d1-rigidity-literature-scan-2026-07-06.md`](../../d1-rigidity-literature-scan-2026-07-06.md);
   verified-citations-only, 7 PROVEN-in-literature / 16 PARTIAL / 5 NO-LEAD /
   0 unverified-memory). Headline: **no theorem transfers directly** — the
   target class (near-critical equidistance frameworks, forced-coincidence

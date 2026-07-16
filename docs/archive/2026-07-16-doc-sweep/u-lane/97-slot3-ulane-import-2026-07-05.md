@@ -1,5 +1,11 @@
 # Slot-3 U-lane import: `removableVertexOfLarge_of_nonIsM44` (2026-07-05)
 
+> **Historical record — archived 2026-07-16.** One-time import changelog;
+> long superseded by the consolidated parent-route state in
+> [`closure-matrix-2026-07-09.md`](../../../closure-matrix-2026-07-09.md) and
+> [`atail-force-producer-plan-2026-07-13.md`](../../../atail-force-producer-plan-2026-07-13.md).
+> Retained for the import provenance.
+
 ## What landed
 
 The non-`IsM44` descent branch of the removable-vertex spine (slot 3 of

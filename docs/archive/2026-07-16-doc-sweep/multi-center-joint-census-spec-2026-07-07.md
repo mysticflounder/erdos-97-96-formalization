@@ -6,6 +6,12 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Spec: parametric multi-center joint token census (2026-07-07)
 
+> **Historical record — archived 2026-07-16.** Already self-declared
+> IMPLEMENTED below; moved out of `docs/` to keep the top level to current
+> references. The still-live proof-plan and results docs
+> (`docs/multi-center-joint-census-proof-plan-2026-07-08.md`,
+> `docs/multi-center-joint-census-2026-07-08.md`) are unaffected.
+
 Status: IMPLEMENTED. The original empirical deliverables landed on 2026-07-08;
 the L2/full-participant representative-surface certificate bridge was closed
 in Lean on 2026-07-09. This file remains the historical requirements document.

@@ -6,6 +6,13 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Four-point subpacket live frontier (2026-07-06)
 
+> **Historical record — archived 2026-07-16.** The "AUTHORITATIVE" banner
+> below is no longer current: the anchor this file tracked
+> (`isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`, the ERASE
+> lane) is closed — see row K-B-ERASE in
+> [`closure-matrix-2026-07-09.md`](../../closure-matrix-2026-07-09.md).
+> This record is retained for its checkpoint trail. Original banner follows.
+
 > **AUTHORITATIVE — READ IN FULL BEFORE WORKING THIS ANCHOR.** This file is the
 > status owner for `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded`
 > (the RemovableVertexOfLarge discharge). It is append-only; the LIVE boundary is

@@ -6,6 +6,15 @@ Author: Adam McKenna <adam@mysticflounder.ai>
 
 # Slot-3 U-lane certificate closure plan (2026-07-06)
 
+> **Historical record — archived 2026-07-16.** Already self-declares its logs
+> as historical checkpoints (see below). The current plan is
+> [`closure-matrix-2026-07-09.md`](../../../closure-matrix-2026-07-09.md) /
+> [`atail-force-producer-plan-2026-07-13.md`](../../../atail-force-producer-plan-2026-07-13.md);
+> its status-owner pointer to `four-point-subpacket-live-frontier.md` below
+> now resolves to that file's archived copy
+> ([`../four-point-subpacket-live-frontier.md`](../four-point-subpacket-live-frontier.md)),
+> whose tracked workstream (ERASE) is also closed.
+
 This records the current formalization-repo plan for closing the imported
 p97-rvol U1 route-B tail work.  The goal is not to extend the imported local
 case split.  The goal is to consume the certificate/metric closure surfaces that

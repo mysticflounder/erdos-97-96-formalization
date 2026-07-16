@@ -326,7 +326,7 @@ kernel axiom closures, and a completion matrix stating each obligation.
 is a research recommendation mapping SAT-modulo-symmetries and co-certificate
 learning onto the census/mining lanes (papers mirrored in `docs/references/`).
 The former July 6 master plan is a historical record
-under [`archive/2026-07-10-closure-plan-consolidation/`](archive/2026-07-10-closure-plan-consolidation/).
+under [`docs/archive/2026-07-10-closure-plan-consolidation/`](docs/archive/2026-07-10-closure-plan-consolidation/).
 [`docs/sorry-closure-ledger-2026-07-06.md`](docs/sorry-closure-ledger-2026-07-06.md)
 is the dated sorry-level companion — every then-known `sorry` in the tree with
 a route and acceptance test. The lane execution logs are
