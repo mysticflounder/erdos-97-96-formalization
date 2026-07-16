@@ -697,6 +697,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-48 witness: twentieth NONUNIT-track 654 witness
+    # (11,837,146 nodes — 683 past iteration 47's — 20 M run, caps=0;
+    # inline audit UNDECIDED, fourth direct-cert use); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core; its
+    # retained 7-row deletion core (4 deletion timeouts fail-closed)
+    # is forced-pair-core-654-30.
+    "da21b15f168795efbba90df9cd65733ef0d830413e4548446de6094217981917": {
+        "equality_sha256":
+            "ab8008b5b9fb7fdd0629186e8648f02f2929fd05f806265bd166c53b96c059b4",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -1587,6 +1601,33 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({0, 1, 5, 7}),
         },
         "equality_count": 24,
+    },
+    # 555 iter-55 witness 65d4cb45 (SAT at 182,797 nodes — a
+    # +15,658 step past iter-54, extending the widening trend;
+    # sources (6,7), inline CROSSCHECKED_UNIT):
+    # system_unit_recheck.py 900 s deletion retained 7 rows /
+    # 21 equalities (deletion verdicts 5 UNIT / 4 TIMEOUT
+    # fail-closed / 3 NONUNIT), retained core CROSSCHECKED_UNIT
+    # (Singular + msolve fwd/rev); exact (6,7)-transposition image
+    # of unit-core-555-33 — the NINTH full-core transposition pair
+    # in the 555 unit family and the fifth under (6 7), and the
+    # first whose preimage lies outside the even 555-20..28
+    # members (whose (6,7)-images 35/36/38/40 are all banked);
+    # closest same-family kin 555-38/-40/-42 (5 shared rows: 0, 2,
+    # 8, 9, 11). One new support 6:{0,3,8,11}; row 10:{5,6,9,11}
+    # previously only in 555-06 and 654-11.
+    {
+        "id": "unit-core-555-43",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({0, 3, 8, 11}),
+            8: frozenset({2, 7, 10, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            10: frozenset({5, 6, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 21,
     },
     {
         "id": "unit-core-654-02",
@@ -2907,6 +2948,34 @@ REAL_INFEASIBLE_ROW_CORES = (
             10: frozenset({0, 1, 5, 6}),
         },
         "equality_count": 19,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-48 witness da21b15f… admitted 2026-07-16: 7-row /
+    # 22-equality core forcing pair (7,8) — twentieth NONUNIT-track
+    # 654 witness (11,837,146 nodes — 683 past iteration 47's, pocket
+    # steps now 3/23/19/683; 20 M run, caps=0); inline audit
+    # UNDECIDED, so certified via direct membership_crosscheck.py
+    # --pair 7 8 --radical-only --core (fourth direct-cert use);
+    # Rabinowitsch UNIT x3 (Singular + msolve fwd/rev); deletion
+    # verdicts 5 UNIT / 4 TIMEOUT fail-closed / 3 NONUNIT — witness
+    # rows 0, 3, 4, 6, 10 dropped; surplus row 1:{0,2,7,8,9}
+    # retained (third consecutive after fp-654-28/-29); not a
+    # transposition image of any banked core; closest kin fp-654-26
+    # (5 shared rows: 5, 7, 8, 9, 11); zero new supports — every
+    # retained row already appears in banked cores.
+    {
+        "id": "forced-pair-core-654-30",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 5, 10, 11}),
+            5: frozenset({1, 3, 6, 9}),
+            7: frozenset({2, 4, 5, 8}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 6}),
+            11: frozenset({3, 5, 7, 10}),
+        },
+        "equality_count": 22,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
