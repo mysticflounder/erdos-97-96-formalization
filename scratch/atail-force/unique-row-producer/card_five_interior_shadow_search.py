@@ -3143,6 +3143,36 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-67 witness cf0a86c8… admitted 2026-07-16: FIRST
+    # unit-grade 654 witness since iteration 53 — ends the
+    # thirteen-witness NONUNIT run (iterations 54-66, fp-654-35..47)
+    # — and the deepest 654 witness yet (13,364,410 nodes, caps=0,
+    # 20 M run, +14,037 past iter-66). Inline/long-budget Singular
+    # TIMED OUT at 45 s / 900 s / 3600 s against msolve UNIT ×2;
+    # resolved by the flux.local strategy race (see
+    # cf0a86c8-flux-race/RACE.md): slimgb over the seed-4 permuted
+    # dp order returned UNIT in 20 s. Admission recheck (perm4
+    # Singular order, msolve canonical fwd/rev) retained 6 rows /
+    # 19 equalities (deletion verdicts 6 UNIT / 6 TIMEOUT
+    # fail-closed), retained core CROSSCHECKED_UNIT; not a
+    # transposition image of any banked core; kin capped at 2
+    # shared rows; keeps the recurring surplus row 1:{0,2,7,8,9};
+    # 0:{3,6,9,10} in a unit core for the first time (previously
+    # fp-654-11/-12 only); THREE new supports 5:{1,6,7,10},
+    # 9:{1,3,5,7}, 10:{1,4,6,8}; 6-row/19-eq is the modal 654
+    # unit grade.
+    {
+        "id": "unit-core-654-33",
+        "rows": {
+            0: frozenset({3, 6, 9, 10}),
+            1: frozenset({0, 2, 7, 8, 9}),
+            5: frozenset({1, 6, 7, 10}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({1, 3, 5, 7}),
+            10: frozenset({1, 4, 6, 8}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
