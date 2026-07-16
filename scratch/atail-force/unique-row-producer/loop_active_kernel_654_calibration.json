@@ -1,0 +1,199 @@
+{
+  "bank_path": "scratch/atail-force/unique-row-producer/card_five_interior_shadow_search.py",
+  "bank_sha256": "8a2785e2b5bfc370104def18cc550e7ed0f114f51f310fe9a8d6bdce07f434e7",
+  "evidence_scope": "theorem-discovery only; nonzero Singular lift positions and Singular internal replay, without retained coefficients or independent exact replay",
+  "generated_at": "2026-07-16T18:20:33.076301+00:00",
+  "jobs": 2,
+  "quotient": {
+    "directed_embedding_count": 0,
+    "nontrivial_isomorphism_classes": [],
+    "strict_embedding_edges": [],
+    "valid_kernel_count": 2
+  },
+  "results": [
+    {
+      "active_equality_count": 11,
+      "active_generator_names": [
+        "ROW_2_0_1",
+        "ROW_2_0_10",
+        "ROW_2_0_11",
+        "ROW_8_2_7",
+        "ROW_8_2_9",
+        "ROW_8_2_11",
+        "ROW_9_2_8",
+        "ROW_9_2_10",
+        "ROW_10_0_8",
+        "ROW_10_0_11",
+        "ROW_11_0_2",
+        "RAB_7_8"
+      ],
+      "active_generator_positions_zero_based": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        7,
+        8,
+        10,
+        11,
+        12,
+        15
+      ],
+      "active_label_count": 8,
+      "active_rabinowitsch_generator": true,
+      "active_row_count": 5,
+      "active_rows": [
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            2
+          ]
+        }
+      ],
+      "core_id": "forced-pair-core-654-01",
+      "elapsed_seconds": 42.20313862495823,
+      "generator_count": 16,
+      "grade": "radical-forced-pair",
+      "nominal_equality_count": 15,
+      "nominal_row_count": 5,
+      "pair": [
+        7,
+        8
+      ],
+      "singular_basis_status": "UNIT",
+      "singular_lift_check": "0",
+      "singular_returncode": 0,
+      "singular_stderr": "",
+      "status": "SINGULAR_INTERNAL_LIFT_REPLAY",
+      "timeout_seconds": 600.0,
+      "trust_boundary": "Singular lift support plus Singular internal identity replay only; coefficient polynomials were not retained or independently replayed"
+    },
+    {
+      "active_equality_count": 9,
+      "active_generator_names": [
+        "ROW_1_0_2",
+        "ROW_1_0_8",
+        "ROW_2_0_1",
+        "ROW_2_0_10",
+        "ROW_2_0_11",
+        "ROW_8_0_2",
+        "ROW_10_0_1",
+        "ROW_11_1_8",
+        "ROW_11_1_10"
+      ],
+      "active_generator_positions_zero_based": [
+        0,
+        2,
+        4,
+        5,
+        6,
+        7,
+        10,
+        14,
+        15
+      ],
+      "active_label_count": 6,
+      "active_rabinowitsch_generator": false,
+      "active_row_count": 5,
+      "active_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            8,
+            10
+          ]
+        }
+      ],
+      "core_id": "unit-core-654-16",
+      "elapsed_seconds": 0.016004249977413565,
+      "generator_count": 16,
+      "grade": "unit-ideal",
+      "nominal_equality_count": 16,
+      "nominal_row_count": 5,
+      "pair": null,
+      "singular_basis_status": "UNIT",
+      "singular_lift_check": "0",
+      "singular_returncode": 0,
+      "singular_stderr": "",
+      "status": "SINGULAR_INTERNAL_LIFT_REPLAY",
+      "timeout_seconds": 600.0,
+      "trust_boundary": "Singular lift support plus Singular internal identity replay only; coefficient polynomials were not retained or independently replayed"
+    }
+  ],
+  "schema": "p97-atail-loop-active-kernel-mining-v1",
+  "selected_core_ids": [
+    "unit-core-654-16",
+    "forced-pair-core-654-01"
+  ],
+  "selection": "explicit",
+  "timeout_seconds": 600.0
+}

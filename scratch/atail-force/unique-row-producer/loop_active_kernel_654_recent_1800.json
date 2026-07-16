@@ -1,0 +1,48 @@
+{
+  "bank_path": "scratch/atail-force/unique-row-producer/card_five_interior_shadow_search.py",
+  "bank_sha256": "a7094cae07eeebb2c2cacf8acd8502d5784596953b7f49805c5c43100fef2760",
+  "evidence_scope": "theorem-discovery only; nonzero Singular lift positions and Singular internal replay, without retained coefficients or independent exact replay",
+  "generated_at": "2026-07-16T19:07:17.342923+00:00",
+  "jobs": 2,
+  "quotient": {
+    "directed_embedding_count": 0,
+    "nontrivial_isomorphism_classes": [],
+    "strict_embedding_edges": [],
+    "valid_kernel_count": 0
+  },
+  "results": [
+    {
+      "core_id": "forced-pair-core-654-45",
+      "elapsed_seconds": 1800.1198225829867,
+      "grade": "radical-forced-pair",
+      "nominal_equality_count": 24,
+      "nominal_row_count": 8,
+      "pair": [
+        7,
+        8
+      ],
+      "status": "TIMEOUT",
+      "timeout_seconds": 1800.0
+    },
+    {
+      "core_id": "forced-pair-core-654-46",
+      "elapsed_seconds": 1800.063219750009,
+      "grade": "radical-forced-pair",
+      "nominal_equality_count": 24,
+      "nominal_row_count": 8,
+      "pair": [
+        7,
+        8
+      ],
+      "status": "TIMEOUT",
+      "timeout_seconds": 1800.0
+    }
+  ],
+  "schema": "p97-atail-loop-active-kernel-mining-v1",
+  "selected_core_ids": [
+    "forced-pair-core-654-45",
+    "forced-pair-core-654-46"
+  ],
+  "selection": "explicit",
+  "timeout_seconds": 1800.0
+}
