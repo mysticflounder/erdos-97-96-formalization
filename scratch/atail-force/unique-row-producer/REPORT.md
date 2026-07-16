@@ -2904,6 +2904,7 @@ retained core, admitted immediately):
 | 6 | 555 | `aab3e0b5…` | inline UNDECIDED (Singular TIMEOUT, msolve UNIT x2); settled UNIT at 900 s via `system_unit_recheck.py`; 7-row core, no apex row (2.71 M nodes) | `unit-core-555-07` |
 | 7 | 555 | `84ac8d4a…` | NONUNIT (first on 555); `--scan` timed out at 900 s; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.73 M nodes) | signature admitted |
 | 1 | 654 | `a4914ed2…` (cont.) | scans timed out at 300 s AND 1800 s in `std(I)`; pair (7,8) certified via `--radical-only`, Rabinowitsch UNIT x3 | signature admitted |
+| 2 | 654 | `9095f635…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only`, UNIT x3 (5.09 M nodes, 11 rows tried) | signature admitted |
 
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
 `0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex

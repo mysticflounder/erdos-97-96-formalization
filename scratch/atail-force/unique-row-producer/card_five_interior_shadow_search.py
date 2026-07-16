@@ -197,6 +197,19 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-2 witness admitted 2026-07-15: the forced-zero pair
+    # is again the SOURCE pair (7,8) — every complex realization
+    # collapses the two strict-O1-interior sources.  Certified by
+    # membership_crosscheck.py --radical-only, Rabinowitsch UNIT in
+    # Singular and msolve (both variable orders).
+    "9095f63558a23f492da967104eeec45d08ca8d3f560978e1812af850d330b2ad": {
+        "equality_sha256":
+            "fa3a3801e20a0309ad941f740d5d4850407e2e4130ff762cda38c89e5b260c03",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
