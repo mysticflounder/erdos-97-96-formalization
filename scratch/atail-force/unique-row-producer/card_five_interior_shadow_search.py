@@ -740,6 +740,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-51 witness: twenty-third NONUNIT-track 654
+    # witness (12,011,137 nodes — 15,233 past iteration 50's — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 8-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-33.
+    "e55df416d59f35143f62bcc745500987cddd93b426581683370011f5e400d065": {
+        "equality_sha256":
+            "e41fabd38aed5a9750aee545093b4a0e018688dc002b0501e625b65bdc52ef46",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3135,6 +3149,36 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 3, 9, 10}),
         },
         "equality_count": 18,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-51 witness e55df416… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — twenty-third
+    # NONUNIT-track 654 witness (12,011,137 nodes — 15,233 past
+    # iteration 50's; 20 M run, caps=0); inline audit
+    # CROSSCHECKED_NONUNIT directly; Rabinowitsch UNIT x3 (Singular
+    # + msolve fwd/rev); deletion verdicts 4 UNIT / 7 TIMEOUT
+    # fail-closed / 1 NONUNIT — witness rows 0, 1, 8, 9 dropped, the
+    # surplus row out for a second consecutive core; not a
+    # transposition image of any banked core; nearest kin fp-654-32
+    # (4 shared rows 3, 6, 10, 11); ONE new support 4:{3,5,7,10};
+    # row 5:{3,6,9,11} previously banked only in unit-core-555-42
+    # (cross-profile), row 2:{0,5,10,11} from the
+    # 654-21..23/-30/-31 sector, row 7:{2,6,8,11} from the
+    # 654-11..14/-25 sector.
+    {
+        "id": "forced-pair-core-654-33",
+        "rows": {
+            2: frozenset({0, 5, 10, 11}),
+            3: frozenset({1, 4, 8, 10}),
+            4: frozenset({3, 5, 7, 10}),
+            5: frozenset({3, 6, 9, 11}),
+            6: frozenset({1, 4, 7, 11}),
+            7: frozenset({2, 6, 8, 11}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 9, 10}),
+        },
+        "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
