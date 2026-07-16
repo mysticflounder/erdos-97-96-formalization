@@ -2938,8 +2938,9 @@ retained core, admitted immediately):
 | 13 | 654 | `1f76e0e5…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — SECOND unit-grade 654 witness in a row (1.355 M nodes, `--max-nodes 5000000`); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family shape as pre-loop unit-core-654-11..14 | `unit-core-654-16` |
 | 14 | 654 | `5e8d1b6f…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — THIRD consecutive unit-grade 654 witness (1.359 M nodes); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); near-twin of unit-core-654-15 | `unit-core-654-17` |
 | 15 | 654 | `9dd49bf2…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — FOURTH consecutive unit-grade 654 witness (1.372 M nodes); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, ZERO deletion timeouts, retained core CROSSCHECKED_UNIT x3; same apex+row-2 family | `unit-core-654-18` |
-| 20 | 555 | — | search running | pending |
-| 16 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+| 20 | 555 | `d4521f84…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — FIRST unit-grade 555 witness since iteration 6, ending a 13-iteration NONUNIT run (3.518 M nodes, above plateau); `system_unit_recheck.py` pass in flight | pending |
+| 16 | 654 | `3dfbe849…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — FIFTH consecutive unit-grade 654 witness (1.511 M nodes); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed); same apex+row-2 family | `unit-core-654-19` |
+| 17 | 654 | — | search running (`--max-nodes 5000000`) | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
