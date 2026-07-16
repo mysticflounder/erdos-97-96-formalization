@@ -130,7 +130,7 @@ This is a checked branch-completeness interface, not a `False` theorem and not
 production closure.  The next mathematical task is to instantiate its motive
 with `False` by supplying a real handler for every displayed branch.
 
-Four source-faithful branch reductions are now checked in scratch:
+Five source-faithful branch reductions are now checked in scratch:
 
 1. `r-unaligned-handler/UnalignedHandler.lean` proves that every unaligned
    first row has two distinct off-live points and retains the exact
@@ -209,6 +209,69 @@ Four source-faithful branch reductions are now checked in scratch:
    next theorem is therefore direct `False` for the generated-source
    successor while retaining the full frontier, cap/MEC and origin packet;
    adding a provenance tag without a consumer is not closure progress.
+
+The generated-successor boundary is now mechanically connected to that full
+parent surface and has one genuine terminal:
+
+- `generated-successor-parent/GeneratedSuccessorParent.lean` pins the exact
+  MEC/cap, second-large-cap, common-critical-map, frontier, anchored origin,
+  aligned F2, generated row, and outside-middle successor in
+  `OriginalQOutsideMiddleSuccessorParentSurface`;
+- `generated-successor-parent-entry/GeneratedSuccessorParentEntry.lean`
+  proves that the existing full-parent extractor reaches the exact
+  origin-tagged coordinator, and that the native anchored live-heavy callback
+  constructs both the `x` and `y` full-parent successor surfaces without
+  assuming either generated row or successor.  The native mixed callback
+  honestly returns `False`, one such surface, or the existing
+  `MixedConfinedResidual`; it is not forced into the successor arm;
+- `generated-successor-pair/OriginalQGeneratedSuccessorPair.lean` retains the
+  two live-heavy generated rows and both successors in one packet.  Its exact
+  source split is: distinct successor sources; equal source with cross
+  survival at `x` or `y`; equal metric source at `p`; or equal equilateral
+  source at `S.oppApex2`;
+- `qcritical-metric-terminal/OriginalQCriticalCriticalMetricTerminal.lean`
+  proves that any ambient point common to both metric-residual generated rows
+  is `p` or `S.oppApex2`.  When both generated constructors are q-critical,
+  their common point `q` therefore gives `False`: the live critical row
+  excludes `q = p`, and
+  `generated-successor-parent-facts/QNotSecondApex.lean` derives
+  `q ≠ S.oppApex2` from the retained parent hypothesis `q ∉ M.verts`.
+  `ParentQCriticalMetricTerminal.lean` kernel-checks the complete
+  full-parent composition with no free exclusion premise;
+- `generated-successor-rank/CapRankOppositeSide.lean` and
+  `generated-successor-geometry-rank/GeneratedSuccessorGeometryRank.lean`
+  give the strongest honest ordered-cap handoff at each named center.  The
+  exact alternatives are: the successor source leaves `oppCap2`; the
+  opposite named companion is omitted from the generated support; or the
+  two cap points define a certified opposite-side rank move.  The
+  q-critical coherent-predecessor terminal is retained as a universal
+  omission field.  No cap membership is inferred from support omission.
+- `generated-successor-source-split-audit/REPORT.md` matches every
+  `SourceSplit` constructor against the checked banks.  No whole constructor
+  is terminal.  The distinct-source and cross-survival arms need a
+  `CommonOutsidePair` across the two generated rows; in the
+  q-critical/q-critical specialization, the existing common point `q`
+  reduces this to one additional common outside-cap point, and in an
+  equal-source cross arm to the shared source lying outside `oppCap2`.
+  Surviving live-center metric cases route to
+  `StrictOppCap1CommonHit` in the non-equilateral arm and
+  `JointTransitionClosingSelection` (or the uniform
+  `JointTransitionCoreEliminator`) in the equilateral arm.  A surviving
+  second-apex/equilateral case needs the joint-transition selection; mining a
+  second common outside-cap point there has the wrong polarity because the
+  checked equilateral theorem makes `S.oppApex2` the unique such point.
+
+All of these declarations fresh-check with only `propext`,
+`Classical.choice`, and `Quot.sound`.  This closes the
+q-critical/q-critical metric subcase, not a production `sorry`.  The
+remaining live-heavy frontier is now the explicit product of the surviving
+generated-constructor/continuation arms, the paired successor-source split,
+and the source-exact cap/rank alternatives.  A rank move is not terminal
+until a cycle-wide no-wrap or well-founded argument is proved, and the
+outside-cap/companion-omitted arms still need a full-parent cap/order or
+global-critical-map consumer.  Do not revert to an anonymous
+`CommonDeletionTwoCenterPacket → False` target or restart local selected-four
+mining.
 
 Every endpoint above fresh-compiles with only `propext`,
 `Classical.choice`, and `Quot.sound`.  They sharpen the producer boundary but
@@ -4953,10 +5016,24 @@ The current coherent-R work queue is now:
    both-support-only-hits split.  Uniform named-hit mining is retired.
    Live-heavy also has a checked cap-escape/`False` alternative and a
    pair-level cross-survival/metric classifier, and its confined constructor
-   is now eliminated at both named centers.  Its next honest boundary is a
-   consumer for the provenance-retaining generated-source common-deletion
-   successor; mixed must remain split by its physical and generated
-   constructors.  In the
+   is now eliminated at both named centers.  The actual native callback now
+   constructs both full-parent successor surfaces, so the retained
+   cap/MEC/frontier/origin contract is not an assumed scratch island.  The
+   paired successors have an exact five-way source split, and each source has
+   an honest cap/rank trichotomy: outside `oppCap2`, opposite companion
+   omitted, or a certified opposite-side rank move.  The
+   q-critical/q-critical `MetricResidual` arm is closed at the full-parent
+   boundary by perpendicular-bisector localization plus `q ∉ M.verts`.
+   The remaining live-heavy work is therefore to consume the surviving
+   constructor/continuation arms together with the source and rank splits;
+   no whole `SourceSplit` constructor is terminal.  Distinct/cross arms target
+   the audited repeated common outside-cap pair, while surviving metric arms
+   target `StrictOppCap1CommonHit` or the branch-indexed
+   `JointTransitionClosingSelection`.  The equilateral second-apex arm must
+   not mine a second common outside-cap point, which its singleton theorem
+   forbids.  A rank move still needs a cycle-wide no-wrap or well-founded
+   argument.
+   Mixed must remain split by its physical and generated constructors.  In the
    mixed confined classifier, physical-q-critical/generated-q-critical and
    every physical-q-deleted cell with the third middle-row live hit close by
    three common points.  Three exact two-common-point residuals remain:
