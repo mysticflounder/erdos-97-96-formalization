@@ -2908,6 +2908,9 @@ retained core, admitted immediately):
 | 8 | 555 | `79a04c0f…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.73 M nodes) | signature admitted |
 | 9 | 555 | `fd874bf2…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.79 M nodes) | signature admitted |
 | 3 | 654 | `cb30873e…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only`, UNIT x3 (5.69 M nodes, 12 rows tried) | signature admitted |
+| 10 | 555 | `50cfcbec…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; greedy deletion retained a 7-row / 21-equality forced-pair core, itself UNIT x3 (2.80 M nodes) | `forced-pair-core-555-01` + signature |
+| reg | 554 | — | EXHAUSTIVE_UNSAT (regression holds after first forced-pair-core admission) | — |
+| 4 | 654 | `6b5de144…` | NONUNIT; SOURCE pair (7,8); `--radical-only --core` certification running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -2990,3 +2993,19 @@ Pattern worth noting: both NONUNIT witnesses so far die by forced
 coincidence of a pair adjacent to the frontier construction (654:
 frontier pair (7,8); 555: source pair (6,7)), and in both cases the
 Rabinowitsch UNIT computation is light where `std(I)` is heavy.
+
+The first live `--core` run (its fail-closed smoke test) passed
+against 555 iteration-10 witness `50cfcbec…`: the full 12-row system
+certified at radical grade on pair (6,7) (hash `e9b8d85d…` matched the
+search report), and greedy deletion removed 5 of 12 rows — every
+deletion attempt got a definite verdict at the 60 s budget — leaving a
+7-row / 21-equality core with the pair-(6,7) Rabinowitsch ideal UNIT
+in Singular and msolve under both variable orders
+(`CROSSCHECKED_FORCED_ZERO_PAIR_CORE`).  Admitted as
+`forced-pair-core-555-01` alongside the point-kill signature; this is
+the first transferable cut extracted from the NONUNIT regime.  The
+`REAL_INFEASIBLE_ROW_CORES` header now documents both admissible
+grades.  554 regression after the admission: EXHAUSTIVE_UNSAT holds.
+555 iteration 11 and the 654 iteration-4 `--radical-only --core`
+certification (witness `6b5de144…`, pair (7,8), hash `bbdbf705…`) are
+running.

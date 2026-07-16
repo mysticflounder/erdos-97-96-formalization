@@ -243,13 +243,31 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-10 witness admitted 2026-07-15: source pair (6,7)
+    # forced zero, certified by membership_crosscheck.py --radical-only;
+    # its retained 7-row deletion core is forced-pair-core-555-01.
+    "50cfcbecc82307735ade1bd14558a9f04cfa35c8d9a1bc97184d44882c52eb8c": {
+        "equality_sha256":
+            "e9b8d85db00e51be8ca9c629c6f39038fac84934ba46ef3407c6b270db2439eb",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
-# Each subrow system is CROSSCHECKED_UNIT in Singular and in msolve under
-# both forward and reverse variable orders after fixing the distinct labels
-# 0=(0,0), 1=(1,0).  Thus any complete assignment containing one of these
-# cores is complex-infeasible, independently of its remaining rows.
+# Two admissible grades, both fixing the distinct labels 0=(0,0), 1=(1,0):
+# unit-core-* entries are CROSSCHECKED_UNIT in Singular and in msolve under
+# both forward and reverse variable orders, so any complete assignment
+# containing one is complex-infeasible independently of its remaining rows.
+# forced-pair-core-* entries are CROSSCHECKED_FORCED_ZERO_PAIR_CORE: the
+# Rabinowitsch ideal of the subrow system plus (1 - t*dist2(pair)) is UNIT
+# in all three oracle calls, i.e. dist2(pair) lies in the radical of the
+# subrow ideal.  By monotonicity of radical membership this transfers to
+# every superset assignment: any complete assignment containing the core
+# rows forces the pair to coincide, contradicting distinct labels, hence
+# admits no real Euclidean witness.
 REAL_INFEASIBLE_ROW_CORES = (
     # 555 frontier witness d48af6a7… admitted 2026-07-15: bounded row
     # deletion of the CROSSCHECKED_UNIT 12-row system retained this 7-row
@@ -488,6 +506,26 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 8, 10}),
         },
         "equality_count": 19,
+    },
+    # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
+    # forced-pair core (membership_crosscheck.py --radical-only --core).
+    # Greedy deletion kept 7 of 12 rows with the pair-(6,7) Rabinowitsch
+    # ideal UNIT; retained core CROSSCHECKED_FORCED_ZERO_PAIR_CORE
+    # (Singular + msolve forward + msolve reverse all UNIT).
+    {
+        "id": "forced-pair-core-555-01",
+        "rows": {
+            0: frozenset({4, 5, 8, 9}),
+            3: frozenset({0, 4, 6, 11}),
+            6: frozenset({2, 7, 9, 11}),
+            7: frozenset({0, 3, 6, 8}),
+            9: frozenset({5, 7, 10, 11}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 1, 3, 5}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
 )
 
