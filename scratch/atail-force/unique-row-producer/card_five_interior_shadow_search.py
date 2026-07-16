@@ -2684,6 +2684,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-88 witness 4b536aea (SAT at 358,528 nodes — +11,099
+    # past iter-87, thirteenth consecutive climb; caps=12; sources
+    # (6,7), inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 7 rows / 21 equalities (deletion verdicts
+    # 5 UNIT / 4 TIMEOUT fail-closed / 3 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # capped at 4, uniquely with 555-63 (rows 0,2,5,9); ONE new
+    # support 11:{3,5,8,9}; row 10:{0,3,7,11} returns (its only
+    # prior core is unit-core-555-07), row 9:{0,1,5,6}
+    # previously only in 555-63/-66; row 2:{0,1,9,11} in its
+    # FOURTEENTH consecutive core (63-76), extending its own record.
+    {
+        "id": "unit-core-555-76",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 11}),
+            5: frozenset({2, 4, 7, 9}),
+            7: frozenset({0, 3, 6, 8}),
+            9: frozenset({0, 1, 5, 6}),
+            10: frozenset({0, 3, 7, 11}),
+            11: frozenset({3, 5, 8, 9}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
