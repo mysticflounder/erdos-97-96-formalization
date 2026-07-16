@@ -2851,3 +2851,37 @@ the exact-oracle mining path demonstrably kills the standing witnesses
 wholesale.  Whether to resume that loop on 555/654 — admit the 555 core
 and (after msolve crosscheck) the 654 membership kill, then re-search —
 is Adam's call; nothing has been admitted in this session.
+
+## 2026-07-15 mining loop resumed (Adam), both standing kills admitted
+
+Adam authorized resuming the mine–admit–rerun loop on 555/654.
+
+New tool `membership_crosscheck.py`: admission-grade certification of a
+forced-zero pair.  It replays the canonical row signature (fail-closed),
+re-verifies Singular direct reduction of `dist²(L,R)` mod `std(I)`, and
+crosschecks radical membership via Rabinowitsch — `I + (1 − t·dist²(L,R))`
+UNIT in Singular and in msolve under forward and reversed variable
+orders.  Encoding validated with a negative control first: the
+non-forced pair `(3,7)` of `fa87f604` returns NOT_CROSSCHECKED with
+nonzero normal form and NONUNIT ×3.  The frontier pair `(7,8)` then
+certifies: reduction `0`, UNIT ×3 —
+`CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP`.
+
+Admissions into the shadow-search banks:
+
+- `unit-core-555-01` into `REAL_INFEASIBLE_ROW_CORES`: the 7-row retained
+  core of `d48af6a7` (22 equalities, CROSSCHECKED_UNIT; apex row
+  `1:{0,2,6,7,8}` plus rows at centers 0, 7, 8, 9, 10, 11).  Fires as a
+  literal subrow cut in any profile.
+- `fa87f604…` into `REAL_INFEASIBLE_ROW_SIGNATURES` with
+  `exact_cas_status: CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP`, forced
+  pair `(7,8)`, Singular reduction `0`, msolve Rabinowitsch radical
+  membership.
+
+Loop protocol per iteration: run all three profiles with
+`--bank-negative --real-cas-negative --metric --check` (554 is the
+regression control and must stay EXHAUSTIVE_UNSAT); for each new SAT
+witness, admit its UNIT retained core when crosschecked, else run
+`membership_crosscheck.py` on a forced-zero pair; stop at exhaustive
+UNSAT on 555 and 654 or at a witness that survives exact CAS (a genuine
+geometry frontier).  Iteration results follow.

@@ -158,14 +158,43 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "retained_unit_core_centers": [1, 2, 8, 9, 10, 11],
         "retained_unit_core_equality_count": 19,
     },
+    # 654 frontier witness admitted 2026-07-15: every complex realization
+    # collapses the frontier pair (7,8).  Certified by
+    # membership_crosscheck.py — Singular direct reduction 0 plus
+    # Rabinowitsch UNIT in Singular and msolve (both variable orders).
+    "fa87f604922173831bb083493f596949ef6e81a57b94a0635616e1efdd3c845b": {
+        "equality_sha256":
+            "574867866a5e7661b73b201e510ff83726e41fec5a7520795d003d78ad40cad7",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "0",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
-# Each six-row system is CROSSCHECKED_UNIT in Singular and in msolve under
+# Each subrow system is CROSSCHECKED_UNIT in Singular and in msolve under
 # both forward and reverse variable orders after fixing the distinct labels
 # 0=(0,0), 1=(1,0).  Thus any complete assignment containing one of these
-# cores is complex-infeasible, independently of its other six rows.
+# cores is complex-infeasible, independently of its remaining rows.
 REAL_INFEASIBLE_ROW_CORES = (
+    # 555 frontier witness d48af6a7… admitted 2026-07-15: bounded row
+    # deletion of the CROSSCHECKED_UNIT 12-row system retained this 7-row
+    # core (itself CROSSCHECKED_UNIT); both surplus-cap blocker rows were
+    # deleted.  Not confirmed irredundant (two deletion attempts timed out).
+    {
+        "id": "unit-core-555-01",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            1: frozenset({0, 2, 6, 7, 8}),
+            7: frozenset({4, 6, 8, 9}),
+            8: frozenset({0, 7, 9, 10}),
+            9: frozenset({0, 3, 5, 10}),
+            10: frozenset({3, 7, 9, 11}),
+            11: frozenset({1, 5, 8, 10}),
+        },
+        "equality_count": 22,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
