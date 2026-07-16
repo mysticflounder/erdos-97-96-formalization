@@ -1563,6 +1563,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-54 witness adc950eb (SAT at 167,139 nodes — a
+    # +12,756 step past iter-53, the pocket's largest jump yet;
+    # sources (6,7), inline CROSSCHECKED_UNIT):
+    # system_unit_recheck.py 900 s deletion retained 8 rows /
+    # 24 equalities (deletion verdicts 4 UNIT / 4 TIMEOUT
+    # fail-closed / 4 NONUNIT), retained core CROSSCHECKED_UNIT
+    # (Singular + msolve fwd/rev); not a transposition image of any
+    # banked core; back in the current pocket family after iter-53's
+    # reach-back — closest kin 555-38/-40 (5 shared rows: 0, 2, 8,
+    # 9, 11); THREE new supports 5:{3,6,9,11}, 7:{2,6,8,9},
+    # 10:{4,5,9,11}.
+    {
+        "id": "unit-core-555-42",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            5: frozenset({3, 6, 9, 11}),
+            7: frozenset({2, 6, 8, 9}),
+            8: frozenset({2, 7, 10, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
