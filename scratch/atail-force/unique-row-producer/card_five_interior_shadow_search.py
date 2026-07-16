@@ -946,6 +946,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-66 witness admitted 2026-07-16: thirty-seventh
+    # NONUNIT-track 654 witness (13,350,373 nodes — +23 past
+    # iteration 65's, eleventh witness in the ~13.35M pocket — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 7-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-47.
+    "ebce302fe399c726745be5c70f25cd6697ff9aa879c66b9b7d0675054611f0c6": {
+        "equality_sha256":
+            "8f9263971592d8ca67cc346619a19abb31f57108ace0c1d16e9cda602bb92dc5",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -4219,6 +4234,35 @@ REAL_INFEASIBLE_ROW_CORES = (
             10: frozenset({0, 1, 5, 6}),
         },
         "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-66 witness ebce302f… admitted 2026-07-16: 7-row /
+    # 22-equality core forcing pair (7,8) — thirty-seventh
+    # NONUNIT-track 654 witness (13,350,373 nodes — +23 past
+    # iteration 65's, eleventh witness in the ~13.35M pocket; 20 M
+    # run, caps=0); inline audit CROSSCHECKED_NONUNIT directly;
+    # Rabinowitsch UNIT x3 (Singular + msolve fwd/rev); deletion
+    # verdicts 5 UNIT / 7 TIMEOUT fail-closed — witness rows 2, 3,
+    # 4, 5, 7 dropped; not a transposition image of any banked
+    # core; kin capped at 4 shared rows (fp-654-45); NO new
+    # supports — third consecutive fp core with all rows previously
+    # banked (-45/-46/-47); surplus row 1:{0,2,7,8,9} returns (last
+    # fp appearance fp-654-44); row 11:{3,5,9,10} previously only
+    # in fp-654-44; row 5:{1,4,6,9} absent for the first time since
+    # fp-654-43.
+    {
+        "id": "forced-pair-core-654-47",
+        "rows": {
+            0: frozenset({4, 6, 8, 10}),
+            1: frozenset({0, 2, 7, 8, 9}),
+            6: frozenset({2, 3, 4, 11}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({0, 3, 6, 7}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({3, 5, 9, 10}),
+        },
+        "equality_count": 22,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
