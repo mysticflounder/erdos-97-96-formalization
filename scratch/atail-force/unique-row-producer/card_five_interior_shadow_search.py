@@ -782,6 +782,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-55 witness: twenty-sixth NONUNIT-track 654
+    # witness (13,095,457 nodes — 4 past iteration 54's — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 8-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-36.
+    "1ff0d20b65fac8e8db1be2f91ed87724ee214cdc47291841bae80c045fa03263": {
+        "equality_sha256":
+            "ef68bf48468d262c53a710afbe631ee6312f89df94769e74bfcc899377f48b62",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3423,6 +3437,34 @@ REAL_INFEASIBLE_ROW_CORES = (
         "rows": {
             0: frozenset({2, 4, 6, 11}),
             4: frozenset({1, 5, 7, 10}),
+            5: frozenset({1, 4, 6, 9}),
+            7: frozenset({2, 3, 5, 9}),
+            8: frozenset({6, 7, 9, 10}),
+            9: frozenset({0, 3, 6, 8}),
+            10: frozenset({1, 3, 7, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-55 witness 1ff0d20b… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — twenty-sixth
+    # NONUNIT-track 654 witness (13,095,457 nodes — 4 past
+    # iteration 54's; 20 M run, caps=0); inline audit
+    # CROSSCHECKED_NONUNIT directly; Rabinowitsch UNIT x3 (Singular
+    # + msolve fwd/rev); deletion verdicts 4 UNIT / 7 TIMEOUT
+    # fail-closed / 1 NONUNIT — witness rows 1, 2, 3, 6 dropped, the
+    # surplus row out for a fifth consecutive forced-pair core; not
+    # a transposition image of any banked core; structurally
+    # fp-654-35 with row 4's support swapped ({1,5,7,10} ->
+    # {1,5,8,10}) — kin fp-654-35 at 7 shared rows; ONE new
+    # support 4:{1,5,8,10}.
+    {
+        "id": "forced-pair-core-654-36",
+        "rows": {
+            0: frozenset({2, 4, 6, 11}),
+            4: frozenset({1, 5, 8, 10}),
             5: frozenset({1, 4, 6, 9}),
             7: frozenset({2, 3, 5, 9}),
             8: frozenset({6, 7, 9, 10}),
