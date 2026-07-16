@@ -1,0 +1,18 @@
+=== smoke gates ===
+smoke std: PASS
+smoke slimgb: PASS
+smoke groebner: PASS
+=== launching race ===
+launched std_fwd pid=765059
+launched std_rev pid=765060
+launched std_perm1 pid=765061
+launched std_perm2 pid=765062
+launched std_perm3 pid=765063
+launched std_perm4 pid=765064
+launched slimgb_rev pid=765065
+launched slimgb_perm1 pid=765066
+launched slimgb_perm2 pid=765067
+launched slimgb_perm3 pid=765068
+launched slimgb_perm4 pid=765071
+launched groebner_fwd pid=765074
+WINNER: slimgb_perm4 -> UNIT after 20s; killing remaining jobs

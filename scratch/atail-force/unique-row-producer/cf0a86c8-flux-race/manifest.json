@@ -1,0 +1,140 @@
+{
+  "witness_row_signature_sha256": "cf0a86c893c6f978b4d260a26ed950d208b75579c06304f1180f0ed84110b7ef",
+  "equality_sha256": "2155491f8eb4a9bb7ea51c6c04efda56ed2e91346bd8d9a98e802dff559333b2",
+  "variable_count": 20,
+  "polynomial_count": 37,
+  "jobs": [
+    {
+      "job": "std_fwd",
+      "algo": "std",
+      "order": "fwd",
+      "first_vars": [
+        "x2x",
+        "x2y",
+        "x3x",
+        "x3y"
+      ]
+    },
+    {
+      "job": "std_rev",
+      "algo": "std",
+      "order": "rev",
+      "first_vars": [
+        "x11y",
+        "x11x",
+        "x10y",
+        "x10x"
+      ]
+    },
+    {
+      "job": "std_perm1",
+      "algo": "std",
+      "order": "perm1",
+      "first_vars": [
+        "x7y",
+        "x4y",
+        "x10y",
+        "x11y"
+      ]
+    },
+    {
+      "job": "std_perm2",
+      "algo": "std",
+      "order": "perm2",
+      "first_vars": [
+        "x5y",
+        "x5x",
+        "x10y",
+        "x6x"
+      ]
+    },
+    {
+      "job": "std_perm3",
+      "algo": "std",
+      "order": "perm3",
+      "first_vars": [
+        "x6x",
+        "x3y",
+        "x5x",
+        "x4y"
+      ]
+    },
+    {
+      "job": "std_perm4",
+      "algo": "std",
+      "order": "perm4",
+      "first_vars": [
+        "x10y",
+        "x11y",
+        "x7x",
+        "x9x"
+      ]
+    },
+    {
+      "job": "slimgb_rev",
+      "algo": "slimgb",
+      "order": "rev",
+      "first_vars": [
+        "x11y",
+        "x11x",
+        "x10y",
+        "x10x"
+      ]
+    },
+    {
+      "job": "slimgb_perm1",
+      "algo": "slimgb",
+      "order": "perm1",
+      "first_vars": [
+        "x7y",
+        "x4y",
+        "x10y",
+        "x11y"
+      ]
+    },
+    {
+      "job": "slimgb_perm2",
+      "algo": "slimgb",
+      "order": "perm2",
+      "first_vars": [
+        "x5y",
+        "x5x",
+        "x10y",
+        "x6x"
+      ]
+    },
+    {
+      "job": "slimgb_perm3",
+      "algo": "slimgb",
+      "order": "perm3",
+      "first_vars": [
+        "x6x",
+        "x3y",
+        "x5x",
+        "x4y"
+      ]
+    },
+    {
+      "job": "slimgb_perm4",
+      "algo": "slimgb",
+      "order": "perm4",
+      "first_vars": [
+        "x10y",
+        "x11y",
+        "x7x",
+        "x9x"
+      ]
+    },
+    {
+      "job": "groebner_fwd",
+      "algo": "groebner",
+      "order": "fwd",
+      "first_vars": [
+        "x2x",
+        "x2y",
+        "x3x",
+        "x3y"
+      ]
+    }
+  ]
+}
