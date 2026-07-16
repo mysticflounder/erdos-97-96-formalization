@@ -542,6 +542,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-36 witness admitted 2026-07-16: source pair (7,8)
+    # forced zero — ninth consecutive 654 NONUNIT-track witness
+    # (inline audit decided NONUNIT directly); certified by
+    # membership_crosscheck.py --radical-only; its retained 7-row
+    # deletion core (7 deletion timeouts fail-closed) is
+    # forced-pair-core-654-19.
+    "61222481b526b5db1d3e54132f0ece7049a751fc578e743f22f797e7fb0efd05": {
+        "equality_sha256":
+            "27d76d694ac82a9932ad950fff5bdb37dde7653a11d985c05515bd67e8b6ef7d",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -1046,6 +1060,28 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({0, 1, 5, 6}),
         },
         "equality_count": 24,
+    },
+    # 555 iteration-39 witness 4459e702… admitted 2026-07-16:
+    # twentieth consecutive unit-grade 555 witness (57,003 nodes,
+    # same shallow pocket); system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities incl. the Moser row 0:{1,2,3,4}
+    # (4 deletion TIMEOUTs fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); a 7-row
+    # refinement of unit-core-555-26's shape — drops row
+    # 8:{2,6,10,11}, row 7 changes {0,4,5,8} -> {0,4,8,11}, keeps
+    # the new support 10:{3,5,9,11}.
+    {
+        "id": "unit-core-555-27",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({2, 5, 7, 9}),
+            7: frozenset({0, 4, 8, 11}),
+            9: frozenset({0, 4, 7, 10}),
+            10: frozenset({3, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
     },
     {
         "id": "unit-core-654-02",
@@ -2051,6 +2087,29 @@ REAL_INFEASIBLE_ROW_CORES = (
             7: frozenset({2, 4, 5, 8}),
             9: frozenset({0, 2, 3, 6}),
             10: frozenset({0, 1, 3, 4}),
+            11: frozenset({1, 5, 7, 10}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-36 witness 61222481… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (7,8) — ninth consecutive 654
+    # NONUNIT-track witness (inline audit decided NONUNIT directly,
+    # 8.264 M nodes); retained core Rabinowitsch UNIT x3, 7 deletion
+    # TIMEOUTs fail-closed; no apex row; bridges both NONUNIT
+    # clusters — shares 10:{0,1,4,6} with 654-13/-14 and
+    # 11:{1,5,7,10} with 654-15/-16/-18, and carries the {1,5,9,11}
+    # support (at center 4) that 654-11..14 held at center 6.
+    {
+        "id": "forced-pair-core-654-19",
+        "rows": {
+            3: frozenset({1, 4, 8, 10}),
+            4: frozenset({1, 5, 9, 11}),
+            5: frozenset({2, 3, 6, 10}),
+            7: frozenset({2, 3, 8, 11}),
+            8: frozenset({2, 5, 9, 10}),
+            10: frozenset({0, 1, 4, 6}),
             11: frozenset({1, 5, 7, 10}),
         },
         "equality_count": 21,
