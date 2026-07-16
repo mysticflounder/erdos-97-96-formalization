@@ -1994,6 +1994,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
     },
+    # 555 iter-66 witness 1bc4db7e (SAT at 59,875 nodes — +95 past
+    # iter-65, new pocket forming at ~59.8k; sources (6,7), inline
+    # CROSSCHECKED_UNIT): system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities (deletion verdicts 5 UNIT /
+    # 5 TIMEOUT fail-closed / 2 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # capped at 3 shared rows (555-42/-51/-53) — off the recent
+    # cluster: first 555 unit core without a center-2 row since
+    # 555-32 (8 of 53 prior lack one), center-4 rows previously
+    # only in 555-07/-16; TWO new supports 3:{1,5,8,11},
+    # 4:{0,3,6,11}; row 9:{0,3,8,10} previously only in 555-50.
+    {
+        "id": "unit-core-555-54",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            3: frozenset({1, 5, 8, 11}),
+            4: frozenset({0, 3, 6, 11}),
+            8: frozenset({2, 6, 10, 11}),
+            9: frozenset({0, 3, 8, 10}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
