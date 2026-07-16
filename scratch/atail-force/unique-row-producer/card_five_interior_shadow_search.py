@@ -796,6 +796,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-56 witness: twenty-seventh NONUNIT-track 654
+    # witness (13,348,599 nodes — +253,142 past iteration 55's,
+    # breaking the ~13.0955M pocket — 20 M run, caps=0; inline audit
+    # decided NONUNIT directly); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core; its
+    # retained 8-row deletion core (7 deletion timeouts fail-closed)
+    # is forced-pair-core-654-37.
+    "fcaeae53f4cf17cf4efef5a1f636a79c17413ceb38105f028e9286a18fccc04a": {
+        "equality_sha256":
+            "fc90302c1871959491f2e78f062cd394b8bb21220a4deac572f185c155c510d6",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3495,6 +3510,37 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 3, 6, 8}),
             10: frozenset({1, 3, 7, 11}),
             11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-56 witness fcaeae53… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — twenty-seventh
+    # NONUNIT-track 654 witness (13,348,599 nodes — +253,142 past
+    # iteration 55's, breaking the ~13.0955M pocket; 20 M run,
+    # caps=0); inline audit CROSSCHECKED_NONUNIT directly;
+    # Rabinowitsch UNIT x3 (Singular + msolve fwd/rev); deletion
+    # verdicts 4 UNIT / 7 TIMEOUT fail-closed / 1 NONUNIT — witness
+    # rows 1, 2, 3, 6 dropped, the surplus row out for a sixth
+    # consecutive forced-pair core; IS the (10,11)-transposition
+    # image of forced-pair-core-654-35 — banked in its own right
+    # because --bank-negative blocks literal row sets only
+    # (precedent unit-core-555-51), second admission-time image hit
+    # and first on a forced-pair core; kin fp-654-35/-36 and
+    # unit-core-654-22 each at 3 shared rows; TWO new supports
+    # 0:{2,4,6,10}, 4:{1,5,7,11}.
+    {
+        "id": "forced-pair-core-654-37",
+        "rows": {
+            0: frozenset({2, 4, 6, 10}),
+            4: frozenset({1, 5, 7, 11}),
+            5: frozenset({1, 4, 6, 9}),
+            7: frozenset({2, 3, 5, 9}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 3, 6, 8}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 7, 10}),
         },
         "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
