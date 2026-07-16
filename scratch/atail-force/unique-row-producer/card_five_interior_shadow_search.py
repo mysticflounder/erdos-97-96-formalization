@@ -1205,6 +1205,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iteration-44 witness c586bc22… admitted 2026-07-16:
+    # twenty-fifth consecutive unit-grade 555 witness, but the pocket
+    # depth JUMPED 60,215 -> 85,509 nodes and the core shape shifted:
+    # both anchor rows 2:{0,1,9,10} and 11:{0,1,5,6} of the 555-24..31
+    # family are gone.  system_unit_recheck.py 900 s deletion retained
+    # 6 rows / 18 equalities incl. the Moser row 0:{1,2,3,4} (only 2
+    # deletion TIMEOUTs), retained core CROSSCHECKED_UNIT (Singular +
+    # msolve fwd/rev); not a transposition image of any banked 555
+    # unit core; rows reach back to the older family — 7:{0,4,5,8} as
+    # in 555-26, 8:{2,7,9,11} as in 555-11, 9:{0,3,10,11} as in
+    # 555-13, 10:{4,8,9,11} as in 555-03 and forced-pair-555-10..13;
+    # row 3:{0,4,7,11} is new (that support sat at center 8 in
+    # 555-29/-30/-31).
+    {
+        "id": "unit-core-555-32",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            3: frozenset({0, 4, 7, 11}),
+            7: frozenset({0, 4, 5, 8}),
+            8: frozenset({2, 7, 9, 11}),
+            9: frozenset({0, 3, 10, 11}),
+            10: frozenset({4, 8, 9, 11}),
+        },
+        "equality_count": 18,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
