@@ -1118,6 +1118,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iteration-41 witness 2a4fdbbc… admitted 2026-07-16:
+    # twenty-second consecutive unit-grade 555 witness (58,435 nodes,
+    # same shallow pocket); system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities incl. the Moser row 0:{1,2,3,4}
+    # (4 deletion TIMEOUTs fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); exactly the
+    # image of unit-core-555-27 under the transposition 7<->8 — all
+    # seven rows map (rows 6/9 swap the point, center 7 -> 8 with
+    # support {0,4,8,11} -> {0,4,7,11}).  Fourth full-core (7 8)
+    # pair in the family: exhaustive transposition check also
+    # relates 555-20<->555-24, 555-21<->555-23, 555-25<->555-28 —
+    # the search does not quotient by the 7<->8 symmetry, so the
+    # shallow pocket enumerates both halves of each symmetric orbit.
+    {
+        "id": "unit-core-555-29",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({2, 5, 8, 9}),
+            8: frozenset({0, 4, 7, 11}),
+            9: frozenset({0, 4, 8, 10}),
+            10: frozenset({3, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
