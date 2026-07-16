@@ -78,3 +78,19 @@ __pycache__/
 
 # Singular REPL history
 .singularhistory
+
+# ATAIL bank-clean / FA-UNIQ generated certificates over GitHub's 100 MB
+# hard limit. Deterministically replayable from the pinned scripts; digests
+# recorded in scratch/atail-force/unique-row-producer/REPORT.md and the
+# bank-clean checkpoints.
+/scratch/atail-force/bank-clean-lean-certificate/microsharded/BankClean15MicroshardedCertificate.lean
+/scratch/atail-force/bank-clean-lean-certificate/staged/BankClean15StagedCertificate.lean
+/scratch/atail-force/unique-row-producer/collision_core_offset3_654_certificate.json
+/scratch/atail-force/unique-row-producer/collision_core_offset3_pair_0_10_654_certificate.json
+/scratch/atail-force/unique-row-producer/source_indexed_unit_core_654_10_gauge_1_9_singular_lift.json
+/scratch/atail-force/unique-row-producer/source_indexed_unit_core_654_47_alt_gauge_4_5_singular_reverse_1800s.json
+/scratch/atail-force/unique-row-producer/source_indexed_unit_core_654_59_gauge_2_11_singular_reverse_1800s.json
+/scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_10_certificate.json
+/scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_10_scalar_certificate.lean
+/scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_47_alt_certificate.json
+/scratch/atail-force/unique-row-producer/unit_core_source_indexed_654_47_alt_scalar_certificate.lean
