@@ -1,0 +1,1834 @@
+{
+  "all_sequential_candidates": [
+    {
+      "order": [
+        0,
+        10,
+        9,
+        7,
+        14,
+        2,
+        12,
+        3,
+        1,
+        13,
+        6,
+        5,
+        4,
+        8,
+        11
+      ],
+      "partial_support_sizes": [
+        98460,
+        106801,
+        110877,
+        119399,
+        126333,
+        130647,
+        127270,
+        134978,
+        132429,
+        137232,
+        120709,
+        122111,
+        92568,
+        45535,
+        1
+      ],
+      "peak_support": 137232,
+      "start": 0,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        1,
+        10,
+        9,
+        3,
+        2,
+        12,
+        6,
+        13,
+        14,
+        11,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        71144,
+        78452,
+        89872,
+        100351,
+        112065,
+        112683,
+        131629,
+        122392,
+        128398,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 1,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        2,
+        10,
+        12,
+        9,
+        13,
+        6,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        49901,
+        51284,
+        56080,
+        62202,
+        89149,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 2,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        3,
+        10,
+        9,
+        1,
+        2,
+        12,
+        6,
+        13,
+        14,
+        11,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        76626,
+        79547,
+        87723,
+        100351,
+        112065,
+        112683,
+        131629,
+        122392,
+        128398,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 3,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        4,
+        8,
+        10,
+        9,
+        11,
+        5,
+        1,
+        3,
+        2,
+        12,
+        14,
+        13,
+        6,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        114950,
+        100762,
+        107277,
+        113274,
+        131139,
+        125942,
+        132525,
+        128200,
+        135637,
+        135100,
+        142383,
+        136426,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142383,
+      "start": 4,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        5,
+        11,
+        4,
+        8,
+        9,
+        10,
+        1,
+        3,
+        2,
+        12,
+        14,
+        13,
+        6,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        132499,
+        135568,
+        138722,
+        120709,
+        124408,
+        125942,
+        132525,
+        128200,
+        135637,
+        135100,
+        142383,
+        136426,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142383,
+      "start": 5,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        6,
+        10,
+        9,
+        13,
+        12,
+        2,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        54434,
+        62934,
+        73910,
+        78041,
+        85375,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 6,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        7,
+        0,
+        10,
+        9,
+        14,
+        2,
+        12,
+        3,
+        1,
+        13,
+        6,
+        5,
+        4,
+        8,
+        11
+      ],
+      "partial_support_sizes": [
+        120344,
+        108676,
+        116353,
+        119399,
+        126333,
+        130647,
+        127270,
+        134978,
+        132429,
+        137232,
+        120709,
+        122111,
+        92568,
+        45535,
+        1
+      ],
+      "peak_support": 137232,
+      "start": 7,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        8,
+        10,
+        9,
+        12,
+        2,
+        13,
+        6,
+        11,
+        14,
+        4,
+        5,
+        1,
+        3,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        50000,
+        56786,
+        66790,
+        90614,
+        94457,
+        118752,
+        114546,
+        126354,
+        137378,
+        153837,
+        133356,
+        133305,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 153837,
+      "start": 8,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        9,
+        10,
+        12,
+        2,
+        13,
+        6,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        23133,
+        26469,
+        54046,
+        62202,
+        89149,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 9,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        10,
+        9,
+        12,
+        2,
+        13,
+        6,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        11095,
+        26469,
+        54046,
+        62202,
+        89149,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 10,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        11,
+        10,
+        9,
+        12,
+        2,
+        13,
+        6,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        45534,
+        54625,
+        64998,
+        88745,
+        95833,
+        109351,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 11,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        12,
+        10,
+        9,
+        2,
+        13,
+        6,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        40044,
+        44329,
+        54046,
+        62202,
+        89149,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 12,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        13,
+        6,
+        10,
+        9,
+        12,
+        2,
+        11,
+        14,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        73308,
+        71939,
+        73917,
+        78041,
+        85375,
+        85211,
+        96974,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 13,
+      "strategy": "greedy_min_peak_then_support"
+    },
+    {
+      "order": [
+        14,
+        10,
+        9,
+        2,
+        12,
+        13,
+        6,
+        11,
+        3,
+        1,
+        5,
+        4,
+        8,
+        7,
+        0
+      ],
+      "partial_support_sizes": [
+        85664,
+        86744,
+        88206,
+        95291,
+        91792,
+        104933,
+        99530,
+        109366,
+        133746,
+        137887,
+        142287,
+        138379,
+        108677,
+        98461,
+        1
+      ],
+      "peak_support": 142287,
+      "start": 14,
+      "strategy": "greedy_min_peak_then_support"
+    }
+  ],
+  "balanced_merge": {
+    "height": 8,
+    "merges": [
+      {
+        "height": 1,
+        "left_leaves": [
+          9
+        ],
+        "left_node_id": 9,
+        "node_id": 15,
+        "right_leaves": [
+          10
+        ],
+        "right_node_id": 10,
+        "subtree_peak_support": 26469,
+        "support_size": 26469
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          12
+        ],
+        "left_node_id": 12,
+        "node_id": 16,
+        "right_leaves": [
+          9,
+          10
+        ],
+        "right_node_id": 15,
+        "subtree_peak_support": 54046,
+        "support_size": 54046
+      },
+      {
+        "height": 3,
+        "left_leaves": [
+          2
+        ],
+        "left_node_id": 2,
+        "node_id": 17,
+        "right_leaves": [
+          9,
+          10,
+          12
+        ],
+        "right_node_id": 16,
+        "subtree_peak_support": 62202,
+        "support_size": 62202
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          6
+        ],
+        "left_node_id": 6,
+        "node_id": 18,
+        "right_leaves": [
+          13
+        ],
+        "right_node_id": 13,
+        "subtree_peak_support": 73308,
+        "support_size": 71939
+      },
+      {
+        "height": 4,
+        "left_leaves": [
+          2,
+          9,
+          10,
+          12
+        ],
+        "left_node_id": 17,
+        "node_id": 19,
+        "right_leaves": [
+          6,
+          13
+        ],
+        "right_node_id": 18,
+        "subtree_peak_support": 85211,
+        "support_size": 85211
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          1
+        ],
+        "left_node_id": 1,
+        "node_id": 20,
+        "right_leaves": [
+          3
+        ],
+        "right_node_id": 3,
+        "subtree_peak_support": 90713,
+        "support_size": 90713
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          8
+        ],
+        "left_node_id": 8,
+        "node_id": 21,
+        "right_leaves": [
+          11
+        ],
+        "right_node_id": 11,
+        "subtree_peak_support": 92568,
+        "support_size": 92568
+      },
+      {
+        "height": 5,
+        "left_leaves": [
+          14
+        ],
+        "left_node_id": 14,
+        "node_id": 22,
+        "right_leaves": [
+          2,
+          6,
+          9,
+          10,
+          12,
+          13
+        ],
+        "right_node_id": 19,
+        "subtree_peak_support": 99530,
+        "support_size": 99530
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          0
+        ],
+        "left_node_id": 0,
+        "node_id": 23,
+        "right_leaves": [
+          7
+        ],
+        "right_node_id": 7,
+        "subtree_peak_support": 120344,
+        "support_size": 108676
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          4
+        ],
+        "left_node_id": 4,
+        "node_id": 24,
+        "right_leaves": [
+          8,
+          11
+        ],
+        "right_node_id": 21,
+        "subtree_peak_support": 122111,
+        "support_size": 122111
+      },
+      {
+        "height": 6,
+        "left_leaves": [
+          2,
+          6,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "left_node_id": 22,
+        "node_id": 25,
+        "right_leaves": [
+          0,
+          7
+        ],
+        "right_node_id": 23,
+        "subtree_peak_support": 126443,
+        "support_size": 126443
+      },
+      {
+        "height": 7,
+        "left_leaves": [
+          1,
+          3
+        ],
+        "left_node_id": 20,
+        "node_id": 26,
+        "right_leaves": [
+          0,
+          2,
+          6,
+          7,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "right_node_id": 25,
+        "subtree_peak_support": 126443,
+        "support_size": 120709
+      },
+      {
+        "height": 3,
+        "left_leaves": [
+          5
+        ],
+        "left_node_id": 5,
+        "node_id": 27,
+        "right_leaves": [
+          4,
+          8,
+          11
+        ],
+        "right_node_id": 24,
+        "subtree_peak_support": 132499,
+        "support_size": 120709
+      },
+      {
+        "height": 8,
+        "left_leaves": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "left_node_id": 26,
+        "node_id": 28,
+        "right_leaves": [
+          4,
+          5,
+          8,
+          11
+        ],
+        "right_node_id": 27,
+        "subtree_peak_support": 132499,
+        "support_size": 1
+      }
+    ],
+    "peak_support_including_leaves": 132499,
+    "strategy": "greedy_min_subtree_peak_then_support_with_balance_tiebreaks",
+    "tree": {
+      "height": 8,
+      "kind": "merge",
+      "left": {
+        "height": 7,
+        "kind": "merge",
+        "left": {
+          "height": 1,
+          "kind": "merge",
+          "left": {
+            "generator_index": 1,
+            "kind": "leaf",
+            "support_size": 71144
+          },
+          "left_leaves": [
+            1
+          ],
+          "left_node_id": 1,
+          "node_id": 20,
+          "right": {
+            "generator_index": 3,
+            "kind": "leaf",
+            "support_size": 76626
+          },
+          "right_leaves": [
+            3
+          ],
+          "right_node_id": 3,
+          "subtree_peak_support": 90713,
+          "support_size": 90713
+        },
+        "left_leaves": [
+          1,
+          3
+        ],
+        "left_node_id": 20,
+        "node_id": 26,
+        "right": {
+          "height": 6,
+          "kind": "merge",
+          "left": {
+            "height": 5,
+            "kind": "merge",
+            "left": {
+              "generator_index": 14,
+              "kind": "leaf",
+              "support_size": 85664
+            },
+            "left_leaves": [
+              14
+            ],
+            "left_node_id": 14,
+            "node_id": 22,
+            "right": {
+              "height": 4,
+              "kind": "merge",
+              "left": {
+                "height": 3,
+                "kind": "merge",
+                "left": {
+                  "generator_index": 2,
+                  "kind": "leaf",
+                  "support_size": 49901
+                },
+                "left_leaves": [
+                  2
+                ],
+                "left_node_id": 2,
+                "node_id": 17,
+                "right": {
+                  "height": 2,
+                  "kind": "merge",
+                  "left": {
+                    "generator_index": 12,
+                    "kind": "leaf",
+                    "support_size": 40044
+                  },
+                  "left_leaves": [
+                    12
+                  ],
+                  "left_node_id": 12,
+                  "node_id": 16,
+                  "right": {
+                    "height": 1,
+                    "kind": "merge",
+                    "left": {
+                      "generator_index": 9,
+                      "kind": "leaf",
+                      "support_size": 23133
+                    },
+                    "left_leaves": [
+                      9
+                    ],
+                    "left_node_id": 9,
+                    "node_id": 15,
+                    "right": {
+                      "generator_index": 10,
+                      "kind": "leaf",
+                      "support_size": 11095
+                    },
+                    "right_leaves": [
+                      10
+                    ],
+                    "right_node_id": 10,
+                    "subtree_peak_support": 26469,
+                    "support_size": 26469
+                  },
+                  "right_leaves": [
+                    9,
+                    10
+                  ],
+                  "right_node_id": 15,
+                  "subtree_peak_support": 54046,
+                  "support_size": 54046
+                },
+                "right_leaves": [
+                  9,
+                  10,
+                  12
+                ],
+                "right_node_id": 16,
+                "subtree_peak_support": 62202,
+                "support_size": 62202
+              },
+              "left_leaves": [
+                2,
+                9,
+                10,
+                12
+              ],
+              "left_node_id": 17,
+              "node_id": 19,
+              "right": {
+                "height": 1,
+                "kind": "merge",
+                "left": {
+                  "generator_index": 6,
+                  "kind": "leaf",
+                  "support_size": 54434
+                },
+                "left_leaves": [
+                  6
+                ],
+                "left_node_id": 6,
+                "node_id": 18,
+                "right": {
+                  "generator_index": 13,
+                  "kind": "leaf",
+                  "support_size": 73308
+                },
+                "right_leaves": [
+                  13
+                ],
+                "right_node_id": 13,
+                "subtree_peak_support": 73308,
+                "support_size": 71939
+              },
+              "right_leaves": [
+                6,
+                13
+              ],
+              "right_node_id": 18,
+              "subtree_peak_support": 85211,
+              "support_size": 85211
+            },
+            "right_leaves": [
+              2,
+              6,
+              9,
+              10,
+              12,
+              13
+            ],
+            "right_node_id": 19,
+            "subtree_peak_support": 99530,
+            "support_size": 99530
+          },
+          "left_leaves": [
+            2,
+            6,
+            9,
+            10,
+            12,
+            13,
+            14
+          ],
+          "left_node_id": 22,
+          "node_id": 25,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 0,
+              "kind": "leaf",
+              "support_size": 98460
+            },
+            "left_leaves": [
+              0
+            ],
+            "left_node_id": 0,
+            "node_id": 23,
+            "right": {
+              "generator_index": 7,
+              "kind": "leaf",
+              "support_size": 120344
+            },
+            "right_leaves": [
+              7
+            ],
+            "right_node_id": 7,
+            "subtree_peak_support": 120344,
+            "support_size": 108676
+          },
+          "right_leaves": [
+            0,
+            7
+          ],
+          "right_node_id": 23,
+          "subtree_peak_support": 126443,
+          "support_size": 126443
+        },
+        "right_leaves": [
+          0,
+          2,
+          6,
+          7,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "right_node_id": 25,
+        "subtree_peak_support": 126443,
+        "support_size": 120709
+      },
+      "left_leaves": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 26,
+      "node_id": 28,
+      "right": {
+        "height": 3,
+        "kind": "merge",
+        "left": {
+          "generator_index": 5,
+          "kind": "leaf",
+          "support_size": 132499
+        },
+        "left_leaves": [
+          5
+        ],
+        "left_node_id": 5,
+        "node_id": 27,
+        "right": {
+          "height": 2,
+          "kind": "merge",
+          "left": {
+            "generator_index": 4,
+            "kind": "leaf",
+            "support_size": 114950
+          },
+          "left_leaves": [
+            4
+          ],
+          "left_node_id": 4,
+          "node_id": 24,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 8,
+              "kind": "leaf",
+              "support_size": 50000
+            },
+            "left_leaves": [
+              8
+            ],
+            "left_node_id": 8,
+            "node_id": 21,
+            "right": {
+              "generator_index": 11,
+              "kind": "leaf",
+              "support_size": 45534
+            },
+            "right_leaves": [
+              11
+            ],
+            "right_node_id": 11,
+            "subtree_peak_support": 92568,
+            "support_size": 92568
+          },
+          "right_leaves": [
+            8,
+            11
+          ],
+          "right_node_id": 21,
+          "subtree_peak_support": 122111,
+          "support_size": 122111
+        },
+        "right_leaves": [
+          4,
+          8,
+          11
+        ],
+        "right_node_id": 24,
+        "subtree_peak_support": 132499,
+        "support_size": 120709
+      },
+      "right_leaves": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "right_node_id": 27,
+      "subtree_peak_support": 132499,
+      "support_size": 1
+    }
+  },
+  "best_sequential": {
+    "order": [
+      0,
+      10,
+      9,
+      7,
+      14,
+      2,
+      12,
+      3,
+      1,
+      13,
+      6,
+      5,
+      4,
+      8,
+      11
+    ],
+    "partial_support_sizes": [
+      98460,
+      106801,
+      110877,
+      119399,
+      126333,
+      130647,
+      127270,
+      134978,
+      132429,
+      137232,
+      120709,
+      122111,
+      92568,
+      45535,
+      1
+    ],
+    "peak_support": 137232,
+    "start": 0,
+    "strategy": "greedy_min_peak_then_support"
+  },
+  "certificate": "scratch/atail-force/bank-clean-lean-certificate/unit_certificate_groebner_jl_15.json",
+  "certificate_sha256": "afb111002531a20ca1301afe6d05d8e0184f08183c4b2a7c0acaa0b69d834935",
+  "elapsed_seconds": 170.02993366698502,
+  "exact_final_identity_replayed": true,
+  "generator_names": [
+    "ROW_A_O_G",
+    "ROW_A_O_K",
+    "ROW_F_A_Z",
+    "ROW_F_A_K",
+    "ROW_G_X_E",
+    "ROW_G_X_K",
+    "ROW_K_O_Y",
+    "ROW_K_O_G",
+    "ROW_O_A_E",
+    "ROW_X_Z_G",
+    "ROW_X_Z_F",
+    "ROW_Y_O_X",
+    "ROW_Y_O_Z",
+    "ROW_Z_A_Y",
+    "ROW_Z_A_G"
+  ],
+  "height_balanced_elapsed_seconds": 22.911181208008202,
+  "height_balanced_merge": {
+    "global_optimality_claimed": false,
+    "height": 4,
+    "merges": [
+      {
+        "height": 1,
+        "left_leaves": [
+          9
+        ],
+        "left_node_id": 9,
+        "node_id": 15,
+        "right_leaves": [
+          10
+        ],
+        "right_node_id": 10,
+        "subtree_peak_support": 26469,
+        "support_size": 26469
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          2
+        ],
+        "left_node_id": 2,
+        "node_id": 16,
+        "right_leaves": [
+          12
+        ],
+        "right_node_id": 12,
+        "subtree_peak_support": 55182,
+        "support_size": 55182
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          6
+        ],
+        "left_node_id": 6,
+        "node_id": 17,
+        "right_leaves": [
+          13
+        ],
+        "right_node_id": 13,
+        "subtree_peak_support": 73308,
+        "support_size": 71939
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          1
+        ],
+        "left_node_id": 1,
+        "node_id": 18,
+        "right_leaves": [
+          3
+        ],
+        "right_node_id": 3,
+        "subtree_peak_support": 90713,
+        "support_size": 90713
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          8
+        ],
+        "left_node_id": 8,
+        "node_id": 19,
+        "right_leaves": [
+          11
+        ],
+        "right_node_id": 11,
+        "subtree_peak_support": 92568,
+        "support_size": 92568
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          0
+        ],
+        "left_node_id": 0,
+        "node_id": 20,
+        "right_leaves": [
+          7
+        ],
+        "right_node_id": 7,
+        "subtree_peak_support": 120344,
+        "support_size": 108676
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          4
+        ],
+        "left_node_id": 4,
+        "node_id": 21,
+        "right_leaves": [
+          5
+        ],
+        "right_node_id": 5,
+        "subtree_peak_support": 147833,
+        "support_size": 147833
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          14
+        ],
+        "left_node_id": 14,
+        "node_id": 22,
+        "right_leaves": [
+          9,
+          10
+        ],
+        "right_node_id": 15,
+        "subtree_peak_support": 88206,
+        "support_size": 88206
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          2,
+          12
+        ],
+        "left_node_id": 16,
+        "node_id": 23,
+        "right_leaves": [
+          6,
+          13
+        ],
+        "right_node_id": 17,
+        "subtree_peak_support": 82215,
+        "support_size": 82215
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          1,
+          3
+        ],
+        "left_node_id": 18,
+        "node_id": 24,
+        "right_leaves": [
+          0,
+          7
+        ],
+        "right_node_id": 20,
+        "subtree_peak_support": 133356,
+        "support_size": 133356
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          8,
+          11
+        ],
+        "left_node_id": 19,
+        "node_id": 25,
+        "right_leaves": [
+          4,
+          5
+        ],
+        "right_node_id": 21,
+        "subtree_peak_support": 147833,
+        "support_size": 120709
+      },
+      {
+        "height": 3,
+        "left_leaves": [
+          9,
+          10,
+          14
+        ],
+        "left_node_id": 22,
+        "node_id": 26,
+        "right_leaves": [
+          2,
+          6,
+          12,
+          13
+        ],
+        "right_node_id": 23,
+        "subtree_peak_support": 99530,
+        "support_size": 99530
+      },
+      {
+        "height": 3,
+        "left_leaves": [
+          0,
+          1,
+          3,
+          7
+        ],
+        "left_node_id": 24,
+        "node_id": 27,
+        "right_leaves": [
+          4,
+          5,
+          8,
+          11
+        ],
+        "right_node_id": 25,
+        "subtree_peak_support": 147833,
+        "support_size": 99530
+      },
+      {
+        "height": 4,
+        "left_leaves": [
+          2,
+          6,
+          9,
+          10,
+          12,
+          13,
+          14
+        ],
+        "left_node_id": 26,
+        "node_id": 28,
+        "right_leaves": [
+          0,
+          1,
+          3,
+          4,
+          5,
+          7,
+          8,
+          11
+        ],
+        "right_node_id": 27,
+        "subtree_peak_support": 147833,
+        "support_size": 1
+      }
+    ],
+    "peak_support_including_leaves": 147833,
+    "strategy": "minimum-height-layer-first_then_min_subtree_peak_support",
+    "tree": {
+      "height": 4,
+      "kind": "merge",
+      "left": {
+        "height": 3,
+        "kind": "merge",
+        "left": {
+          "height": 2,
+          "kind": "merge",
+          "left": {
+            "generator_index": 14,
+            "kind": "leaf",
+            "support_size": 85664
+          },
+          "left_leaves": [
+            14
+          ],
+          "left_node_id": 14,
+          "node_id": 22,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 9,
+              "kind": "leaf",
+              "support_size": 23133
+            },
+            "left_leaves": [
+              9
+            ],
+            "left_node_id": 9,
+            "node_id": 15,
+            "right": {
+              "generator_index": 10,
+              "kind": "leaf",
+              "support_size": 11095
+            },
+            "right_leaves": [
+              10
+            ],
+            "right_node_id": 10,
+            "subtree_peak_support": 26469,
+            "support_size": 26469
+          },
+          "right_leaves": [
+            9,
+            10
+          ],
+          "right_node_id": 15,
+          "subtree_peak_support": 88206,
+          "support_size": 88206
+        },
+        "left_leaves": [
+          9,
+          10,
+          14
+        ],
+        "left_node_id": 22,
+        "node_id": 26,
+        "right": {
+          "height": 2,
+          "kind": "merge",
+          "left": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 2,
+              "kind": "leaf",
+              "support_size": 49901
+            },
+            "left_leaves": [
+              2
+            ],
+            "left_node_id": 2,
+            "node_id": 16,
+            "right": {
+              "generator_index": 12,
+              "kind": "leaf",
+              "support_size": 40044
+            },
+            "right_leaves": [
+              12
+            ],
+            "right_node_id": 12,
+            "subtree_peak_support": 55182,
+            "support_size": 55182
+          },
+          "left_leaves": [
+            2,
+            12
+          ],
+          "left_node_id": 16,
+          "node_id": 23,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 6,
+              "kind": "leaf",
+              "support_size": 54434
+            },
+            "left_leaves": [
+              6
+            ],
+            "left_node_id": 6,
+            "node_id": 17,
+            "right": {
+              "generator_index": 13,
+              "kind": "leaf",
+              "support_size": 73308
+            },
+            "right_leaves": [
+              13
+            ],
+            "right_node_id": 13,
+            "subtree_peak_support": 73308,
+            "support_size": 71939
+          },
+          "right_leaves": [
+            6,
+            13
+          ],
+          "right_node_id": 17,
+          "subtree_peak_support": 82215,
+          "support_size": 82215
+        },
+        "right_leaves": [
+          2,
+          6,
+          12,
+          13
+        ],
+        "right_node_id": 23,
+        "subtree_peak_support": 99530,
+        "support_size": 99530
+      },
+      "left_leaves": [
+        2,
+        6,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 26,
+      "node_id": 28,
+      "right": {
+        "height": 3,
+        "kind": "merge",
+        "left": {
+          "height": 2,
+          "kind": "merge",
+          "left": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 1,
+              "kind": "leaf",
+              "support_size": 71144
+            },
+            "left_leaves": [
+              1
+            ],
+            "left_node_id": 1,
+            "node_id": 18,
+            "right": {
+              "generator_index": 3,
+              "kind": "leaf",
+              "support_size": 76626
+            },
+            "right_leaves": [
+              3
+            ],
+            "right_node_id": 3,
+            "subtree_peak_support": 90713,
+            "support_size": 90713
+          },
+          "left_leaves": [
+            1,
+            3
+          ],
+          "left_node_id": 18,
+          "node_id": 24,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 0,
+              "kind": "leaf",
+              "support_size": 98460
+            },
+            "left_leaves": [
+              0
+            ],
+            "left_node_id": 0,
+            "node_id": 20,
+            "right": {
+              "generator_index": 7,
+              "kind": "leaf",
+              "support_size": 120344
+            },
+            "right_leaves": [
+              7
+            ],
+            "right_node_id": 7,
+            "subtree_peak_support": 120344,
+            "support_size": 108676
+          },
+          "right_leaves": [
+            0,
+            7
+          ],
+          "right_node_id": 20,
+          "subtree_peak_support": 133356,
+          "support_size": 133356
+        },
+        "left_leaves": [
+          0,
+          1,
+          3,
+          7
+        ],
+        "left_node_id": 24,
+        "node_id": 27,
+        "right": {
+          "height": 2,
+          "kind": "merge",
+          "left": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 8,
+              "kind": "leaf",
+              "support_size": 50000
+            },
+            "left_leaves": [
+              8
+            ],
+            "left_node_id": 8,
+            "node_id": 19,
+            "right": {
+              "generator_index": 11,
+              "kind": "leaf",
+              "support_size": 45534
+            },
+            "right_leaves": [
+              11
+            ],
+            "right_node_id": 11,
+            "subtree_peak_support": 92568,
+            "support_size": 92568
+          },
+          "left_leaves": [
+            8,
+            11
+          ],
+          "left_node_id": 19,
+          "node_id": 25,
+          "right": {
+            "height": 1,
+            "kind": "merge",
+            "left": {
+              "generator_index": 4,
+              "kind": "leaf",
+              "support_size": 114950
+            },
+            "left_leaves": [
+              4
+            ],
+            "left_node_id": 4,
+            "node_id": 21,
+            "right": {
+              "generator_index": 5,
+              "kind": "leaf",
+              "support_size": 132499
+            },
+            "right_leaves": [
+              5
+            ],
+            "right_node_id": 5,
+            "subtree_peak_support": 147833,
+            "support_size": 147833
+          },
+          "right_leaves": [
+            4,
+            5
+          ],
+          "right_node_id": 21,
+          "subtree_peak_support": 147833,
+          "support_size": 120709
+        },
+        "right_leaves": [
+          4,
+          5,
+          8,
+          11
+        ],
+        "right_node_id": 25,
+        "subtree_peak_support": 147833,
+        "support_size": 99530
+      },
+      "right_leaves": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        7,
+        8,
+        11
+      ],
+      "right_node_id": 27,
+      "subtree_peak_support": 147833,
+      "support_size": 1
+    }
+  },
+  "method": {
+    "global_optimality_claimed": false,
+    "parser": "streamed flat terms into sparse Fraction dictionaries; no SymPy",
+    "sequential_search": "greedy exact-support extension from all 15 starts",
+    "tree_search": "greedy exact-support pair merging with balance tiebreaks"
+  },
+  "product_expansion_seconds": [
+    0.3968052499985788,
+    0.2876962499867659,
+    0.19915533298626542,
+    0.3411239580018446,
+    0.35134833300253376,
+    0.4799612920032814,
+    0.20644508299301378,
+    0.46587195800384507,
+    0.16183233298943378,
+    0.15771479200338945,
+    0.029440457990858704,
+    0.14506362500833347,
+    0.1551270000054501,
+    0.2850179590168409,
+    0.46544487500796095
+  ],
+  "product_support_sizes": [
+    98460,
+    71144,
+    49901,
+    76626,
+    114950,
+    132499,
+    54434,
+    120344,
+    50000,
+    23133,
+    11095,
+    45534,
+    40044,
+    73308,
+    85664
+  ],
+  "schema": "p97-bank-clean-15-certificate-merge-analysis-v1",
+  "variables": [
+    "Ex",
+    "Ey",
+    "Fx",
+    "Fy",
+    "Gx",
+    "Gy",
+    "Kx",
+    "Ky",
+    "Xx",
+    "Xy",
+    "Yx",
+    "Yy",
+    "Zx",
+    "Zy"
+  ]
+}

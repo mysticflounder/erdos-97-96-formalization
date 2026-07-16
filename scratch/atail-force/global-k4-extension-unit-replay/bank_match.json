@@ -1,0 +1,317 @@
+{
+  "bank_matches": [
+    {
+      "core": {
+        "Q": 12,
+        "U": 0,
+        "V": 7,
+        "Y": 8
+      },
+      "cyclic_orientation": "reverse",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+      "orientation": "reverse",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+    },
+    {
+      "core": {
+        "Q": 12,
+        "U": 7,
+        "V": 0,
+        "Y": 8
+      },
+      "cyclic_orientation": "forward",
+      "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+      "orientation": "forward",
+      "source": "common-system-bank",
+      "stage": "equality-convex-four-point-two-circle-bisector-order"
+    }
+  ],
+  "boundary_order": [
+    0,
+    11,
+    12,
+    13,
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    2,
+    9,
+    10
+  ],
+  "boundary_order_names": [
+    "O",
+    "t1",
+    "I",
+    "F",
+    "A",
+    "X",
+    "Y",
+    "Z",
+    "D",
+    "J",
+    "E",
+    "C",
+    "G",
+    "K"
+  ],
+  "epistemic_status": {
+    "consumer": "ALREADY_KERNEL_CHECKED_IN_PRODUCTION_BANK",
+    "incidence_match": "EXACT_REPLAY_OF_PINNED_CHECKPOINT",
+    "live_producer_selecting_this_pattern": "OPEN",
+    "nullstellensatz_replay": "REDUNDANT_FOR_CLOSURE"
+  },
+  "preferred_existing_bridge": {
+    "cyclic_subsequence": [
+      12,
+      0,
+      8,
+      7
+    ],
+    "cyclic_subsequence_names": [
+      "I",
+      "O",
+      "E",
+      "J"
+    ],
+    "cyclic_subsequence_positions_in_rotated_reverse_order": [
+      0,
+      2,
+      6,
+      7
+    ],
+    "equality_closure_paths": [
+      {
+        "source": "I-centered row contains O and E",
+        "target": "dist(I,O) = dist(I,E)"
+      },
+      {
+        "source": "O-centered row gives OJ=OE; E-centered row gives EO=EJ; transitivity and distance symmetry finish",
+        "target": "dist(O,J) = dist(E,J)"
+      }
+    ],
+    "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderBridge.false_of_three_rows_and_cyclic_subsequence",
+    "orientation": "reverse",
+    "required_memberships": [
+      {
+        "bridge_field": "u_mem_q",
+        "member": 0,
+        "member_name": "O",
+        "row_center": 12,
+        "row_center_name": "I"
+      },
+      {
+        "bridge_field": "y_mem_q",
+        "member": 8,
+        "member_name": "E",
+        "row_center": 12,
+        "row_center_name": "I"
+      },
+      {
+        "bridge_field": "y_mem_u",
+        "member": 8,
+        "member_name": "E",
+        "row_center": 0,
+        "row_center_name": "O"
+      },
+      {
+        "bridge_field": "v_mem_u",
+        "member": 7,
+        "member_name": "J",
+        "row_center": 0,
+        "row_center_name": "O"
+      },
+      {
+        "bridge_field": "u_mem_y",
+        "member": 0,
+        "member_name": "O",
+        "row_center": 8,
+        "row_center_name": "E"
+      },
+      {
+        "bridge_field": "v_mem_y",
+        "member": 7,
+        "member_name": "J",
+        "row_center": 8,
+        "row_center_name": "E"
+      }
+    ],
+    "retained_rows_unused_by_this_consumer": [
+      6,
+      13
+    ],
+    "retained_rows_used": [
+      12,
+      0,
+      8
+    ],
+    "roles": {
+      "Q": {
+        "label": 12,
+        "name": "I"
+      },
+      "U": {
+        "label": 0,
+        "name": "O"
+      },
+      "V": {
+        "label": 7,
+        "name": "J"
+      },
+      "Y": {
+        "label": 8,
+        "name": "E"
+      }
+    }
+  },
+  "retained_rows": [
+    {
+      "center": 0,
+      "center_name": "O",
+      "support": [
+        1,
+        2,
+        6,
+        7,
+        8
+      ],
+      "support_names": [
+        "A",
+        "C",
+        "D",
+        "J",
+        "E"
+      ]
+    },
+    {
+      "center": 6,
+      "center_name": "D",
+      "support": [
+        1,
+        8,
+        12,
+        13
+      ],
+      "support_names": [
+        "A",
+        "E",
+        "I",
+        "F"
+      ]
+    },
+    {
+      "center": 8,
+      "center_name": "E",
+      "support": [
+        0,
+        4,
+        7,
+        13
+      ],
+      "support_names": [
+        "O",
+        "Y",
+        "J",
+        "F"
+      ]
+    },
+    {
+      "center": 12,
+      "center_name": "I",
+      "support": [
+        0,
+        3,
+        7,
+        8
+      ],
+      "support_names": [
+        "O",
+        "X",
+        "J",
+        "E"
+      ]
+    },
+    {
+      "center": 13,
+      "center_name": "F",
+      "support": [
+        1,
+        3,
+        9,
+        12
+      ],
+      "support_names": [
+        "A",
+        "X",
+        "G",
+        "I"
+      ]
+    }
+  ],
+  "schema": "p97-atail-global-k4-five-row-bank-match-v1",
+  "source": {
+    "center_names": [
+      "O",
+      "D",
+      "E",
+      "I",
+      "F"
+    ],
+    "oracle_source": "scratch/atail-force/second_center_metric_oracle/oracle.py",
+    "oracle_source_sha256": "b708722ce49f9d0f165facf20a911161815ce8018c5fc3760bf872dad6977a09",
+    "rows": [
+      {
+        "center": 0,
+        "support": [
+          1,
+          2,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "center": 6,
+        "support": [
+          1,
+          8,
+          12,
+          13
+        ]
+      },
+      {
+        "center": 8,
+        "support": [
+          0,
+          4,
+          7,
+          13
+        ]
+      },
+      {
+        "center": 12,
+        "support": [
+          0,
+          3,
+          7,
+          8
+        ]
+      },
+      {
+        "center": 13,
+        "support": [
+          1,
+          3,
+          9,
+          12
+        ]
+      }
+    ],
+    "source_checkpoint": "scratch/atail-force/global-k4-extension/checkpoint.json",
+    "source_checkpoint_sha256": "d367dac91f6517e3576e730ca2702500a34ef163385af1f44fc34b2ff6c80e13"
+  }
+}

@@ -1,0 +1,1028 @@
+{
+  "bank_scan_inputs": {
+    "census/atail_force/producer_bank.py": "b6cf53f6950231e39d9f2fa8ea855587d17445b6630a7ed8d825b4caaf70f2a0",
+    "census/global_confinement/metric_realizability_probe.py": "f7a92776f9cee02eda2265467d77a0bbd5254d1dd335bc7a70713203239d3373",
+    "scratch/atail-force/common_system_metric_probe.py": "18b1a91a3326b975c8baa16f82e7c692fafd5b979450bb305d4c31895cde1334"
+  },
+  "cases": [
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "b8f64d304e4c3c4e9d67400288c08d7f1f8abc2108ad26d305f6ba5b4ddedba2",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:0,1,9,10",
+        "3:1,4,7,11",
+        "4:2,3,8,10",
+        "5:0,4,8,11",
+        "6:4,5,7,10",
+        "7:2,5,9,11",
+        "8:0,3,5,7",
+        "9:3,6,8,11",
+        "10:1,7,8,9",
+        "11:1,5,6,10"
+      ],
+      "metric_rows_sha256": "8789b9f06dcca405da0a87b6952e7f371bc119fc5f9408f0b8f3cc681b17555c",
+      "shard_index": 0,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "4b70ad50fc04a7c9c9f6a84b488098e1e7620aa436bd1e4266a8b5666fff1d1c"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "bf59160a304d8e07cf2aefe4c609ae52a180bf005d859db7aa74110fb1038e3f",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:3,6,8,9",
+        "2:0,1,9,10",
+        "3:1,5,7,11",
+        "4:2,3,6,10",
+        "5:2,4,7,9",
+        "6:5,7,8,10",
+        "7:0,4,8,11",
+        "8:2,5,9,11",
+        "9:4,6,7,10",
+        "10:0,3,7,11",
+        "11:0,1,5,6"
+      ],
+      "metric_rows_sha256": "64f409504277791b97b14cc162323313b9dd1fb65e6a5837a3cd92fb5b5e5899",
+      "shard_index": 1,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "58fa82b20db64d4f19cfcfd5d13f6be53762d699fa2938b3d3a38b79c21a4256"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "bc877f27d26d6d297c738066dc11ca6734d6e701b50e2b40e04865d4f82b2f44",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:3,6,8,10",
+        "2:0,1,9,10",
+        "3:2,7,10,11",
+        "4:3,6,9,11",
+        "5:2,4,8,9",
+        "6:2,5,7,9",
+        "7:0,3,5,8",
+        "8:0,4,6,11",
+        "9:0,3,7,10",
+        "10:4,5,7,8",
+        "11:0,1,5,6"
+      ],
+      "metric_rows_sha256": "e63b083d93706887c4ebdaaadeb35aef075446ed8de74527cefd7cc3940f76cc",
+      "shard_index": 2,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "41eb70d7cef090a4ccf2af94dd12809ef42cbbf12d8bdb8f92008b6d5a074323"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "805917e1a30968439d8b765c6bd41b4e3d08bb35ef8f25b577f26bdf82b42ced",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:3,6,8,11",
+        "2:0,1,9,10",
+        "3:2,5,10,11",
+        "4:3,6,7,10",
+        "5:1,2,7,8",
+        "6:0,4,7,11",
+        "7:0,3,5,8",
+        "8:4,5,7,9",
+        "9:0,5,6,10",
+        "10:3,7,9,11",
+        "11:1,5,8,9"
+      ],
+      "metric_rows_sha256": "7019a1ea478c0829f9096e33a428900dd8f5a145805c4ac0c2cdec2ff0ec5d9c",
+      "shard_index": 3,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "503446798be7183d34c5cca8f53d9403ceaea71cb562eba04c338faa36e51bc0"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 3,
+      "formalized_bank_matches": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "49cb8f797a046b5208c016c558dd03039ec3c1d0bd432484d0d568adabb64278",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,6,9,10",
+        "3:1,4,7,9",
+        "4:1,2,8,10",
+        "5:2,4,9,11",
+        "6:4,5,7,8",
+        "7:0,2,10,11",
+        "8:0,5,7,9",
+        "9:4,6,8,10",
+        "10:1,5,6,11",
+        "11:0,3,5,8"
+      ],
+      "metric_rows_sha256": "41cdb327c5b5c47fc4c69b6c08fc5d0cc9fec73aae772bcc7e02e3af63d8cb0b",
+      "shard_index": 10,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "d7b7759ac8a474620630f4a3aadf7763d655bc9814e5b81994e8e543c9cde837"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 3,
+      "formalized_bank_matches": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "84a7bbbaa0e02ee07f1a6e9dbc5b3bdb4885acc50bd54ade23b5bfc8242433b6",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,6,10,11",
+        "3:1,4,7,10",
+        "4:1,2,9,11",
+        "5:2,4,8,10",
+        "6:3,7,8,9",
+        "7:2,5,9,10",
+        "8:0,5,7,11",
+        "9:0,3,5,8",
+        "10:4,6,8,11",
+        "11:1,5,6,9"
+      ],
+      "metric_rows_sha256": "791ad870f726404637fe3b81b524f9199beed35b55f17f4401719da550d03aa0",
+      "shard_index": 12,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "e747fe06e40e2d30f8cf661993f94a20066b9bf9af49d937adc2e052a17a5a0c"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 1,
+      "formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 3,
+            "W": 9
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order-reverse"
+        }
+      ],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "ba91718a386400e0f35f5c044b325ae2d7193849e5ef318ab6b341e1aa3338c1",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,7,9,10",
+        "3:4,6,8,10",
+        "4:1,2,8,9",
+        "5:2,4,10,11",
+        "6:2,5,9,11",
+        "7:0,3,6,11",
+        "8:0,4,5,7",
+        "9:1,7,8,11",
+        "10:1,5,6,9",
+        "11:0,3,5,8"
+      ],
+      "metric_rows_sha256": "795a5412a2c01013cba64ad9dff92065d79e2e082d35662841825caf617df3a8",
+      "shard_index": 13,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "a2066ae3539eafa19c16445beb351e44018a0585486761bcf7c1c0c015f3a52b"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 2,
+      "formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 4,
+            "W": 11
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order-reverse"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "bce5d3271dba6d8a375462607404a9a8ac333719714e5bb480e4e5499bc975dd",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,7,10,11",
+        "3:1,4,7,8",
+        "4:1,5,6,11",
+        "5:2,4,8,11",
+        "6:0,5,9,11",
+        "7:0,4,6,10",
+        "8:1,7,9,10",
+        "9:0,1,5,8",
+        "10:3,5,7,9",
+        "11:3,6,8,10"
+      ],
+      "metric_rows_sha256": "ba22247d29e6f88f6c608765512c7e49e9bdd90c5982773f090eb40d2ac7a27a",
+      "shard_index": 15,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "4db20b6b171a924819c97e997246d0466e61ceb60a042e80bd2525ce0703acee"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "16e19420a4e9562656cea5b87d92ee3f3cf91310c3b8a8811e464f96ca5d35b2",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:0,2,6,7",
+        "2:3,8,9,10",
+        "3:4,6,9,11",
+        "4:1,5,7,9",
+        "5:1,2,8,11",
+        "6:2,5,7,10",
+        "7:0,4,5,9",
+        "8:0,3,6,11",
+        "9:4,7,8,10",
+        "10:1,5,6,8",
+        "11:0,3,5,10"
+      ],
+      "metric_rows_sha256": "ff4689827cad3fdf6200fef36b88b47e7c7640d26d15dbccc380f809443658b3",
+      "shard_index": 16,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "a09a165a62e22675443309e2ff272ff61d0bd243df2d7a094472893abde0afdf"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7,
+        8
+      ],
+      "formalized_bank_match_count": 0,
+      "formalized_bank_matches": [],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "81a45475ca97b02e2ceea51e71129fc2e91bb84f2bafe0ffdaf362b2ccf8fbbc",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:3,6,7,8",
+        "2:0,1,9,10",
+        "3:4,6,9,11",
+        "4:1,5,7,11",
+        "5:2,3,7,9",
+        "6:2,5,8,9",
+        "7:2,6,10,11",
+        "8:0,3,5,11",
+        "9:4,5,8,10",
+        "10:0,4,7,11",
+        "11:0,1,5,6"
+      ],
+      "metric_rows_sha256": "9d234018985ceee4740201e250de4fe428b75700433339f16a63afc78d938768",
+      "shard_index": 20,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        },
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        },
+        {
+          "first_strict_pair": [
+            7,
+            8
+          ],
+          "target_edges": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              8
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "d98ae3ad302fdf7c064d2205cc34f42e858d5a3b9bf7b04f22186cb456765723"
+    },
+    {
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "formalized_bank_match_count": 1,
+      "formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 1,
+            "D": 9,
+            "E": 10,
+            "O": 2,
+            "U": 4,
+            "W": 6
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ],
+      "full_equality_ideal": {
+        "polynomial_count": 36,
+        "polynomial_sha256": "522ae6a777a973fe6e4b5da14e76511410889868c33ae2db90aa02d95d4373df",
+        "status": "CROSSCHECKED_UNIT",
+        "verdicts_singular_msolve_forward_reverse": [
+          "UNIT",
+          "UNIT",
+          "UNIT"
+        ]
+      },
+      "metric_rows": [
+        "0:1,2,3,4",
+        "1:3,6,7,9",
+        "2:0,1,9,10",
+        "3:4,5,9,11",
+        "4:1,2,6,11",
+        "5:2,4,8,9",
+        "6:1,5,7,8",
+        "7:2,8,10,11",
+        "8:0,3,5,11",
+        "9:0,4,7,10",
+        "10:0,5,6,8",
+        "11:2,5,7,10"
+      ],
+      "metric_rows_sha256": "a7e7991427fa55f248892dab1f20fb547711f5746efe981629d9c2b689784b24",
+      "shard_index": 21,
+      "target_closure_records": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "target_edges": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              7
+            ]
+          ],
+          "target_in_transitive_row_equality_closure": false
+        }
+      ],
+      "target_equality_closure_hit_count": 0,
+      "witness_sha256": "035797b3913d07a85281ce20c69acb76287092dc3458e3d9e2a0aa1cbc3e6bed"
+    }
+  ],
+  "configuration": {
+    "exact_engines": [
+      "Singular_over_QQ",
+      "msolve_forward",
+      "msolve_reverse"
+    ],
+    "per_solver_timeout_seconds": 6.0,
+    "workers": 4
+  },
+  "schema": "p97-atail-second-apex-joint-fiber-audit-v1",
+  "scope": {
+    "exact_cas_output_not_independently_certificate_replayed": true,
+    "fixed_label_card_12_single_placement_partition_only": true,
+    "node_capped_shards_remain_indeterminate": true,
+    "not_a_lean_producer": true,
+    "not_uniform_in_carrier_cardinality": true,
+    "source_checkpoint_not_current_complete_bank_synchronized": true,
+    "unit_ideal_excludes_normalized_complex_and_real_coordinates": true,
+    "unknown_is_fail_closed": true
+  },
+  "source": {
+    "bank_sync_qualification": "cap-bound plus the refresh driver's older matcher subset; not synchronized against the current complete producer bank",
+    "path": "scratch/atail-force/biapex-continuation-shadow-audit/selected_row_own_cap_bound_refresh_1m_retry_checkpoint.json",
+    "sat_survivor_count": 11,
+    "sha256": "ad2400da59782d38d0952a9c31ae448bd30f86a110239bcca4687b538bc09fe9",
+    "status_counts": {
+      "INDETERMINATE": 12,
+      "SAT": 11
+    }
+  },
+  "status": "CROSSCHECKED_FIXED_SHADOW_ALGEBRAIC_OBSTRUCTION",
+  "summary": {
+    "current_bank_clean_full_ideal_crosschecked_unit_count": 6,
+    "current_bank_clean_shard_ids": [
+      0,
+      1,
+      2,
+      3,
+      16,
+      20
+    ],
+    "current_bank_clean_survivor_count": 6,
+    "current_bank_dirty_shard_ids": [
+      10,
+      12,
+      13,
+      15,
+      21
+    ],
+    "current_bank_dirty_survivor_count": 5,
+    "current_bank_match_stage_multiplicities": {
+      "equality-convex-seven-point-split-bridge-order": 4,
+      "equality-convex-seven-point-split-bridge-order-reverse": 1,
+      "equality-convex-seven-point-split-bridge-tail-order": 2,
+      "equality-convex-seven-point-split-bridge-tail-order-reverse": 1,
+      "equality-convex-six-point-circle-chain-wrap-order": 2
+    },
+    "formalized_bank_match_count": 10,
+    "full_equality_ideal_crosschecked_unit_count": 11,
+    "target_equality_transitive_closure_hit_count": 0,
+    "target_pair_record_count": 13
+  }
+}

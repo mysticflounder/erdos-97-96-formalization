@@ -1,0 +1,2855 @@
+{
+  "classes": [],
+  "confirmed_UNIT_frontier_classes": [
+    {
+      "class_index": 0,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 1
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 7,
+      "shard_indices": [
+        1
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 1,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 0
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "row_count": 7,
+      "shard_indices": [
+        0
+      ],
+      "used_point_count": 11
+    },
+    {
+      "class_index": 2,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 2
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 8,
+      "shard_indices": [
+        2
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 3,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 20
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 8,
+      "shard_indices": [
+        20
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 4,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 16
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            3,
+            5,
+            10
+          ]
+        }
+      ],
+      "row_count": 9,
+      "shard_indices": [
+        16
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 5,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 3
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "row_count": 9,
+      "shard_indices": [
+        3
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 6,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 1
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 10,
+      "shard_indices": [
+        1
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 7,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 0
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            4,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "row_count": 10,
+      "shard_indices": [
+        0
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 8,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 2
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            2,
+            7,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 11,
+      "shard_indices": [
+        2
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 9,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 3
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            2,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "row_count": 11,
+      "shard_indices": [
+        3
+      ],
+      "used_point_count": 12
+    }
+  ],
+  "confirmed_UNIT_frontiers": [
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            1,
+            2,
+            7,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            8,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 7,
+      "row_keys": [
+        "c1:[0,2,6,7]",
+        "c2:[0,1,9,10]",
+        "c7:[2,5,9,11]",
+        "c8:[0,3,5,7]",
+        "c9:[3,6,8,11]",
+        "c10:[1,7,8,9]",
+        "c11:[1,5,6,10]"
+      ],
+      "rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "shard_index": 0
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            4,
+            5,
+            8,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 10,
+      "row_keys": [
+        "c1:[0,2,6,7]",
+        "c2:[0,1,9,10]",
+        "c4:[2,3,8,10]",
+        "c5:[0,4,8,11]",
+        "c6:[4,5,7,10]",
+        "c7:[2,5,9,11]",
+        "c8:[0,3,5,7]",
+        "c9:[3,6,8,11]",
+        "c10:[1,7,8,9]",
+        "c11:[1,5,6,10]"
+      ],
+      "rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            4,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "shard_index": 0
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 7,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c7:[0,4,8,11]",
+        "c8:[2,5,9,11]",
+        "c9:[4,6,7,10]",
+        "c10:[0,3,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 1
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            4,
+            5,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 10,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c4:[2,3,6,10]",
+        "c5:[2,4,7,9]",
+        "c6:[5,7,8,10]",
+        "c7:[0,4,8,11]",
+        "c8:[2,5,9,11]",
+        "c9:[4,6,7,10]",
+        "c10:[0,3,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 1
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 8,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,7,9]",
+        "c7:[0,3,5,8]",
+        "c8:[0,4,6,11]",
+        "c9:[0,3,7,10]",
+        "c10:[4,5,7,8]",
+        "c11:[0,1,5,6]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            3,
+            4,
+            5,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 11,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c3:[2,7,10,11]",
+        "c4:[3,6,9,11]",
+        "c5:[2,4,8,9]",
+        "c6:[2,5,7,9]",
+        "c7:[0,3,5,8]",
+        "c8:[0,4,6,11]",
+        "c9:[0,3,7,10]",
+        "c10:[4,5,7,8]",
+        "c11:[0,1,5,6]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            2,
+            7,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            5,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 9,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c5:[1,2,7,8]",
+        "c6:[0,4,7,11]",
+        "c7:[0,3,5,8]",
+        "c8:[4,5,7,9]",
+        "c9:[0,5,6,10]",
+        "c10:[3,7,9,11]",
+        "c11:[1,5,8,9]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            3,
+            4,
+            5,
+            7,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 11,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c3:[2,5,10,11]",
+        "c4:[3,6,7,10]",
+        "c5:[1,2,7,8]",
+        "c6:[0,4,7,11]",
+        "c7:[0,3,5,8]",
+        "c8:[4,5,7,9]",
+        "c9:[0,5,6,10]",
+        "c10:[3,7,9,11]",
+        "c11:[1,5,8,9]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            2,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order",
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            1,
+            6,
+            7,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            5,
+            8,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 9,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c1:[0,2,6,7]",
+        "c5:[1,2,8,11]",
+        "c6:[2,5,7,10]",
+        "c7:[0,4,5,9]",
+        "c8:[0,3,6,11]",
+        "c9:[4,7,8,10]",
+        "c10:[1,5,6,8]",
+        "c11:[0,3,5,10]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            3,
+            5,
+            10
+          ]
+        }
+      ],
+      "shard_index": 16
+    },
+    {
+      "crosscheck_status": "CROSSCHECKED_UNIT",
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "discovered_by": [
+        "forward-deletion-order",
+        "reverse-deletion-order"
+      ],
+      "grid_center_coverage": [
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 0,
+          "named_center_rows_used": [
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            8,
+            11
+          ]
+        },
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 1,
+          "named_center_rows_used": [
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            7,
+            11
+          ]
+        },
+        {
+          "core_centers_inside_named_six": false,
+          "frontier_centers_inside_named_six": false,
+          "grid_index": 2,
+          "named_center_rows_used": [
+            2,
+            7,
+            8,
+            9,
+            10
+          ],
+          "unnamed_center_rows_used": [
+            0,
+            6,
+            11
+          ]
+        }
+      ],
+      "minimality_status": "NOT_ESTABLISHED",
+      "row_count": 8,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,8,9]",
+        "c7:[2,6,10,11]",
+        "c8:[0,3,5,11]",
+        "c9:[4,5,8,10]",
+        "c10:[0,4,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 20
+    }
+  ],
+  "schema": "p97-atail-fresh-continuation-marco-analysis-v1",
+  "scope": {
+    "core_atoms_are_complete_selected_rows": true,
+    "fixed_shadow_only": true,
+    "isomorphism_is_exact_point_relabeling_of_center_support_rows": true,
+    "recurrence_is_not_a_uniform_producer_theorem": true
+  },
+  "smallest_confirmed_UNIT_frontier_classes": [
+    {
+      "class_index": 0,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 1
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 7,
+      "shard_indices": [
+        1
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 1,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 0
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "row_count": 7,
+      "shard_indices": [
+        0
+      ],
+      "used_point_count": 11
+    },
+    {
+      "class_index": 2,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 2
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 8,
+      "shard_indices": [
+        2
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 3,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 20
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            2,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "row_count": 8,
+      "shard_indices": [
+        20
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 4,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 16
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            3,
+            5,
+            10
+          ]
+        }
+      ],
+      "row_count": 9,
+      "shard_indices": [
+        16
+      ],
+      "used_point_count": 12
+    },
+    {
+      "class_index": 5,
+      "distinct_shard_count": 1,
+      "instance_count": 1,
+      "instances": [
+        {
+          "shard_index": 3
+        }
+      ],
+      "representative_rows": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "row_count": 9,
+      "shard_indices": [
+        3
+      ],
+      "used_point_count": 12
+    }
+  ],
+  "source": {
+    "checkpoint": "scratch/atail-force/fresh-continuation-marco/checkpoint.json",
+    "checkpoint_sha256": "f3234fb83d4097393b96bcfd091d59f2431e089d2d933fd9a188847bb2a5ba70",
+    "driver_sha256": "526b46513a4f6d17f583866b4d45935fa1917b7feb09f25ea3c688c5e6c391a2",
+    "frontier_bank": "scratch/atail-force/fresh-continuation-marco/frontier_checkpoint.json",
+    "frontier_bank_sha256": "60cdb851ae94d0afef0188cc4a2ee7ac0cfc9a67dc998a87082e1ab96cf3bc68",
+    "source_refresh_sha256": "ad2400da59782d38d0952a9c31ae448bd30f86a110239bcca4687b538bc09fe9"
+  },
+  "summary": {
+    "all_returned_cores_crosschecked_deletion_minimal": null,
+    "all_returned_cores_msolve_pair_proposal_deletion_minimal": null,
+    "confirmed_UNIT_frontier_count": 10,
+    "confirmed_UNIT_frontier_current_bank_match_count": 0,
+    "confirmed_UNIT_frontier_normalized_shape_count": 10,
+    "confirmed_UNIT_frontier_row_count_by_shard": {
+      "0": 7,
+      "1": 7,
+      "16": 9,
+      "2": 8,
+      "20": 8,
+      "3": 9
+    },
+    "confirmed_UNIT_frontier_shapes_repeated_across_survivors": 0,
+    "confirmed_UNIT_frontiers_inside_some_named_six_count": 0,
+    "core_instance_count": 0,
+    "crosschecked_deletion_minimal_core_count": 0,
+    "current_formalized_bank_match_count": 0,
+    "immediate_k_a_consumer_count": 0,
+    "normalized_shape_count": 0,
+    "repeated_shape_indices": [],
+    "row_count_histogram": {},
+    "shapes_repeated_across_survivors": 0,
+    "smallest_confirmed_UNIT_frontier_count": 6,
+    "smallest_confirmed_UNIT_frontier_normalized_shape_count": 6,
+    "smallest_confirmed_UNIT_frontier_shapes_repeated_across_survivors": 0
+  },
+  "support_file_sha256": {
+    "scratch/atail-force/second_center_query/cluster_formalized_core_shards.py": "250119fa5de0e7c3c9ca420aa3402fc25e5770ba55fa9a6268d6269a70f58af2"
+  }
+}

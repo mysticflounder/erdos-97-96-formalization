@@ -1,0 +1,351 @@
+{
+  "results": {
+    "ROW_A_O_G": {
+      "basis_sizes": [
+        963
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 1.0390276670223102,
+      "status": "EXITED",
+      "trace_sha256": "ed3f7646c5f1f84e518633a6937c2e462773b222f01ec2d2173a85bb03bb6b43"
+    },
+    "ROW_A_O_K": {
+      "basis_sizes": [
+        555
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.805701000004774,
+      "status": "EXITED",
+      "trace_sha256": "d9036c17c86eb570b603b3bc7919e9931c19d27064c1d5a94c00e37ce250cb25"
+    },
+    "ROW_F_A_K": {
+      "basis_sizes": [
+        294,
+        321,
+        324,
+        316,
+        312,
+        288,
+        290,
+        285,
+        284,
+        284,
+        287,
+        290,
+        287,
+        287,
+        351
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208
+      ],
+      "exit_code": 0,
+      "seconds": 3.359125250019133,
+      "status": "EXITED",
+      "trace_sha256": "e9979207e614a2d543483fc3d1e28172a9215e57c930161bb185496d98b57a82"
+    },
+    "ROW_F_A_Z": {
+      "basis_sizes": [
+        273,
+        303,
+        304,
+        296,
+        299,
+        264,
+        269,
+        257,
+        263,
+        260,
+        266,
+        264,
+        266,
+        269,
+        338
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208,
+        208
+      ],
+      "exit_code": 0,
+      "seconds": 3.407634999981383,
+      "status": "EXITED",
+      "trace_sha256": "f50ef262c00026a53d78c44b297dafc535712ca4dfa5a354ce2f00df1587b898"
+    },
+    "ROW_G_X_E": {
+      "basis_sizes": [
+        66
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.07175533301779069,
+      "status": "EXITED",
+      "trace_sha256": "d20113a71fe095c2fb6272e932eee84257d4b7191d989bebfbf4a0849625bd45"
+    },
+    "ROW_G_X_K": {
+      "basis_sizes": [
+        348,
+        364,
+        371,
+        337,
+        332,
+        343,
+        344,
+        315,
+        309,
+        338,
+        344,
+        345,
+        347,
+        340,
+        380
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204,
+        204
+      ],
+      "exit_code": 0,
+      "seconds": 5.33350308300578,
+      "status": "EXITED",
+      "trace_sha256": "834925d1a01e91b9b43fb3a03384610f6ab8c2cd42ccddd474d22c5d0686980c"
+    },
+    "ROW_K_O_G": {
+      "seconds": 20.011895625008037,
+      "status": "TIMEOUT",
+      "stdout_tail": ""
+    },
+    "ROW_K_O_Y": {
+      "basis_sizes": [
+        372
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.3338719589810353,
+      "status": "EXITED",
+      "trace_sha256": "02e85e3933c3bfeb0c986d6309bbd734482ddc67546decf10d012d48078e91d8"
+    },
+    "ROW_O_A_E": {
+      "basis_sizes": [
+        66
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.07622829198953696,
+      "status": "EXITED",
+      "trace_sha256": "0f15fa2d5dbd3328a8df1653ea7435a0b20b78b60200a029a10ba56a0775e0a0"
+    },
+    "ROW_X_Z_F": {
+      "basis_sizes": [
+        178,
+        206,
+        206,
+        171,
+        170,
+        170,
+        171,
+        164,
+        168,
+        171,
+        171,
+        176,
+        169,
+        171,
+        215
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104,
+        104
+      ],
+      "exit_code": 0,
+      "seconds": 2.0288243329850957,
+      "status": "EXITED",
+      "trace_sha256": "6e7aae2db31a45fea352651a037b6e76e53efd53dce30be75b1e924f916912f6"
+    },
+    "ROW_X_Z_G": {
+      "basis_sizes": [
+        285
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.14761012498638593,
+      "status": "EXITED",
+      "trace_sha256": "cfdd2c7ee24c2a3faf573f5232122ba76be6f72d3147feb736dec15780fe1dd8"
+    },
+    "ROW_Y_O_X": {
+      "basis_sizes": [
+        343
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.2500886250054464,
+      "status": "EXITED",
+      "trace_sha256": "33d8397c230faf129c86820ca92032cf582e3f348c8b93c84f148c7493e1bc49"
+    },
+    "ROW_Y_O_Z": {
+      "basis_sizes": [
+        340
+      ],
+      "classification": "POSITIVE_DIMENSIONAL",
+      "degrees": [],
+      "exit_code": 0,
+      "seconds": 0.17944075001287274,
+      "status": "EXITED",
+      "trace_sha256": "717eabaa7438ede81a2100963441bffd5eefcffb6b59c7041ddf25bd88903c67"
+    },
+    "ROW_Z_A_G": {
+      "basis_sizes": [
+        355,
+        406,
+        423
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        268,
+        268,
+        268,
+        268,
+        268
+      ],
+      "exit_code": 0,
+      "seconds": 2.4731198330118787,
+      "status": "EXITED",
+      "trace_sha256": "27ad37660b54d8530225c3042f329de99da0aa985db32b516a48eb6d49f647e4"
+    },
+    "ROW_Z_A_Y": {
+      "basis_sizes": [
+        341,
+        391,
+        407,
+        344,
+        344,
+        343,
+        338,
+        296,
+        304,
+        347,
+        343,
+        342,
+        341,
+        342,
+        413,
+        415
+      ],
+      "classification": "ZERO_DIMENSIONAL",
+      "degrees": [
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252,
+        252
+      ],
+      "exit_code": 0,
+      "seconds": 11.77166950001265,
+      "status": "EXITED",
+      "trace_sha256": "3814585a438be50914bc0d699e9034c7197491513f4cf779dda083fbe1455442"
+    }
+  },
+  "schema": "p97-bank-clean-15-single-deletion-dimension-audit-v1"
+}

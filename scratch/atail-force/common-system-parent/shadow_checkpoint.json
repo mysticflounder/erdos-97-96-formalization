@@ -1,0 +1,83 @@
+{
+  "aggregate": {
+    "all_admit_total_common_blocker_map": true,
+    "all_admit_u_blocker_outside_surplus_cap": true,
+    "all_avoid_preferred_h4_h5_blocker_alignment": true,
+    "all_realize_t2_t20_at_p": true,
+    "case_count": 23,
+    "cases_with_missing_first_apex_strict_pair": 22,
+    "cases_with_missing_second_apex_strict_pair": 23
+  },
+  "evidence": {
+    "missing_first_apex_pair_counts": [
+      2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 2, 2
+    ],
+    "missing_second_apex_pair_counts": [
+      2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2
+    ],
+    "preferred_edges_and_right_blockers": [
+      [6, 7, 11, 3],
+      [10, 0, 9, 1],
+      [0, 1, 6, 1],
+      [0, 2, 5, 7],
+      [1, 3, 2, 0],
+      [0, 2, 9, 2],
+      [6, 0, 8, 1],
+      [8, 11, 6, 1],
+      [4, 3, 5, 6],
+      [5, 2, 6, 1],
+      [10, 5, 2, 0],
+      [2, 6, 0, 1],
+      [2, 3, 1, 0],
+      [2, 7, 0, 1],
+      [2, 3, 1, 0],
+      [2, 7, 0, 1],
+      [1, 0, 11, 5],
+      [7, 1, 9, 2],
+      [4, 1, 2, 0],
+      [3, 2, 1, 0],
+      [7, 6, 4, 0],
+      [1, 3, 2, 0],
+      [2, 0, 4, 0]
+    ],
+    "shard_indexes": [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22
+    ],
+    "u_blockers": [
+      8, 6, 7, 7, 6, 6, 6, 6, 6, 6, 6, 7, 6, 6, 6, 6, 7, 6, 7, 6, 6, 8, 8
+    ]
+  },
+  "frame": {
+    "card": 12,
+    "dangerous_support_at_p": [1, 2, 3, 4],
+    "labels": {
+      "p": 0,
+      "q": 3,
+      "t1": 2,
+      "t2": 1,
+      "t3": 4,
+      "u": 5
+    },
+    "profile": [5, 5, 5],
+    "strict_opp_cap_1": [6, 7, 8],
+    "strict_opp_cap_2": [9, 10, 11],
+    "surplus_cap": [1, 2, 3, 4, 5]
+  },
+  "inputs_sha256": {
+    "first_apex": "c8800bbe28dfb4b88001e88848488a9872113eec8fb48cffc814978317f4de17",
+    "row_extensions": "d6c2bece9b30fc337ef181a941a8b781b33d9217fe2347c948fe61b2d306a83c",
+    "second_apex": "f5dfebb98691aac832522c3166e8ef4bda33cae03ceb4b8bdc9a27fd0aa16237",
+    "survivors": "5b661a15f4dda8a6cd143f3737457f2733d23eca056defcbcd30872f629bcc1a"
+  },
+  "schema": "common-system-parent-shadow-v1",
+  "scope": {
+    "alternate_radius_classes_omitted": true,
+    "convexity_and_mec_optimality_omitted": true,
+    "coordinates_omitted": true,
+    "finite_shadow_only": true,
+    "fixed_card_12_555_placement_only": true,
+    "live_counterexample_claimed": false,
+    "live_k_a_pair_closed": false,
+    "stored_exact_rows_are_only_encoded_k4_radii": true
+  }
+}

@@ -1,0 +1,453 @@
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:22:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:27:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:32:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:37:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:42:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:47:64: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:52:65: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:57:66: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:62:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:67:67: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:72:66: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:77:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:82:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:87:66: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:92:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:97:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:102:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:107:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:112:66: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:117:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:122:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:127:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:132:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:137:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:142:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:147:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:152:66: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:157:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:162:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:167:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:172:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:177:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:182:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:187:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:192:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:197:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:202:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:207:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:212:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:217:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:222:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:227:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:232:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:237:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:242:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:247:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:252:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:257:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:262:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:267:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:272:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:277:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:282:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:287:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:292:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:297:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:302:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:307:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:312:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:317:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:322:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:327:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:332:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:337:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:342:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:347:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:352:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:357:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:362:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:367:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:372:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:377:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:382:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:387:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:392:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:397:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:402:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:407:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:412:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:417:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:422:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:427:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:432:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:437:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:442:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:447:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:452:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:457:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:462:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:467:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:472:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:477:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:482:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:487:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:492:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:497:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:502:93: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:507:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:512:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:517:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:522:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:527:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:532:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:537:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:542:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:547:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:552:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:557:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:562:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:567:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:572:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:577:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:582:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:587:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:592:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:597:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:602:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:607:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:612:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:617:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:622:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:627:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:632:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:637:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:642:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:647:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:652:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:657:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:662:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:667:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:672:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:677:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:682:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:687:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:692:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:697:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:702:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:707:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:712:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:717:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:722:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:727:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:732:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:737:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:742:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:747:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:752:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:757:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:762:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:767:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N135MergePart00.lean:772:96: warning: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`

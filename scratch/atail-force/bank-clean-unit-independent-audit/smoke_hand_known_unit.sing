@@ -1,0 +1,7 @@
+ring R=0,(x),dp;
+ideal I = x,
+  x - 1;
+ideal G = std(I);
+if (size(G)==1 and G[1]==1) { print("STATUS_UNIT"); }
+else { print("STATUS_NONUNIT"); print("DIM="+string(dim(G))); }
+quit;

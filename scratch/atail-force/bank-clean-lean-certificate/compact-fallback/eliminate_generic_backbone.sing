@@ -1,0 +1,25 @@
+// Eliminate the O,A,G,K,Y,Z backbone after removing the three coincidence
+// components G=O, Y=G, and Z=K.  This is discovery-only: saturation encodes
+// the corresponding nonzero squared norms over characteristic zero.
+LIB "elim.lib";
+option(redSB);
+ring r = 0,(Gx,Gy,Kx,Ky,Yx,Yy,Zx,Zy,R,S),(dp(8),dp(2));
+ideal I =
+  Gx^2 + Gy^2 - 2*Gx,
+  Kx^2 + Ky^2 - 2*Kx,
+  Kx^2 + Ky^2 - R,
+  (Gx-Kx)^2 + (Gy-Ky)^2 - R,
+  Yx^2 + Yy^2 - S,
+  (Yx-Kx)^2 + (Yy-Ky)^2 - R,
+  (Zx-Yx)^2 + (Zy-Yy)^2 - S,
+  (Zx-1)^2 + Zy^2 - S,
+  (Zx-Gx)^2 + (Zy-Gy)^2 - S;
+poly generic =
+  (Gx^2+Gy^2)
+  *((Yx-Gx)^2+(Yy-Gy)^2)
+  *((Zx-Kx)^2+(Zy-Ky)^2);
+ideal Q = sat(I,ideal(generic))[1];
+ideal G = std(Q);
+ideal E = eliminate(G,Gx*Gy*Kx*Ky*Yx*Yy*Zx*Zy);
+print(E);
+exit;

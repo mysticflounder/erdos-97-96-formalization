@@ -1,0 +1,923 @@
+{
+  "aggregate_child_limit": 32,
+  "atom_limit": 192,
+  "certificate": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/lambda_kx_qq_lift_certificate.json",
+  "certificate_content_sha256": "30a745220716e8ccdfcec2b70d5a83228c70bdab5fd66b085a201a571cd2cec3",
+  "certificate_sha256": "6ac034ee5a2c04e6077fef30aee3652cc4172338e406cccb0e7ddbed6660de2a",
+  "command_count": 927,
+  "exact_qq_identity_replayed": true,
+  "expression_byte_limit": 16000,
+  "families": [
+    {
+      "id": 0,
+      "kind": "cofactor",
+      "max_expression_bytes": 15998,
+      "max_part_atoms": 113,
+      "part_count": 19,
+      "support_size": 2011
+    },
+    {
+      "id": 1,
+      "kind": "cofactor",
+      "max_expression_bytes": 15991,
+      "max_part_atoms": 113,
+      "part_count": 15,
+      "support_size": 1524
+    },
+    {
+      "id": 2,
+      "kind": "cofactor",
+      "max_expression_bytes": 15994,
+      "max_part_atoms": 112,
+      "part_count": 9,
+      "support_size": 926
+    },
+    {
+      "id": 3,
+      "kind": "cofactor",
+      "max_expression_bytes": 15980,
+      "max_part_atoms": 115,
+      "part_count": 3,
+      "support_size": 246
+    },
+    {
+      "id": 4,
+      "kind": "cofactor",
+      "max_expression_bytes": 15962,
+      "max_part_atoms": 114,
+      "part_count": 4,
+      "support_size": 442
+    },
+    {
+      "id": 5,
+      "kind": "cofactor",
+      "max_expression_bytes": 15958,
+      "max_part_atoms": 112,
+      "part_count": 3,
+      "support_size": 273
+    },
+    {
+      "id": 6,
+      "kind": "cofactor",
+      "max_expression_bytes": 15936,
+      "max_part_atoms": 114,
+      "part_count": 5,
+      "support_size": 538
+    },
+    {
+      "id": 7,
+      "kind": "cofactor",
+      "max_expression_bytes": 15982,
+      "max_part_atoms": 113,
+      "part_count": 8,
+      "support_size": 799
+    },
+    {
+      "id": 8,
+      "kind": "cofactor",
+      "max_expression_bytes": 15984,
+      "max_part_atoms": 113,
+      "part_count": 8,
+      "support_size": 859
+    },
+    {
+      "id": 9,
+      "kind": "cofactor",
+      "max_expression_bytes": 15948,
+      "max_part_atoms": 113,
+      "part_count": 7,
+      "support_size": 762
+    },
+    {
+      "id": 10,
+      "kind": "cofactor",
+      "max_expression_bytes": 15991,
+      "max_part_atoms": 112,
+      "part_count": 26,
+      "support_size": 2695
+    },
+    {
+      "id": 11,
+      "kind": "cofactor",
+      "max_expression_bytes": 16000,
+      "max_part_atoms": 112,
+      "part_count": 24,
+      "support_size": 2560
+    },
+    {
+      "id": 12,
+      "kind": "relation",
+      "max_expression_bytes": 15995,
+      "max_part_atoms": 112,
+      "part_count": 24,
+      "support_size": 2531
+    },
+    {
+      "id": 13,
+      "kind": "relation",
+      "max_expression_bytes": 16000,
+      "max_part_atoms": 112,
+      "part_count": 30,
+      "support_size": 3145
+    },
+    {
+      "id": 14,
+      "kind": "relation",
+      "max_expression_bytes": 15999,
+      "max_part_atoms": 112,
+      "part_count": 38,
+      "support_size": 4027
+    },
+    {
+      "id": 15,
+      "kind": "relation",
+      "max_expression_bytes": 15996,
+      "max_part_atoms": 111,
+      "part_count": 50,
+      "support_size": 5287
+    },
+    {
+      "id": 16,
+      "kind": "relation",
+      "max_expression_bytes": 16000,
+      "max_part_atoms": 111,
+      "part_count": 63,
+      "support_size": 6591
+    },
+    {
+      "id": 17,
+      "kind": "relation",
+      "max_expression_bytes": 15996,
+      "max_part_atoms": 110,
+      "part_count": 68,
+      "support_size": 7159
+    },
+    {
+      "id": 18,
+      "kind": "relation",
+      "max_expression_bytes": 15993,
+      "max_part_atoms": 112,
+      "part_count": 72,
+      "support_size": 7503
+    },
+    {
+      "id": 19,
+      "kind": "relation",
+      "max_expression_bytes": 15998,
+      "max_part_atoms": 110,
+      "part_count": 87,
+      "support_size": 9131
+    },
+    {
+      "id": 20,
+      "kind": "relation",
+      "max_expression_bytes": 15997,
+      "max_part_atoms": 111,
+      "part_count": 90,
+      "support_size": 9372
+    },
+    {
+      "id": 21,
+      "kind": "relation",
+      "max_expression_bytes": 15999,
+      "max_part_atoms": 111,
+      "part_count": 90,
+      "support_size": 9372
+    },
+    {
+      "id": 22,
+      "kind": "relation",
+      "max_expression_bytes": 2,
+      "max_part_atoms": 1,
+      "part_count": 1,
+      "support_size": 1
+    }
+  ],
+  "family_count": 23,
+  "generator": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/generate_lambda_kx_microsharded_lean.py",
+  "generator_names": [
+    "AOK",
+    "FAK",
+    "FKZ",
+    "GXK",
+    "XZ",
+    "XF",
+    "YOX",
+    "YOZ",
+    "ZAG",
+    "LDEF",
+    "REFLECT_X",
+    "REFLECT_Y"
+  ],
+  "lean_validation": "pending",
+  "max_command": {
+    "bytes": 16097,
+    "label": "definition:lambdaKxRelation13Part20"
+  },
+  "merge_plan": {
+    "height": 7,
+    "merges": [
+      {
+        "height": 1,
+        "left_leaves": [
+          3
+        ],
+        "left_node_id": 3,
+        "node_id": 12,
+        "right_leaves": [
+          5
+        ],
+        "right_node_id": 5,
+        "subtree_peak_support": 2531,
+        "support_size": 2531
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          4
+        ],
+        "left_node_id": 4,
+        "node_id": 13,
+        "right_leaves": [
+          6
+        ],
+        "right_node_id": 6,
+        "subtree_peak_support": 3145,
+        "support_size": 3145
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          3,
+          5
+        ],
+        "left_node_id": 12,
+        "node_id": 14,
+        "right_leaves": [
+          4,
+          6
+        ],
+        "right_node_id": 13,
+        "subtree_peak_support": 4027,
+        "support_size": 4027
+      },
+      {
+        "height": 3,
+        "left_leaves": [
+          7
+        ],
+        "left_node_id": 7,
+        "node_id": 15,
+        "right_leaves": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "right_node_id": 14,
+        "subtree_peak_support": 5287,
+        "support_size": 5287
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          8
+        ],
+        "left_node_id": 8,
+        "node_id": 16,
+        "right_leaves": [
+          9
+        ],
+        "right_node_id": 9,
+        "subtree_peak_support": 6591,
+        "support_size": 6591
+      },
+      {
+        "height": 4,
+        "left_leaves": [
+          2
+        ],
+        "left_node_id": 2,
+        "node_id": 17,
+        "right_leaves": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "right_node_id": 15,
+        "subtree_peak_support": 7159,
+        "support_size": 7159
+      },
+      {
+        "height": 1,
+        "left_leaves": [
+          0
+        ],
+        "left_node_id": 0,
+        "node_id": 18,
+        "right_leaves": [
+          1
+        ],
+        "right_node_id": 1,
+        "subtree_peak_support": 7503,
+        "support_size": 7503
+      },
+      {
+        "height": 5,
+        "left_leaves": [
+          8,
+          9
+        ],
+        "left_node_id": 16,
+        "node_id": 19,
+        "right_leaves": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "right_node_id": 17,
+        "subtree_peak_support": 9131,
+        "support_size": 9131
+      },
+      {
+        "height": 2,
+        "left_leaves": [
+          10
+        ],
+        "left_node_id": 10,
+        "node_id": 20,
+        "right_leaves": [
+          0,
+          1
+        ],
+        "right_node_id": 18,
+        "subtree_peak_support": 9372,
+        "support_size": 9372
+      },
+      {
+        "height": 6,
+        "left_leaves": [
+          11
+        ],
+        "left_node_id": 11,
+        "node_id": 21,
+        "right_leaves": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        "right_node_id": 19,
+        "subtree_peak_support": 9372,
+        "support_size": 9372
+      },
+      {
+        "height": 7,
+        "left_leaves": [
+          0,
+          1,
+          10
+        ],
+        "left_node_id": 20,
+        "node_id": 22,
+        "right_leaves": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11
+        ],
+        "right_node_id": 21,
+        "subtree_peak_support": 9372,
+        "support_size": 1
+      }
+    ],
+    "peak_support_including_leaves": 9372,
+    "strategy": "greedy_min_subtree_peak_then_support_with_balance_tiebreaks"
+  },
+  "output": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxMicroshardedCertificate.lean",
+  "output_bytes": 11829272,
+  "output_sha256": "05692131c101221726821dfdedda285462e996d4c0b609980d3ad0073419def5",
+  "product_support_sizes": [
+    5049,
+    5568,
+    5005,
+    1404,
+    2482,
+    1750,
+    1910,
+    2714,
+    3872,
+    4763,
+    7723,
+    8269
+  ],
+  "root_id": 22,
+  "root_polynomial_sha256": "50e7236b73ea84f67060d0ddfeb7cb5105a2a6041a8cdb75843f2e8b8d539c8b",
+  "schema": "p97-bank-clean-lambda-kx-microsharded-lean-v1",
+  "source_scan": {
+    "admit": false,
+    "axiom_declaration": false,
+    "native_decide": false,
+    "sorry": false
+  },
+  "terminal_part_count": 90,
+  "terminal_records": [
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart0"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart1"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart2"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart3"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart4"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart5"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart6"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart7"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart8"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart9"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart10"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart11"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart12"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart13"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart14"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart15"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart16"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart17"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart18"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart19"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart20"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart21"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart22"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart23"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart24"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart25"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart26"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart27"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart28"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart29"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart30"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart31"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart32"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart33"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart34"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart35"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart36"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart37"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart38"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart39"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart40"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart41"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart42"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart43"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart44"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart45"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart46"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart47"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart48"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart49"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart50"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart51"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart52"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart53"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart54"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart55"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart56"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart57"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart58"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart59"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart60"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart61"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart62"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart63"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart64"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart65"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart66"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart67"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart68"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart69"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart70"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart71"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart72"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart73"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart74"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart75"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart76"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart77"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart78"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart79"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart80"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart81"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart82"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart83"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart84"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart85"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart86"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart87"
+    },
+    {
+      "kind": "part",
+      "target": "0",
+      "theorem": "terminalPairPart88"
+    },
+    {
+      "kind": "part",
+      "target": "Kx",
+      "theorem": "terminalPairPart89"
+    },
+    {
+      "kind": "aggregate",
+      "target": "0",
+      "theorem": "terminalPairAggregate0"
+    },
+    {
+      "kind": "aggregate",
+      "target": "0",
+      "theorem": "terminalPairAggregate1"
+    },
+    {
+      "kind": "aggregate",
+      "target": "Kx",
+      "theorem": "terminalPairAggregate2"
+    },
+    {
+      "kind": "aggregate",
+      "target": "Kx",
+      "theorem": "terminalPairAggregate3"
+    }
+  ],
+  "variables": [
+    "Ky",
+    "Fx",
+    "Fy",
+    "Xy",
+    "Zx",
+    "Kx",
+    "Yx",
+    "Yy",
+    "Zy",
+    "L",
+    "Xx"
+  ]
+}

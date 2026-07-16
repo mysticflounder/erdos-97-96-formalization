@@ -1,0 +1,3 @@
+// ** Interrupt at cmd:`lift` in line:'matrix T=lift(I,One,U,"slimgb");'
+abort after this command(a), abort immediately(r), print backtrace(b), continue(c) or quit Singular(q) ?
+halt 2

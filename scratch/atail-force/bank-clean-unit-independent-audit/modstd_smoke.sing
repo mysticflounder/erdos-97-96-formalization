@@ -1,0 +1,11 @@
+LIB "modstd.lib";
+ring R=0,(x,y),dp;
+ideal Isat=x-1,y-2;
+ideal Gsat=modGB("slimgb",Isat,1);
+if (size(Gsat)==1 and Gsat[1]==1) { print("SAT_WRONGLY_UNIT"); }
+else { print("SAT_NONUNIT_PASS"); }
+ideal Iunit=x,x-1;
+ideal Gunit=modGB("slimgb",Iunit,1);
+if (size(Gunit)==1 and Gunit[1]==1) { print("UNIT_PASS"); }
+else { print("UNIT_WRONGLY_NONUNIT"); }
+quit;

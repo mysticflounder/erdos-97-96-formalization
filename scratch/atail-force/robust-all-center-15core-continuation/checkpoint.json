@@ -1,0 +1,5019 @@
+{
+  "budgets": {
+    "marco_max_calls": 160,
+    "marco_max_cores": 12,
+    "max_iterations": 32,
+    "max_nodes_per_iteration": 5000000,
+    "wall_seconds": 180.0
+  },
+  "epistemic_status": {
+    "R_target": "REPRESENTED_PAIR_CAPTURE_IS_EXPLICITLY_NEGATED_BY_MAP_CONTRACT",
+    "fifteen_core_cut": "KERNEL_CHECKED_LEAN_CONSUMER_PLUS_INDEPENDENT_FINITE_EDGECLOSURE_REPLAY",
+    "map": "FIXED_14_LABEL_TARGET_NEGATED_STRUCTURAL_ABSTRACTION",
+    "outer_sat": "INDEPENDENTLY_VERIFIED_STRUCTURAL_RESIDUAL_ONLY",
+    "outer_unsat": "EXACT_ONLY_WITHIN_FIXED_FINITE_ABSTRACTION"
+  },
+  "events": [
+    {
+      "cuts_added": 1,
+      "kind": "seed_terminal_100_fifteen_core",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 5,
+      "full_match_count": 7,
+      "iteration": 1,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 5,
+      "dfs_nodes": 3476,
+      "exact_match_count": 8,
+      "fifteen_match": false,
+      "iteration": 1,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 7
+    },
+    {
+      "cuts_added": 7,
+      "full_match_count": 7,
+      "iteration": 2,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 7,
+      "dfs_nodes": 3422,
+      "exact_match_count": 8,
+      "fifteen_match": false,
+      "iteration": 2,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 7
+    },
+    {
+      "cuts_added": 2,
+      "full_match_count": 6,
+      "iteration": 3,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 2,
+      "dfs_nodes": 3474,
+      "exact_match_count": 6,
+      "fifteen_match": false,
+      "iteration": 3,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 6
+    },
+    {
+      "cuts_added": 1,
+      "full_match_count": 2,
+      "iteration": 4,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 1,
+      "dfs_nodes": 3498,
+      "exact_match_count": 2,
+      "fifteen_match": false,
+      "iteration": 4,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 2
+    },
+    {
+      "cuts_added": 3,
+      "full_match_count": 4,
+      "iteration": 5,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 3,
+      "dfs_nodes": 3492,
+      "exact_match_count": 4,
+      "fifteen_match": false,
+      "iteration": 5,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 4
+    },
+    {
+      "cuts_added": 2,
+      "full_match_count": 3,
+      "iteration": 6,
+      "kind": "legacy_formalized_bank_refinement",
+      "marco_status": "MAP_EXHAUSTED"
+    },
+    {
+      "cuts_added": 2,
+      "dfs_nodes": 3493,
+      "exact_match_count": 3,
+      "fifteen_match": false,
+      "iteration": 6,
+      "kind": "banked_candidate",
+      "represented_R_target": false,
+      "selected_match_count": 3
+    }
+  ],
+  "iterations": 7,
+  "new_bank_cuts": [
+    {
+      "cut_family": "bank-clean-fifteen-equality-collision",
+      "cut_sha256": "c0dbaf1b8b2864fc16d06d5126737b5963ee54a8308c46ffc5b812a285035bea",
+      "lean_consumer": "Problem97.Census554.EqualityCore.not_realizes_of_bankCleanFifteenCollisionCore",
+      "marco": {
+        "center_ids": [
+          1,
+          3,
+          4,
+          5,
+          9,
+          10,
+          13
+        ],
+        "center_labels": [
+          "A",
+          "X",
+          "Y",
+          "Z",
+          "G",
+          "K",
+          "F"
+        ],
+        "discovery_index": 0,
+        "single_row_deletion_scans": [
+          {
+            "match": false,
+            "removed_center": "A"
+          },
+          {
+            "match": false,
+            "removed_center": "X"
+          },
+          {
+            "match": false,
+            "removed_center": "Y"
+          },
+          {
+            "match": false,
+            "removed_center": "Z"
+          },
+          {
+            "match": false,
+            "removed_center": "G"
+          },
+          {
+            "match": false,
+            "removed_center": "K"
+          },
+          {
+            "match": false,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "match": {
+        "core": {
+          "mapping": {
+            "A": 1,
+            "E": 8,
+            "F": 13,
+            "G": 9,
+            "K": 10,
+            "O": 0,
+            "X": 3,
+            "Y": 4,
+            "Z": 5
+          }
+        },
+        "independent_direct_row_z3_has_some_embedding": true,
+        "independent_edge_closure_replay": {
+          "O_ne_A": true,
+          "edge_universe": 196,
+          "equalities_checked": 15,
+          "row_count": 8,
+          "status": "PASS"
+        },
+        "lean_consumer": "Problem97.Census554.EqualityCore.not_realizes_of_bankCleanFifteenCollisionCore",
+        "lean_source": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/BankCleanFifteenCollisionCore.lean",
+        "lean_source_sha256": "de2830912528734a710c3bc6e5e6ffaf7db2842a017a57925647ae586f11ecbf",
+        "orientation": "abstract-equality-closure",
+        "requires_selected_row_exactness": false,
+        "stage": "bank-clean-fifteen-equality-collision"
+      },
+      "origin": {
+        "prior_iteration": 101,
+        "prior_survivor_index": 100
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "1": 0,
+        "10": 132,
+        "13": 287,
+        "3": 503,
+        "4": 23,
+        "5": 189,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 503,
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 544,
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 132,
+          "center": "K",
+          "support": [
+            "G",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 287,
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "9a947f446f3b980a08c60fa10a18d40284722328aa699270015df7a5b2fafce4",
+      "iteration": 1,
+      "marco_core": {
+        "center_ids": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "center_labels": [
+          "Z",
+          "E",
+          "G",
+          "K"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 5,
+              "U": 4,
+              "V": 8,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 9,
+              "V": 5,
+              "Y": 4
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Z"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 1
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 183,
+        "5": 189,
+        "8": 514,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "e8e4047eea77fda7f559b999caf83ff8ceafe94ba568b721a8b96d84d8134f50",
+      "iteration": 1,
+      "marco_core": {
+        "center_ids": [
+          3,
+          4,
+          5,
+          8,
+          10,
+          13
+        ],
+        "center_labels": [
+          "X",
+          "Y",
+          "Z",
+          "E",
+          "K",
+          "F"
+        ],
+        "discovery_index": 1,
+        "matches": [
+          {
+            "core": {
+              "a": 10,
+              "b": 5,
+              "c": 3,
+              "x": 9,
+              "y": 13
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "metric-bank",
+            "stage": "equality-convex-five-point-reverse"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "X"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "Z"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 1
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 183,
+        "13": 287,
+        "3": 503,
+        "4": 23,
+        "5": 189,
+        "8": 514
+      },
+      "row_pattern_named": [
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "5c5c62e5a5661a512bdde9710bf169abf80fc2ddfa3588b4bdbbff8fc9a8e400",
+      "iteration": 1,
+      "marco_core": {
+        "center_ids": [
+          3,
+          9,
+          10
+        ],
+        "center_labels": [
+          "X",
+          "G",
+          "K"
+        ],
+        "discovery_index": 2,
+        "matches": [
+          {
+            "core": {
+              "a": 10,
+              "b": 13,
+              "c": 3,
+              "d": 8,
+              "o": 9
+            },
+            "cyclic_orientation": "invariant",
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "orientation": "invariant",
+            "source": "common-system-bank",
+            "stage": "equality-convex-nested-equal-chords"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "X"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 1
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 183,
+        "3": 503,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "617e22c331e7b4a6ec20c224d957adb0f74be0238b7c8441b580c4a5bbc0cc5e",
+      "iteration": 1,
+      "marco_core": {
+        "center_ids": [
+          1,
+          9,
+          10
+        ],
+        "center_labels": [
+          "A",
+          "G",
+          "K"
+        ],
+        "discovery_index": 3,
+        "matches": [
+          {
+            "core": {
+              "Q": 1,
+              "U": 10,
+              "V": 8,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 9,
+              "V": 1,
+              "Y": 10
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "A"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 1
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "1": 0,
+        "10": 183,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "cb7cdbe82e701fed4283d3b8581e1edd710fbf7a3fa072270da901c3f0df8d96",
+      "iteration": 1,
+      "marco_core": {
+        "center_ids": [
+          2,
+          8,
+          9,
+          10
+        ],
+        "center_labels": [
+          "C",
+          "E",
+          "G",
+          "K"
+        ],
+        "discovery_index": 4,
+        "matches": [
+          {
+            "core": {
+              "Q": 2,
+              "U": 9,
+              "V": 8,
+              "Y": 11
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 11,
+              "V": 2,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "C"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 1
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 183,
+        "2": 29,
+        "8": 514,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "C",
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "becba246e9d19a4993bc2a04f92b58aca900c0fbcc060f10aaa98965aa1657ab",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          5,
+          8,
+          9,
+          10
+        ],
+        "center_labels": [
+          "Z",
+          "E",
+          "G",
+          "K"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 5,
+              "U": 4,
+              "V": 8,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 9,
+              "V": 5,
+              "Y": 4
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          },
+          {
+            "core": {
+              "foci": [
+                4,
+                9
+              ],
+              "points": [
+                5,
+                8,
+                10
+              ]
+            },
+            "cyclic_orientation": "invariant",
+            "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+            "orientation": "invariant",
+            "source": "metric-bank",
+            "stage": "equality-perpendicular-bisector-convex"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Z"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 599,
+        "5": 189,
+        "8": 514,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "aff5b0f89ff8f0106cbaadcf46264bc92d3e80d6f66ee680044afdbc911d5d7a",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          4,
+          8,
+          10,
+          13
+        ],
+        "center_labels": [
+          "Y",
+          "E",
+          "K",
+          "F"
+        ],
+        "discovery_index": 1,
+        "matches": [
+          {
+            "core": {
+              "Q": 13,
+              "U": 10,
+              "V": 4,
+              "Y": 5
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 4,
+              "U": 5,
+              "V": 13,
+              "Y": 10
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 599,
+        "13": 287,
+        "4": 23,
+        "8": 514
+      },
+      "row_pattern_named": [
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "fc3754e9ecab11b077c9dd846f3e158b9289d19a67d2ab6f6026ded7c1c2a76b",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          1,
+          4,
+          8,
+          10
+        ],
+        "center_labels": [
+          "A",
+          "Y",
+          "E",
+          "K"
+        ],
+        "discovery_index": 2,
+        "matches": [
+          {
+            "core": {
+              "Q": 1,
+              "U": 0,
+              "V": 4,
+              "Y": 10
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 4,
+              "U": 10,
+              "V": 1,
+              "Y": 0
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "A"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "1": 0,
+        "10": 599,
+        "4": 23,
+        "8": 514
+      },
+      "row_pattern_named": [
+        {
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "7cf9a0801e1e870a29c6e32f264d0928e82697e75d3b7f7f0d176484ee172269",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          3,
+          9,
+          10
+        ],
+        "center_labels": [
+          "X",
+          "G",
+          "K"
+        ],
+        "discovery_index": 3,
+        "matches": [
+          {
+            "core": {
+              "a": 10,
+              "b": 13,
+              "c": 3,
+              "d": 8,
+              "o": 9
+            },
+            "cyclic_orientation": "invariant",
+            "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+            "orientation": "invariant",
+            "source": "common-system-bank",
+            "stage": "equality-convex-nested-equal-chords"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "X"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 599,
+        "3": 503,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "0ba7f23af884b8a2eb99a3f395d032f744b103359c5049ab3b78e497c8b8f22b",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          1,
+          9,
+          10
+        ],
+        "center_labels": [
+          "A",
+          "G",
+          "K"
+        ],
+        "discovery_index": 4,
+        "matches": [
+          {
+            "core": {
+              "Q": 1,
+              "U": 10,
+              "V": 8,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 9,
+              "V": 1,
+              "Y": 10
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "A"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "1": 0,
+        "10": 599,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "9850a15ae70cf35c7d1d4a93f7ca94b8e402ef46ff67577bd6d73bd237526e09",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          4,
+          8,
+          9,
+          10
+        ],
+        "center_labels": [
+          "Y",
+          "E",
+          "G",
+          "K"
+        ],
+        "discovery_index": 5,
+        "matches": [
+          {
+            "core": {
+              "Q": 10,
+              "U": 9,
+              "V": 3,
+              "Y": 4
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 3,
+              "U": 4,
+              "V": 10,
+              "Y": 9
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          },
+          {
+            "core": {
+              "centers": [
+                4,
+                9
+              ],
+              "triple": [
+                3,
+                8,
+                10
+              ]
+            },
+            "cyclic_orientation": "invariant",
+            "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+            "orientation": "invariant",
+            "source": "metric-bank",
+            "stage": "equality-duplicate-center"
+          },
+          {
+            "core": {
+              "foci": [
+                4,
+                9
+              ],
+              "points": [
+                3,
+                8,
+                10
+              ]
+            },
+            "cyclic_orientation": "invariant",
+            "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+            "orientation": "invariant",
+            "source": "metric-bank",
+            "stage": "equality-perpendicular-bisector-convex"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 599,
+        "4": 23,
+        "8": 514,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "e551568b4e550709c26ad3e6ff24b396cce5a51626599d81641a8fa8c8c5c9b4",
+      "iteration": 2,
+      "marco_core": {
+        "center_ids": [
+          2,
+          8,
+          9,
+          10
+        ],
+        "center_labels": [
+          "C",
+          "E",
+          "G",
+          "K"
+        ],
+        "discovery_index": 6,
+        "matches": [
+          {
+            "core": {
+              "Q": 2,
+              "U": 9,
+              "V": 8,
+              "Y": 11
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 11,
+              "V": 2,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "C"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 2
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 599,
+        "2": 29,
+        "8": 514,
+        "9": 544
+      },
+      "row_pattern_named": [
+        {
+          "center": "C",
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "a6a1ca3916ac8df758e2130dcbbef058dbc097da58fd097ac2b4e78fe3b89d17",
+      "iteration": 3,
+      "marco_core": {
+        "center_ids": [
+          8,
+          10,
+          13
+        ],
+        "center_labels": [
+          "E",
+          "K",
+          "F"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 0,
+              "U": 8,
+              "V": 13,
+              "Y": 1
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 13,
+              "U": 1,
+              "V": 0,
+              "Y": 8
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 3
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 544,
+        "13": 266,
+        "8": 516
+      },
+      "row_pattern_named": [
+        {
+          "center": "E",
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Y"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "1d47835b6a5badccecdf5664976f227a9913ef5ed942049f4c715a30542402ec",
+      "iteration": 3,
+      "marco_core": {
+        "center_ids": [
+          3,
+          8,
+          10
+        ],
+        "center_labels": [
+          "X",
+          "E",
+          "K"
+        ],
+        "discovery_index": 1,
+        "matches": [
+          {
+            "core": {
+              "a": 7,
+              "b": 13,
+              "c": 10,
+              "x": 3,
+              "y": 8
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "metric-bank",
+            "stage": "equality-convex-five-point-reverse"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "X"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "E"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "K"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 3
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "10": 544,
+        "3": 503,
+        "8": 516
+      },
+      "row_pattern_named": [
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "b32c9b7a763989d9ca3da9327f4325855a8cdcbeee153565fc2cd1ba45ae7c3c",
+      "iteration": 4,
+      "marco_core": {
+        "center_ids": [
+          6,
+          12,
+          13
+        ],
+        "center_labels": [
+          "D",
+          "I",
+          "F"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 3,
+              "U": 13,
+              "V": 6,
+              "Y": 12
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 6,
+              "U": 12,
+              "V": 3,
+              "Y": 13
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "D"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 4
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 359,
+        "13": 238,
+        "6": 0
+      },
+      "row_pattern_named": [
+        {
+          "center": "D",
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "C",
+            "F",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "09caeb634fc6382d609034e94fd5ccda695000dc8b1e9d7434f4aa1ea4c7394a",
+      "iteration": 5,
+      "marco_core": {
+        "center_ids": [
+          6,
+          12,
+          13
+        ],
+        "center_labels": [
+          "D",
+          "I",
+          "F"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 3,
+              "U": 13,
+              "V": 6,
+              "Y": 12
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 6,
+              "U": 12,
+              "V": 3,
+              "Y": 13
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "D"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 5
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 520,
+        "13": 238,
+        "6": 0
+      },
+      "row_pattern_named": [
+        {
+          "center": "D",
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "7d1b33acb3b6c667afde6d5b2becd238d44cba430c58869cc61fc3a8215f6176",
+      "iteration": 5,
+      "marco_core": {
+        "center_ids": [
+          4,
+          9,
+          12
+        ],
+        "center_labels": [
+          "Y",
+          "G",
+          "I"
+        ],
+        "discovery_index": 1,
+        "matches": [
+          {
+            "core": {
+              "a": 3,
+              "b": 8,
+              "c": 9,
+              "x": 4,
+              "y": 12
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+            "orientation": "forward",
+            "source": "metric-bank",
+            "stage": "equality-convex-five-point"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 5
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 520,
+        "4": 23,
+        "9": 129
+      },
+      "row_pattern_named": [
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "916d43b9d39a908a14bb9614492ea51e46132d8689cdc8d9f1604590be197093",
+      "iteration": 5,
+      "marco_core": {
+        "center_ids": [
+          2,
+          9,
+          12
+        ],
+        "center_labels": [
+          "C",
+          "G",
+          "I"
+        ],
+        "discovery_index": 2,
+        "matches": [
+          {
+            "core": {
+              "Q": 2,
+              "U": 9,
+              "V": 8,
+              "Y": 12
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          },
+          {
+            "core": {
+              "Q": 8,
+              "U": 12,
+              "V": 2,
+              "Y": 9
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "C"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 5
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 520,
+        "2": 29,
+        "9": 129
+      },
+      "row_pattern_named": [
+        {
+          "center": "C",
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "5ed1e1c02b7fdce77e44a0a608c36d9f083c34eff86b923895b7b7900b499973",
+      "iteration": 6,
+      "marco_core": {
+        "center_ids": [
+          6,
+          12,
+          13
+        ],
+        "center_labels": [
+          "D",
+          "I",
+          "F"
+        ],
+        "discovery_index": 0,
+        "matches": [
+          {
+            "core": {
+              "Q": 3,
+              "U": 13,
+              "V": 6,
+              "Y": 12
+            },
+            "cyclic_orientation": "reverse",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+          },
+          {
+            "core": {
+              "Q": 6,
+              "U": 12,
+              "V": 3,
+              "Y": 13
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-four-point-two-circle-bisector-order"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "D"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "F"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 6
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 523,
+        "13": 238,
+        "6": 0
+      },
+      "row_pattern_named": [
+        {
+          "center": "D",
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "E",
+            "F",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        }
+      ]
+    },
+    {
+      "cut_family": "legacy-formalized-producer-bank",
+      "cut_sha256": "7602649641eca7972bb37466786c335533a2f4c18dcd2b85ae2e42830de5b408",
+      "iteration": 6,
+      "marco_core": {
+        "center_ids": [
+          4,
+          9,
+          12
+        ],
+        "center_labels": [
+          "Y",
+          "G",
+          "I"
+        ],
+        "discovery_index": 1,
+        "matches": [
+          {
+            "core": {
+              "a": 3,
+              "b": 8,
+              "c": 9,
+              "x": 4,
+              "y": 12
+            },
+            "cyclic_orientation": "forward",
+            "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+            "orientation": "forward",
+            "source": "metric-bank",
+            "stage": "equality-convex-five-point"
+          }
+        ],
+        "single_row_deletion_scans": [
+          {
+            "bank_match_count": 0,
+            "removed_center": "Y"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "G"
+          },
+          {
+            "bank_match_count": 0,
+            "removed_center": "I"
+          }
+        ]
+      },
+      "origin": {
+        "continuation_iteration": 6
+      },
+      "required_exact_center_names": [],
+      "required_exact_centers": [],
+      "row_pattern": {
+        "12": 523,
+        "4": 23,
+        "9": 129
+      },
+      "row_pattern_named": [
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "E",
+            "F",
+            "X",
+            "t1"
+          ]
+        }
+      ]
+    }
+  ],
+  "new_structural_survivors": [
+    {
+      "blocker_assignment_sha256": "726f7c38f5c125a17442ad4780ad30ce879d056fe8ae7d99ae225514ca2ff602",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "A": 10,
+            "C": 8,
+            "D": 13,
+            "E": 3,
+            "O": 9,
+            "X5": 5,
+            "X6": 12,
+            "X9": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+        },
+        {
+          "core": {
+            "Q": 11,
+            "U": 3,
+            "V": 5,
+            "Y": 4
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 9,
+            "U": 8,
+            "V": 4,
+            "Y": 5
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 13,
+            "c": 3,
+            "d": 8,
+            "o": 9
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+          "orientation": "invariant",
+          "source": "common-system-bank",
+          "stage": "equality-convex-nested-equal-chords"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 5,
+            "c": 3,
+            "x": 9,
+            "y": 13
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "center": 3,
+            "off_support": 4,
+            "support": [
+              5,
+              7,
+              9,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-exact-off-circle"
+        },
+        {
+          "core": {
+            "centers": [
+              5,
+              11
+            ],
+            "triple": [
+              3,
+              4,
+              6
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              3,
+              5
+            ],
+            "points": [
+              4,
+              9,
+              11
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ],
+      "blockers": {
+        "A": "Z",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "X",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "X",
+        "t1": "C"
+      },
+      "continuation_iteration": 1,
+      "dfs_nodes": 3476,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "fbb75e03a5299c3dc2cdb0cf63d70003a4ea7882860a58a454a9cd79e0ed4d7e",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 514,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 287,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 544,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 387,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "C",
+            "F",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 183,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "G",
+            "I",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 503,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "A": 10,
+            "C": 8,
+            "D": 13,
+            "E": 3,
+            "O": 9,
+            "X5": 5,
+            "X6": 12,
+            "X9": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+        },
+        {
+          "core": {
+            "Q": 11,
+            "U": 3,
+            "V": 5,
+            "Y": 4
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 9,
+            "U": 8,
+            "V": 4,
+            "Y": 5
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 13,
+            "c": 3,
+            "d": 8,
+            "o": 9
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+          "orientation": "invariant",
+          "source": "common-system-bank",
+          "stage": "equality-convex-nested-equal-chords"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 5,
+            "c": 3,
+            "x": 9,
+            "y": 13
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "centers": [
+              5,
+              11
+            ],
+            "triple": [
+              3,
+              4,
+              6
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              3,
+              5
+            ],
+            "points": [
+              4,
+              9,
+              11
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "726f7c38f5c125a17442ad4780ad30ce879d056fe8ae7d99ae225514ca2ff602",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "A": 10,
+            "C": 8,
+            "D": 13,
+            "E": 3,
+            "O": 9,
+            "X5": 5,
+            "X6": 12,
+            "X9": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+        },
+        {
+          "core": {
+            "Q": 10,
+            "U": 9,
+            "V": 3,
+            "Y": 4
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 11,
+            "U": 3,
+            "V": 5,
+            "Y": 4
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 5,
+            "c": 3,
+            "x": 9,
+            "y": 13
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "a": 5,
+            "b": 8,
+            "c": 10,
+            "d": 3,
+            "o": 4
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+          "orientation": "invariant",
+          "source": "common-system-bank",
+          "stage": "equality-convex-nested-equal-chords"
+        },
+        {
+          "core": {
+            "center": 3,
+            "off_support": 4,
+            "support": [
+              5,
+              7,
+              9,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-exact-off-circle"
+        },
+        {
+          "core": {
+            "centers": [
+              5,
+              11
+            ],
+            "triple": [
+              3,
+              4,
+              6
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              3,
+              5
+            ],
+            "points": [
+              4,
+              9,
+              11
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ],
+      "blockers": {
+        "A": "Z",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "X",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "X",
+        "t1": "C"
+      },
+      "continuation_iteration": 2,
+      "dfs_nodes": 3422,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "15187561ef91a3a630c7c5d0a5649922345e750e3f8bb90395a9cdab532f21a6",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 514,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 287,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 544,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 387,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "C",
+            "F",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 599,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "G",
+            "I",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 503,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "A": 10,
+            "C": 8,
+            "D": 13,
+            "E": 3,
+            "O": 9,
+            "X5": 5,
+            "X6": 12,
+            "X9": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FiveRowCircleIntersectionOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-eight-point-five-row-circle-intersection-order"
+        },
+        {
+          "core": {
+            "Q": 10,
+            "U": 9,
+            "V": 3,
+            "Y": 4
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 11,
+            "U": 3,
+            "V": 5,
+            "Y": 4
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "a": 10,
+            "b": 5,
+            "c": 3,
+            "x": 9,
+            "y": 13
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "a": 5,
+            "b": 8,
+            "c": 10,
+            "d": 3,
+            "o": 4
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.NestedEqualChordCore.false_of_core",
+          "orientation": "invariant",
+          "source": "common-system-bank",
+          "stage": "equality-convex-nested-equal-chords"
+        },
+        {
+          "core": {
+            "centers": [
+              5,
+              11
+            ],
+            "triple": [
+              3,
+              4,
+              6
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              3,
+              5
+            ],
+            "points": [
+              4,
+              9,
+              11
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "a6d0886ed8b21c47770fbc15f31bf00a8e54392e2af0dbf22144e6e167fd30d8",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "Q": 13,
+            "U": 1,
+            "V": 0,
+            "Y": 8
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 9,
+            "U": 8,
+            "V": 13,
+            "Y": 4
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 7,
+            "b": 13,
+            "c": 10,
+            "x": 3,
+            "y": 8
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "a": 8,
+            "b": 13,
+            "c": 9,
+            "p": 10,
+            "x": 4
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-equilateral-bisector-collision"
+        },
+        {
+          "core": {
+            "centers": [
+              4,
+              7
+            ],
+            "triple": [
+              0,
+              5,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              1,
+              8
+            ],
+            "points": [
+              0,
+              6,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ],
+      "blockers": {
+        "A": "Z",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "X",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "E",
+        "Z": "X",
+        "t1": "C"
+      },
+      "continuation_iteration": 3,
+      "dfs_nodes": 3474,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "E",
+        "X",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "f47a674d79159d9c291818490056dc15c55a1b4e22de763b11e888a896292b80",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 516,
+          "center": "E",
+          "exact_from_blocker_image": true,
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 266,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 129,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 515,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "J",
+            "K",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 544,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 503,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 162,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "Q": 13,
+            "U": 1,
+            "V": 0,
+            "Y": 8
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 9,
+            "U": 8,
+            "V": 13,
+            "Y": 4
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 7,
+            "b": 13,
+            "c": 10,
+            "x": 3,
+            "y": 8
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point-reverse"
+        },
+        {
+          "core": {
+            "a": 8,
+            "b": 13,
+            "c": 9,
+            "p": 10,
+            "x": 4
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-equilateral-bisector-collision"
+        },
+        {
+          "core": {
+            "centers": [
+              4,
+              7
+            ],
+            "triple": [
+              0,
+              5,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-duplicate-center"
+        },
+        {
+          "core": {
+            "foci": [
+              1,
+              8
+            ],
+            "points": [
+              0,
+              6,
+              13
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "6ac4825c70b529974dc38e5370d22ace7a312c8e6a44a9b666549b63a28fe865",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "Q": 3,
+            "U": 13,
+            "V": 6,
+            "Y": 12
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        }
+      ],
+      "blockers": {
+        "A": "X",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "D",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "Y",
+        "t1": "C"
+      },
+      "continuation_iteration": 4,
+      "dfs_nodes": 3498,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Y",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "1b8bed7a43b67ebe0146d323b11f8dc9564c7489e274e1caeff0644314a45328",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 516,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 238,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 129,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 359,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "C",
+            "F",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 628,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "G",
+            "I",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 244,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "J",
+            "K",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": true,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "Q": 3,
+            "U": 13,
+            "V": 6,
+            "Y": 12
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "6ac4825c70b529974dc38e5370d22ace7a312c8e6a44a9b666549b63a28fe865",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 8,
+            "U": 12,
+            "V": 2,
+            "Y": 9
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 3,
+            "b": 8,
+            "c": 9,
+            "x": 4,
+            "y": 12
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point"
+        },
+        {
+          "core": {
+            "foci": [
+              9,
+              12
+            ],
+            "points": [
+              2,
+              8,
+              10
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ],
+      "blockers": {
+        "A": "X",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "D",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "Y",
+        "t1": "C"
+      },
+      "continuation_iteration": 5,
+      "dfs_nodes": 3492,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Y",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "684790450ec29634e107c159b6c052245fc222a7697243f6902f258683e6b908",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 516,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 238,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 129,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 520,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "F",
+            "G",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 628,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "G",
+            "I",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 244,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "J",
+            "K",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": true,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "Q": 8,
+            "U": 12,
+            "V": 2,
+            "Y": 9
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "a": 3,
+            "b": 8,
+            "c": 9,
+            "x": 4,
+            "y": 12
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point"
+        },
+        {
+          "core": {
+            "foci": [
+              9,
+              12
+            ],
+            "points": [
+              2,
+              8,
+              10
+            ]
+          },
+          "cyclic_orientation": "invariant",
+          "lean_consumer": "Problem97.Census554.false_of_metricCoreAlternative",
+          "orientation": "invariant",
+          "source": "metric-bank",
+          "stage": "equality-perpendicular-bisector-convex"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "6ac4825c70b529974dc38e5370d22ace7a312c8e6a44a9b666549b63a28fe865",
+      "blocker_exact_bank_matches": [
+        {
+          "core": {
+            "Q": 3,
+            "U": 13,
+            "V": 6,
+            "Y": 12
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "a": 3,
+            "b": 8,
+            "c": 9,
+            "x": 4,
+            "y": 12
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point"
+        }
+      ],
+      "blockers": {
+        "A": "X",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "D",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "Y",
+        "t1": "C"
+      },
+      "continuation_iteration": 6,
+      "dfs_nodes": 3493,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Y",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "21f5cbf431a469229bdf07a776f46f903e6f22543cbf87aa47ad66a6bf1ac96f",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 516,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 238,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "candidate_index": 129,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 523,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "F",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 628,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "G",
+            "I",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 244,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "J",
+            "K",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": true,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": [
+        {
+          "core": {
+            "Q": 3,
+            "U": 13,
+            "V": 6,
+            "Y": 12
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+        },
+        {
+          "core": {
+            "Q": 6,
+            "U": 12,
+            "V": 3,
+            "Y": 13
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-four-point-two-circle-bisector-order"
+        },
+        {
+          "core": {
+            "a": 3,
+            "b": 8,
+            "c": 9,
+            "x": 4,
+            "y": 12
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+          "orientation": "forward",
+          "source": "metric-bank",
+          "stage": "equality-convex-five-point"
+        }
+      ]
+    },
+    {
+      "blocker_assignment_sha256": "6ac4825c70b529974dc38e5370d22ace7a312c8e6a44a9b666549b63a28fe865",
+      "blocker_exact_bank_matches": [],
+      "blockers": {
+        "A": "X",
+        "C": "A",
+        "D": "t1",
+        "E": "D",
+        "F": "D",
+        "G": "A",
+        "I": "C",
+        "J": "X",
+        "K": "A",
+        "O": "A",
+        "X": "C",
+        "Y": "Z",
+        "Z": "Y",
+        "t1": "C"
+      },
+      "continuation_iteration": 7,
+      "dfs_nodes": 3502,
+      "exact_center_names": [
+        "A",
+        "C",
+        "D",
+        "X",
+        "Y",
+        "Z",
+        "t1"
+      ],
+      "fifteen_core_match": null,
+      "represented_R_target": {
+        "exactness_used": false,
+        "holds": false,
+        "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+        "represented_erased_coradial_pair": [
+          "E",
+          "D"
+        ],
+        "strict_surplus_centers": [
+          "F",
+          "I",
+          "t1"
+        ],
+        "witnesses": []
+      },
+      "row_assignment_sha256": "5d8c173324269d8fa32b55228bfd91e3c9001e0bf88d6b87f57e32c227495563",
+      "rows": [
+        {
+          "candidate_index": 0,
+          "center": "A",
+          "exact_from_blocker_image": true,
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "candidate_index": 29,
+          "center": "C",
+          "exact_from_blocker_image": true,
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "D",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "candidate_index": 516,
+          "center": "E",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "J",
+            "K",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 287,
+          "center": "F",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 129,
+          "center": "G",
+          "exact_from_blocker_image": false,
+          "support": [
+            "E",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 359,
+          "center": "I",
+          "exact_from_blocker_image": false,
+          "support": [
+            "C",
+            "F",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 104,
+          "center": "J",
+          "exact_from_blocker_image": false,
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 628,
+          "center": "K",
+          "exact_from_blocker_image": false,
+          "support": [
+            "G",
+            "I",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "O",
+          "exact_from_blocker_image": false,
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E"
+          ]
+        },
+        {
+          "candidate_index": 244,
+          "center": "X",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "J",
+            "K",
+            "t1"
+          ]
+        },
+        {
+          "candidate_index": 23,
+          "center": "Y",
+          "exact_from_blocker_image": true,
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "candidate_index": 189,
+          "center": "Z",
+          "exact_from_blocker_image": true,
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "candidate_index": 0,
+          "center": "t1",
+          "exact_from_blocker_image": true,
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "selected_row_bank_matches": []
+    }
+  ],
+  "preflight": {
+    "ambient_exact_first_apex_class": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "J"
+    ],
+    "arbitrary_global_rows_exact": false,
+    "blocker_image_exact_only_match_records": 40,
+    "fifteen_core_ambient_semantics_hit_indices": [
+      13,
+      14,
+      15,
+      18,
+      47,
+      61,
+      62,
+      98,
+      100
+    ],
+    "fifteen_core_direct_row_hit_indices": [
+      98,
+      100
+    ],
+    "lean_consumer": {
+      "axiom_status": "STANDARD_AXIOMS_ONLY_UPSTREAM_GATE",
+      "kernel_status": "KERNEL_CHECKED_UPSTREAM_GATE",
+      "name": "Problem97.Census554.EqualityCore.not_realizes_of_bankCleanFifteenCollisionCore",
+      "source": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/BankCleanFifteenCollisionCore.lean",
+      "source_sha256": "de2830912528734a710c3bc6e5e6ffaf7db2842a017a57925647ae586f11ecbf"
+    },
+    "prior_checkpoint_replay": {
+      "checked_bank_cuts": 524,
+      "checked_single_row_deletions": 1799,
+      "checked_structural_survivors": 101,
+      "survivors_avoiding_sharpened_target": 101,
+      "survivors_satisfying_sharpened_target": 0
+    },
+    "prior_checkpoint_sha256": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+    "represented_R_target_hit_indices": [],
+    "terminal_100_independent_edge_closure_replay": "PASS"
+  },
+  "prior_bank_cut_count": 524,
+  "prior_structural_survivor_count": 101,
+  "schema": "p97-atail-robust-all-center-15core-continuation-v1",
+  "seed_fifteen_core_marco": {
+    "cache_hits": 8,
+    "map_iterations": 8,
+    "minimal_core_count": 1,
+    "oracle_calls": 20,
+    "single_row_deletions": 7,
+    "status": "MAP_EXHAUSTED"
+  },
+  "source_sha256": {
+    "census/atail_force/producer_mus.py": "0f51269564ee45aac68e0ea9c2f9bba900e2f2012f0ef53961d05ea02b7d2427",
+    "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/BankCleanFifteenCollisionCore.lean": "de2830912528734a710c3bc6e5e6ffaf7db2842a017a57925647ae586f11ecbf",
+    "scratch/atail-force/bank-clean-pattern-matcher/check.py": "b5326e5a758879b199643ed59d2940fbc13dc0a881d1a97e7b005e3b7e16195f",
+    "scratch/atail-force/robust-all-center-15core-continuation/continuation.py": "dd4bff8ab4b5a3d56ed7f6b3d44192875865d9737e386d5d3cb6362dedaca911",
+    "scratch/atail-force/robust-all-center-marco/bank_cegar.py": "35b911ccde42691fee1f9d425634f626154cc0621ff8802b8f7f1d2547a8ea16",
+    "scratch/atail-force/robust-all-center-marco/bank_cegar_checkpoint.json": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9"
+  },
+  "status": "SAT_NEXT_INDEPENDENTLY_VERIFIED_BANK_CLEAN_RESIDUAL",
+  "terminal": {
+    "blocker_assignment_sha256": "6ac4825c70b529974dc38e5370d22ace7a312c8e6a44a9b666549b63a28fe865",
+    "blocker_exact_bank_scan": [],
+    "blockers": {
+      "A": "X",
+      "C": "A",
+      "D": "t1",
+      "E": "D",
+      "F": "D",
+      "G": "A",
+      "I": "C",
+      "J": "X",
+      "K": "A",
+      "O": "A",
+      "X": "C",
+      "Y": "Z",
+      "Z": "Y",
+      "t1": "C"
+    },
+    "continuation_iteration": 7,
+    "dfs_nodes": 3502,
+    "fifteen_core_scan": null,
+    "independent_structural_verifier": "PASS",
+    "represented_R_target": {
+      "exactness_used": false,
+      "holds": false,
+      "map_contract": "the corrected outer map explicitly searches the negation of this represented-pair capture target",
+      "represented_erased_coradial_pair": [
+        "E",
+        "D"
+      ],
+      "strict_surplus_centers": [
+        "F",
+        "I",
+        "t1"
+      ],
+      "witnesses": []
+    },
+    "row_assignment_sha256": "5d8c173324269d8fa32b55228bfd91e3c9001e0bf88d6b87f57e32c227495563",
+    "rows": [
+      {
+        "candidate_index": 0,
+        "center": "A",
+        "exact_from_blocker_image": true,
+        "support": [
+          "C",
+          "G",
+          "K",
+          "O"
+        ]
+      },
+      {
+        "candidate_index": 29,
+        "center": "C",
+        "exact_from_blocker_image": true,
+        "support": [
+          "G",
+          "I",
+          "X",
+          "t1"
+        ]
+      },
+      {
+        "candidate_index": 0,
+        "center": "D",
+        "exact_from_blocker_image": true,
+        "support": [
+          "A",
+          "E",
+          "F",
+          "I"
+        ]
+      },
+      {
+        "candidate_index": 516,
+        "center": "E",
+        "exact_from_blocker_image": false,
+        "support": [
+          "F",
+          "J",
+          "K",
+          "Y"
+        ]
+      },
+      {
+        "candidate_index": 287,
+        "center": "F",
+        "exact_from_blocker_image": false,
+        "support": [
+          "A",
+          "I",
+          "K",
+          "Z"
+        ]
+      },
+      {
+        "candidate_index": 129,
+        "center": "G",
+        "exact_from_blocker_image": false,
+        "support": [
+          "E",
+          "I",
+          "O",
+          "Y"
+        ]
+      },
+      {
+        "candidate_index": 359,
+        "center": "I",
+        "exact_from_blocker_image": false,
+        "support": [
+          "C",
+          "F",
+          "X",
+          "t1"
+        ]
+      },
+      {
+        "candidate_index": 104,
+        "center": "J",
+        "exact_from_blocker_image": false,
+        "support": [
+          "F",
+          "O",
+          "Z",
+          "t1"
+        ]
+      },
+      {
+        "candidate_index": 628,
+        "center": "K",
+        "exact_from_blocker_image": false,
+        "support": [
+          "G",
+          "I",
+          "J",
+          "Z"
+        ]
+      },
+      {
+        "candidate_index": 0,
+        "center": "O",
+        "exact_from_blocker_image": false,
+        "support": [
+          "A",
+          "C",
+          "D",
+          "E"
+        ]
+      },
+      {
+        "candidate_index": 244,
+        "center": "X",
+        "exact_from_blocker_image": true,
+        "support": [
+          "A",
+          "J",
+          "K",
+          "t1"
+        ]
+      },
+      {
+        "candidate_index": 23,
+        "center": "Y",
+        "exact_from_blocker_image": true,
+        "support": [
+          "E",
+          "O",
+          "X",
+          "Z"
+        ]
+      },
+      {
+        "candidate_index": 189,
+        "center": "Z",
+        "exact_from_blocker_image": true,
+        "support": [
+          "A",
+          "D",
+          "G",
+          "Y"
+        ]
+      },
+      {
+        "candidate_index": 0,
+        "center": "t1",
+        "exact_from_blocker_image": true,
+        "support": [
+          "D",
+          "X",
+          "Y",
+          "Z"
+        ]
+      }
+    ],
+    "selected_row_bank_scan": []
+  }
+}

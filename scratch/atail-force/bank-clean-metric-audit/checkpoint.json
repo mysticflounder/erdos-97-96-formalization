@@ -1,0 +1,434 @@
+{
+  "comparison_with_exact_35_point_total_css_model": {
+    "all_deficient_profiles_are_singleton_only": true,
+    "carrier_card": 35,
+    "centers_with_k4_count": 11,
+    "centers_without_k4": [
+      "E",
+      "F_k4_2",
+      "F_k4_3",
+      "G",
+      "I_k4_1",
+      "I_k4_2",
+      "I_k4_3",
+      "J",
+      "J_css_1",
+      "J_css_2",
+      "J_css_3",
+      "K",
+      "X_k4_1",
+      "X_k4_2",
+      "X_k4_3",
+      "Y_k4_1",
+      "Y_k4_2",
+      "Y_k4_3",
+      "Z_k4_1",
+      "Z_k4_2",
+      "Z_k4_3",
+      "t1_css_1",
+      "t1_css_2",
+      "t1_css_3"
+    ],
+    "centers_without_k4_count": 24,
+    "forced_continuation_centers_deficient_in_35pt_model": [
+      "G",
+      "K"
+    ],
+    "interpretation": "the 35-point model realizes the ambient O and second-apex A rows, but not the six additional row classes needed by the UNIT core",
+    "unit_core_rows_already_realized": [
+      "A",
+      "O"
+    ],
+    "unit_core_rows_not_realized": [
+      "F",
+      "G",
+      "K",
+      "X",
+      "Y",
+      "Z"
+    ]
+  },
+  "corrected_structural_checkpoint": {
+    "bank_cut_count": 524,
+    "bank_rejected_survivor_count": 100,
+    "blocker_exact_bank_match_count": 0,
+    "full_historical_replay": "PINNED_SOURCE_WAS_STRONGLY_REPLAYED_BEFORE_EXTRACTION; THIS_CHECKER_REPLAYS_THE_TERMINAL_WITNESS",
+    "independent_terminal_structural_verifier": "PASS",
+    "selected_row_bank_match_count": 0,
+    "sharpened_target_holds": false,
+    "single_row_deletion_replay_count": 1799,
+    "status": "SAT_PRODUCER_BANK_CLEAN_CORRECTED_SHADOW",
+    "structural_survivor_count": 101,
+    "terminal_blocker_assignment_sha256": "726f7c38f5c125a17442ad4780ad30ce879d056fe8ae7d99ae225514ca2ff602",
+    "terminal_row_assignment_sha256": "f4c8e9e69d7ca3bec381d27178710fc7aa4ab7f4308e70973b675a38b8eacc66"
+  },
+  "epistemic_status": {
+    "live_producer": "OPEN_UNTIL_CORE_IS_KERNEL_CERTIFIED_AND_WIRED",
+    "metric_verdict": "TRUSTED_EXACT_CAS_CROSSCHECK_NOT_CERTIFICATE_REPLAY",
+    "structural_witness": "EXACT_WITHIN_CORRECTED_FINITE_SHADOW"
+  },
+  "first_omitted_full_parent_field": {
+    "closure_consequence": "the corrected structural bank is incomplete on this witness; a kernel-facing certificate for the retained algebraic core can exclude it without inventing a prescribed-pair producer",
+    "failure_occurs_before": [
+      "strict convex orientation inequalities",
+      "minimum-enclosing-disk and cap inequalities",
+      "literal noM44 geometry",
+      "the sharpened one-row target"
+    ],
+    "field": "simultaneous Euclidean realization of all selected radius rows",
+    "smallest_current_replayable_core": "eight selected centers and 25 squared-distance equalities; crosschecked UNIT but not claimed globally minimal"
+  },
+  "metric_realizability": {
+    "ambient_first_apex_class_restored": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "J"
+    ],
+    "coordinate_gauge": {
+      "A": [
+        1,
+        0
+      ],
+      "O": [
+        0,
+        0
+      ]
+    },
+    "full_terminal_witness": {
+      "equality_count": 43,
+      "expanded_polynomial_sha256": "52120d25567e19c6018d83ca58ebd86b2ba5413b72c6b004b60b4d0dbb07285e",
+      "msolve_qq_forward_variables": {
+        "verdict": "UNIT"
+      },
+      "msolve_qq_reverse_variables": {
+        "verdict": "UNIT"
+      },
+      "row_count": 14,
+      "rows": [
+        {
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "center": "C",
+          "support": [
+            "G",
+            "I",
+            "X",
+            "t1"
+          ]
+        },
+        {
+          "center": "D",
+          "support": [
+            "A",
+            "E",
+            "F",
+            "I"
+          ]
+        },
+        {
+          "center": "E",
+          "support": [
+            "J",
+            "K",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "I",
+          "support": [
+            "C",
+            "F",
+            "Y",
+            "t1"
+          ]
+        },
+        {
+          "center": "J",
+          "support": [
+            "F",
+            "O",
+            "Z",
+            "t1"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "G",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "center": "O",
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E",
+            "J"
+          ]
+        },
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        },
+        {
+          "center": "t1",
+          "support": [
+            "D",
+            "X",
+            "Y",
+            "Z"
+          ]
+        }
+      ],
+      "singular_qq": {
+        "verdict": "UNIT"
+      },
+      "status": "CROSSCHECKED_UNIT"
+    },
+    "interpretation": "the equality ideal is already the unit ideal over QQ; there is no normalized complex realization and hence no real realization",
+    "retained_unit_row_core": {
+      "center_names": [
+        "A",
+        "F",
+        "G",
+        "K",
+        "O",
+        "X",
+        "Y",
+        "Z"
+      ],
+      "equality_count": 25,
+      "expanded_polynomial_sha256": "9d7545b3b584e49e823d42c417b3ec396840e6801f975b87ab252f2976a1656d",
+      "generator_minimality_claimed": false,
+      "msolve_qq_forward_variables": {
+        "verdict": "UNIT"
+      },
+      "msolve_qq_reverse_variables": {
+        "verdict": "UNIT"
+      },
+      "nullstellensatz_certificate_replayed": false,
+      "row_count": 8,
+      "row_minimality_claimed": false,
+      "rows": [
+        {
+          "center": "A",
+          "support": [
+            "C",
+            "G",
+            "K",
+            "O"
+          ]
+        },
+        {
+          "center": "F",
+          "support": [
+            "A",
+            "I",
+            "K",
+            "Z"
+          ]
+        },
+        {
+          "center": "G",
+          "support": [
+            "E",
+            "F",
+            "K",
+            "X"
+          ]
+        },
+        {
+          "center": "K",
+          "support": [
+            "G",
+            "I",
+            "O",
+            "Y"
+          ]
+        },
+        {
+          "center": "O",
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E",
+            "J"
+          ]
+        },
+        {
+          "center": "X",
+          "support": [
+            "F",
+            "G",
+            "J",
+            "Z"
+          ]
+        },
+        {
+          "center": "Y",
+          "support": [
+            "E",
+            "O",
+            "X",
+            "Z"
+          ]
+        },
+        {
+          "center": "Z",
+          "support": [
+            "A",
+            "D",
+            "G",
+            "Y"
+          ]
+        }
+      ],
+      "singular_qq": {
+        "verdict": "UNIT"
+      },
+      "status": "CROSSCHECKED_UNIT"
+    }
+  },
+  "not_claimed": [
+    "a K-A countermodel",
+    "an exhaustive classification of all corrected structural shadows",
+    "a Lean-kernel proof of the UNIT computation",
+    "row- or generator-minimality of the retained core"
+  ],
+  "schema": "p97-atail-bank-clean-metric-audit-v1",
+  "solver_smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve": {
+        "verdict": "NONUNIT"
+      },
+      "singular": {
+        "verdict": "NONUNIT"
+      }
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve": {
+        "verdict": "UNIT"
+      },
+      "singular": {
+        "verdict": "UNIT"
+      }
+    }
+  },
+  "source_sha256": {
+    "scratch/atail-force/bank-clean-metric-audit/source_checkpoint.json": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+    "scratch/atail-force/global-k4-extension-audit-35pt/analyze.py": "db59e95d71da2a2544acf5b73ded4dd321e1532a91977825042a290c996550d4",
+    "scratch/atail-force/global-k4-extension/analyze.py": "256313fbb2a957733e9b3709b6587ed875acdcbef858dcc6775cec98de1d9493",
+    "scratch/atail-force/robust-all-center-cegar/search.py": "54edd2c3ed92ef6d0d55f5f5196d9ec84d2d04cabc40a3ecc04cabbcb4a16d02",
+    "scratch/atail-force/robust-all-center-marco/bank_cegar.py": "35b911ccde42691fee1f9d425634f626154cc0621ff8802b8f7f1d2547a8ea16",
+    "scratch/atail-force/second_center_metric_oracle/oracle.py": "b708722ce49f9d0f165facf20a911161815ce8018c5fc3760bf872dad6977a09"
+  },
+  "status": "PASS",
+  "theorem_bank_preflight": {
+    "current_producer_bank_match_count": 0,
+    "direct_existing_u1_consumer_match": false,
+    "existing_u1_equality_match": {
+      "all_minimum_missing_sets": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          6
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          5,
+          7
+        ]
+      ],
+      "minimum_missing_hypothesis_count": 2,
+      "preferred_assignment_a_c_d_e_f": [
+        3,
+        2,
+        12,
+        4,
+        11
+      ],
+      "preferred_missing_hypotheses": [
+        5,
+        7
+      ]
+    },
+    "indexed_all_eight_slot_family_found": true,
+    "reason": "the closest existing U1 equality template still lacks two hypotheses; AllEightSlotMetricCore is a differently packaged three-source-row surface with branch-specific extra equalities"
+  }
+}

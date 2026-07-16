@@ -1,0 +1,21 @@
+ring R=0,(Cx,Cy,Ex,Ey,Fx,Fy,Gx,Gy,Kx,Ky,Xx,Xy,Yx,Yy,Zx,Zy),dp;
+ideal I=Ex^2 + Ey^2 - 1,
+  -Cx^2 + 2*Cx - Cy^2 + Gx^2 - 2*Gx + Gy^2,
+  -Cx^2 + 2*Cx - Cy^2 + Kx^2 - 2*Kx + Ky^2,
+  -Cx^2 + 2*Cx - Cy^2,
+  -2*Fx*Kx + 2*Fx - 2*Fy*Ky + Kx^2 + Ky^2 - 1,
+  -2*Fx*Zx + 2*Fx - 2*Fy*Zy + Zx^2 + Zy^2 - 1,
+  -Ex^2 + 2*Ex*Gx - Ey^2 + 2*Ey*Gy + Fx^2 - 2*Fx*Gx + Fy^2 - 2*Fy*Gy,
+  -Ex^2 + 2*Ex*Gx - Ey^2 + 2*Ey*Gy - 2*Gx*Kx - 2*Gy*Ky + Kx^2 + Ky^2,
+  -Ex^2 + 2*Ex*Gx - Ey^2 + 2*Ey*Gy - 2*Gx*Xx - 2*Gy*Xy + Xx^2 + Xy^2,
+  -Gx^2 + 2*Gx*Kx - Gy^2 + 2*Gy*Ky,
+  -Gx^2 + 2*Gx*Kx - Gy^2 + 2*Gy*Ky - 2*Kx*Yx - 2*Ky*Yy + Yx^2 + Yy^2,
+  -Fx^2 + 2*Fx*Xx - Fy^2 + 2*Fy*Xy + Gx^2 - 2*Gx*Xx + Gy^2 - 2*Gy*Xy,
+  -Ex^2 + 2*Ex*Yx - Ey^2 + 2*Ey*Yy,
+  -Ex^2 + 2*Ex*Yx - Ey^2 + 2*Ey*Yy + Xx^2 - 2*Xx*Yx + Xy^2 - 2*Xy*Yy,
+  -Ex^2 + 2*Ex*Yx - Ey^2 + 2*Ey*Yy - 2*Yx*Zx - 2*Yy*Zy + Zx^2 + Zy^2,
+  Gx^2 - 2*Gx*Zx + Gy^2 - 2*Gy*Zy + 2*Zx - 1;
+ideal G=slimgb(I);
+if (size(G)==1 and G[1]==1) { print("STATUS_UNIT"); }
+else { print("STATUS_NONUNIT"); print("DIM="+string(dim(G))); }
+quit;

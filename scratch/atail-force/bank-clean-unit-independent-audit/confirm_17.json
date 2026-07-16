@@ -1,0 +1,231 @@
+{
+  "active_roles": [
+    "X",
+    "Y",
+    "Z",
+    "E",
+    "G",
+    "K",
+    "I",
+    "F"
+  ],
+  "active_variables": [
+    "Cx",
+    "Cy",
+    "Xx",
+    "Xy",
+    "Yx",
+    "Yy",
+    "Zx",
+    "Zy",
+    "Dx",
+    "Dy",
+    "Jx",
+    "Jy",
+    "Ex",
+    "Ey",
+    "Gx",
+    "Gy",
+    "Kx",
+    "Ky",
+    "t1x",
+    "t1y",
+    "Ix",
+    "Iy",
+    "Fx",
+    "Fy"
+  ],
+  "checkpoint_row_sha256": "f4c8e9e69d7ca3bec381d27178710fc7aa4ab7f4308e70973b675a38b8eacc66",
+  "comparison_checkpoint_sha256": "75e7a39f3bf474c2e8dcdcd869419cdf083b5066305c5c0e4b85af575a17115a",
+  "comparison_polynomial_sha256_replayed": "501e72748dc8938b808c2f22789dc57601e4d6cdeb717a3746f33a4d4db30777",
+  "crosscheck": {
+    "status": "CROSSCHECKED_UNIT",
+    "verdicts": [
+      "UNIT",
+      "UNIT",
+      "UNIT"
+    ]
+  },
+  "gauge": {
+    "A": [
+      1,
+      0
+    ],
+    "O": [
+      0,
+      0
+    ]
+  },
+  "gauge_precondition": "O != A in the intended distinct-point real configuration",
+  "generators": [
+    {
+      "center": "A",
+      "left": "O",
+      "name": "ROW_A_O_G",
+      "polynomial": "-Gx**2 + 2*Gx - Gy**2",
+      "right": "G"
+    },
+    {
+      "center": "A",
+      "left": "O",
+      "name": "ROW_A_O_K",
+      "polynomial": "-Kx**2 + 2*Kx - Ky**2",
+      "right": "K"
+    },
+    {
+      "center": "F",
+      "left": "A",
+      "name": "ROW_F_A_Z",
+      "polynomial": "2*Fx*Zx - 2*Fx + 2*Fy*Zy - Zx**2 - Zy**2 + 1",
+      "right": "Z"
+    },
+    {
+      "center": "F",
+      "left": "A",
+      "name": "ROW_F_A_K",
+      "polynomial": "2*Fx*Kx - 2*Fx + 2*Fy*Ky - Kx**2 - Ky**2 + 1",
+      "right": "K"
+    },
+    {
+      "center": "G",
+      "left": "X",
+      "name": "ROW_G_X_E",
+      "polynomial": "-Ex**2 + 2*Ex*Gx - Ey**2 + 2*Ey*Gy - 2*Gx*Xx - 2*Gy*Xy + Xx**2 + Xy**2",
+      "right": "E"
+    },
+    {
+      "center": "G",
+      "left": "X",
+      "name": "ROW_G_X_K",
+      "polynomial": "2*Gx*Kx - 2*Gx*Xx + 2*Gy*Ky - 2*Gy*Xy - Kx**2 - Ky**2 + Xx**2 + Xy**2",
+      "right": "K"
+    },
+    {
+      "center": "K",
+      "left": "O",
+      "name": "ROW_K_O_Y",
+      "polynomial": "2*Kx*Yx + 2*Ky*Yy - Yx**2 - Yy**2",
+      "right": "Y"
+    },
+    {
+      "center": "K",
+      "left": "O",
+      "name": "ROW_K_O_G",
+      "polynomial": "-Gx**2 + 2*Gx*Kx - Gy**2 + 2*Gy*Ky",
+      "right": "G"
+    },
+    {
+      "center": "K",
+      "left": "O",
+      "name": "ROW_K_O_I",
+      "polynomial": "-Ix**2 + 2*Ix*Kx - Iy**2 + 2*Iy*Ky",
+      "right": "I"
+    },
+    {
+      "center": "O",
+      "left": "A",
+      "name": "ROW_O_A_E",
+      "polynomial": "-Ex**2 - Ey**2 + 1",
+      "right": "E"
+    },
+    {
+      "center": "X",
+      "left": "Z",
+      "name": "ROW_X_Z_G",
+      "polynomial": "-Gx**2 + 2*Gx*Xx - Gy**2 + 2*Gy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx**2 + Zy**2",
+      "right": "G"
+    },
+    {
+      "center": "X",
+      "left": "Z",
+      "name": "ROW_X_Z_F",
+      "polynomial": "-Fx**2 + 2*Fx*Xx - Fy**2 + 2*Fy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx**2 + Zy**2",
+      "right": "F"
+    },
+    {
+      "center": "Y",
+      "left": "O",
+      "name": "ROW_Y_O_X",
+      "polynomial": "-Xx**2 + 2*Xx*Yx - Xy**2 + 2*Xy*Yy",
+      "right": "X"
+    },
+    {
+      "center": "Y",
+      "left": "O",
+      "name": "ROW_Y_O_Z",
+      "polynomial": "2*Yx*Zx + 2*Yy*Zy - Zx**2 - Zy**2",
+      "right": "Z"
+    },
+    {
+      "center": "Y",
+      "left": "O",
+      "name": "ROW_Y_O_E",
+      "polynomial": "-Ex**2 + 2*Ex*Yx - Ey**2 + 2*Ey*Yy",
+      "right": "E"
+    },
+    {
+      "center": "Z",
+      "left": "A",
+      "name": "ROW_Z_A_Y",
+      "polynomial": "-Yx**2 + 2*Yx*Zx - Yy**2 + 2*Yy*Zy - 2*Zx + 1",
+      "right": "Y"
+    },
+    {
+      "center": "Z",
+      "left": "A",
+      "name": "ROW_Z_A_G",
+      "polynomial": "-Gx**2 + 2*Gx*Zx - Gy**2 + 2*Gy*Zy - 2*Zx + 1",
+      "right": "G"
+    }
+  ],
+  "oracles": {
+    "msolve_QQ_forward_expanded": {
+      "exit_code": 0,
+      "output": "[-1]:\n",
+      "seconds": 0.141114917001687,
+      "status": "EXITED",
+      "stderr": "",
+      "stdout": "",
+      "verdict": "UNIT"
+    },
+    "msolve_QQ_reverse_expanded": {
+      "exit_code": 0,
+      "output": "[-1]:\n",
+      "seconds": 0.11629558299318887,
+      "status": "EXITED",
+      "stderr": "",
+      "stdout": "",
+      "verdict": "UNIT"
+    },
+    "singular_QQ_char0_std": {
+      "exit_code": 0,
+      "seconds": 1.763580083992565,
+      "status": "EXITED",
+      "stderr": "",
+      "stdout": "STATUS_UNIT\n",
+      "verdict": "UNIT"
+    }
+  },
+  "schema": "p97-bank-clean-17-equality-independent-audit-v1",
+  "trust_boundary": [
+    "direct squared-distance reconstruction from the terminal checkpoint rows",
+    "Singular 4.4.1 characteristic-zero std as exact computation, not a kernel certificate",
+    "msolve 0.10.1 expanded input in two variable orders as an independent crosscheck",
+    "UNIT excludes normalized complex and hence intended real solutions of these equalities",
+    "no structural coverage theorem or K-A closure follows from one excluded shadow"
+  ],
+  "variable_roles_including_inactive_padding": [
+    "C",
+    "X",
+    "Y",
+    "Z",
+    "D",
+    "J",
+    "E",
+    "G",
+    "K",
+    "t1",
+    "I",
+    "F"
+  ]
+}

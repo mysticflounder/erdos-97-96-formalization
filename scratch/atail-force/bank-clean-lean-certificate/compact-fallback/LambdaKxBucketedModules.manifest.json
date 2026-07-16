@@ -1,0 +1,1961 @@
+{
+  "bucket_stats": {
+    "bucket_count": 154,
+    "max_bucket_monomials": 83,
+    "max_bucket_worst_expression_bytes": 12000,
+    "monomial_count": 11905
+  },
+  "bucketed_generator_sha256": "205313fc910f0cdb1b6f0033131022337bb739a6d8b4ba44db6aa2f8665eb730",
+  "build_order": [
+    "LambdaKxBucketed.Product0",
+    "LambdaKxBucketed.Product1",
+    "LambdaKxBucketed.Product2",
+    "LambdaKxBucketed.Product3",
+    "LambdaKxBucketed.Product4",
+    "LambdaKxBucketed.Product5",
+    "LambdaKxBucketed.Product6",
+    "LambdaKxBucketed.Product7",
+    "LambdaKxBucketed.Product8",
+    "LambdaKxBucketed.Product9",
+    "LambdaKxBucketed.Product10",
+    "LambdaKxBucketed.Product11",
+    "LambdaKxBucketed.Certificate"
+  ],
+  "chunk_count": 71,
+  "epistemic_status": "exact deterministic module-split Lean source; kernel build pending",
+  "exact_external_replay": true,
+  "generator_sha256": "a75220cdeb56c571588333ce728767321fe323b240394538638f942ca8af751b",
+  "input_certificate_sha256": "6ac034ee5a2c04e6077fef30aee3652cc4172338e406cccb0e7ddbed6660de2a",
+  "input_content_sha256": "30a745220716e8ccdfcec2b70d5a83228c70bdab5fd66b085a201a571cd2cec3",
+  "max_command_bytes": 16099,
+  "max_module_command_count": 3182,
+  "max_module_source_bytes": 10672772,
+  "module_prefix": "LambdaKxBucketed",
+  "modules": [
+    {
+      "chunk_count": 8,
+      "command_count": 1774,
+      "families": [
+        {
+          "active_bucket_count": 39,
+          "label": "chunk0",
+          "max_active_bucket_bytes": 11781,
+          "max_active_bucket_terms": 83,
+          "node_id": 0,
+          "polynomial_sha256": "70d8e73ba39545e5ee90fcfe3573e22beb6f49dec721bb959e2e84ed198688b4",
+          "support_size": 749
+        },
+        {
+          "active_bucket_count": 40,
+          "label": "chunk1",
+          "max_active_bucket_bytes": 10421,
+          "max_active_bucket_terms": 71,
+          "node_id": 1,
+          "polynomial_sha256": "b850ad97defbf6496f392d2b57f823d498934d79aab8a11605454db38b9ac3ac",
+          "support_size": 768
+        },
+        {
+          "active_bucket_count": 44,
+          "label": "chunk2",
+          "max_active_bucket_bytes": 7422,
+          "max_active_bucket_terms": 50,
+          "node_id": 2,
+          "polynomial_sha256": "d080e3c138037bcf72dd58ed5e48471c6070eb23541f3d7282d6adb093ccb673",
+          "support_size": 768
+        },
+        {
+          "active_bucket_count": 43,
+          "label": "chunk3",
+          "max_active_bucket_bytes": 11361,
+          "max_active_bucket_terms": 74,
+          "node_id": 3,
+          "polynomial_sha256": "31886bc5a94fb56dbaf1ec05bf578795db2536de172fd241ed6aed57d02321e4",
+          "support_size": 763
+        },
+        {
+          "active_bucket_count": 36,
+          "label": "chunk4",
+          "max_active_bucket_bytes": 9024,
+          "max_active_bucket_terms": 59,
+          "node_id": 4,
+          "polynomial_sha256": "cc9ae3916620dec872b0c8cb13a1f1dfb79859be2309371d93841976aa1edf14",
+          "support_size": 768
+        },
+        {
+          "active_bucket_count": 46,
+          "label": "chunk5",
+          "max_active_bucket_bytes": 11211,
+          "max_active_bucket_terms": 72,
+          "node_id": 5,
+          "polynomial_sha256": "879c8b1268aad266fae7991b52b2b3e0b565a23c6ddc3c53ab853790c50869c1",
+          "support_size": 763
+        },
+        {
+          "active_bucket_count": 37,
+          "label": "chunk6",
+          "max_active_bucket_bytes": 9733,
+          "max_active_bucket_terms": 63,
+          "node_id": 6,
+          "polynomial_sha256": "89a3eb20e79060baf63227fdb270a774f8a985bb2dc432f13580547fea3f01fe",
+          "support_size": 768
+        },
+        {
+          "active_bucket_count": 32,
+          "label": "chunk7",
+          "max_active_bucket_bytes": 11180,
+          "max_active_bucket_terms": 71,
+          "node_id": 7,
+          "polynomial_sha256": "a6607d4de044a1c4cf12552c14f2e2a068de14cd819181494b4092ff05a5e95c",
+          "support_size": 599
+        },
+        {
+          "active_bucket_count": 63,
+          "label": "product0L0N0",
+          "max_active_bucket_bytes": 11825,
+          "max_active_bucket_terms": 83,
+          "node_id": 71,
+          "polynomial_sha256": "c20312e69ce30ee7d69dca2afc3008a6e54cd08c8bbe090c172549fbc2413a82",
+          "support_size": 1472
+        },
+        {
+          "active_bucket_count": 83,
+          "label": "product0L0N1",
+          "max_active_bucket_bytes": 11519,
+          "max_active_bucket_terms": 75,
+          "node_id": 72,
+          "polynomial_sha256": "22ff69dc002740649c19059a0a658de476f54001c1f3d0aa026d7b6a32fbb13c",
+          "support_size": 1530
+        },
+        {
+          "active_bucket_count": 77,
+          "label": "product0L0N2",
+          "max_active_bucket_bytes": 11211,
+          "max_active_bucket_terms": 72,
+          "node_id": 73,
+          "polynomial_sha256": "4968958359f229b41ceb39f1976292d29c5876d9aa3f926176b5c7cb5d2228d4",
+          "support_size": 1525
+        },
+        {
+          "active_bucket_count": 55,
+          "label": "product0L0N3",
+          "max_active_bucket_bytes": 11180,
+          "max_active_bucket_terms": 71,
+          "node_id": 74,
+          "polynomial_sha256": "bcfc056d35123a7b2134d7a9980f856ccb92b2098f47453ff0ac12ed117c639b",
+          "support_size": 1292
+        },
+        {
+          "active_bucket_count": 102,
+          "label": "product0L1N0",
+          "max_active_bucket_bytes": 11825,
+          "max_active_bucket_terms": 83,
+          "node_id": 75,
+          "polynomial_sha256": "28cd12ca0733ac0cb57d0c01746038b082eec733f799af8322efadacbcb74dcc",
+          "support_size": 2791
+        },
+        {
+          "active_bucket_count": 99,
+          "label": "product0L1N1",
+          "max_active_bucket_bytes": 11315,
+          "max_active_bucket_terms": 72,
+          "node_id": 76,
+          "polynomial_sha256": "c6ec9618e62fd83d9fef663d598c8f4d48e366053f40b9e4fa6144dc45dfc131",
+          "support_size": 2616
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "product0L2N0",
+          "max_active_bucket_bytes": 11825,
+          "max_active_bucket_terms": 83,
+          "node_id": 77,
+          "polynomial_sha256": "6a6748cd7f1980c9ecb7529c953e01abdc7a3f0a7b711e3a6ed440cdcc27291c",
+          "public": true,
+          "support_size": 5049
+        }
+      ],
+      "file": "Product0.lean",
+      "generator_index": 0,
+      "generator_name": "AOK",
+      "max_command_bytes": 16096,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 63,
+          "node_id": 71,
+          "root_theorem": "lambdaKxBucketMerge71Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 83,
+          "node_id": 72,
+          "root_theorem": "lambdaKxBucketMerge72Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 77,
+          "node_id": 73,
+          "root_theorem": "lambdaKxBucketMerge73Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 55,
+          "node_id": 74,
+          "root_theorem": "lambdaKxBucketMerge74Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 102,
+          "node_id": 75,
+          "root_theorem": "lambdaKxBucketMerge75Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 99,
+          "node_id": 76,
+          "root_theorem": "lambdaKxBucketMerge76Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 77,
+          "root_theorem": "lambdaKxBucketMerge77Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product0",
+      "node_count": 15,
+      "root_node_id": 77,
+      "source_bytes": 4090492,
+      "source_sha256": "a6dada723e4ac05573c24fc65c792bf1863ff1d6085b2e22cf6df8f9a94ad827"
+    },
+    {
+      "chunk_count": 8,
+      "command_count": 1721,
+      "families": [
+        {
+          "active_bucket_count": 79,
+          "label": "chunk8",
+          "max_active_bucket_bytes": 7597,
+          "max_active_bucket_terms": 51,
+          "node_id": 8,
+          "polynomial_sha256": "fe1a83e163bce47093069182c9a9815680a2715158ea989c22f112fd4c69dc4d",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 58,
+          "label": "chunk9",
+          "max_active_bucket_bytes": 7415,
+          "max_active_bucket_terms": 50,
+          "node_id": 9,
+          "polynomial_sha256": "fad049f4b32b60a08b6a6ff925ff1f07ed7ca312e04c536d106cb6cf80215c20",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 30,
+          "label": "chunk10",
+          "max_active_bucket_bytes": 10261,
+          "max_active_bucket_terms": 70,
+          "node_id": 10,
+          "polynomial_sha256": "bb7c9c596fa3546abc6aae88b89cdf41bbf3e9428f7a1f8303db0a64f929e1da",
+          "support_size": 1020
+        },
+        {
+          "active_bucket_count": 42,
+          "label": "chunk11",
+          "max_active_bucket_bytes": 9176,
+          "max_active_bucket_terms": 61,
+          "node_id": 11,
+          "polynomial_sha256": "a4befada1e1e01eff44f1cd9a714633fc93bfba5d14a19c99b672fff9f18026e",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 32,
+          "label": "chunk12",
+          "max_active_bucket_bytes": 9782,
+          "max_active_bucket_terms": 62,
+          "node_id": 12,
+          "polynomial_sha256": "cf5e64a42f97884ffdac6253900630918e21d874f7571ebfed7a3421de3c2c58",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 33,
+          "label": "chunk13",
+          "max_active_bucket_bytes": 11227,
+          "max_active_bucket_terms": 71,
+          "node_id": 13,
+          "polynomial_sha256": "29436d2aa364a34a52f6699b38c67b04d7de09aa862e63461400c066a6b5f8db",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 28,
+          "label": "chunk14",
+          "max_active_bucket_bytes": 10870,
+          "max_active_bucket_terms": 72,
+          "node_id": 14,
+          "polynomial_sha256": "ae803cbc48214502e674f8d0e3c7c699c76671a527b0accdeb7d5afb44e6d5f1",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 8,
+          "label": "chunk15",
+          "max_active_bucket_bytes": 6713,
+          "max_active_bucket_terms": 43,
+          "node_id": 15,
+          "polynomial_sha256": "e06d3bd38e30d962423d372ba0b5c8785925ca04bc4198533c2efe81ddfe3548",
+          "support_size": 167
+        },
+        {
+          "active_bucket_count": 116,
+          "label": "product1L0N0",
+          "max_active_bucket_bytes": 7942,
+          "max_active_bucket_terms": 54,
+          "node_id": 78,
+          "polynomial_sha256": "0e3b8e7c679c50b8c93c3d8befb15ed3b3f15f30dd0c92c385bba16238fae3f4",
+          "support_size": 1991
+        },
+        {
+          "active_bucket_count": 64,
+          "label": "product1L0N1",
+          "max_active_bucket_bytes": 10261,
+          "max_active_bucket_terms": 70,
+          "node_id": 79,
+          "polynomial_sha256": "c430f87b035ee550aeb7763cc5d40676dca6fd7aca9e5baf725d3394caddcc79",
+          "support_size": 2000
+        },
+        {
+          "active_bucket_count": 58,
+          "label": "product1L0N2",
+          "max_active_bucket_bytes": 11357,
+          "max_active_bucket_terms": 72,
+          "node_id": 80,
+          "polynomial_sha256": "92e429f2046a09c71a379102c389efd69b4d6d316543bea0ff253f102b39ea1c",
+          "support_size": 2003
+        },
+        {
+          "active_bucket_count": 29,
+          "label": "product1L0N3",
+          "max_active_bucket_bytes": 11559,
+          "max_active_bucket_terms": 75,
+          "node_id": 81,
+          "polynomial_sha256": "cf4691be6c36d0ce926502ed503a83b7549ab8b2fd05495a40dd1508f785557e",
+          "support_size": 1089
+        },
+        {
+          "active_bucket_count": 135,
+          "label": "product1L1N0",
+          "max_active_bucket_bytes": 10875,
+          "max_active_bucket_terms": 73,
+          "node_id": 82,
+          "polynomial_sha256": "1c539dd970484127e9a6dffc854bb5b4ab6140e68d6328376edfb34a40cb1a79",
+          "support_size": 3740
+        },
+        {
+          "active_bucket_count": 63,
+          "label": "product1L1N1",
+          "max_active_bucket_bytes": 11559,
+          "max_active_bucket_terms": 75,
+          "node_id": 83,
+          "polynomial_sha256": "3e22d0c5c7b2bd3b63221e4b977d1a67da4b2b15e561300d4399946a22b67425",
+          "support_size": 2620
+        },
+        {
+          "active_bucket_count": 149,
+          "label": "product1L2N0",
+          "max_active_bucket_bytes": 11559,
+          "max_active_bucket_terms": 75,
+          "node_id": 84,
+          "polynomial_sha256": "29fcb7d7bdb7cc04f94a6097e7cc51a16c4f048e41664572d3ffbb65e00701e7",
+          "public": true,
+          "support_size": 5568
+        }
+      ],
+      "file": "Product1.lean",
+      "generator_index": 1,
+      "generator_name": "FAK",
+      "max_command_bytes": 16095,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 116,
+          "node_id": 78,
+          "root_theorem": "lambdaKxBucketMerge78Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 64,
+          "node_id": 79,
+          "root_theorem": "lambdaKxBucketMerge79Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 58,
+          "node_id": 80,
+          "root_theorem": "lambdaKxBucketMerge80Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 29,
+          "node_id": 81,
+          "root_theorem": "lambdaKxBucketMerge81Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 135,
+          "node_id": 82,
+          "root_theorem": "lambdaKxBucketMerge82Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 63,
+          "node_id": 83,
+          "root_theorem": "lambdaKxBucketMerge83Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 149,
+          "node_id": 84,
+          "root_theorem": "lambdaKxBucketMerge84Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product1",
+      "node_count": 15,
+      "root_node_id": 84,
+      "source_bytes": 4625811,
+      "source_sha256": "e2016ffb9bcc85d588ee7b3e704deeaaf0aea2fe14e84b8d6a57316a12dfd204"
+    },
+    {
+      "chunk_count": 6,
+      "command_count": 1441,
+      "families": [
+        {
+          "active_bucket_count": 60,
+          "label": "chunk16",
+          "max_active_bucket_bytes": 7315,
+          "max_active_bucket_terms": 51,
+          "node_id": 16,
+          "polynomial_sha256": "712faebe016af5fe5be5314d8a47eee4684e657cf910347de19950f759459be9",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 73,
+          "label": "chunk17",
+          "max_active_bucket_bytes": 7676,
+          "max_active_bucket_terms": 52,
+          "node_id": 17,
+          "polynomial_sha256": "06942c6c98fc1d308dc9211ec97d2bb9aa3ef09add89a3639dcdac762ccac5ff",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 41,
+          "label": "chunk18",
+          "max_active_bucket_bytes": 10087,
+          "max_active_bucket_terms": 67,
+          "node_id": 18,
+          "polynomial_sha256": "80537228e57df10d86f9f0b6a863e54ae7be52fdd5b1582f6ee0a547a1200226",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 48,
+          "label": "chunk19",
+          "max_active_bucket_bytes": 8258,
+          "max_active_bucket_terms": 55,
+          "node_id": 19,
+          "polynomial_sha256": "fa3ab0d4476525855a115c32aea62c6b006cfc36337aa650a4c5bb2f32c80d42",
+          "support_size": 1019
+        },
+        {
+          "active_bucket_count": 41,
+          "label": "chunk20",
+          "max_active_bucket_bytes": 10307,
+          "max_active_bucket_terms": 67,
+          "node_id": 20,
+          "polynomial_sha256": "108b81228b3f1c0969036edbd0143392dbb0dc83c416da6417c9a459d24c61e2",
+          "support_size": 1019
+        },
+        {
+          "active_bucket_count": 20,
+          "label": "chunk21",
+          "max_active_bucket_bytes": 9507,
+          "max_active_bucket_terms": 60,
+          "node_id": 21,
+          "polynomial_sha256": "e845a71efb30988953d1b5557b2214a4ffbaf3767ed9e4881eac6b64c82845a8",
+          "support_size": 615
+        },
+        {
+          "active_bucket_count": 104,
+          "label": "product2L0N0",
+          "max_active_bucket_bytes": 8102,
+          "max_active_bucket_terms": 56,
+          "node_id": 85,
+          "polynomial_sha256": "bac264e624efac5975b652b22b71ec223dcb881be094ecc32a09ef40d645ea28",
+          "support_size": 1970
+        },
+        {
+          "active_bucket_count": 76,
+          "label": "product2L0N1",
+          "max_active_bucket_bytes": 10087,
+          "max_active_bucket_terms": 67,
+          "node_id": 86,
+          "polynomial_sha256": "2733fc69ace2e82420e08decd746ccf2fc84038a4aaf4d6010e997fde6d03ce5",
+          "support_size": 2018
+        },
+        {
+          "active_bucket_count": 46,
+          "label": "product2L0N2",
+          "max_active_bucket_bytes": 10307,
+          "max_active_bucket_terms": 67,
+          "node_id": 87,
+          "polynomial_sha256": "f83c727120ab42ce3afa50686c718206bf14ce8008223e0cc1b7b0e706ceeea9",
+          "support_size": 1515
+        },
+        {
+          "active_bucket_count": 136,
+          "label": "product2L1N0",
+          "max_active_bucket_bytes": 10088,
+          "max_active_bucket_terms": 67,
+          "node_id": 88,
+          "polynomial_sha256": "6dc58d600b45facbf8ce4eccb42451ada15a2d7bbe0e06bdd168999e7ff29ae1",
+          "support_size": 3757
+        },
+        {
+          "active_bucket_count": 149,
+          "label": "product2L2N0",
+          "max_active_bucket_bytes": 10640,
+          "max_active_bucket_terms": 69,
+          "node_id": 89,
+          "polynomial_sha256": "37602c86eb7fa6cbcc3acee9bec01724cd24298b984f5473be9390126b9c6857",
+          "public": true,
+          "support_size": 5005
+        }
+      ],
+      "file": "Product2.lean",
+      "generator_index": 2,
+      "generator_name": "FKZ",
+      "max_command_bytes": 16076,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 104,
+          "node_id": 85,
+          "root_theorem": "lambdaKxBucketMerge85Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 76,
+          "node_id": 86,
+          "root_theorem": "lambdaKxBucketMerge86Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 46,
+          "node_id": 87,
+          "root_theorem": "lambdaKxBucketMerge87Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 136,
+          "node_id": 88,
+          "root_theorem": "lambdaKxBucketMerge88Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 149,
+          "node_id": 89,
+          "root_theorem": "lambdaKxBucketMerge89Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product2",
+      "node_count": 11,
+      "root_node_id": 89,
+      "source_bytes": 3510800,
+      "source_sha256": "148009321f35e53817fc3836ef0cf05e8af769e79b4083f3ba3663a2d525a16e"
+    },
+    {
+      "chunk_count": 2,
+      "command_count": 345,
+      "families": [
+        {
+          "active_bucket_count": 88,
+          "label": "chunk22",
+          "max_active_bucket_bytes": 7463,
+          "max_active_bucket_terms": 49,
+          "node_id": 22,
+          "polynomial_sha256": "2f3e151892bc3633200d6024afea9ff29e9a12ae188bea7ce77e0c4d4f9507f4",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 27,
+          "label": "chunk23",
+          "max_active_bucket_bytes": 7052,
+          "max_active_bucket_terms": 45,
+          "node_id": 23,
+          "polynomial_sha256": "240934473a8ce3219085c40ec58f0ad1a2497990bf45c32ab8f6a7532844a2f8",
+          "support_size": 503
+        },
+        {
+          "active_bucket_count": 93,
+          "label": "product3L0N0",
+          "max_active_bucket_bytes": 9971,
+          "max_active_bucket_terms": 64,
+          "node_id": 90,
+          "polynomial_sha256": "4b886228a82e78c219492dcd57fc17621bd654bc9a45ce77ec6af21001d51141",
+          "public": true,
+          "support_size": 1404
+        }
+      ],
+      "file": "Product3.lean",
+      "generator_index": 3,
+      "generator_name": "GXK",
+      "max_command_bytes": 16072,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 93,
+          "node_id": 90,
+          "root_theorem": "lambdaKxBucketMerge90Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product3",
+      "node_count": 3,
+      "root_node_id": 90,
+      "source_bytes": 544206,
+      "source_sha256": "881e75a766e9e9abcc1ad70e0b0dc3391e3bbec1a13824f561e3f9e0ca8d57cd"
+    },
+    {
+      "chunk_count": 3,
+      "command_count": 623,
+      "families": [
+        {
+          "active_bucket_count": 84,
+          "label": "chunk24",
+          "max_active_bucket_bytes": 6864,
+          "max_active_bucket_terms": 46,
+          "node_id": 24,
+          "polynomial_sha256": "cbb1d1ca04726fd52c0483ec0ef2ee5426c2997cb837081f4d12fd2e7ab69fc7",
+          "support_size": 1019
+        },
+        {
+          "active_bucket_count": 41,
+          "label": "chunk25",
+          "max_active_bucket_bytes": 9279,
+          "max_active_bucket_terms": 63,
+          "node_id": 25,
+          "polynomial_sha256": "4eda502337426fe3ba3d67f33c15e25225c1853bc1ead4ee216cecbec72bdf9d",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 17,
+          "label": "chunk26",
+          "max_active_bucket_bytes": 10853,
+          "max_active_bucket_terms": 74,
+          "node_id": 26,
+          "polynomial_sha256": "5a65da9cdee897e265cff6a44fde9fb85b6f99374c79420355101d2c1f103592",
+          "support_size": 547
+        },
+        {
+          "active_bucket_count": 101,
+          "label": "product4L0N0",
+          "max_active_bucket_bytes": 9279,
+          "max_active_bucket_terms": 63,
+          "node_id": 91,
+          "polynomial_sha256": "6e13436d1bdc916b26299122b8e6ded5e1167e336ea38ce2024f1d6d5afd391b",
+          "support_size": 1989
+        },
+        {
+          "active_bucket_count": 106,
+          "label": "product4L1N0",
+          "max_active_bucket_bytes": 10853,
+          "max_active_bucket_terms": 74,
+          "node_id": 92,
+          "polynomial_sha256": "9950f08f88ba140cd3611e01cbd59994d46cab92b40bb9db5d661973fe68e03b",
+          "public": true,
+          "support_size": 2482
+        }
+      ],
+      "file": "Product4.lean",
+      "generator_index": 4,
+      "generator_name": "XZ",
+      "max_command_bytes": 16023,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 101,
+          "node_id": 91,
+          "root_theorem": "lambdaKxBucketMerge91Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 106,
+          "node_id": 92,
+          "root_theorem": "lambdaKxBucketMerge92Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product4",
+      "node_count": 5,
+      "root_node_id": 92,
+      "source_bytes": 1262381,
+      "source_sha256": "f8c192bd486bc6d758b8c27d853c0b5218ba6367c07dfc4c9b557c9bb870c25c"
+    },
+    {
+      "chunk_count": 2,
+      "command_count": 362,
+      "families": [
+        {
+          "active_bucket_count": 90,
+          "label": "chunk27",
+          "max_active_bucket_bytes": 6460,
+          "max_active_bucket_terms": 43,
+          "node_id": 27,
+          "polynomial_sha256": "4b03eaf015e01dfbc60a256c23b97b47431f71a77f9b3bda1f6ecff2b20edafe",
+          "support_size": 1020
+        },
+        {
+          "active_bucket_count": 27,
+          "label": "chunk28",
+          "max_active_bucket_bytes": 8723,
+          "max_active_bucket_terms": 59,
+          "node_id": 28,
+          "polynomial_sha256": "dbed10bdebaf7f6dd225c0acedd5cf4f311a97153f899481eeaae2bbd1965290",
+          "support_size": 744
+        },
+        {
+          "active_bucket_count": 100,
+          "label": "product5L0N0",
+          "max_active_bucket_bytes": 8723,
+          "max_active_bucket_terms": 59,
+          "node_id": 93,
+          "polynomial_sha256": "fc2c7f38b24476c312fc119112593b15ef9aec7f5440cd2ee5cc9cfcf6934bb8",
+          "public": true,
+          "support_size": 1750
+        }
+      ],
+      "file": "Product5.lean",
+      "generator_index": 5,
+      "generator_name": "XF",
+      "max_command_bytes": 16099,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 100,
+          "node_id": 93,
+          "root_theorem": "lambdaKxBucketMerge93Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product5",
+      "node_count": 3,
+      "root_node_id": 93,
+      "source_bytes": 642930,
+      "source_sha256": "4b48aaaa3abdddd954c894454b3e27ca76bfc7e43d9bcac323ce5299f5eb184a"
+    },
+    {
+      "chunk_count": 3,
+      "command_count": 647,
+      "families": [
+        {
+          "active_bucket_count": 79,
+          "label": "chunk29",
+          "max_active_bucket_bytes": 6900,
+          "max_active_bucket_terms": 48,
+          "node_id": 29,
+          "polynomial_sha256": "b1e7551f08aa8b9d12f35a6b0df69238c6c01a8739a3b6b82fb8d48758fdfd03",
+          "support_size": 945
+        },
+        {
+          "active_bucket_count": 35,
+          "label": "chunk30",
+          "max_active_bucket_bytes": 9460,
+          "max_active_bucket_terms": 64,
+          "node_id": 30,
+          "polynomial_sha256": "118df2a664b9c83ccdfafb9474a9f86ab34f7aed4a6a0c0fb6f7d071c13720e8",
+          "support_size": 875
+        },
+        {
+          "active_bucket_count": 6,
+          "label": "chunk31",
+          "max_active_bucket_bytes": 4049,
+          "max_active_bucket_terms": 26,
+          "node_id": 31,
+          "polynomial_sha256": "a912506114ab0d4fb010d0a9e413c78a89ffe3f0e02292c803ff1008d17c6052",
+          "support_size": 91
+        },
+        {
+          "active_bucket_count": 112,
+          "label": "product6L0N0",
+          "max_active_bucket_bytes": 9460,
+          "max_active_bucket_terms": 64,
+          "node_id": 94,
+          "polynomial_sha256": "923cca318c98a96e28a4f785f8799f05fca2133ccb58241f3ae1c3ac498c81cf",
+          "support_size": 1819
+        },
+        {
+          "active_bucket_count": 117,
+          "label": "product6L1N0",
+          "max_active_bucket_bytes": 9460,
+          "max_active_bucket_terms": 64,
+          "node_id": 95,
+          "polynomial_sha256": "67fef4df25c57939ecd51c132acc4c29ca56a900f4ad6b47101dd24141e4f8d6",
+          "public": true,
+          "support_size": 1910
+        }
+      ],
+      "file": "Product6.lean",
+      "generator_index": 6,
+      "generator_name": "YOX",
+      "max_command_bytes": 16074,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 112,
+          "node_id": 94,
+          "root_theorem": "lambdaKxBucketMerge94Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 117,
+          "node_id": 95,
+          "root_theorem": "lambdaKxBucketMerge95Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product6",
+      "node_count": 5,
+      "root_node_id": 95,
+      "source_bytes": 1075652,
+      "source_sha256": "f4542637e40c3c79153b5b6aa554882303889ac45261f2e251c5b2a4b755445a"
+    },
+    {
+      "chunk_count": 4,
+      "command_count": 757,
+      "families": [
+        {
+          "active_bucket_count": 61,
+          "label": "chunk32",
+          "max_active_bucket_bytes": 7367,
+          "max_active_bucket_terms": 51,
+          "node_id": 32,
+          "polynomial_sha256": "0a861acee4b33f6b469339ecd0efb5adc395027a749bd773ef318c55d6bb479c",
+          "support_size": 886
+        },
+        {
+          "active_bucket_count": 35,
+          "label": "chunk33",
+          "max_active_bucket_bytes": 9523,
+          "max_active_bucket_terms": 65,
+          "node_id": 33,
+          "polynomial_sha256": "c88849983409a5782e7fd8b835b934caf69ffb5371a78b1a4d7d26e2a59ba289",
+          "support_size": 876
+        },
+        {
+          "active_bucket_count": 33,
+          "label": "chunk34",
+          "max_active_bucket_bytes": 9529,
+          "max_active_bucket_terms": 61,
+          "node_id": 34,
+          "polynomial_sha256": "2389763e637388455ef49792828da5e735927b80db78e628ea1a7dc1e8324244",
+          "support_size": 856
+        },
+        {
+          "active_bucket_count": 7,
+          "label": "chunk35",
+          "max_active_bucket_bytes": 6088,
+          "max_active_bucket_terms": 38,
+          "node_id": 35,
+          "polynomial_sha256": "54a224a57ddbcd0b9b068974d3821e434ff809c819d67f2e54247e6fa1bacb36",
+          "support_size": 110
+        },
+        {
+          "active_bucket_count": 94,
+          "label": "product7L0N0",
+          "max_active_bucket_bytes": 9524,
+          "max_active_bucket_terms": 65,
+          "node_id": 96,
+          "polynomial_sha256": "e8268bf174915d401a1f0dfb16c1a29e38a4fc119823ae6eaac140a5463bd217",
+          "support_size": 1759
+        },
+        {
+          "active_bucket_count": 39,
+          "label": "product7L0N1",
+          "max_active_bucket_bytes": 9529,
+          "max_active_bucket_terms": 61,
+          "node_id": 97,
+          "polynomial_sha256": "233b24085fb420450929d9d7642a16dcf8d83e4f89c7b2a5ae17ebbad81ee128",
+          "support_size": 966
+        },
+        {
+          "active_bucket_count": 131,
+          "label": "product7L1N0",
+          "max_active_bucket_bytes": 9529,
+          "max_active_bucket_terms": 65,
+          "node_id": 98,
+          "polynomial_sha256": "7a37216748e90203208762c1f7c05179727f766309be29ab797c9b177fa136fd",
+          "public": true,
+          "support_size": 2714
+        }
+      ],
+      "file": "Product7.lean",
+      "generator_index": 7,
+      "generator_name": "YOZ",
+      "max_command_bytes": 16084,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 94,
+          "node_id": 96,
+          "root_theorem": "lambdaKxBucketMerge96Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 39,
+          "node_id": 97,
+          "root_theorem": "lambdaKxBucketMerge97Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 131,
+          "node_id": 98,
+          "root_theorem": "lambdaKxBucketMerge98Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product7",
+      "node_count": 7,
+      "root_node_id": 98,
+      "source_bytes": 1528295,
+      "source_sha256": "f063d823888e03d516374f2ebb4fa760a196e57bdf51046b35fad3e1bdcfdabb"
+    },
+    {
+      "chunk_count": 5,
+      "command_count": 1299,
+      "families": [
+        {
+          "active_bucket_count": 98,
+          "label": "chunk36",
+          "max_active_bucket_bytes": 6597,
+          "max_active_bucket_terms": 44,
+          "node_id": 36,
+          "polynomial_sha256": "48b4075e8921882a66d1ad7d47945134367cac63fd6fb1e3fcdfc9181c5a6900",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 65,
+          "label": "chunk37",
+          "max_active_bucket_bytes": 6917,
+          "max_active_bucket_terms": 48,
+          "node_id": 37,
+          "polynomial_sha256": "2b068511d67ac71cdcbb3632a9a65257009ecde1a5bc498efb11bc44fa03b183",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 45,
+          "label": "chunk38",
+          "max_active_bucket_bytes": 9213,
+          "max_active_bucket_terms": 62,
+          "node_id": 38,
+          "polynomial_sha256": "0bd6940d04de132babb4a90007e597e73a799738a83e11f0506620f4a7759b81",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 41,
+          "label": "chunk39",
+          "max_active_bucket_bytes": 10620,
+          "max_active_bucket_terms": 69,
+          "node_id": 39,
+          "polynomial_sha256": "727b90b1bc529473dbad0037ea30f780b326dbe13979b47ce84b1e9ad9d7d5bf",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 34,
+          "label": "chunk40",
+          "max_active_bucket_bytes": 11530,
+          "max_active_bucket_terms": 75,
+          "node_id": 40,
+          "polynomial_sha256": "b8ad49f49dc3e002dd4b42ec527430e6b8d02469fe9bc162ce1305ac1c879bed",
+          "support_size": 826
+        },
+        {
+          "active_bucket_count": 122,
+          "label": "product8L0N0",
+          "max_active_bucket_bytes": 6917,
+          "max_active_bucket_terms": 48,
+          "node_id": 99,
+          "polynomial_sha256": "0734daa7b746b17d43c1c6802470cd6d4c739cd5f6e82e3c33446dc4c8716772",
+          "support_size": 1924
+        },
+        {
+          "active_bucket_count": 68,
+          "label": "product8L0N1",
+          "max_active_bucket_bytes": 10635,
+          "max_active_bucket_terms": 69,
+          "node_id": 100,
+          "polynomial_sha256": "5c7e6e73f3cd4a916227b776343df78920c37c476a56428d64186f49117726b7",
+          "support_size": 1942
+        },
+        {
+          "active_bucket_count": 129,
+          "label": "product8L1N0",
+          "max_active_bucket_bytes": 10930,
+          "max_active_bucket_terms": 71,
+          "node_id": 101,
+          "polynomial_sha256": "bb05072b1693ee4a87c6a10cddb32d6c6064b666d7802e8778e851aca7f183fc",
+          "support_size": 3470
+        },
+        {
+          "active_bucket_count": 132,
+          "label": "product8L2N0",
+          "max_active_bucket_bytes": 11544,
+          "max_active_bucket_terms": 75,
+          "node_id": 102,
+          "polynomial_sha256": "039e35d6cbe7ae5ae51da0318da24f1359337f24289d6374f3afd28d403fde54",
+          "public": true,
+          "support_size": 3872
+        }
+      ],
+      "file": "Product8.lean",
+      "generator_index": 8,
+      "generator_name": "ZAG",
+      "max_command_bytes": 16090,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 122,
+          "node_id": 99,
+          "root_theorem": "lambdaKxBucketMerge99Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 68,
+          "node_id": 100,
+          "root_theorem": "lambdaKxBucketMerge100Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 129,
+          "node_id": 101,
+          "root_theorem": "lambdaKxBucketMerge101Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 132,
+          "node_id": 102,
+          "root_theorem": "lambdaKxBucketMerge102Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product8",
+      "node_count": 9,
+      "root_node_id": 102,
+      "source_bytes": 2863971,
+      "source_sha256": "719a08dd750ccb1558109fcfb704cc5d291a3377767f0bc0df728086ddf443da"
+    },
+    {
+      "chunk_count": 7,
+      "command_count": 1679,
+      "families": [
+        {
+          "active_bucket_count": 56,
+          "label": "chunk41",
+          "max_active_bucket_bytes": 8226,
+          "max_active_bucket_terms": 57,
+          "node_id": 41,
+          "polynomial_sha256": "6989592868f882d2c4c650214a49def51c6706727f3853e7d33a1a4dee27d97f",
+          "support_size": 1018
+        },
+        {
+          "active_bucket_count": 58,
+          "label": "chunk42",
+          "max_active_bucket_bytes": 8324,
+          "max_active_bucket_terms": 57,
+          "node_id": 42,
+          "polynomial_sha256": "297e740bc0317b5666a763a79d3791edc8abe0cd37f83928076161c425461bda",
+          "support_size": 1018
+        },
+        {
+          "active_bucket_count": 56,
+          "label": "chunk43",
+          "max_active_bucket_bytes": 6861,
+          "max_active_bucket_terms": 46,
+          "node_id": 43,
+          "polynomial_sha256": "0435d9c4e0f0eae96555053d580ae6675a12306d4ad0adecef87d66c75a373ab",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 53,
+          "label": "chunk44",
+          "max_active_bucket_bytes": 8699,
+          "max_active_bucket_terms": 59,
+          "node_id": 44,
+          "polynomial_sha256": "3a4b47a05cca7541eaece99b730b15539ef77b0ae57b4347efa415f17910b518",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 46,
+          "label": "chunk45",
+          "max_active_bucket_bytes": 9304,
+          "max_active_bucket_terms": 61,
+          "node_id": 45,
+          "polynomial_sha256": "6f39be5efcd7fc00ebd4a7cff0c2640ff6ef2240a99904c507e4e1ba291fc0af",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 55,
+          "label": "chunk46",
+          "max_active_bucket_bytes": 7845,
+          "max_active_bucket_terms": 50,
+          "node_id": 46,
+          "polynomial_sha256": "cfad0a1e44c14926f2ca64dee32082d8a05fc0ea091fd6ce36364dca109235c5",
+          "support_size": 1018
+        },
+        {
+          "active_bucket_count": 27,
+          "label": "chunk47",
+          "max_active_bucket_bytes": 6078,
+          "max_active_bucket_terms": 38,
+          "node_id": 47,
+          "polynomial_sha256": "9ced9117214a856990d09bf920a0b2c4a67a7d18401d78c3caf0c34db9d8903e",
+          "support_size": 300
+        },
+        {
+          "active_bucket_count": 80,
+          "label": "product9L0N0",
+          "max_active_bucket_bytes": 8399,
+          "max_active_bucket_terms": 57,
+          "node_id": 103,
+          "polynomial_sha256": "083603339fd665a0bedc7fbfb0112b828bba7ebdbef3c57fb0347719603ab440",
+          "support_size": 1737
+        },
+        {
+          "active_bucket_count": 81,
+          "label": "product9L0N1",
+          "max_active_bucket_bytes": 8699,
+          "max_active_bucket_terms": 59,
+          "node_id": 104,
+          "polynomial_sha256": "b102832dd6f5ae3fd5179f55e153f091ad0b7aebdae42228b877294be36a41fb",
+          "support_size": 1875
+        },
+        {
+          "active_bucket_count": 73,
+          "label": "product9L0N2",
+          "max_active_bucket_bytes": 9887,
+          "max_active_bucket_terms": 64,
+          "node_id": 105,
+          "polynomial_sha256": "2b44ec4f0cb621134186436e66e29a8f99b773c6ea829dd8999a5c71a5e0bd56",
+          "support_size": 1828
+        },
+        {
+          "active_bucket_count": 117,
+          "label": "product9L1N0",
+          "max_active_bucket_bytes": 9517,
+          "max_active_bucket_terms": 63,
+          "node_id": 106,
+          "polynomial_sha256": "90c16f18340f1350e5b49404e8ae1f8f52186cc3288f6f64aaf657b454633d6e",
+          "support_size": 3232
+        },
+        {
+          "active_bucket_count": 82,
+          "label": "product9L1N1",
+          "max_active_bucket_bytes": 9887,
+          "max_active_bucket_terms": 64,
+          "node_id": 107,
+          "polynomial_sha256": "d0594bbd4d91afef5001298287c00ff8347a3a389a0bc638f208aa002df543a7",
+          "support_size": 2042
+        },
+        {
+          "active_bucket_count": 152,
+          "label": "product9L2N0",
+          "max_active_bucket_bytes": 9890,
+          "max_active_bucket_terms": 64,
+          "node_id": 108,
+          "polynomial_sha256": "490de9e2a5331e4a524f6ec2ceffeae6e86697ee290806e7ee22688e3dad8fe9",
+          "public": true,
+          "support_size": 4763
+        }
+      ],
+      "file": "Product9.lean",
+      "generator_index": 9,
+      "generator_name": "LDEF",
+      "max_command_bytes": 16094,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 80,
+          "node_id": 103,
+          "root_theorem": "lambdaKxBucketMerge103Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 81,
+          "node_id": 104,
+          "root_theorem": "lambdaKxBucketMerge104Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 73,
+          "node_id": 105,
+          "root_theorem": "lambdaKxBucketMerge105Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 117,
+          "node_id": 106,
+          "root_theorem": "lambdaKxBucketMerge106Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 82,
+          "node_id": 107,
+          "root_theorem": "lambdaKxBucketMerge107Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 152,
+          "node_id": 108,
+          "root_theorem": "lambdaKxBucketMerge108Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product9",
+      "node_count": 13,
+      "root_node_id": 108,
+      "source_bytes": 3846375,
+      "source_sha256": "89f77e5304d69b4b4f94536a7e2ac79cac7e604a9752ce0ba395e2dc5d7f4c77"
+    },
+    {
+      "chunk_count": 11,
+      "command_count": 2279,
+      "families": [
+        {
+          "active_bucket_count": 39,
+          "label": "chunk48",
+          "max_active_bucket_bytes": 11320,
+          "max_active_bucket_terms": 79,
+          "node_id": 48,
+          "polynomial_sha256": "533b129526bbb78860a1253dcd83d9505a5658b958560ce8ff62ee0f908f5931",
+          "support_size": 817
+        },
+        {
+          "active_bucket_count": 41,
+          "label": "chunk49",
+          "max_active_bucket_bytes": 11427,
+          "max_active_bucket_terms": 79,
+          "node_id": 49,
+          "polynomial_sha256": "668b1b613fc5f0152301639756f519694af75faace304d15a243c2cd8c36a7e3",
+          "support_size": 889
+        },
+        {
+          "active_bucket_count": 36,
+          "label": "chunk50",
+          "max_active_bucket_bytes": 10377,
+          "max_active_bucket_terms": 69,
+          "node_id": 50,
+          "polynomial_sha256": "4da86b67a4ba0ecd00974e5b5f90b34c3c5e9941c47f337937cc77492172d2e3",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 29,
+          "label": "chunk51",
+          "max_active_bucket_bytes": 8838,
+          "max_active_bucket_terms": 59,
+          "node_id": 51,
+          "polynomial_sha256": "1c86f53cb2a9359b78247f2500ff2809b89305977438957d50221bd8fe6d3492",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 40,
+          "label": "chunk52",
+          "max_active_bucket_bytes": 11349,
+          "max_active_bucket_terms": 75,
+          "node_id": 52,
+          "polynomial_sha256": "906ced79d941a29fc96efe7843fa740840e8eb40cdc17a868d99b3f8d9e63d0a",
+          "support_size": 902
+        },
+        {
+          "active_bucket_count": 36,
+          "label": "chunk53",
+          "max_active_bucket_bytes": 10830,
+          "max_active_bucket_terms": 72,
+          "node_id": 53,
+          "polynomial_sha256": "5758558c18ebccf2ee290c331b808e378ce3d76b77da6fb14a0aa2e9d30c0771",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 27,
+          "label": "chunk54",
+          "max_active_bucket_bytes": 10934,
+          "max_active_bucket_terms": 72,
+          "node_id": 54,
+          "polynomial_sha256": "51e26d79106382829347364fe3b79ba20aae5441aa32fc74147fe9acb9520537",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 31,
+          "label": "chunk55",
+          "max_active_bucket_bytes": 11095,
+          "max_active_bucket_terms": 72,
+          "node_id": 55,
+          "polynomial_sha256": "09f48d58e79fc7e6189c2ac8c27f905d88650a9ecf15da1001e3ea039f02c934",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 39,
+          "label": "chunk56",
+          "max_active_bucket_bytes": 11641,
+          "max_active_bucket_terms": 73,
+          "node_id": 56,
+          "polynomial_sha256": "aef4cf34854dbb1f6c146099903cc9901e49af73936bdf1e18672a09f9e6800c",
+          "support_size": 915
+        },
+        {
+          "active_bucket_count": 45,
+          "label": "chunk57",
+          "max_active_bucket_bytes": 11542,
+          "max_active_bucket_terms": 72,
+          "node_id": 57,
+          "polynomial_sha256": "efcc8bf589c35169a49bfdce2c82b37971148504abcd116116ca2e5e48ce87c2",
+          "support_size": 1010
+        },
+        {
+          "active_bucket_count": 26,
+          "label": "chunk58",
+          "max_active_bucket_bytes": 11657,
+          "max_active_bucket_terms": 72,
+          "node_id": 58,
+          "polynomial_sha256": "4c98d5aa8cb1b1e2e9b51e46b4917e0aea03f31efe8a3331a4a4fab53ada30fc",
+          "support_size": 520
+        },
+        {
+          "active_bucket_count": 63,
+          "label": "product10L0N0",
+          "max_active_bucket_bytes": 11788,
+          "max_active_bucket_terms": 83,
+          "node_id": 109,
+          "polynomial_sha256": "8baaa4dd0b475d87528d5ae40bccf5ce32e1246e63448ed4ba415dc0ad3def68",
+          "support_size": 1558
+        },
+        {
+          "active_bucket_count": 52,
+          "label": "product10L0N1",
+          "max_active_bucket_bytes": 10377,
+          "max_active_bucket_terms": 69,
+          "node_id": 110,
+          "polynomial_sha256": "50527734ef586a3c7647844d318aafc20f25028d23585ed86497e9c97282a64f",
+          "support_size": 1922
+        },
+        {
+          "active_bucket_count": 62,
+          "label": "product10L0N2",
+          "max_active_bucket_bytes": 11465,
+          "max_active_bucket_terms": 76,
+          "node_id": 111,
+          "polynomial_sha256": "ddc836396a3cd06302d28829d7edd64bb0dae8e8b70d217b2e710be97718efc0",
+          "support_size": 1753
+        },
+        {
+          "active_bucket_count": 54,
+          "label": "product10L0N3",
+          "max_active_bucket_bytes": 11095,
+          "max_active_bucket_terms": 72,
+          "node_id": 112,
+          "polynomial_sha256": "f36aa0ca442e9c9d8500b0043c37106cc840aa1dfd4d731587e0882ca8bf44d7",
+          "support_size": 2046
+        },
+        {
+          "active_bucket_count": 60,
+          "label": "product10L0N4",
+          "max_active_bucket_bytes": 11641,
+          "max_active_bucket_terms": 73,
+          "node_id": 113,
+          "polynomial_sha256": "2143361b2497ef5114c5a9e4cceb13d2e239dd549fba59bcc38c5f789c34ea46",
+          "support_size": 1765
+        },
+        {
+          "active_bucket_count": 87,
+          "label": "product10L1N0",
+          "max_active_bucket_bytes": 11788,
+          "max_active_bucket_terms": 83,
+          "node_id": 114,
+          "polynomial_sha256": "589ccf9c7ab901667198491dc8390f32bd017b6c8bc56984cff0f4ed119f96cd",
+          "support_size": 3059
+        },
+        {
+          "active_bucket_count": 89,
+          "label": "product10L1N1",
+          "max_active_bucket_bytes": 11465,
+          "max_active_bucket_terms": 76,
+          "node_id": 115,
+          "polynomial_sha256": "78f526e21ec161d39ccfa7b93f758c7ec209e5c52e747834ced6e7460b1dd065",
+          "support_size": 3370
+        },
+        {
+          "active_bucket_count": 67,
+          "label": "product10L1N2",
+          "max_active_bucket_bytes": 11758,
+          "max_active_bucket_terms": 73,
+          "node_id": 116,
+          "polynomial_sha256": "61c642519dae16be985087b725c9c7ebfe35a181ba1e0c7ada887c8c7a21e17d",
+          "support_size": 2157
+        },
+        {
+          "active_bucket_count": 126,
+          "label": "product10L2N0",
+          "max_active_bucket_bytes": 11788,
+          "max_active_bucket_terms": 83,
+          "node_id": 117,
+          "polynomial_sha256": "08f4ab84ccab256112f49b2396d68dcec873785c639e6955f2318500e45d7e5e",
+          "support_size": 5878
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "product10L3N0",
+          "max_active_bucket_bytes": 11805,
+          "max_active_bucket_terms": 83,
+          "node_id": 118,
+          "polynomial_sha256": "3edfef71b928fc0d03f8c6cafc133742e13d3969c197acb445ca40a51c751a18",
+          "public": true,
+          "support_size": 7723
+        }
+      ],
+      "file": "Product10.lean",
+      "generator_index": 10,
+      "generator_name": "REFLECT_X",
+      "max_command_bytes": 16096,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 63,
+          "node_id": 109,
+          "root_theorem": "lambdaKxBucketMerge109Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 52,
+          "node_id": 110,
+          "root_theorem": "lambdaKxBucketMerge110Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 62,
+          "node_id": 111,
+          "root_theorem": "lambdaKxBucketMerge111Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 54,
+          "node_id": 112,
+          "root_theorem": "lambdaKxBucketMerge112Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 60,
+          "node_id": 113,
+          "root_theorem": "lambdaKxBucketMerge113Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 87,
+          "node_id": 114,
+          "root_theorem": "lambdaKxBucketMerge114Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 89,
+          "node_id": 115,
+          "root_theorem": "lambdaKxBucketMerge115Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 67,
+          "node_id": 116,
+          "root_theorem": "lambdaKxBucketMerge116Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 126,
+          "node_id": 117,
+          "root_theorem": "lambdaKxBucketMerge117Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 118,
+          "root_theorem": "lambdaKxBucketMerge118Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product10",
+      "node_count": 21,
+      "root_node_id": 118,
+      "source_bytes": 7267405,
+      "source_sha256": "ae2a7adf6ee1e4be0b340433b25ed81bc4cacf60f3881beeef5a688ad7e11209"
+    },
+    {
+      "chunk_count": 12,
+      "command_count": 2398,
+      "families": [
+        {
+          "active_bucket_count": 49,
+          "label": "chunk59",
+          "max_active_bucket_bytes": 9879,
+          "max_active_bucket_terms": 67,
+          "node_id": 59,
+          "polynomial_sha256": "8fa1a86d2ed2e19892faed40d899c90aea1632215b52cdaa51dfb31cb56bb347",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 37,
+          "label": "chunk60",
+          "max_active_bucket_bytes": 8399,
+          "max_active_bucket_terms": 56,
+          "node_id": 60,
+          "polynomial_sha256": "4720eb1cba955d3f154859c8525e6510344038e55fa27c669f9d41a367f85fce",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 35,
+          "label": "chunk61",
+          "max_active_bucket_bytes": 8682,
+          "max_active_bucket_terms": 58,
+          "node_id": 61,
+          "polynomial_sha256": "b90ffff811a0fb99d01e5e1d5287197e2e015a280e547dcbbbe9498f56069a92",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 37,
+          "label": "chunk62",
+          "max_active_bucket_bytes": 10259,
+          "max_active_bucket_terms": 69,
+          "node_id": 62,
+          "polynomial_sha256": "11d7999a33bb9bde919ff57955830f8a35ad66e162f157d8265626a9bbd4ef75",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 38,
+          "label": "chunk63",
+          "max_active_bucket_bytes": 10029,
+          "max_active_bucket_terms": 68,
+          "node_id": 63,
+          "polynomial_sha256": "6e95db13fc09cca91668119e7eafd48ffbfc29fcb7dc011a44d6e7cb1a209662",
+          "support_size": 1023
+        },
+        {
+          "active_bucket_count": 35,
+          "label": "chunk64",
+          "max_active_bucket_bytes": 9020,
+          "max_active_bucket_terms": 58,
+          "node_id": 64,
+          "polynomial_sha256": "1ca643d54ac37490c10dd9426f8c7b6fd633cf4f16c5446e53ccaf8753d0d29e",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 27,
+          "label": "chunk65",
+          "max_active_bucket_bytes": 9931,
+          "max_active_bucket_terms": 66,
+          "node_id": 65,
+          "polynomial_sha256": "7a372773cac104c86e615fcbf20ac0dd827165f20bd6ec32f6f682640589407c",
+          "support_size": 1024
+        },
+        {
+          "active_bucket_count": 29,
+          "label": "chunk66",
+          "max_active_bucket_bytes": 9194,
+          "max_active_bucket_terms": 62,
+          "node_id": 66,
+          "polynomial_sha256": "613227facb92fe98c4d6180950ee332203bfb836beeea8c0a71bda1727d222b5",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 37,
+          "label": "chunk67",
+          "max_active_bucket_bytes": 9738,
+          "max_active_bucket_terms": 62,
+          "node_id": 67,
+          "polynomial_sha256": "82abd36c84a47fadbc933f14db70d40604f100f282c3693e205f064bd9ee34c4",
+          "support_size": 1020
+        },
+        {
+          "active_bucket_count": 38,
+          "label": "chunk68",
+          "max_active_bucket_bytes": 10806,
+          "max_active_bucket_terms": 68,
+          "node_id": 68,
+          "polynomial_sha256": "bfa2694816506f2a07133741d9e71f88c9cb8db2dd61ef8b59a2b0a80d36fab1",
+          "support_size": 1021
+        },
+        {
+          "active_bucket_count": 37,
+          "label": "chunk69",
+          "max_active_bucket_bytes": 11606,
+          "max_active_bucket_terms": 72,
+          "node_id": 69,
+          "polynomial_sha256": "c18f37efd7db91596fba86e912c40c48577f3ae20f4abd20e0fa831ca509988a",
+          "support_size": 1022
+        },
+        {
+          "active_bucket_count": 18,
+          "label": "chunk70",
+          "max_active_bucket_bytes": 8852,
+          "max_active_bucket_terms": 55,
+          "node_id": 70,
+          "polynomial_sha256": "43caa9689716efba251b2d7f4363a6fa7978b58e519dc13187eb7591cd971304",
+          "support_size": 376
+        },
+        {
+          "active_bucket_count": 63,
+          "label": "product11L0N0",
+          "max_active_bucket_bytes": 9879,
+          "max_active_bucket_terms": 67,
+          "node_id": 119,
+          "polynomial_sha256": "8f416b1015ef4879068aabad86a6748d91cc8242f76d8bdd363158f015f3bae7",
+          "support_size": 1844
+        },
+        {
+          "active_bucket_count": 58,
+          "label": "product11L0N1",
+          "max_active_bucket_bytes": 10867,
+          "max_active_bucket_terms": 72,
+          "node_id": 120,
+          "polynomial_sha256": "dbb7238d6e0f234a509e2da5ef5f4cc8d51731824c9e5f4c893626203a866151",
+          "support_size": 1927
+        },
+        {
+          "active_bucket_count": 56,
+          "label": "product11L0N2",
+          "max_active_bucket_bytes": 10589,
+          "max_active_bucket_terms": 68,
+          "node_id": 121,
+          "polynomial_sha256": "008ffd88bdedf6e11dfd2b4d6b68c1fe02e2f1819fc4b1e8961ab004666a2fb2",
+          "support_size": 1879
+        },
+        {
+          "active_bucket_count": 52,
+          "label": "product11L0N3",
+          "max_active_bucket_bytes": 9931,
+          "max_active_bucket_terms": 66,
+          "node_id": 122,
+          "polynomial_sha256": "bb4e69918f08e2bcc9f73816b4c973312de1fa043f4a787ec1689bdb440c7510",
+          "support_size": 2045
+        },
+        {
+          "active_bucket_count": 57,
+          "label": "product11L0N4",
+          "max_active_bucket_bytes": 11554,
+          "max_active_bucket_terms": 72,
+          "node_id": 123,
+          "polynomial_sha256": "bed5bd0205ef5239ffe46196e022555ea0b16d82c9fca2be3ac6f155f63c7025",
+          "support_size": 1889
+        },
+        {
+          "active_bucket_count": 42,
+          "label": "product11L0N5",
+          "max_active_bucket_bytes": 11615,
+          "max_active_bucket_terms": 72,
+          "node_id": 124,
+          "polynomial_sha256": "7efb82bb0baf245fb450fdf94621fce977ebbff6a6524d8158f8fdd0ba05f665",
+          "support_size": 1280
+        },
+        {
+          "active_bucket_count": 86,
+          "label": "product11L1N0",
+          "max_active_bucket_bytes": 11160,
+          "max_active_bucket_terms": 74,
+          "node_id": 125,
+          "polynomial_sha256": "18d601955ae21d8f809dafa78a44702bc03894cd59e39cc2820667db2ca85e9a",
+          "support_size": 3415
+        },
+        {
+          "active_bucket_count": 85,
+          "label": "product11L1N1",
+          "max_active_bucket_bytes": 10784,
+          "max_active_bucket_terms": 71,
+          "node_id": 126,
+          "polynomial_sha256": "b5c6af99461023fe73e844c2b5351bba2310b009756c1259da56ac357d58003a",
+          "support_size": 3664
+        },
+        {
+          "active_bucket_count": 75,
+          "label": "product11L1N2",
+          "max_active_bucket_bytes": 11615,
+          "max_active_bucket_terms": 72,
+          "node_id": 127,
+          "polynomial_sha256": "70538f1e58a9963d1ab41fa20b18d2ada75acb5cb51b9afac55575d0e270bb4f",
+          "support_size": 2870
+        },
+        {
+          "active_bucket_count": 122,
+          "label": "product11L2N0",
+          "max_active_bucket_bytes": 11660,
+          "max_active_bucket_terms": 77,
+          "node_id": 128,
+          "polynomial_sha256": "e7559d8f94eb00563852372da088e241063b98198a0157ec5ec577c7544b8188",
+          "support_size": 6149
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "product11L3N0",
+          "max_active_bucket_bytes": 11660,
+          "max_active_bucket_terms": 77,
+          "node_id": 129,
+          "polynomial_sha256": "6c25f2f3a8f8e0e6b0730ca88aa38171306f062b5d0aee7a074d432dde0d0fd9",
+          "public": true,
+          "support_size": 8269
+        }
+      ],
+      "file": "Product11.lean",
+      "generator_index": 11,
+      "generator_name": "REFLECT_Y",
+      "max_command_bytes": 16090,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 63,
+          "node_id": 119,
+          "root_theorem": "lambdaKxBucketMerge119Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 58,
+          "node_id": 120,
+          "root_theorem": "lambdaKxBucketMerge120Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 56,
+          "node_id": 121,
+          "root_theorem": "lambdaKxBucketMerge121Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 52,
+          "node_id": 122,
+          "root_theorem": "lambdaKxBucketMerge122Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 57,
+          "node_id": 123,
+          "root_theorem": "lambdaKxBucketMerge123Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 42,
+          "node_id": 124,
+          "root_theorem": "lambdaKxBucketMerge124Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 86,
+          "node_id": 125,
+          "root_theorem": "lambdaKxBucketMerge125Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 85,
+          "node_id": 126,
+          "root_theorem": "lambdaKxBucketMerge126Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 75,
+          "node_id": 127,
+          "root_theorem": "lambdaKxBucketMerge127Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 122,
+          "node_id": 128,
+          "root_theorem": "lambdaKxBucketMerge128Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 129,
+          "root_theorem": "lambdaKxBucketMerge129Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Product11",
+      "node_count": 23,
+      "root_node_id": 129,
+      "source_bytes": 8106711,
+      "source_sha256": "5f94f32576acf5fa76baf8cabe7f823c3c98acf2313fffc6baf3b851f9732217"
+    },
+    {
+      "certificate_node_count": 11,
+      "command_count": 3182,
+      "families": [
+        {
+          "active_bucket_count": 115,
+          "label": "certificate12",
+          "max_active_bucket_bytes": 10008,
+          "max_active_bucket_terms": 64,
+          "node_id": 130,
+          "polynomial_sha256": "a091e7b9d01829540377e4604d211b4c8d564200745538d4e8ae2006011d977b",
+          "support_size": 2531
+        },
+        {
+          "active_bucket_count": 118,
+          "label": "certificate13",
+          "max_active_bucket_bytes": 10853,
+          "max_active_bucket_terms": 75,
+          "node_id": 131,
+          "polynomial_sha256": "9e1ccb6c7fd0e073462a53c8201adcac786e0f0c7fac1ad605c24df229416b64",
+          "support_size": 3145
+        },
+        {
+          "active_bucket_count": 130,
+          "label": "certificate14",
+          "max_active_bucket_bytes": 10471,
+          "max_active_bucket_terms": 68,
+          "node_id": 132,
+          "polynomial_sha256": "977937aac6acf96bd3944d069fa1716a430e89b06403d88f8330b049e2b5b2ae",
+          "support_size": 4027
+        },
+        {
+          "active_bucket_count": 140,
+          "label": "certificate15",
+          "max_active_bucket_bytes": 11139,
+          "max_active_bucket_terms": 71,
+          "node_id": 133,
+          "polynomial_sha256": "aad96b00d660e5098d2c6b126e6d09ad4e39c800e0bcd44117e0c9398db2e2e1",
+          "support_size": 5287
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "certificate16",
+          "max_active_bucket_bytes": 11573,
+          "max_active_bucket_terms": 75,
+          "node_id": 134,
+          "polynomial_sha256": "3e4f6cf8448bd22fa014a81c8554a5d536a7810830cb7b97f885bcaacb345b70",
+          "support_size": 6591
+        },
+        {
+          "active_bucket_count": 151,
+          "label": "certificate17",
+          "max_active_bucket_bytes": 11515,
+          "max_active_bucket_terms": 73,
+          "node_id": 135,
+          "polynomial_sha256": "87cab82b8e5839785e7383949622d963e577bf46a9d4067384dd7f73cef63061",
+          "support_size": 7159
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "certificate18",
+          "max_active_bucket_bytes": 11781,
+          "max_active_bucket_terms": 83,
+          "node_id": 136,
+          "polynomial_sha256": "40c4e20486a6018d2c39ee95751f457e7adca4829b31bc337bb8247cac5a2444",
+          "support_size": 7503
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "certificate19",
+          "max_active_bucket_bytes": 11689,
+          "max_active_bucket_terms": 76,
+          "node_id": 137,
+          "polynomial_sha256": "82d55a403e1537c0d0564a06b45838eb22692bff0634a61b98d76a1d97e8d05d",
+          "support_size": 9131
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "certificate20",
+          "max_active_bucket_bytes": 11767,
+          "max_active_bucket_terms": 77,
+          "node_id": 138,
+          "polynomial_sha256": "5309a37619291647062d1d8001cc08b462338eec4af023366c0fc713e04dfda1",
+          "support_size": 9372
+        },
+        {
+          "active_bucket_count": 154,
+          "label": "certificate21",
+          "max_active_bucket_bytes": 11779,
+          "max_active_bucket_terms": 77,
+          "node_id": 139,
+          "polynomial_sha256": "5e512a3fdb98aea747b36d3f8c4b80fcc23cc4069ed54fc6ddfe63f34c21c6a2",
+          "support_size": 9372
+        },
+        {
+          "active_bucket_count": 1,
+          "label": "certificate22",
+          "max_active_bucket_bytes": 2,
+          "max_active_bucket_terms": 1,
+          "node_id": 140,
+          "polynomial_sha256": "50e7236b73ea84f67060d0ddfeb7cb5105a2a6041a8cdb75843f2e8b8d539c8b",
+          "support_size": 1
+        }
+      ],
+      "file": "Certificate.lean",
+      "max_command_bytes": 11880,
+      "merge_identities": [
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 115,
+          "node_id": 130,
+          "root_theorem": "lambdaKxBucketMerge130Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 119,
+          "node_id": 131,
+          "root_theorem": "lambdaKxBucketMerge131Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 130,
+          "node_id": 132,
+          "root_theorem": "lambdaKxBucketMerge132Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 140,
+          "node_id": 133,
+          "root_theorem": "lambdaKxBucketMerge133Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 134,
+          "root_theorem": "lambdaKxBucketMerge134Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 151,
+          "node_id": 135,
+          "root_theorem": "lambdaKxBucketMerge135Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 136,
+          "root_theorem": "lambdaKxBucketMerge136Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 137,
+          "root_theorem": "lambdaKxBucketMerge137Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 138,
+          "root_theorem": "lambdaKxBucketMerge138Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 139,
+          "root_theorem": "lambdaKxBucketMerge139Value"
+        },
+        {
+          "aggregate_theorem_count": 6,
+          "bucket_theorem_count": 154,
+          "node_id": 140,
+          "root_theorem": "lambdaKxBucketMerge140Value"
+        }
+      ],
+      "module": "LambdaKxBucketed.Certificate",
+      "source_bytes": 10672772,
+      "source_sha256": "f1c44a3b93584c1aa911371ece2ae2f2e7d112de37b98fdc3b1ba655918874d6"
+    }
+  ],
+  "namespace": "Problem97.ATailBankCleanLambdaKxBucketedModules",
+  "node_count": 141,
+  "root_node_id": 140,
+  "schema": "p97-bank-clean-lambda-kx-bucketed-modules-v1",
+  "target": "Kx",
+  "total_command_count": 18507,
+  "total_source_bytes": 50037801
+}

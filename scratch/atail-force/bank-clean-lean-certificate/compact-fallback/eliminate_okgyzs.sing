@@ -1,0 +1,17 @@
+// Eliminate coordinates from the O,A,G,K,Y,Z squared-distance subnetwork.
+option(redSB);
+ring r = 0,(Gx,Gy,Kx,Ky,Yx,Yy,Zx,Zy,R,S),(dp(8),dp(2));
+ideal I =
+  Gx^2 + Gy^2 - 2*Gx,
+  Kx^2 + Ky^2 - 2*Kx,
+  Kx^2 + Ky^2 - R,
+  (Gx-Kx)^2 + (Gy-Ky)^2 - R,
+  Yx^2 + Yy^2 - S,
+  (Yx-Kx)^2 + (Yy-Ky)^2 - R,
+  (Zx-Yx)^2 + (Zy-Yy)^2 - S,
+  (Zx-1)^2 + Zy^2 - S,
+  (Zx-Gx)^2 + (Zy-Gy)^2 - S;
+ideal G = std(I);
+ideal E = eliminate(G,Gx*Gy*Kx*Ky*Yx*Yy*Zx*Zy);
+print(E);
+exit;

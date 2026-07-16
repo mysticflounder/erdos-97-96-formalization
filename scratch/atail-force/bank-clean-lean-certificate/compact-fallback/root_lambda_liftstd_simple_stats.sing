@@ -1,0 +1,36 @@
+// Audit transformation sizes for sparse elements of the exact lambda basis.
+// Scratch-only: this does not certify a Lean theorem.
+ring r=0,(L,Fx,Fy,Kx,Ky,Xx,Xy,Yx,Yy,Zx,Zy),dp;
+ideal I=
+  -Kx^2+2*Kx-Ky^2,
+  2*Fx*Kx-2*Fx+2*Fy*Ky-2*Kx+1,
+  2*Fx*Zx+2*Fy*Zy-2*Fx*Kx-2*Fy*Ky-Zx^2-Zy^2+2*Kx,
+  4*Kx*Ky*Xy-2*Kx-4*Ky^2*Xx+4*Ky^2-4*Ky*Xy+Xx^2+Xy^2,
+  Xx^2+Xy^2-2*Xx*Zx-2*Xy*Zy+Zx^2+Zy^2-2*Kx,
+  -Fx^2-Fy^2+2*Fx*Xx+2*Fy*Xy-Xx^2-Xy^2+2*Kx,
+  -Xx^2+2*Xx*Yx-Xy^2+2*Xy*Yy,
+  2*Yx*Zx+2*Yy*Zy-Zx^2-Zy^2,
+  -4*Kx*Ky*Zy+4*Ky^2*Zx-4*Ky^2+4*Ky*Zy-2*Zx+1,
+  L*(-2*Kx*Zx+2*Kx-2*Ky*Zy+Zx^2+Zy^2)
+    -(2*Kx*Ky-2*Kx*Ky*Zx+Kx*Zy-2*Ky^2*Zy+Ky*Zx),
+  Yx-2*Ky^2-2*L*(Zy-Ky),
+  Yy-2*Ky*(1-Kx)+2*L*(Zx-Kx);
+matrix T;
+ideal G=liftstd(I,T,"slimgb");
+int i,j,totalterms,totalchars,maxdegree;
+for(j=1;j<=size(G);j++){
+  if(size(G[j])<=2){
+    totalterms=0;
+    totalchars=0;
+    maxdegree=0;
+    for(i=1;i<=12;i++){
+      totalterms=totalterms+size(T[i,j]);
+      totalchars=totalchars+size(string(T[i,j]));
+      if(deg(T[i,j])>maxdegree){maxdegree=deg(T[i,j]);}
+    }
+    print("COLUMN_"+string(j)+"_POLY_"+string(G[j]));
+    print("TOTAL_TERMS_"+string(totalterms)+"_CHARS_"+
+      string(totalchars)+"_MAXDEG_"+string(maxdegree));
+  }
+}
+quit;

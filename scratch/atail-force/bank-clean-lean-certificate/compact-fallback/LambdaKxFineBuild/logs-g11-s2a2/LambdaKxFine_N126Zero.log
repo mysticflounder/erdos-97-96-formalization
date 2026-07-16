@@ -1,0 +1,4 @@
+'Problem97.ATailBankCleanLambdaKxFine.lambdaKxFineNode126Zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+lambda Kx fine node 126: checked

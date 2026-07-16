@@ -1,0 +1,998 @@
+{
+  "case_count": 3,
+  "cases": [
+    {
+      "active_point_count": 12,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "closure_equality_count": 37,
+      "retained_equality_count": 20,
+      "shard_index": 1
+    },
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "closure_equality_count": 23,
+      "retained_equality_count": 14,
+      "shard_index": 14
+    },
+    {
+      "active_point_count": 12,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "closure_equality_count": 45,
+      "retained_equality_count": 23,
+      "shard_index": 18
+    }
+  ],
+  "classes": [
+    {
+      "active_point_count": 9,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          8,
+          2
+        ],
+        [
+          9,
+          3
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          3
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 23,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            8,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            9
+          ]
+        }
+      ],
+      "representative_shard": 14,
+      "shard_indices": [
+        14
+      ]
+    },
+    {
+      "active_point_count": 12,
+      "center_component_sizes": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          6,
+          4
+        ],
+        [
+          7,
+          4
+        ],
+        [
+          8,
+          3
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          3
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 37,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            5
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            3,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            5,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            4,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            2,
+            8
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            2,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            8,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            8,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            6
+          ]
+        }
+      ],
+      "representative_shard": 1,
+      "shard_indices": [
+        1
+      ]
+    },
+    {
+      "active_point_count": 12,
+      "center_component_sizes": [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          4
+        ],
+        [
+          8,
+          4
+        ],
+        [
+          9,
+          4
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          4
+        ]
+      ],
+      "class_size": 1,
+      "closure_equality_count": 45,
+      "representative_closure": [
+        {
+          "center": 0,
+          "support": [
+            1,
+            2
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            1,
+            4
+          ]
+        },
+        {
+          "center": 0,
+          "support": [
+            2,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            4
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            0,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            4,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "support": [
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            6
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            4,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            6,
+            7
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "support": [
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            6
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            6,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            2
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            0,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            5
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            2,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "support": [
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            6
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            1,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            6,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "support": [
+            10,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            7
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            3,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            9
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            7,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "support": [
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            1
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            0,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            5
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            1,
+            7
+          ]
+        },
+        {
+          "center": 11,
+          "support": [
+            5,
+            7
+          ]
+        }
+      ],
+      "representative_shard": 18,
+      "shard_indices": [
+        18
+      ]
+    }
+  ],
+  "isomorphism_class_count": 3,
+  "schema": "p97-atail-formalized-core-shard-equality-clusters-v1",
+  "scope": {
+    "closure_normalized_for_pivot_independence": true,
+    "equality_subsystems_crosschecked_unit": true,
+    "fixed_placement_only": true,
+    "isomorphism_exact_under_point_relabeling": true,
+    "target_faithful": false
+  }
+}

@@ -1,0 +1,1220 @@
+{
+  "all_pair_grid_deficit_histogram": {
+    "1": 12
+  },
+  "cap_mutation_failure_indices": [],
+  "cap_mutation_test_count": 10,
+  "cases": [
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 0,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                3,
+                6,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                7,
+                8,
+                9
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "alternating-identity-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "alternating-swap-permutation",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "4b70ad50fc04a7c9c9f6a84b488098e1e7620aa436bd1e4266a8b5666fff1d1c"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 1,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                6,
+                7,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [],
+              "missing_memberships": 2,
+              "support": [
+                0,
+                3,
+                7,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_pattern": "one",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "alternating-swap-permutation",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "58fa82b20db64d4f19cfcfd5d13f6be53762d699fa2938b3d3a38b79c21a4256"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 2,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [],
+              "missing_memberships": 2,
+              "support": [
+                0,
+                3,
+                7,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                8
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                5,
+                7,
+                8
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_pattern": "one",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "one",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "41eb70d7cef090a4ccf2af94dd12809ef42cbbf12d8bdb8f92008b6d5a074323"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        8
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 3,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                0,
+                5,
+                6,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [],
+              "missing_memberships": 2,
+              "support": [
+                3,
+                7,
+                9,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_pattern": "one",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "one",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "mutual"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "503446798be7183d34c5cca8f53d9403ceaea71cb562eba04c338faa36e51bc0"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 10,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                6,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                5,
+                7,
+                9
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "alternating-identity-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "two-same-column",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "fb68f5abf7372292d8d00bd20be1a568e1294ecd45d3be88ad156471c29b6aa9"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        10,
+        11
+      ],
+      "shard_index": 12,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 10,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                6,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 11,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                5,
+                6,
+                9
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "two-same-column",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "one",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            10,
+            11
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "36869f7f2f11c340089ee6b320552bd1d04ec145d512ddbb769395b3d02bb21d"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 13,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                6,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                5,
+                7,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "alternating-identity-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "alternating-swap-permutation",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "aba9cf377d034b2add1d38dac6f86eb483cdbbd25c0118cf300350ffa2f16065"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        10,
+        11
+      ],
+      "shard_index": 15,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 10,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                6,
+                8,
+                11
+              ]
+            },
+            {
+              "center": 11,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                5,
+                7,
+                9
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "alternating-identity-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "zero",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            10,
+            11
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "9715ceb2d935bc5f5db9d3452fd267e95482aa1e1b64486a283397b6ce424e43"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 16,
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                7,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                6
+              ],
+              "missing_memberships": 1,
+              "support": [
+                1,
+                5,
+                6,
+                8
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "alternating-swap-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "alternating-swap-permutation",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "a09a165a62e22675443309e2ff272ff61d0bd243df2d7a094472893abde0afdf"
+    },
+    {
+      "existential_best_deficit": 1,
+      "first_strict_candidates": [
+        6,
+        7,
+        8
+      ],
+      "second_strict_candidates": [
+        9,
+        10
+      ],
+      "shard_index": 20,
+      "strict_pair_grid_count": 3,
+      "strict_pair_grids": [
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [],
+              "missing_memberships": 2,
+              "support": [
+                4,
+                5,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                0,
+                4,
+                7,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_pattern": "one",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "alternating-identity-permutation",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        },
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                8
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                5,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [],
+              "missing_memberships": 2,
+              "support": [
+                0,
+                4,
+                7,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_pattern": "one",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "one",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        },
+        {
+          "continuation_rows": [
+            {
+              "center": 9,
+              "first_pair_hits": [
+                8
+              ],
+              "missing_memberships": 1,
+              "support": [
+                4,
+                5,
+                8,
+                10
+              ]
+            },
+            {
+              "center": 10,
+              "first_pair_hits": [
+                7
+              ],
+              "missing_memberships": 1,
+              "support": [
+                0,
+                4,
+                7,
+                11
+              ]
+            }
+          ],
+          "direct_outside_pair_terminal": false,
+          "first_strict_pair": [
+            7,
+            8
+          ],
+          "forward_pattern": "alternating-swap-permutation",
+          "forward_rows_z1_z2_columns_a_b": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimum_pair_membership_extensions": 1,
+          "reverse_pattern": "one",
+          "reverse_rows_a_b_columns_z1_z2": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ],
+          "z_cross_pattern": "one"
+        }
+      ],
+      "universal_worst_deficit": 1,
+      "witness_sha256": "d98ae3ad302fdf7c064d2205cc34f42e858d5a3b9bf7b04f22186cb456765723"
+    }
+  ],
+  "direct_terminal_grid_count": 0,
+  "fresh_sat_survivor_gate_violation_count": 0,
+  "fresh_sat_survivor_gate_violations": [],
+  "incidence_grid_pattern_histograms": {
+    "forward": {
+      "alternating-identity-permutation": 4,
+      "alternating-swap-permutation": 2,
+      "one": 5,
+      "two-same-column": 1
+    },
+    "reverse": {
+      "alternating-identity-permutation": 1,
+      "alternating-swap-permutation": 4,
+      "one": 5,
+      "two-same-column": 1,
+      "zero": 1
+    },
+    "z_cross": {
+      "mutual": 1,
+      "one": 11
+    }
+  },
+  "rigor": "EMPIRICALLY VERIFIED by exact bounded DFS within one fixed-label card-12 (5,5,5) finite-incidence shadow; node-capped shards are indeterminate; SAT shadows are not Euclidean realizations and do not prove or refute the live K-A producer",
+  "sat_survivor_count": 10,
+  "schema": "p97-atail-biapex-current-producer-bank-grid-audit-v1",
+  "source_aggregate_status": "SAT_FINITE_SHADOW_ONLY",
+  "source_gate_smoke": {
+    "current_gate_accepted_indices": [
+      0,
+      1,
+      2,
+      3,
+      16,
+      20
+    ],
+    "current_gate_rejected_indices": [
+      10,
+      12,
+      13,
+      15,
+      21
+    ],
+    "records": [
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 0
+      },
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 1
+      },
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 2
+      },
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 3
+      },
+      {
+        "accepted_by_all_current_gates": false,
+        "detections": [
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "U": 7,
+              "W": 10
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-order"
+          },
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "U": 7,
+              "W": 10
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-tail-order"
+          },
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "Y": 10
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-six-point-circle-chain-wrap-order"
+          }
+        ],
+        "shard_index": 10
+      },
+      {
+        "accepted_by_all_current_gates": false,
+        "detections": [
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "U": 7,
+              "W": 11
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-order"
+          },
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "U": 7,
+              "W": 11
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-tail-order"
+          },
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "Y": 11
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-six-point-circle-chain-wrap-order"
+          }
+        ],
+        "shard_index": 12
+      },
+      {
+        "accepted_by_all_current_gates": false,
+        "detections": [
+          {
+            "core": {
+              "A": 0,
+              "C": 2,
+              "D": 7,
+              "E": 6,
+              "O": 1,
+              "U": 3,
+              "W": 9
+            },
+            "cyclic_orientation": "reverse",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-tail-order-reverse"
+          }
+        ],
+        "shard_index": 13
+      },
+      {
+        "accepted_by_all_current_gates": false,
+        "detections": [
+          {
+            "core": {
+              "A": 0,
+              "C": 2,
+              "D": 7,
+              "E": 6,
+              "O": 1,
+              "U": 4,
+              "W": 11
+            },
+            "cyclic_orientation": "reverse",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core_of_neg",
+            "orientation": "reverse",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-order-reverse"
+          },
+          {
+            "core": {
+              "A": 1,
+              "C": 2,
+              "D": 3,
+              "E": 4,
+              "O": 0,
+              "U": 7,
+              "W": 11
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-order"
+          }
+        ],
+        "shard_index": 15
+      },
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 16
+      },
+      {
+        "accepted_by_all_current_gates": true,
+        "detections": [],
+        "shard_index": 20
+      },
+      {
+        "accepted_by_all_current_gates": false,
+        "detections": [
+          {
+            "core": {
+              "A": 0,
+              "C": 1,
+              "D": 9,
+              "E": 10,
+              "O": 2,
+              "U": 4,
+              "W": 6
+            },
+            "cyclic_orientation": "forward",
+            "freshness_layer": "current-producer-bank",
+            "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+            "orientation": "forward",
+            "source": "common-system-bank",
+            "stage": "equality-convex-seven-point-split-bridge-order"
+          }
+        ],
+        "shard_index": 21
+      }
+    ],
+    "source_sat_indices": [
+      0,
+      1,
+      2,
+      3,
+      10,
+      12,
+      13,
+      15,
+      16,
+      20,
+      21
+    ],
+    "status": "PASS"
+  },
+  "source_sha256": "02a3a92b6241d42841bdbbacfe35005e55b0cd609ce981ab381945c98eba8a66",
+  "source_status_counts": {
+    "INDETERMINATE": 13,
+    "SAT": 10
+  },
+  "status": "PASS",
+  "strict_pair_grid_count": 12
+}

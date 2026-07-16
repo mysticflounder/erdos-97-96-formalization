@@ -1,0 +1,47 @@
+// Test the generic O,A,G,K,Y,Z backbone radius component against two exact
+// five-vertex Cayley-Menger/Laman circuit eliminants.  Variables are the
+// squared color radii R,S,T.
+option(redSB);
+ring r = 0,(T,S,R),dp;
+poly P4 =
+  R^6*S^2-8*R^5*S^2+25*R^4*S^2-2*R^3*S^3-2*R^4*S
+  -39*R^3*S^2+9*R^2*S^3+9*R^3*S+24*R^2*S^2
+  -11*R*S^3+S^4-11*R^2*S+3*R*S^2+R^2;
+poly C1 =
+  R^4*S^2*T^2 -8*R^3*S^2*T^2 +R^3*S^2*T -2*R^2*S^3*T
+  +R^2*S^3 +24*R^2*S^2*T^2 -7*R^2*S^2*T -2*R^2*S*T^2
+  +R^2*S*T +8*R*S^3*T -3*R*S^3 -32*R*S^2*T^2
+  +8*R*S^2*T +R*S^2 +8*R*S*T^2 -3*R*S*T +S^4
+  -8*S^3*T +16*S^2*T^2 +2*S^2*T -8*S*T^2 +T^2;
+poly C2 =
+  R^2*S^6 -8*R^2*S^5*T +16*R^2*S^4*T^2 +8*R^2*S^4*T
+  -32*R^2*S^3*T^2 -2*R^2*S^3*T +24*R^2*S^2*T^2
+  -8*R^2*S*T^2 +R^2*T^2 +2*R*S^5*T^2 -3*R*S^5*T
+  -8*R*S^4*T^3 +8*R*S^4*T^2 +R*S^4*T +8*R*S^3*T^3
+  -7*R*S^3*T^2 -2*R*S^2*T^3 +R*S^2*T^2 +S^5*T^2
+  +S^4*T^4 -3*S^4*T^3 +S^3*T^3;
+poly C3 =
+  T^8*S^4-2*T^7*S^5+T^6*S^6-2*T^8*S^3*R-4*T^7*S^4*R
+  +17*T^6*S^5*R-11*T^5*S^6*R+T^4*S^7*R+T^8*S^2*R^2
+  +14*T^7*S^3*R^2-23*T^6*S^4*R^2-34*T^5*S^5*R^2
+  +36*T^4*S^6*R^2-6*T^3*S^7*R^2-8*T^7*S^2*R^3
+  -7*T^6*S^3*R^3+122*T^5*S^4*R^3-27*T^4*S^5*R^3
+  -34*T^3*S^6*R^3+11*T^2*S^7*R^3+10*T^6*S^2*R^4
+  -110*T^5*S^3*R^4-121*T^4*S^4*R^4+96*T^3*S^5*R^4
+  -5*T^2*S^6*R^4-10*T*S^7*R^4+S^8*R^4+2*T^6*S*R^5
+  +45*T^5*S^2*R^5+192*T^4*S^3*R^5-18*T^3*S^4*R^5
+  -64*T^2*S^5*R^5+38*T*S^6*R^5-6*S^7*R^5-12*T^5*S*R^6
+  -98*T^4*S^2*R^6-104*T^3*S^3*R^6+110*T^2*S^4*R^6
+  -52*T*S^5*R^6+15*S^6*R^6+16*T^4*S*R^7+84*T^3*S^2*R^7
+  -61*T^2*S^3*R^7+28*T*S^4*R^7-20*S^5*R^7+T^4*R^8
+  -18*T^3*S*R^8+7*T^2*S^2*R^8-2*T*S^3*R^8+15*S^4*R^8
+  +2*T^2*S*R^9-2*T*S^2*R^9-6*S^3*R^9+S^2*R^10;
+ideal I=P4,C1,C2,C3;
+ideal G=std(I);
+if (reduce(1,G)==0) { print("UNIT"); } else { print("PROPER"); }
+print(size(G));
+print(dim(G));
+ring q=0,(T,S,R),lp;
+ideal L=fglm(r,G);
+print(L);
+exit;

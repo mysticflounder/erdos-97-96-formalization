@@ -1,0 +1,35 @@
+import LambdaKxFine.N115FamilyPart00
+
+/-! Bucket aggregate for lambda Kx node 115. -/
+
+namespace Problem97.ATailBankCleanLambdaKxFine
+
+set_option maxHeartbeats 80000000
+
+set_option maxRecDepth 100000
+
+set_option linter.unusedVariables false
+
+noncomputable section
+
+@[simp] def lambdaKxFineNode115AggL0Part0 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0))) + (((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0)))) + ((((0 + 0) + (0 + 0)) + ((lambdaKxFineNode115Part20 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + 0) + (0 + 0))) + (((0 + 0) + (0 + 0)) + ((0 + 0) + (lambdaKxFineNode115Part30 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + 0)))))
+
+@[simp] def lambdaKxFineNode115AggL0Part1 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + lambdaKxFineNode115Part39 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part40 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part41 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part42 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part43 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part44 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part45 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part46 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part47 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + ((((lambdaKxFineNode115Part48 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part49 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part50 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part51 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part52 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part53 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part54 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part55 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part56 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part57 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part58 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part59 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part60 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part61 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part62 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part63 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))))
+
+@[simp] def lambdaKxFineNode115AggL0Part2 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((lambdaKxFineNode115Part64 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part65 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part66 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part67 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part68 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part69 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part70 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part71 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part72 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part73 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part74 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part75 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part76 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part77 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part78 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part79 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + ((((lambdaKxFineNode115Part80 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part81 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part82 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part83 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part84 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part85 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part86 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part87 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part88 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part89 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part90 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part91 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part92 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part93 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part94 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part95 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))))
+
+@[simp] def lambdaKxFineNode115AggL0Part3 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((lambdaKxFineNode115Part96 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part97 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part98 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part99 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part100 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part101 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part102 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part103 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part104 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part105 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part106 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part107 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part108 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part109 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part110 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part111 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + ((((lambdaKxFineNode115Part112 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part113 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part114 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part115 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part116 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part117 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part118 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part119 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode115Part120 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part121 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115Part122 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part123 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode115Part124 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115Part125 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (0 + 0)))))
+
+@[simp] def lambdaKxFineNode115AggL0Part4 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  ((((0 + (0 + 0)) + (0 + (0 + 0))) + ((0 + (0 + 0)) + ((0 + 0) + (0 + 0)))) + (((0 + (0 + 0)) + (0 + (0 + 0))) + ((0 + (0 + 0)) + ((0 + 0) + (0 + 0)))))
+
+@[simp] def lambdaKxFineNode115Value (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  ((lambdaKxFineNode115AggL0Part0 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115AggL0Part1 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode115AggL0Part2 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (lambdaKxFineNode115AggL0Part3 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode115AggL0Part4 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))
+
+end
+
+end Problem97.ATailBankCleanLambdaKxFine

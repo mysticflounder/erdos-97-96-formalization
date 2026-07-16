@@ -1,0 +1,81 @@
+{
+  "all_center_global_k4": false,
+  "all_global_k4_failures_exhaust_alternate_existing_classes": true,
+  "any_global_k4_failure_repairable_without_coordinate_changes": false,
+  "carrier_card": 29,
+  "carrier_centers_scanned": 29,
+  "coordinate_sha256": "b07182bc396ee9b6131961e2a80f5ce420706bf9bb6f292d90471d80300c83c4",
+  "critical_shell_candidate_counts": {
+    "A": 1,
+    "C": 3,
+    "D": 1,
+    "E": 1,
+    "F": 1,
+    "F_k4_1": 1,
+    "F_k4_2": 1,
+    "F_k4_3": 1,
+    "G": 1,
+    "I": 1,
+    "I_k4_1": 1,
+    "I_k4_2": 1,
+    "I_k4_3": 1,
+    "J": 0,
+    "K": 1,
+    "O": 4,
+    "X": 1,
+    "X_k4_1": 1,
+    "X_k4_2": 1,
+    "X_k4_3": 1,
+    "Y": 1,
+    "Y_k4_1": 1,
+    "Y_k4_2": 1,
+    "Y_k4_3": 1,
+    "Z": 1,
+    "Z_k4_1": 1,
+    "Z_k4_2": 1,
+    "Z_k4_3": 1,
+    "t1": 0
+  },
+  "critical_shell_candidates_sha256": "bca64807a98b239b70759e8bd64f12a78fe932695546e7add647434f3c0ac012",
+  "epistemic_scope": "exact exhaustive radius-class computation for the pinned 29-point coordinates only; it neither varies coordinates nor certifies a Lean theorem",
+  "global_k4_failure_count": 20,
+  "global_k4_failures_sha256": "a87fe084687a3b42f029a0a9e91c7694f795a1e407f8b9c45bd4a7f5dc8667ce",
+  "missing_source_diagnostics": [
+    {
+      "large_classes_through_source": [
+        {
+          "center": "O",
+          "class_card": 5,
+          "is_critical_shell_candidate": false,
+          "is_exact_four": false,
+          "post_deletion_max_class_card": 4,
+          "radius_squared": "1",
+          "support": [
+            "A",
+            "C",
+            "D",
+            "E",
+            "J"
+          ]
+        }
+      ],
+      "source": "J"
+    },
+    {
+      "large_classes_through_source": [],
+      "source": "t1"
+    }
+  ],
+  "model_file_sha256": "98a069a5d763436c11f93dafb51bf7173a1909873abaeef7b74a96a451389698",
+  "one_total_source_to_blocker_assignment": null,
+  "positive_radius_classes_scanned": 782,
+  "radius_class_partition_sha256": "853bcade006db475849321d9ff5daae31cd9e7c85f86749011c2b4c70241ccea",
+  "schema": 1,
+  "sources_without_critical_shell_candidate": [
+    "J",
+    "t1"
+  ],
+  "status": "PASS_AUDIT_TOTAL_CSS_ABSENT",
+  "total_critical_shell_system_exists": false,
+  "trust_boundary": "EXACT_SYMBOLIC_SYMPY_NOT_LEAN_KERNEL"
+}

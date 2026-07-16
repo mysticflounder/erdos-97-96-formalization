@@ -1,0 +1,21 @@
+ring R=0,(x13y,x13x,x12y,x12x,x11y,x11x,x10y,x10x,x9y,x9x,x8y,x8x,x7y,x7x,x6y,x6x,x5y,x5x,x4y,x4x,x3y,x3x,x2y,x2x),dp;
+ideal I=-x9x^2 + 2*x9x - x9y^2,
+  -x10x^2 + 2*x10x - x10y^2,
+  2*x13x*x5x - 2*x13x + 2*x13y*x5y - x5x^2 - x5y^2 + 1,
+  -x10x^2 + 2*x10x*x13x - x10y^2 + 2*x10y*x13y - 2*x13x + 1,
+  x3x^2 - 2*x3x*x9x + x3y^2 - 2*x3y*x9y - x8x^2 + 2*x8x*x9x - x8y^2 + 2*x8y*x9y,
+  -x10x^2 + 2*x10x*x9x - x10y^2 + 2*x10y*x9y + x3x^2 - 2*x3x*x9x + x3y^2 - 2*x3y*x9y,
+  2*x10x*x4x + 2*x10y*x4y - x4x^2 - x4y^2,
+  2*x10x*x9x + 2*x10y*x9y - x9x^2 - x9y^2,
+  -x8x^2 - x8y^2 + 1,
+  -2*x3x*x5x + 2*x3x*x9x - 2*x3y*x5y + 2*x3y*x9y + x5x^2 + x5y^2 - x9x^2 - x9y^2,
+  -x13x^2 + 2*x13x*x3x - x13y^2 + 2*x13y*x3y - 2*x3x*x5x - 2*x3y*x5y + x5x^2 + x5y^2,
+  -x3x^2 + 2*x3x*x4x - x3y^2 + 2*x3y*x4y,
+  2*x4x*x5x + 2*x4y*x5y - x5x^2 - x5y^2,
+  -x4x^2 + 2*x4x*x5x - x4y^2 + 2*x4y*x5y - 2*x5x + 1,
+  2*x5x*x9x - 2*x5x + 2*x5y*x9y - x9x^2 - x9y^2 + 1;
+ideal G=slimgb(I);
+poly remainder=reduce(1,G);
+if (remainder==0) { print("STATUS_UNIT"); }
+else { print("STATUS_NONUNIT"); }
+quit;

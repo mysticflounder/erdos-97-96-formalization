@@ -1,0 +1,124 @@
+{
+  "results": [
+    {
+      "name": "Kx",
+      "target": "Kx",
+      "retained_names": [
+        "AOK",
+        "FAK",
+        "FKZ",
+        "GXK",
+        "XZ",
+        "XF",
+        "YOX",
+        "YOZ",
+        "ZAG",
+        "LDEF",
+        "REFLECT_X",
+        "REFLECT_Y"
+      ],
+      "modular_primes": [
+        32003,
+        30011,
+        27449
+      ],
+      "epistemic_status": "support-discovery-only; QQ recheck required"
+    },
+    {
+      "name": "Ky",
+      "target": "Ky",
+      "retained_names": [
+        "AOK",
+        "FAK",
+        "FKZ",
+        "GXK",
+        "XZ",
+        "XF",
+        "YOX",
+        "YOZ",
+        "ZAG",
+        "LDEF",
+        "REFLECT_X",
+        "REFLECT_Y"
+      ],
+      "modular_primes": [
+        32003,
+        30011,
+        27449
+      ],
+      "epistemic_status": "support-discovery-only; QQ recheck required"
+    },
+    {
+      "name": "Zx",
+      "target": "2*Zx-1",
+      "retained_names": [
+        "AOK",
+        "FAK",
+        "FKZ",
+        "GXK",
+        "XZ",
+        "XF",
+        "YOX",
+        "YOZ",
+        "ZAG",
+        "LDEF",
+        "REFLECT_X",
+        "REFLECT_Y"
+      ],
+      "modular_primes": [
+        32003,
+        30011,
+        27449
+      ],
+      "epistemic_status": "support-discovery-only; QQ recheck required"
+    },
+    {
+      "name": "Zy",
+      "target": "4*Zy^2+1",
+      "retained_names": [
+        "AOK",
+        "FAK",
+        "FKZ",
+        "GXK",
+        "XZ",
+        "XF",
+        "YOX",
+        "YOZ",
+        "ZAG",
+        "LDEF",
+        "REFLECT_X",
+        "REFLECT_Y"
+      ],
+      "modular_primes": [
+        32003,
+        30011,
+        27449
+      ],
+      "epistemic_status": "support-discovery-only; QQ recheck required"
+    },
+    {
+      "name": "D",
+      "target": "-2*Kx*Zx+2*Kx-2*Ky*Zy+Zx^2+Zy^2",
+      "retained_names": [
+        "AOK",
+        "FAK",
+        "FKZ",
+        "GXK",
+        "XZ",
+        "XF",
+        "YOX",
+        "YOZ",
+        "ZAG",
+        "LDEF",
+        "REFLECT_X",
+        "REFLECT_Y"
+      ],
+      "modular_primes": [
+        32003,
+        30011,
+        27449
+      ],
+      "epistemic_status": "support-discovery-only; QQ recheck required"
+    }
+  ]
+}

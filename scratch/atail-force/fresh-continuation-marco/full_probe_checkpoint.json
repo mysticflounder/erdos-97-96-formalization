@@ -1,0 +1,3258 @@
+{
+  "budgets": {
+    "full_only": true,
+    "max_map_iterations_per_survivor": 256,
+    "max_minimal_cores_per_survivor": 4,
+    "max_oracle_calls_per_survivor": 96,
+    "per_solver_timeout_seconds": 30.0
+  },
+  "cases": [
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "b8f64d304e4c3c4e9d67400288c08d7f1f8abc2108ad26d305f6ba5b4ddedba2",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "b8f64d304e4c3c4e9d67400288c08d7f1f8abc2108ad26d305f6ba5b4ddedba2",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[0,1,9,10]",
+            "c3:[1,4,7,11]",
+            "c4:[2,3,8,10]",
+            "c5:[0,4,8,11]",
+            "c6:[4,5,7,10]",
+            "c7:[2,5,9,11]",
+            "c8:[0,3,5,7]",
+            "c9:[3,6,8,11]",
+            "c10:[1,7,8,9]",
+            "c11:[1,5,6,10]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "1da6c39cf7a2236548bfb3d9a7e2eaa221ad069e79fa8547e8561ed685324fbe",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            10
+          ]
+        }
+      ],
+      "shard_index": 0,
+      "source_rows_sha256": "cff7eb4b71ef63347a5a8d60bef4a2f20a7bec6cf400e8c33841f0aa8c4f8f35",
+      "source_witness_sha256": "4b70ad50fc04a7c9c9f6a84b488098e1e7620aa436bd1e4266a8b5666fff1d1c",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "bf59160a304d8e07cf2aefe4c609ae52a180bf005d859db7aa74110fb1038e3f",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "bf59160a304d8e07cf2aefe4c609ae52a180bf005d859db7aa74110fb1038e3f",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[3,6,8,9]",
+            "c2:[0,1,9,10]",
+            "c3:[1,5,7,11]",
+            "c4:[2,3,6,10]",
+            "c5:[2,4,7,9]",
+            "c6:[5,7,8,10]",
+            "c7:[0,4,8,11]",
+            "c8:[2,5,9,11]",
+            "c9:[4,6,7,10]",
+            "c10:[0,3,7,11]",
+            "c11:[0,1,5,6]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "fe01a1d4793b2e3e4c4bbd7c40cbc776ab5ac47f99c05f4fc10896da0091c25c",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            5,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 1,
+      "source_rows_sha256": "2dc6664a88c7f51c6568c4ac73ae040dd86bd9734634bc9565094ca9c3c15c15",
+      "source_witness_sha256": "58fa82b20db64d4f19cfcfd5d13f6be53762d699fa2938b3d3a38b79c21a4256",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "bc877f27d26d6d297c738066dc11ca6734d6e701b50e2b40e04865d4f82b2f44",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "bc877f27d26d6d297c738066dc11ca6734d6e701b50e2b40e04865d4f82b2f44",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[3,6,8,10]",
+            "c2:[0,1,9,10]",
+            "c3:[2,7,10,11]",
+            "c4:[3,6,9,11]",
+            "c5:[2,4,8,9]",
+            "c6:[2,5,7,9]",
+            "c7:[0,3,5,8]",
+            "c8:[0,4,6,11]",
+            "c9:[0,3,7,10]",
+            "c10:[4,5,7,8]",
+            "c11:[0,1,5,6]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "9c4facc3741e6eb60212b57d4741f2456936f076c2e50ae166058d7ed94c1f77",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            7,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 2,
+      "source_rows_sha256": "057b3d270a69a4be225abe7a8a809a19ea38a10e1d653c5cb2f7ef56c416e6be",
+      "source_witness_sha256": "41eb70d7cef090a4ccf2af94dd12809ef42cbbf12d8bdb8f92008b6d5a074323",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "805917e1a30968439d8b765c6bd41b4e3d08bb35ef8f25b577f26bdf82b42ced",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "805917e1a30968439d8b765c6bd41b4e3d08bb35ef8f25b577f26bdf82b42ced",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[3,6,8,11]",
+            "c2:[0,1,9,10]",
+            "c3:[2,5,10,11]",
+            "c4:[3,6,7,10]",
+            "c5:[1,2,7,8]",
+            "c6:[0,4,7,11]",
+            "c7:[0,3,5,8]",
+            "c8:[4,5,7,9]",
+            "c9:[0,5,6,10]",
+            "c10:[3,7,9,11]",
+            "c11:[1,5,8,9]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "8e0405b873306fdc8913dc49b505b017dedc66aa87944a2b5354bbdcd7240d85",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            8,
+            9
+          ]
+        }
+      ],
+      "shard_index": 3,
+      "source_rows_sha256": "50a79a214eee97d7ee55f3ca1c923229ccd01b30e08535c3460b5cc60e64f52d",
+      "source_witness_sha256": "503446798be7183d34c5cca8f53d9403ceaea71cb562eba04c338faa36e51bc0",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": false,
+      "current_formalized_bank_match_count": 3,
+      "current_formalized_bank_matches": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "49cb8f797a046b5208c016c558dd03039ec3c1d0bd432484d0d568adabb64278",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "49cb8f797a046b5208c016c558dd03039ec3c1d0bd432484d0d568adabb64278",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[3,6,9,10]",
+            "c3:[1,4,7,9]",
+            "c4:[1,2,8,10]",
+            "c5:[2,4,9,11]",
+            "c6:[4,5,7,8]",
+            "c7:[0,2,10,11]",
+            "c8:[0,5,7,9]",
+            "c9:[4,6,8,10]",
+            "c10:[1,5,6,11]",
+            "c11:[0,3,5,8]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "b0212a801262f3f0acaa7ce3d873093fc33f6ab0d0d491e195a3a3940529347b",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        }
+      ],
+      "shard_index": 10,
+      "source_rows_sha256": "b9801e2a4737bbfdd8bbc5d882cdf9283e30e46588578ba35382324986684bbb",
+      "source_witness_sha256": "d7b7759ac8a474620630f4a3aadf7763d655bc9814e5b81994e8e543c9cde837",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": false,
+      "current_formalized_bank_match_count": 3,
+      "current_formalized_bank_matches": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "84a7bbbaa0e02ee07f1a6e9dbc5b3bdb4885acc50bd54ade23b5bfc8242433b6",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "84a7bbbaa0e02ee07f1a6e9dbc5b3bdb4885acc50bd54ade23b5bfc8242433b6",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[3,6,10,11]",
+            "c3:[1,4,7,10]",
+            "c4:[1,2,9,11]",
+            "c5:[2,4,8,10]",
+            "c6:[3,7,8,9]",
+            "c7:[2,5,9,10]",
+            "c8:[0,5,7,11]",
+            "c9:[0,3,5,8]",
+            "c10:[4,6,8,11]",
+            "c11:[1,5,6,9]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "f66a4be10daebb6ab8bf379002f438781b8594ca0774097ad094fde15aa6b477",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            9
+          ]
+        }
+      ],
+      "shard_index": 12,
+      "source_rows_sha256": "de2a4f5e9fbe7ef4dbf5254d92e03034f898a78c29c6e669457b463e49a3cbba",
+      "source_witness_sha256": "e747fe06e40e2d30f8cf661993f94a20066b9bf9af49d937adc2e052a17a5a0c",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            10,
+            11
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": false,
+      "current_formalized_bank_match_count": 1,
+      "current_formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 3,
+            "W": 9
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order-reverse"
+        }
+      ],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "ba91718a386400e0f35f5c044b325ae2d7193849e5ef318ab6b341e1aa3338c1",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "ba91718a386400e0f35f5c044b325ae2d7193849e5ef318ab6b341e1aa3338c1",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[3,7,9,10]",
+            "c3:[4,6,8,10]",
+            "c4:[1,2,8,9]",
+            "c5:[2,4,10,11]",
+            "c6:[2,5,9,11]",
+            "c7:[0,3,6,11]",
+            "c8:[0,4,5,7]",
+            "c9:[1,7,8,11]",
+            "c10:[1,5,6,9]",
+            "c11:[0,3,5,8]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "0a838274c4424cf1895998f764d538c5e317fbe6b89669ab9af6988f99151649",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            5,
+            7
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            1,
+            7,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            8
+          ]
+        }
+      ],
+      "shard_index": 13,
+      "source_rows_sha256": "d506c5fc7dcb8cae09cc3d264bd0849ea85650dfba6931547c9031d4ce157192",
+      "source_witness_sha256": "a2066ae3539eafa19c16445beb351e44018a0585486761bcf7c1c0c015f3a52b",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": false,
+      "current_formalized_bank_match_count": 2,
+      "current_formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 4,
+            "W": 11
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order-reverse"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "bce5d3271dba6d8a375462607404a9a8ac333719714e5bb480e4e5499bc975dd",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "bce5d3271dba6d8a375462607404a9a8ac333719714e5bb480e4e5499bc975dd",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[3,7,10,11]",
+            "c3:[1,4,7,8]",
+            "c4:[1,5,6,11]",
+            "c5:[2,4,8,11]",
+            "c6:[0,5,9,11]",
+            "c7:[0,4,6,10]",
+            "c8:[1,7,9,10]",
+            "c9:[0,1,5,8]",
+            "c10:[3,5,7,9]",
+            "c11:[3,6,8,10]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "e4fe881cfd4deb8906618e91b3426ac68d48c7399fe85e686a4a9361faf297bf",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            7,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            1,
+            4,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            6,
+            10
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            1,
+            7,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            5,
+            8
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            3,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            8,
+            10
+          ]
+        }
+      ],
+      "shard_index": 15,
+      "source_rows_sha256": "515a54c1692c112068a8f1bf471ac4b24b0497b95574dd64057610182a9a53ee",
+      "source_witness_sha256": "4db20b6b171a924819c97e997246d0466e61ceb60a042e80bd2525ce0703acee",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            10,
+            11
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            10,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "16e19420a4e9562656cea5b87d92ee3f3cf91310c3b8a8811e464f96ca5d35b2",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "16e19420a4e9562656cea5b87d92ee3f3cf91310c3b8a8811e464f96ca5d35b2",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[0,2,6,7]",
+            "c2:[3,8,9,10]",
+            "c3:[4,6,9,11]",
+            "c4:[1,5,7,9]",
+            "c5:[1,2,8,11]",
+            "c6:[2,5,7,10]",
+            "c7:[0,4,5,9]",
+            "c8:[0,3,6,11]",
+            "c9:[4,7,8,10]",
+            "c10:[1,5,6,8]",
+            "c11:[0,3,5,10]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "df3a13bba13786ad8397eab5aa1973099c65692abf50af4d3426a75e5330b6fd",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            0,
+            2,
+            6,
+            7
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            3,
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            8,
+            11
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            5,
+            9
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            7,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            10
+          ]
+        }
+      ],
+      "shard_index": 16,
+      "source_rows_sha256": "91a250a5ff1eb0057532687dee27c45038925c411489f99ca4d3e6b6d8913770",
+      "source_witness_sha256": "a09a165a62e22675443309e2ff272ff61d0bd243df2d7a094472893abde0afdf",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": true,
+      "current_formalized_bank_match_count": 0,
+      "current_formalized_bank_matches": [],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "81a45475ca97b02e2ceea51e71129fc2e91bb84f2bafe0ffdaf362b2ccf8fbbc",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "81a45475ca97b02e2ceea51e71129fc2e91bb84f2bafe0ffdaf362b2ccf8fbbc",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[3,6,7,8]",
+            "c2:[0,1,9,10]",
+            "c3:[4,6,9,11]",
+            "c4:[1,5,7,11]",
+            "c5:[2,3,7,9]",
+            "c6:[2,5,8,9]",
+            "c7:[2,6,10,11]",
+            "c8:[0,3,5,11]",
+            "c9:[4,5,8,10]",
+            "c10:[0,4,7,11]",
+            "c11:[0,1,5,6]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "1854dbd1c9481a33a948e5db658c815e1f7ae6239a1c66cdfbb4430f2662b80f",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            6,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            3,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            6,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            8,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            5,
+            6
+          ]
+        }
+      ],
+      "shard_index": 20,
+      "source_rows_sha256": "7fc7d769181022b5f89d6172a765aa51673d31eacf79899581c39aca608ba81c",
+      "source_witness_sha256": "d98ae3ad302fdf7c064d2205cc34f42e858d5a3b9bf7b04f22186cb456765723",
+      "strict_pair_grid_count": 3,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "first_strict_pair": [
+            6,
+            8
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            8,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        },
+        {
+          "first_strict_pair": [
+            7,
+            8
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            7,
+            8,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              0
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    },
+    {
+      "current_formalized_bank_clean": false,
+      "current_formalized_bank_match_count": 1,
+      "current_formalized_bank_matches": [
+        {
+          "core": {
+            "A": 0,
+            "C": 1,
+            "D": 9,
+            "E": 10,
+            "O": 2,
+            "U": 4,
+            "W": 6
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ],
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "full_equality_ideal": {
+        "expanded_polynomial_count": 36,
+        "expanded_polynomial_sha256": "522ae6a777a973fe6e4b5da14e76511410889868c33ae2db90aa02d95d4373df",
+        "msolve_qq_forward_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "msolve_qq_reverse_variables": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "singular_algorithm": "slimgb-reverse-variable-order",
+        "singular_qq": {
+          "returncode": 0,
+          "verdict": "UNIT"
+        },
+        "status": "CROSSCHECKED_UNIT"
+      },
+      "marco": null,
+      "minimal_cores": [],
+      "oracle_records": [
+        {
+          "certify_nonunit_requested": true,
+          "expanded_polynomial_count": 36,
+          "expanded_polynomial_sha256": "522ae6a777a973fe6e4b5da14e76511410889868c33ae2db90aa02d95d4373df",
+          "msolve_qq_forward_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "msolve_qq_reverse_variables": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "row_count": 12,
+          "rows": [
+            "c0:[1,2,3,4]",
+            "c1:[3,6,7,9]",
+            "c2:[0,1,9,10]",
+            "c3:[4,5,9,11]",
+            "c4:[1,2,6,11]",
+            "c5:[2,4,8,9]",
+            "c6:[1,5,7,8]",
+            "c7:[2,8,10,11]",
+            "c8:[0,3,5,11]",
+            "c9:[0,4,7,10]",
+            "c10:[0,5,6,8]",
+            "c11:[2,5,7,10]"
+          ],
+          "singular_algorithm": "slimgb-reverse-variable-order",
+          "singular_qq": {
+            "returncode": 0,
+            "verdict": "UNIT"
+          },
+          "status": "CROSSCHECKED_UNIT"
+        }
+      ],
+      "profile": [
+        5,
+        5,
+        5
+      ],
+      "row_universe_sha256": "6f2e3044c7e6295891417f55bc545f75b81cc333cfdfb27c7fe176fcdcc32388",
+      "rows": [
+        {
+          "center": 0,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "center": 1,
+          "exact": true,
+          "support": [
+            3,
+            6,
+            7,
+            9
+          ]
+        },
+        {
+          "center": 2,
+          "exact": true,
+          "support": [
+            0,
+            1,
+            9,
+            10
+          ]
+        },
+        {
+          "center": 3,
+          "exact": true,
+          "support": [
+            4,
+            5,
+            9,
+            11
+          ]
+        },
+        {
+          "center": 4,
+          "exact": true,
+          "support": [
+            1,
+            2,
+            6,
+            11
+          ]
+        },
+        {
+          "center": 5,
+          "exact": true,
+          "support": [
+            2,
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "center": 6,
+          "exact": true,
+          "support": [
+            1,
+            5,
+            7,
+            8
+          ]
+        },
+        {
+          "center": 7,
+          "exact": true,
+          "support": [
+            2,
+            8,
+            10,
+            11
+          ]
+        },
+        {
+          "center": 8,
+          "exact": true,
+          "support": [
+            0,
+            3,
+            5,
+            11
+          ]
+        },
+        {
+          "center": 9,
+          "exact": true,
+          "support": [
+            0,
+            4,
+            7,
+            10
+          ]
+        },
+        {
+          "center": 10,
+          "exact": true,
+          "support": [
+            0,
+            5,
+            6,
+            8
+          ]
+        },
+        {
+          "center": 11,
+          "exact": true,
+          "support": [
+            2,
+            5,
+            7,
+            10
+          ]
+        }
+      ],
+      "shard_index": 21,
+      "source_rows_sha256": "3fdf4e48f7d136991689831af3384d05cee45ff6fc793060f5085d55657d1dca",
+      "source_witness_sha256": "035797b3913d07a85281ce20c69acb76287092dc3458e3d9e2a0aa1cbc3e6bed",
+      "strict_pair_grid_count": 1,
+      "strict_pair_grids": [
+        {
+          "first_strict_pair": [
+            6,
+            7
+          ],
+          "forward_membership": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "minimal_second_apex_equality_present": false,
+          "named_centers": [
+            1,
+            2,
+            6,
+            7,
+            9,
+            10
+          ],
+          "outside_pair_terminal_present": false,
+          "reverse_membership": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "second_strict_pair": [
+            9,
+            10
+          ]
+        }
+      ]
+    }
+  ],
+  "commands": {
+    "full_probe": "UV_CACHE_DIR=/tmp/uv-cache-erdos9796 uv run python scratch/atail-force/fresh-continuation-marco/mine.py --full-only",
+    "marco": "UV_CACHE_DIR=/tmp/uv-cache-erdos9796 uv run python scratch/atail-force/fresh-continuation-marco/mine.py"
+  },
+  "driver_sha256": "526b46513a4f6d17f583866b4d45935fa1917b7feb09f25ea3c688c5e6c391a2",
+  "schema": "p97-atail-fresh-continuation-marco-v1",
+  "scope": {
+    "all_11_fresh_sat_survivors_checked": true,
+    "all_13_strict_pair_grids_linked": true,
+    "complex_equality_ideal_only": true,
+    "convexity_or_orientation_encoded": false,
+    "exact_off_radius_disequalities_encoded": false,
+    "fixed_card_12_555_placement_only": true,
+    "grid_selection_changes_named_roles_not_equality_ideal": true,
+    "lean_theorem_proved": false,
+    "marco_restricted_to_6_live_broader_bank_clean_survivors": true,
+    "nullstellensatz_certificate_replayed": false,
+    "only_final_fresh_checkpoint_loaded": true,
+    "producer_proved": false,
+    "real_feasibility_checked": false,
+    "trusted_exact_cas_computation": true
+  },
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve_qq_forward_variables": {
+        "returncode": 0,
+        "verdict": "NONUNIT"
+      },
+      "msolve_qq_reverse_variables": {
+        "returncode": 0,
+        "verdict": "NONUNIT"
+      },
+      "singular_algorithm": "std",
+      "singular_qq": {
+        "returncode": 0,
+        "verdict": "NONUNIT"
+      }
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve_qq_forward_variables": {
+        "returncode": 0,
+        "verdict": "UNIT"
+      },
+      "msolve_qq_reverse_variables": {
+        "returncode": 0,
+        "verdict": "UNIT"
+      },
+      "singular_algorithm": "slimgb-reverse-variable-order",
+      "singular_qq": {
+        "returncode": 0,
+        "verdict": "UNIT"
+      }
+    }
+  },
+  "solver_versions": {
+    "msolve": "0.10.1",
+    "singular": "Singular for arm64-Darwin version 4.4.1 (44105, 64 bit) Nov 11 2025 16:12:34"
+  },
+  "source": {
+    "fresh_sat_survivor_count": 11,
+    "path": "scratch/atail-force/biapex-continuation-shadow-audit/selected_row_own_cap_bound_refresh_1m_retry_checkpoint.json",
+    "sha256": "ad2400da59782d38d0952a9c31ae448bd30f86a110239bcca4687b538bc09fe9",
+    "strict_pair_grid_count": 13
+  },
+  "summary": {
+    "crosschecked_nonunit_full_ideals": 0,
+    "crosschecked_unit_full_ideals": 11,
+    "current_formalized_bank_clean_shard_ids": [
+      0,
+      1,
+      2,
+      3,
+      16,
+      20
+    ],
+    "current_formalized_bank_dirty_matches": {
+      "10": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 10
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "12": [
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "Y": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SixPointCircleChainWrapOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-six-point-circle-chain-wrap-order"
+        }
+      ],
+      "13": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 3,
+            "W": 9
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeTailOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-tail-order-reverse"
+        }
+      ],
+      "15": [
+        {
+          "core": {
+            "A": 0,
+            "C": 2,
+            "D": 7,
+            "E": 6,
+            "O": 1,
+            "U": 4,
+            "W": 11
+          },
+          "cyclic_orientation": "reverse",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core_of_neg",
+          "orientation": "reverse",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order-reverse"
+        },
+        {
+          "core": {
+            "A": 1,
+            "C": 2,
+            "D": 3,
+            "E": 4,
+            "O": 0,
+            "U": 7,
+            "W": 11
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ],
+      "21": [
+        {
+          "core": {
+            "A": 0,
+            "C": 1,
+            "D": 9,
+            "E": 10,
+            "O": 2,
+            "U": 4,
+            "W": 6
+          },
+          "cyclic_orientation": "forward",
+          "lean_consumer": "Problem97.Census554.SevenPointSplitBridgeOrderCore.false_of_core",
+          "orientation": "forward",
+          "source": "common-system-bank",
+          "stage": "equality-convex-seven-point-split-bridge-order"
+        }
+      ]
+    },
+    "current_formalized_bank_dirty_shard_ids": [
+      10,
+      12,
+      13,
+      15,
+      21
+    ],
+    "immediate_k_a_consumer_count": 0,
+    "minimal_core_count": 0
+  },
+  "support_file_sha256": {
+    "census/atail_force/producer_bank.py": "b6cf53f6950231e39d9f2fa8ea855587d17445b6630a7ed8d825b4caaf70f2a0",
+    "census/atail_force/producer_mus.py": "0f51269564ee45aac68e0ea9c2f9bba900e2f2012f0ef53961d05ea02b7d2427",
+    "census/global_confinement/metric_realizability_probe.py": "f7a92776f9cee02eda2265467d77a0bbd5254d1dd335bc7a70713203239d3373",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "scratch/atail-force/common_system_metric_probe.py": "18b1a91a3326b975c8baa16f82e7c692fafd5b979450bb305d4c31895cde1334",
+    "scratch/atail-force/second_center_metric_oracle/oracle.py": "b708722ce49f9d0f165facf20a911161815ce8018c5fc3760bf872dad6977a09"
+  }
+}

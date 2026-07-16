@@ -1,0 +1,811 @@
+{
+  "cases": [
+    {
+      "deficit_one_match_count": 5,
+      "frontier_row_count": 7,
+      "frontier_row_keys": [
+        "c1:[0,2,6,7]",
+        "c2:[0,1,9,10]",
+        "c7:[2,5,9,11]",
+        "c8:[0,3,5,7]",
+        "c9:[3,6,8,11]",
+        "c10:[1,7,8,9]",
+        "c11:[1,5,6,10]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [
+        {
+          "assignment": {
+            "a": 9,
+            "c": 2,
+            "d": 1,
+            "e": 7,
+            "f": 10
+          },
+          "atomic_equality_requirement_count": 7,
+          "fq_name": "Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction",
+          "line": 77,
+          "missing_atom": {
+            "kind": "explicit",
+            "left": [
+              "d",
+              "c"
+            ],
+            "left_mapped": [
+              1,
+              2
+            ],
+            "right": [
+              "d",
+              "f"
+            ],
+            "right_mapped": [
+              1,
+              10
+            ],
+            "source_index": 3,
+            "text": "dist d c = dist d f"
+          },
+          "missing_mapped_equality_key": "d1,2=d1,10",
+          "path": "lean/RVOL/P97/U1TwoLargeCapObstruction.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "d": 10,
+            "p": 1,
+            "q": 7,
+            "t\u2081": 0,
+            "t\u2082": 2
+          },
+          "atomic_equality_requirement_count": 6,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+          "line": 31,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              1,
+              7
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              0,
+              7
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d0,7=d1,7",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "p": 1,
+            "q": 0,
+            "t\u2081": 2,
+            "t\u2082": 9,
+            "t\u2083": 7,
+            "u": 10
+          },
+          "atomic_equality_requirement_count": 9,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_selected_exact_right_exact_pair_metric_incompatibility",
+          "line": 29,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              1,
+              0
+            ],
+            "radius": "r",
+            "right": [
+              "p",
+              "t\u2082"
+            ],
+            "right_mapped": [
+              1,
+              9
+            ],
+            "source_index": 2,
+            "text": "dist p q = dist p t\u2082 (via r)"
+          },
+          "missing_mapped_equality_key": "d0,1=d1,9",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedExactRightExactPairMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "a": 2,
+            "d": 1,
+            "p": 7,
+            "q": 9,
+            "u": 10
+          },
+          "atomic_equality_requirement_count": 7,
+          "fq_name": "Problem97.u5_qcritical_et1n3_leader_metric_incompatibility",
+          "line": 32,
+          "missing_atom": {
+            "kind": "explicit",
+            "left": [
+              "u",
+              "p"
+            ],
+            "left_mapped": [
+              10,
+              7
+            ],
+            "right": [
+              "u",
+              "a"
+            ],
+            "right_mapped": [
+              10,
+              2
+            ],
+            "source_index": 3,
+            "text": "dist u p = dist u a"
+          },
+          "missing_mapped_equality_key": "d2,10=d7,10",
+          "path": "lean/RVOL/P97/U5QCriticalET1N3Leader.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "a": 10,
+            "b": 1,
+            "p": 2,
+            "q": 9,
+            "u": 7
+          },
+          "atomic_equality_requirement_count": 7,
+          "fq_name": "Problem97.u5_rank_two_mixed_short_metric_incompatibility",
+          "line": 77,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              2,
+              9
+            ],
+            "radius": "r",
+            "right": [
+              "b",
+              "a"
+            ],
+            "right_mapped": [
+              1,
+              10
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist b a (via r)"
+          },
+          "missing_mapped_equality_key": "d1,10=d2,9",
+          "path": "lean/RVOL/P97/U5QCriticalRankTwoMixed.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        }
+      ],
+      "shard_index": 0
+    },
+    {
+      "deficit_one_match_count": 1,
+      "frontier_row_count": 7,
+      "frontier_row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c7:[0,4,8,11]",
+        "c8:[2,5,9,11]",
+        "c9:[4,6,7,10]",
+        "c10:[0,3,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [
+        {
+          "assignment": {
+            "d": 10,
+            "p": 0,
+            "q": 3,
+            "t\u2081": 1,
+            "t\u2082": 2
+          },
+          "atomic_equality_requirement_count": 6,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+          "line": 31,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              0,
+              3
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              1,
+              3
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d0,3=d1,3",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        }
+      ],
+      "shard_index": 1
+    },
+    {
+      "deficit_one_match_count": 1,
+      "frontier_row_count": 8,
+      "frontier_row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,7,9]",
+        "c7:[0,3,5,8]",
+        "c8:[0,4,6,11]",
+        "c9:[0,3,7,10]",
+        "c10:[4,5,7,8]",
+        "c11:[0,1,5,6]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [
+        {
+          "assignment": {
+            "d": 9,
+            "p": 0,
+            "q": 3,
+            "t\u2081": 1,
+            "t\u2082": 2
+          },
+          "atomic_equality_requirement_count": 6,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+          "line": 31,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              0,
+              3
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              1,
+              3
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d0,3=d1,3",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "deficit_one_match_count": 0,
+      "frontier_row_count": 9,
+      "frontier_row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c5:[1,2,7,8]",
+        "c6:[0,4,7,11]",
+        "c7:[0,3,5,8]",
+        "c8:[4,5,7,9]",
+        "c9:[0,5,6,10]",
+        "c10:[3,7,9,11]",
+        "c11:[1,5,8,9]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [],
+      "shard_index": 3
+    },
+    {
+      "deficit_one_match_count": 4,
+      "frontier_row_count": 9,
+      "frontier_row_keys": [
+        "c0:[1,2,3,4]",
+        "c1:[0,2,6,7]",
+        "c5:[1,2,8,11]",
+        "c6:[2,5,7,10]",
+        "c7:[0,4,5,9]",
+        "c8:[0,3,6,11]",
+        "c9:[4,7,8,10]",
+        "c10:[1,5,6,8]",
+        "c11:[0,3,5,10]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [
+        {
+          "assignment": {
+            "a": 2,
+            "c": 1,
+            "d": 10,
+            "e": 5,
+            "f": 6
+          },
+          "atomic_equality_requirement_count": 7,
+          "fq_name": "Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction",
+          "line": 77,
+          "missing_atom": {
+            "kind": "explicit",
+            "left": [
+              "c",
+              "a"
+            ],
+            "left_mapped": [
+              1,
+              2
+            ],
+            "right": [
+              "c",
+              "d"
+            ],
+            "right_mapped": [
+              1,
+              10
+            ],
+            "source_index": 0,
+            "text": "dist c a = dist c d"
+          },
+          "missing_mapped_equality_key": "d1,2=d1,10",
+          "path": "lean/RVOL/P97/U1TwoLargeCapObstruction.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "d": 7,
+            "p": 0,
+            "q": 4,
+            "t\u2081": 2,
+            "t\u2082": 1
+          },
+          "atomic_equality_requirement_count": 6,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+          "line": 31,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              0,
+              4
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              2,
+              4
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d0,4=d2,4",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "p": 10,
+            "q": 1,
+            "t\u2081": 5,
+            "t\u2082": 6,
+            "t\u2083": 1,
+            "u": 2
+          },
+          "atomic_equality_requirement_count": 8,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility",
+          "line": 30,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              10,
+              1
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              5,
+              1
+            ],
+            "source_index": 4,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d1,5=d1,10",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightMidSelectedRadiusMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "d": 5,
+            "p": 0,
+            "q": 2,
+            "t\u2081": 1,
+            "t\u2082": 7,
+            "u": 6
+          },
+          "atomic_equality_requirement_count": 9,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_selected_qcritical_mid_aux_qcritical_metric_incompatibility",
+          "line": 30,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              0,
+              2
+            ],
+            "radius": "r",
+            "right": [
+              "p",
+              "t\u2082"
+            ],
+            "right_mapped": [
+              0,
+              7
+            ],
+            "source_index": 2,
+            "text": "dist p q = dist p t\u2082 (via r)"
+          },
+          "missing_mapped_equality_key": "d0,2=d0,7",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedSelectedQCriticalMidAuxQCriticalMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        }
+      ],
+      "shard_index": 16
+    },
+    {
+      "deficit_one_match_count": 2,
+      "frontier_row_count": 8,
+      "frontier_row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,8,9]",
+        "c7:[2,6,10,11]",
+        "c8:[0,3,5,11]",
+        "c9:[4,5,8,10]",
+        "c10:[0,4,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "labels": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "matches": [
+        {
+          "assignment": {
+            "d": 10,
+            "p": 0,
+            "q": 4,
+            "t\u2081": 1,
+            "t\u2082": 2
+          },
+          "atomic_equality_requirement_count": 6,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility",
+          "line": 31,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              0,
+              4
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              1,
+              4
+            ],
+            "source_index": 3,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d0,4=d1,4",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedMidAuxQCriticalCollisionMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        },
+        {
+          "assignment": {
+            "p": 7,
+            "q": 6,
+            "t\u2081": 11,
+            "t\u2082": 10,
+            "t\u2083": 2,
+            "u": 0
+          },
+          "atomic_equality_requirement_count": 8,
+          "fq_name": "Problem97.u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility",
+          "line": 30,
+          "missing_atom": {
+            "kind": "shared-radius",
+            "left": [
+              "p",
+              "q"
+            ],
+            "left_mapped": [
+              7,
+              6
+            ],
+            "radius": "r",
+            "right": [
+              "t\u2081",
+              "q"
+            ],
+            "right_mapped": [
+              11,
+              6
+            ],
+            "source_index": 4,
+            "text": "dist p q = dist t\u2081 q (via r)"
+          },
+          "missing_mapped_equality_key": "d6,7=d6,11",
+          "path": "lean/RVOL/P97/U5GlobalIncidenceQCriticalExactSelectedRightMidSelectedRadiusMetric.lean",
+          "registry": "certificates/p97_rvol_general_n_mining.json"
+        }
+      ],
+      "shard_index": 20
+    }
+  ],
+  "inputs": {
+    "fresh_shadow_sha256": "ad2400da59782d38d0952a9c31ae448bd30f86a110239bcca4687b538bc09fe9",
+    "frontier_checkpoint": "scratch/atail-force/fresh-continuation-marco/frontier_checkpoint.json",
+    "frontier_checkpoint_sha256": "60cdb851ae94d0afef0188cc4a2ee7ac0cfc9a67dc998a87082e1ab96cf3bc68",
+    "registries": [
+      {
+        "false_statements": 133,
+        "metric_point_uniform": 137,
+        "parsed_false_statements": 130,
+        "path": "certificates/p97_rvol_general_n_mining.json",
+        "sha256": "818c955558ef3e80e218baf9ba8c94c342d87115d5d91d9ff130d2778f9b01d8",
+        "skipped_false_statements": 3
+      },
+      {
+        "false_statements": 3,
+        "metric_point_uniform": 98,
+        "parsed_false_statements": 0,
+        "path": "certificates/erdos97_legacy_general_n_mining.json",
+        "sha256": "54d8a255afd4ec1395b8aa724136f0f425056647442ce935ae2e3504b9e90444",
+        "skipped_false_statements": 3
+      },
+      {
+        "false_statements": 3,
+        "metric_point_uniform": 98,
+        "parsed_false_statements": 0,
+        "path": "certificates/erdos_general_theorem_p97_mining.json",
+        "sha256": "18a215eb4787d415d86173140b2a2cb0b6919d4e8250bf92719f06123235510e",
+        "skipped_false_statements": 3
+      }
+    ]
+  },
+  "schema": "p97-atail-fresh-continuation-deficit-one-bank-scan-v1",
+  "scope": {
+    "lean_theorem_proved": false,
+    "missing_equality_producer_proved": false,
+    "missing_equality_requires_two_nondegenerate_distances": true,
+    "one_assignment_returned_per_declaration_and_frontier": true,
+    "role_aliasing_allowed": true,
+    "status": "EXACT_SYNTACTIC_MATCH_WITHIN_SUPPORTED_GRAMMAR",
+    "unsupported_metric_statements_skipped": true
+  },
+  "summary": {
+    "deficit_one_match_count": 13,
+    "match_count_by_missing_mapped_equality": {
+      "d0,1=d1,9": 1,
+      "d0,2=d0,7": 1,
+      "d0,3=d1,3": 2,
+      "d0,4=d1,4": 1,
+      "d0,4=d2,4": 1,
+      "d0,7=d1,7": 1,
+      "d1,10=d2,9": 1,
+      "d1,2=d1,10": 2,
+      "d1,5=d1,10": 1,
+      "d2,10=d7,10": 1,
+      "d6,7=d6,11": 1
+    },
+    "match_count_by_shard": {
+      "0": 5,
+      "1": 1,
+      "16": 4,
+      "2": 1,
+      "20": 2,
+      "3": 0
+    },
+    "match_count_by_theorem": {
+      "Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction": 2,
+      "Problem97.u5_qcritical_et1n3_leader_metric_incompatibility": 1,
+      "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility": 5,
+      "Problem97.u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility": 2,
+      "Problem97.u5_qcritical_exact_selected_selected_exact_right_exact_pair_metric_incompatibility": 1,
+      "Problem97.u5_qcritical_exact_selected_selected_qcritical_mid_aux_qcritical_metric_incompatibility": 1,
+      "Problem97.u5_rank_two_mixed_short_metric_incompatibility": 1
+    },
+    "shard_count": 6,
+    "shards_by_missing_mapped_equality": {
+      "d0,1=d1,9": [
+        0
+      ],
+      "d0,2=d0,7": [
+        16
+      ],
+      "d0,3=d1,3": [
+        1,
+        2
+      ],
+      "d0,4=d1,4": [
+        20
+      ],
+      "d0,4=d2,4": [
+        16
+      ],
+      "d0,7=d1,7": [
+        0
+      ],
+      "d1,10=d2,9": [
+        0
+      ],
+      "d1,2=d1,10": [
+        0,
+        16
+      ],
+      "d1,5=d1,10": [
+        16
+      ],
+      "d2,10=d7,10": [
+        0
+      ],
+      "d6,7=d6,11": [
+        20
+      ]
+    },
+    "shards_by_theorem": {
+      "Problem97.U1LargeCapRouteBTailMetricResidualTarget.u1TwoLargeCapObstruction": [
+        0,
+        16
+      ],
+      "Problem97.u5_qcritical_et1n3_leader_metric_incompatibility": [
+        0
+      ],
+      "Problem97.u5_qcritical_exact_selected_mid_aux_qcritical_collision_metric_incompatibility": [
+        0,
+        1,
+        2,
+        16,
+        20
+      ],
+      "Problem97.u5_qcritical_exact_selected_right_mid_selected_radius_metric_incompatibility": [
+        16,
+        20
+      ],
+      "Problem97.u5_qcritical_exact_selected_selected_exact_right_exact_pair_metric_incompatibility": [
+        0
+      ],
+      "Problem97.u5_qcritical_exact_selected_selected_qcritical_mid_aux_qcritical_metric_incompatibility": [
+        16
+      ],
+      "Problem97.u5_rank_two_mixed_short_metric_incompatibility": [
+        0
+      ]
+    }
+  }
+}

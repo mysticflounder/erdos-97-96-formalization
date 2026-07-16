@@ -1,0 +1,100 @@
+{
+  "certificate_max_node": null,
+  "fine_generator_sha256": "1a8325c4651db236e55195b9ea8a25d0cd03273f7ae5daf81f080f4d9984ab6b",
+  "generators": [
+    11
+  ],
+  "label": "g11-leaves-b2b",
+  "mode": "generators",
+  "node_max": 70,
+  "node_min": 70,
+  "results": {
+    "LambdaKxFine.N070Family": {
+      "axiom_lines": [],
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "16384",
+        "-DElab.async=false",
+        "-R",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+        "-o",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Family.olean",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Family.lean"
+      ],
+      "exit_code": 0,
+      "first_diagnostic": null,
+      "lean_path_prefix": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+      "log": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFineBuild/logs-g11-leaves-b2b/LambdaKxFine_N070Family.log",
+      "module": "LambdaKxFine.N070Family",
+      "olean": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Family.olean",
+      "olean_sha256": "eca030061f896bc2ddec15aa585b719ba23d7e3a6e2461939e484ca2396aceaa",
+      "peak_process_tree_rss_kib": null,
+      "source": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Family.lean",
+      "source_sha256": "cc8b20c777c370d6654988159ef416ea2224a072b7a3ca362272b23bab533db8",
+      "status": "PASS",
+      "wall_seconds": 6.04
+    },
+    "LambdaKxFine.N070FamilyPart00": {
+      "axiom_lines": [],
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "16384",
+        "-DElab.async=false",
+        "-R",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+        "-o",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070FamilyPart00.olean",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070FamilyPart00.lean"
+      ],
+      "exit_code": 0,
+      "first_diagnostic": null,
+      "lean_path_prefix": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+      "log": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFineBuild/logs-g11-leaves-b2b/LambdaKxFine_N070FamilyPart00.log",
+      "module": "LambdaKxFine.N070FamilyPart00",
+      "olean": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070FamilyPart00.olean",
+      "olean_sha256": "ede314bc564ffa85567b20f6f7507745669ad214a78eb463d3b438e0f353da5a",
+      "peak_process_tree_rss_kib": null,
+      "source": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070FamilyPart00.lean",
+      "source_sha256": "a8074b7bae69b7ade7c827a05dd5cfe0240296356fb7f478be74d8d04bf9c2e6",
+      "status": "PASS",
+      "wall_seconds": 8.063
+    },
+    "LambdaKxFine.N070Zero": {
+      "axiom_lines": [
+        "'Problem97.ATailBankCleanLambdaKxFine.lambdaKxFineNode70Zero' depends on axioms: [propext, Classical.choice, Quot.sound]"
+      ],
+      "command": [
+        "lake",
+        "env",
+        "lean",
+        "-M",
+        "16384",
+        "-DElab.async=false",
+        "-R",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+        "-o",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Zero.olean",
+        "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Zero.lean"
+      ],
+      "exit_code": 0,
+      "first_diagnostic": null,
+      "lean_path_prefix": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/bank-clean-lean-certificate/compact-fallback",
+      "log": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFineBuild/logs-g11-leaves-b2b/LambdaKxFine_N070Zero.log",
+      "module": "LambdaKxFine.N070Zero",
+      "olean": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Zero.olean",
+      "olean_sha256": "486e0d5c24b56008252be777aa388660967f381a8e1c863d7e1a8568005fff6f",
+      "peak_process_tree_rss_kib": null,
+      "source": "scratch/atail-force/bank-clean-lean-certificate/compact-fallback/LambdaKxFine/N070Zero.lean",
+      "source_sha256": "f6e6ac045365133d6738a1f8c3e4c70ed358cc41a4a728d9e8901148b721a993",
+      "status": "PASS",
+      "wall_seconds": 10.064
+    }
+  },
+  "schema": "p97-lambda-kx-fine-serial-build-v1"
+}

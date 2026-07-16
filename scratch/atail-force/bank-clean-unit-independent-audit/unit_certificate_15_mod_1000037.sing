@@ -1,0 +1,27 @@
+ring R=1000037,(x2x,x2y,x3x,x3y,x4x,x4y,x5x,x5y,x6x,x6y,x7x,x7y,x8x,x8y,x9x,x9y,x10x,x10y,x11x,x11y,x12x,x12y,x13x,x13y),dp;
+ideal I=-x9x^2 + 2*x9x - x9y^2,
+  -x10x^2 + 2*x10x - x10y^2,
+  2*x13x*x5x - 2*x13x + 2*x13y*x5y - x5x^2 - x5y^2 + 1,
+  -x10x^2 + 2*x10x*x13x - x10y^2 + 2*x10y*x13y - 2*x13x + 1,
+  x3x^2 - 2*x3x*x9x + x3y^2 - 2*x3y*x9y - x8x^2 + 2*x8x*x9x - x8y^2 + 2*x8y*x9y,
+  -x10x^2 + 2*x10x*x9x - x10y^2 + 2*x10y*x9y + x3x^2 - 2*x3x*x9x + x3y^2 - 2*x3y*x9y,
+  2*x10x*x4x + 2*x10y*x4y - x4x^2 - x4y^2,
+  2*x10x*x9x + 2*x10y*x9y - x9x^2 - x9y^2,
+  -x8x^2 - x8y^2 + 1,
+  -2*x3x*x5x + 2*x3x*x9x - 2*x3y*x5y + 2*x3y*x9y + x5x^2 + x5y^2 - x9x^2 - x9y^2,
+  -x13x^2 + 2*x13x*x3x - x13y^2 + 2*x13y*x3y - 2*x3x*x5x - 2*x3y*x5y + x5x^2 + x5y^2,
+  -x3x^2 + 2*x3x*x4x - x3y^2 + 2*x3y*x4y,
+  2*x4x*x5x + 2*x4y*x5y - x5x^2 - x5y^2,
+  -x4x^2 + 2*x4x*x5x - x4y^2 + 2*x4y*x5y - 2*x5x + 1,
+  2*x5x*x9x - 2*x5x + 2*x5y*x9y - x9x^2 - x9y^2 + 1;
+ideal One=1;
+matrix U;
+matrix T=lift(I,One,U,"slimgb");
+poly identity=0;
+for (int i=1; i<=size(I); i++) { identity=identity+I[i]*T[i,1]; }
+if (identity==1) { print("__SINGULAR_IDENTITY_PASS__"); }
+else { print("__SINGULAR_IDENTITY_FAIL__"); }
+for (int i=1; i<=size(I); i++) {
+  print("__COFACTOR_"+string(i)+"__="+string(T[i,1]));
+}
+quit;

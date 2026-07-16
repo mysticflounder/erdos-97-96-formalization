@@ -1,0 +1,1117 @@
+{
+  "case_count": 16,
+  "cases": [
+    {
+      "contained_allowed_mutual_pair_count": 4,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          6,
+          7
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        1,
+        2,
+        6,
+        7,
+        9,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 13,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        9,
+        2,
+        6,
+        11,
+        7,
+        1
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            1
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            1,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            6,
+            7
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 0,
+      "source_witness_sha256": "42437144cb195319405bd27c7cf201f799491123e0333abdb4010ed850bf4160"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "core_center_count": 8,
+      "core_centers": [
+        0,
+        2,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 20,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        8,
+        6,
+        11,
+        7,
+        10,
+        9,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            2,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 1,
+      "source_witness_sha256": "4246b50080baabbfbaeb9b6f87b4a446d90f75dadf0d2d677d35aba2ace1a6cf"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          9
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        4,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 16,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        11,
+        8,
+        4,
+        9,
+        10,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            4,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 2,
+      "source_witness_sha256": "375733ea4d1693d7f26a74d7380abce81c58376391fd9a8ceb17f4714f7fe8f8"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 17,
+      "hamiltonian_allowed_blocker_cycle": null,
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            10,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 3,
+      "source_witness_sha256": "4d90d4b1943e7e6ccdecdf6ef1e686242b98b7d409cbf3ffd60d5a69415bff59"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 3,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          11
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 18,
+      "hamiltonian_allowed_blocker_cycle": null,
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            6,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            8,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 4,
+      "source_witness_sha256": "dc2ad33d6c80349583ec5873e258fdf88ce5bab3c94e7b02f92d71d8623985a3"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 1,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        6,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 16,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        9,
+        11,
+        6,
+        8,
+        10,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 5,
+      "source_witness_sha256": "82a2b5c4c7e0efd4eac9be2bee9c7613e05214f72ecf9b10cdc80f9770bd9ed3"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "core_center_count": 6,
+      "core_centers": [
+        0,
+        2,
+        6,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 14,
+      "hamiltonian_allowed_blocker_cycle": null,
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            9,
+            10
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 6,
+      "source_witness_sha256": "7c90a5d8449c3d3a654daceed5c6bfc43cbd3b90027c52ad395b8761ed05ecf3"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 3,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          1
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        1,
+        4,
+        6,
+        8,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 15,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        1,
+        8,
+        6,
+        10,
+        11,
+        4
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            1
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            4,
+            6
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            10,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 7,
+      "source_witness_sha256": "cfdb35bc1048e1dc0d6688291bb0191e77f2c2ce8c58109da8e84737ed746c07"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 1,
+      "contained_allowed_mutual_pairs": [
+        [
+          1,
+          7
+        ]
+      ],
+      "core_center_count": 6,
+      "core_centers": [
+        1,
+        6,
+        7,
+        8,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 15,
+      "hamiltonian_allowed_blocker_cycle": [
+        1,
+        11,
+        6,
+        10,
+        8,
+        7
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            1,
+            7
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 8,
+      "source_witness_sha256": "33625234fe75485d3653f5499b6e87c6d863e76638dda9a97b65eb06262c2008"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          8,
+          9
+        ]
+      ],
+      "core_center_count": 6,
+      "core_centers": [
+        0,
+        2,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 15,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        8,
+        11,
+        9,
+        10,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            8,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 9,
+      "source_witness_sha256": "88f89b5193a8a15a0158ed751bd0f64d2826f53b819d46722b6b2136c7718520"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 1,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          1
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        1,
+        6,
+        7,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 14,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        7,
+        11,
+        10,
+        9,
+        6,
+        1
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            1
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 16,
+      "source_witness_sha256": "11ad566a610ab4870b06a82e1161bf67a33ec180e6aefb66eecd55de9f1b9157"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          1,
+          7
+        ],
+        [
+          10,
+          11
+        ]
+      ],
+      "core_center_count": 6,
+      "core_centers": [
+        1,
+        6,
+        7,
+        8,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 15,
+      "hamiltonian_allowed_blocker_cycle": [
+        1,
+        8,
+        6,
+        11,
+        10,
+        7
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            1,
+            7
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            10,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 17,
+      "source_witness_sha256": "631a4ea13cfeaa2863983a3293c44229cd90c270a0f749613ace6eb0c98191d3"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 4,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          10
+        ],
+        [
+          5,
+          11
+        ],
+        [
+          9,
+          10
+        ]
+      ],
+      "core_center_count": 8,
+      "core_centers": [
+        0,
+        2,
+        3,
+        5,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 23,
+      "hamiltonian_allowed_blocker_cycle": null,
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            3,
+            10
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            5,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            9,
+            10
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 18,
+      "source_witness_sha256": "fa2319a24b2dc3724339d5e740160df4968ee42ca066bd1cc2d1d952e6c2bf24"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 2,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "core_center_count": 6,
+      "core_centers": [
+        0,
+        2,
+        4,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 13,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        11,
+        4,
+        10,
+        9,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            2,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 20,
+      "source_witness_sha256": "fda93d89fe6bae365e341b61666da6828dc5646b2c14c4cad33aa6e944e405de"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 3,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          6,
+          7
+        ],
+        [
+          7,
+          11
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        6,
+        7,
+        8,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 17,
+      "hamiltonian_allowed_blocker_cycle": null,
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            6,
+            7
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            7,
+            11
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 21,
+      "source_witness_sha256": "67bc5d945260516b2c72c4cce215f1bc461b5c8c09933e6d2be9a4fef07e9d1e"
+    },
+    {
+      "contained_allowed_mutual_pair_count": 3,
+      "contained_allowed_mutual_pairs": [
+        [
+          0,
+          2
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          5,
+          9
+        ]
+      ],
+      "core_center_count": 7,
+      "core_centers": [
+        0,
+        2,
+        5,
+        8,
+        9,
+        10,
+        11
+      ],
+      "core_confined_to_directed_cycle_of_length_at_most_five": false,
+      "core_confined_to_one_mutual_pair": false,
+      "core_equality_count": 15,
+      "hamiltonian_allowed_blocker_cycle": [
+        0,
+        8,
+        5,
+        9,
+        11,
+        10,
+        2
+      ],
+      "mutual_pair_row_checks": [
+        {
+          "mutual_pair": [
+            0,
+            2
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            5,
+            8
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        },
+        {
+          "mutual_pair": [
+            5,
+            9
+          ],
+          "two_full_rows_crosscheck": {
+            "msolve_qq_forward_variables": "NONUNIT",
+            "msolve_qq_reverse_variables": "NONUNIT",
+            "singular_qq": "NONUNIT",
+            "status": "CROSSCHECKED_NONUNIT"
+          }
+        }
+      ],
+      "shard_index": 22,
+      "source_witness_sha256": "e50176f263da7c05c84703e51dab3e411cf1e316cfed919c08005705db4971e9"
+    }
+  ],
+  "contained_mutual_pair_count": 37,
+  "core_center_count_histogram": {
+    "6": 5,
+    "7": 9,
+    "8": 2
+  },
+  "core_confined_to_directed_cycle_length_at_most_five_count": 0,
+  "core_confined_to_mutual_pair_count": 0,
+  "cores_with_hamiltonian_allowed_cycle_count": 11,
+  "exact_whole_core_isomorphism_class_count": 16,
+  "mutual_pair_two_row_status_histogram": {
+    "CROSSCHECKED_NONUNIT": 37
+  },
+  "pinned_inputs": [
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_current_bank_checkpoint.json",
+      "sha256": "5b661a15f4dda8a6cd143f3737457f2733d23eca056defcbcd30872f629bcc1a"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_checkpoint.json",
+      "sha256": "d9377d858e745e0bada518f56de7fdcbcdf5ff87ae11b4efd1222aeeb194a8b6"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_rows7_checkpoint.json",
+      "sha256": "35dbe15fc74a5c6665b064932f36fd69601d82725f5c2f20d39ab44f90908550"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_rows8_checkpoint.json",
+      "sha256": "4aca518fd0479f5ba8f02880000a72fb5bf4c8b4617e779ff52930ea24a8e23e"
+    },
+    {
+      "path": "scratch/atail-force/second_center_metric_oracle/oracle.py",
+      "sha256": "b708722ce49f9d0f165facf20a911161815ce8018c5fc3760bf872dad6977a09"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_equality_minimizer.py",
+      "sha256": "727f580c32cfc8e82c9184dd5b130e91de6f647084b7de71f55de7b19d895f5c"
+    }
+  ],
+  "repeated_exact_whole_core_classes": [],
+  "replay": "PYTHONPATH=. .venv/bin/python scratch/atail-force/current-marco-cores/cycle_support_audit.py --check",
+  "schema": "p97-atail-current-unit-core-blocker-cycle-audit-v1",
+  "scope": {
+    "allowed_edge_means_source_in_selected_exact_row_at_center": true,
+    "fresh_current_bank_survivors": true,
+    "producer_proved": false,
+    "replacement_shards_not_yet_equality_oracle_probed": true,
+    "trusted_exact_cas_pair_checks": true,
+    "unchanged_shards_with_existing_exact_oracle_minimization_only": true
+  },
+  "smoke_gates": {
+    "known_nonunit": {
+      "expected": "NONUNIT",
+      "msolve": {
+        "verdict": "NONUNIT"
+      },
+      "singular": {
+        "verdict": "NONUNIT"
+      }
+    },
+    "known_unit": {
+      "expected": "UNIT",
+      "msolve": {
+        "verdict": "UNIT"
+      },
+      "singular": {
+        "verdict": "UNIT"
+      }
+    }
+  }
+}

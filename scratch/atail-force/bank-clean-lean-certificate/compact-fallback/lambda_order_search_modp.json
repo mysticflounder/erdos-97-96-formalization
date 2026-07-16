@@ -1,0 +1,688 @@
+{
+  "results": [
+    {
+      "order": [
+        "Ky",
+        "Fx",
+        "Fy",
+        "Xy",
+        "Zx",
+        "Kx",
+        "Yx",
+        "Yy",
+        "Zy",
+        "L",
+        "Xx"
+      ],
+      "terms": 13634,
+      "chars": 239768,
+      "degree": 7,
+      "seconds": 2.5537603750126436
+    },
+    {
+      "order": [
+        "Fx",
+        "L",
+        "Ky",
+        "Fy",
+        "Zy",
+        "Yy",
+        "Yx",
+        "Kx",
+        "Xx",
+        "Zx",
+        "Xy"
+      ],
+      "terms": 16686,
+      "chars": 298684,
+      "degree": 7,
+      "seconds": 1.4003185420006048
+    },
+    {
+      "order": [
+        "Kx",
+        "Ky",
+        "Xy",
+        "Fy",
+        "Zy",
+        "Yx",
+        "Zx",
+        "Fx",
+        "Xx",
+        "Yy",
+        "L"
+      ],
+      "terms": 18115,
+      "chars": 323079,
+      "degree": 7,
+      "seconds": 2.1383659999992233
+    },
+    {
+      "order": [
+        "Fx",
+        "Fy",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "L",
+        "Zx",
+        "Zy",
+        "Ky",
+        "Kx"
+      ],
+      "terms": 18225,
+      "chars": 334021,
+      "degree": 9,
+      "seconds": 1.1735150419990532
+    },
+    {
+      "order": [
+        "Yy",
+        "Kx",
+        "Fx",
+        "Xx",
+        "Yx",
+        "Ky",
+        "Fy",
+        "Zy",
+        "L",
+        "Zx",
+        "Xy"
+      ],
+      "terms": 19014,
+      "chars": 353613,
+      "degree": 8,
+      "seconds": 1.5275715830211993
+    },
+    {
+      "order": [
+        "Ky",
+        "Zx",
+        "Xx",
+        "Fy",
+        "Yy",
+        "Yx",
+        "Xy",
+        "L",
+        "Fx",
+        "Zy",
+        "Kx"
+      ],
+      "terms": 19788,
+      "chars": 370898,
+      "degree": 8,
+      "seconds": 0.9224568330100738
+    },
+    {
+      "order": [
+        "Yx",
+        "Xy",
+        "Fx",
+        "Yy",
+        "Zy",
+        "Ky",
+        "Zx",
+        "Kx",
+        "Xx",
+        "Fy",
+        "L"
+      ],
+      "terms": 20365,
+      "chars": 371246,
+      "degree": 8,
+      "seconds": 1.3825313749839552
+    },
+    {
+      "order": [
+        "Zy",
+        "Zx",
+        "Yy",
+        "Yx",
+        "Xy",
+        "Xx",
+        "Ky",
+        "Kx",
+        "Fy",
+        "Fx",
+        "L"
+      ],
+      "terms": 21553,
+      "chars": 391638,
+      "degree": 7,
+      "seconds": 1.7564641250064597
+    },
+    {
+      "order": [
+        "Yy",
+        "Yx",
+        "Zx",
+        "Zy",
+        "Kx",
+        "Fx",
+        "L",
+        "Fy",
+        "Xx",
+        "Ky",
+        "Xy"
+      ],
+      "terms": 23072,
+      "chars": 424277,
+      "degree": 7,
+      "seconds": 1.7966832499951124
+    },
+    {
+      "order": [
+        "Yx",
+        "Yy",
+        "Fx",
+        "Fy",
+        "Xx",
+        "Xy",
+        "L",
+        "Zx",
+        "Zy",
+        "Ky",
+        "Kx"
+      ],
+      "terms": 23209,
+      "chars": 429730,
+      "degree": 8,
+      "seconds": 0.9555009579926264
+    },
+    {
+      "order": [
+        "Zx",
+        "Fx",
+        "Xx",
+        "L",
+        "Fy",
+        "Ky",
+        "Yx",
+        "Xy",
+        "Zy",
+        "Kx",
+        "Yy"
+      ],
+      "terms": 23844,
+      "chars": 454176,
+      "degree": 8,
+      "seconds": 2.9654527920065448
+    },
+    {
+      "order": [
+        "Zx",
+        "Yx",
+        "Fx",
+        "L",
+        "Ky",
+        "Zy",
+        "Yy",
+        "Xy",
+        "Fy",
+        "Kx",
+        "Xx"
+      ],
+      "terms": 25148,
+      "chars": 471682,
+      "degree": 7,
+      "seconds": 1.847342082997784
+    },
+    {
+      "order": [
+        "L",
+        "Zy",
+        "Xy",
+        "Yx",
+        "Zx",
+        "Xx",
+        "Fx",
+        "Kx",
+        "Yy",
+        "Ky",
+        "Fy"
+      ],
+      "terms": 27445,
+      "chars": 521584,
+      "degree": 9,
+      "seconds": 1.4658143330016173
+    },
+    {
+      "order": [
+        "L",
+        "Fx",
+        "Fy",
+        "Kx",
+        "Ky",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "Zx",
+        "Zy"
+      ],
+      "terms": 27649,
+      "chars": 539780,
+      "degree": 9,
+      "seconds": 1.5268524170096498
+    },
+    {
+      "order": [
+        "Yy",
+        "Ky",
+        "Xy",
+        "Xx",
+        "L",
+        "Yx",
+        "Kx",
+        "Zy",
+        "Zx",
+        "Fx",
+        "Fy"
+      ],
+      "terms": 27953,
+      "chars": 542615,
+      "degree": 8,
+      "seconds": 2.087223999988055
+    },
+    {
+      "order": [
+        "Yy",
+        "Zx",
+        "Xx",
+        "Yx",
+        "Xy",
+        "Fy",
+        "Fx",
+        "Kx",
+        "L",
+        "Ky",
+        "Zy"
+      ],
+      "terms": 29784,
+      "chars": 581580,
+      "degree": 9,
+      "seconds": 1.7514167909976095
+    },
+    {
+      "order": [
+        "Fx",
+        "Kx",
+        "Zy",
+        "Yx",
+        "Fy",
+        "Yy",
+        "Xy",
+        "L",
+        "Zx",
+        "Ky",
+        "Xx"
+      ],
+      "terms": 29928,
+      "chars": 563869,
+      "degree": 8,
+      "seconds": 1.66236420799396
+    },
+    {
+      "order": [
+        "Kx",
+        "Xy",
+        "Fy",
+        "Ky",
+        "Zy",
+        "Yx",
+        "Xx",
+        "Yy",
+        "Fx",
+        "Zx",
+        "L"
+      ],
+      "terms": 29987,
+      "chars": 573658,
+      "degree": 9,
+      "seconds": 2.450976665975759
+    },
+    {
+      "order": [
+        "Yx",
+        "L",
+        "Yy",
+        "Ky",
+        "Xx",
+        "Fy",
+        "Xy",
+        "Zx",
+        "Zy",
+        "Fx",
+        "Kx"
+      ],
+      "terms": 35630,
+      "chars": 697460,
+      "degree": 9,
+      "seconds": 1.380865667015314
+    },
+    {
+      "order": [
+        "L",
+        "Yx",
+        "Yy",
+        "Fx",
+        "Fy",
+        "Xx",
+        "Xy",
+        "Zx",
+        "Zy",
+        "Ky",
+        "Kx"
+      ],
+      "terms": 36512,
+      "chars": 722795,
+      "degree": 9,
+      "seconds": 1.0177587500074878
+    },
+    {
+      "order": [
+        "Fx",
+        "Ky",
+        "Zx",
+        "L",
+        "Xy",
+        "Yx",
+        "Xx",
+        "Fy",
+        "Kx",
+        "Zy",
+        "Yy"
+      ],
+      "terms": 37564,
+      "chars": 741436,
+      "degree": 9,
+      "seconds": 4.276700374990469
+    },
+    {
+      "order": [
+        "Kx",
+        "Yy",
+        "Yx",
+        "Fx",
+        "Xx",
+        "Zy",
+        "Ky",
+        "Zx",
+        "L",
+        "Xy",
+        "Fy"
+      ],
+      "terms": 37678,
+      "chars": 734119,
+      "degree": 8,
+      "seconds": 1.7040417089883704
+    },
+    {
+      "order": [
+        "Kx",
+        "Xx",
+        "Yy",
+        "Xy",
+        "L",
+        "Fx",
+        "Yx",
+        "Zy",
+        "Ky",
+        "Fy",
+        "Zx"
+      ],
+      "terms": 38325,
+      "chars": 763390,
+      "degree": 9,
+      "seconds": 2.0234537920041475
+    },
+    {
+      "order": [
+        "Ky",
+        "Zx",
+        "Xx",
+        "Zy",
+        "Fx",
+        "Kx",
+        "Xy",
+        "Yy",
+        "Fy",
+        "Yx",
+        "L"
+      ],
+      "terms": 40331,
+      "chars": 797846,
+      "degree": 8,
+      "seconds": 2.2933415829902515
+    },
+    {
+      "order": [
+        "Yx",
+        "Xy",
+        "Kx",
+        "Yy",
+        "Fx",
+        "Xx",
+        "Zx",
+        "Ky",
+        "Fy",
+        "L",
+        "Zy"
+      ],
+      "terms": 42938,
+      "chars": 852776,
+      "degree": 9,
+      "seconds": 1.4430542500049341
+    },
+    {
+      "order": [
+        "Fx",
+        "Fy",
+        "Xx",
+        "Xy",
+        "Yx",
+        "Yy",
+        "L",
+        "Kx",
+        "Ky",
+        "Zx",
+        "Zy"
+      ],
+      "terms": 44924,
+      "chars": 906704,
+      "degree": 8,
+      "seconds": 1.3329872920003254
+    },
+    {
+      "order": [
+        "Xy",
+        "Fx",
+        "Zx",
+        "Ky",
+        "L",
+        "Yy",
+        "Kx",
+        "Zy",
+        "Fy",
+        "Yx",
+        "Xx"
+      ],
+      "terms": 45351,
+      "chars": 917584,
+      "degree": 8,
+      "seconds": 5.546499292016961
+    },
+    {
+      "order": [
+        "Fy",
+        "Zy",
+        "Xx",
+        "Fx",
+        "L",
+        "Xy",
+        "Zx",
+        "Ky",
+        "Kx",
+        "Yy",
+        "Yx"
+      ],
+      "terms": 46901,
+      "chars": 969283,
+      "degree": 9,
+      "seconds": 3.511114875000203
+    },
+    {
+      "order": [
+        "L",
+        "Zx",
+        "Xy",
+        "Yx",
+        "Ky",
+        "Xx",
+        "Kx",
+        "Zy",
+        "Fy",
+        "Yy",
+        "Fx"
+      ],
+      "terms": 51817,
+      "chars": 1055805,
+      "degree": 8,
+      "seconds": 3.0343322090047877
+    },
+    {
+      "order": [
+        "L",
+        "Kx",
+        "Xy",
+        "Fy",
+        "Zy",
+        "Yy",
+        "Zx",
+        "Xx",
+        "Ky",
+        "Fx",
+        "Yx"
+      ],
+      "terms": 56426,
+      "chars": 1167693,
+      "degree": 9,
+      "seconds": 2.1909867500071414
+    },
+    {
+      "order": [
+        "Yx",
+        "L",
+        "Zx",
+        "Fy",
+        "Fx",
+        "Kx",
+        "Ky",
+        "Xy",
+        "Zy",
+        "Xx",
+        "Yy"
+      ],
+      "terms": 56959,
+      "chars": 1203732,
+      "degree": 10,
+      "seconds": 1.750889165996341
+    },
+    {
+      "order": [
+        "Xx",
+        "Yy",
+        "Ky",
+        "Zy",
+        "Yx",
+        "Kx",
+        "L",
+        "Zx",
+        "Fx",
+        "Fy",
+        "Xy"
+      ],
+      "terms": 67012,
+      "chars": 1437762,
+      "degree": 9,
+      "seconds": 2.046873334009433
+    },
+    {
+      "order": [
+        "Yy",
+        "Fy",
+        "Xx",
+        "Fx",
+        "Zy",
+        "L",
+        "Ky",
+        "Zx",
+        "Xy",
+        "Yx",
+        "Kx"
+      ],
+      "terms": 67877,
+      "chars": 1445401,
+      "degree": 11,
+      "seconds": 2.245505792001495
+    },
+    {
+      "order": [
+        "Zx",
+        "Xx",
+        "L",
+        "Yx",
+        "Kx",
+        "Zy",
+        "Fx",
+        "Xy",
+        "Yy",
+        "Ky",
+        "Fy"
+      ],
+      "terms": 69192,
+      "chars": 1492823,
+      "degree": 11,
+      "seconds": 2.4761442079907283
+    },
+    {
+      "order": [
+        "Ky",
+        "Xx",
+        "Zy",
+        "Yy",
+        "L",
+        "Kx",
+        "Fx",
+        "Zx",
+        "Xy",
+        "Fy",
+        "Yx"
+      ],
+      "terms": 111315,
+      "chars": 2475868,
+      "degree": 10,
+      "seconds": 5.513897833006922
+    },
+    {
+      "order": [
+        "Xy",
+        "Kx",
+        "Zy",
+        "Xx",
+        "Fy",
+        "Zx",
+        "L",
+        "Yy",
+        "Ky",
+        "Fx",
+        "Yx"
+      ],
+      "terms": 121464,
+      "chars": 2704058,
+      "degree": 10,
+      "seconds": 3.04146791700623
+    }
+  ]
+}

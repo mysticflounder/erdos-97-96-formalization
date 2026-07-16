@@ -1,0 +1,166 @@
+{
+  "classification": "exact-msolve-unit-both-variable-orders-for-each-chosen-deletion",
+  "retained_generator_names": [
+    "ROW_O_A_E",
+    "ROW_A_O_G",
+    "ROW_A_O_K",
+    "ROW_X_Z_G",
+    "ROW_X_Z_F",
+    "ROW_Y_O_X",
+    "ROW_Y_O_Z",
+    "ROW_Z_A_Y",
+    "ROW_Z_A_G",
+    "ROW_G_X_E",
+    "ROW_G_X_K",
+    "ROW_K_O_Y",
+    "ROW_K_O_G",
+    "ROW_F_A_Z",
+    "ROW_F_A_K"
+  ],
+  "retained_indices": [
+    3,
+    5,
+    6,
+    8,
+    9,
+    10,
+    11,
+    13,
+    15,
+    16,
+    17,
+    19,
+    20,
+    22,
+    23
+  ],
+  "retained_polynomial_sha256": "7b7e1ed058892479c45d97292f5d2373a11ec9ce0412bee2ff9050800106d8ce",
+  "rounds": [
+    {
+      "chosen_deletion": null,
+      "probes": {
+        "ROW_A_O_G": {
+          "elapsed_seconds": 1.5642298340098932,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_A_O_K": {
+          "elapsed_seconds": 1.0626747500209603,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_F_A_K": {
+          "elapsed_seconds": 0.2127763330063317,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_F_A_Z": {
+          "elapsed_seconds": 0.17422954199719243,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_G_X_E": {
+          "elapsed_seconds": 0.06306816701544449,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_G_X_K": {
+          "elapsed_seconds": 0.3595242080045864,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_K_O_G": {
+          "elapsed_seconds": 3.727992041007383,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_K_O_Y": {
+          "elapsed_seconds": 0.3883094170014374,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_O_A_E": {
+          "elapsed_seconds": 0.06815045900293626,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_X_Z_F": {
+          "elapsed_seconds": 0.11124425000161864,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_X_Z_G": {
+          "elapsed_seconds": 0.15664800000377,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_Y_O_X": {
+          "elapsed_seconds": 0.2979486249969341,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_Y_O_Z": {
+          "elapsed_seconds": 0.21432383297360502,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_Z_A_G": {
+          "elapsed_seconds": 0.554632708983263,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        },
+        "ROW_Z_A_Y": {
+          "elapsed_seconds": 0.4334202919853851,
+          "forward": "NONUNIT",
+          "reverse": "SKIPPED",
+          "unit": false
+        }
+      },
+      "retained_before": [
+        "ROW_O_A_E",
+        "ROW_A_O_G",
+        "ROW_A_O_K",
+        "ROW_X_Z_G",
+        "ROW_X_Z_F",
+        "ROW_Y_O_X",
+        "ROW_Y_O_Z",
+        "ROW_Z_A_Y",
+        "ROW_Z_A_G",
+        "ROW_G_X_E",
+        "ROW_G_X_K",
+        "ROW_K_O_Y",
+        "ROW_K_O_G",
+        "ROW_F_A_Z",
+        "ROW_F_A_K"
+      ]
+    }
+  ],
+  "schema": "p97-atail-bank-clean-equality-core-v1",
+  "source_checkpoint_sha256": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+  "source_row_assignment_sha256": "f4c8e9e69d7ca3bec381d27178710fc7aa4ab7f4308e70973b675a38b8eacc66",
+  "source_row_core_names": [
+    "O",
+    "A",
+    "X",
+    "Y",
+    "Z",
+    "G",
+    "K",
+    "F"
+  ],
+  "source_row_core_polynomial_sha256": "b903d94acd7adf2405c25673f547c82b17e70918817185666dc6ac0c70d1648f"
+}

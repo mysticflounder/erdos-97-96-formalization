@@ -1,0 +1,1239 @@
+{
+  "all_nonexisting_strict_pair_equalities_hit_existing_core": true,
+  "case_count": 23,
+  "cases": [
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 0
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 1
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 2
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                1,
+                9,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                1,
+                9,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 3
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 4
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 5
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 6
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                3,
+                9,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                3,
+                9,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 7
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                3,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                3,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 8
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 9,
+              "support": [
+                0,
+                3,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 9,
+              "support": [
+                0,
+                3,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 10,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        }
+      ],
+      "shard_index": 9
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                7
+              ],
+              "triple": [
+                3,
+                6,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                7
+              ],
+              "triple": [
+                3,
+                6,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 10
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                3,
+                6,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                3,
+                6,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 11
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                8
+              ],
+              "triple": [
+                3,
+                6,
+                9
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                8
+              ],
+              "triple": [
+                3,
+                6,
+                9
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 10,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        }
+      ],
+      "shard_index": 12
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                3,
+                7,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                3,
+                7,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 13
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                8
+              ],
+              "triple": [
+                7,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                8
+              ],
+              "triple": [
+                7,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 14
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                11
+              ],
+              "triple": [
+                3,
+                7,
+                9
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 10,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                11
+              ],
+              "triple": [
+                3,
+                7,
+                9
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 10,
+          "right": 11,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        }
+      ],
+      "shard_index": 15
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                3,
+                8,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                3,
+                8,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 16
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                0,
+                4,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                10
+              ],
+              "triple": [
+                0,
+                4,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 17
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                4,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                4,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 18
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                4,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                4,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 19
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 20
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "centers": [
+                2,
+                9
+              ],
+              "triple": [
+                0,
+                10,
+                11
+              ]
+            },
+            "stage": "equality-duplicate-center"
+          },
+          "first_existing_metric_core_stage": "equality-duplicate-center",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 21
+    },
+    {
+      "pairs": [
+        {
+          "classifier_witness": null,
+          "first_existing_metric_core_stage": null,
+          "left": 9,
+          "right": 10,
+          "status": "ALREADY_IN_EQUALITY_CLOSURE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 9,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        },
+        {
+          "classifier_witness": {
+            "core": {
+              "center": 2,
+              "off_support": 11,
+              "support": [
+                0,
+                1,
+                9,
+                10
+              ]
+            },
+            "stage": "equality-exact-off-circle"
+          },
+          "first_existing_metric_core_stage": "equality-exact-off-circle",
+          "left": 10,
+          "right": 11,
+          "status": "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE"
+        }
+      ],
+      "shard_index": 22
+    }
+  ],
+  "frame": {
+    "profile": [
+      5,
+      5,
+      5
+    ],
+    "second_opposite_apex": 2,
+    "second_opposite_cap": "O2",
+    "strict_second_opposite_cap": [
+      9,
+      10,
+      11
+    ],
+    "surplus_cap": "S"
+  },
+  "pair_test_count": 69,
+  "pinned_inputs": [
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_current_bank_checkpoint.json",
+      "sha256": "5b661a15f4dda8a6cd143f3737457f2733d23eca056defcbcd30872f629bcc1a"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/query.py",
+      "sha256": "f0a90838a7cbd5166e58c78ac1c0c7252fb1fbd7c744dce575820e24b92dee52"
+    },
+    {
+      "path": "census/global_confinement/metric_realizability_probe.py",
+      "sha256": "f7a92776f9cee02eda2265467d77a0bbd5254d1dd335bc7a70713203239d3373"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean",
+      "sha256": "d69d734942d6dfcfd7341a5d84c254f388e7be7be4fccf26926caf47100c4d82"
+    },
+    {
+      "path": "lean/Erdos9796Proof/P97/Census554/GeneralCarrierBridge.lean",
+      "sha256": "10f14c3a11267585448fd3b4b2ecf1b82225deddf7c245c91de800a315d50729"
+    }
+  ],
+  "replay": "UV_CACHE_DIR=/tmp/uv-cache-erdos9796 uv run python scratch/atail-force/alternate-apex-descent/audit_second_apex.py --check",
+  "schema": "p97-atail-current-second-apex-strict-pair-completion-v1",
+  "scope": {
+    "base_survivors_current_bank_clean": true,
+    "existing_lean_consumer_families": true,
+    "finite_shadow_only": true,
+    "fixed_card_12_555_placement_only": true,
+    "live_k_a_pair_closed": false,
+    "live_pair_extraction_proved": false
+  },
+  "stage_histogram": {
+    "equality-duplicate-center": 26,
+    "equality-exact-off-circle": 20
+  },
+  "status_histogram": {
+    "ALREADY_IN_EQUALITY_CLOSURE": 23,
+    "ONE_EQUALITY_HITS_EXISTING_LEAN_CORE": 46
+  },
+  "uncovered": []
+}

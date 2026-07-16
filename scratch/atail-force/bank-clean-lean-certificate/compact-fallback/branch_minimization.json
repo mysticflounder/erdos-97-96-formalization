@@ -1,0 +1,234 @@
+{
+  "coincident": {
+    "retained": [
+      {
+        "name": "ROW_A_O_K",
+        "polynomial": "-Kx^2 + 2*Kx - Ky^2"
+      },
+      {
+        "name": "ROW_G_X_E",
+        "polynomial": "-Ex^2 - Ey^2 + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_G_X_K",
+        "polynomial": "-Kx^2 - Ky^2 + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_K_O_Y",
+        "polynomial": "2*Kx*Yx + 2*Ky*Yy - Yx^2 - Yy^2"
+      },
+      {
+        "name": "ROW_O_A_E",
+        "polynomial": "-Ex^2 - Ey^2 + 1"
+      },
+      {
+        "name": "ROW_X_Z_G",
+        "polynomial": "-2*Xx*Zx - 2*Xy*Zy + Zx^2 + Zy^2"
+      },
+      {
+        "name": "ROW_Y_O_X",
+        "polynomial": "-Xx^2 + 2*Xx*Yx - Xy^2 + 2*Xy*Yy"
+      },
+      {
+        "name": "ROW_Y_O_Z",
+        "polynomial": "2*Yx*Zx + 2*Yy*Zy - Zx^2 - Zy^2"
+      },
+      {
+        "name": "ROW_Z_A_Y",
+        "polynomial": "-Yx^2 + 2*Yx*Zx - Yy^2 + 2*Yy*Zy - 2*Zx + 1"
+      },
+      {
+        "name": "ROW_Z_A_G",
+        "polynomial": "1 - 2*Zx"
+      }
+    ],
+    "variables": [
+      "Ex",
+      "Ey",
+      "Fx",
+      "Fy",
+      "Kx",
+      "Ky",
+      "Xx",
+      "Xy",
+      "Yx",
+      "Yy",
+      "Zx",
+      "Zy"
+    ]
+  },
+  "reflected": {
+    "retained": [
+      {
+        "name": "ROW_A_O_K",
+        "polynomial": "-Kx^2 + 2*Kx - Ky^2"
+      },
+      {
+        "name": "ROW_F_A_Z",
+        "polynomial": "2*Fx*Zx - 2*Fx + 2*Fy*Zy - Zx^2 - Zy^2 + 1"
+      },
+      {
+        "name": "ROW_F_A_K",
+        "polynomial": "2*Fx*Kx - 2*Fx + 2*Fy*Ky - Kx^2 - Ky^2 + 1"
+      },
+      {
+        "name": "ROW_G_X_E",
+        "polynomial": "-Ex^2 + 4*Ex*Ky^2 - Ey^2 - 4*Ey*Kx*Ky + 4*Ey*Ky + 4*Kx*Ky*Xy - 4*Ky^2*Xx - 4*Ky*Xy + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_G_X_K",
+        "polynomial": "-Kx^2 + 4*Kx*Ky*Xy - 4*Ky^2*Xx + 3*Ky^2 - 4*Ky*Xy + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_K_O_Y",
+        "polynomial": "2*Kx*Yx + 2*Ky*Yy - Yx^2 - Yy^2"
+      },
+      {
+        "name": "ROW_O_A_E",
+        "polynomial": "-Ex^2 - Ey^2 + 1"
+      },
+      {
+        "name": "ROW_X_Z_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Kx*Ky*Xy - 4*Ky^4 + 4*Ky^2*Xx - 4*Ky^2 + 4*Ky*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx^2 + Zy^2"
+      },
+      {
+        "name": "ROW_X_Z_F",
+        "polynomial": "-Fx^2 + 2*Fx*Xx - Fy^2 + 2*Fy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx^2 + Zy^2"
+      },
+      {
+        "name": "ROW_Y_O_X",
+        "polynomial": "-Xx^2 + 2*Xx*Yx - Xy^2 + 2*Xy*Yy"
+      },
+      {
+        "name": "ROW_Y_O_Z",
+        "polynomial": "2*Yx*Zx + 2*Yy*Zy - Zx^2 - Zy^2"
+      },
+      {
+        "name": "ROW_Z_A_Y",
+        "polynomial": "-Yx^2 + 2*Yx*Zx - Yy^2 + 2*Yy*Zy - 2*Zx + 1"
+      },
+      {
+        "name": "ROW_Z_A_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Kx*Ky*Zy - 4*Ky^4 + 4*Ky^2*Zx - 4*Ky^2 + 4*Ky*Zy - 2*Zx + 1"
+      }
+    ],
+    "variables": [
+      "Ex",
+      "Ey",
+      "Fx",
+      "Fy",
+      "Kx",
+      "Ky",
+      "Xx",
+      "Xy",
+      "Yx",
+      "Yy",
+      "Zx",
+      "Zy"
+    ]
+  },
+  "reflected_then_y_eq_g": {
+    "retained": [
+      {
+        "name": "ROW_F_A_Z",
+        "polynomial": "2*Fx*Zx - 2*Fx + 2*Fy*Zy - Zx^2 - Zy^2 + 1"
+      },
+      {
+        "name": "ROW_F_A_K",
+        "polynomial": "2*Fx*Kx - 2*Fx + 2*Fy*Ky - Kx^2 - Ky^2 + 1"
+      },
+      {
+        "name": "ROW_G_X_E",
+        "polynomial": "-Ex^2 + 4*Ex*Ky^2 - Ey^2 - 4*Ey*Kx*Ky + 4*Ey*Ky + 4*Kx*Ky*Xy - 4*Ky^2*Xx - 4*Ky*Xy + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_G_X_K",
+        "polynomial": "-Kx^2 + 4*Kx*Ky*Xy - 4*Ky^2*Xx + 3*Ky^2 - 4*Ky*Xy + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_K_O_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Ky^4"
+      },
+      {
+        "name": "ROW_O_A_E",
+        "polynomial": "-Ex^2 - Ey^2 + 1"
+      },
+      {
+        "name": "ROW_X_Z_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Kx*Ky*Xy - 4*Ky^4 + 4*Ky^2*Xx - 4*Ky^2 + 4*Ky*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx^2 + Zy^2"
+      },
+      {
+        "name": "ROW_X_Z_F",
+        "polynomial": "-Fx^2 + 2*Fx*Xx - Fy^2 + 2*Fy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx^2 + Zy^2"
+      },
+      {
+        "name": "ROW_Y_O_X",
+        "polynomial": "-4*Kx*Ky*Xy + 4*Ky^2*Xx + 4*Ky*Xy - Xx^2 - Xy^2"
+      },
+      {
+        "name": "ROW_Y_O_Z",
+        "polynomial": "-4*Kx*Ky*Zy + 4*Ky^2*Zx + 4*Ky*Zy - Zx^2 - Zy^2"
+      },
+      {
+        "name": "ROW_Z_A_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Kx*Ky*Zy - 4*Ky^4 + 4*Ky^2*Zx - 4*Ky^2 + 4*Ky*Zy - 2*Zx + 1"
+      }
+    ],
+    "variables": [
+      "Ex",
+      "Ey",
+      "Fx",
+      "Fy",
+      "Kx",
+      "Ky",
+      "Xx",
+      "Xy",
+      "Zx",
+      "Zy"
+    ]
+  },
+  "reflected_then_z_eq_k": {
+    "retained": [
+      {
+        "name": "ROW_G_X_K",
+        "polynomial": "-Kx^2 + 4*Kx*Ky*Xy - 4*Ky^2*Xx + 3*Ky^2 - 4*Ky*Xy + Xx^2 + Xy^2"
+      },
+      {
+        "name": "ROW_K_O_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 4*Ky^4"
+      },
+      {
+        "name": "ROW_X_Z_G",
+        "polynomial": "-4*Kx^2*Ky^2 + Kx^2 + 8*Kx*Ky^2 - 4*Kx*Ky*Xy - 2*Kx*Xx - 4*Ky^4 + 4*Ky^2*Xx - 3*Ky^2 + 2*Ky*Xy"
+      },
+      {
+        "name": "ROW_Y_O_X",
+        "polynomial": "-Xx^2 + 2*Xx*Yx - Xy^2 + 2*Xy*Yy"
+      },
+      {
+        "name": "ROW_Y_O_Z",
+        "polynomial": "-Kx^2 + 2*Kx*Yx - Ky^2 + 2*Ky*Yy"
+      },
+      {
+        "name": "ROW_Z_A_Y",
+        "polynomial": "2*Kx*Yx - 2*Kx + 2*Ky*Yy - Yx^2 - Yy^2 + 1"
+      },
+      {
+        "name": "ROW_Z_A_G",
+        "polynomial": "-4*Kx^2*Ky^2 + 8*Kx*Ky^2 - 2*Kx - 4*Ky^4 + 1"
+      }
+    ],
+    "variables": [
+      "Ex",
+      "Ey",
+      "Fx",
+      "Fy",
+      "Kx",
+      "Ky",
+      "Xx",
+      "Xy",
+      "Yx",
+      "Yy"
+    ]
+  }
+}

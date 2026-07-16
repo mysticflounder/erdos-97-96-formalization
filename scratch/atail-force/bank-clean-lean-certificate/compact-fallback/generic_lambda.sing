@@ -1,0 +1,21 @@
+// Exact generic double-reflection system with lambda = q / |Z-K|^2.
+// The AOK equation is used to reduce all remaining rows first.
+ring r=0,(InvD,L,Fx,Fy,Kx,Ky,Xx,Xy,Yx,Yy,Zx,Zy),dp;
+ideal I=
+  -Kx^2+2*Kx-Ky^2,
+  2*Fx*Kx-2*Fx+2*Fy*Ky-2*Kx+1,
+  2*Fx*Zx+2*Fy*Zy-2*Fx*Kx-2*Fy*Ky-Zx^2-Zy^2+2*Kx,
+  4*Kx*Ky*Xy-2*Kx-4*Ky^2*Xx+4*Ky^2-4*Ky*Xy+Xx^2+Xy^2,
+  Xx^2+Xy^2-2*Xx*Zx-2*Xy*Zy+Zx^2+Zy^2-2*Kx,
+  -Fx^2-Fy^2+2*Fx*Xx+2*Fy*Xy-Xx^2-Xy^2+2*Kx,
+  -Xx^2+2*Xx*Yx-Xy^2+2*Xy*Yy,
+  2*Yx*Zx+2*Yy*Zy-Zx^2-Zy^2,
+  -4*Kx*Ky*Zy+4*Ky^2*Zx-4*Ky^2+4*Ky*Zy-2*Zx+1,
+  L*(-2*Kx*Zx+2*Kx-2*Ky*Zy+Zx^2+Zy^2)
+    -(2*Kx*Ky-2*Kx*Ky*Zx+Kx*Zy-2*Ky^2*Zy+Ky*Zx),
+  InvD*(-2*Kx*Zx+2*Kx-2*Ky*Zy+Zx^2+Zy^2)-1,
+  Yx-2*Ky^2-2*L*(Zy-Ky),
+  Yy-2*Ky*(1-Kx)+2*L*(Zx-Kx);
+ideal G=slimgb(I);
+if(size(G)==1 and G[1]==1){print("UNIT");}else{print("NONUNIT");print(size(G));print(dim(G));}
+quit;

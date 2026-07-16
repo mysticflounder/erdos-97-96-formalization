@@ -1,0 +1,22 @@
+{
+  "certificate_file_sha256": "cd6ddef571381ea915744d2e7cae2687a6d23c50317574f44d7c1297e24d331d",
+  "independently_reconstructed_generators": true,
+  "mutated_certificate_rejected": true,
+  "schema": "p97-atail-global-k4-five-row-unit-verification-v1",
+  "smoke_gates": {
+    "known_nonunit_false_identity_rejected": true,
+    "known_unit_identity_accepted": true,
+    "mutated_identity_rejected": true
+  },
+  "source_full_equality_sha256": "2a2968b306d27ed9f8b6f8be3b4ee19d7b438713456fa7949dcaa15131a1b5b0",
+  "statistics": {
+    "active_variable_count": 18,
+    "expanded_identity_term_count": 1,
+    "generator_count": 16,
+    "max_multiplier_degree": 6,
+    "max_multiplier_terms": 424,
+    "nonzero_multiplier_count": 11,
+    "total_multiplier_terms": 2421
+  },
+  "verified_exact_identity": true
+}

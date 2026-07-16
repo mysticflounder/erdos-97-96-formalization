@@ -1,0 +1,3457 @@
+{
+  "case_count": 22,
+  "inputs": [
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_checkpoint.json",
+      "sha256": "d9377d858e745e0bada518f56de7fdcbcdf5ff87ae11b4efd1222aeeb194a8b6"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_rows7_checkpoint.json",
+      "sha256": "35dbe15fc74a5c6665b064932f36fd69601d82725f5c2f20d39ab44f90908550"
+    },
+    {
+      "path": "scratch/atail-force/second_center_query/formalized_core_shards_after_seven_point_six_circle_equality_rows8_checkpoint.json",
+      "sha256": "4aca518fd0479f5ba8f02880000a72fb5bf4c8b4617e779ff52930ea24a8e23e"
+    }
+  ],
+  "motifs": {
+    "2": {
+      "distinct_motif_count": 6,
+      "motifs_present_in_all_cases": 4,
+      "top_motifs": [
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 3,
+              "left": 1,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1
+          ],
+          "equality_count": 2,
+          "occurrence_count": 629,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 2,
+          "occurrence_count": 526,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1
+          ],
+          "equality_count": 2,
+          "occurrence_count": 227,
+          "point_count": 4,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 0,
+              "right": 3
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 2,
+          "occurrence_count": 80,
+          "point_count": 4,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 3,
+              "left": 1,
+              "right": 2
+            }
+          ],
+          "case_count": 20,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2
+          ],
+          "equality_count": 2,
+          "occurrence_count": 30,
+          "point_count": 4,
+          "shards": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 0,
+              "right": 2
+            }
+          ],
+          "case_count": 14,
+          "center_count": 2,
+          "center_degrees": [
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1
+          ],
+          "equality_count": 2,
+          "occurrence_count": 18,
+          "point_count": 3,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            14,
+            15,
+            16,
+            20,
+            21,
+            22
+          ]
+        }
+      ]
+    },
+    "3": {
+      "distinct_motif_count": 65,
+      "motifs_present_in_all_cases": 22,
+      "top_motifs": [
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 3,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 885,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 485,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 3,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 2,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 456,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 2,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 450,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 2,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 437,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 379,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 3,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 293,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 284,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 2,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 280,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 2,
+              "right": 3
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 276,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 231,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 229,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 0,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 214,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 3,
+              "left": 2,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 206,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 0,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 2,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 188,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 3,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 160,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 140,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 1,
+              "left": 4,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 114,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 3,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 112,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 1
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 106,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 3,
+              "left": 4,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 103,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 99,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 207,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 0,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 3,
+              "right": 4
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 71,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 2,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 3,
+              "right": 4
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 3,
+          "occurrence_count": 66,
+          "point_count": 5,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        }
+      ]
+    },
+    "4": {
+      "distinct_motif_count": 937,
+      "motifs_present_in_all_cases": 8,
+      "top_motifs": [
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 2,
+              "right": 5
+            },
+            {
+              "center": 4,
+              "left": 5,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            2
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 192,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 183,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 1,
+              "right": 4
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 166,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 130,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            2
+          ],
+          "endpoint_degrees": [
+            4,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 124,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 4,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 105,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 0,
+              "right": 6
+            }
+          ],
+          "case_count": 22,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 102,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 5
+            }
+          ],
+          "case_count": 22,
+          "center_count": 2,
+          "center_degrees": [
+            3,
+            1
+          ],
+          "endpoint_degrees": [
+            4,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 78,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 4,
+              "right": 7
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 426,
+          "point_count": 8,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 2,
+          "center_degrees": [
+            2,
+            2
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 182,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 4,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 172,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 1
+            },
+            {
+              "center": 5,
+              "left": 2,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 140,
+          "point_count": 7,
+          "shards": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 3,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 131,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 2,
+              "right": 4
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 125,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 1,
+              "left": 3,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 1,
+              "right": 6
+            },
+            {
+              "center": 7,
+              "left": 2,
+              "right": 3
+            }
+          ],
+          "case_count": 21,
+          "center_count": 4,
+          "center_degrees": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 119,
+          "point_count": 8,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 0,
+              "right": 4
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 108,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 4,
+              "left": 5,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 103,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 4,
+              "left": 5,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 94,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 0,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 2,
+              "right": 5
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 94,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 1,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 77,
+          "point_count": 7,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 3,
+              "left": 4,
+              "right": 5
+            }
+          ],
+          "case_count": 21,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 63,
+          "point_count": 6,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 1,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 2,
+              "right": 7
+            }
+          ],
+          "case_count": 20,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            2,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 358,
+          "point_count": 8,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 4,
+              "left": 2,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 5,
+              "right": 7
+            }
+          ],
+          "case_count": 20,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            2,
+            2,
+            2,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 277,
+          "point_count": 8,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 4,
+              "right": 5
+            },
+            {
+              "center": 6,
+              "left": 1,
+              "right": 7
+            }
+          ],
+          "case_count": 20,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            3,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 242,
+          "point_count": 8,
+          "shards": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            14,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        },
+        {
+          "canonical_equalities": [
+            {
+              "center": 0,
+              "left": 1,
+              "right": 2
+            },
+            {
+              "center": 0,
+              "left": 1,
+              "right": 3
+            },
+            {
+              "center": 2,
+              "left": 1,
+              "right": 4
+            },
+            {
+              "center": 5,
+              "left": 1,
+              "right": 6
+            }
+          ],
+          "case_count": 20,
+          "center_count": 3,
+          "center_degrees": [
+            2,
+            1,
+            1
+          ],
+          "endpoint_degrees": [
+            4,
+            1,
+            1,
+            1,
+            1
+          ],
+          "equality_count": 4,
+          "occurrence_count": 226,
+          "point_count": 7,
+          "shards": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22
+          ]
+        }
+      ]
+    }
+  },
+  "schema": "p97-atail-current-unit-core-small-motif-audit-v1",
+  "scope": {
+    "at_least_two_distinct_centers": true,
+    "connected_only": true,
+    "exact_isomorphism_for_listed_small_motifs": true,
+    "producer_proved": false,
+    "theorem_discovery_only": true
+  },
+  "shard_indices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ]
+}

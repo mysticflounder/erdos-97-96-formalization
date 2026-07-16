@@ -1,0 +1,2107 @@
+{
+  "aggregate_status": "SAT_FINITE_SHADOW_ONLY",
+  "cases": [
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "e46feb682682ccf6dd05046fa0c04a4f88c638057ae23b2d8e0be36b4316e5c8",
+        "shard_count": 23,
+        "shard_index": 0
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 52460,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "cff7eb4b71ef63347a5a8d60bef4a2f20a7bec6cf400e8c33841f0aa8c4f8f35",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "4b70ad50fc04a7c9c9f6a84b488098e1e7620aa436bd1e4266a8b5666fff1d1c"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "1497dd403c646f85265234b42e2979d162bade3db818f372c08277b882cc9f95",
+        "shard_count": 23,
+        "shard_index": 1
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 25454,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              5,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "2dc6664a88c7f51c6568c4ac73ae040dd86bd9734634bc9565094ca9c3c15c15",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "58fa82b20db64d4f19cfcfd5d13f6be53762d699fa2938b3d3a38b79c21a4256"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "09bfa658c80d1020e31a5fb03d7279e78fcf758792901a039839116f4cbd8bd9",
+        "shard_count": 23,
+        "shard_index": 2
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 6291,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "057b3d270a69a4be225abe7a8a809a19ea38a10e1d653c5cb2f7ef56c416e6be",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "41eb70d7cef090a4ccf2af94dd12809ef42cbbf12d8bdb8f92008b6d5a074323"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "c83d7694a24a28b7cdf4886b8036b8effdf9d76c4fce747a15f8c40286605cb0",
+        "shard_count": 23,
+        "shard_index": 3
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 91700,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              8,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "50a79a214eee97d7ee55f3ca1c923229ccd01b30e08535c3460b5cc60e64f52d",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "503446798be7183d34c5cca8f53d9403ceaea71cb562eba04c338faa36e51bc0"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "0e1495860fe30710870903e5f899561e2d3181baff5c7e15c40bcceeaab42db8",
+        "shard_count": 23,
+        "shard_index": 4
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "7538781372fae82a7d22ed6d0cf9f3c4b35a635039a2fd45dced75d598e35d1e",
+        "shard_count": 23,
+        "shard_index": 5
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "43c0ae869bd4e3b984b36fd2c5152675b4dffa203f4fc4ea8178705690b66a4b",
+        "shard_count": 23,
+        "shard_index": 6
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "9dc6c4426041e269192016762e60a92a2953abed7cbfa9c821bff2d8699757ce",
+        "shard_count": 23,
+        "shard_index": 7
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "7b47e456aac7a7539ade4198c8a500de26c3e17233c3e051a93be89cf7b18ca2",
+        "shard_count": 23,
+        "shard_index": 8
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "527d57382a0042f765b3637ea289a41578b13f5337ddad89592b5725ac907586",
+        "shard_count": 23,
+        "shard_index": 9
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "e9cacebf02b9a0df3b241d5457681e912c405cdfe32f9e33b14d5a23553b20d2",
+        "shard_count": 23,
+        "shard_index": 10
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 65991,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "b9801e2a4737bbfdd8bbc5d882cdf9283e30e46588578ba35382324986684bbb",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "d7b7759ac8a474620630f4a3aadf7763d655bc9814e5b81994e8e543c9cde837"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "633af74c604073cd339d27005d5834d25ef39097370803957588faff4b99ba9e",
+        "shard_count": 23,
+        "shard_index": 11
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "9008a3f5a6d9f53e54ecbf77e97c51096decc6cfee8f6b7924268230fd623fca",
+        "shard_count": 23,
+        "shard_index": 12
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 74466,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              9
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "de2a4f5e9fbe7ef4dbf5254d92e03034f898a78c29c6e669457b463e49a3cbba",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "e747fe06e40e2d30f8cf661993f94a20066b9bf9af49d937adc2e052a17a5a0c"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "74a9226a12e488ce0fe9ed64c68b2a11339018b9577f191ab307b7aa1d101e74",
+        "shard_count": 23,
+        "shard_index": 13
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 48345,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              7
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              8
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "d506c5fc7dcb8cae09cc3d264bd0849ea85650dfba6931547c9031d4ce157192",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "a2066ae3539eafa19c16445beb351e44018a0585486761bcf7c1c0c015f3a52b"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "66ffae006122bab647536b88f2af2d10a33de79f5be6ad57ba7125c3619526e8",
+        "shard_count": 23,
+        "shard_index": 14
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "e5b9e82bf50df864cf18fc5d3ae42208355bf5d9929d0e652c220f6b36bb3d03",
+        "shard_count": 23,
+        "shard_index": 15
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 4235,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              7,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              1,
+              4,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              6,
+              10
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              1,
+              7,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              8
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              3,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              8,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "515a54c1692c112068a8f1bf471ac4b24b0497b95574dd64057610182a9a53ee",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "4db20b6b171a924819c97e997246d0466e61ceb60a042e80bd2525ce0703acee"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "c16b5e8ae80b3096e125dfd5195cb9f6d0d2b2c16ae6a4de4488a23c0a774274",
+        "shard_count": 23,
+        "shard_index": 16
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 66863,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              0,
+              2,
+              6,
+              7
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              3,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              8,
+              11
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              5,
+              9
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              7,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "91a250a5ff1eb0057532687dee27c45038925c411489f99ca4d3e6b6d8913770",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "a09a165a62e22675443309e2ff272ff61d0bd243df2d7a094472893abde0afdf"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "e90d1bf8f680c6b4f6aa464a021e296522a4c8dbc279cb6bc1a2795a885ffcbf",
+        "shard_count": 23,
+        "shard_index": 17
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "8b479de5bf0a5cb3dbb804934bd8473706c3633b6a05a3653c22ca0ab3b44581",
+        "shard_count": 23,
+        "shard_index": 18
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 41,
+        "selected_domain_sha256": "481ffa613f4f76c5602cc2fdcc9113a30403adb807ff201caa32cccdeae45966",
+        "shard_count": 23,
+        "shard_index": 19
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 40,
+        "selected_domain_sha256": "fdba9e73d1e2610d85740548ce231febbec954385c7721bd6a40bdf2ced14fa9",
+        "shard_count": 23,
+        "shard_index": 20
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 2776,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              6,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              3,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              6,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              8,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              11
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              5,
+              6
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "7fc7d769181022b5f89d6172a765aa51673d31eacf79899581c39aca608ba81c",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "d98ae3ad302fdf7c064d2205cc34f42e858d5a3b9bf7b04f22186cb456765723"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 40,
+        "selected_domain_sha256": "983b4d81621742368dd024858dd95b95665ce4ba7f8cc00f694e77f61c3427f3",
+        "shard_count": 23,
+        "shard_index": 21
+      },
+      "solver": {
+        "max_nodes": 1000000,
+        "nodes": 107632,
+        "raw_status": "SAT",
+        "reported_status": "SAT_FINITE_SHADOW_ONLY"
+      },
+      "survivor": {
+        "distinct_metric_rows": [
+          {
+            "center": 0,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              3,
+              4
+            ]
+          },
+          {
+            "center": 1,
+            "exact": true,
+            "support": [
+              3,
+              6,
+              7,
+              9
+            ]
+          },
+          {
+            "center": 2,
+            "exact": true,
+            "support": [
+              0,
+              1,
+              9,
+              10
+            ]
+          },
+          {
+            "center": 3,
+            "exact": true,
+            "support": [
+              4,
+              5,
+              9,
+              11
+            ]
+          },
+          {
+            "center": 4,
+            "exact": true,
+            "support": [
+              1,
+              2,
+              6,
+              11
+            ]
+          },
+          {
+            "center": 5,
+            "exact": true,
+            "support": [
+              2,
+              4,
+              8,
+              9
+            ]
+          },
+          {
+            "center": 6,
+            "exact": true,
+            "support": [
+              1,
+              5,
+              7,
+              8
+            ]
+          },
+          {
+            "center": 7,
+            "exact": true,
+            "support": [
+              2,
+              8,
+              10,
+              11
+            ]
+          },
+          {
+            "center": 8,
+            "exact": true,
+            "support": [
+              0,
+              3,
+              5,
+              11
+            ]
+          },
+          {
+            "center": 9,
+            "exact": true,
+            "support": [
+              0,
+              4,
+              7,
+              10
+            ]
+          },
+          {
+            "center": 10,
+            "exact": true,
+            "support": [
+              0,
+              5,
+              6,
+              8
+            ]
+          },
+          {
+            "center": 11,
+            "exact": true,
+            "support": [
+              2,
+              5,
+              7,
+              10
+            ]
+          }
+        ],
+        "distinct_metric_rows_sha256": "3fdf4e48f7d136991689831af3384d05cee45ff6fc793060f5085d55657d1dca",
+        "frame": {
+          "cyclic_order": [
+            0,
+            9,
+            10,
+            11,
+            1,
+            3,
+            4,
+            5,
+            2,
+            6,
+            7,
+            8
+          ],
+          "n": 12
+        },
+        "profile": [
+          5,
+          5,
+          5
+        ],
+        "witness_sha256": "035797b3913d07a85281ce20c69acb76287092dc3458e3d9e2a0aa1cbc3e6bed"
+      }
+    },
+    {
+      "partition": {
+        "selected_choice_count": 40,
+        "selected_domain_sha256": "9a4258106198879ce21ae80ff1def29ebdc96cf4771bf54f3b6a01cf7b9b702c",
+        "shard_count": 23,
+        "shard_index": 22
+      },
+      "solver": {
+        "max_nodes": 100000,
+        "nodes": 100001,
+        "raw_status": "INDETERMINATE",
+        "reported_status": "INDETERMINATE_NODE_CAP"
+      }
+    }
+  ],
+  "formalized_core_prefix_rejections_in_rerun_slices": {
+    "equality-convex-eight-point-five-row-circle-intersection-order": 3206,
+    "equality-convex-eight-point-five-row-circle-intersection-order-reverse": 2892,
+    "equality-convex-five-point": 232216,
+    "equality-convex-five-point-reverse": 110504,
+    "equality-convex-four-point-two-circle-bisector-order": 15699,
+    "equality-convex-nested-equal-chords": 2703,
+    "equality-convex-rhombus-equilateral": 690,
+    "equality-convex-six-point-two-circle-order": 380,
+    "equality-convex-six-point-two-circle-order-reverse": 128,
+    "equality-duplicate-center": 368752,
+    "equality-eight-point-five-circle-collision": 751,
+    "equality-equilateral-bisector-collision": 13307,
+    "equality-exact-off-circle": 298935,
+    "equality-five-point-hinge-cycle": 336,
+    "equality-perpendicular-bisector-convex": 126383,
+    "equality-seven-point-circle-network-collision": 1,
+    "equality-seven-point-five-circle-collision": 915,
+    "equality-seven-point-orbit-collision": 9,
+    "equality-seven-point-six-circle-collision": 211,
+    "equality-seven-point-six-circle-collision-b": 632,
+    "equality-seven-point-twin-four-circle-collision": 110,
+    "equality-six-point-circle-chain-collision": 2150,
+    "equality-six-point-five-circle-collision-a": 3338,
+    "equality-six-point-five-circle-collision-b": 971,
+    "equality-six-point-five-circle-collision-c": 590,
+    "equality-six-point-hinge-tail": 1028,
+    "equality-six-point-two-pair-collision": 73,
+    "equality-six-row-anchor-collision": 144,
+    "equality-surplus-source-collision": 18,
+    "equality-three-triad-collision": 5760,
+    "selected-row-interior-own-cap-bound": 2910
+  },
+  "high_budget_retry": {
+    "driver": "scratch/atail-force/biapex-continuation-shadow-audit/retry_shard.py",
+    "driver_sha256": "12dfc09e6251a4c3bd254acdae2c79d7e01004c7532822f43f30c03be4f475bd",
+    "max_nodes": 1000000,
+    "nodes": 107632,
+    "raw_status": "SAT",
+    "replay": ".venv/bin/python scratch/atail-force/biapex-continuation-shadow-audit/retry_shard.py",
+    "shard_index": 21,
+    "source_checkpoint": "scratch/atail-force/biapex-continuation-shadow-audit/selected_row_own_cap_bound_refresh_checkpoint.json",
+    "source_checkpoint_sha256": "3648bc9408b9557cc6a1adb10cfd21a7bf75bdf4d5ac2489d417b68b07412b74"
+  },
+  "input_file_sha256": {
+    "census/global_confinement/metric_realizability_probe.py": "f7a92776f9cee02eda2265467d77a0bbd5254d1dd335bc7a70713203239d3373",
+    "census/global_confinement/shadow.py": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean": "9e370ab9423de45e70b4b3cf53345cba4f7eaf219127df9473b4cccb0f585e30",
+    "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean": "3d111bc6949f4427bedc646593524a08367f31faa258df696e36ea6c6341f54e",
+    "scratch/atail-force/biapex-continuation-shadow-audit/cap_bound_core.py": "cf1a60f886d100e887a2cf55568575178f86f14d36b9af806c82f918c947d802",
+    "scratch/atail-force/biapex-continuation-shadow-audit/cap_bound_shard.py": "1f0c262050374e82e0bdd07d828ade110829bc783132abd3729de372bd51a94b",
+    "scratch/atail-force/common_system_metric_probe.py": "18b1a91a3326b975c8baa16f82e7c692fafd5b979450bb305d4c31895cde1334",
+    "scratch/atail-force/second_center_query/formalized_core_shard.py": "d8d4846d4e6009de6b7bd2b691e204a1c5c8f43660644de2568e452aa6d98511",
+    "scratch/atail-force/second_center_query/query.py": "f0a90838a7cbd5166e58c78ac1c0c7252fb1fbd7c744dce575820e24b92dee52"
+  },
+  "partition": {
+    "original_choice_count": 940,
+    "original_domain_sha256": "ddf7ac41e39f15e11eef615792727517f480bce9a1fbaad62317d00541d0ea86",
+    "partition_verified": true,
+    "row": "supplied:q",
+    "shard_count": 23
+  },
+  "profile": [
+    5,
+    5,
+    5
+  ],
+  "refresh": {
+    "all_source_survivors_scanned_against_current_banks": true,
+    "rerun_shard_count": 23,
+    "rerun_shard_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22
+    ],
+    "reused_shard_count": 0,
+    "reused_shard_indices": [],
+    "source_freshness_layer_detection_counts": {
+      "current-complete-leaf-bank": 23,
+      "selected-row-own-cap-bounds": 29
+    },
+    "source_violation_count": 52,
+    "source_violation_counts": {
+      "equality-convex-four-point-two-circle-bisector-order": 12,
+      "equality-convex-nested-equal-chords": 7,
+      "equality-five-point-hinge-cycle": 2,
+      "equality-six-point-hinge-tail": 2,
+      "selected-row-interior-own-cap-bound": 29
+    }
+  },
+  "schema": "p97-atail-selected-row-own-cap-bound-refresh-v1",
+  "scope": {
+    "card_11_included": false,
+    "current_complete_leaf_bank_pruning": true,
+    "euclidean_realizability_checked": false,
+    "fixed_finite_incidence_shadow_only": true,
+    "formalized_metric_core_prefix_pruning": true,
+    "monotone_clean_survivor_reuse": true,
+    "placements_per_profile": 1,
+    "producer_proved": false,
+    "selected_row_own_cap_bounds_prefix_pruning": true,
+    "selected_row_own_cap_bounds_proved": true,
+    "target_faithful": false
+  },
+  "selected_row_own_cap_bound_provenance": {
+    "endpoint_bounds": [
+      "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_first_card_le_one",
+      "Problem97.CapSelectedRowCounting.selectedFourClass_inter_orderedCap_last_card_le_one",
+      "Problem97.SurplusCapPacket.capByIndex_cgn4g_capData_oriented"
+    ],
+    "interior_bound": "Problem97.CapSelectedRowCounting.selectedFourClass_inter_capByIndex_card_le_two",
+    "oriented_cap_source": "lean/Erdos9796Proof/P97/SurplusM44Packet/Shard01.lean",
+    "source": "lean/Erdos9796Proof/P97/CapSelectedRowCounting.lean"
+  },
+  "solver": {
+    "error_count": 0,
+    "high_budget_retry_max_nodes": 1000000,
+    "high_budget_retry_shard": 21,
+    "max_nodes_per_rerun_shard": 100000,
+    "node_count_mixes_reused_and_rerun_slices": false,
+    "rerun_total_nodes": 1738594,
+    "status_counts": {
+      "INDETERMINATE": 12,
+      "SAT": 11
+    },
+    "stored_total_nodes": 1746225,
+    "workers": 12
+  },
+  "source_checkpoint": "scratch/atail-force/second_center_query/formalized_core_shards_after_current_bank_checkpoint.json",
+  "source_checkpoint_schema": "p97-atail-formalized-core-shards-incremental-refresh-v1",
+  "source_checkpoint_sha256": "5b661a15f4dda8a6cd143f3737457f2733d23eca056defcbcd30872f629bcc1a"
+}

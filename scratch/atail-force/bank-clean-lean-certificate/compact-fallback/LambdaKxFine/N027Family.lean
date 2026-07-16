@@ -1,0 +1,35 @@
+import LambdaKxFine.N027FamilyPart00
+
+/-! Bucket aggregate for lambda Kx node 27. -/
+
+namespace Problem97.ATailBankCleanLambdaKxFine
+
+set_option maxHeartbeats 80000000
+
+set_option maxRecDepth 100000
+
+set_option linter.unusedVariables false
+
+noncomputable section
+
+@[simp] def lambdaKxFineNode27AggL0Part0 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0))) + (((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0)))) + ((((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0))) + (((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0)))))
+
+@[simp] def lambdaKxFineNode27AggL0Part1 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((0 + 0) + (0 + 0)) + ((0 + 0) + (0 + 0))) + (((0 + 0) + (lambdaKxFineNode27Part42 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part43 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((0 + lambdaKxFineNode27Part45 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (0 + lambdaKxFineNode27Part47 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + ((((lambdaKxFineNode27Part48 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part49 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part50 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + 0)) + ((0 + lambdaKxFineNode27Part53 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part54 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part55 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((0 + lambdaKxFineNode27Part57 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part58 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part59 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part60 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part61 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (0 + lambdaKxFineNode27Part63 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))))
+
+@[simp] def lambdaKxFineNode27AggL0Part2 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((0 + 0) + (lambdaKxFineNode27Part66 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part67 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part68 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part69 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part70 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + 0))) + (((0 + lambdaKxFineNode27Part73 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part74 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part75 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part76 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part77 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part78 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + 0)))) + ((((lambdaKxFineNode27Part80 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part81 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (0 + lambdaKxFineNode27Part83 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part84 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part85 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part86 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part87 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode27Part88 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part89 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part90 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part91 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part92 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part93 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part94 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part95 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))))
+
+@[simp] def lambdaKxFineNode27AggL0Part3 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  (((((lambdaKxFineNode27Part96 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part97 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part98 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part99 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part100 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part101 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part102 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part103 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode27Part104 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part105 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part106 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part107 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part108 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part109 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part110 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part111 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + ((((lambdaKxFineNode27Part112 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part113 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part114 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part115 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part116 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part117 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part118 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part119 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + (((lambdaKxFineNode27Part120 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part121 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part122 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part123 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part124 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part125 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part126 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part127 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))))
+
+@[simp] def lambdaKxFineNode27AggL0Part4 (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  ((((lambdaKxFineNode27Part128 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (lambdaKxFineNode27Part129 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part130 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + (lambdaKxFineNode27Part131 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (0 + lambdaKxFineNode27Part133 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx))) + ((lambdaKxFineNode27Part134 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (lambdaKxFineNode27Part135 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part136 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + ((lambdaKxFineNode27Part137 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part138 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27Part139 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part140 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))) + (((lambdaKxFineNode27Part141 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (lambdaKxFineNode27Part142 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27Part143 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)) + (lambdaKxFineNode27Part144 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (0 + 0))) + ((0 + (0 + 0)) + ((0 + 0) + (0 + 0)))))
+
+@[simp] def lambdaKxFineNode27Value (Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx : ℝ) : ℝ :=
+  ((lambdaKxFineNode27AggL0Part0 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27AggL0Part1 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx) + (lambdaKxFineNode27AggL0Part2 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + (lambdaKxFineNode27AggL0Part3 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx + lambdaKxFineNode27AggL0Part4 Ky Fx Fy Xy Zx Kx Yx Yy Zy L Xx)))
+
+end
+
+end Problem97.ATailBankCleanLambdaKxFine

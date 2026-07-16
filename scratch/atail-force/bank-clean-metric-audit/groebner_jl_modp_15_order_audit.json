@@ -1,0 +1,71 @@
+{
+  "schema": "p97-bank-clean-15-modp-change-matrix-order-audit-v1",
+  "prime": 1000000007,
+  "settings": {
+    "certify": true,
+    "homogenize": "auto (resolves to no for DegRevLex)",
+    "linalg": "deterministic",
+    "reduced": false,
+    "tasks": 1
+  },
+  "baseline_current_variables_current_generators": {
+    "basis_size": 1,
+    "max_cofactor_degree": 8,
+    "runtime_seconds": 30.910376,
+    "total_cofactor_terms": 275588
+  },
+  "required_cases": [
+    {
+      "basis_size": 1,
+      "change_times_generators_equals_basis": true,
+      "constant_basis_row_count": 1,
+      "max_cofactor_degree": 8,
+      "normalized_cofactor_identity_equals_one": true,
+      "reverse_generators": false,
+      "runtime_seconds": 48.799023542,
+      "total_cofactor_terms": 229031,
+      "variable_order": "literal reverse active",
+      "variables": [
+        "Zy", "Zx", "Yy", "Yx", "Xy", "Xx", "Ky", "Kx",
+        "Gy", "Gx", "Fy", "Fx", "Ey", "Ex"
+      ]
+    },
+    {
+      "basis_size": 1,
+      "change_times_generators_equals_basis": true,
+      "constant_basis_row_count": 1,
+      "max_cofactor_degree": 8,
+      "normalized_cofactor_identity_equals_one": true,
+      "reverse_generators": false,
+      "runtime_seconds": 28.80617125,
+      "total_cofactor_terms": 270605,
+      "variable_order": "projected padded numeric roles, axes interleaved",
+      "variables": [
+        "Xx", "Xy", "Yx", "Yy", "Zx", "Zy", "Ex", "Ey",
+        "Gx", "Gy", "Kx", "Ky", "Fx", "Fy"
+      ]
+    },
+    {
+      "basis_size": 1,
+      "change_times_generators_equals_basis": true,
+      "constant_basis_row_count": 1,
+      "max_cofactor_degree": 8,
+      "normalized_cofactor_identity_equals_one": true,
+      "reverse_generators": true,
+      "runtime_seconds": 47.879158791,
+      "total_cofactor_terms": 232919,
+      "variable_order": "literal reverse active",
+      "variables": [
+        "Zy", "Zx", "Yy", "Yx", "Xy", "Xx", "Ky", "Kx",
+        "Gy", "Gx", "Fy", "Fx", "Ey", "Ex"
+      ]
+    }
+  ],
+  "best_case": {
+    "relative_term_reduction_from_baseline": 0.16893696387360843,
+    "reverse_generators": false,
+    "total_cofactor_terms": 229031,
+    "variable_order": "literal reverse active"
+  },
+  "interpretation": "The change-row size is moderately order-sensitive, but all tested orders retain degree 8 and more than 229000 terms. Reversing generators does not improve the best variable order."
+}

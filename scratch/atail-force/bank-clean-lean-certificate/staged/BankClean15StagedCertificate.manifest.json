@@ -1,0 +1,254 @@
+{
+  "certificate": "scratch/atail-force/bank-clean-lean-certificate/unit_certificate_groebner_jl_15.json",
+  "certificate_sha256": "afb111002531a20ca1301afe6d05d8e0184f08183c4b2a7c0acaa0b69d834935",
+  "core": "scratch/atail-force/bank-clean-unit-independent-audit/confirm_15_from17.json",
+  "core_sha256": "24f08887ccdc6c07a19b447352b40dc1ec2bf4facf50752e13708386cfdde165",
+  "exact_final_identity_replayed": true,
+  "generator": "scratch/atail-force/bank-clean-lean-certificate/staged/generate_staged_lean.py",
+  "generator_names": [
+    "ROW_A_O_G",
+    "ROW_A_O_K",
+    "ROW_F_A_Z",
+    "ROW_F_A_K",
+    "ROW_G_X_E",
+    "ROW_G_X_K",
+    "ROW_K_O_Y",
+    "ROW_K_O_G",
+    "ROW_O_A_E",
+    "ROW_X_Z_G",
+    "ROW_X_Z_F",
+    "ROW_Y_O_X",
+    "ROW_Y_O_Z",
+    "ROW_Z_A_Y",
+    "ROW_Z_A_G"
+  ],
+  "lean_validation": "pending",
+  "merge_analysis": "scratch/atail-force/bank-clean-unit-independent-audit/unit_certificate_groebner_jl_15_merge_analysis.json",
+  "merge_analysis_sha256": "936540291da3f1c1fc2b4bc0e355af50660a4d7eac4ce0ef9e1e1a5217569a37",
+  "nodes": [
+    {
+      "leaves": [
+        9,
+        10
+      ],
+      "left_node_id": 9,
+      "node_id": 15,
+      "polynomial_sha256": "1c1058dfe91b41e42b425105245020db728840a75060bd65ea00fd87b4076260",
+      "right_node_id": 10,
+      "support_size": 26469
+    },
+    {
+      "leaves": [
+        9,
+        10,
+        12
+      ],
+      "left_node_id": 12,
+      "node_id": 16,
+      "polynomial_sha256": "fdec70f33ff29386957a0d1c44d17685af309a2a7872ebd4cecaf7db1c8b4cca",
+      "right_node_id": 15,
+      "support_size": 54046
+    },
+    {
+      "leaves": [
+        2,
+        9,
+        10,
+        12
+      ],
+      "left_node_id": 2,
+      "node_id": 17,
+      "polynomial_sha256": "b009b5849ba9ab7138a77389d8cea85fefb4473bb19cdbf364865ad28b68dee9",
+      "right_node_id": 16,
+      "support_size": 62202
+    },
+    {
+      "leaves": [
+        6,
+        13
+      ],
+      "left_node_id": 6,
+      "node_id": 18,
+      "polynomial_sha256": "b038090ad941c31359b3705b22fb98838ce3199dbc10419455b7a9c1ddd0eef4",
+      "right_node_id": 13,
+      "support_size": 71939
+    },
+    {
+      "leaves": [
+        2,
+        6,
+        9,
+        10,
+        12,
+        13
+      ],
+      "left_node_id": 17,
+      "node_id": 19,
+      "polynomial_sha256": "c6848fdf4acba542866162188acf4604e1069948b5a382e27a9d3d11dac9ecb3",
+      "right_node_id": 18,
+      "support_size": 85211
+    },
+    {
+      "leaves": [
+        1,
+        3
+      ],
+      "left_node_id": 1,
+      "node_id": 20,
+      "polynomial_sha256": "0197ea6ee862d902840eb57d6cdfcefd4b9974fb2ee48d09c5b4c04a24fc2528",
+      "right_node_id": 3,
+      "support_size": 90713
+    },
+    {
+      "leaves": [
+        8,
+        11
+      ],
+      "left_node_id": 8,
+      "node_id": 21,
+      "polynomial_sha256": "1fb6422917fc243578ce8c9ae6689f1d7f9abe6895726e843247179577433298",
+      "right_node_id": 11,
+      "support_size": 92568
+    },
+    {
+      "leaves": [
+        2,
+        6,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 14,
+      "node_id": 22,
+      "polynomial_sha256": "8ca9ebf483ece72bce9c4f433333033ef23cc0e6a9d8846c5cfb670b887e2424",
+      "right_node_id": 19,
+      "support_size": 99530
+    },
+    {
+      "leaves": [
+        0,
+        7
+      ],
+      "left_node_id": 0,
+      "node_id": 23,
+      "polynomial_sha256": "a284504358eb063f3812bd04dae8d39c8f60f5639cc725bdbce1ab90ba6dbd10",
+      "right_node_id": 7,
+      "support_size": 108676
+    },
+    {
+      "leaves": [
+        4,
+        8,
+        11
+      ],
+      "left_node_id": 4,
+      "node_id": 24,
+      "polynomial_sha256": "069ab1d937aff608bd76525a4add5660995865d434cc318797d1b332bf20b5dc",
+      "right_node_id": 21,
+      "support_size": 122111
+    },
+    {
+      "leaves": [
+        0,
+        2,
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 22,
+      "node_id": 25,
+      "polynomial_sha256": "6a8c229ca32b13aacfb15bc30e91a54359e7e67ada598bb8838f6294c86a94d4",
+      "right_node_id": 23,
+      "support_size": 126443
+    },
+    {
+      "leaves": [
+        0,
+        1,
+        2,
+        3,
+        6,
+        7,
+        9,
+        10,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 20,
+      "node_id": 26,
+      "polynomial_sha256": "43df6d56edef296d41e92db542442926f65e25119cbcae622fd9d56acd807c80",
+      "right_node_id": 25,
+      "support_size": 120709
+    },
+    {
+      "leaves": [
+        4,
+        5,
+        8,
+        11
+      ],
+      "left_node_id": 5,
+      "node_id": 27,
+      "polynomial_sha256": "0a9afb296e4d2c0a47bd3240c350ada6eb7c7a90a46856a08f24e11ea7a7a7dd",
+      "right_node_id": 24,
+      "support_size": 120709
+    },
+    {
+      "leaves": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "left_node_id": 26,
+      "node_id": 28,
+      "polynomial_sha256": "e939ef8312aa40a7a2b3374e1eb380b586ffe181f43287ffdcb655c195717881",
+      "right_node_id": 27,
+      "support_size": 1
+    }
+  ],
+  "output": "scratch/atail-force/bank-clean-lean-certificate/staged/BankClean15StagedCertificate.lean",
+  "output_bytes": 163923877,
+  "output_sha256": "2ac8a6487117f64030b47c6510b6492754712fe2cadf9f98fb0800a4319461aa",
+  "peak_optimality_reason": "the tree peak equals the maximum exact leaf support",
+  "peak_support_including_leaves": 132499,
+  "root_node_id": 28,
+  "root_polynomial_sha256": "e939ef8312aa40a7a2b3374e1eb380b586ffe181f43287ffdcb655c195717881",
+  "schema": "p97-bank-clean-15-staged-lean-emission-v1",
+  "tree_height": 8,
+  "tree_strategy": "greedy_min_subtree_peak_then_support_with_balance_tiebreaks",
+  "variables": [
+    "Ex",
+    "Ey",
+    "Fx",
+    "Fy",
+    "Gx",
+    "Gy",
+    "Kx",
+    "Ky",
+    "Xx",
+    "Xy",
+    "Yx",
+    "Yy",
+    "Zx",
+    "Zy"
+  ]
+}

@@ -1,0 +1,221 @@
+{
+  "epistemic_limits": [
+    "no fixed-coordinate K4 extension was found or claimed",
+    "bank-clean incidence rows are not Euclidean realizations",
+    "the scan permits supports only from the existing 35 labels",
+    "future added support points would themselves incur global-K4 obligations",
+    "the 35-point model is not a CounterexampleData or K-A counterexample"
+  ],
+  "first_full_parent_exclusion": {
+    "field": "all-center HasNEquidistantProperty 4",
+    "fixed_carrier_statement": "K4 at any one of the 24 deficient centers contradicts its exact 35-point radius profile",
+    "minimum_new_support_points_per_forced_center": 3,
+    "minimum_union_of_new_support_points_for_G_and_K": 4,
+    "minimum_union_reason": "each existing profile is singleton, and two distinct centered circles can share at most two support points",
+    "reason": "the second-apex row {C,G,K,O} contains exactly the two strict-opposite-cap points G,K; the live cap-count continuation theorem therefore requests global rows at both",
+    "route_relevant_forced_centers": [
+      "G",
+      "K"
+    ]
+  },
+  "fixed_coordinate_target_immutability": {
+    "consequence": "a fixed-coordinate extension retaining this critical packet can only be excluded elsewhere; it cannot repair the one-row sink",
+    "critical_q_shell": [
+      "A",
+      "E",
+      "F",
+      "I"
+    ],
+    "distinct_first_apex_marginal_candidates": [
+      "C",
+      "D",
+      "J"
+    ],
+    "eligible_strict_surplus_centers": [
+      "F",
+      "I"
+    ],
+    "prescribed_pair_equalities": {
+      "F": {
+        "C": false,
+        "D": false,
+        "J": false
+      },
+      "I": {
+        "C": false,
+        "D": false,
+        "J": false
+      }
+    },
+    "q": "E",
+    "q_blocker": "D",
+    "reason": "adding points does not change the six failed old-point distance equalities at F,I; adding a new point to D's q-radius would also destroy deletion-criticality of E at D",
+    "target_can_be_created_by_adding_other_points": false
+  },
+  "one_row_existing_label_relaxation": {
+    "bank_scope": "ALL_CURRENT_FORMALIZED_FAMILIES",
+    "baseline_bank_matches": [],
+    "centers": {
+      "G": {
+        "bank_matched_before_first_clean": 0,
+        "candidate_count": 15346,
+        "first_bank_clean_support": [
+          "K",
+          "X_k4_3",
+          "t1",
+          "I"
+        ],
+        "first_bank_match": null,
+        "scan_limit": 1,
+        "scanned_until_first_clean_or_limit": 1
+      },
+      "K": {
+        "bank_matched_before_first_clean": 0,
+        "candidate_count": 15386,
+        "first_bank_clean_support": [
+          "X_k4_3",
+          "I_k4_3",
+          "t1",
+          "I"
+        ],
+        "first_bank_match": null,
+        "scan_limit": 1,
+        "scanned_until_first_clean_or_limit": 1
+      }
+    },
+    "pre_applied_formalized_gate": "FourPointTwoCircleBisectorOrderCore in both cyclic orientations"
+  },
+  "pinned_model": {
+    "carrier_card": 35,
+    "coordinate_sha256": "c5289a5ded63bca9c2c56b40211c2ec53009a83df66f9594815b9c5681db7dce",
+    "source_sha256": "adbc3583b5bfefc0d2cf80af45b3a09a2a0d47ede836168d9bb61683083e1ff7"
+  },
+  "profile_inventory": {
+    "all_deficient_centers_have_only_singleton_radius_classes": true,
+    "available_k4_classes": {
+      "A": [
+        [
+          "C",
+          "G",
+          "K",
+          "O"
+        ]
+      ],
+      "C": [
+        [
+          "t1",
+          "t1_css_1",
+          "t1_css_2",
+          "t1_css_3"
+        ]
+      ],
+      "D": [
+        [
+          "A",
+          "E",
+          "F",
+          "I"
+        ]
+      ],
+      "F": [
+        [
+          "F_k4_1",
+          "F_k4_2",
+          "F_k4_3",
+          "O"
+        ]
+      ],
+      "F_k4_1": [
+        [
+          "J",
+          "J_css_1",
+          "J_css_2",
+          "J_css_3"
+        ]
+      ],
+      "I": [
+        [
+          "I_k4_1",
+          "I_k4_2",
+          "I_k4_3",
+          "O"
+        ]
+      ],
+      "O": [
+        [
+          "A",
+          "C",
+          "D",
+          "E",
+          "J"
+        ]
+      ],
+      "X": [
+        [
+          "O",
+          "X_k4_1",
+          "X_k4_2",
+          "X_k4_3"
+        ]
+      ],
+      "Y": [
+        [
+          "C",
+          "Y_k4_1",
+          "Y_k4_2",
+          "Y_k4_3"
+        ]
+      ],
+      "Z": [
+        [
+          "C",
+          "Z_k4_1",
+          "Z_k4_2",
+          "Z_k4_3"
+        ]
+      ],
+      "t1": [
+        [
+          "D",
+          "X",
+          "Y",
+          "Z"
+        ]
+      ]
+    },
+    "centers_with_k4_count": 11,
+    "centers_without_k4": [
+      "E",
+      "F_k4_2",
+      "F_k4_3",
+      "G",
+      "I_k4_1",
+      "I_k4_2",
+      "I_k4_3",
+      "J",
+      "J_css_1",
+      "J_css_2",
+      "J_css_3",
+      "K",
+      "X_k4_1",
+      "X_k4_2",
+      "X_k4_3",
+      "Y_k4_1",
+      "Y_k4_2",
+      "Y_k4_3",
+      "Z_k4_1",
+      "Z_k4_2",
+      "Z_k4_3",
+      "t1_css_1",
+      "t1_css_2",
+      "t1_css_3"
+    ],
+    "centers_without_k4_count": 24
+  },
+  "schema": "p97-atail-global-k4-extension-audit-35pt-v1",
+  "status": "PASS",
+  "trust_boundary": {
+    "bank_scan": "BOUNDED_FINITE_THEOREM_DISCOVERY_USING_NAMED_LEAN_CONSUMERS",
+    "profiles": "EXACT_MULTIQUADRATIC_ARITHMETIC_NOT_LEAN_KERNEL"
+  }
+}

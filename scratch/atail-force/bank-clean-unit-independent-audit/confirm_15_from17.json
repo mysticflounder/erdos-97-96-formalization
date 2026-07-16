@@ -1,0 +1,101 @@
+{
+  "crosscheck": [
+    "UNIT",
+    "UNIT",
+    "UNIT"
+  ],
+  "deleted": [
+    "ROW_K_O_I",
+    "ROW_Y_O_E"
+  ],
+  "generators": [
+    {
+      "name": "ROW_A_O_G",
+      "polynomial": "-Gx**2 + 2*Gx - Gy**2"
+    },
+    {
+      "name": "ROW_A_O_K",
+      "polynomial": "-Kx**2 + 2*Kx - Ky**2"
+    },
+    {
+      "name": "ROW_F_A_Z",
+      "polynomial": "2*Fx*Zx - 2*Fx + 2*Fy*Zy - Zx**2 - Zy**2 + 1"
+    },
+    {
+      "name": "ROW_F_A_K",
+      "polynomial": "2*Fx*Kx - 2*Fx + 2*Fy*Ky - Kx**2 - Ky**2 + 1"
+    },
+    {
+      "name": "ROW_G_X_E",
+      "polynomial": "-Ex**2 + 2*Ex*Gx - Ey**2 + 2*Ey*Gy - 2*Gx*Xx - 2*Gy*Xy + Xx**2 + Xy**2"
+    },
+    {
+      "name": "ROW_G_X_K",
+      "polynomial": "2*Gx*Kx - 2*Gx*Xx + 2*Gy*Ky - 2*Gy*Xy - Kx**2 - Ky**2 + Xx**2 + Xy**2"
+    },
+    {
+      "name": "ROW_K_O_Y",
+      "polynomial": "2*Kx*Yx + 2*Ky*Yy - Yx**2 - Yy**2"
+    },
+    {
+      "name": "ROW_K_O_G",
+      "polynomial": "-Gx**2 + 2*Gx*Kx - Gy**2 + 2*Gy*Ky"
+    },
+    {
+      "name": "ROW_O_A_E",
+      "polynomial": "-Ex**2 - Ey**2 + 1"
+    },
+    {
+      "name": "ROW_X_Z_G",
+      "polynomial": "-Gx**2 + 2*Gx*Xx - Gy**2 + 2*Gy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx**2 + Zy**2"
+    },
+    {
+      "name": "ROW_X_Z_F",
+      "polynomial": "-Fx**2 + 2*Fx*Xx - Fy**2 + 2*Fy*Xy - 2*Xx*Zx - 2*Xy*Zy + Zx**2 + Zy**2"
+    },
+    {
+      "name": "ROW_Y_O_X",
+      "polynomial": "-Xx**2 + 2*Xx*Yx - Xy**2 + 2*Xy*Yy"
+    },
+    {
+      "name": "ROW_Y_O_Z",
+      "polynomial": "2*Yx*Zx + 2*Yy*Zy - Zx**2 - Zy**2"
+    },
+    {
+      "name": "ROW_Z_A_Y",
+      "polynomial": "-Yx**2 + 2*Yx*Zx - Yy**2 + 2*Yy*Zy - 2*Zx + 1"
+    },
+    {
+      "name": "ROW_Z_A_G",
+      "polynomial": "-Gx**2 + 2*Gx*Zx - Gy**2 + 2*Gy*Zy - 2*Zx + 1"
+    }
+  ],
+  "msolve": {
+    "forward": {
+      "exit_code": 0,
+      "seconds": 0.11519016698002815,
+      "status": "EXITED",
+      "stderr": "",
+      "stdout": "",
+      "verdict": "UNIT"
+    },
+    "reverse": {
+      "exit_code": 0,
+      "seconds": 0.11645979201421142,
+      "status": "EXITED",
+      "stderr": "",
+      "stdout": "",
+      "verdict": "UNIT"
+    }
+  },
+  "remaining_count": 15,
+  "remaining_polynomial_sha256": "b0efd512be125e72cc1847f56bac68149e0b95c002587efce23375ef72d7dbaf",
+  "singular": {
+    "exit_code": 0,
+    "seconds": 2.163364250009181,
+    "status": "EXITED",
+    "stderr": "",
+    "stdout": "STATUS_UNIT\n",
+    "verdict": "UNIT"
+  }
+}

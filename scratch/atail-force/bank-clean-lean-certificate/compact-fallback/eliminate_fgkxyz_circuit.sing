@@ -1,0 +1,19 @@
+// Exact colored rigidity-circuit eliminant for the six-vertex FGKXYZ graph.
+// Gauge G=(0,0), K=(k,0).  R,S,T are squared color radii.
+option(redSB);
+ring r = 0,(k,Xx,Xy,Yx,Yy,Zx,Zy,Fx,Fy,T,S,R),(dp(9),dp(3));
+ideal I =
+  k^2-R,
+  Xx^2+Xy^2-R,
+  (Xx-Zx)^2+(Xy-Zy)^2-R,
+  (Xx-Fx)^2+(Xy-Fy)^2-R,
+  (Yx-k)^2+Yy^2-R,
+  (Yx-Xx)^2+(Yy-Xy)^2-S,
+  (Yx-Zx)^2+(Yy-Zy)^2-S,
+  Zx^2+Zy^2-S,
+  (Fx-Zx)^2+(Fy-Zy)^2-T,
+  (Fx-k)^2+Fy^2-T;
+ideal G=std(I);
+ideal E=eliminate(G,k*Xx*Xy*Yx*Yy*Zx*Zy*Fx*Fy);
+print(E);
+exit;

@@ -1,0 +1,2000 @@
+{
+  "certificate": "scratch/atail-force/bank-clean-lean-certificate/unit_certificate_groebner_jl_15.json",
+  "certificate_sha256": "afb111002531a20ca1301afe6d05d8e0184f08183c4b2a7c0acaa0b69d834935",
+  "chunk_body_target_bytes": 180000,
+  "chunk_count": 179,
+  "chunks": [
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179877,
+      "chunk_index": 0,
+      "command_bytes": 179989,
+      "definition": "bankClean15Cofactor_A_O_G_chunk000",
+      "normalized_source_sha256": "9c68924820a449760d41526e4109dc11ffccce56aa12a75e44508d73d64994ea",
+      "relation": "ROW_A_O_G",
+      "term_count": 1926
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179879,
+      "chunk_index": 1,
+      "command_bytes": 179991,
+      "definition": "bankClean15Cofactor_A_O_G_chunk001",
+      "normalized_source_sha256": "f84b7dbd9606acd2d5d2cff4a8159daf74617e76ad21caf92c74bb3bfc3f0eed",
+      "relation": "ROW_A_O_G",
+      "term_count": 1847
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179959,
+      "chunk_index": 2,
+      "command_bytes": 180071,
+      "definition": "bankClean15Cofactor_A_O_G_chunk002",
+      "normalized_source_sha256": "2fd1200f40e78da2b27486bfa0d37300e027878ea1126d823bd8fd3167e7666e",
+      "relation": "ROW_A_O_G",
+      "term_count": 1629
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179954,
+      "chunk_index": 3,
+      "command_bytes": 180066,
+      "definition": "bankClean15Cofactor_A_O_G_chunk003",
+      "normalized_source_sha256": "c8a330172f41ecdbc78e982a0b9a1d7e7eab8651c77fb0cd0a30a24872f50c3f",
+      "relation": "ROW_A_O_G",
+      "term_count": 1722
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179864,
+      "chunk_index": 4,
+      "command_bytes": 179976,
+      "definition": "bankClean15Cofactor_A_O_G_chunk004",
+      "normalized_source_sha256": "24648a66e4909d62e88ef33399af7f6e5fd792c2e57dfa5389588df9e4a0b989",
+      "relation": "ROW_A_O_G",
+      "term_count": 1361
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179987,
+      "chunk_index": 5,
+      "command_bytes": 180099,
+      "definition": "bankClean15Cofactor_A_O_G_chunk005",
+      "normalized_source_sha256": "e89011570d05b9ae8af6278a5911e59790fdf92d5316f9d8d553b1ea637a2361",
+      "relation": "ROW_A_O_G",
+      "term_count": 1368
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179989,
+      "chunk_index": 6,
+      "command_bytes": 180101,
+      "definition": "bankClean15Cofactor_A_O_G_chunk006",
+      "normalized_source_sha256": "925f241d994888ef12878c2ad067076cba0c9365f6ea0fd50d5270d25df2bf0e",
+      "relation": "ROW_A_O_G",
+      "term_count": 1796
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179878,
+      "chunk_index": 7,
+      "command_bytes": 179990,
+      "definition": "bankClean15Cofactor_A_O_G_chunk007",
+      "normalized_source_sha256": "7273d33303241b7aaf4f38b4022bcd8abfb4ff3ac05cd0e02c4880c81d3cdfe5",
+      "relation": "ROW_A_O_G",
+      "term_count": 1568
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179924,
+      "chunk_index": 8,
+      "command_bytes": 180036,
+      "definition": "bankClean15Cofactor_A_O_G_chunk008",
+      "normalized_source_sha256": "cbf7f3c08e7e918bffe62d007ae2702096ad185f2120e9cd0b78e336aaba9f20",
+      "relation": "ROW_A_O_G",
+      "term_count": 1494
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179948,
+      "chunk_index": 9,
+      "command_bytes": 180060,
+      "definition": "bankClean15Cofactor_A_O_G_chunk009",
+      "normalized_source_sha256": "323c8a61d3a695e6985b18f9f45a28c5c96d66d1f4b4800174101e8cadef7ed9",
+      "relation": "ROW_A_O_G",
+      "term_count": 1525
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179978,
+      "chunk_index": 10,
+      "command_bytes": 180090,
+      "definition": "bankClean15Cofactor_A_O_G_chunk010",
+      "normalized_source_sha256": "05fd2c7154754ebcabb32fddc38e9e9c03268d35a642b582af5c8797c3afb582",
+      "relation": "ROW_A_O_G",
+      "term_count": 1440
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179945,
+      "chunk_index": 11,
+      "command_bytes": 180057,
+      "definition": "bankClean15Cofactor_A_O_G_chunk011",
+      "normalized_source_sha256": "fd9c51ec3c53cb02c2deebcee4575942521072dc860909a863954b43c9f77513",
+      "relation": "ROW_A_O_G",
+      "term_count": 1479
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179972,
+      "chunk_index": 12,
+      "command_bytes": 180084,
+      "definition": "bankClean15Cofactor_A_O_G_chunk012",
+      "normalized_source_sha256": "e4668a341409e29872ab0ace4b95a4d649f205944c187dc2098185e6f2353992",
+      "relation": "ROW_A_O_G",
+      "term_count": 1457
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179877,
+      "chunk_index": 13,
+      "command_bytes": 179989,
+      "definition": "bankClean15Cofactor_A_O_G_chunk013",
+      "normalized_source_sha256": "1a5bdb2c2e4ffff3119c3c93b25cb484f2fd7e03500b3871b51f6ac0b23a93ba",
+      "relation": "ROW_A_O_G",
+      "term_count": 1364
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179897,
+      "chunk_index": 14,
+      "command_bytes": 180009,
+      "definition": "bankClean15Cofactor_A_O_G_chunk014",
+      "normalized_source_sha256": "5e4ca8c7fc3668f28fefc370c5b6230ed678a395f1370992089867f612329080",
+      "relation": "ROW_A_O_G",
+      "term_count": 1294
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179826,
+      "chunk_index": 15,
+      "command_bytes": 179938,
+      "definition": "bankClean15Cofactor_A_O_G_chunk015",
+      "normalized_source_sha256": "518bfbea7bf559f7617e44bc216a207d41bb01630519a5afe5a0e019fd0fac50",
+      "relation": "ROW_A_O_G",
+      "term_count": 1305
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179990,
+      "chunk_index": 16,
+      "command_bytes": 180102,
+      "definition": "bankClean15Cofactor_A_O_G_chunk016",
+      "normalized_source_sha256": "0fbcfc12cb04b5c363a2848d68dec564e864aa409b0ded2559070a6c87879e47",
+      "relation": "ROW_A_O_G",
+      "term_count": 1558
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179994,
+      "chunk_index": 17,
+      "command_bytes": 180106,
+      "definition": "bankClean15Cofactor_A_O_G_chunk017",
+      "normalized_source_sha256": "f1a01495d21eeca1aafb57aacf7e2eb3af3c3ba4db8aef02d2a891bceea0df23",
+      "relation": "ROW_A_O_G",
+      "term_count": 1435
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179984,
+      "chunk_index": 18,
+      "command_bytes": 180096,
+      "definition": "bankClean15Cofactor_A_O_G_chunk018",
+      "normalized_source_sha256": "ab66fd96608fdf4b1200ea275c2696bf7f742c85f18bfbf26c684b6f5fe56b4b",
+      "relation": "ROW_A_O_G",
+      "term_count": 1414
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179935,
+      "chunk_index": 19,
+      "command_bytes": 180047,
+      "definition": "bankClean15Cofactor_A_O_G_chunk019",
+      "normalized_source_sha256": "2716f2fafd178c04d66c92e972b9af5ce404c83644203097642ab5e155dd4065",
+      "relation": "ROW_A_O_G",
+      "term_count": 1371
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179920,
+      "chunk_index": 20,
+      "command_bytes": 180032,
+      "definition": "bankClean15Cofactor_A_O_G_chunk020",
+      "normalized_source_sha256": "ddad144a0dff7fffeba7d7f8eff599ad589b82d6179063a65d40464b6a48691b",
+      "relation": "ROW_A_O_G",
+      "term_count": 1344
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179900,
+      "chunk_index": 21,
+      "command_bytes": 180012,
+      "definition": "bankClean15Cofactor_A_O_G_chunk021",
+      "normalized_source_sha256": "97f4a6d0abef6a60445677d71ede6eda3b2d4cef37d358a8d660809c45d96530",
+      "relation": "ROW_A_O_G",
+      "term_count": 1297
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179820,
+      "chunk_index": 22,
+      "command_bytes": 179932,
+      "definition": "bankClean15Cofactor_A_O_G_chunk022",
+      "normalized_source_sha256": "c717aabc1f849a02bbdab7a4a0e29d577ea42c62e0ac65460790e9eea4ef454c",
+      "relation": "ROW_A_O_G",
+      "term_count": 1430
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179932,
+      "chunk_index": 23,
+      "command_bytes": 180044,
+      "definition": "bankClean15Cofactor_A_O_G_chunk023",
+      "normalized_source_sha256": "c87460907011985a4e29031624e9bdfc3ec2071cca0104676ece13d46a76b145",
+      "relation": "ROW_A_O_G",
+      "term_count": 1396
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179898,
+      "chunk_index": 24,
+      "command_bytes": 180010,
+      "definition": "bankClean15Cofactor_A_O_G_chunk024",
+      "normalized_source_sha256": "6e96234052494da8191315ddb173181222f523d532f084cae89f0525edbc493c",
+      "relation": "ROW_A_O_G",
+      "term_count": 1295
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179987,
+      "chunk_index": 25,
+      "command_bytes": 180099,
+      "definition": "bankClean15Cofactor_A_O_G_chunk025",
+      "normalized_source_sha256": "ca1ab9773e1afc626a3183916ae48489f907bbb50f08afae637738a3ba2e1be6",
+      "relation": "ROW_A_O_G",
+      "term_count": 1369
+    },
+    {
+      "addition_tree_depth": 5,
+      "body_bytes": 4084,
+      "chunk_index": 26,
+      "command_bytes": 4196,
+      "definition": "bankClean15Cofactor_A_O_G_chunk026",
+      "normalized_source_sha256": "ae931e3f1c0586e8ec83bd75fb6ba88ba431f932c5ef712d81759c069887ee90",
+      "relation": "ROW_A_O_G",
+      "term_count": 30
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179968,
+      "chunk_index": 0,
+      "command_bytes": 180080,
+      "definition": "bankClean15Cofactor_A_O_K_chunk000",
+      "normalized_source_sha256": "f15d93004dce972e68d9e015eeba6fb46ce461e1b078fca415cfd3ab061215a3",
+      "relation": "ROW_A_O_K",
+      "term_count": 1979
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179967,
+      "chunk_index": 1,
+      "command_bytes": 180079,
+      "definition": "bankClean15Cofactor_A_O_K_chunk001",
+      "normalized_source_sha256": "2bfd5236564eae1ffe38dab31844f07dc087ae6a61935c156260e4319fccb65a",
+      "relation": "ROW_A_O_K",
+      "term_count": 1783
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179925,
+      "chunk_index": 2,
+      "command_bytes": 180037,
+      "definition": "bankClean15Cofactor_A_O_K_chunk002",
+      "normalized_source_sha256": "cb36ebda42fc1ca4843eeff49d1d7160c9c86ffbf12f780ea2c7e7fc39b0af4f",
+      "relation": "ROW_A_O_K",
+      "term_count": 1532
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179931,
+      "chunk_index": 3,
+      "command_bytes": 180043,
+      "definition": "bankClean15Cofactor_A_O_K_chunk003",
+      "normalized_source_sha256": "e3270af4d5169d3371d4876561d1e959ac64fdec25a870ac6e78e2585704d5ca",
+      "relation": "ROW_A_O_K",
+      "term_count": 1735
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179968,
+      "chunk_index": 4,
+      "command_bytes": 180080,
+      "definition": "bankClean15Cofactor_A_O_K_chunk004",
+      "normalized_source_sha256": "af9a6ff595ec678c88e851005505da1c150892d8bd5dd4a765701e4a3aba5e08",
+      "relation": "ROW_A_O_K",
+      "term_count": 1717
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179972,
+      "chunk_index": 5,
+      "command_bytes": 180084,
+      "definition": "bankClean15Cofactor_A_O_K_chunk005",
+      "normalized_source_sha256": "df0650bf47abe897d1f1bc38ea3b1057890ce3b223925fd433ec8349d8c2022b",
+      "relation": "ROW_A_O_K",
+      "term_count": 1686
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179991,
+      "chunk_index": 6,
+      "command_bytes": 180103,
+      "definition": "bankClean15Cofactor_A_O_K_chunk006",
+      "normalized_source_sha256": "6f0b84ea6a92675a5a0e0aa8edffda48d08ac07bf169671c3daf0a7ffba09aba",
+      "relation": "ROW_A_O_K",
+      "term_count": 1590
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179953,
+      "chunk_index": 7,
+      "command_bytes": 180065,
+      "definition": "bankClean15Cofactor_A_O_K_chunk007",
+      "normalized_source_sha256": "c46e8f0008ce4d00a860705d471dca8ef2dce3b1e5c1033c0d7a0f366c819749",
+      "relation": "ROW_A_O_K",
+      "term_count": 1677
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179956,
+      "chunk_index": 8,
+      "command_bytes": 180068,
+      "definition": "bankClean15Cofactor_A_O_K_chunk008",
+      "normalized_source_sha256": "08dba6a62bc835d7a191193809f28f28aa878f15d46e36d573599e5088b2589b",
+      "relation": "ROW_A_O_K",
+      "term_count": 1470
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179870,
+      "chunk_index": 9,
+      "command_bytes": 179982,
+      "definition": "bankClean15Cofactor_A_O_K_chunk009",
+      "normalized_source_sha256": "fcec8f9368031d4bf6eff82a40a233e289807414b3cceb6da17a24969120c088",
+      "relation": "ROW_A_O_K",
+      "term_count": 1470
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179942,
+      "chunk_index": 10,
+      "command_bytes": 180054,
+      "definition": "bankClean15Cofactor_A_O_K_chunk010",
+      "normalized_source_sha256": "ba2377962ddf9de18471d00682ade100260835543c760d2db4a868d3a730fd48",
+      "relation": "ROW_A_O_K",
+      "term_count": 1734
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179988,
+      "chunk_index": 11,
+      "command_bytes": 180100,
+      "definition": "bankClean15Cofactor_A_O_K_chunk011",
+      "normalized_source_sha256": "91048927fe63c32ccb41b0a27bf3136463052365c37cc4efc9a2957735385a1a",
+      "relation": "ROW_A_O_K",
+      "term_count": 1617
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179887,
+      "chunk_index": 12,
+      "command_bytes": 179999,
+      "definition": "bankClean15Cofactor_A_O_K_chunk012",
+      "normalized_source_sha256": "3ba8c7a9880a3e43150216321ea8fc297aacaeb3b1e489d8f1fda91a8f48b45d",
+      "relation": "ROW_A_O_K",
+      "term_count": 1522
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179928,
+      "chunk_index": 13,
+      "command_bytes": 180040,
+      "definition": "bankClean15Cofactor_A_O_K_chunk013",
+      "normalized_source_sha256": "8ede95d456ef3b8c6c3419aeb2256a97e0c28ade634de88326c5d30c939edd8f",
+      "relation": "ROW_A_O_K",
+      "term_count": 1476
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179871,
+      "chunk_index": 14,
+      "command_bytes": 179983,
+      "definition": "bankClean15Cofactor_A_O_K_chunk014",
+      "normalized_source_sha256": "75e906f341466dd56a19adcd19a38d52546896ca256e413b476899bf1711bf86",
+      "relation": "ROW_A_O_K",
+      "term_count": 1463
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179977,
+      "chunk_index": 15,
+      "command_bytes": 180089,
+      "definition": "bankClean15Cofactor_A_O_K_chunk015",
+      "normalized_source_sha256": "e0d840f4830c6ca787d588747a1eb8f9a0c2bf88db3512198a027e6edde935f4",
+      "relation": "ROW_A_O_K",
+      "term_count": 1539
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179918,
+      "chunk_index": 16,
+      "command_bytes": 180030,
+      "definition": "bankClean15Cofactor_A_O_K_chunk016",
+      "normalized_source_sha256": "13457c5513e145d38fce620e7b2364fc318b789af3d4616b2e29068071bf3e38",
+      "relation": "ROW_A_O_K",
+      "term_count": 1407
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 147242,
+      "chunk_index": 17,
+      "command_bytes": 147354,
+      "definition": "bankClean15Cofactor_A_O_K_chunk017",
+      "normalized_source_sha256": "7c7de5c1832725ba514ac4d643c199b749e7a9e285059d503dfc08d1bce67804",
+      "relation": "ROW_A_O_K",
+      "term_count": 1156
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179936,
+      "chunk_index": 0,
+      "command_bytes": 180048,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk000",
+      "normalized_source_sha256": "01ac84805652156b54fbcad96ec758d45852b6c2e36c371eb3f92277efbbd606",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1927
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179926,
+      "chunk_index": 1,
+      "command_bytes": 180038,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk001",
+      "normalized_source_sha256": "6335c0395cc41093e645a5246bd8607148891aaba0d11d610f2f3d396aff5670",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1801
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179997,
+      "chunk_index": 2,
+      "command_bytes": 180109,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk002",
+      "normalized_source_sha256": "b49da5de99a43260e0713f9d9dac01356ea01afcc16ce649ff67c2a19618a2c7",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1722
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179945,
+      "chunk_index": 3,
+      "command_bytes": 180057,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk003",
+      "normalized_source_sha256": "483a04166cd45c14b5d688d3e00d5bf43ab317d581afd6dc54d4a6594603285c",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1546
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179942,
+      "chunk_index": 4,
+      "command_bytes": 180054,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk004",
+      "normalized_source_sha256": "f09fb467254c8ebc82712440dca73ef66fea151a9e18bb5df07fde27b487335d",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1686
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179886,
+      "chunk_index": 5,
+      "command_bytes": 179998,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk005",
+      "normalized_source_sha256": "60593f0b5dfe21e0bbe1a7c6684ee49c6f37d588bd2ae35c1113baea8a3ab1a6",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1463
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 170159,
+      "chunk_index": 6,
+      "command_bytes": 170271,
+      "definition": "bankClean15Cofactor_F_A_Z_chunk006",
+      "normalized_source_sha256": "26e0dea407016efaeb750caf0e4f12ab3ddaf052a7f1328877b8a224cb2cec26",
+      "relation": "ROW_F_A_Z",
+      "term_count": 1395
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179929,
+      "chunk_index": 0,
+      "command_bytes": 180041,
+      "definition": "bankClean15Cofactor_F_A_K_chunk000",
+      "normalized_source_sha256": "f395aadf0b86fde582346d418831f5ddc45cf7f6a708430c51046dab16e7edae",
+      "relation": "ROW_F_A_K",
+      "term_count": 1925
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179992,
+      "chunk_index": 1,
+      "command_bytes": 180104,
+      "definition": "bankClean15Cofactor_F_A_K_chunk001",
+      "normalized_source_sha256": "6b74f164146c95b6d3899acc81098e37d923e8afa958ccddd04c350d7cddb417",
+      "relation": "ROW_F_A_K",
+      "term_count": 1616
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179906,
+      "chunk_index": 2,
+      "command_bytes": 180018,
+      "definition": "bankClean15Cofactor_F_A_K_chunk002",
+      "normalized_source_sha256": "80e7d567db0fe77cc3c0a0040350dc7be5b6ced88738b93647f9fd63535d3258",
+      "relation": "ROW_F_A_K",
+      "term_count": 1766
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179904,
+      "chunk_index": 3,
+      "command_bytes": 180016,
+      "definition": "bankClean15Cofactor_F_A_K_chunk003",
+      "normalized_source_sha256": "8ce7c2fc2681ebe14c620c79c2e905375ba62a69984bd72555ca8d10c2f20d6a",
+      "relation": "ROW_F_A_K",
+      "term_count": 1685
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179977,
+      "chunk_index": 4,
+      "command_bytes": 180089,
+      "definition": "bankClean15Cofactor_F_A_K_chunk004",
+      "normalized_source_sha256": "cb880d0625383f0feffc0a9aabfa654a3d6f086a9eeffeb28cd9fe01b6428fad",
+      "relation": "ROW_F_A_K",
+      "term_count": 1520
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179839,
+      "chunk_index": 5,
+      "command_bytes": 179951,
+      "definition": "bankClean15Cofactor_F_A_K_chunk005",
+      "normalized_source_sha256": "edbb65518f449a0c3767ba03f618230bea4bb6b8154403ea59e12d9f0bdcbc19",
+      "relation": "ROW_F_A_K",
+      "term_count": 1656
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179876,
+      "chunk_index": 6,
+      "command_bytes": 179988,
+      "definition": "bankClean15Cofactor_F_A_K_chunk006",
+      "normalized_source_sha256": "9b85603efa4ac1e9a298d70855de45788e3bc150b17ce2f4493b8392ce2abe62",
+      "relation": "ROW_F_A_K",
+      "term_count": 1649
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179849,
+      "chunk_index": 7,
+      "command_bytes": 179961,
+      "definition": "bankClean15Cofactor_F_A_K_chunk007",
+      "normalized_source_sha256": "da06d2f325e15e6499eff90dcf3e0cbbaa1159afc01fcfb60f28ee904120803f",
+      "relation": "ROW_F_A_K",
+      "term_count": 1537
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179966,
+      "chunk_index": 8,
+      "command_bytes": 180078,
+      "definition": "bankClean15Cofactor_F_A_K_chunk008",
+      "normalized_source_sha256": "18758af10299a11ce76195e7ac8eb0555e0e0736c0197d044c85d06a21181d5e",
+      "relation": "ROW_F_A_K",
+      "term_count": 1581
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179917,
+      "chunk_index": 9,
+      "command_bytes": 180029,
+      "definition": "bankClean15Cofactor_F_A_K_chunk009",
+      "normalized_source_sha256": "37527f78b0ca73fe3d3affe3d307106de75d0fb001a9c3b3d7ed00673c8a4576",
+      "relation": "ROW_F_A_K",
+      "term_count": 1508
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 160201,
+      "chunk_index": 10,
+      "command_bytes": 160313,
+      "definition": "bankClean15Cofactor_F_A_K_chunk010",
+      "normalized_source_sha256": "84429bd83044d58c276f68e18198f7fccb25d50ff44dbe49f066eb3c5921ee9b",
+      "relation": "ROW_F_A_K",
+      "term_count": 1320
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179938,
+      "chunk_index": 0,
+      "command_bytes": 180050,
+      "definition": "bankClean15Cofactor_G_X_E_chunk000",
+      "normalized_source_sha256": "6c236311a9beca5fd2076896fff00a632211685f47e2679081a246fcbecab109",
+      "relation": "ROW_G_X_E",
+      "term_count": 1879
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179976,
+      "chunk_index": 1,
+      "command_bytes": 180088,
+      "definition": "bankClean15Cofactor_G_X_E_chunk001",
+      "normalized_source_sha256": "b995f6590c9ed8a6d3be9011068f348f886ba4640045b0bac19e6c032be5a810",
+      "relation": "ROW_G_X_E",
+      "term_count": 1578
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179982,
+      "chunk_index": 2,
+      "command_bytes": 180094,
+      "definition": "bankClean15Cofactor_G_X_E_chunk002",
+      "normalized_source_sha256": "227aee31dec0b8910919b1096110549bcc382ac15ea2c8602766c9e2a53a86b8",
+      "relation": "ROW_G_X_E",
+      "term_count": 1824
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 180000,
+      "chunk_index": 3,
+      "command_bytes": 180112,
+      "definition": "bankClean15Cofactor_G_X_E_chunk003",
+      "normalized_source_sha256": "1627ad90da5be71f36a7c2051a515b95400747630c2acdf860817c91cc4f6e3f",
+      "relation": "ROW_G_X_E",
+      "term_count": 1683
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179906,
+      "chunk_index": 4,
+      "command_bytes": 180018,
+      "definition": "bankClean15Cofactor_G_X_E_chunk004",
+      "normalized_source_sha256": "bc5f3c8a16786d6f3b805de94da7ff7cbf3b0ae539dc92d247e56c0436992b7e",
+      "relation": "ROW_G_X_E",
+      "term_count": 1622
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179984,
+      "chunk_index": 5,
+      "command_bytes": 180096,
+      "definition": "bankClean15Cofactor_G_X_E_chunk005",
+      "normalized_source_sha256": "e0d7cae6aeabef64e95626c64ba5e91cb6b0eed0a6770bf9ed54ad8a3446ce42",
+      "relation": "ROW_G_X_E",
+      "term_count": 1434
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179975,
+      "chunk_index": 6,
+      "command_bytes": 180087,
+      "definition": "bankClean15Cofactor_G_X_E_chunk006",
+      "normalized_source_sha256": "362bccbd612a65f88f7317a924417374b323e383090336b89297b227595b69c2",
+      "relation": "ROW_G_X_E",
+      "term_count": 1704
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179980,
+      "chunk_index": 7,
+      "command_bytes": 180092,
+      "definition": "bankClean15Cofactor_G_X_E_chunk007",
+      "normalized_source_sha256": "5388f4b176060c87b43c420220ec63f6b57f99b00bcc3169ac75d135319dc60b",
+      "relation": "ROW_G_X_E",
+      "term_count": 1552
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179913,
+      "chunk_index": 8,
+      "command_bytes": 180025,
+      "definition": "bankClean15Cofactor_G_X_E_chunk008",
+      "normalized_source_sha256": "13a01e40a6e4f6747d27fc4fabf45e0c8525bc730ec7029475410622e74f228f",
+      "relation": "ROW_G_X_E",
+      "term_count": 1427
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179987,
+      "chunk_index": 9,
+      "command_bytes": 180099,
+      "definition": "bankClean15Cofactor_G_X_E_chunk009",
+      "normalized_source_sha256": "f2bff2a39d3f16d05b97dcbf0deff969fd7dfff8126b07c527e9678eb9a49c5d",
+      "relation": "ROW_G_X_E",
+      "term_count": 1522
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 150435,
+      "chunk_index": 10,
+      "command_bytes": 150547,
+      "definition": "bankClean15Cofactor_G_X_E_chunk010",
+      "normalized_source_sha256": "5aaa0252ad7d3c33fc4ac04e441d65a5abd2d1931623e1de4e75d21397e6d0df",
+      "relation": "ROW_G_X_E",
+      "term_count": 1200
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179937,
+      "chunk_index": 0,
+      "command_bytes": 180049,
+      "definition": "bankClean15Cofactor_G_X_K_chunk000",
+      "normalized_source_sha256": "ccca4cd0691884f663cbdde7726c981d84a64281e6641c86e5d26c0ab83279ae",
+      "relation": "ROW_G_X_K",
+      "term_count": 1879
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179974,
+      "chunk_index": 1,
+      "command_bytes": 180086,
+      "definition": "bankClean15Cofactor_G_X_K_chunk001",
+      "normalized_source_sha256": "f86e189e13247fd60d0f4732f3ce03a02934d7e38dd60bac3c80b25124f7e7ab",
+      "relation": "ROW_G_X_K",
+      "term_count": 1578
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179965,
+      "chunk_index": 2,
+      "command_bytes": 180077,
+      "definition": "bankClean15Cofactor_G_X_K_chunk002",
+      "normalized_source_sha256": "96baf9964f9dff4bb3d755d7fa45537308139ae882c2d6816e4ff8eb4e354958",
+      "relation": "ROW_G_X_K",
+      "term_count": 1855
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179990,
+      "chunk_index": 3,
+      "command_bytes": 180102,
+      "definition": "bankClean15Cofactor_G_X_K_chunk003",
+      "normalized_source_sha256": "1563548f78262ee0e9e702dbfcc74a45e8f76915298a9fa10107228390de6ed5",
+      "relation": "ROW_G_X_K",
+      "term_count": 1679
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179982,
+      "chunk_index": 4,
+      "command_bytes": 180094,
+      "definition": "bankClean15Cofactor_G_X_K_chunk004",
+      "normalized_source_sha256": "2e71838fbf7ea6ce061154b7e88f7cbc41bdf663a68ddac8ebcd77d08da1577f",
+      "relation": "ROW_G_X_K",
+      "term_count": 1728
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179947,
+      "chunk_index": 5,
+      "command_bytes": 180059,
+      "definition": "bankClean15Cofactor_G_X_K_chunk005",
+      "normalized_source_sha256": "2313bbcdd15ab9a18caccfdbd6439de17893b2834108615e6a7c8d4e51c38d79",
+      "relation": "ROW_G_X_K",
+      "term_count": 1519
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179971,
+      "chunk_index": 6,
+      "command_bytes": 180083,
+      "definition": "bankClean15Cofactor_G_X_K_chunk006",
+      "normalized_source_sha256": "1431c9e9dd2ba24e7ba98acac8a136b8b6b6e3fc8243cb00295ab77648e78d3f",
+      "relation": "ROW_G_X_K",
+      "term_count": 1600
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179922,
+      "chunk_index": 7,
+      "command_bytes": 180034,
+      "definition": "bankClean15Cofactor_G_X_K_chunk007",
+      "normalized_source_sha256": "492cfa335d2e6ec74f9f21d881a5f894b74dfa347187fa5fe3102170838f08b8",
+      "relation": "ROW_G_X_K",
+      "term_count": 1644
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179918,
+      "chunk_index": 8,
+      "command_bytes": 180030,
+      "definition": "bankClean15Cofactor_G_X_K_chunk008",
+      "normalized_source_sha256": "b2fbe1aea63103cbe18167f7b5902a25751a3319eb91f8252aef5fa9bce9a902",
+      "relation": "ROW_G_X_K",
+      "term_count": 1594
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179832,
+      "chunk_index": 9,
+      "command_bytes": 179944,
+      "definition": "bankClean15Cofactor_G_X_K_chunk009",
+      "normalized_source_sha256": "3fec0d87469419b944a6c7f3e8884efedf351b3b64cc31608fb0199895f5f3ba",
+      "relation": "ROW_G_X_K",
+      "term_count": 1504
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179942,
+      "chunk_index": 10,
+      "command_bytes": 180054,
+      "definition": "bankClean15Cofactor_G_X_K_chunk010",
+      "normalized_source_sha256": "70392bf4c326a46111dbb7dc0c4dd0a0c49af1343f61ac2f423f042f18b5334b",
+      "relation": "ROW_G_X_K",
+      "term_count": 1534
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179893,
+      "chunk_index": 11,
+      "command_bytes": 180005,
+      "definition": "bankClean15Cofactor_G_X_K_chunk011",
+      "normalized_source_sha256": "90f32eafd1bee8cecfaa0dcc2cd93aa2dce3171a70fc9191e5fd234ea34ab574",
+      "relation": "ROW_G_X_K",
+      "term_count": 1514
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179914,
+      "chunk_index": 12,
+      "command_bytes": 180026,
+      "definition": "bankClean15Cofactor_G_X_K_chunk012",
+      "normalized_source_sha256": "b5e7ef99a0dd9ca796b3868c0262330b339282dc9f34cf30af9611adfe18d29c",
+      "relation": "ROW_G_X_K",
+      "term_count": 1436
+    },
+    {
+      "addition_tree_depth": 9,
+      "body_bytes": 50848,
+      "chunk_index": 13,
+      "command_bytes": 50960,
+      "definition": "bankClean15Cofactor_G_X_K_chunk013",
+      "normalized_source_sha256": "c26626168dfcf8cb0023eed746fe3cc06d6617a28f5eb4e33addd90d9c5eedaa",
+      "relation": "ROW_G_X_K",
+      "term_count": 416
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179913,
+      "chunk_index": 0,
+      "command_bytes": 180025,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk000",
+      "normalized_source_sha256": "86ec7daa33906c2e73b05f03e508b27654899af7a4d41238565667e1cd1940f8",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1967
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179985,
+      "chunk_index": 1,
+      "command_bytes": 180097,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk001",
+      "normalized_source_sha256": "9d012ca6ec824c76c9c114b77393c773c3dacaf2fae091a95c426a1e3184476e",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1804
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179913,
+      "chunk_index": 2,
+      "command_bytes": 180025,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk002",
+      "normalized_source_sha256": "f3afe0a3170d31ff90d18349a1923c209bab41183aa7cc73047737517e56d3d9",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1519
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179971,
+      "chunk_index": 3,
+      "command_bytes": 180083,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk003",
+      "normalized_source_sha256": "857ff0511daa97730a95c616ba67c05ad3d98677eace712c53b1b2f4041a3701",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1812
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179966,
+      "chunk_index": 4,
+      "command_bytes": 180078,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk004",
+      "normalized_source_sha256": "6aeb6549c16eef88015edbfb691e71c17b7f42372df837e07057b894d277f75c",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1654
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179979,
+      "chunk_index": 5,
+      "command_bytes": 180091,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk005",
+      "normalized_source_sha256": "26cb12ac8a4890dce6003a62523cbbe0af54aaac875133450ae784f436a72144",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1609
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179953,
+      "chunk_index": 6,
+      "command_bytes": 180065,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk006",
+      "normalized_source_sha256": "c4ac658d30f914f5606468ad870fb5e1a6f1582804da3081235bbf2573ece92c",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1446
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179958,
+      "chunk_index": 7,
+      "command_bytes": 180070,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk007",
+      "normalized_source_sha256": "eb6600255c4e838cf1462edd21b1beefaa25b862ffb0dddd1e0f5bd9981bbd51",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1556
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179982,
+      "chunk_index": 8,
+      "command_bytes": 180094,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk008",
+      "normalized_source_sha256": "ffda4713ef1d2cbdb229c4a36ef6c8118ba9669cf299c8696724c67c6f37b5b0",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1498
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179929,
+      "chunk_index": 9,
+      "command_bytes": 180041,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk009",
+      "normalized_source_sha256": "374e790997cb4c37692fd162069e766b6bdd2444d700653af68ec2b634b369c0",
+      "relation": "ROW_K_O_Y",
+      "term_count": 1409
+    },
+    {
+      "addition_tree_depth": 10,
+      "body_bytes": 100911,
+      "chunk_index": 10,
+      "command_bytes": 101023,
+      "definition": "bankClean15Cofactor_K_O_Y_chunk010",
+      "normalized_source_sha256": "9492b78e708b11951495520f6064cbd87f2700d239e8387f0f643e5b589d06b7",
+      "relation": "ROW_K_O_Y",
+      "term_count": 770
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179922,
+      "chunk_index": 0,
+      "command_bytes": 180034,
+      "definition": "bankClean15Cofactor_K_O_G_chunk000",
+      "normalized_source_sha256": "8506d526fb3728239e72d95bcd537dbc6f0519e40541d2f9ba285f8711e81e44",
+      "relation": "ROW_K_O_G",
+      "term_count": 1865
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179976,
+      "chunk_index": 1,
+      "command_bytes": 180088,
+      "definition": "bankClean15Cofactor_K_O_G_chunk001",
+      "normalized_source_sha256": "7ff928b0a34ce87e2e4d18fce4853617174c433a480cc84fe9fcbc596b9d1fcc",
+      "relation": "ROW_K_O_G",
+      "term_count": 1822
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179901,
+      "chunk_index": 2,
+      "command_bytes": 180013,
+      "definition": "bankClean15Cofactor_K_O_G_chunk002",
+      "normalized_source_sha256": "d35bce149dec7b99fb7631063001bf660064ed38d1156d6aff07e7ac0d5329ba",
+      "relation": "ROW_K_O_G",
+      "term_count": 1830
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179932,
+      "chunk_index": 3,
+      "command_bytes": 180044,
+      "definition": "bankClean15Cofactor_K_O_G_chunk003",
+      "normalized_source_sha256": "6e5dc4d254483eabf80a7b6fa8e9d2c895df952bfe30d4d0bc44fa56dd0b29b7",
+      "relation": "ROW_K_O_G",
+      "term_count": 1438
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179990,
+      "chunk_index": 4,
+      "command_bytes": 180102,
+      "definition": "bankClean15Cofactor_K_O_G_chunk004",
+      "normalized_source_sha256": "6c70b1a8a0f4a7dbcd1cbd91c5f2fcc0458e4a8b7038c65aa3261cbb3610ccbd",
+      "relation": "ROW_K_O_G",
+      "term_count": 1402
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179979,
+      "chunk_index": 5,
+      "command_bytes": 180091,
+      "definition": "bankClean15Cofactor_K_O_G_chunk005",
+      "normalized_source_sha256": "b88062433e6e1c6c02747e364951f309732122508fed61d39d188dbb4a2c045e",
+      "relation": "ROW_K_O_G",
+      "term_count": 1917
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179828,
+      "chunk_index": 6,
+      "command_bytes": 179940,
+      "definition": "bankClean15Cofactor_K_O_G_chunk006",
+      "normalized_source_sha256": "a27ac251b2a7640de02ac6c3c29ee1dca573a9c58fdf02635d8ae33970e2fc93",
+      "relation": "ROW_K_O_G",
+      "term_count": 1634
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179824,
+      "chunk_index": 7,
+      "command_bytes": 179936,
+      "definition": "bankClean15Cofactor_K_O_G_chunk007",
+      "normalized_source_sha256": "806a020dd17a142ab944a0bf92671352239a363ad8bc0a337c213fe928a3f6b6",
+      "relation": "ROW_K_O_G",
+      "term_count": 1564
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179964,
+      "chunk_index": 8,
+      "command_bytes": 180076,
+      "definition": "bankClean15Cofactor_K_O_G_chunk008",
+      "normalized_source_sha256": "cd1540278e95dbae7a70c340301306c7c7e5df3a89ba06e153d8c80fa318dd57",
+      "relation": "ROW_K_O_G",
+      "term_count": 1587
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179937,
+      "chunk_index": 9,
+      "command_bytes": 180049,
+      "definition": "bankClean15Cofactor_K_O_G_chunk009",
+      "normalized_source_sha256": "0dbc5b2a913f5640c3bfef62f0b802407899fb24a9ff81cc5dbf03941ee9a816",
+      "relation": "ROW_K_O_G",
+      "term_count": 1466
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179896,
+      "chunk_index": 10,
+      "command_bytes": 180008,
+      "definition": "bankClean15Cofactor_K_O_G_chunk010",
+      "normalized_source_sha256": "91ffc87a758d82615661b083fa08d499d5a530ee732e5dae7fb0e7bf2c4df5ea",
+      "relation": "ROW_K_O_G",
+      "term_count": 1605
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179998,
+      "chunk_index": 11,
+      "command_bytes": 180110,
+      "definition": "bankClean15Cofactor_K_O_G_chunk011",
+      "normalized_source_sha256": "8b8a65b4364fcec632031a001be5eb306d7b6dcdefb38994980d2bc0a350adaf",
+      "relation": "ROW_K_O_G",
+      "term_count": 1399
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179853,
+      "chunk_index": 12,
+      "command_bytes": 179965,
+      "definition": "bankClean15Cofactor_K_O_G_chunk012",
+      "normalized_source_sha256": "ed05b113947287d8466df9c6c74de30d6ad41ac2c27aa3c3ee2b060eda53509d",
+      "relation": "ROW_K_O_G",
+      "term_count": 1358
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179882,
+      "chunk_index": 13,
+      "command_bytes": 179994,
+      "definition": "bankClean15Cofactor_K_O_G_chunk013",
+      "normalized_source_sha256": "9b6cffa59bb7c14143e1c5138e84a27fa3e4b773bc45e8df6eb9a5ac35eadbc5",
+      "relation": "ROW_K_O_G",
+      "term_count": 1352
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179914,
+      "chunk_index": 14,
+      "command_bytes": 180026,
+      "definition": "bankClean15Cofactor_K_O_G_chunk014",
+      "normalized_source_sha256": "c2e819638d93073b67fa7845fd7453064d2824070110a9a304aa8a2a8f35bced",
+      "relation": "ROW_K_O_G",
+      "term_count": 1394
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179933,
+      "chunk_index": 15,
+      "command_bytes": 180045,
+      "definition": "bankClean15Cofactor_K_O_G_chunk015",
+      "normalized_source_sha256": "b7f5a30796dd132a697d26d29f090d1f930e077ebe8ae469ca465f89b9c6285e",
+      "relation": "ROW_K_O_G",
+      "term_count": 1602
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179999,
+      "chunk_index": 16,
+      "command_bytes": 180111,
+      "definition": "bankClean15Cofactor_K_O_G_chunk016",
+      "normalized_source_sha256": "e091cfd4eb5ee78d985c3284df5b155283e289ae8b564bd3207988eba2c83633",
+      "relation": "ROW_K_O_G",
+      "term_count": 1463
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179958,
+      "chunk_index": 17,
+      "command_bytes": 180070,
+      "definition": "bankClean15Cofactor_K_O_G_chunk017",
+      "normalized_source_sha256": "38e6a9258f67ddfc406814dd38261a2a51a2e937aef09a2032810f805d15a6e3",
+      "relation": "ROW_K_O_G",
+      "term_count": 1411
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179918,
+      "chunk_index": 18,
+      "command_bytes": 180030,
+      "definition": "bankClean15Cofactor_K_O_G_chunk018",
+      "normalized_source_sha256": "b97c43ec383177b5b65ff2d37e5db47ead81a462369c48e0bd3c47cf816020c2",
+      "relation": "ROW_K_O_G",
+      "term_count": 1350
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179943,
+      "chunk_index": 19,
+      "command_bytes": 180055,
+      "definition": "bankClean15Cofactor_K_O_G_chunk019",
+      "normalized_source_sha256": "fc6fcd1bf4ed3c82b37e966252bdd17ced76533256a200c09862f8f0e2190f75",
+      "relation": "ROW_K_O_G",
+      "term_count": 1352
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179991,
+      "chunk_index": 20,
+      "command_bytes": 180103,
+      "definition": "bankClean15Cofactor_K_O_G_chunk020",
+      "normalized_source_sha256": "b615fde15f71e02595bd2de29c3ffc65f4ada4c0036298d35760c0e21f6020f0",
+      "relation": "ROW_K_O_G",
+      "term_count": 1269
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179984,
+      "chunk_index": 21,
+      "command_bytes": 180096,
+      "definition": "bankClean15Cofactor_K_O_G_chunk021",
+      "normalized_source_sha256": "f0a44dbf66a726f1be0305ca5d5e350d061256b96b18b807cad544b051fc1e7b",
+      "relation": "ROW_K_O_G",
+      "term_count": 1351
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179934,
+      "chunk_index": 22,
+      "command_bytes": 180046,
+      "definition": "bankClean15Cofactor_K_O_G_chunk022",
+      "normalized_source_sha256": "6ccebb88805a7377d0f3507f4bbd846e17e4046aa3763aa441011e1253f8a387",
+      "relation": "ROW_K_O_G",
+      "term_count": 1367
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179863,
+      "chunk_index": 23,
+      "command_bytes": 179975,
+      "definition": "bankClean15Cofactor_K_O_G_chunk023",
+      "normalized_source_sha256": "7062ea6a7724bddbe69b93e72fcb2e13defe4f3a034af2636defd17ca15b1a9a",
+      "relation": "ROW_K_O_G",
+      "term_count": 1282
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179974,
+      "chunk_index": 24,
+      "command_bytes": 180086,
+      "definition": "bankClean15Cofactor_K_O_G_chunk024",
+      "normalized_source_sha256": "efdb31a450c0fea44d169225f1deec5735e5d14604fe6732c5b9e510df2c1c62",
+      "relation": "ROW_K_O_G",
+      "term_count": 1283
+    },
+    {
+      "addition_tree_depth": 10,
+      "body_bytes": 96692,
+      "chunk_index": 25,
+      "command_bytes": 96804,
+      "definition": "bankClean15Cofactor_K_O_G_chunk025",
+      "normalized_source_sha256": "f2fd03da96cfd61905814635c9bac44911603e10085c7d66fb38c3dc78f39155",
+      "relation": "ROW_K_O_G",
+      "term_count": 683
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179937,
+      "chunk_index": 0,
+      "command_bytes": 180049,
+      "definition": "bankClean15Cofactor_O_A_E_chunk000",
+      "normalized_source_sha256": "ccca4cd0691884f663cbdde7726c981d84a64281e6641c86e5d26c0ab83279ae",
+      "relation": "ROW_O_A_E",
+      "term_count": 1879
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179978,
+      "chunk_index": 1,
+      "command_bytes": 180090,
+      "definition": "bankClean15Cofactor_O_A_E_chunk001",
+      "normalized_source_sha256": "ba6acffc8455cdd9912e0b5f47826d2e5a84fda7d304cf142ff951ef5ce8a41e",
+      "relation": "ROW_O_A_E",
+      "term_count": 1578
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179950,
+      "chunk_index": 2,
+      "command_bytes": 180062,
+      "definition": "bankClean15Cofactor_O_A_E_chunk002",
+      "normalized_source_sha256": "314ce9d760b8ffdc4913aad2baa00b2c23d2a0327b13b61321aada4fac8a261b",
+      "relation": "ROW_O_A_E",
+      "term_count": 1824
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179929,
+      "chunk_index": 3,
+      "command_bytes": 180041,
+      "definition": "bankClean15Cofactor_O_A_E_chunk003",
+      "normalized_source_sha256": "b4c3d2ea891b3a931cff4c68bf8b90f193071734e26b32e920b3b454106988da",
+      "relation": "ROW_O_A_E",
+      "term_count": 1682
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179910,
+      "chunk_index": 4,
+      "command_bytes": 180022,
+      "definition": "bankClean15Cofactor_O_A_E_chunk004",
+      "normalized_source_sha256": "ee2dea67989d25ffe6415393c896d72ef162d727c2cf47fae4f81f0b94d49204",
+      "relation": "ROW_O_A_E",
+      "term_count": 1622
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179991,
+      "chunk_index": 5,
+      "command_bytes": 180103,
+      "definition": "bankClean15Cofactor_O_A_E_chunk005",
+      "normalized_source_sha256": "adaea2bafa5a69af7b76502b04c8c0b6838d85a7e5734d1a16ecbe0e6113127f",
+      "relation": "ROW_O_A_E",
+      "term_count": 1434
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179895,
+      "chunk_index": 6,
+      "command_bytes": 180007,
+      "definition": "bankClean15Cofactor_O_A_E_chunk006",
+      "normalized_source_sha256": "6dbf38e70d5359da36493965f564c6f6fa4fd9a0f8555e1a5ca6af76b6889eab",
+      "relation": "ROW_O_A_E",
+      "term_count": 1703
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179874,
+      "chunk_index": 7,
+      "command_bytes": 179986,
+      "definition": "bankClean15Cofactor_O_A_E_chunk007",
+      "normalized_source_sha256": "5666b37373b4e3d70cd12c4ead05462167a61e7bc22f07f6aeadf7ac035f74ba",
+      "relation": "ROW_O_A_E",
+      "term_count": 1551
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179987,
+      "chunk_index": 8,
+      "command_bytes": 180099,
+      "definition": "bankClean15Cofactor_O_A_E_chunk008",
+      "normalized_source_sha256": "6ab2f3db842ec1fec30847750a3a9aa27cc2cc887255ce9c687f57930966b1f9",
+      "relation": "ROW_O_A_E",
+      "term_count": 1428
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179940,
+      "chunk_index": 9,
+      "command_bytes": 180052,
+      "definition": "bankClean15Cofactor_O_A_E_chunk009",
+      "normalized_source_sha256": "e071bf7b7efed63699e592cef02fbe2d88156f9e92f64a614ed927156024e435",
+      "relation": "ROW_O_A_E",
+      "term_count": 1522
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 150722,
+      "chunk_index": 10,
+      "command_bytes": 150834,
+      "definition": "bankClean15Cofactor_O_A_E_chunk010",
+      "normalized_source_sha256": "096bdc0190909771e107312995f661e36afa9368a8d5633bee3fec94bc47660c",
+      "relation": "ROW_O_A_E",
+      "term_count": 1202
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179925,
+      "chunk_index": 0,
+      "command_bytes": 180037,
+      "definition": "bankClean15Cofactor_X_Z_G_chunk000",
+      "normalized_source_sha256": "3c20378d3a0aef92a7515b562d6613d77959e642561e542d4c91127454608dbb",
+      "relation": "ROW_X_Z_G",
+      "term_count": 1998
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 173155,
+      "chunk_index": 1,
+      "command_bytes": 173267,
+      "definition": "bankClean15Cofactor_X_Z_G_chunk001",
+      "normalized_source_sha256": "f9fbf59630e6ccbe9fe8c8a529ac05b821505c2decc3ec2901f17197839f42bf",
+      "relation": "ROW_X_Z_G",
+      "term_count": 1636
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 145136,
+      "chunk_index": 0,
+      "command_bytes": 145248,
+      "definition": "bankClean15Cofactor_X_Z_F_chunk000",
+      "normalized_source_sha256": "d5bc4dedcf76ff08471624a9fbb51598a393ac23b1187db9043dd2b4f5291303",
+      "relation": "ROW_X_Z_F",
+      "term_count": 1543
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179980,
+      "chunk_index": 0,
+      "command_bytes": 180092,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk000",
+      "normalized_source_sha256": "68c498a3f5c7d294e75258afd538b6980f4812d5435d7b9f9ae5b52d77909572",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1956
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179914,
+      "chunk_index": 1,
+      "command_bytes": 180026,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk001",
+      "normalized_source_sha256": "1c38a4bff598f79b1c95944d5cb1a8ea95aa2e4e04f15f9f56555e57914f5271",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1730
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179927,
+      "chunk_index": 2,
+      "command_bytes": 180039,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk002",
+      "normalized_source_sha256": "dae2e829ca56ad3cec5e75b8acdc615f28ac683407f9c109953773c7e8a15c08",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1667
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179934,
+      "chunk_index": 3,
+      "command_bytes": 180046,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk003",
+      "normalized_source_sha256": "4b458298537bcc3715397215a39bdf979325cc74a40f4a14ce558b47cb2379ce",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1641
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179943,
+      "chunk_index": 4,
+      "command_bytes": 180055,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk004",
+      "normalized_source_sha256": "b67120003ab25d41f2ef7074ed2468983c85c81954068fc3a8666780b3b170d0",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1600
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179955,
+      "chunk_index": 5,
+      "command_bytes": 180067,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk005",
+      "normalized_source_sha256": "c1a261d5ce5cca06880ec76997482db9e44744f4d8135f17eadac13d352dc7e7",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1540
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179956,
+      "chunk_index": 6,
+      "command_bytes": 180068,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk006",
+      "normalized_source_sha256": "3244abcce7480d7e5b978ea1b56ce5e90fbaa38e4fa845299dbc06fc67a8b523",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1464
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 124727,
+      "chunk_index": 7,
+      "command_bytes": 124839,
+      "definition": "bankClean15Cofactor_Y_O_X_chunk007",
+      "normalized_source_sha256": "6f4ca3d0222098a20a494ef335883b8f8694c2d7c818d17120bee95eb28b5577",
+      "relation": "ROW_Y_O_X",
+      "term_count": 1092
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179995,
+      "chunk_index": 0,
+      "command_bytes": 180107,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk000",
+      "normalized_source_sha256": "37777ec2824df944d50ef72e0f662f1a82ce41b9c2502428757b300552310e45",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1951
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179976,
+      "chunk_index": 1,
+      "command_bytes": 180088,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk001",
+      "normalized_source_sha256": "df937f40abfd21837110c7165c4504be20f82b1b6e7a9b2be83ea665a3a0888c",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1743
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179965,
+      "chunk_index": 2,
+      "command_bytes": 180077,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk002",
+      "normalized_source_sha256": "c27ee5cac808d7d7cc6afc59b34dade13059037d3e47e1cee096cfccd5a0f812",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1746
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179982,
+      "chunk_index": 3,
+      "command_bytes": 180094,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk003",
+      "normalized_source_sha256": "b35341b7f7bfa2bcd3137da95dbf34c34b9906bf1fc7ebbc8408abc08b3d6e2c",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1601
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179941,
+      "chunk_index": 4,
+      "command_bytes": 180053,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk004",
+      "normalized_source_sha256": "1044d7c0aa0453c9ae7985ef1ff49bdae4d38a53a21f67ac0b91f9b5662680b7",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1594
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179978,
+      "chunk_index": 5,
+      "command_bytes": 180090,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk005",
+      "normalized_source_sha256": "48e28fb6221718abbfd6180bf828453ecb8009d85a56795c32502753677563a8",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1568
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179954,
+      "chunk_index": 6,
+      "command_bytes": 180066,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk006",
+      "normalized_source_sha256": "237b700da2fc93bdfcedd6ed405efc7ca583203df2dc02bf0150543599f5258a",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 1467
+    },
+    {
+      "addition_tree_depth": 10,
+      "body_bytes": 125591,
+      "chunk_index": 7,
+      "command_bytes": 125703,
+      "definition": "bankClean15Cofactor_Y_O_Z_chunk007",
+      "normalized_source_sha256": "5efa741e9903b6655cfba8957d3707af7625e4f3258f143d62cccfa4258d9fad",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 970
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179958,
+      "chunk_index": 0,
+      "command_bytes": 180070,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk000",
+      "normalized_source_sha256": "139f4a1f3f160ba60b6fe1673461313dc73e043962bcb636e8646a94f0326a8a",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1973
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179876,
+      "chunk_index": 1,
+      "command_bytes": 179988,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk001",
+      "normalized_source_sha256": "a04e2d8249afa038c7a090cd9a600de30a45794ebe7408147ed69490a932a17a",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1816
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179981,
+      "chunk_index": 2,
+      "command_bytes": 180093,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk002",
+      "normalized_source_sha256": "785e727bb20699421b883694c00cd006d0db287a91d91d30c8aa757d5fe394b7",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1487
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179883,
+      "chunk_index": 3,
+      "command_bytes": 179995,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk003",
+      "normalized_source_sha256": "36a102630f167f7916a19b13259de8c320b1af6af5dba9c1e943ea5db043ea5b",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1806
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179913,
+      "chunk_index": 4,
+      "command_bytes": 180025,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk004",
+      "normalized_source_sha256": "0ce9d5c46f7b6f942848bacc7e260577a3a7f76758ae792330f6128f12ba7ae4",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1673
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179970,
+      "chunk_index": 5,
+      "command_bytes": 180082,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk005",
+      "normalized_source_sha256": "b0f162f8441b16082128947d96d018934ad16e8ec7b7c16121943e9ff8a74391",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1581
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179934,
+      "chunk_index": 6,
+      "command_bytes": 180046,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk006",
+      "normalized_source_sha256": "8ba99888e115140843e0716b0124043c1c6bbfe2d6a4746fe637ce528dae9110",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1447
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179987,
+      "chunk_index": 7,
+      "command_bytes": 180099,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk007",
+      "normalized_source_sha256": "64e58d01c76f1d4ccccf64c549e12331ccdf1eacf8edf144fd15e450892fdd2a",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1571
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179976,
+      "chunk_index": 8,
+      "command_bytes": 180088,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk008",
+      "normalized_source_sha256": "865dc4d26ea7a89d1b55f4537062f5374d1584ed643c88bd5e69237b3ee3538c",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1496
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179966,
+      "chunk_index": 9,
+      "command_bytes": 180078,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk009",
+      "normalized_source_sha256": "f785c14f772eeba2b6e0575f1d1da14beae235c2f8fc9acef30dc33ae5cd52b5",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 1418
+    },
+    {
+      "addition_tree_depth": 10,
+      "body_bytes": 127699,
+      "chunk_index": 10,
+      "command_bytes": 127811,
+      "definition": "bankClean15Cofactor_Z_A_Y_chunk010",
+      "normalized_source_sha256": "0859aa3db23bf2659e7a7425a1c39de148093225dde49e61064026aa51e4ec72",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 984
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179916,
+      "chunk_index": 0,
+      "command_bytes": 180028,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk000",
+      "normalized_source_sha256": "c4a2399a8645d110e3fe549ff34801dc60d80045b9ed470e3a1ab63c17a65a69",
+      "relation": "ROW_Z_A_G",
+      "term_count": 2030
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179942,
+      "chunk_index": 1,
+      "command_bytes": 180054,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk001",
+      "normalized_source_sha256": "4df44ad31f18cf8887c040b7f4f5cd01da10c25962773742981c48d1be4044d0",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1805
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179991,
+      "chunk_index": 2,
+      "command_bytes": 180103,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk002",
+      "normalized_source_sha256": "94a61033c2dddc4380ad2865a87439358ca20d6055603e75daed81e7d9e0d4b7",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1624
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179977,
+      "chunk_index": 3,
+      "command_bytes": 180089,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk003",
+      "normalized_source_sha256": "76983b68855d1570b9cf33228f861ef0510f9231cc159b627ade6717f352093d",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1642
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179966,
+      "chunk_index": 4,
+      "command_bytes": 180078,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk004",
+      "normalized_source_sha256": "60937de023ade5305a111b5d6e082b1533f287020b55c2171b009baa56d6b9bc",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1740
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179994,
+      "chunk_index": 5,
+      "command_bytes": 180106,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk005",
+      "normalized_source_sha256": "aebe652a701cd1e8cd7f035f666e43d63ac8fbfa5c04eba2f4103bf73753ac9c",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1633
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179982,
+      "chunk_index": 6,
+      "command_bytes": 180094,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk006",
+      "normalized_source_sha256": "bfa0a9c7ace0c228073e244f7e3f5b8c7bf787b2ac2db222eb1ad4d885aec5f5",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1554
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179953,
+      "chunk_index": 7,
+      "command_bytes": 180065,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk007",
+      "normalized_source_sha256": "ceae068df355b7a337211c51b0dd97bcdec19290c9c63b0c0b309889a85df10c",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1479
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179955,
+      "chunk_index": 8,
+      "command_bytes": 180067,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk008",
+      "normalized_source_sha256": "8a7dde2e53f247b842612afd751fd759a0944ab632bfaeb9443e654ee00a9c54",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1412
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179958,
+      "chunk_index": 9,
+      "command_bytes": 180070,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk009",
+      "normalized_source_sha256": "2a39600dbb99d09261adb71414b49443fddff988af23483ac077a35c60c5d689",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1596
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179886,
+      "chunk_index": 10,
+      "command_bytes": 179998,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk010",
+      "normalized_source_sha256": "b8588affd09fd9ae4aba139d2955c0250672935c1f912f832555c4386a0e50aa",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1442
+    },
+    {
+      "addition_tree_depth": 11,
+      "body_bytes": 179930,
+      "chunk_index": 11,
+      "command_bytes": 180042,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk011",
+      "normalized_source_sha256": "b8230869a7787a4196eab79c494315bd6023ff530da228639e211c50064f1106",
+      "relation": "ROW_Z_A_G",
+      "term_count": 1407
+    },
+    {
+      "addition_tree_depth": 10,
+      "body_bytes": 90321,
+      "chunk_index": 12,
+      "command_bytes": 90433,
+      "definition": "bankClean15Cofactor_Z_A_G_chunk012",
+      "normalized_source_sha256": "75ecf1bd4e3dc4b3321c5e1b978d7ede2ebd653401ef724db20f38b5711f4b1a",
+      "relation": "ROW_Z_A_G",
+      "term_count": 675
+    }
+  ],
+  "cofactors": [
+    {
+      "chunk_aggregate_addition_depth": 5,
+      "chunk_count": 27,
+      "cofactor": "bankClean15Cofactor_A_O_G",
+      "normalized_source_sha256": "f088126407e2d1f6793c99001e2c241c648a27226f959623c79259b19c422e0f",
+      "reconstructed_source_sha256": "f088126407e2d1f6793c99001e2c241c648a27226f959623c79259b19c422e0f",
+      "relation": "ROW_A_O_G",
+      "term_count": 38514
+    },
+    {
+      "chunk_aggregate_addition_depth": 5,
+      "chunk_count": 18,
+      "cofactor": "bankClean15Cofactor_A_O_K",
+      "normalized_source_sha256": "8fe41cf091ae8215967360244ea6e6f2194edeb5127e4bf81cb8b1acd0b53ca6",
+      "reconstructed_source_sha256": "8fe41cf091ae8215967360244ea6e6f2194edeb5127e4bf81cb8b1acd0b53ca6",
+      "relation": "ROW_A_O_K",
+      "term_count": 28553
+    },
+    {
+      "chunk_aggregate_addition_depth": 3,
+      "chunk_count": 7,
+      "cofactor": "bankClean15Cofactor_F_A_Z",
+      "normalized_source_sha256": "06743590cc8e6bda59cecf56646ccc36c51e85494d6807dcb743de124d4caa3e",
+      "reconstructed_source_sha256": "06743590cc8e6bda59cecf56646ccc36c51e85494d6807dcb743de124d4caa3e",
+      "relation": "ROW_F_A_Z",
+      "term_count": 11540
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 11,
+      "cofactor": "bankClean15Cofactor_F_A_K",
+      "normalized_source_sha256": "0e06b2343324c9093f50cef7bdc927ffe43469cabc7fc13e5868712eac005a4d",
+      "reconstructed_source_sha256": "0e06b2343324c9093f50cef7bdc927ffe43469cabc7fc13e5868712eac005a4d",
+      "relation": "ROW_F_A_K",
+      "term_count": 17763
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 11,
+      "cofactor": "bankClean15Cofactor_G_X_E",
+      "normalized_source_sha256": "6ee63e95f94e29068f1ccd95f17d71551a275bb790dc95dd3065b0e085023dc1",
+      "reconstructed_source_sha256": "6ee63e95f94e29068f1ccd95f17d71551a275bb790dc95dd3065b0e085023dc1",
+      "relation": "ROW_G_X_E",
+      "term_count": 17425
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 14,
+      "cofactor": "bankClean15Cofactor_G_X_K",
+      "normalized_source_sha256": "e89104035b701d805a020ba277acb2362fe0aa6b31b327ace06761428bf849c2",
+      "reconstructed_source_sha256": "e89104035b701d805a020ba277acb2362fe0aa6b31b327ace06761428bf849c2",
+      "relation": "ROW_G_X_K",
+      "term_count": 21480
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 11,
+      "cofactor": "bankClean15Cofactor_K_O_Y",
+      "normalized_source_sha256": "a421047210f2bdaf525f47857850e4b611f18edf8014b4242d2a49041a84f184",
+      "reconstructed_source_sha256": "a421047210f2bdaf525f47857850e4b611f18edf8014b4242d2a49041a84f184",
+      "relation": "ROW_K_O_Y",
+      "term_count": 17044
+    },
+    {
+      "chunk_aggregate_addition_depth": 5,
+      "chunk_count": 26,
+      "cofactor": "bankClean15Cofactor_K_O_G",
+      "normalized_source_sha256": "5b372809b5f8d4dddcf015095308295ab23bf9666fe53dc1b3de0701ca96633d",
+      "reconstructed_source_sha256": "5b372809b5f8d4dddcf015095308295ab23bf9666fe53dc1b3de0701ca96633d",
+      "relation": "ROW_K_O_G",
+      "term_count": 38046
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 11,
+      "cofactor": "bankClean15Cofactor_O_A_E",
+      "normalized_source_sha256": "ed895bcda6f82f85e1273f84c51ae68ad4a571b2cdfb6055ad881c1f0a663660",
+      "reconstructed_source_sha256": "ed895bcda6f82f85e1273f84c51ae68ad4a571b2cdfb6055ad881c1f0a663660",
+      "relation": "ROW_O_A_E",
+      "term_count": 17425
+    },
+    {
+      "chunk_aggregate_addition_depth": 1,
+      "chunk_count": 2,
+      "cofactor": "bankClean15Cofactor_X_Z_G",
+      "normalized_source_sha256": "596ab8f9e77ab47b0c59d3e8ae8fcc62be853be310aabf876c85f2033040fcd7",
+      "reconstructed_source_sha256": "596ab8f9e77ab47b0c59d3e8ae8fcc62be853be310aabf876c85f2033040fcd7",
+      "relation": "ROW_X_Z_G",
+      "term_count": 3634
+    },
+    {
+      "chunk_aggregate_addition_depth": 0,
+      "chunk_count": 1,
+      "cofactor": "bankClean15Cofactor_X_Z_F",
+      "normalized_source_sha256": "d5bc4dedcf76ff08471624a9fbb51598a393ac23b1187db9043dd2b4f5291303",
+      "reconstructed_source_sha256": "d5bc4dedcf76ff08471624a9fbb51598a393ac23b1187db9043dd2b4f5291303",
+      "relation": "ROW_X_Z_F",
+      "term_count": 1543
+    },
+    {
+      "chunk_aggregate_addition_depth": 3,
+      "chunk_count": 8,
+      "cofactor": "bankClean15Cofactor_Y_O_X",
+      "normalized_source_sha256": "20dfa16553aae356b204a7c3904f678c471b8523c7d3a41c08f02e50a9fcfd82",
+      "reconstructed_source_sha256": "20dfa16553aae356b204a7c3904f678c471b8523c7d3a41c08f02e50a9fcfd82",
+      "relation": "ROW_Y_O_X",
+      "term_count": 12690
+    },
+    {
+      "chunk_aggregate_addition_depth": 3,
+      "chunk_count": 8,
+      "cofactor": "bankClean15Cofactor_Y_O_Z",
+      "normalized_source_sha256": "b189cde0ebd66f638469e2e9624248edc2671fadbbb90fb8e5c1e091c1246b2c",
+      "reconstructed_source_sha256": "b189cde0ebd66f638469e2e9624248edc2671fadbbb90fb8e5c1e091c1246b2c",
+      "relation": "ROW_Y_O_Z",
+      "term_count": 12640
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 11,
+      "cofactor": "bankClean15Cofactor_Z_A_Y",
+      "normalized_source_sha256": "65451a136d8545673647203b46e45517d03a802a21b1ae2bb3e1853d72ac8fc6",
+      "reconstructed_source_sha256": "65451a136d8545673647203b46e45517d03a802a21b1ae2bb3e1853d72ac8fc6",
+      "relation": "ROW_Z_A_Y",
+      "term_count": 17252
+    },
+    {
+      "chunk_aggregate_addition_depth": 4,
+      "chunk_count": 13,
+      "cofactor": "bankClean15Cofactor_Z_A_G",
+      "normalized_source_sha256": "450b0be97668e6371407dbe0b5a163902dc2850c1c51481855b0b1204766352a",
+      "reconstructed_source_sha256": "450b0be97668e6371407dbe0b5a163902dc2850c1c51481855b0b1204766352a",
+      "relation": "ROW_Z_A_G",
+      "term_count": 20039
+    }
+  ],
+  "core": "scratch/atail-force/bank-clean-unit-independent-audit/confirm_15_from17.json",
+  "core_sha256": "24f08887ccdc6c07a19b447352b40dc1ec2bf4facf50752e13708386cfdde165",
+  "exact_identity_nonconstant_residual_terms": 0,
+  "exact_identity_polynomial_terms": 1,
+  "exact_qq_identity_replayed": true,
+  "generator": "scratch/atail-force/bank-clean-lean-certificate/def-sharded/generate_def_sharded_lean.py",
+  "generator_names": [
+    "ROW_A_O_G",
+    "ROW_A_O_K",
+    "ROW_F_A_Z",
+    "ROW_F_A_K",
+    "ROW_G_X_E",
+    "ROW_G_X_K",
+    "ROW_K_O_Y",
+    "ROW_K_O_G",
+    "ROW_O_A_E",
+    "ROW_X_Z_G",
+    "ROW_X_Z_F",
+    "ROW_Y_O_X",
+    "ROW_Y_O_Z",
+    "ROW_Z_A_Y",
+    "ROW_Z_A_G"
+  ],
+  "geometry_theorems": [
+    "bank_clean15_anchor_collision",
+    "false_of_bank_clean15_rows"
+  ],
+  "identity_text_sha256": "dfbd38fb29cd9feceee945b68339c2a64723573db95219a20d030630c37a6c14",
+  "lean_validation": "pending",
+  "max_chunk_command_bytes_limit": 200000,
+  "max_command_bytes_exclusive_limit": 250000,
+  "max_multiplier_degree": 8,
+  "maximum_chunk_addition_tree_depth": 11,
+  "maximum_chunk_command_bytes": 180112,
+  "maximum_cofactor_addition_tree_depth": 5,
+  "maximum_emitted_command_bytes": 180112,
+  "maximum_emitted_command_label": "chunk bankClean15Cofactor_G_X_E_chunk003",
+  "maximum_emitted_parenthesis_nesting": 12,
+  "maximum_emitted_parenthesis_nesting_label": "chunk bankClean15Cofactor_A_O_G_chunk000",
+  "maximum_generated_addition_tree_depth": 11,
+  "multiplier_term_count": 275588,
+  "normalizer": "simp only [cofactor/chunk defs]; ring",
+  "output": "scratch/atail-force/bank-clean-lean-certificate/def-sharded/BankClean15DefShardedCertificate.lean",
+  "output_bytes": 31387485,
+  "output_sha256": "10f41004553bc179e0abcd98e3464a6f931765bd1b9536197a6e31b7ad47b386",
+  "progress_markers": 15,
+  "scalar_target": "False via a local (1 : Real) = 0 equality",
+  "schema": "p97-bank-clean-15-def-sharded-lean-emission-v1",
+  "source_polynomial_sha256": "b0efd512be125e72cc1847f56bac68149e0b95c002587efce23375ef72d7dbaf",
+  "variables": [
+    "Ex",
+    "Ey",
+    "Fx",
+    "Fy",
+    "Gx",
+    "Gy",
+    "Kx",
+    "Ky",
+    "Xx",
+    "Xy",
+    "Yx",
+    "Yy",
+    "Zx",
+    "Zy"
+  ]
+}

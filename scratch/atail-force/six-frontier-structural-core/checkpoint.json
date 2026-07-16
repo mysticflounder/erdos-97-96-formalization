@@ -1,0 +1,2680 @@
+{
+  "ambient_dependent_templates": [
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 4,
+      "inequalities": [
+        [
+          "o",
+          "a"
+        ]
+      ],
+      "missing_for_contradiction": "MEC boundary, disk, nonobtuse, and orientation Geometry fields",
+      "name": "MECStraddlingRowCore.Core",
+      "orientation_triangles": [
+        [
+          "o",
+          "a",
+          "p"
+        ],
+        [
+          "o",
+          "a",
+          "s"
+        ],
+        [
+          "o",
+          "x",
+          "s"
+        ],
+        [
+          "o",
+          "s",
+          "y"
+        ]
+      ],
+      "roles": [
+        "o",
+        "a",
+        "p",
+        "s",
+        "x",
+        "y"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean"
+    }
+  ],
+  "cases": [
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [],
+      "ambient_dependent_orientation_injective_matches": [],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 1,
+            "o": 0,
+            "p": 6,
+            "s": 2,
+            "x": 9,
+            "y": 10
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                0,
+                1,
+                6
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                0,
+                1,
+                2
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                0,
+                9,
+                2
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                0,
+                2,
+                10
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": -1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 1,
+          "support_points": [
+            2,
+            6
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            2,
+            0
+          ],
+          "right": [
+            6,
+            0
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 1,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 2,
+        "v": 0,
+        "y": 6
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 6
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                0,
+                2
+              ],
+              "right": [
+                0,
+                6
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 1,
+            "b": 9,
+            "p": 2,
+            "q": 6,
+            "r": 10
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 9,
+              "point": 2
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 7,
+            "p": 1,
+            "q": 2,
+            "r": 8
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                0
+              ],
+              "right": [
+                2,
+                7
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 7,
+      "row_keys": [
+        "c1:[0,2,6,7]",
+        "c2:[0,1,9,10]",
+        "c7:[2,5,9,11]",
+        "c8:[0,3,5,7]",
+        "c9:[3,6,8,11]",
+        "c10:[1,7,8,9]",
+        "c11:[1,5,6,10]"
+      ],
+      "shard_index": 0
+    },
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [],
+      "ambient_dependent_orientation_injective_matches": [],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 3,
+            "s": 2,
+            "x": 9,
+            "y": 10
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                3
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                0,
+                2
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                9,
+                2
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                2,
+                10
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 0,
+          "support_points": [
+            1,
+            3
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            1,
+            2
+          ],
+          "right": [
+            3,
+            2
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 0,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 1,
+        "v": 2,
+        "y": 3
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 3
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                1
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 2,
+            "b": 11,
+            "p": 0,
+            "q": 1,
+            "r": 8
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 0,
+              "point": 11
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 1,
+            "p": 2,
+            "q": 3,
+            "r": 11
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                3,
+                0
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 7,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c7:[0,4,8,11]",
+        "c8:[2,5,9,11]",
+        "c9:[4,6,7,10]",
+        "c10:[0,3,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "shard_index": 1
+    },
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [],
+      "ambient_dependent_orientation_injective_matches": [],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 3,
+            "s": 2,
+            "x": 9,
+            "y": 10
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                3
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                0,
+                2
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                9,
+                2
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                2,
+                10
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 0,
+          "support_points": [
+            1,
+            3
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            1,
+            2
+          ],
+          "right": [
+            3,
+            2
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 0,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 1,
+        "v": 2,
+        "y": 3
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 3
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                1
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 10,
+            "p": 2,
+            "q": 4,
+            "r": 9
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 10,
+              "point": 2
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 1,
+            "p": 2,
+            "q": 3,
+            "r": 11
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": false,
+              "left": [
+                3,
+                0
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 8,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,7,9]",
+        "c7:[0,3,5,8]",
+        "c8:[0,4,6,11]",
+        "c9:[0,3,7,10]",
+        "c10:[4,5,7,8]",
+        "c11:[0,1,5,6]"
+      ],
+      "shard_index": 2
+    },
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 7,
+            "o": 8,
+            "p": 0,
+            "s": 5,
+            "x": 2,
+            "y": 1
+          },
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_orientation_injective_matches": [
+        {
+          "mapping": {
+            "a": 7,
+            "o": 8,
+            "p": 0,
+            "s": 5,
+            "x": 2,
+            "y": 1
+          },
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 3,
+            "s": 2,
+            "x": 9,
+            "y": 10
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                3
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                0,
+                2
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                9,
+                2
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                2,
+                10
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 0,
+          "support_points": [
+            1,
+            3
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            1,
+            2
+          ],
+          "right": [
+            3,
+            2
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 0,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 1,
+        "v": 2,
+        "y": 3
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 3
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                1
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 5,
+            "p": 2,
+            "q": 1,
+            "r": 7
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 2,
+              "point": 5
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 5,
+            "p": 1,
+            "q": 7,
+            "r": 9
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": false,
+              "left": [
+                1,
+                0
+              ],
+              "right": [
+                1,
+                5
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 9,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c5:[1,2,7,8]",
+        "c6:[0,4,7,11]",
+        "c7:[0,3,5,8]",
+        "c8:[4,5,7,9]",
+        "c9:[0,5,6,10]",
+        "c10:[3,7,9,11]",
+        "c11:[1,5,8,9]"
+      ],
+      "shard_index": 3
+    },
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 4,
+            "o": 9,
+            "p": 7,
+            "s": 7,
+            "x": 4,
+            "y": 0
+          },
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_orientation_injective_matches": [
+        {
+          "mapping": {
+            "a": 6,
+            "o": 5,
+            "p": 7,
+            "s": 10,
+            "x": 8,
+            "y": 1
+          },
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 2,
+            "p": 3,
+            "s": 1,
+            "x": 6,
+            "y": 7
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                2,
+                0,
+                3
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                2,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                2,
+                6,
+                1
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 1
+            },
+            {
+              "labels": [
+                2,
+                1,
+                7
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": -1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 0,
+          "support_points": [
+            2,
+            3
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            2,
+            1
+          ],
+          "right": [
+            3,
+            1
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 0,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 2,
+        "v": 1,
+        "y": 3
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 3
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                1
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 5,
+            "p": 1,
+            "q": 2,
+            "r": 7
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 1,
+              "point": 5
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 3,
+            "p": 1,
+            "q": 8,
+            "r": 11
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                1,
+                0
+              ],
+              "right": [
+                1,
+                3
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 9,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c1:[0,2,6,7]",
+        "c5:[1,2,8,11]",
+        "c6:[2,5,7,10]",
+        "c7:[0,4,5,9]",
+        "c8:[0,3,6,11]",
+        "c9:[4,7,8,10]",
+        "c10:[1,5,6,8]",
+        "c11:[0,3,5,10]"
+      ],
+      "shard_index": 16
+    },
+    {
+      "ambient_dependent_orientation_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 10,
+            "o": 11,
+            "p": 0,
+            "s": 7,
+            "x": 10,
+            "y": 2
+          },
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_orientation_injective_matches": [],
+      "ambient_dependent_skeleton_formal_alias_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 1,
+            "s": 0,
+            "x": 1,
+            "y": 1
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                0
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                1,
+                0
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": 0
+            },
+            {
+              "labels": [
+                1,
+                0,
+                1
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 0
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "ambient_dependent_skeleton_injective_matches": [
+        {
+          "mapping": {
+            "a": 0,
+            "o": 1,
+            "p": 3,
+            "s": 2,
+            "x": 9,
+            "y": 10
+          },
+          "orientation_signature": [
+            {
+              "labels": [
+                1,
+                0,
+                3
+              ],
+              "roles": [
+                "o",
+                "a",
+                "p"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                0,
+                2
+              ],
+              "roles": [
+                "o",
+                "a",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                9,
+                2
+              ],
+              "roles": [
+                "o",
+                "x",
+                "s"
+              ],
+              "sign": -1
+            },
+            {
+              "labels": [
+                1,
+                2,
+                10
+              ],
+              "roles": [
+                "o",
+                "s",
+                "y"
+              ],
+              "sign": 1
+            }
+          ],
+          "template": "MECStraddlingRowCore.Core"
+        }
+      ],
+      "anchor_one_sided_two_circle_completion": {
+        "known_direct_row": {
+          "center": 0,
+          "support_points": [
+            1,
+            3
+          ]
+        },
+        "missing_opposite_center_equality": {
+          "left": [
+            1,
+            2
+          ],
+          "right": [
+            3,
+            2
+          ],
+          "u_in_complete_exact_row_at_v": true,
+          "y_absent_from_complete_exact_row_at_v": true
+        },
+        "q": 0,
+        "same_side_of_anchor_chord_in_pinned_cyclic_order": true,
+        "u": 1,
+        "v": 2,
+        "y": 3
+      },
+      "cyclic_order": [
+        0,
+        9,
+        10,
+        11,
+        1,
+        3,
+        4,
+        5,
+        2,
+        6,
+        7,
+        8
+      ],
+      "cyclic_order_formal_alias_matches": [],
+      "cyclic_order_injective_matches": [],
+      "equality_only_formal_alias_matches": [],
+      "equality_only_injective_matches": [],
+      "exact_off_circle_closure_matches": [],
+      "four_point_two_circle_same_side_matches": [],
+      "four_row_perp_bisector_direct_matches": [],
+      "minimum_deficits": {
+        "four_point_two_circle_same_side": {
+          "deficit": 1,
+          "mapping": {
+            "q": 0,
+            "u": 2,
+            "v": 1,
+            "y": 3
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": true,
+              "left": [
+                2,
+                1
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        },
+        "four_row_direct_membership": {
+          "deficit": 1,
+          "mapping": {
+            "a": 2,
+            "b": 11,
+            "p": 0,
+            "q": 1,
+            "r": 7
+          },
+          "missing_direct_memberships": [
+            {
+              "absent_from_complete_exact_row": true,
+              "center": 0,
+              "point": 11
+            }
+          ]
+        },
+        "perp_bisector_equality_closure": {
+          "deficit": 1,
+          "mapping": {
+            "a": 0,
+            "b": 1,
+            "p": 2,
+            "q": 3,
+            "r": 11
+          },
+          "missing_closure_equalities": [
+            {
+              "complete_exact_row_forces_unequal": false,
+              "left": [
+                3,
+                0
+              ],
+              "right": [
+                3,
+                1
+              ]
+            }
+          ]
+        }
+      },
+      "perp_bisector_equality_closure_matches": [],
+      "row_count": 8,
+      "row_keys": [
+        "c0:[1,2,3,4]",
+        "c2:[0,1,9,10]",
+        "c6:[2,5,8,9]",
+        "c7:[2,6,10,11]",
+        "c8:[0,3,5,11]",
+        "c9:[4,5,8,10]",
+        "c10:[0,4,7,11]",
+        "c11:[0,1,5,6]"
+      ],
+      "shard_index": 20
+    }
+  ],
+  "label_semantics": {
+    "moser_apices": {
+      "0": "U; incident to O1 and O2; opposite S",
+      "1": "V; incident to S and O2; opposite O1",
+      "2": "W; incident to S and O1; opposite O2"
+    },
+    "profile": [
+      5,
+      5,
+      5
+    ],
+    "strict_cap_interiors": {
+      "10": "strict interior of O2 (same block as 9,11)",
+      "3": "strict interior of S (same block as 4,5)",
+      "6": "strict interior of O1 (same block as 7,8)",
+      "7": "strict interior of O1 (same block as 6,8)",
+      "9": "strict interior of O2 (same block as 10,11)"
+    }
+  },
+  "live_geometry_field_audit": {
+    "boundary_oa": "direct because o and a are Moser boundary apices",
+    "boundary_op": "missing: p is a strict cap-interior label, not the third Moser apex",
+    "center": "direct from CircumscribedMECPacket.ofNonObtuse",
+    "nonobtuse_a": "derived and scratch-Lean-validated from opposite-cap membership via exists_cone_coeffs_of_cap_region",
+    "orientations": "failed by the displayed common mappings; no orientation-compatible core exists in shards 0, 1, or 2",
+    "x_disk": "direct from disk_contains_A plus carrier membership",
+    "y_disk": "direct from disk_contains_A plus carrier membership"
+  },
+  "order_templates": [
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 4,
+      "inequalities": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "x",
+          "y"
+        ]
+      ],
+      "name": "ConvexFivePointCore.Core",
+      "orientation_triangles": [
+        [
+          "a",
+          "x",
+          "b"
+        ],
+        [
+          "b",
+          "c",
+          "y"
+        ]
+      ],
+      "roles": [
+        "a",
+        "x",
+        "b",
+        "c",
+        "y"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 7,
+      "inequalities": [
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "name": "ConvexRhombusCore.Core",
+      "orientation_triangles": [
+        [
+          "a",
+          "b",
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "d"
+        ],
+        [
+          "b",
+          "c",
+          "y"
+        ],
+        [
+          "x",
+          "d",
+          "a"
+        ],
+        [
+          "c",
+          "x",
+          "y"
+        ],
+        [
+          "x",
+          "y",
+          "d"
+        ]
+      ],
+      "roles": [
+        "a",
+        "b",
+        "c",
+        "x",
+        "y",
+        "d"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 10,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "FiveRowCircleIntersectionOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "O",
+          "A",
+          "C"
+        ],
+        [
+          "O",
+          "A",
+          "D"
+        ],
+        [
+          "O",
+          "A",
+          "E"
+        ],
+        [
+          "O",
+          "D",
+          "E"
+        ],
+        [
+          "O",
+          "D",
+          "C"
+        ],
+        [
+          "O",
+          "E",
+          "C"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "C",
+        "D",
+        "E",
+        "X5",
+        "X6",
+        "X9"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 2,
+      "inequalities": [
+        [
+          "u",
+          "y"
+        ]
+      ],
+      "name": "FourPointTwoCircleBisectorOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "u",
+          "q",
+          "v"
+        ],
+        [
+          "y",
+          "q",
+          "v"
+        ]
+      ],
+      "roles": [
+        "q",
+        "v",
+        "u",
+        "y"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 5,
+      "inequalities": [
+        [
+          "o",
+          "a"
+        ]
+      ],
+      "name": "NestedEqualChordCore.Core",
+      "orientation_triangles": [
+        [
+          "o",
+          "a",
+          "d"
+        ],
+        [
+          "o",
+          "b",
+          "c"
+        ],
+        [
+          "a",
+          "b",
+          "d"
+        ],
+        [
+          "b",
+          "c",
+          "d"
+        ]
+      ],
+      "roles": [
+        "o",
+        "a",
+        "b",
+        "c",
+        "d"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 8,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SixPointCircleChainOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "O",
+          "A",
+          "C"
+        ],
+        [
+          "O",
+          "A",
+          "E"
+        ],
+        [
+          "O",
+          "A",
+          "D"
+        ],
+        [
+          "C",
+          "Y",
+          "O"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "D",
+        "E",
+        "C",
+        "Y"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 7,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SixPointNestedCenterOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "O",
+          "A",
+          "C"
+        ],
+        [
+          "O",
+          "A",
+          "D"
+        ],
+        [
+          "A",
+          "D",
+          "C"
+        ],
+        [
+          "O",
+          "D",
+          "E"
+        ],
+        [
+          "O",
+          "E",
+          "X"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "D",
+        "E",
+        "X",
+        "C"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 6,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SixPointTwoCircleArcOvertakeOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "O",
+          "A",
+          "C"
+        ],
+        [
+          "O",
+          "A",
+          "D"
+        ],
+        [
+          "O",
+          "A",
+          "E"
+        ],
+        [
+          "O",
+          "E",
+          "C"
+        ],
+        [
+          "O",
+          "E",
+          "F"
+        ],
+        [
+          "E",
+          "F",
+          "C"
+        ]
+      ],
+      "roles": [
+        "O",
+        "A",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean"
+    },
+    {
+      "accepted_orientation": "all positive or all negative",
+      "closure_equality_count": 5,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "SixPointTwoCircleOrderCore.Core",
+      "orientation_triangles": [
+        [
+          "A",
+          "B",
+          "C"
+        ],
+        [
+          "A",
+          "B",
+          "D"
+        ],
+        [
+          "B",
+          "D",
+          "C"
+        ],
+        [
+          "A",
+          "P",
+          "B"
+        ],
+        [
+          "A",
+          "Q",
+          "B"
+        ],
+        [
+          "Q",
+          "B",
+          "D"
+        ],
+        [
+          "A",
+          "P",
+          "Q"
+        ]
+      ],
+      "roles": [
+        "A",
+        "P",
+        "Q",
+        "B",
+        "D",
+        "C"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean"
+    }
+  ],
+  "schema": "p97-atail-six-frontier-structural-core-audit-v2",
+  "scope": {
+    "conditional_scratch_lean_validation_passed": true,
+    "cyclic_order_used_for_nine_imported_order_cores": true,
+    "direct_membership_separated_from_equality_closure": true,
+    "finite_structural_audit_only": true,
+    "formal_role_aliasing_checked": true,
+    "injective_relabeling_checked_separately": true,
+    "lean_theorem_proved": false,
+    "positive_control_self_tests_passed": true,
+    "shards": [
+      0,
+      1,
+      2,
+      3,
+      16,
+      20
+    ],
+    "smallest_frontier_per_clean_shard": true
+  },
+  "sources": {
+    "cyclic_order_checkpoint": "scratch/atail-force/fresh-continuation-marco/checkpoint.json",
+    "cyclic_order_checkpoint_sha256": "f3234fb83d4097393b96bcfd091d59f2431e089d2d933fd9a188847bb2a5ba70",
+    "frontier_checkpoint": "scratch/atail-force/fresh-continuation-marco/frontier_checkpoint.json",
+    "frontier_checkpoint_sha256": "60cdb851ae94d0afef0188cc4a2ee7ac0cfc9a67dc998a87082e1ab96cf3bc68",
+    "lean_sources": {
+      "lean/Erdos9796Proof/P97/Census554/ConvexFivePointCore.lean": "c48c09543f96ca1fbef4c4e1bcb1869151aa726b43e9cacd71f462606ba9580c",
+      "lean/Erdos9796Proof/P97/Census554/ConvexRhombusCore.lean": "eb31b3cf6b7294aff42f4a56cb16ae70b765e5bff2a883ef2ac37e41aec91047",
+      "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean": "d69d734942d6dfcfd7341a5d84c254f388e7be7be4fccf26926caf47100c4d82",
+      "lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean": "a6f060fe6b7ef0032deb40a395d2e3ac1c841c25f9d56e96b01cc5d9cdc86bca",
+      "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean": "4324a776d90ee729e5666ac31c65b6f20dbee2d248fc89a34534f087a595e36c",
+      "lean/Erdos9796Proof/P97/Census554/FiveRowCircleIntersectionOrderCore.lean": "a10d2d269b127e0bbd1530bd130905a7e1a42974483b628ec9eaea814fe7998e",
+      "lean/Erdos9796Proof/P97/Census554/FourPointTwoCircleBisectorOrderCore.lean": "138fa060b2463be7865f8c0ce6fc747a448357b08a416e6ddeb6916e003de19f",
+      "lean/Erdos9796Proof/P97/Census554/FourRowPerpBisector.lean": "532cedfbae2c783935c42109b56397f66c61d7045a13ca1d50d4f6100b40d12f",
+      "lean/Erdos9796Proof/P97/Census554/MECStraddlingRowCore.lean": "ef883e471e7f4863beb3a925858a26d977f2737c048f3f9f7cbd3950b61d2170",
+      "lean/Erdos9796Proof/P97/Census554/NestedEqualChordCore.lean": "15113000cfa72743a85e0ee519d8aaf7341b807a352b4ae04e3b8d8898526762",
+      "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean": "d2298ca6d132712aa8683979879b6f33b93fd4d8147d5aaa9237b276eb53eec9",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean": "3bcff770c0e720673f41b628f679514e3aa8a95d7d078cacad6afbfe4ad6f13e",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean": "32e65b1afb5cecc4620dfd70f6ae0d42414576d4eb245d55c0efec10fe4bc017",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean": "db880406ab8ebd62a71f9df27784145af7c08569603357cb43b0efcfcdb3e8b8",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean": "656809ad6d568afaefabf9aae233448c9d707a8bc849754bff8503cd4054a90c",
+      "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean": "14bde4c621e901f324ea4d0acdd654adb7374f52a2189c969641db442fabd603",
+      "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean": "cb2493e26e16302803b40844f193b26fab18a861c36ff247b4645867f2600fb3",
+      "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainOrderCore.lean": "749567c809af7b325bfb4d87d9cda19538e3d9ddcce13cf5683882091afa6096",
+      "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean": "4484a2c8638cbe2dda68d9f8553d1323b7785b2a01be0e7315cf23b7818ba826",
+      "lean/Erdos9796Proof/P97/Census554/SixPointNestedCenterOrderCore.lean": "189b51cb3eb0396626ae3be56d61850d30f07d7a96834586e07818efe88018d9",
+      "lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleArcOvertakeOrderCore.lean": "6ec3f2860bd72940af5b0ea796e9e3249b642dac433fb3dcb54220933eb4acd1",
+      "lean/Erdos9796Proof/P97/Census554/SixPointTwoCircleOrderCore.lean": "85f90dc926eb211cf1d88014840e1a67b584a8b692d8c7a5f0e99290fca21378",
+      "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean": "4b1b0165e487885edfb31a0b6a08e848b129116ea0b8a8cd26181b05212467f1",
+      "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean": "2214db347504aafbaf408ba994f00cac10f3794e5bb2c5e21869594748a08250",
+      "lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean": "b27066440f9f83889b22614d995b03173496537f4172107934fcc935f7623053",
+      "lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean": "df0f862273992da09c988cd8b7c19646b8e7b97ae8e04b496f44e2efa93f10c0"
+    },
+    "semantic_label_source": "census/candidate_d_probe/q2_token.py",
+    "semantic_label_source_sha256": "71016fc8212a386ae09e76af6920d72b064327c6e6e73ed7b51954f106fc4f48"
+  },
+  "summary": {
+    "all_six_exact_off_circle_match_free": true,
+    "all_six_four_point_same_side_match_free": true,
+    "all_six_four_row_direct_match_free": true,
+    "all_six_have_anchor_one_sided_two_circle_completion": true,
+    "all_six_perp_bisector_closure_match_free": true,
+    "common_ambient_orientation_formal_alias_templates": [],
+    "common_ambient_orientation_injective_templates": [],
+    "common_ambient_skeleton_formal_alias_templates": [
+      "MECStraddlingRowCore.Core"
+    ],
+    "common_ambient_skeleton_injective_templates": [
+      "MECStraddlingRowCore.Core"
+    ],
+    "common_cyclic_order_formal_alias_templates": [],
+    "common_cyclic_order_injective_templates": [],
+    "common_equality_only_formal_alias_templates": [],
+    "common_equality_only_injective_templates": [],
+    "order_template_count": 9,
+    "template_count": 23
+  },
+  "templates": [
+    {
+      "closure_equality_count": 4,
+      "inequalities": [
+        [
+          "p",
+          "q"
+        ],
+        [
+          "p",
+          "r"
+        ],
+        [
+          "q",
+          "r"
+        ],
+        [
+          "a",
+          "b"
+        ]
+      ],
+      "name": "EqualityCore.DuplicateCenterCore",
+      "roles": [
+        "p",
+        "q",
+        "r",
+        "a",
+        "b"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean"
+    },
+    {
+      "closure_equality_count": 3,
+      "inequalities": [
+        [
+          "a",
+          "b"
+        ],
+        [
+          "p",
+          "q"
+        ],
+        [
+          "p",
+          "r"
+        ],
+        [
+          "q",
+          "r"
+        ]
+      ],
+      "name": "EqualityCore.PerpBisectorCore",
+      "roles": [
+        "a",
+        "b",
+        "p",
+        "q",
+        "r"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean"
+    },
+    {
+      "closure_equality_count": 5,
+      "inequalities": [
+        [
+          "p",
+          "t\u2081"
+        ]
+      ],
+      "name": "EqualityCore.EqualK4Core",
+      "roles": [
+        "p",
+        "t\u2081",
+        "t\u2082",
+        "t\u2083"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EqualityCore.lean"
+    },
+    {
+      "closure_equality_count": 6,
+      "inequalities": [
+        [
+          "p",
+          "a"
+        ],
+        [
+          "p",
+          "x"
+        ],
+        [
+          "c",
+          "b"
+        ]
+      ],
+      "name": "FivePointCollision.EquilateralBisectorCollisionCore",
+      "roles": [
+        "p",
+        "a",
+        "b",
+        "c",
+        "x"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/FivePointCollision.lean"
+    },
+    {
+      "closure_equality_count": 7,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "EquilateralHingeCollisions.FivePointHingeCycleCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "H"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "EquilateralHingeCollisions.SixPointHingeTailCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "H",
+        "T"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "EquilateralHingeCollisions.SixPointHingeDoubleSpokeCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "L",
+        "H",
+        "R"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "EquilateralHingeCollisions.SevenPointHingeClosedTailCore",
+      "roles": [
+        "A",
+        "B",
+        "L",
+        "M",
+        "H",
+        "R",
+        "T"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/EquilateralHingeCollisions.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SevenEightPointFiveCircleCollisions.SevenPointFiveCircleCollisionCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean"
+    },
+    {
+      "closure_equality_count": 12,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SevenEightPointFiveCircleCollisions.EightPointFiveCircleCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenEightPointFiveCircleCollisions.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SevenPointCircleNetworkCollision.SevenPointCircleNetworkCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointCircleNetworkCollision.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "SevenPointFiveCircleCollision.SevenPointFiveCircleCollisionCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointFiveCircleCollision.lean"
+    },
+    {
+      "closure_equality_count": 13,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SevenPointOrbitCollision.SevenPointOrbitCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointOrbitCollision.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SevenPointSixCircleCollision.SevenPointSixCircleCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollision.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SevenPointSixCircleCollisionB.SevenPointSixCircleCollisionCoreB",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SevenPointSixCircleCollisionB.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "SixPointCircleChainCollision.SixPointCircleChainCollisionCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointCircleChainCollision.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SixPointFiveCircleCollisions.SixPointFiveCircleCollisionCoreA",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SixPointFiveCircleCollisions.SixPointFiveCircleCollisionCoreB",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "E"
+        ]
+      ],
+      "name": "SixPointFiveCircleCollisions.SixPointFiveCircleCollisionCoreC",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointFiveCircleCollisions.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ],
+        [
+          "D",
+          "E"
+        ],
+        [
+          "E",
+          "F"
+        ]
+      ],
+      "name": "SixPointTwoPairCollision.SixPointTwoPairCollisionCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixPointTwoPairCollision.lean"
+    },
+    {
+      "closure_equality_count": 9,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SixRowAnchorCollision.SixRowAnchorCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SixRowAnchorCollision.lean"
+    },
+    {
+      "closure_equality_count": 11,
+      "inequalities": [
+        [
+          "O",
+          "A"
+        ]
+      ],
+      "name": "SurplusSourceCollision.SurplusSourceCollisionCore",
+      "roles": [
+        "O",
+        "A",
+        "B",
+        "C",
+        "U",
+        "V",
+        "W"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/SurplusSourceCollision.lean"
+    },
+    {
+      "closure_equality_count": 6,
+      "inequalities": [
+        [
+          "A",
+          "B"
+        ]
+      ],
+      "name": "ThreeTriadCollision.ThreeTriadCollisionCore",
+      "roles": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "source": "lean/Erdos9796Proof/P97/Census554/ThreeTriadCollision.lean"
+    }
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "cases": [
+    {
+      "active_center_directed_incidence_edge_count": 17,
+      "active_center_mutual_incidence_pair_count": 1,
+      "active_center_scc_sizes": [
+        7
+      ],
+      "apex_row_centers": [
+        1,
+        2
+      ],
+      "center_count": 7,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 3,
+        "minimal_positive_excess_subset_row_count": 7,
+        "whole_packet_similarity_count_excess": 3
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 7,
+      "row_shared_pair_graph_component_sizes": [
+        3,
+        2,
+        1,
+        1
+      ],
+      "row_shared_pair_graph_cycle_rank": 0,
+      "row_support_intersection_histogram": {
+        "0": 1,
+        "1": 17,
+        "2": 3
+      },
+      "shard_index": 0,
+      "support_pairs_repeated_at_two_or_more_centers": 3,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 11
+    },
+    {
+      "active_center_directed_incidence_edge_count": 16,
+      "active_center_mutual_incidence_pair_count": 1,
+      "active_center_scc_sizes": [
+        7
+      ],
+      "apex_row_centers": [
+        0,
+        2
+      ],
+      "center_count": 7,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 1,
+        "minimal_positive_excess_subset_row_count": 7,
+        "whole_packet_similarity_count_excess": 1
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 7,
+      "row_shared_pair_graph_component_sizes": [
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "row_shared_pair_graph_cycle_rank": 0,
+      "row_support_intersection_histogram": {
+        "0": 1,
+        "1": 18,
+        "2": 2
+      },
+      "shard_index": 1,
+      "support_pairs_repeated_at_two_or_more_centers": 2,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 12
+    },
+    {
+      "active_center_directed_incidence_edge_count": 19,
+      "active_center_mutual_incidence_pair_count": 1,
+      "active_center_scc_sizes": [
+        8
+      ],
+      "apex_row_centers": [
+        0,
+        2
+      ],
+      "center_count": 8,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 4,
+        "minimal_positive_excess_subset_row_count": 7,
+        "whole_packet_similarity_count_excess": 4
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 8,
+      "row_shared_pair_graph_component_sizes": [
+        7,
+        1
+      ],
+      "row_shared_pair_graph_cycle_rank": 1,
+      "row_support_intersection_histogram": {
+        "0": 2,
+        "1": 19,
+        "2": 7
+      },
+      "shard_index": 2,
+      "support_pairs_repeated_at_two_or_more_centers": 7,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 12
+    },
+    {
+      "active_center_directed_incidence_edge_count": 26,
+      "active_center_mutual_incidence_pair_count": 5,
+      "active_center_scc_sizes": [
+        9
+      ],
+      "apex_row_centers": [
+        0,
+        2
+      ],
+      "center_count": 9,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 7,
+        "minimal_positive_excess_subset_row_count": 7,
+        "whole_packet_similarity_count_excess": 7
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 9,
+      "row_shared_pair_graph_component_sizes": [
+        9
+      ],
+      "row_shared_pair_graph_cycle_rank": 2,
+      "row_support_intersection_histogram": {
+        "0": 4,
+        "1": 22,
+        "2": 10
+      },
+      "shard_index": 3,
+      "support_pairs_repeated_at_two_or_more_centers": 10,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 12
+    },
+    {
+      "active_center_directed_incidence_edge_count": 26,
+      "active_center_mutual_incidence_pair_count": 4,
+      "active_center_scc_sizes": [
+        9
+      ],
+      "apex_row_centers": [
+        0,
+        1
+      ],
+      "center_count": 9,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 7,
+        "minimal_positive_excess_subset_row_count": 6,
+        "whole_packet_similarity_count_excess": 7
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 9,
+      "row_shared_pair_graph_component_sizes": [
+        6,
+        3
+      ],
+      "row_shared_pair_graph_cycle_rank": 1,
+      "row_support_intersection_histogram": {
+        "0": 4,
+        "1": 24,
+        "2": 8
+      },
+      "shard_index": 16,
+      "support_pairs_repeated_at_two_or_more_centers": 8,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 12
+    },
+    {
+      "active_center_directed_incidence_edge_count": 20,
+      "active_center_mutual_incidence_pair_count": 2,
+      "active_center_scc_sizes": [
+        8
+      ],
+      "apex_row_centers": [
+        0,
+        2
+      ],
+      "center_count": 8,
+      "density": {
+        "counting_is_only_generic_dimension_heuristic": true,
+        "maximum_subset_similarity_count_excess": 4,
+        "minimal_positive_excess_subset_row_count": 7,
+        "whole_packet_similarity_count_excess": 4
+      },
+      "exactly_two_apex_rows": true,
+      "maximum_support_pair_center_multiplicity": 2,
+      "row_count": 8,
+      "row_shared_pair_graph_component_sizes": [
+        4,
+        2,
+        1,
+        1
+      ],
+      "row_shared_pair_graph_cycle_rank": 0,
+      "row_support_intersection_histogram": {
+        "0": 1,
+        "1": 23,
+        "2": 4
+      },
+      "shard_index": 20,
+      "support_pairs_repeated_at_two_or_more_centers": 4,
+      "two_apex_rows_establish_equilateral_anchor": true,
+      "used_point_count": 12
+    }
+  ],
+  "schema": "p97-atail-fresh-continuation-mechanism-audit-v1",
+  "source": {
+    "path": "scratch/atail-force/fresh-continuation-marco/frontier_checkpoint.json",
+    "sha256": "60cdb851ae94d0afef0188cc4a2ee7ac0cfc9a67dc998a87082e1ab96cf3bc68",
+    "smallest_frontier_count": 6
+  },
+  "summary": {
+    "all_active_center_incidence_graphs_strongly_connected": true,
+    "all_are_similarity_count_overdetermined": true,
+    "all_contain_exactly_two_apex_rows": true,
+    "all_have_repeated_support_pairs": true,
+    "all_pair_center_multiplicities_at_most_two": true,
+    "all_row_shared_pair_graphs_connected": false,
+    "all_two_apex_pairs_establish_equilateral_anchor": true,
+    "all_use_all_twelve_points": false,
+    "whole_packet_similarity_count_excesses": [
+      3,
+      1,
+      4,
+      7,
+      7,
+      4
+    ]
+  },
+  "theorem_shape_assessment": {
+    "common_counting_shape": "each selected four-row contributes three equal-distance equations; the 7--9 row packets have 21--27 equations against 20 planar similarity-normalized coordinate degrees of freedom",
+    "common_exact_input_shape": "two selected four-rows on two vertices of an equilateral anchor triangle, plus five to seven further selected four-rows on the same twelve-point carrier",
+    "status": "HEURISTIC_PARAMETERIZED_FAMILY_NOT_A_THEOREM",
+    "why_not_immediate": "generic dimension excess neither proves emptiness nor supplies the specific anonymous support memberships from the live K-A packet; the ten confirmed frontiers are pairwise nonisomorphic and no current formalized bank matcher recognizes them"
+  }
+}

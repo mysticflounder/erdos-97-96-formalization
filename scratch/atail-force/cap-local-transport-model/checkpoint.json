@@ -1,0 +1,166 @@
+{
+  "base_checker_sha256": "6d51c5ef22e550a4719db31a47d49350bc2a6658fb89cc01a1b18f94ca0e459d",
+  "blocker_shells": {
+    "q": [
+      "A",
+      "E",
+      "F",
+      "I"
+    ],
+    "w": [
+      "D",
+      "X",
+      "Y",
+      "Z"
+    ]
+  },
+  "blockers": {
+    "q": "D",
+    "w": "t1"
+  },
+  "cap_cards": [
+    5,
+    8,
+    4
+  ],
+  "caps": {
+    "opposite_1": [
+      "A",
+      "C",
+      "D",
+      "E",
+      "J",
+      "X",
+      "Y",
+      "Z"
+    ],
+    "opposite_2": [
+      "C",
+      "G",
+      "K",
+      "O"
+    ],
+    "surplus": [
+      "A",
+      "F",
+      "I",
+      "O",
+      "t1"
+    ]
+  },
+  "card_five_distinct_cap_local_cross_hypothesis": false,
+  "carrier_card": 14,
+  "centers_without_k4": [
+    "C",
+    "E",
+    "F",
+    "G",
+    "I",
+    "J",
+    "K",
+    "X",
+    "Y",
+    "Z"
+  ],
+  "coordinate_sha256": "1476fbefca3534f36b9f1cb04ce60040ae68890fbe2c91b9e676fd2d6bffeac3",
+  "directed_cross_hits": {
+    "q_in_w_shell": false,
+    "w_in_q_shell": false
+  },
+  "exact_deletion_blocker_candidate_counts": {
+    "A": 1,
+    "C": 1,
+    "D": 1,
+    "E": 1,
+    "F": 1,
+    "G": 1,
+    "I": 1,
+    "J": 0,
+    "K": 1,
+    "O": 1,
+    "X": 1,
+    "Y": 1,
+    "Z": 1,
+    "t1": 0
+  },
+  "first_apex": "O",
+  "first_apex_card_five_class": [
+    "A",
+    "C",
+    "D",
+    "E",
+    "J"
+  ],
+  "first_apex_unique_k4_radius": true,
+  "max_row_cards_by_center": {
+    "A": 4,
+    "C": 2,
+    "D": 4,
+    "E": 1,
+    "F": 1,
+    "G": 1,
+    "I": 1,
+    "J": 1,
+    "K": 1,
+    "O": 5,
+    "X": 1,
+    "Y": 1,
+    "Z": 1,
+    "t1": 4
+  },
+  "mec_triangle_nonobtuse": true,
+  "no_m44_all_mec_permutations": true,
+  "opposite_deletion_preserves_selected_k4": {
+    "q": true,
+    "w": true
+  },
+  "pair": {
+    "q": "E",
+    "w": "D"
+  },
+  "rotation_half_angle_parameters": {
+    "X": "-139/707",
+    "Y": "-41/216",
+    "Z": "-136/743"
+  },
+  "schema": 1,
+  "scope": "exact local Euclidean/strict-convex/MEC/cap/no-M44/card-five/second-apex/two-distinct-blocker surface; excludes all-center K4, CounterexampleData, and a total CriticalShellSystem",
+  "second_apex": "A",
+  "second_apex_radius_one_class": [
+    "C",
+    "G",
+    "K",
+    "O"
+  ],
+  "second_apex_survives_q_w_and_double_deletion": true,
+  "source_deletion_kills_selected_k4": {
+    "q": true,
+    "w": true
+  },
+  "sources_without_exact_deletion_blocker": [
+    "J",
+    "t1"
+  ],
+  "strict_hull_order": [
+    "O",
+    "t1",
+    "I",
+    "F",
+    "A",
+    "X",
+    "Y",
+    "Z",
+    "D",
+    "J",
+    "E",
+    "C",
+    "G",
+    "K"
+  ],
+  "trust_boundary": "EXACT_SYMBOLIC_SYMPY_NOT_LEAN_KERNEL",
+  "unique_mec_boundary": [
+    "A",
+    "C",
+    "O"
+  ]
+}

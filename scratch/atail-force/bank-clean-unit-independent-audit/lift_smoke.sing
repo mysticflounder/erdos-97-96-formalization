@@ -1,0 +1,11 @@
+ring R=0,(x,y),dp;
+ideal I=x,x-1;
+ideal J=1;
+matrix U;
+matrix T=lift(I,J,U,"slimgb");
+poly check=I[1]*T[1,1]+I[2]*T[2,1];
+if (check==1) { print("IDENTITY_PASS"); }
+else { print("IDENTITY_FAIL"); }
+print("C1="+string(T[1,1]));
+print("C2="+string(T[2,1]));
+quit;
