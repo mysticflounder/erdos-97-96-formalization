@@ -24,6 +24,15 @@ AND reversed variable orders.  Radical membership is exactly the
 property the forced-zero conclusion consumes — ``f`` vanishes on every
 point of ``V(I)`` — so the grade is still dual-oracle; the emitted
 status string records the weaker-but-sufficient check.
+
+``--core`` (with ``--pair``) extracts a transferable cut after the full
+system certifies: greedy one-pass row deletion where the deletion test
+is "Rabinowitsch of the sub-ideal is still UNIT in Singular", then a
+final three-oracle crosscheck of the retained subsystem.  Radical
+membership is monotone in the ideal (``I_sub ⊆ I`` implies
+``√I_sub ⊆ √I``), so any complete assignment containing the retained
+rows forces the same pair coincidence — the core kills a family of
+assignments, not one signature.
 """
 
 from __future__ import annotations
@@ -92,10 +101,18 @@ def main() -> None:
                         help="--pair only: skip the std(I) direct reduction "
                         "and certify from the Rabinowitsch UNIT crosscheck "
                         "alone (Singular + msolve forward/reverse)")
+    parser.add_argument("--core", action="store_true",
+                        help="--pair only: after the full system certifies, "
+                        "extract a minimal row subset that still forces the "
+                        "pair (greedy deletion; final subset crosschecked in "
+                        "all three oracles)")
+    parser.add_argument("--deletion-timeout", type=float, default=60.0,
+                        help="--core only: per-attempt Singular timeout")
     parser.add_argument("--timeout", type=float, default=120.0)
     args = parser.parse_args()
     require(args.scan != (args.pair is not None),
             "pass exactly one of --pair or --scan")
+    require(not (args.core and args.scan), "--core requires --pair")
 
     document = json.loads(Path(args.witness).read_text(encoding="utf-8"))
     report = document["reports"][0]
@@ -260,12 +277,79 @@ def main() -> None:
             if direct_reduction == "0" and rabinowitsch_unit
             else "NOT_CROSSCHECKED"
         )
+
+    forced_pair_core = None
+    if args.core:
+        require(status != "NOT_CROSSCHECKED",
+                "core extraction requires a certified full system")
+        active = list(enumerate(rows))
+        attempts = []
+        for original_index, _row in tuple(active):
+            candidate = tuple(
+                row for index, row in active if index != original_index
+            )
+            candidate_polynomials = (
+                list(oracle.serialized_system(n, candidate))
+                + [rabinowitsch_poly]
+            )
+            result = oracle.run_singular(
+                extended_variables,
+                candidate_polynomials,
+                timeout_s=args.deletion_timeout,
+            )
+            removed = result.verdict == "UNIT"
+            attempts.append({
+                "original_index": original_index,
+                "center": rows[original_index].center,
+                "verdict": result.verdict,
+                "removed": removed,
+            })
+            if removed:
+                active = [
+                    item for item in active if item[0] != original_index
+                ]
+        retained = tuple(row for _, row in active)
+        retained_polynomials = list(oracle.serialized_system(n, retained))
+        extended_retained = retained_polynomials + [rabinowitsch_poly]
+        core_singular = oracle.run_singular(
+            extended_variables, extended_retained, timeout_s=args.timeout
+        )
+        core_forward = oracle.run_msolve(
+            extended_variables, extended_retained, timeout_s=args.timeout
+        )
+        core_reverse = oracle.run_msolve(
+            list(reversed(extended_variables)),
+            extended_retained,
+            timeout_s=args.timeout,
+        )
+        core_unit = (
+            core_singular.verdict == "UNIT"
+            and core_forward.verdict == "UNIT"
+            and core_reverse.verdict == "UNIT"
+        )
+        forced_pair_core = {
+            "status": (
+                "CROSSCHECKED_FORCED_ZERO_PAIR_CORE"
+                if core_unit else "NOT_CROSSCHECKED"
+            ),
+            "pair": [left, right],
+            "initial_row_count": len(rows),
+            "retained_row_count": len(retained),
+            "retained_equality_count": len(retained_polynomials),
+            "retained_rows": [oracle.row_dict(row) for row in retained],
+            "attempts": attempts,
+            "rabinowitsch_singular": oracle.result_dict(core_singular),
+            "rabinowitsch_msolve_forward": oracle.result_dict(core_forward),
+            "rabinowitsch_msolve_reverse": oracle.result_dict(core_reverse),
+        }
+
     print(json.dumps({
         "schema": "p97-atail-forced-zero-pair-membership-crosscheck-v1",
         "row_signature_sha256": signature,
         "equality_sha256": oracle.canonical_sha256(polynomials),
         "pair": [left, right],
         "status": status,
+        "forced_pair_core": forced_pair_core,
         "oracles": verdicts,
         "verdict_scope": (
             "dist2(pair) vanishes on every complex realization of this "

@@ -2918,6 +2918,22 @@ as near-neighbours of each other on the same apex row `{2,6,7,8,10}`;
 node cost is roughly flat on 555 (~2.7-2.8 M) and climbing on 654
 (5.1 M → 5.7 M).
 
+To convert these point-kills into family-kills,
+`membership_crosscheck.py` gained `--core` (with `--pair`): after the
+full system certifies, greedy one-pass row deletion where the deletion
+test is "Rabinowitsch of the sub-ideal is still UNIT in Singular",
+then a three-oracle crosscheck of the retained subset (status
+`CROSSCHECKED_FORCED_ZERO_PAIR_CORE`).  Soundness is monotonicity of
+radical membership: `I_sub ⊆ I` implies `√I_sub ⊆ √I`, so any complete
+assignment containing the retained rows forces the same pair
+coincidence.  Such cores can be admitted into
+`REAL_INFEASIBLE_ROW_CORES` (the firing predicate only checks row
+containment; the kill justification is provenance metadata).  Syntax
+checked; first live run — which is also the fail-closed smoke test —
+is against 555 iteration-10 witness `50cfcbec…` (NONUNIT, sources
+(6,7), hash `e9b8d85d…`, 2.80 M nodes), in flight as this session
+wraps, together with 654 iteration 4.
+
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
 `0:{1,2,3,4}`) broke at iteration 4: iteration 4 moved to apex
 `{0,5,6,7,8}` / Moser `{1,2,3,5}`, and iteration 5's retained core
