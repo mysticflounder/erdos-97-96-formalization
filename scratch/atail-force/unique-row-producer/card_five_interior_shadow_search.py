@@ -997,6 +997,22 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 555 iteration-94 witness admitted 2026-07-16: first
+    # NONUNIT-track 555 witness after the 74-witness unit-grade run
+    # (iterations 20-93); 19,474 nodes, caps=14; inline msolve
+    # NONUNIT x2; certified by membership_crosscheck.py --pair 6 7
+    # --radical-only --core at the production order; its retained
+    # 7-row deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-555-14 — the first fp-555 admission since
+    # the original bank of 13.
+    "42fbda90d111dc4c9f448c15d9dd4a345ea4ea1ecd062ba1e3d1d2f3f4501b4b": {
+        "equality_sha256":
+            "ab72776e2089a1b680dc9c3ef03e4c2efaa33a92a7872b4abc071c63b0b51fe3",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [6, 7],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3815,6 +3831,34 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 3, 6, 11}),
             10: frozenset({4, 8, 9, 11}),
             11: frozenset({0, 1, 4, 7}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 555 iteration-94 witness 42fbda90… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (6,7) — FIRST NONUNIT-track 555
+    # witness after the 74-witness consecutive unit-grade run
+    # (iterations 20-93), and the first fp-555 admission since the
+    # original bank of 13; 19,474 nodes, caps=14; inline msolve
+    # NONUNIT x2; cert passed at the production order; Rabinowitsch
+    # UNIT x3 on full system and retained core; deletion verdicts
+    # 5 UNIT / 5 TIMEOUT / 2 NONUNIT fail-closed — apex/surplus row
+    # and witness rows 2, 4, 5, 8 dropped, Moser row 0:{1,2,3,4}
+    # retained; not a transposition image of any banked core; kin
+    # capped at 2 shared rows; THREE new supports 3:{1,4,7,11},
+    # 7:{2,5,10,11}, 11:{0,3,5,9}; row 6:{0,4,5,7} previously only
+    # in fp-654-05/-06.
+    {
+        "id": "forced-pair-core-555-14",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            3: frozenset({1, 4, 7, 11}),
+            6: frozenset({0, 4, 5, 7}),
+            7: frozenset({2, 5, 10, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            10: frozenset({4, 8, 9, 11}),
+            11: frozenset({0, 3, 5, 9}),
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (6, 7),
