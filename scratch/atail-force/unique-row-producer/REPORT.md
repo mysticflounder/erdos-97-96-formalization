@@ -2902,7 +2902,7 @@ retained core, admitted immediately):
 | 4 | 555 | `3d9a6b04…` | UNIT; 6-row core; new apex row `{0,5,6,7,8}` (1.88 M nodes) | `unit-core-555-05` |
 | 5 | 555 | `a94caeaf…` | UNIT; 7-row core; apex row `{2,6,7,8,10}`; first core with NO apex row (2.71 M nodes) | `unit-core-555-06` |
 | 6 | 555 | `aab3e0b5…` | inline UNDECIDED (Singular TIMEOUT, msolve UNIT x2); settled UNIT at 900 s via `system_unit_recheck.py`; 7-row core, no apex row (2.71 M nodes) | `unit-core-555-07` |
-| 7 | 555 | `84ac8d4a…` | NONUNIT (first on 555); forced-zero `--scan` running (2.73 M nodes) | pending |
+| 7 | 555 | `84ac8d4a…` | NONUNIT (first on 555); `--scan` timed out at 900 s; SOURCE pair (6,7) certified via `--radical-only`, UNIT x3 (2.73 M nodes) | signature admitted |
 | 1 | 654 | `a4914ed2…` (cont.) | scans timed out at 300 s AND 1800 s in `std(I)`; pair (7,8) certified via `--radical-only`, Rabinowitsch UNIT x3 | signature admitted |
 
 The early uniformity (shared apex row `1:{0,2,6,7,8}`, Moser row
@@ -2951,3 +2951,13 @@ radical grade; pair (3,7) rejected, NONUNIT x3).  The radical-only
 attempt on `a4914ed2…` pair (7,8) certified in minutes — Rabinowitsch
 UNIT x3 where `std(I)` had defeated 1800 s — and the signature is
 admitted (equality hash `4a75ebc1…`); 654 iteration 2 is running.
+
+The 555 iteration-7 `--scan` also timed out at 900 s; the radical-only
+route certified in under a minute again, and this time the forced-zero
+pair is the SOURCE pair (6,7) itself — every complex realization of
+that shadow collapses the two strict-O1-interior sources.  Signature
+admitted (equality hash `9b395b64…`); 555 iteration 8 is running.
+Pattern worth noting: both NONUNIT witnesses so far die by forced
+coincidence of a pair adjacent to the frontier construction (654:
+frontier pair (7,8); 555: source pair (6,7)), and in both cases the
+Rabinowitsch UNIT computation is light where `std(I)` is heavy.
