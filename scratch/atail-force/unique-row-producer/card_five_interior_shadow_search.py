@@ -1183,6 +1183,28 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
     },
+    # 555 iteration-43 witness 6460bfa8… admitted 2026-07-16:
+    # twenty-fourth consecutive unit-grade 555 witness (60,215 nodes,
+    # same shallow pocket); system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities incl. the Moser row 0:{1,2,3,4}
+    # (5 deletion TIMEOUTs fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); not a
+    # transposition image of any banked 555 unit core; shares five
+    # rows with unit-core-555-29 — row 6 {2,5,8,9} -> {4,5,8,9} and
+    # row 9 {0,4,8,10} -> {0,8,10,11}, both supports new to the bank.
+    {
+        "id": "unit-core-555-31",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({4, 5, 8, 9}),
+            8: frozenset({0, 4, 7, 11}),
+            9: frozenset({0, 8, 10, 11}),
+            10: frozenset({3, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
@@ -1591,6 +1613,30 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({1, 5, 7, 10}),
         },
         "equality_count": 16,
+    },
+    # 654 iteration-39 witness 8b8d49f1… admitted 2026-07-16: FIRST
+    # unit-grade 654 witness after the eleven-witness NONUNIT run
+    # (iterations 28-38), and the deepest 654 witness yet (10.775 M
+    # nodes, run at --max-nodes 20000000); system_unit_recheck.py
+    # 900 s deletion retained 6 rows / 19 equalities (5 deletion
+    # TIMEOUTs fail-closed), retained core CROSSCHECKED_UNIT
+    # (Singular + msolve fwd/rev); not a transposition image of any
+    # banked 654 unit core; keeps the recurring surplus row
+    # 1:{0,2,7,8,9}; shares 2:{0,5,10,11} with forced-pair-core-654-21
+    # (the immediately preceding admission) and carries its {1,3,7,10}
+    # support at center 11 (exact row of unit-core-654-22); supports
+    # 6:{1,4,5,7} and 9:{1,2,6,10} are new to the bank.
+    {
+        "id": "unit-core-654-31",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 5, 10, 11}),
+            6: frozenset({1, 4, 5, 7}),
+            9: frozenset({1, 2, 6, 10}),
+            10: frozenset({0, 4, 6, 11}),
+            11: frozenset({1, 3, 7, 10}),
+        },
+        "equality_count": 19,
     },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
