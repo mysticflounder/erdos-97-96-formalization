@@ -2910,7 +2910,15 @@ retained core, admitted immediately):
 | 3 | 654 | `cb30873e…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only`, UNIT x3 (5.69 M nodes, 12 rows tried) | signature admitted |
 | 10 | 555 | `50cfcbec…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; greedy deletion retained a 7-row / 21-equality forced-pair core, itself UNIT x3 (2.80 M nodes) | `forced-pair-core-555-01` + signature |
 | reg | 554 | — | EXHAUSTIVE_UNSAT (regression holds after first forced-pair-core admission) | — |
-| 4 | 654 | `6b5de144…` | NONUNIT; SOURCE pair (7,8); `--radical-only --core` certification running | pending |
+| 4 | 654 | `6b5de144…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-654-02` + signature |
+| retro | 555 | `84ac8d4a…` (iter 7) | `--radical-only --core` upgrade of the signature-only kill: 7-row / 21-equality core, pair (6,7) | `forced-pair-core-555-02` |
+| retro | 555 | `fd874bf2…` (iter 9) | 7-row / 21-equality core, pair (6,7); differs from 555-02 only in row 4 | `forced-pair-core-555-03` |
+| retro | 555 | `79a04c0f…` (iter 8) | 8-row / 24-equality core, pair (6,7) | `forced-pair-core-555-04` |
+| retro | 654 | `cb30873e…` (iter 3) | 5-row / 15-equality core, pair (7,8), no row centered at 7 | `forced-pair-core-654-01` |
+| retro | 654 | `a4914ed2…` (iter 1) | 10-row / 30-equality core, pair (7,8) — the ideal whose `std(I)` defeated 1800 s | `forced-pair-core-654-03` |
+| retro | 654 | `9095f635…` (iter 2) | 7-row / 21-equality core, pair (7,8) | `forced-pair-core-654-04` |
+| 11 | 555 | `38a642e3…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core | `forced-pair-core-555-05` + signature |
+| 5 | 654 | `080287b2…` | NONUNIT; SOURCE pair (7,8); `--radical-only --core` certification running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -2997,8 +3005,9 @@ Rabinowitsch UNIT computation is light where `std(I)` is heavy.
 The first live `--core` run (its fail-closed smoke test) passed
 against 555 iteration-10 witness `50cfcbec…`: the full 12-row system
 certified at radical grade on pair (6,7) (hash `e9b8d85d…` matched the
-search report), and greedy deletion removed 5 of 12 rows — every
-deletion attempt got a definite verdict at the 60 s budget — leaving a
+search report), and greedy deletion removed 5 of 12 rows (5 UNIT
+deletions, 2 NONUNIT, 5 TIMEOUT — timed-out attempts retain their row
+fail-closed, so the core is valid but possibly non-minimal), leaving a
 7-row / 21-equality core with the pair-(6,7) Rabinowitsch ideal UNIT
 in Singular and msolve under both variable orders
 (`CROSSCHECKED_FORCED_ZERO_PAIR_CORE`).  Admitted as
@@ -3009,3 +3018,20 @@ grades.  554 regression after the admission: EXHAUSTIVE_UNSAT holds.
 555 iteration 11 and the 654 iteration-4 `--radical-only --core`
 certification (witness `6b5de144…`, pair (7,8), hash `bbdbf705…`) are
 running.
+
+With more cores made available, the six earlier signature-only NONUNIT
+kills were retroactively upgraded in one parallel `--core` sweep: all
+six certified `CROSSCHECKED_FORCED_ZERO_PAIR_CORE` (each retained core
+Rabinowitsch UNIT x3), admitted as `forced-pair-core-555-02..04` and
+`forced-pair-core-654-01..04` alongside `forced-pair-core-555-05`
+(iteration 11) and `forced-pair-core-654-02` (iteration 4).  Notable
+shapes: the 654 iteration-3 core is only 5 rows / 15 equalities and
+contains no row centered at 7 — the (7,8) coincidence is forced from
+five rows centered elsewhere; the 555 iteration-7 and iteration-9
+cores are identical except in row 4, giving direct structural evidence
+for the near-neighbour observation.  Deletion attempts that hit the
+60 s budget retain their row fail-closed (1–7 TIMEOUTs per run), so
+the cores are valid cuts but not confirmed minimal; a longer-budget
+re-deletion pass could shrink them.  The bank now carries nine
+transferable forced-pair cores; each future witness containing any of
+them is pruned in-search rather than mined, certified, and admitted.
