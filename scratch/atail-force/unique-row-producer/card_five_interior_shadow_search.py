@@ -1790,6 +1790,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
     },
+    # 555 iter-60 witness c6f569b6 (SAT at 20,348 nodes — +1,549
+    # past iter-59, second witness in the shallow post-555-46
+    # pocket; sources (6,7), inline CROSSCHECKED_UNIT):
+    # system_unit_recheck.py 900 s deletion retained 6 rows / 18
+    # equalities (deletion verdicts 6 UNIT / 3 TIMEOUT fail-closed /
+    # 3 NONUNIT), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); not a transposition image of any banked core; kin
+    # capped at 3 shared rows (555-22/-23/-24/-26/-28/-33 via
+    # 0, 2, 8; 555-47 via 0, 2, 9); 6-row grade matches
+    # 555-04/-05/-12/-16/-17/-32/-37; ZERO new supports — row
+    # 9:{0,3,7,10} (new in 555-47) immediately re-used, rows
+    # 7:{0,3,6,8} (555-06, fp-555-01..04/-11/-12) and 10:{3,8,9,11}
+    # (555-05, fp-555-01/-04) return from the early forced-pair
+    # sector.
+    {
+        "id": "unit-core-555-48",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 3, 6, 8}),
+            8: frozenset({2, 6, 10, 11}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({3, 8, 9, 11}),
+        },
+        "equality_count": 18,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
