@@ -1245,6 +1245,28 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-45 witness c0b4b809 (SAT at 93,292 nodes, sources (6,7),
+    # inline CROSSCHECKED_UNIT): the search returned to the anchored
+    # family one iteration after the iter-44 pocket shift — anchor rows
+    # 2:{0,1,9,10} and 11:{0,1,5,6} are back.  system_unit_recheck.py
+    # 900 s deletion retained 7 rows / 21 equalities (4 deletion
+    # TIMEOUTs), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); not a transposition image of any banked 555 unit core;
+    # closest kin unit-core-555-26/-28 (5 shared rows: 0, 2, 8, 9, 11);
+    # supports 7:{0,3,8,11} and 10:{5,7,9,11} are new to the bank.
+    {
+        "id": "unit-core-555-33",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 3, 8, 11}),
+            8: frozenset({2, 6, 10, 11}),
+            9: frozenset({0, 4, 7, 10}),
+            10: frozenset({5, 7, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
