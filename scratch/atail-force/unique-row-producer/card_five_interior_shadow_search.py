@@ -1417,6 +1417,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-50 witness 6035ec53 (SAT at 150,291 nodes, sources
+    # (6,7), inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 8 rows / 24 equalities (deletion verdicts
+    # 4 UNIT / 7 TIMEOUT fail-closed / 1 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); exactly the
+    # image of unit-core-555-26 under transposition 6<->7 — the
+    # SEVENTH full-core transposition pair and the third under (6 7),
+    # extending the (6,7)-image enumeration of the 555-20..28 family
+    # (555-22 -> 555-35, 555-24 -> 555-36, 555-26 -> 555-38); support
+    # 6:{0,4,5,8} new to the bank; closest kin 555-35/-36/-37
+    # (4 shared rows each).
+    {
+        "id": "unit-core-555-38",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({0, 4, 5, 8}),
+            7: frozenset({2, 5, 6, 9}),
+            8: frozenset({2, 7, 10, 11}),
+            9: frozenset({0, 4, 6, 10}),
+            10: frozenset({3, 5, 9, 11}),
+            11: frozenset({0, 1, 5, 7}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
