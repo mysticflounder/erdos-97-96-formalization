@@ -1816,6 +1816,34 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-61 witness 5697fca7 (SAT at 20,362 nodes — +14 past
+    # iter-60, third witness in the shallow post-555-46 pocket;
+    # sources (6,7), inline CROSSCHECKED_UNIT):
+    # system_unit_recheck.py 900 s deletion retained 7 rows / 21
+    # equalities (deletion verdicts 5 UNIT / 3 TIMEOUT fail-closed /
+    # 4 NONUNIT), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); not a transposition image of any banked core;
+    # structurally it is 555-48 with row 8's support swapped
+    # ({2,6,10,11} -> {2,6,9,11}) plus row 11:{0,1,5,6} appended —
+    # kin 555-48 via 5 shared rows, then 555-47 via 4; 7-row/21-eq
+    # is the modal 555 grade; ZERO new supports — row 9:{0,3,7,10}
+    # (new in 555-47) used a third consecutive time, row
+    # 8:{2,6,9,11} returns from 555-10/-13 and recurs in 654
+    # (654-13/-17/-23/-29/-30, fp-654-28/-29), row 11:{0,1,5,6}
+    # from the 555-19..34 sector and 555-46/-47.
+    {
+        "id": "unit-core-555-49",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 3, 6, 8}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
