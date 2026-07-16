@@ -448,6 +448,19 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-29 witness admitted 2026-07-15: source pair (7,8)
+    # forced zero — second consecutive 654 NONUNIT (recheck decided
+    # NONUNIT with no timeout); certified by membership_crosscheck.py
+    # --radical-only; its retained 8-row deletion core (zero deletion
+    # timeouts) is forced-pair-core-654-12.
+    "5a6fd93d7fda01cd5016417ee6197cd05694a0e527e2463d9dcb7813e353a775": {
+        "equality_sha256":
+            "42d100e348c86b55e8392dcb3a58c7009a3dae9be1db82744eba1b68626eb74b",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -1626,6 +1639,27 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 3, 8, 10}),
         },
         "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-29 witness 5a6fd93d… admitted 2026-07-15: 8-row /
+    # 24-equality core forcing pair (7,8) — second consecutive 654
+    # NONUNIT; retained core Rabinowitsch UNIT x3, ZERO deletion
+    # timeouts; no apex row; shares rows 0/6/7/10/11 with
+    # forced-pair-core-654-11 (drops 3 and 9, adds 4, 5, 8).
+    {
+        "id": "forced-pair-core-654-12",
+        "rows": {
+            0: frozenset({3, 6, 9, 10}),
+            4: frozenset({3, 6, 7, 11}),
+            5: frozenset({1, 4, 6, 8}),
+            6: frozenset({1, 5, 9, 11}),
+            7: frozenset({2, 6, 8, 11}),
+            8: frozenset({3, 4, 7, 9}),
+            10: frozenset({0, 4, 5, 6}),
+            11: frozenset({1, 3, 8, 10}),
+        },
+        "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
