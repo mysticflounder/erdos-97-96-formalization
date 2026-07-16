@@ -342,6 +342,17 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-8 witness admitted 2026-07-15: source pair (7,8)
+    # forced zero, certified by membership_crosscheck.py --radical-only;
+    # its retained 9-row deletion core is forced-pair-core-654-08.
+    "0fe506e46a4f396e7c298974d2d7d0bf6efe7158e0cdbd1c136d8ccce56cbcb8": {
+        "equality_sha256":
+            "163bdca71cbfd3d941ef83780f7930dfea4482489d13295589b5743a47c911ac",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -874,6 +885,26 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (6, 7),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-8 witness 0fe506e4… admitted 2026-07-15: 9-row /
+    # 27-equality core forcing pair (7,8); retained core Rabinowitsch
+    # UNIT x3 (8 deletion TIMEOUTs retained fail-closed under box load).
+    {
+        "id": "forced-pair-core-654-08",
+        "rows": {
+            0: frozenset({1, 3, 6, 9}),
+            3: frozenset({1, 4, 6, 8}),
+            5: frozenset({4, 6, 7, 11}),
+            6: frozenset({2, 5, 8, 11}),
+            7: frozenset({0, 3, 5, 9}),
+            8: frozenset({2, 7, 9, 11}),
+            9: frozenset({2, 4, 5, 10}),
+            10: frozenset({0, 3, 8, 11}),
+            11: frozenset({0, 1, 4, 7}),
+        },
+        "equality_count": 27,
+        "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
 )

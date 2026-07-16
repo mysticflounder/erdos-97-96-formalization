@@ -2924,8 +2924,9 @@ retained core, admitted immediately):
 | 13 | 555 | `78b4d1af…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-555-07` + signature |
 | 7 | 654 | `e99adf80…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 7 | `forced-pair-core-654-07` + signature |
 | 14 | 555 | `67cd332a…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core (6 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-08` + signature |
-| 8 | 654 | — | search running | pending |
-| 15 | 555 | — | search running | pending |
+| 8 | 654 | `0fe506e4…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 9-row / 27-equality core (8 deletion TIMEOUTs retained fail-closed under box load) (5.87 M nodes) | `forced-pair-core-654-08` + signature |
+| 9 | 654 | — | search running | pending |
+| 15 | 555 | `1e81296b…` | NONUNIT (3.33 M nodes); source-pair route FAILS — dist²(6,7) radical membership NONUNIT in all three oracles, first such witness since 555 iter-7; all-pairs `--scan` then found 49/66 pairs DIRECTLY forced (dist² ∈ I); point 6 nearly isolated in the forced graph (only (6,11)); pair (7,8) `--radical-only --core` certification running | pending core (pair 7,8) |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3071,3 +3072,24 @@ more rows; any strictly smaller retained core supersedes its bank
 entry under the same ID (a subset core fires on strictly more
 assignments).  Outputs land in the session scratchpad as
 `iterN_PPP_redel600.json`.
+
+654 iteration 7 and 555 iteration 14 continued the source-pair
+pattern (`forced-pair-core-654-07`, `forced-pair-core-555-08`,
+fifteen cores total; 654-07 is the second 654 core with no row
+centered at 7, and 555-08 retained six deletion TIMEOUTs
+fail-closed).
+
+555 iteration 15 (witness `1e81296b…`, 3.33 M nodes) broke the
+source-pair pattern: dist²(6,7) radical membership came back
+NONUNIT in all three oracles — a definitive negative, the first
+witness since iteration 7 whose source pair is not forced.  The
+witness is still not a survivor: the all-pairs `--scan` (whose
+`std(I)` completed quickly here, unlike the 654 iteration-1 ideal)
+found 49 of 66 squared pair distances DIRECTLY in the ideal.  Any
+one directly-forced pair kills every real distinct-point
+realization, since a real isotropic difference vector is zero.
+Structurally, point 6 is nearly isolated in the forced-pair graph
+(only (6,11) is forced), while {0,2,3,4,5,8,9} form a forced
+clique; the complex variety collapses almost everything except the
+neighbourhood of point 6.  Kill route: pair (7,8) certified at the
+radical grade with core extraction.
