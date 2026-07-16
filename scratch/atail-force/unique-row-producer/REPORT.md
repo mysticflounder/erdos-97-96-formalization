@@ -2599,7 +2599,8 @@ unconditionally:
   localization (`q_blocker_mem_firstInterior_of_cross`) plus interior/surplus
   cap disjointness refute each cap-local arm directly.
 
-**PLANNED, NOT YET KERNEL-CHECKED:** the analogous refutation for the
+**PLANNED, NOT YET KERNEL-CHECKED (since upgraded: PROVEN, see the
+finalization section below):** the analogous refutation for the
 FA-UNIQ5-coincident accepted output: coincident centers with card five give
 mutual membership (production
 `blocker_centers_eq_iff_mutual_cross_membership_of_five_le`), placing the
@@ -2610,8 +2611,9 @@ common blocker on the pair's perpendicular bisector; with
 `x = oppApex1` itself (a `SelectedFourClass` support may be any four-point
 subset of a radius class).
 
-**Corrected decomposition (CONJECTURED until the coincident theorem is
-checked):** the three packet targets do not decompose the FA-UNIQ branches;
+**Corrected decomposition (CONJECTURED at time of writing; the coincident
+theorem is now kernel-checked — see the finalization section below):** the
+three packet targets do not decompose the FA-UNIQ branches;
 each is refuted by branch-local data, so any "producer" for them must already
 contain the full branch contradiction.  The genuinely missing full-geometry
 producer is a direct-`False` theorem on the residual configurations:
@@ -2632,3 +2634,75 @@ with (T1) bisector-center localization — every carrier center other than
 `capInteriorByIndex S.oppIndex1`; (T5) `cross_survival_of_distinct_blockers`
 via the production mutual-membership theorem; (D) the coincident
 no-third-bisector-center refutation above.
+
+## 2026-07-15 finalization: T1/T5/D kernel-checked; coincident refutation PROVEN
+
+The planned module `card_five_interior_bisector_localization.lean` is
+written and kernel-checked (owned dir, recipe above, exit 0).  All eight
+`#print axioms` lines report exactly `propext`, `Classical.choice`,
+`Quot.sound` — no `sorryAx`, no custom axioms.  Declarations (namespace
+`Problem97.ATailUniqueRowProducerScratch`):
+
+- **T1** `interior_pair_bisector_center_mem_capInterior`: any carrier point
+  `c ≠ S.oppApex1` equidistant from a strict-interior selected pair lies in
+  `S.capInteriorByIndex S.oppIndex1`.  Needs neither `0 < r` nor a
+  cardinality hypothesis, so it localizes bisector centers uniformly in the
+  FA-UNIQ4 and FA-UNIQ5 branches.  Corollary
+  `interior_pair_bisector_center_not_mem_surplusCap`: every such center
+  avoids the surplus cap.
+- **Card-four counting** `selectedClass_capInteriorByIndex_card_ge_two_of_card_four`,
+  `firstApex_cardFour_interior_card_ge_two`, `exists_cardFour_interior_pair`:
+  the exact card-four first-apex class has at least two strict-interior
+  members, so the FA-UNIQ4 branch has an interior pair and T1 applies to it
+  verbatim.
+- **T5** `cross_survival_of_distinct_blockers`: on a survivor relocation
+  packet with `5 ≤ card`, distinct chosen blocker centers force at least one
+  directed cross-deletion survival (otherwise both cross memberships hold
+  and `blocker_centers_eq_of_five_le_of_mutual_cross_membership` collapses
+  the centers).  This replaces the refuted
+  `CardFiveDistinctCapLocalCrossHypothesis` route with a proved dichotomy.
+- **D** `coincident_blocker_no_third_bisector_center`: in the exact
+  card-five coincident-blocker branch, `S.oppApex1` and the common blocker
+  saturate `Dumitrescu.perpBisector_apex_bound`; no other carrier point is
+  equidistant from the frontier pair.  Corollary
+  `coincident_blocker_no_residual_class_through_pair`: no carrier point
+  other than the apex and the common blocker carries a `SelectedFourClass`
+  through the pair.  Both excluded points are genuine bisector escapes (the
+  apex's card-five class and the blocker's own selected shell each contain
+  the pair); for residual shell members the blocker escape is vacuous by
+  `center_not_mem`, leaving exactly the apex-on-shell case.
+
+**Upgrade of the PLANNED item above: PROVEN.**  With D checked, the
+FA-UNIQ5-coincident accepted output (`RESUME_PROMPT.md` target (c): a
+residual member `x` with a `SelectedFourClass D.A x` through the common
+pair) is unsatisfiable for every `x` other than `oppApex1`, completing the
+reclassification of all three named accepted outputs as ex-falso endpoints.
+
+**Upgrade of the corrected decomposition: the reclassification claims are
+now all PROVEN.**  The residual configurations stand as the genuinely
+missing full-geometry producer content, now sharpened by the new theorems:
+
+1. FA-UNIQ5, distinct blockers: interior pair, distinct blockers, and — now
+   PROVEN present by T5 — at least one directed cross-deletion survival
+   (equivalently, one source absent from the other's selected shell).  The
+   open content is a direct-`False` theorem consuming this cross-survival
+   configuration.
+2. FA-UNIQ5, coincident blocker: interior pair with the common blocker on
+   the bisector (localized in `capInteriorByIndex S.oppIndex1` by T1, hence
+   off the surplus cap), both residual shell members off the apex circle
+   and outside the pair's cap, and — now PROVEN by D — no third carrier
+   bisector center.  The open content is the apex-on-shell escape case and
+   a direct-`False` theorem on the two off-circle residual members.
+3. FA-UNIQ4: unchanged branch data with the surplus-pair packet route
+   removed; the branch has an interior pair (card-four counting) and every
+   carrier bisector center of it other than the apex is localized off the
+   surplus cap (T1).  The open content is a direct-`False` theorem on this
+   card-four interior configuration.
+
+No conditional wrapper and no fixed-card abstraction were introduced; all
+new statements are over the live parent surface with explicit branch
+hypotheses.  Census evidence: `producer_coverage_census --check` passed
+this session against
+`census/atail_force/producer_coverage_census_checkpoint.json` (git blob
+`8ab93e1d95f7c140fcf67f8f9fcf3152b8af4fbb`, last touched by commit
+`f01ff4a2`).
