@@ -17,6 +17,16 @@ the two rows chosen as critical-shell blockers are marked exact.
 (``interior_pair_bisector_localization_ok``): every non-apex row center
 whose support contains a strict-interior five-class pair must itself lie in
 the O1 strict interior.
+
+2026-07-15 (later): adds two OPT-IN candidate cuts, both {{NEEDS_PROOF}} —
+discovery experiments only, never on by default and never part of a
+recorded UNSAT claim unless explicitly labeled conditional:
+
+- ``--cut-surplus-blocker``: no interior source's critical-shell blocker
+  center lies in the surplus cap (kills the 555 witness class sig
+  ``d48af6a7`` and half of 654's ``fa87f604``);
+- ``--cut-pair-member-blocker``: no frontier pair member is the other
+  member's blocker center (kills the other half of ``fa87f604``).
 """
 
 from __future__ import annotations
@@ -441,14 +451,25 @@ def target_negating_blockers(
     rows: Mapping[int, frozenset[int]],
     eligible: Mapping[int, tuple[int, ...]],
     pair_sources: tuple[int, ...],
+    *,
+    cut_surplus_blocker: bool = False,
+    cut_pair_member_blocker: bool = False,
 ) -> tuple[tuple[tuple[int, int], dict[int, int]], ...]:
-    """Enumerate every distinct-blocker interior pair evading the target."""
+    """Enumerate every distinct-blocker interior pair evading the target.
+
+    The two keyword cuts are {{NEEDS_PROOF}} candidate theorems, off by
+    default; enabling one makes any resulting UNSAT conditional on it.
+    """
 
     surplus = frame.S
     results = []
     for q, w in itertools.combinations(pair_sources, 2):
         for bq, bw in itertools.product(eligible[q], eligible[w]):
             if bq == bw:
+                continue
+            if cut_surplus_blocker and (bq in surplus or bw in surplus):
+                continue
+            if cut_pair_member_blocker and (bq == w or bw == q):
                 continue
             cross_q = w in rows[bq]
             cross_w = q in rows[bw]
@@ -489,6 +510,8 @@ def solve_card_five_row(
     *,
     bank_negative: bool,
     real_cas_negative: bool,
+    cut_surplus_blocker: bool,
+    cut_pair_member_blocker: bool,
     max_nodes: int,
 ) -> tuple[dict[str, object], int, Counter[str]]:
     pseudo = shadow.ClassRow(
@@ -522,7 +545,9 @@ def solve_card_five_row(
         require(len(rows) == frame.n - 1, "global row center repeated")
         eligible = blocker_choices(frame, rows, pseudo)
         target_negations = target_negating_blockers(
-            frame, rows, eligible, tuple(frame.ints["O1"])
+            frame, rows, eligible, tuple(frame.ints["O1"]),
+            cut_surplus_blocker=cut_surplus_blocker,
+            cut_pair_member_blocker=cut_pair_member_blocker,
         )
         if not target_negations:
             return False
@@ -636,6 +661,8 @@ def validate_witness(
     *,
     require_bank_negative: bool,
     require_real_cas_negative: bool,
+    require_cut_surplus_blocker: bool = False,
+    require_cut_pair_member_blocker: bool = False,
 ) -> None:
     frame = mc.build_frame(witness.profile)
     pseudo = shadow.ClassRow(
@@ -708,9 +735,21 @@ def validate_witness(
         ),
         "an accepted CardFiveCapOrMutualFields arm survived",
     )
+    if require_cut_surplus_blocker:
+        require(
+            bq not in frame.S and bw not in frame.S,
+            "candidate surplus-blocker cut violated by reported witness",
+        )
+    if require_cut_pair_member_blocker:
+        require(
+            bq != w and bw != q,
+            "candidate pair-member-blocker cut violated by reported witness",
+        )
     eligible = blocker_choices(frame, witness.rows, pseudo)
     target_negations = target_negating_blockers(
-        frame, witness.rows, eligible, tuple(frame.ints["O1"])
+        frame, witness.rows, eligible, tuple(frame.ints["O1"]),
+        cut_surplus_blocker=require_cut_surplus_blocker,
+        cut_pair_member_blocker=require_cut_pair_member_blocker,
     )
     require(
         any(
@@ -763,6 +802,8 @@ def summarize_rejected_bank_cores(
 def search_profile(
     profile: tuple[int, int, int], *, bank_negative: bool,
     real_cas_negative: bool,
+    cut_surplus_blocker: bool,
+    cut_pair_member_blocker: bool,
     max_nodes: int,
 ) -> tuple[Witness | None, dict[str, object]]:
     frame, candidates = mc.cached_candidate_lists(profile, set(mc.PROVEN_ROWS))
@@ -779,6 +820,8 @@ def search_profile(
             support,
             bank_negative=bank_negative,
             real_cas_negative=real_cas_negative,
+            cut_surplus_blocker=cut_surplus_blocker,
+            cut_pair_member_blocker=cut_pair_member_blocker,
             max_nodes=max_nodes,
         )
         rejected_bank_cores.update(rejected)
@@ -799,6 +842,8 @@ def search_profile(
             witness,
             require_bank_negative=bank_negative,
             require_real_cas_negative=real_cas_negative,
+            require_cut_surplus_blocker=cut_surplus_blocker,
+            require_cut_pair_member_blocker=cut_pair_member_blocker,
         )
         return witness, {
             "card_five_rows_tried": tried,
@@ -1036,6 +1081,20 @@ def main() -> None:
         help="reject row signatures with an exact characteristic-zero no-real certificate",
     )
     parser.add_argument(
+        "--cut-surplus-blocker",
+        action="store_true",
+        help="{{NEEDS_PROOF}} candidate cut: exclude blocker centers in the "
+        "surplus cap for strict-O1-interior sources; any UNSAT is "
+        "conditional on this unproven theorem",
+    )
+    parser.add_argument(
+        "--cut-pair-member-blocker",
+        action="store_true",
+        help="{{NEEDS_PROOF}} candidate cut: exclude a frontier pair member "
+        "as the other member's blocker center; any UNSAT is conditional "
+        "on this unproven theorem",
+    )
+    parser.add_argument(
         "--max-nodes",
         type=int,
         default=MAX_NODES_PER_CARD_FIVE_ROW,
@@ -1056,12 +1115,18 @@ def main() -> None:
             profile,
             bank_negative=args.bank_negative,
             real_cas_negative=args.real_cas_negative,
+            cut_surplus_blocker=args.cut_surplus_blocker,
+            cut_pair_member_blocker=args.cut_pair_member_blocker,
             max_nodes=args.max_nodes,
         )
         report = encode_witness(witness, stats)
         report["requested_profile"] = list(profile)
         report["formalized_bank_negative_required"] = args.bank_negative
         report["exact_real_cas_negative_required"] = args.real_cas_negative
+        report["needs_proof_candidate_cuts"] = {
+            "cut_surplus_blocker": args.cut_surplus_blocker,
+            "cut_pair_member_blocker": args.cut_pair_member_blocker,
+        }
         if args.metric and witness is not None:
             report["metric_equality_audit"] = metric_audit(
                 witness, metric_oracle

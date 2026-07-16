@@ -2764,3 +2764,44 @@ Theorem candidates extracted from the shapes (unmined, no bank coverage):
 554 remains the only fully closed profile.  The exact-oracle mining pause
 stands; candidates 1–2 offer a cheaper Lean-first path than resuming the
 queue.
+
+## 2026-07-15 candidate-cut discrimination
+
+Before proving either theorem candidate, both were wired into the shadow
+search as OPT-IN flags (`--cut-surplus-blocker`, `--cut-pair-member-blocker`,
+both {{NEEDS_PROOF}}, off by default; any UNSAT under them would be
+conditional).  Regression first: the default 555 run reproduces
+`d48af6a7…` exactly (pair `(6,7)`, blockers `(2,3)`, both in surplus).
+
+Results (all with `--bank-negative --real-cas-negative --check`):
+
+| profile | cuts | status | pair | blockers | blocker locations |
+|---|---|---|---|---|---|
+| 555 | A | SAT, same sig `d48af6a7` | (6,7) | (7,8) | pair member + third O1-interior |
+| 555 | B | SAT, same sig `d48af6a7` | (6,7) | (2,3) | both surplus (unchanged) |
+| 555 | A+B | SAT, same sig `d48af6a7` | (6,8) | (7,11) | third O1-interior (cross hit on 8) + O2-interior |
+| 654 | A | SAT, same sig `fa87f604` | (7,8) | (8,7) | mutual pair-member blockers |
+| 654 | B | SAT, same sig `fa87f604` | (7,8) | (10,4) | O2-interior + surplus |
+| 654 | A+B | SAT, same sig `fa87f604` | (7,8) | (10,9) | O2-interior + third O1-interior |
+
+654 runs remain bounded (9 candidate five-rows at the 500k node cap), not
+exhaustive.
+
+**Verdict: both theorem candidates are demoted.**  The same two row
+assignments survive every cut combination; only the blocker *selection*
+relocates (surplus → pair member → third interior member → O2 interior).
+Any center whose row contains the source is an eligible blocker, so
+excluding blocker-center shapes one at a time cannot close a signature —
+it manufactures conditional consumers, which the lane objective forbids.
+Candidates 1–2 of the previous section are downgraded from "cheaper
+Lean-first path" to "true but not load-bearing even if proved"
+({{UNVALIDATED}} as theorems either way).
+
+The load-bearing object is each surviving row assignment itself.  The
+decisive per-signature diagnostic is the exact-CAS metric audit
+(`--metric`): a UNIT verdict on the pinned equality ideal kills the
+signature wholesale, independent of blocker choice — the same trust path
+as the 49 admitted 554 cuts.  Audits of `d48af6a7` (555) and `fa87f604`
+(654) were launched; results in the next section.  Whether to resume the
+iterative mine–admit–rerun loop on 555/654 remains Adam's call; these
+audits are one-shot diagnosis of the two standing witnesses only.
