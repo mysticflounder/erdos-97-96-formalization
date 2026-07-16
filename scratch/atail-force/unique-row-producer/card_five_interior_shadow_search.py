@@ -754,6 +754,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-52 witness: twenty-fourth NONUNIT-track 654
+    # witness (12,011,489 nodes — 352 past iteration 51's — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 8-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-34.
+    "e188012bdeef049ffc01f4d73b7a6d82d988f383fc0d7eab17b20df85fd9c326": {
+        "equality_sha256":
+            "473ad791f0b0f87c7177b434f7acfb4cda2f7574557c57483cc2ae4350129fab",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3205,6 +3219,36 @@ REAL_INFEASIBLE_ROW_CORES = (
             7: frozenset({2, 6, 8, 11}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({1, 3, 9, 10}),
+        },
+        "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-52 witness e188012b… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — twenty-fourth
+    # NONUNIT-track 654 witness (12,011,489 nodes — 352 past
+    # iteration 51's; 20 M run, caps=0); inline audit
+    # CROSSCHECKED_NONUNIT directly; Rabinowitsch UNIT x3 (Singular
+    # + msolve fwd/rev); deletion verdicts 4 UNIT / 7 TIMEOUT
+    # fail-closed / 1 NONUNIT — witness rows 1, 2, 3, 4 dropped, the
+    # surplus row out for a third consecutive core; not a
+    # transposition image of any banked core; nearest kin fp-654-33
+    # (4 shared rows 5, 6, 7, 10 — chains directly off the previous
+    # admission; the ex-555-42 row 5:{3,6,9,11} consolidates in the
+    # 654 family); TWO new supports 0:{4,6,8,10}, 8:{2,3,4,5}; row
+    # 9:{0,3,6,7} from fp-654-13/-21/-25, row 11:{1,3,8,10} from
+    # 654-21/fp-654-11/-12.
+    {
+        "id": "forced-pair-core-654-34",
+        "rows": {
+            0: frozenset({4, 6, 8, 10}),
+            5: frozenset({3, 6, 9, 11}),
+            6: frozenset({1, 4, 7, 11}),
+            7: frozenset({2, 6, 8, 11}),
+            8: frozenset({2, 3, 4, 5}),
+            9: frozenset({0, 3, 6, 7}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 8, 10}),
         },
         "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
