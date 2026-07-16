@@ -2922,6 +2922,8 @@ retained core, admitted immediately):
 | 12 | 555 | `5d2b6e65…` | inline audit UNDECIDED (msolve NONUNIT x2, Singular TIMEOUT); pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core, no row centered at 7 | `forced-pair-core-555-06` + signature |
 | 6 | 654 | `f8dd433b…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core sharing five rows with 654-05 | `forced-pair-core-654-06` + signature |
 | 13 | 555 | `78b4d1af…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core | `forced-pair-core-555-07` + signature |
+| 7 | 654 | `e99adf80…` | NONUNIT; SOURCE pair (7,8); `--radical-only --core` certification running | pending |
+| 14 | 555 | — | search running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3057,3 +3059,13 @@ firing in-search (`exact-algebraic-unit-core` stage hits 81 → 104 on
 (iterations 3–6).  The cores prune, but each run still reaches one
 fresh near-neighbour witness; no convergence signal yet in node
 counts.
+
+With the box idle (Adam cleared up to 24 cores), a 13-job re-deletion
+sweep was launched over every admitted forced-pair-core witness:
+`membership_crosscheck.py --radical-only --core` rerun with
+`--deletion-timeout 600` (vs 60).  Attempts that timed out at 60 s
+retained their row fail-closed, so the longer budget can only delete
+more rows; any strictly smaller retained core supersedes its bank
+entry under the same ID (a subset core fires on strictly more
+assignments).  Outputs land in the session scratchpad as
+`iterN_PPP_redel600.json`.
