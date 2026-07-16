@@ -600,6 +600,25 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 24,
     },
+    # 555 iteration-22 witness 408ff3e5… admitted 2026-07-15: third
+    # consecutive unit-grade 555 witness (3.67 M nodes, creeping past
+    # the 3.52 M pocket); system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities incl. the Moser row 0:{1,2,3,4}
+    # (5 deletion TIMEOUTs fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev).
+    {
+        "id": "unit-core-555-10",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 4, 6, 8}),
+            8: frozenset({2, 6, 9, 11}),
+            9: frozenset({0, 4, 10, 11}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({4, 5, 7, 10}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
@@ -864,6 +883,23 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 3, 7, 10}),
         },
         "equality_count": 19,
+    },
+    # 654 iteration-20 witness a77c802b… admitted 2026-07-15: ninth
+    # consecutive unit-grade 654 witness (3.22 M nodes, past the
+    # 2.98 M pocket); system_unit_recheck.py 900 s deletion retained
+    # 5 rows / 16 equalities (1 deletion TIMEOUT fail-closed),
+    # retained core CROSSCHECKED_UNIT (Singular + msolve fwd/rev);
+    # same apex+row-2 family.
+    {
+        "id": "unit-core-654-23",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            8: frozenset({2, 6, 9, 11}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 9, 10}),
+        },
+        "equality_count": 16,
     },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
