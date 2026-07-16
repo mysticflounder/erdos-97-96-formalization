@@ -580,6 +580,26 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iteration-21 witness 0c979445… admitted 2026-07-15: second
+    # consecutive unit-grade 555 witness (same 3.52 M pocket as iter
+    # 20); system_unit_recheck.py 900 s deletion retained 8 rows / 24
+    # equalities incl. the Moser row 0:{1,2,3,4} (5 deletion TIMEOUTs
+    # fail-closed), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); shares six rows with unit-core-555-08.
+    {
+        "id": "unit-core-555-09",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({0, 3, 7, 11}),
+            7: frozenset({3, 5, 8, 10}),
+            8: frozenset({4, 5, 7, 9}),
+            9: frozenset({2, 7, 10, 11}),
+            10: frozenset({0, 4, 6, 11}),
+            11: frozenset({0, 1, 5, 8}),
+        },
+        "equality_count": 24,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
@@ -824,6 +844,24 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 2, 3, 4}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({1, 3, 8, 10}),
+        },
+        "equality_count": 19,
+    },
+    # 654 iteration-19 witness 978ae764… admitted 2026-07-15: eighth
+    # consecutive unit-grade 654 witness (2.98 M pocket);
+    # system_unit_recheck.py 900 s deletion retained 6 rows / 19
+    # equalities (1 deletion TIMEOUT fail-closed), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev); near-twin of
+    # unit-core-654-21 (rows 8 and 11 differ).
+    {
+        "id": "unit-core-654-22",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 4}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 7, 10}),
         },
         "equality_count": 19,
     },
