@@ -2936,7 +2936,8 @@ retained core, admitted immediately):
 | 12 | 654 | `4846a007…` | SAT witness at `--max-nodes 5000000` — the iteration-11 cap starvation was depth, not exhaustion: witness found at only 1.139 M total nodes once the first-row subtree could pass 500 k; inline audit CROSSCHECKED_UNIT, the FIRST unit-grade 654 loop witness (all prior 654 kills were NONUNIT); `system_unit_recheck.py` 900 s pass retained a 6-row / 19-equality core incl. apex row 1:{0,2,7,8,9}, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed) | `unit-core-654-15` |
 | 19 | 555 | `717de68a…` | SAT witness, sources (6,7), inline audit NONUNIT (3.437 M nodes, plateau); source-pair cert in flight | pending |
 | 13 | 654 | `1f76e0e5…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — SECOND unit-grade 654 witness in a row (1.355 M nodes, `--max-nodes 5000000`); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family shape as pre-loop unit-core-654-11..14 | `unit-core-654-16` |
-| 14 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+| 14 | 654 | `5e8d1b6f…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — THIRD consecutive unit-grade 654 witness (1.359 M nodes); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); near-twin of unit-core-654-15 | `unit-core-654-17` |
+| 15 | 654 | — | search running (`--max-nodes 5000000`) | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
