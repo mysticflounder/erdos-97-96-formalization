@@ -1,9 +1,11 @@
-active anchors (7):
-  ⚓ 019f6281  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Eight-sink scratch contract kernel-green: four ordered plus four equilateral-hinge EdgeClosure cores. Fresh exact 8-way (4,5,6) extended-production rerun started at 100000 nodes/shard with 8 workers; runner flag reaches equilateral_hinge_collision_core at every complete leaf before older ordered matchers. This is finite-shadow discovery only, not a live producer or closure claim. Adam authorized parallel research.
+active anchors (9):
+  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A-PAIR coherent-R lane: provenance-bearing resolved normal form remains load-bearing; the F2 source-faithful three-row 2-2 packet is kernel-checked; exact role/metric deficit audits are in flight; do not promote the generic common-deletion projection to a closure interface.
+  ⚓ 37d29399  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — U4/U5 unique-row owner: card-four/card-five unique first-apex radius branches and (6,5,4) work only; R is owned by another session.
+  ⚓ 019f640a  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Bounded audit of realizability-safe robust classifier target; no production edits; preserving apex-containing two-hit profiles
+  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A-PAIR active. Production frontier retains a first-apex strict pair and simultaneous second-apex deletion survival. Symmetric all-center K4 continuation and selector boundary are kernel-checked. Correction: checkpoint SHA ad2400da... is cap-bound and synchronized only to an older matcher subset (11 SAT / 12 node-capped / 0 UNSAT), not the complete current bank. Broader producer_bank finds 10 existing consumers in dirty shards 10,12,13,15,21; clean shards 0,1,2,3,16,20 contain eight deficit-one grids. All six clean complete row ideals are exact UNIT in Singular and both msolve orders; compact MARCO cores and a truly current-bank regeneration are running. Old checkpoint 5b661a15... and dependent h4/h5 counts are stale. Current task: extract a uniform kernel-checkable metric/cap-order contradiction, then wire the parent K-A False theorem. Adam authorized parallel research; unique-row and (6,5,4) remain separately owned.
+  ⚓ 019f6310  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — bank-route refresh against current renumbered theorem inventories
+  ⚓ 019f6281  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — All-eight scratch consumer contract kernel-green: four ordered plus four equilateral-hinge EdgeClosure cores. Corrected deterministic (4,5,6) complete-leaf run at 100000 nodes/shard finished 1 SAT finite-shadow survivor (shard 6), 7 node-capped INDETERMINATE, 0 UNSAT/exhausted, 760861 nodes; source hashes and survivor rows pinned in formalized_core_shards_after_equilateral_hinge_46_8_checkpoint.json. This is not live closure or finite exhaustion. Remaining obligation is a realizability-sensitive producer/new sink. Adam authorized parallel research.
   ⚓ 019f6284  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Off-frontier two-hit geometry audit: determine whether full convex/MEC/noM44 hypotheses force an actual critical shell to meet the dangerous p-row twice with nonalternating cap placement. Adam authorized parallel research.
-  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A-PAIR active; exact blocker trichotomy production. FourPoint/ArcOvertake sinks production-built. Fresh 456 eight-way run: 5 SAT, 3 node-capped indeterminate; 3 unmatched full systems exact CROSSCHECKED_UNIT. Multi-order deletion banks 16 UNIT subsets/16 incidence types. Four five-row minima are 9/7/9/11 equalities with diagonal-only cross-matching; shared equilateral hinge but four distinct tails. Kernel-checked four-way ordered-core consumer isolates an off-frontier nonalternating shared-pair continuation; active blocker is provably unsuitable. Incidence/order endpoint continuation is refuted by a kernel Fin13 model and exact 456 endpoint blocker. Current work must use full MEC/K4/cap geometry. Adam authorized parallel research; session 019f6288 owns unique-row scratch.
-  ⚓ 019f6288 (YOU)  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Adam-controlled parallel ATAIL-UNIQUE-ROW-PRODUCER research. Own only scratch/atail-force/unique-row-producer/. Do not edit U1LargeCapRouteBTail.lean, ATail/CriticalPairFrontier.lean, closure docs, or production metric-core modules. Goal: produce ExistsSurplusPairCriticalBlocker, CardFiveCapOrMutualFields, or the coincident-blocker residual-member packet.
-  ⚓ 019f5a3d  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — Adam-authorized parallel ATAIL research: prescribed-apex deletion and generic minimal-core scratch modules direct-check clean (core axioms only). At most one blocker yields two survivors; shell arm forces opp-cap >=6, carrier >=12, and card-12 oriented 5/4/6. Robust arm flips apices but exact 5/5/5 shadow two-cycles because prior erasures are forgotten. K-A-PAIR remains open; next field is bi-apex survival on the same cumulatively erased carrier or an immediate cap/order/critical-row sink. LIVE-T1/card-11 sources remain separately owned and untouched.
   ⚓ 019f4dd4  Problem97.liveData_T1_ql1_srcl2_false  [open]  — LIVE-T1 production-wiring checkpoint. All 12 LIVE-T1 helpers are source-sorry-free: the 24 former textual holes now call Problem97.U1LargeCapRouteBTailRelabel.false_of_center_p_t1_t20_via_pair. Focused build 4305dbbef395 passed; the fresh index is clean; proof-blueprint symbols --with-sorry fell from 36 to 24. LIVE-T1 remains transitively OPEN only through K-A-PAIR (DoubleApexOffSurplusSharedRadiusPair), with axioms propext, Classical.choice, Quot.sound, and inherited sorryAx. LIVE-T3 still has 24 direct holes. Session 019f5a3d owns the active K-A-PAIR/ATAIL producer lane; keep this cursor stored on LIVE-T1 rather than auto-sinking.
   ⚓ 17ed85d2  Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [open]  — K-A card>=12 pair producer. W2 smoke test is MOOT: census/q3_two_center probe COMPLETE 2026-07-07 (87 joint classes: 72 REALIZED exact, 15 KILLED-PROVEN, kills SAT n=12-16). => hcritical load-bearing (pure-convex conjecture NOT provable from minimal window); two-center not closing granularity. Card>=12 tail routes: >=15 census FALSIFIED, 12-14 census nonconvergent+AHEAD-DEC-gated, only non-excluded = Candidate-D new math. Card-11 slice = census-554/A11-RUN (STOPPED-BOUNDED). No local lever left.
 target spine view: 2 configured target_symbol(s)
@@ -14,9 +16,9 @@ target spine view: 2 configured target_symbol(s)
 spine rooted at: Problem97.erdos97_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 51/2262 node(s)
+open: 51/2263 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 72096 line(s) of lean across 2270 decl(s)
+spine source: 72099 line(s) of lean across 2271 decl(s)
 
 open obligations (13):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
@@ -60,7 +62,7 @@ open obligations (13):
         │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
         │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
         │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
+        │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
         │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
         │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
         │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
@@ -182,9 +184,9 @@ open obligations (13):
 spine rooted at: Problem96.erdos96_rhs
 (this is a [publish] target_symbol — a claim being gated)
 approved axioms: core + Lean.trustCompiler
-open: 55/2270 node(s)
+open: 55/2271 node(s)
 trusted leaves: 20 🔒 (certs excluded from mine by [mining].skip; covered by `#print axioms`)
-spine source: 72289 line(s) of lean across 2278 decl(s)
+spine source: 72292 line(s) of lean across 2279 decl(s)
 
 open obligations (13):
   💧 Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [sorry]
@@ -232,7 +234,7 @@ open obligations (13):
             │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_largeCap_pCentered_t2Source_exactDangerousRow
             │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.false_of_twoLargeCaps_pCentered_t2Source
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.exists_removableVertex_of_twoLargeCaps
-            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]  ⚓ (YOU)
+            │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair  [💧]
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   ├── sorryAx  [💧 sorry]
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 22 closed dep(s)
             │   │   │   │   │   │   │   │   │   │   │   │   │   │   │   └── ✓ 24 closed dep(s)
