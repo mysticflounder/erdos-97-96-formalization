@@ -2805,6 +2805,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-92 witness fe94967e (SAT at 83,242 nodes — lowest
+    # 555 node count since iter-69's 59,946, ending the sixteen-
+    # climb streak (76-91); caps=13; sources (6,7), inline
+    # CROSSCHECKED_UNIT): system_unit_recheck.py 900 s deletion
+    # retained 7 rows / 21 equalities (deletion verdicts 5 UNIT /
+    # 4 TIMEOUT fail-closed / 3 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # capped at 2 shared rows; TWO new supports 8:{3,4,6,9},
+    # 9:{2,4,7,10}; row 0:{1,2,3,5} (non-Moser) only prior in
+    # 555-05; row 11:{1,4,9,10} previously only in 654 unit cores
+    # (654-11/-13) — its first 555 core; row 2:{0,1,9,11} in its
+    # EIGHTEENTH consecutive core (63-80), extending its own record.
+    {
+        "id": "unit-core-555-80",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            2: frozenset({0, 1, 9, 11}),
+            7: frozenset({0, 4, 5, 8}),
+            8: frozenset({3, 4, 6, 9}),
+            9: frozenset({2, 4, 7, 10}),
+            10: frozenset({0, 3, 7, 11}),
+            11: frozenset({1, 4, 9, 10}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
