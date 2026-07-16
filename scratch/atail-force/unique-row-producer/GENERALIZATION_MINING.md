@@ -65,13 +65,47 @@ skipped), restricts forced-pair coverage to same-pair cores, records
 the tested pair in each output record, and the smoke gate gained the
 (6,7) certificate above.
 
-## Escalation — 12 targets, 600 s per oracle (in progress)
+## Escalation — 12 targets, 600 s per oracle
 
 Selected: the two void fp-555 candidates (re-run with the correct
 (6,7) pair), the nine TIMEOUT ×3 candidates, and
 `fp-654-45/-46` (TIMEOUT/NONUNIT/TIMEOUT). Driver:
-scratchpad `genmine_escalate.py`. Results will be appended here.
+scratchpad `genmine_escalate.py`.
 
 Excluded from escalation: all candidates where at least one msolve
 order already returned NONUNIT (near-certain negatives — Singular
 confirmation would not change the mining outcome).
+
+### Escalation results (2026-07-16): zero wins at 600 s
+
+All 12 targets completed. Verdict triples
+(msolve fwd / msolve rev / Singular):
+
+| triple | count | reading |
+|---|---|---|
+| TIMEOUT / TIMEOUT / TIMEOUT | 8 | open at 600 s |
+| NONUNIT / NONUNIT / TIMEOUT | 2 | near-certain negative |
+| NONUNIT / TIMEOUT / TIMEOUT | 1 | likely negative |
+| NONUNIT / NONUNIT / NONUNIT | 1 | definitive negative |
+
+Zero targets reached CROSSCHECKED_UNIT or
+CROSSCHECKED_FORCED_ZERO_PAIR_SUBSET — a 5× budget increase decided
+nothing positively.
+
+Per family: all six unit-family intersections (`555-42∩53`,
+`555-51∩55`, `555-54∩55`, `555-08∩09`, `555-10∩13`, `555-64∩65`,
+5–6 shared rows each) stayed TIMEOUT ×3 — the UNIT test on these
+subsystems is beyond every oracle at 600 s. The six forced-pair
+intersections all returned NOT_CROSSCHECKED: the two re-run
+(previously void) fp-555 candidates now have valid records under
+the correct (6,7) pair — `fp-555-10∩13` is the definitive negative
+(NONUNIT ×3) and `fp-555-02∩03` a near-certain negative
+(NONUNIT ×2 + Singular TIMEOUT); `fp-654-45∩46` likewise
+NONUNIT ×2 + TIMEOUT; `fp-654-35∩36` NONUNIT fwd only;
+`fp-654-05∩06` and `fp-654-26∩27` stayed TIMEOUT ×3.
+
+Mining conclusion unchanged from run 1: the banked certificates do
+not collapse to their kin-shared common parts — every decided
+intersection is a proper ideal, and the rows kin cores do not share
+remain load-bearing. Raw records: `genmine_escalate_600s.jsonl`
+(this directory; 13 lines: header + 12 targets).
