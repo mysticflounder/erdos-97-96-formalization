@@ -3401,6 +3401,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 16,
     },
+    # 654 iter-71 witness 3ece9f69 (SAT at 17,421,886 nodes — THIRD
+    # consecutive depth record, +159,520 past iter-70, 87% of the
+    # 20 M budget; caps=0; sources (7,8), inline CROSSCHECKED_UNIT):
+    # system_unit_recheck.py 900 s deletion retained 7 rows / 22
+    # equalities incl. surplus row 1:{0,2,7,8,9} (deletion verdicts
+    # 5 UNIT / 3 TIMEOUT fail-closed / 4 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # capped at 2 shared rows; FOUR new supports 0:{1,5,6,8},
+    # 6:{1,3,4,8}, 8:{2,4,6,9}, 10:{0,4,5,11}; rows 9:{0,3,5,7} and
+    # 11:{3,6,9,10} shared with the just-admitted fp-654-49; FIRST
+    # 7-row and first 22-eq 654 unit core (all prior 31 are 5-6
+    # rows / <=19 eq).
+    {
+        "id": "unit-core-654-35",
+        "rows": {
+            0: frozenset({1, 5, 6, 8}),
+            1: frozenset({0, 2, 7, 8, 9}),
+            6: frozenset({1, 3, 4, 8}),
+            8: frozenset({2, 4, 6, 9}),
+            9: frozenset({0, 3, 5, 7}),
+            10: frozenset({0, 4, 5, 11}),
+            11: frozenset({3, 6, 9, 10}),
+        },
+        "equality_count": 22,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
