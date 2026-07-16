@@ -961,6 +961,26 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-68 witness admitted 2026-07-16: thirty-eighth
+    # NONUNIT-track 654 witness and the deepest 654 witness yet
+    # (13,869,343 nodes — +504,933 past iteration 67's 13,364,410,
+    # stepping out of the ~13.35M pocket — 20 M run, caps=0; inline
+    # msolve NONUNIT x2).  Production-order fp cert hit Singular
+    # TIMEOUT at 900 s; a 12-job flux strategy race was won by slimgb
+    # + the seed-4 permuted variable order (UNIT in 20 s — same
+    # winner as cf0a86c8; see ff2eb8fb-flux-race/RACE.md), so this
+    # cert (ff2eb8fb_admit_cert.py) runs every Singular call in the
+    # perm4 order, msolve canonical fwd/rev.  Its retained 7-row
+    # deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-654-48.
+    "ff2eb8fbf191b1daebd984a73cb9226d43ad98cc1818f0715503f9ff94774aab": {
+        "equality_sha256":
+            "c64c87d1b52e8d252f5fa6278eeddfb318d7da6f19ce7f8c487f2998a98eff77",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -4645,6 +4665,38 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({3, 5, 9, 10}),
         },
         "equality_count": 22,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-68 witness ff2eb8fb… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (7,8) — thirty-eighth
+    # NONUNIT-track 654 witness and the deepest 654 witness yet
+    # (13,869,343 nodes — +504,933 past iteration 67's 13,364,410,
+    # stepping out of the ~13.35M pocket; 20 M run, caps=0); inline
+    # msolve NONUNIT x2; production-order cert hit Singular TIMEOUT,
+    # resolved by a 12-job flux strategy race won by slimgb + the
+    # seed-4 permuted order (UNIT in 20 s, same winner as cf0a86c8;
+    # ff2eb8fb-flux-race/RACE.md) — all Singular calls in this cert
+    # use the perm4 order, msolve canonical fwd/rev; Rabinowitsch
+    # UNIT x3 on full system and retained core; deletion verdicts
+    # 5 UNIT / 5 TIMEOUT / 2 NONUNIT fail-closed — the apex/surplus
+    # row and witness rows 0, 2, 7, 9 dropped; not a transposition
+    # image of any banked core; kin 5 shared rows (fp-654-43: rows
+    # 3, 4, 8, 10, 11); ONE new support — row 6:{3,4,7,11} — ending
+    # the three-core all-banked run (-45/-46/-47); row 4:{3,5,9,10}
+    # previously only in fp-654-43.
+    {
+        "id": "forced-pair-core-654-48",
+        "rows": {
+            3: frozenset({1, 4, 7, 10}),
+            4: frozenset({3, 5, 9, 10}),
+            5: frozenset({1, 4, 6, 9}),
+            6: frozenset({3, 4, 7, 11}),
+            8: frozenset({6, 7, 9, 11}),
+            10: frozenset({0, 1, 5, 6}),
+            11: frozenset({1, 3, 8, 10}),
+        },
+        "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
