@@ -768,6 +768,20 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-54 witness: twenty-fifth NONUNIT-track 654
+    # witness (13,095,453 nodes — 1,067 past iteration 53's — 20 M
+    # run, caps=0; inline audit decided NONUNIT directly); certified
+    # by membership_crosscheck.py --pair 7 8 --radical-only --core;
+    # its retained 8-row deletion core (7 deletion timeouts
+    # fail-closed) is forced-pair-core-654-35.
+    "6331dec67820700bcefb2bd6186d8cbdc2099289c59bf8b502c3105c90e60de4": {
+        "equality_sha256":
+            "f3236b169765faf1acf2769d9dc62dc20ab49bae615f463c04c590afd08900a0",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -3354,6 +3368,37 @@ REAL_INFEASIBLE_ROW_CORES = (
             9: frozenset({0, 3, 6, 7}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({1, 3, 8, 10}),
+        },
+        "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-54 witness 6331dec6… admitted 2026-07-16: 8-row /
+    # 24-equality core forcing pair (7,8) — twenty-fifth
+    # NONUNIT-track 654 witness, first after the unit-grade
+    # interruption at iteration 53 (13,095,453 nodes — 1,067 past
+    # iteration 53's; 20 M run, caps=0); inline audit
+    # CROSSCHECKED_NONUNIT directly; Rabinowitsch UNIT x3 (Singular
+    # + msolve fwd/rev); deletion verdicts 4 UNIT / 7 TIMEOUT
+    # fail-closed / 1 NONUNIT — witness rows 1, 2, 3, 6 dropped, the
+    # surplus row out for a fourth consecutive forced-pair core; not
+    # a transposition image of any banked core; kin capped at 2
+    # shared rows — the fp-654-33/-34 chain is broken; FIVE new
+    # supports 0:{2,4,6,11}, 4:{1,5,7,10}, 5:{1,4,6,9}, 7:{2,3,5,9},
+    # 10:{1,3,7,11}; row 8:{6,7,9,10} from fp-654-15/-16/-17, row
+    # 9:{0,3,6,8} from fp-654-20/-29, row 11:{0,1,5,6} is the
+    # cross-profile 555-19..34-sector row (also fp-654-05/-06).
+    {
+        "id": "forced-pair-core-654-35",
+        "rows": {
+            0: frozenset({2, 4, 6, 11}),
+            4: frozenset({1, 5, 7, 10}),
+            5: frozenset({1, 4, 6, 9}),
+            7: frozenset({2, 3, 5, 9}),
+            8: frozenset({6, 7, 9, 10}),
+            9: frozenset({0, 3, 6, 8}),
+            10: frozenset({1, 3, 7, 11}),
+            11: frozenset({0, 1, 5, 6}),
         },
         "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
