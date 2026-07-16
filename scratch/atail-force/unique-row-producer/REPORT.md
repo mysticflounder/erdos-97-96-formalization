@@ -2950,9 +2950,10 @@ retained core, admitted immediately):
 | 23 | 555 | `4bd55dcb…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — fourth consecutive unit-grade 555 witness (3.669 M nodes, same pocket as iter 22); `system_unit_recheck.py` 900 s pass retained 7 rows / 21 equalities incl. Moser row, retained core CROSSCHECKED_UNIT x3 (4 deletion TIMEOUTs fail-closed); near-twin of unit-core-555-10 differing only in row 8 | `unit-core-555-11` |
 | 22 | 654 | `2b74db8e…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — ELEVENTH consecutive unit-grade 654 witness (4.164 M nodes, depth still climbing past the 3.80 M pocket); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); shares five rows with unit-core-654-24 (row 7 replaces row 8) | `unit-core-654-25` |
 | 24 | 555 | `fc6e93e9…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — fifth consecutive unit-grade 555 witness (3.684 M nodes, same pocket); `system_unit_recheck.py` 900 s pass retained 6 rows / 18 equalities incl. Moser row, retained core CROSSCHECKED_UNIT x3 (4 deletion TIMEOUTs fail-closed); SMALLEST unit-grade 555 core to date | `unit-core-555-12` |
-| 25 | 555 | — | search running | pending |
+| 25 | 555 | `0f041710…` | SAT witness, sources (6,7), inline audit CROSSCHECKED_UNIT — sixth consecutive unit-grade 555 witness (3.684 M nodes, same pocket) | recheck running |
 | 23 | 654 | `999ff6d4…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — TWELFTH consecutive unit-grade 654 witness (4.187 M nodes, same pocket as iter 22); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family | `unit-core-654-26` |
-| 24 | 654 | — | search running (`--max-nodes 5000000`) | pending |
+| 24 | 654 | `01edc0f1…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — THIRTEENTH consecutive unit-grade 654 witness (4.594 M nodes, nearing the 5 M cap); `system_unit_recheck.py` 900 s pass retained 6 rows / 19 equalities, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed); same apex+row-2 family | `unit-core-654-27` |
+| 25 | 654 | — | search running (`--max-nodes 10000000`, raised from 5 M: iter-24's witness sat at 4.59 M, within 10% of the old cap) | pending |
 
 Redel600 sweep FINAL (13/13 harvested): the two relaunched jobs
 completed. `iter4_654` retained a core identical to banked
