@@ -2709,6 +2709,33 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-89 witness a1b4c6ec (SAT at 362,616 nodes — +4,088
+    # past iter-88, fourteenth consecutive climb; caps=12; sources
+    # (6,7), inline CROSSCHECKED_UNIT): system_unit_recheck.py 900 s
+    # deletion retained 7 rows / 21 equalities (deletion verdicts
+    # 5 UNIT / 5 TIMEOUT fail-closed / 2 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; IS the (7,8)-transposition image of unit-core-555-69
+    # — banked in its own right since --bank-negative blocks literal
+    # row sets only; third admission-time image hit (after 555-51,
+    # fp-654-37), second on a unit core; literal kin capped at 3
+    # shared rows (14 cores, incl. the image parent via rows
+    # 0,2,10); TWO new supports 9:{0,3,8,11}, 11:{0,5,7,10}; row
+    # 2:{0,1,9,11} in its FIFTEENTH consecutive core (63-77),
+    # extending its own record.
+    {
+        "id": "unit-core-555-77",
+        "rows": {
+            0: frozenset({1, 2, 3, 4}),
+            2: frozenset({0, 1, 9, 11}),
+            6: frozenset({2, 5, 8, 9}),
+            8: frozenset({2, 6, 10, 11}),
+            9: frozenset({0, 3, 8, 11}),
+            10: frozenset({4, 5, 9, 11}),
+            11: frozenset({0, 5, 7, 10}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
