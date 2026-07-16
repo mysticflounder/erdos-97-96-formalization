@@ -2926,7 +2926,8 @@ retained core, admitted immediately):
 | 14 | 555 | `67cd332a…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 7-row / 21-equality core (6 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-08` + signature |
 | 8 | 654 | `0fe506e4…` | NONUNIT; SOURCE pair (7,8) certified via `--radical-only --core`, UNIT x3; 9-row / 27-equality core (8 deletion TIMEOUTs retained fail-closed under box load) (5.87 M nodes) | `forced-pair-core-654-08` + signature |
 | 9 | 654 | — | search running | pending |
-| 15 | 555 | `1e81296b…` | NONUNIT (3.33 M nodes); source-pair route FAILS — dist²(6,7) radical membership NONUNIT in all three oracles, first such witness since 555 iter-7; all-pairs `--scan` then found 49/66 pairs DIRECTLY forced (dist² ∈ I); point 6 nearly isolated in the forced graph (only (6,11)); pair (7,8) `--radical-only --core` certification running | pending core (pair 7,8) |
+| 15 | 555 | `1e81296b…` | NONUNIT (3.33 M nodes); source-pair route FAILS — dist²(6,7) radical membership NONUNIT in all three oracles, first such witness since 555 iter-7; all-pairs `--scan` then found 49/66 pairs DIRECTLY forced (dist² ∈ I); point 6 nearly isolated in the forced graph (only (6,11)); kill pair (7,8) certified via `--radical-only --core`, UNIT x3; 8-row / 24-equality core (8 deletion TIMEOUTs retained fail-closed) | `forced-pair-core-555-09` + signature |
+| 16 | 555 | — | search running | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3092,4 +3093,8 @@ Structurally, point 6 is nearly isolated in the forced-pair graph
 (only (6,11) is forced), while {0,2,3,4,5,8,9} form a forced
 clique; the complex variety collapses almost everything except the
 neighbourhood of point 6.  Kill route: pair (7,8) certified at the
-radical grade with core extraction.
+radical grade with core extraction — 8-row / 24-equality core,
+Rabinowitsch UNIT x3, admitted as `forced-pair-core-555-09`.  The
+loop's kill criterion is therefore now explicitly "some pair is
+forced", not "the source pair is forced"; when the source-pair route
+fails, the all-pairs `--scan` picks the replacement pair.
