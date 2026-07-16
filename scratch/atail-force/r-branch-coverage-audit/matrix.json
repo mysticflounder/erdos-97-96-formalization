@@ -1,0 +1,182 @@
+{
+  "date": "2026-07-16",
+  "root": "ResolvedCurrentFirstApexFixedRadiusNormalForm",
+  "status_meanings": {
+    "eliminated": "A current kernel-checked theorem concludes False on this exact branch.",
+    "routed": "A current theorem maps the branch to another explicit dependency or continuation.",
+    "reduced": "A current theorem gives a sharper packet or exhaustive local normal form, but not False.",
+    "open_no_current_continuation": "No current branch-specific terminal or strict-progress theorem was found beyond the generic packet.",
+    "protected_dependency": "The branch is owned by the separate FA-UNIQ4 or FA-UNIQ5 lane."
+  },
+  "top_level": [
+    {
+      "branch": "original_first_apex_unique_four_or_five",
+      "status": "protected_dependency",
+      "declaration": "ResolvedCurrentFirstApexFixedRadiusNormalForm"
+    },
+    {
+      "branch": "reciprocal_second_apex_critical",
+      "status": "routed",
+      "declaration": "reciprocalDirectedCross_commonDeletion_or_swappedFirstApexUniqueFour",
+      "output": "SwappedFirstApexUniqueFourFrontier"
+    },
+    {
+      "branch": "anchored_two_row_cover_residual",
+      "status": "eliminated",
+      "declaration": "false_of_fixedMarginalTwoRowCoverResidual"
+    },
+    {
+      "branch": "anchored_common_deletion",
+      "status": "reduced",
+      "declaration": "exists_offSurplus_sharedRowSource"
+    },
+    {
+      "branch": "reciprocal_common_deletion",
+      "status": "reduced",
+      "declaration": "reciprocalDirectedCross_commonDeletion_or_swappedFirstApexUniqueFour",
+      "provenance_loss": "Resolved arm drops ReciprocalDirectedCrossResidual and the exact global-continuation witness."
+    },
+    {
+      "branch": "spent_common_deletion",
+      "status": "reduced",
+      "declaration": "FrontierRadiusSpentAtEntry.exists_commonDeletion",
+      "exact_source_shape": "CommonDeletionTwoCenterPacket D H F.pair.q S.oppApex1 S.oppApex2",
+      "provenance_loss": "Resolved arm drops F, E, deleted identity, and exact first center."
+    }
+  ],
+  "alignment": [
+    {
+      "branch": "coherent_first_center_eq_live_p",
+      "status": "routed",
+      "declaration": "LiveDangerousRetainingSystem.coherent_source_center_eq_p_iff_mem_dangerousTriple",
+      "output": "Eligible for live-row common-deletion classification."
+    },
+    {
+      "branch": "coherent_first_center_ne_live_p",
+      "status": "open_no_current_continuation",
+      "declaration": "LiveDangerousRetainingSystem.coherent_sourceRow_inter_base_card_le_two_of_center_ne_p",
+      "known": "Only an at-most-two intersection with the live dangerous row."
+    },
+    {
+      "branch": "spent_apex_to_apex_packet",
+      "status": "open_no_current_continuation",
+      "known": "First center is S.oppApex1; no equality with the live center p is supplied."
+    }
+  ],
+  "aligned_common_deletion": [
+    {
+      "branch": "two_off_live_positive",
+      "status": "reduced",
+      "declaration": "successor_or_secondCenterAlignment_of_two_off_live_sources",
+      "outputs": [
+        "off-live common-deletion successor",
+        "AlignedPrescribedCriticalPair at second center"
+      ]
+    },
+    {
+      "branch": "F1_one_live_overlap",
+      "status": "open_no_current_continuation",
+      "declarations": [
+        "twoOffLive_failure_trichotomy",
+        "liveSecondApex_failure_refinement"
+      ]
+    },
+    {
+      "branch": "F2_two_live_exact_cover",
+      "status": "reduced",
+      "declaration": "resolvedF2StrictCellNormalForm"
+    },
+    {
+      "branch": "F3a_two_live_one_support_one_outside",
+      "status": "open_no_current_continuation",
+      "declarations": [
+        "twoOffLive_failure_trichotomy",
+        "liveSecondApex_failure_refinement"
+      ]
+    },
+    {
+      "branch": "F3b_one_both_one_live_one_support_one_outside",
+      "status": "open_no_current_continuation",
+      "declarations": [
+        "twoOffLive_failure_trichotomy",
+        "liveSecondApex_failure_refinement"
+      ]
+    }
+  ],
+  "F2": [
+    {
+      "branch": "live_heavy",
+      "status": "open_no_current_continuation",
+      "declaration": "SourceFaithfulF2ThreeRowChain",
+      "known": "Three-row 2-2 chain and exact live-row oppCap2 saturation."
+    },
+    {
+      "branch": "mixed_one_live_one_support",
+      "status": "open_no_current_continuation",
+      "declaration": "F2MixedOneLiveOneSupportBoundary"
+    },
+    {
+      "branch": "support_heavy",
+      "status": "reduced",
+      "declarations": [
+        "F2SupportHeavyReduction",
+        "F2SupportHeavyK4FourWay",
+        "ExactGeneratedAt.exists_genuineEscape"
+      ]
+    }
+  ],
+  "F2_support_heavy": [
+    {
+      "branch": "qcritical_no_escape_boundary",
+      "status": "eliminated",
+      "declaration": "false_of_qCritical_noEscape"
+    },
+    {
+      "branch": "qdeleted_qdeleted",
+      "status": "reduced",
+      "output": "new same-deletion CommonDeletionTwoCenterPacket"
+    },
+    {
+      "branch": "qdeleted_qcritical",
+      "status": "open_no_current_continuation",
+      "known": "genuine escape plus cross-survival-or-MetricResidual"
+    },
+    {
+      "branch": "qcritical_qdeleted",
+      "status": "open_no_current_continuation",
+      "known": "genuine escape plus cross-survival-or-MetricResidual"
+    },
+    {
+      "branch": "anchored_both_qcritical_metric_residual",
+      "status": "eliminated",
+      "declaration": "false_of_bothQCritical_metricResidual"
+    },
+    {
+      "branch": "anchored_both_qcritical_cross_survival",
+      "status": "open_no_current_continuation",
+      "declaration": "crossSurvivalOutput_of_bothQCritical"
+    },
+    {
+      "branch": "generated_escape_off_live",
+      "status": "reduced",
+      "known": "One off-live/off-middle point; existing successor consumer requires two."
+    },
+    {
+      "branch": "generated_escape_on_named_live_point",
+      "status": "open_no_current_continuation",
+      "known": "One directed incidence without the additional U5 or ordered-cap antecedents."
+    }
+  ],
+  "next_interface": {
+    "producer": "OriginTaggedRCommonDeletion",
+    "consumer": "false_of_originTaggedRCommonDeletion",
+    "required_visible_splits": [
+      "anchored_reciprocal_spent",
+      "coherent_aligned_unaligned",
+      "two_off_live_positive_failure",
+      "F1_F2_F3",
+      "F2_live_heavy_support_heavy_mixed",
+      "remaining_support_heavy_generated_continuations"
+    ]
+  }
+}
