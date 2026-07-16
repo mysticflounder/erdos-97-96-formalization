@@ -694,6 +694,22 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-13 witness 1f76e0e5… admitted 2026-07-15: second
+    # consecutive unit-grade 654 witness; system_unit_recheck.py 900 s
+    # deletion retained 5 rows / 16 equalities (1 deletion TIMEOUT
+    # fail-closed), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev); same apex+row-2 family shape as unit-core-654-11..14.
+    {
+        "id": "unit-core-654-16",
+        "rows": {
+            1: frozenset({0, 2, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            8: frozenset({0, 2, 3, 4}),
+            10: frozenset({0, 1, 3, 6}),
+            11: frozenset({1, 4, 8, 10}),
+        },
+        "equality_count": 16,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # Greedy deletion kept 7 of 12 rows with the pair-(6,7) Rabinowitsch

@@ -2934,8 +2934,9 @@ retained core, admitted immediately):
 | 11 | 654 | — | NO_WITNESS_WITHIN_BOUNDED_FINITE_SHADOW — first no-witness 654 run, but NOT exhaustive: all 15 card-five rows hit the 500 k per-row node cap (7,500,015 nodes, `node_caps` 15); re-run at `--max-nodes 5000000` in flight as iteration 12 | — |
 | 18 | 555 | `0d357ae8…` | NONUNIT; SOURCE pair (6,7) certified via `--radical-only --core`, UNIT x3; 6-row / 18-equality core — SMALLEST 555 core to date, ZERO deletion timeouts (3.437 M nodes, plateau) | `forced-pair-core-555-12` + signature |
 | 12 | 654 | `4846a007…` | SAT witness at `--max-nodes 5000000` — the iteration-11 cap starvation was depth, not exhaustion: witness found at only 1.139 M total nodes once the first-row subtree could pass 500 k; inline audit CROSSCHECKED_UNIT, the FIRST unit-grade 654 loop witness (all prior 654 kills were NONUNIT); `system_unit_recheck.py` 900 s pass retained a 6-row / 19-equality core incl. apex row 1:{0,2,7,8,9}, retained core CROSSCHECKED_UNIT x3 (2 deletion TIMEOUTs fail-closed) | `unit-core-654-15` |
-| 19 | 555 | — | search running | pending |
-| 13 | 654 | — | search running (`--max-nodes 5000000` now standard for 654) | pending |
+| 19 | 555 | `717de68a…` | SAT witness, sources (6,7), inline audit NONUNIT (3.437 M nodes, plateau); source-pair cert in flight | pending |
+| 13 | 654 | `1f76e0e5…` | SAT witness, sources (7,8), inline audit CROSSCHECKED_UNIT — SECOND unit-grade 654 witness in a row (1.355 M nodes, `--max-nodes 5000000`); `system_unit_recheck.py` 900 s pass retained 5 rows / 16 equalities, retained core CROSSCHECKED_UNIT x3 (1 deletion TIMEOUT fail-closed); same apex+row-2 family shape as pre-loop unit-core-654-11..14 | `unit-core-654-16` |
+| 14 | 654 | — | search running (`--max-nodes 5000000`) | pending |
 
 The loop has settled into a NONUNIT regime: since iteration 7 every
 witness on both profiles dies by forced coincidence of its source
@@ -3133,3 +3134,13 @@ minimal-core landscape at this witness has at least two stable
 supersessions.  Remaining four: 555 iters 10/13, 654 iters 4/6
 (654-6 and 555-13 processes still alive; 555-10 and 654-4 have
 0-byte outputs and no live process — to re-examine).
+
+Re-deletion results ten and eleven (654 iter 6, 555 iter 13; zero
+deletion TIMEOUTs): 555-07 row-for-row identical to its bank entry;
+654 iter-6 is a second same-size variation — a DIFFERENT 7-row /
+21-equality set than banked `forced-pair-core-654-06` (drops banked
+row 7:{2,5,8,11}, keeps 10:{0,4,8,11} instead), same size, no
+supersession.  The two silently-died jobs (555 iter 10, 654 iter 4)
+were relaunched.  Running tally: 11 of 13 harvested, zero
+supersessions, two witnesses (654 iters 5 and 6) each showing two
+stable same-size greedy plateaus.
