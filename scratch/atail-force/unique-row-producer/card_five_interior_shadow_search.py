@@ -3001,6 +3001,33 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-99 witness 52336a96 (77,256 nodes, caps=14; sources
+    # (6,7), inline CROSSCHECKED_UNIT — unit track continues):
+    # system_unit_recheck.py 900 s deletion retained 7 rows / 21
+    # equalities (deletion verdicts 5 UNIT / 4 TIMEOUT fail-closed /
+    # 3 NONUNIT, card-five row dropped), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image of any banked core; kin
+    # reaches 4 shared rows with unit-core-555-58 (rows 2, 6, 9, 10)
+    # and 4 with unit-core-555-82 (rows 0, 2, 9, 11); ONE new
+    # support 7:{0,5,8,11}; row 11:{0,1,4,6} in a third consecutive
+    # admission across tracks (555-82, fp-654-52, here); non-Moser
+    # row 0:{1,2,3,5} in four consecutive 555 unit admissions
+    # (555-80/-81/-82/-83); 10:{3,6,9,11} shared with
+    # unit-core-654-12/-15 cross-profile.
+    {
+        "id": "unit-core-555-83",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({4, 5, 7, 9}),
+            7: frozenset({0, 5, 8, 11}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({3, 6, 9, 11}),
+            11: frozenset({0, 1, 4, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
