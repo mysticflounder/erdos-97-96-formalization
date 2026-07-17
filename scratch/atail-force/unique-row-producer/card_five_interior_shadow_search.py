@@ -1175,6 +1175,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-82 witness admitted 2026-07-16: forty-eighth
+    # NONUNIT-track 654 witness (6,325,669 nodes caps=1, fifth
+    # consecutive at the ~6M depth band); inline NONUNIT x3
+    # (Singular + msolve fwd/rev); certified by membership_crosscheck.py
+    # --pair 7 8 --radical-only --core at the production order; its
+    # retained 6-row deletion core (5 deletion timeouts fail-closed)
+    # is forced-pair-core-654-58.
+    "ec70977e5a2cbf52eb24cc4464b5198eb3521079fc3b62ca4d98e25182f3e910": {
+        "equality_sha256":
+            "f6140db84e9ad67927f58784979add7737ed79339485ee7418670fc45ce206b9",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -5655,6 +5670,32 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 6, 8, 10}),
         },
         "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-82 witness ec70977e… admitted 2026-07-16: 6-row /
+    # 18-equality retained core forcing pair (7,8) (witness at
+    # 6,325,669 nodes caps=1, forty-eighth NONUNIT-track, fifth
+    # consecutive at the ~6M depth band); inline NONUNIT x3; cert
+    # passed at the production order; Rabinowitsch UNIT x3 on full
+    # system and retained core; deletion verdicts 6 UNIT / 5 TIMEOUT /
+    # 1 NONUNIT fail-closed — witness rows 0, 1, 3, 4, 5, 11 dropped
+    # (both pair rows 7 and 8 retained), APEXLESS core; not a
+    # transposition image of any banked core; kin at most 2 shared
+    # rows (breaks out of the fp-654-55/-56/-57 neighborhood); TWO
+    # new supports 6:{2,3,8,11}, 10:{4,6,8,11}; tenth fp-654 core
+    # with at most 6 rows.
+    {
+        "id": "forced-pair-core-654-58",
+        "rows": {
+            2: frozenset({0, 1, 10, 11}),
+            6: frozenset({2, 3, 8, 11}),
+            7: frozenset({2, 5, 9, 11}),
+            8: frozenset({6, 7, 9, 10}),
+            9: frozenset({0, 2, 3, 6}),
+            10: frozenset({4, 6, 8, 11}),
+        },
+        "equality_count": 18,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
