@@ -22,6 +22,7 @@ import Erdos9796Proof.P97.ATail.AnchoredDoubleDeletionProducer
 import Erdos9796Proof.P97.ATail.DeletionRobustness
 import Erdos9796Proof.P97.ATail.RobustLargeRadius
 import Erdos9796Proof.P97.ATail.RobustLargeRadiusReduction
+import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
 
 /-!
 # U1 large-cap Route-B tail

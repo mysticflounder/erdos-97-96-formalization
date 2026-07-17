@@ -98,9 +98,8 @@ robustness, restart minimality/descent, or claim an anonymous local rank: each
 erases or contradicts the load-bearing coupling.
 
 The exact next theorem is the frontier-coupled consumer
-`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. The
-kernel-checked adapter
-`scratch/atail-force/physical-omission-cycle-parent-adapter/` retains the same
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Production
+`ATail/PhysicalOmissionCycleParentResidual.lean` retains the same
 concrete `H`, the full first-apex frontier, the origin-tagged two-source
 continuation, `minimal`, `noM44`, the six-point physical cap, the parent radius
 identity, and the production cycle. A bare
@@ -108,7 +107,7 @@ identity, and the production cycle. A bare
 shortcut, but is no longer the plan interface. The production decomposition
 `nonempty_mutualOmissionEdge_or_all_reverseMembership` splits the proof into
 one mutually omitted edge or reverse-positive incidence on every edge. The
-cycle constructor is now source-anchored, and the adapter starts its transition
+cycle constructor is now source-anchored, and the residual starts its transition
 orbit at the continuation's first origin-tagged deletion source.
 
 The two arms are no longer undifferentiated research surfaces. In the mutual

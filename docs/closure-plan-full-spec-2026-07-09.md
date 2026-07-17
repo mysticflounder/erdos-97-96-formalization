@@ -150,7 +150,7 @@ fixed-point-free successor theorem, not descent. Production
 total transition to an injective cycle of period two through five and retains
 the source, actual blocker row, omission, deletion survival, physical radius,
 and strict-cap placement on every edge. Its source-anchored constructor now
-starts the transition orbit at a prescribed physical point; the parent adapter
+starts the transition orbit at a prescribed physical point; the production parent residual
 uses the first origin-tagged common-deletion source, so that provenance is no
 longer discarded before the eventual periodic base. The checked exact rational
 finite-metric regression in
@@ -3778,11 +3778,10 @@ source. These objects must not be conflated. Do not schedule another
 minimality/descent lemma or blocker-cycle adapter for this branch.
 
 The exact next content theorem is
-`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. The
-kernel-checked adapter in
-`scratch/atail-force/physical-omission-cycle-parent-adapter/` constructs its
-residual from the exact-five constructor while retaining the full parent
-surface and the same concrete `H`. Internally, use the checked exhaustive split
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Production
+`ATail/PhysicalOmissionCycleParentResidual.lean` constructs its residual from
+the exact-five constructor while retaining the full parent surface and the
+same concrete `H`. Internally, use the checked exhaustive split
 `nonempty_mutualOmissionEdge_or_all_reverseMembership`: either one edge is
 omitted in both actual rows, or every successor row contains the preceding
 source. The mutual arm is reduced to two crossed common-deletion packets and
@@ -3793,7 +3792,7 @@ force two distinct rows to repeat that outside pair, or supply the equivalent
 bank-consumed U5 alignment. Both producers must use the retained global
 parent/frontier fields. Neither arm licenses another anonymous row miner.
 
-The same adapter also fixes the ingress scope. This reduction applies to the
+The scratch U1 adapter also fixes the ingress scope. This reduction applies to the
 oriented large-physical-radius subarm with
 `6 ≤ S.oppCap2.card` and a positive `S.oppApex2` radius class of cardinality at
 least five. The current two-large-cap leaf does not derive those fields merely
