@@ -162,11 +162,18 @@ exclusion of `S.oppApex2` from the map image, and two disjoint robust rows.
 That witness is only a finite structural shadow, but it proves that the next
 consumer must use a field absent from the current tail interface.
 
-Production `ATail/MinimalDeletionCore.lean` now contains the generic MUS-style
-finite deletion core: restoring each deleted source yields an exact ambient
-four-shell, distinct sources have disjoint supports, and two such shells force
-the corresponding closed cap to have cardinality at least six.  The stopped
-`global-minimal-deletion-core/` lane supplies the remaining parent bridge.
+The dependency-clean production layer now consists of
+`ATail/DeletionRobustness.lean`, `ATail/CommonDeletionTwoCenter.lean`,
+`ATail/MinimalDeletionCore.lean`, and `ATail/GlobalMinimalDeletion.lean`.
+It provides the exact deletion-robustness/criticality interface, the shared
+two-center deletion packet, the generic MUS-style finite deletion core, and
+the global-minimality bridge from a prescribed deletion set to either a
+fresh shared-radius pair or a `MinimalDeletionCore`.  In the core, restoring
+each deleted source yields an exact ambient four-shell, distinct sources have
+disjoint supports, and two such shells force the corresponding closed cap to
+have cardinality at least six.
+
+The stronger stopped `global-minimal-deletion-core/` lane remains scratch.
 From `hmin : D.Minimal` and the live survivor-pair frontier it kernel-produces
 a fresh strict-cap center and exactly one of:
 
@@ -250,7 +257,7 @@ apply.  The next theorem must establish nested-interval/nonreturn data or
 consume the unequal two-source core using a new global cap/MEC/critical-row
 coupling; bare iteration of `FullyDeletionRobustAt` is not well founded.
 
-In the radius-class-cardinality-at-least-five subarm, the checked theorem
+In the radius-class-cardinality-at-least-five subarm, production theorem
 `nonempty_minimalDeletionOutcome_of_largeSecondApexRadius` chooses two strict
 `oppCap2`-interior points from the full physical-apex radius class and applies
 global minimality to their two-point deletion.  It returns exactly an existing
@@ -302,13 +309,20 @@ cross-row or placement consumer, together with a direct theorem preventing
 return to the robust input; the minimal-deletion/common-deletion loop supplies
 no decreasing invariant.
 
-The critical-system transport used by the global-minimality continuation is
-also production code in `ATail/CriticalSystemRebase.lean`.  It keeps the
-geometric survivor pair fixed while rebuilding the blocker inequalities for
-an arbitrary retained `CriticalShellSystem`; choosing or rebasing the system
-does not itself add closure force.  The large-radius transition which produces
-`LargeCapUniqueFiveSecondApexRadius` remains checked scratch pending extraction
-of its minimal-deletion and common-deletion dependencies.
+The complete dependency-clean producer is now production code in
+`ATail/RobustLargeRadius.lean`; its outputs are
+`CommonDeletionTwoCenterPacket`, `LargeCapUniqueFiveSecondApexRadius`, and
+`SharedCriticalPairAtLargeSecondApex`.  The generic cap-interior radius-count
+lemma was moved into `ATail/CapInteriorRadiusCounting.lean`, below U1, so this
+stack no longer reaches back through `PinnedSurplusGeneralM`.  The live
+`U1LargeCapRouteBTail` target imports this stack and builds successfully.
+
+The critical-system transport used by the continuation is also production
+code in `ATail/CriticalSystemRebase.lean`.  It keeps the geometric survivor
+pair fixed while rebuilding the blocker inequalities for an arbitrary
+retained `CriticalShellSystem`; choosing or rebasing the system does not
+itself add closure force.  The ordered-shell continuation and its cross-row
+consumer remain scratch/open respectively.
 
 The later exact-five ordered-shell continuation proves a global CCW ordering
 of the unused source's complete critical support, both strict endpoint

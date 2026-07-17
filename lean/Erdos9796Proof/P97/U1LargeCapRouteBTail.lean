@@ -19,6 +19,8 @@ import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 import Erdos9796Proof.P97.ATail.OrdinalKalmansonCycle
 import Erdos9796Proof.P97.ATail.CriticalPairFrontier
 import Erdos9796Proof.P97.ATail.AnchoredDoubleDeletionProducer
+import Erdos9796Proof.P97.ATail.DeletionRobustness
+import Erdos9796Proof.P97.ATail.RobustLargeRadius
 
 /-!
 # U1 large-cap Route-B tail

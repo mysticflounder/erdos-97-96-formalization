@@ -4,7 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import Erdos9796Proof.P97.RemovableVertexAxiom.PinnedSurplusGeneralM
+import Erdos9796Proof.P97.ATail.CapInteriorRadiusCounting
 
 /-!
 # Exact-five large-cap full-filter normal form
