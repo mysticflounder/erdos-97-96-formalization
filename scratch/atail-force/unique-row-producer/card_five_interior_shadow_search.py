@@ -3151,6 +3151,34 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 21,
     },
+    # 555 iter-104 witness c18d09c9 (123,232 nodes, caps=14; sources
+    # (6,7), inline CROSSCHECKED_UNIT — seventh consecutive
+    # unit-track 555 witness, node climb 79k -> 100k -> 117k ->
+    # 123k): system_unit_recheck.py 900 s deletion retained 6 rows /
+    # 18 equalities (deletion verdicts 6 UNIT / 2 TIMEOUT
+    # fail-closed / 4 NONUNIT, card-five row dropped), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set. NOTE: this core is the transposition (7,8) image of
+    # unit-core-555-86 — the FIRST image admission; the
+    # --bank-negative constraint operates on literal row sets (this
+    # witness was found with 555-86 banked), so the image is banked
+    # to exclude the shape, and its certificate is independent of
+    # the image relation. Kin 4 with unit-core-555-87 (rows 0, 2,
+    # 10, 11); literal-new support 5:{2,4,8,11}; non-Moser row
+    # 0:{1,2,3,5} in nine consecutive 555 unit admissions
+    # (555-80..-88).
+    {
+        "id": "unit-core-555-88",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            2: frozenset({0, 1, 9, 10}),
+            5: frozenset({2, 4, 8, 11}),
+            9: frozenset({0, 5, 10, 11}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 1, 4, 8}),
+        },
+        "equality_count": 18,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
