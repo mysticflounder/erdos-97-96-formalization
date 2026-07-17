@@ -106,17 +106,29 @@ outside-pair extraction works for every four-shell.  Therefore neither the
 raw `O/A/X` row packet nor arbitrary complement points of the `A`-row are an
 authorized producer or mining object.
 
-The active theorem is the arm-level contradiction, provisionally
+The consumer-match audit corrects the quantifier on the active theorem. A
+direct contradiction for an arbitrarily preselected collision fiber is not
+the primary target. The producer must choose its fiber after seeing the full
+parent geometry:
 
 ```lean
-false_of_frontierCommonDeletionCriticalFiber
+nonempty_criticalFiberClosingCore
+    (R : FrontierCommonDeletionParentResidual F) :
+    Nonempty (CriticalFiberClosingCore R)
 ```
 
-from the complete `FrontierCommonDeletionParentResidual F`.  Its normal form
-must retain distinct sources `C,K`, the identities
-`H.centerAt C = H.centerAt K = A`, both source-indexed `no_qfree` facts, and
-their common exact shell.  A downstream row packet is accepted only if those
-facts remain in its type and in the proof of its immediate consumer.
+`CriticalFiberClosingCore R` contains its chosen
+`P : FrontierCommonDeletionCriticalFiber R`. Its `ordered` constructor retains
+the actual `C,K -> A` fiber, a critical source `J`, `X = H.centerAt J`, the
+actual `J`-critical cross incidence, an actual first-apex row through `J,C`,
+and cyclic order `O < A < X < J < C < K`. Its `sameCap` constructor retains
+the collision pair `C,K` outside one ordered cap and two distinct cap centers,
+with the second center source-realized either as `O` or as `centerAt J` with an
+actual `J`-critical shell through `C,K`. The routine consumer
+`false_of_criticalFiberClosingCore` closes both constructors.
+Production `ATail/CriticalFiberClosingCore.lean` implements this contract and
+consumer with core axioms only. The sole missing result on the interface is
+the `Nonempty` producer above.
 
 That normal form is now production code in
 `ATail/FirstApexCriticalFiber.lean`.
@@ -125,15 +137,34 @@ parent residual and packages the distinct sources, equal blocker vertices,
 equal exact supports/radii, mutual shell membership, and both deletion-
 critical facts.  This is the input type for the open arm theorem.
 
-The source-faithful O-row audit proves the first exact split.  Either both
+For one fixed diagnostic fiber, the source-faithful O-row audit proves the
+first exact split. Either both
 critical-fiber sources lie off the retained first-apex radius class, or a
 selected row at the first apex contains one of them and another point.  The
 both-off arm is realized by a checked `Fin 12` regression retaining the total
 fixed-point-free critical map, card-five first-apex robustness, exact support
-locking, and row-closure minimality.  The row-hit arm still lacks the
-cross-incidence and cyclic order.  Thus the next geometric subproblem is to
-eliminate or directly consume the **both-off critical-fiber arm** using the
-full cap/MEC/frontier surface.
+locking, and row-closure minimality. The row-hit arm still lacks the
+cross-incidence and cyclic order. The fixed split is therefore nonterminal:
+inside the existential producer, a row hit supplies the first-apex equality,
+while both-off must route to another chosen fiber or the source-faithful
+same-cap constructor using the full cap/MEC/frontier surface.
+
+Production `ATail/FirstApexCriticalFiberRow.lean` records this as `Outcome P`
+for the fixed production fiber `P`. Its `BothOff` and `RowHit` constructors
+stay indexed by `P`, so both source-critical facts survive the split without
+a new existential choice. This is a diagnostic branch refiner, not evidence
+that every `P` is contradictory.
+
+Two further checked audits bound the honest residuals. Full cap localization
+of `BothOff` gives an endpoint blocker with at least three common-shell points
+outside each adjacent cap, or an interior blocker with at least two outside
+and either one collision source outside or both sources exactly exhausting
+the cap-side shell. No existing consumer closes these packets. Applying
+global minimal deletion to the collision pair also stutters literally at the
+old common blocker with either singleton source, even when the deletion
+universe is enlarged to the whole common shell. Thus neither fixed-fiber cap
+counting nor cardinal minimality replaces the geometry-sensitive existential
+fiber choice.
 
 The collision-faithful outside-pair audit is also negative.  If a collision
 source lies outside the blocker cap, its chosen blocker is pinned to the

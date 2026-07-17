@@ -8,23 +8,36 @@ Status: **ROUTE CORRECTED; SOURCE-PROVENANCE GATE INSTALLED; NO PRODUCTION
 ## Decision
 
 Keep `false_of_twoLargeCaps_commonCriticalMap` as the final parent assembler,
-called before LIVE-Q/C construction.  Replace the anonymous row producer as
-the primary mathematical target by the smaller common-deletion arm theorem
+called before LIVE-Q/C construction. Replace the anonymous row producer and
+the arbitrary-fiber direct contradiction by the geometry-sensitive
+common-deletion arm producer
 
 ```lean
-false_of_frontierCommonDeletionCriticalFiber
+nonempty_criticalFiberClosingCore
+    (R : FrontierCommonDeletionParentResidual F) :
+    Nonempty (CriticalFiberClosingCore R)
 ```
 
 from one concrete `FrontierCommonDeletionParentResidual F`.
 
-The arm theorem must retain the full frontier and parent geometry together
-with two distinct sources `C,K`, their common actual blocker `A`, both
-source-indexed deletion-critical facts, and their common exact shell.  A
-terminal adapter is load-bearing only if this provenance remains visible in
-its statement and proof.
+The output contains a geometry-selected
+`P : FrontierCommonDeletionCriticalFiber R`. Its `ordered` constructor reaches
+the exact source-indexed Kalmanson core; its `sameCap` constructor reaches the
+exact collision-pair cap-uniqueness core. A terminal adapter is load-bearing
+only if the chosen fiber and its source provenance remain visible in its
+statement and proof. `false_of_criticalFiberClosingCore` is the immediate
+consumer.
 
 Production `ATail/FirstApexCriticalFiber.lean` now supplies exactly this
 typed predecessor through `nonempty_frontierCommonDeletionCriticalFiber`.
+Production `ATail/FirstApexCriticalFiberRow.lean` then supplies the exact
+`BothOff`/`RowHit` split as `Outcome P`, indexed by that same predecessor.
+Both source-critical facts therefore remain available on both branches. This
+fixed-fiber split is diagnostic and nonterminal; it does not justify closure
+for every preselected `P`.
+Production `ATail/CriticalFiberClosingCore.lean` now defines the exact
+existential contract and proves `false_of_criticalFiberClosingCore`; its four
+axiom checks contain only `propext`, `Classical.choice`, and `Quot.sound`.
 
 ## Why the old target was rejected
 
@@ -35,7 +48,7 @@ at `A`.  The arbitrary outside-pair extraction from the common `A`-shell also
 works for every selected four-shell.  These are conditional consumers, not
 evidence that the forced blocker-fiber collision advances the parent proof.
 
-Three source-faithful audits establish the corrected boundary:
+Six source-faithful audits establish the corrected boundary:
 
 - `scratch/atail-force/robust-orow-collision-hit/` proves an exact
   `bothOff ∨ rowHit` split.  A checked `Fin 12` regression realizes `bothOff`
@@ -52,12 +65,22 @@ Three source-faithful audits establish the corrected boundary:
   `J`-shell, the cross incidence, and the cyclic order.  Pinned replay finds a
   source-indexed cross-row embedding in 75 of 101 witnesses and no accepted
   terminal shape in 26; this is not a coverage theorem.
+- `scratch/atail-force/critical-fiber-consumer-match/` defines the exact
+  existential `CriticalFiberClosingCore R` and kernel-checks the immediate
+  contradiction for both allowed constructors.
+- `scratch/atail-force/critical-fiber-both-off-cap-localization/` proves the
+  full endpoint/interior cap localization of a fixed `BothOff P`; its strong
+  shell counts still do not match an existing consumer.
+- `scratch/atail-force/critical-fiber-minimal-deletion/` constructs literal
+  singleton stutters at the old common blocker, including when the deletion
+  universe is the full common shell.
 
 ## Active next theorem
 
-First eliminate or directly consume the both-off critical-fiber arm using the
-full Euclidean convexity, cap partition, MEC, frontier-radius, minimality, and
-no-`IsM44` hypotheses.  Do not weaken it to an arbitrary selected row.
+Prove `nonempty_criticalFiberClosingCore R`, choosing the fiber only after
+using full Euclidean convexity, cap partition, MEC,
+frontier-radius, minimality, and no-`IsM44` hypotheses. Do not weaken it to an
+arbitrary selected row or strengthen it to contradiction for every `P`.
 
 If the Kalmanson route survives that localization, the packet must retain a
 critical source `J` and use the actual `J`-critical shell for the cross
@@ -69,6 +92,12 @@ No broad computation is authorized until the encoding manifest contains the
 complete source map above, an immediate checked consumer, and an ablation
 test showing that removal of either collision-source criticality or `J`'s
 critical provenance invalidates the claimed coverage.
+
+The fixed-fiber residual audits are negative but load-bearing for scoping.
+`BothOff` cap localization gives strong endpoint/interior shell counts with no
+matching consumer. Global minimal deletion can stutter at the old common
+blocker with either singleton collision source, even over the whole common
+shell. These routes do not replace the existential closing-core producer.
 
 ## Synchronized documents
 
