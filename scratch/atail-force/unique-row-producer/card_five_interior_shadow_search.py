@@ -2960,6 +2960,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-98 witness e2c379ae (73,984 nodes, caps=14; sources
+    # (6,7), inline CROSSCHECKED_UNIT — unit track resumes after the
+    # four-witness NONUNIT run at iters 94-97): system_unit_recheck.py
+    # 900 s deletion retained 7 rows / 21 equalities (deletion
+    # verdicts 5 UNIT / 2 TIMEOUT fail-closed / 5 NONUNIT), retained
+    # core CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this
+    # literal row set; not a transposition image of any banked core;
+    # kin reaches 3 shared rows with unit-core-555-48/-49 (rows 2,
+    # 9, 10); THREE new supports 7:{0,3,4,8}, 8:{2,4,7,9},
+    # 11:{0,1,4,6}; non-Moser row 0:{1,2,3,5} third in four unit
+    # admissions (555-80/-81/-82); rows 9:{0,3,7,10}, 10:{3,8,9,11}
+    # shared with the just-admitted fp-555-17; 7-row/21-eq is the
+    # modal 555 unit grade.
+    {
+        "id": "unit-core-555-82",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            2: frozenset({0, 1, 9, 10}),
+            7: frozenset({0, 3, 4, 8}),
+            8: frozenset({2, 4, 7, 9}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({3, 8, 9, 11}),
+            11: frozenset({0, 1, 4, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
