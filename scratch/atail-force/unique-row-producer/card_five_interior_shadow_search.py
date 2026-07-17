@@ -4266,6 +4266,33 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-103 witness 7972c4bb… admitted 2026-07-17:
+    # inline metric UNDECIDED_ORACLE_DISAGREEMENT_OR_TIMEOUT — the
+    # band's first non-decisive inline verdict — resolved
+    # CROSSCHECKED_UNIT by the 900 s recheck (8,029,453 nodes
+    # caps=1): deletion retained 7 rows / 22 equalities (verdicts
+    # 5 UNIT / 4 TIMEOUT fail-closed / 3 NONUNIT), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; not a transposition image; kin at most 2 shared rows
+    # (breakout unit core; rows 1,10 with 654u-47); FOUR new
+    # (center,support) pairs — 0:{4,5,7,11} and 11:{5,6,9,10} are
+    # BANK-NEW supports, 7:{1,3,5,9} and 9:{0,4,6,8} center-shifts
+    # (8 in 654u-05/-06; 7 in 555u-10/-11/-13 and 5 in fp-654-10);
+    # row 1:{0,3,7,8,9} fifteenth banked appearance; third 7-row
+    # and third 22-eq 654 unit core.
+    {
+        "id": "unit-core-654-48",
+        "rows": {
+            0: frozenset({4, 5, 7, 11}),
+            1: frozenset({0, 3, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            7: frozenset({1, 3, 5, 9}),
+            9: frozenset({0, 4, 6, 8}),
+            10: frozenset({1, 2, 4, 9}),
+            11: frozenset({5, 6, 9, 10}),
+        },
+        "equality_count": 22,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
