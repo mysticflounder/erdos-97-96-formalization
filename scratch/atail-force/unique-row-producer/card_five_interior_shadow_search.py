@@ -1295,6 +1295,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-95 witness admitted 2026-07-17: third consecutive
+    # NONUNIT-track 654 witness (7,783,283 nodes caps=1, +1.1k past
+    # iter-94); inline NONUNIT x3 (Singular + msolve fwd/rev);
+    # certified by membership_crosscheck.py --pair 7 8 --radical-only
+    # --core at the production order; its retained 7-row deletion
+    # core (4 deletion timeouts fail-closed) is
+    # forced-pair-core-654-66.
+    "dcdb760ebd9e41401a6aaf104d342fa931b35a85e8c7f34b7ede3a50d3bbcbe6": {
+        "equality_sha256":
+            "a47e23bf5bbfd3611e71834a75121298b129cb07721ea11639ceccca3151e3ae",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6114,6 +6129,34 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 9, 10}),
         },
         "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-95 witness dcdb760e… admitted 2026-07-17: 7-row /
+    # 22-equality retained core forcing pair (7,8) with both pair
+    # centers retained (witness at 7,783,283 nodes caps=1, third
+    # consecutive NONUNIT-track witness); inline NONUNIT x3; cert
+    # passed at the production order; Rabinowitsch UNIT x3 on full
+    # system and retained core; deletion verdicts 5 UNIT / 4 TIMEOUT
+    # fail-closed / 3 NONUNIT — witness rows 0, 2, 3, 4, 9 dropped;
+    # retains the 5-element row 1:{0,3,7,8,9} (ninth banked
+    # appearance, second fp carrier after fp-654-60); not a
+    # transposition image of any banked core; kin at most 2 shared
+    # rows (breakout core); TWO new supports 7:{3,4,8,11} and
+    # 8:{0,2,3,5}; row 11:{1,5,8,10} previously unit-only
+    # (555u-01/-03/-17/-18, 654u-14), first fp appearance.
+    {
+        "id": "forced-pair-core-654-66",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            5: frozenset({3, 6, 7, 10}),
+            6: frozenset({2, 5, 7, 11}),
+            7: frozenset({3, 4, 8, 11}),
+            8: frozenset({0, 2, 3, 5}),
+            10: frozenset({0, 1, 4, 6}),
+            11: frozenset({1, 5, 8, 10}),
+        },
+        "equality_count": 22,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
