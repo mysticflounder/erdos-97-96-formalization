@@ -4391,6 +4391,28 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-110 witness 265af28f… admitted 2026-07-17: second
+    # consecutive unit iteration (witness at 8,482,958 nodes caps=1,
+    # +18,057 past iter-109); inline UNIT, recheck CROSSCHECKED_UNIT;
+    # retained 6-row / 19-equality core CROSSCHECKED_UNIT x3; deletion
+    # verdicts 6 UNIT / 4 TIMEOUT fail-closed / 2 NONUNIT. Not a
+    # transposition image; kin <=2 (breakout). Both new (center,support)
+    # pairs are center-shifts: 6:{2,3,7,11} (center 4 in fp-654-05/06),
+    # 8:{1,5,7,9} (center 11 in 555u-45, cross-profile). Row 7:{1,3,6,8}
+    # recurs immediately after its 654u-49 bank-new debut. Row
+    # 1:{0,3,7,8,9} nineteenth banked appearance.
+    {
+        "id": "unit-core-654-50",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            6: frozenset({2, 3, 7, 11}),
+            7: frozenset({1, 3, 6, 8}),
+            8: frozenset({1, 5, 7, 9}),
+            9: frozenset({0, 2, 3, 5}),
+            11: frozenset({1, 2, 4, 9}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
