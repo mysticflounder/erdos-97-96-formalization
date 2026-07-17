@@ -33,27 +33,42 @@ external actions.
 The parent theorem `false_of_twoLargeCaps_commonCriticalMap`, called before
 the LIVE-Q/C slot split, is the final assembler and wiring boundary.  It is no
 longer the monolithic theorem-discovery target.  Keep the full parent
-hypotheses and construct two adaptive, source-faithful producer packets:
+hypotheses. Production now constructs the exact-five source-faithful ingress:
+the unused source's actual row meets the physical strict-cap class at most
+once, so two distinct omitted physical points produce two origin-tagged
+common deletions at the same blocker/physical-apex center pair.
 
-1. the exact-five unused critical row together with two physical-radius
-   strict-cap hits, consumed immediately by the two-center overlap bound; and
-2. an origin-tagged common-deletion packet retaining its selected companion,
-   actual blocker rows, cap placement, and failed double deletion, followed by
-   either a second common hit or a certified progress/nonreturn fact.
-
-Protected original/swapped `FA-UNIQ4/5` remain the third dependency.  Once
-those consumers close, assemble the parent `False` and bypass the legacy
+The remaining adaptive target is one provenance-aware consumer for this pair
+and the other origin-tagged common-deletion entries. It must produce a named
+actual-row cross-incidence feeding an existing sink, or certified cap/MEC
+progress or nonreturn. Protected original/swapped `FA-UNIQ4/5` remain the
+other dependency. Once those consumers close, assemble the parent `False`
+and bypass the legacy
 tree.  The old shared-radius existential is not a producer target:
 `oppCap2_escape_gen` already refutes it, so constructing it is an indirect
 proof of the whole parent contradiction.
 
-The exact-five consumer side is now production-complete:
+The exact-five reduction is now production-complete:
 `ATail/TwoCenterCapLocalization.lean` contains the general two-center cap
 localization, while `ATail/LargeCapUniqueFiveCrossIncidence.lean` contains
-the choice-invariant two-hit packet and its direct `False` theorem. Both are
-core-axiom clean and imported by the live U1 target. The only remaining
-exact-five theorem is the producer of the two physical-class/strict-cap
-incidences in the unused source's actual critical support.
+the choice-invariant two-hit packet and its direct `False` theorem.
+`ATail/LargeCapUniqueFiveLowHit.lean` proves the sound complement
+`nonempty_twoCommonDeletionSources_of_largeCapUniqueFive`, retaining both
+deleted sources, physical radius/cap placement, the common actual critical
+row, and the two same-center `CommonDeletionTwoCenterPacket`s. The unused-row
+API also records `criticalRow_eq_selectedAt`. These declarations are
+core-axiom clean and imported by the live U1 target. Exact-five has no
+remaining producer; it now feeds the common-deletion consumer.
+
+The bank-reuse audit finds no existing terminal for the paired packet. The
+shared first support is the unused source's actual critical row, while the
+two physical rows are the exact-five class with different named points
+deleted. Current U5 consumers fix one deleted source, and the existing paired
+shared-row audits remain nonterminal. The next theorem must either extract a
+named cross-incidence from the actual critical row at one of those deleted
+sources, or prove a paired well-founded cap/MEC continuation. Do not project
+either packet to bare robustness: exact-five already supplies that fact and
+the projection erases the new coupling.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -537,12 +552,14 @@ current closure sequence is:
 4. **DONE-CHECKED-SCRATCH SMALL-CARD BYPASS:** through card thirteen, call
    `smallCarrier_routes_to_protectedFrontier` and dispatch only to the
    protected original/swapped `FA-UNIQ4/5` handlers.
-5. **CURRENT EXACT-FIVE PRODUCER:** use the unused cap point's actual retained
-   critical row. Produce two strict-cap members of the physical exact-five
-   class in that support; the overlap consumer then gives `False`.
-6. **CURRENT COMMON-DELETION PRODUCER:** preserve the construction's deleted
-   source and companion instead of projecting to a generic packet. Produce a
-   second common row point with the required cap placement, or a certified
+5. **DONE-PRODUCTION EXACT-FIVE LOW-HIT INGRESS:** the unused cap point's
+   actual retained row has at most one physical strict-cap hit. Two distinct
+   omitted physical points therefore yield two origin-tagged common deletions
+   at the same blocker/physical-apex center pair.
+6. **CURRENT COMMON-DELETION CONSUMER:** preserve both deleted sources, the
+   physical radius, unused/companion source, actual blocker row, and cap
+   placement instead of projecting to a generic packet. Produce a named
+   actual-row cross-incidence feeding an existing sink, or a certified paired
    source-faithful rank/nonreturn step. Generic successor iteration is blocked
    by the exact cycle regression.
 7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
@@ -559,8 +576,9 @@ K-A-PAIR hole plus four LIVE-Q helpers with 24 holes and seven one-hole LIVE-C
 contracts. All LIVE-T1/T3 helpers are source-sorry-free but transitively
 depend on K-A-PAIR. The preferred parent theorem makes the Q/C case tree
 unreachable; after reference mining, delete that tree instead of adjudicating
-its 31 holes individually. Thus closure proceeds by two adaptive producers,
-protected unique-arm consumers, parent assembly, and dead-code removal; it
+its 31 holes individually. Thus closure proceeds by the provenance-aware
+common-deletion consumer, protected unique-arm consumers, parent assembly,
+and dead-code removal; it
 does not adjudicate the remaining direct liveData
 holes independently.
 
@@ -2148,9 +2166,10 @@ consume the double-survival arm; those remain the exact coupling fields.
 The final production boundary is no longer the existential shared-radius
 conclusion. It is a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof targets beneath it are the exact-five two-hit producer and the
-origin-tagged common-deletion progress/nonreturn producer, not a single broad
-`False` callback.
+active proof target beneath it is the origin-tagged common-deletion named-
+incidence or paired progress/nonreturn consumer, together with the protected
+unique-arm dependencies, not a single broad `False` callback. The exact-five
+branch is a proved production ingress to that surface.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by

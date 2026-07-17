@@ -668,17 +668,14 @@ literal source inventory, not 12 independently dispatched mathematical
 problems. The parent theorem
 `false_of_twoLargeCaps_commonCriticalMap` is the final assembler and is
 called before the LIVE slot split. Its active inputs are two smaller,
-source-faithful producers plus the protected original/swapped
-`FA-UNIQ4/FA-UNIQ5` consumers:
-
-1. an unused exact-five cap source whose actual deletion-critical row
-   contains two distinct strict-cap members of the physical exact-five
-   class; the two-center localization and cap-support bound consume this
-   packet immediately; and
-2. an origin-tagged common deletion retaining the actual deleted source,
-   companion, blocker rows, cap placement, and failed double deletion, from
-   which one must produce a second common hit or certified cap/MEC
-   progress/nonreturn.
+source-faithful surfaces plus the protected original/swapped
+`FA-UNIQ4/FA-UNIQ5` consumers. The exact-five ingress is now proved: its
+actual unused-source row has at most one physical strict-cap hit, so two
+distinct omitted physical points give two origin-tagged common deletions at
+the same blocker/physical-apex center pair. The remaining common-deletion
+consumer must retain those two sources, the physical radius, blocker row,
+cap placement, and failed deletions and produce either a named actual-row
+cross-incidence or certified paired cap/MEC progress/nonreturn.
 
 This keeps the full parent minimality, critical-map, MEC, cap-order, and
 no-`IsM44` hypotheses. It decomposes the proof; it does not weaken the
@@ -749,7 +746,8 @@ chord, and the two-circle reflection argument
 conclusion is unsatisfiable over ℝ², so the existential is an artificial
 ex-falso endpoint. It remains one of the 12 source holes, but it is no longer
 the theorem-discovery target. The closure route derives `False` directly at
-the parent boundary from the two adaptive producer contracts above, then
+the parent boundary from the provenance-aware common-deletion consumer and
+protected unique arms above, then
 deletes or trivializes this compatibility chain.
 
 **Cardinality scope.** The declaration assumes only 9 < |A|. In the
@@ -796,8 +794,9 @@ contradictory.
 
 With the t₂ = t₂₀ branch and the T1/T3 orbit both blocked only on V.2, the
 literal open source inventory is **V.2, LIVE-Q, and LIVE-C**. The active
-mathematical content is instead the two source-faithful parent producers and
-the protected unique-arm consumers described at the start of Part V.
+mathematical content is instead the provenance-aware common-deletion consumer
+and the protected unique-arm consumers described at the start of Part V; the
+exact-five low-hit ingress to that consumer is proved.
 
 ---
 
@@ -833,7 +832,7 @@ row must (or does) discharge.
 | O6 | Descent glue | proved | A removable vertex in a minimal counterexample yields a strictly smaller counterexample, hence a contradiction. |
 | O7 | RVOL packet extraction | proved | Every minimal counterexample with n > 9 carries a surplus-cap packet. |
 | O8 | RVOL (m,4,4) branch | proved | If both caps opposite the surplus cap have exactly 4 points, a removable vertex exists. |
-| O9 | RVOL remaining branch | blocked (O17–O20) | If no (m,4,4) decomposition exists, a removable vertex exists. The existing LIVE case tree is complete Lean source inventory, but the preferred closure bypasses it through the parent assembler O20. |
+| O9 | RVOL remaining branch | blocked (O18–O20) | If no (m,4,4) decomposition exists, a removable vertex exists. The existing LIVE case tree is complete Lean source inventory, but the preferred closure bypasses it through the parent assembler O20. |
 | O10 | Shared-radius pair | open source compatibility endpoint | The current source asks for an impossible double-apex pair (V.2). It is bypassed once O20 lands and is not an active producer target. |
 | O11 | LIVE-Q | open source inventory; pending parent bypass | The current tail tree contains four Q helpers / 24 holes. They are not independently dispatched while O20 is active. |
 | O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering. Both orbit adapters are production-wired; neither family has direct source holes, and both remain open only through O10 (V.3). |
@@ -841,13 +840,13 @@ row must (or does) discharge.
 | O14 | Card-11 slice | open scope gate | O20 should be uniform from card 11. Any higher-cardinality theorem must carry the missing lower-cardinality consumer in the same plan. |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
-| O17 | Exact-five two-hit producer | open producer; consumer proved | For the unused cap source in the physical exact-five arm, its actual deletion-critical row contains two distinct physical-class points in the strict opposite-cap interior. Production `commonPhysicalPair_center_mem_secondCapInterior` and `false_of_largeCapUniqueFiveTwoHitCriticalRow` then yield `False` with only the three core axioms. |
-| O18 | Origin-tagged common-deletion progress | open | Retaining the deleted source, companion, blocker rows, cap placement, and failed double deletion yields a second common hit or certified cap/MEC rank/nonreturn progress. Generic unranked successor iteration is excluded by the exact cycle regression. |
+| O17 | Exact-five low-hit reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row; production `nonempty_twoCommonDeletionSources_of_largeCapUniqueFive` turns their deletions into two origin-tagged common-deletion packets at the same actual blocker/physical-apex center pair. The row-coherence and reduction theorems use only the three core axioms. |
+| O18 | Origin-tagged common-deletion progress | open | Retaining both deleted sources, the selected companion or unused source, physical radius, blocker rows, cap placement, and failed deletions yields a named actual-row cross-incidence or certified paired cap/MEC rank/nonreturn progress. Generic unranked successor iteration is excluded by the exact cycle regression. No current bank consumes the exact-five two-source pair. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
-| O20 | Parent direct-`False` assembler | blocked (O17–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from O17–O19 under the full parent hypotheses and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
+| O20 | Parent direct-`False` assembler | blocked (O18–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from the O18 provenance-aware common-deletion consumer and O19 protected unique arms under the full parent hypotheses, and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
 
 The literal source holes are O10, O11, and O13. The active closure work is
-O17–O19, with O14 as its cardinality-scope gate and O20 as routine final
+O18–O19, with O14 as its cardinality-scope gate and O20 as routine final
 assembly. **Overall: `erdos97_rhs` is OPEN.**
 
 ---
@@ -864,9 +863,9 @@ Unconditionally PROVED (Lean, kernel-checked):
 4. In the remaining case, the current source is reduced — by complete,
    kernel-checked case analysis — to the 12 declarations of Part V. The
    T1/T3 helpers carry no source holes of their own. The preferred closure
-   path keeps the full parent data, proves the exact-five two-hit and
-   origin-tagged common-deletion producers plus the protected unique arms,
-   and assembles a direct parent contradiction before that case split.
+   path keeps the full parent data, uses the proved exact-five low-hit ingress,
+   closes the origin-tagged common-deletion consumer plus the protected unique
+   arms, and assembles a direct parent contradiction before that case split.
 
 Conditionally: if the obligations of Part V are discharged, then
 `erdos97_rhs` — and with it the Problem 96 target — closes with axiom set
@@ -874,7 +873,8 @@ Conditionally: if the obligations of Part V are discharged, then
 `Lean.trustCompiler`}.
 
 Nothing stronger is claimed. The 12 current source declarations remain open;
-the adaptive producers and protected unique arms have not yet been proved.
+the provenance-aware common-deletion consumer and protected unique arms have
+not yet been proved.
 
 ---
 

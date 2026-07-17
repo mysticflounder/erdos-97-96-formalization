@@ -95,11 +95,12 @@ consumed immediately:
 ```text
 full parent hypotheses
   |-- exact-five unused critical row
-  |     + two physical-radius strict-cap hits
-  |     -> two-center overlap contradiction
+  |     -> actual row has at most one physical strict-cap hit
+  |     -> two distinct physical strict-cap points omit that row
+  |     -> two origin-tagged common deletions at one center pair
   |-- origin-tagged common deletion
-  |     + retained companion/blocker provenance
-  |     -> second common hit or certified progress/nonreturn
+  |     + retained source/radius/cap/blocker provenance
+  |     -> named cross-incidence or certified paired progress/nonreturn
   `-- protected original/swapped FA-UNIQ4/FA-UNIQ5 arms
         -> existing protected consumers
   -> assemble false_of_twoLargeCaps_commonCriticalMap
@@ -115,9 +116,27 @@ Production checkpoint, 2026-07-16: the source-independent localization
 `ATail/TwoCenterCapLocalization.lean`, and the choice-invariant packet
 `LargeCapUniqueFiveTwoHitCriticalRow` plus terminal
 `false_of_largeCapUniqueFiveTwoHitCriticalRow` live in
-`ATail/LargeCapUniqueFiveCrossIncidence.lean`. Both have exactly the three
-core axioms, and the focused U1 target builds. Thus the exact-five consumer
-is closed; only its two-cross-incidence producer remains open.
+`ATail/LargeCapUniqueFiveCrossIncidence.lean`. The positive two-hit packet is
+therefore contradiction-strength, not a producer target. Production
+`ATail/LargeCapUniqueFiveLowHit.lean` proves its constructive complement:
+`nonempty_twoCommonDeletionSources_of_largeCapUniqueFive` supplies two
+distinct physical strict-cap deletion sources omitted by the same actual
+critical row and two `CommonDeletionTwoCenterPacket`s at the same actual
+blocker/physical-apex pair. The unused-row API now records
+`criticalRow_eq_selectedAt`. These endpoints have exactly the three core
+axioms. Exact-five is consequently a proved ingress into the origin-tagged
+common-deletion lane, not a separate open producer.
+
+The paired-packet bank audit found no immediate terminal. Its canonical first
+row is the unused source's actual critical support; its two physical-apex rows
+come from deleting the two named points from the exact-five class. Existing
+U5 consumers fix one deleted source, and the paired shared-row consumers are
+nonterminal. The first legitimate next theorem must therefore do one of two
+things while retaining the full origin: use the actual critical row at one of
+the two named deleted sources to force a bank-consumed cross-incidence, or
+prove a paired cap/MEC progress measure that rules out return. Projecting
+either packet to bare physical-apex robustness is redundant and loses the new
+information.
 
 The legacy
 `DoubleApexOffSurplusSharedRadiusPair` conclusion is an artificial ex-falso
@@ -3492,15 +3511,15 @@ inventory(25)` or the parent two-large-cap contradiction.
 
 ## Ordering and sizing
 
-There is one open-mathematics cluster with three explicit producer/consumer
-surfaces:
+There is one open-mathematics cluster with two explicit producer/consumer
+surfaces plus one proved exact-five ingress:
 
-1. **Exact-five adaptive row:** produce two physical-radius strict-cap hits in
-   the unused source's actual critical row and invoke the overlap consumer.
-2. **Origin-tagged common deletion:** retain the actual companion, blocker,
-   cap placement, and failed double deletion, then produce a second common hit
-   or a certified nonreturn/rank step.
-3. **Protected unique-radius arms:** consume original/swapped `FA-UNIQ4/5`.
+1. **Origin-tagged common deletion:** retain the actual sources, physical
+   radius, blocker row, cap placement, and failed deletions, then produce a
+   named cross-incidence or a certified paired nonreturn/rank step. The
+   exact-five arm now enters this surface through two distinct deletions at
+   one center pair.
+2. **Protected unique-radius arms:** consume original/swapped `FA-UNIQ4/5`.
 
 These assemble `false_of_twoLargeCaps_commonCriticalMap` on the actual
 card-at-least-11 surface. The old `DoubleApexOffSurplusSharedRadiusPair`
@@ -3568,12 +3587,13 @@ order is:
    fixed-anchor deletion classifier, total `LowHit`/apex-pair hit table, and
    blocker survival/alignment classifier. The joint-fiber extractor and T1/T3
    relabels are compatibility/legacy wiring only.
-2. **Prove the two source-faithful producers.** On the full current parent
-   surface with concrete `Hcritical`, use cap-selected sources rather than the
-   fixed LIVE slots. Produce the exact-five two-hit packet and the
-   origin-tagged common-deletion progress packet, each already shaped for its
-   immediate consumer. Do not replace them by a generic row-existence or
-   motive-valued dispatcher.
+2. **Prove the remaining source-faithful consumer.** On the full current
+   parent surface with concrete `Hcritical`, use cap-selected sources rather
+   than the fixed LIVE slots. Exact-five already produces two origin-tagged
+   common deletions at one center pair. Consume that paired packet, and the
+   other origin-tagged common-deletion entries, by a named cross-incidence or
+   certified cap/MEC progress/nonreturn theorem. Do not project them to bare
+   robustness or a generic motive-valued dispatcher.
 3. **Use computation only to discover the theorem.** The reduced three-center
    systems and any CEGAR survivors may identify recurrent equality/order
    skeletons. The completed 343-skeleton replay rules out the bare and
@@ -3674,10 +3694,12 @@ The reasons are checked and separate:
 The final content theorem remains
 `false_of_twoLargeCaps_commonCriticalMap`, consuming the actual MEC-derived
 cap packet, `hNoM44`, full exact filters, and concrete critical map before the
-LIVE-Q/C slot split.  The theorem-discovery targets beneath it are now the
-exact-five two-hit producer and the origin-tagged common-deletion
-progress/nonreturn producer. Fixed LIVE row slots are compatibility data, not
-the construction surface.
+LIVE-Q/C slot split.  The exact-five branch now reaches the origin-tagged
+two-source common-deletion surface in production. The remaining theorem-
+discovery target beneath the parent is its provenance-aware named-incidence
+or paired progress/nonreturn consumer, together with the protected unique-arm
+dependencies. Fixed LIVE row slots are compatibility data, not the
+construction surface.
 
 Work is decomposed as follows:
 

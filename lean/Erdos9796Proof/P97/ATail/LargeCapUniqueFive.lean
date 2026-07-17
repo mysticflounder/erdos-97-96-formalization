@@ -214,6 +214,8 @@ structure LargeCapUniqueFiveUnusedCriticalRow
   blocker_mem_A : H.centerAt unused.point source_mem_A ∈ D.A
   criticalRow : CriticalSelectedFourClass D.A unused.point
     (H.centerAt unused.point source_mem_A)
+  criticalRow_eq_selectedAt :
+    criticalRow = H.selectedAt unused.point source_mem_A
   source_mem_criticalSupport :
     unused.point ∈ criticalRow.toCriticalFourShell.support
   source_deletion_blocked_at_blocker :
@@ -258,6 +260,7 @@ theorem nonempty_largeCapUniqueFiveUnusedCriticalRow
     blocker_ne_physicalApex := hblockerNe
     blocker_mem_A := hblockerA
     criticalRow := H.selectedAt unused.point hsourceA
+    criticalRow_eq_selectedAt := rfl
     source_mem_criticalSupport :=
       (H.selectedAt unused.point hsourceA).toCriticalFourShell.q_mem_support
     source_deletion_blocked_at_blocker :=

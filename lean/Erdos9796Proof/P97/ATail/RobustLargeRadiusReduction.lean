@@ -5,7 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.RobustLargeRadius
-import Erdos9796Proof.P97.ATail.LargeCapUniqueFiveCrossIncidence
+import Erdos9796Proof.P97.ATail.LargeCapUniqueFiveLowHit
 
 /-!
 # Reduction of the large-radius shared-pair arm
@@ -17,12 +17,16 @@ radius-class point outside that shell preserves K4 at both centers and hence
 produces the existing common-deletion two-center packet.
 
 This module is a reduction to existing continuations, not a contradiction.
+The exact-unique-five arm is retained with its stronger two-source,
+origin-tagged common-deletion continuation instead of a bare profile.
 -/
 
 open scoped EuclideanGeometry
 
 namespace Problem97
 namespace ATailRobustLargeRadius
+
+open ATailLargeCapUniqueFiveLowHit
 
 attribute [local instance] Classical.propDecidable
 
@@ -127,6 +131,8 @@ inductive RobustLargeRadiusReducedOutcome
   | exactUniqueFive
       (profile : ATailLargeCapUniqueFive.LargeCapUniqueFiveSecondApexRadius
         D S)
+      (continuation :
+        LargeCapUniqueFiveTwoCommonDeletionSources D S H profile)
 
 /-- Global minimality plus the large physical-apex radius has only the
 common-deletion and exact-unique-five continuations. -/
@@ -142,7 +148,11 @@ theorem nonempty_reducedOutcome_of_largeSecondApexRadius
     exact ⟨RobustLargeRadiusReducedOutcome.commonDeletion
       deleted center packet⟩
   | exactUniqueFive profile =>
-    exact ⟨RobustLargeRadiusReducedOutcome.exactUniqueFive profile⟩
+    rcases nonempty_twoCommonDeletionSources_of_largeCapUniqueFive
+          H F.oppCap2_card_ge_six profile with
+      ⟨continuation⟩
+    exact ⟨RobustLargeRadiusReducedOutcome.exactUniqueFive
+      profile continuation⟩
   | sharedCriticalPair packet =>
     rcases nonempty_commonDeletionTwoCenterPacket_of_sharedCriticalPair
         H F.radius_pos F.radius_class_card_ge_five packet with
