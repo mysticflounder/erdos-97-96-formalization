@@ -129,6 +129,15 @@ structure LargeCapUniqueFiveUnusedPoint
       (SelectedClass D.A S.oppApex2 profile.radius ∩
         S.capInteriorByIndex S.oppIndex2).card
 
+/-- The unused point belongs to the indexed form of the physical second cap. -/
+theorem LargeCapUniqueFiveUnusedPoint.point_mem_capByIndex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {profile : LargeCapUniqueFiveSecondApexRadius D S}
+    (unused : LargeCapUniqueFiveUnusedPoint D S profile) :
+    unused.point ∈ S.capByIndex S.oppIndex2 := by
+  rw [capByIndex_oppIndex2_eq_oppCap2 S]
+  exact unused.point_mem_oppCap2
+
 /-- A six-point closed opposite cap cannot be exhausted by an exact
 five-point ambient radius filter. -/
 theorem nonempty_largeCapUniqueFiveUnusedPoint

@@ -4,8 +4,8 @@ A Lean 4 formalization of the resolutions of two Erdős problems on convex
 point sets in the plane, checked against the canonical problem statements
 in [`formal-conjectures`](https://github.com/google-deepmind/formal-conjectures).
 
-The remaining proof surface is **36 `sorry`-carrying symbols / 80 textual
-holes in two Front-A clusters**, both descending from the route-B tail of the
+The remaining proof surface is **12 `sorry`-carrying symbols / 32 textual
+holes in two Front-A source clusters**, all descending from the route-B tail of the
 removable-vertex core. The endpoint, pinned-surplus, and erased-pin Front-B
 branches are closed; the ERASE card-{10,11} classifier closure is committed at
 `652fdfcb`. **This is the main repo where the proof is being closed.** The
@@ -68,10 +68,10 @@ current source obligations are all in `U1LargeCapRouteBTail.lean`:
 | Cluster | Source surface | Symbols | Textual holes |
 |---|---|---:|---:|
 | Shared-radius pair | `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair` | 1 | 1 |
-| liveData families | 35 named `liveData_*` helpers consumed by the now-sorry-free `u1_largeCap_routeB_tail_liveData_false` | 35 | 79 |
-| **Total** | | **36** | **80** |
+| liveData families | Four LIVE-Q helpers and seven LIVE-C helpers consumed by the now-sorry-free `u1_largeCap_routeB_tail_liveData_false`; LIVE-T1/T3 are source-sorry-free | 11 | 31 |
+| **Total** | | **12** | **32** |
 
-`proof-blueprint symbols --with-sorry` reports exactly those 36 symbols. The
+`proof-blueprint symbols --with-sorry` reports exactly those 12 symbols. The
 former Front-B obligations `isM44EndpointResidualsExcluded`,
 `isM44PinnedSurplusResidualsExcluded`, and
 `isM44NonSurplusContainmentErasedPinTripleResidualsExcluded` are source-clean
@@ -82,7 +82,7 @@ axiom set.
 The Lean kernel reports the axiom closure of both published claims as the
 Lean core axioms plus:
 
-- `sorryAx` — traces exactly to the 36 Front-A symbols above;
+- `sorryAx` — traces exactly to the 12 Front-A symbols above;
 - `Lean.ofReduceBool` and `Lean.trustCompiler` — from `native_decide` in the
   generated finite-bank certificate shards (`SurplusCOMPGBank*`,
   `EndpointCertificate/*`), allowed under the project's `native_decide`

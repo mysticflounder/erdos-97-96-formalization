@@ -69,7 +69,7 @@ dependency, not a 25th source obligation.
 
 The 2026-07-16 live `proof-blueprint` recheck reports the source index in
 sync, exactly these 12 on-spine declarations, and no off-spine placeholder
-sorries. At the K-A anchor,
+sorries. At the K-A compatibility symbol,
 `DoubleApexOffSurplusSharedRadiusPair` is the only open project symbol in its
 31-node subtree; its body still reaches `sorryAx`. This does not make the 11
 LIVE-Q/C declarations closed: they remain separate on-spine frontier symbols
@@ -79,7 +79,7 @@ compatibility wrappers.
 
 ## Current Front-A closure strategy (refreshed 2026-07-16)
 
-The sole primary theorem boundary is the direct parent contradiction
+The final assembly and insertion point remains the parent contradiction
 
 ```lean
 false_of_twoLargeCaps_commonCriticalMap
@@ -87,7 +87,39 @@ false_of_twoLargeCaps_commonCriticalMap
 
 called immediately after the parent chooses the concrete
 `Hcritical : CriticalShellSystem D.A` and before it constructs or enumerates
-the LIVE rows.  The legacy
+the LIVE rows.  It is **not** the monolithic theorem-discovery target.  The
+active construction keeps the full parent hypothesis surface and decomposes
+it into adaptive, source-faithful producer contracts whose outputs are
+consumed immediately:
+
+```text
+full parent hypotheses
+  |-- exact-five unused critical row
+  |     + two physical-radius strict-cap hits
+  |     -> two-center overlap contradiction
+  |-- origin-tagged common deletion
+  |     + retained companion/blocker provenance
+  |     -> second common hit or certified progress/nonreturn
+  `-- protected original/swapped FA-UNIQ4/FA-UNIQ5 arms
+        -> existing protected consumers
+  -> assemble false_of_twoLargeCaps_commonCriticalMap
+```
+
+This is a proof decomposition, not a weakening of the mathematical parent:
+do not drop `D.Minimal`, MEC/cap order, `hNoM44`, the complete radius filters,
+or the concrete critical map.  A producer counts only when its packet is
+source-realizable and feeds a checked contradiction or progress consumer.
+
+Production checkpoint, 2026-07-16: the source-independent localization
+`commonPhysicalPair_center_mem_secondCapInterior` now lives in
+`ATail/TwoCenterCapLocalization.lean`, and the choice-invariant packet
+`LargeCapUniqueFiveTwoHitCriticalRow` plus terminal
+`false_of_largeCapUniqueFiveTwoHitCriticalRow` live in
+`ATail/LargeCapUniqueFiveCrossIncidence.lean`. Both have exactly the three
+core axioms, and the focused U1 target builds. Thus the exact-five consumer
+is closed; only its two-cross-incidence producer remains open.
+
+The legacy
 `DoubleApexOffSurplusSharedRadiusPair` conclusion is an artificial ex-falso
 endpoint: `oppCap2_escape_gen` already refutes the requested pair, and its
 substantive consumer immediately eliminates the resulting `False`.
@@ -123,9 +155,9 @@ card >= 14 R
    or SwappedFirstApexUniqueFourFrontier D S H.
 ```
 
-The exact remaining card-at-least-fourteen consumers are therefore the robust
-physical-second-apex direct-`False` theorem and the protected swapped
-`FA-UNIQ4` direct-`False` theorem.  The origin-tagged coordinator and its branch
+The exact remaining card-at-least-fourteen work is therefore the two
+source-faithful producer contracts above plus the protected swapped
+`FA-UNIQ4`/`FA-UNIQ5` consumers.  The origin-tagged coordinator and its branch
 reductions below remain checked diagnostics and fallback infrastructure, but
 they are no longer the primary load-bearing route.  Do not instantiate every
 old R callback merely to recover a result already supplied by the physical
@@ -358,12 +390,14 @@ The stopped scratch lane already supplies and kernel-checks this reduction, so
 do not reimplement it or promote its motive-valued dispatcher to a claimed
 `False` theorem.  Its singleton/common-deletion continuation can return the
 same robust state, and the large-radius specialization has now exposed that
-loop explicitly.  The primary terminal remains the parent
-`false_of_twoLargeCaps_commonCriticalMap`, called before LIVE slot/center
-enumeration.  Its content-bearing robust subtargets are now (a) a direct
-large-radius/full-filter contradiction, including the exact-five unused-cap
-point, and (b) a two-radius transition with a genuine well-founded cap/MEC
-rank or nonreturn theorem.  The protected `FA-UNIQ4/5` arms remain separate
+loop explicitly.  The parent `false_of_twoLargeCaps_commonCriticalMap`
+remains the final assembler called before LIVE slot/center enumeration.  Its
+content-bearing subtargets are smaller source-faithful producers: (a) in the
+exact-five arm, two strict-cap members of the physical five-class in the
+unused source's actual critical support; and (b) in the common-deletion arm,
+an origin-tagged packet retaining the companion and blocking history,
+followed by either a second common row point or a certified cap/MEC
+progress/nonreturn fact.  The protected `FA-UNIQ4/5` arms remain separate
 dependencies.  Use `hmin` only at this parent boundary, and do not widen
 K-A-PAIR or the LIVE-Q/C helper tree.
 
@@ -3458,14 +3492,20 @@ inventory(25)` or the parent two-large-cap contradiction.
 
 ## Ordering and sizing
 
-There is one open-mathematics cluster:
+There is one open-mathematics cluster with three explicit producer/consumer
+surfaces:
 
-1. **Front-A parent common-critical-map contradiction:** Candidate-D
-   cross-center convexity coupling for
-   `false_of_twoLargeCaps_commonCriticalMap` on the actual card-at-least-11
-   surface. The old `DoubleApexOffSurplusSharedRadiusPair` declaration is only
-   the current compatibility symbol. A `CARD-GE-12` proof leaves A11-CONSUME
-   and wiring open.
+1. **Exact-five adaptive row:** produce two physical-radius strict-cap hits in
+   the unused source's actual critical row and invoke the overlap consumer.
+2. **Origin-tagged common deletion:** retain the actual companion, blocker,
+   cap placement, and failed double deletion, then produce a second common hit
+   or a certified nonreturn/rank step.
+3. **Protected unique-radius arms:** consume original/swapped `FA-UNIQ4/5`.
+
+These assemble `false_of_twoLargeCaps_commonCriticalMap` on the actual
+card-at-least-11 surface. The old `DoubleApexOffSurplusSharedRadiusPair`
+declaration is only the current compatibility symbol. A `CARD-GE-12` proof
+still leaves A11-CONSUME and wiring open.
 
 The LIVE-Q/C declarations are downstream source inventory. The parent theorem
 is called before their split, after which reference mining deletes the tree or
@@ -3528,10 +3568,12 @@ order is:
    fixed-anchor deletion classifier, total `LowHit`/apex-pair hit table, and
    blocker survival/alignment classifier. The joint-fiber extractor and T1/T3
    relabels are compatibility/legacy wiring only.
-2. **Prove the content-bearing parent classifier.** On the full current parent
-   hypothesis surface with concrete `Hcritical`, rule out the joint transition
-   states across the generated rows and turn every robust branch into an
-   existing cap/critical-row/core terminal packet or `False` directly.
+2. **Prove the two source-faithful producers.** On the full current parent
+   surface with concrete `Hcritical`, use cap-selected sources rather than the
+   fixed LIVE slots. Produce the exact-five two-hit packet and the
+   origin-tagged common-deletion progress packet, each already shaped for its
+   immediate consumer. Do not replace them by a generic row-existence or
+   motive-valued dispatcher.
 3. **Use computation only to discover the theorem.** The reduced three-center
    systems and any CEGAR survivors may identify recurrent equality/order
    skeletons. The completed 343-skeleton replay rules out the bare and
@@ -3548,7 +3590,8 @@ order is:
    convexity, cap/full-filter, or critical-row hypothesis that excludes them.
    No representative result is promoted without the leaf-to-inventory and
    certificate bridges.
-4. **Consume the producer at the parent boundary.** Assemble
+4. **Assemble the consumers at the parent boundary.** After both producers and
+   the protected unique-radius consumers close, assemble
    `false_of_twoLargeCaps_commonCriticalMap` and call it immediately after the
    parent chooses `Hcritical`, before row construction and slot enumeration.
    Then reference-mine and
@@ -3628,11 +3671,13 @@ The reasons are checked and separate:
   (96 / 150 / 684), including survivors in all three profiles.  Therefore a
   pair of apex marginals plus the current order bank is not a coverage proof.
 
-The next content theorem is provisionally
-`false_of_twoLargeCaps_commonCriticalMap`.  It must consume the actual
-MEC-derived cap packet, `hNoM44`, full exact filters, the concrete critical
-map, and the fixed/live row data, and return `False`.  It is called at
-`u1_largeCap_routeB_tail_false` before the LIVE-Q/C slot split.
+The final content theorem remains
+`false_of_twoLargeCaps_commonCriticalMap`, consuming the actual MEC-derived
+cap packet, `hNoM44`, full exact filters, and concrete critical map before the
+LIVE-Q/C slot split.  The theorem-discovery targets beneath it are now the
+exact-five two-hit producer and the origin-tagged common-deletion
+progress/nonreturn producer. Fixed LIVE row slots are compatibility data, not
+the construction surface.
 
 Work is decomposed as follows:
 
@@ -3752,7 +3797,9 @@ This refinement supersedes the sequential instruction to finish the
 unique-row classifier before isolating the robust terminal.  The live
 `proof-blueprint` anchor remains
 `DoubleApexOffSurplusSharedRadiusPair`, open through its single source
-`sorry`; LIVE-Q/C remain separate on-spine obligations.
+`sorry`; LIVE-Q/C remain separate on-spine obligations. This is the dated
+2026-07-14 cursor state; the active session anchor is now held exactly at
+`Problem97.u1_largeCap_routeB_tail_false` for the pre-LIVE parent bypass.
 
 The tractability gain is an exact frontier reduction, not a new census.
 Full MEC/cap geometry proves that two distinct positive K4 radii at one Moser

@@ -663,6 +663,29 @@ obligations of Part V.
 further holes, are now source-sorry-free: they are production-wired through
 the orbit adapter below and remain open only transitively, through V.2.)
 
+**Closure strategy, refreshed 2026-07-16.** These 12 declarations are the
+literal source inventory, not 12 independently dispatched mathematical
+problems. The parent theorem
+`false_of_twoLargeCaps_commonCriticalMap` is the final assembler and is
+called before the LIVE slot split. Its active inputs are two smaller,
+source-faithful producers plus the protected original/swapped
+`FA-UNIQ4/FA-UNIQ5` consumers:
+
+1. an unused exact-five cap source whose actual deletion-critical row
+   contains two distinct strict-cap members of the physical exact-five
+   class; the two-center localization and cap-support bound consume this
+   packet immediately; and
+2. an origin-tagged common deletion retaining the actual deleted source,
+   companion, blocker rows, cap placement, and failed double deletion, from
+   which one must produce a second common hit or certified cap/MEC
+   progress/nonreturn.
+
+This keeps the full parent minimality, critical-map, MEC, cap-order, and
+no-`IsM44` hypotheses. It decomposes the proof; it does not weaken the
+theorem. Once the parent contradiction is assembled, the K-A compatibility
+endpoint and LIVE-Q/C tree are bypassed and reference-mined rather than
+proved leaf by leaf.
+
 ### V.1 Branch algebra
 
 `u1_largeCap_routeB_tail_liveData_false` splits on the value of
@@ -697,7 +720,7 @@ The live direct inventory is now 12 `sorry`-carrying symbols: V.2 itself,
 four LIVE-Q declarations, and seven LIVE-C declarations.  LIVE-T1 and
 LIVE-T3 have no direct source holes and inherit openness only through V.2.
 
-### V.2 The shared-radius pair obligation — OPEN
+### V.2 The shared-radius pair compatibility obligation — OPEN IN SOURCE
 
 `U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`
 (`U1LargeCapRouteBTail.lean:2516`, hole at `:2561`).
@@ -723,12 +746,11 @@ The downstream implication is PROVED (core axioms): given such a pair,
 vertex — the off-surplus membership fixes the pair's side of the surplus
 chord, and the two-circle reflection argument
 (`U2NonSurplusSqueeze.oppCap2_escape_gen`) derives the contradiction. The
-conclusion is unsatisfiable over ℝ², so proving the obligation is exactly
-deriving the leaf contradiction. The open mathematical question:
-
-> does (≥5, ≥5, 4) + center-K4 + the critical shell **force** the two ≥5
-> caps to overflow the apex exact-radius classes into a double-apex
-> coincidence?
+conclusion is unsatisfiable over ℝ², so the existential is an artificial
+ex-falso endpoint. It remains one of the 12 source holes, but it is no longer
+the theorem-discovery target. The closure route derives `False` directly at
+the parent boundary from the two adaptive producer contracts above, then
+deletes or trivializes this compatibility chain.
 
 **Cardinality scope.** The declaration assumes only 9 < |A|. In the
 two-large-cap configuration 11 ≤ |A| is PROVED
@@ -773,7 +795,9 @@ contradictory.
   > vertex of A distinct from all six base points.
 
 With the t₂ = t₂₀ branch and the T1/T3 orbit both blocked only on V.2, the
-open content of the entire proof is: **V.2, LIVE-Q, and LIVE-C.**
+literal open source inventory is **V.2, LIVE-Q, and LIVE-C**. The active
+mathematical content is instead the two source-faithful parent producers and
+the protected unique-arm consumers described at the start of Part V.
 
 ---
 
@@ -809,18 +833,22 @@ row must (or does) discharge.
 | O6 | Descent glue | proved | A removable vertex in a minimal counterexample yields a strictly smaller counterexample, hence a contradiction. |
 | O7 | RVOL packet extraction | proved | Every minimal counterexample with n > 9 carries a surplus-cap packet. |
 | O8 | RVOL (m,4,4) branch | proved | If both caps opposite the surplus cap have exactly 4 points, a removable vertex exists. |
-| O9 | RVOL remaining branch | blocked (O10–O13) | If no (m,4,4) decomposition exists, a removable vertex exists — the case analysis is complete Lean; its leaves are O10–O13. |
-| O10 | Shared-radius pair | open | In the two-large-cap configuration, two distinct points off the surplus cap are co-radial from both opposite Moser apices (V.2). |
-| O11 | LIVE-Q | open | The tail configuration with the f₂ row centred at p and q as the f₂ source point is contradictory, for each label slot of q and each ordering of the remaining labels (V.3). |
+| O9 | RVOL remaining branch | blocked (O17–O20) | If no (m,4,4) decomposition exists, a removable vertex exists. The existing LIVE case tree is complete Lean source inventory, but the preferred closure bypasses it through the parent assembler O20. |
+| O10 | Shared-radius pair | open source compatibility endpoint | The current source asks for an impossible double-apex pair (V.2). It is bypassed once O20 lands and is not an active producer target. |
+| O11 | LIVE-Q | open source inventory; pending parent bypass | The current tail tree contains four Q helpers / 24 holes. They are not independently dispatched while O20 is active. |
 | O12 | LIVE-T1/T3 | blocked (O10) | The tail configuration with t₁ (resp. t₃) as the f₂ source point is contradictory, for each placement of q and the source and each leftover ordering. Both orbit adapters are production-wired; neither family has direct source holes, and both remain open only through O10 (V.3). |
-| O13 | LIVE-C | open | The tail configuration with the f₂ row centred anywhere other than p is contradictory, in all seven centre cases (V.3). |
-| O14 | Card-11 slice | open | O10 holds uniformly from card 11 — or, alternatively, no two-large-cap configuration has exactly 11 points (V.2, cardinality scope). |
+| O13 | LIVE-C | open source inventory; pending parent bypass | The current tail tree contains seven non-p-center helpers / seven holes. They are not independently dispatched while O20 is active. |
+| O14 | Card-11 slice | open scope gate | O20 should be uniform from card 11. Any higher-cardinality theorem must carry the missing lower-cardinality consumer in the same plan. |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
+| O17 | Exact-five two-hit producer | open producer; consumer proved | For the unused cap source in the physical exact-five arm, its actual deletion-critical row contains two distinct physical-class points in the strict opposite-cap interior. Production `commonPhysicalPair_center_mem_secondCapInterior` and `false_of_largeCapUniqueFiveTwoHitCriticalRow` then yield `False` with only the three core axioms. |
+| O18 | Origin-tagged common-deletion progress | open | Retaining the deleted source, companion, blocker rows, cap placement, and failed double deletion yields a second common hit or certified cap/MEC rank/nonreturn progress. Generic unranked successor iteration is excluded by the exact cycle regression. |
+| O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
+| O20 | Parent direct-`False` assembler | blocked (O17–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from O17–O19 under the full parent hypotheses and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
 
-Open rows: O10, O11, O13, O14; O9 and O12 are blocked on them. **Overall:
-`erdos97_rhs` is OPEN**, and its open content is exactly O10 (with its O14
-cardinality scope), O11, and O13.
+The literal source holes are O10, O11, and O13. The active closure work is
+O17–O19, with O14 as its cardinality-scope gate and O20 as routine final
+assembly. **Overall: `erdos97_rhs` is OPEN.**
 
 ---
 
@@ -833,20 +861,20 @@ Unconditionally PROVED (Lean, kernel-checked):
 3. Every minimal counterexample with more than 9 points whose surplus-cap
    decomposition has both opposite caps of size exactly 4 contains a
    removable vertex (core axioms plus the two compiler axioms).
-4. In the remaining case, the configuration is reduced — by complete,
-   kernel-checked case analysis — to the 12 obligations of Part V. The
-   t₂ branch and the twelve LIVE-T3 helpers further reduce to the single
-   shared-radius pair statement (V.2) — the T3 reduction checked but not
-   yet wired — and the twelve LIVE-T1 helpers are already production-wired
-   through that reduction, carrying no source holes of their own.
+4. In the remaining case, the current source is reduced — by complete,
+   kernel-checked case analysis — to the 12 declarations of Part V. The
+   T1/T3 helpers carry no source holes of their own. The preferred closure
+   path keeps the full parent data, proves the exact-five two-hit and
+   origin-tagged common-deletion producers plus the protected unique arms,
+   and assembles a direct parent contradiction before that case split.
 
 Conditionally: if the obligations of Part V are discharged, then
 `erdos97_rhs` — and with it the Problem 96 target — closes with axiom set
 {`propext`, `Classical.choice`, `Quot.sound`, `Lean.ofReduceBool`,
 `Lean.trustCompiler`}.
 
-Nothing stronger is claimed. The shared-radius pair statement (with its
-card-11 scope), LIVE-Q, and LIVE-C are open.
+Nothing stronger is claimed. The 12 current source declarations remain open;
+the adaptive producers and protected unique arms have not yet been proved.
 
 ---
 

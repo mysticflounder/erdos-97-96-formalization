@@ -30,11 +30,30 @@ external actions.
 
 ### Authoritative strategy correction, 2026-07-16
 
-The sole primary target is
-`false_of_twoLargeCaps_commonCriticalMap`, called before the LIVE-Q/C slot
-split.  The old shared-radius existential is not a producer target:
+The parent theorem `false_of_twoLargeCaps_commonCriticalMap`, called before
+the LIVE-Q/C slot split, is the final assembler and wiring boundary.  It is no
+longer the monolithic theorem-discovery target.  Keep the full parent
+hypotheses and construct two adaptive, source-faithful producer packets:
+
+1. the exact-five unused critical row together with two physical-radius
+   strict-cap hits, consumed immediately by the two-center overlap bound; and
+2. an origin-tagged common-deletion packet retaining its selected companion,
+   actual blocker rows, cap placement, and failed double deletion, followed by
+   either a second common hit or a certified progress/nonreturn fact.
+
+Protected original/swapped `FA-UNIQ4/5` remain the third dependency.  Once
+those consumers close, assemble the parent `False` and bypass the legacy
+tree.  The old shared-radius existential is not a producer target:
 `oppCap2_escape_gen` already refutes it, so constructing it is an indirect
 proof of the whole parent contradiction.
+
+The exact-five consumer side is now production-complete:
+`ATail/TwoCenterCapLocalization.lean` contains the general two-center cap
+localization, while `ATail/LargeCapUniqueFiveCrossIncidence.lean` contains
+the choice-invariant two-hit packet and its direct `False` theorem. Both are
+core-axiom clean and imported by the live U1 target. The only remaining
+exact-five theorem is the producer of the two physical-class/strict-cap
+incidences in the unused source's actual critical support.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -59,9 +78,11 @@ coverage only; no branch has been discharged merely by packaging it.
 The exact validation command and no-closure boundary are recorded in
 `scratch/atail-force/r-origin-tagged-coordinator/REPORT.md`.
 
-The next theorem is the branch-complete R contradiction obtained by
-instantiating that coordinator at `Goal := False`.  Reciprocal criticality is
-already routed to the protected packet-polymorphic `FA-UNIQ4` dependency.
+The full origin-tagged coordinator at `Goal := False` is now diagnostic and
+fallback infrastructure, not the primary queue.  The load-bearing common-
+deletion work retains only the provenance needed by the smaller progress or
+second-hit producer.  Reciprocal criticality remains routed to the protected
+packet-polymorphic `FA-UNIQ4` dependency.
 The separately user-owned `FA-UNIQ4`, `FA-UNIQ5`, and `(6,5,4)` unique-row
 lane remains paused.
 
@@ -484,8 +505,9 @@ consumers do not by themselves supply the selection/monotonicity argument for
 cards 13 and above. That uniform lift remains part of ATAIL-FORCE; it is not
 evidence that the threshold must be raised.
 
-At this checkpoint, session `019f5a3d` is durably anchored directly at
-`Problem97.U1LargeCapRouteBTailMetricResidualTarget.DoubleApexOffSurplusSharedRadiusPair`;
+At this checkpoint, session `019f5a3d` is durably anchored with `--no-sink`
+at `Problem97.u1_largeCap_routeB_tail_false`, the parent insertion point for
+the pre-LIVE direct-`False` bypass;
 LIVE-T1 is source-closed and needs no further branch work.  Its public
 declarations inherit `sorryAx` only through K-A-PAIR. Anchor state is maintained with
 `proof-blueprint anchor`, not by editing generated `docs/live-blueprint.md`.
@@ -515,26 +537,18 @@ current closure sequence is:
 4. **DONE-CHECKED-SCRATCH SMALL-CARD BYPASS:** through card thirteen, call
    `smallCarrier_routes_to_protectedFrontier` and dispatch only to the
    protected original/swapped `FA-UNIQ4/5` handlers.
-5. **CURRENT / OPEN-MATHEMATICS FROM CARD FOURTEEN:** supply the
-   `Goal := False` callbacks for the native origin-tagged coordinator only
-   after both non-surplus caps are known to have cardinality at least six.
-   The narrow remaining surfaces are: unaligned common-cap multiplicity; the
-   two-off-live large-cap fully-deletion-robust successor after routing its
-   pair arm to swapped `FA-UNIQ4`; the F1/F3 cap-at-least-six successor after
-   routing the other outcomes to swapped `FA-UNIQ4/5`; the anchored F2
-   live/mixed directed original-`q` generated-row producer; reciprocal/spent
-   F2 source-faithful adapters; and the eight anchored F2 support-heavy
-   callbacks.
-6. **NESTED F2 WORK:** continue the aligned support-heavy branch only from
-   the checked eight-callback surface. The q-critical boundary absorption and
-   both-q-critical metric residual are closed. Repeated common deletion,
-   cross survival, and the two mixed non-equilateral/equilateral routes
-   remain open; no unconditional bank consumer exists. Do not report this
-   leaf as branch-complete R progress.
-6. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
+5. **CURRENT EXACT-FIVE PRODUCER:** use the unused cap point's actual retained
+   critical row. Produce two strict-cap members of the physical exact-five
+   class in that support; the overlap consumer then gives `False`.
+6. **CURRENT COMMON-DELETION PRODUCER:** preserve the construction's deleted
+   source and companion instead of projecting to a generic packet. Produce a
+   second common row point with the required cap placement, or a certified
+   source-faithful rank/nonreturn step. Generic successor iteration is blocked
+   by the exact cycle regression.
+7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
    packet-polymorphic `FA-UNIQ4` proof and combine the eventual R eliminator
    with the paused `FA-UNIQ4`/`FA-UNIQ5` direct-`False` results.
-7. **PENDING PRODUCTION WIRING:** prove
+8. **PENDING PRODUCTION WIRING:** assemble
    `false_of_twoLargeCaps_commonCriticalMap`, call it immediately after
    choosing `Hcritical`, reference-mine and delete or trivialize the obsolete
    K-A/LIVE-Q/C tree, then run the focused build, refreshed blueprint index,
@@ -545,8 +559,9 @@ K-A-PAIR hole plus four LIVE-Q helpers with 24 holes and seven one-hole LIVE-C
 contracts. All LIVE-T1/T3 helpers are source-sorry-free but transitively
 depend on K-A-PAIR. The preferred parent theorem makes the Q/C case tree
 unreachable; after reference mining, delete that tree instead of adjudicating
-its 31 holes individually. Thus closure proceeds by one parent producer and
-dead-code removal; it does not adjudicate the remaining direct liveData
+its 31 holes individually. Thus closure proceeds by two adaptive producers,
+protected unique-arm consumers, parent assembly, and dead-code removal; it
+does not adjudicate the remaining direct liveData
 holes independently.
 
 The Q/C audit also has an exact boundary.  LIVE-Q normalizes all four helpers
@@ -2128,11 +2143,14 @@ proves adaptive alignment without importing the downstream/circular
 adapted shell, identify the arbitrary live selector with the override, or
 consume the double-survival arm; those remain the exact coupling fields.
 
-### Primary theorem boundary
+### Final theorem boundary and active producer interfaces
 
-The preferred production target is no longer the existential shared-radius
-conclusion.  It is a direct parent-level contradiction, provisionally
-named `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs:
+The final production boundary is no longer the existential shared-radius
+conclusion. It is a direct parent-level contradiction, provisionally named
+`false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
+active proof targets beneath it are the exact-five two-hit producer and the
+origin-tagged common-deletion progress/nonreturn producer, not a single broad
+`False` callback.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by
@@ -2149,7 +2167,7 @@ critical map before the LIVE slot split.
   wrapper; and
 - the fixed dangerous row and live selected-source packet.
 
-The theorem must return `False`.  This keeps the load-bearing cap/MEC and
+The assembled theorem must return `False`. This keeps the load-bearing cap/MEC and
 source-indexed data in one contract and allows the final call before the
 LIVE-Q/C slot split.  Proving another wrapper around
 `DoubleApexOffSurplusSharedRadiusPair` is not a milestone.
@@ -2166,7 +2184,9 @@ vertex wrapper chain after the parent call lands.
 
 The exact wiring is now kernel-checked in
 `scratch/atail-force/parent-false-surface/ParentFalseSurface.lean`.
-`CommonCriticalMapClosingProducer` names only the genuine geometric content;
+`CommonCriticalMapClosingProducer` is a valid sufficient adapter for the final
+assembly, but it is no longer the mining interface. It names the aggregate
+geometric content;
 `false_of_twoLargeCaps_commonCriticalMap_of_producer` derives the second large
 cap and a `CriticalPairFrontier` from the retained parent data and calls that
 producer directly at `False`. It does not invoke the old pair, removable-
