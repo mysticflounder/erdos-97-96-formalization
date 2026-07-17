@@ -4151,6 +4151,31 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-98 witness 662f4de3… admitted 2026-07-17: second
+    # consecutive unit-track witness (7,846,922 nodes caps=1):
+    # system_unit_recheck.py 900 s deletion retained 6 rows / 19
+    # equalities (deletion verdicts 6 UNIT / 4 TIMEOUT fail-closed /
+    # 2 NONUNIT), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev) on this literal row set. IMAGE: this core is the
+    # transposition (4,5) relabeling of unit-core-654-42 — THIRD
+    # banked image (after 555u-88 and fp-654-67) and the second
+    # (4,5) image in three iterations; the 654 shadow at this depth
+    # band is now mining (4,5)-relabelings of banked cores. Admitted
+    # as found per the 555-88 precedent, pending Adam's
+    # image-admission policy decision; independently certified;
+    # bank-negative remains literal.
+    {
+        "id": "unit-core-654-44",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            6: frozenset({2, 5, 8, 11}),
+            7: frozenset({1, 3, 4, 8}),
+            8: frozenset({1, 6, 7, 9}),
+            9: frozenset({0, 2, 3, 6}),
+            11: frozenset({1, 2, 5, 9}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
