@@ -101,13 +101,11 @@ full parent hypotheses
      `-- FrontierCommonDeletionParentResidual
            -> full deletion robustness at the first apex
            -> first apex omitted from the blocker-map image
-           -> one nontrivial same-blocker source fiber
-           -> cap-order/three-row support coupling
-              |-- robust-apex row + collision row + ordinary cross row
-              |     + pairwise shared support points in cyclic order
-              |     -> ordinal Kalmanson strict cycle
-              `-- second same-cap center bisecting the extracted outside pair
-                    -> outsidePair_unique_capCenter
+           -> one two-source deletion-critical blocker fiber
+           -> false_of_frontierCommonDeletionCriticalFiber
+              |-- direct contradiction from full cap/MEC/frontier geometry
+              `-- a source-indexed terminal packet which still names both
+                    critical sources and is consumed immediately
   -> assemble false_of_twoLargeCaps_commonCriticalMap
   -> call before LIVE-Q/C construction and remove the dead helper tree
 ```
@@ -116,6 +114,55 @@ This is a proof decomposition, not a weakening of the mathematical parent:
 do not drop `D.Minimal`, MEC/cap order, `hNoM44`, the complete radius filters,
 or the concrete critical map.  A producer counts only when its packet is
 source-realizable and feeds a checked contradiction or progress consumer.
+
+### Load-bearing correction: the collision is provenance, not one row
+
+The 2026-07-17 ablation audits reject the previously advertised anonymous
+three-row and arbitrary outside-pair targets as primary producers.  The
+Kalmanson core is a valid terminal for three selected shells, but its proof
+uses only `C,K` in an `A`-row; it does not use that `C` and `K` are distinct
+sources whose actual critical blocker is `A`, nor that deleting either source
+destroys K4 at `A`.  Likewise, extracting two points outside a cap from the
+`A`-row works for every selected four-shell and loses the collision sources.
+Neither route explains why the robust blocker-map collision adds force.
+
+The active content theorem is therefore the strictly smaller parent arm,
+provisionally
+
+```lean
+false_of_frontierCommonDeletionCriticalFiber
+```
+
+It consumes one concrete `FrontierCommonDeletionParentResidual F`, the same
+`CriticalShellSystem`, and the complete two-source critical-fiber normal form
+derived from that residual.  The old three-row Kalmanson core and
+`outsidePair_unique_capCenter` remain checked conditional consumers, not the
+mining interface.  A row subproducer is admissible only if it preserves the
+identities `centerAt C = centerAt K = A`, both `no_qfree` facts, and the exact
+common shell through the call to its immediate consumer.  For the Kalmanson
+alternative it must additionally retain a critical source `J`, put
+`X = centerAt J`, and prove the cross-incidence in that actual exact shell.
+For the same-cap alternative the repeated pair must be the collision source
+pair itself, not arbitrary complement points of the `A`-row.
+
+Production `ATail/FirstApexCriticalFiber.lean` now makes this interface
+literal. `nonempty_frontierCommonDeletionCriticalFiber` returns two distinct
+carrier sources, their equal blocker vertices, equal exact supports and
+radii, mutual membership in the common four-shell, and both source-indexed
+deletion-critical facts, all indexed by the original parent residual.  The
+next theorem therefore cannot accidentally discharge its input with an
+anonymous selected row.
+
+The source-faithful O-row audit gives the exact first split.  Either both
+critical-fiber sources lie off the retained first-apex radius class, or an
+actual first-apex selected row contains one of them and another carrier
+point.  A checked finite regression realizes the both-off arm while retaining
+the fixed-point-free total critical map, exact support locking, first-apex
+robustness, and row-closure minimality.  Even the row-hit arm does not supply
+the required cross row or boundary order.  Therefore the next mathematical
+step is a full Euclidean/cap/MEC localization or direct contradiction for the
+both-off critical-fiber arm.  Do not launch a raw `O/A/X` incidence scan: it
+has the right terminal but the wrong source object.
 
 Production checkpoint, 2026-07-17: the source-independent localization
 `commonPhysicalPair_center_mem_secondCapInterior` now lives in
@@ -3853,50 +3900,38 @@ of either source critical at that blocker. This is the new global normal form,
 not yet a contradiction: its sources have no forced cap/boundary/frontier-
 radius placement.
 
-The completed consumer audits now fix the smallest honest continuation.
-Every cap containing the common blocker leaves two distinct points of its
-exact four-shell outside the cap. A second distinct center in that cap
-equidistant from this outside pair is immediately contradictory by
-`outsidePair_unique_capCenter`. It cannot be obtained as a different selected
-shell at the same blocker, because equal-center rigidity locks every selected
-four-class there to the same support. Moreover, a kernel-checked `Fin 12`
-regression retains the robust center, total blocker map, collision, exact-row
-locking, and full selected-row minimality closure while having no second
-represented center through the collision pair. This rules out deriving that
-producer from the current finite fields alone.
+The completed ablation audits correct the earlier continuation target.  The
+generic three-row Kalmanson terminal and the same-cap outside-pair terminal
+are both valid, but neither is collision-driven as previously stated.  The
+three-row proof uses only three selected-shell equalities; it never uses that
+`C,K` are distinct critical sources mapping to `A` or that deletion of each
+is blocked at `A`.  The arbitrary outside-pair extraction likewise works for
+every four-shell.  These theorems remain terminal adapters, but they are not
+the primary producer or mining object.
 
-The corrected pinned survivor supplies a more promising ordered target. One
-collision row plus the robust-apex row has no ordinal contradiction, but full
-ordinal Kalmanson closure kills the survivor; an inclusion-minimal core uses
-the robust-apex row, the collision row, and one ordinary cross row and produces
-a strict two-cycle. The cross-row center happens to be another collision center
-in the pinned shadow, but its blocker-fiber multiplicity is unused.
-The generic Lean consumer fixes its exact antecedent: cyclic order
-`O < A < X < J < C < K` and row equalities `OJ = OC`, `AC = AK`, and
-`XJ = XK`, yielding `AJ < AC < AJ`. The producer must establish the two
-cross-row shared points that give `OJ = OC` and `XJ = XK` (up to cyclic
-relabeling); it does not need a second collision fiber. Therefore the primary
-open theorem is a cap-order/three-row-support coupling from the full parent
-geometry: map the robust-apex row, the one forced collision row, and one
-ordinary selected row to that checked ordinal consumer. The
-same-cap second-center bisection is the alternate immediate consumer. Both are
-weaker and more source-faithful than the old LIVE row families. Another
-one-fiber classifier, arbitrary row producer, blocker-map iteration, or generic
-common-deletion recursion is not closure progress.
+The source-faithful row audit proves the exact collision-specific boundary:
+either both critical-fiber sources are off the retained first-apex radius
+class, or an actual first-apex row contains one source and another point.  A
+checked `Fin 12` regression realizes the both-off arm with the total
+fixed-point-free critical map, exact row locking, first-apex robustness, and
+row-closure minimality.  The row-hit arm still lacks the cross incidence and
+boundary order needed by Kalmanson.  Similarly, actual-blocker analysis of
+the outside complement leaves only common-blocker, outside-cap cross-bisector,
+and mutual-omission residuals; it does not manufacture a collision-specific
+second center.
 
-The source audit closes the remaining combinatorial ambiguity without closing
-the geometry. If the displayed `A` collision is the unique exact double fiber,
-the blocker map is surjective onto every carrier point except `O`. Hence one
-can build a faithful selected-row pattern whose rows off `O` are actual rows
-of `H`; minimality makes it strongly connected. A checked finite regression
-retains this almost-critical strong connectivity and even grants the prefix
-`C,J ∈ O-row`, but no ordinary row contains both `J,K`. The six named LIVE
-rows and `f2` do not improve this: after choosing a critical source `J`, they
-give `X := H.centerAt J` and `J ∈ X-row`, but not `K ∈ X-row`.
-Therefore the exact geometric producer is `C,J ∈ O-row`, `J,K ∈ X-row`,
-and the cyclic placement `O,A,X,J,C,K`. A paired-path/order theorem reaching
-the generic ordinal-cycle consumer is an acceptable alternative; plain
-selected-row reachability is regression-gated.
+Therefore the primary open theorem is now the arm-level direct contradiction
+`false_of_frontierCommonDeletionCriticalFiber`.  It retains the complete
+`FrontierCommonDeletionParentResidual F`, both collision-source identities,
+their common actual blocker and exact shell, and both `no_qfree` facts.  It may
+close directly from full cap/MEC/frontier geometry or construct a terminal
+packet, but any packet must visibly preserve that provenance.  A Kalmanson
+packet must additionally name a critical source `J`, set `X = centerAt J`,
+and use the actual `J`-critical shell for the cross incidence.  A same-cap
+packet must use the collision source pair itself.  Raw `O/A/X` incidence
+mining, arbitrary outside-point bisection, blocker-map iteration, generic
+common-deletion recursion, and plain selected-row connectivity are rejected
+as primary work.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3930,7 +3965,7 @@ Work is decomposed as follows:
    The legacy second-apex split is retained only for compatibility and is
    always in its survival arm.  The defining module builds and both extractors
    close with core axioms only.
-2. **DIRECT FRONTIER GLOBAL COLLISION, PRIMARY OPEN CONSUMER:** production
+2. **DIRECT FRONTIER CRITICAL-FIBER ARM, PRIMARY OPEN CONSUMER:** production
    `CriticalPairFrontier.originalUnique_or_commonDeletionParent` sends the unique
    first-apex split to protected `FA-UNIQ4/5`; otherwise it combines the two
    stored double-deletion facts into `FrontierCommonDeletionParentResidual F` at the
@@ -3946,19 +3981,18 @@ Work is decomposed as follows:
    split (cross membership with an outside-surplus blocker, or companion
    common deletion at the first apex and `q`'s blocker). The exact arm audit
    above proves that these rows alone are nonterminal. Use the resulting
-   first-apex full deletion robustness and same-blocker source collision as the
-   primary input. Prove either (a) the two shared-support incidences and cyclic
-   order mapping the robust-apex row, collision row, and one ordinary cross row
-   to the checked six-point `O,A,X,J,C,K` ordinal Kalmanson cycle, or (b) a distinct same-cap center bisecting the two
-   outside points extracted from one collision shell. Same-center shell
-   production is support-locked and a finite regression refutes deriving a
-   second center from the current row/minimality fields. On the ordinal route,
-   the collision supplies `C,K ∈ A-row`; prove `C,J ∈ O-row`, choose a
-   critical source `J` and prove `K ∈ H.selectedAt J` (its own membership
-   already supplies `J`), then establish the six-role cyclic order. Strong
-   connectivity of the almost-surjective critical-row pattern supplies only
-   single-membership paths and is not a substitute. Do not reopen anonymous
-   row mining or recurse on a generic common-deletion packet.
+   first-apex full deletion robustness and two-source deletion-critical fiber
+   as the primary input. Prove
+   `false_of_frontierCommonDeletionCriticalFiber` without weakening that
+   fiber to one anonymous selected row. The first geometric subproblem is the
+   both-off critical-source arm exposed by
+   `nonempty_criticalFiberFirstApexRowOutcome`; eliminate it using full
+   cap/MEC/frontier geometry or derive a direct terminal. If the row-hit arm is
+   used, any later Kalmanson packet must still identify both critical sources,
+   the actual `J`-critical row, and the cyclic placement. If the same-cap sink
+   is used, its repeated pair must be the critical source pair itself. Do not
+   encode the raw six-role equality core, reopen anonymous row mining, or
+   recurse on a generic common-deletion packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.

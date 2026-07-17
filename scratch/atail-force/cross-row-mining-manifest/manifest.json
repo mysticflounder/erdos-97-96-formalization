@@ -1,0 +1,58 @@
+{
+  "schema": "p97-atail-source-indexed-cross-row-manifest-v1",
+  "date": "2026-07-17",
+  "status": "DESIGN_ONLY_RAW_THREE_ROW_TARGET_REJECTED",
+  "live_parent": "Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual",
+  "robustness": "Problem97.ATailOrientedPhysicalApexIngress.FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust",
+  "critical_map": "Problem97.CriticalShellSystem",
+  "accepted_terminals": [
+    {
+      "kind": "source_indexed_cross_row_kalmanson",
+      "roles": ["O", "A", "X", "J", "C", "K"],
+      "order": ["O", "A", "X", "J", "C", "K"],
+      "required_provenance": [
+        "C_ne_K",
+        "centerAt_C_eq_A",
+        "centerAt_K_eq_A",
+        "no_qfree_C_at_A",
+        "no_qfree_K_at_A",
+        "C_J_same_positive_O_radius",
+        "centerAt_J_eq_X",
+        "no_qfree_J_at_X",
+        "K_mem_J_exact_shell"
+      ],
+      "consumer": "scratch/atail-force/robust-two-fiber-kalmanson-consumer/RobustTwoFiberKalmansonConsumer.lean:false_of_ordered_robust_twoFiberKalmansonCore"
+    },
+    {
+      "kind": "source_indexed_same_cap_collision_pair",
+      "outside_pair": ["C", "K"],
+      "first_center": "A=centerAt(C)=centerAt(K)",
+      "second_center": "O_on_retained_radius_or_centerAt(J)",
+      "consumer": "Problem97.CapSelectedRowCounting.outsidePair_unique_capCenter"
+    }
+  ],
+  "rejected_targets": [
+    "anonymous_O_A_X_three_row_packet",
+    "arbitrary_A_row_outside_pair_projection",
+    "fixed_14_role_profile_as_live_coverage",
+    "literal_MUS_bank_without_coverage_theorem"
+  ],
+  "pinned_artifacts": {
+    "scratch/atail-force/robust-all-center-marco/bank_cegar_checkpoint.json": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+    "scratch/atail-force/kalmanson-bank-cegar/direct_schema_coverage_checkpoint.json": "f3d36762c63be39b77aaaae2d2de34199eeffca4cbc5cdad8e919e8f444d182a",
+    "scratch/atail-force/global-minimality-connectivity-audit/kalmanson-consumer/continuation_checkpoint.json": "fedd033e8eabea54e0134a0ac73eaf75855e83f3d071d4e4179ab4961b8362de"
+  },
+  "pinned_replay": {
+    "stored_witnesses": 101,
+    "literal_cross_row_witnesses": 28,
+    "any_source_indexed_cross_row_witnesses": 75,
+    "source_faithful_same_cap_witnesses": 0,
+    "neither_terminal_witnesses": 26,
+    "direct_schema_avoider_has_cross_row": true,
+    "fixed_continuation_status": "UNSAT_EXHAUSTIVE_FINITE_DFS",
+    "fixed_continuation_nodes": 0,
+    "fixed_continuation_zero_domains": ["F", "I", "X"]
+  },
+  "final_endpoint": "uniform_Lean_coverage_theorem_then_immediate_consumer",
+  "broad_compute_authorized_by_manifest": false
+}

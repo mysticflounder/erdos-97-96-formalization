@@ -24,6 +24,7 @@ import Erdos9796Proof.P97.ATail.RobustLargeRadius
 import Erdos9796Proof.P97.ATail.RobustLargeRadiusReduction
 import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
 import Erdos9796Proof.P97.ATail.FrontierCommonDeletionSurplusEscape
+import Erdos9796Proof.P97.ATail.FirstApexCriticalFiber
 
 /-!
 # U1 large-cap Route-B tail
