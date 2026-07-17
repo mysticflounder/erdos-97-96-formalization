@@ -3756,16 +3756,15 @@ The reasons are checked and separate:
 The final content theorem remains
 `false_of_twoLargeCaps_commonCriticalMap`, consuming the actual MEC-derived
 cap packet, `hNoM44`, full exact filters, and concrete critical map before the
-LIVE-Q/C slot split. The exact-five branch now reaches a canonical renewable
+LIVE-Q/C slot split. As fallback infrastructure, the exact-five branch reaches a canonical renewable
 common-deletion surface, a per-source actual-critical omission successor, and
 a canonical source-exact omission cycle of period two through five in
 production. The cycle retains every physical source, its actual critical row
 and blocker, same-radius strict-cap placement, edge omission, and the
-corresponding deletion-survival fact. The remaining theorem-discovery target
-beneath the parent is only a named-incidence or joint
-convex/MEC/critical-map consumer of that production cycle, together with the
-protected unique-arm dependencies. Fixed LIVE row slots are compatibility
-data, not the construction surface.
+corresponding deletion-survival fact. This is no longer the primary
+theorem-discovery surface: the direct frontier split below reduces the parent
+to the protected unique arm or `FrontierCommonDeletionParentResidual F`.
+Fixed LIVE row slots remain compatibility data, not the construction surface.
 
 The cumulative-deletion/minimality continuation is now closed as a negative
 audit. Deleting the whole cycle source set blocks K4 at each retained actual
@@ -3777,30 +3776,62 @@ blocker map `q ↦ H.centerAt q`, whereas this cycle iterates an omitted physica
 source. These objects must not be conflated. Do not schedule another
 minimality/descent lemma or blocker-cycle adapter for this branch.
 
-The exact next content theorem is
-`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Production
-`ATail/PhysicalOmissionCycleParentResidual.lean` constructs its residual from
-the exact-five constructor while retaining the full parent surface and the
-same concrete `H`. Internally, use the checked exhaustive split
-`nonempty_mutualOmissionEdge_or_all_reverseMembership`: either one edge is
-omitted in both actual rows, or every successor row contains the preceding
-source. The mutual arm is reduced to two crossed common-deletion packets and
-an at-most-two-source off-cap exceptional blocker fiber; eliminate that
-one-exception residual using ordered-cap/MEC coupling. The reverse arm has
-period three through five and exactly two outside-cap support points per edge;
-force two distinct rows to repeat that outside pair, or supply the equivalent
-bank-consumed U5 alignment. Both producers must use the retained global
-parent/frontier fields. Neither arm licenses another anonymous row miner.
+The primary route is now smaller than the exact-five cycle route. Production
+`ATail/OrientedPhysicalApexIngress.lean` proves
+`CriticalPairFrontier.originalUnique_or_commonDeletion`. For every concrete
+first-apex frontier, its existing `firstApexSplit` is either the protected
+original unique-radius card-four/card-five arm, or double-deletion survival at
+the first apex. In the second case, the frontier's unconditional
+`secondApexDouble` gives the same double-deletion survival at the other apex.
+Monotonicity from double deletion to deletion of `F.pair.q` constructs a
+source-faithful `FrontierCommonDeletionParentResidual F`: the deleted point is the
+actual frontier source and the two centers are exactly the two opposite Moser
+apices. This uses the same `H` and loses no frontier radius, pair, cap, or MEC
+provenance.
 
-The scratch U1 adapter also fixes the ingress scope. This reduction applies to the
-oriented large-physical-radius subarm with
-`6 ≤ S.oppCap2.card` and a positive `S.oppApex2` radius class of cardinality at
-least five. The current two-large-cap leaf does not derive those fields merely
-from `j ≠ i`, `5 ≤ (CP.capAt j).card`, and global K4. The parent assembler must
-therefore produce this ingress or route the oriented-five / radius-card-four
-complement to the protected small-card or unique-arm consumers. Do not present
-the cycle reduction as exhaustive for every two-large-cap leaf until that
-split is checked.
+Therefore the exact next content theorem is a direct contradiction for this
+full frontier common-deletion residual under the retained parent hypotheses,
+together with the protected original `FA-UNIQ4/5` consumer. Do not project it
+to a generic `CommonDeletionTwoCenterPacket`: the generic-packet audit proves
+that such a projection adds no force beyond already-known deletion robustness
+and discards precisely the source/radius/cap/frontier incidences needed by the
+existing banks.
+
+The first source-faithful consumer audit sharpens that target. Production now
+retains the originating first-apex double-deletion witness and the carrier
+lower bound in the right-hand residual. For its stored second-apex row `B₂`,
+checked Lean proves at most one hit in the off-surplus first-apex marginal and
+at most two hits in `q`'s actual critical support. Since `B₂` has four points,
+it contains a point `z` outside both. Deleting `z` preserves K4 at `q`'s
+actual blocker, and `z` is either in the surplus cap or off the frontier's
+first-apex radius. Thus neither “produce two marginal hits” nor one-row
+confinement is a valid intermediate target. The live consumer must eliminate
+these two source-exact geometric location arms, or consume the existing global
+minimal-deletion collision/core split while retaining the same frontier and
+parent data.
+
+The exact-five physical omission cycle and its reverse/mutual reductions remain
+kernel-checked fallback infrastructure, not the primary parent dependency.
+Their latest boundaries are still useful if the direct frontier packet must be
+refined: reverse rows have injective blockers and outside pairs plus a strict
+cap-straddling bridge; the mutual arm reaches a same-cap common-deletion packet
+or equal-blocker exact shell. Neither marginal is independently false.
+
+The shell-curvature continuation is not currently a valid consumer for that
+reverse bridge.  The source-faithful cyclic-role adapter kernel-checks, but its
+audit also proves that the current `CounterclockwiseAngleChart` interface is
+inconsistent: the unrestricted orientation-sign field conflicts with the
+periodic endpoint equality required by the Lemma 30/37 wrappers.  Any use of
+that lane is blocked until the chart restricts the sign law to non-wrapping
+open-window triples (or adds the necessary endpoint-distinct premise) and the
+repaired interface is revalidated.  Do not use the existing vacuous chart
+wrapper as evidence for the parent contradiction.
+
+The oriented physical-apex ingress classifier is also production-checked but
+is no longer load-bearing for the direct parent bypass. Its two-exact-four
+complement is independently reduced in checked scratch to the same protected
+original unique arm or a common-deletion output. No new two-radius mining lane
+is authorized.
 
 Work is decomposed as follows:
 
@@ -3811,7 +3842,17 @@ Work is decomposed as follows:
    The legacy second-apex split is retained only for compatibility and is
    always in its survival arm.  The defining module builds and both extractors
    close with core axioms only.
-2. **ROBUST-COUPLING, primary open theorem:** cumulative-erasure recurrence is
+2. **DIRECT FRONTIER COMMON-DELETION, PRIMARY OPEN CONSUMER:** production
+   `CriticalPairFrontier.originalUnique_or_commonDeletion` sends the unique
+   first-apex split to protected `FA-UNIQ4/5`; otherwise it combines the two
+   stored double-deletion facts into `FrontierCommonDeletionParentResidual F` at the
+   two prescribed opposite apices. Prove this full source-faithful residual
+   false without projecting away `F.pair.q/w`, the first-apex radius/marginal,
+   the concrete `H`, or the parent cap/MEC/minimal/no-`IsM44` context.
+   Its first checked reduction is the second-row off-confinement escape just
+   described; continue from its surplus-cap/off-radius location split rather
+   than trying to force marginal two-hit or confinement.
+**Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.
    Production Lean proves that, under first-apex deletion survival (or a

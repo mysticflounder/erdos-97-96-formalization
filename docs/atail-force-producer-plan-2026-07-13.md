@@ -41,15 +41,23 @@ rows are forced to be canonical, and the two physical rows share exactly
 three points; one shared point outside the common actual row supplies a third
 common deletion at the same centers.
 
-The remaining adaptive target is one frontier-coupled theorem with two exact
-subarm consumers: a repeated outside-cap pair or equivalent U5 alignment in
-the reverse period-three-through-five arm, and an ordered-cap/MEC elimination
-of the one-exception blocker residual in the mutual arm. The explicit
-non-cycle common-deletion entries retain their own provenance-aware consumer.
-Protected original/swapped `FA-UNIQ4/5` remain the other dependency. Once
-those consumers close, assemble the parent
-`False` and bypass the legacy
-tree.  The old shared-radius existential is not a producer target:
+The current primary target is smaller. Production
+`CriticalPairFrontier.originalUnique_or_commonDeletion` splits every concrete
+first-apex frontier directly into the protected original unique-radius
+card-four/card-five arm or a `FrontierCommonDeletionParentResidual`. In the latter,
+the deleted point is exactly `F.pair.q`, the centers are exactly
+`S.oppApex1/S.oppApex2`, double-deletion survival is supplied by the two
+frontier fields, and the radius/pair/cap/MEC/common-`H` provenance remains in
+scope. Thus the only new mathematical consumer on the primary route is direct
+`False` from this full frontier common-deletion surface; the separately owned
+protected unique consumer is the other branch. Once those close, assemble the
+parent `False` and bypass the legacy tree.
+
+Do not weaken this residual to a generic `CommonDeletionTwoCenterPacket`. The
+generic-packet audit proves that it adds no force beyond deletion robustness
+already implied by the robust parent and discards the origin/radius/frontier
+relations required by the banked consumers. The old shared-radius existential
+is also not a producer target:
 `oppCap2_escape_gen` already refutes it, so constructing it is an indirect
 proof of the whole parent contradiction.
 
@@ -97,8 +105,9 @@ layers on the production source-exact cycle. Do not project the packet to bare
 robustness, restart minimality/descent, or claim an anonymous local rank: each
 erases or contradicts the load-bearing coupling.
 
-The exact next theorem is the frontier-coupled consumer
-`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Production
+The frontier-coupled consumer
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual` is now a
+fallback refinement, not the primary parent dependency. Production
 `ATail/PhysicalOmissionCycleParentResidual.lean` retains the same
 concrete `H`, the full first-apex frontier, the origin-tagged two-source
 continuation, `minimal`, `noM44`, the six-point physical cap, the parent radius
@@ -111,26 +120,38 @@ cycle constructor is now source-anchored, and the residual starts its transition
 orbit at the continuation's first origin-tagged deletion source.
 
 The two arms are no longer undifferentiated research surfaces. In the mutual
-arm, checked scratch constructs the two crossed common-deletion packets and
-proves that all actual blockers preserve at least one deletion except possibly
-one double-blocking center; that exceptional center has only off-cap sources
-and source-fiber cardinality at most two. The missing consumer is an
-ordered-cap/MEC coupling from the remaining many cross-surviving centers to a
-shared pair or named row incidence. In the reverse arm, period two is excluded,
-so the period is three through five. Every edge row contains its adjacent
-physical pair and exactly two outside-cap points, and the existing cap-order
-terminal closes if two distinct rows repeat that outside pair. The missing
-producer is exactly that outside-pair collision, or a source-faithful U5
-dangerous-row alignment yielding an existing sink. The pinned finite and exact
-Euclidean regressions show that neither arm's local normal form alone is
+arm, checked scratch removes the at-most-two-source exceptional fiber and
+uses the remaining sources to produce two same-cap blockers of one deletion
+color. Distinct blockers yield `CommonDeletionTwoCenterPacket`; equal blockers
+yield an exact shell containing the two sources and omitting the deletion.
+The missing input is positive shared outside-cap support or equivalent
+interlacing. In the reverse arm, period two is excluded, actual blockers and
+outside pairs are injective, and the capacity bound is too weak to force a
+collision. The new checked cap-order bridge instead puts the two physical
+targets on opposite sides of the actual blocker. A source-faithful cyclic-role
+lift is checked, but the current `CounterclockwiseAngleChart` interface is
+inconsistent with the required periodic endpoint equality. Curvature is
+therefore blocked pending an open-window/distinct-endpoint repair and is not a
+live consumer. The pinned finite and exact Euclidean
+regressions show that neither arm's marginal normal form alone is
 contradictory; both consumers must use global parent/frontier data.
 
-This reduction covers only the oriented subarm with
-`6 ≤ S.oppCap2.card` and a positive physical-apex radius class of cardinality
-at least five. The current U1 leaf does not yet derive that ingress from the
-unoriented second-large-cap hypothesis. The parent must either construct it or
-route the oriented-five / radius-card-four complement to the checked
-small-card/protected unique consumers.
+The oriented ingress is exhaustively classified in production by
+`ATailOrientedPhysicalApexIngress.classify_largeRadiusParent`. Small original
+or physical caps and a prescribed physical-apex critical deletion route to
+the checked protected original/swapped `FA-UNIQ4/5` interfaces. The positive
+branch constructs `RobustLargeRadiusParentSurface`. The only complement has
+both opposite caps of cardinality at least six, carrier cardinality at least
+fourteen, full deletion robustness at the physical second apex, and two
+distinct support-disjoint exact-four physical-apex radius classes, while
+retaining `D.Minimal`, no-`IsM44`, the same `H`, and a first-apex frontier.
+Its full type is
+`FrontierCoupledPhysicalSecondApexExactTwoFourRadiusResidual`; a theorem on
+the bare two rows is explicitly rejected as overstrong. Checked scratch now
+reduces that full complement to the canonical protected original unique arm
+or a production common-deletion packet, so it creates no independent producer
+frontier. The direct frontier split above makes the whole oriented-ingress
+classifier non-load-bearing for the preferred parent bypass.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -566,15 +587,14 @@ Current status:
   automorphism representatives across `(4,5,6)` and `(5,5,5)`. No row-system,
   metric, target-faithfulness, or producer claim is made. This scale rejects a
   naive per-representative CAS sweep as the closure plan.
-- `ATAIL-FORCE`: OPEN-RESEARCH and load-bearing for `K-A-PAIR`.
+- `ATAIL-FORCE`: OPEN-CONSUMER; the direct frontier split is production and
+  the load-bearing target is its source-faithful common-deletion consumer.
 
-Threshold decision: keep the genuine ATAIL target at `CARD-GE-12`. No current
-result proves that a larger threshold is necessary. The `CARD-EQ-12` external
-`(4,5,6)` certificate falsifies only a relaxed, non-target-faithful row
-abstraction and identifies live MEC/global-K4 fields which reject it. Moving
-the threshold above `CARD-GE-12` would create an AHEAD obligation for the
-`CARD-EQ-{12,13,14}` head and would not discharge the independently open
-card-11 slice.
+Threshold decision: the preferred direct-frontier theorem is uniform on the
+current leaf and introduces no `CARD-GE-12` threshold. `CARD-GE-12` remains
+historical nomenclature for the older ATAIL/AHEAD split, not a dependency of
+`CriticalPairFrontier.originalUnique_or_commonDeletion`. The card-exact
+placement/certificate artifacts remain non-target-faithful fallback evidence.
 
 `CARD-GE-12` means a tail theorem assuming `12 ≤ D.A.card`, not a theorem
 only for the exact value `D.A.card = 12`. The two `CARD-EQ-12` profile
@@ -599,46 +619,38 @@ new direct `sorry`.
 This lane is not waiting for a predetermined number of census rounds. Its
 current closure sequence is:
 
-1. **DONE-PRODUCTION:** retain the full `CriticalPairFrontier`, including
-   `secondApexDouble`, and use the parent-level direct-`False` adapter rather
-   than the impossible shared-radius existential.
-2. **DONE-CHECKED-SCRATCH:** retain the common critical map through
-   `LiveDangerousRetainingSystem` and construct
-   `OriginTaggedCurrentFirstApexFixedRadiusNormalForm` before the lossy
-   `Resolved...` projection. The source-current parent adapter and all
-   eliminator endpoints are core-axiom-clean.
-3. **DONE-CHECKED-SCRATCH BRANCH SHAPES:** consume the source-faithful
-   unaligned, two-off-live, common F1/F3, and native anchored F2
-   support-heavy interfaces. They replace lossy generic packets and expose
-   the exact producer fields still needed.
-4. **DONE-CHECKED-SCRATCH SMALL-CARD BYPASS:** through card thirteen, call
-   `smallCarrier_routes_to_protectedFrontier` and dispatch only to the
-   protected original/swapped `FA-UNIQ4/5` handlers.
-5. **DONE-PRODUCTION EXACT-FIVE LOW-HIT INGRESS:** the unused cap point's
-   actual retained row has at most one physical strict-cap hit. Two distinct
-   omitted physical points therefore yield two origin-tagged common deletions
-   at the same blocker/physical-apex center pair. Their canonical physical
-   rows share exactly three points, one of which yields a third common
-   deletion at the same centers.
-6. **DONE-PRODUCTION SOURCE-EXACT CYCLE; CURRENT FRONTIER-COUPLED GEOMETRIC CONSUMER:** preserve both deleted sources, the
-   physical radius, unused/companion source, actual blocker row, and cap
-   placement instead of projecting to a generic packet. Production now gives
-   the fixed-point-free actual-critical omission successor and its canonical
-   period-two-through-five source-exact cycle and its mutual-omission versus
-   all-reverse-positive split. Prove
-   `false_of_frontierCoupledExactFivePhysicalCycleParentResidual`, using the
-   retained parent/frontier data. In the reverse period-three-through-five arm,
-   force a repeated outside-cap pair (or equivalent U5 alignment). In the
-   mutual arm, eliminate the at-most-two-source off-cap exceptional blocker
-   fiber left after the crossed common-deletion/global-survival classifier.
-   Feed the resulting named incidence to an existing sink or prove the direct
-   joint convex/MEC/critical-map contradiction. Generic successor iteration, cumulative minimality,
-   actual-blocker-cycle reuse, and local rank/nonreturn are blocked by the
-   checked audits and regressions. Keep the common-deletion sibling explicit.
-7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
-   packet-polymorphic `FA-UNIQ4` proof and combine the eventual R eliminator
-   with the paused `FA-UNIQ4`/`FA-UNIQ5` direct-`False` results.
-8. **PENDING PRODUCTION WIRING:** assemble
+1. **DONE-PRODUCTION FRONTIER EXTRACTION:** retain one concrete
+   `CriticalPairFrontier` with the same `Hcritical`, actual source pair,
+   first-apex radius, and unconditional second-apex double-deletion survival.
+2. **DONE-PRODUCTION DIRECT SPLIT:** call
+   `CriticalPairFrontier.originalUnique_or_commonDeletion`. The unique branch
+   is the canonical protected original `FA-UNIQ4/5` arm. The other branch is
+   `FrontierCommonDeletionParentResidual F`, with deletion `F.pair.q` and centers
+   exactly `S.oppApex1/S.oppApex2`.
+3. **CURRENT MATHEMATICAL CONSUMER:** prove direct `False` from that full
+   frontier common-deletion packet under the retained parent
+   minimal/no-`IsM44`/convex-MEC surface. Do not project it to the known-weak
+   generic common-deletion packet. The checked first reduction produces a
+   point in the stored second-apex row outside both the off-surplus first-apex
+   marginal and `q`'s actual critical support. Its deletion survives at `q`'s
+   actual blocker, and it lies either in the surplus cap or off the frontier
+   radius. Consume that source-exact two-arm escape, or the retained global
+   minimal-deletion collision/core split. Do not target two marginal hits or
+   one-row confinement: checked cardinality bounds force the opposite.
+4. **SEPARATE OWNER DEPENDENCY:** close the protected original unique-radius
+   arm. Swapped unique interfaces, oriented ingress, and exact-two-four routing
+   remain available but are not dependencies of the direct split.
+5. **FALLBACK ONLY:** if step 3 needs stronger origin data, use the production
+   exact-five three-source renewal and source-anchored omission cycle. Its
+   reverse branch has injective blockers/outside pairs and strict cap
+   straddling; its mutual branch reaches a same-cap common-deletion packet or
+   equal-blocker shell. The shell-curvature adapter is not an available
+   consumer yet: the current `CounterclockwiseAngleChart` sign axiom is
+   inconsistent with its periodic endpoint equality. Repair it to cover only
+   non-wrapping open-window triples (or require distinct endpoints), then
+   revalidate before using curvature. Do not resume anonymous cycle or
+   outside-pair mining.
+6. **PENDING PRODUCTION WIRING:** assemble
    `false_of_twoLargeCaps_commonCriticalMap`, call it immediately after
    choosing `Hcritical`, reference-mine and delete or trivialize the obsolete
    K-A/LIVE-Q/C tree, then run the focused build, refreshed blueprint index,
@@ -1666,27 +1678,16 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python -m unittest \
   scratch/atail-force/test_common_system_metric_probe.py
 ```
 
-ATAIL-FORCE is the primary proof lane. The preferred theorem is uniform from
-card 11 and uses full exact-radius filters together with convexity, global
-order, no-M44, the actual five-row pair interface, or the stronger six-row live
-interface. Every proposed relaxed intermediate must be checked against the
-W16/W20 bank and the new blocker-graph witnesses; it must name the live
-convex/cap/full-filter hypothesis that excludes them. A statement in the same
-equality/pattern vocabulary cannot be promoted merely because a bounded sample
-dies. The concrete next theorem is now one of three primary incidence
-alternatives: the sixteen-support pattern consumed by
-`false_of_five_selectedFourClasses`; the reused cyclic-order family, including
-the validated wrap, split-bridge, arc-overtake, and five-row-intersection
-variants and the current round-21 successor; or
-the four global-row memberships
-packaged by `HasGlobalNestedPairProducer`. `URowCapMultiplicityFields` remains
-a conditional fallback only after its lost common-system provenance is
-restored and a new MEC/all-center coupling is identified. Any alternative must
-be derived from the live
-MEC/cap/full-filter/no-M44 hypotheses and consumed immediately. It must also
-exclude the saved exact strict-convex `(4,5,6)` relaxed witness by using its
-concrete missing MEC or global-K4 field (or stronger live data). The metric and
-convex consumers themselves are no longer missing.
+ATAIL-FORCE is the primary proof lane, but the current theorem surface is no
+longer a five-row or six-row census. It is the uniform direct frontier split
+and the full `FrontierCommonDeletionParentResidual F`. Any proposed intermediate
+must preserve the actual deleted source `F.pair.q`, companion `F.pair.w`, the
+first-apex radius/off-surplus marginal, the two prescribed apex centers, and
+the same `H`; otherwise it falls back to the generic common-deletion regression
+and is rejected. Search the existing banks for an immediate consumer of one
+named cross-row/cap incidence on that surface. Older sixteen-support,
+cyclic-order, global-nested-pair, and U-row multiplicity candidates are
+historical fallbacks, not coequal primary alternatives.
 
 AHEAD CEGAR remains a bounded cards-12--14 fallback. Census554 no longer holds
 the compute pool, but the permanent runner is still software-gated: safe
@@ -2239,13 +2240,12 @@ consume the double-survival arm; those remain the exact coupling fields.
 The final production boundary is no longer the existential shared-radius
 conclusion. It is a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof target beneath it is the frontier-coupled exact-five physical
-cycle residual: a named cross-incidence or joint convex/MEC/critical-map
-contradiction using the retained parent/frontier fields, together with the
-protected unique-arm dependencies, not a bare cycle-only `False` callback. The
-exact-five branch is a proved production ingress once the oriented six-point
-cap / five-point physical-radius-class gate is available; the current U1 leaf
-still needs an exhaustive producer-or-complement split for that gate.
+active proof target beneath it is the source-faithful
+`FrontierCommonDeletionParentResidual F`, together with the protected original
+unique-radius consumer. The production frontier split reaches those two
+outputs directly, without an oriented cap, cardinality threshold, or physical
+radius-class ingress. The exact-five physical cycle is a fallback refinement,
+not the final theorem boundary.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by
@@ -2260,7 +2260,8 @@ critical map before the LIVE slot split.
 - `hNoM44`, the two-large-cap facts, and the exact full-radius filters;
 - the concrete `Hcritical : CriticalShellSystem D.A` chosen in the outer
   wrapper; and
-- the fixed dangerous row and live selected-source packet.
+- the concrete `CriticalPairFrontier`, including its actual source/companion,
+  first-apex radius and marginal placement, and both double-deletion facts.
 
 The assembled theorem must return `False`. This keeps the load-bearing cap/MEC and
 source-indexed data in one contract and allows the final call before the

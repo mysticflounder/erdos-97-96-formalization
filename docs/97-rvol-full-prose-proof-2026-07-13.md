@@ -669,25 +669,44 @@ problems. The parent theorem
 `false_of_twoLargeCaps_commonCriticalMap` is the final assembler and is
 called before the LIVE slot split. Its active inputs are two smaller,
 source-faithful surfaces plus the protected original/swapped
-`FA-UNIQ4/FA-UNIQ5` consumers. The exact-five ingress is now proved: its
-actual unused-source row has at most one physical strict-cap hit, so two
-distinct omitted physical points give two origin-tagged common deletions at
-the same blocker/physical-apex center pair. Their first rows are forced to the
-same actual support, their physical rows are the two exact-five erasures, and
-the shared three-point physical core contains a third common-deletion source.
-At every physical strict-cap source, the actual critical support contains at
-most two physical members, so a distinct omitted source survives deletion at
-that source's actual blocker. Production has already lifted this
-fixed-point-free recurrence to a source-exact period-two-through-five cycle,
-and can start the transition orbit at a prescribed physical source. The parent
-adapter uses the first origin-tagged continuation source and retains the
-physical radius, blocker rows, cap placement, failed deletions, full frontier,
-and concrete critical map. The remaining consumers are now exact: the reverse
-period-three-through-five arm needs a repeated outside-cap support pair (or an
-equivalent U5 alignment), while the mutual-omission arm needs an ordered-cap/MEC
-contradiction to its at-most-two-source off-cap exceptional blocker fiber.
-Local rank/nonreturn is not available: exact finite-metric and Euclidean cap
-regressions permit the corresponding marginal normal forms.
+`FA-UNIQ4/FA-UNIQ5` consumers. The preferred surface is now the smallest one.
+Production `CriticalPairFrontier.originalUnique_or_commonDeletion` splits the
+concrete first-apex frontier directly. Its unique side is exactly the
+protected original card-four/card-five radius arm. On the other side,
+first-apex double-deletion survival and the frontier's unconditional
+second-apex double-deletion survival give a source-faithful common deletion:
+the deleted point is the actual frontier source `F.pair.q`, the centers are
+the two opposite Moser apices, and the radius, pair, cap/MEC, and common
+critical-map provenance remain available. The next mathematical theorem is
+direct `False` for that full `FrontierCommonDeletionParentResidual`, not for a
+generic common-deletion projection.
+
+The first checked consumer reduction is constructive rather than terminal.
+The stored second-apex four-row meets the off-surplus first-apex marginal in
+at most one point and the deleted source's actual critical support in at most
+two. Hence it contains a point outside both sets. Deleting that point preserves
+K4 at the deleted source's actual blocker, and the point lies either inside
+the surplus cap or off the frontier radius. This rules out marginal two-hit
+and one-row confinement as producer targets. Closure now needs a geometric
+consumer of that exact two-arm escape, or a consumer of the existing global
+minimal-deletion collision/core alternatives with the same parent provenance.
+
+The exact-five omission cycle, its injective reverse outside-pair normal form
+and cap-straddling bridge, and its mutual same-cap/equal-blocker split remain
+kernel-checked fallback refinements. The oriented physical-apex ingress is
+also exhaustively classified in production, and its two-exact-four complement
+has a checked route to the same protected unique/common-deletion outputs. None
+of these longer decompositions is load-bearing unless the direct frontier
+common-deletion consumer needs their extra provenance.
+
+The shell-curvature continuation is presently blocked at its interface, not
+at the cyclic-role adapter: the role placement kernel-checks, but the current
+`CounterclockwiseAngleChart` combines an unrestricted orientation-sign law
+with a periodic endpoint equality, making the wrapper inconsistent. It must be
+repaired to state the sign law only on non-wrapping open-window triples (or to
+require distinct endpoints) and revalidated before any curvature theorem can
+serve as a consumer. No conclusion obtained through the existing vacuous
+wrapper counts toward closure.
 
 This keeps the full parent minimality, critical-map, MEC, cap-order, and
 no-`IsM44` hypotheses. It decomposes the proof; it does not weaken the
@@ -758,8 +777,8 @@ chord, and the two-circle reflection argument
 conclusion is unsatisfiable over ℝ², so the existential is an artificial
 ex-falso endpoint. It remains one of the 12 source holes, but it is no longer
 the theorem-discovery target. The closure route derives `False` directly at
-the parent boundary from the frontier-coupled exact-five cycle consumer,
-its explicit common-deletion sibling, and the protected unique arms above,
+the parent boundary from the source-faithful
+`FrontierCommonDeletionParentResidual` consumer and the protected unique arm,
 then
 deletes or trivializes this compatibility chain.
 
@@ -856,9 +875,9 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. Production further chooses a total fixed-point-free transition and normalizes it to an injective source-exact cycle of period two through five, retaining the common radius/cap class, actual blocker rows, edge omissions, and deletion-survival facts. The constructor can start the transition orbit at a prescribed physical source; production anchors it at the first origin-tagged continuation source. These theorems use only the three core axioms. |
-| O18 | Frontier-coupled exact-five physical-cycle residual | open | Prove `false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Production `ATail/PhysicalOmissionCycleParentResidual.lean` retains the full `RobustLargeRadiusParentSurface`, reconstructed `CriticalPairFrontier`, origin-tagged two-source continuation, parent-radius identity, source-anchored cycle, explicit common-deletion sibling, and same `H`; bare cycle-`False` is only an optional stronger shortcut. In the reverse arm, period two is impossible, every edge row is its adjacent physical pair plus exactly two outside-cap points, and a repeated outside pair is terminal; force that collision or an equivalent U5 alignment. In the mutual arm, two crossed common-deletion packets are canonical and all blockers preserve one deletion except possibly one double-blocking center with an off-cap source fiber of card at most two; eliminate this one-exception residual by ordered-cap/MEC coupling. The pinned regressions realize both local normal forms, so the proof must consume retained global K4, convex/MEC/cap, critical-map, and frontier fields. |
+| O18 | Frontier source-faithful common-deletion residual | open | Production `CriticalPairFrontier.originalUnique_or_commonDeletionParent` reduces every concrete frontier directly to O19 or `FrontierCommonDeletionParentResidual F`. Prove the latter false while retaining `F.pair.q/w`, the first-apex radius and marginal placement, the two prescribed Moser-apex centers, the same `H`, and the parent minimal/no-`IsM44`/cap-MEC context. The generic common-deletion projection is known nonterminal and must not replace this target. The exact-five cycle is fallback refinement only. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
-| O20 | Parent direct-`False` assembler | blocked (O18–O19 plus ingress/common-deletion complement) | First produce the oriented `oppCap2 ≥ 6` and physical-radius-class-cardinality-at-least-five ingress or route its complement; close the explicit common-deletion sibling; then assemble `false_of_twoLargeCaps_commonCriticalMap` from O18 and the O19 protected unique arms under the full parent hypotheses. Call it before LIVE row construction, then remove or trivialize O10–O13 by reference mining. |
+| O20 | Parent direct-`False` assembler | blocked only on O18–O19 | Extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletion`, dispatch O19 or O18, and assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. The oriented-ingress and exact-five trees are no longer primary dependencies. Then remove or trivialize O10–O13 by reference mining. |
 
 The literal source holes are O10, O11, and O13. The active closure work is
 O18–O19, with O14 as its cardinality-scope gate and O20 as routine final
