@@ -232,9 +232,10 @@ parent surface and has two genuine terminals:
   `equal-source-metric-terminal/EqualSourceMetricTerminal.lean` eliminates the
   entire equal-metric-source-at-`p` constructor, uniformly over all four
   q-deleted/q-critical generated-row combinations.  Its source-clean
-  `ReducedSourceSplit` therefore has exactly four constructors: distinct
-  sources, the two oriented equal-source cross-survival arms, and the
-  second-apex equilateral arm;
+  `ReducedSourceSplit` has four constructors at that intermediate boundary:
+  distinct sources, the two oriented equal-source cross-survival arms, and the
+  second-apex equilateral arm.  The later postmix reduction described below
+  removes that last constructor from the current frontier;
 - `qcritical-metric-terminal/OriginalQCriticalCriticalMetricTerminal.lean`
   proves that any ambient point common to both metric-residual generated rows
   is `p` or `S.oppApex2`.  When both generated constructors are q-critical,
@@ -307,9 +308,13 @@ parent surface and has two genuine terminals:
   q-critical row: coherent source omitted + the other of {s,t}.
   ```
 
-  The two mixed orientations are the only non-rerouted local residuals.
-  Do not mine a common physical-row point: equality of the two support-only
-  points is already the tetrahedron contradiction;
+  `mixed-second-apex-eliminator/MixedSecondApexEliminator.lean` now closes both
+  mixed residuals.  The two support-only points and the physical second-apex
+  row lie on one positive radius; the generated-row equalities make them the
+  two opposite equilateral intersections, so their sum is twice the second
+  apex.  They and the second apex are therefore three distinct collinear
+  carrier points, contradicting convex independence.  The resulting
+  `SecondApexRerouteReduction` has only the two source-faithful reroutes;
 - `generated-successor-rank/CapRankOppositeSide.lean` and
   `generated-successor-geometry-rank/GeneratedSuccessorGeometryRank.lean`
   give the strongest honest ordered-cap handoff at each named center.  The
@@ -326,29 +331,34 @@ parent surface and has two genuine terminals:
   q-critical/q-critical specialization, the existing common point `q`
   reduces this to one additional common outside-cap point, and in an
   equal-source cross arm to the shared source lying outside `oppCap2`.
-  The second-apex/equilateral constructor is now reduced to the two mixed
-  complementary-`{s,t}` orientations above; the homogeneous constructor pairs
-  close and every other outcome reroutes;
+  The second-apex/equilateral constructor now has no residual metric arm:
+  homogeneous pairs close, both mixed complementary-`{s,t}` packets close by
+  the collinearity theorem above, and every surviving outcome is a concrete
+  non-apex outside-middle reroute at `x` or `y`;
 - `reduced-frontier-integration/ReducedFrontierIntegration.lean` composes the
   two latest reductions at full-parent strength.  Every generated-successor
   pair is now either: at least one q-deleted exact generated row together with
-  `ReducedSourceSplit`; or two q-critical exact rows together with an actual
+  the five-way `PostmixSourceSplit`; or two q-critical exact rows together with an actual
   oriented `LiveDeletedCrossSurvival` and its four-class
-  `ReducedCrossSinkNormalForm`.  This is the current branch-exact coordinator;
-  it introduces no new `False` claim.
+  `ReducedCrossSinkNormalForm`.  `second-apex-postmix-wiring/` supplies the
+  source-clean split and conversions from both reroutes back to
+  `OriginalQOutsideMiddleSuccessor`.  This is the current branch-exact
+  coordinator; it introduces no new `False` claim.
 
 All of these declarations fresh-check with only `propext`,
 `Classical.choice`, and `Quot.sound`.  This closes both the
-q-critical/q-critical metric subcase and the whole equal-source live-center
-constructor, but not a production `sorry`.  The remaining live-heavy frontier
-is the four-way reduced source split, the four endpoint classes in the
+q-critical/q-critical metric subcase, the whole equal-source live-center
+constructor, and both mixed second-apex metric packets, but not a production
+`sorry`.  The remaining live-heavy frontier is the five-way postmix split
+(distinct sources, two oriented cross-survival arms, and two concrete
+outside-middle reroutes), the four endpoint classes in the
 q-critical cross-survival arm, the other generated-constructor/continuation
 arms, and the source-exact cap/rank alternatives.  The immediate q-critical
 targets are the two escape/common-deletion orientations,
 `ApexDoubleCriticalResidual`, and relocated-blocker common deletion.  The
-remaining second-apex metric target is the direct eliminator for the two mixed
-complementary-`{s,t}` packets, not a bare coherent-source incidence or any
-retired live-center producer packet.  A rank move is not terminal until a
+second-apex metric target is closed; its surviving reroutes now re-enter the
+ordinary outside-middle-successor surface with source distinct from the second
+apex.  A rank move is not terminal until a
 cycle-wide no-wrap or well-founded argument is proved, and the
 outside-cap/companion-omitted arms
 still need a full-parent cap/order or global-critical-map consumer.  Do not
@@ -458,20 +468,48 @@ additional roles and six row memberships on the current parent surface.
 The absent adjacent order is therefore an impossible packet, not a producer
 target.
 
-The remaining source-valid continuations are now explicit.  Either produce a
-third named center, distinct from the first apex and actual blocker, whose
-selected row contains the frontier pair; the existing perpendicular-bisector
-sink then closes directly.  Or produce the complete actual-role five-point
-ordered packet, including both named roles, the directed order arm, and all
-six selected-row memberships consumed by the production Kalmanson terminal.
-A third option is a kernel-checkable coverage theorem mapping every live
+The remaining source-valid continuation is now sharper.  The checked
+`third-center-common-pair/` saturation theorem shows that a genuinely third
+actual blocker whose selected row contains the frontier pair is already an
+impossible terminal.  `anchored-double-deletion-producer/` then closes the
+logical loop: outside the exact-card-four escape and on the directed cross-hit
+arm, both prescribed frontier deletions fail at an actual blocker if and only
+if that blocker is the known `q`-blocker.  Thus a distinct double-blocked
+source is provably nonexistent; asking the parent to produce one is already a
+direct contradiction target, not an intermediate producer.
+
+The honest residual is a source-indexed survival cover.  Exact support locking
+bounds the known `q`-blocker fiber by four.  Since `9 < D.A.card`, at least six
+sources lie outside that fiber, and every such source preserves deletion of
+`q` or preserves deletion of `w` at its actual blocker.  The next theorem must
+consume this two-color cover with cap order, MEC, no-`IsM44`, and the two large
+caps, or derive an existing terminal from one color class.  Alternatively,
+prove the complete actual-role five-point ordered
+packet, including both named roles, the directed order arm, and all six
+selected-row memberships consumed by the production Kalmanson terminal.  A
+third option is a kernel-checkable coverage theorem mapping every live
 frontier to an already checked terminal.  The direct-only corrected CEGAR test
 has already produced an avoiding shadow, so no further literal replay of that
 one schema should be mistaken for fixed-surface or live-parent coverage.
 
+`actual-five-point-kalmanson-packet/` now fixes the honest five roles to the
+live objects `O = oppApex1`, `A = oppApex2`,
+`Y = centerAt frontier.q`, `E = frontier.q`, and `C = surplusApex`.  With rows
+at the actual sources `E,C,O`, three of the Kalmanson terminal's six support
+memberships are automatic source memberships; the remaining three are exact
+cross-source incidences.  The adapter is kernel-checked, but the current
+frontier does not construct it.  Its first missing fact is
+`O ∈ support (H.selectedAt E)`; independently it still needs the blocker-map
+edges `centerAt C = O` and `centerAt O = A`, the other two cross incidences,
+and the directed actual boundary order.  This is a complete consumer boundary,
+not evidence that the five-point packet is close to production.
+
 Record this as a bounded metric route with a passed fixed-surface gate, not as
 an immediate producer and not as a reason to abandon the source-faithful
-generated-successor lane before the missing named-role/row producer is proved.
+generated-successor lane before the survival-cover consumer or the complete
+five-point packet is proved.  Do not mine an unanchored "third center" or a
+distinct double-blocked blocker: their terminal, exact negation, fiber bound,
+and total-map survival classifier are already kernel-checked.
 The complete evidence and the two source-clean scratch corollaries are in
 `scratch/atail-force/global-minimality-connectivity-audit/`.
 
@@ -496,8 +534,8 @@ packet-polymorphic `FA-UNIQ4` proof.  The separately user-owned `FA-UNIQ4`,
 `FA-UNIQ5`, and `(6,5,4)` unique-row theorem targets remain required for
 branch-complete parent closure.  The current 555/654 literal whole-shadow
 queue is not itself load-bearing: the actual-frontier audit shows that those
-cores neither produce the missing source-indexed common-pair row / complete
-five-point packet nor establish coverage.  Preserve its completed exact-CAS
+cores neither produce a geometric consumer of the six-source survival cover,
+the complete five-point packet, nor coverage.  Preserve the completed exact-CAS
 artifacts, but stop the in-flight literal scans and launch no successors.
 Resume computation only against one of the complete source-valid antecedents
 above, or against a formal coverage statement whose immediate Lean consumer
@@ -3556,8 +3594,9 @@ remaining producer is not row existence or support-center selection, but a
 full-geometric coupling that forces those two bisector equalities.
 `RobustCapFiveRoleExclusion.lean` separately kernel-refutes the attempted
 cap-five opposite-apex role at both actual robust blockers, since each differs
-from both non-surplus apices.  Any use of that rigidity bank would first need
-a new third center and a coupling back to the frontier.
+from both non-surplus apices.  The later anchored audit shows that requesting
+a new third double-blocked center on the directed cross arm is already the
+contradiction; it is not a separate producer for this rigidity bank.
 
 The bounded replay in `robust-all-center-cegar/` makes this boundary exact.
 Its fourteen-label structural model has a represented four-row at every
@@ -5238,8 +5277,11 @@ The current coherent-R work queue is now:
    constructs both full-parent successor surfaces, so the retained
    cap/MEC/frontier/origin contract is not an assumed scratch island.  The
    paired successors start with an exact five-way source split; the entire
-   equal-source-at-live-center metric constructor is now closed, leaving the
-   checked four-way `ReducedSourceSplit`.  Each source also has an honest
+   equal-source-at-live-center metric constructor is closed, and the old
+   second-apex constructor is further reduced to two concrete reroutes.  The
+   current q-deleted frontier therefore carries the five-way
+   `PostmixSourceSplit`: distinct sources, two oriented cross-survival arms,
+   or outside-middle reroute at `x`/`y`.  Each source also has an honest
    cap/rank trichotomy: outside `oppCap2`, opposite companion omitted, or a
    certified opposite-side rank move.  The
    q-critical/q-critical `MetricResidual` arm is closed at the full-parent
@@ -5257,14 +5299,11 @@ The current coherent-R work queue is now:
    `StrictOppCap1CommonHit`, the surplus-heavy completion equality, or the
    three reverse equalities on the closed live-center branch: all three
    targets now have checked wrong-polarity/impossibility results.
-   In the surviving second-apex equilateral arm, the exhaustive constructor
-   split closes q-deleted/q-deleted and q-critical/q-critical.  Every other
-   outcome either constructs a source-faithful non-apex outside-middle reroute
-   or lands in one of two mixed complementary-`{s,t}` packets: the q-deleted
-   row contains the coherent source and one support-only point, while the
-   q-critical row omits the coherent source and contains the other.  Eliminate
-   this mixed packet directly; do not mine a common physical-row point, which
-   is already contradictory.  A rank move still needs a cycle-wide no-wrap or
+   In the second-apex equilateral arm, the exhaustive constructor split and
+   the mixed collinearity eliminator close both homogeneous and both mixed
+   constructor pairs.  Every surviving outcome is now a source-faithful
+   non-apex outside-middle reroute, and the reduced frontier carries that
+   reroute explicitly.  A rank move still needs a cycle-wide no-wrap or
    well-founded argument.
    Mixed must remain split by its physical and generated constructors.  In the
    mixed confined classifier, physical-q-critical/generated-q-critical and

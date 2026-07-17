@@ -4,15 +4,15 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Adam McKenna
 -/
 
-import EqualSourceMetricTerminal
 import QCriticalEndpointIntegration
+import SecondApexPostmixWiring
 
 /-!
 # Scratch: reduced generated-successor frontier
 
 This file combines two source-clean reductions at the full-parent boundary.
 For an exact generated-successor pair, either at least one generated row is
-q-deleted, in which case the four-way reduced source split is retained, or
+q-deleted, in which case the post-mixed-residual source split is retained, or
 both generated rows are q-critical, in which case the endpoint-reduced
 cross-sink normal form is retained.
 
@@ -37,6 +37,7 @@ open ATailRF2OriginalQCriticalRankIntegrationScratch
 open ATailRF2OriginalQGeneratedSuccessorPairScratch
 open ATailRF2OriginalQOffLiveDeficitScratch
 open ATailRF2QCriticalEndpointIntegrationScratch
+open ATailRF2SecondApexPostmixWiringScratch
 open ATailRF2SupportHeavyK4SplitScratch
 open ATailRF2SupportHeavyReductionScratch
 open ATailRF2ThreeRowChainScratch
@@ -74,7 +75,7 @@ inductive QDeletedConstructorWitness
       (generated_eq : Q.generated.at_y.generated = .qDeleted row)
 
 /-- Exact reduced frontier for a generated-successor pair.  The q-deleted
-arm retains the reduced source split; the q-critical arm retains an oriented
+arm retains the post-mixed-residual source split; the q-critical arm retains an oriented
 cross survival and its endpoint-reduced global-source normal form. -/
 inductive ReducedGeneratedSuccessorFrontier
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
@@ -93,7 +94,7 @@ inductive ReducedGeneratedSuccessorFrontier
     (Q : OriginalQGeneratedSuccessorPair K) : Prop
   | qDeleted
       (constructor : QDeletedConstructorWitness Q)
-      (sourceSplit : ReducedSourceSplit Q)
+      (sourceSplit : PostmixSourceSplit Q)
   | qCritical
       (constructors : QCriticalConstructorPair Q)
       (cross : LiveDeletedCrossSurvival K)
@@ -120,7 +121,7 @@ theorem OriginalQOutsideMiddleParentContext.reducedGeneratedSuccessorFrontier
     {K : AnchoredF2LiveHeavyReduction W R A X hcenter P chain}
     (Q : OriginalQGeneratedSuccessorPair K) :
     ReducedGeneratedSuccessorFrontier Q := by
-  have hsplit : ReducedSourceSplit Q := reducedSourceSplit Q
+  have hsplit : PostmixSourceSplit Q := postmixSourceSplit Q
   cases hx : Q.generated.at_x.generated with
   | qDeleted rowX =>
       exact .qDeleted (.atX rowX hx) hsplit
