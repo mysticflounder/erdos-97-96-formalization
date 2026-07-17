@@ -16,7 +16,9 @@ import Erdos9796Proof.P97.U3ToU5Terminal
 import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 import Erdos9796Proof.P97.U2NonSurplusOneHit
 import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
+import Erdos9796Proof.P97.ATail.OrdinalKalmansonCycle
 import Erdos9796Proof.P97.ATail.CriticalPairFrontier
+import Erdos9796Proof.P97.ATail.AnchoredDoubleDeletionProducer
 
 /-!
 # U1 large-cap Route-B tail

@@ -207,6 +207,18 @@ fresh radius class does not imply that it meets the physical row in a third
 point.  Treat this theorem as an incompatibility boundary, not as the next
 producer target.
 
+The refreshed consumer matrix identifies the first missing source fact in
+each arm.  The collision arm lacks physical-second-apex co-radiality of the
+actual collision pair.  The multi-core arm lacks one repeated outside pair at
+a second same-cap center.  The installed-singleton arm already enters
+`nonempty_commonDeletionTwoCenterPacket` and then the physical-second-apex
+uniform consumer; swapped unique four is routed, but the successor can
+reproduce full robustness.  That arm therefore needs a genuine rank or
+nonreturn theorem, not another common-deletion wrapper.  These are three
+different consumers; the fixed `(8,4,5)` Kalmanson surface cannot cover them
+because it has `oppCap2.card = 4`, while this endpoint retains
+`6 ≤ S.oppCap2.card`.
+
 In the two-disjoint-radius subarm, the earlier checked theorem
 `exists_secondApexRow_minimalDeletionTransition` deletes all four points of
 one physical row and uses the disjoint row to prove that the fresh blocking
@@ -285,6 +297,19 @@ cap sink.  Thus the load-bearing large-radius work is now precisely that
 cross-row or placement consumer, together with a direct theorem preventing
 return to the robust input; the minimal-deletion/common-deletion loop supplies
 no decreasing invariant.
+
+The later exact-five ordered-shell continuation proves a global CCW ordering
+of the unused source's complete critical support, both strict endpoint
+distance chains, and two endpoint K4 rows each exporting at least three points
+outside that support.  These facts instantiate none of the five fixed
+`X`-domain Kalmanson schemas.  The `A` footprints already lack the physical
+apex in the selected `A` row; the `D` footprint lacks named physical-class
+points in the selected `D` row; the weakest `t1` footprint lacks a point in
+both the physical five-class and the unused critical support.  Universally,
+there is also no live proof that an arbitrary selected `X` row lies in the
+fixed 70-row `(8,4,5)` domain.  Therefore this ordered-shell result is a
+source-valid reducer, but the fixed Kalmanson schemas are not its consumer and
+must not be presented as near-term exact-five closure.
 
 The production interface formerly dropped the required hypothesis:
 `removableVertexOfLarge_of_nonIsM44` constructs `hmin` immediately before its
@@ -611,6 +636,14 @@ five-point selected-row terminal
 builds with exactly `propext`, `Classical.choice`, and `Quot.sound`; no
 solver-backed or scratch-only axiom is involved.
 
+The generic certificate endpoint is now production Lean as well.
+`ATail/OrdinalKalmansonCycle.lean` defines source-valid selected-row ordinal
+comparisons, composes them with `Relation.TransGen`, and rejects a cycle by
+`false_of_transGen_cycle`.  Each edge contains the actual boundary indices,
+selected row, support memberships, and endpoint equalities; no naked metric
+equality or finite-census row is accepted.  This closes the generic consumer
+gap.  It does not prove that the live parent emits a cycle.
+
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson
 closure rejects all 101 corrected shadows: 89 have a one-step strict
@@ -657,8 +690,10 @@ does not turn a prefix into coverage.  The clean corrected-map CEGAR run that
 uses only this direct schema confirms the boundary: after 51 valid direct
 cuts, iteration 52 returns
 `SAT_DIRECT_SCHEMA_AVOIDING_CORRECTED_SHADOW`.  Thus the direct theorem is a
-useful bank consumer, but fixed-profile coverage requires the generic
-equality-quotient/strict-cycle consumer or its compressed finite schemas.
+useful bank consumer, while fixed-profile-to-live coverage still requires a
+source theorem producing the inputs of the now-production generic cycle
+consumer.  The compressed finite schemas are discovery evidence for that
+producer, not additional consumer obligations.
 
 This exhausts the fixed finite model, not the live parent.  The model does not
 prove that every larger carrier has a selected row supported inside the same
@@ -687,15 +722,17 @@ additional roles and six row memberships on the current parent surface.
 The absent adjacent order is therefore an impossible packet, not a producer
 target.
 
-The remaining source-valid continuation is now sharper.  The checked
-`third-center-common-pair/` saturation theorem shows that a genuinely third
-actual blocker whose selected row contains the frontier pair is already an
-impossible terminal.  `anchored-double-deletion-producer/` then closes the
-logical loop: outside the exact-card-four escape and on the directed cross-hit
-arm, both prescribed frontier deletions fail at an actual blocker if and only
-if that blocker is the known `q`-blocker.  Thus a distinct double-blocked
-source is provably nonexistent; asking the parent to produce one is already a
-direct contradiction target, not an intermediate producer.
+The remaining source-valid continuation is now sharper and its foundational
+layer is production.  `ATail/ThirdCenterCommonPair.lean` shows that a
+genuinely third actual blocker whose selected row contains the frontier pair
+is already an impossible terminal.
+`ATail/AnchoredDoubleDeletionProducer.lean` then closes the logical loop:
+outside the exact-card-four escape and on the directed cross-hit arm, both
+prescribed frontier deletions fail at an actual blocker if and only if that
+blocker is the known `q`-blocker.  Thus a distinct double-blocked source is
+provably nonexistent; asking the parent to produce one is already a direct
+contradiction target, not an intermediate producer.  Both modules are
+imported by `U1LargeCapRouteBTail`, and its focused target build passes.
 
 The honest residual is a source-indexed survival cover.  Exact support locking
 bounds the known `q`-blocker fiber by four.  Since `9 < D.A.card`, at least six

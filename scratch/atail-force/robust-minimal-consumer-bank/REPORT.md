@@ -43,16 +43,35 @@ Targeted `nthdegree docs search --lean` queries covered:
 The useful hits are recorded below. No unlisted hit had a closer exact
 hypothesis map.
 
-## Result matrix
+## Load-bearing three-outcome consumer matrix
 
-| Endpoint | Best existing consumer | Match status | Exact first gap |
+| Robust-minimal outcome | Exact checked theorem route | Exact first missing source fact | Verdict |
 |---|---|---|---|
-| `RobustSecondApexMinimalDeletionCollision` | center rigidity / `oppCap2_escape_gen` | **No match** | The packet gives one fresh-center equality and two independent deletion-survival existentials at `oppApex2`; it does not put the collision pair in one `oppApex2` radius class. The pair is also an arbitrary non-frontier pair of deletion roles, so the first-apex/off-surplus hypotheses of `oppCap2_escape_gen` are absent. |
-| `RobustSecondApexMinimalDeletionMultiCore` | no bank terminal | **No match** | The exact shells all have the same center and pairwise-disjoint supports. This proves another robust center, not a contradiction. A terminal cross-center incidence or a decreasing cap-order measure is missing. |
-| `RobustSecondApexMinimalDeletionInstalledSingleton` | critical-map omission/survival equivalence | **No match** | One installed row omits one frontier target and survives that target's deletion. Existing critical-map lemmas regard those as equivalent compatible facts. A second independent row/incidence or a nonreturn measure is missing. |
-| `SameRowMinimalCollisionTransition` | `eq_of_equidistant_three_noncollinear` | **Conditional terminal** | A third member of the physical row on the fresh-center collision radius gives `False`. This is the impossible three-common-point overlap of two distinct circles, not a premise currently produced by the endpoint. |
-| two-radius `MinimalDeletionCore` with `V.card = 1` | singleton installation machinery | **No match** | This endpoint has no distinguished frontier target or installed critical-map omission. It must first be coupled to the live frontier; installation alone is still not a terminal. |
-| two-radius fresh `FullyDeletionRobustAt` center | sibling rank/lap interface | **No match** | The bank needs a same-cap incompatible edge and a strict finite rank/lap descent. The endpoint supplies neither cap placement nor a monotone edge from the old robust center to the new one. |
+| `RobustSecondApexMinimalDeletionCollision` | The nearest terminal is `Problem97.eq_of_equidistant_three_noncollinear`; the apex-specific alternative is `Problem97.U2NonSurplusSqueeze.oppCap2_escape_gen`. | First produce one physical-second-apex radius through the *actual* collision pair: `dist S.oppApex2 E.collisionPointA = dist S.oppApex2 E.collisionPointB`. The endpoint has only separate K4-survival existentials after deleting the two points. Even after this first fact, center rigidity still needs a third common point, while `oppCap2_escape_gen` still needs the first-apex and off-surplus placement. | **OPEN.** No bank theorem derives the missing co-radiality from deletion robustness. |
+| `RobustSecondApexMinimalDeletionMultiCore` | The checked positive consequences are `Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.four_mul_card_le_carrier` and `.two_mul_card_le_capByIndex_complement`. The nearest terminal is `Problem97.ATailContinuationBankMatchScratch.false_of_two_cap_center_rows_common_outside_pair`. | Produce a repeated outside pair at a *second* center in the same ordered cap: for one core shell, two distinct outside support points must also lie on one selected row centered at another cap point. The endpoint supplies pairwise-disjoint shells all centered at `E.fresh.center`; physical-apex deletion survival does not identify any pair in those rows. | **OPEN.** Packing alone is compatible with unbounded carrier size, and no cross-center pair is produced. |
+| `RobustSecondApexMinimalDeletionInstalledSingleton` | The endpoint already feeds `Problem97.ATailContinuationBankMatchScratch.nonempty_commonDeletionTwoCenterPacket`, then `Problem97.ATailCommonDeletionUniformConsumerScratch.physicalSecondApex_commonDeletion_successor_or_swappedUniqueFour`. The swapped arm is killed by `Problem97.ATailRobustSecondApexGeometryScratch.false_of_fullyDeletionRobustAt_secondApex_and_swappedUniqueFour`; the successor arm returns robustness via `SecondRowCommonDeletionSuccessor.secondCenterFullyDeletionRobust`. | Produce a genuine nonreturn fact for that exact `SecondRowCommonDeletionSuccessor`: either a strict well-founded cap/MEC rank decrease, or a source-faithful packet such as the sibling `Problem97.StrictLapPacket` consumed by `Problem97.strictLapPacket_nonreturn`. Omission itself is not new force because `Problem97.ATailCriticalPairFrontier.cross_deletion_survives_iff_not_mem_selected_support` identifies it with the stored survival fact. | **OPEN LOOP.** All current endpoint data reaches the existing common-deletion cycle, not `False`. |
+
+This matrix is the adoption boundary for the stopped lane.  The reduction
+itself is finished; only the three source facts in the third column can turn
+its outputs into load-bearing closure work.
+
+## Fixed Kalmanson surface does not cover this endpoint
+
+The ordinal Kalmanson continuation under
+`global-minimality-connectivity-audit/kalmanson-consumer/` is exhaustive only
+for `PROFILE = (8,4,5)`, where its own source defines
+`OPP_CAP_2 = {C,G,K,O}` and hence `oppCap2.card = 4`.  The live
+`RobustSecondApexMinimalDeletionContext` instead retains
+
+```text
+6 <= S.oppCap2.card.
+```
+
+These surfaces are disjoint.  The fixed-profile `UNSAT_EXHAUSTIVE_FINITE_DFS`
+result is valid within its abstraction, but it is not extraction or coverage
+evidence for any of the three live outcomes above.  Extending that fixed
+surface would therefore be a new cardinal-profile project, not continuation
+of the stopped robust-minimal proof.
 
 ## The one exact bank match
 
