@@ -113,16 +113,43 @@ pair. Thus generic finite row fields cannot prove the missing second center.
 Ordinal Kalmanson gives the other exact consumer. One anonymous collision row,
 even together with the robust-apex row, has no forced strict cycle. The
 corrected pinned survivor is nevertheless killed by a minimal three-row core:
-the robust-apex row and two ordered collision fibers give a strict two-cycle.
+the robust-apex row, the collision row, and one ordered cross row give a strict
+two-cycle. In that pinned witness the cross-row center happens to have another
+nontrivial blocker fiber, but the generic proof does not use that multiplicity.
 The generic Lean consumer is now checked explicitly. Up to cyclic relabeling,
 it assumes six points in order `O < A < X < J < C < K` and the three row
 equalities `OJ = OC`, `AC = AK`, and `XJ = XK`; Kalmanson gives
 `AJ < AC < AJ`. The last equality is the load-bearing cross-support incidence
 `K ∈ X-row`. Two nontrivial fibers without that incidence are insufficient.
-Consequently the primary new theorem target is a **multi-fiber/order/cross-
-support coupling** from the full parent geometry: produce a second nontrivial
-blocker fiber, the displayed cyclic roles, and the cross-support membership
-needed by that ordinal core.
+Consequently the primary new theorem target is an **ordered three-row support
+triangle** from the full parent geometry: starting with the one forced
+collision row, produce the displayed robust-apex and ordinary cross-row
+memberships and cyclic roles. No second blocker fiber is required.
+
+The source and connectivity audits make that contract literal. On the arm
+where `A` is the unique exact double blocker fiber, finite-map repair proves
+that every carrier center except `O` has a critical-map preimage. Checked
+scratch therefore builds a `FaithfulCarrierPattern` whose rows away from `O`
+are actual rows of the retained `CriticalShellSystem`; minimality makes this
+pattern strongly connected. This is still insufficient. Connectivity gives
+paths of single support memberships, while the terminal needs two points in
+one row. A live-prefix `Fin 12` regression retains this row closure, the
+p-centered dangerous row, `f2`, robust image omission, exact support locking,
+and the collision, but has no three-row completion.
+
+After naming the collision sources `C,K`, the exact missing producer is:
+
+1. choose an `O`-row with `C,J` in its support;
+2. choose a critical source `J`, put `X := H.centerAt J`, and prove the
+   cross-membership `K ∈ H.selectedAt J`; and
+3. place `O,A,X,J,C,K` in the cyclic order used by the terminal.
+
+The source's own membership supplies `J ∈ H.selectedAt J`; the collision
+supplies `C,K` in the `A`-row. Thus steps 1, the cross half of step 2, and
+step 3 are exactly the new mathematics. A more general paired-path/order
+theorem producing a `SelectedRowOrdinalComparison` cycle would be an
+acceptable alternative, but ordinary strong connectivity is not such a
+theorem.
 The alternate target is the same-cap second-center bisection above. Either
 target is strictly weaker than proving the old LIVE row families and feeds an
 existing checked terminal immediately.

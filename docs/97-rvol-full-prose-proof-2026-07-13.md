@@ -736,12 +736,13 @@ common exact four-point critical shell, with deletion of either source critical
 at that blocker. This is not yet contradictory: the sources and common support
 have no forced cap, boundary-order, or frontier-radius placement. The remaining
 new mathematics is now pinned to one of two immediate consumers. The primary
-target is a second suitably ordered collision fiber: together with the
-robust-apex row and the first fiber it instantiates the checked ordinal
-Kalmanson strict cycle, provided the full parent also supplies its
-cross-support incidence. The checked generic core is, up to cyclic relabeling,
+target is an ordered three-row support triangle: the robust-apex row, the one
+forced collision row, and one ordinary cross row instantiate the checked
+ordinal Kalmanson strict cycle. The checked generic core is, up to cyclic relabeling,
 `O < A < X < J < C < K` with `OJ = OC`, `AC = AK`, and `XJ = XK`, which
-forces `AJ < AC < AJ`; two fibers without the last equality are insufficient.
+forces `AJ < AC < AJ`. The pinned cross-row center happens to be another
+collision center, but the proof does not use a second blocker fiber; the
+load-bearing facts are the pairwise shared support points and their order.
 The alternate is a distinct same-cap center bisecting
 the two outside points extracted from the collision shell, which contradicts
 `outsidePair_unique_capCenter`. One fiber alone is nonterminal, every
@@ -750,6 +751,17 @@ shows that the present blocker/row/minimality fields do not force the second
 center. The missing theorem must therefore consume cap/MEC/order or another
 full-parent localization fact. It is not another anonymous selected-row
 producer, generic common-deletion successor, or blocker-map iteration.
+
+The exact source audit goes one step further. If the collision is the unique
+exact double blocker fiber, the blocker map hits every center except the robust
+apex `O`; the resulting almost-critical row pattern is strongly connected by
+minimality. Even after granting `C,J ∈ O-row`, a checked finite regression
+has no ordinary `X`-row containing `J,K`. The current LIVE rows likewise give
+only `J ∈ H.selectedAt J`, not the cross-membership `K ∈ H.selectedAt J`.
+So the primary producer statement is now exactly `C,J ∈ O-row`,
+`J,K ∈ X-row`, and cyclic `O,A,X,J,C,K` (or a genuinely stronger
+paired-path/order lift to an ordinal strict cycle). Plain strong connectivity
+and further LIVE row-name casework are exhausted.
 
 The exact-five omission cycle, its injective reverse outside-pair normal form
 and cap-straddling bridge, and its mutual same-cap/equal-blocker split remain
@@ -934,9 +946,9 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. Production further chooses a total fixed-point-free transition and normalizes it to an injective source-exact cycle of period two through five, retaining the common radius/cap class, actual blocker rows, edge omissions, and deletion-survival facts. The constructor can start the transition orbit at a prescribed physical source; production anchors it at the first origin-tagged continuation source. These theorems use only the three core axioms. |
-| O18 | Frontier robust blocker collision | open multi-fiber/order/cross-support coupling; one-fiber and same-center second-shell routes regression-gated | Production reduces every concrete frontier directly to O19 or `FrontierCommonDeletionParentResidual F`. On the latter branch `firstApexFullyDeletionRobust` excludes the first apex from the blocker-map image, and `FullyDeletionRobustAt.exists_distinct_sources_same_blocker` forces two distinct sources with one blocker. Equal-center rigidity gives one common exact card-four shell containing both sources, with both deletions critical there. Any cap containing that blocker leaves two shell points outside; a second distinct same-cap center bisecting them is an immediate `outsidePair_unique_capCenter` contradiction. Same-center selected shells are support-locked, and a checked finite regression shows that the current blocker/row/minimality fields do not force a second center. One collision plus the robust-apex row is also ordinally feasible. The checked minimal ordinal consumer uses cyclic `O < A < X < J < C < K` with row equalities `OJ = OC`, `AC = AK`, and `XJ = XK`; the last equality is a load-bearing cross-support incidence, so two fibers alone are insufficient. Primary gate: derive the second fiber, this cross-support membership, and the cap-order roles from the full `F`, `H`, minimality, no-`IsM44`, and cap/MEC/order context; alternate gate: derive the distinct same-cap bisector center. |
+| O18 | Frontier robust blocker collision | open ordered three-row support coupling; LIVE incidence and plain-connectivity routes regression-gated | Production reduces every concrete frontier directly to O19 or `FrontierCommonDeletionParentResidual F`. On the latter branch `firstApexFullyDeletionRobust` excludes the first apex from the blocker-map image, and `FullyDeletionRobustAt.exists_distinct_sources_same_blocker` forces two distinct sources `C,K` with one blocker `A`; equal-center rigidity puts `C,K` in the exact `A`-row. Any cap containing `A` leaves two shell points outside; a second distinct same-cap center bisecting them is an immediate `outsidePair_unique_capCenter` contradiction, but same-center shells are support-locked. The checked ordinal consumer uses cyclic `O < A < X < J < C < K` with `C,J ∈ O-row`, `C,K ∈ A-row`, and `J,K ∈ X-row`. On the unique-double-fiber arm the blocker map is almost surjective and yields a strongly connected actual-critical-row pattern, but a checked live-prefix regression still has no `X`-row through `J,K`; the six LIVE rows and `f2` likewise lack that cross-membership. Primary gate: prove `C,J ∈ O-row`, `K ∈ H.selectedAt J` (with `X=centerAt J`), and the cyclic placement from full cap/MEC/frontier geometry, or prove a paired-path/order lift to the generic ordinal cycle. Alternate gate: derive the distinct same-cap bisector center. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
-| O20 | Parent direct-`False` assembler | blocked only on O18–O19 | Extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected unique arm or the weakened O18 consumer (multi-fiber ordinal core, or same-cap outside-pair terminal), and assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. The per-arm row, oriented-ingress, exact-five, and one-fiber classification trees are fallback evidence, not primary dependencies. Then remove or trivialize O10–O13 by reference mining. |
+| O20 | Parent direct-`False` assembler | blocked only on O18–O19 | Extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected unique arm or the weakened O18 consumer (ordered three-row support core, or same-cap outside-pair terminal), and assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. The per-arm row, oriented-ingress, exact-five, and one-row classification trees are fallback evidence, not primary dependencies. Then remove or trivialize O10–O13 by reference mining. |
 
 The literal source holes are O10, O11, and O13. The active closure work is
 O18–O19, with O14 as its cardinality-scope gate and O20 as routine final

@@ -102,9 +102,9 @@ full parent hypotheses
            -> full deletion robustness at the first apex
            -> first apex omitted from the blocker-map image
            -> one nontrivial same-blocker source fiber
-           -> multi-fiber/cap-order/cross-support coupling
-              |-- robust-apex row + two ordered collision fibers
-              |     + the cross-support incidence in the second fiber
+           -> cap-order/three-row support coupling
+              |-- robust-apex row + collision row + ordinary cross row
+              |     + pairwise shared support points in cyclic order
               |     -> ordinal Kalmanson strict cycle
               `-- second same-cap center bisecting the extracted outside pair
                     -> outsidePair_unique_capCenter
@@ -3868,19 +3868,35 @@ producer from the current finite fields alone.
 The corrected pinned survivor supplies a more promising ordered target. One
 collision row plus the robust-apex row has no ordinal contradiction, but full
 ordinal Kalmanson closure kills the survivor; an inclusion-minimal core uses
-the robust-apex row and two collision rows and produces a strict two-cycle.
+the robust-apex row, the collision row, and one ordinary cross row and produces
+a strict two-cycle. The cross-row center happens to be another collision center
+in the pinned shadow, but its blocker-fiber multiplicity is unused.
 The generic Lean consumer fixes its exact antecedent: cyclic order
 `O < A < X < J < C < K` and row equalities `OJ = OC`, `AC = AK`, and
-`XJ = XK`, yielding `AJ < AC < AJ`. In particular, the second fiber alone is
-not enough: the producer must establish the cross-support membership that
-gives `XJ = XK` (up to cyclic relabeling). Therefore the primary open theorem
-is a multi-fiber/cap-order/cross-support coupling from the full parent
-geometry: force the second blocker collision fiber and map all three live rows
-to that checked ordinal consumer. The
+`XJ = XK`, yielding `AJ < AC < AJ`. The producer must establish the two
+cross-row shared points that give `OJ = OC` and `XJ = XK` (up to cyclic
+relabeling); it does not need a second collision fiber. Therefore the primary
+open theorem is a cap-order/three-row-support coupling from the full parent
+geometry: map the robust-apex row, the one forced collision row, and one
+ordinary selected row to that checked ordinal consumer. The
 same-cap second-center bisection is the alternate immediate consumer. Both are
 weaker and more source-faithful than the old LIVE row families. Another
 one-fiber classifier, arbitrary row producer, blocker-map iteration, or generic
 common-deletion recursion is not closure progress.
+
+The source audit closes the remaining combinatorial ambiguity without closing
+the geometry. If the displayed `A` collision is the unique exact double fiber,
+the blocker map is surjective onto every carrier point except `O`. Hence one
+can build a faithful selected-row pattern whose rows off `O` are actual rows
+of `H`; minimality makes it strongly connected. A checked finite regression
+retains this almost-critical strong connectivity and even grants the prefix
+`C,J ∈ O-row`, but no ordinary row contains both `J,K`. The six named LIVE
+rows and `f2` do not improve this: after choosing a critical source `J`, they
+give `X := H.centerAt J` and `J ∈ X-row`, but not `K ∈ X-row`.
+Therefore the exact geometric producer is `C,J ∈ O-row`, `J,K ∈ X-row`,
+and the cyclic placement `O,A,X,J,C,K`. A paired-path/order theorem reaching
+the generic ordinal-cycle consumer is an acceptable alternative; plain
+selected-row reachability is regression-gated.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3931,13 +3947,18 @@ Work is decomposed as follows:
    common deletion at the first apex and `q`'s blocker). The exact arm audit
    above proves that these rows alone are nonterminal. Use the resulting
    first-apex full deletion robustness and same-blocker source collision as the
-   primary input. Prove either (a) a second suitably ordered collision fiber
-   plus the cross-support incidence required by the checked six-point
-   `O,A,X,J,C,K` ordinal Kalmanson cycle, or (b) a distinct same-cap center bisecting the two
+   primary input. Prove either (a) the two shared-support incidences and cyclic
+   order mapping the robust-apex row, collision row, and one ordinary cross row
+   to the checked six-point `O,A,X,J,C,K` ordinal Kalmanson cycle, or (b) a distinct same-cap center bisecting the two
    outside points extracted from one collision shell. Same-center shell
    production is support-locked and a finite regression refutes deriving a
-   second center from the current row/minimality fields. Do not reopen
-   anonymous row mining or recurse on a generic common-deletion packet.
+   second center from the current row/minimality fields. On the ordinal route,
+   the collision supplies `C,K ∈ A-row`; prove `C,J ∈ O-row`, choose a
+   critical source `J` and prove `K ∈ H.selectedAt J` (its own membership
+   already supplies `J`), then establish the six-role cyclic order. Strong
+   connectivity of the almost-surjective critical-row pattern supplies only
+   single-membership paths and is not a substitute. Do not reopen anonymous
+   row mining or recurse on a generic common-deletion packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.
