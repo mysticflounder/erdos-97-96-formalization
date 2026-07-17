@@ -19,14 +19,15 @@ cardinality minimality of the whole counterexample.
 Apply minimality after deleting the support of one of the two second-apex
 rows.  The other disjoint row proves that the fresh blocking center is not the
 second apex.  If the minimal deletion set contains a same-radius collision,
-the retained critical map and robustness force both directed blocker
-deletions to survive.  If there is no collision, the existing MUS extractor
-produces a minimal deletion core; a core with at least two sources is itself a
-new fully deletion-robust center.
+the restored K4 and the deleted partner force a five-point ambient radius
+class, so the fresh center is fully deletion-robust; the retained critical
+map also forces both directed blocker deletions to survive.  If there is no
+collision, the existing MUS extractor produces a minimal deletion core; a
+core with at least two sources is likewise a new fully deletion-robust center.
 
 This is a source-indexed global transition, not a local selected-row
 contradiction.  It deliberately does not assert that the remaining singleton,
-two-way-survival, or fresh-robust-center outcomes are false.
+or fresh-robust-center outcomes are false.
 -/
 
 open scoped EuclideanGeometry
@@ -61,6 +62,72 @@ private theorem equidistant_mono
   rcases Finset.mem_filter.mp hx with ⟨hxA, hxdist⟩
   exact Finset.mem_filter.mpr ⟨hAB hxA, hxdist⟩
 
+private theorem sdiff_erase_restored_member_eq_sdiff
+    {X : Type*} [DecidableEq X]
+    (A V : Finset X) {source : X} (hsourceV : source ∈ V) :
+    (A \ (V.erase source)).erase source = A \ V := by
+  ext x
+  by_cases hxs : x = source
+  · subst x
+    simp [hsourceV]
+  · simp [hxs]
+
+/-- If restoring one member of a cardinal-minimal blocking deletion set
+restores a K4, then that witness must use the restored member.  A distinct
+deleted partner at the same radius is therefore a fifth member of the
+ambient radius class. -/
+theorem five_le_selectedClass_of_minimalDeletion_equal_pair
+    {A V : Finset ℝ²} {center source partner : ℝ²}
+    (hVsub : V ⊆ A)
+    (hsourceV : source ∈ V)
+    (hpartnerV : partner ∈ V)
+    (hsourcePartner : source ≠ partner)
+    (hcenterEq : dist center source = dist center partner)
+    (hsurvives :
+      HasNEquidistantPointsAt 4 (A \ (V.erase source)) center)
+    (hblocked : ¬ HasNEquidistantPointsAt 4 (A \ V) center) :
+    5 ≤ (SelectedClass A center (dist center source)).card := by
+  classical
+  rcases exists_selectedClass_card_ge_of_hasNEquidistantPointsAt hsurvives with
+    ⟨radius, hradius, hfour⟩
+  have hsourceClass :
+      source ∈ SelectedClass (A \ (V.erase source)) center radius := by
+    by_contra hsourceNot
+    apply hblocked
+    rw [← sdiff_erase_restored_member_eq_sdiff A V hsourceV]
+    refine ⟨radius, hradius, ?_⟩
+    have hsameCard :
+        (SelectedClass ((A \ (V.erase source)).erase source)
+          center radius).card =
+          (SelectedClass (A \ (V.erase source)) center radius).card :=
+      selectedClass_erase_card_eq_of_not_mem hsourceNot
+    change
+      4 ≤ (SelectedClass ((A \ (V.erase source)).erase source)
+        center radius).card
+    rw [hsameCard]
+    exact hfour
+  have hsourceDist : dist center source = radius :=
+    (mem_selectedClass.mp hsourceClass).2
+  have hpartnerNotClass :
+      partner ∉ SelectedClass (A \ (V.erase source)) center radius := by
+    intro hpartnerClass
+    have hpartnerRestored := (mem_selectedClass.mp hpartnerClass).1
+    exact (Finset.mem_sdiff.mp hpartnerRestored).2
+      (Finset.mem_erase.mpr ⟨hsourcePartner.symm, hpartnerV⟩)
+  have hinsert :
+      insert partner (SelectedClass (A \ (V.erase source)) center radius) ⊆
+        SelectedClass A center (dist center source) := by
+    intro z hz
+    rcases Finset.mem_insert.mp hz with rfl | hzClass
+    · exact mem_selectedClass.mpr
+        ⟨hVsub hpartnerV, hcenterEq.symm⟩
+    · rcases mem_selectedClass.mp hzClass with ⟨hzRestored, hzDist⟩
+      exact mem_selectedClass.mpr
+        ⟨(Finset.mem_sdiff.mp hzRestored).1, hzDist.trans hsourceDist.symm⟩
+  have hcard := Finset.card_le_card hinsert
+  rw [Finset.card_insert_of_notMem hpartnerNotClass] at hcard
+  omega
+
 private theorem selectedFourClass_survives_sdiff_of_disjoint
     {D : CounterexampleData} {center : ℝ²}
     (K L : SelectedFourClass D.A center)
@@ -81,9 +148,9 @@ private theorem selectedFourClass_survives_sdiff_of_disjoint
       exact Finset.disjoint_left.mp hdisjoint (hVsub hxV) hxL
 
 /-- A same-radius pair found by global minimality has a complete
-source-indexed transition.  Besides the two known bisector centers, it
-records survival after deleting either endpoint at the other endpoint's
-actual blocker. -/
+source-indexed transition.  Besides making the fresh center fully
+deletion-robust, it records survival after deleting either endpoint at the
+other endpoint's actual blocker. -/
 structure SameRowMinimalCollisionTransition
     (D : CounterexampleData) (S : SurplusCapPacket D.A)
     (H : CriticalShellSystem D.A)
@@ -97,6 +164,7 @@ structure SameRowMinimalCollisionTransition
   source_mem_row : source ∈ K.support
   partner_mem_row : partner ∈ K.support
   freshCenter_bisects : dist center source = dist center partner
+  freshCenter_robust : FullyDeletionRobustAt D center
   sourceBlocker_survives_partner :
     HasNEquidistantPointsAt 4 (D.A.erase partner)
       (H.centerAt source (K.support_subset_A source_mem_row))
@@ -218,6 +286,18 @@ theorem exists_secondApexRow_minimalDeletionTransition
         H.centerAt partner hpartnerA ≠ center :=
       sourceBlocker_ne_minimalCenter H hpartnerA hpartnerV hsourceV
         hsourcePartner.symm hVminimal
+    have hfive :
+        5 ≤ (SelectedClass D.A center (dist center source)).card :=
+      five_le_selectedClass_of_minimalDeletion_equal_pair
+        (hVsub.trans firstRow.support_subset_A) hsourceV hpartnerV
+        hsourcePartner hcenterEq (hVminimal source hsourceV) hVblocked
+    have hcenterSource : center ≠ source := by
+      intro hcenterSource
+      subst center
+      exact (Finset.mem_sdiff.mp hcenterFresh).2 hsourceRow
+    have hcenterRobust : FullyDeletionRobustAt D center :=
+      fullyDeletionRobustAt_of_five_le_selectedClass
+        (dist_pos.mpr hcenterSource) hfive
     have hsourceTransition :=
       source_blocker_survives_or_eq_known_commonPair_center
         H hsourceA hpartnerA hsourcePartner happA hcenterA
@@ -250,6 +330,7 @@ theorem exists_secondApexRow_minimalDeletionTransition
         source_mem_row := hsourceRow
         partner_mem_row := hpartnerRow
         freshCenter_bisects := hcenterEq
+        freshCenter_robust := hcenterRobust
         sourceBlocker_survives_partner := hsourceSurvives
         partnerBlocker_survives_source := hpartnerSurvives }
     exact ⟨center, hcenterFresh, V, hVne, hVsub, hVblocked,
@@ -275,6 +356,7 @@ theorem exists_secondApexRow_minimalDeletionTransition
         hcenterNe, Or.inr ⟨⟨K⟩, Or.inr ⟨hVtwo, hrobust⟩⟩⟩
 
 #print axioms SameRowMinimalCollisionTransition
+#print axioms five_le_selectedClass_of_minimalDeletion_equal_pair
 #print axioms exists_secondApexRow_minimalDeletionTransition
 
 end ATailRobustTwoRadiusGeometryScratch

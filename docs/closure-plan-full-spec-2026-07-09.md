@@ -187,17 +187,42 @@ are `RobustSecondApexMinimalDeletionCollision`,
 `RobustSecondApexMinimalDeletionInstalledSingleton`.  The adjacent theorem
 `false_of_robustSecondApexMinimalDeletion` is only a motive-valued dispatcher:
 it requires one direct-`False` callback for each output and is not itself a
-closed contradiction.
+closed contradiction.  The multi-core endpoint now also retains the checked
+strict-cap complement bound
+
+```text
+2 * V.card <= (D.A \ S.capByIndex fresh.capIndex).card,
+```
+
+in addition to `4 * V.card <= D.A.card`.  This is a stronger packing boundary,
+not a cardinality contradiction for unbounded carriers.
+
+The mandatory theorem-bank audit in `robust-minimal-consumer-bank/` found no
+complete consumer for any of these endpoints.  One small conditional terminal
+does kernel-check: a same-row collision is false if a third point of the
+physical row lies on the fresh-center collision radius, by
+`eq_of_equidistant_three_noncollinear`.  That third common point is exactly the
+extra premise not produced by the live endpoint.  In particular, a five-point
+fresh radius class does not imply that it meets the physical row in a third
+point.  Treat this theorem as an incompatibility boundary, not as the next
+producer target.
 
 In the two-disjoint-radius subarm, the checked theorem
 `exists_secondApexRow_minimalDeletionTransition` uses the second disjoint row
 essentially to prove that the fresh blocking center differs from the physical
 second apex.  It then returns either a same-row co-radial pair with reciprocal
-actual-blocker deletion survival, or a minimal deletion core; a non-singleton
-core makes the fresh center fully deletion-robust.  This is a genuine global
-transition, but it still needs a cap/MEC-order consumer that eliminates the
-reciprocal collision, consumes the singleton, or prevents robust-center
-iteration without a decreasing invariant.
+actual-blocker deletion survival, or a minimal deletion core.  The collision
+arm is now stronger: restoring either collision endpoint in a cardinal-minimal
+deletion set produces a K4 which must use that endpoint, while the deleted
+co-radial partner is a fifth ambient point.  Therefore the fresh radius class
+has cardinality at least five and the fresh center is fully deletion-robust.
+A non-singleton collision-free core was already known to make the fresh center
+fully deletion-robust from its two disjoint exact shells.  Thus every
+non-singleton outcome advances to a fresh robust center; only the singleton
+core and robust-center iteration remain.  This is a genuine global reduction,
+not a contradiction.  Its next consumer must localize the fresh center and
+produce a strict cap/MEC-order decrease or a finite nonreturn packet; bare
+iteration of `FullyDeletionRobustAt` is not well founded.
 
 In the radius-class-cardinality-at-least-five subarm, the checked theorem
 `nonempty_minimalDeletionOutcome_of_largeSecondApexRadius` chooses two strict
@@ -209,9 +234,19 @@ already-routed cap-five terminal: the surrounding cap still has cardinality
 at least six, so the unused cap point is part of the remaining geometry.  The
 shared-pair outcome retains one fresh exact critical shell through both chosen
 points, both fresh-center deletion failures, and both physical-apex deletion
-survivals.  Its remaining consumers are therefore the existing common-
-deletion continuation, a sixth-cap-point/full-filter consumer for the exact-
-five profile, and a cap-order consumer for the shared critical pair.
+survivals.  The checked follow-up in
+`robust-large-radius-center-localization/` proves that the fresh center lies in
+the same strict `oppCap2` interior as the shared pair and that its exact shell
+meets `oppCap2` in exactly those two points.  Hence the other two shell members
+are outside that cap.  Ordered-cap uniqueness is used essentially for the
+localization, but the result is not itself false: an interior center is allowed
+exactly two same-cap points on one circle.  The remaining consumers are
+therefore the existing common-deletion continuation, a sixth-cap-point/full-
+filter consumer for the exact-five profile, and a cap-order/minimality
+continuation that uses the two outside shell members.  The honest next rank
+question is whether the fresh center lies strictly between the shared pair and
+whether that interval can be made to decrease across the next critical-map
+step; do not replace it with another anonymous incidence scan.
 
 The production interface formerly dropped the required hypothesis:
 `removableVertexOfLarge_of_nonIsM44` constructs `hmin` immediately before its

@@ -95,12 +95,23 @@ Thus `SameRowMinimalCollisionTransition` retains the complete source-indexed
 positive result:
 
 ```text
+FullyDeletionRobustAt D center,
 K4 after deleting t at H.centerAt s,
 K4 after deleting s at H.centerAt t.
 ```
 
+The fresh-center robustness is forced by a general checked cardinal lemma,
+`five_le_selectedClass_of_minimalDeletion_equal_pair`.  The restored K4 must
+use the restored source: otherwise erasing it again would leave the same K4
+after deleting all of `V`, contradicting `hVblocked`.  Its distinct
+equal-radius partner is still deleted from the restored carrier, so the
+ambient class at radius `dist center source` contains the restored four-class
+plus that partner and therefore has cardinality at least five.  The existing
+five-class theorem makes `center` fully deletion-robust.
+
 This is stronger than a bare shared-radius pair and is not an anonymous
-selected-row pattern.
+selected-row pattern.  The reciprocal blocker-survival fields remain
+available as extra structure on the robust-center continuation.
 
 ### No collision
 
@@ -127,14 +138,16 @@ Global minimality does supply information absent from the selected-row and
 cap-capacity abstractions.  The correct cap-at-least-six route is therefore a
 minimal-deletion/critical-map continuation, not another local radius count.
 
-It does **not** yet prove `False`.  The exact remaining consumers are:
+It does **not** yet prove `False`.  Both the collision arm and every
+nontrivial-core arm now advance to a fresh fully deletion-robust center.  The
+exact remaining consumers are:
 
-1. eliminate `SameRowMinimalCollisionTransition`, i.e. a same-row pair with
-   reciprocal actual-blocker deletion survival;
-2. consume the singleton exact-core installation; or
-3. prove that the fresh robust-center continuation cannot iterate or cycle.
+1. consume the singleton exact-core installation; or
+2. prove that the fresh robust-center continuation cannot iterate or cycle,
+   optionally using the reciprocal actual-blocker survival carried by the
+   collision subcase.
 
-The third item needs a monotone cap-order/MEC measure or a finite-orbit
+The second item needs a monotone cap-order/MEC measure or a finite-orbit
 contradiction.  Merely repeating the extractor would move the robust center
 without showing progress.  This is the precise place where cap order should
 enter next.  The checked theorem must not be advertised as closure until one
@@ -181,15 +194,18 @@ failure used by the extractor.
 
 ## Validation
 
-The owned source was compiled as an isolated scratch module against current
-production oleans and the checked scratch dependencies.  The command exited
-successfully and wrote:
+The strengthened owned source was independently compiled as an isolated
+scratch module against current production oleans and the checked scratch
+dependencies.  The command exited successfully and wrote:
 
 ```text
-/private/tmp/p97-robust-two-radius-geometry.olean
+/private/tmp/p97-root-two-radius-strengthened-recheck/RobustTwoRadiusGeometry.olean
 ```
 
-Both printed declarations have axiom closure exactly:
+The downstream `RobustMinimalConsumerBank` adapter was then recompiled
+successfully to
+`/private/tmp/p97-root-robust-minimal-bank-recheck/RobustMinimalConsumerBank.olean`.
+All three printed declarations in the owned source have axiom closure exactly:
 
 ```text
 propext

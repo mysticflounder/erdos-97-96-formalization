@@ -143,6 +143,9 @@ structure RobustSecondApexMinimalDeletionMultiCore
   core : MinimalDeletionCore D.A fresh.deleted fresh.center
   deleted_card_ge_two : 2 ≤ fresh.deleted.card
   shell_packing : 4 * fresh.deleted.card ≤ D.A.card
+  cap_complement_shell_packing :
+    2 * fresh.deleted.card ≤
+      (D.A \ S.capByIndex fresh.capIndex).card
   secondApex_survives_source_deletion :
     ∀ source ∈ fresh.deleted,
       HasNEquidistantPointsAt 4 (D.A.erase source) S.oppApex2
@@ -250,6 +253,11 @@ theorem robustSecondApexMinimalDeletion_reduction
       core := core
       deleted_card_ge_two := htwo
       shell_packing := hpacking
+      cap_complement_shell_packing :=
+        Problem97.ATailGlobalMinimalDeletionCoreScratch.MinimalDeletionCore.two_mul_card_le_capByIndex_complement
+          D S core fresh.capIndex
+            (S.capInteriorByIndex_subset_capByIndex
+              fresh.capIndex fresh.center_mem_capInterior)
       secondApex_survives_source_deletion := by
         intro source hsource
         exact C.secondApex_robust.survives source

@@ -78,7 +78,8 @@ three outcomes.  It does supply useful positive data to each consumer:
   deleting either collision source preserves K4 at `S.oppApex2`;
 - multi-core: every source in the minimal deletion core can be deleted while
   preserving K4 at `S.oppApex2`, alongside its disjoint exact shell at the
-  fresh center and the global packing bound;
+  fresh center, the global packing bound, and the strict-cap complement bound
+  `2 * V.card ≤ (D.A \ S.capByIndex capIndex).card`;
 - installed singleton: the installed fresh blocker and `S.oppApex2` both
   preserve K4 after deleting the same named frontier target.
 
