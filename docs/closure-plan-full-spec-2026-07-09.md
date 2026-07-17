@@ -97,10 +97,13 @@ full parent hypotheses
   |-- exact-five unused critical row
   |     -> actual row has at most one physical strict-cap hit
   |     -> two distinct physical strict-cap points omit that row
-  |     -> two origin-tagged common deletions at one center pair
+  |     -> canonical paired rows share an exact three-point physical core
+  |     -> a third common deletion at the same center pair
   |-- origin-tagged common deletion
   |     + retained source/radius/cap/blocker provenance
-  |     -> named cross-incidence or certified paired progress/nonreturn
+  |     -> actual-critical omission successor at every physical source
+  |     -> finite source-exact omission cycle
+  |     -> named cross-incidence or joint convex/MEC cycle contradiction
   `-- protected original/swapped FA-UNIQ4/FA-UNIQ5 arms
         -> existing protected consumers
   -> assemble false_of_twoLargeCaps_commonCriticalMap
@@ -123,9 +126,30 @@ therefore contradiction-strength, not a producer target. Production
 distinct physical strict-cap deletion sources omitted by the same actual
 critical row and two `CommonDeletionTwoCenterPacket`s at the same actual
 blocker/physical-apex pair. The unused-row API now records
-`criticalRow_eq_selectedAt`. These endpoints have exactly the three core
-axioms. Exact-five is consequently a proved ingress into the origin-tagged
-common-deletion lane, not a separate open producer.
+`criticalRow_eq_selectedAt`. Production
+`ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean` proves that the
+existential packet rows are canonical: both first supports equal the actual
+unused-source support, the physical supports are the two erasures of the
+exact-five class, and their intersection has cardinality three. At least one
+point in that shared three lies outside the actual support, so its deletion
+also preserves K4 at both centers. These endpoints have exactly the three
+core axioms. Exact-five is consequently a proved, renewable ingress into the
+origin-tagged common-deletion lane, not a separate open producer.
+
+Production `ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean` sharpens
+that ingress at every physical strict-cap source. Its actual critical support
+contains at most two physical strict-cap members, while the exact-five class
+contains at least three, so a distinct omitted physical source always exists;
+deleting it preserves K4 at the current source's actual blocker. This is a
+fixed-point-free successor theorem, not descent. The checked exact rational
+finite-metric regression in
+`scratch/atail-force/paired-common-deletion-nonreturn-audit/` retains the
+exact-five class, a total critical map, and both canonical deletion packets
+while realizing `1 -> 2 -> 1` (artifact digest
+`db4d45278e5f412212fbef2f5903959a831ef952434ee892642d7f5f779242aa`).
+It is not a Problem-97 counterexample because it omits the joint Euclidean,
+convex, and MEC realization, but it decisively blocks any local cap-rank or
+geometry-free nonreturn claim.
 
 The paired-packet bank audit found no immediate terminal. Its canonical first
 row is the unused source's actual critical support; its two physical-apex rows
@@ -134,9 +158,13 @@ U5 consumers fix one deleted source, and the paired shared-row consumers are
 nonterminal. The first legitimate next theorem must therefore do one of two
 things while retaining the full origin: use the actual critical row at one of
 the two named deleted sources to force a bank-consumed cross-incidence, or
-prove a paired cap/MEC progress measure that rules out return. Projecting
-either packet to bare physical-apex robustness is redundant and loses the new
-information.
+lift the production successor to a finite physical-class actual-critical
+omission cycle and rule out that same source-exact cycle by jointly consuming
+convex boundary order, MEC/cap placement, and the concrete critical map.
+Separate local-rank and finite-metric arguments both admit wrap, so they may
+not be presented as a combined no-wrap theorem without a source-level bridge.
+Projecting either packet to bare physical-apex robustness is redundant and
+loses the new information.
 
 The legacy
 `DoubleApexOffSurplusSharedRadiusPair` conclusion is an artificial ex-falso
@@ -3589,10 +3617,12 @@ order is:
    relabels are compatibility/legacy wiring only.
 2. **Prove the remaining source-faithful consumer.** On the full current
    parent surface with concrete `Hcritical`, use cap-selected sources rather
-   than the fixed LIVE slots. Exact-five already produces two origin-tagged
-   common deletions at one center pair. Consume that paired packet, and the
-   other origin-tagged common-deletion entries, by a named cross-incidence or
-   certified cap/MEC progress/nonreturn theorem. Do not project them to bare
+   than the fixed LIVE slots. Exact-five already produces canonical renewable
+   common deletions and a fixed-point-free actual-critical omission successor
+   at every physical source. Lift that successor to a source-exact cycle.
+   Consume the cycle, and the other origin-tagged common-deletion entries, by
+   a named cross-incidence or a contradiction which jointly uses the
+   convex/MEC geometry and concrete critical map. Do not project them to bare
    robustness or a generic motive-valued dispatcher.
 3. **Use computation only to discover the theorem.** The reduced three-center
    systems and any CEGAR survivors may identify recurrent equality/order
@@ -3694,12 +3724,12 @@ The reasons are checked and separate:
 The final content theorem remains
 `false_of_twoLargeCaps_commonCriticalMap`, consuming the actual MEC-derived
 cap packet, `hNoM44`, full exact filters, and concrete critical map before the
-LIVE-Q/C slot split.  The exact-five branch now reaches the origin-tagged
-two-source common-deletion surface in production. The remaining theorem-
-discovery target beneath the parent is its provenance-aware named-incidence
-or paired progress/nonreturn consumer, together with the protected unique-arm
-dependencies. Fixed LIVE row slots are compatibility data, not the
-construction surface.
+LIVE-Q/C slot split. The exact-five branch now reaches a canonical renewable
+common-deletion surface and a per-source actual-critical omission successor
+in production. The remaining theorem-discovery target beneath the parent is
+its source-exact omission-cycle named-incidence or joint geometric consumer,
+together with the protected unique-arm dependencies. Fixed LIVE row slots are
+compatibility data, not the construction surface.
 
 Work is decomposed as follows:
 

@@ -5,7 +5,7 @@ Authors: Adam McKenna
 -/
 
 import Erdos9796Proof.P97.ATail.RobustLargeRadius
-import Erdos9796Proof.P97.ATail.LargeCapUniqueFiveLowHit
+import Erdos9796Proof.P97.ATail.LargeCapUniqueFivePhysicalOmissionSuccessor
 
 /-!
 # Reduction of the large-radius shared-pair arm

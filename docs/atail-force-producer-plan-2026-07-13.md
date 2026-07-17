@@ -36,14 +36,18 @@ longer the monolithic theorem-discovery target.  Keep the full parent
 hypotheses. Production now constructs the exact-five source-faithful ingress:
 the unused source's actual row meets the physical strict-cap class at most
 once, so two distinct omitted physical points produce two origin-tagged
-common deletions at the same blocker/physical-apex center pair.
+common deletions at the same blocker/physical-apex center pair. Their stored
+rows are forced to be canonical, and the two physical rows share exactly
+three points; one shared point outside the common actual row supplies a third
+common deletion at the same centers.
 
-The remaining adaptive target is one provenance-aware consumer for this pair
-and the other origin-tagged common-deletion entries. It must produce a named
-actual-row cross-incidence feeding an existing sink, or certified cap/MEC
-progress or nonreturn. Protected original/swapped `FA-UNIQ4/5` remain the
-other dependency. Once those consumers close, assemble the parent `False`
-and bypass the legacy
+The remaining adaptive target is one provenance-aware consumer for this
+renewable source set and the other origin-tagged common-deletion entries. It
+must produce a named actual-row cross-incidence feeding an existing sink, or
+rule out the source-exact omission cycle by jointly consuming the convex/MEC
+geometry and concrete critical map. Protected original/swapped `FA-UNIQ4/5`
+remain the other dependency. Once those consumers close, assemble the parent
+`False` and bypass the legacy
 tree.  The old shared-radius existential is not a producer target:
 `oppCap2_escape_gen` already refutes it, so constructing it is an indirect
 proof of the whole parent contradiction.
@@ -57,18 +61,31 @@ the choice-invariant two-hit packet and its direct `False` theorem.
 deleted sources, physical radius/cap placement, the common actual critical
 row, and the two same-center `CommonDeletionTwoCenterPacket`s. The unused-row
 API also records `criticalRow_eq_selectedAt`. These declarations are
-core-axiom clean and imported by the live U1 target. Exact-five has no
-remaining producer; it now feeds the common-deletion consumer.
+core-axiom clean and imported by the live U1 target.
+`ATail/LargeCapUniqueFiveCommonDeletionNormalForm.lean` additionally proves
+the exact support identities and `exists_third_commonDeletionSource`: the
+shared three-point physical core renews the same common deletion with a third
+source. Exact-five has no remaining producer; it now feeds the
+common-deletion consumer with a canonical renewable packet.
+`ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean` proves the stronger
+source-indexed recurrence statement: every physical strict-cap source has a
+distinct physical source outside its actual critical support, and deleting
+that omitted successor preserves K4 at the source's actual blocker. This is
+the correct positive normal form, but it supplies recurrence rather than a
+well-founded rank.
 
 The bank-reuse audit finds no existing terminal for the paired packet. The
 shared first support is the unused source's actual critical row, while the
 two physical rows are the exact-five class with different named points
 deleted. Current U5 consumers fix one deleted source, and the existing paired
-shared-row audits remain nonterminal. The next theorem must either extract a
-named cross-incidence from the actual critical row at one of those deleted
-sources, or prove a paired well-founded cap/MEC continuation. Do not project
-either packet to bare robustness: exact-five already supplies that fact and
-the projection erases the new coupling.
+shared-row audits remain nonterminal. A pinned exact finite-metric regression
+retains the local exact-five/critical-map semantics and realizes the successor
+cycle `1 -> 2 -> 1`; an independent Euclidean convex/MEC cap regression shows
+that local cap order also permits wrap. The next theorem must therefore either
+extract a named cross-incidence from an actual critical row or couple both
+layers on one source-exact cycle. Do not project either packet to bare
+robustness or claim an anonymous local rank: both erase the load-bearing
+coupling.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -555,13 +572,18 @@ current closure sequence is:
 5. **DONE-PRODUCTION EXACT-FIVE LOW-HIT INGRESS:** the unused cap point's
    actual retained row has at most one physical strict-cap hit. Two distinct
    omitted physical points therefore yield two origin-tagged common deletions
-   at the same blocker/physical-apex center pair.
+   at the same blocker/physical-apex center pair. Their canonical physical
+   rows share exactly three points, one of which yields a third common
+   deletion at the same centers.
 6. **CURRENT COMMON-DELETION CONSUMER:** preserve both deleted sources, the
    physical radius, unused/companion source, actual blocker row, and cap
-   placement instead of projecting to a generic packet. Produce a named
-   actual-row cross-incidence feeding an existing sink, or a certified paired
-   source-faithful rank/nonreturn step. Generic successor iteration is blocked
-   by the exact cycle regression.
+   placement instead of projecting to a generic packet. Production now gives
+   a fixed-point-free actual-critical omission successor at every physical
+   source. Lift it to a finite source-exact cycle, then either produce a named
+   actual-row cross-incidence feeding an existing sink or rule out that same
+   cycle using joint convex/MEC/critical-map data. Generic successor iteration
+   and local rank/nonreturn are blocked by the exact cycle and cap-wrap
+   regressions.
 7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
    packet-polymorphic `FA-UNIQ4` proof and combine the eventual R eliminator
    with the paused `FA-UNIQ4`/`FA-UNIQ5` direct-`False` results.
@@ -2166,10 +2188,11 @@ consume the double-survival arm; those remain the exact coupling fields.
 The final production boundary is no longer the existential shared-radius
 conclusion. It is a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof target beneath it is the origin-tagged common-deletion named-
-incidence or paired progress/nonreturn consumer, together with the protected
-unique-arm dependencies, not a single broad `False` callback. The exact-five
-branch is a proved production ingress to that surface.
+active proof target beneath it is the source-exact actual-critical omission-
+cycle consumer: a named cross-incidence or joint convex/MEC/critical-map
+contradiction, together with the protected unique-arm dependencies, not a
+single broad `False` callback. The exact-five branch is a proved production
+ingress to that surface.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by

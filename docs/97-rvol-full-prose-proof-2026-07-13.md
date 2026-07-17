@@ -672,10 +672,18 @@ source-faithful surfaces plus the protected original/swapped
 `FA-UNIQ4/FA-UNIQ5` consumers. The exact-five ingress is now proved: its
 actual unused-source row has at most one physical strict-cap hit, so two
 distinct omitted physical points give two origin-tagged common deletions at
-the same blocker/physical-apex center pair. The remaining common-deletion
-consumer must retain those two sources, the physical radius, blocker row,
-cap placement, and failed deletions and produce either a named actual-row
-cross-incidence or certified paired cap/MEC progress/nonreturn.
+the same blocker/physical-apex center pair. Their first rows are forced to the
+same actual support, their physical rows are the two exact-five erasures, and
+the shared three-point physical core contains a third common-deletion source.
+At every physical strict-cap source, the actual critical support contains at
+most two physical members, so a distinct omitted source survives deletion at
+that source's actual blocker. The remaining consumer must lift this
+fixed-point-free recurrence to a source-exact cycle, retain the physical
+radius, blocker rows, cap placement, and failed deletions, and produce either
+a named actual-row cross-incidence or a contradiction jointly using the
+convex/MEC geometry and concrete critical map. Local rank/nonreturn is not
+available: exact finite-metric and Euclidean cap regressions permit return in
+the corresponding marginal abstractions.
 
 This keeps the full parent minimality, critical-map, MEC, cap-order, and
 no-`IsM44` hypotheses. It decomposes the proof; it does not weaken the
@@ -746,7 +754,7 @@ chord, and the two-circle reflection argument
 conclusion is unsatisfiable over ℝ², so the existential is an artificial
 ex-falso endpoint. It remains one of the 12 source holes, but it is no longer
 the theorem-discovery target. The closure route derives `False` directly at
-the parent boundary from the provenance-aware common-deletion consumer and
+the parent boundary from the source-exact omission-cycle consumer and
 protected unique arms above, then
 deletes or trivializes this compatibility chain.
 
@@ -794,9 +802,9 @@ contradictory.
 
 With the t₂ = t₂₀ branch and the T1/T3 orbit both blocked only on V.2, the
 literal open source inventory is **V.2, LIVE-Q, and LIVE-C**. The active
-mathematical content is instead the provenance-aware common-deletion consumer
-and the protected unique-arm consumers described at the start of Part V; the
-exact-five low-hit ingress to that consumer is proved.
+mathematical content is instead the source-exact omission-cycle consumer and
+the protected unique-arm consumers described at the start of Part V; the
+exact-five renewal and per-source successor ingress is proved.
 
 ---
 
@@ -840,10 +848,10 @@ row must (or does) discharge.
 | O14 | Card-11 slice | open scope gate | O20 should be uniform from card 11. Any higher-cardinality theorem must carry the missing lower-cardinality consumer in the same plan. |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
-| O17 | Exact-five low-hit reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row; production `nonempty_twoCommonDeletionSources_of_largeCapUniqueFive` turns their deletions into two origin-tagged common-deletion packets at the same actual blocker/physical-apex center pair. The row-coherence and reduction theorems use only the three core axioms. |
-| O18 | Origin-tagged common-deletion progress | open | Retaining both deleted sources, the selected companion or unused source, physical radius, blocker rows, cap placement, and failed deletions yields a named actual-row cross-incidence or certified paired cap/MEC rank/nonreturn progress. Generic unranked successor iteration is excluded by the exact cycle regression. No current bank consumes the exact-five two-source pair. |
+| O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. The row-coherence, normalization, renewal, and per-source successor theorems use only the three core axioms. |
+| O18 | Source-exact omission-cycle consumer | open | Lift the proved fixed-point-free successor to a finite cycle retaining each physical source and its actual blocker row. Then either extract a named cross-incidence consumed by an existing sink or contradict that same cycle using joint convex boundary order, MEC/cap placement, and the concrete critical map. A pinned exact finite-metric model admits `1 -> 2 -> 1`, while a separate Euclidean convex/MEC cap model admits local rank wrap; therefore anonymous iteration, marginal cap ranks, and geometry-free nonreturn are blocked. No current bank consumes this coupled cycle surface. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
-| O20 | Parent direct-`False` assembler | blocked (O18–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from the O18 provenance-aware common-deletion consumer and O19 protected unique arms under the full parent hypotheses, and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
+| O20 | Parent direct-`False` assembler | blocked (O18–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from the O18 source-exact omission-cycle consumer and O19 protected unique arms under the full parent hypotheses, and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
 
 The literal source holes are O10, O11, and O13. The active closure work is
 O18–O19, with O14 as its cardinality-scope gate and O20 as routine final
@@ -873,7 +881,7 @@ Conditionally: if the obligations of Part V are discharged, then
 `Lean.trustCompiler`}.
 
 Nothing stronger is claimed. The 12 current source declarations remain open;
-the provenance-aware common-deletion consumer and protected unique arms have
+the source-exact omission-cycle consumer and protected unique arms have
 not yet been proved.
 
 ---
