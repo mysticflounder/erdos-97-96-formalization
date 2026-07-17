@@ -3179,6 +3179,32 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 18,
     },
+    # 555 iter-105 witness 0f697c99 (135,986 nodes, caps=14; sources
+    # (6,7), inline CROSSCHECKED_UNIT — eighth consecutive
+    # unit-track 555 witness, node climb 79k -> 100k -> 117k ->
+    # 123k -> 136k): system_unit_recheck.py 900 s deletion retained
+    # 7 rows / 21 equalities (deletion verdicts 5 UNIT / 5 TIMEOUT
+    # fail-closed / 2 NONUNIT, card-five row dropped), retained core
+    # CROSSCHECKED_UNIT (Singular + msolve fwd/rev) on this literal
+    # row set; NOT a transposition image (checker-verified) despite
+    # kin 6 with unit-core-555-83 (rows 0, 2, 6, 7, 9, 10 — only
+    # row 11 differs: {0,2,4,6} here vs {0,1,4,6} there, and no
+    # label swap produces it without disturbing rows 0/2); ONE new
+    # support 11:{0,2,4,6}; non-Moser row 0:{1,2,3,5} in ten
+    # consecutive 555 unit admissions (555-80..-89).
+    {
+        "id": "unit-core-555-89",
+        "rows": {
+            0: frozenset({1, 2, 3, 5}),
+            2: frozenset({0, 1, 9, 10}),
+            6: frozenset({4, 5, 7, 9}),
+            7: frozenset({0, 5, 8, 11}),
+            9: frozenset({0, 3, 7, 10}),
+            10: frozenset({3, 6, 9, 11}),
+            11: frozenset({0, 2, 4, 6}),
+        },
+        "equality_count": 21,
+    },
     {
         "id": "unit-core-654-02",
         "rows": {
