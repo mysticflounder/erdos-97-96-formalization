@@ -1,4 +1,4 @@
-# ATAIL-FORCE parent robust-contradiction plan (2026-07-13, refreshed 2026-07-16)
+# ATAIL-FORCE parent robust-contradiction plan (2026-07-13, refreshed 2026-07-17)
 
 ## Status and lane authorization
 
@@ -28,7 +28,7 @@ per-artifact permission. It does not transfer ownership of the separately
 worked Route-B/LIVE-T1 source and does not authorize destructive or unrelated
 external actions.
 
-### Authoritative strategy correction, 2026-07-16
+### Authoritative strategy correction, 2026-07-17
 
 The parent theorem `false_of_twoLargeCaps_commonCriticalMap`, called before
 the LIVE-Q/C slot split, is the final assembler and wiring boundary.  It is no
@@ -41,12 +41,13 @@ rows are forced to be canonical, and the two physical rows share exactly
 three points; one shared point outside the common actual row supplies a third
 common deletion at the same centers.
 
-The remaining adaptive target is one provenance-aware consumer for this
-renewable source set and the other origin-tagged common-deletion entries. It
-must produce a named actual-row cross-incidence feeding an existing sink, or
-rule out the source-exact omission cycle by jointly consuming the convex/MEC
-geometry and concrete critical map. Protected original/swapped `FA-UNIQ4/5`
-remain the other dependency. Once those consumers close, assemble the parent
+The remaining adaptive target is one frontier-coupled theorem with two exact
+subarm consumers: a repeated outside-cap pair or equivalent U5 alignment in
+the reverse period-three-through-five arm, and an ordered-cap/MEC elimination
+of the one-exception blocker residual in the mutual arm. The explicit
+non-cycle common-deletion entries retain their own provenance-aware consumer.
+Protected original/swapped `FA-UNIQ4/5` remain the other dependency. Once
+those consumers close, assemble the parent
 `False` and bypass the legacy
 tree.  The old shared-radius existential is not a producer target:
 `oppCap2_escape_gen` already refutes it, so constructing it is an indirect
@@ -96,15 +97,41 @@ layers on the production source-exact cycle. Do not project the packet to bare
 robustness, restart minimality/descent, or claim an anonymous local rank: each
 erases or contradicts the load-bearing coupling.
 
-The exact next theorem is
-`false_of_physicalActualCriticalOmissionCycle`. Its immediate producer is
-already `nonempty_physicalActualCriticalOmissionCycle`. The production
-decomposition `nonempty_mutualOmissionEdge_or_all_reverseMembership` splits
-the proof into one mutually omitted edge or reverse-positive incidence on
-every edge. The first arm needs geometry beyond the exact finite critical-map
-regression; the second needs global K4/critical-map content beyond the exact
-Euclidean cap-local directed-bisector regression. This is the only active
-exact-five theorem-discovery surface.
+The exact next theorem is the frontier-coupled consumer
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. The
+kernel-checked adapter
+`scratch/atail-force/physical-omission-cycle-parent-adapter/` retains the same
+concrete `H`, the full first-apex frontier, the origin-tagged two-source
+continuation, `minimal`, `noM44`, the six-point physical cap, the parent radius
+identity, and the production cycle. A bare
+`false_of_physicalActualCriticalOmissionCycle K` would be a sufficient stronger
+shortcut, but is no longer the plan interface. The production decomposition
+`nonempty_mutualOmissionEdge_or_all_reverseMembership` splits the proof into
+one mutually omitted edge or reverse-positive incidence on every edge. The
+cycle constructor is now source-anchored, and the adapter starts its transition
+orbit at the continuation's first origin-tagged deletion source.
+
+The two arms are no longer undifferentiated research surfaces. In the mutual
+arm, checked scratch constructs the two crossed common-deletion packets and
+proves that all actual blockers preserve at least one deletion except possibly
+one double-blocking center; that exceptional center has only off-cap sources
+and source-fiber cardinality at most two. The missing consumer is an
+ordered-cap/MEC coupling from the remaining many cross-surviving centers to a
+shared pair or named row incidence. In the reverse arm, period two is excluded,
+so the period is three through five. Every edge row contains its adjacent
+physical pair and exactly two outside-cap points, and the existing cap-order
+terminal closes if two distinct rows repeat that outside pair. The missing
+producer is exactly that outside-pair collision, or a source-faithful U5
+dangerous-row alignment yielding an existing sink. The pinned finite and exact
+Euclidean regressions show that neither arm's local normal form alone is
+contradictory; both consumers must use global parent/frontier data.
+
+This reduction covers only the oriented subarm with
+`6 ≤ S.oppCap2.card` and a positive physical-apex radius class of cardinality
+at least five. The current U1 leaf does not yet derive that ingress from the
+unoriented second-large-cap hypothesis. The parent must either construct it or
+route the oriented-five / radius-card-four complement to the checked
+small-card/protected unique consumers.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -594,17 +621,21 @@ current closure sequence is:
    at the same blocker/physical-apex center pair. Their canonical physical
    rows share exactly three points, one of which yields a third common
    deletion at the same centers.
-6. **DONE-PRODUCTION SOURCE-EXACT CYCLE; CURRENT GEOMETRIC CONSUMER:** preserve both deleted sources, the
+6. **DONE-PRODUCTION SOURCE-EXACT CYCLE; CURRENT FRONTIER-COUPLED GEOMETRIC CONSUMER:** preserve both deleted sources, the
    physical radius, unused/companion source, actual blocker row, and cap
    placement instead of projecting to a generic packet. Production now gives
    the fixed-point-free actual-critical omission successor and its canonical
    period-two-through-five source-exact cycle and its mutual-omission versus
    all-reverse-positive split. Prove
-   `false_of_physicalActualCriticalOmissionCycle`, using a named actual-row
-   cross-incidence feeding an existing sink or a direct joint
-   convex/MEC/critical-map contradiction. Generic successor iteration, cumulative
-   minimality, actual-blocker-cycle reuse, and local rank/nonreturn are blocked
-   by the checked audits and regressions.
+   `false_of_frontierCoupledExactFivePhysicalCycleParentResidual`, using the
+   retained parent/frontier data. In the reverse period-three-through-five arm,
+   force a repeated outside-cap pair (or equivalent U5 alignment). In the
+   mutual arm, eliminate the at-most-two-source off-cap exceptional blocker
+   fiber left after the crossed common-deletion/global-survival classifier.
+   Feed the resulting named incidence to an existing sink or prove the direct
+   joint convex/MEC/critical-map contradiction. Generic successor iteration, cumulative minimality,
+   actual-blocker-cycle reuse, and local rank/nonreturn are blocked by the
+   checked audits and regressions. Keep the common-deletion sibling explicit.
 7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
    packet-polymorphic `FA-UNIQ4` proof and combine the eventual R eliminator
    with the paused `FA-UNIQ4`/`FA-UNIQ5` direct-`False` results.
@@ -2209,11 +2240,13 @@ consume the double-survival arm; those remain the exact coupling fields.
 The final production boundary is no longer the existential shared-radius
 conclusion. It is a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof target beneath it is the source-exact actual-critical omission-
-cycle consumer: a named cross-incidence or joint convex/MEC/critical-map
-contradiction, together with the protected unique-arm dependencies, not a
-single broad `False` callback. The exact-five branch is a proved production
-ingress to that surface.
+active proof target beneath it is the frontier-coupled exact-five physical
+cycle residual: a named cross-incidence or joint convex/MEC/critical-map
+contradiction using the retained parent/frontier fields, together with the
+protected unique-arm dependencies, not a bare cycle-only `False` callback. The
+exact-five branch is a proved production ingress once the oriented six-point
+cap / five-point physical-radius-class gate is available; the current U1 leaf
+still needs an exhaustive producer-or-complement split for that gate.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by

@@ -514,22 +514,37 @@ private theorem exists_reachable_nontrivial_minimalCycle
     exact ⟨n, by simpa [q] using (show 2 ≤ Function.minimalPeriod f q by omega)⟩
 
 /-- The production exact-five omission successor yields a genuine
-source-exact actual-critical omission cycle of period two through five. -/
-theorem nonempty_physicalActualCriticalOmissionCycle
+source-exact actual-critical omission cycle of period two through five whose
+chosen transition orbit starts at the prescribed physical source.  The
+eventual cycle base may occur later on that orbit; retaining `start` preserves
+the source provenance needed by parent-level consumers. -/
+theorem nonempty_physicalActualCriticalOmissionCycle_from_start
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     (H : CriticalShellSystem D.A)
-    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
-    Nonempty (PhysicalActualCriticalOmissionCycle H profile) := by
+    (profile : LargeCapUniqueFiveSecondApexRadius D S)
+    (start : PhysicalVertex profile) :
+    ∃ K : PhysicalActualCriticalOmissionCycle H profile, K.start = start := by
   rcases nonempty_physicalActualCriticalOmissionTransition H profile with
     ⟨transition⟩
-  rcases physicalVertex_nonempty profile with ⟨start⟩
   rcases exists_reachable_nontrivial_minimalCycle transition.successor
       transition.successor_ne start with ⟨entryTime, hperiod⟩
   exact ⟨{
     transition := transition
     start := start
     entryTime := entryTime
-    period_two_le := hperiod }⟩
+    period_two_le := hperiod }, rfl⟩
+
+/-- The production exact-five omission successor yields a genuine
+source-exact actual-critical omission cycle of period two through five. -/
+theorem nonempty_physicalActualCriticalOmissionCycle
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    (H : CriticalShellSystem D.A)
+    (profile : LargeCapUniqueFiveSecondApexRadius D S) :
+    Nonempty (PhysicalActualCriticalOmissionCycle H profile) := by
+  rcases physicalVertex_nonempty profile with ⟨start⟩
+  rcases nonempty_physicalActualCriticalOmissionCycle_from_start H profile start with
+    ⟨K, -⟩
+  exact ⟨K⟩
 
 #print axioms physicalVertices_card_ge_three
 #print axioms nonempty_physicalActualCriticalOmissionTransition
@@ -541,6 +556,7 @@ theorem nonempty_physicalActualCriticalOmissionCycle
 #print axioms PhysicalActualCriticalOmissionCycle.period_le_five
 #print axioms PhysicalActualCriticalMutualOmissionEdge.reverse_deletion_survives_actualBlocker
 #print axioms nonempty_mutualOmissionEdge_or_all_reverseMembership
+#print axioms nonempty_physicalActualCriticalOmissionCycle_from_start
 #print axioms nonempty_physicalActualCriticalOmissionCycle
 
 end

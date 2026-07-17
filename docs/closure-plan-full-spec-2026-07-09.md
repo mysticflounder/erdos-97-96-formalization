@@ -77,7 +77,7 @@ until the parent contradiction is called before their slot split and
 reference mining proves that the old tree is dead or leaves sorry-free
 compatibility wrappers.
 
-## Current Front-A closure strategy (refreshed 2026-07-16)
+## Current Front-A closure strategy (refreshed 2026-07-17)
 
 The final assembly and insertion point remains the parent contradiction
 
@@ -94,6 +94,8 @@ consumed immediately:
 
 ```text
 full parent hypotheses
+  |-- orient six-point physical cap + five-point radius class
+  |     or route the oriented-five / radius-card-four complement
   |-- exact-five unused critical row
   |     -> actual row has at most one physical strict-cap hit
   |     -> two distinct physical strict-cap points omit that row
@@ -102,8 +104,10 @@ full parent hypotheses
   |-- origin-tagged common deletion
   |     + retained source/radius/cap/blocker provenance
   |     -> actual-critical omission successor at every physical source
-  |     -> finite source-exact omission cycle
-  |     -> named cross-incidence or joint convex/MEC cycle contradiction
+  |     -> source-anchored finite omission cycle
+  |        |-- reverse, period 3..5 -> repeated outside pair / U5 alignment
+  |        `-- mutual omission -> eliminate one off-cap exceptional fiber
+  |-- explicit non-cycle common-deletion sibling -> provenance-aware consumer
   `-- protected original/swapped FA-UNIQ4/FA-UNIQ5 arms
         -> existing protected consumers
   -> assemble false_of_twoLargeCaps_commonCriticalMap
@@ -114,7 +118,7 @@ do not drop `D.Minimal`, MEC/cap order, `hNoM44`, the complete radius filters,
 or the concrete critical map.  A producer counts only when its packet is
 source-realizable and feeds a checked contradiction or progress consumer.
 
-Production checkpoint, 2026-07-16: the source-independent localization
+Production checkpoint, 2026-07-17: the source-independent localization
 `commonPhysicalPair_center_mem_secondCapInterior` now lives in
 `ATail/TwoCenterCapLocalization.lean`, and the choice-invariant packet
 `LargeCapUniqueFiveTwoHitCriticalRow` plus terminal
@@ -145,7 +149,10 @@ fixed-point-free successor theorem, not descent. Production
 `ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean` now normalizes one such
 total transition to an injective cycle of period two through five and retains
 the source, actual blocker row, omission, deletion survival, physical radius,
-and strict-cap placement on every edge. The checked exact rational
+and strict-cap placement on every edge. Its source-anchored constructor now
+starts the transition orbit at a prescribed physical point; the parent adapter
+uses the first origin-tagged common-deletion source, so that provenance is no
+longer discarded before the eventual periodic base. The checked exact rational
 finite-metric regression in
 `scratch/atail-force/paired-common-deletion-nonreturn-audit/` retains the
 exact-five class, a total critical map, and both canonical deletion packets
@@ -159,15 +166,37 @@ The paired-packet bank audit found no immediate terminal. Its canonical first
 row is the unused source's actual critical support; its two physical-apex rows
 come from deleting the two named points from the exact-five class. Existing
 U5 consumers fix one deleted source, and the paired shared-row consumers are
-nonterminal. The first legitimate next theorem is now exactly
-`false_of_physicalActualCriticalOmissionCycle`. Use the production
-mutual-omission versus all-reverse-positive split, then force a bank-consumed
-cross-incidence or rule out that same source-exact cycle by jointly consuming
-global K4, convex boundary order, MEC/cap placement, and the concrete critical
-map. Separate local-rank, finite-metric, cap-local bisector, cumulative
-minimality, and blocker-cycle arguments all fail their recorded regression
-gates. Projecting either packet to bare physical-apex robustness is redundant
-and loses the new information.
+nonterminal. The first legitimate next theorem is the frontier-coupled
+exact-five consumer, provisionally
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. Its input must
+retain the complete `RobustLargeRadiusParentSurface`, reconstructed
+`CriticalPairFrontier`, two-source common-deletion continuation, and production
+cycle, all indexed by the same `H`. Use the production mutual-omission versus
+all-reverse-positive split, then force a bank-consumed cross-incidence or rule
+out that same source-exact cycle by jointly consuming global K4, convex
+boundary order, MEC/cap placement, and the concrete critical map. A bare
+`false_of_physicalActualCriticalOmissionCycle K` remains a sufficient stronger
+shortcut, but it is not the official target because it discards `minimal`,
+`noM44`, the oriented six-point cap, the parent radius identity, the frontier,
+and the origin-tagged continuation. Separate local-rank, finite-metric,
+cap-local bisector, cumulative minimality, and blocker-cycle arguments all fail
+their recorded regression gates.
+
+Both arms now have checked source-faithful normal forms. In the all-reverse
+arm, period two is impossible, hence the period is three through five; every
+edge row is the adjacent physical pair plus exactly two points outside the
+physical cap, and every deletion source is critical at two distinct actual
+centers. The existing ordered-cap terminal closes immediately if two distinct
+edge rows repeat their outside pair. Thus the narrow producer for this arm is
+an outside-pair collision, or an equivalent U5 dangerous-row alignment, from
+the retained global parent/frontier data. In the mutual-omission arm the two
+crossed common-deletion packets are canonical. All actual blockers preserve at
+least one of their two deletions except possibly one double-blocking center;
+that center is sourced only outside the physical cap and its source fiber has
+cardinality at most two. The narrow producer there is an ordered-cap/MEC
+coupling from the many cross-surviving blocker centers to a shared-pair or
+named-row incidence. The pinned finite critical-map regression realizes this
+one-exception normal form, so its classifier alone is not a contradiction.
 
 The legacy
 `DoubleApexOffSurplusSharedRadiusPair` conclusion is an artificial ex-falso
@@ -3749,15 +3778,30 @@ source. These objects must not be conflated. Do not schedule another
 minimality/descent lemma or blocker-cycle adapter for this branch.
 
 The exact next content theorem is
-`false_of_physicalActualCriticalOmissionCycle`. Its input is the production
-cycle itself and its consumer is immediate from
-`nonempty_physicalActualCriticalOmissionCycle`. Internally, use the checked
-exhaustive split `nonempty_mutualOmissionEdge_or_all_reverseMembership`:
-either one edge is omitted in both actual rows, or every successor row contains
-the preceding source. The mutual-omission arm must add global geometric force
-beyond the exact finite critical-map model; the reverse-positive arm must add
-global K4/critical-map force beyond the exact Euclidean cap-local directed
-bisector regression. Neither arm licenses another anonymous row miner.
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual`. The
+kernel-checked adapter in
+`scratch/atail-force/physical-omission-cycle-parent-adapter/` constructs its
+residual from the exact-five constructor while retaining the full parent
+surface and the same concrete `H`. Internally, use the checked exhaustive split
+`nonempty_mutualOmissionEdge_or_all_reverseMembership`: either one edge is
+omitted in both actual rows, or every successor row contains the preceding
+source. The mutual arm is reduced to two crossed common-deletion packets and
+an at-most-two-source off-cap exceptional blocker fiber; eliminate that
+one-exception residual using ordered-cap/MEC coupling. The reverse arm has
+period three through five and exactly two outside-cap support points per edge;
+force two distinct rows to repeat that outside pair, or supply the equivalent
+bank-consumed U5 alignment. Both producers must use the retained global
+parent/frontier fields. Neither arm licenses another anonymous row miner.
+
+The same adapter also fixes the ingress scope. This reduction applies to the
+oriented large-physical-radius subarm with
+`6 ≤ S.oppCap2.card` and a positive `S.oppApex2` radius class of cardinality at
+least five. The current two-large-cap leaf does not derive those fields merely
+from `j ≠ i`, `5 ≤ (CP.capAt j).card`, and global K4. The parent assembler must
+therefore produce this ingress or route the oriented-five / radius-card-four
+complement to the protected small-card or unique-arm consumers. Do not present
+the cycle reduction as exhaustive for every two-large-cap leaf until that
+split is checked.
 
 Work is decomposed as follows:
 
