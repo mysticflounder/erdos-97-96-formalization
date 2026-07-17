@@ -4368,6 +4368,29 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 22,
     },
+    # 654 iteration-109 witness 65bc7190… admitted 2026-07-17: unit
+    # track returns after five NONUNIT iters 104-108 (witness at
+    # 8,464,901 nodes caps=1); inline UNIT, recheck CROSSCHECKED_UNIT;
+    # retained 6-row / 19-equality core CROSSCHECKED_UNIT x3; deletion
+    # verdicts 6 UNIT / 6 TIMEOUT fail-closed / 0 NONUNIT. Not a
+    # transposition image; kin 3 (654u-48 rows 1, 10, 11). Row
+    # 7:{1,3,6,8} is a BANK-NEW support — third bank-new support of
+    # the band segment (654u-48 pair, fp-654-71's {2,3,6,8});
+    # 6:{2,3,7,10} a center-shift (support in fp-654-03); 9:{2,3,5,11}
+    # previously fp-654-10 only, first unit-core appearance. Row
+    # 1:{0,3,7,8,9} eighteenth banked appearance.
+    {
+        "id": "unit-core-654-49",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            6: frozenset({2, 3, 7, 10}),
+            7: frozenset({1, 3, 6, 8}),
+            9: frozenset({2, 3, 5, 11}),
+            10: frozenset({1, 2, 4, 9}),
+            11: frozenset({5, 6, 9, 10}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
