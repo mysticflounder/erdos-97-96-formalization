@@ -1370,6 +1370,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-106 witness admitted 2026-07-17: third
+    # consecutive NONUNIT iteration (8,077,251 nodes caps=1);
+    # inline NONUNIT x3; certified by membership_crosscheck.py
+    # --pair 7 8 --radical-only --core at the production order;
+    # its retained 7-row deletion core (6 deletion timeouts
+    # fail-closed) is forced-pair-core-654-71, carrying the
+    # BANK-NEW support {2,3,6,8} at center 7.
+    "41ca051b6a210df363a0f7a1dbb8f8b1764e05cf90022da1a32a934170b5cf7e": {
+        "equality_sha256":
+            "932ba89ae13d944d6a3337bef0adbb25ee20ff48659b2e6d340e8c8374699e5a",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6482,6 +6497,34 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({0, 1, 4, 6}),
         },
         "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-106 witness 41ca051b… admitted 2026-07-17:
+    # 7-row / 22-equality retained core forcing pair (7,8) with rows
+    # centered at both pair members retained (witness at 8,077,251
+    # nodes caps=1; third consecutive NONUNIT iteration); inline
+    # NONUNIT x3; cert passed at the production order; Rabinowitsch
+    # UNIT x3 on full system and retained core; deletion verdicts
+    # 5 UNIT / 6 TIMEOUT fail-closed / 1 NONUNIT — witness rows
+    # 0, 2, 3, 4, 5 dropped. Not a transposition image; kin <=2
+    # (breakout core). Row 7:{2,3,6,8} is a BANK-NEW support;
+    # 6:{2,4,8,10} previously fp-555-only (fp-555-12/-13), first
+    # 654 appearance; row 1:{0,3,7,8,9} seventeenth banked
+    # appearance; row 10:{1,2,5,9} in three consecutive fp
+    # admissions (fp-654-69/-70/-71).
+    {
+        "id": "forced-pair-core-654-71",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            6: frozenset({2, 4, 8, 10}),
+            7: frozenset({2, 3, 6, 8}),
+            8: frozenset({3, 5, 9, 10}),
+            9: frozenset({0, 5, 6, 8}),
+            10: frozenset({1, 2, 5, 9}),
+            11: frozenset({1, 6, 7, 10}),
+        },
+        "equality_count": 22,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
