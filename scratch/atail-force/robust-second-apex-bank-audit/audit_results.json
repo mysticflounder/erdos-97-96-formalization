@@ -1,0 +1,151 @@
+{
+  "cap_card_threshold_audit": [
+    {
+      "carrier_card": 14,
+      "disjoint_four_support_pair_count": 0,
+      "every_four_contains_strict_opposite": true,
+      "first_disjoint_four_support_pair": null,
+      "first_five_support": null,
+      "h1_admissible_five_support_count": 0,
+      "h1_admissible_four_support_count": 28,
+      "opposite_closed_cap_card": 4,
+      "profile": [8, 4, 5],
+      "strict_opposite_card": 2
+    },
+    {
+      "carrier_card": 15,
+      "disjoint_four_support_pair_count": 0,
+      "every_four_contains_strict_opposite": false,
+      "first_disjoint_four_support_pair": null,
+      "first_five_support": [0, 2, 9, 10, 11],
+      "h1_admissible_five_support_count": 28,
+      "h1_admissible_four_support_count": 95,
+      "opposite_closed_cap_card": 5,
+      "profile": [8, 5, 5],
+      "strict_opposite_card": 3
+    },
+    {
+      "carrier_card": 16,
+      "disjoint_four_support_pair_count": 1512,
+      "every_four_contains_strict_opposite": false,
+      "first_disjoint_four_support_pair": [[0, 2, 9, 10], [3, 11, 12, 13]],
+      "first_five_support": [0, 2, 9, 10, 11],
+      "h1_admissible_five_support_count": 123,
+      "h1_admissible_four_support_count": 213,
+      "opposite_closed_cap_card": 6,
+      "profile": [8, 6, 5],
+      "strict_opposite_card": 4
+    },
+    {
+      "carrier_card": 17,
+      "disjoint_four_support_pair_count": 10080,
+      "every_four_contains_strict_opposite": false,
+      "first_disjoint_four_support_pair": [[0, 2, 9, 10], [3, 11, 12, 13]],
+      "first_five_support": [0, 2, 9, 10, 11],
+      "h1_admissible_five_support_count": 336,
+      "h1_admissible_four_support_count": 395,
+      "opposite_closed_cap_card": 7,
+      "profile": [8, 7, 5],
+      "strict_opposite_card": 5
+    },
+    {
+      "carrier_card": 18,
+      "disjoint_four_support_pair_count": 39320,
+      "every_four_contains_strict_opposite": false,
+      "first_disjoint_four_support_pair": [[0, 2, 9, 10], [3, 11, 12, 13]],
+      "first_five_support": [0, 2, 9, 10, 11],
+      "h1_admissible_five_support_count": 731,
+      "h1_admissible_four_support_count": 655,
+      "opposite_closed_cap_card": 8,
+      "profile": [8, 8, 5],
+      "strict_opposite_card": 6
+    }
+  ],
+  "checkpoint": "scratch/atail-force/robust-all-center-marco/bank_cegar_checkpoint.json",
+  "checkpoint_sha256": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+  "corrected_shadow_count": 101,
+  "corrected_survivor_row_hashes_sha256": "ae2540e6a4992be196e7f46d6278bc6930d4909105c14098ea812e91ce6309a1",
+  "epistemic_status": {
+    "finite_endpoint": "EXHAUSTIVE_EXACT_WITHIN_H1_CAP_PROFILE_(8,4,5)",
+    "kalmanson": "CURRENT_FORMALIZED_MATCHER_AND_ORDINAL_CLOSURE_REPLAY;_NO_LIVE_COVERAGE_THEOREM",
+    "not_claimed": "EUCLIDEAN_REALIZABILITY_OR_GENERAL_CARDINALITY_CLOSURE",
+    "stored_shadow_replay": "EXHAUSTIVE_OVER_PINNED_CORRECTED_101_SHADOWS"
+  },
+  "fixed_surface": {
+    "carrier_card": 14,
+    "fixed_second_apex_support": ["O", "C", "G", "K"],
+    "hull_order": ["O", "t1", "I", "F", "A", "X", "Y", "Z", "D", "J", "E", "C", "G", "K"],
+    "opposite_closed_cap": ["O", "C", "G", "K"],
+    "physical_second_apex": "A",
+    "profile_in_census_roles": [8, 4, 5],
+    "strict_opposite_cap": ["G", "K"]
+  },
+  "interpretation": {
+    "decisive_profile_local_fact": "the cap-one-hit constraints already exclude both exact causes of full deletion robustness when oppCap2.card=4",
+    "kalmanson_role": "all 101 stored full-row completions currently have an ordinal cycle, but the fixed parent-local rows have none; those sampled full-row hits are not a robust-endpoint coverage proof",
+    "minimal_missing_antecedent_for_bank_lift": "S.oppCap2.card=4, or a parent split that routes cap 5 to the unique-five consumer and cap >= 6 to a separate residual",
+    "sharpness": "the H1 abstraction admits a five-point radius starting at cap 5 and two disjoint four-radii starting at cap 6"
+  },
+  "kalmanson_replay": {
+    "current_bank_stage_histogram": {
+      "equality-convex-eight-point-five-row-circle-intersection-order": 20,
+      "equality-convex-eight-point-five-row-circle-intersection-order-reverse": 19,
+      "equality-convex-five-point": 64,
+      "equality-convex-five-point-reverse": 65,
+      "equality-convex-five-point-three-selected-row-kalmanson": 101,
+      "equality-convex-four-point-two-circle-bisector-order": 89,
+      "equality-convex-four-point-two-circle-bisector-order-reverse": 89,
+      "equality-convex-nested-equal-chords": 43,
+      "equality-convex-rhombus-equilateral": 16,
+      "equality-convex-rhombus-equilateral-reverse": 16,
+      "equality-convex-seven-point-split-bridge-order-reverse": 1,
+      "equality-convex-six-point-nested-center-order": 1,
+      "equality-convex-six-point-nested-center-order-reverse": 6,
+      "equality-convex-six-point-two-circle-arc-overtake-order": 9,
+      "equality-convex-six-point-two-circle-arc-overtake-order-reverse": 19,
+      "equality-convex-six-point-two-circle-order": 19,
+      "equality-convex-six-point-two-circle-order-reverse": 14,
+      "equality-duplicate-center": 54,
+      "equality-eight-point-five-circle-collision": 11,
+      "equality-equal-k4": 4,
+      "equality-equilateral-bisector-collision": 25,
+      "equality-exact-off-circle": 16,
+      "equality-perpendicular-bisector-convex": 74,
+      "equality-seven-point-circle-network-collision": 4,
+      "equality-seven-point-five-circle-collision": 12,
+      "equality-seven-point-orbit-collision": 4,
+      "equality-seven-point-six-circle-collision": 11,
+      "equality-seven-point-six-circle-collision-b": 4,
+      "equality-seven-point-twin-four-circle-collision": 4,
+      "equality-six-point-circle-chain-collision": 17,
+      "equality-six-point-five-circle-collision-a": 11,
+      "equality-six-point-five-circle-collision-b": 11,
+      "equality-six-point-five-circle-collision-c": 5,
+      "equality-six-row-anchor-collision": 5,
+      "equality-surplus-source-collision": 4,
+      "equality-three-triad-collision": 10
+    },
+    "fixed_parent_local_ordinal_cycle_count": 0,
+    "fixed_parent_local_shortest_cycle_length_histogram": {},
+    "full_shadow_current_bank_match_count": 101,
+    "full_shadow_direct_kalmanson_match_count": 101,
+    "full_shadow_ordinal_cycle_count": 101,
+    "full_shadow_shortest_cycle_length_histogram": {"1": 89, "2": 12}
+  },
+  "robust_radius_normal_form_audit": {
+    "admissible_five_support_count": 0,
+    "admissible_second_apex_four_support_count": 28,
+    "certificate_schema": "every K4 radius contains both strict opposite-cap points G,K; an exact radius class has card at most four",
+    "disjoint_admissible_four_support_pair_count": 0,
+    "every_admissible_four_support_contains_strict_opposite_cap": true,
+    "stored_shadows_extendable_to_fully_deletion_robust": 0
+  },
+  "schema": "p97-atail-robust-second-apex-bank-audit-v1",
+  "source_sha256": {
+    "census/atail_force/producer_bank.py": "484510cafb79a1256a0dcd030958e57145229654cabd245aa29030543b1cf8cb",
+    "census/global_confinement/shadow.py": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "scratch/atail-force/robust-all-center-cegar/search.py": "54edd2c3ed92ef6d0d55f5f5196d9ec84d2d04cabc40a3ecc04cabbcb4a16d02",
+    "scratch/atail-force/robust-second-apex-bank-audit/audit.py": "cbee2fe7896fb5c057dc4deb35b16dbe615ce417de39b46ab99d028f86f974b5"
+  }
+}

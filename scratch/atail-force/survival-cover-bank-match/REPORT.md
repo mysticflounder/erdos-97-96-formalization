@@ -2,7 +2,24 @@
 
 ## Outcome
 
-This lane has a source-clean, kernel-checked card-at-least-fourteen producer:
+This lane has source-clean, kernel-checked card-at-least-fourteen producers.
+The stronger, load-bearing form is:
+
+```text
+anchored double-deletion surface
+  + first-apex class is not exact card four
+  + directed cross hit w in selectedAt(q)
+  + 14 <= A.card
+  -> some deleted point d in {q,w}
+  -> one retained carrier source outside the known q-blocker fiber
+  -> its actual blocker c differs from the physical second apex
+  -> deletion of d preserves K4 at c and at S.oppApex2
+  -> Nonempty (CommonDeletionTwoCenterPacket D H d c S.oppApex2)
+```
+
+It is proved by
+`exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`.
+The earlier generic form is retained as an intermediate theorem:
 
 ```text
 anchored double-deletion surface
@@ -16,15 +33,16 @@ anchored double-deletion surface
   -> Nonempty (CommonDeletionTwoCenterPacket D H d c1 c2)
 ```
 
-The theorem is
+That intermediate theorem is
 `exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen` in
 `SurvivalCoverBankMatch.lean`.  Its conclusion retains both source vertices,
 their outside-fiber facts, the two actual centers, the common deletion, and the
 fact that the deletion is one of the anchored frontier points.
 
-This is **PROVEN**.  It closes the producer gap for a generic common-deletion
-packet at card at least fourteen.  It is not a terminal contradiction and does
-not close a production `sorry` by itself.
+Both the generic and physical-second-apex forms are **PROVEN**.  The latter
+closes the physical-alignment producer gap: the second center is no longer an
+anonymous actual blocker.  It is not a terminal contradiction and does not
+close a production `sorry` by itself.
 
 ## Why card fourteen is sufficient
 
@@ -72,7 +90,10 @@ The file also proves:
 - `commonDeletionPacket_or_sameSupportPair_of_sameDeletionSurvival`: two
   same-deletion sources either have distinct centers and give the existing
   common-deletion packet, or have one center and both lie in its exact
-  four-point support.
+  four-point support; and
+- `exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`:
+  one distinct actual blocker can be paired with the physical second apex,
+  because both frontier deletions already survive at `S.oppApex2`.
 
 The stronger common-deletion theorem supersedes the proposed three-state
 frontier-mask pigeonhole for the immediate card-at-least-fourteen target.  A
@@ -98,13 +119,12 @@ The exact matches and deficits are:
   `nonempty_commonDeletionTwoCenterPacket` are the exact generic adapter once
   two distinct centers survive one deletion.  The new card-fourteen theorem
   now produces that packet unconditionally on its stated surface.
-- The common-deletion bank is nonterminal.  Its checked expansion permits a
-  successor common-deletion packet or an aligned prescribed critical pair,
-  and its finite successor route permits genuine cycles.
-- Mature R/F2/postmix consumers require aligned physical center roles, such as
-  `p` and `S.oppApex2`, or concrete strict-cap/global-escape provenance.  The
-  two centers produced here are arbitrary actual blockers.  No checked theorem
-  promotes them to those roles.
+- The strengthened theorem supplies `S.oppApex2` as the second center.  It
+  therefore bypasses the previously open physical-alignment problem.
+- The generic common-deletion bank remains nonterminal and admits genuine
+  successor cycles, but the physical-second-apex packet has a separate uniform
+  consumer in `../common-deletion-uniform-consumer/`: it reduces directly to
+  `FullyDeletionRobustAt D S.oppApex2` or swapped `FA-UNIQ4`.
 - `outsidePair_unique_capCenter` needs two centers in one ordered cap and two
   shared support points outside it.  Same-cap placement of the *sources* does
   not place their blocker centers or supply a common outside pair.
@@ -120,22 +140,16 @@ The exact matches and deficits are:
 
 ## Exact remaining deficit
 
-The card-at-least-fourteen producer is no longer missing.  The remaining
-consumer must use retained parent geometry to align at least one produced
-actual blocker or source row with a load-bearing physical role, or extract the
-named common outside pair/incidence packet required by a terminal theorem.
+The producer and physical alignment are no longer missing.  The checked
+uniform consumer reduces the entire card-at-least-fourteen surface to exactly:
 
-Concretely, a useful next theorem must add one of:
+1. a direct consumer of `FullyDeletionRobustAt D S.oppApex2`; or
+2. the protected swapped `FA-UNIQ4` direct-`False` theorem.
 
-1. cap placement for both produced blocker centers plus two shared row points
-   outside that cap;
-2. identification of the produced centers with existing R/F2 physical centers;
-3. a provenance-preserving eliminator for the existing common-deletion
-   successor/aligned-pair normal form; or
-4. a direct contradiction using MEC/cap order and the anchored source history.
-
-Generic recursion, an anonymous row mask, or another unaligned
-common-deletion packet is not a terminal advance.
+The old generic successor recursion, origin-tagged R branch tree, anonymous row
+masks, and further unaligned common-deletion packets are not load-bearing for
+this primary route.  They remain useful regressions and secondary evidence,
+but they should not receive new closure work unless the physical route fails.
 
 ## Validation
 

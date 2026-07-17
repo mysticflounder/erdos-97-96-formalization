@@ -708,6 +708,76 @@ theorem exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen
       hsource₁Outside, hsource₂Outside, hcenters,
       hsurvives₁, hsurvives₂, hpacket⟩
 
+private theorem oppApex2_mem_A
+    {D : CounterexampleData} (S : SurplusCapPacket D.A) :
+    S.oppApex2 ∈ D.A := by
+  rcases hi : S.surplusIdx with ⟨i, hi3⟩
+  interval_cases i
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v3_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v1_mem
+  · simpa [SurplusCapPacket.oppApex2, hi] using S.triangle.v2_mem
+
+private theorem actualBlocker_mem_A
+    {A : Finset ℝ²} (H : CriticalShellSystem A)
+    (source : CriticalShellSystem.CarrierVertex A) :
+    H.centerAt source.1 source.2 ∈ A :=
+  (Finset.mem_erase.mp
+    (H.selectedAt source.1 source.2).toCriticalFourShell.center_mem).2
+
+/-- The card-at-least-fourteen survival cover can retain the physical second
+apex as one of the two common-deletion centers.  The two source-selected
+actual blockers are distinct, so at least one differs from `S.oppApex2`;
+deleting either frontier point already preserves K4 at `S.oppApex2` by the
+relocation packet. -/
+theorem exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {r : ℝ}
+    {H : CriticalShellSystem D.A}
+    (P : SurvivorPairRelocationPacket D S r H)
+    (hnotFour : (SelectedClass D.A S.oppApex1 r).card ≠ 4)
+    (hwSupport :
+      P.w ∈ (H.selectedAt P.q P.q_mem_A).toCriticalFourShell.support)
+    (hcard : 14 ≤ D.A.card) :
+    ∃ deleted : ℝ², ∃ _hdeleted : deleted ∈ D.A,
+      ∃ source : CriticalShellSystem.CarrierVertex D.A,
+        (deleted = P.q ∨ deleted = P.w) ∧
+        source ∈ Finset.univ \ qBlockerFiber P ∧
+        H.centerAt source.1 source.2 ≠ S.oppApex2 ∧
+        HasNEquidistantPointsAt 4 (D.A.erase deleted)
+          (H.centerAt source.1 source.2) ∧
+        Nonempty (CommonDeletionTwoCenterPacket D H deleted
+          (H.centerAt source.1 source.2) S.oppApex2) := by
+  rcases exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen
+      P hnotFour hwSupport hcard with
+    ⟨deleted, hdeleted, source₁, source₂, hdeletedCases,
+      hsource₁Outside, hsource₂Outside, hcenters,
+      hsurvives₁, hsurvives₂, _hpacket⟩
+  have hsecondApexSurvives :
+      HasNEquidistantPointsAt 4 (D.A.erase deleted) S.oppApex2 := by
+    rcases hdeletedCases with rfl | rfl
+    · exact P.q_survives
+    · exact P.w_survives
+  by_cases hsource₁Center :
+      H.centerAt source₁.1 source₁.2 ≠ S.oppApex2
+  · refine ⟨deleted, hdeleted, source₁, hdeletedCases,
+      hsource₁Outside, hsource₁Center, hsurvives₁, ?_⟩
+    exact nonempty_commonDeletionTwoCenterPacket H hdeleted
+      (actualBlocker_mem_A H source₁)
+      (oppApex2_mem_A S) hsource₁Center hsurvives₁
+      hsecondApexSurvives
+  · have hsource₁CenterEq :
+        H.centerAt source₁.1 source₁.2 = S.oppApex2 :=
+      not_ne_iff.mp hsource₁Center
+    have hsource₂Center :
+        H.centerAt source₂.1 source₂.2 ≠ S.oppApex2 := by
+      intro hsource₂CenterEq
+      exact hcenters (hsource₁CenterEq.trans hsource₂CenterEq.symm)
+    refine ⟨deleted, hdeleted, source₂, hdeletedCases,
+      hsource₂Outside, hsource₂Center, hsurvives₂, ?_⟩
+    exact nonempty_commonDeletionTwoCenterPacket H hdeleted
+      (actualBlocker_mem_A H source₂)
+      (oppApex2_mem_A S) hsource₂Center hsurvives₂
+      hsecondApexSurvives
+
 #print axioms exists_mem_capByIndex_of_mem
 #print axioms seven_le_sources_outside_qBlockerFiber
 #print axioms ten_le_sources_outside_qBlockerFiber
@@ -721,6 +791,7 @@ theorem exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen
 #print axioms exists_distinct_sameCap_sameDeletionSurvival_sources
 #print axioms exists_distinct_sameCapInterior_sameDeletionSurvival_sources
 #print axioms exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen
+#print axioms exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen
 
 end ATailSurvivalCoverBankMatchScratch
 end Problem97

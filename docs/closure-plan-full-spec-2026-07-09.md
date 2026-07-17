@@ -108,6 +108,53 @@ system, exact live row and support, deletion-blocker fact,
 `centerAt = p` classification, and selected-support transport.  Do not add a
 separate provenance-restoration task.
 
+**Primary R-route correction, 2026-07-16.**  The card-at-least-fourteen R
+surface no longer requires the full origin-tagged branch tree to reach its
+closure boundary.  The kernel-checked theorem
+`exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`
+constructs a common-deletion packet whose second center is the physical
+`S.oppApex2`, while retaining the deleted frontier choice, one outside-fiber
+source, its actual blocker, and that blocker’s inequality from the second
+apex.  The checked uniform consumer then proves
+
+```text
+card >= 14 R
+  -> FullyDeletionRobustAt D S.oppApex2
+   or SwappedFirstApexUniqueFourFrontier D S H.
+```
+
+The exact remaining card-at-least-fourteen consumers are therefore the robust
+physical-second-apex direct-`False` theorem and the protected swapped
+`FA-UNIQ4` direct-`False` theorem.  The origin-tagged coordinator and its branch
+reductions below remain checked diagnostics and fallback infrastructure, but
+they are no longer the primary load-bearing route.  Do not instantiate every
+old R callback merely to recover a result already supplied by the physical
+second-apex reduction.
+
+The robust endpoint has also been normalized exactly in
+`robust-second-apex-geometry/`.  It is equivalent to either one
+`S.oppApex2` radius class of cardinality at least five, or two distinct K4
+radii with support-disjoint selected four-classes.  Cap four contradicts
+robustness, and cap five reorients to protected swapped `FA-UNIQ5`.  The live R
+surface already has `6 ≤ S.oppCap2.card`, where both alternatives remain
+compatible with all current marginal MEC/cap one-hit facts.  The next robust
+consumer must therefore use genuinely global source-indexed geometry to
+exclude both large-cap radius alternatives.  Do not target
+`HasCriticalDeletionAt D S.oppApex2`: it is exactly the negation of full
+deletion robustness.  Likewise `FullyDeletionRobustAt.centerAt_ne` forbids a
+retained critical-map source centered at that apex on this branch.
+
+The corrected 101-shadow checkpoint does not test this live large-cap
+endpoint: its fixed census profile is `(8,4,5)`, so the physical opposite cap
+has cardinality four.  An exact endpoint-one-hit replay finds 28 admissible K4
+supports there, all containing the same two strict opposite-cap points, with
+zero five-point supports and zero disjoint support pairs; hence 0/101 shadows
+extend to full robustness.  This is the already-proved cap-four impossibility
+in finite form.  The same audit finds 28 five-supports at cap five and 1,512
+disjoint four-support pairs at cap six, so it supplies no negative evidence for
+the live `cap ≥ 6` residual.  Full stored completions have Kalmanson matches,
+but the fixed parent-local packet has none; there is no live coverage theorem.
+
 Within `R`, the current
 `ResolvedCurrentFirstApexFixedRadiusNormalForm` is an audit projection, not
 the final consumer boundary.  It drops the reciprocal residual and
@@ -127,8 +174,9 @@ covering:
 The coordinator and all nine printed endpoints elaborate under the pinned
 Lean 4.27 toolchain with only `propext`, `Classical.choice`, and `Quot.sound`.
 This is a checked branch-completeness interface, not a `False` theorem and not
-production closure.  The next mathematical task is to instantiate its motive
-with `False` by supplying a real handler for every displayed branch.
+production closure.  It was the prior candidate for instantiating the R motive
+with `False`; the physical-second-apex reduction above now supersedes that
+per-branch task on the primary card-at-least-fourteen route.
 
 Five source-faithful branch reductions are now checked in scratch:
 
@@ -146,14 +194,15 @@ Five source-faithful branch reductions are now checked in scratch:
    cardinality at least five or has support disjoint from the old row; the
    checked handler proves that either successor shape makes
    `S.oppApex2` fully robust under every single deletion.  Consequently any
-   `HasCriticalDeletionAt D S.oppApex2` closes the successor immediately.  The
+   `HasCriticalDeletionAt D S.oppApex2` would close the successor immediately,
+   but that hypothesis is exactly the negation of the robust branch.  The
    critical-pair arm is an exact unique-card-four second-center terminal under
    the same live system and reorients immediately to the existing swapped
-   `FA-UNIQ4` frontier.  The remaining global task is therefore not to consume
-   two unrelated radius cases: produce one critical deletion at the physical
-   second apex, or route the legitimate small-cap robust case through swapped
-   `FA-UNIQ5`.  In particular, exact cap five must not be contradicted merely
-   for being deletion-robust.
+   `FA-UNIQ4` frontier.  The remaining global task is to exclude the two
+   large-cap robust radius cases; the legitimate small-cap robust case routes
+   through swapped `FA-UNIQ5`.  In particular, exact cap five must not be
+   contradicted merely for being deletion-robust, and physical-apex
+   criticality must not be requested inside the robust arm.
 3. `r-f1-f3-handler/F1F3Handler.lean` gives F1 and F3 one common producer:
    their unique point outside both named carriers is an origin-retaining
    off-live fresh critical source, followed by either a successor
@@ -502,16 +551,37 @@ blocker fiber has cardinality at most four.  The kernel-checked theorem
 distinct actual blockers and constructs a `CommonDeletionTwoCenterPacket` for
 deleting `q` or `w`.
 
-This closes the card-at-least-fourteen **generic common-deletion producer**, not
-the R consumer.  Its two centers are arbitrary actual blockers; no checked
-theorem identifies them with the aligned physical roles `p` and
-`S.oppApex2`, places both in a terminal cap configuration, or supplies a
-common outside support pair.  The generic common-deletion expansion is already
-known to admit an aligned-critical branch or a genuine successor cycle, so
-feeding the new packet back through that unranked interface is not closure.
-The next theorem must retain the two source witnesses and use cap/MEC/origin
-history either to align one produced center pair with a checked R/F2 terminal
-or to prove a provenance-preserving no-wrap/decreasing-rank consumer.
+The stronger theorem
+`exists_sourceFaithful_secondApexCommonDeletionPacket_of_card_ge_fourteen`
+closes the physical-alignment gap.  Since both anchored frontier deletions
+already preserve K4 at `S.oppApex2`, one of the two distinct actual blockers
+can be paired directly with that physical apex.  The source-faithful output
+retains the frontier deletion, an outside-fiber source, its actual blocker,
+the blocker/apex inequality, and the physical-second-apex packet.
+
+`common-deletion-uniform-consumer/CommonDeletionUniformConsumer.lean` consumes
+that exact packet without using the cyclic generic expansion.  A point in its
+second exact row but outside the first either gives a new physical-second-apex
+row or a prescribed critical deletion.  The first case makes
+`S.oppApex2` fully deletion-robust; the second reorients to swapped
+`FA-UNIQ4`.  Its motive-valued endpoint
+`card_ge_fourteen_survivalCover_false` exposes precisely the two missing
+handlers.  Thus neither anonymous-center alignment, generic no-wrap recursion,
+nor the full origin-tagged R callback tree is load-bearing on the primary
+card-at-least-fourteen route.
+
+The robust handler is not a black box anymore.  The checked equivalence in
+`robust-second-apex-geometry/` reduces it to a large radius class of size at
+least five or two distinct disjoint K4 radius supports.  The small-cap cases
+close or enter protected unique-five, but the actual card-at-least-fourteen R
+surface has opposite cap at least six and admits both normal-form arms under
+the current cap/MEC bounds.  Do not mine another selected-four marginal at
+this point: physical-apex criticality and center-map alignment are incompatible
+with the robust hypothesis.  The missing input is a global critical-map or
+cross-cap coupling theorem that directly excludes the two radius arms.
+The `robust-second-apex-bank-audit/` threshold replay is the regression gate:
+any proposed finite lift must state which cap-at-least-six/global fields remove
+the explicit higher-cap modes, rather than reusing the cap-four 0/101 result.
 
 The secondary cap reductions remain useful diagnostics.  At card at least
 eleven, survival color times actual-blocker cap produces two sources whose
@@ -552,19 +622,20 @@ edges `centerAt C = O` and `centerAt O = A`, the other two cross incidences,
 and the directed actual boundary order.  This is a complete consumer boundary,
 not evidence that the five-point packet is close to production.
 
-Record this as a bounded metric route with a passed fixed-surface gate, not as
-an immediate producer and not as a reason to abandon the source-faithful
-generated-successor lane before the survival-cover consumer or the complete
-five-point packet is proved.  Do not mine an unanchored "third center" or a
+Record the five-point route as a bounded metric fallback with a passed
+fixed-surface gate, not as the primary producer.  The source-faithful physical
+second-apex consumer now supersedes generated-successor work whose sole purpose
+was to close the card-at-least-fourteen R surface.  Do not mine an unanchored
+"third center" or a
 distinct double-blocked blocker: their terminal, exact negation, fiber bound,
 and total-map survival classifier are already kernel-checked.
 The complete evidence and the two source-clean scratch corollaries are in
 `scratch/atail-force/global-minimality-connectivity-audit/`.
 
 Every endpoint above fresh-compiles with only `propext`,
-`Classical.choice`, and `Quot.sound`.  They sharpen the producer boundary but
-do not yet instantiate the full R motive with `False`, and no production
-`sorry` is closed.
+`Classical.choice`, and `Quot.sound`.  The physical route reduces the R motive
+to robust `S.oppApex2` or protected swapped `FA-UNIQ4`; those direct consumers
+remain open, and no production `sorry` is closed.
 
 The parent-level small-card orientation is now also checked.
 `r-small-card-parent-bypass/SmallCardParentBypass.lean` proves that
