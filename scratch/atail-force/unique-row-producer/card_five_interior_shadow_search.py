@@ -1205,6 +1205,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-84 witness admitted 2026-07-16: fiftieth
+    # NONUNIT-track 654 witness (6,687,672 nodes caps=1, seventh
+    # consecutive at the ~6M depth band, monotone drift 6.05->6.69M);
+    # inline NONUNIT x3 (Singular + msolve fwd/rev); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core at the
+    # production order; its retained 5-row deletion core (4 deletion
+    # timeouts fail-closed) is forced-pair-core-654-60.
+    "0986ce44726afe822382c5fb75a509c8eed46d4490cf5efd51a4f8153f985b6e": {
+        "equality_sha256":
+            "2bc2d0a896eea0bd9b39b60cdf9acf3e9660a8c63e767da21eb0edfc2541c2c5",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -5741,6 +5756,33 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 4, 8, 10}),
         },
         "equality_count": 24,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-84 witness 0986ce44… admitted 2026-07-16: 5-row /
+    # 16-equality retained core forcing pair (7,8) (witness at
+    # 6,687,672 nodes caps=1, fiftieth NONUNIT-track, seventh
+    # consecutive at the ~6M depth band); inline NONUNIT x3; cert
+    # passed at the production order; Rabinowitsch UNIT x3 on full
+    # system and retained core; deletion verdicts 7 UNIT / 4 TIMEOUT /
+    # 1 NONUNIT fail-closed — witness rows 0, 3, 4, 5, 6, 9, 10
+    # dropped (both pair rows 7 and 8 retained); ties fp-654-01 as
+    # the only 5-row fp-654 cores (that one has 15 equalities); NOT
+    # apexless — carries the 5-element surplus row 1:{0,3,7,8,9},
+    # its first fp appearance (previously only 654u-36/-37); not a
+    # transposition image of any banked core; kin at most 2 shared
+    # rows; ZERO new supports (row set still distinct — kin <= 2
+    # rules out any subset relation).
+    {
+        "id": "forced-pair-core-654-60",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            2: frozenset({0, 1, 10, 11}),
+            7: frozenset({2, 3, 8, 11}),
+            8: frozenset({2, 5, 7, 10}),
+            11: frozenset({1, 4, 7, 10}),
+        },
+        "equality_count": 16,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
