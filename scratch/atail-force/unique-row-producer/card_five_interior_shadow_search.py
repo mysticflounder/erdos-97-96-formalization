@@ -1325,6 +1325,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-101 witness admitted 2026-07-17: NONUNIT track
+    # resumes after four unit iters 97-100 (7,972,652 nodes caps=1);
+    # inline NONUNIT x3 (Singular + msolve fwd/rev); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core at
+    # the production order; its retained 5-row deletion core (5
+    # deletion timeouts fail-closed) is forced-pair-core-654-68, the
+    # bank's third joint-minimum 5-row/15-equality core.
+    "f26f2757ce8067e7ebc3b0f581140cab47162e92938f8b751bf6611369c77aeb": {
+        "equality_sha256":
+            "30b99f16911ca99fc39eb28955367238e7e83fcc6ecc53dcdc9a53913e216324",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6297,6 +6312,36 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 8, 10}),
         },
         "equality_count": 18,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-101 witness f26f2757… admitted 2026-07-17:
+    # 5-row / 15-equality retained core forcing pair (7,8) with no
+    # row centered at 8 (witness at 7,972,652 nodes caps=1, +135
+    # past iter-100; NONUNIT track resumes after four unit iters
+    # 97-100); inline NONUNIT x3; cert passed at the production
+    # order; Rabinowitsch UNIT x3 on full system and retained core;
+    # deletion verdicts 7 UNIT / 5 TIMEOUT fail-closed / 0 NONUNIT —
+    # witness rows 0, 1, 2, 3, 8, 9, 11 dropped (pair center 7
+    # retained), APEXLESS. Ties the bank-wide joint minimum grade of
+    # 5 rows / 15 equalities — third such core (654u-08, fp-654-01)
+    # and third 5-row fp654 core (fp-654-01, fp-654-60). Not a
+    # transposition image; kin at most 2 shared rows (breakout
+    # core). TWO new (center,support) pairs, both center-shifts:
+    # 5:{3,6,7,11} (third center — 4 in 654u-08/fp-654-12/
+    # fp-654-62, 10 in 654u-19) and 7:{3,4,6,8} (second center —
+    # 9 in fp-654-50); row 6:{2,4,7,10} previously fp-555-only
+    # (fp-555-10/-11), first 654 appearance.
+    {
+        "id": "forced-pair-core-654-68",
+        "rows": {
+            4: frozenset({3, 5, 9, 10}),
+            5: frozenset({3, 6, 7, 11}),
+            6: frozenset({2, 4, 7, 10}),
+            7: frozenset({3, 4, 6, 8}),
+            10: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 15,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
