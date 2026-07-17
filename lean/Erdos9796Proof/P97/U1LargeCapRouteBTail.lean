@@ -23,7 +23,7 @@ import Erdos9796Proof.P97.ATail.DeletionRobustness
 import Erdos9796Proof.P97.ATail.RobustLargeRadius
 import Erdos9796Proof.P97.ATail.RobustLargeRadiusReduction
 import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
-import Erdos9796Proof.P97.ATail.OrientedPhysicalApexIngress
+import Erdos9796Proof.P97.ATail.FrontierCommonDeletionSurplusEscape
 
 /-!
 # U1 large-cap Route-B tail

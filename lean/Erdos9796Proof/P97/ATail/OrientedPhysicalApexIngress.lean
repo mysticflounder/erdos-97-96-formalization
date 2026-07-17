@@ -255,6 +255,8 @@ structure FrontierCommonDeletionParentResidual
   minimal : D.Minimal
   noM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44
   carrier_card_gt_nine : 9 < D.A.card
+  frontierRadius_class_card_ge_four :
+    4 ≤ (SelectedClass D.A S.oppApex1 radius).card
   common : FrontierCommonDeletionResidual F
 
 /-- Every first-apex frontier is already either a protected unique-radius arm
@@ -280,15 +282,16 @@ theorem CriticalPairFrontier.originalUnique_or_commonDeletion
     exact Or.inr ⟨⟨hdouble, packet⟩⟩
   · exact Or.inl hunique
 
-/-- Parent-facing direct split, retaining minimality, the carrier lower bound,
-and no-`IsM44` on the common-deletion branch. -/
+/-- Parent-facing direct split, retaining minimality, both lower bounds, and
+no-`IsM44` on the common-deletion branch. -/
 theorem CriticalPairFrontier.originalUnique_or_commonDeletionParent
     {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
     {H : CriticalShellSystem D.A}
     (F : CriticalPairFrontier D S radius H)
     (hmin : D.Minimal)
     (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
-    (hcard : 9 < D.A.card) :
+    (hcard : 9 < D.A.card)
+    (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 radius).card) :
     OriginalFrontierUniqueRadiusArm F ∨
       Nonempty (FrontierCommonDeletionParentResidual F) := by
   rcases CriticalPairFrontier.originalUnique_or_commonDeletion F with
@@ -298,6 +301,7 @@ theorem CriticalPairFrontier.originalUnique_or_commonDeletionParent
       minimal := hmin
       noM44 := hNoM44
       carrier_card_gt_nine := hcard
+      frontierRadius_class_card_ge_four := hfour
       common := hcommon.some }⟩
 
 /-- Direct frontier assembler. Once the protected unique arm and the full
@@ -310,12 +314,13 @@ theorem CriticalPairFrontier.false_of_parentResidualConsumers
     (hmin : D.Minimal)
     (hNoM44 : ¬ ∃ T : SurplusCapPacket D.A, T.IsM44)
     (hcard : 9 < D.A.card)
+    (hfour : 4 ≤ (SelectedClass D.A S.oppApex1 radius).card)
     (uniqueFalse : OriginalFrontierUniqueRadiusArm F → False)
     (commonFalse : FrontierCommonDeletionParentResidual F → False) :
     False := by
   rcases
       CriticalPairFrontier.originalUnique_or_commonDeletionParent
-        F hmin hNoM44 hcard with
+        F hmin hNoM44 hcard hfour with
     hunique | hcommon
   · exact uniqueFalse hunique
   · exact commonFalse hcommon.some

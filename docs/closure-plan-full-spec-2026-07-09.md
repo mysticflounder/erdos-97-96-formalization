@@ -3642,38 +3642,28 @@ heavy lane.
 Execution order is dependency-based, not difficulty-based. The proof-critical
 order is:
 
-1. **Use the checked normal forms.** Retain `CriticalPairFrontier`, the
-   prescribed-deletion equality-or-survival split, and the sound equilateral
-   fixed-anchor deletion classifier, total `LowHit`/apex-pair hit table, and
-   blocker survival/alignment classifier. The joint-fiber extractor and T1/T3
+1. **Use the production direct split.** Extract one `CriticalPairFrontier`
+   and apply `CriticalPairFrontier.originalUnique_or_commonDeletionParent`
+   with `hmin`, `hNoM44`, `9 < |A|`, and the retained four-point full
+   frontier-radius-class lower bound. The joint-fiber extractor and T1/T3
    relabels are compatibility/legacy wiring only.
-2. **Prove the remaining source-faithful consumer.** On the full current
-   parent surface with concrete `Hcritical`, use cap-selected sources rather
-   than the fixed LIVE slots. Exact-five already produces canonical renewable
-   common deletions and a fixed-point-free actual-critical omission successor
-   at every physical source. Lift that successor to a source-exact cycle.
-   Consume the cycle, and the other origin-tagged common-deletion entries, by
-   a named cross-incidence or a contradiction which jointly uses the
-   convex/MEC geometry and concrete critical map. Do not project them to bare
-   robustness or a generic motive-valued dispatcher.
-3. **Use computation only to discover the theorem.** The reduced three-center
-   systems and any CEGAR survivors may identify recurrent equality/order
-   skeletons. The completed 343-skeleton replay rules out the bare and
-   separator-saturated equality-only route, so the next candidate must use
-   real cap/disk/nonobtuse/global-order inequalities or the live critical
-   rows. Both Z3 and cvc5 timed out on the same seven full-inequality systems,
-   and the three checked scalar kernels jointly cut only 129 of 167,782
-   selected-four systems, so neither another blind cross-engine/budget
-   escalation nor continued unguided local-kernel enumeration is a next step.
-   Computation resumes only behind a full-filter or critical-row forcing
-   principle that explains why a checked pattern must occur.
-   Every proposed universal lemma must also be checked against the W16/W20
-   bank and the new blocker-graph witnesses, and must identify the actual
-   convexity, cap/full-filter, or critical-row hypothesis that excludes them.
-   No representative result is promoted without the leaf-to-inventory and
-   certificate bridges.
-4. **Assemble the consumers at the parent boundary.** After both producers and
-   the protected unique-radius consumers close, assemble
+2. **Consume the refined common-deletion boundary.** For each
+   `FrontierCommonDeletionParentResidual R`, obtain
+   `FrontierCommonDeletionRefinedNormalForm R`. The off-radius branches already
+   carry source-tagged common deletions. On radius, the retained first-apex
+   double deletion proves that the marginal companion also survives at the
+   first apex—even when the frontier class has exactly four points—so the
+   surplus escape and marginal companion form two distinct common-deletion
+   sources. Consume each of the three common-deletion outcomes jointly with
+   `normal.directed` and the full parent geometry. Do
+   not reopen row production or generic common-deletion recursion.
+3. **Use fallback work only against an exact refined branch.** Exact-five,
+   oriented ingress, global minimal-deletion dispatch, and finite searches are
+   theorem-discovery evidence, not coequal active routes. Admit new computation
+   only when its input is one exact refined branch and its output has an
+   immediate checked consumer.
+4. **Assemble the consumers at the parent boundary.** After the refined
+   consumer and the protected original unique-radius consumer close, assemble
    `false_of_twoLargeCaps_commonCriticalMap` and call it immediately after the
    parent chooses `Hcritical`, before row construction and slot enumeration.
    Then reference-mine and
@@ -3778,7 +3768,7 @@ minimality/descent lemma or blocker-cycle adapter for this branch.
 
 The primary route is now smaller than the exact-five cycle route. Production
 `ATail/OrientedPhysicalApexIngress.lean` proves
-`CriticalPairFrontier.originalUnique_or_commonDeletion`. For every concrete
+`CriticalPairFrontier.originalUnique_or_commonDeletionParent`. For every concrete
 first-apex frontier, its existing `firstApexSplit` is either the protected
 original unique-radius card-four/card-five arm, or double-deletion survival at
 the first apex. In the second case, the frontier's unconditional
@@ -3787,15 +3777,18 @@ Monotonicity from double deletion to deletion of `F.pair.q` constructs a
 source-faithful `FrontierCommonDeletionParentResidual F`: the deleted point is the
 actual frontier source and the two centers are exactly the two opposite Moser
 apices. This uses the same `H` and loses no frontier radius, pair, cap, or MEC
-provenance.
+provenance.  The parent residual also retains the extracted lower bound
+`4 ≤ (SelectedClass D.A S.oppApex1 radius).card`; this field is load-bearing
+for deletion of any source off that exact radius class.
 
-Therefore the exact next content theorem is a direct contradiction for this
-full frontier common-deletion residual under the retained parent hypotheses,
-together with the protected original `FA-UNIQ4/5` consumer. Do not project it
-to a generic `CommonDeletionTwoCenterPacket`: the generic-packet audit proves
-that such a projection adds no force beyond already-known deletion robustness
-and discards precisely the source/radius/cap/frontier incidences needed by the
-existing banks.
+Therefore the exact open content theorem is, for every retained
+`FrontierCommonDeletionParentResidual R`,
+`FrontierCommonDeletionRefinedNormalForm R → False`, together with the
+protected original `FA-UNIQ4/5` consumer. Do not project it to a generic
+`CommonDeletionTwoCenterPacket`: the generic-packet audit proves that such a
+projection adds no force beyond already-known deletion robustness and discards
+precisely the source/radius/cap/frontier incidences needed by the existing
+banks.
 
 The first source-faithful consumer audit sharpens that target. Production now
 retains the originating first-apex double-deletion witness and the carrier
@@ -3805,10 +3798,49 @@ at most two hits in `q`'s actual critical support. Since `B₂` has four points,
 it contains a point `z` outside both. Deleting `z` preserves K4 at `q`'s
 actual blocker, and `z` is either in the surplus cap or off the frontier's
 first-apex radius. Thus neither “produce two marginal hits” nor one-row
-confinement is a valid intermediate target. The live consumer must eliminate
-these two source-exact geometric location arms, or consume the existing global
-minimal-deletion collision/core split while retaining the same frontier and
-parent data.
+confinement is a valid intermediate target. This raw two-arm escape is now an
+intermediate production boundary, not the open consumer surface.
+
+Production `ATail/FrontierCommonDeletionEscape.lean` retains this escape
+together with a second, independent bank-facing split. Either `w` belongs to
+`q`'s actual critical shell, in which case ordered-cap uniqueness puts `q`'s
+actual blocker outside the surplus cap, or deleting `w` preserves K4 at both
+the first apex and that actual blocker. The joint
+`FrontierCommonDeletionConsumerNormalForm` packages both consequences.
+
+Production `ATail/FrontierCommonDeletionSurplusEscape.lean` then consumes the
+location split without weakening it.  If the escape is off the first-apex
+frontier radius, the retained four-point exact class automatically survives
+its deletion, so the escape already carries an origin-tagged common-deletion
+packet at the first apex and `q`'s actual blocker.  If the escape is on-radius
+inside the surplus cap, endpoint one-hit makes it the unique surplus member
+of the second row; a second omitted row point is therefore either the sole
+positive `FirstApexMarginalCompanion` or a distinct off-radius source carrying
+the same kind of common-deletion packet. Production also proves that the
+marginal companion always preserves K4 at the first apex: by erasure counting
+when the class has at least five points, and at exact cardinality four from
+the retained double-deletion witness on a different radius. Hence the
+on-radius surplus escape and marginal companion are two distinct
+common-deletion sources at the same centers. The resulting
+`FrontierCommonDeletionRefinedNormalForm` keeps a three-way source-tagged
+common-deletion outcome coupled to the directed blocker outcome above. Thus
+row production is closed on every refined arm; the next theorem is geometric
+nonreturn for those packets jointly with `directed`.
+The production assembler `false_of_frontierRefinedNormalFormConsumers` now
+shows that this one refined consumer plus the protected original unique-arm
+consumer is sufficient for the whole extracted frontier.
+
+The required theorem-bank audit finds no terminal for either refined arm.
+The off-radius/common-deletion branches feed the existing third-center
+classifier and produce another origin-tagged deletion successor; the paired
+common-deletion branch additionally normalizes the actual-blocker rows and
+splits into first-apex double deletion or disjoint exact shells, but neither
+output is terminal. The marginal-companion branch is also fully produced: the
+exact-card-four case uses the retained first-apex double-deletion radius rather
+than opening a critical-shell split. Therefore the smallest honest next result
+is a cap/MEC/order-aware **nonreturn theorem** for these source-tagged
+successors or paired common deletions. Another row producer or generic
+successor iteration is not closure progress.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3843,15 +3875,22 @@ Work is decomposed as follows:
    always in its survival arm.  The defining module builds and both extractors
    close with core axioms only.
 2. **DIRECT FRONTIER COMMON-DELETION, PRIMARY OPEN CONSUMER:** production
-   `CriticalPairFrontier.originalUnique_or_commonDeletion` sends the unique
+   `CriticalPairFrontier.originalUnique_or_commonDeletionParent` sends the unique
    first-apex split to protected `FA-UNIQ4/5`; otherwise it combines the two
    stored double-deletion facts into `FrontierCommonDeletionParentResidual F` at the
-   two prescribed opposite apices. Prove this full source-faithful residual
-   false without projecting away `F.pair.q/w`, the first-apex radius/marginal,
-   the concrete `H`, or the parent cap/MEC/minimal/no-`IsM44` context.
-   Its first checked reduction is the second-row off-confinement escape just
-   described; continue from its surplus-cap/off-radius location split rather
-   than trying to force marginal two-hit or confinement.
+   two prescribed opposite apices. Prove its resulting
+   `FrontierCommonDeletionRefinedNormalForm` false without projecting away
+   `F.pair.q/w`, the first-apex radius/marginal, the concrete `H`, or the
+   parent cap/MEC/minimal/no-`IsM44` context. Its checked reduction is now
+   `FrontierCommonDeletionRefinedNormalForm`: off-radius sources already give
+   source-faithful common deletion by the retained frontier-class lower bound;
+   the on-radius surplus source yields two distinct common deletions at the
+   same centers, while the other alternative is a distinct companion
+   off-radius common deletion. Keep every branch coupled to the production directed blocker
+   split (cross membership with an outside-surplus blocker, or companion
+   common deletion at the first apex and `q`'s blocker). The remaining content
+   theorem consumes exactly that joint refined form; do not reopen row mining
+   or recurse on a generic common-deletion packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.

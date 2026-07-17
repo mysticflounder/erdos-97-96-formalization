@@ -42,16 +42,50 @@ three points; one shared point outside the common actual row supplies a third
 common deletion at the same centers.
 
 The current primary target is smaller. Production
-`CriticalPairFrontier.originalUnique_or_commonDeletion` splits every concrete
+`CriticalPairFrontier.originalUnique_or_commonDeletionParent` splits every concrete
 first-apex frontier directly into the protected original unique-radius
 card-four/card-five arm or a `FrontierCommonDeletionParentResidual`. In the latter,
 the deleted point is exactly `F.pair.q`, the centers are exactly
 `S.oppApex1/S.oppApex2`, double-deletion survival is supplied by the two
 frontier fields, and the radius/pair/cap/MEC/common-`H` provenance remains in
-scope. Thus the only new mathematical consumer on the primary route is direct
-`False` from this full frontier common-deletion surface; the separately owned
-protected unique consumer is the other branch. Once those close, assemble the
-parent `False` and bypass the legacy tree.
+scope. The residual now also retains the extracted lower bound of four on the
+full first-apex frontier radius class. Thus the only new mathematical consumer
+on the primary route is direct `False` from this full frontier common-deletion
+surface.
+
+Production `ATail/FrontierCommonDeletionEscape.lean` first constructs a
+second-row point outside both the first-apex off-surplus marginal and `q`'s
+actual critical support, while retaining the independent directed blocker
+split. Production `ATail/FrontierCommonDeletionSurplusEscape.lean` strengthens
+that boundary to `FrontierCommonDeletionRefinedNormalForm`. An off-radius
+escape automatically gives a source-tagged common-deletion packet because the
+retained four-point frontier class survives deletion. An on-radius surplus
+escape is the unique surplus member of the second row, so a second omitted
+point gives either a marginal companion or a distinct off-radius common
+deletion. Production proves that the marginal companion always survives at
+the first apex, including exact frontier-class cardinality four, so it and the
+surplus escape are two distinct common-deletion sources at the same centers.
+The refined three-way common-deletion outcome remains coupled to
+`normal.directed`: cross membership localizes `q`'s blocker outside
+the surplus cap, while cross survival gives a companion common deletion.
+
+This is the exact current consumer boundary. Row production is closed on all
+three refined arms. The next content theorem must jointly consume the
+origin-tagged single/paired common-deletion outputs with the directed outcome
+and the full parent geometry. Do not project any arm to anonymous
+common-deletion recursion. The separately owned protected unique consumer is
+the other branch. Once both close, assemble the parent `False` and bypass the
+legacy tree. Production `false_of_frontierRefinedNormalFormConsumers` already
+provides the exact two-consumer frontier assembler.
+
+The required theorem-bank audit finds no terminal theorem for either refined
+arm. Existing third-center and common-deletion classifiers turn them into
+fresh origin-tagged successors or normalized paired common deletions; none
+returns `False`. The exact-card-four marginal case is already handled by the
+retained different-radius double-deletion witness. The next
+mathematical target is therefore a provenance-aware geometric nonreturn
+theorem for those exact outputs, visibly consuming cap/MEC/order and the
+retained source tags. It is not another selected-row producer.
 
 Do not weaken this residual to a generic `CommonDeletionTwoCenterPacket`. The
 generic-packet audit proves that it adds no force beyond deletion robustness
@@ -593,7 +627,7 @@ Current status:
 Threshold decision: the preferred direct-frontier theorem is uniform on the
 current leaf and introduces no `CARD-GE-12` threshold. `CARD-GE-12` remains
 historical nomenclature for the older ATAIL/AHEAD split, not a dependency of
-`CriticalPairFrontier.originalUnique_or_commonDeletion`. The card-exact
+`CriticalPairFrontier.originalUnique_or_commonDeletionParent`. The card-exact
 placement/certificate artifacts remain non-target-faithful fallback evidence.
 
 `CARD-GE-12` means a tail theorem assuming `12 ≤ D.A.card`, not a theorem
@@ -623,20 +657,26 @@ current closure sequence is:
    `CriticalPairFrontier` with the same `Hcritical`, actual source pair,
    first-apex radius, and unconditional second-apex double-deletion survival.
 2. **DONE-PRODUCTION DIRECT SPLIT:** call
-   `CriticalPairFrontier.originalUnique_or_commonDeletion`. The unique branch
+   `CriticalPairFrontier.originalUnique_or_commonDeletionParent`. The unique branch
    is the canonical protected original `FA-UNIQ4/5` arm. The other branch is
    `FrontierCommonDeletionParentResidual F`, with deletion `F.pair.q` and centers
-   exactly `S.oppApex1/S.oppApex2`.
+   exactly `S.oppApex1/S.oppApex2`; it also retains the full frontier-radius
+   class lower bound of four.
 3. **CURRENT MATHEMATICAL CONSUMER:** prove direct `False` from that full
    frontier common-deletion packet under the retained parent
    minimal/no-`IsM44`/convex-MEC surface. Do not project it to the known-weak
-   generic common-deletion packet. The checked first reduction produces a
-   point in the stored second-apex row outside both the off-surplus first-apex
-   marginal and `q`'s actual critical support. Its deletion survives at `q`'s
-   actual blocker, and it lies either in the surplus cap or off the frontier
-   radius. Consume that source-exact two-arm escape, or the retained global
-   minimal-deletion collision/core split. Do not target two marginal hits or
-   one-row confinement: checked cardinality bounds force the opposite.
+   generic common-deletion packet. The checked reductions now produce
+   `FrontierCommonDeletionRefinedNormalForm`. Its outcome is exactly: an
+   original off-radius common deletion, two distinct on-radius
+   surplus/marginal common deletions at the same centers, or a distinct
+   companion off-radius common deletion. All arms are production-complete.
+   The same normal form keeps
+   the directed blocker split: either `w` is in `q`'s actual shell and the
+   blocker lies outside the surplus cap, or deleting `w` survives at the first
+   apex and that blocker. Consume each refined escape arm jointly with this
+   `directed` outcome and the full parent geometry. Do not target two marginal
+   hits, one-row confinement, another row producer, or generic
+   common-deletion recursion.
 4. **SEPARATE OWNER DEPENDENCY:** close the protected original unique-radius
    arm. Swapped unique interfaces, oriented ingress, and exact-two-four routing
    remain available but are not dependencies of the direct split.
@@ -1680,14 +1720,14 @@ UV_CACHE_DIR=/tmp/uv-cache uv run python -m unittest \
 
 ATAIL-FORCE is the primary proof lane, but the current theorem surface is no
 longer a five-row or six-row census. It is the uniform direct frontier split
-and the full `FrontierCommonDeletionParentResidual F`. Any proposed intermediate
-must preserve the actual deleted source `F.pair.q`, companion `F.pair.w`, the
-first-apex radius/off-surplus marginal, the two prescribed apex centers, and
-the same `H`; otherwise it falls back to the generic common-deletion regression
-and is rejected. Search the existing banks for an immediate consumer of one
-named cross-row/cap incidence on that surface. Older sixteen-support,
-cyclic-order, global-nested-pair, and U-row multiplicity candidates are
-historical fallbacks, not coequal primary alternatives.
+and, on its non-unique arm, `FrontierCommonDeletionRefinedNormalForm R`. Any
+proposed consumer must preserve `R`, `escapeOutcome`, `normal.directed`, the
+actual source/companion `F.pair.q/w`, the frontier radius and four-point class
+lower bound, both prescribed apex centers, and the same `H`; otherwise it
+falls back to a known-nonterminal generic projection. Search the existing
+banks only for an immediate consumer of one exact refined branch. Older
+sixteen-support, cyclic-order, global-nested-pair, and U-row multiplicity
+candidates are historical fallbacks, not coequal primary alternatives.
 
 AHEAD CEGAR remains a bounded cards-12--14 fallback. Census554 no longer holds
 the compute pool, but the permanent runner is still software-gated: safe
@@ -2240,12 +2280,15 @@ consume the double-survival arm; those remain the exact coupling fields.
 The final production boundary is no longer the existential shared-radius
 conclusion. It is a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof target beneath it is the source-faithful
-`FrontierCommonDeletionParentResidual F`, together with the protected original
-unique-radius consumer. The production frontier split reaches those two
-outputs directly, without an oriented cap, cardinality threshold, or physical
-radius-class ingress. The exact-five physical cycle is a fallback refinement,
-not the final theorem boundary.
+active proof target beneath it is `False` from
+`FrontierCommonDeletionRefinedNormalForm R` for every source-faithful
+`FrontierCommonDeletionParentResidual R`, together with the protected original
+unique-radius consumer. The production frontier split reaches `R` with
+`hmin`, `hNoM44`, `9 < |A|`, and the four-point frontier-class lower bound;
+the refinement reaches the exact three-way common-deletion outcome coupled to
+`normal.directed`. This requires no oriented cap, cardinality threshold, or
+physical radius-class ingress. The exact-five physical cycle is fallback
+only, not the final theorem boundary.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by
@@ -2261,7 +2304,10 @@ critical map before the LIVE slot split.
 - the concrete `Hcritical : CriticalShellSystem D.A` chosen in the outer
   wrapper; and
 - the concrete `CriticalPairFrontier`, including its actual source/companion,
-  first-apex radius and marginal placement, and both double-deletion facts.
+  first-apex radius and marginal placement, both double-deletion facts, and the
+  four-point lower bound on the complete frontier-radius class; and
+- the `FrontierCommonDeletionRefinedNormalForm` escape outcome together with
+  its retained `normal.directed` blocker/common-deletion split.
 
 The assembled theorem must return `False`. This keeps the load-bearing cap/MEC and
 source-indexed data in one contract and allows the final call before the
