@@ -4443,6 +4443,30 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 19,
     },
+    # 654 iteration-113 witness 7711b002… admitted 2026-07-17: unit
+    # track returns after two NONUNIT iters 111-112 (witness at
+    # 8,614,985 nodes caps=1, +37,858 past iter-112). Inline UNIT,
+    # recheck CROSSCHECKED_UNIT; retained 6-row / 19-eq core
+    # CROSSCHECKED_UNIT x3; deletion 6 UNIT / 5 TIMEOUT fail-closed /
+    # 1 NONUNIT. *** IMAGE: this core is exactly the transposition
+    # (2,4) image of banked unit-core-654-41 (verified row-by-row in
+    # both directions; image == 654-41 as dicts). Admitted per the
+    # image-precedent as FOUND, flagged to Adam — SIXTH banked image.
+    # The checker-flagged NEW support 9:{0,3,4,6} is just the (2,4)
+    # image of 654-41's 9:{0,2,3,6}, so it is NOT bank-new. Row
+    # 1:{0,3,7,8,9} twenty-first banked appearance.
+    {
+        "id": "unit-core-654-51",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            6: frozenset({2, 4, 7, 11}),
+            7: frozenset({1, 3, 5, 8}),
+            8: frozenset({1, 6, 7, 9}),
+            9: frozenset({0, 3, 4, 6}),
+            11: frozenset({1, 2, 4, 9}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
