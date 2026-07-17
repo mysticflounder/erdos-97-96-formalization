@@ -36,7 +36,7 @@ the live packet, first missing antecedent, circularity check, and immediate
 spine consumer. A negative compatibility result is a valid deliverable; a
 consumer without its geometric producer is not a closure route.
 
-## Current inventory (updated 2026-07-16)
+## Current inventory (updated 2026-07-17)
 
 The current source surface is **12 direct `sorry` declarations / 32 textual
 holes**, grouped into two Front-A proof clusters.  The liveData case tree is
@@ -94,23 +94,22 @@ consumed immediately:
 
 ```text
 full parent hypotheses
-  |-- orient six-point physical cap + five-point radius class
-  |     or route the oriented-five / radius-card-four complement
-  |-- exact-five unused critical row
-  |     -> actual row has at most one physical strict-cap hit
-  |     -> two distinct physical strict-cap points omit that row
-  |     -> canonical paired rows share an exact three-point physical core
-  |     -> a third common deletion at the same center pair
-  |-- origin-tagged common deletion
-  |     + retained source/radius/cap/blocker provenance
-  |     -> actual-critical omission successor at every physical source
-  |     -> source-anchored finite omission cycle
-  |        |-- reverse, period 3..5 -> repeated outside pair / U5 alignment
-  |        `-- mutual omission -> eliminate one off-cap exceptional fiber
-  |-- explicit non-cycle common-deletion sibling -> provenance-aware consumer
-  `-- protected original/swapped FA-UNIQ4/FA-UNIQ5 arms
-        -> existing protected consumers
+  -> one CriticalPairFrontier on the common CriticalShellSystem
+  -> originalUnique_or_commonDeletionParent
+     |-- original FA-UNIQ4/FA-UNIQ5 arm
+     |     -> protected unique consumer
+     `-- FrontierCommonDeletionParentResidual
+           -> full deletion robustness at the first apex
+           -> first apex omitted from the blocker-map image
+           -> one nontrivial same-blocker source fiber
+           -> multi-fiber/cap-order/cross-support coupling
+              |-- robust-apex row + two ordered collision fibers
+              |     + the cross-support incidence in the second fiber
+              |     -> ordinal Kalmanson strict cycle
+              `-- second same-cap center bisecting the extracted outside pair
+                    -> outsidePair_unique_capCenter
   -> assemble false_of_twoLargeCaps_commonCriticalMap
+  -> call before LIVE-Q/C construction and remove the dead helper tree
 ```
 
 This is a proof decomposition, not a weakening of the mathematical parent:
@@ -3852,11 +3851,36 @@ distinct sources with a common actual blocker. Equal-center rigidity gives one
 common exact four-point critical shell containing both sources, with deletion
 of either source critical at that blocker. This is the new global normal form,
 not yet a contradiction: its sources have no forced cap/boundary/frontier-
-radius placement. The smallest honest next result is therefore a cap/MEC/
-boundary-order theorem that localizes this blocker collision or supplies the
-second shell/row needed by an existing Kalmanson, outside-pair, or curvature
-terminal. Another row producer, blocker-map iteration, or generic common-
-deletion recursion is not closure progress.
+radius placement.
+
+The completed consumer audits now fix the smallest honest continuation.
+Every cap containing the common blocker leaves two distinct points of its
+exact four-shell outside the cap. A second distinct center in that cap
+equidistant from this outside pair is immediately contradictory by
+`outsidePair_unique_capCenter`. It cannot be obtained as a different selected
+shell at the same blocker, because equal-center rigidity locks every selected
+four-class there to the same support. Moreover, a kernel-checked `Fin 12`
+regression retains the robust center, total blocker map, collision, exact-row
+locking, and full selected-row minimality closure while having no second
+represented center through the collision pair. This rules out deriving that
+producer from the current finite fields alone.
+
+The corrected pinned survivor supplies a more promising ordered target. One
+collision row plus the robust-apex row has no ordinal contradiction, but full
+ordinal Kalmanson closure kills the survivor; an inclusion-minimal core uses
+the robust-apex row and two collision rows and produces a strict two-cycle.
+The generic Lean consumer fixes its exact antecedent: cyclic order
+`O < A < X < J < C < K` and row equalities `OJ = OC`, `AC = AK`, and
+`XJ = XK`, yielding `AJ < AC < AJ`. In particular, the second fiber alone is
+not enough: the producer must establish the cross-support membership that
+gives `XJ = XK` (up to cyclic relabeling). Therefore the primary open theorem
+is a multi-fiber/cap-order/cross-support coupling from the full parent
+geometry: force the second blocker collision fiber and map all three live rows
+to that checked ordinal consumer. The
+same-cap second-center bisection is the alternate immediate consumer. Both are
+weaker and more source-faithful than the old LIVE row families. Another
+one-fiber classifier, arbitrary row producer, blocker-map iteration, or generic
+common-deletion recursion is not closure progress.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3907,9 +3931,13 @@ Work is decomposed as follows:
    common deletion at the first apex and `q`'s blocker). The exact arm audit
    above proves that these rows alone are nonterminal. Use the resulting
    first-apex full deletion robustness and same-blocker source collision as the
-   primary input, and prove the missing cap/order placement or second-shell
-   coupling. Do not reopen row mining or recurse on a generic common-deletion
-   packet.
+   primary input. Prove either (a) a second suitably ordered collision fiber
+   plus the cross-support incidence required by the checked six-point
+   `O,A,X,J,C,K` ordinal Kalmanson cycle, or (b) a distinct same-cap center bisecting the two
+   outside points extracted from one collision shell. Same-center shell
+   production is support-locked and a finite regression refutes deriving a
+   second center from the current row/minimality fields. Do not reopen
+   anonymous row mining or recurse on a generic common-deletion packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.

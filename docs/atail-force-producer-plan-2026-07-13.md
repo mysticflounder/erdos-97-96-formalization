@@ -98,11 +98,40 @@ deletion of either source critical at the common blocker. This is not yet
 `False`: the collision sources lack forced cap, boundary-order, and frontier-
 radius placement.
 
-Therefore the next mathematical target is a cap/MEC/order-aware consumer of
-that global blocker collision: localize both sources to a usable boundary/cap
-role, or produce the second shell/row required by an existing Kalmanson,
-outside-pair, or shell-curvature terminal. Do not mine another selected row,
-iterate the blocker map, or recurse on an anonymous common-deletion packet.
+The completed collision-consumer audit makes this boundary more precise.
+For any cap containing the common blocker, the exact common four-shell has at
+least two distinct points outside that cap. A second distinct center in the
+same cap equidistant from that outside pair closes immediately through
+`CapSelectedRowCounting.outsidePair_unique_capCenter`. But the retained
+critical system cannot manufacture this at the same blocker: every selected
+four-class there is locked to the same exact critical support. A kernel-checked
+`Fin 12` regression retains the total fixed-point-free blocker map, full
+selected-row minimality closure, a robust center, the common-blocker collision,
+and support locking, while no second represented center contains the collision
+pair. Thus generic finite row fields cannot prove the missing second center.
+
+Ordinal Kalmanson gives the other exact consumer. One anonymous collision row,
+even together with the robust-apex row, has no forced strict cycle. The
+corrected pinned survivor is nevertheless killed by a minimal three-row core:
+the robust-apex row and two ordered collision fibers give a strict two-cycle.
+The generic Lean consumer is now checked explicitly. Up to cyclic relabeling,
+it assumes six points in order `O < A < X < J < C < K` and the three row
+equalities `OJ = OC`, `AC = AK`, and `XJ = XK`; Kalmanson gives
+`AJ < AC < AJ`. The last equality is the load-bearing cross-support incidence
+`K ∈ X-row`. Two nontrivial fibers without that incidence are insufficient.
+Consequently the primary new theorem target is a **multi-fiber/order/cross-
+support coupling** from the full parent geometry: produce a second nontrivial
+blocker fiber, the displayed cyclic roles, and the cross-support membership
+needed by that ordinal core.
+The alternate target is the same-cap second-center bisection above. Either
+target is strictly weaker than proving the old LIVE row families and feeds an
+existing checked terminal immediately.
+
+Do not promote one-fiber cap classification as a terminal, mine another
+anonymous selected row, iterate the blocker map, or recurse on an anonymous
+common-deletion packet. The necessary new force must visibly use cap/MEC/order
+or another full-parent source-localization fact absent from the finite
+regression.
 
 Do not weaken this residual to a generic `CommonDeletionTwoCenterPacket`. The
 generic-packet audit proves that it adds no force beyond deletion robustness
