@@ -804,7 +804,8 @@ With the t₂ = t₂₀ branch and the T1/T3 orbit both blocked only on V.2, the
 literal open source inventory is **V.2, LIVE-Q, and LIVE-C**. The active
 mathematical content is instead the source-exact omission-cycle consumer and
 the protected unique-arm consumers described at the start of Part V; the
-exact-five renewal and per-source successor ingress is proved.
+exact-five renewal, per-source successor, period-two-through-five cycle, and
+reverse-incidence split are proved.
 
 ---
 
@@ -848,8 +849,8 @@ row must (or does) discharge.
 | O14 | Card-11 slice | open scope gate | O20 should be uniform from card 11. Any higher-cardinality theorem must carry the missing lower-cardinality consumer in the same plan. |
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
-| O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. The row-coherence, normalization, renewal, and per-source successor theorems use only the three core axioms. |
-| O18 | Source-exact omission-cycle consumer | open | Lift the proved fixed-point-free successor to a finite cycle retaining each physical source and its actual blocker row. Then either extract a named cross-incidence consumed by an existing sink or contradict that same cycle using joint convex boundary order, MEC/cap placement, and the concrete critical map. A pinned exact finite-metric model admits `1 -> 2 -> 1`, while a separate Euclidean convex/MEC cap model admits local rank wrap; therefore anonymous iteration, marginal cap ranks, and geometry-free nonreturn are blocked. No current bank consumes this coupled cycle surface. |
+| O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. Production further chooses a total fixed-point-free transition and normalizes it to an injective source-exact cycle of period two through five, retaining the common radius/cap class, actual blocker rows, edge omissions, and deletion-survival facts. These theorems use only the three core axioms. |
+| O18 | Source-exact omission-cycle consumer | open | Prove `false_of_physicalActualCriticalOmissionCycle` for the production period-two-through-five cycle. Production splits it exhaustively into a mutually omitted edge or reverse-positive incidence on every edge. The first arm survives the pinned exact finite critical-map model; the second survives an exact Euclidean convex/MEC cap-local directed-bisector model. The cumulative-deletion audit proves that deleting the complete source cycle blocks K4 at each source's actual blocker, so `D.Minimal` cannot compose the edge survivals and yields only the existing fresh-core split. The older actual-blocker cycle bank has a different transition (`q ↦ H.centerAt q`) and is inapplicable. The proof must therefore add joint global K4, convex boundary order, MEC/cap placement, and concrete critical-map force on the same cycle, either producing a named bank incidence or a direct contradiction. No current bank consumes that remaining coupled surface. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
 | O20 | Parent direct-`False` assembler | blocked (O18–O19) | Assemble `false_of_twoLargeCaps_commonCriticalMap` from the O18 source-exact omission-cycle consumer and O19 protected unique arms under the full parent hypotheses, and call it before LIVE row construction. Then remove or trivialize O10–O13 by reference mining. |
 
@@ -881,8 +882,8 @@ Conditionally: if the obligations of Part V are discharged, then
 `Lean.trustCompiler`}.
 
 Nothing stronger is claimed. The 12 current source declarations remain open;
-the source-exact omission-cycle consumer and protected unique arms have
-not yet been proved.
+the source-exact omission-cycle normal form is proved, but its joint geometric
+consumer and the protected unique arms have not yet been proved.
 
 ---
 

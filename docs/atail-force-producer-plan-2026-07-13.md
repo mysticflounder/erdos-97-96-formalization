@@ -70,9 +70,13 @@ common-deletion consumer with a canonical renewable packet.
 `ATail/LargeCapUniqueFivePhysicalOmissionSuccessor.lean` proves the stronger
 source-indexed recurrence statement: every physical strict-cap source has a
 distinct physical source outside its actual critical support, and deleting
-that omitted successor preserves K4 at the source's actual blocker. This is
-the correct positive normal form, but it supplies recurrence rather than a
-well-founded rank.
+that omitted successor preserves K4 at the source's actual blocker.
+`ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean` completes the finite
+normalization in production: the chosen transition has an injective canonical
+cycle of period two through five, with the same exact-five radius, strict-cap
+placement, actual blocker rows, support omissions, and deletion-survival facts
+retained on every edge. This is the correct positive normal form, but it
+supplies recurrence rather than a well-founded rank.
 
 The bank-reuse audit finds no existing terminal for the paired packet. The
 shared first support is the unused source's actual critical row, while the
@@ -81,11 +85,26 @@ deleted. Current U5 consumers fix one deleted source, and the existing paired
 shared-row audits remain nonterminal. A pinned exact finite-metric regression
 retains the local exact-five/critical-map semantics and realizes the successor
 cycle `1 -> 2 -> 1`; an independent Euclidean convex/MEC cap regression shows
-that local cap order also permits wrap. The next theorem must therefore either
+that local cap order also permits wrap. The cumulative-deletion audit proves
+that `D.Minimal` cannot compose the edge facts: deleting the full cycle source
+set blocks K4 at every source's actual blocker and returns only the
+already-banked fresh-core split. The older actual-blocker cycle bank is also
+inapplicable because its next source is the blocker itself, while the new next
+source is omitted from the blocker row. The next theorem must therefore either
 extract a named cross-incidence from an actual critical row or couple both
-layers on one source-exact cycle. Do not project either packet to bare
-robustness or claim an anonymous local rank: both erase the load-bearing
-coupling.
+layers on the production source-exact cycle. Do not project the packet to bare
+robustness, restart minimality/descent, or claim an anonymous local rank: each
+erases or contradicts the load-bearing coupling.
+
+The exact next theorem is
+`false_of_physicalActualCriticalOmissionCycle`. Its immediate producer is
+already `nonempty_physicalActualCriticalOmissionCycle`. The production
+decomposition `nonempty_mutualOmissionEdge_or_all_reverseMembership` splits
+the proof into one mutually omitted edge or reverse-positive incidence on
+every edge. The first arm needs geometry beyond the exact finite critical-map
+regression; the second needs global K4/critical-map content beyond the exact
+Euclidean cap-local directed-bisector regression. This is the only active
+exact-five theorem-discovery surface.
 
 Use the complete production `CriticalPairFrontier`.  Its
 `secondApexDouble` field makes simultaneous second-apex double-deletion
@@ -575,15 +594,17 @@ current closure sequence is:
    at the same blocker/physical-apex center pair. Their canonical physical
    rows share exactly three points, one of which yields a third common
    deletion at the same centers.
-6. **CURRENT COMMON-DELETION CONSUMER:** preserve both deleted sources, the
+6. **DONE-PRODUCTION SOURCE-EXACT CYCLE; CURRENT GEOMETRIC CONSUMER:** preserve both deleted sources, the
    physical radius, unused/companion source, actual blocker row, and cap
    placement instead of projecting to a generic packet. Production now gives
-   a fixed-point-free actual-critical omission successor at every physical
-   source. Lift it to a finite source-exact cycle, then either produce a named
-   actual-row cross-incidence feeding an existing sink or rule out that same
-   cycle using joint convex/MEC/critical-map data. Generic successor iteration
-   and local rank/nonreturn are blocked by the exact cycle and cap-wrap
-   regressions.
+   the fixed-point-free actual-critical omission successor and its canonical
+   period-two-through-five source-exact cycle and its mutual-omission versus
+   all-reverse-positive split. Prove
+   `false_of_physicalActualCriticalOmissionCycle`, using a named actual-row
+   cross-incidence feeding an existing sink or a direct joint
+   convex/MEC/critical-map contradiction. Generic successor iteration, cumulative
+   minimality, actual-blocker-cycle reuse, and local rank/nonreturn are blocked
+   by the checked audits and regressions.
 7. **SEPARATE OWNER DEPENDENCY:** consume reciprocal criticality through the
    packet-polymorphic `FA-UNIQ4` proof and combine the eventual R eliminator
    with the paused `FA-UNIQ4`/`FA-UNIQ5` direct-`False` results.

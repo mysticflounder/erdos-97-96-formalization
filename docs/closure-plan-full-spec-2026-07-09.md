@@ -141,7 +141,11 @@ that ingress at every physical strict-cap source. Its actual critical support
 contains at most two physical strict-cap members, while the exact-five class
 contains at least three, so a distinct omitted physical source always exists;
 deleting it preserves K4 at the current source's actual blocker. This is a
-fixed-point-free successor theorem, not descent. The checked exact rational
+fixed-point-free successor theorem, not descent. Production
+`ATail/LargeCapUniqueFivePhysicalOmissionCycle.lean` now normalizes one such
+total transition to an injective cycle of period two through five and retains
+the source, actual blocker row, omission, deletion survival, physical radius,
+and strict-cap placement on every edge. The checked exact rational
 finite-metric regression in
 `scratch/atail-force/paired-common-deletion-nonreturn-audit/` retains the
 exact-five class, a total critical map, and both canonical deletion packets
@@ -155,16 +159,15 @@ The paired-packet bank audit found no immediate terminal. Its canonical first
 row is the unused source's actual critical support; its two physical-apex rows
 come from deleting the two named points from the exact-five class. Existing
 U5 consumers fix one deleted source, and the paired shared-row consumers are
-nonterminal. The first legitimate next theorem must therefore do one of two
-things while retaining the full origin: use the actual critical row at one of
-the two named deleted sources to force a bank-consumed cross-incidence, or
-lift the production successor to a finite physical-class actual-critical
-omission cycle and rule out that same source-exact cycle by jointly consuming
-convex boundary order, MEC/cap placement, and the concrete critical map.
-Separate local-rank and finite-metric arguments both admit wrap, so they may
-not be presented as a combined no-wrap theorem without a source-level bridge.
-Projecting either packet to bare physical-apex robustness is redundant and
-loses the new information.
+nonterminal. The first legitimate next theorem is now exactly
+`false_of_physicalActualCriticalOmissionCycle`. Use the production
+mutual-omission versus all-reverse-positive split, then force a bank-consumed
+cross-incidence or rule out that same source-exact cycle by jointly consuming
+global K4, convex boundary order, MEC/cap placement, and the concrete critical
+map. Separate local-rank, finite-metric, cap-local bisector, cumulative
+minimality, and blocker-cycle arguments all fail their recorded regression
+gates. Projecting either packet to bare physical-apex robustness is redundant
+and loses the new information.
 
 The legacy
 `DoubleApexOffSurplusSharedRadiusPair` conclusion is an artificial ex-falso
@@ -3725,11 +3728,36 @@ The final content theorem remains
 `false_of_twoLargeCaps_commonCriticalMap`, consuming the actual MEC-derived
 cap packet, `hNoM44`, full exact filters, and concrete critical map before the
 LIVE-Q/C slot split. The exact-five branch now reaches a canonical renewable
-common-deletion surface and a per-source actual-critical omission successor
-in production. The remaining theorem-discovery target beneath the parent is
-its source-exact omission-cycle named-incidence or joint geometric consumer,
-together with the protected unique-arm dependencies. Fixed LIVE row slots are
-compatibility data, not the construction surface.
+common-deletion surface, a per-source actual-critical omission successor, and
+a canonical source-exact omission cycle of period two through five in
+production. The cycle retains every physical source, its actual critical row
+and blocker, same-radius strict-cap placement, edge omission, and the
+corresponding deletion-survival fact. The remaining theorem-discovery target
+beneath the parent is only a named-incidence or joint
+convex/MEC/critical-map consumer of that production cycle, together with the
+protected unique-arm dependencies. Fixed LIVE row slots are compatibility
+data, not the construction surface.
+
+The cumulative-deletion/minimality continuation is now closed as a negative
+audit. Deleting the whole cycle source set blocks K4 at each retained actual
+blocker, so the one-deletion edge facts cannot compose into a smaller global
+K4 carrier. `D.Minimal` yields only the already-banked fresh
+shared-radius/minimal-deletion-core split; it does not consume the cycle.
+Likewise, the older `SourceExactMinimalActualBlockerCycle` bank iterates the
+blocker map `q ↦ H.centerAt q`, whereas this cycle iterates an omitted physical
+source. These objects must not be conflated. Do not schedule another
+minimality/descent lemma or blocker-cycle adapter for this branch.
+
+The exact next content theorem is
+`false_of_physicalActualCriticalOmissionCycle`. Its input is the production
+cycle itself and its consumer is immediate from
+`nonempty_physicalActualCriticalOmissionCycle`. Internally, use the checked
+exhaustive split `nonempty_mutualOmissionEdge_or_all_reverseMembership`:
+either one edge is omitted in both actual rows, or every successor row contains
+the preceding source. The mutual-omission arm must add global geometric force
+beyond the exact finite critical-map model; the reverse-positive arm must add
+global K4/critical-map force beyond the exact Euclidean cap-local directed
+bisector regression. Neither arm licenses another anonymous row miner.
 
 Work is decomposed as follows:
 
