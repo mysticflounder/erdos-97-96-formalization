@@ -162,9 +162,13 @@ exclusion of `S.oppApex2` from the map image, and two disjoint robust rows.
 That witness is only a finite structural shadow, but it proves that the next
 consumer must use a field absent from the current tail interface.
 
-The stopped `global-minimal-deletion-core/` lane supplies the strongest such
-field.  From `hmin : D.Minimal` and the live survivor-pair frontier it
-kernel-produces a fresh strict-cap center and exactly one of:
+Production `ATail/MinimalDeletionCore.lean` now contains the generic MUS-style
+finite deletion core: restoring each deleted source yields an exact ambient
+four-shell, distinct sources have disjoint supports, and two such shells force
+the corresponding closed cap to have cardinality at least six.  The stopped
+`global-minimal-deletion-core/` lane supplies the remaining parent bridge.
+From `hmin : D.Minimal` and the live survivor-pair frontier it kernel-produces
+a fresh strict-cap center and exactly one of:
 
 1. a shared-radius collision among a bounded deleted-role set;
 2. a genuine `MinimalDeletionCore` with pairwise-disjoint exact four-shells,
@@ -283,8 +287,8 @@ This is a simplification, not progress toward `False`: the first constructor
 is the robust input state itself.  Do not mine the two outside fresh-shell
 members, a shared-pair rank, or a new Kalmanson packet.
 
-The separate `robust-large-radius-exact-five-consumer/` checkpoint now makes
-the exact-five residual source-faithful.  The physical class has at least
+Production module `ATail/LargeCapUniqueFive.lean` now makes the exact-five
+residual source-faithful.  The physical class has at least
 three strict `oppCap2` hits.  Since the cap has at least six points, there is
 an unused cap point `z` outside the entire exact five-point radius filter;
 erasing `z` preserves that filter, its cardinality, and uniqueness as a K4
@@ -297,6 +301,14 @@ cap sink.  Thus the load-bearing large-radius work is now precisely that
 cross-row or placement consumer, together with a direct theorem preventing
 return to the robust input; the minimal-deletion/common-deletion loop supplies
 no decreasing invariant.
+
+The critical-system transport used by the global-minimality continuation is
+also production code in `ATail/CriticalSystemRebase.lean`.  It keeps the
+geometric survivor pair fixed while rebuilding the blocker inequalities for
+an arbitrary retained `CriticalShellSystem`; choosing or rebasing the system
+does not itself add closure force.  The large-radius transition which produces
+`LargeCapUniqueFiveSecondApexRadius` remains checked scratch pending extraction
+of its minimal-deletion and common-deletion dependencies.
 
 The later exact-five ordered-shell continuation proves a global CCW ordering
 of the unused source's complete critical support, both strict endpoint
