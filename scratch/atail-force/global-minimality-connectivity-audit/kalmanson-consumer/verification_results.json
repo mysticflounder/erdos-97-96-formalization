@@ -1,0 +1,81 @@
+{
+  "continuation": {
+    "domains": {
+      "C": {
+        "candidate_count": 73,
+        "candidate_supports_sha256": "e16f65645fd2d1eb723c9ce58d59bf3a5601d3dc4ed91975ca5fb0897c42d43f",
+        "killed": 49,
+        "survives": 24
+      },
+      "E": {
+        "candidate_count": 492,
+        "candidate_supports_sha256": "f74a9bfed9b30a321397fbb55fa9ecbe514b4ed81aa2ebb0b9fd35acaac5b52b",
+        "killed": 468,
+        "survives": 24
+      },
+      "F": {
+        "candidate_count": 328,
+        "candidate_supports_sha256": "bac1009089c0f219c62d9c51d5a11753d57778ec09037cfc9cb915e3177ab461",
+        "killed": 328,
+        "survives": 0
+      },
+      "G": {
+        "candidate_count": 338,
+        "candidate_supports_sha256": "d00ac9bb5c869d992b532313438fef611f52180ad3bc214d8ecb5ffd021b5ab8",
+        "killed": 310,
+        "survives": 28
+      },
+      "I": {
+        "candidate_count": 328,
+        "candidate_supports_sha256": "b24edab674ac8cbebbb154c46ffd615ea42d9c42c73058d36e3dd8fc8ddadb1c",
+        "killed": 328,
+        "survives": 0
+      },
+      "J": {
+        "candidate_count": 528,
+        "candidate_supports_sha256": "d58b9b952c85e0f4b96b0b822c5e48e0f5b6dee4ddc266f05dd7095291fffcaa",
+        "killed": 504,
+        "survives": 24
+      },
+      "K": {
+        "candidate_count": 338,
+        "candidate_supports_sha256": "eed4d5726c2fcd44c4ba19d9f12c34172c4e28efe05515d13c69f7e264670c29",
+        "killed": 322,
+        "survives": 16
+      },
+      "X": {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "2938faf27bf085d6d5d5e3b46b03ef51bb4de7b0378b46c64878deca736fdd7e",
+        "killed": 401,
+        "survives": 0
+      },
+      "Y": {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "07ecced3713ea087c682fea983f911a38922d308ce82f5a1835a941a36381b90",
+        "killed": 392,
+        "survives": 9
+      },
+      "Z": {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "fcb960d60e4b42d9dd52cfbc25cd7cb06721ba5059d5a3744288dd05fade97a3",
+        "killed": 389,
+        "survives": 12
+      }
+    },
+    "fixed_prefix_cycle": false,
+    "zero_singleton_domains": [
+      "F",
+      "I",
+      "X"
+    ]
+  },
+  "prefix": {
+    "cycle_length_distribution": {
+      "1": 89,
+      "2": 12
+    },
+    "stored_prefix_certificates_replayed": 101,
+    "terminal_certificate_replayed": true
+  },
+  "status": "PASS"
+}

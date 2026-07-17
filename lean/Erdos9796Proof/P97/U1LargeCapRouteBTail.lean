@@ -15,6 +15,7 @@ import Erdos9796Proof.P97.U1OppositeCapLowerBounds
 import Erdos9796Proof.P97.U3ToU5Terminal
 import Erdos9796Proof.P97.U2.WitnessReflectionKernel
 import Erdos9796Proof.P97.U2NonSurplusOneHit
+import Erdos9796Proof.P97.ATail.CapCrossingKalmanson
 import Erdos9796Proof.P97.ATail.CriticalPairFrontier
 
 /-!
@@ -25,8 +26,9 @@ This module contains the extracted U1.2 large-cap Route-B tail consumed by
 exact-pair fast path; after a large-cap witness is supplied, this tail theorem
 intentionally has no non-exactness hypothesis.
 
-The remaining source holes are K-A-PAIR and the LIVE-Q/T3/C families;
-LIVE-T1 is source-sorry-free but still depends transitively on K-A-PAIR.
+The remaining source holes are K-A-PAIR and the LIVE-Q/C families.
+LIVE-T1 and LIVE-T3 are source-sorry-free but still depend transitively on
+K-A-PAIR.
 -/
 
 open scoped EuclideanGeometry

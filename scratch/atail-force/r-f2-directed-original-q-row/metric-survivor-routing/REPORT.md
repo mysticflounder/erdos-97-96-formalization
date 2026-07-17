@@ -2,10 +2,9 @@
 
 Date: 2026-07-16
 
-Status: **THE RAW METRIC ROUTING IS KERNEL CHECKED.  A LATER
-BRANCH-SPECIFIC CHECK PROVES THAT `StrictOppCap1CommonHit` HAS THE WRONG
-POLARITY ON THE ACTUAL EQUAL-SOURCE LIVE-CENTER BRANCH; THE CORRECT
-NON-EQUILATERAL TARGET IS THE EXISTING SUPPORT DICHOTOMY.**
+Status: **THE RAW METRIC ROUTING IS KERNEL CHECKED.  ITS LIVE-CENTER
+PRODUCER ROUTES ARE SUPERSEDED: THE WHOLE EQUAL-SOURCE LIVE-CENTER
+CONSTRUCTOR NOW CLOSES DIRECTLY BY ORDERED-CAP GEOMETRY.**
 
 ## Scope and preflight
 
@@ -21,6 +20,11 @@ no new broad mining was run.  No production file, closure document,
 proof-blueprint state, protected file, or user-owned lane was changed.
 
 The implementation is `MetricSurvivorRouting.lean`.
+
+The later checked module
+`../equal-source-metric-terminal/EqualSourceMetricTerminal.lean` is now the
+authoritative live-center route.  This report's generic adapters remain
+valid, but its proposed live-center producer boundary is historical.
 
 ## Exact signature map
 
@@ -104,6 +108,13 @@ intersection bound therefore makes it their unique common support point, and
 the live-heavy cap facts place that point in `strictSecondCap S`, hence in
 `oppCap2`.  Asking for a strict-`oppCap1` common hit on this branch is asking
 for an already contradictory packet.
+
+The stronger follow-up does not enter this dichotomy at all.  A
+`MetricResidual` already places the opposite named center in each completed
+generated row.  Since those centers are not the deleted original point `q`,
+the memberships descend to the raw supports.  With the equal source fixed to
+`p`, the three points `p,x,y` lie in `oppCap2`, and one shared ordered-cap
+argument gives `False`.
 
 ### Equilateral
 
@@ -190,9 +201,9 @@ theorem false_of_metricResidual_of_consumerSelections
 This structure is a valid consumer adapter, not a claim that both fields are
 realizable producer objects.  Its value is that all
 residual/common-deletion/joint-packet bookkeeping has been removed.  The
-later live-center audit shows that its non-equilateral callback is logically
-equivalent to closing that whole branch, so it must not be mined as an
-intermediate incidence packet.
+later live-center terminal closes that whole branch from strictly earlier
+data, so neither callback should be mined there as an intermediate incidence
+packet.
 
 ## Full-parent verdict
 
@@ -202,7 +213,8 @@ no-removability, frontier, anchored origin, aligned F2 packet, and generated
 successor.  The paired construction at the same live-heavy reduction reaches
 the five-way `SourceSplit`.
 
-No retained field has the equilateral consumer type:
+For the surviving second-apex arm, no retained field has the equilateral
+consumer type:
 
 ```text
 JointTransitionClosingSelection ... J.
@@ -217,28 +229,20 @@ field.  In particular:
   pair or third mixed-pair bisector center; and
 - no-M44 and cap order do not choose a joint-transition closing disjunct.
 
-Thus neither whole survivor arm is mechanically contradictory from the
-current full-parent surface.  The route is now exact, however:
+Thus the corrected equal-source metric route is:
 
-1. `equalSource_atLiveCenter` splits its `MetricResidual`.
-   - Non-equilateral: use `nonEquilateralSupportDichotomy`, or its
-     `NonEquilateralGeometryTerminal` refinement.  The honest outputs are a
-     surplus-heavy native row or two exclusive strict-`oppCap1` witnesses
-     with a metric hinge.  In the latter arm, the equal source fixes the
-     common point to `f = p`; only the three reverse equalities
-     `dist p x = dist p z₂`, `dist p x = dist p y`, and
-     `dist y x = dist y z₁` remain before the import-reachable production
-     theorem `Problem97.u5_equilateral_opposite_point_metric_incompatibility`
-     gives `False`.  The exhaustive fixed-`f = p` role audit finds no
-     assignment with fewer missing equalities.
-   - Equilateral: produce one realized `JointTransitionClosingSelection`.
+1. `equalSource_atLiveCenter` is closed uniformly by
+   `false_of_equalSource_atLiveCenter_metricResidual`.
 2. `equalSource_atSecondApex` is already equilateral.
-   - Produce one realized `JointTransitionClosingSelection`; do not mine a
-     second common outside-cap point.
+   - The q-critical × q-critical instance is closed by the existing
+     full-parent metric terminal.
+   - With at least one q-deleted generated row, produce one realized
+     `JointTransitionClosingSelection` or prove a stronger direct terminal;
+     do not mine a second common outside-cap point.
 
-The q-critical × q-critical metric constructor remains separately closed by
-the existing full-parent terminal.  This report concerns only the surviving
-constructor combinations with at least one q-deleted generated row.
+The earlier surplus-heavy and three-reverse-equality live-center targets are
+also retired.  Follow-up checked audits show that their smallest proposed
+positive completions have the wrong polarity or are already contradictory.
 
 ## Validation
 

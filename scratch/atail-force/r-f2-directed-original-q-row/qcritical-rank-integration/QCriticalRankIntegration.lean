@@ -372,7 +372,7 @@ Both equal-radius relations are placed in one canonical ordered-cap
 presentation.  The first says `x` lies between `y` and the common source;
 the second says `y` lies between `x` and that source.  The two betweenness
 relations are incompatible in a linear order. -/
-private theorem false_of_equalSource_bothCompanions
+theorem false_of_equalSource_bothCompanions
     {D : CounterexampleData} {S : SurplusCapPacket D.A}
     {p q t1 t2 t3 : ℝ²} {radius rho : ℝ}
     {T : FixedSingleRadiusTerminalHistory D S D.A radius}
@@ -654,6 +654,7 @@ theorem OriginalQOutsideMiddleParentContext.qCriticalRankReduction
     Q Hcrit (q_ne_leafPacket_oppApex2 Pctx)
 
 #print axioms qCriticalRankReduction
+#print axioms false_of_equalSource_bothCompanions
 #print axioms
   OriginalQOutsideMiddleParentContext.qCriticalRankReduction
 

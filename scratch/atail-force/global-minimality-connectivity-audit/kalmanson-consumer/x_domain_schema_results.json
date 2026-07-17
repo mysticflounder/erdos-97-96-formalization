@@ -1,0 +1,186 @@
+{
+  "after_existing_fixed_row_gates": {
+    "candidate_count": 70,
+    "candidate_count_removed_by_old_gates": 331,
+    "minimal_certificate_schemas": [
+      {
+        "candidate_count": 4,
+        "minimal_named_rows": [
+          "ambientO",
+          "A",
+          "D",
+          "X"
+        ],
+        "representative_X_supports": [
+          [
+            "O",
+            "t1",
+            "I",
+            "Y"
+          ],
+          [
+            "O",
+            "t1",
+            "F",
+            "Y"
+          ],
+          [
+            "O",
+            "t1",
+            "I",
+            "Z"
+          ]
+        ],
+        "shortest_strict_cycle_length": 2
+      },
+      {
+        "candidate_count": 12,
+        "minimal_named_rows": [
+          "ambientO",
+          "A",
+          "D",
+          "X"
+        ],
+        "representative_X_supports": [
+          [
+            "t1",
+            "A",
+            "Y",
+            "G"
+          ],
+          [
+            "t1",
+            "A",
+            "Y",
+            "K"
+          ],
+          [
+            "t1",
+            "A",
+            "Z",
+            "G"
+          ]
+        ],
+        "shortest_strict_cycle_length": 3
+      },
+      {
+        "candidate_count": 44,
+        "minimal_named_rows": [
+          "ambientO",
+          "A",
+          "X"
+        ],
+        "representative_X_supports": [
+          [
+            "A",
+            "Z",
+            "J",
+            "K"
+          ],
+          [
+            "O",
+            "t1",
+            "Y",
+            "J"
+          ],
+          [
+            "O",
+            "I",
+            "Y",
+            "J"
+          ]
+        ],
+        "shortest_strict_cycle_length": 2
+      },
+      {
+        "candidate_count": 4,
+        "minimal_named_rows": [
+          "ambientO",
+          "D",
+          "X"
+        ],
+        "representative_X_supports": [
+          [
+            "t1",
+            "I",
+            "Y",
+            "C"
+          ],
+          [
+            "t1",
+            "F",
+            "Y",
+            "C"
+          ],
+          [
+            "t1",
+            "I",
+            "Z",
+            "C"
+          ]
+        ],
+        "shortest_strict_cycle_length": 2
+      },
+      {
+        "candidate_count": 6,
+        "minimal_named_rows": [
+          "ambientO",
+          "t1",
+          "X"
+        ],
+        "representative_X_supports": [
+          [
+            "t1",
+            "A",
+            "Y",
+            "J"
+          ],
+          [
+            "t1",
+            "A",
+            "Z",
+            "J"
+          ],
+          [
+            "t1",
+            "I",
+            "Y",
+            "J"
+          ]
+        ],
+        "shortest_strict_cycle_length": 2
+      }
+    ],
+    "number_of_minimal_subset_alternatives_histogram": {
+      "1": 22,
+      "2": 48
+    },
+    "ordinal_killed": 70
+  },
+  "epistemic_status": "EXACT_WITHIN_FIXED_14_ROLE_CANDIDATE_DOMAIN",
+  "interpretation": {
+    "closed_form_producer_status": "four named-row footprints remain after old gates; exact orbit quotienting of their step signatures is the next compression task",
+    "generic_consumer": "one equality-quotient plus strict-Kalmanson-cycle theorem covers all schemas",
+    "literal_schema_count": 5,
+    "one_literal_certificate": false
+  },
+  "raw_X_domain": {
+    "candidate_count": 401,
+    "minimal_named_row_subset_histogram": {
+      "A+X": 140,
+      "D+X": 128,
+      "ambientO+A+D+X": 16,
+      "ambientO+A+X": 44,
+      "ambientO+D+X": 4,
+      "ambientO+t1+X": 6,
+      "t1+X": 63
+    },
+    "number_of_minimal_subset_alternatives_histogram": {
+      "1": 307,
+      "2": 94
+    },
+    "ordinal_killed": 401
+  },
+  "restart_note": "For each of the 70 old-gate-viable X supports, emit the actual shortest cycle steps and quotient them under the cap-profile automorphisms. Then choose between four small geometric lemmas and one executable generic strict-cycle certificate checker. Do not resume the unconstrained 101-prefix miner; the universal prefix filter already makes this fixed surface exhaustive-UNSAT.",
+  "schema": "p97-atail-kalmanson-x-domain-schema-audit-v1"
+}

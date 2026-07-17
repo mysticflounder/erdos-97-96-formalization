@@ -16,6 +16,7 @@ from __future__ import annotations
 import importlib.util
 import json
 from functools import lru_cache
+from itertools import combinations
 from pathlib import Path
 from types import ModuleType
 from typing import Any, Callable, Mapping, Sequence
@@ -33,6 +34,17 @@ _COMMON_SYSTEM_PROBE = _ROOT / "scratch" / "atail-force" / (
 
 _GENERIC_METRIC_CONSUMER = (
     "Problem97.Census554.false_of_metricCoreAlternative"
+)
+
+_FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_CONSUMER = (
+    "Problem97.CapCrossingKalmansonBridge."
+    "false_of_selected_rows_in_five_ccw_order"
+)
+_FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_SOURCE = _ROOT / (
+    "lean/Erdos9796Proof/P97/ATail/CapCrossingKalmanson.lean"
+)
+_FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_MODULE = (
+    "Erdos9796Proof.P97.ATail.CapCrossingKalmanson"
 )
 
 
@@ -146,6 +158,82 @@ def _load_common_system_probe() -> ModuleType:
     return module
 
 
+def _direct_five_point_three_selected_row_kalmanson_core(
+    rows: Sequence[MetricRow], order: tuple[int, ...]
+) -> tuple[dict[str, int], int] | None:
+    """Find the first forward-CCW direct-row Kalmanson terminal.
+
+    For five cyclically ordered roles ``O < A < Y < E < C``, the checked Lean
+    adapter consumes one selected row at each of ``Y``, ``O``, and ``A`` with
+    direct support pairs ``{O, E}``, ``{E, C}``, and ``{C, O}``, respectively.
+    This matcher deliberately does not inspect the transitive metric-equality
+    closure and does not scan the reversed cyclic order.  A nonzero returned
+    rotation index is a producer obligation: the Lean caller must construct
+    the corresponding rotated CCW enumeration before applying the consumer's
+    linear ``Fin`` index inequalities.
+    """
+
+    supports_by_center: dict[int, list[frozenset[int]]] = {}
+    for row in rows:
+        supports_by_center.setdefault(row.center, []).append(
+            frozenset(row.support)
+        )
+
+    def contains_pair(center: int, left: int, right: int) -> bool:
+        pair = {left, right}
+        return any(
+            pair <= support
+            for support in supports_by_center.get(center, ())
+        )
+
+    for start in range(len(order)):
+        rotated = order[start:] + order[:start]
+        point_o = rotated[0]
+        for positions in combinations(range(1, len(rotated)), 4):
+            point_a, point_y, point_e, point_c = (
+                rotated[position] for position in positions
+            )
+            if not contains_pair(point_y, point_o, point_e):
+                continue
+            if not contains_pair(point_o, point_e, point_c):
+                continue
+            if not contains_pair(point_a, point_c, point_o):
+                continue
+            return (
+                {
+                    "O": point_o,
+                    "A": point_a,
+                    "Y": point_y,
+                    "E": point_e,
+                    "C": point_c,
+                },
+                start,
+            )
+    return None
+
+
+def _require_five_point_three_selected_row_kalmanson_consumer() -> None:
+    """Fail closed if the production Lean consumer is absent from source."""
+
+    if not _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_SOURCE.is_file():
+        raise MissingLeanConsumerError(
+            "missing production Kalmanson selected-row consumer module"
+        )
+    source = _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_SOURCE.read_text(
+        encoding="utf-8"
+    )
+    required_source_fragments = (
+        "namespace Problem97",
+        "namespace CapCrossingKalmansonBridge",
+        "theorem false_of_selected_rows_in_five_ccw_order",
+    )
+    if any(fragment not in source for fragment in required_source_fragments):
+        raise MissingLeanConsumerError(
+            "production Kalmanson module does not declare the selected-row "
+            "consumer"
+        )
+
+
 def _metric_bank_matches(
     rows: Sequence[MetricRow],
     n: int,
@@ -156,6 +244,7 @@ def _metric_bank_matches(
 ) -> list[CoreRecord]:
     closure = metric._row_equality_closure(n, rows)
     closure_index = metric._closure_circle_index(closure, n)
+    records: list[CoreRecord] = []
 
     checks: list[tuple[str, Callable[[], Mapping[str, int] | None], str]] = [
         (
@@ -256,6 +345,36 @@ def _metric_bank_matches(
             )
 
     if include_ordered:
+        kalmanson_match = _direct_five_point_three_selected_row_kalmanson_core(
+            rows, order
+        )
+        if kalmanson_match is not None:
+            _require_five_point_three_selected_row_kalmanson_consumer()
+            kalmanson_core, boundary_rotation_start = kalmanson_match
+            records.append(
+                canonical_core_record(
+                    {
+                        "stage": (
+                            "equality-convex-five-point-three-selected-row-"
+                            "kalmanson"
+                        ),
+                        "core": kalmanson_core,
+                        "boundary_rotation_start": boundary_rotation_start,
+                        "requires_rotated_ccw_enumeration": (
+                            boundary_rotation_start != 0
+                        ),
+                        "lean_module": (
+                            _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_MODULE
+                        ),
+                    },
+                    source="metric-bank-direct-rows",
+                    orientation="forward",
+                    lean_consumer=(
+                        _FIVE_POINT_THREE_SELECTED_ROW_KALMANSON_CONSUMER
+                    ),
+                )
+            )
+
         reverse_order = tuple(reversed(order))
         ordered = (
             (
@@ -291,7 +410,6 @@ def _metric_bank_matches(
                 )
             )
 
-    records: list[CoreRecord] = []
     for stage, find_core, orientation in checks:
         core = find_core()
         if core is None:

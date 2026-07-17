@@ -211,7 +211,7 @@ Five source-faithful branch reductions are now checked in scratch:
    adding a provenance tag without a consumer is not closure progress.
 
 The generated-successor boundary is now mechanically connected to that full
-parent surface and has one genuine terminal:
+parent surface and has two genuine terminals:
 
 - `generated-successor-parent/GeneratedSuccessorParent.lean` pins the exact
   MEC/cap, second-large-cap, common-critical-map, frontier, anchored origin,
@@ -226,9 +226,15 @@ parent surface and has one genuine terminal:
   `MixedConfinedResidual`; it is not forced into the successor arm;
 - `generated-successor-pair/OriginalQGeneratedSuccessorPair.lean` retains the
   two live-heavy generated rows and both successors in one packet.  Its exact
-  source split is: distinct successor sources; equal source with cross
+  initial source split is: distinct successor sources; equal source with cross
   survival at `x` or `y`; equal metric source at `p`; or equal equilateral
-  source at `S.oppApex2`;
+  source at `S.oppApex2`.  The checked
+  `equal-source-metric-terminal/EqualSourceMetricTerminal.lean` eliminates the
+  entire equal-metric-source-at-`p` constructor, uniformly over all four
+  q-deleted/q-critical generated-row combinations.  Its source-clean
+  `ReducedSourceSplit` therefore has exactly four constructors: distinct
+  sources, the two oriented equal-source cross-survival arms, and the
+  second-apex equilateral arm;
 - `qcritical-metric-terminal/OriginalQCriticalCriticalMetricTerminal.lean`
   proves that any ambient point common to both metric-residual generated rows
   is `p` or `S.oppApex2`.  When both generated constructors are q-critical,
@@ -255,10 +261,14 @@ parent surface and has one genuine terminal:
   cross-survival arm into the strongest existing source-faithful global
   selection normal form.  Its exact endpoints are three
   `CommonDeletionTwoCenterPacket` variants, `ApexDoubleCriticalResidual`, or
-  `DeletedBlockerApexAlignment`.  This is a checked downstream connection,
-  not `False`: the direct ordered-cap sink would still need membership in the
-  independently selected survivor row, which deletion survival does not
-  supply;
+  `DeletedBlockerApexAlignment`.
+  `qcritical-endpoint-integration/QCriticalEndpointIntegration.lean` now
+  closes `DeletedBlockerApexAlignment`: the aligned blocker is the original
+  deleted point `q`, while the q-critical generated support omits `q`.
+  The full-parent q-critical normal form therefore retains exactly four
+  endpoint classes: the two escape/common-deletion orientations,
+  `ApexDoubleCriticalResidual`, and relocated-blocker common deletion.  This
+  remains a checked downstream reduction, not `False`;
 - `qcritical-rank-integration/` combines both source-exact rank classifiers
   with the q-critical common-outside terminal.  An outside-`oppCap2` source is
   now explicitly omitted by the opposite generated row.  If the two chosen
@@ -267,24 +277,39 @@ parent surface and has one genuine terminal:
   put `x` between `y` and the source and simultaneously put `y` between `x`
   and the source.  Thus the equal-source q-critical residual has at least one
   opposite companion omitted, in addition to cross survival;
-- `metric-survivor-routing/` removes the remaining bookkeeping from the
-  constructor pairs with at least one q-deleted row.  A raw
-  `NonEquilateralResidual` plus the retained concrete critical system already
-  constructs the required `NonEquilateralOutput`.  The generic
-  `StrictOppCap1CommonHit` callback remains a sufficient consumer interface,
-  but `strict-oppcap1-hit-producer/` proves that hit impossible on the actual
-  equal-source-at-live-center branch: the two native supports intersect
-  exactly at `{p}`, and `p ∈ oppCap2`.  The honest non-equilateral route is
-  therefore `nonEquilateralSupportDichotomy`: a surplus-heavy row or two
-  exclusive strict witnesses with the checked metric hinge.  With the common
-  point fixed to `p`, `equal-source-non-equilateral/` proves that the latter
-  arm reaches the already import-reachable production kernel
-  `Problem97.u5_equilateral_opposite_point_metric_incompatibility` after
-  exactly three additional reverse equalities.  Its exhaustive fixed-`f = p`
-  role audit checks all 24 bijections and finds no map needing fewer than
-  three.  A realized equilateral residual already constructs its
-  joint-transition packet, so its branch-local open field remains one
-  `JointTransitionClosingSelection`;
+- `equal-source-metric-terminal/` observes that every `MetricResidual`
+  already contains both opposite named centers in the completed generated
+  rows.  Away from the deleted original point `q`, completed-row membership
+  descends to raw generated-support membership in both the q-deleted and
+  q-critical constructors.  In the live-center arm the common source is
+  `p`, and `p,x,y ∈ oppCap2`; the shared ordered-cap theorem then makes the
+  two mutual companion incidences contradictory.  This closes both the
+  non-equilateral and equilateral live-center subcases directly.  The former
+  strict-`oppCap1` common-hit, surplus-heavy, and reverse-equality routes are
+  diagnostic only: the native supports intersect exactly at `{p}`; the
+  surplus-heavy completion equality has the wrong polarity; and
+  `reverse-equality-producer/` proves that the first two proposed reverse
+  equalities already identify two distinct witnesses with the same coherent
+  source, while the third is redundant.  These impossible packets must not
+  be mined as positive producers;
+- `second-apex-equilateral-terminal/` proves the tetrahedron exclusion and
+  q-deleted fourth-slot reroute.  The exhaustive successor
+  `second-apex-constructor-split/` now removes both homogeneous constructor
+  pairs: q-critical/q-critical closes through the existing shared
+  `q`/second-apex outside pair, while q-deleted/q-deleted either supplies an
+  off-live outside-middle successor or closes because both rows share the
+  second apex and retained coherent source outside `oppCap2`.  In each mixed
+  constructor pair, either one side reroutes source-faithfully or the exact
+  residual is complementary:
+
+  ```text
+  q-deleted row:  coherent source + one of {s,t}
+  q-critical row: coherent source omitted + the other of {s,t}.
+  ```
+
+  The two mixed orientations are the only non-rerouted local residuals.
+  Do not mine a common physical-row point: equality of the two support-only
+  points is already the tetrahedron contradiction;
 - `generated-successor-rank/CapRankOppositeSide.lean` and
   `generated-successor-geometry-rank/GeneratedSuccessorGeometryRank.lean`
   give the strongest honest ordered-cap handoff at each named center.  The
@@ -294,33 +319,40 @@ parent surface and has one genuine terminal:
   q-critical coherent-predecessor terminal is retained as a universal
   omission field.  No cap membership is inferred from support omission.
 - `generated-successor-source-split-audit/REPORT.md` matches every
-  `SourceSplit` constructor against the checked banks.  No whole constructor
-  is terminal.  The distinct-source and cross-survival arms need a
+  original `SourceSplit` constructor against the checked banks.  Its
+  live-center status is superseded by the direct terminal above.  The
+  distinct-source and cross-survival arms still need a
   `CommonOutsidePair` across the two generated rows; in the
   q-critical/q-critical specialization, the existing common point `q`
   reduces this to one additional common outside-cap point, and in an
   equal-source cross arm to the shared source lying outside `oppCap2`.
-  Surviving live-center metric cases route to the non-equilateral
-  support/geometry dichotomy, not to the impossible common-hit packet, and to
-  `JointTransitionClosingSelection` (or the uniform
-  `JointTransitionCoreEliminator`) in the equilateral arm.  A surviving
-  second-apex/equilateral case needs the joint-transition selection; mining a
-  second common outside-cap point there has the wrong polarity because the
-  checked equilateral theorem makes `S.oppApex2` the unique such point.
+  The second-apex/equilateral constructor is now reduced to the two mixed
+  complementary-`{s,t}` orientations above; the homogeneous constructor pairs
+  close and every other outcome reroutes;
+- `reduced-frontier-integration/ReducedFrontierIntegration.lean` composes the
+  two latest reductions at full-parent strength.  Every generated-successor
+  pair is now either: at least one q-deleted exact generated row together with
+  `ReducedSourceSplit`; or two q-critical exact rows together with an actual
+  oriented `LiveDeletedCrossSurvival` and its four-class
+  `ReducedCrossSinkNormalForm`.  This is the current branch-exact coordinator;
+  it introduces no new `False` claim.
 
 All of these declarations fresh-check with only `propext`,
-`Classical.choice`, and `Quot.sound`.  This closes the
-q-critical/q-critical metric subcase and reduces that constructor pair to
-two exact cross-survival orientations, not a production `sorry`.  The
-remaining live-heavy frontier is now the explicit product of those
-cross-survival orientations, the other surviving
-generated-constructor/continuation arms, the paired successor-source split,
-and the source-exact cap/rank alternatives.  The immediate q-critical target
-is now explicit off-`oppCap2` placement plus one common-row membership, not a
-new anonymous survivor packet.  A rank move is not terminal until a
+`Classical.choice`, and `Quot.sound`.  This closes both the
+q-critical/q-critical metric subcase and the whole equal-source live-center
+constructor, but not a production `sorry`.  The remaining live-heavy frontier
+is the four-way reduced source split, the four endpoint classes in the
+q-critical cross-survival arm, the other generated-constructor/continuation
+arms, and the source-exact cap/rank alternatives.  The immediate q-critical
+targets are the two escape/common-deletion orientations,
+`ApexDoubleCriticalResidual`, and relocated-blocker common deletion.  The
+remaining second-apex metric target is the direct eliminator for the two mixed
+complementary-`{s,t}` packets, not a bare coherent-source incidence or any
+retired live-center producer packet.  A rank move is not terminal until a
 cycle-wide no-wrap or well-founded argument is proved, and the
-outside-cap/companion-omitted arms still need a full-parent cap/order or
-global-critical-map consumer.  Do not revert to an anonymous
+outside-cap/companion-omitted arms
+still need a full-parent cap/order or global-critical-map consumer.  Do not
+revert to an anonymous
 `CommonDeletionTwoCenterPacket → False` target or restart local selected-four
 mining.
 
@@ -333,14 +365,113 @@ for an arbitrary selected witness digraph is valid, but production already
 contains the stronger closure form
 `FaithfulCarrierPattern.eq_carrier_of_nonempty_closed`; all 101 corrected
 structural survivors satisfy full closure from every one-point seed, so this
-minimality condition removes 0/101 at that abstraction.  The proposed
-semicomplete strict disk-containment alternative is a credible metric lead:
-the implication from the stated crossing inequality is kernel-checked.
-However, the bridge from the current `CapTriple` cyclic-order interface to
-that crossing inequality is still missing, and no existing on-spine consumer
-accepts the resulting strict inequalities.  Record it as a longer-horizon
-metric lead, not as an immediate producer and not as a reason to pivot the
-source-faithful generated-successor lane.
+minimality condition removes 0/101 at that abstraction.  The
+selected-row/minimality route is therefore **blocked at the current pure
+structural abstraction**, not merely unfinished; this does not rule out a
+metric-enriched use of minimality.
+
+The proposed cap-order idea must be split into a geometric producer and a
+consumer.  The implication from the stated crossing inequality to the
+semicomplete strict disk-containment alternative is kernel-checked, but that
+containment packet is not contradictory.  The stronger strict-distance
+bridge is now production Lean:
+`ATail/CapCrossingKalmanson.lean` proves both crossed-quadrilateral Kalmanson
+inequalities for four increasing vertices of one convex CCW boundary and the
+five-point selected-row terminal
+`false_of_selected_rows_in_five_ccw_order`.  The focused production target
+builds with exactly `propext`, `Classical.choice`, and `Quot.sound`; no
+solver-backed or scratch-only axiom is involved.
+
+The first bounded consumer audit is now exact for the stored prefix.  After
+quotienting distance terms by selected-row equalities, ordinal Kalmanson
+closure rejects all 101 corrected shadows: 89 have a one-step strict
+self-cycle and 12 have a two-step cycle.  The formerly bank-clean terminal
+shadow has a particularly small three-row certificate in the pinned order
+`O < A < Y < E < C`: the `Y` row and `O,A,Y,E` give `OA < AE`; the `O` and
+`A` rows and `O,A,E,C` give `AE < OA`.  The two normalized inequalities sum
+with integer multipliers one to `0 ≥ 2`.  Exact rational LRA replay rejects
+both the terminal Kalmanson-only system and the version with all triangle
+inequalities.  The independently replayable artifact is
+`scratch/atail-force/global-minimality-connectivity-audit/kalmanson-consumer/`;
+it pins checkpoint SHA-256
+`b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9`.
+
+The source checkpoint status remains
+`SAT_PRODUCER_BANK_CLEAN_CORRECTED_SHADOW`; the 101 observations alone were
+not coverage.  The fresh continuation now enforces ordinal Kalmanson
+inconsistency as a prefix-monotone rejection rule and returns
+`UNSAT_EXHAUSTIVE_FINITE_DFS` for the fixed fourteen-role
+`PROFILE = (8,4,5)` surface.  It uses 110 prefix checks, 82 Kalmanson
+rejections, zero DFS nodes, and zero formal-bank-cut rejections.  More
+sharply, the fixed ambient plus `O/A/D/t1` row packet is consistent, but every
+admissible singleton selected row at each of `X`, `I`, and `F` is already
+Kalmanson-inconsistent: `401/401`, `328/328`, and `328/328` respectively.
+An independent verifier reconstructs all candidate domains and replays both
+the 101-prefix certificates and the three empty singleton domains.
+
+The raw domain counts include candidates already rejected by the older
+compatibility and pair-capacity gates.  After those old gates, the new
+Kalmanson cut is load-bearing on exactly `70/70`, `69/69`, and `65/65`
+candidates at `X`, `I`, and `F`.  The 70 live `X` cases compress to four
+named-row footprints and five `(footprint, shortest-cycle-length)` schemas;
+all are instances of the one generic equality-quotient/strict-cycle
+consumer, not 70 unrelated metric theorems.
+
+The direct source-interface smoke theorem is also checked:
+`kalmanson-terminal-bank-adapter/` converts six actual
+`SelectedFourClass.support` memberships at rows `O`, `A`, and `Y` into the
+production five-point contradiction.  A forward-only direct-row matcher
+finds that exact schema in all 101 saved corrected witnesses, with 383
+embeddings; the formerly bank-clean witness has the canonical
+`O,A,Y,E,C` embedding.  This strengthens the saved-prefix explanation but
+does not turn a prefix into coverage.  The clean corrected-map CEGAR run that
+uses only this direct schema confirms the boundary: after 51 valid direct
+cuts, iteration 52 returns
+`SAT_DIRECT_SCHEMA_AVOIDING_CORRECTED_SHADOW`.  Thus the direct theorem is a
+useful bank consumer, but fixed-profile coverage requires the generic
+equality-quotient/strict-cycle consumer or its compressed finite schemas.
+
+This exhausts the fixed finite model, not the live parent.  The model does not
+prove that every larger carrier has a selected row supported inside the same
+fourteen roles, nor that every live branch instantiates the pinned profile and
+fixed named rows.  The parent-order audit now separates the gap precisely:
+`kalmanson-parent-order-adapter/` kernel-checks one shared ambient boundary
+and the honest order dichotomy `O,A,x,y,C` or `O,A,y,x,C`, up to orientation,
+for two distinct strict first-opposite-cap points.  Boundary enumeration is
+therefore no longer the blocker.  The live parent does not currently export
+strict first-opposite-cap placement for finite role `E`, any second role `Y`,
+the directed `Y`-before-`E` arm, or the three source-exact selected rows and
+six memberships consumed by the terminal.  `PinnedHullOrder` cannot fill the
+gap because it assumes `IsM44` while this leaf carries `hNoM44`.
+
+The actual-frontier match audit now rules out a smaller hidden application.
+`frontier-kalmanson-match/FrontierKalmansonMatch.lean` instantiates the
+four-point ordinal theorem with the real frontier roles: the first apex and
+the blocker at `pair.q` cannot both be equidistant from `pair.q,pair.w` in
+the directed boundary order `first apex < blocker < pair.q < pair.w`.  This
+conditional terminal is kernel-checked with only the three standard axioms.
+No live frontier arm supplies both its cross-membership equality and that
+order.  In fact the cross-membership arm has the opposite-side/alternating
+geometry, while the deletion-survival arm lacks the row equality.  The
+five-point terminal likewise has no source-valid assignment of its two
+additional roles and six row memberships on the current parent surface.
+The absent adjacent order is therefore an impossible packet, not a producer
+target.
+
+The remaining source-valid continuations are now explicit.  Either produce a
+third named center, distinct from the first apex and actual blocker, whose
+selected row contains the frontier pair; the existing perpendicular-bisector
+sink then closes directly.  Or produce the complete actual-role five-point
+ordered packet, including both named roles, the directed order arm, and all
+six selected-row memberships consumed by the production Kalmanson terminal.
+A third option is a kernel-checkable coverage theorem mapping every live
+frontier to an already checked terminal.  The direct-only corrected CEGAR test
+has already produced an avoiding shadow, so no further literal replay of that
+one schema should be mistaken for fixed-surface or live-parent coverage.
+
+Record this as a bounded metric route with a passed fixed-surface gate, not as
+an immediate producer and not as a reason to abandon the source-faithful
+generated-successor lane before the missing named-role/row producer is proved.
 The complete evidence and the two source-clean scratch corollaries are in
 `scratch/atail-force/global-minimality-connectivity-audit/`.
 
@@ -362,8 +493,15 @@ fourteen.
 
 Reciprocal criticality is a checked dependency edge to the protected
 packet-polymorphic `FA-UNIQ4` proof.  The separately user-owned `FA-UNIQ4`,
-`FA-UNIQ5`, and `(6,5,4)` unique-row work remains paused and is still required
-for branch-complete parent closure.
+`FA-UNIQ5`, and `(6,5,4)` unique-row theorem targets remain required for
+branch-complete parent closure.  The current 555/654 literal whole-shadow
+queue is not itself load-bearing: the actual-frontier audit shows that those
+cores neither produce the missing source-indexed common-pair row / complete
+five-point packet nor establish coverage.  Preserve its completed exact-CAS
+artifacts, but stop the in-flight literal scans and launch no successors.
+Resume computation only against one of the complete source-valid antecedents
+above, or against a formal coverage statement whose immediate Lean consumer
+is already identified.
 
 LIVE-Q/C normalization is fallback risk reduction only.  Do not dispatch
 their 31 holes individually while the parent bypass is viable.  Likewise,
@@ -5099,26 +5237,35 @@ The current coherent-R work queue is now:
    is now eliminated at both named centers.  The actual native callback now
    constructs both full-parent successor surfaces, so the retained
    cap/MEC/frontier/origin contract is not an assumed scratch island.  The
-   paired successors have an exact five-way source split, and each source has
-   an honest cap/rank trichotomy: outside `oppCap2`, opposite companion
-   omitted, or a certified opposite-side rank move.  The
+   paired successors start with an exact five-way source split; the entire
+   equal-source-at-live-center metric constructor is now closed, leaving the
+   checked four-way `ReducedSourceSplit`.  Each source also has an honest
+   cap/rank trichotomy: outside `oppCap2`, opposite companion omitted, or a
+   certified opposite-side rank move.  The
    q-critical/q-critical `MetricResidual` arm is closed at the full-parent
    boundary by perpendicular-bisector localization plus `q ∉ M.verts`.
    The remaining live-heavy work is therefore to consume the surviving
    constructor/continuation arms together with the source and rank splits;
-   no whole `SourceSplit` constructor is terminal.  Q-critical cross-survival
-   now reaches the existing global-source-selection normal form, while its
-   source/rank refinement proves that an equal chosen source forces at least
-   one opposite companion omission.  Distinct/cross arms still target the
-   audited repeated common outside-cap pair or the exact global-source
-   endpoints.  Surviving non-equilateral metric arms use the honest
-   surplus-heavy-versus-exclusive-strict-witness dichotomy; do not mine
-   `StrictOppCap1CommonHit`, which is false on the live-center branch.
-   Equilateral arms target the branch-indexed
-   `JointTransitionClosingSelection`.  The equilateral second-apex arm must
-   not mine a second common outside-cap point, which its singleton theorem
-   forbids.  A rank move still needs a cycle-wide no-wrap or well-founded
-   argument.
+   one whole original `SourceSplit` constructor is now terminal.  Q-critical
+   cross survival reaches the existing global-source-selection normal form,
+   and `DeletedBlockerApexAlignment` is closed, leaving exactly the two
+   escape/common-deletion orientations, `ApexDoubleCriticalResidual`, and
+   relocated-blocker common deletion.  Its source/rank refinement proves that
+   an equal chosen source forces at least one opposite companion omission.
+   Distinct/cross arms still target the audited repeated common outside-cap
+   pair or those exact global-source endpoints.  Do not mine
+   `StrictOppCap1CommonHit`, the surplus-heavy completion equality, or the
+   three reverse equalities on the closed live-center branch: all three
+   targets now have checked wrong-polarity/impossibility results.
+   In the surviving second-apex equilateral arm, the exhaustive constructor
+   split closes q-deleted/q-deleted and q-critical/q-critical.  Every other
+   outcome either constructs a source-faithful non-apex outside-middle reroute
+   or lands in one of two mixed complementary-`{s,t}` packets: the q-deleted
+   row contains the coherent source and one support-only point, while the
+   q-critical row omits the coherent source and contains the other.  Eliminate
+   this mixed packet directly; do not mine a common physical-row point, which
+   is already contradictory.  A rank move still needs a cycle-wide no-wrap or
+   well-founded argument.
    Mixed must remain split by its physical and generated constructors.  In the
    mixed confined classifier, physical-q-critical/generated-q-critical and
    every physical-q-deleted cell with the third middle-row live hit close by

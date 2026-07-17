@@ -100,6 +100,12 @@ At least one opposite-center companion is omitted.  This does not rely on
 comparing two independently chosen ordered-cap witnesses, and it does not
 need a conjectural no-wrap theorem.
 
+The underlying theorem `false_of_equalSource_bothCompanions` is public and
+does not depend on the q-critical constructors.  The later
+`../equal-source-metric-terminal/` module reuses it after descending the
+companion memberships from completed generated rows to raw supports; this
+closes the whole equal-source-at-live-center metric constructor.
+
 ## Exact remaining residual
 
 The theorem does not prove `False` for the whole q-critical/q-critical arm.

@@ -2,9 +2,8 @@
 
 Date: 2026-07-16
 
-Status: **TWO CONSTRUCTOR SUBCASES CLOSE AT THE FULL-PARENT BOUNDARY; NO
-WHOLE `SourceSplit` ARM IS YET TERMINAL. THE REMAINING FIRST ANTECEDENTS ARE
-NOW EXPLICIT.**
+Status: **SUPERSEDED FOR THE LIVE-CENTER ARM: ONE WHOLE `SourceSplit`
+CONSTRUCTOR IS NOW TERMINAL; THE REMAINING FOUR-WAY FRONTIER IS EXPLICIT.**
 
 ## Scope and verdict
 
@@ -24,15 +23,22 @@ sx   = Q.at_x.source
 sy   = Q.at_y.source.
 ```
 
-The exact conclusion is:
+The original audit conclusion was:
 
-- none of the five constructors is uniformly contradictory;
+- none of the five constructors had yet been shown uniformly contradictory;
 - `equalSource_atLiveCenter` and `equalSource_atSecondApex` are already
   contradictory when **both** generated rows are q-critical;
 - the distinct-source and cross-survival arms still need a repeated
   outside-cap pair across the two generated rows;
 - the remaining metric arms split into the existing non-equilateral common-hit
   terminal and the equilateral joint-transition terminal.
+
+The subsequent kernel-checked
+`../equal-source-metric-terminal/EqualSourceMetricTerminal.lean` supersedes
+the first and fourth bullets: `equalSource_atLiveCenter` is contradictory for
+all four q-deleted/q-critical constructor combinations.  Its
+`ReducedSourceSplit` retains only distinct sources, the two oriented
+equal-source cross-survival arms, and the second-apex equilateral arm.
 
 ## Retained facts used in this audit
 
@@ -170,25 +176,19 @@ is enough.
 
 Here `sx = sy = p` and the rows satisfy `MetricResidual`.
 
-- **CLOSED** when both generated rows are q-critical, by the full-parent
-  `false_of_qCritical_qCritical_metricResidual` theorem above.
-- **OPEN** when at least one row is q-deleted.
+- **CLOSED uniformly**, including every constructor pair with a q-deleted
+  row, by `false_of_equalSource_atLiveCenter_metricResidual`.
 
-The common source `p` cannot serve as an outside-cap witness because
-`p in strictSecondCap S`. Route the survivors by the existing exact metric
-split:
+The metric residual itself places each opposite named center in the
+corresponding completed generated row.  Since those centers differ from the
+deleted point `q`, both memberships descend to the raw generated supports.
+The common source and both named centers then lie in `oppCap2`, and the
+shared ordered-cap theorem makes the two mutual companion incidences
+contradictory.
 
-```text
-non-equilateral:
-  StrictOppCap1CommonHit Q.generated.toTwoContinuationRows
-
-equilateral:
-  a JointTransitionClosingSelection for the produced JointTransitionPacket
-  (uniformly: JointTransitionCoreEliminator D S H).
-```
-
-These are the exact first inputs of the current checked branch consumers.
-The source equality `sx = p` supplies neither input.
+The former `StrictOppCap1CommonHit`, surplus-heavy completion, and
+three-reverse-equality routes are retired for this arm: follow-up checked
+audits prove those proposed positive packets impossible or wrong-polarity.
 
 ### 5. `equalSource_atSecondApex`
 
@@ -227,23 +227,27 @@ Before proposing these antecedents, the audit checked:
   deletion survival, equal successor sources, equilateral residuals, and
   repeated outside-cap pairs.
 
-No current or archived theorem directly consumes a bare `SourceSplit` arm.
-The closest reusable endpoints are
+The original bank audit found no theorem directly consuming a bare
+`SourceSplit` arm.  The follow-up live-center terminal instead reuses the
+checked ordered-cap contradiction after proving the missing raw companion
+memberships.  The other closest reusable endpoints are
 `outsidePair_unique_capCenter`,
 `false_of_nonEquilateral_of_strictOppCap1CommonHit`, the joint-transition
 consumer, and the now-composed full-parent q-critical metric terminal.
 
 ## Recommended next routing
 
-1. Eliminate q-critical x q-critical immediately in both metric constructors
-   using the checked full-parent terminal.
-2. Route every remaining metric case by non-equilateral versus equilateral;
-   target only `StrictOppCap1CommonHit` or the branch-indexed
-   `JointTransitionClosingSelection` respectively.
-3. For distinct/cross-survival arms, target the source-faithful repeated
+1. Eliminate the whole equal-source-at-live-center constructor with
+   `false_of_equalSource_atLiveCenter_metricResidual`.
+2. Eliminate q-critical x q-critical in the remaining metric surface with the
+   checked full-parent terminal.
+3. For the second-apex equilateral arm with at least one q-deleted row, retain
+   the branch-indexed `JointTransitionClosingSelection` target unless a
+   stronger direct terminal is proved.
+4. For distinct/cross-survival arms, target the source-faithful repeated
    outside-pair packet. Do not recurse through a bare successor, infer a
    metric from support omission, or mine a repeated first-apex radius.
-4. Use the geometry/rank classifier only as a refinement: its rank-move arm
+5. Use the geometry/rank classifier only as a refinement: its rank-move arm
    has no checked no-wrap theorem and its other arms do not supply the missing
    cross-memberships.
 
@@ -252,10 +256,12 @@ consumer, and the now-composed full-parent q-critical metric terminal.
 - **PROVEN in focused scratch Lean:** the five-way source split, all retained
   membership/survival facts, the q-critical/q-critical metric terminal, its
   full-parent `q != oppApex2` discharge, the equilateral unique-outside-point
-  theorem, and the named branch consumers cited above.
-- **OPEN:** every whole `SourceSplit` constructor and every survivor listed in
-  the matrix.
-- **AUDIT CONCLUSION:** the displayed antecedents are the weakest matching
-  inputs to current checked consumers found after the required bank search.
+  theorem, the whole live-center terminal, the four-way reduced split, and
+  the named branch consumers cited above.
+- **OPEN:** the four constructors of `ReducedSourceSplit`, except for
+  constructor-indexed subcases already eliminated elsewhere.
+- **AUDIT CONCLUSION:** the live-center antecedent list is superseded; the
+  remaining displayed antecedents are the weakest matching inputs to current
+  checked consumers found after the required bank search.
 
 No full Lake build was run for this documentation-only audit.

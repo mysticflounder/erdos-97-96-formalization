@@ -1,0 +1,126 @@
+{
+  "bank_cuts_stored_by_reference": "scratch/atail-force/robust-all-center-marco/bank_cegar_checkpoint.json",
+  "base_bank_cut_count": 524,
+  "base_checkpoint_sha256": "b307fed8cf6c30508a615553f5a1caf8a836859f3d70f1907eb3f34b9196c8b9",
+  "base_iterations": 26,
+  "base_status": "SAT_PRODUCER_BANK_CLEAN_CORRECTED_SHADOW",
+  "base_survivor_prefix_count": 101,
+  "budgets": {
+    "marco_max_calls": 160,
+    "marco_max_cores": 12,
+    "max_nodes_per_round": 100000,
+    "max_rounds": 1,
+    "wall_seconds": 60.0
+  },
+  "effective_bank_cut_count": 524,
+  "epistemic_status": "FINITE_STRUCTURAL_CONTINUATION_CONDITIONAL_ON_UNFORMALIZED_STRICT_KALMANSON_CONSUMER",
+  "last_event": {
+    "fixed_prefix_kalmanson_contradiction": false,
+    "nodes": 0,
+    "singleton_domain_audit": [
+      {
+        "candidate_count": 73,
+        "candidate_supports_sha256": "e16f65645fd2d1eb723c9ce58d59bf3a5601d3dc4ed91975ca5fb0897c42d43f",
+        "center": "C",
+        "center_id": 2,
+        "kalmanson_killed_with_fixed_prefix": 49,
+        "kalmanson_survives_with_fixed_prefix": 24
+      },
+      {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "2938faf27bf085d6d5d5e3b46b03ef51bb4de7b0378b46c64878deca736fdd7e",
+        "center": "X",
+        "center_id": 3,
+        "kalmanson_killed_with_fixed_prefix": 401,
+        "kalmanson_survives_with_fixed_prefix": 0
+      },
+      {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "07ecced3713ea087c682fea983f911a38922d308ce82f5a1835a941a36381b90",
+        "center": "Y",
+        "center_id": 4,
+        "kalmanson_killed_with_fixed_prefix": 392,
+        "kalmanson_survives_with_fixed_prefix": 9
+      },
+      {
+        "candidate_count": 401,
+        "candidate_supports_sha256": "fcb960d60e4b42d9dd52cfbc25cd7cb06721ba5059d5a3744288dd05fade97a3",
+        "center": "Z",
+        "center_id": 5,
+        "kalmanson_killed_with_fixed_prefix": 389,
+        "kalmanson_survives_with_fixed_prefix": 12
+      },
+      {
+        "candidate_count": 528,
+        "candidate_supports_sha256": "d58b9b952c85e0f4b96b0b822c5e48e0f5b6dee4ddc266f05dd7095291fffcaa",
+        "center": "J",
+        "center_id": 7,
+        "kalmanson_killed_with_fixed_prefix": 504,
+        "kalmanson_survives_with_fixed_prefix": 24
+      },
+      {
+        "candidate_count": 492,
+        "candidate_supports_sha256": "f74a9bfed9b30a321397fbb55fa9ecbe514b4ed81aa2ebb0b9fd35acaac5b52b",
+        "center": "E",
+        "center_id": 8,
+        "kalmanson_killed_with_fixed_prefix": 468,
+        "kalmanson_survives_with_fixed_prefix": 24
+      },
+      {
+        "candidate_count": 338,
+        "candidate_supports_sha256": "d00ac9bb5c869d992b532313438fef611f52180ad3bc214d8ecb5ffd021b5ab8",
+        "center": "G",
+        "center_id": 9,
+        "kalmanson_killed_with_fixed_prefix": 310,
+        "kalmanson_survives_with_fixed_prefix": 28
+      },
+      {
+        "candidate_count": 338,
+        "candidate_supports_sha256": "eed4d5726c2fcd44c4ba19d9f12c34172c4e28efe05515d13c69f7e264670c29",
+        "center": "K",
+        "center_id": 10,
+        "kalmanson_killed_with_fixed_prefix": 322,
+        "kalmanson_survives_with_fixed_prefix": 16
+      },
+      {
+        "candidate_count": 328,
+        "candidate_supports_sha256": "b24edab674ac8cbebbb154c46ffd615ea42d9c42c73058d36e3dd8fc8ddadb1c",
+        "center": "I",
+        "center_id": 12,
+        "kalmanson_killed_with_fixed_prefix": 328,
+        "kalmanson_survives_with_fixed_prefix": 0
+      },
+      {
+        "candidate_count": 328,
+        "candidate_supports_sha256": "bac1009089c0f219c62d9c51d5a11753d57778ec09037cfc9cb915e3177ab461",
+        "center": "F",
+        "center_id": 13,
+        "kalmanson_killed_with_fixed_prefix": 328,
+        "kalmanson_survives_with_fixed_prefix": 0
+      }
+    ],
+    "status": "UNSAT_EXHAUSTIVE_FINITE_DFS",
+    "zero_singleton_domain_centers": [
+      "F",
+      "I",
+      "X"
+    ]
+  },
+  "new_bank_witnesses_rejected": 0,
+  "new_survivors": [],
+  "prune_stats": {
+    "formal_bank_cut": 0,
+    "kalmanson_cycle": 82,
+    "legacy_incompatible": 0,
+    "pair_center_capacity": 0,
+    "prefix_calls": 110
+  },
+  "rounds": 1,
+  "schema": "p97-atail-kalmanson-overlay-continuation-v1",
+  "source_sha256": {
+    "scratch/atail-force/global-minimality-connectivity-audit/kalmanson-consumer/kalmanson_continuation.py": "f184a08376ee71268273d3d029d7af93cbd32344aa2b3b9ead57c19b37241c06",
+    "scratch/atail-force/global-minimality-connectivity-audit/kalmanson-consumer/prefix_filter.py": "795461fa45b1508abc996054f246035b08424082f096ff19a62d2c0efd996c09",
+    "scratch/atail-force/robust-all-center-marco/bank_cegar.py": "35b911ccde42691fee1f9d425634f626154cc0621ff8802b8f7f1d2547a8ea16"
+  },
+  "status": "UNSAT_EXHAUSTIVE_FINITE_DFS"
+}
