@@ -1340,6 +1340,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-104 witness admitted 2026-07-17: NONUNIT track
+    # resumes after unit iters 102-103 (8,068,477 nodes caps=1);
+    # inline NONUNIT x3 (Singular + msolve fwd/rev); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core at
+    # the production order; its retained 6-row deletion core (3
+    # deletion timeouts fail-closed) is forced-pair-core-654-69,
+    # kin 3 with fp-654-55/56.
+    "1bc9a5e3e18383a4077ae5bef6c6fb14ab9c33769fcdc2f8031bb3c10afcc0d6": {
+        "equality_sha256":
+            "3f01447af433afe3dc02affe93ac92762ecbea74e5f98c2baee93ab266e0e4c0",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6395,6 +6410,32 @@ REAL_INFEASIBLE_ROW_CORES = (
             10: frozenset({0, 1, 5, 6}),
         },
         "equality_count": 15,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-104 witness 1bc9a5e3… admitted 2026-07-17:
+    # 6-row / 19-equality retained core forcing pair (7,8) with rows
+    # centered at both pair members retained (witness at 8,068,477
+    # nodes caps=1; NONUNIT track resumes after unit iters 102-103);
+    # inline NONUNIT x3; cert passed at the production order;
+    # Rabinowitsch UNIT x3 on full system and retained core; deletion
+    # verdicts 6 UNIT / 3 TIMEOUT fail-closed / 3 NONUNIT — witness
+    # rows 0, 2, 5, 6, 9, 11 dropped. Not a transposition image; kin
+    # 3 shared rows (fp-654-55 rows 3,4,10; fp-654-56 rows 3,4,7).
+    # NO bank-new (center,support) pairs: row 1:{0,3,7,8,9} reaches
+    # its sixteenth banked appearance, 8:{2,6,9,11} its fifteenth,
+    # 7:{3,4,9,10} its second (previously fp-654-56 only).
+    {
+        "id": "forced-pair-core-654-69",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            3: frozenset({2, 4, 8, 11}),
+            4: frozenset({1, 3, 5, 8}),
+            7: frozenset({3, 4, 9, 10}),
+            8: frozenset({2, 6, 9, 11}),
+            10: frozenset({1, 2, 5, 9}),
+        },
+        "equality_count": 19,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
