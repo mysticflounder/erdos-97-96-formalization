@@ -207,22 +207,32 @@ fresh radius class does not imply that it meets the physical row in a third
 point.  Treat this theorem as an incompatibility boundary, not as the next
 producer target.
 
-In the two-disjoint-radius subarm, the checked theorem
-`exists_secondApexRow_minimalDeletionTransition` uses the second disjoint row
-essentially to prove that the fresh blocking center differs from the physical
-second apex.  It then returns either a same-row co-radial pair with reciprocal
-actual-blocker deletion survival, or a minimal deletion core.  The collision
-arm is now stronger: restoring either collision endpoint in a cardinal-minimal
-deletion set produces a K4 which must use that endpoint, while the deleted
-co-radial partner is a fifth ambient point.  Therefore the fresh radius class
-has cardinality at least five and the fresh center is fully deletion-robust.
-A non-singleton collision-free core was already known to make the fresh center
-fully deletion-robust from its two disjoint exact shells.  Thus every
-non-singleton outcome advances to a fresh robust center; only the singleton
-core and robust-center iteration remain.  This is a genuine global reduction,
-not a contradiction.  Its next consumer must localize the fresh center and
-produce a strict cap/MEC-order decrease or a finite nonreturn packet; bare
-iteration of `FullyDeletionRobustAt` is not well founded.
+In the two-disjoint-radius subarm, the earlier checked theorem
+`exists_secondApexRow_minimalDeletionTransition` deletes all four points of
+one physical row and uses the disjoint row to prove that the fresh blocking
+center differs from the physical second apex.  Its collision pair need not be
+in the strict opposite cap, so it cannot support a uniform interval claim.
+The sharper `robust-two-radius-center-localization/` checkpoint instead
+chooses two strict `oppCap2` members of the first row and applies minimality to
+that pair.  Its coordinator
+`exists_strictPair_minimalDeletionNormalForm` has exactly three outputs:
+
+1. an equal-radius pair whose fresh center is fully robust, lies in the same
+   strict cap, and lies strictly between the pair in one ordered-cap interval;
+2. a singleton core converted to an exact `CommonDeletionTwoCenterPacket` at
+   the fresh and physical centers; or
+3. an unequal-radius two-source `MinimalDeletionCore`, with two disjoint exact
+   shells, fresh robustness, physical deletion survival, and the finite
+   strict-cap/Moser-vertex packing split.
+
+This is a genuine global reduction, not a contradiction.  The interval in
+the first arm is local only: the checked three-cycle regression forbids
+promoting independently chosen between-statements to a global descent.  The
+second arm can loop through the current common-deletion consumer.  The third
+arm has no shared fresh-center radius, so the interval argument does not
+apply.  The next theorem must establish nested-interval/nonreturn data or
+consume the unequal two-source core using a new global cap/MEC/critical-row
+coupling; bare iteration of `FullyDeletionRobustAt` is not well founded.
 
 In the radius-class-cardinality-at-least-five subarm, the checked theorem
 `nonempty_minimalDeletionOutcome_of_largeSecondApexRadius` chooses two strict
@@ -240,33 +250,68 @@ the same strict `oppCap2` interior as the shared pair and that its exact shell
 meets `oppCap2` in exactly those two points.  Hence the other two shell members
 are outside that cap.  Ordered-cap uniqueness is used essentially for the
 localization, but the result is not itself false: an interior center is allowed
-exactly two same-cap points on one circle.  The remaining consumers are
-therefore the existing common-deletion continuation, a sixth-cap-point/full-
-filter consumer for the exact-five profile, and a cap-order/minimality
-continuation that uses the two outside shell members.  The honest next rank
-question is whether the fresh center lies strictly between the shared pair and
-whether that interval can be made to decrease across the next critical-map
-step; do not replace it with another anonymous incidence scan.
+exactly two same-cap points on one circle.
+
+The later `robust-large-radius-localized-consumer/` audit removes that packet
+as an independent residual.  The physical-apex radius class has at least five
+points while the fresh shell has exactly four, so one physical-radius point is
+outside the shell.  Deleting it preserves the fresh shell and leaves four
+physical-radius points, producing an existing `CommonDeletionTwoCenterPacket`.
+The uniform physical-second-apex consumer then returns physical-apex robustness
+or swapped `FA-UNIQ4`.  Consequently the strongest checked large-radius normal
+form has only
+
+```text
+FullyDeletionRobustAt D S.oppApex2
+or SwappedFirstApexUniqueFourFrontier D S H
+or LargeCapUniqueFiveSecondApexRadius D S.
+```
+
+This is a simplification, not progress toward `False`: the first constructor
+is the robust input state itself.  Do not mine the two outside fresh-shell
+members, a shared-pair rank, or a new Kalmanson packet.
+
+The separate `robust-large-radius-exact-five-consumer/` checkpoint now makes
+the exact-five residual source-faithful.  The physical class has at least
+three strict `oppCap2` hits.  Since the cap has at least six points, there is
+an unused cap point `z` outside the entire exact five-point radius filter;
+erasing `z` preserves that filter, its cardinality, and uniqueness as a K4
+radius.  The retained critical map supplies the exact row through `z`, and
+its actual blocker differs from the physical apex because deletion of `z`
+still leaves the five-point physical class.  No current bank consumer closes
+this packet: it still lacks either a second source with directed cross
+incidences or enough blocker/support cap placement for a two-center ordered-
+cap sink.  Thus the load-bearing large-radius work is now precisely that
+cross-row or placement consumer, together with a direct theorem preventing
+return to the robust input; the minimal-deletion/common-deletion loop supplies
+no decreasing invariant.
 
 The production interface formerly dropped the required hypothesis:
 `removableVertexOfLarge_of_nonIsM44` constructs `hmin` immediately before its
 sole call to `u1_largeCap_routeB_tail_false`.  The tail signature and that sole
 call now retain `hmin` directly, without widening K-A-PAIR or any LIVE helper.
-The primary R theorem is therefore now
-provisionally named `RobustSecondApexMinimalDeletion`:
+The checked `RobustSecondApexMinimalDeletion` layer is a decomposition theorem,
+not the primary contradiction:
 
 ```text
-D.Minimal
-  + full two-large-cap/frontier/common-map surface
-  + FullyDeletionRobustAt D S.oppApex2
-  -> False.
+D.Minimal + full robust parent surface
+  -> collision
+     or packed multi-core
+     or installed singleton omission.
 ```
 
-Use `hmin` only at the parent boundary and call this theorem before LIVE
-slot/center enumeration.  Do not widen K-A-PAIR or the LIVE-Q/C helper tree:
-the intended parent bypass makes those lower interfaces obsolete.  Reuse the
-checked global minimal-deletion extractor as a predecessor; do not reimplement
-it in either radius arm.
+The stopped scratch lane already supplies and kernel-checks this reduction, so
+do not reimplement it or promote its motive-valued dispatcher to a claimed
+`False` theorem.  Its singleton/common-deletion continuation can return the
+same robust state, and the large-radius specialization has now exposed that
+loop explicitly.  The primary terminal remains the parent
+`false_of_twoLargeCaps_commonCriticalMap`, called before LIVE slot/center
+enumeration.  Its content-bearing robust subtargets are now (a) a direct
+large-radius/full-filter contradiction, including the exact-five unused-cap
+point, and (b) a two-radius transition with a genuine well-founded cap/MEC
+rank or nonreturn theorem.  The protected `FA-UNIQ4/5` arms remain separate
+dependencies.  Use `hmin` only at this parent boundary, and do not widen
+K-A-PAIR or the LIVE-Q/C helper tree.
 
 Within `R`, the current
 `ResolvedCurrentFirstApexFixedRadiusNormalForm` is an audit projection, not
