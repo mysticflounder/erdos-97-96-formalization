@@ -259,6 +259,146 @@ structure FrontierCommonDeletionParentResidual
     4 ≤ (SelectedClass D.A S.oppApex1 radius).card
   common : FrontierCommonDeletionResidual F
 
+private theorem frontierRadius_pos_of_commonDeletionParent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FrontierCommonDeletionParentResidual F) :
+    0 < radius := by
+  have hqNotSurplus : F.pair.q ∉ S.surplusCap :=
+    (Finset.mem_sdiff.mp F.pair.q_mem_marginal).2
+  have hfirstNeQ : S.oppApex1 ≠ F.pair.q := by
+    intro h
+    apply hqNotSurplus
+    rw [← h]
+    rcases hi : S.surplusIdx with ⟨i, hi3⟩
+    interval_cases i
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v2_mem_C1
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v3_mem_C2
+    · simpa [SurplusCapPacket.surplusCap,
+        SurplusCapPacket.oppApex1, hi] using S.partition.v1_mem_C3
+  have hpos : 0 < dist S.oppApex1 F.pair.q :=
+    dist_pos.mpr hfirstNeQ
+  have hqRadius : dist F.pair.q S.oppApex1 = radius :=
+    (Finset.mem_filter.mp
+      (Finset.mem_sdiff.mp F.pair.q_mem_marginal).1).2
+  simpa only [dist_comm, hqRadius] using hpos
+
+private theorem pair_q_mem_frontierClass_of_commonDeletionParent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FrontierCommonDeletionParentResidual F) :
+    F.pair.q ∈ SelectedClass D.A S.oppApex1 radius := by
+  rcases Finset.mem_sdiff.mp F.pair.q_mem_marginal with
+    ⟨hqFilter, _⟩
+  rcases Finset.mem_filter.mp hqFilter with ⟨hqA, hqRadius⟩
+  exact mem_selectedClass.mpr
+    ⟨hqA, by simpa only [dist_comm] using hqRadius⟩
+
+private theorem pair_w_mem_frontierClass_of_commonDeletionParent
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (_R : FrontierCommonDeletionParentResidual F) :
+    F.pair.w ∈ SelectedClass D.A S.oppApex1 radius := by
+  rcases Finset.mem_sdiff.mp F.pair.w_mem_marginal with
+    ⟨hwFilter, _⟩
+  rcases Finset.mem_filter.mp hwFilter with ⟨hwA, hwRadius⟩
+  exact mem_selectedClass.mpr
+    ⟨hwA, by simpa only [dist_comm] using hwRadius⟩
+
+/-- Every source-faithful common-deletion parent makes the first physical
+apex robust under deletion of any one carrier point. If the frontier radius
+class has at least five members, that class survives every deletion. If it
+has exactly four, the retained double-deletion witness must use a different
+radius, so one of the two radius classes survives every deletion. -/
+theorem FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F) :
+    FullyDeletionRobustAt D S.oppApex1 := by
+  by_cases hfive :
+      5 ≤ (SelectedClass D.A S.oppApex1 radius).card
+  · exact fullyDeletionRobustAt_of_five_le_selectedClass
+      (frontierRadius_pos_of_commonDeletionParent R) hfive
+  · have hfrontierCard :
+        (SelectedClass D.A S.oppApex1 radius).card = 4 := by
+      have hfour := R.frontierRadius_class_card_ge_four
+      omega
+    rcases R.common.firstApexDouble with
+      ⟨otherRadius, hotherPos, hfourRaw⟩
+    have hfourDouble :
+        4 ≤ (SelectedClass
+          ((D.A.erase F.pair.q).erase F.pair.w)
+          S.oppApex1 otherRadius).card := by
+      simpa [SelectedClass] using hfourRaw
+    have hotherNe : otherRadius ≠ radius := by
+      intro hsame
+      subst otherRadius
+      have hwAfterQ :
+          F.pair.w ∈
+            (SelectedClass D.A S.oppApex1 radius).erase F.pair.q :=
+        Finset.mem_erase.mpr
+          ⟨F.pair.q_ne_w.symm,
+            pair_w_mem_frontierClass_of_commonDeletionParent R⟩
+      rw [selectedClass_erase_eq, selectedClass_erase_eq,
+        Finset.card_erase_of_mem hwAfterQ,
+        Finset.card_erase_of_mem
+          (pair_q_mem_frontierClass_of_commonDeletionParent R),
+        hfrontierCard] at hfourDouble
+      omega
+    have hfourOther :
+        4 ≤ (SelectedClass D.A S.oppApex1 otherRadius).card := by
+      refine hfourDouble.trans (Finset.card_le_card ?_)
+      intro x hx
+      rcases mem_selectedClass.mp hx with ⟨hxA, hxRadius⟩
+      exact mem_selectedClass.mpr
+        ⟨Finset.mem_of_mem_erase (Finset.mem_of_mem_erase hxA), hxRadius⟩
+    refine ⟨?_⟩
+    intro z hzA
+    by_cases hzFrontier :
+        z ∈ SelectedClass D.A S.oppApex1 radius
+    · have hzOther :
+          z ∉ SelectedClass D.A S.oppApex1 otherRadius := by
+        intro hzOther
+        apply hotherNe
+        calc
+          otherRadius = dist S.oppApex1 z :=
+            (mem_selectedClass.mp hzOther).2.symm
+          _ = radius := (mem_selectedClass.mp hzFrontier).2
+      refine ⟨otherRadius, hotherPos, ?_⟩
+      have hsame := selectedClass_erase_card_eq_of_not_mem hzOther
+      have htarget :
+          4 ≤ (SelectedClass (D.A.erase z)
+            S.oppApex1 otherRadius).card := by
+        rw [hsame]
+        exact hfourOther
+      simpa [SelectedClass] using htarget
+    · refine ⟨radius,
+        frontierRadius_pos_of_commonDeletionParent R, ?_⟩
+      have hsame := selectedClass_erase_card_eq_of_not_mem hzFrontier
+      have htarget :
+          4 ≤ (SelectedClass (D.A.erase z)
+            S.oppApex1 radius).card := by
+        rw [hsame]
+        exact R.frontierRadius_class_card_ge_four
+      simpa [SelectedClass] using htarget
+
+/-- Consequently the first physical apex is absent from the image of the
+retained critical blocker map. -/
+theorem FrontierCommonDeletionParentResidual.actualBlocker_ne_firstApex
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (source : ℝ²) (hsource : source ∈ D.A) :
+    H.centerAt source hsource ≠ S.oppApex1 :=
+  R.firstApexFullyDeletionRobust.centerAt_ne H source hsource
+
 /-- Every first-apex frontier is already either a protected unique-radius arm
 or a source-faithful common deletion at the two opposite Moser apices. -/
 theorem CriticalPairFrontier.originalUnique_or_commonDeletion

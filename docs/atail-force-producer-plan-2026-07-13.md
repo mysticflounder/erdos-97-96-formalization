@@ -78,14 +78,31 @@ the other branch. Once both close, assemble the parent `False` and bypass the
 legacy tree. Production `false_of_frontierRefinedNormalFormConsumers` already
 provides the exact two-consumer frontier assembler.
 
-The required theorem-bank audit finds no terminal theorem for either refined
-arm. Existing third-center and common-deletion classifiers turn them into
-fresh origin-tagged successors or normalized paired common deletions; none
-returns `False`. The exact-card-four marginal case is already handled by the
-retained different-radius double-deletion witness. The next
-mathematical target is therefore a provenance-aware geometric nonreturn
-theorem for those exact outputs, visibly consuming cap/MEC/order and the
-retained source tags. It is not another selected-row producer.
+The required theorem-bank and exact branch audits find no terminal theorem for
+any refined arm. Off-radius cross membership yields only reverse nonreturn;
+off-radius companion deletion yields an omission fork; on-radius companion
+either realizes the allowed mixed reflection case or is absent from the stored
+second row; and on-radius cross membership yields physical-second-apex return
+or a genuine third-center common deletion. None is `False`, so the stored
+second-apex row cannot be used to synthesize the legacy K-A pair.
+
+The productive common consequence is now in production:
+`FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust` proves
+survival after deleting every carrier point, including the exact-card-four
+frontier case, and `actualBlocker_ne_firstApex` excludes the first apex from
+the complete critical-map image. The generic production theorem
+`FullyDeletionRobustAt.exists_distinct_sources_same_blocker` then forces two
+distinct sources with the same actual blocker. Checked equal-center rigidity
+upgrades them to one common exact four-shell containing both sources, with
+deletion of either source critical at the common blocker. This is not yet
+`False`: the collision sources lack forced cap, boundary-order, and frontier-
+radius placement.
+
+Therefore the next mathematical target is a cap/MEC/order-aware consumer of
+that global blocker collision: localize both sources to a usable boundary/cap
+role, or produce the second shell/row required by an existing Kalmanson,
+outside-pair, or shell-curvature terminal. Do not mine another selected row,
+iterate the blocker map, or recurse on an anonymous common-deletion packet.
 
 Do not weaken this residual to a generic `CommonDeletionTwoCenterPacket`. The
 generic-packet audit proves that it adds no force beyond deletion robustness

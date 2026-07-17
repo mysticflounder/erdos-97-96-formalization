@@ -720,13 +720,25 @@ the force just retained. The production theorem
 with the protected original unique arm into a contradiction for the extracted
 frontier.
 
-No existing theorem-bank declaration consumes either refined branch to
-`False`. The current third-center and common-deletion classifiers instead
-produce another origin-tagged successor or a normalized paired common
-deletion. The exact-card-four marginal case is already produced. The remaining new
-mathematics is therefore a cap/MEC/order-aware nonreturn theorem for these
-exact source-tagged outputs, not another selected-row producer or anonymous
-successor iteration.
+No existing theorem-bank declaration consumes a refined branch to `False`.
+The exact off/on-radius audit is now complete: its endpoints are reverse
+omission, a two-source omission fork, an allowed mixed reflection pair,
+physical-second-apex return, or another third-center common deletion. In
+particular the stored second-apex row does not produce the legacy shared-radius
+pair.
+
+There is nevertheless a stronger common consequence. Production proves that
+the first apex survives deletion of every carrier point, including the exact
+card-four frontier case, and therefore is absent from the complete critical-
+map image. Since the blocker map is a finite self-map, two distinct sources
+must have the same blocker. Equal-center rigidity then puts both sources in one
+common exact four-point critical shell, with deletion of either source critical
+at that blocker. This is not yet contradictory: the sources and common support
+have no forced cap, boundary-order, or frontier-radius placement. The remaining
+new mathematics is a cap/MEC/order localization of this collision, or a
+second-shell/row theorem that feeds an existing Kalmanson, outside-pair, or
+curvature terminal. It is not another selected-row producer, generic
+common-deletion successor, or blocker-map iteration.
 
 The exact-five omission cycle, its injective reverse outside-pair normal form
 and cap-straddling bridge, and its mutual same-cap/equal-blocker split remain
@@ -911,9 +923,9 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | O17 | Exact-five low-hit and recurrence reduction | proved | Two positive physical strict-cap hits in the unused source's actual critical row are impossible. Therefore at least two distinct physical strict-cap points omit that row. Production turns them into two common-deletion packets, proves their first supports equal the actual row and their physical supports are the two exact-five erasures, and extracts a third common-deletion source from the shared three-point physical core. At every physical strict-cap source, its actual critical row contains at most two physical members, so a distinct omitted source survives deletion at that source's actual blocker. Production further chooses a total fixed-point-free transition and normalizes it to an injective source-exact cycle of period two through five, retaining the common radius/cap class, actual blocker rows, edge omissions, and deletion-survival facts. The constructor can start the transition orbit at a prescribed physical source; production anchors it at the first origin-tagged continuation source. These theorems use only the three core axioms. |
-| O18 | Frontier source-faithful refined common-deletion residual | open geometric nonreturn consumer; all refined producers proved | Production `CriticalPairFrontier.originalUnique_or_commonDeletionParent` reduces every concrete frontier directly to O19 or `FrontierCommonDeletionParentResidual F`, retaining the four-point frontier-class lower bound. `FrontierCommonDeletionRefinedNormalForm` then reduces that residual to an origin-tagged original/companion off-radius common deletion or two distinct on-radius surplus/marginal common deletions, coupled to the directed blocker outcome. Prove this exact joint form false while retaining `F.pair.q/w`, the radius/marginal placement, prescribed centers, same `H`, and parent minimal/no-`IsM44`/cap-MEC context. Generic common-deletion recursion must not replace it. |
+| O18 | Frontier robust blocker collision | open cap/order or second-shell consumer; row arms audited nonterminal | Production reduces every concrete frontier directly to O19 or `FrontierCommonDeletionParentResidual F`. On the latter branch `firstApexFullyDeletionRobust` excludes the first apex from the blocker-map image, and `FullyDeletionRobustAt.exists_distinct_sources_same_blocker` forces two distinct sources with one blocker. Equal-center rigidity gives one common exact card-four shell containing both sources, with both deletions critical there. Prove the missing cap/boundary/frontier-radius localization, or a second-shell/row consequence feeding an existing terminal, while retaining `F`, `H`, minimality, no-`IsM44`, and cap/MEC/order. |
 | O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
-| O20 | Parent direct-`False` assembler | blocked only on O18–O19 | Extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch O19 or O18, and assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. The oriented-ingress and exact-five trees are no longer primary dependencies. Then remove or trivialize O10–O13 by reference mining. |
+| O20 | Parent direct-`False` assembler | blocked only on O18–O19 | Extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected unique arm or the robust blocker-collision consumer, and assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. The per-arm row, oriented-ingress, and exact-five trees are fallback evidence, not primary dependencies. Then remove or trivialize O10–O13 by reference mining. |
 
 The literal source holes are O10, O11, and O13. The active closure work is
 O18–O19, with O14 as its cardinality-scope gate and O20 as routine final

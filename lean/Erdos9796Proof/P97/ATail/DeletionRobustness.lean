@@ -129,5 +129,43 @@ theorem FullyDeletionRobustAt.centerAt_ne
   rw [hcenter]
   exact R.survives z hzA
 
+/-- Full deletion robustness at a carrier point removes that point from the
+image of the chosen blocker self-map. -/
+theorem FullyDeletionRobustAt.blockerVertex_ne
+    {D : CounterexampleData} {center : ℝ²}
+    (R : FullyDeletionRobustAt D center)
+    (H : CriticalShellSystem D.A)
+    (source : CriticalShellSystem.CarrierVertex D.A)
+    (hcenterA : center ∈ D.A) :
+    H.blockerVertex source ≠
+      (⟨center, hcenterA⟩ : CriticalShellSystem.CarrierVertex D.A) := by
+  intro h
+  have hval : H.centerAt source.1 source.2 = center :=
+    congrArg Subtype.val h
+  exact R.centerAt_ne H source.1 source.2 hval
+
+/-- If a robust carrier point is omitted by the finite blocker self-map,
+then two distinct sources have the same chosen blocker. -/
+theorem FullyDeletionRobustAt.exists_distinct_sources_same_blocker
+    {D : CounterexampleData} {center : ℝ²}
+    (R : FullyDeletionRobustAt D center)
+    (H : CriticalShellSystem D.A)
+    (hcenterA : center ∈ D.A) :
+    ∃ source₁ source₂ : CriticalShellSystem.CarrierVertex D.A,
+      source₁ ≠ source₂ ∧
+        H.blockerVertex source₁ = H.blockerVertex source₂ := by
+  let centerVertex : CriticalShellSystem.CarrierVertex D.A :=
+    ⟨center, hcenterA⟩
+  have hnotSurjective : ¬ Function.Surjective H.blockerVertex := by
+    intro hsurjective
+    rcases hsurjective centerVertex with ⟨source, hsource⟩
+    exact R.blockerVertex_ne H source hcenterA hsource
+  have hnotInjective : ¬ Function.Injective H.blockerVertex := by
+    intro hinjective
+    exact hnotSurjective (Finite.injective_iff_surjective.mp hinjective)
+  rcases Function.not_injective_iff.mp hnotInjective with
+    ⟨source₁, source₂, hblockers, hsources⟩
+  exact ⟨source₁, source₂, hsources, hblockers⟩
+
 end ATailDeletionRobustness
 end Problem97

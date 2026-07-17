@@ -3830,17 +3830,33 @@ The production assembler `false_of_frontierRefinedNormalFormConsumers` now
 shows that this one refined consumer plus the protected original unique-arm
 consumer is sufficient for the whole extracted frontier.
 
-The required theorem-bank audit finds no terminal for either refined arm.
-The off-radius/common-deletion branches feed the existing third-center
-classifier and produce another origin-tagged deletion successor; the paired
-common-deletion branch additionally normalizes the actual-blocker rows and
-splits into first-apex double deletion or disjoint exact shells, but neither
-output is terminal. The marginal-companion branch is also fully produced: the
-exact-card-four case uses the retained first-apex double-deletion radius rather
-than opening a critical-shell split. Therefore the smallest honest next result
-is a cap/MEC/order-aware **nonreturn theorem** for these source-tagged
-successors or paired common deletions. Another row producer or generic
-successor iteration is not closure progress.
+The required theorem-bank and exact branch audits find no terminal for any
+refined arm. They determine the boundary more sharply:
+
+- off-radius plus cross membership gives a reverse-row omission;
+- off-radius plus companion common deletion gives a two-source omission fork,
+  while full return only puts the new blocker outside the surplus cap;
+- on-radius companion with marginal hit equal to the companion gives a legal
+  mixed inside/outside reflection pair, while a different hit proves that the
+  companion is absent from the stored second-apex row; and
+- on-radius plus cross membership splits exactly into physical-second-apex
+  return or a genuine third-center common deletion.
+
+None is `False`, and in particular the stored second-apex row cannot manufacture
+the legacy K-A pair. Production now proves the common parent consequence
+`FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust` and hence
+excludes the first apex from the entire retained blocker-map image. Finite
+self-map pigeonhole, promoted as
+`FullyDeletionRobustAt.exists_distinct_sources_same_blocker`, then forces two
+distinct sources with a common actual blocker. Equal-center rigidity gives one
+common exact four-point critical shell containing both sources, with deletion
+of either source critical at that blocker. This is the new global normal form,
+not yet a contradiction: its sources have no forced cap/boundary/frontier-
+radius placement. The smallest honest next result is therefore a cap/MEC/
+boundary-order theorem that localizes this blocker collision or supplies the
+second shell/row needed by an existing Kalmanson, outside-pair, or curvature
+terminal. Another row producer, blocker-map iteration, or generic common-
+deletion recursion is not closure progress.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3874,7 +3890,7 @@ Work is decomposed as follows:
    The legacy second-apex split is retained only for compatibility and is
    always in its survival arm.  The defining module builds and both extractors
    close with core axioms only.
-2. **DIRECT FRONTIER COMMON-DELETION, PRIMARY OPEN CONSUMER:** production
+2. **DIRECT FRONTIER GLOBAL COLLISION, PRIMARY OPEN CONSUMER:** production
    `CriticalPairFrontier.originalUnique_or_commonDeletionParent` sends the unique
    first-apex split to protected `FA-UNIQ4/5`; otherwise it combines the two
    stored double-deletion facts into `FrontierCommonDeletionParentResidual F` at the
@@ -3888,9 +3904,12 @@ Work is decomposed as follows:
    same centers, while the other alternative is a distinct companion
    off-radius common deletion. Keep every branch coupled to the production directed blocker
    split (cross membership with an outside-surplus blocker, or companion
-   common deletion at the first apex and `q`'s blocker). The remaining content
-   theorem consumes exactly that joint refined form; do not reopen row mining
-   or recurse on a generic common-deletion packet.
+   common deletion at the first apex and `q`'s blocker). The exact arm audit
+   above proves that these rows alone are nonterminal. Use the resulting
+   first-apex full deletion robustness and same-blocker source collision as the
+   primary input, and prove the missing cap/order placement or second-shell
+   coupling. Do not reopen row mining or recurse on a generic common-deletion
+   packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.
