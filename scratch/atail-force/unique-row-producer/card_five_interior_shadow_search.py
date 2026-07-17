@@ -1115,6 +1115,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-78 witness admitted 2026-07-16: forty-fourth
+    # NONUNIT-track 654 witness (6,053,746 nodes caps=1, back to the
+    # NONUNIT track after the iters 76-77 unit pair); inline msolve
+    # NONUNIT x2; certified by membership_crosscheck.py --pair 7 8
+    # --radical-only --core at the production order; its retained
+    # 7-row deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-654-54.
+    "0a68e92dd7932e575d5ae50675ceb0017836c5ce6162cbdd5c01178bc2df2e35": {
+        "equality_sha256":
+            "1aaa33cc7c049f0796c31bca8447f0cf8dba9d880b1c9d7afb6da83866a73de3",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -5480,6 +5495,35 @@ REAL_INFEASIBLE_ROW_CORES = (
             8: frozenset({2, 4, 6, 9}),
             10: frozenset({0, 1, 5, 6}),
             11: frozenset({3, 6, 7, 10}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-78 witness 0a68e92d… admitted 2026-07-16: 7-row /
+    # 21-equality core forcing pair (7,8) — forty-fourth
+    # NONUNIT-track 654 witness (6,053,746 nodes caps=1 — back to
+    # the NONUNIT track after the two unit witnesses at iters 76-77,
+    # at an intermediate depth between the 3.8 M unit pair and the
+    # 19.7 M peak); inline msolve NONUNIT x2; cert passed at the
+    # production order; Rabinowitsch UNIT x3 on full system and
+    # retained core; deletion verdicts 5 UNIT / 5 TIMEOUT / 2
+    # NONUNIT fail-closed — witness rows 1, 3, 4, 6, 9 dropped
+    # (both pair rows 7 and 8 retained), APEXLESS core; not a
+    # transposition image of any banked core; kin at most 2 shared
+    # rows; THREE new supports 0:{2,3,6,11}, 5:{2,3,4,7},
+    # 10:{1,2,5,8}; rows 7:{3,5,8,10}, 8:{2,4,9,10}, 11:{1,6,7,10}
+    # previously unit-only (555u-08/-09, 654u-28, 654u-05/-06).
+    {
+        "id": "forced-pair-core-654-54",
+        "rows": {
+            0: frozenset({2, 3, 6, 11}),
+            2: frozenset({0, 1, 10, 11}),
+            5: frozenset({2, 3, 4, 7}),
+            7: frozenset({3, 5, 8, 10}),
+            8: frozenset({2, 4, 9, 10}),
+            10: frozenset({1, 2, 5, 8}),
+            11: frozenset({1, 6, 7, 10}),
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
