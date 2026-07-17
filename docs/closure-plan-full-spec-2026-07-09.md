@@ -275,10 +275,10 @@ are outside that cap.  Ordered-cap uniqueness is used essentially for the
 localization, but the result is not itself false: an interior center is allowed
 exactly two same-cap points on one circle.
 
-The later `robust-large-radius-localized-consumer/` audit removes that packet
-as an independent residual.  The physical-apex radius class has at least five
-points while the fresh shell has exactly four, so one physical-radius point is
-outside the shell.  Deleting it preserves the fresh shell and leaves four
+Production `ATail/RobustLargeRadiusReduction.lean` removes that packet as an
+independent residual.  The physical-apex radius class has at least five points
+while the fresh shell has exactly four, so one physical-radius point is outside
+the shell.  Deleting it preserves the fresh shell and leaves four
 physical-radius points, producing an existing `CommonDeletionTwoCenterPacket`.
 The uniform physical-second-apex consumer then returns physical-apex robustness
 or swapped `FA-UNIQ4`.  Consequently the strongest checked large-radius normal
@@ -290,9 +290,12 @@ or SwappedFirstApexUniqueFourFrontier D S H
 or LargeCapUniqueFiveSecondApexRadius D S.
 ```
 
-This is a simplification, not progress toward `False`: the first constructor
-is the robust input state itself.  Do not mine the two outside fresh-shell
-members, a shared-pair rank, or a new Kalmanson packet.
+The dependency-clean production normal form therefore has only common deletion
+or exact unique five before the existing common-deletion consumer is applied.
+The displayed three-way frontier remains a simplification, not progress toward
+`False`: its first constructor is the robust input state itself.  Do not mine
+the two outside fresh-shell members, a shared-pair rank, or a new Kalmanson
+packet.
 
 Production module `ATail/LargeCapUniqueFive.lean` now makes the exact-five
 residual source-faithful.  The physical class has at least
