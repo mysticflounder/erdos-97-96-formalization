@@ -1400,6 +1400,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-108 witness admitted 2026-07-17: fifth
+    # consecutive NONUNIT iteration (8,333,658 nodes caps=1,
+    # +4,266 past iter-107); inline NONUNIT x3; certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core
+    # at the production order; its retained 7-row deletion core
+    # (5 deletion timeouts fail-closed) is forced-pair-core-654-73,
+    # kin 3 with fp-654-65.
+    "e101769c44c84a2831badc0cc7b4473d3dc9e430820438cb0b7f7ec85c778093": {
+        "equality_sha256":
+            "8ece3a388e21e8e82ef86b35d966adcb101bf61b379825a58ccfb18cbe9826fa",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6566,6 +6581,35 @@ REAL_INFEASIBLE_ROW_CORES = (
             8: frozenset({6, 7, 9, 11}),
             9: frozenset({0, 2, 3, 5}),
             11: frozenset({1, 5, 7, 10}),
+        },
+        "equality_count": 21,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-108 witness e101769c… admitted 2026-07-17:
+    # 7-row / 21-equality retained core forcing pair (7,8) with rows
+    # centered at both pair members retained (witness at 8,333,658
+    # nodes caps=1, +4,266 past iter-107 — fifth consecutive
+    # NONUNIT iteration); inline NONUNIT x3; cert passed at the
+    # production order; Rabinowitsch UNIT x3 on full system and
+    # retained core; deletion verdicts 5 UNIT / 5 TIMEOUT
+    # fail-closed / 2 NONUNIT — witness rows 1, 2, 3, 6, 9 dropped.
+    # Not a transposition image; kin 3 (fp-654-65 rows 8, 10, 11).
+    # THREE new (center,support) pairs, all center-shifts:
+    # 0:{4,5,8,10} (support at 9 prior cores), 4:{1,3,5,7}
+    # (654u-33), 5:{4,6,8,11} (fp-654-58). Rows 7:{2,6,8,10} and
+    # 8:{6,7,9,11} repeat verbatim from fp-654-72 (consecutive
+    # admissions); row 8:{6,7,9,11} seventeenth banked appearance.
+    {
+        "id": "forced-pair-core-654-73",
+        "rows": {
+            0: frozenset({4, 5, 8, 10}),
+            4: frozenset({1, 3, 5, 7}),
+            5: frozenset({4, 6, 8, 11}),
+            7: frozenset({2, 6, 8, 10}),
+            8: frozenset({6, 7, 9, 11}),
+            10: frozenset({0, 1, 4, 6}),
+            11: frozenset({1, 5, 9, 10}),
         },
         "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
