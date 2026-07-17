@@ -1355,6 +1355,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-105 witness admitted 2026-07-17: NONUNIT track
+    # continues (8,068,885 nodes caps=1, +408 past iter-104); inline
+    # NONUNIT x3; certified by membership_crosscheck.py --pair 7 8
+    # --radical-only --core at the production order; its retained
+    # 8-row deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-654-70, the (10,11) transposition IMAGE of
+    # forced-pair-core-654-64 (fifth banked image).
+    "da50f9edf89b015f8bff584fee8ed0ea17dc01a7d7fd884fb774db58ce2206e2": {
+        "equality_sha256":
+            "e93e3645c4511163407d3cbabfd37f9f3794da5e997a0ce1f97eeac5a15e6a17",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6436,6 +6451,37 @@ REAL_INFEASIBLE_ROW_CORES = (
             10: frozenset({1, 2, 5, 9}),
         },
         "equality_count": 19,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-105 witness da50f9ed… admitted 2026-07-17:
+    # 8-row / 24-equality retained core forcing pair (7,8) with rows
+    # centered at both pair members retained (witness at 8,068,885
+    # nodes caps=1, +408 past iter-104; NONUNIT track continues);
+    # inline NONUNIT x3; cert passed at the production order;
+    # Rabinowitsch UNIT x3 on full system and retained core; deletion
+    # verdicts 4 UNIT / 5 TIMEOUT fail-closed / 3 NONUNIT — witness
+    # rows 1, 3, 4, 5 dropped. IMAGE: the (10,11) transposition
+    # relabeling of forced-pair-core-654-64 — FIFTH banked image,
+    # SECOND under (10,11); the preimage is half of the genmine-
+    # eligible pair (fp-654-64, fp-654-65). Verified row-by-row.
+    # Literal kin <=2 (rows 2, 9 fixed by the transposition). TWO
+    # new (center,support) pairs, both center-shifts: 6:{2,5,7,10}
+    # (elsewhere fp-654-60, 555u-50/-60/-74) and 7:{2,3,6,11}
+    # (elsewhere fp-654-21/-50/-54).
+    {
+        "id": "forced-pair-core-654-70",
+        "rows": {
+            0: frozenset({4, 5, 7, 11}),
+            2: frozenset({0, 1, 10, 11}),
+            6: frozenset({2, 5, 7, 10}),
+            7: frozenset({2, 3, 6, 11}),
+            8: frozenset({6, 7, 9, 10}),
+            9: frozenset({0, 5, 6, 8}),
+            10: frozenset({1, 2, 5, 9}),
+            11: frozenset({0, 1, 4, 6}),
+        },
+        "equality_count": 24,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
