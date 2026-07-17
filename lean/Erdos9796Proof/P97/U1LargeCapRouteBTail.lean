@@ -26,6 +26,7 @@ import Erdos9796Proof.P97.ATail.PhysicalOmissionCycleParentResidual
 import Erdos9796Proof.P97.ATail.FrontierCommonDeletionSurplusEscape
 import Erdos9796Proof.P97.ATail.FirstApexCriticalFiber
 import Erdos9796Proof.P97.ATail.FirstApexCriticalFiberRow
+import Erdos9796Proof.P97.ATail.CriticalFiberRetainedRadiusSelector
 import Erdos9796Proof.P97.ATail.CriticalFiberClosingCore
 
 /-!

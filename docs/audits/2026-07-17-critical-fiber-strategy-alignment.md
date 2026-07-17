@@ -2,31 +2,30 @@
 
 Date: 2026-07-17
 
-Status: **ROUTE CORRECTED; SOURCE-PROVENANCE GATE INSTALLED; NO PRODUCTION
-`sorry` CLOSED.**
+Status: **ROUTE CORRECTED; RETAINED-RADIUS SELECTOR AND TWO-CIRCLE GATE ARE
+THE ACTIVE BOUNDARY; NO PRODUCTION `sorry` CLOSED.**
 
 ## Decision
 
 Keep `false_of_twoLargeCaps_commonCriticalMap` as the final parent assembler,
 called before LIVE-Q/C construction. Replace the anonymous row producer and
-the arbitrary-fiber direct contradiction by the geometry-sensitive
-common-deletion arm producer
+the arbitrary-fiber direct contradiction by the adaptive restriction of the
+actual critical blocker map to the retained first-apex radius class:
 
 ```lean
-nonempty_criticalFiberClosingCore
+nonempty_retainedRadiusBlockerOutcome
     (R : FrontierCommonDeletionParentResidual F) :
-    Nonempty (CriticalFiberClosingCore R)
+    Nonempty (RetainedRadiusBlockerOutcome R)
 ```
 
-from one concrete `FrontierCommonDeletionParentResidual F`.
-
-The output contains a geometry-selected
-`P : FrontierCommonDeletionCriticalFiber R`. Its `ordered` constructor reaches
-the exact source-indexed Kalmanson core; its `sameCap` constructor reaches the
-exact collision-pair cap-uniqueness core. A terminal adapter is load-bearing
-only if the chosen fiber and its source provenance remain visible in its
-statement and proof. `false_of_criticalFiberClosingCore` is the immediate
-consumer.
+The outcome is exact finite logic on the actual blocker map: either two
+retained sources have the same blocker, or the blocker restriction is
+injective on the complete retained class. A retained collision contains a
+complete `FrontierCommonDeletionCriticalFiber R`; the first apex is a genuine
+second equidistant center for its two sources, and `btw_sep` forces the sources
+to alternate across the first apex and common blocker on the convex boundary.
+The injective arm retains the full source-to-blocker matching rather than a
+selected-row marginal.
 
 Production `ATail/FirstApexCriticalFiber.lean` now supplies exactly this
 typed predecessor through `nonempty_frontierCommonDeletionCriticalFiber`.
@@ -38,6 +37,24 @@ for every preselected `P`.
 Production `ATail/CriticalFiberClosingCore.lean` now defines the exact
 existential contract and proves `false_of_criticalFiberClosingCore`; its four
 axiom checks contain only `propext`, `Classical.choice`, and `Quot.sound`.
+This contract is an immediate terminal library, not an established exhaustive
+classifier of the retained collision and matching outcomes.
+
+The same row module now proves the production two-circle gate
+
+```lean
+criticalShell_inter_frontierRadiusClass_card_le_two
+```
+
+for every actual critical row. It preserves any hypothetical three-point
+intersection with the retained first-apex radius class into selected
+four-subpackets, where the distinct-center two-circle theorem gives the
+contradiction.
+
+Production `ATail/CriticalFiberRetainedRadiusSelector.lean` now implements
+`nonempty_retainedRadiusBlockerOutcome` and the collision alternation API.
+Consequently the active open work starts after the selector: the two geometric
+arm consumers, not construction of the dichotomy itself.
 
 ## Why the old target was rejected
 
@@ -48,7 +65,7 @@ at `A`.  The arbitrary outside-pair extraction from the common `A`-shell also
 works for every selected four-shell.  These are conditional consumers, not
 evidence that the forced blocker-fiber collision advances the parent proof.
 
-Six source-faithful audits establish the corrected boundary:
+The source-faithful audits establish the corrected boundary:
 
 - `scratch/atail-force/robust-orow-collision-hit/` proves an exact
   `bothOff ∨ rowHit` split.  A checked `Fin 12` regression realizes `bothOff`
@@ -74,30 +91,58 @@ Six source-faithful audits establish the corrected boundary:
 - `scratch/atail-force/critical-fiber-minimal-deletion/` constructs literal
   singleton stutters at the old common blocker, including when the deletion
   universe is the full common shell.
+- `scratch/atail-force/critical-fiber-closing-core-ordered/` proves that a
+  collision row hit supplies orientation and the first-apex equality. The
+  ordered terminal still needs exactly `K ∈ selectedAt J` and the cyclic
+  subsequence `O,A,X,J,C,K`.
+- `scratch/atail-force/critical-fiber-closing-core-samecap/` proves that the
+  same-cap terminal is equivalent to a source-faithful second-center route
+  through either the first apex or an actual `centerAt J`. Fixed-fiber
+  `BothOff` localization does not supply that route.
+- `scratch/atail-force/critical-fiber-closing-core-selector/` implements the
+  retained collision/injective-matching split and a source-faithful adapter
+  from collision to the existing terminal packet.
+- `scratch/atail-force/critical-fiber-alternation-audit/` rejects the first
+  Fin12 matching witness: two rows have a forbidden three-point retained-class
+  intersection, and the same triple violates shared-pair alternation.
 
-## Active next theorem
+## Active next theorems
 
-Prove `nonempty_criticalFiberClosingCore R`, choosing the fiber only after
-using full Euclidean convexity, cap partition, MEC,
-frontier-radius, minimality, and no-`IsM44` hypotheses. Do not weaken it to an
-arbitrary selected row or strengthen it to contradiction for every `P`.
+First close the retained collision arm. Its exact sound geometric producer is
+already known: the actual collision sources alternate across the first apex
+and their common blocker. The ordered closing-core route additionally needs
+cross-deletion failure `K ∈ selectedAt J` and cyclic placement
+`O,A,X,J,C,K`; the same-cap route additionally needs a source-faithful second
+center in the same ordered cap. Prove one of those packets from the full
+parent geometry, or prove the collision arm false directly.
 
-If the Kalmanson route survives that localization, the packet must retain a
-critical source `J` and use the actual `J`-critical shell for the cross
-incidence.  If the same-cap route survives, its repeated pair must be the
-collision source pair `C,K` itself and its second center must be source
-realized.
+Then close the injective matching arm. The original finite witness is invalid,
+because it violates the production two-circle bound and cyclic separation.
+A repaired Fin12 object, however, has a total fixed-point-free source-exact
+support-locked map, robust card-five retained class, injective restriction,
+row-closure minimality, every pairwise exact-class overlap at most two, and a
+cyclic order satisfying every generated alternation. This is exact within the
+finite abstraction, not Euclidean. Therefore overlap and bare separation are
+exhausted: the next theorem must visibly consume cap/MEC, complete radius
+filters, or no-`IsM44` geometry.
 
-No broad computation is authorized until the encoding manifest contains the
-complete source map above, an immediate checked consumer, and an ablation
-test showing that removal of either collision-source criticality or `J`'s
-critical provenance invalidates the claimed coverage.
+Only after both selector arms close should the proof assemble
+`false_of_twoLargeCaps_commonCriticalMap`. `nonempty_criticalFiberClosingCore R`
+remains a sufficient optional route into its checked consumer, but it is not
+the active coverage conjecture.
+
+Any further computation must encode the complete actual blocker restriction,
+the production intersection bound, all generated boundary alternations, and
+an immediate checked consumer. A new finite survivor or UNSAT claim is not
+load-bearing unless its manifest shows exactly which cap/MEC/full-filter or
+no-`IsM44` facts were added beyond the repaired regression.
 
 The fixed-fiber residual audits are negative but load-bearing for scoping.
 `BothOff` cap localization gives strong endpoint/interior shell counts with no
 matching consumer. Global minimal deletion can stutter at the old common
 blocker with either singleton collision source, even over the whole common
-shell. These routes do not replace the existential closing-core producer.
+shell. These routes do not replace the retained-radius selector or its two
+geometric arm consumers.
 
 ## Synchronized documents
 

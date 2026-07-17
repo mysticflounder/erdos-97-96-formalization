@@ -184,5 +184,66 @@ theorem nonempty_outcome
         (nonempty_rowHit P P.source₂.1 (Or.inr rfl) hsource₂).some⟩
     · exact ⟨Outcome.bothOff ⟨hsource₁, hsource₂⟩⟩
 
+/-- Every actual critical row is centered away from the robust first apex, so
+its exact shell meets the retained first-apex radius class in at most two
+points.  This is the Euclidean two-circle gate required by finite blocker-map
+selectors. -/
+theorem criticalShell_inter_frontierRadiusClass_card_le_two
+    {D : CounterexampleData} {S : SurplusCapPacket D.A} {radius : ℝ}
+    {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S radius H}
+    (R : FrontierCommonDeletionParentResidual F)
+    (source : ℝ²) (hsource : source ∈ D.A) :
+    ((H.selectedAt source hsource).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex1 radius).card ≤ 2 := by
+  classical
+  by_contra hle
+  have hthree :
+      3 ≤ ((H.selectedAt source hsource).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex1 radius).card := by
+    omega
+  rcases Finset.exists_subset_card_eq
+      (s := (H.selectedAt source hsource).toCriticalFourShell.support ∩
+        SelectedClass D.A S.oppApex1 radius) hthree with
+    ⟨P, hPsub, hPcard⟩
+  have hPClass : P ⊆ SelectedClass D.A S.oppApex1 radius := by
+    intro z hz
+    exact (Finset.mem_inter.mp (hPsub hz)).2
+  have hPcardLe : P.card ≤ 4 := by omega
+  rcases
+      FiniteEndpointShell.exists_fourSubpacket_preserving_of_selected_card_ge_four
+        hPClass hPcardLe R.frontierRadius_class_card_ge_four with
+    ⟨T, hPT, hTClass, hTcard⟩
+  let firstRow : SelectedFourClass D.A S.oppApex1 := {
+    support := T
+    support_subset_A := fun _ hz ↦ (mem_selectedClass.mp (hTClass hz)).1
+    support_card := hTcard
+    radius := radius
+    radius_pos := frontierRadius_pos R
+    support_eq_radius := fun _ hz ↦ (mem_selectedClass.mp (hTClass hz)).2
+    center_not_mem := by
+      intro hcenter
+      have hzero := (mem_selectedClass.mp (hTClass hcenter)).2
+      have : radius = 0 := by simpa using hzero.symm
+      exact (ne_of_gt (frontierRadius_pos R)) this }
+  let criticalRow : SelectedFourClass D.A
+      (H.centerAt source hsource) :=
+    (H.selectedAt source hsource).toSelectedFourClass
+  have hPInter : P ⊆ criticalRow.support ∩ firstRow.support := by
+    intro z hz
+    refine Finset.mem_inter.mpr ⟨?_, ?_⟩
+    · exact (Finset.mem_inter.mp (hPsub hz)).1
+    · exact hPT hz
+  have hInterThree : 3 ≤ (criticalRow.support ∩ firstRow.support).card := by
+    calc
+      3 = P.card := hPcard.symm
+      _ ≤ (criticalRow.support ∩ firstRow.support).card :=
+        Finset.card_le_card hPInter
+  have hInterTwo := SelectedFourClass.inter_card_le_two criticalRow firstRow
+    (R.actualBlocker_ne_firstApex source hsource)
+  omega
+
+#print axioms criticalShell_inter_frontierRadiusClass_card_le_two
+
 end ATailFirstApexCriticalFiberRow
 end Problem97

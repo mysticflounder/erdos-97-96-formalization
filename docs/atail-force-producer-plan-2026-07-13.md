@@ -127,8 +127,38 @@ with the second center source-realized either as `O` or as `centerAt J` with an
 actual `J`-critical shell through `C,K`. The routine consumer
 `false_of_criticalFiberClosingCore` closes both constructors.
 Production `ATail/CriticalFiberClosingCore.lean` implements this contract and
-consumer with core axioms only. The sole missing result on the interface is
-the `Nonempty` producer above.
+consumer with core axioms only. The `Nonempty` producer above remains a
+sufficient closing theorem, but the constructor audit does not by itself show
+that these two terminals exhaust the full parent geometry.
+
+The active intermediate theorem is now the adaptive retained-radius blocker
+selector. Restrict `H.blockerVertex` to sources in the retained first-apex
+radius class. The exact output is either a repeated blocker in that class or
+an injective blocker matching across the whole class. A retained collision
+already packages a complete source-faithful critical fiber and makes
+`S.oppApex1` a second equidistant center for its two sources. The matching arm
+retains at least four distinct actual blockers and must be consumed with full
+geometry. Production `ATail/CriticalFiberRetainedRadiusSelector.lean` now
+implements this exact dichotomy and proves the collision sources' mandatory
+boundary alternation.
+
+Production `ATail/FirstApexCriticalFiberRow.lean` now supplies the mandatory
+Euclidean gate
+
+```lean
+criticalShell_inter_frontierRadiusClass_card_le_two
+```
+
+for every actual critical row. The first checked `Fin 12` matching witness is
+withdrawn as evidence for the live arm: it has two critical rows intersecting
+the retained class in three points, contradicting that theorem, and the same
+triple violates cyclic shared-pair separation. The general injective arm is
+therefore unresolved. A repaired `Fin 12` regression does enforce the
+two-circle bound and every generated cyclic shared-pair separation while
+retaining an injective blocker map on the robust card-five class. It is exact
+within the finite abstraction, not Euclidean. Thus the corrected abstraction
+does realize the arm, and its next consumer must add cap/MEC, complete-filter,
+or no-`IsM44` force rather than another row-overlap or bare-order constraint.
 
 That normal form is now production code in
 `ATail/FirstApexCriticalFiber.lean`.
@@ -174,6 +204,16 @@ cross-bisector forced outside the cap, or mutual omission.  None supplies the
 same-cap second center.  Consequently a same-cap terminal is admissible only
 when its repeated pair is the collision source pair `C,K` itself and its
 second center is source-realized.
+
+The ordered and same-cap constructor audits make the remaining fields exact.
+For a `RowHit`, the ordered arm still needs `K` in the actual `J`-critical
+shell—equivalently deletion of `K` blocks K4 at `H.centerAt J`—and the cyclic
+subsequence `O,A,X,J,C,K`. The same-cap arm exists exactly when either `O`, or
+an actual `centerAt J`, is a distinct source-faithful second center in the
+same cap as the common blocker while both collision sources lie outside.
+`BothOff` cap localization proves neither alternative. Treat both constructors
+as optional immediate terminals; close the retained collision and injective
+matching arms directly if their exact producer fields are not forced.
 
 If the Kalmanson route reappears, the corrected source-indexed coverage
 object must include a critical source `J`, put `X := H.centerAt J`, use the

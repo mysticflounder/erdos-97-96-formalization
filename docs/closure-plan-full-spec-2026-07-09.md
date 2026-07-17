@@ -101,10 +101,12 @@ full parent hypotheses
      `-- FrontierCommonDeletionParentResidual
            -> full deletion robustness at the first apex
            -> first apex omitted from the blocker-map image
-           -> choose a geometry-sensitive CriticalFiberClosingCore
-              |-- ordered actual O,A,X,J,C,K cross-row core
-              `-- same-cap two-center core for the actual collision pair
-           -> false_of_criticalFiberClosingCore
+           -> restrict the actual blocker map to the retained radius class
+              |-- retained-radius blocker collision
+              `-- injective retained-radius blocker matching
+           -> use cap/MEC/order/no-M44 geometry on the selected arm
+              |-- produce and consume a CriticalFiberClosingCore
+              `-- prove the arm false directly
   -> assemble false_of_twoLargeCaps_commonCriticalMap
   -> call before LIVE-Q/C construction and remove the dead helper tree
 ```
@@ -151,7 +153,11 @@ the actual `J`-critical shell. The consumer
 anonymous rows and arbitrary complement pairs remain conditional consumers.
 Production `ATail/CriticalFiberClosingCore.lean` now defines this exact
 inductive contract and proves its consumer with only the three core axioms.
-The sole open theorem on this interface is the `Nonempty` producer above.
+It is a checked terminal library, not yet a proved exhaustive classifier.
+`nonempty_criticalFiberClosingCore R` remains a sufficient closing theorem,
+but the active intermediate boundary is the retained-radius blocker-map
+collision/matching split below; either arm may instead be proved false
+directly.
 
 Production `ATail/FirstApexCriticalFiber.lean` now makes this interface
 literal. `nonempty_frontierCommonDeletionCriticalFiber` returns two distinct
@@ -182,6 +188,55 @@ critical fiber `P`.  The `BothOff` and `RowHit` branches therefore retain both
 critical-source facts definitionally; no downstream consumer needs to recover
 or guess which blocker collision was chosen. It is nonterminal and does not
 make arbitrary-`P` closure an active theorem.
+
+### Corrected retained-radius selector checkpoint
+
+The next adaptive choice is now exact.  Restrict the actual critical blocker
+map to sources in `SelectedClass D.A S.oppApex1 radius`.  Classical finite
+reasoning gives precisely two arms: a repeated blocker inside that retained
+class, or an injective blocker matching on the entire class.  In the collision
+arm the two preimages form a complete `FrontierCommonDeletionCriticalFiber R`,
+and `S.oppApex1` is a genuine second equidistant center for its source pair.
+The selector is source-faithful and is now production code in
+`ATail/CriticalFiberRetainedRadiusSelector.lean`, whose
+`nonempty_retainedRadiusBlockerOutcome` proves the dichotomy and whose
+collision API proves the mandatory boundary alternation.
+
+The first finite matching regression is withdrawn as a geometric gate.  Two
+of its critical rows meet the retained first-apex class in three points.
+Production now proves
+
+```lean
+criticalShell_inter_frontierRadiusClass_card_le_two
+```
+
+for every actual critical row, by the two-circle intersection bound and
+`actualBlocker_ne_firstApex`; the same regression also violates the existing
+cyclic shared-pair separation theorem.  Thus it cannot establish feasibility
+of the injective arm.  The honest matching residual remains open only after
+adding `shell ∩ retainedClass ≤ 2` for every source and all compatible cyclic
+separation constraints.
+
+A repaired `Fin 12` regression now enforces both corrected gates.  It has a
+total fixed-point-free, source-exact, support-locked blocker map; a robust
+card-five retained class; an injective blocker restriction; row-closure
+minimality; pairwise exact-class overlap at most two; and a cyclic order
+satisfying every generated shared-pair alternation.  This is exact only in the
+finite abstraction, not a Euclidean realization.  It proves that the
+injective matching arm is a real residual after two-circle and bare cyclic
+separation closure, so its consumer must visibly use cap/MEC, complete radius
+filters, or no-`IsM44` geometry.
+
+The two `CriticalFiberClosingCore` constructors are conditional terminals on
+these selector arms, not automatic consequences.  On a row hit, the ordered
+constructor still needs exactly (i) deletion of `K` to block K4 at the actual
+`J`-blocker, equivalently `K ∈ selectedAt J`, and (ii) cyclic placement
+`O,A,X,J,C,K`.  The same-cap constructor is equivalent to a source-faithful
+second-center route through either `O` or an actual `centerAt J`; fixed-fiber
+cap localization does not produce it.  Accordingly the immediate tasks are:
+close the retained collision arm using these exact fields or direct geometry,
+then close the Euclidean-valid injective matching arm using cap/MEC/order or
+no-`IsM44`.  Do not mine against the invalid finite witness.
 
 Production checkpoint, 2026-07-17: the source-independent localization
 `commonPhysicalPair_center_mem_secondCapInterior` now lives in
@@ -3939,25 +3994,34 @@ the outside complement leaves only common-blocker, outside-cap cross-bisector,
 and mutual-omission residuals; it does not manufacture a collision-specific
 second center.
 
-Therefore the primary open theorem is the existential source-indexed producer
-`nonempty_criticalFiberClosingCore R`. The core itself chooses
-`P : FrontierCommonDeletionCriticalFiber R` after inspecting the complete
-parent geometry. Its ordered constructor names a critical source `J`, sets
-`X = centerAt J`, uses the actual `J`-critical shell for `J,K`, retains an
-actual first-apex row through `J,C`, and proves the cyclic order
-`O < A < X < J < C < K`. Its same-cap constructor uses the collision source
-pair `C,K` itself and a source-realized second center distinct from `A` in the
-same cap. `false_of_criticalFiberClosingCore` consumes either constructor
-immediately. A direct theorem for every arbitrarily preselected `P` is retired
-as the primary target; the fixed-fiber `BothOff`/`RowHit` split remains a
-diagnostic inside the existential proof. Raw `O/A/X` incidence mining,
-arbitrary outside-point bisection, blocker-map iteration, generic
+Therefore the primary open surface is the adaptive blocker map on the retained
+first-apex radius class.  Its exact split is a collision within that class or
+an injective matching on the whole class.  The collision carries a complete
+source-indexed critical fiber and the first apex as a second center; the
+matching carries at least four distinct source-to-blocker assignments.  Each
+arm must now be closed from full cap/MEC/order/no-`IsM44` geometry, either by
+constructing `CriticalFiberClosingCore R` or by direct `False`.
+
+`CriticalFiberClosingCore` remains the checked terminal interface.  Its
+ordered constructor names a critical source `J`, sets `X = centerAt J`, uses
+the actual `J`-critical shell for `J,K`, retains an actual first-apex row
+through `J,C`, and proves cyclic order `O < A < X < J < C < K`; its same-cap
+constructor uses the collision source pair itself and a source-realized second
+center.  The ordered adapter still lacks exactly the cross-deletion failure at
+`J`'s blocker and that cyclic subsequence.  The same-cap adapter is optional:
+fixed-fiber `BothOff` localization does not imply its source-faithful second
+center.  Thus `nonempty_criticalFiberClosingCore R` is sufficient but is not
+treated as an already justified exhaustive classification.
+
+Production `criticalShell_inter_frontierRadiusClass_card_le_two` is now a
+mandatory encoding gate.  The first `Fin 12` injective-matching witness is
+invalid because it has a three-point intersection and also violates cyclic
+shared-pair separation.  A repaired finite regression satisfies both gates
+and still realizes injective matching, so cap/MEC, complete-filter, or
+no-`IsM44` force is now mandatory.  Raw `O/A/X` incidence mining, arbitrary
+outside-point bisection, invalid blocker-map regressions, generic
 common-deletion recursion, and plain selected-row connectivity are rejected
 as primary work.
-
-The contract and immediate consumer are production in
-`ATail/CriticalFiberClosingCore.lean`; only
-`nonempty_criticalFiberClosingCore R` remains open on this arm.
 
 The exact-five physical omission cycle and its reverse/mutual reductions remain
 kernel-checked fallback infrastructure, not the primary parent dependency.
@@ -3991,7 +4055,7 @@ Work is decomposed as follows:
    The legacy second-apex split is retained only for compatibility and is
    always in its survival arm.  The defining module builds and both extractors
    close with core axioms only.
-2. **FRONTIER CRITICAL-FIBER CLOSING CORE, PRIMARY OPEN PRODUCER:** production
+2. **RETAINED-RADIUS SELECTOR ARM CONSUMERS, PRIMARY OPEN PRODUCERS:** production
    `CriticalPairFrontier.originalUnique_or_commonDeletionParent` sends the unique
    first-apex split to protected `FA-UNIQ4/5`; otherwise it combines the two
    stored double-deletion facts into `FrontierCommonDeletionParentResidual F` at the
@@ -4007,18 +4071,19 @@ Work is decomposed as follows:
    split (cross membership with an outside-surplus blocker, or companion
    common deletion at the first apex and `q`'s blocker). The exact arm audit
    above proves that these rows alone are nonterminal. Use the resulting
-   first-apex full deletion robustness as the input to the geometry-sensitive
-   fiber choice. Prove `nonempty_criticalFiberClosingCore R`, whose output
-   contains its chosen critical fiber and is consumed by
-   `false_of_criticalFiberClosingCore`. The fixed-fiber `BothOff`/`RowHit`
-   theorem is a diagnostic refiner only: a row hit supplies the actual
-   first-apex equality, while both-off may require choosing a different fiber
-   or proving the same-cap constructor from full cap/MEC/frontier geometry.
-   The ordered constructor must identify both critical sources, the actual
-   `J`-critical row, and the cyclic placement. The same-cap constructor's
-   repeated pair must be the critical source pair itself and its second center
-   must be source-realized. Do not encode the raw six-role equality core,
-   reopen anonymous row mining, or recurse on a generic common-deletion packet.
+   first-apex full deletion robustness as the input to production
+   `nonempty_retainedRadiusBlockerOutcome`. Consume its exact collision-or-
+   injective-matching split. Close the collision arm through the exact ordered
+   fields, the exact source-faithful same-cap route, or direct geometry. Close
+   the matching arm using cap/MEC, complete-filter, or no-`IsM44` geometry;
+   the repaired `Fin 12` regression already survives the production
+   two-circle gate and every generated cyclic alternation.
+   `nonempty_criticalFiberClosingCore R` remains one
+   sufficient joint output, consumed immediately by
+   `false_of_criticalFiberClosingCore`, but its constructors are conditional
+   terminals rather than assumed exhaustive cases. Do not encode the raw
+   six-role equality core, reopen anonymous row mining, or recurse on a generic
+   common-deletion packet.
 **Historical fallback — ROBUST-COUPLING, not the current queue.** Cumulative-erasure recurrence is
    now formally excluded, and an exact local model excludes any theorem which
    localizes the arbitrary blocker from only the three-center MEC/cap packet.
