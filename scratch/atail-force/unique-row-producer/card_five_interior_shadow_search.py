@@ -1235,6 +1235,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-86 witness admitted 2026-07-16: fifty-second
+    # NONUNIT-track 654 witness (7,541,624 nodes caps=1, ninth
+    # consecutive band witness, ~7.5M plateau); inline NONUNIT x3
+    # (Singular + msolve fwd/rev); certified by membership_crosscheck.py
+    # --pair 7 8 --radical-only --core at the production order; its
+    # retained 7-row deletion core (5 deletion timeouts fail-closed)
+    # is forced-pair-core-654-62.
+    "630268b5937568900b9986de5eb0fd6a8acd1a0962aacefd5c3a36a40f0c8a77": {
+        "equality_sha256":
+            "63b93dcada54b314fb500331946476a49980a15b35ec3c82ed36e93ac6929f54",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -5827,6 +5842,32 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 9, 10}),
         },
         "equality_count": 27,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-86 witness 630268b5… admitted 2026-07-16: 7-row /
+    # 21-equality retained core forcing pair (7,8) with no row
+    # centered at 7 (witness at 7,541,624 nodes caps=1, fifty-second
+    # NONUNIT-track, ninth consecutive band witness); inline NONUNIT
+    # x3; cert passed at the production order; Rabinowitsch UNIT x3
+    # on full system and retained core; deletion verdicts 5 UNIT /
+    # 5 TIMEOUT / 2 NONUNIT fail-closed — witness rows 1, 3, 6, 7, 9
+    # dropped (pair row 8 retained), APEXLESS core; not a
+    # transposition image of any banked core; kin at most 2 shared
+    # rows; ONE new support 0:{4,5,7,10}; row 10:{4,6,9,11}
+    # previously 555-unit-only (555u-02/-46).
+    {
+        "id": "forced-pair-core-654-62",
+        "rows": {
+            0: frozenset({4, 5, 7, 10}),
+            2: frozenset({0, 1, 10, 11}),
+            4: frozenset({3, 6, 7, 11}),
+            5: frozenset({1, 4, 6, 8}),
+            8: frozenset({2, 7, 9, 11}),
+            10: frozenset({4, 6, 9, 11}),
+            11: frozenset({0, 1, 5, 6}),
+        },
+        "equality_count": 21,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
