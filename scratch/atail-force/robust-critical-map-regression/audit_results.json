@@ -1,0 +1,283 @@
+{
+  "iterations": 1,
+  "refinements": [],
+  "status": "SAT_FINITE_STRUCTURAL_SHADOW_ONLY",
+  "witness": {
+    "blocker_sha256": "621ca4029eb342b33ee756a9e6421b00826d33677278ecde345ae42405d7db79",
+    "blockers": {
+      "0": 8,
+      "1": 12,
+      "10": 9,
+      "11": 13,
+      "12": 2,
+      "13": 9,
+      "2": 10,
+      "3": 12,
+      "4": 6,
+      "5": 7,
+      "6": 8,
+      "7": 4,
+      "8": 4,
+      "9": 10
+    },
+    "carrier_card": 14,
+    "physical_second_apex": 1,
+    "physical_second_opposite_cap": [
+      0,
+      2,
+      7,
+      8,
+      9,
+      10
+    ],
+    "physical_second_opposite_cap_card": 6,
+    "producer_bank_matches": [
+      {
+        "core": {
+          "A": 11,
+          "C": 4,
+          "E": 3,
+          "O": 0,
+          "Y": 12
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.CapCrossingKalmansonBridge.false_of_selected_rows_in_five_ccw_order",
+        "metadata": {
+          "boundary_rotation_start": 0,
+          "lean_module": "Erdos9796Proof.P97.ATail.CapCrossingKalmanson",
+          "requires_rotated_ccw_enumeration": false
+        },
+        "orientation": "forward",
+        "source": "metric-bank-direct-rows",
+        "stage": "equality-convex-five-point-three-selected-row-kalmanson"
+      },
+      {
+        "core": {
+          "Q": 11,
+          "U": 4,
+          "V": 7,
+          "Y": 6
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core",
+        "orientation": "forward",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order"
+      },
+      {
+        "core": {
+          "Q": 7,
+          "U": 6,
+          "V": 11,
+          "Y": 4
+        },
+        "cyclic_orientation": "reverse",
+        "lean_consumer": "Problem97.Census554.FourPointTwoCircleBisectorOrderCore.false_of_core_of_neg",
+        "orientation": "reverse",
+        "source": "common-system-bank",
+        "stage": "equality-convex-four-point-two-circle-bisector-order-reverse"
+      },
+      {
+        "core": {
+          "a": 1,
+          "b": 9,
+          "c": 5,
+          "x": 12,
+          "y": 3
+        },
+        "cyclic_orientation": "reverse",
+        "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core_of_neg",
+        "orientation": "reverse",
+        "source": "metric-bank",
+        "stage": "equality-convex-five-point-reverse"
+      },
+      {
+        "core": {
+          "a": 8,
+          "b": 13,
+          "c": 1,
+          "x": 9,
+          "y": 7
+        },
+        "cyclic_orientation": "forward",
+        "lean_consumer": "Problem97.Census554.ConvexFivePointCore.false_of_core",
+        "orientation": "forward",
+        "source": "metric-bank",
+        "stage": "equality-convex-five-point"
+      }
+    ],
+    "profile": [
+      6,
+      6,
+      5
+    ],
+    "row_sha256": "a9c6acbf0c466c65fff5613ff2b0864ee0302a1973f4c37edbecb74ee6a12119",
+    "rows": [
+      {
+        "center": 0,
+        "exact": false,
+        "name": "global:0",
+        "support": [
+          2,
+          3,
+          4,
+          11
+        ]
+      },
+      {
+        "center": 1,
+        "exact": false,
+        "name": "global:1",
+        "support": [
+          2,
+          8,
+          10,
+          12
+        ]
+      },
+      {
+        "center": 2,
+        "exact": true,
+        "name": "global:2",
+        "support": [
+          6,
+          7,
+          11,
+          12
+        ]
+      },
+      {
+        "center": 3,
+        "exact": false,
+        "name": "global:3",
+        "support": [
+          1,
+          9,
+          10,
+          11
+        ]
+      },
+      {
+        "center": 4,
+        "exact": true,
+        "name": "global:4",
+        "support": [
+          1,
+          6,
+          7,
+          8
+        ]
+      },
+      {
+        "center": 5,
+        "exact": false,
+        "name": "global:5",
+        "support": [
+          3,
+          6,
+          9,
+          12
+        ]
+      },
+      {
+        "center": 6,
+        "exact": true,
+        "name": "global:6",
+        "support": [
+          0,
+          4,
+          5,
+          7
+        ]
+      },
+      {
+        "center": 7,
+        "exact": true,
+        "name": "global:7",
+        "support": [
+          3,
+          5,
+          8,
+          13
+        ]
+      },
+      {
+        "center": 8,
+        "exact": true,
+        "name": "global:8",
+        "support": [
+          0,
+          1,
+          6,
+          13
+        ]
+      },
+      {
+        "center": 9,
+        "exact": true,
+        "name": "global:9",
+        "support": [
+          4,
+          8,
+          10,
+          13
+        ]
+      },
+      {
+        "center": 10,
+        "exact": true,
+        "name": "global:10",
+        "support": [
+          2,
+          9,
+          12,
+          13
+        ]
+      },
+      {
+        "center": 11,
+        "exact": false,
+        "name": "global:11",
+        "support": [
+          0,
+          4,
+          6,
+          10
+        ]
+      },
+      {
+        "center": 12,
+        "exact": true,
+        "name": "global:12",
+        "support": [
+          0,
+          1,
+          3,
+          9
+        ]
+      },
+      {
+        "center": 13,
+        "exact": true,
+        "name": "global:13",
+        "support": [
+          2,
+          5,
+          6,
+          11
+        ]
+      },
+      {
+        "center": 1,
+        "exact": false,
+        "name": "robust:second-radius",
+        "support": [
+          5,
+          7,
+          9,
+          13
+        ]
+      }
+    ]
+  }
+}

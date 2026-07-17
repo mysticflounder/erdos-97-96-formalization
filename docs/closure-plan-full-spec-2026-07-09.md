@@ -155,6 +155,84 @@ disjoint four-support pairs at cap six, so it supplies no negative evidence for
 the live `cap ≥ 6` residual.  Full stored completions have Kalmanson matches,
 but the fixed parent-local packet has none; there is no live coverage theorem.
 
+**Minimality route correction, 2026-07-16.**  The retained-map structural
+surface is SAT at the smallest live profile `(6,6,5)` when it includes global
+selected K4 rows, a total source-indexed critical map with exact row locking,
+exclusion of `S.oppApex2` from the map image, and two disjoint robust rows.
+That witness is only a finite structural shadow, but it proves that the next
+consumer must use a field absent from the current tail interface.
+
+The stopped `global-minimal-deletion-core/` lane supplies the strongest such
+field.  From `hmin : D.Minimal` and the live survivor-pair frontier it
+kernel-produces a fresh strict-cap center and exactly one of:
+
+1. a shared-radius collision among a bounded deleted-role set;
+2. a genuine `MinimalDeletionCore` with pairwise-disjoint exact four-shells,
+   global packing `4 * V.card ≤ D.A.card`, and cap-local packing; or
+3. an installed singleton exact blocker omitting one frontier target while
+   preserving deletion survival there.
+
+All 25 exported declarations independently recompile with only `propext`,
+`Classical.choice`, and `Quot.sound`.  This is a checked positive predecessor,
+not yet the robust contradiction.  Its exact remaining consumers are the
+bounded collision arm, packed multi-core arm, and a monotone/finite-orbit
+consumer for the installed singleton arm.
+
+The adopted higher-parent composition now kernel-checks as
+`robustSecondApexMinimalDeletion_reduction`.  It retains the physical-second-
+apex robust-radius classification on every arm and strengthens every deleted
+source with survival of its deletion at `S.oppApex2`.  Its three exact outputs
+are `RobustSecondApexMinimalDeletionCollision`,
+`RobustSecondApexMinimalDeletionMultiCore`, and
+`RobustSecondApexMinimalDeletionInstalledSingleton`.  The adjacent theorem
+`false_of_robustSecondApexMinimalDeletion` is only a motive-valued dispatcher:
+it requires one direct-`False` callback for each output and is not itself a
+closed contradiction.
+
+In the two-disjoint-radius subarm, the checked theorem
+`exists_secondApexRow_minimalDeletionTransition` uses the second disjoint row
+essentially to prove that the fresh blocking center differs from the physical
+second apex.  It then returns either a same-row co-radial pair with reciprocal
+actual-blocker deletion survival, or a minimal deletion core; a non-singleton
+core makes the fresh center fully deletion-robust.  This is a genuine global
+transition, but it still needs a cap/MEC-order consumer that eliminates the
+reciprocal collision, consumes the singleton, or prevents robust-center
+iteration without a decreasing invariant.
+
+In the radius-class-cardinality-at-least-five subarm, the checked theorem
+`nonempty_minimalDeletionOutcome_of_largeSecondApexRadius` chooses two strict
+`oppCap2`-interior points from the full physical-apex radius class and applies
+global minimality to their two-point deletion.  It returns exactly an existing
+`CommonDeletionTwoCenterPacket`, a `LargeCapUniqueFiveSecondApexRadius`, or a
+`SharedCriticalPairAtLargeSecondApex`.  The exact-five outcome is not the
+already-routed cap-five terminal: the surrounding cap still has cardinality
+at least six, so the unused cap point is part of the remaining geometry.  The
+shared-pair outcome retains one fresh exact critical shell through both chosen
+points, both fresh-center deletion failures, and both physical-apex deletion
+survivals.  Its remaining consumers are therefore the existing common-
+deletion continuation, a sixth-cap-point/full-filter consumer for the exact-
+five profile, and a cap-order consumer for the shared critical pair.
+
+The production interface formerly dropped the required hypothesis:
+`removableVertexOfLarge_of_nonIsM44` constructs `hmin` immediately before its
+sole call to `u1_largeCap_routeB_tail_false`.  The tail signature and that sole
+call now retain `hmin` directly, without widening K-A-PAIR or any LIVE helper.
+The primary R theorem is therefore now
+provisionally named `RobustSecondApexMinimalDeletion`:
+
+```text
+D.Minimal
+  + full two-large-cap/frontier/common-map surface
+  + FullyDeletionRobustAt D S.oppApex2
+  -> False.
+```
+
+Use `hmin` only at the parent boundary and call this theorem before LIVE
+slot/center enumeration.  Do not widen K-A-PAIR or the LIVE-Q/C helper tree:
+the intended parent bypass makes those lower interfaces obsolete.  Reuse the
+checked global minimal-deletion extractor as a predecessor; do not reimplement
+it in either radius arm.
+
 Within `R`, the current
 `ResolvedCurrentFirstApexFixedRadiusNormalForm` is an audit projection, not
 the final consumer boundary.  It drops the reciprocal residual and

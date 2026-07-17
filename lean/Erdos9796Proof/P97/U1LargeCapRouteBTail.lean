@@ -9447,6 +9447,7 @@ current non-exact U1.2 branch.  It consumes the concrete surplus cap and the
 opposite-pair non-exact witness because the live `t2_t20` parent residual now
 uses that cap/source-row incompatibility directly. -/
 theorem u1_largeCap_routeB_tail_false (D : CounterexampleData)
+    (hmin : D.Minimal)
     (hcard : 9 < D.A.card)
     (hnoRem : ∀ x : ℝ², ¬ IsRemovableVertex D.A x)
     (hcritical : Nonempty (CriticalShellSystem D.A))

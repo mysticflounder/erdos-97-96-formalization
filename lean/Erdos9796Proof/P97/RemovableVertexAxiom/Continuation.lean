@@ -777,7 +777,7 @@ theorem removableVertexOfLarge_of_nonIsM44 :
   · exact hNoM44D
       (isM44Packet_of_capTriple_two_exact_of_card_gt_nine MT hCirc CP hDcard hexact)
   · rcases hnonExact with ⟨i, hsurplus, hnotOppExact⟩
-    exact u1_largeCap_routeB_tail_false D hDcard hnoRem hcritical hNoM44D
+    exact u1_largeCap_routeB_tail_false D hmin hDcard hnoRem hcritical hNoM44D
       MT hCirc CP rfl hsurplus hnotOppExact
 
 /-- Closed adapter from the three-way split to the existing removable-vertex
