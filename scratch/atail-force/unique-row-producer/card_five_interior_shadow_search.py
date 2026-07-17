@@ -1310,6 +1310,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-96 witness admitted 2026-07-17: fourth consecutive
+    # NONUNIT-track 654 witness (7,817,519 nodes caps=1); inline
+    # NONUNIT x3 (Singular + msolve fwd/rev); certified by
+    # membership_crosscheck.py --pair 7 8 --radical-only --core at
+    # the production order; its retained 6-row deletion core (5
+    # deletion timeouts fail-closed) is forced-pair-core-654-67, the
+    # transposition (4,5) image of fp-654-63.
+    "091c1bb9be90c1959dc7677b0778cb6b812062b329e61283d9f497dae37e26bb": {
+        "equality_sha256":
+            "982e7b030c502afae269dea56867919425b10eb7e77c845cd5f194c5b2cb594d",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6157,6 +6172,33 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 8, 10}),
         },
         "equality_count": 22,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-96 witness 091c1bb9… admitted 2026-07-17: 6-row /
+    # 18-equality retained core forcing pair (7,8) with no row
+    # centered at 8 (witness at 7,817,519 nodes caps=1, fourth
+    # consecutive NONUNIT-track witness); inline NONUNIT x3; cert
+    # passed at the production order; Rabinowitsch UNIT x3 on full
+    # system and retained core; deletion verdicts 6 UNIT / 5 TIMEOUT
+    # fail-closed / 1 NONUNIT — witness rows 0, 1, 3, 5, 8, 9
+    # dropped (pair center 7 retained), APEXLESS core. IMAGE: this
+    # core is the transposition (4,5) relabeling of fp-654-63 (pair
+    # (7,8) fixed by that transposition) — SECOND banked image after
+    # unit-core-555-88; admitted as found per the 555-88 precedent,
+    # pending Adam's image-admission policy decision. Independently
+    # certified at production order; bank-negative remains literal.
+    {
+        "id": "forced-pair-core-654-67",
+        "rows": {
+            2: frozenset({0, 1, 10, 11}),
+            4: frozenset({1, 3, 6, 7}),
+            6: frozenset({2, 5, 7, 11}),
+            7: frozenset({2, 4, 8, 11}),
+            10: frozenset({0, 1, 4, 6}),
+            11: frozenset({1, 5, 8, 10}),
+        },
+        "equality_count": 18,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
