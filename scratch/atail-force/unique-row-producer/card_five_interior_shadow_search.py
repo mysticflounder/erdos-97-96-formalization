@@ -3971,6 +3971,30 @@ REAL_INFEASIBLE_ROW_CORES = (
         },
         "equality_count": 22,
     },
+    # 654 iteration-89 witness ec6bf19d… admitted 2026-07-17: second
+    # consecutive unit-track 654 witness (7,700,266 nodes caps=1):
+    # system_unit_recheck.py 900 s deletion retained 6 rows / 19
+    # equalities (deletion verdicts 6 UNIT / 3 TIMEOUT fail-closed /
+    # 3 NONUNIT), retained core CROSSCHECKED_UNIT (Singular + msolve
+    # fwd/rev) on this literal row set; not a transposition image of
+    # any banked core; kin at most 3 shared rows (rows 1, 3, 8 with
+    # 654u-38); ZERO new supports — all six rows already banked:
+    # 6:{2,4,7,11} (fp-654-63-only before) and 11:{1,2,4,9}
+    # (fp-654-07-only before) make first 654-unit appearances; row
+    # 1:{0,3,7,8,9} fifth banked appearance; 6-row/19-eq is the modal
+    # 654 unit grade.
+    {
+        "id": "unit-core-654-39",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            3: frozenset({1, 4, 6, 8}),
+            6: frozenset({2, 4, 7, 11}),
+            8: frozenset({6, 7, 9, 11}),
+            9: frozenset({0, 2, 3, 6}),
+            11: frozenset({1, 2, 4, 9}),
+        },
+        "equality_count": 19,
+    },
     # 555 iteration-10 witness 50cfcbec… admitted 2026-07-15: first
     # forced-pair core (membership_crosscheck.py --radical-only --core).
     # SUPERSEDED 2026-07-15 by the 600 s re-deletion sweep: the 60 s
