@@ -1430,6 +1430,21 @@ REAL_INFEASIBLE_ROW_SIGNATURES = {
         "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
         "msolve_rabinowitsch_radical_membership": True,
     },
+    # 654 iteration-112 witness admitted 2026-07-17: second consecutive
+    # NONUNIT iteration (8,577,127 nodes caps=1, +31 past iter-111);
+    # inline NONUNIT x3; certified by membership_crosscheck.py --pair
+    # 7 8 --radical-only --core at the production order; its retained
+    # 7-row deletion core (5 deletion timeouts fail-closed) is
+    # forced-pair-core-654-75, kin 4 with fp-654-74 (shares four rows);
+    # row 10:{1,3,4,6} bank-new support.
+    "3050d612e23c0bc3aeb494f00e0c3370e607fc0b0ce11c8ea41aae4e8562dadb": {
+        "equality_sha256":
+            "c82703c22fe3267119e40e7a64cb921064d7f88cf5eb9a69dd25ccdbd6d25386",
+        "exact_cas_status": "CROSSCHECKED_REAL_INFEASIBLE_RADICAL_MEMBERSHIP",
+        "forced_zero_squared_distance_pair": [7, 8],
+        "singular_direct_reduction": "SKIPPED_RADICAL_ONLY",
+        "msolve_rabinowitsch_radical_membership": True,
+    },
 }
 
 # Literal subrow cuts extracted by exact characteristic-zero row deletion.
@@ -6695,6 +6710,30 @@ REAL_INFEASIBLE_ROW_CORES = (
             11: frozenset({1, 5, 7, 10}),
         },
         "equality_count": 18,
+        "forced_zero_squared_distance_pair": (7, 8),
+        "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
+    },
+    # 654 iteration-112 witness 3050d612… admitted 2026-07-17: second
+    # consecutive NONUNIT iteration (witness at 8,577,127 nodes caps=1,
+    # +31 past iter-111). Cert passed at production order; full
+    # Rabinowitsch UNIT x3 + core UNIT x3; 7-row / 22-eq core forcing
+    # (7,8); deletion 5 UNIT / 5 TIMEOUT fail-closed / 2 NONUNIT (rows
+    # 0,2,3,5,9 dropped). Not a transposition image; kin 4 (shares four
+    # rows 6,7,8,11 with fp-654-74). Row 10:{1,3,4,6} is a BANK-NEW
+    # support; 4:{1,5,6,9} a center-shift (center 11 in 555u-44,
+    # cross-profile). Row 1:{0,3,7,8,9} twentieth banked appearance.
+    {
+        "id": "forced-pair-core-654-75",
+        "rows": {
+            1: frozenset({0, 3, 7, 8, 9}),
+            4: frozenset({1, 5, 6, 9}),
+            6: frozenset({2, 3, 9, 10}),
+            7: frozenset({2, 6, 8, 10}),
+            8: frozenset({6, 7, 9, 11}),
+            10: frozenset({1, 3, 4, 6}),
+            11: frozenset({1, 5, 7, 10}),
+        },
+        "equality_count": 22,
         "forced_zero_squared_distance_pair": (7, 8),
         "exact_cas_status": "CROSSCHECKED_FORCED_ZERO_PAIR_CORE",
     },
