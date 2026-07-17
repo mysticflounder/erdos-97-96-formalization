@@ -338,12 +338,24 @@ parent surface and has two genuine terminals:
 - `reduced-frontier-integration/ReducedFrontierIntegration.lean` composes the
   two latest reductions at full-parent strength.  Every generated-successor
   pair is now either: at least one q-deleted exact generated row together with
-  the five-way `PostmixSourceSplit`; or two q-critical exact rows together with an actual
-  oriented `LiveDeletedCrossSurvival` and its four-class
+  the five-way `PostmixSourceSplit`; or two q-critical exact rows together with
+  an actual oriented `LiveDeletedCrossSurvival` and its four-class
   `ReducedCrossSinkNormalForm`.  `second-apex-postmix-wiring/` supplies the
   source-clean split and conversions from both reroutes back to
   `OriginalQOutsideMiddleSuccessor`.  This is the current branch-exact
-  coordinator; it introduces no new `False` claim.
+  coordinator; it introduces no new `False` claim;
+- `postmix-reroute-consumer/PostmixRerouteConsumer.lean` corrects one interface
+  loss in that coordinator.  A bare `PostmixSourceSplit` forgets that each
+  reroute came from equal predecessor sources at `S.oppApex2` and from the
+  equilateral residual.  The history-retaining split preserves those facts.
+  Each reroute then has an exact two-arm outcome: an outside-`oppCap2` source
+  omitted by the opposite generated row, or an in-cap source carrying a
+  certified opposite-side rank relative to the other live-heavy center.  If
+  the outside source occurs in the opposite row, the shared second apex and
+  that source form the checked common-outside-pair terminal.  The surviving
+  rank arm is not a descent: the packets still lack one fixed ordered-cap
+  presentation, a cross-step center-index link, a decreasing measure, and a
+  no-wrap theorem.
 
 All of these declarations fresh-check with only `propext`,
 `Classical.choice`, and `Quot.sound`.  This closes both the
@@ -481,10 +493,46 @@ direct contradiction target, not an intermediate producer.
 The honest residual is a source-indexed survival cover.  Exact support locking
 bounds the known `q`-blocker fiber by four.  Since `9 < D.A.card`, at least six
 sources lie outside that fiber, and every such source preserves deletion of
-`q` or preserves deletion of `w` at its actual blocker.  The next theorem must
-consume this two-color cover with cap order, MEC, no-`IsM44`, and the two large
-caps, or derive an existing terminal from one color class.  Alternatively,
-prove the complete actual-role five-point ordered
+`q` or preserves deletion of `w` at its actual blocker.  On the actual R
+surface the small-card bypass supplies `14 <= D.A.card`, so at least ten
+sources remain.  One survival color contains five sources, while every actual
+blocker fiber has cardinality at most four.  The kernel-checked theorem
+`exists_sourceFaithful_commonDeletionTwoCenterPacket_of_card_ge_fourteen` in
+`survival-cover-bank-match/` therefore retains two outside-fiber sources with
+distinct actual blockers and constructs a `CommonDeletionTwoCenterPacket` for
+deleting `q` or `w`.
+
+This closes the card-at-least-fourteen **generic common-deletion producer**, not
+the R consumer.  Its two centers are arbitrary actual blockers; no checked
+theorem identifies them with the aligned physical roles `p` and
+`S.oppApex2`, places both in a terminal cap configuration, or supplies a
+common outside support pair.  The generic common-deletion expansion is already
+known to admit an aligned-critical branch or a genuine successor cycle, so
+feeding the new packet back through that unranked interface is not closure.
+The next theorem must retain the two source witnesses and use cap/MEC/origin
+history either to align one produced center pair with a checked R/F2 terminal
+or to prove a provenance-preserving no-wrap/decreasing-rank consumer.
+
+The secondary cap reductions remain useful diagnostics.  At card at least
+eleven, survival color times actual-blocker cap produces two sources whose
+blockers lie in one closed cap; equal blockers put both sources in one exact
+support, while distinct blockers acquire honest ordered ranks.  At card at
+least fourteen, survival color times strict source-cap interior also produces
+two same-cap sources.  Neither packet supplies the two shared outside support
+points needed by the existing cap-center uniqueness sink.
+
+The corrected 101-shadow Kalmanson audit in
+`survival-cover-kalmanson-audit/` confirms that this is a real selection gap.
+Every stored shadow has survival-cover output pairs, and many pairs give a
+strict-distance cycle, but every shadow also has a valid non-cyclic output
+pair; survivor 36 has no cyclic same-cap-blocker output pair at all.  The
+production five-point pair is absent in 73/101 shadows.  Thus an existential
+pigeonhole pair cannot be sent directly to the Kalmanson terminal without a
+new canonical-selection theorem or stronger source-valid antecedent.  This is
+exact within the corrected structural shadow bank, not a Euclidean
+counterexample.
+
+Alternatively, prove the complete actual-role five-point ordered
 packet, including both named roles, the directed order arm, and all six
 selected-row memberships consumed by the production Kalmanson terminal.  A
 third option is a kernel-checkable coverage theorem mapping every live
@@ -5303,8 +5351,12 @@ The current coherent-R work queue is now:
    the mixed collinearity eliminator close both homogeneous and both mixed
    constructor pairs.  Every surviving outcome is now a source-faithful
    non-apex outside-middle reroute, and the reduced frontier carries that
-   reroute explicitly.  A rank move still needs a cycle-wide no-wrap or
-   well-founded argument.
+   reroute explicitly.  The history-retaining reroute classifier proves that
+   an outside-`oppCap2` source is omitted by the opposite row, while an in-cap
+   source carries a certified opposite-side rank move.  A rank move still
+   needs one fixed cap presentation across steps, a cross-step center-index
+   link, a decreasing measure, and a cycle-wide no-wrap theorem; the
+   outside/omitted arm still needs a different direct sink.
    Mixed must remain split by its physical and generated constructors.  In the
    mixed confined classifier, physical-q-critical/generated-q-critical and
    every physical-q-deleted cell with the third middle-row live hit close by
