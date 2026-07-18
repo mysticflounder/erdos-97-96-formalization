@@ -624,5 +624,332 @@ theorem closed_middle_arc_add_center_turn_lt_pi_of_equal_radius
   exact closed_middle_arc_add_center_turn_lt_pi chart _hp hpq1 hq1q2
     hq2q3 hq3q4 hq4end haRange.1 hcRange.1 hfirst hlast hedgePeriod
 
+/- ## Open-fundamental-window repair
+
+The original global chart above remains available for backward compatibility.
+Its unrestricted ordered-triple field is too strong for a caller that also
+identifies a later lifted endpoint with the initial point.  The finite chart
+below scopes strict orientation and injectivity to one open fundamental
+window.  It excludes only the degenerate full-window chord; all proper chord
+and edge lifts remain tied to the actual Euclidean points through `arcAngle`.
+-/
+
+/-- A proper chord in one lifted fundamental window.  The full chord from the
+start to its repeated endpoint is deliberately excluded. -/
+def IsProperFundamentalWindowChord
+    (windowStart windowEnd i j : ℕ) : Prop :=
+  windowStart ≤ i ∧ i < j ∧ j ≤ windowEnd ∧
+    ¬ (i = windowStart ∧ j = windowEnd)
+
+/-- A finite lifted angle chart over one open polygon cycle.
+
+The endpoint repeats the start, while strict orientation and injectivity see
+only the distinct vertices in `[windowStart, windowEnd)`. -/
+structure OpenFundamentalWindowAngleChart where
+  windowStart : ℕ
+  windowEnd : ℕ
+  windowStart_lt_windowEnd : windowStart < windowEnd
+  point : ℕ → ℝ²
+  edgeArg : ℕ → ℝ
+  chordArg : ℕ → ℕ → ℝ
+  point_period : point windowEnd = point windowStart
+  point_injective_before_end :
+    ∀ {i j}, windowStart ≤ i → i < windowEnd →
+      windowStart ≤ j → j < windowEnd → point i = point j → i = j
+  edgeArg_lifts : ∀ {i}, windowStart ≤ i → i < windowEnd →
+    ((edgeArg i : ℝ) : Real.Angle) = arcAngle (point i) (point (i + 1))
+  chordArg_lifts :
+    ∀ {i j}, IsProperFundamentalWindowChord windowStart windowEnd i j →
+      ((chordArg i j : ℝ) : Real.Angle) = arcAngle (point i) (point j)
+  edgeArg_strictMono :
+    ∀ {i j}, windowStart ≤ i → i < j → j < windowEnd →
+      edgeArg i < edgeArg j
+  orderedTriple_sign_neg :
+    ∀ {i j k}, windowStart ≤ i → i < j → j < k → k < windowEnd →
+      (∡ (point i) (point j) (point k)).sign = -1
+  chordArg_bounds :
+    ∀ {i j}, IsProperFundamentalWindowChord windowStart windowEnd i j →
+      edgeArg i ≤ chordArg i j ∧ chordArg i j ≤ edgeArg (j - 1)
+  chordTurn_le_pi :
+    ∀ {i j k}, windowStart ≤ i → i < j → j < k → k ≤ windowEnd →
+      chordArg j k - chordArg i j ≤ Real.pi
+
+/-- Exterior-curvature spread inside one open fundamental window. -/
+def openWindowArcCurvature
+    (chart : OpenFundamentalWindowAngleChart) (i j : ℕ) : ℝ :=
+  chart.edgeArg (j - 1) - chart.edgeArg i
+
+/-- The open-window orientation gives the positive apex orientation at the
+first point of an increasing triple. -/
+theorem OpenFundamentalWindowAngleChart.apex_sign_pos
+    (chart : OpenFundamentalWindowAngleChart) {p q1 q2 : ℕ}
+    (hstart : chart.windowStart ≤ p) (hpq1 : p < q1)
+    (hq1q2 : q1 < q2) (hq2end : q2 < chart.windowEnd) :
+    (∡ (chart.point q1) (chart.point p) (chart.point q2)).sign = 1 := by
+  have hordered := chart.orderedTriple_sign_neg hstart hpq1 hq1q2 hq2end
+  have hrotate :
+      (∡ (chart.point q2) (chart.point p) (chart.point q1)).sign = -1 := by
+    rw [EuclideanGeometry.oangle_rotate_sign,
+      EuclideanGeometry.oangle_rotate_sign]
+    exact hordered
+  have hswap := EuclideanGeometry.oangle_swap₁₃_sign
+    (chart.point q2) (chart.point p) (chart.point q1)
+  rw [hrotate] at hswap
+  simpa using hswap.symm
+
+private theorem isProperFundamentalWindowChord_of_chain
+    (chart : OpenFundamentalWindowAngleChart) {i j : ℕ}
+    (hstart : chart.windowStart ≤ i) (hij : i < j)
+    (hjend : j ≤ chart.windowEnd)
+    (hnotFull : i ≠ chart.windowStart ∨ j ≠ chart.windowEnd) :
+    IsProperFundamentalWindowChord chart.windowStart chart.windowEnd i j := by
+  refine ⟨hstart, hij, hjend, ?_⟩
+  rintro ⟨rfl, rfl⟩
+  exact hnotFull.elim (fun h ↦ h rfl) (fun h ↦ h rfl)
+
+/-- First endpoint isosceles identity on an open fundamental window. -/
+theorem openWindow_first_isosceles_chord_identity
+    (chart : OpenFundamentalWindowAngleChart) {p q1 q2 : ℕ}
+    (hstart : chart.windowStart ≤ p) (hpq1 : p < q1)
+    (hq1q2 : q1 < q2) (hq2end : q2 < chart.windowEnd)
+    (heq : dist (chart.point p) (chart.point q1) =
+      dist (chart.point p) (chart.point q2)) :
+    chart.chordArg q1 q2 - chart.chordArg p q1 =
+      Real.pi / 2 +
+        (∡ (chart.point q1) (chart.point p)
+          (chart.point q2)).toReal / 2 := by
+  have hpEnd : p < chart.windowEnd := hpq1.trans (hq1q2.trans hq2end)
+  have hq1End : q1 < chart.windowEnd := hq1q2.trans hq2end
+  have hpq1Points : chart.point p ≠ chart.point q1 := by
+    intro h
+    exact (Nat.ne_of_lt hpq1) (chart.point_injective_before_end hstart hpEnd
+      (hstart.trans hpq1.le) hq1End h)
+  have hq1q2Points : chart.point q1 ≠ chart.point q2 := by
+    intro h
+    exact (Nat.ne_of_lt hq1q2) (chart.point_injective_before_end
+      (hstart.trans hpq1.le) hq1End
+      (hstart.trans (hpq1.trans hq1q2).le) hq2end h)
+  have hpq1Proper := isProperFundamentalWindowChord_of_chain chart
+    hstart hpq1 hq1End.le (Or.inr (Nat.ne_of_lt hq1End))
+  have hq1q2Proper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans hpq1.le) hq1q2 hq2end.le
+    (Or.inr (Nat.ne_of_lt hq2end))
+  let x := chart.chordArg q1 q2 - chart.chordArg p q1
+  let a := (∡ (chart.point q1) (chart.point p) (chart.point q2)).toReal
+  rcases chart.chordArg_bounds hpq1Proper with
+    ⟨_hpq1Lower, hpq1Upper⟩
+  rcases chart.chordArg_bounds hq1q2Proper with
+    ⟨hq1q2Lower, _hq1q2Upper⟩
+  have hedge : chart.edgeArg (q1 - 1) < chart.edgeArg q1 := by
+    apply chart.edgeArg_strictMono
+    · omega
+    · omega
+    · exact hq1End
+  have hxpos : 0 < x := by
+    dsimp [x]
+    linarith
+  have hxpi : x ≤ Real.pi :=
+    chart.chordTurn_le_pi hstart hpq1 hq1q2 hq2end.le
+  have hsign := chart.apex_sign_pos hstart hpq1 hq1q2 hq2end
+  have haRange : a ∈ Set.Ioo (0 : ℝ) Real.pi := by
+    dsimp [a]
+    exact Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hsign
+  have hdoubleRaw :=
+    two_zsmul_first_chord_turn_eq_pi_add_apex_oangle
+      hpq1Points hq1q2Points heq
+  have hdouble :
+      (2 : ℤ) •
+          (((chart.chordArg q1 q2 : ℝ) : Real.Angle) -
+            ((chart.chordArg p q1 : ℝ) : Real.Angle)) =
+        (Real.pi : Real.Angle) +
+          ∡ (chart.point q1) (chart.point p) (chart.point q2) := by
+    rw [chart.chordArg_lifts hq1q2Proper,
+      chart.chordArg_lifts hpq1Proper]
+    exact hdoubleRaw
+  have hdouble' :
+      (2 : ℤ) • ((x : ℝ) : Real.Angle) =
+        (Real.pi : Real.Angle) + ((a : ℝ) : Real.Angle) := by
+    simpa [x, a] using hdouble
+  exact real_turn_eq_pi_div_two_add_half_of_two_zsmul
+    hxpos hxpi haRange.1 haRange.2 hdouble'
+
+/-- Last endpoint isosceles identity.  The repeated endpoint is substituted
+only after the orientation fact has been obtained inside the open window. -/
+theorem openWindow_last_isosceles_chord_identity
+    (chart : OpenFundamentalWindowAngleChart) {p q3 q4 : ℕ}
+    (hstart : chart.windowStart ≤ p) (hpq3 : p < q3)
+    (hq3q4 : q3 < q4) (hq4end : q4 < chart.windowEnd)
+    (hpointPeriod : chart.point chart.windowEnd = chart.point p)
+    (heq : dist (chart.point p) (chart.point q3) =
+      dist (chart.point p) (chart.point q4)) :
+    chart.chordArg q4 chart.windowEnd - chart.chordArg q3 q4 =
+      Real.pi / 2 +
+        (∡ (chart.point q3) (chart.point p)
+          (chart.point q4)).toReal / 2 := by
+  have hpEnd : p < chart.windowEnd := hpq3.trans (hq3q4.trans hq4end)
+  have hq3End : q3 < chart.windowEnd := hq3q4.trans hq4end
+  have hpq3Points : chart.point p ≠ chart.point q3 := by
+    intro h
+    exact (Nat.ne_of_lt hpq3) (chart.point_injective_before_end hstart hpEnd
+      (hstart.trans hpq3.le) hq3End h)
+  have hpq4Points : chart.point p ≠ chart.point q4 := by
+    intro h
+    exact (Nat.ne_of_lt (hpq3.trans hq3q4))
+      (chart.point_injective_before_end hstart hpEnd
+        (hstart.trans (hpq3.trans hq3q4).le) hq4end h)
+  have hq3q4Points : chart.point q3 ≠ chart.point q4 := by
+    intro h
+    exact (Nat.ne_of_lt hq3q4) (chart.point_injective_before_end
+      (hstart.trans hpq3.le) hq3End
+      (hstart.trans (hpq3.trans hq3q4).le) hq4end h)
+  have hq3q4Proper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans hpq3.le) hq3q4 hq4end.le
+    (Or.inr (Nat.ne_of_lt hq4end))
+  have hq4EndProper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans (hpq3.trans hq3q4).le) hq4end le_rfl
+    (Or.inl (Nat.ne_of_gt (lt_of_le_of_lt hstart
+      (hpq3.trans hq3q4))))
+  let x := chart.chordArg q4 chart.windowEnd - chart.chordArg q3 q4
+  let a := (∡ (chart.point q3) (chart.point p) (chart.point q4)).toReal
+  rcases chart.chordArg_bounds hq3q4Proper with
+    ⟨_hq3q4Lower, hq3q4Upper⟩
+  rcases chart.chordArg_bounds hq4EndProper with
+    ⟨hq4EndLower, _hq4EndUpper⟩
+  have hedge : chart.edgeArg (q4 - 1) < chart.edgeArg q4 := by
+    apply chart.edgeArg_strictMono
+    · omega
+    · omega
+    · exact hq4end
+  have hxpos : 0 < x := by
+    dsimp [x]
+    linarith
+  have hxpi : x ≤ Real.pi :=
+    chart.chordTurn_le_pi (hstart.trans hpq3.le) hq3q4 hq4end le_rfl
+  have hsign := chart.apex_sign_pos hstart hpq3 hq3q4 hq4end
+  have haRange : a ∈ Set.Ioo (0 : ℝ) Real.pi := by
+    dsimp [a]
+    exact Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hsign
+  have hendq3Points : chart.point chart.windowEnd ≠ chart.point q3 := by
+    simpa [hpointPeriod] using hpq3Points
+  have hendq4Points : chart.point chart.windowEnd ≠ chart.point q4 := by
+    simpa [hpointPeriod] using hpq4Points
+  have heqEnd : dist (chart.point chart.windowEnd) (chart.point q3) =
+      dist (chart.point chart.windowEnd) (chart.point q4) := by
+    simpa [hpointPeriod] using heq
+  have hdoubleRaw :=
+    two_zsmul_last_chord_turn_eq_pi_add_apex_oangle
+      hendq3Points hendq4Points hq3q4Points heqEnd
+  have hdouble :
+      (2 : ℤ) •
+          (((chart.chordArg q4 chart.windowEnd : ℝ) : Real.Angle) -
+            ((chart.chordArg q3 q4 : ℝ) : Real.Angle)) =
+        (Real.pi : Real.Angle) +
+          ∡ (chart.point q3) (chart.point chart.windowEnd)
+            (chart.point q4) := by
+    rw [chart.chordArg_lifts hq4EndProper,
+      chart.chordArg_lifts hq3q4Proper]
+    exact hdoubleRaw
+  have hdouble' :
+      (2 : ℤ) • ((x : ℝ) : Real.Angle) =
+        (Real.pi : Real.Angle) + ((a : ℝ) : Real.Angle) := by
+    simpa [x, a, hpointPeriod] using hdouble
+  exact real_turn_eq_pi_div_two_add_half_of_two_zsmul
+    hxpos hxpi haRange.1 haRange.2 hdouble'
+
+/-- Nonvacuous repaired form of the shell-curvature quarter-turn theorem.
+All strict orientation hypotheses live before the repeated endpoint. -/
+theorem openWindow_two_sided_quarter_turn_separation_of_equal_radius
+    (chart : OpenFundamentalWindowAngleChart)
+    {p q1 q2 q3 q4 : ℕ}
+    (hstart : chart.windowStart ≤ p)
+    (hpq1 : p < q1) (hq1q2 : q1 < q2) (hq2q3 : q2 < q3)
+    (hq3q4 : q3 < q4) (hq4end : q4 < chart.windowEnd)
+    (hpointPeriod : chart.point chart.windowEnd = chart.point p)
+    (heqFirst : dist (chart.point p) (chart.point q1) =
+      dist (chart.point p) (chart.point q2))
+    (heqLast : dist (chart.point p) (chart.point q3) =
+      dist (chart.point p) (chart.point q4)) :
+    Real.pi / 2 < openWindowArcCurvature chart p q2 ∧
+      Real.pi / 2 < openWindowArcCurvature chart p q3 ∧
+      Real.pi / 2 < openWindowArcCurvature chart q2 chart.windowEnd ∧
+      Real.pi / 2 < openWindowArcCurvature chart q3 chart.windowEnd := by
+  have hq2End : q2 < chart.windowEnd :=
+    hq2q3.trans (hq3q4.trans hq4end)
+  have hq3End : q3 < chart.windowEnd := hq3q4.trans hq4end
+  have hpq1Proper := isProperFundamentalWindowChord_of_chain chart
+    hstart hpq1 (hq1q2.trans hq2End).le
+    (Or.inr (Nat.ne_of_lt (hq1q2.trans hq2End)))
+  have hq1q2Proper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans hpq1.le) hq1q2 hq2End.le
+    (Or.inr (Nat.ne_of_lt hq2End))
+  have hq3q4Proper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans (hpq1.trans (hq1q2.trans hq2q3)).le)
+    hq3q4 hq4end.le (Or.inr (Nat.ne_of_lt hq4end))
+  have hq4EndProper := isProperFundamentalWindowChord_of_chain chart
+    (hstart.trans (hpq1.trans
+      (hq1q2.trans (hq2q3.trans hq3q4))).le)
+    hq4end le_rfl
+    (Or.inl (Nat.ne_of_gt (lt_of_le_of_lt hstart
+      (hpq1.trans (hq1q2.trans (hq2q3.trans hq3q4))))))
+  have hfirst := openWindow_first_isosceles_chord_identity chart
+    hstart hpq1 hq1q2 hq2End heqFirst
+  have hpq3 : p < q3 := hpq1.trans (hq1q2.trans hq2q3)
+  have hlast := openWindow_last_isosceles_chord_identity chart
+    hstart hpq3 hq3q4 hq4end hpointPeriod heqLast
+  rcases chart.chordArg_bounds hpq1Proper with
+    ⟨hpq1Lower, _hpq1Upper⟩
+  rcases chart.chordArg_bounds hq1q2Proper with
+    ⟨_hq1q2Lower, hq1q2Upper⟩
+  rcases chart.chordArg_bounds hq3q4Proper with
+    ⟨hq3q4Lower, _hq3q4Upper⟩
+  rcases chart.chordArg_bounds hq4EndProper with
+    ⟨_hq4EndLower, hq4EndUpper⟩
+  have hfirstBound :
+      Real.pi / 2 +
+          (∡ (chart.point q1) (chart.point p)
+            (chart.point q2)).toReal / 2 ≤
+        openWindowArcCurvature chart p q2 := by
+    simp only [openWindowArcCurvature]
+    linarith
+  have hlastBound :
+      Real.pi / 2 +
+          (∡ (chart.point q3) (chart.point p)
+            (chart.point q4)).toReal / 2 ≤
+        openWindowArcCurvature chart q3 chart.windowEnd := by
+    simp only [openWindowArcCurvature]
+    linarith
+  have hedgeQ2Q3 :
+      chart.edgeArg (q2 - 1) ≤ chart.edgeArg (q3 - 1) := by
+    by_cases h : q2 = q3
+    · simp [h]
+    · exact (chart.edgeArg_strictMono (by omega) (by omega) (by omega)).le
+  have hfirstExtended :
+      Real.pi / 2 +
+          (∡ (chart.point q1) (chart.point p)
+            (chart.point q2)).toReal / 2 ≤
+        openWindowArcCurvature chart p q3 := by
+    simp only [openWindowArcCurvature] at hfirstBound ⊢
+    linarith
+  have hedgeQ2Q3Start : chart.edgeArg q2 ≤ chart.edgeArg q3 :=
+    (chart.edgeArg_strictMono (by omega) hq2q3 hq3End).le
+  have hlastExtended :
+      Real.pi / 2 +
+          (∡ (chart.point q3) (chart.point p)
+            (chart.point q4)).toReal / 2 ≤
+        openWindowArcCurvature chart q2 chart.windowEnd := by
+    simp only [openWindowArcCurvature] at hlastBound ⊢
+    linarith
+  have hfirstSign := chart.apex_sign_pos hstart hpq1 hq1q2 hq2End
+  have hlastSign := chart.apex_sign_pos hstart hpq3 hq3q4 hq4end
+  have hfirstPos :=
+    (Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hfirstSign).1
+  have hlastPos :=
+    (Real.Angle.toReal_mem_Ioo_iff_sign_pos.mpr hlastSign).1
+  constructor
+  · linarith
+  constructor
+  · linarith
+  constructor <;> linarith
+
 end ShellCurvature
 end Problem97
