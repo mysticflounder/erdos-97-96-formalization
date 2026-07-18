@@ -482,23 +482,27 @@ cuts.  Every orbit stopped at its 1,000-cut limit.  The merged 6,891 semantic
 cuts generate 186,404 valid dihedral transports, but the first transported-bank
 probe still finds new exact cuts rather than structural UNSAT.
 
-Two incremental exact Kalmanson/row/shell checks then returned SAT before the
-old runner had a fail-closed `ALIVE` artifact path.  The witness must still be
-reproduced and independently replayed before citation.  The surface already
-has a decisive translation symmetry: replacing every distance `d` by `d+C`
-preserves all Kalmanson and selected-row/shell equalities.  Choosing `C>0`
-forces strict pair-distance positivity, and choosing it above the largest
-triangle deficit forces every triangle inequality strictly.  Therefore
-positivity and triangle closure cannot restore the linear route, and the
-cardinality-generic positive-dual proposal must be withdrawn once the observed
-SAT table is persisted.
+The independent event-stream audit found no exact SAT terminal.  Both old
+source/target streams were synchronously interrupted after cuts 721/719, and
+faithful replay of those immutable prefixes produced ordinary exact UNSAT
+metric cuts 722/720.  The historical crash-on-SAT bug was real, but the logs do
+not show that it was exercised.  The correct status is `INTERRUPTED / SAT NOT
+REPRODUCED`.
 
-The next honest finite test is common rank-two Euclidean realizability.  Check
-the recovered table with exact Cayley--Menger/Gram constraints.  If rank two
-eliminates all structural orbits, extract a verified planar obstruction; if
-not, the next new information must be MEC, full fibers/common critical-system
-provenance, or global minimality.  Continuing the linear cut queue is not the
-primary closure lane.
+The surface nevertheless has a decisive translation symmetry: replacing every
+distance `d` by `d+C` preserves all Kalmanson and selected-row/shell
+equalities.  Choosing `C>0` forces strict pair-distance positivity, and
+choosing it above the largest triangle deficit forces every triangle
+inequality strictly.  Therefore positivity and triangle closure cannot
+strengthen the linear route.  This does not refute an aggregate positive dual
+in the absence of a persisted abstract SAT witness.
+
+Continue exact coverage only from immutable, hash-pinned cut prefixes while
+seeking the uniform aggregate Kalmanson theorem.  If a real `ALIVE` table is
+persisted, immediately test common rank-two Euclidean realizability with exact
+Cayley--Menger/Gram constraints; then add MEC, full fibers/common
+critical-system provenance, or global minimality only if planar survivors
+remain.
 
 The LIVE-C `center_t2_rowFailure` leaf is not an alternative local shortcut.
 A kernel-checked rational Euclidean projection realizes its fixed-circle and
@@ -1091,17 +1095,15 @@ all 572 corresponding clauses were added.  Every strengthened CNF nevertheless
 remains SAT after independent full-assignment replay, at
 331,193--331,233 clauses.  The next exact linear conflict is shell-free and
 telescoped across four rows, so it demonstrates aggregate linear pruning
-rather than another local structural clause.  It does not support a uniform
-positive dual once the later translation-invariant SAT observation is taken
-into account.
+rather than another local structural clause.
 
 A proof-free typed weighted-cut payload, exact coefficient checker, and
-soundness theorem now kernel-check in scratch.  The integrated
-Boolean-plus-distance QF_LRA decision has since produced a transient exact SAT
-observation that still requires durable replay.  Because common translation
-preserves the full linear surface, the cardinality-generic positive-dual route
-is retired.  A third broad schema round is not authorized by this evidence;
-the next gate is exact common planar rank two.
+soundness theorem now kernel-check in scratch.  The integrated exact decision
+has not produced a SAT witness: the alleged transient was a synchronized
+interruption, and faithful prefix replay derives two further exact cuts.  A
+third broad literal-schema round is not authorized, but exact cut coverage and
+the cardinality-generic aggregate Kalmanson theorem remain live.  Common
+translation proves only that positivity and triangle rows add no force.
 
 The nonlinear branch has one new finite reduction.  Two physical-class hits
 in an actual critical row force its actual blocker into the four-point strict
@@ -1131,10 +1133,10 @@ proper nonempty subsets, but every reverse outside pair has distinct first-
 apex radius colors.  Its one fixed source-faithful role lift is exact-QF_LRA
 UNSAT after 4,365 triangle/Kalmanson assertions on 105 distance variables.
 Thus convex-order geometry may close exact seven, but one fixture is not
-coverage.  The uniform positive-dual route is retired.  Any finite fallback
-must enumerate all source-faithful exact-seven role cells in both first-apex
-radius arms while adding common planar rank-two constraints; linear Farkas
-coverage by itself cannot close the live geometric parent.
+coverage.  The uniform positive-dual route remains conjectural rather than
+refuted.  Any finite fallback must first decide the source-faithful exact-seven
+linear role cells in both first-apex radius arms; common planar rank-two
+constraints become necessary only if a persisted abstract SAT cell survives.
 
 ## Synchronized documents
 

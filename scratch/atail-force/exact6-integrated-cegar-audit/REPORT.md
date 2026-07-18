@@ -176,6 +176,123 @@ The corrected ten-cut probe has its own immutable replay ledger in
 `strict-positive-replay.json` (SHA-256
 `d291c34b6d8976afc9ec6c2feeeedb7017cd23f0ffca7e7e311f5e0db549da1a`).
 
+## Witness-recovery and resume-provenance audit
+
+There is **no persisted evidence that either `sharesFirstAtSource` or
+`sharesFirstAtTarget` reached an exact metric `SAT` terminal**.  The event
+history instead supports an interrupted pair of runs:
+
+| orbit | initial start | last pre-gap cut | last pre-gap time | elapsed | next recorded start |
+|---|---:|---:|---:|---:|---:|
+| `sharesFirstAtSource` | `1784391278.810347` | 721 | `1784391432.156039` | 153.346 s | `1784393549.581535` |
+| `sharesFirstAtTarget` | `1784391278.910379` | 719 | `1784391432.608160` | 153.698 s | `1784393549.570099` |
+
+The two original event streams stop only 0.452 seconds apart, neither has a
+`done`, `exact_alive`, `UNKNOWN`, or error event, and both restart about 2,117
+seconds later.  Each restart derives one ordinary exact metric cut and then
+records `CEGAR_LIMIT`: source cut 722 and target cut 720.  This synchronized
+truncation is evidence of process-group interruption, not two independent
+exact-oracle SAT terminals.
+
+This does not erase the historical driver bug.  The initial audited driver
+treated every non-`UNSAT` metric response as an exception and had no ALIVE
+write path, so a real SAT response under that version would have crashed
+without `alive.json`.  The corrected driver now distinguishes `SAT`,
+`UNKNOWN`, and `UNSAT` and persists SAT before returning.  But the surviving
+events do not show that this bug was exercised in these two runs.  A recursive
+search of persisted JSON, JSONL, Markdown, and logs found no `exact_alive`
+event and no `ALIVE` terminal; the only exact direct-SMT artifacts are
+`EXACT_SMT_UNKNOWN` with `reason_unknown = timeout`.
+
+The earlier HiGHS files do not supply the missing claim.  Both
+`sharesFirstAtSource.kalmanson-only.json` and
+`sharesFirstAtTarget.kalmanson-only.json` report
+`HIGHS_OPTIMAL_NONPOSITIVE_COMMON_SLACK_NO_EXACT_CERTIFICATE`, with incumbent
+`epsilon = 0`.  That is feasibility on the closed boundary relaxation, not
+SAT for the normalized strict Kalmanson oracle.
+
+### Stable 6891-bank state
+
+The merged bank itself has not drifted:
+
+```text
+records  6891
+SHA-256  8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d
+```
+
+Its manifest records 7,000 input cuts, 109 duplicates, and 6,891 unique
+records.  The structural encoder still hashes to
+`1d31c875afa50ea03d825d6ddc34ea41928438dddd5f0b50918c4b448ef599d5`,
+and all seven seed files still match the hashes in the run manifests.
+
+### Mutable-prefix drift
+
+The recovery manifests pin historical prefixes by hash, but name files that
+were subsequently appended:
+
+| orbit | manifest prefix | manifest SHA-256 | current file | current SHA-256 |
+|---|---:|---|---:|---|
+| source | 721 cuts | `2540b53c44a51f3be32f753e6e49ad8a2a9f5c439eb4650d972d2ae1ade44a1a` | 722 cuts | `2e25ec0c667e9fca6eca9bf8fe9ba0c0937daeb4138c85c941e800b5648288b4` |
+| target | 719 cuts | `cd0e9a73eef8393596147f48f655c90d613cd726dd7e68d1abaeef7e2221bc93` | 720 cuts | `77b072eba54e640e6556639f527fd3b1e6931f6fd91393c89b4628c677959faf` |
+
+The historical bytes are still reconstructible: SHA-256 of the first 721
+current source records is exactly `2540...`, and SHA-256 of the first 719
+current target records is exactly `cd0e...`.  A manifest that refers to the
+mutable path is nevertheless no longer directly rerunnable.  Future resume
+and recovery runs should first copy the used prefix to a content-addressed,
+immutable filename and import that snapshot.
+
+The run manifest also omits the SHA-256 of `exact_cegar.py`, the Z3 version,
+and solver parameters/random seeds.  The current driver hash is
+`009f2c0556c655187a36238401c1bda31b555771dd9530def6973b298dc40a07`,
+but it cannot be inferred from historical manifests.  A result or manifest
+created on a later resume therefore cannot by itself identify the driver that
+created the earlier prefix.
+
+### Minimal faithful next-candidate replay
+
+To replay the historical next source candidate faithfully, use the stable
+6891 bank plus an immutable 721-line prefix, the seven seeds in manifest
+order, an explicit nonnegative boundary profile, and a fresh output
+directory.  The target replay is identical with orbit
+`sharesFirstAtTarget` and its 719-line prefix.
+
+```bash
+base=scratch/atail-force/exact6-integrated-milp
+head -n 721 "$base/cegar-global-1000/sharesFirstAtSource/cuts.jsonl" \
+  > /tmp/sharesFirstAtSource-prefix-721-2540b53c.jsonl
+shasum -a 256 /tmp/sharesFirstAtSource-prefix-721-2540b53c.jsonl
+
+UV_CACHE_DIR=/tmp/uv-cache uv run python "$base/exact_cegar.py" \
+  --orbit sharesFirstAtSource \
+  --output-dir /tmp/p97-exact-cegar-source-next \
+  --distance-lower-bound 0 --max-cuts 1 --wall-seconds 300 \
+  --seed "$base/continuationOrder.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json" \
+  --seed "$base/fourDistinct.kalmanson-only.fixed-leaf-dual.json" \
+  --import-bank "$base/global-cuts-1000.jsonl" \
+  --import-bank /tmp/sharesFirstAtSource-prefix-721-2540b53c.jsonl
+```
+
+This next-candidate experiment already exists in
+`recovery-agent/source-next` and `recovery-agent/target-next`.  Their manifests
+record exactly 6,891+721 and 6,891+719 imported cuts, respectively, and each
+derives one further exact metric cut rather than ALIVE.  The subsequent
+boundary recovery adds ten cuts per orbit, and the strict-positive recovery
+adds 1,000 per orbit, again without ALIVE.  Therefore the alleged SAT witness
+is **not reproduced** from the surviving historical state.
+
+The correction is to classify the old source/target observation as
+`INTERRUPTED / SAT NOT REPRODUCED`, not `SAT`.  If ALIVE appears in a new run,
+accept it only after `alive.json` passes this audit's independent
+`verify_exact_cegar.py --alive ...` check.  Do not launch more recovery from a
+mutable prefix path; pin the prefix, driver, encoder, seeds, bank, Z3 version,
+and exact invocation first.
+
 ## Required gate before relying on terminal UNSAT
 
 Treat the current run as exact theorem-discovery/coverage work until all of the

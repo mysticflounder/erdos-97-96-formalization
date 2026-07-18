@@ -1000,21 +1000,26 @@ UNSAT.  The merged 6,891 semantic cuts have 186,404 valid dihedral transports;
 the first transported-bank probe still returns further exact cuts.  This is a
 sound discovery/checking pipeline but not a terminal cover.
 
-Two incremental oracle runs then reported exact Kalmanson/row/shell SAT before
-the original driver could persist a witness.  Reproduction and independent
-`ALIVE` replay are mandatory before publication.  The translation invariant
-already fixes the strategy: adding a common constant preserves every
-Kalmanson and row/shell equation, makes a nonnegative table strictly positive,
-and can make every triangle strict.  Therefore the cardinality-generic
-positive-dual theorem is false if that exact SAT observation replays, and
-neither positivity nor triangle inequalities are a new consumer.  Do not
-continue broad linear CEGAR after the witness is banked.
+The independent event-stream audit found no exact SAT terminal.  Both old
+source/target streams were synchronously interrupted after cuts 721/719;
+faithful replay of those immutable prefixes produced ordinary exact UNSAT
+metric cuts 722/720.  The historical crash-on-SAT bug was real, but there is no
+evidence that these runs exercised it.  Classify them as `INTERRUPTED / SAT NOT
+REPRODUCED`, not transient `ALIVE`.
 
-The next finite action is an exact planar-rank gate on that assignment:
-Cayley--Menger/Gram rank-two constraints, followed only if necessary by MEC,
-full-fiber/common-critical-system, and global-minimality force.  A rejected
-abstract metric must be converted into a checked planar obstruction before it
-can support the live parent theorem.
+The translation invariant still proves one useful boundary: adding a common
+constant preserves every Kalmanson and row/shell equation, makes a
+nonnegative table strictly positive, and can make every triangle strict.
+Thus positivity and triangle inequalities add no force to this linear shadow.
+They do not, however, refute a cardinality-generic positive dual while no
+abstract SAT witness exists.
+
+The finite route remains exact cut coverage or a uniform aggregate
+Kalmanson theorem.  Continue from immutable, hash-pinned prefixes and stop only
+at independently replayed `ALIVE` or a checked terminal cover.  The exact
+Cayley--Menger/Gram rank-two gate is prepared as the immediate escalation if a
+real `ALIVE` table lands; only then proceed to MEC,
+full-fiber/common-critical-system, and global-minimality force.
 
 The helper-local LIVE-C fallback is not a competing closure route.  The exact
 rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local
@@ -1060,12 +1065,12 @@ exhaustive abstract minimality over all 32,766 nonempty proper subsets while
 making every reverse outside pair non-co-radial.  The same fixed source-
 faithful fixture becomes exact-QF_LRA UNSAT after all triangle and strict
 Kalmanson inequalities, so convex-order geometry remains a viable consumer but
-one fixture is not coverage.  The shared variable-card positive-dual proposal
-is retired by the common-translation invariant on the linear surface.  The
-exact-seven fallback must therefore add common planar rank-two constraints to
-finite source-faithful role enumeration across both first-apex
-same/distinct-radius arms; exact linear Farkas certificates alone cannot be a
-coverage endpoint.
+one fixture is not coverage.  A shared variable-card positive-dual theorem
+remains a conjectural aggregate route; common translation shows only that
+positivity and triangle rows cannot be its missing input.  If that theorem
+fails through a persisted abstract SAT witness, the exact-seven fallback must
+add common planar rank-two constraints to finite source-faithful role
+enumeration across both first-apex same/distinct-radius arms.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

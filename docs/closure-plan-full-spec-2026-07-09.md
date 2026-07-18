@@ -2154,8 +2154,7 @@ independent assignment replay, at 331,193--331,233 clauses.
 The next continuation assignment is again exact-LRA UNSAT, now by a shell-free
 five-Kalmanson/four-row telescoped cut with eleven memberships.  This is
 evidence for aggregate linear pruning, not for another missing local clause or
-a third literal cut queue.  It does not imply a uniform positive dual once the
-later translation-invariant SAT observation is included.  The generic typed
+a third literal cut queue.  The generic typed
 `WeightedKalmansonCutData` checker and its soundness theorem now also
 kernel-check in scratch, including exact replay of the first ten-Kalmanson
 bank cut.
@@ -2178,25 +2177,25 @@ ended at their 1,000-cut limit without terminal CNF exhaustion.  Merging gives
 checked candidate clauses, still without immediate exhaustion in the first
 probe.  This is exact cut discovery, not a closure certificate.
 
-More importantly, two incremental runs reached SAT in the exact
-Kalmanson/row/shell oracle before the original generator had an `ALIVE`
-publication path.  Durable exact-witness replay is still being recovered, so
-the observation is not yet a published countermodel artifact.  Its mathematical
-implication is nevertheless sharp: this entire linear surface is invariant
-under adding one constant to every abstract distance.  Hence any nonnegative
-SAT table becomes strictly positive, preserves all Kalmanson and row/shell
-equalities, and, after adding a sufficiently large constant, satisfies all
-strict triangle inequalities as well.  Strict positivity and triangle
-inequalities therefore cannot rescue the proposed cardinality-generic positive
-dual.  Stop the generic contour claim and broad linear CEGAR once the exact
-`ALIVE` witness is persisted and independently replayed.
+The independent event-stream audit found no exact SAT terminal.  Both old
+source/target streams were synchronously interrupted after cuts 721/719;
+faithful replay from immutable copies of those prefixes produced ordinary
+exact UNSAT metric cuts 722/720.  The historical crash-on-SAT bug was real,
+but these logs do not show that it was exercised.  The correct status is
+`INTERRUPTED / SAT NOT REPRODUCED`.
 
-The next load-bearing finite gate is common planar Euclidean rank two: exact
-Cayley--Menger/Gram constraints on the recovered all-center assignment.  If
-that rejects every structural orbit, extract a verified planar certificate and
-then seek its variable-card theorem.  If a planar survivor remains, add the
-actual MEC/full-fiber/common-critical-system/minimality data.  Floating MILP
-optimality and a growing linear cut bank are not terminal.
+The linear surface is invariant under adding one constant to every abstract
+distance.  Hence any nonnegative SAT table would become strictly positive,
+preserve all Kalmanson and row/shell equalities, and, after a sufficiently
+large translation, satisfy all strict triangle inequalities.  This proves
+that positivity and triangle rows add no force; it does not refute a uniform
+aggregate positive dual while no abstract SAT table exists.
+
+Continue exact cut coverage from immutable hash-pinned prefixes and pursue the
+aggregate Kalmanson theorem.  Common planar Euclidean rank two is the prepared
+next gate only if a real `ALIVE` table is persisted.  A planar survivor would
+then require actual MEC/full-fiber/common-critical-system/minimality data.
+Floating MILP optimality and a growing linear cut bank are not terminal.
 
 The LIVE-C `center_t2_rowFailure` fallback has also been adjudicated.  A
 kernel-checked exact rational planar projection realizes the fixed `p` circle,
@@ -2259,10 +2258,11 @@ abstract radius minimality do not imply the co-radial producer.  The same one
 fixed source-faithful fixture is exact-QF_LRA UNSAT after all triangle and
 strict Kalmanson inequalities (105 distance variables, 4,365 assertions).
 This is positive evidence for convex-order geometry, not role coverage.  The
-shared variable-card dual proposal is retired by the common-translation
-invariant.  An exact-seven finite route must enumerate both first-apex same-
-and distinct-radius role cells while adding common planar rank-two constraints;
-linear Farkas coverage alone cannot wire the geometric producer.
+shared variable-card dual proposal remains conjectural; common translation
+shows only that positivity and triangle rows cannot supply its missing force.
+An exact-seven finite route must enumerate both first-apex same- and
+distinct-radius role cells, adding common planar rank-two constraints only if
+an abstract SAT cell survives.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson
