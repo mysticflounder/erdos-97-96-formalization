@@ -929,6 +929,49 @@ equality core is no longer an admissible closure step.  For any LRA survivor,
 run the full source-mapped Euclidean equality ideal before escalating to MEC,
 minimality beyond strong connectivity, or `noM44`.
 
+The source-faithfulness audit of this total gate found no overstrong
+mathematical constraint, and kernel-checks the non-obvious fact that the two
+actual blockers of the mutual-omission endpoints are distinct.  The later
+equal-blocker split concerns the continuation unused source and an oriented
+partner, so it is not removed by that theorem.  One cheap live consequence was
+missing and is now mandatory for every successor run: the unused continuation
+source lies in the closed physical cap, not merely outside the exact-five
+shell.  The gate is otherwise deliberately a necessary-condition relaxation.
+Its first-apex robustness/frontier-double-deletion, full minimality, global
+`noM44`, MEC, and rank-two Euclidean fields remain absent.  Use a partial-parent
+SAT label; only certified UNSAT can transfer monotonically from this weaker
+surface.
+
+The corrected structural certificate audit shows that the old linear bank is
+not yet that UNSAT proof.  Deterministic CNFs for all seven role orbits retain
+the corrected cap membership, selected-row strong connectivity, all-center
+rows, all-source blockers, and all 102,102 transported applications of the
+twenty verified 2-Kalmanson/3-row schemas.  Every CNF is SAT, with the complete
+476-variable assignments independently replayed against roughly 218,900
+clauses.  These are partial-parent structural shadows, not Euclidean or live
+models.
+
+One pinned structural assignment is nevertheless refuted by the active exact
+linear oracle.  Its independently replayed certificate combines ten second
+Kalmanson inequalities with three row equalities using unit Kalmanson weights
+and row multipliers `+1,+1,-1`.  The six required memberships define a new
+transportable schema outside the original bank, and the existing kernel-checked
+`false_of_weighted_kalmanson_cancellation` theorem is already its generic
+consumer.  Continue only as a certified-cut CEGAR loop: minimize and
+canonicalize each new shell-free core, verify its exact rational cancellation,
+transport the cut over the corrected finite surface, and request a DRAT/LRAT
+coverage certificate only after all seven orbits become UNSAT.  A queue of
+literal assignments or unverified cores is not an accepted endpoint.
+
+For nonlinear follow-up, split actual mutual rows by their number of physical
+exact-five hits.  Checked geometry now localizes every two-hit row's blocker to
+the four strict physical-cap positions; card four reduces this to
+`physicalVertices`, and card three with interior unused point reduces it to
+`insert unused physicalVertices`.  Enumerate those aliases before coordinate
+solving.  The one-hit branch is still open: four 24-worker strict-hull/MEC
+searches returned only `UNKNOWN_NO_HIT`, with no exact witness and no UNSAT
+certificate.  Do not promote their negative margins into infeasibility.
+
 Do not route the mutual branch through a supposed third robust center.  The
 minimal-deletion output may reuse the first physical apex, and even the stronger
 three-distinct finite projection with two disjoint fresh-center shells and
@@ -937,14 +980,19 @@ two-center-through-core-pair terminals.  Reopen that route only after a
 source theorem adds nonlinear Euclidean/full-radius, MEC/`noM44`, or stronger
 global-minimality information.
 
-For exact cap seven, the next interface is now explicit.  Checked scratch
-proves that some physical source `q` satisfies
-`H.centerAt q = transition.successor q`, and its whole-carrier version retains
-the exact blocker row plus `H.no_qfree_at q`.  No current consumer refutes that
-configuration.  Target a full-parent direct consumer using first-apex return,
-MEC/minimality, or a forced repeated blocker/common outside pair.  Do not call
-this a card-at-least-seven result: at cap eight all six source/blocker roles may
-be distinct, so a different aggregate argument is required.
+For exact cap seven, the next interface is now explicit and consumer-facing.
+From a source `q` satisfying `H.centerAt q = transition.successor q`, global
+reverse membership makes the transition surjective and produces a predecessor
+row with exact physical-cap intersection `{p,q}` and exact outside residual
+pair `{a,b}`.  The deletion asymmetry at the successor is coherent.  The one
+remaining terminal antecedent is
+`dist S.oppApex1 a = dist S.oppApex1 b`, which the existing ordered-cap theorem
+consumes immediately.  An exact rational strict-convex/nonobtuse/MEC cap-local
+model realizes the occurrence and predecessor-row facts, so this equality must
+be produced by the complete global critical map/frontier/minimality packet, not
+by another cap-local lemma.  Do not call this a card-at-least-seven result: at
+cap eight all six source/blocker roles may be distinct, so a different
+aggregate argument is required.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

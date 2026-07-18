@@ -1,0 +1,6652 @@
+{
+  "certificate_count": 203,
+  "epistemic_status": "EXACT_RATIONAL_2K3_CERTIFICATES_BOUNDED_MODEL_BANK",
+  "schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+  "schema_count": 20,
+  "schemas": [
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            9,
+            10
+          ],
+          "iteration": 2,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_1_2_9_10",
+            "row_0_1_2",
+            "row_1_2_9",
+            "row_10_1_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_1_2_9_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_1_9": "1",
+            "row_1_2_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_002.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            6,
+            7
+          ],
+          "iteration": 16,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_7",
+            "kal1_1_3_6_7",
+            "row_0_1_3",
+            "row_1_3_6",
+            "row_7_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_7": "1",
+            "kal1_1_3_6_7": "1",
+            "row_0_1_3": "-1",
+            "row_1_3_6": "-1",
+            "row_7_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_016.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            7,
+            8
+          ],
+          "iteration": 17,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_8",
+            "kal1_1_3_7_8",
+            "row_0_1_3",
+            "row_1_3_7",
+            "row_8_1_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_8": "1",
+            "kal1_1_3_7_8": "1",
+            "row_0_1_3": "-1",
+            "row_1_3_7": "-1",
+            "row_8_1_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_017.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "iteration": 18,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal1_1_2_4_5",
+            "row_0_1_2",
+            "row_1_2_4",
+            "row_5_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal1_1_2_4_5": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_4": "-1",
+            "row_5_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_018.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            7
+          ],
+          "iteration": 35,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_7",
+            "kal1_1_3_4_7",
+            "row_0_1_3",
+            "row_1_3_4",
+            "row_7_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_7": "1",
+            "kal1_1_3_4_7": "1",
+            "row_0_1_3": "-1",
+            "row_1_3_4": "-1",
+            "row_7_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_035.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            6,
+            9
+          ],
+          "iteration": 41,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_6",
+            "kal1_0_4_6_9",
+            "row_0_1_6",
+            "row_6_1_4",
+            "row_9_4_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_6": "1",
+            "kal1_0_4_6_9": "1",
+            "row_0_1_6": "-1",
+            "row_6_1_4": "1",
+            "row_9_4_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_041.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "iteration": 61,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_6",
+            "kal1_2_3_5_6",
+            "row_0_2_3",
+            "row_2_3_5",
+            "row_6_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_6": "1",
+            "kal1_2_3_5_6": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_5": "-1",
+            "row_6_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_061.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            6
+          ],
+          "iteration": 62,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_6",
+            "kal1_2_3_5_6",
+            "row_0_2_3",
+            "row_2_3_5",
+            "row_6_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_6": "1",
+            "kal1_2_3_5_6": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_5": "-1",
+            "row_6_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_062.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            10
+          ],
+          "iteration": 73,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_10",
+            "row_0_1_3",
+            "row_3_1_2",
+            "row_10_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_10": "1",
+            "row_0_1_3": "-1",
+            "row_10_2_3": "1",
+            "row_3_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_073.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            8
+          ],
+          "iteration": 81,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_4_8",
+            "row_0_1_4",
+            "row_4_1_2",
+            "row_8_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_4_8": "1",
+            "row_0_1_4": "-1",
+            "row_4_1_2": "1",
+            "row_8_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_081.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            5,
+            6,
+            7
+          ],
+          "iteration": 88,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_5_7",
+            "kal1_3_5_6_7",
+            "row_0_3_5",
+            "row_3_5_6",
+            "row_7_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_3_5_7": "1",
+            "kal1_3_5_6_7": "1",
+            "row_0_3_5": "-1",
+            "row_3_5_6": "-1",
+            "row_7_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_088.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            10
+          ],
+          "iteration": 99,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_1_2_4_10",
+            "row_0_1_2",
+            "row_1_2_4",
+            "row_10_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_1_2_4_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_1_4": "1",
+            "row_1_2_4": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_099.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            5,
+            6,
+            7
+          ],
+          "iteration": 108,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_5_7",
+            "kal1_2_5_6_7",
+            "row_0_2_5",
+            "row_2_5_6",
+            "row_7_2_6"
+          ],
+          "multipliers": {
+            "kal1_0_2_5_7": "1",
+            "kal1_2_5_6_7": "1",
+            "row_0_2_5": "-1",
+            "row_2_5_6": "-1",
+            "row_7_2_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_108.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 110,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_6",
+            "kal1_2_3_4_6",
+            "row_0_2_3",
+            "row_2_3_4",
+            "row_6_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_6": "1",
+            "kal1_2_3_4_6": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_4": "-1",
+            "row_6_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_110.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "iteration": 118,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_5",
+            "row_0_1_3",
+            "row_3_1_2",
+            "row_5_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_5": "1",
+            "row_0_1_3": "-1",
+            "row_3_1_2": "1",
+            "row_5_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_118.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            7,
+            8,
+            10
+          ],
+          "iteration": 123,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_7_10",
+            "kal1_1_7_8_10",
+            "row_0_1_7",
+            "row_1_7_8",
+            "row_10_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_7_10": "1",
+            "kal1_1_7_8_10": "1",
+            "row_0_1_7": "-1",
+            "row_10_1_8": "1",
+            "row_1_7_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_123.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            9
+          ],
+          "iteration": 131,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_5",
+            "kal1_0_3_5_9",
+            "row_0_2_5",
+            "row_5_2_3",
+            "row_9_3_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_5": "1",
+            "kal1_0_3_5_9": "1",
+            "row_0_2_5": "-1",
+            "row_5_2_3": "1",
+            "row_9_3_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_131.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 133,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_5",
+            "kal1_2_3_4_5",
+            "row_0_2_3",
+            "row_2_3_4",
+            "row_5_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_5": "1",
+            "kal1_2_3_4_5": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_4": "-1",
+            "row_5_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_133.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            10
+          ],
+          "iteration": 142,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_4_10",
+            "row_0_1_4",
+            "row_4_1_2",
+            "row_10_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_4_10": "1",
+            "row_0_1_4": "-1",
+            "row_10_2_4": "1",
+            "row_4_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_142.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            7,
+            10
+          ],
+          "iteration": 159,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_10",
+            "kal1_2_4_7_10",
+            "row_0_2_4",
+            "row_2_4_7",
+            "row_10_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_10": "1",
+            "kal1_2_4_7_10": "1",
+            "row_0_2_4": "-1",
+            "row_10_2_7": "1",
+            "row_2_4_7": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_159.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            10
+          ],
+          "iteration": 162,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_1_2_5_10",
+            "row_0_1_2",
+            "row_1_2_5",
+            "row_10_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_1_2_5_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_1_5": "1",
+            "row_1_2_5": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_162.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            8,
+            10
+          ],
+          "iteration": 6,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_1_2_8_10",
+            "row_0_1_2",
+            "row_1_2_10",
+            "row_8_1_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_1_2_8_10": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_10": "-1",
+            "row_8_1_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_006.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            9,
+            10
+          ],
+          "iteration": 25,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_1_2_9_10",
+            "row_0_1_2",
+            "row_1_2_10",
+            "row_9_1_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_1_2_9_10": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_10": "-1",
+            "row_9_1_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_025.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            8
+          ],
+          "iteration": 26,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_8",
+            "row_1_0_3",
+            "row_3_0_2",
+            "row_8_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_8": "1",
+            "row_1_0_3": "-1",
+            "row_3_0_2": "1",
+            "row_8_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_026.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6
+          ],
+          "iteration": 10,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_1_2_5_6",
+            "row_0_1_2",
+            "row_1_2_6",
+            "row_5_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_1_2_5_6": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_6": "-1",
+            "row_5_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_010.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6
+          ],
+          "iteration": 11,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_1_2_5_6",
+            "row_0_1_2",
+            "row_1_2_6",
+            "row_5_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_1_2_5_6": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_6": "-1",
+            "row_5_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_011.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            6
+          ],
+          "iteration": 44,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_6",
+            "kal1_1_3_4_6",
+            "row_0_1_3",
+            "row_1_3_6",
+            "row_4_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_6": "1",
+            "kal1_1_3_4_6": "1",
+            "row_0_1_3": "-1",
+            "row_1_3_6": "-1",
+            "row_4_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_044.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            7,
+            8
+          ],
+          "iteration": 50,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_8",
+            "kal1_2_4_7_8",
+            "row_0_2_4",
+            "row_2_4_8",
+            "row_7_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_8": "1",
+            "kal1_2_4_7_8": "1",
+            "row_0_2_4": "-1",
+            "row_2_4_8": "-1",
+            "row_7_2_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_050.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            6,
+            8
+          ],
+          "iteration": 52,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_8",
+            "kal1_2_3_6_8",
+            "row_0_2_3",
+            "row_2_3_8",
+            "row_6_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_8": "1",
+            "kal1_2_3_6_8": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_8": "-1",
+            "row_6_2_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_052.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            6
+          ],
+          "iteration": 55,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_1_2_3_6",
+            "row_0_1_2",
+            "row_1_2_6",
+            "row_3_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_1_2_3_6": "1",
+            "row_0_1_2": "-1",
+            "row_1_2_6": "-1",
+            "row_3_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_055.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            8
+          ],
+          "iteration": 56,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_8",
+            "kal1_1_4_5_8",
+            "row_0_1_4",
+            "row_1_4_8",
+            "row_5_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_8": "1",
+            "kal1_1_4_5_8": "1",
+            "row_0_1_4": "-1",
+            "row_1_4_8": "-1",
+            "row_5_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_056.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ],
+          "iteration": 86,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_6",
+            "kal1_1_4_5_6",
+            "row_0_1_4",
+            "row_1_4_6",
+            "row_5_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_6": "1",
+            "kal1_1_4_5_6": "1",
+            "row_0_1_4": "-1",
+            "row_1_4_6": "-1",
+            "row_5_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_086.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            7,
+            8,
+            9
+          ],
+          "iteration": 94,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_7_9",
+            "kal1_2_7_8_9",
+            "row_0_2_7",
+            "row_2_7_9",
+            "row_8_2_9"
+          ],
+          "multipliers": {
+            "kal1_0_2_7_9": "1",
+            "kal1_2_7_8_9": "1",
+            "row_0_2_7": "-1",
+            "row_2_7_9": "-1",
+            "row_8_2_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_094.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            7
+          ],
+          "iteration": 109,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_7",
+            "kal1_2_3_4_7",
+            "row_0_2_3",
+            "row_2_3_7",
+            "row_4_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_7": "1",
+            "kal1_2_3_4_7": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_7": "-1",
+            "row_4_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_109.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 111,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_5",
+            "kal1_2_3_4_5",
+            "row_0_2_3",
+            "row_2_3_5",
+            "row_4_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_5": "1",
+            "kal1_2_3_4_5": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_5": "-1",
+            "row_4_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_111.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            6,
+            7,
+            8
+          ],
+          "iteration": 114,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_6_8",
+            "kal1_1_6_7_8",
+            "row_0_1_6",
+            "row_1_6_8",
+            "row_7_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_6_8": "1",
+            "kal1_1_6_7_8": "1",
+            "row_0_1_6": "-1",
+            "row_1_6_8": "-1",
+            "row_7_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_114.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            7,
+            10
+          ],
+          "iteration": 129,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_10",
+            "kal1_1_3_7_10",
+            "row_0_1_3",
+            "row_1_3_10",
+            "row_7_1_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_10": "1",
+            "kal1_1_3_7_10": "1",
+            "row_0_1_3": "-1",
+            "row_1_3_10": "-1",
+            "row_7_1_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_129.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            7
+          ],
+          "iteration": 135,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_7",
+            "kal1_2_4_5_7",
+            "row_0_2_4",
+            "row_2_4_7",
+            "row_5_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_7": "1",
+            "kal1_2_4_5_7": "1",
+            "row_0_2_4": "-1",
+            "row_2_4_7": "-1",
+            "row_5_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_135.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            8,
+            9
+          ],
+          "iteration": 165,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_9",
+            "kal1_3_4_8_9",
+            "row_0_3_4",
+            "row_3_4_9",
+            "row_8_3_9"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_9": "1",
+            "kal1_3_4_8_9": "1",
+            "row_0_3_4": "-1",
+            "row_3_4_9": "-1",
+            "row_8_3_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_165.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            7,
+            10
+          ],
+          "iteration": 170,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_10",
+            "kal1_2_3_7_10",
+            "row_0_2_3",
+            "row_2_3_10",
+            "row_7_2_10"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_10": "1",
+            "kal1_2_3_7_10": "1",
+            "row_0_2_3": "-1",
+            "row_2_3_10": "-1",
+            "row_7_2_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_170.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "iteration": 31,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal2_0_1_3_4",
+            "row_0_1_2",
+            "row_3_0_2",
+            "row_4_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal2_0_1_3_4": "1",
+            "row_0_1_2": "-1",
+            "row_3_0_2": "1",
+            "row_4_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_031.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 42,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_5",
+            "kal2_0_2_5_7",
+            "row_0_2_3",
+            "row_5_0_3",
+            "row_7_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_5": "1",
+            "kal2_0_2_5_7": "1",
+            "row_0_2_3": "-1",
+            "row_5_0_3": "1",
+            "row_7_0_2": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_042.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            10
+          ],
+          "iteration": 83,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_3_10",
+            "row_0_1_2",
+            "row_3_0_2",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_3_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_0_1": "-1",
+            "row_3_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_083.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "iteration": 119,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_5",
+            "kal1_0_2_4_5",
+            "row_0_4_5",
+            "row_1_2_5",
+            "row_5_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_5": "1",
+            "kal2_0_1_2_5": "1",
+            "row_0_4_5": "1",
+            "row_1_2_5": "-1",
+            "row_5_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_119.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 122,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_2_3_7",
+            "kal1_0_3_5_7",
+            "row_0_5_7",
+            "row_2_3_7",
+            "row_7_3_5"
+          ],
+          "multipliers": {
+            "kal1_0_3_5_7": "1",
+            "kal2_0_2_3_7": "1",
+            "row_0_5_7": "1",
+            "row_2_3_7": "-1",
+            "row_7_3_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_122.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            10
+          ],
+          "iteration": 141,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_10",
+            "kal2_0_3_5_10",
+            "row_0_2_3",
+            "row_5_0_3",
+            "row_10_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_10": "1",
+            "kal2_0_3_5_10": "1",
+            "row_0_2_3": "-1",
+            "row_10_0_2": "-1",
+            "row_5_0_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_141.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            8
+          ],
+          "iteration": 171,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal2_0_1_3_8",
+            "row_0_1_2",
+            "row_3_0_2",
+            "row_8_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal2_0_1_3_8": "1",
+            "row_0_1_2": "-1",
+            "row_3_0_2": "1",
+            "row_8_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_171.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5
+          ],
+          "iteration": 173,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal2_0_1_3_5",
+            "row_0_1_2",
+            "row_3_0_2",
+            "row_5_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal2_0_1_3_5": "1",
+            "row_0_1_2": "-1",
+            "row_3_0_2": "1",
+            "row_5_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_173.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          1
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            10
+          ],
+          "iteration": 11,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_6_10",
+            "row_0_1_6",
+            "row_2_0_6",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_6_10": "1",
+            "row_0_1_6": "-1",
+            "row_10_0_1": "-1",
+            "row_2_0_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_011.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            10
+          ],
+          "iteration": 15,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_3_10",
+            "kal2_0_3_4_10",
+            "row_0_1_4",
+            "row_3_0_4",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_10": "1",
+            "kal2_0_3_4_10": "1",
+            "row_0_1_4": "-1",
+            "row_10_0_1": "-1",
+            "row_3_0_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_015.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7
+          ],
+          "iteration": 15,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal2_0_1_3_7",
+            "row_0_1_3",
+            "row_2_0_3",
+            "row_7_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal2_0_1_3_7": "1",
+            "row_0_1_3": "-1",
+            "row_2_0_3": "1",
+            "row_7_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_015.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            9
+          ],
+          "iteration": 48,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal2_0_1_4_9",
+            "row_0_1_4",
+            "row_3_0_4",
+            "row_9_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal2_0_1_4_9": "1",
+            "row_0_1_4": "-1",
+            "row_3_0_4": "1",
+            "row_9_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_048.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            7
+          ],
+          "iteration": 51,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal2_0_1_4_7",
+            "row_0_1_4",
+            "row_3_0_4",
+            "row_7_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal2_0_1_4_7": "1",
+            "row_0_1_4": "-1",
+            "row_3_0_4": "1",
+            "row_7_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_051.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5
+          ],
+          "iteration": 80,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal2_0_1_4_5",
+            "row_0_1_4",
+            "row_2_0_4",
+            "row_5_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal2_0_1_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_2_0_4": "1",
+            "row_5_0_1": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_080.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            10
+          ],
+          "iteration": 82,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_10",
+            "kal2_0_3_4_10",
+            "row_0_1_4",
+            "row_3_0_4",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_10": "1",
+            "kal2_0_3_4_10": "1",
+            "row_0_1_4": "-1",
+            "row_10_0_1": "-1",
+            "row_3_0_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_082.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            10
+          ],
+          "iteration": 84,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_3_10",
+            "row_0_1_3",
+            "row_2_0_3",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_3_10": "1",
+            "row_0_1_3": "-1",
+            "row_10_0_1": "-1",
+            "row_2_0_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_084.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            6
+          ],
+          "iteration": 102,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_5",
+            "kal2_0_2_5_6",
+            "row_0_2_5",
+            "row_4_0_5",
+            "row_6_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_5": "1",
+            "kal2_0_2_5_6": "1",
+            "row_0_2_5": "-1",
+            "row_4_0_5": "1",
+            "row_6_0_2": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_102.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            8
+          ],
+          "iteration": 153,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_5",
+            "kal2_0_2_5_8",
+            "row_0_2_5",
+            "row_4_0_5",
+            "row_8_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_5": "1",
+            "kal2_0_2_5_8": "1",
+            "row_0_2_5": "-1",
+            "row_4_0_5": "1",
+            "row_8_0_2": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_153.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            7,
+            8,
+            10
+          ],
+          "iteration": 167,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_7_10",
+            "kal2_0_7_8_10",
+            "row_0_1_8",
+            "row_7_0_8",
+            "row_10_0_1"
+          ],
+          "multipliers": {
+            "kal1_0_1_7_10": "1",
+            "kal2_0_7_8_10": "1",
+            "row_0_1_8": "-1",
+            "row_10_0_1": "-1",
+            "row_7_0_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_167.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "iteration": 24,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_2_3_4",
+            "row_3_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_2_3_4": "-1",
+            "row_3_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_024.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "iteration": 5,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_2_3_4",
+            "row_3_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_2_3_4": "-1",
+            "row_3_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_005.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            5,
+            6
+          ],
+          "iteration": 34,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_5",
+            "kal1_0_3_5_6",
+            "row_0_1_5",
+            "row_3_5_6",
+            "row_5_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_5": "1",
+            "kal1_0_3_5_6": "1",
+            "row_0_1_5": "-1",
+            "row_3_5_6": "-1",
+            "row_5_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_034.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 46,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_0_3_4_5",
+            "row_0_2_4",
+            "row_3_4_5",
+            "row_4_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_0_3_4_5": "1",
+            "row_0_2_4": "-1",
+            "row_3_4_5": "-1",
+            "row_4_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_046.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            7,
+            9
+          ],
+          "iteration": 67,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_7",
+            "kal1_0_3_7_9",
+            "row_0_2_7",
+            "row_3_7_9",
+            "row_7_2_9"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_7": "1",
+            "kal1_0_3_7_9": "1",
+            "row_0_2_7": "-1",
+            "row_3_7_9": "-1",
+            "row_7_2_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_067.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            10
+          ],
+          "iteration": 7,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_5_10",
+            "row_0_2_10",
+            "row_1_0_10",
+            "row_5_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_5_10": "1",
+            "row_0_2_10": "1",
+            "row_1_0_10": "-1",
+            "row_5_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_007.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "iteration": 8,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal2_0_1_3_4",
+            "row_0_2_4",
+            "row_1_0_4",
+            "row_3_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal2_0_1_3_4": "1",
+            "row_0_2_4": "1",
+            "row_1_0_4": "-1",
+            "row_3_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_008.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            10
+          ],
+          "iteration": 21,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_3_10",
+            "row_0_2_10",
+            "row_1_0_10",
+            "row_3_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_3_10": "1",
+            "row_0_2_10": "1",
+            "row_1_0_10": "-1",
+            "row_3_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_021.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            9
+          ],
+          "iteration": 127,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal2_0_1_6_9",
+            "row_0_2_9",
+            "row_1_0_9",
+            "row_6_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal2_0_1_6_9": "1",
+            "row_0_2_9": "1",
+            "row_1_0_9": "-1",
+            "row_6_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_127.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            7
+          ],
+          "iteration": 150,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal2_0_1_4_7",
+            "row_0_3_7",
+            "row_1_0_7",
+            "row_4_0_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal2_0_1_4_7": "1",
+            "row_0_3_7": "1",
+            "row_1_0_7": "-1",
+            "row_4_0_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_150.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            10
+          ],
+          "iteration": 157,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_0_2_3_10",
+            "row_0_2_10",
+            "row_1_0_10",
+            "row_3_0_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_0_2_3_10": "1",
+            "row_0_2_10": "1",
+            "row_1_0_10": "-1",
+            "row_3_0_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_157.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5
+          ],
+          "iteration": 66,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_3_4",
+            "kal2_0_3_4_5",
+            "row_0_3_5",
+            "row_3_1_5",
+            "row_4_1_3"
+          ],
+          "multipliers": {
+            "kal2_0_1_3_4": "1",
+            "kal2_0_3_4_5": "1",
+            "row_0_3_5": "1",
+            "row_3_1_5": "-1",
+            "row_4_1_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_066.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ],
+          "iteration": 79,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_4_5",
+            "kal2_0_4_5_6",
+            "row_0_4_6",
+            "row_4_1_6",
+            "row_5_1_4"
+          ],
+          "multipliers": {
+            "kal2_0_1_4_5": "1",
+            "kal2_0_4_5_6": "1",
+            "row_0_4_6": "1",
+            "row_4_1_6": "-1",
+            "row_5_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_079.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            4,
+            5,
+            6,
+            7
+          ],
+          "iteration": 19,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_4_5_6",
+            "kal2_0_4_6_7",
+            "row_0_6_7",
+            "row_4_0_7",
+            "row_5_0_6"
+          ],
+          "multipliers": {
+            "kal1_0_4_5_6": "1",
+            "kal2_0_4_6_7": "1",
+            "row_0_6_7": "1",
+            "row_4_0_7": "-1",
+            "row_5_0_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_019.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 22,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal2_0_2_4_5",
+            "row_0_4_5",
+            "row_2_0_5",
+            "row_3_0_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal2_0_2_4_5": "1",
+            "row_0_4_5": "1",
+            "row_2_0_5": "-1",
+            "row_3_0_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_022.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 5,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            10
+          ],
+          "iteration": 14,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal1_0_2_5_10",
+            "row_1_0_5",
+            "row_2_5_10",
+            "row_5_0_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal1_0_2_5_10": "1",
+            "row_1_0_5": "-1",
+            "row_2_5_10": "-1",
+            "row_5_0_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_014.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            9
+          ],
+          "iteration": 22,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_3_9",
+            "row_1_0_3",
+            "row_2_3_9",
+            "row_3_0_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_3_9": "1",
+            "row_1_0_3": "-1",
+            "row_2_3_9": "-1",
+            "row_3_0_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_022.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            6,
+            8
+          ],
+          "iteration": 27,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_3_6",
+            "kal1_0_3_6_8",
+            "row_1_0_6",
+            "row_3_6_8",
+            "row_6_0_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_6": "1",
+            "kal1_0_3_6_8": "1",
+            "row_1_0_6": "-1",
+            "row_3_6_8": "-1",
+            "row_6_0_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_027.full_lra.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            7,
+            8
+          ],
+          "iteration": 4,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_2_4_7_8",
+            "row_2_0_7",
+            "row_3_0_4",
+            "row_8_4_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_2_4_7_8": "1",
+            "row_2_0_7": "-1",
+            "row_3_0_4": "1",
+            "row_8_4_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_004.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            7,
+            8
+          ],
+          "iteration": 13,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_2_4_7_8",
+            "row_2_0_7",
+            "row_3_0_4",
+            "row_8_4_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_2_4_7_8": "1",
+            "row_2_0_7": "-1",
+            "row_3_0_4": "1",
+            "row_8_4_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_013.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            9
+          ],
+          "iteration": 25,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_1_3_7_9",
+            "row_0_1_2",
+            "row_3_2_9",
+            "row_7_1_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_1_3_7_9": "1",
+            "row_0_1_2": "-1",
+            "row_3_2_9": "-1",
+            "row_7_1_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_025.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "iteration": 27,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_1_4_5_6",
+            "row_0_1_2",
+            "row_4_2_6",
+            "row_5_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_1_4_5_6": "1",
+            "row_0_1_2": "-1",
+            "row_4_2_6": "-1",
+            "row_5_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_027.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            8,
+            10
+          ],
+          "iteration": 30,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_1_3_8_10",
+            "row_0_1_2",
+            "row_3_2_10",
+            "row_8_1_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_1_3_8_10": "1",
+            "row_0_1_2": "-1",
+            "row_3_2_10": "-1",
+            "row_8_1_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_030.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            10
+          ],
+          "iteration": 53,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_1_4_6_10",
+            "row_0_1_2",
+            "row_4_2_10",
+            "row_6_1_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_1_4_6_10": "1",
+            "row_0_1_2": "-1",
+            "row_4_2_10": "-1",
+            "row_6_1_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_053.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            7
+          ],
+          "iteration": 54,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_1_4_6_7",
+            "row_0_1_2",
+            "row_4_2_7",
+            "row_6_1_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_1_4_6_7": "1",
+            "row_0_1_2": "-1",
+            "row_4_2_7": "-1",
+            "row_6_1_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_054.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "iteration": 72,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_1_3_7_8",
+            "row_0_1_2",
+            "row_3_2_8",
+            "row_7_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_1_3_7_8": "1",
+            "row_0_1_2": "-1",
+            "row_3_2_8": "-1",
+            "row_7_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_072.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 89,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_1_3_4_5",
+            "row_0_1_2",
+            "row_3_2_5",
+            "row_4_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_1_3_4_5": "1",
+            "row_0_1_2": "-1",
+            "row_3_2_5": "-1",
+            "row_4_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_089.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            7,
+            9,
+            10
+          ],
+          "iteration": 100,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_7",
+            "kal1_2_7_9_10",
+            "row_0_2_3",
+            "row_7_3_10",
+            "row_9_2_10"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_7": "1",
+            "kal1_2_7_9_10": "1",
+            "row_0_2_3": "-1",
+            "row_7_3_10": "-1",
+            "row_9_2_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_100.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            7
+          ],
+          "iteration": 115,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_1_4_6_7",
+            "row_0_1_2",
+            "row_4_2_7",
+            "row_6_1_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_1_4_6_7": "1",
+            "row_0_1_2": "-1",
+            "row_4_2_7": "-1",
+            "row_6_1_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_115.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 152,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_1_3_4_5",
+            "row_0_1_2",
+            "row_3_2_5",
+            "row_4_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_1_3_4_5": "1",
+            "row_0_1_2": "-1",
+            "row_3_2_5": "-1",
+            "row_4_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_152.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9
+          ],
+          "iteration": 169,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_5",
+            "kal1_1_5_8_9",
+            "row_0_1_4",
+            "row_5_4_9",
+            "row_8_1_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_5": "1",
+            "kal1_1_5_8_9": "1",
+            "row_0_1_4": "-1",
+            "row_5_4_9": "-1",
+            "row_8_1_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_169.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            7,
+            8,
+            10
+          ],
+          "iteration": 19,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_3_10",
+            "kal2_1_7_8_10",
+            "row_0_1_3",
+            "row_8_1_7",
+            "row_10_3_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_10": "1",
+            "kal2_1_7_8_10": "1",
+            "row_0_1_3": "-1",
+            "row_10_3_7": "-1",
+            "row_8_1_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_019.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            10
+          ],
+          "iteration": 29,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_1_5_6_10",
+            "row_0_1_2",
+            "row_6_1_5",
+            "row_10_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_1_5_6_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_2_5": "-1",
+            "row_6_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_029.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "iteration": 2,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal2_2_4_5_6",
+            "row_0_1_2",
+            "row_5_1_4",
+            "row_6_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal2_2_4_5_6": "1",
+            "row_0_1_2": "-1",
+            "row_5_1_4": "1",
+            "row_6_2_4": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_002.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            6
+          ],
+          "iteration": 3,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal2_2_4_5_6",
+            "row_0_1_2",
+            "row_5_1_4",
+            "row_6_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal2_2_4_5_6": "1",
+            "row_0_1_2": "-1",
+            "row_5_1_4": "1",
+            "row_6_2_4": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_003.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            10
+          ],
+          "iteration": 13,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_3_4",
+            "kal1_1_4_6_10",
+            "row_0_3_4",
+            "row_1_3_6",
+            "row_10_4_6"
+          ],
+          "multipliers": {
+            "kal1_1_4_6_10": "1",
+            "kal2_0_1_3_4": "1",
+            "row_0_3_4": "1",
+            "row_10_4_6": "1",
+            "row_1_3_6": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_013.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            9
+          ],
+          "iteration": 21,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_6",
+            "kal1_1_6_7_9",
+            "row_0_2_6",
+            "row_1_2_7",
+            "row_9_6_7"
+          ],
+          "multipliers": {
+            "kal1_1_6_7_9": "1",
+            "kal2_0_1_2_6": "1",
+            "row_0_2_6": "1",
+            "row_1_2_7": "-1",
+            "row_9_6_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_021.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            5,
+            8,
+            9
+          ],
+          "iteration": 36,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_2_3_5",
+            "kal1_2_5_8_9",
+            "row_0_3_5",
+            "row_2_3_8",
+            "row_9_5_8"
+          ],
+          "multipliers": {
+            "kal1_2_5_8_9": "1",
+            "kal2_0_2_3_5": "1",
+            "row_0_3_5": "1",
+            "row_2_3_8": "-1",
+            "row_9_5_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_036.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 43,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal2_2_3_4_5",
+            "row_0_1_2",
+            "row_4_1_3",
+            "row_5_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal2_2_3_4_5": "1",
+            "row_0_1_2": "-1",
+            "row_4_1_3": "1",
+            "row_5_2_3": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_043.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            9
+          ],
+          "iteration": 58,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_3",
+            "kal1_1_3_5_9",
+            "row_0_2_3",
+            "row_1_2_5",
+            "row_9_3_5"
+          ],
+          "multipliers": {
+            "kal1_1_3_5_9": "1",
+            "kal2_0_1_2_3": "1",
+            "row_0_2_3": "1",
+            "row_1_2_5": "-1",
+            "row_9_3_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_058.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 59,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_3",
+            "kal1_1_3_4_6",
+            "row_0_2_3",
+            "row_1_2_4",
+            "row_6_3_4"
+          ],
+          "multipliers": {
+            "kal1_1_3_4_6": "1",
+            "kal2_0_1_2_3": "1",
+            "row_0_2_3": "1",
+            "row_1_2_4": "-1",
+            "row_6_3_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_059.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            10
+          ],
+          "iteration": 64,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_3",
+            "kal1_1_3_4_10",
+            "row_0_2_3",
+            "row_1_2_4",
+            "row_10_3_4"
+          ],
+          "multipliers": {
+            "kal1_1_3_4_10": "1",
+            "kal2_0_1_2_3": "1",
+            "row_0_2_3": "1",
+            "row_10_3_4": "1",
+            "row_1_2_4": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_064.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            8,
+            10
+          ],
+          "iteration": 71,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_6",
+            "kal1_1_6_8_10",
+            "row_0_2_6",
+            "row_1_2_8",
+            "row_10_6_8"
+          ],
+          "multipliers": {
+            "kal1_1_6_8_10": "1",
+            "kal2_0_1_2_6": "1",
+            "row_0_2_6": "1",
+            "row_10_6_8": "1",
+            "row_1_2_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_071.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            8,
+            9
+          ],
+          "iteration": 75,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_8",
+            "kal2_2_6_8_9",
+            "row_0_1_2",
+            "row_8_1_6",
+            "row_9_2_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_8": "1",
+            "kal2_2_6_8_9": "1",
+            "row_0_1_2": "-1",
+            "row_8_1_6": "1",
+            "row_9_2_6": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_075.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9
+          ],
+          "iteration": 91,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_3",
+            "kal1_1_3_4_9",
+            "row_0_2_3",
+            "row_1_2_4",
+            "row_9_3_4"
+          ],
+          "multipliers": {
+            "kal1_1_3_4_9": "1",
+            "kal2_0_1_2_3": "1",
+            "row_0_2_3": "1",
+            "row_1_2_4": "-1",
+            "row_9_3_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_091.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            9,
+            10
+          ],
+          "iteration": 103,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_1_4_9_10",
+            "row_0_1_2",
+            "row_9_1_4",
+            "row_10_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_1_4_9_10": "1",
+            "row_0_1_2": "-1",
+            "row_10_2_4": "-1",
+            "row_9_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_103.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          "iteration": 168,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_3_4_7",
+            "kal1_3_7_9_10",
+            "row_0_4_7",
+            "row_3_4_9",
+            "row_10_7_9"
+          ],
+          "multipliers": {
+            "kal1_3_7_9_10": "1",
+            "kal2_0_3_4_7": "1",
+            "row_0_4_7": "1",
+            "row_10_7_9": "1",
+            "row_3_4_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_168.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            8,
+            9
+          ],
+          "iteration": 1,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_8_9",
+            "row_0_1_8",
+            "row_4_1_2",
+            "row_9_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_8_9": "1",
+            "row_0_1_8": "-1",
+            "row_4_1_2": "1",
+            "row_9_2_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_001.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            9,
+            10
+          ],
+          "iteration": 3,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_9_10",
+            "row_0_1_9",
+            "row_4_1_2",
+            "row_10_2_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_9_10": "1",
+            "row_0_1_9": "-1",
+            "row_10_2_9": "1",
+            "row_4_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_003.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            7
+          ],
+          "iteration": 5,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal1_0_3_6_7",
+            "row_0_1_6",
+            "row_4_1_3",
+            "row_7_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal1_0_3_6_7": "1",
+            "row_0_1_6": "-1",
+            "row_4_1_3": "1",
+            "row_7_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_005.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 10,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_4_5",
+            "row_0_1_4",
+            "row_3_1_2",
+            "row_5_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_3_1_2": "1",
+            "row_5_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_010.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            6,
+            7,
+            9
+          ],
+          "iteration": 28,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_0_2_7_9",
+            "row_0_1_7",
+            "row_6_1_2",
+            "row_9_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_0_2_7_9": "1",
+            "row_0_1_7": "-1",
+            "row_6_1_2": "1",
+            "row_9_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_028.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            5,
+            6,
+            7,
+            8
+          ],
+          "iteration": 1,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_6_8",
+            "kal1_5_6_7_8",
+            "row_0_3_6",
+            "row_5_6_7",
+            "row_8_3_7"
+          ],
+          "multipliers": {
+            "kal1_0_3_6_8": "1",
+            "kal1_5_6_7_8": "1",
+            "row_0_3_6": "-1",
+            "row_5_6_7": "-1",
+            "row_8_3_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_001.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            8
+          ],
+          "iteration": 4,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_8",
+            "kal1_3_4_5_8",
+            "row_0_1_4",
+            "row_3_4_5",
+            "row_8_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_8": "1",
+            "kal1_3_4_5_8": "1",
+            "row_0_1_4": "-1",
+            "row_3_4_5": "-1",
+            "row_8_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_004.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            6,
+            7,
+            10
+          ],
+          "iteration": 6,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_6",
+            "kal1_0_4_7_10",
+            "row_0_1_7",
+            "row_6_1_4",
+            "row_10_4_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_6": "1",
+            "kal1_0_4_7_10": "1",
+            "row_0_1_7": "-1",
+            "row_10_4_7": "1",
+            "row_6_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_006.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9
+          ],
+          "iteration": 9,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_5_9",
+            "kal1_4_5_8_9",
+            "row_0_1_5",
+            "row_4_5_8",
+            "row_9_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_5_9": "1",
+            "kal1_4_5_8_9": "1",
+            "row_0_1_5": "-1",
+            "row_4_5_8": "-1",
+            "row_9_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_009.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            6,
+            7,
+            8,
+            9
+          ],
+          "iteration": 14,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_7_9",
+            "kal1_6_7_8_9",
+            "row_0_1_7",
+            "row_6_7_8",
+            "row_9_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_7_9": "1",
+            "kal1_6_7_8_9": "1",
+            "row_0_1_7": "-1",
+            "row_6_7_8": "-1",
+            "row_9_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_014.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 24,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_4_6",
+            "row_0_1_4",
+            "row_3_1_2",
+            "row_6_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_4_6": "1",
+            "row_0_1_4": "-1",
+            "row_3_1_2": "1",
+            "row_6_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_024.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            9,
+            10
+          ],
+          "iteration": 26,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_0_3_9_10",
+            "row_0_2_9",
+            "row_4_2_3",
+            "row_10_3_9"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_0_3_9_10": "1",
+            "row_0_2_9": "-1",
+            "row_10_3_9": "1",
+            "row_4_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_026.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            5,
+            8,
+            9
+          ],
+          "iteration": 28,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_5_9",
+            "kal1_4_5_8_9",
+            "row_0_1_5",
+            "row_4_5_8",
+            "row_9_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_5_9": "1",
+            "kal1_4_5_8_9": "1",
+            "row_0_1_5": "-1",
+            "row_4_5_8": "-1",
+            "row_9_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_028.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            10
+          ],
+          "iteration": 29,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_5_10",
+            "row_0_1_5",
+            "row_4_1_2",
+            "row_10_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_5_10": "1",
+            "row_0_1_5": "-1",
+            "row_10_2_5": "1",
+            "row_4_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_029.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            6,
+            7
+          ],
+          "iteration": 32,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_7",
+            "kal1_2_3_6_7",
+            "row_0_1_3",
+            "row_2_3_6",
+            "row_7_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_7": "1",
+            "kal1_2_3_6_7": "1",
+            "row_0_1_3": "-1",
+            "row_2_3_6": "-1",
+            "row_7_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_032.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            8
+          ],
+          "iteration": 37,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_5_8",
+            "row_0_1_5",
+            "row_3_1_2",
+            "row_8_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_5_8": "1",
+            "row_0_1_5": "-1",
+            "row_3_1_2": "1",
+            "row_8_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_037.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            7,
+            9,
+            10
+          ],
+          "iteration": 38,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_7_10",
+            "kal1_3_7_9_10",
+            "row_0_1_7",
+            "row_3_7_9",
+            "row_10_1_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_7_10": "1",
+            "kal1_3_7_9_10": "1",
+            "row_0_1_7": "-1",
+            "row_10_1_9": "1",
+            "row_3_7_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_038.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            5,
+            6,
+            8,
+            9
+          ],
+          "iteration": 40,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_6_9",
+            "kal1_5_6_8_9",
+            "row_0_1_6",
+            "row_5_6_8",
+            "row_9_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_6_9": "1",
+            "kal1_5_6_8_9": "1",
+            "row_0_1_6": "-1",
+            "row_5_6_8": "-1",
+            "row_9_1_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_040.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            7,
+            8,
+            9
+          ],
+          "iteration": 47,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_7",
+            "kal1_0_4_8_9",
+            "row_0_1_8",
+            "row_7_1_4",
+            "row_9_4_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_7": "1",
+            "kal1_0_4_8_9": "1",
+            "row_0_1_8": "-1",
+            "row_7_1_4": "1",
+            "row_9_4_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_047.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            8,
+            9
+          ],
+          "iteration": 49,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal1_0_3_8_9",
+            "row_0_1_8",
+            "row_4_1_3",
+            "row_9_3_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal1_0_3_8_9": "1",
+            "row_0_1_8": "-1",
+            "row_4_1_3": "1",
+            "row_9_3_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_049.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            5,
+            6,
+            7,
+            10
+          ],
+          "iteration": 63,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_6_10",
+            "kal1_5_6_7_10",
+            "row_0_3_6",
+            "row_5_6_7",
+            "row_10_3_7"
+          ],
+          "multipliers": {
+            "kal1_0_3_6_10": "1",
+            "kal1_5_6_7_10": "1",
+            "row_0_3_6": "-1",
+            "row_10_3_7": "1",
+            "row_5_6_7": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_063.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 65,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_5_7",
+            "row_0_1_5",
+            "row_3_1_2",
+            "row_7_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_5_7": "1",
+            "row_0_1_5": "-1",
+            "row_3_1_2": "1",
+            "row_7_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_065.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 70,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_7",
+            "kal1_2_3_5_7",
+            "row_0_1_3",
+            "row_2_3_5",
+            "row_7_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_7": "1",
+            "kal1_2_3_5_7": "1",
+            "row_0_1_3": "-1",
+            "row_2_3_5": "-1",
+            "row_7_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_070.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            6,
+            8,
+            10
+          ],
+          "iteration": 74,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_6_10",
+            "kal1_3_6_8_10",
+            "row_0_1_6",
+            "row_3_6_8",
+            "row_10_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_6_10": "1",
+            "kal1_3_6_8_10": "1",
+            "row_0_1_6": "-1",
+            "row_10_1_8": "1",
+            "row_3_6_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_074.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            7
+          ],
+          "iteration": 76,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_0_3_6_7",
+            "row_0_2_6",
+            "row_4_2_3",
+            "row_7_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_0_3_6_7": "1",
+            "row_0_2_6": "-1",
+            "row_4_2_3": "1",
+            "row_7_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_076.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            9,
+            10
+          ],
+          "iteration": 77,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_5_10",
+            "kal1_4_5_9_10",
+            "row_0_2_5",
+            "row_4_5_9",
+            "row_10_2_9"
+          ],
+          "multipliers": {
+            "kal1_0_2_5_10": "1",
+            "kal1_4_5_9_10": "1",
+            "row_0_2_5": "-1",
+            "row_10_2_9": "1",
+            "row_4_5_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_077.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            5,
+            6,
+            7
+          ],
+          "iteration": 78,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_5",
+            "kal1_0_3_6_7",
+            "row_0_1_6",
+            "row_5_1_3",
+            "row_7_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_5": "1",
+            "kal1_0_3_6_7": "1",
+            "row_0_1_6": "-1",
+            "row_5_1_3": "1",
+            "row_7_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_078.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            10
+          ],
+          "iteration": 87,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_5",
+            "kal1_0_4_6_10",
+            "row_0_3_6",
+            "row_5_3_4",
+            "row_10_4_6"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_5": "1",
+            "kal1_0_4_6_10": "1",
+            "row_0_3_6": "-1",
+            "row_10_4_6": "1",
+            "row_5_3_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_087.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            9,
+            10
+          ],
+          "iteration": 90,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_10",
+            "kal1_3_4_9_10",
+            "row_0_2_4",
+            "row_3_4_9",
+            "row_10_2_9"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_10": "1",
+            "kal1_3_4_9_10": "1",
+            "row_0_2_4": "-1",
+            "row_10_2_9": "1",
+            "row_3_4_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_090.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            6,
+            10
+          ],
+          "iteration": 92,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_10",
+            "kal1_2_4_6_10",
+            "row_0_1_4",
+            "row_2_4_6",
+            "row_10_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_10": "1",
+            "kal1_2_4_6_10": "1",
+            "row_0_1_4": "-1",
+            "row_10_1_6": "1",
+            "row_2_4_6": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_092.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            8
+          ],
+          "iteration": 93,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_8",
+            "kal1_3_4_6_8",
+            "row_0_1_4",
+            "row_3_4_6",
+            "row_8_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_8": "1",
+            "kal1_3_4_6_8": "1",
+            "row_0_1_4": "-1",
+            "row_3_4_6": "-1",
+            "row_8_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_093.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7
+          ],
+          "iteration": 97,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal1_0_2_6_7",
+            "row_0_1_6",
+            "row_5_1_2",
+            "row_7_2_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal1_0_2_6_7": "1",
+            "row_0_1_6": "-1",
+            "row_5_1_2": "1",
+            "row_7_2_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_097.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            5,
+            6,
+            8,
+            10
+          ],
+          "iteration": 107,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_6_10",
+            "kal1_5_6_8_10",
+            "row_0_2_6",
+            "row_5_6_8",
+            "row_10_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_2_6_10": "1",
+            "kal1_5_6_8_10": "1",
+            "row_0_2_6": "-1",
+            "row_10_2_8": "1",
+            "row_5_6_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_107.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            5,
+            6,
+            9
+          ],
+          "iteration": 112,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_5",
+            "kal1_0_4_6_9",
+            "row_0_3_6",
+            "row_5_3_4",
+            "row_9_4_6"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_5": "1",
+            "kal1_0_4_6_9": "1",
+            "row_0_3_6": "-1",
+            "row_5_3_4": "1",
+            "row_9_4_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_112.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ],
+          "iteration": 120,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_5_6",
+            "row_0_1_5",
+            "row_3_1_2",
+            "row_6_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_5_6": "1",
+            "row_0_1_5": "-1",
+            "row_3_1_2": "1",
+            "row_6_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_120.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            9,
+            10
+          ],
+          "iteration": 124,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_10",
+            "kal1_3_4_9_10",
+            "row_0_1_4",
+            "row_3_4_9",
+            "row_10_1_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_10": "1",
+            "kal1_3_4_9_10": "1",
+            "row_0_1_4": "-1",
+            "row_10_1_9": "1",
+            "row_3_4_9": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_124.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            5,
+            6,
+            7,
+            9
+          ],
+          "iteration": 126,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_6_9",
+            "kal1_5_6_7_9",
+            "row_0_2_6",
+            "row_5_6_7",
+            "row_9_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_6_9": "1",
+            "kal1_5_6_7_9": "1",
+            "row_0_2_6": "-1",
+            "row_5_6_7": "-1",
+            "row_9_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_126.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            9
+          ],
+          "iteration": 130,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_0_3_6_9",
+            "row_0_2_6",
+            "row_4_2_3",
+            "row_9_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_0_3_6_9": "1",
+            "row_0_2_6": "-1",
+            "row_4_2_3": "1",
+            "row_9_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_130.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            10
+          ],
+          "iteration": 134,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal1_0_3_5_10",
+            "row_0_1_5",
+            "row_4_1_3",
+            "row_10_3_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal1_0_3_5_10": "1",
+            "row_0_1_5": "-1",
+            "row_10_3_5": "1",
+            "row_4_1_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_134.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            8,
+            9
+          ],
+          "iteration": 137,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_5_9",
+            "kal1_4_5_8_9",
+            "row_0_2_5",
+            "row_4_5_8",
+            "row_9_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_2_5_9": "1",
+            "kal1_4_5_8_9": "1",
+            "row_0_2_5": "-1",
+            "row_4_5_8": "-1",
+            "row_9_2_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_137.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            5,
+            6,
+            9,
+            10
+          ],
+          "iteration": 138,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_5_6",
+            "kal1_0_5_9_10",
+            "row_0_1_9",
+            "row_6_1_5",
+            "row_10_5_9"
+          ],
+          "multipliers": {
+            "kal1_0_1_5_6": "1",
+            "kal1_0_5_9_10": "1",
+            "row_0_1_9": "-1",
+            "row_10_5_9": "1",
+            "row_6_1_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_138.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            6,
+            8
+          ],
+          "iteration": 140,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_8",
+            "kal1_3_4_6_8",
+            "row_0_1_4",
+            "row_3_4_6",
+            "row_8_1_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_8": "1",
+            "kal1_3_4_6_8": "1",
+            "row_0_1_4": "-1",
+            "row_3_4_6": "-1",
+            "row_8_1_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_140.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            5,
+            8,
+            10
+          ],
+          "iteration": 143,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_5_10",
+            "kal1_4_5_8_10",
+            "row_0_3_5",
+            "row_4_5_8",
+            "row_10_3_8"
+          ],
+          "multipliers": {
+            "kal1_0_3_5_10": "1",
+            "kal1_4_5_8_10": "1",
+            "row_0_3_5": "-1",
+            "row_10_3_8": "1",
+            "row_4_5_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_143.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            10
+          ],
+          "iteration": 146,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_10",
+            "kal1_2_3_7_10",
+            "row_0_1_3",
+            "row_2_3_7",
+            "row_10_1_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_10": "1",
+            "kal1_2_3_7_10": "1",
+            "row_0_1_3": "-1",
+            "row_10_1_7": "1",
+            "row_2_3_7": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_146.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 148,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_5",
+            "kal1_2_3_4_5",
+            "row_0_1_3",
+            "row_2_3_4",
+            "row_5_1_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_5": "1",
+            "kal1_2_3_4_5": "1",
+            "row_0_1_3": "-1",
+            "row_2_3_4": "-1",
+            "row_5_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_148.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "iteration": 149,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_4",
+            "kal1_0_3_5_6",
+            "row_0_2_5",
+            "row_4_2_3",
+            "row_6_3_5"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal1_0_3_5_6": "1",
+            "row_0_2_5": "-1",
+            "row_4_2_3": "1",
+            "row_6_3_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_149.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 154,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_4_6",
+            "row_0_1_4",
+            "row_3_1_2",
+            "row_6_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_4_6": "1",
+            "row_0_1_4": "-1",
+            "row_3_1_2": "1",
+            "row_6_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_154.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 155,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_5_7",
+            "row_0_1_5",
+            "row_3_1_2",
+            "row_7_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_5_7": "1",
+            "row_0_1_5": "-1",
+            "row_3_1_2": "1",
+            "row_7_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_155.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            8,
+            10
+          ],
+          "iteration": 156,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_5_10",
+            "kal1_2_5_8_10",
+            "row_0_1_5",
+            "row_2_5_8",
+            "row_10_1_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_5_10": "1",
+            "kal1_2_5_8_10": "1",
+            "row_0_1_5": "-1",
+            "row_10_1_8": "1",
+            "row_2_5_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_156.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            5,
+            7,
+            8,
+            10
+          ],
+          "iteration": 158,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_7_10",
+            "kal1_5_7_8_10",
+            "row_0_2_7",
+            "row_5_7_8",
+            "row_10_2_8"
+          ],
+          "multipliers": {
+            "kal1_0_2_7_10": "1",
+            "kal1_5_7_8_10": "1",
+            "row_0_2_7": "-1",
+            "row_10_2_8": "1",
+            "row_5_7_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_158.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            5,
+            6,
+            8,
+            10
+          ],
+          "iteration": 166,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_6_10",
+            "kal1_5_6_8_10",
+            "row_0_3_6",
+            "row_5_6_8",
+            "row_10_3_8"
+          ],
+          "multipliers": {
+            "kal1_0_3_6_10": "1",
+            "kal1_5_6_8_10": "1",
+            "row_0_3_6": "-1",
+            "row_10_3_8": "1",
+            "row_5_6_8": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_166.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            4,
+            5,
+            7,
+            8
+          ],
+          "iteration": 172,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_5_8",
+            "kal1_4_5_7_8",
+            "row_0_2_5",
+            "row_4_5_7",
+            "row_8_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_5_8": "1",
+            "kal1_4_5_7_8": "1",
+            "row_0_2_5": "-1",
+            "row_4_5_7": "-1",
+            "row_8_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_172.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          5,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            7,
+            9,
+            10
+          ],
+          "iteration": 16,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_4_9",
+            "kal1_0_4_7_10",
+            "row_0_1_7",
+            "row_9_1_4",
+            "row_10_4_7"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_9": "1",
+            "kal1_0_4_7_10": "1",
+            "row_0_1_7": "-1",
+            "row_10_4_7": "1",
+            "row_9_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_016.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7
+          ],
+          "iteration": 45,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_7",
+            "kal1_1_3_4_7",
+            "row_0_2_3",
+            "row_1_3_4",
+            "row_7_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_7": "1",
+            "kal1_1_3_4_7": "1",
+            "row_0_2_3": "-1",
+            "row_1_3_4": "-1",
+            "row_7_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_045.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            8
+          ],
+          "iteration": 60,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_5_8",
+            "kal1_1_5_6_8",
+            "row_0_2_5",
+            "row_1_5_6",
+            "row_8_2_6"
+          ],
+          "multipliers": {
+            "kal1_0_2_5_8": "1",
+            "kal1_1_5_6_8": "1",
+            "row_0_2_5": "-1",
+            "row_1_5_6": "-1",
+            "row_8_2_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_060.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8
+          ],
+          "iteration": 101,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_8",
+            "kal1_1_3_4_8",
+            "row_0_2_3",
+            "row_1_3_4",
+            "row_8_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_8": "1",
+            "kal1_1_3_4_8": "1",
+            "row_0_2_3": "-1",
+            "row_1_3_4": "-1",
+            "row_8_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_101.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            7,
+            9
+          ],
+          "iteration": 113,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_7",
+            "kal1_0_3_4_9",
+            "row_0_1_4",
+            "row_7_1_3",
+            "row_9_3_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_7": "1",
+            "kal1_0_3_4_9": "1",
+            "row_0_1_4": "-1",
+            "row_7_1_3": "1",
+            "row_9_3_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_113.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 116,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_3_6",
+            "row_0_1_3",
+            "row_4_1_2",
+            "row_6_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_3_6": "1",
+            "row_0_1_3": "-1",
+            "row_4_1_2": "1",
+            "row_6_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_116.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            4,
+            6,
+            8,
+            9
+          ],
+          "iteration": 117,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_4_8",
+            "kal1_0_4_6_9",
+            "row_0_1_6",
+            "row_8_1_4",
+            "row_9_4_6"
+          ],
+          "multipliers": {
+            "kal1_0_1_4_8": "1",
+            "kal1_0_4_6_9": "1",
+            "row_0_1_6": "-1",
+            "row_8_1_4": "1",
+            "row_9_4_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_117.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "iteration": 132,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_3_8",
+            "kal1_1_3_7_8",
+            "row_0_2_3",
+            "row_1_3_7",
+            "row_8_2_7"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_8": "1",
+            "kal1_1_3_7_8": "1",
+            "row_0_2_3": "-1",
+            "row_1_3_7": "-1",
+            "row_8_2_7": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_132.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            5,
+            6,
+            7
+          ],
+          "iteration": 136,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_0_2_5_7",
+            "row_0_1_5",
+            "row_6_1_2",
+            "row_7_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_0_2_5_7": "1",
+            "row_0_1_5": "-1",
+            "row_6_1_2": "1",
+            "row_7_2_5": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_136.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            3,
+            4,
+            6,
+            7,
+            9
+          ],
+          "iteration": 151,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_7",
+            "kal1_0_4_6_9",
+            "row_0_3_6",
+            "row_7_3_4",
+            "row_9_4_6"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_7": "1",
+            "kal1_0_4_6_9": "1",
+            "row_0_3_6": "-1",
+            "row_7_3_4": "1",
+            "row_9_4_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_151.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            7
+          ],
+          "iteration": 164,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_5",
+            "kal1_0_3_4_7",
+            "row_0_1_4",
+            "row_5_1_3",
+            "row_7_3_4"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_5": "1",
+            "kal1_0_3_4_7": "1",
+            "row_0_1_4": "-1",
+            "row_5_1_3": "1",
+            "row_7_3_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_164.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            6
+          ],
+          "iteration": 18,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_0_2_3_5",
+            "row_0_1_3",
+            "row_5_2_3",
+            "row_6_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_0_2_3_5": "1",
+            "row_0_1_3": "-1",
+            "row_5_2_3": "1",
+            "row_6_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_018.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            10
+          ],
+          "iteration": 23,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal1_0_2_4_5",
+            "row_0_1_4",
+            "row_5_2_4",
+            "row_10_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal1_0_2_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_10_1_2": "1",
+            "row_5_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_023.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9
+          ],
+          "iteration": 20,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_9",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_4_2_3",
+            "row_9_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_9": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_4_2_3": "1",
+            "row_9_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_020.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            9
+          ],
+          "iteration": 23,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_4_6_9",
+            "kal1_2_3_4_9",
+            "row_0_4_6",
+            "row_2_3_4",
+            "row_9_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_4_6_9": "1",
+            "kal1_2_3_4_9": "1",
+            "row_0_4_6": "-1",
+            "row_2_3_4": "-1",
+            "row_9_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_023.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            8,
+            9
+          ],
+          "iteration": 33,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_9",
+            "kal1_0_3_4_8",
+            "row_0_1_4",
+            "row_8_3_4",
+            "row_9_1_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_9": "1",
+            "kal1_0_3_4_8": "1",
+            "row_0_1_4": "-1",
+            "row_8_3_4": "1",
+            "row_9_1_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_033.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 39,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_5",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_4_2_3",
+            "row_5_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_5": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_4_2_3": "1",
+            "row_5_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_039.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            7
+          ],
+          "iteration": 57,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_7",
+            "kal1_0_2_3_5",
+            "row_0_1_3",
+            "row_5_2_3",
+            "row_7_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_7": "1",
+            "kal1_0_2_3_5": "1",
+            "row_0_1_3": "-1",
+            "row_5_2_3": "1",
+            "row_7_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_057.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "iteration": 68,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_6",
+            "kal1_0_3_4_5",
+            "row_0_1_4",
+            "row_5_3_4",
+            "row_6_1_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_6": "1",
+            "kal1_0_3_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_5_3_4": "1",
+            "row_6_1_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_068.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "iteration": 69,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_3_6",
+            "kal1_0_3_4_5",
+            "row_0_1_4",
+            "row_5_3_4",
+            "row_6_1_3"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_6": "1",
+            "kal1_0_3_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_5_3_4": "1",
+            "row_6_1_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_069.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8
+          ],
+          "iteration": 95,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_8",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_4_2_3",
+            "row_8_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_8": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_4_2_3": "1",
+            "row_8_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_095.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            9
+          ],
+          "iteration": 96,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_9",
+            "kal1_0_2_3_5",
+            "row_0_1_3",
+            "row_5_2_3",
+            "row_9_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_9": "1",
+            "kal1_0_2_3_5": "1",
+            "row_0_1_3": "-1",
+            "row_5_2_3": "1",
+            "row_9_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_096.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ],
+          "iteration": 98,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_7",
+            "kal1_0_2_4_5",
+            "row_0_1_4",
+            "row_5_2_4",
+            "row_7_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_7": "1",
+            "kal1_0_2_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_5_2_4": "1",
+            "row_7_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_098.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            5,
+            8,
+            9,
+            10
+          ],
+          "iteration": 105,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_5_10",
+            "kal1_0_5_8_9",
+            "row_0_1_8",
+            "row_9_5_8",
+            "row_10_1_5"
+          ],
+          "multipliers": {
+            "kal1_0_1_5_10": "1",
+            "kal1_0_5_8_9": "1",
+            "row_0_1_8": "-1",
+            "row_10_1_5": "1",
+            "row_9_5_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_105.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 106,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_5",
+            "kal1_1_2_3_5",
+            "row_0_3_4",
+            "row_1_2_3",
+            "row_5_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_5": "1",
+            "kal1_1_2_3_5": "1",
+            "row_0_3_4": "-1",
+            "row_1_2_3": "-1",
+            "row_5_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_106.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            5,
+            10
+          ],
+          "iteration": 121,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_5_10",
+            "kal1_1_2_3_10",
+            "row_0_3_5",
+            "row_1_2_3",
+            "row_10_2_5"
+          ],
+          "multipliers": {
+            "kal1_0_3_5_10": "1",
+            "kal1_1_2_3_10": "1",
+            "row_0_3_5": "-1",
+            "row_10_2_5": "1",
+            "row_1_2_3": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_121.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            7
+          ],
+          "iteration": 128,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_7",
+            "kal1_1_2_3_7",
+            "row_0_3_4",
+            "row_1_2_3",
+            "row_7_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_7": "1",
+            "kal1_1_2_3_7": "1",
+            "row_0_3_4": "-1",
+            "row_1_2_3": "-1",
+            "row_7_2_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_128.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            10
+          ],
+          "iteration": 144,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_3_4_10",
+            "kal1_1_2_3_10",
+            "row_0_3_4",
+            "row_1_2_3",
+            "row_10_2_4"
+          ],
+          "multipliers": {
+            "kal1_0_3_4_10": "1",
+            "kal1_1_2_3_10": "1",
+            "row_0_3_4": "-1",
+            "row_10_2_4": "1",
+            "row_1_2_3": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_144.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            6
+          ],
+          "iteration": 147,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_6",
+            "kal1_0_2_3_4",
+            "row_0_1_3",
+            "row_4_2_3",
+            "row_6_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_6": "1",
+            "kal1_0_2_3_4": "1",
+            "row_0_1_3": "-1",
+            "row_4_2_3": "1",
+            "row_6_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_147.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            6,
+            7
+          ],
+          "iteration": 160,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_4_6_7",
+            "kal1_2_3_4_7",
+            "row_0_4_6",
+            "row_2_3_4",
+            "row_7_3_6"
+          ],
+          "multipliers": {
+            "kal1_0_4_6_7": "1",
+            "kal1_2_3_4_7": "1",
+            "row_0_4_6": "-1",
+            "row_2_3_4": "-1",
+            "row_7_3_6": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_160.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            8
+          ],
+          "iteration": 161,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_1_2_8",
+            "kal1_0_2_4_5",
+            "row_0_1_4",
+            "row_5_2_4",
+            "row_8_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_8": "1",
+            "kal1_0_2_4_5": "1",
+            "row_0_1_4": "-1",
+            "row_5_2_4": "1",
+            "row_8_1_2": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_161.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          5,
+          1
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            9
+          ],
+          "iteration": 12,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_4",
+            "kal1_0_2_3_9",
+            "row_0_3_4",
+            "row_1_2_4",
+            "row_9_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_9": "1",
+            "kal2_0_1_2_4": "1",
+            "row_0_3_4": "1",
+            "row_1_2_4": "-1",
+            "row_9_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_012.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            10
+          ],
+          "iteration": 104,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal1_0_2_4_10",
+            "kal2_1_4_5_10",
+            "row_0_2_4",
+            "row_5_1_4",
+            "row_10_1_2"
+          ],
+          "multipliers": {
+            "kal1_0_2_4_10": "1",
+            "kal2_1_4_5_10": "1",
+            "row_0_2_4": "-1",
+            "row_10_1_2": "-1",
+            "row_5_1_4": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_104.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            7
+          ],
+          "iteration": 7,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_5",
+            "kal2_0_4_5_7",
+            "row_0_2_7",
+            "row_1_2_5",
+            "row_4_5_7"
+          ],
+          "multipliers": {
+            "kal2_0_1_2_5": "1",
+            "kal2_0_4_5_7": "1",
+            "row_0_2_7": "1",
+            "row_1_2_5": "-1",
+            "row_4_5_7": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_007.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "iteration": 8,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_2_3_5",
+            "kal2_0_4_5_6",
+            "row_0_3_6",
+            "row_2_3_5",
+            "row_4_5_6"
+          ],
+          "multipliers": {
+            "kal2_0_2_3_5": "1",
+            "kal2_0_4_5_6": "1",
+            "row_0_3_6": "1",
+            "row_2_3_5": "-1",
+            "row_4_5_6": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_008.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            7
+          ],
+          "iteration": 85,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_2_3_5",
+            "kal2_0_4_5_7",
+            "row_0_3_7",
+            "row_2_3_5",
+            "row_4_5_7"
+          ],
+          "multipliers": {
+            "kal2_0_2_3_5": "1",
+            "kal2_0_4_5_7": "1",
+            "row_0_3_7": "1",
+            "row_2_3_5": "-1",
+            "row_4_5_7": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_085.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            5,
+            7,
+            10
+          ],
+          "iteration": 163,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_3_10",
+            "kal2_1_5_7_10",
+            "row_0_3_10",
+            "row_1_3_7",
+            "row_5_7_10"
+          ],
+          "multipliers": {
+            "kal2_0_1_3_10": "1",
+            "kal2_1_5_7_10": "1",
+            "row_0_3_10": "1",
+            "row_1_3_7": "-1",
+            "row_5_7_10": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_163.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          4,
+          2
+        ],
+        [
+          4,
+          3
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            7,
+            10
+          ],
+          "iteration": 125,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_10",
+            "kal1_0_2_3_7",
+            "row_0_3_10",
+            "row_1_2_10",
+            "row_7_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_7": "1",
+            "kal2_0_1_2_10": "1",
+            "row_0_3_10": "1",
+            "row_1_2_10": "-1",
+            "row_7_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_125.outer.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "iteration": 139,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_1_2_5",
+            "kal1_0_2_3_4",
+            "row_0_3_5",
+            "row_1_2_5",
+            "row_4_2_3"
+          ],
+          "multipliers": {
+            "kal1_0_2_3_4": "1",
+            "kal2_0_1_2_5": "1",
+            "row_0_3_5": "1",
+            "row_1_2_5": "-1",
+            "row_4_2_3": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_139.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            5,
+            7,
+            8,
+            9,
+            10
+          ],
+          "iteration": 145,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round4",
+          "metric_core": [
+            "kal2_0_7_9_10",
+            "kal1_5_7_8_9",
+            "row_0_9_10",
+            "row_7_5_10",
+            "row_8_5_9"
+          ],
+          "multipliers": {
+            "kal1_5_7_8_9": "1",
+            "kal2_0_7_9_10": "1",
+            "row_0_9_10": "1",
+            "row_7_5_10": "-1",
+            "row_8_5_9": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round4_a1/iteration_145.outer.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            8
+          ],
+          "iteration": 9,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_4_8",
+            "row_1_0_3",
+            "row_2_3_8",
+            "row_4_0_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_4_8": "1",
+            "row_1_0_3": "-1",
+            "row_2_3_8": "-1",
+            "row_4_0_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_009.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            8
+          ],
+          "iteration": 17,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_4",
+            "kal1_0_2_5_8",
+            "row_1_0_4",
+            "row_2_4_8",
+            "row_5_0_8"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_4": "1",
+            "kal1_0_2_5_8": "1",
+            "row_1_0_4": "-1",
+            "row_2_4_8": "-1",
+            "row_5_0_8": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_017.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            3,
+            9,
+            10
+          ],
+          "iteration": 20,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_3",
+            "kal1_0_2_9_10",
+            "row_1_0_3",
+            "row_2_3_10",
+            "row_9_0_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_3": "1",
+            "kal1_0_2_9_10": "1",
+            "row_1_0_3": "-1",
+            "row_2_3_10": "-1",
+            "row_9_0_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_020.full_lra.json"
+        },
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            3,
+            4,
+            9,
+            10
+          ],
+          "iteration": 30,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_3_4",
+            "kal1_0_3_9_10",
+            "row_1_0_4",
+            "row_3_4_10",
+            "row_9_0_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_3_4": "1",
+            "kal1_0_3_9_10": "1",
+            "row_1_0_4": "-1",
+            "row_3_4_10": "-1",
+            "row_9_0_10": "1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_030.full_lra.json"
+        }
+      ]
+    },
+    {
+      "core_vertex_count": 6,
+      "order_schema": [
+        [
+          1,
+          0
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "provenance": [
+        {
+          "analysis_source": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+          "certificate_verified": true,
+          "complete_core_vertices": [
+            0,
+            1,
+            2,
+            4,
+            5,
+            10
+          ],
+          "iteration": 12,
+          "kind": "FULL_ROW_2K3_EXACT",
+          "lane": "round3",
+          "metric_core": [
+            "kal1_0_1_2_10",
+            "kal2_1_4_5_10",
+            "row_1_0_5",
+            "row_2_0_10",
+            "row_4_5_10"
+          ],
+          "multipliers": {
+            "kal1_0_1_2_10": "1",
+            "kal2_1_4_5_10": "1",
+            "row_1_0_5": "-1",
+            "row_2_0_10": "1",
+            "row_4_5_10": "-1"
+          },
+          "source": "scratch/atail-force/generic-biapex-kalmanson-cnf/cegar_round3_a1/iteration_012.full_lra.json"
+        }
+      ]
+    }
+  ],
+  "source_count": 2,
+  "sources": [
+    {
+      "path": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round3_small_cores.json",
+      "sha256": "7d52a0e035fb22935c1bfd0173e086c09faaa76c0c24f8c81fc2f856014107b7"
+    },
+    {
+      "path": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/cnf_round4_small_cores.json",
+      "sha256": "27d43ee407fe70d1fe84b37005b4e1fead937675a06a48e19e9d89dad29d8a26"
+    }
+  ]
+}

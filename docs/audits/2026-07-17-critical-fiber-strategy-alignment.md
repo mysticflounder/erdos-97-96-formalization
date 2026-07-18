@@ -1007,15 +1007,53 @@ exact `(5,6,6)` cap blocks and seven-orbit packet; any structural/LRA survivor
 must pass an exact source-mapped Euclidean equality-ideal check before the lane
 claims geometric progress.
 
-The exact-card-seven successor is a checked occurrence, not a contradiction.
-Five strict-interior positions must contain the three distinct cycle sources
-and three pairwise-distinct blockers; because each blocker differs from its
-two incident sources, one source's actual blocker is forced to equal its
-transition successor.  The whole-carrier scratch form retains q's exact shell
-and full deletion failure at that successor.  The indexed bank has no terminal
-for this source/blocker equality, and cap eight can realize all six roles as
-distinct.  The next theorem must couple the exact-seven occurrence back to the
-retained first-apex/frontier/MEC/minimality packet; cardinality alone stops here.
+The independent source audit makes that completion precise.  The active
+all-center/total-blocker encoding is a sound necessary-condition relaxation,
+not a full-parent model.  It must additionally require the continuation unused
+source to lie in the closed physical cap.  Its mutual-source and mutual-target
+blockers are correctly constrained to be distinct; this is now kernel-checked
+from mutual omission plus `no_qfree_at`, and is separate from the open
+unused-source/partner equal-blocker outcome.  First-apex deletion robustness
+and the named frontier/double-deletion packet, full minimality, global
+`noM44`, MEC, and planar rank-two realization remain outside the abstraction.
+Thus UNSAT is useful only with a checkable coverage certificate, while SAT is
+still only a partial-parent abstract-distance shadow.
+
+The first independent certificate audit rules out treating the old bank as
+that coverage theorem.  A deterministic corrected CNF was generated for each
+of the seven role orbits with 476 variables, 218,863--218,903 clauses, and all
+102,102 embeddings of the twenty verified transported schemas.  All seven are
+SAT, and complete assignment regeneration/replay passes.  These are exact
+finite structural assignments, not abstract-distance or live models.
+
+The first pinned assignment is accepted by the active source outer but is
+refuted by its exact linear oracle.  The new core is a ten-Kalmanson/three-row
+weighted cancellation with six membership antecedents, unit strict weights,
+and row multipliers `+1,+1,-1`; exact coefficient replay passes and the schema
+is outside the old twenty.  Since the generic weighted consumer already
+kernel-checks, the viable coverage object is an append-only certified-cut
+CEGAR ledger followed by regenerated per-orbit CNF and checked DRAT/LRAT, not a
+larger static preload or an unrecorded stream of Z3 refinements.
+
+The nonlinear branch has one new finite reduction.  Two physical-class hits
+in an actual critical row force its actual blocker into the four-point strict
+physical cap.  The physical-card-four and physical-card-three cases sharpen
+this to `physicalVertices` and `insert unused physicalVertices`, respectively.
+This is kernel-checked source-faithful geometry, but it does not prove that a
+row has two hits.  The remaining one-hit cells are bounded-search unknown; no
+numerical no-hit result is an infeasibility claim.
+
+The exact-card-seven successor is now a checked source-clean normal form, not a
+contradiction.  The occurrence equality plus global reverse membership gives a
+predecessor row whose physical-cap intersection is `{p,q}` and whose outside
+residual is exactly `{a,b}`; deletion of `q` fails K4 at the successor while
+deletion of the successor preserves K4 there.  First-apex co-radiality of
+`a,b` is the single remaining antecedent of an existing ordered-cap terminal.
+An exact rational eight-point strict-convex/nonobtuse/MEC model realizes every
+cap-local field in this normal form, so the equality cannot come from cap order
+or MEC in isolation.  It must use the retained all-center critical map,
+frontier, or global minimality.  Cap eight can realize all six source/blocker
+roles as distinct, so the counting occurrence itself stops at exact seven.
 
 ## Synchronized documents
 

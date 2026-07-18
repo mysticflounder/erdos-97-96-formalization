@@ -1,0 +1,51 @@
+{
+  "artifacts": {
+    "cnf": {
+      "bytes": 717,
+      "path": "smoke.cnf",
+      "sha256": "23aa25b5b68c7bcbb16f003dc28d2a513f7085825e0d373c5449e02477ceb364"
+    },
+    "core": {
+      "bytes": 61,
+      "path": "smoke.core.cnf",
+      "sha256": "511e17c8782fbd3c0e459a88aac11454f3cb4d3adbf499e1e8d34627079d9494"
+    },
+    "drat": {
+      "bytes": 146,
+      "path": "smoke.drat",
+      "sha256": "9d58ee665af052de3c44575b6d272791fd3d92e53f435f1567ba72629363ec67"
+    },
+    "lrat": {
+      "bytes": 134,
+      "path": "smoke.lrat",
+      "sha256": "dbf20af4d95017bf7dfbf269f464b6f94f1f55bab1a13b81965dc94923ea6cc5"
+    },
+    "manifest": {
+      "bytes": 1902,
+      "path": "smoke.manifest.json",
+      "sha256": "744f30753999b0c32472dd84871c73427f0b27796901132cfc69def192a08417"
+    },
+    "solver_output": {
+      "bytes": 4162,
+      "path": "smoke.solver.txt",
+      "sha256": "91766eb802d89c74ec84b50b4b0c09e700bc010cb04c7cca939ee3cac0e99737"
+    }
+  },
+  "epistemic_status": "FINITE_STRUCTURAL_VERDICT_NOT_LIVE_LEAN_CLOSURE",
+  "live_closure": false,
+  "orbit": null,
+  "profile": "smoke",
+  "proof_check": {
+    "checker": "drat-trim",
+    "output": "c turning on binary mode checking\nc parsing input formula with 25 variables and 43 clauses\nc finished parsing, read 146 bytes from proof file\nc UNSAT via unit propagation on the input instance\nc 7 of 43 clauses in core                            \nc 1 of 2 lemmas in core using 7 resolution steps\nc 0 RAT lemmas in core; 0 redundant literals in core lemmas\ns VERIFIED\nc verification time: 0.019 seconds\n",
+    "returncode": 0,
+    "verified": true
+  },
+  "schema": "p97-exact6-allcenter-coverage-result-v1",
+  "solver": {
+    "name": "cadical",
+    "returncode": 20,
+    "timeout_seconds": 60
+  },
+  "verdict": "UNSAT_DRAT_VERIFIED"
+}

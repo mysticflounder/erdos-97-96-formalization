@@ -1,0 +1,218 @@
+{
+  "schema": "p97-exact6-total-surface-source-audit-v1",
+  "scope": {
+    "carrier_cardinality": 14,
+    "canonical_surplus_index": 0,
+    "closed_cap_profile": [5, 6, 6],
+    "branch": "FullParentExactFiveMutualData",
+    "active_encoding": "scratch/atail-force/exact6-allcenter-capaware-gate/allcenter_gate.py",
+    "epistemic_boundary": "A SAT result is an exact result only for the encoded abstract-distance subsystem. It is not a live Euclidean parent model."
+  },
+  "status_legend": {
+    "encoded": "The active encoding contains the source consequence at the stated abstraction level.",
+    "encoded_derived": "The active encoding contains a theorem-derived consequence rather than the full parent field.",
+    "partial": "Only a strict weakening or projection is encoded.",
+    "missing": "A live parent field or necessary consequence is absent.",
+    "slice": "This is a deliberate exact-cardinality specialization, not the full live branch.",
+    "external_gate_only": "Tested only by a later incomplete gate, not by the main abstract-distance model."
+  },
+  "constraints": [
+    {
+      "id": "scope.card14_cap566",
+      "status": "slice",
+      "active_location": "allcenter_gate.py:28-39",
+      "source": [
+        "CounterexampleData.capSum",
+        "CounterexampleData.surplus_card_gt_four",
+        "FrontierLargeOppositeCapsBiApexRobustResidual.firstOppCap_card_ge_six",
+        "FrontierLargeOppositeCapsBiApexRobustResidual.secondOppCap_card_ge_six"
+      ],
+      "note": "At card 14 the three lower bounds and closed-cap sum force (5,6,6). The live parent only proves card at least 14."
+    },
+    {
+      "id": "carrier.one_selected_k4_row_per_center",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:188-191",
+      "source": ["CounterexampleData.K4", "SelectedFourClass"],
+      "note": "A four-element non-self selected witness row is chosen at every carrier center."
+    },
+    {
+      "id": "carrier.strict_convex_cyclic_metric_consequences",
+      "status": "partial",
+      "active_location": "allcenter_gate.py:193-244, linear_metric_check",
+      "source": [
+        "CounterexampleData.convex",
+        "WholeCarrierBiApexKalmansonSurface"
+      ],
+      "note": "Row-intersection, perpendicular-bisector alternation, cap-hit, strict triangle, and strict Kalmanson consequences are encoded; a planar rank-two strictly-convex realization is not."
+    },
+    {
+      "id": "critical_system.total_source_indexed_blocker_map",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:300-307, exact_semantic_metric_check",
+      "source": [
+        "CriticalShellSystem.shellAt",
+        "CriticalShellSystem.centerAt",
+        "CriticalShellSystem.selectedAt"
+      ],
+      "note": "Every source has a carrier-valued blocker distinct from itself; its exact selected support is the common row at that blocker and contains the source."
+    },
+    {
+      "id": "critical_system.no_qfree_at_every_source",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:exact_semantic_metric_check",
+      "source": ["CriticalShellSystem.no_qfree", "CriticalShellSystem.no_qfree_at"],
+      "note": "Every four-subset remaining after source deletion is forbidden from being one positive-radius class at that source's blocker."
+    },
+    {
+      "id": "critical_system.equal_blockers_lock_support",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:one m[center,*] row shared by all sources mapping to center",
+      "source": [
+        "CriticalShellSystem.selectedFourClass_support_eq_shell",
+        "blocker_row_support_eq_shell"
+      ],
+      "note": "Sources with the same blocker necessarily use the same exact support in the model."
+    },
+    {
+      "id": "biapex.blocker_image_omits_both_physical_apices",
+      "status": "encoded_derived",
+      "active_location": "allcenter_gate.py:305",
+      "source": [
+        "FrontierCommonDeletionParentResidual.actualBlocker_ne_firstApex",
+        "FrontierBiApexRobustResidual.secondApex_robust"
+      ],
+      "note": "Only the blocker-image consequence is retained; the deletion-survival content that proves it is not."
+    },
+    {
+      "id": "parent.first_apex_fully_deletion_robust",
+      "status": "missing",
+      "active_location": null,
+      "source": [
+        "FrontierCommonDeletionParentResidual.firstApexFullyDeletionRobust",
+        "FrontierBiApexRobustResidual.firstApex_robust"
+      ],
+      "note": "The model does not require K4 at FIRST_APEX after deletion of every carrier source. This is substantially stronger than merely excluding FIRST_APEX from the blocker image."
+    },
+    {
+      "id": "parent.original_frontier_pair_and_common_double_deletion",
+      "status": "missing",
+      "active_location": null,
+      "source": [
+        "SurvivorPairRelocationPacket",
+        "CriticalPairFrontier",
+        "FrontierCommonDeletionResidual",
+        "FrontierCommonDeletionParentResidual.common"
+      ],
+      "note": "No named off-surplus first-apex co-radial pair, first-apex double deletion, second-apex double deletion, or origin-tagged common-deletion packet is retained."
+    },
+    {
+      "id": "parent.minimality",
+      "status": "partial",
+      "active_location": "allcenter_gate.py:strongly_connected plus lazy connectivity cuts",
+      "source": [
+        "CounterexampleData.Minimal",
+        "selectedWitnessEdge_reflTransGen"
+      ],
+      "note": "One chosen witness digraph is forced strongly connected. The exact distance model is not checked for a proper K4-closed carrier subset, and full Minimal also quantifies over smaller convex K4 sets outside the carrier."
+    },
+    {
+      "id": "parent.global_noM44",
+      "status": "missing",
+      "active_location": null,
+      "source": ["FrontierCommonDeletionParentResidual.noM44"],
+      "note": "The current fixed (5,6,6) packet is not M44, but the live field forbids every alternative SurplusCapPacket on the same carrier."
+    },
+    {
+      "id": "caps.actual_mec_nonobtuse_circumscribed_packet",
+      "status": "missing",
+      "active_location": null,
+      "source": [
+        "SurplusCapPacket.triangleNonObtuse",
+        "SurplusCapPacket.hCirc",
+        "SurplusCapPacket.partition"
+      ],
+      "note": "The fixed contiguous blocks encode cap combinatorics, not common MEC-boundary equations, disk containment, the circumscribed branch, or the nonobtuse support-triangle inequalities."
+    },
+    {
+      "id": "profile.exact_five_second_apex_unique_radius",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:246-266, exact_semantic_metric_check",
+      "source": ["LargeCapUniqueFiveSecondApexRadius"],
+      "note": "The full class has cardinality five and every other positive-radius class at SECOND_APEX has cardinality at most three. This is correctly imposed on the original carrier, not only after erasing unused."
+    },
+    {
+      "id": "profile.exact_six_physical_distribution",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:250-264",
+      "source": [
+        "ExactSixPhysicalApexDistribution",
+        "three_le_capInterior_hits_of_largeCapUniqueFive"
+      ],
+      "note": "The strict physical-cap intersection has size three or four; the adjacent-cap counts match the two production cases."
+    },
+    {
+      "id": "continuation.unused_source_in_closed_physical_cap",
+      "status": "missing",
+      "active_location": "allcenter_gate.py:296-298 only requires unused outside shell",
+      "source": [
+        "LargeCapUniqueFiveUnusedPoint.point_mem_oppCap2",
+        "LargeCapUniqueFiveUnusedPoint.point_mem_capByIndex"
+      ],
+      "note": "The live unused source lies in PHYSICAL_CAP={0,1,2,3,4,5}; the active encoding permits any carrier point outside the exact-five shell."
+    },
+    {
+      "id": "continuation.two_physical_common_deletions",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:268-319 plus exact metric semantics",
+      "source": ["LargeCapUniqueFiveTwoCommonDeletionSources"],
+      "note": "The two distinct strict-physical shell roles, both unused-row omissions, the low-hit bound, and survival at the unused blocker and second apex are represented."
+    },
+    {
+      "id": "mutual_pair.physical_roles_and_bidirectional_omission",
+      "status": "encoded",
+      "active_location": "allcenter_gate.py:268-294, 320-321",
+      "source": ["PhysicalActualCriticalMutualOmissionPair"],
+      "note": "The seven equality orbits exhaust the relation between the ordered continuation pair and ordered mutual pair."
+    },
+    {
+      "id": "mutual_pair.actual_blockers_distinct",
+      "status": "encoded_derived",
+      "active_location": "allcenter_gate.py:322",
+      "source": [
+        "MutualOmissionBlockersDistinct.lean:mutualOmissionPair_actualBlockers_ne",
+        "cross_deletion_survives_iff_not_mem_selected_support",
+        "CriticalShellSystem.no_qfree_at"
+      ],
+      "note": "This is valid. It is unrelated to FullParentMutualEqualBlockerShell, whose equal blockers belong to the continuation unused source and a chosen mutual partner."
+    },
+    {
+      "id": "euclidean.planar_rank_two_realization",
+      "status": "external_gate_only",
+      "active_location": "allcenter_gate.py:polynomial_equations and exact_cas_gate",
+      "source": ["D.A : Finset R2"],
+      "note": "The CAS gate tests only selected-row and exact-five shell equality equations. It omits convex orientation, exact-filter inequalities, no_qfree inequalities, cap/MEC inequalities, minimality, and noM44. NONUNIT is not a Euclidean realization."
+    },
+    {
+      "id": "scope.cardinality_ge_15",
+      "status": "missing",
+      "active_location": null,
+      "source": ["FrontierLargeOppositeCapsBiApexRobustResidual.carrier_card_ge_fourteen"],
+      "note": "The active N=14 gate cannot close the uniform card-at-least-14 parent theorem by itself."
+    }
+  ],
+  "audit_verdict": {
+    "overstrong_constraints_found": [],
+    "underconstraints_found": [
+      "continuation.unused_source_in_closed_physical_cap",
+      "parent.first_apex_fully_deletion_robust",
+      "parent.original_frontier_pair_and_common_double_deletion",
+      "parent.minimality",
+      "parent.global_noM44",
+      "caps.actual_mec_nonobtuse_circumscribed_packet",
+      "euclidean.planar_rank_two_realization",
+      "scope.cardinality_ge_15"
+    ],
+    "labeling_bug": "SAT_VERIFIED_SOURCE_FAITHFUL_ABSTRACT_DISTANCE_SHADOW overstates the encoded surface; use a retained-subsystem or partial-parent label."
+  }
+}

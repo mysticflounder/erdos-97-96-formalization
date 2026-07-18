@@ -2096,6 +2096,58 @@ anonymous row or resume literal-core mining.  At cardinality fourteen this is
 the exact `(5,6,6)` all-center gate; a SAT linear shadow must still be tested by
 the exact Euclidean equality oracle before it is treated as geometry evidence.
 
+The independent source audit now fixes the trust boundary of that gate.  Its
+all-center rows, total blocker map, exact blocker-row locking, full
+`no_qfree_at` semantics, cap bounds, and linear convex-order consequences are
+sound necessary live consequences.  The mutual pair's two own blockers really
+are distinct; a new kernel-checked theorem derives this from mutual omission
+and `no_qfree_at`.  The separate equal-blocker arm compares the continuation
+unused-source blocker with an oriented mutual partner and remains represented.
+Before interpreting any new survivor, the finite gate must add the omitted
+necessary fact that the unused continuation source lies in the closed physical
+cap.  Even after that correction, a SAT result remains a partial-parent
+abstract-distance shadow: first-apex full deletion robustness and the named
+frontier/double deletions, full minimality, global `noM44`, MEC, and planar
+rank-two realization are not encoded.  Conversely, a checkably certified
+UNSAT result for this weaker corrected surface would eliminate the card-fourteen
+slice.
+
+The first certificate-oriented coverage audit now decides what must be
+enumerated.  A deterministic CNF encoding of the corrected structural surface
+includes all-center selected rows, all-source blockers, cap/order bounds,
+selected-row strong connectivity, `unused` in the closed physical cap, and
+all 102,102 increasing/reflected applications of the previously verified
+20-schema Kalmanson bank.  Every one of the seven role-orbit CNFs is SAT.  Each
+returned 476-variable assignment has been regenerated and replayed against
+approximately 218,900 clauses, so the static 20-schema bank is not coverage of
+this finite abstraction.
+
+This negative also identifies the correct positive loop.  Pinning the first
+`continuationOrder` SAT assignment into the active all-center source and
+running its exact linear oracle gives UNSAT from ten second Kalmanson
+inequalities and three selected-row equalities.  Exact vector replay uses unit
+Kalmanson multipliers and row multipliers `+1,+1,-1`, and the resulting
+six-membership schema is not one of the old twenty.  The generic theorem
+`false_of_weighted_kalmanson_cancellation` already kernel-checks the arithmetic
+consumer.  The active card-fourteen route is therefore a certificate-producing
+CEGAR loop: canonicalize every new shell-free linear core, transport its
+membership cut, verify its rational cancellation independently, and seek a
+DRAT/LRAT-checked UNSAT cover of all seven corrected CNFs.  A finite SAT
+assignment, one new cut, or a long prefix of LRA refutations is not live
+coverage.
+
+There is also a genuine nonlinear reduction before any larger coordinate
+search.  Kernel-checked scratch proves that if one actual mutual critical row
+contains two distinct physical exact-five vertices, then its actual blocker
+lies in the four-point strict physical-cap interior.  In the physical-card-four
+arm that blocker is one of `physicalVertices`; in the physical-card-three arm,
+when the unused sixth cap point lies in the strict interior, it is in
+`insert unused physicalVertices`.  This converts every two-hit row to a finite
+alias/order split.  It does not force two hits.  The complementary one-hit MEC
+cells remain bounded-search `UNKNOWN_NO_HIT`, with no exact witness or
+infeasibility certificate, so increasing the numerical budget is not a closure
+claim.
+
 The global-minimal-deletion shortcut has also been corrected.  Its collision
 center may be the physical apex, and a nontrivial core excludes the second
 apex but not the first, so three distinct robust centers are not unconditional.
@@ -2106,17 +2158,26 @@ both current terminal antecedents.  That adapter is therefore retired unless
 a later theorem visibly adds nonlinear Euclidean/full-radius, MEC/`noM44`, or
 strictly stronger global-minimality force.
 
-Exact cap seven has also been reduced honestly, but not closed.  The
-kernel-checked scratch theorem
-`exists_source_blocker_eq_transition_successor_of_secondCap_card_eq_seven`
-shows that some physical source has its chosen critical blocker equal to its
-transition successor.  The whole-carrier form preserves the exact critical
-row and full `no_qfree_at` deletion failure at that successor.  No indexed
-consumer makes this equality contradictory: it needs a first-apex return,
-repeated blocker/common outside pair, or another positive row incidence from
-the retained full parent.  At cap eight the strict interior has six positions,
-so the six source/blocker roles may all be distinct; the counting route is
-therefore exhausted above exact seven.
+Exact cap seven has also been reduced honestly to one global metric producer,
+but not closed.  The kernel-checked occurrence theorem forces a physical source
+`q` with `H.centerAt q = transition.successor q`.  Global reverse membership
+makes the transition a permutation, so the source-clean normal form in
+`exact7-successor-terminal/` recovers a predecessor `p` and an exact outside
+residual pair `{a,b}`.  It retains the cap intersection `{p,q}`, deletion of
+`q` failing K4 at the successor, and deletion of the successor preserving K4
+at the same center.  The single missing equality
+
+```text
+dist S.oppApex1 a = dist S.oppApex1 b
+```
+
+then reaches the existing ordered-cap `False` consumer immediately.  An exact
+rational eight-point strictly convex/nonobtuse/MEC model realizes all of the
+cap-local source-successor-blocker facts without constraining that outside
+pair.  Consequently this equality must come from the complete all-center
+critical map, retained frontier, global minimality, or equivalent parent force;
+another cap-local theorem cannot supply it.  At cap eight the strict interior
+has six positions, so the counting occurrence itself no longer follows.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson

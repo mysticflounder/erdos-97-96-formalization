@@ -1,0 +1,1481 @@
+{
+  "all_orbits_sat": true,
+  "epistemic_status": "EXHAUSTIVE_SEVEN_ORBIT_EXACT_SAT_WITHIN_FINITE_STRUCTURAL_ENCODING",
+  "live_closure": false,
+  "result_count": 7,
+  "results": [
+    {
+      "cnf_sha256": "e65851c851c7d3b4f57ae9e969e93037e87a8a108a40eaef29c9926e9d3988b4",
+      "decoded": {
+        "blockers": [
+          12,
+          13,
+          11,
+          0,
+          1,
+          2,
+          4,
+          10,
+          0,
+          1,
+          4,
+          12,
+          0,
+          8
+        ],
+        "roles": {
+          "first": 1,
+          "second": 4,
+          "source": 1,
+          "target": 4,
+          "unused": 2
+        },
+        "rows": {
+          "0": [
+            3,
+            6,
+            8,
+            12
+          ],
+          "1": [
+            4,
+            9,
+            11,
+            12
+          ],
+          "10": [
+            0,
+            2,
+            4,
+            7
+          ],
+          "11": [
+            2,
+            8,
+            9,
+            12
+          ],
+          "12": [
+            0,
+            1,
+            8,
+            11
+          ],
+          "13": [
+            1,
+            2,
+            10,
+            12
+          ],
+          "2": [
+            1,
+            5,
+            6,
+            7
+          ],
+          "3": [
+            0,
+            4,
+            8,
+            10
+          ],
+          "4": [
+            2,
+            3,
+            6,
+            10
+          ],
+          "5": [
+            3,
+            7,
+            11,
+            13
+          ],
+          "6": [
+            4,
+            5,
+            7,
+            10
+          ],
+          "7": [
+            0,
+            5,
+            12,
+            13
+          ],
+          "8": [
+            2,
+            6,
+            9,
+            13
+          ],
+          "9": [
+            1,
+            3,
+            4,
+            12
+          ]
+        },
+        "shell": [
+          1,
+          3,
+          4,
+          5,
+          12
+        ]
+      },
+      "num_clauses": 218877,
+      "num_variables": 476,
+      "orbit": "continuationOrder",
+      "returncode": 10,
+      "solver_output_sha256": "32e0729816e1bde730e0aa39425766aa54eb0d4b3f1a911b7be8aeb8c55a3061",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_12",
+        "blocker_10_4",
+        "blocker_11_12",
+        "blocker_12_0",
+        "blocker_13_8",
+        "blocker_1_13",
+        "blocker_2_11",
+        "blocker_3_0",
+        "blocker_4_1",
+        "blocker_5_2",
+        "blocker_6_4",
+        "blocker_7_10",
+        "blocker_8_0",
+        "blocker_9_1",
+        "member_0_12",
+        "member_0_3",
+        "member_0_6",
+        "member_0_8",
+        "member_10_0",
+        "member_10_2",
+        "member_10_4",
+        "member_10_7",
+        "member_11_12",
+        "member_11_2",
+        "member_11_8",
+        "member_11_9",
+        "member_12_0",
+        "member_12_1",
+        "member_12_11",
+        "member_12_8",
+        "member_13_1",
+        "member_13_10",
+        "member_13_12",
+        "member_13_2",
+        "member_1_11",
+        "member_1_12",
+        "member_1_4",
+        "member_1_9",
+        "member_2_1",
+        "member_2_5",
+        "member_2_6",
+        "member_2_7",
+        "member_3_0",
+        "member_3_10",
+        "member_3_4",
+        "member_3_8",
+        "member_4_10",
+        "member_4_2",
+        "member_4_3",
+        "member_4_6",
+        "member_5_11",
+        "member_5_13",
+        "member_5_3",
+        "member_5_7",
+        "member_6_10",
+        "member_6_4",
+        "member_6_5",
+        "member_6_7",
+        "member_7_0",
+        "member_7_12",
+        "member_7_13",
+        "member_7_5",
+        "member_8_13",
+        "member_8_2",
+        "member_8_6",
+        "member_8_9",
+        "member_9_1",
+        "member_9_12",
+        "member_9_3",
+        "member_9_4",
+        "role_first_1",
+        "role_second_4",
+        "role_source_1",
+        "role_target_4",
+        "role_unused_2",
+        "shell_1",
+        "shell_12",
+        "shell_3",
+        "shell_4",
+        "shell_5"
+      ]
+    },
+    {
+      "cnf_sha256": "654bc4c3ceb445ec9112314d9c479d2ef5e7e3ccddd6739727d2bbb822d627fd",
+      "decoded": {
+        "blockers": [
+          12,
+          13,
+          11,
+          0,
+          1,
+          2,
+          4,
+          10,
+          0,
+          1,
+          4,
+          12,
+          0,
+          8
+        ],
+        "roles": {
+          "first": 1,
+          "second": 4,
+          "source": 4,
+          "target": 1,
+          "unused": 2
+        },
+        "rows": {
+          "0": [
+            3,
+            6,
+            8,
+            12
+          ],
+          "1": [
+            4,
+            9,
+            11,
+            12
+          ],
+          "10": [
+            0,
+            2,
+            4,
+            7
+          ],
+          "11": [
+            2,
+            8,
+            9,
+            12
+          ],
+          "12": [
+            0,
+            1,
+            8,
+            11
+          ],
+          "13": [
+            1,
+            2,
+            10,
+            12
+          ],
+          "2": [
+            1,
+            5,
+            6,
+            7
+          ],
+          "3": [
+            0,
+            4,
+            8,
+            10
+          ],
+          "4": [
+            2,
+            3,
+            6,
+            10
+          ],
+          "5": [
+            3,
+            7,
+            11,
+            13
+          ],
+          "6": [
+            4,
+            5,
+            7,
+            10
+          ],
+          "7": [
+            0,
+            5,
+            12,
+            13
+          ],
+          "8": [
+            2,
+            6,
+            9,
+            13
+          ],
+          "9": [
+            1,
+            3,
+            4,
+            12
+          ]
+        },
+        "shell": [
+          1,
+          3,
+          4,
+          5,
+          12
+        ]
+      },
+      "num_clauses": 218877,
+      "num_variables": 476,
+      "orbit": "reverseContinuationOrder",
+      "returncode": 10,
+      "solver_output_sha256": "7496ab1c3c0242470df0574010caae14e64905c1003491f892be7bfbed2bdb17",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_12",
+        "blocker_10_4",
+        "blocker_11_12",
+        "blocker_12_0",
+        "blocker_13_8",
+        "blocker_1_13",
+        "blocker_2_11",
+        "blocker_3_0",
+        "blocker_4_1",
+        "blocker_5_2",
+        "blocker_6_4",
+        "blocker_7_10",
+        "blocker_8_0",
+        "blocker_9_1",
+        "member_0_12",
+        "member_0_3",
+        "member_0_6",
+        "member_0_8",
+        "member_10_0",
+        "member_10_2",
+        "member_10_4",
+        "member_10_7",
+        "member_11_12",
+        "member_11_2",
+        "member_11_8",
+        "member_11_9",
+        "member_12_0",
+        "member_12_1",
+        "member_12_11",
+        "member_12_8",
+        "member_13_1",
+        "member_13_10",
+        "member_13_12",
+        "member_13_2",
+        "member_1_11",
+        "member_1_12",
+        "member_1_4",
+        "member_1_9",
+        "member_2_1",
+        "member_2_5",
+        "member_2_6",
+        "member_2_7",
+        "member_3_0",
+        "member_3_10",
+        "member_3_4",
+        "member_3_8",
+        "member_4_10",
+        "member_4_2",
+        "member_4_3",
+        "member_4_6",
+        "member_5_11",
+        "member_5_13",
+        "member_5_3",
+        "member_5_7",
+        "member_6_10",
+        "member_6_4",
+        "member_6_5",
+        "member_6_7",
+        "member_7_0",
+        "member_7_12",
+        "member_7_13",
+        "member_7_5",
+        "member_8_13",
+        "member_8_2",
+        "member_8_6",
+        "member_8_9",
+        "member_9_1",
+        "member_9_12",
+        "member_9_3",
+        "member_9_4",
+        "role_first_1",
+        "role_second_4",
+        "role_source_4",
+        "role_target_1",
+        "role_unused_2",
+        "shell_1",
+        "shell_12",
+        "shell_3",
+        "shell_4",
+        "shell_5"
+      ]
+    },
+    {
+      "cnf_sha256": "ddd18aedce87e1459ebb432c915ff7388b432b02461a406d10d84dc588eced98",
+      "decoded": {
+        "blockers": [
+          6,
+          2,
+          12,
+          1,
+          13,
+          8,
+          0,
+          4,
+          0,
+          3,
+          8,
+          12,
+          0,
+          4
+        ],
+        "roles": {
+          "first": 4,
+          "second": 1,
+          "source": 4,
+          "target": 2,
+          "unused": 0
+        },
+        "rows": {
+          "0": [
+            6,
+            7,
+            8,
+            12
+          ],
+          "1": [
+            3,
+            5,
+            10,
+            11
+          ],
+          "10": [
+            1,
+            4,
+            9,
+            11
+          ],
+          "11": [
+            2,
+            7,
+            10,
+            12
+          ],
+          "12": [
+            2,
+            8,
+            11,
+            13
+          ],
+          "13": [
+            0,
+            4,
+            7,
+            11
+          ],
+          "2": [
+            1,
+            3,
+            6,
+            13
+          ],
+          "3": [
+            1,
+            5,
+            8,
+            9
+          ],
+          "4": [
+            3,
+            5,
+            7,
+            13
+          ],
+          "5": [
+            3,
+            9,
+            10,
+            12
+          ],
+          "6": [
+            0,
+            11,
+            12,
+            13
+          ],
+          "7": [
+            4,
+            5,
+            9,
+            13
+          ],
+          "8": [
+            0,
+            1,
+            5,
+            10
+          ],
+          "9": [
+            2,
+            4,
+            6,
+            10
+          ]
+        },
+        "shell": [
+          1,
+          2,
+          4,
+          6,
+          10
+        ]
+      },
+      "num_clauses": 218863,
+      "num_variables": 476,
+      "orbit": "sharesFirstAtSource",
+      "returncode": 10,
+      "solver_output_sha256": "fac7a650f69d774305eab5e9b2a9ff73099fd719d3335c350ec1d90190bdb895",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_6",
+        "blocker_10_8",
+        "blocker_11_12",
+        "blocker_12_0",
+        "blocker_13_4",
+        "blocker_1_2",
+        "blocker_2_12",
+        "blocker_3_1",
+        "blocker_4_13",
+        "blocker_5_8",
+        "blocker_6_0",
+        "blocker_7_4",
+        "blocker_8_0",
+        "blocker_9_3",
+        "member_0_12",
+        "member_0_6",
+        "member_0_7",
+        "member_0_8",
+        "member_10_1",
+        "member_10_11",
+        "member_10_4",
+        "member_10_9",
+        "member_11_10",
+        "member_11_12",
+        "member_11_2",
+        "member_11_7",
+        "member_12_11",
+        "member_12_13",
+        "member_12_2",
+        "member_12_8",
+        "member_13_0",
+        "member_13_11",
+        "member_13_4",
+        "member_13_7",
+        "member_1_10",
+        "member_1_11",
+        "member_1_3",
+        "member_1_5",
+        "member_2_1",
+        "member_2_13",
+        "member_2_3",
+        "member_2_6",
+        "member_3_1",
+        "member_3_5",
+        "member_3_8",
+        "member_3_9",
+        "member_4_13",
+        "member_4_3",
+        "member_4_5",
+        "member_4_7",
+        "member_5_10",
+        "member_5_12",
+        "member_5_3",
+        "member_5_9",
+        "member_6_0",
+        "member_6_11",
+        "member_6_12",
+        "member_6_13",
+        "member_7_13",
+        "member_7_4",
+        "member_7_5",
+        "member_7_9",
+        "member_8_0",
+        "member_8_1",
+        "member_8_10",
+        "member_8_5",
+        "member_9_10",
+        "member_9_2",
+        "member_9_4",
+        "member_9_6",
+        "role_first_4",
+        "role_second_1",
+        "role_source_4",
+        "role_target_2",
+        "role_unused_0",
+        "shell_1",
+        "shell_10",
+        "shell_2",
+        "shell_4",
+        "shell_6"
+      ]
+    },
+    {
+      "cnf_sha256": "81ef7d21a6160feac97124d31c6d861cfe8aa9890188be939e8407b348757a93",
+      "decoded": {
+        "blockers": [
+          10,
+          2,
+          13,
+          13,
+          1,
+          7,
+          11,
+          0,
+          0,
+          4,
+          4,
+          8,
+          10,
+          4
+        ],
+        "roles": {
+          "first": 1,
+          "second": 3,
+          "source": 2,
+          "target": 1,
+          "unused": 4
+        },
+        "rows": {
+          "0": [
+            5,
+            7,
+            8,
+            10
+          ],
+          "1": [
+            2,
+            4,
+            12,
+            13
+          ],
+          "10": [
+            0,
+            4,
+            7,
+            12
+          ],
+          "11": [
+            4,
+            6,
+            8,
+            13
+          ],
+          "12": [
+            1,
+            3,
+            7,
+            9
+          ],
+          "13": [
+            2,
+            3,
+            6,
+            10
+          ],
+          "2": [
+            1,
+            6,
+            11,
+            13
+          ],
+          "3": [
+            2,
+            5,
+            6,
+            12
+          ],
+          "4": [
+            2,
+            9,
+            10,
+            13
+          ],
+          "5": [
+            3,
+            7,
+            11,
+            12
+          ],
+          "6": [
+            4,
+            5,
+            9,
+            11
+          ],
+          "7": [
+            3,
+            5,
+            8,
+            13
+          ],
+          "8": [
+            6,
+            7,
+            10,
+            11
+          ],
+          "9": [
+            0,
+            1,
+            2,
+            5
+          ]
+        },
+        "shell": [
+          0,
+          1,
+          2,
+          3,
+          5
+        ]
+      },
+      "num_clauses": 218863,
+      "num_variables": 476,
+      "orbit": "sharesFirstAtTarget",
+      "returncode": 10,
+      "solver_output_sha256": "12313afff6a6083266d118b952a048986f2acec0c61e39188cc44669a13bf442",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_10",
+        "blocker_10_4",
+        "blocker_11_8",
+        "blocker_12_10",
+        "blocker_13_4",
+        "blocker_1_2",
+        "blocker_2_13",
+        "blocker_3_13",
+        "blocker_4_1",
+        "blocker_5_7",
+        "blocker_6_11",
+        "blocker_7_0",
+        "blocker_8_0",
+        "blocker_9_4",
+        "member_0_10",
+        "member_0_5",
+        "member_0_7",
+        "member_0_8",
+        "member_10_0",
+        "member_10_12",
+        "member_10_4",
+        "member_10_7",
+        "member_11_13",
+        "member_11_4",
+        "member_11_6",
+        "member_11_8",
+        "member_12_1",
+        "member_12_3",
+        "member_12_7",
+        "member_12_9",
+        "member_13_10",
+        "member_13_2",
+        "member_13_3",
+        "member_13_6",
+        "member_1_12",
+        "member_1_13",
+        "member_1_2",
+        "member_1_4",
+        "member_2_1",
+        "member_2_11",
+        "member_2_13",
+        "member_2_6",
+        "member_3_12",
+        "member_3_2",
+        "member_3_5",
+        "member_3_6",
+        "member_4_10",
+        "member_4_13",
+        "member_4_2",
+        "member_4_9",
+        "member_5_11",
+        "member_5_12",
+        "member_5_3",
+        "member_5_7",
+        "member_6_11",
+        "member_6_4",
+        "member_6_5",
+        "member_6_9",
+        "member_7_13",
+        "member_7_3",
+        "member_7_5",
+        "member_7_8",
+        "member_8_10",
+        "member_8_11",
+        "member_8_6",
+        "member_8_7",
+        "member_9_0",
+        "member_9_1",
+        "member_9_2",
+        "member_9_5",
+        "role_first_1",
+        "role_second_3",
+        "role_source_2",
+        "role_target_1",
+        "role_unused_4",
+        "shell_0",
+        "shell_1",
+        "shell_2",
+        "shell_3",
+        "shell_5"
+      ]
+    },
+    {
+      "cnf_sha256": "da60397dbf360d796ca0e91070b7d938a4d6117f8e40a8a3b03ba37e144b76fa",
+      "decoded": {
+        "blockers": [
+          1,
+          2,
+          12,
+          11,
+          1,
+          2,
+          0,
+          4,
+          10,
+          3,
+          2,
+          4,
+          0,
+          11
+        ],
+        "roles": {
+          "first": 1,
+          "second": 3,
+          "source": 3,
+          "target": 2,
+          "unused": 0
+        },
+        "rows": {
+          "0": [
+            4,
+            6,
+            7,
+            12
+          ],
+          "1": [
+            0,
+            4,
+            10,
+            11
+          ],
+          "10": [
+            7,
+            8,
+            12,
+            13
+          ],
+          "11": [
+            1,
+            3,
+            9,
+            13
+          ],
+          "12": [
+            0,
+            2,
+            7,
+            9
+          ],
+          "13": [
+            2,
+            3,
+            11,
+            12
+          ],
+          "2": [
+            1,
+            5,
+            6,
+            10
+          ],
+          "3": [
+            0,
+            5,
+            8,
+            9
+          ],
+          "4": [
+            2,
+            5,
+            7,
+            11
+          ],
+          "5": [
+            4,
+            8,
+            11,
+            13
+          ],
+          "6": [
+            2,
+            5,
+            9,
+            13
+          ],
+          "7": [
+            3,
+            6,
+            9,
+            11
+          ],
+          "8": [
+            0,
+            4,
+            5,
+            12
+          ],
+          "9": [
+            1,
+            2,
+            6,
+            12
+          ]
+        },
+        "shell": [
+          1,
+          2,
+          3,
+          6,
+          12
+        ]
+      },
+      "num_clauses": 218877,
+      "num_variables": 476,
+      "orbit": "sharesSecondAtSource",
+      "returncode": 10,
+      "solver_output_sha256": "5949a6d0360bada31887b2d84c9d67c027f678e093f842809ef19db62994be96",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_1",
+        "blocker_10_2",
+        "blocker_11_4",
+        "blocker_12_0",
+        "blocker_13_11",
+        "blocker_1_2",
+        "blocker_2_12",
+        "blocker_3_11",
+        "blocker_4_1",
+        "blocker_5_2",
+        "blocker_6_0",
+        "blocker_7_4",
+        "blocker_8_10",
+        "blocker_9_3",
+        "member_0_12",
+        "member_0_4",
+        "member_0_6",
+        "member_0_7",
+        "member_10_12",
+        "member_10_13",
+        "member_10_7",
+        "member_10_8",
+        "member_11_1",
+        "member_11_13",
+        "member_11_3",
+        "member_11_9",
+        "member_12_0",
+        "member_12_2",
+        "member_12_7",
+        "member_12_9",
+        "member_13_11",
+        "member_13_12",
+        "member_13_2",
+        "member_13_3",
+        "member_1_0",
+        "member_1_10",
+        "member_1_11",
+        "member_1_4",
+        "member_2_1",
+        "member_2_10",
+        "member_2_5",
+        "member_2_6",
+        "member_3_0",
+        "member_3_5",
+        "member_3_8",
+        "member_3_9",
+        "member_4_11",
+        "member_4_2",
+        "member_4_5",
+        "member_4_7",
+        "member_5_11",
+        "member_5_13",
+        "member_5_4",
+        "member_5_8",
+        "member_6_13",
+        "member_6_2",
+        "member_6_5",
+        "member_6_9",
+        "member_7_11",
+        "member_7_3",
+        "member_7_6",
+        "member_7_9",
+        "member_8_0",
+        "member_8_12",
+        "member_8_4",
+        "member_8_5",
+        "member_9_1",
+        "member_9_12",
+        "member_9_2",
+        "member_9_6",
+        "role_first_1",
+        "role_second_3",
+        "role_source_3",
+        "role_target_2",
+        "role_unused_0",
+        "shell_1",
+        "shell_12",
+        "shell_2",
+        "shell_3",
+        "shell_6"
+      ]
+    },
+    {
+      "cnf_sha256": "f344503a6e4a0014881c948746a6bee7aa8f2d3341b40680b620be4343983c5e",
+      "decoded": {
+        "blockers": [
+          1,
+          2,
+          13,
+          13,
+          7,
+          6,
+          0,
+          10,
+          4,
+          4,
+          8,
+          0,
+          4,
+          4
+        ],
+        "roles": {
+          "first": 2,
+          "second": 1,
+          "source": 3,
+          "target": 1,
+          "unused": 0
+        },
+        "rows": {
+          "0": [
+            5,
+            6,
+            8,
+            11
+          ],
+          "1": [
+            0,
+            6,
+            7,
+            13
+          ],
+          "10": [
+            7,
+            8,
+            11,
+            13
+          ],
+          "11": [
+            0,
+            2,
+            6,
+            10
+          ],
+          "12": [
+            0,
+            1,
+            3,
+            8
+          ],
+          "13": [
+            2,
+            3,
+            7,
+            11
+          ],
+          "2": [
+            1,
+            4,
+            7,
+            9
+          ],
+          "3": [
+            2,
+            5,
+            7,
+            12
+          ],
+          "4": [
+            8,
+            9,
+            12,
+            13
+          ],
+          "5": [
+            0,
+            10,
+            11,
+            12
+          ],
+          "6": [
+            3,
+            4,
+            5,
+            8
+          ],
+          "7": [
+            2,
+            4,
+            9,
+            10
+          ],
+          "8": [
+            3,
+            6,
+            10,
+            13
+          ],
+          "9": [
+            1,
+            2,
+            5,
+            11
+          ]
+        },
+        "shell": [
+          1,
+          2,
+          3,
+          5,
+          11
+        ]
+      },
+      "num_clauses": 218877,
+      "num_variables": 476,
+      "orbit": "sharesSecondAtTarget",
+      "returncode": 10,
+      "solver_output_sha256": "1dbe7805394cecacaab882058801593a83405799241c41bb97132218856a75de",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_1",
+        "blocker_10_8",
+        "blocker_11_0",
+        "blocker_12_4",
+        "blocker_13_4",
+        "blocker_1_2",
+        "blocker_2_13",
+        "blocker_3_13",
+        "blocker_4_7",
+        "blocker_5_6",
+        "blocker_6_0",
+        "blocker_7_10",
+        "blocker_8_4",
+        "blocker_9_4",
+        "member_0_11",
+        "member_0_5",
+        "member_0_6",
+        "member_0_8",
+        "member_10_11",
+        "member_10_13",
+        "member_10_7",
+        "member_10_8",
+        "member_11_0",
+        "member_11_10",
+        "member_11_2",
+        "member_11_6",
+        "member_12_0",
+        "member_12_1",
+        "member_12_3",
+        "member_12_8",
+        "member_13_11",
+        "member_13_2",
+        "member_13_3",
+        "member_13_7",
+        "member_1_0",
+        "member_1_13",
+        "member_1_6",
+        "member_1_7",
+        "member_2_1",
+        "member_2_4",
+        "member_2_7",
+        "member_2_9",
+        "member_3_12",
+        "member_3_2",
+        "member_3_5",
+        "member_3_7",
+        "member_4_12",
+        "member_4_13",
+        "member_4_8",
+        "member_4_9",
+        "member_5_0",
+        "member_5_10",
+        "member_5_11",
+        "member_5_12",
+        "member_6_3",
+        "member_6_4",
+        "member_6_5",
+        "member_6_8",
+        "member_7_10",
+        "member_7_2",
+        "member_7_4",
+        "member_7_9",
+        "member_8_10",
+        "member_8_13",
+        "member_8_3",
+        "member_8_6",
+        "member_9_1",
+        "member_9_11",
+        "member_9_2",
+        "member_9_5",
+        "role_first_2",
+        "role_second_1",
+        "role_source_3",
+        "role_target_1",
+        "role_unused_0",
+        "shell_1",
+        "shell_11",
+        "shell_2",
+        "shell_3",
+        "shell_5"
+      ]
+    },
+    {
+      "cnf_sha256": "6ab17b10c36fa3211822cfdf6e9641e4bf2f4e869747881bafa7e14c26dc2f07",
+      "decoded": {
+        "blockers": [
+          13,
+          2,
+          13,
+          2,
+          3,
+          0,
+          0,
+          0,
+          4,
+          1,
+          4,
+          10,
+          10,
+          4
+        ],
+        "roles": {
+          "first": 4,
+          "second": 1,
+          "source": 2,
+          "target": 3,
+          "unused": 0
+        },
+        "rows": {
+          "0": [
+            5,
+            6,
+            7,
+            13
+          ],
+          "1": [
+            3,
+            8,
+            9,
+            11
+          ],
+          "10": [
+            7,
+            8,
+            11,
+            12
+          ],
+          "11": [
+            2,
+            5,
+            8,
+            13
+          ],
+          "12": [
+            1,
+            7,
+            9,
+            13
+          ],
+          "13": [
+            0,
+            2,
+            7,
+            11
+          ],
+          "2": [
+            1,
+            3,
+            7,
+            12
+          ],
+          "3": [
+            0,
+            4,
+            8,
+            12
+          ],
+          "4": [
+            3,
+            8,
+            10,
+            13
+          ],
+          "5": [
+            2,
+            6,
+            10,
+            12
+          ],
+          "6": [
+            1,
+            5,
+            9,
+            10
+          ],
+          "7": [
+            3,
+            4,
+            9,
+            12
+          ],
+          "8": [
+            0,
+            1,
+            4,
+            6
+          ],
+          "9": [
+            1,
+            2,
+            3,
+            11
+          ]
+        },
+        "shell": [
+          1,
+          2,
+          3,
+          4,
+          11
+        ]
+      },
+      "num_clauses": 218903,
+      "num_variables": 476,
+      "orbit": "fourDistinct",
+      "returncode": 10,
+      "solver_output_sha256": "a20b750950ef566a4776706b32cc3432e9742f75cffeaedf2ade0141f6a8f654",
+      "status": "SAT_ASSIGNMENT_REPLAYED",
+      "transported_application_count": 102102,
+      "true_variables": [
+        "blocker_0_13",
+        "blocker_10_4",
+        "blocker_11_10",
+        "blocker_12_10",
+        "blocker_13_4",
+        "blocker_1_2",
+        "blocker_2_13",
+        "blocker_3_2",
+        "blocker_4_3",
+        "blocker_5_0",
+        "blocker_6_0",
+        "blocker_7_0",
+        "blocker_8_4",
+        "blocker_9_1",
+        "member_0_13",
+        "member_0_5",
+        "member_0_6",
+        "member_0_7",
+        "member_10_11",
+        "member_10_12",
+        "member_10_7",
+        "member_10_8",
+        "member_11_13",
+        "member_11_2",
+        "member_11_5",
+        "member_11_8",
+        "member_12_1",
+        "member_12_13",
+        "member_12_7",
+        "member_12_9",
+        "member_13_0",
+        "member_13_11",
+        "member_13_2",
+        "member_13_7",
+        "member_1_11",
+        "member_1_3",
+        "member_1_8",
+        "member_1_9",
+        "member_2_1",
+        "member_2_12",
+        "member_2_3",
+        "member_2_7",
+        "member_3_0",
+        "member_3_12",
+        "member_3_4",
+        "member_3_8",
+        "member_4_10",
+        "member_4_13",
+        "member_4_3",
+        "member_4_8",
+        "member_5_10",
+        "member_5_12",
+        "member_5_2",
+        "member_5_6",
+        "member_6_1",
+        "member_6_10",
+        "member_6_5",
+        "member_6_9",
+        "member_7_12",
+        "member_7_3",
+        "member_7_4",
+        "member_7_9",
+        "member_8_0",
+        "member_8_1",
+        "member_8_4",
+        "member_8_6",
+        "member_9_1",
+        "member_9_11",
+        "member_9_2",
+        "member_9_3",
+        "role_first_4",
+        "role_second_1",
+        "role_source_2",
+        "role_target_3",
+        "role_unused_0",
+        "shell_1",
+        "shell_11",
+        "shell_2",
+        "shell_3",
+        "shell_4"
+      ]
+    }
+  ],
+  "schema": "p97-exact6-allcenter-structural-orbit-census-v1",
+  "scope_warning": "These assignments satisfy the finite structural outer only. They do not provide abstract-distance, exact-radius, Euclidean, MEC, noM44, or live Lean models.",
+  "source_audit_correction": "unused source is in the closed physical cap"
+}

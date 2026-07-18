@@ -1,0 +1,107 @@
+{
+  "active_outer_pinned_status": "SAT",
+  "epistemic_status": "ACTIVE_SOURCE_ORACLE_VERDICT_NOT_LIVE_LEAN_CLOSURE",
+  "linear_metric_check": {
+    "core": [
+      "kal2_0_1_10_11",
+      "kal2_0_1_11_12",
+      "kal2_1_2_10_11",
+      "kal2_1_2_11_12",
+      "kal2_2_3_11_12",
+      "kal2_3_4_11_12",
+      "kal2_4_5_11_12",
+      "kal2_5_6_11_12",
+      "kal2_6_7_11_12",
+      "kal2_7_8_11_12",
+      "row_10_0_2",
+      "row_11_2_8",
+      "row_12_0_8"
+    ],
+    "core_kinds": [
+      "kalmanson_second",
+      "selected_row_equality"
+    ],
+    "cores": [
+      {
+        "core": [
+          "kal2_0_1_10_11",
+          "kal2_0_1_11_12",
+          "kal2_1_2_10_11",
+          "kal2_1_2_11_12",
+          "kal2_2_3_11_12",
+          "kal2_3_4_11_12",
+          "kal2_4_5_11_12",
+          "kal2_5_6_11_12",
+          "kal2_6_7_11_12",
+          "kal2_7_8_11_12",
+          "row_10_0_2",
+          "row_11_2_8",
+          "row_12_0_8"
+        ],
+        "core_kinds": [
+          "kalmanson_second",
+          "selected_row_equality"
+        ],
+        "required_memberships": [
+          [
+            10,
+            0
+          ],
+          [
+            10,
+            2
+          ],
+          [
+            11,
+            2
+          ],
+          [
+            11,
+            8
+          ],
+          [
+            12,
+            0
+          ],
+          [
+            12,
+            8
+          ]
+        ]
+      }
+    ],
+    "initial_core_size": 13,
+    "required_memberships": [
+      [
+        10,
+        0
+      ],
+      [
+        10,
+        2
+      ],
+      [
+        11,
+        2
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        0
+      ],
+      [
+        12,
+        8
+      ]
+    ],
+    "status": "UNSAT"
+  },
+  "live_closure": false,
+  "orbit": "continuationOrder",
+  "schema": "p97-exact6-allcenter-active-linear-oracle-result-v1",
+  "scope_warning": "UNSAT here is one finite row-table metric core, not coverage; SAT here still omits exact deleted-source radius semantics, Euclidean realization, MEC, and minimality.",
+  "source_cnf_sha256": "e65851c851c7d3b4f57ae9e969e93037e87a8a108a40eaef29c9926e9d3988b4"
+}

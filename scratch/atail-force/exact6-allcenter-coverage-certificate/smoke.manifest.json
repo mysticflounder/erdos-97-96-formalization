@@ -1,0 +1,71 @@
+{
+  "category_counts": {
+    "smoke_row_cardinality": 25,
+    "transported_2k3_schema_cuts": 18
+  },
+  "category_ledger": [
+    {
+      "count": 25,
+      "first_clause": 1,
+      "kind": "smoke_row_cardinality",
+      "last_clause": 25,
+      "sha256": "d0136ce4771baa8e6bc8ada717fc07c59f67a691c64eda407112c3d636a2ba6b"
+    },
+    {
+      "count": 18,
+      "first_clause": 26,
+      "kind": "transported_2k3_schema_cuts",
+      "last_clause": 43,
+      "sha256": "c328b0550f0bbcaf9c1a2c7d4b5c783f76b4b16f12b853b7f042a69da4659f17"
+    }
+  ],
+  "cnf_sha256": "23aa25b5b68c7bcbb16f003dc28d2a513f7085825e0d373c5449e02477ceb364",
+  "epistemic_status": "FINITE_STRUCTURAL_ENCODING_NOT_LIVE_LEAN_CLOSURE",
+  "n": 5,
+  "num_clauses": 43,
+  "num_variables": 25,
+  "omitted": [
+    "the live exact-six geometry"
+  ],
+  "orbit": null,
+  "profile": "smoke",
+  "retained": [
+    "five forced complete four-member rows",
+    "all transported 2K+3eq schema embeddings on five vertices"
+  ],
+  "schema": "p97-exact6-allcenter-coverage-manifest-v1",
+  "source_audit_correction": null,
+  "transported_schema_bank": {
+    "bank_schema": "p97-whole-carrier-kalmanson-transported-schema-bank-v1",
+    "bank_schema_count": 20,
+    "bank_sha256": "dcc70ee44912c54ef9d9b369a06fa11dedd08c9bb2976fa8a5ffa80840d43bbe",
+    "transported_application_count": 18
+  },
+  "variables": {
+    "member_0_0": 1,
+    "member_0_1": 2,
+    "member_0_2": 3,
+    "member_0_3": 4,
+    "member_0_4": 5,
+    "member_1_0": 6,
+    "member_1_1": 7,
+    "member_1_2": 8,
+    "member_1_3": 9,
+    "member_1_4": 10,
+    "member_2_0": 11,
+    "member_2_1": 12,
+    "member_2_2": 13,
+    "member_2_3": 14,
+    "member_2_4": 15,
+    "member_3_0": 16,
+    "member_3_1": 17,
+    "member_3_2": 18,
+    "member_3_3": 19,
+    "member_3_4": 20,
+    "member_4_0": 21,
+    "member_4_1": 22,
+    "member_4_2": 23,
+    "member_4_3": 24,
+    "member_4_4": 25
+  }
+}

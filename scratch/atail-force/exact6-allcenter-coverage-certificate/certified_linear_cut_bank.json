@@ -1,0 +1,48 @@
+{
+  "schema": "p97-exact6-weighted-kalmanson-cut-bank-v1",
+  "epistemic_status": "EXACT_RATIONAL_CANCELLATION_CHECKED_SCRATCH_ADAPTER_NOT_YET_LEAN_WIRED",
+  "consumer": {
+    "declaration": "Problem97.Round2CoreNormalFormsScratch.false_of_weighted_kalmanson_cancellation",
+    "path": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/WeightedKalmansonCancellation.lean",
+    "recorded_axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ]
+  },
+  "cuts": [
+    {
+      "id": "continuationOrder_sat0_k2_chain_10_plus_3eq",
+      "orbit": "continuationOrder",
+      "source_cnf_sha256": "e65851c851c7d3b4f57ae9e969e93037e87a8a108a40eaef29c9926e9d3988b4",
+      "source_active_oracle": "n14_continuationOrder.linear-oracle.json",
+      "constraints": [
+        {"name": "kal2_0_1_10_11", "multiplier": 1},
+        {"name": "kal2_0_1_11_12", "multiplier": 1},
+        {"name": "kal2_1_2_10_11", "multiplier": 1},
+        {"name": "kal2_1_2_11_12", "multiplier": 1},
+        {"name": "kal2_2_3_11_12", "multiplier": 1},
+        {"name": "kal2_3_4_11_12", "multiplier": 1},
+        {"name": "kal2_4_5_11_12", "multiplier": 1},
+        {"name": "kal2_5_6_11_12", "multiplier": 1},
+        {"name": "kal2_6_7_11_12", "multiplier": 1},
+        {"name": "kal2_7_8_11_12", "multiplier": 1},
+        {"name": "row_10_0_2", "multiplier": 1},
+        {"name": "row_11_2_8", "multiplier": 1},
+        {"name": "row_12_0_8", "multiplier": -1}
+      ],
+      "required_memberships": [
+        [10, 0],
+        [10, 2],
+        [11, 2],
+        [11, 8],
+        [12, 0],
+        [12, 8]
+      ],
+      "conditioned_shell": null,
+      "exact_vector_cancellation": true,
+      "strict_weight_sum": 10
+    }
+  ],
+  "live_closure": false
+}
