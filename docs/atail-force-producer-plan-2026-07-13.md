@@ -585,6 +585,24 @@ entire displayed T0/T1/frontier/continuation Euclidean/MEC surface are now
 refuted as a sufficient target. The current support triangle is already
 non-`IsM44`, so `noM44` adds force only through an alternate support triangle.
 
+The profile-independent whole-carrier extraction is already complete in
+scratch Lean.  It retains one selected K4 row at every center and the same
+critical system.  The missing computational semantics are the complete
+source-deletion statements `H.no_qfree_at`: an exact selected blocker row does
+not by itself exclude a different four-point radius after deleting the
+source.  `full-parent-global-k4-extraction-audit/BlockerRowManifest` is the
+checked solver-facing normal form.
+
+`source-faithful-full-cell-k4-completion/` now gives an exact external
+algebraic/interval certificate for the first extension of the 26-point cell.
+At `x21` the class `{uS1,t0s,t1s,o}` is exact, and deleting any one of those
+four possible sources leaves no K4 radius at that center.  Rational Krawczyk
+inclusion and an independent Singular reduction pass.  This is not Lean and
+does not complete all-center K4 or the total critical map; it proves that a
+single fully deletion-critical continuation row is still nonterminal.  Every
+successor scan must use the complete blocker manifests rather than row
+exactness flags.
+
 The source-valid cross-system packet is now production as
 `ATailFirstApexShellRole.FirstApexShellRolePacket`, with source-faithful
 extractor `nonempty_firstApexShellRolePacket F0 R`.  It adds two first-apex
@@ -810,7 +828,24 @@ killed uniformly because two endpoint rows share an outside middle pair.
 generic contradiction, and one exact rational Farkas schema covers all 3,456
 compatible cyclic orders of that row table.  The active question is therefore
 aggregate occurrence/coverage of some source-valid shared outside pair, not
-the literal finite row or another conditional core.
+the literal finite row or another conditional core.  The authoritative saved
+structural stream is also now exactly replayed: 143 records / 142 distinct
+assignments all pass current semantics and all 143 have a production
+one- or two-step ordinal cycle with integer Farkas cancellation.  That stream's
+fixed `(8,4,5)` profile is incompatible with `L`, so the result supplies
+schemas, not live coverage.  The next bounded object is the source-indexed
+minimum live `(5,6,6)` surface, extending rather than rerunning the earlier
+anonymous n=14 audit.
+
+The source-indexed n=14 outer checkpoint is fail-closed `UNKNOWN` with zero
+decoded assignments, hence supplies no finite SAT/UNSAT evidence.  A smaller
+exact-six order theorem does kernel-check: three distinct period-three sources
+and strict blockers on the three consecutive source gaps require at least five
+members of the common strict-cap interior, contradicting the four-member
+interior of a six-point closed cap.  The production-facing adapter from the
+full exact-five all-reverse packet remains to be written.  Do that bounded
+adapter before extending the outer solver; it closes only the exact-six slice,
+not cap cardinality seven or above.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

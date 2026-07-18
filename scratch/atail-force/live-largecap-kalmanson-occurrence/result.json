@@ -1,0 +1,65 @@
+{
+  "schema": "p97-live-largecap-kalmanson-occurrence-checkpoint-v1",
+  "profile": {
+    "census_order": [6, 6, 5],
+    "live_order": [5, 6, 6],
+    "carrier_cardinality": 14,
+    "second_opposite_cap_cardinality": 6,
+    "second_opposite_interior_cardinality": 4
+  },
+  "full_outer": {
+    "status": "UNKNOWN_FAIL_CLOSED",
+    "reason": "The first Z3 outer check produced no decoded assignment before the bounded smoke was interrupted. This is neither SAT nor UNSAT evidence.",
+    "decoded_assignments": 0,
+    "rejection_counts": {}
+  },
+  "checked_order_schema": {
+    "status": "LEAN_KERNEL_CHECKED",
+    "source": "ExactSixPeriodThreeOrder.lean",
+    "theorem": "Problem97.LiveLargeCapKalmansonOccurrence.false_of_periodThree_straddles_card_le_four",
+    "statement_summary": "Three pairwise-distinct cyclic sources and three carrier-member blockers, each strictly between the corresponding consecutive source pair in one linear order, are impossible when the carrier finset has cardinality at most four.",
+    "stronger_lower_bound": "Problem97.LiveLargeCapKalmansonOccurrence.five_le_card_of_periodThree_straddles",
+    "axioms": ["propext", "Classical.choice", "Quot.sound"]
+  },
+  "live_applicability": {
+    "status": "SOURCE_FIELDS_PRESENT_ADAPTER_NOT_YET_KERNEL_CHECKED",
+    "present_fields": [
+      "FullParentExactFiveAllReverseData.cycle_period = 3",
+      "PhysicalActualCriticalOmissionCycle.source_injective",
+      "PhysicalActualCriticalOmissionCycle.successor_source_eq",
+      "FullParentExactFiveAllReverseData.sharedOrder.straddle",
+      "sharedOrder source and blocker point identities",
+      "physical cycle sources and transition blockers lie in the same strict second-opposite cap interior"
+    ],
+    "cardinality_bridge": "An exact six-point closed cap has a four-point strict interior by the cap-interior-card-plus-two identity.",
+    "boundary": "The production-facing adapter from FullParentExactFiveAllReverseData plus exact cap cardinality six to the checked generic schema was not implemented in this bounded checkpoint. Therefore this checkpoint does not close a production sorry."
+  },
+  "encoded_source_indexed_additions": [
+    "current multi-center candidate rows",
+    "actual common-critical-map blocker row for every source",
+    "source membership and exactness at actual blocker rows",
+    "both apex omissions from the blocker image",
+    "named first-apex frontier pair and retained row",
+    "named same-center double-deletion row with same-radius-six-or-disjoint split",
+    "physical exact-five second-apex class and unused cap source",
+    "two origin-tagged continuation sources",
+    "total fixed-point-free physical successor and actual successor blockers",
+    "global all-reverse membership",
+    "one common strict cap order and every transition straddle",
+    "entry-zero period-three cycle anchored at continuation.first",
+    "row intersection, pair-hit, alternation, cap-row, and strong-connectivity constraints"
+  ],
+  "omitted_live_fields": [
+    "planar Euclidean rank, positive-semidefinite, and coordinate realizability",
+    "minimum-enclosing-circle inequalities beyond current candidate-row semantics",
+    "global noM44 over alternative support triangles",
+    "complete radius filters away from actual blocker rows and the physical exact-five class",
+    "metric supports witnessing deletion survival when no named selected row is retained"
+  ],
+  "source_sha256": {
+    "search.py": "116f4feb2f9eaf6046cd6f5a8c08d12276df220fca746fd0c9782230f3e23e12",
+    "ExactSixPeriodThreeOrder.lean": "9f3cc03c905eb721240d72dcff32cf60e04b50a221d1f18680a116dd8a51aa84",
+    "census/multi_center/multi_center_census.py": "3c0b9cc574cbc2e2ae66cb6eae8710d51b578cf9732acda867d220d1ed0ab679",
+    "census/global_confinement/shadow.py": "a9ab1452444cd4e79d7a4ea6fc291a1522394cad3a841c4bb439fcf67da82e62"
+  }
+}

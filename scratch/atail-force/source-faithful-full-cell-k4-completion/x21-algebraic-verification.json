@@ -1,0 +1,25 @@
+{
+  "coverage_claim": false,
+  "deletion_kills_every_radius_class_at_x21": true,
+  "epistemic_status": "EXACT_RATIONAL_INTERVAL_REPLAY_NOT_LEAN",
+  "existing_equalities_symbolically_zero": true,
+  "groebner_sha256": "77df536bb1628b10fbfa1d4cf73a2c7d0bfb23ee8031eed41cdddc59248ca77d",
+  "interval_cell_ledger_match": true,
+  "krawczyk_strict_inclusion": true,
+  "lean_kernel_checked": false,
+  "polynomial_sha256": "f2249497890d97db7a8eb47c066a561da9d34202c10e05805569eb8f610583c7",
+  "schema": "source-faithful-full-cell-x21-algebraic-verification-v1",
+  "singular_cross_check": {
+    "basis_size": 4,
+    "dimension": 0,
+    "generator_reductions": [
+      "0",
+      "0",
+      "0"
+    ],
+    "passed": true
+  },
+  "source_oriented_blocker_manifest_match": true,
+  "status": "EXACT_ALGEBRAIC_ONE_ROW_CERTIFICATE_REPLAY_PASS",
+  "whole_carrier_k4_claim": false
+}

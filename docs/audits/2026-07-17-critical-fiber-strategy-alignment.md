@@ -530,6 +530,23 @@ K4/total-CSS/minimality layer.  The complete displayed local
 reverse/T0/T1/frontier/continuation geometry does not force the return, and the
 current support triangle is already non-`IsM44`.
 
+The generic whole-carrier extraction is already kernel-checked; a second
+fixed-profile row-table extractor would duplicate it.  The exact semantic
+delta for search is the full blocker manifest, including
+`H.no_qfree_at source`: after deleting the source, no other radius may retain
+four points at the blocker.  Marking the represented blocker row exact is
+strictly weaker.
+
+The first source-oriented completion has also been decided exactly outside
+Lean.  A rational Krawczyk interval certificate adds the exact row
+`x21 -> {uS1,t0s,t1s,o}` to the 26-point cell, and exhaustive interval gaps
+show that deleting any of the four support points destroys every K4 class at
+`x21`.  Singular independently reports a zero-dimensional system with all
+three defining generators reducing to zero.  This is exact algebraic/interval
+evidence, not a kernel proof or coverage theorem.  It rules out a one-new-row
+local obstruction and fixes complete deletion-critical manifests as mandatory
+inputs to any multi-row completion or MUS search.
+
 The retained parent contributes one precise production input rather than fixed
 slots: a radius-`r` four-row `T0` containing `q,w`, and a double-deletion row
 `T1` at radius `rho` disjoint from `q,w`. Both preserve two strict-`oppCap1`
@@ -884,12 +901,26 @@ not the primary mining target. A source-faithful 14-label finite incidence
 model avoids that prescribed row, but its complete cap-order audit is uniformly
 Kalmanson-UNSAT: one shared-middle-pair schema covers all 3,456 compatible
 orders, and the generic contradiction kernel-checks. Thus the live alternative
-is aggregate occurrence/coverage of two actual endpoint rows sharing an
-outside pair. The authoritative corrected-survivor stream is being re-hashed
-because the old round-two selection ids drift under the current classifier;
-old 101-counts are not live coverage until that replay finishes. These routes
-also do not replace the direct physical-apex split or its one full bi-apex
-robust consumer.
+is aggregate occurrence/coverage of source-valid selected-row cycles. The
+authoritative saved stream has now been re-hashed: 143 records / 142 distinct
+assignments all pass the current structural verifier, and all 143 have a
+production-representable one- or two-step ordinal cycle with independently
+replayed integer Farkas cancellation. The historical 101 records are the exact
+prefix, and the stale round-two selection-id file was excluded. This is not
+live-parent coverage: the saved profile is `(8,4,5)`, incompatible with the
+two cap-at-least-six fields in `L`. These routes also do not replace the direct
+physical-apex split or its one full bi-apex robust consumer.
+
+The corresponding source-indexed minimum live `(5,6,6)` outer is presently
+`UNKNOWN_FAIL_CLOSED`; it decoded no assignment before the bounded first check
+was interrupted, so neither SAT nor UNSAT is claimed.  It nevertheless exposes
+one exact branch closer.  A kernel-checked ordered-finset theorem proves that a
+period-three cycle of distinct sources with strict blockers on all three
+consecutive gaps needs at least five points in the shared strict-cap interior.
+This contradicts the four-point interior of an exact-six closed cap.  The
+source fields exist on `FullParentExactFiveAllReverseData`, but the production
+adapter is not yet kernel-checked; the theorem does not cover cap sizes at
+least seven and has not closed a source `sorry`.
 
 ## Synchronized documents
 

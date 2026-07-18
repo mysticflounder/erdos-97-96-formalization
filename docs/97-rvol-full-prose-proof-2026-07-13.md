@@ -998,6 +998,22 @@ omitted all-center K4/total-CSS/minimality layer. Complete local
 reverse/T0/T1/frontier/continuation Euclidean/MEC geometry does not force the
 occurrence. The current support triangle is already non-`IsM44`.
 
+The live-to-whole-carrier extraction is already present in scratch Lean for
+arbitrary cardinality; it is not the remaining producer gap.  What a faithful
+search must additionally encode is the complete deletion-critical content of
+the retained critical map: after deleting each source, *every* radius at its
+blocker has fewer than four remaining points.  Exactness of the one represented
+critical circle is insufficient.
+
+The 26-point cell admits at least one exact extension with that stronger
+semantics.  An external rational Krawczyk/interval certificate adds the exact
+row `x21 -> {uS1,t0s,t1s,o}` and proves the full deletion failure at `x21` for
+each possible source in that support; Singular independently verifies the
+zero-dimensional polynomial system.  This is not Lean-checked and is not a
+whole-carrier completion.  It shows that one additional source-valid critical
+row does not supply the contradiction, so the unresolved proof must couple
+several such manifests globally or force the aggregate ordinal occurrence.
+
 The parent supplies a source-faithful next packet with two first-apex rows.
 One radius-`r` row contains the retained pair `q,w`; a second row of radius
 `rho`, obtained after deleting both, avoids `q,w`. If `rho = r`, their union
@@ -1016,9 +1032,23 @@ source-faithful 14-label equal-blocker row table has this schema in every one
 of its 3,456 cap-compatible cyclic orders; an exact rational Farkas replay
 rejects all of them. This kills that fixed row table, not the parent branch.
 Closure still requires an occurrence/coverage theorem producing analogous
-actual endpoint rows from the full parent. The old round-two 101-survivor
-selection ids are being regenerated against the current classifier and are
-not used as live coverage in the meantime.
+actual rows from the full parent. The authoritative saved stream now has 143
+records / 142 distinct assignments, all current-verifier clean and all killed
+by one- or two-step cycles already expressible by the production ordinal
+consumer. The old 101 records are its exact prefix; the stale round-two
+selection-id checkpoint is excluded. This remains theorem discovery rather
+than live coverage because the saved surface has profile `(8,4,5)`, while the
+live parent has both opposite caps at least six.
+
+The minimum live `(5,6,6)` source-indexed outer has also been attempted, with
+all named frontier, exact-five, transition, and common-map fields retained.  It
+ended fail-closed `UNKNOWN` before producing a decoded assignment, so it gives
+no SAT/UNSAT conclusion.  One finite consequence is already a kernel theorem:
+three distinct period-three sources and three strictly interposed blockers in
+one common cap order force at least five strict-interior points.  Hence the
+all-reverse packet is impossible when that closed cap has exact cardinality
+six and thus only four interior points.  The live adapter remains to be
+formalized, and larger cap cardinalities need a separate argument.
 
 The radius split is now sharper.  The two rows are selected four-point classes,
 not exact CSS shells.  In the equal-radius arm the six named points imply K4

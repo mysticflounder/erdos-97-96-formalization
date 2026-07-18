@@ -595,6 +595,26 @@ adds no local scalar force by itself.  Marginal counting, complete local
 reverse-row geometry, and the full displayed T0/T1/continuation surface are
 refuted routes.
 
+The whole-carrier Lean extraction itself is not missing:
+`generic-biapex-kalmanson-search/WholeCarrierBiApexKalmansonSurface.lean`
+already obtains an arbitrary-cardinality boundary, one selected K4 row at
+every center, the retained common critical system, both blocker omissions,
+strong connectivity, incidence bounds, and Kalmanson inequalities from the
+live parent.  The solver-facing delta is stronger: for every actual blocker,
+`H.no_qfree_at` rules out *every* four-point radius after deleting its source;
+ambient exactness of one selected row does not encode that fact.  The checked
+scratch `BlockerRowManifest` packages this distinction.
+
+An exact algebraic/interval extension of the 26-point cell now adds one such
+full manifest at `x21`: its exact support is `{uS1,t0s,t1s,o}`, and deleting
+any of those four possible sources leaves no radius class of cardinality four
+at `x21`.  A rational Krawczyk box and an independent zero-dimensional
+Singular replay certify the cell and deletion gaps.  This is an external exact
+certificate, not a Lean theorem, and it makes no total-K4, coverage, or
+minimality claim.  It demonstrates that even one source-valid global
+deletion-critical row is compatible with the complete local regression; the
+next completion/search step must preserve these manifests simultaneously.
+
 The retained first-apex shell-role surface is now production in
 `ATail/FirstApexShellRole.lean` and
 `ATail/FirstApexShellRoleExtractor.lean`.  The theorem
@@ -1945,13 +1965,35 @@ cap-order countermodel.  The parent still must *produce* two actual endpoint
 rows sharing an outside pair; the finite model's literal row choices are not
 a coverage theorem.
 
-The following 101-shadow counts describe their pinned checkpoint, not current
-live coverage.  A prior round-two checkpoint predates the boundary-chord
-classifier and has selection-id drift under its own check.  The corrected
-survivor stream and source semantics are being re-hashed and replayed before
-any 101-count is used as a closure premise.  Until that finishes, only the
-individual source-valid Kalmanson consumers—not the old aggregate count—are
-load-bearing.
+The corrected saved-stream replay is now exact.  The authoritative current
+checkpoint has 143 records / 142 distinct row-blocker assignments; the
+historical 101 records are its exact prefix, with one duplicate at the resume
+boundary.  All 143 replay against the current candidate indices, exact blocker
+semantics, and structural verifier.  None has the literal shared-middle-pair
+packet, but all 143 have a production-representable ordinal Kalmanson cycle:
+89 of length one and 54 of length two.  Independent unit-multiplier integer
+Farkas replay passes for every cycle.  The known stale round-two selection-id
+checkpoint was not used.
+
+This is exact saved-stream coverage, not live-parent extraction.  The stream
+has fixed profile `(8,4,5)`, whereas `L` requires both opposite caps to have
+cardinality at least six.  Its cycles are a theorem-discovery bank for the
+profile-independent producer, not a finite premise for `L`.  The next
+Kalmanson audit must use the minimum live `(5,6,6)` source-indexed surface and
+retain the named frontier/exact-five/common-map fields omitted by the earlier
+anonymous n=14 run.
+
+That source-indexed minimum-profile outer is now a bounded
+`UNKNOWN_FAIL_CLOSED`: its first Z3 check produced no decoded assignment, so
+there is no SAT, UNSAT, or coverage claim.  The same audit isolates a smaller
+kernel-checked exact-six closer.  Three distinct period-three sources with an
+actual blocker strictly between each consecutive pair in one common cap order
+force at least five points in the strict cap interior.  An exact six-point
+closed cap has only four interior points, so that slice is contradictory.  The
+generic ordered-finset theorem uses only the three standard axioms; the
+production adapter from `FullParentExactFiveAllReverseData` plus cap card six
+is still open.  This closes no source `sorry` yet and does not treat cap card
+at least seven.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson

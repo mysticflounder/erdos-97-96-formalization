@@ -1,0 +1,9 @@
+Singular 4.4.1
+DIM
+0
+SIZE
+4
+REDUCE
+0
+0
+0

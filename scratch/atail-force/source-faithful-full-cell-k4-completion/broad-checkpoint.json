@@ -1,0 +1,100 @@
+{
+  "boundary": {
+    "coordinate_digest": "ed4d4520d0b0a00e775ba05fe71cfacc1f2ccf2c4fc1dab65ec42d7294e59d8a",
+    "known_k4_centers": [
+      "c0",
+      "c1",
+      "c2",
+      "left",
+      "o",
+      "right"
+    ],
+    "missing_center_count": 20,
+    "missing_center_max_multiplicity_values": [
+      1
+    ],
+    "status": "EXACT_RATIONAL_BOUNDARY_REPLAY_PASS"
+  },
+  "coverage_claim": false,
+  "elapsed_seconds": 53.00246045802487,
+  "epistemic_status": "BOUNDED_NUMERIC_SEARCH_NOT_COVERAGE",
+  "generalization_checkpoint": {
+    "reviewed_certified_cores": 0,
+    "status": "NO_CERTIFIED_CORES_TO_GENERALIZE"
+  },
+  "mus_bank": {
+    "certified_cores": 0,
+    "reason": "the bounded numerical oracle is not UNSAT-capable; UNKNOWN results are fail-closed and never blocked or shrunk",
+    "uncertified_cores": 0
+  },
+  "pairs": {
+    "attempted": 0,
+    "numeric_sat_candidates": 0,
+    "unknown_no_hit": 0
+  },
+  "schema": "source-faithful-full-cell-k4-completion-v1",
+  "selected_centers": [
+    "t1i1",
+    "t0i1",
+    "t0i0",
+    "uI",
+    "t1s",
+    "t1o",
+    "t0s",
+    "uS1",
+    "t1i0",
+    "uS0",
+    "t0o",
+    "x21",
+    "x00",
+    "x01",
+    "q0",
+    "x10",
+    "q2",
+    "x11",
+    "x20",
+    "q1"
+  ],
+  "singleton": {
+    "attempted": 20,
+    "numeric_sat_candidates": 0,
+    "unknown_no_hit": 20
+  },
+  "smoke_test": {
+    "cyclic_order": [
+      "uS0",
+      "uS1",
+      "t0s",
+      "t1s",
+      "o",
+      "uI",
+      "t1i1",
+      "t0i1",
+      "t0i0",
+      "t1i0",
+      "x20",
+      "x01",
+      "x00",
+      "x21",
+      "left",
+      "q0",
+      "t1o",
+      "t0o",
+      "c0",
+      "c2",
+      "q1",
+      "c1",
+      "q2",
+      "right",
+      "x11",
+      "x10"
+    ],
+    "known_physical_row_max_residual": 0.0,
+    "seed_minimum_hard_margin": 1.583880656269146e-06,
+    "status": "ENCODING_SMOKE_PASS"
+  },
+  "status": "BOUNDED_NUMERIC_AUDIT_COMPLETE",
+  "strongest_candidate": null,
+  "symmetry_stabilizer_order": 1,
+  "unsat_claim": false
+}

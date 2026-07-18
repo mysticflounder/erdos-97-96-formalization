@@ -1,0 +1,14 @@
+                     SINGULAR                                 /  Development
+ A Computer Algebra System for Polynomial Computations       /   version 4.4.1
+                                                           0<
+ by: W. Decker, G.-M. Greuel, G. Pfister, H. Schoenemann     \   Jan 2025
+FB Mathematik der Universitaet, D-67653 Kaiserslautern        \
+DIM
+0
+SIZE
+4
+REDUCE
+0
+0
+0
+Auf Wiedersehen.
