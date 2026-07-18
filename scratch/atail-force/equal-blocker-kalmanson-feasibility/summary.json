@@ -1,0 +1,13 @@
+{
+  "all_orders_farkas_schema_covered": true,
+  "canonical_order_count": 3456,
+  "elapsed_seconds": 22.777878,
+  "farkas_sum": "0 >= 1",
+  "representative_cvc5_verdict": "unsat",
+  "totals": {
+    "sat": 0,
+    "unknown": 0,
+    "unsat": 3456
+  },
+  "type": "summary"
+}

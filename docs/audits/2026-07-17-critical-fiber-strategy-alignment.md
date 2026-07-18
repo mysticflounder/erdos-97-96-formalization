@@ -448,9 +448,10 @@ named-class exclusions. These ledgers are abstract distances, not planar/MEC
 models. The separate same-side coordinate construction supplies the missing
 Euclidean/MEC realization, so one complete row was fully retired. No ordinal
 comparison cycle or linear Farkas certificate can restore it. The later exact
-17-point `(8,6,6)` construction realizes all three complete rows, so the former
-all-three local threshold is retired too; the live threshold includes the
-retained T0/T1, continuation, or global parent fields.
+26-point `(11,10,8)` construction realizes all three complete rows together
+with retained T0/T1, frontier, unused-row, and continuation data, so the former
+all-three and retained-local thresholds are retired too; the live threshold is
+the all-center K4/total-CSS/minimality layer.
 
 For that threshold, outside-pair injectivity must not be strengthened to six
 distinct targets. It excludes equality of two unordered pairs but permits a
@@ -513,27 +514,30 @@ the retained original frontier pair. That target immediately instantiates
 closes this actual branch if proved. It is OPEN, but it is not a marginal
 consequence: an exact 16-label incidence model satisfies the current
 critical-map/fiber/bi-apex robustness/frontier/reverse-row marginals with no
-first-apex return.  A stronger exact rational 17-point convex/MEC model now
-satisfies the full `(8,6,6)` cap profile, has a unique five-point physical-apex
-K4 radius, and realizes all three complete reverse `2+2` rows without return at
-either adjacent support apex.  Its exact `Fraction` replay is the primary
-audit; the Lean Boolean replay uses compiler-trusted reduction and is not a
-kernel-only certificate.  It deliberately omits the retained frontier/T0/T1
-rows, the unused-source continuation critical row and total CSS, whole-carrier
-K4, minimality, and `noM44`, while the finite model includes some of those data
-only as non-Euclidean marginals. A viable proof must cross-couple those omitted
-global critical/deletion fields to Euclidean/MEC/all-row order; the complete
-local reverse geometry alone does not force the return. The conditional
-orientation/Kalmanson/CAD route remains a fallback, not live coverage.
+first-apex return.  A stronger exact rational 26-point convex/MEC model now
+satisfies designated cap sizes `(11,10,8)` and, in one source-faithful cell,
+realizes the physical exact five, all three complete reverse `2+2` rows,
+unequal/disjoint T0/T1, the retained frontier inequality, the unused-source
+critical row, and both continuation common deletions without first-apex
+return.  Its exact `Fraction` replay is the primary audit; the aggregate Lean
+Boolean replay uses compiler-trusted reduction and is not a kernel-only
+certificate, while the two frontier scalar gates separately kernel-check with
+only the standard axioms.  The model omits total K4, a total common CSS,
+whole-carrier minimality, and a genuinely different support triangle.  K4 is
+present at only six named centers; the other twenty have singleton distance
+spectra.  A viable proof must therefore use the omitted all-center
+K4/total-CSS/minimality layer.  The complete displayed local
+reverse/T0/T1/frontier/continuation geometry does not force the return, and the
+current support triangle is already non-`IsM44`.
 
-The retained parent contributes one precise next role packet rather than fixed
+The retained parent contributes one precise production input rather than fixed
 slots: a radius-`r` four-row `T0` containing `q,w`, and a double-deletion row
 `T1` at radius `rho` disjoint from `q,w`. Both preserve two strict-`oppCap1`
 witnesses. The `rho = r` arm gives six distinct co-radial points; the
 `rho ≠ r` arm gives disjoint four-shell supports. The three legal `q,w` cap-role
-cases and all unnamed completion roles must remain explicit. This is the
-smallest source-faithful cross-system surface not already covered by the two
-no-return regressions.
+cases and all unnamed completion roles must remain explicit. The exact
+26-point regression covers this displayed local surface, so it is no longer
+the smallest missing cross-system producer.
 
 The follow-up split audit prevents overstating that surface.  These are two
 selected four-point rows, not two exact CSS shells.  The original unequal-
@@ -874,9 +878,18 @@ assigns its sources the old blocker, pointwise override hits both fiber sources
 only if the missing equality is already present, a nontrivial minimal-deletion
 core cannot satisfy the override blocker premise, and a singleton override at
 either fiber source destroys their old blocker equality.  A favorable-system
-implementation therefore still needs a third source whose actual row contains
-the pair and supplies the same-cap second center. These routes also do not
-replace the direct physical-apex split or its one full bi-apex robust consumer.
+implementation would need a third source whose actual row contains the pair
+and supplies the same-cap second center. That is now a conditional fallback,
+not the primary mining target. A source-faithful 14-label finite incidence
+model avoids that prescribed row, but its complete cap-order audit is uniformly
+Kalmanson-UNSAT: one shared-middle-pair schema covers all 3,456 compatible
+orders, and the generic contradiction kernel-checks. Thus the live alternative
+is aggregate occurrence/coverage of two actual endpoint rows sharing an
+outside pair. The authoritative corrected-survivor stream is being re-hashed
+because the old round-two selection ids drift under the current classifier;
+old 101-counts are not live coverage until that replay finishes. These routes
+also do not replace the direct physical-apex split or its one full bi-apex
+robust consumer.
 
 ## Synchronized documents
 

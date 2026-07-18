@@ -505,9 +505,10 @@ complementary-chain order types. Its rational ledgers satisfy every triangle,
 every strict Kalmanson inequality, the named row equalities, and exact class
 exclusions. The same-side order is also realized by the exact eleven-point
 Euclidean/MEC model, so one complete row was retired outright. The subsequent
-exact 17-point `(8,6,6)` model realizes all three complete source-indexed rows,
-so that former local target is now retired as well. The route must escalate to
-the omitted retained-row and global critical/deletion coupling.
+exact 26-point `(11,10,8)` model realizes all three complete source-indexed
+rows together with retained T0/T1, frontier, unused-row, and continuation data,
+so those former local targets are retired as well. The route must escalate to
+the omitted all-center K4/total-CSS/minimality coupling.
 
 Do not encode the three complete rows as six pairwise-distinct outside points.
 Production proves that each pair has two members and that the three unordered
@@ -566,19 +567,23 @@ existing total-critical-map, K4, minimality, `noM44`, or period-4/5 theorem
 produces this occurrence. Exact finite marginal and rational local-geometry
 regressions both avoid the return. The former retains current CSS-support,
 fiber, robustness, cap-size, frontier, and reverse-row marginals. The latter is
-now an independently replayed exact rational 17-point planar model with strict
-convex order, nonobtuse MEC support, the full designated cap profile `(8,6,6)`,
-the physical exact-five class, and all three complete reverse exact four-shells;
-every reverse outside pair still avoids both adjacent support apices. Its Lean
-ledger uses `native_decide` and is therefore compiler-reduced rather than
-kernel-only; the independent `Fraction` replay is the primary exact audit. The
-model deliberately omits the retained frontier/T0/T1 first-apex rows, the
-unused-source exact-five continuation row, total K4/CSS, minimality, and
-`noM44`. The finite model already includes first-apex K4/double deletion and a
-support-locked total CSS abstractly. Hence the OPEN producer contract must
-cross-couple the retained T0/T1 and continuation provenance with that global
-critical/deletion data or minimality. Complete local reverse rows plus exact
-Euclidean/MEC and cap-size geometry are now refuted as a sufficient target.
+now an independently replayed exact rational 26-point planar model with strict
+convex order, nonobtuse MEC support, designated cap sizes `(11,10,8)`, the
+physical exact-five class, all three complete reverse exact four-shells,
+source-faithful unequal/disjoint T0/T1, the retained frontier inequality, the
+unused-source exact critical row, and both origin-tagged continuation common
+deletions. Every reverse outside pair still avoids the first physical apex.
+Its aggregate Lean ledger uses `native_decide` and is therefore
+compiler-reduced rather than kernel-only; the independent `Fraction` replay is
+the primary exact audit, while the new frontier scalar gates separately use
+only the three standard project axioms. The model omits total all-center K4, a
+total common CSS, whole-carrier minimality, and a genuinely different support
+triangle. K4 occurs at only six named centers; the other twenty have singleton
+distance spectra. Hence the OPEN producer contract must use the omitted
+all-center K4/total-CSS/minimality layer. Complete local reverse rows plus the
+entire displayed T0/T1/frontier/continuation Euclidean/MEC surface are now
+refuted as a sufficient target. The current support triangle is already
+non-`IsM44`, so `noM44` adds force only through an alternate support triangle.
 
 The source-valid cross-system packet is now production as
 `ATailFirstApexShellRole.FirstApexShellRolePacket`, with source-faithful
@@ -588,8 +593,10 @@ double deletion and is disjoint from `{q,w}`. If its radius `rho` equals the
 retained radius, the ambient class has at least six distinct points; otherwise
 `T0` and `T1` are disjoint four-shells. The frontier pair has three legal cap-
 role cases, while completion points have no fixed order or reverse-row identity.
-Couple this honest role domain to the all-reverse rows; do not collapse it to a
-guessed fixed-slot schema.  The focused build passes and the extractor uses
+This honest role domain remains a production input, but the exact 26-point
+regression shows that coupling it only to the local all-reverse and
+continuation rows is nonterminal. Do not collapse it to a guessed fixed-slot
+schema. The focused build passes and the extractor uses
 only the three core axioms.  This closes the packet-producer gap, not the
 aggregate reverse-pair occurrence and not a source `sorry`.
 
@@ -792,9 +799,18 @@ the proposed late favorable-system shortcut on the existing fiber: saturating
 the old shell stutters at the old blocker, a nontrivial minimal-deletion core
 cannot be installed pointwise, and a singleton new-center override at either
 fiber source destroys the fiber. If the critical-fiber terminal is used, its
-smallest live producer must instead choose a genuinely third source `J`, keep
-the full rebased parent and existing fiber, and show that `J`'s actual critical
-row contains both fiber sources with the required same-cap placement.
+smallest conditional core producer would choose a genuinely third source `J`,
+keep the full rebased parent and existing fiber, and show that `J`'s actual
+critical row contains both fiber sources with the required same-cap placement.
+This is no longer the primary mining target: a 14-label finite incidence model
+shows that such a prescribed third-source row need not occur in the structural
+projection.  When full cap order is added, that same model is nevertheless
+killed uniformly because two endpoint rows share an outside middle pair.
+`equal-blocker-kalmanson-feasibility/SharedMiddlePair.lean` kernel-checks the
+generic contradiction, and one exact rational Farkas schema covers all 3,456
+compatible cyclic orders of that row table.  The active question is therefore
+aggregate occurrence/coverage of some source-valid shared outside pair, not
+the literal finite row or another conditional core.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

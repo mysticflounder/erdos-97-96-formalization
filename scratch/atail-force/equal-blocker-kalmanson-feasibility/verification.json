@@ -1,0 +1,14 @@
+{
+  "farkas_certificate_sha256": "4fcbb25fb5bcb38972974e66189715e7d7d80fbb4344eaad655e5e485516d6f1",
+  "farkas_sum": "0 >= 1",
+  "order_count": 3456,
+  "representative_cvc5_verdict": "unsat",
+  "run_jsonl_sha256": "a51de7b312f9ee4c2fc8c7ecf90f08f6a1cec85dfe45e4c4a070553bf41cf68f",
+  "status": "verified",
+  "summary_sha256": "18da346de9c115eb0751faa703675f32154bd4df9d11e9f683f4d03cb1401dec",
+  "verdicts": {
+    "sat": 0,
+    "unknown": 0,
+    "unsat": 3456
+  }
+}

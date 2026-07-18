@@ -1,0 +1,120 @@
+{
+  "epistemic_status": "EXACT_RATIONAL_FINITE_LOCAL_MODEL",
+  "rationalization_denominator_bound": 10000,
+  "result": {
+    "cap_sizes": {
+      "firstOpposite": 11,
+      "physicalOpposite": 10,
+      "surplus": 8
+    },
+    "coordinate_digest": "ed4d4520d0b0a00e775ba05fe71cfacc1f2ccf2c4fc1dab65ec42d7294e59d8a",
+    "cyclic_order": [
+      "uS0",
+      "uS1",
+      "t0s",
+      "t1s",
+      "o",
+      "uI",
+      "t1i1",
+      "t0i1",
+      "t0i0",
+      "t1i0",
+      "x20",
+      "x01",
+      "x00",
+      "x21",
+      "left",
+      "q0",
+      "t1o",
+      "t0o",
+      "c0",
+      "c2",
+      "q1",
+      "c1",
+      "q2",
+      "right",
+      "x11",
+      "x10"
+    ],
+    "mapping": {
+      "actualBlocker": "left",
+      "continuation": [
+        "q0",
+        "q1"
+      ],
+      "doubleDeletionRow": [
+        "t1i0",
+        "t1i1",
+        "t1o",
+        "t1s"
+      ],
+      "firstApex": "right",
+      "frontier": [
+        "t0i0",
+        "t0i1"
+      ],
+      "physicalApex": "o",
+      "retainedRow": [
+        "t0i0",
+        "t0i1",
+        "t0o",
+        "t0s"
+      ],
+      "surplusApex": "left",
+      "unused": "c1",
+      "unusedCriticalRow": [
+        "c1",
+        "uI",
+        "uS0",
+        "uS1"
+      ],
+      "unusedRowPhysicalStrictHits": []
+    },
+    "minimum_cap_role_margin": "17990475630681914503865505888/18423925415470647687538930550225",
+    "minimum_hull_margin": "43795061047732544592069217312565536/22196297137496486195443051379474311846715",
+    "minimum_mec_slack": "5961799036125637485532448/3867804783508507839443747078063",
+    "minimum_pairwise_sqdist": "2517502522791864034304/1495092687865677556800829949",
+    "minimum_reverse_return_gap": "128509999319948729394888508692926042334/14046083120895525616533503406273979775825",
+    "parameter_digest": "5aac3ab4a766b905ed976eeb54ca18bcdda8af40a6ccccb0617c4a92018c0d87",
+    "parameters": {
+      "base_angles": [
+        "2179/2587",
+        "41/7163",
+        "379/950",
+        "2848/3419",
+        "-1101/7430",
+        "-1627/7794",
+        "-14866/2957",
+        "-2173/259",
+        "12917/9834",
+        "8701/3308"
+      ],
+      "base_scalars": [
+        "4733/9400",
+        "1161/2321",
+        "2261/3551"
+      ],
+      "extension_angles": [
+        "-9303/9148",
+        "-8089/7860",
+        "-3870/9697",
+        "-6019/5055",
+        "-9079/9952",
+        "-1741/1524",
+        "-1529/3818",
+        "-7316/6153",
+        "3898/7197",
+        "703/1738",
+        "829/1702"
+      ],
+      "extension_scalars": [
+        "3569/3599",
+        "5585/5603"
+      ]
+    },
+    "point_count": 26,
+    "status": "EXACT_RATIONAL_REPLAY_PASS"
+  },
+  "schema": "exact-source-faithful-full-parent-local-cell-v1",
+  "source_numeric_artifact": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/full-parent-t0t1-exact-model/full-source-faithful-search.json"
+}

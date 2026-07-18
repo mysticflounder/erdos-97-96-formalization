@@ -1,0 +1,37 @@
+{
+  "constraints": [
+    {
+      "coefficients": {
+        "d_0_6": "-1",
+        "d_0_8": "1",
+        "d_2_6": "1",
+        "d_2_8": "-1"
+      },
+      "name": "complementary_kalmanson_0_6_8_2",
+      "rhs": "1"
+    },
+    {
+      "coefficients": {
+        "d_0_6": "1",
+        "d_0_8": "-1"
+      },
+      "name": "row_0_equality_forward",
+      "rhs": "0"
+    },
+    {
+      "coefficients": {
+        "d_2_6": "-1",
+        "d_2_8": "1"
+      },
+      "name": "row_2_equality_forward",
+      "rhs": "0"
+    }
+  ],
+  "multipliers": {
+    "complementary_kalmanson_0_6_8_2": "1",
+    "row_0_equality_forward": "1",
+    "row_2_equality_forward": "1"
+  },
+  "sum": "0 >= 1",
+  "valid": true
+}

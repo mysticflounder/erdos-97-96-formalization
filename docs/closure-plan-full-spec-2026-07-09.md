@@ -569,19 +569,31 @@ immediate checked consumer, but two regressions prohibit a weak proof contract.
 An exact finite incidence model satisfies the current marginal critical-map,
 fiber, bi-apex robustness, cap-size, frontier, and reverse-row facts while every
 reverse pair crosses two first-apex radius colors.  The stronger exact rational
-convex/MEC regression now has 17 points, cap profile `(8,6,6)`, the unique
-five-point physical-apex K4 radius, and all three complete period-three `2+2`
-reverse rows, while every reverse outside pair remains non-co-radial from both
-adjacent support apices.  Its independent `Fraction` replay is exact; the Lean
-Boolean replay is compiler-reduced with `Lean.ofReduceBool`/`Lean.trustCompiler`
-and is not a kernel-only certificate.  This model still omits the actual
-retained frontier/T0/T1 rows, the unused-source continuation critical row and
-total critical system, whole-carrier K4, `D.Minimal`, and `noM44`.  The finite
-model contains some of those data only as non-Euclidean marginals.  Therefore
-any proof must genuinely couple the omitted source-indexed parent fields to the
-Euclidean/MEC/all-row order.  Marginal counting, the complete local reverse-row
-geometry, and merely invoking either side without that cross-system coupling
-are refuted routes.
+convex/MEC regression now has 26 points and designated cap sizes `(11,10,8)`.
+In one source-faithful cell it realizes the physical exact-five class, all
+three complete period-three `2+2` reverse rows, the unequal/disjoint retained
+T0/T1 rows, the retained frontier pair with the required second-apex distance
+inequality, the unused-source exact critical row, and both origin-tagged
+continuation common deletions.  Every reverse outside pair still remains
+non-co-radial from the retained first apex.  Its independent `Fraction` replay
+is exact; the aggregate Lean Boolean replay is compiler-reduced with
+`Lean.ofReduceBool`/`Lean.trustCompiler` and is not a kernel-only certificate,
+while the two new frontier scalar gates separately kernel-check with only the
+three standard project axioms.
+
+This 26-point model omits total K4, a total common `CriticalShellSystem`
+(especially the actual rows at the frontier and the other unrepresented
+sources), whole-carrier deletion/minimality, and any genuinely different
+support-triangle consequence.  A direct multiplicity audit finds K4 only at
+the six named support/row centers; the other twenty centers have singleton
+distance spectra.  Therefore T0/T1 and the continuation row are no longer the
+next missing producer.  Any proof must use the omitted whole-carrier K4/total
+critical-map/minimality layer, or construct a genuinely different
+MEC/support-triangle packet.  The current support triangle already has both
+opposite caps at least six and hence is already non-`IsM44`; its `noM44` field
+adds no local scalar force by itself.  Marginal counting, complete local
+reverse-row geometry, and the full displayed T0/T1/continuation surface are
+refuted routes.
 
 The retained first-apex shell-role surface is now production in
 `ATail/FirstApexShellRole.lean` and
@@ -595,9 +607,11 @@ containing `F0.pair.q,w` and a double-deletion four-row `T1` disjoint from
 `rho = radius`, giving six distinct co-radial points `q,w ∪ T1`; or
 `rho ≠ radius`, giving disjoint supports `T0,T1`. The frontier pair has exactly
 three legal cap-role cases, and the completion points have no fixed within-cap
-order or identity with reverse targets. Any next finite/metric encoding must
-couple this entire role domain to the all-reverse rows; hard-coding the return
-would repeat the prior source bug.  The focused production build passes and
+order or identity with reverse targets. This source-faithful role domain
+remains a valid production input, but it is now part of the exact 26-point
+regression rather than the active missing producer. Any next finite/metric
+encoding must add the whole-carrier K4/total-critical-map layer; hard-coding
+the return would repeat the prior source bug.  The focused production build passes and
 the extractor has only `propext`, `Classical.choice`, and `Quot.sound`; this
 repairs the packet-producer interface but does not close a source `sorry`.
 
@@ -622,9 +636,10 @@ map-independent strict Kalmanson/Euclidean coupling, planar/MEC realization,
 and `noM44`, so it is a scope guard rather than a counterexample to the parent
 theorem.
 
-Accordingly, neither cap six, two selected rows, the represented finite
-CSS/minimality marginals, nor union coverage alone is a live producer of the
-return occurrence.  The cycle-indexed conditional terminal remains sound:
+Accordingly, neither cap six, two selected rows, the continuation rows, the
+represented finite CSS/minimality marginals, nor union coverage alone is a
+live producer of the return occurrence.  The cycle-indexed conditional
+terminal remains sound:
 
 ```text
 exists i,
@@ -635,9 +650,12 @@ exists i,
 because either arm feeds `outsidePair_unique_capCenter` immediately.  It is a
 periodic-subgraph diagnostic, not the named-source producer: `K.start` need
 not occur among `K.source`, so this surface cannot consume the continuation's
-two named sources.  The active aggregate producer is transition-indexed at
-the complete `L` parent and must use omitted Euclidean/MEC, full-fiber, or
-global-minimality data.  One pinned auxiliary blocker map becomes strict-Kalmanson
+two named sources.  The active aggregate producer is indexed by the complete
+`L` parent and must use all-center K4 together with the total common critical
+map and/or global minimality. In parallel, cap-order coverage may close by
+forcing two actual endpoint rows to share an outside pair, which feeds a
+checked Kalmanson or same-cap uniqueness contradiction. One pinned auxiliary
+blocker map becomes strict-Kalmanson
 UNSAT even before target negation; because the live source does not fix that
 map, this is diagnostic rather than coverage.  The bounded period-three
 internal branch may still be expressed as
@@ -1914,6 +1932,26 @@ comparisons, composes them with `Relation.TransGen`, and rejects a cycle by
 selected row, support memberships, and endpoint equalities; no naked metric
 equality or finite-census row is accepted.  This closes the generic consumer
 gap.  It does not prove that the live parent emits a cycle.
+
+The first new aggregate occurrence schema is now kernel-checked in scratch.
+`equal-blocker-kalmanson-feasibility/SharedMiddlePair.lean` proves
+`false_of_two_selected_rows_shared_middle_pair`: if the two endpoint centers
+of a cyclic quadruple both select rows through the same two middle points, one
+strict Kalmanson inequality and the two row equalities give `False`.  For the
+source-faithful 14-label equal-blocker model this one schema covers every one
+of the 3,456 cap-compatible cyclic orders.  An exact rational Farkas replay and
+independent complete QF_LRA census both return UNSAT, so that model is not a
+cap-order countermodel.  The parent still must *produce* two actual endpoint
+rows sharing an outside pair; the finite model's literal row choices are not
+a coverage theorem.
+
+The following 101-shadow counts describe their pinned checkpoint, not current
+live coverage.  A prior round-two checkpoint predates the boundary-chord
+classifier and has selection-id drift under its own check.  The corrected
+survivor stream and source semantics are being re-hashed and replayed before
+any 101-count is used as a closure premise.  Until that finishes, only the
+individual source-valid Kalmanson consumers—not the old aggregate count—are
+load-bearing.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson

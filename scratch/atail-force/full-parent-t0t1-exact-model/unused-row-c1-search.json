@@ -1,0 +1,175 @@
+{
+  "base_checkpoint": "/Users/adam/projects/math-projects/erdos-97-96-formalization/scratch/atail-force/full-parent-t0t1-exact-model/homotopy-progress-1p4.json",
+  "base_parameters": [
+    1.4000000000000021,
+    0.011447565689753289,
+    0.7591971521839505,
+    1.3890737008253993,
+    0.5035105944938726,
+    0.5002154280379931,
+    0.6367220649029288,
+    -0.2942250079014196,
+    -0.41159000378651756,
+    -2.7488976172652757,
+    -2.9043318386539925,
+    1.8401764950529858,
+    2.4149732691650856
+  ],
+  "cell": "unequal-disjoint-T0/T1; unused=c1; actualBlocker=left; continuation=q0,q1",
+  "epistemic_status": "BOUNDED_NUMERIC_SEARCH_NOT_COVERAGE",
+  "maxiter": 1000,
+  "popsize": 48,
+  "random_seed": 20260725,
+  "result": {
+    "cyclic_order": [
+      "uS0",
+      "uS1",
+      "o",
+      "uI",
+      "x20",
+      "x01",
+      "x00",
+      "x21",
+      "left",
+      "q0",
+      "c0",
+      "c2",
+      "q1",
+      "c1",
+      "q2",
+      "right",
+      "x11",
+      "x10"
+    ],
+    "mapping": {
+      "actualBlocker": "left",
+      "continuationFirst": "q0",
+      "continuationSecond": "q1",
+      "doubleDeletionRow": [
+        "t1i0",
+        "t1i1",
+        "t1o",
+        "t1s"
+      ],
+      "firstApex": "right",
+      "frontier": [
+        "t0i0",
+        "t0i1"
+      ],
+      "physicalApex": "o",
+      "retainedRow": [
+        "t0i0",
+        "t0i1",
+        "t0o",
+        "t0s"
+      ],
+      "surplusApex": "left",
+      "unused": "c1",
+      "unusedCriticalRow": [
+        "c1",
+        "uI",
+        "uS0",
+        "uS1"
+      ],
+      "unusedRowPhysicalExactFiveStrictHits": []
+    },
+    "minimum_audit_margin": 9.999999888977698e-09,
+    "minimum_by_group": {
+      "cap_roles": 0.000976363595640377,
+      "critical_no_other_K4_audit": 2.4651500330514666e-06,
+      "mec_containment": 1.5838807127994097e-06,
+      "pairwise_distinct": 1.5838806563382324e-06,
+      "parameterized_equalities_audit": 9.999999888977698e-09,
+      "physical_exact_five_exclusions": 0.03351401604483112,
+      "reverse_nonreturn": 0.009149069503889773,
+      "reverse_row_exclusions": 0.0019911343798662026,
+      "strict_hull": 4.889446568342076e-05,
+      "support_triangle_nonobtuse": 0.17069632679489444,
+      "unused_row_exclusions": 0.0016739668582001516
+    },
+    "minimum_open_margin": 1.5838806563382324e-06,
+    "parameters": [
+      0.992764943476146,
+      0.7531337926064126,
+      0.8872459674860077
+    ],
+    "points": {
+      "c0": [
+        0.8687185874112977,
+        0.3523499699058754
+      ],
+      "c1": [
+        0.45325169104618346,
+        0.836296729515273
+      ],
+      "c2": [
+        0.7517513683588974,
+        0.6335264510071337
+      ],
+      "left": [
+        1.0,
+        0.0
+      ],
+      "o": [
+        0.0,
+        0.0
+      ],
+      "q0": [
+        0.9999344773354385,
+        0.011447315663658874
+      ],
+      "q1": [
+        0.7253888761573141,
+        0.6883392901376681
+      ],
+      "q2": [
+        0.18072410165303332,
+        0.9835338321998406
+      ],
+      "right": [
+        0.16996714290023884,
+        0.9854497299884606
+      ],
+      "uI": [
+        0.0008378753694282537,
+        -0.000990881184423087
+      ],
+      "uS0": [
+        0.029153168355208536,
+        0.2361829007931559
+      ],
+      "uS1": [
+        0.006290815867820543,
+        0.10424965473879594
+      ],
+      "x00": [
+        0.8954345872614933,
+        -0.011955512882919295
+      ],
+      "x01": [
+        0.8525921779906118,
+        -0.012577650804271534
+      ],
+      "x10": [
+        0.14520898663119697,
+        0.8688504335147977
+      ],
+      "x11": [
+        0.1539622351239951,
+        0.9161457931365069
+      ],
+      "x20": [
+        0.566336415554662,
+        -0.010056178876201582
+      ],
+      "x21": [
+        0.9460249355191004,
+        -0.007437734664575313
+      ]
+    },
+    "status": "NUMERIC_SAT_CANDIDATE"
+  },
+  "schema": "source-faithful-full-parent-local-cell-search-v1",
+  "stage": "unused",
+  "workers": 24
+}

@@ -918,9 +918,10 @@ inequalities, the equal-radius identities, and the named-class exclusions.
 The same-side ledger is accompanied by the exact planar/MEC construction just
 described. Thus that checkpoint retired one complete row as a local obstruction
 and isolated simultaneous-row or global-parent coupling, rather than a missing
-ordinal or Farkas consequence. The later exact 17-point `(8,6,6)` model retires
-the simultaneous complete-row local surface too, leaving the omitted retained
-rows and global-parent coupling as the live boundary.
+ordinal or Farkas consequence. The later exact 26-point `(11,10,8)` model
+retires the simultaneous complete-row surface together with the retained
+T0/T1/frontier/continuation local surface, leaving all-center K4/total
+CSS/minimality as the live boundary.
 
 The simultaneous-row packet does not automatically contain six different
 outside points. The proved injectivity says only that no two unordered outside
@@ -981,18 +982,21 @@ but it is nonrecursive and closes the branch immediately if proved. It cannot
 be obtained from the current marginals alone: an exact finite incidence model
 retains the CSS-support, fiber, bi-apex robustness, cap-size, frontier, and
 reverse-row marginals with all reverse pairs split across first-apex radius
-colors. A stronger independently replayed exact rational 17-point model now
-retains strict convex/MEC geometry, the full designated cap profile `(8,6,6)`,
-the physical exact-five class, and all three complete reverse exact four-shells,
-while every reverse pair avoids both adjacent support apices. Its Lean ledger
-uses `native_decide`, so the exact `Fraction` replay—not that compiler-reduced
-Lean theorem—is the primary audit. The model omits the retained frontier/T0/T1
-first-apex rows, the unused-source exact-five continuation row, total K4/CSS,
-minimality, and `noM44`. The finite model already contains first-apex K4/double
-deletion and a support-locked total critical system abstractly. Thus the proof
-must cross-couple the retained T0/T1 and continuation provenance to the global
-critical/deletion facts or minimality; complete local reverse-row Euclidean/MEC
-geometry alone does not force the occurrence.
+colors. A stronger independently replayed exact rational 26-point model now
+retains strict convex/MEC geometry, designated cap sizes `(11,10,8)`, the
+physical exact-five class, all three complete reverse exact four-shells,
+source-faithful unequal/disjoint T0/T1, the retained frontier inequality, the
+unused-source exact critical row, and both origin-tagged continuation common
+deletions, while every reverse pair avoids the first physical apex. Its
+aggregate Lean ledger uses `native_decide`, so the exact `Fraction` replay—not
+that compiler-reduced theorem—is the primary audit; the two frontier scalar
+gates separately use only the standard project axioms. The model omits total
+all-center K4, a total common critical system, whole-carrier minimality, and a
+genuinely different support triangle. K4 occurs at only six named centers; the
+other twenty have singleton distance spectra. Thus the proof must use the
+omitted all-center K4/total-CSS/minimality layer. Complete local
+reverse/T0/T1/frontier/continuation Euclidean/MEC geometry does not force the
+occurrence. The current support triangle is already non-`IsM44`.
 
 The parent supplies a source-faithful next packet with two first-apex rows.
 One radius-`r` row contains the retained pair `q,w`; a second row of radius
@@ -1000,8 +1004,21 @@ One radius-`r` row contains the retained pair `q,w`; a second row of radius
 exhibits six distinct co-radial points; if `rho ≠ r`, the two four-supports are
 disjoint. The pair `q,w` has three legal cap-role cases, and none of the unnamed
 completion points has a fixed common-order slot or reverse-target identity.
-That complete role domain, not a guessed fixed schema, is the next cross-system
-surface.
+That complete role domain remains a production input, but the exact 26-point
+regression proves that it is not the next missing cross-system surface.
+
+There is nevertheless one positive aggregate consumer. For four vertices
+`a < b < c < d` in cyclic order, if selected rows centered at `a` and `d`
+both contain `b,c`, the companion strict Kalmanson inequality contradicts the
+two row equalities. The generic theorem
+`false_of_two_selected_rows_shared_middle_pair` kernel-checks in scratch. One
+source-faithful 14-label equal-blocker row table has this schema in every one
+of its 3,456 cap-compatible cyclic orders; an exact rational Farkas replay
+rejects all of them. This kills that fixed row table, not the parent branch.
+Closure still requires an occurrence/coverage theorem producing analogous
+actual endpoint rows from the full parent. The old round-two 101-survivor
+selection ids are being regenerated against the current classifier and are
+not used as live coverage in the meantime.
 
 The radius split is now sharper.  The two rows are selected four-point classes,
 not exact CSS shells.  In the equal-radius arm the six named points imply K4
@@ -1636,7 +1653,7 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | P97-O17 | Exact-five and strict-interior source library | proved reductions; historical dispatcher superseded | The exact-five low-hit, common-deletion, recurrence, and strict-interior modules remain source-clean inputs to the full-parent proof. They are not dispatched as seven separate final leaves. |
-| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; local complete-row/MEC target exactly refuted | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. The exact-five transition splits into an open arbitrary-pair mutual-omission sibling or global reverse-membership. The latter is a three-vertex all-reverse period-three cycle. An exact rational 17-point `(8,6,6)` model realizes the physical exact-five class and all three complete reverse exact four-shells in strict convex nonobtuse-MEC geometry while avoiding every adjacent-apex return; therefore the next producer must retain the actual frontier/T0/T1 rows, the unused-source continuation row, or total K4/CSS/minimality/`noM44`. Late selector choice on the old equal-blocker fiber is also obstructed: the smallest same-cap terminal requires a genuinely third source whose actual row contains the pair. `L` retains both cap-six bounds, both physical-apex blocker-image omissions, the frontier, minimality, and non-`IsM44`; bare-`B`, fixed-initial-`H`, local reverse-row geometry, linear quotienting, and alias enumeration are insufficient. |
+| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; complete local full-cell target exactly refuted | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. An exact rational 26-point `(11,10,8)` model realizes the physical exact five, all three complete reverse rows, source-faithful T0/T1, retained frontier inequality, unused critical row, and both continuation common deletions in strict convex nonobtuse-MEC geometry while avoiding first-apex return. It has K4 at only 6/26 centers. Therefore the active producer must consume total all-center K4/common CSS/minimality or prove aggregate cap-order occurrence of two endpoint rows sharing an outside pair. The generic shared-middle-pair Kalmanson contradiction is kernel-checked and exhausts all 3,456 cap orders of one banked 14-label row table, but live occurrence/coverage is open. The current support triangle is already non-`IsM44`; bare-`B`, fixed-initial-`H`, local row adapters, prescribed-third-source targets, and stale finite selection ids are insufficient. |
 | P97-O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
 | P97-O20 | Parent direct-`False` assembler | blocked only on `P97-O18`–`P97-O19` | Run the three cap-first exits before frontier extraction. On the large-cap robust branch extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected original unique arm, or construct `R`, `B`, and `L` and apply `false_of_largeOppositeCapsBiApexRobust L`. Assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. Whole-carrier banks are regression evidence, not assembly dependencies. Then remove or trivialize O10–O13 by reference mining. |
 
