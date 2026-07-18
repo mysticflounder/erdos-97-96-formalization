@@ -62,12 +62,20 @@ false_of_largeOppositeCapsBiApexRobust
 ```
 
 The exact-five all-reverse leaf now has one owned internal producer: prove an
-aggregate occurrence from this complete `L` packet.  The preferred concrete
-shape is
+aggregate occurrence from this complete `L` packet.  A source audit found
+that the old cycle-only signature was disconnected from the named
+continuation sources: `K.start = continuation.first` does not imply that
+`continuation.first` is one of the normalized `K.source` values when
+`K.entryTime > 0`, and it says nothing about `continuation.second`.
+
+The corrected first step is therefore a mutual/all-reverse split on the total
+`PhysicalActualCriticalOmissionTransition T` before cycle normalization,
+followed by a transition-level reverse-pair normal form.  Its preferred
+concrete shape is
 
 ```text
-exists i a b,
-  reverseOutsidePair K i = {a,b} and
+exists q a b,
+  transitionReverseOutsidePair T q = {a,b} and
   dist S.oppApex1 a = dist S.oppApex1 b.
 ```
 
@@ -78,8 +86,9 @@ Equality with the retained frontier pair is a stronger acceptable producer;
 the checked Kalmanson and frontier-pair sinks are alternative consumers, not
 new proof obligations.
 
-The complete source/consumer map is recorded in
-`scratch/atail-force/all-reverse-occurrence-source-map/REPORT.md`.
+The corrected source/consumer map and exact transient-tail regression are
+recorded in
+`scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`.
 
 This is not the previously refuted bare occurrence claim.  The exact finite
 marginals and exact-QF_LRA-SAT 25-role cell prove only that `P + K + T0/T1 +
@@ -123,8 +132,8 @@ statement, is the public mining and closure boundary.
 
 #### First-apex radius split checkpoint, 2026-07-17
 
-On the exact-five all-reverse leaf, retain the original frontier and choose two
-named selected rows at `S.oppApex1`: `T0` contains the frontier pair at radius
+For the cycle-local period-three diagnostic, retain the original frontier and
+choose two named selected rows at `S.oppApex1`: `T0` contains the frontier pair at radius
 `r`, and the double-deletion row `T1` avoids that pair at radius `rho`.
 Neither row is an exact CSS shell.  The `rho = r` arm gives six named
 co-radial points and hence K4 after every two-point deletion at the first
@@ -188,8 +197,9 @@ The shared-order producer itself is now drafted rather than open mathematics.
 `StrictCapBlockData`, indexes all actual cycle sources and reverse blockers in
 it, and proves every straddle from `K + allReverse`.  It is period-parametric,
 preserves both orientations and blocker/nonincident-source identities, and
-adds no theorem premise.  The proof draft contains no `sorry`; elaborate it
-when the user-owned `ShellCurvature` build gate clears.
+adds no theorem premise.  It is cycle-local diagnostic plumbing and cannot
+restore the missing continuation-source provenance.  The proof draft contains
+no `sorry`; its build remains stopped at the user's request.
 
 The completed representative run checks all 1,728 generated forward orders
 times six fixed representatives (10,368 exact UNSAT cells, zero `unknown`),
@@ -233,6 +243,16 @@ zero substitution-verified planar hits.  Record this only as `NO-HIT`; do not
 infer UNSAT or closure.  Retire further SLSQP multistarts.  If continuing the
 local rank-two route, use a genuinely different interior-point/support-line or
 homotopy chart and require the same full post-check.
+
+The exact-row interior-point successor is now complete.  Its 27-parameter
+chart makes the 19 row equalities identities, covers all four radius-gap sign
+components with 24 starts each, and records every attempt and 15-second
+heartbeat durably.  Across 96 starts on 24 workers it found zero
+substitution-verified hits; the best hard slack was approximately `-1.18e-3`
+at the convex-orientation boundary.  This remains numerical `NO-HIT`, not
+infeasibility.  Stop tuning this fixed projection.  It is a diagnostic for a
+possible nonlinear lemma, not a substitute for the aggregate occurrence from
+the complete `L` parent.
 
 The prose round-13 handoff tightens that next producer's domain: a reverse
 critical row omits `S.oppApex2`, and its two nonphysical-cap targets lie in the
@@ -393,17 +413,19 @@ map, minimality, and `noM44`. Do not mine another selected-four marginal.
 The dependency-clean refinements below this classifier now determine the
 immediate proof object. Generic common-deletion, shared-pair, singleton, and
 fresh-robust-center outputs are recurrence edges unless they carry a genuine
-rank/nonreturn theorem. The large-radius exact-five output instead reaches a
-source-exact physical omission cycle, split exhaustively into mutual omission
-or all reverse membership. The all-reverse leaf has period three through five,
-exact `2 + 2` cap splits, source/blocker provenance, strict same-cap straddling,
-injective blocker centers, and injective two-point outside residuals. Attack
-that full-parent leaf directly:
+rank/nonreturn theorem. The large-radius exact-five output reaches a total
+source-exact physical omission transition before its eventual-cycle
+normalization. Perform the mutual/all-reverse split on that total transition:
+the normalized period-three-through-five cycle may exclude both named
+continuation sources, so its cycle-only reverse rows are not the parent-facing
+producer. Generalize the exact `2 + 2` outside-pair normal form to transition
+edges and attack the connected full-parent leaf directly:
 
 ```text
-FrontierCoupledExactFivePhysicalCycleParentResidual H Flarge
-+ all_reverseMembership
-+ original FrontierLargeOppositeCapsBiApexRobustResidual B
+FrontierLargeOppositeCapsBiApexRobustResidual B
++ LargeCapUniqueFiveTwoCommonDeletionSources D S H profile
++ PhysicalActualCriticalOmissionTransition H profile
++ allReverseTransition
 -> False.
 ```
 
@@ -417,9 +439,10 @@ the co-radial chord cycle, must carry the contradiction.
 Do not nominate a repeated outside pair as an intermediate packet: the
 existing same-cap outside-pair theorem consumes it immediately. The actual
 missing mathematics is an aggregate multirow cap/curvature packing collision
-or a complete named U5 antecedent. The user-owned `ShellCurvature` work can
-discharge a chart/lift adapter, but it does not replace that aggregate
-consumer. Closing this leaf is a real nonrecursive reduction, not complete
+or a complete named U5 antecedent. `ShellCurvature` can discharge a chart/lift
+adapter, but its present qualitative per-shell turn budgets are exact-QF_LRA
+SAT on the audited 25-role word and do not replace that aggregate consumer.
+Closing this leaf is a real nonrecursive reduction, not complete
 parent closure; retain the mutual cycle arm, unequal two-radius core, localized
 nonreturn, and retained-parent coupling as separate downstream fronts.
 
@@ -497,7 +520,7 @@ eight strict direction cells have independently replayed exact rational
 witnesses. Pure Kalmanson cannot produce the terminal antecedent.
 
 The terminal parent target is an original-frontier return occurrence:
-some reverse outside pair equals `{F0.pair.q, F0.pair.w}`, or is at least
+some transition reverse outside pair equals `{F0.pair.q, F0.pair.w}`, or is at least
 co-radial from `S.oppApex1`. The reverse blocker and first apex would then be two
 distinct centers in the same cap through the same outside pair, and
 `outsidePair_unique_capCenter` closes the all-reverse leaf immediately. No

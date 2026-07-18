@@ -11,11 +11,14 @@ EXACT-FIVE SUBPROBLEM IS THE FULL-PARENT ALL-REVERSE CO-RADIAL OCCURRENCE;
 NO PRODUCTION
 `sorry` CLOSED.**
 
-**2026-07-17 exact-five ownership update.**  The active exact-five subproblem
-is the aggregate all-reverse-cycle occurrence theorem at the complete `L`
-boundary.  It must produce a canonical reverse outside pair co-radial from
-`S.oppApex1` (or the stronger retained-frontier-pair equality) and then call
-an existing same-cap/Kalmanson/frontier-return consumer.  The earlier
+**2026-07-17 exact-five ownership and provenance update.**  The active
+exact-five subproblem is the aggregate transition-global all-reverse
+occurrence theorem at the complete `L` boundary. The split must be made on the
+total physical omission transition before eventual-cycle normalization,
+because `K.start` need not be one of the normalized cycle sources. It must
+produce a transition reverse outside pair co-radial from `S.oppApex1` (or the
+stronger retained-frontier-pair equality) and then call an existing
+same-cap/Kalmanson/frontier-return consumer.  The earlier
 “occurrence retired” finding remains valid only for the weak selected-row,
 finite-marginal, and linear-Kalmanson implications; it does not block a proof
 using the full `R/B/L` parent, nonlinear Euclidean/MEC geometry, full-fiber
@@ -396,20 +399,24 @@ prescribed-pair row with an immediate Lemma 81 or U5 consumer is acceptable,
 but another marginal radius extraction is not.
 
 Current-source reconciliation sharpens the immediate leaf beyond this raw
-classifier. The large-radius exact-five arm now reaches a full-parent,
-source-exact physical omission cycle. Its all-reverse branch already has
-period `3..5`, exact `2 + 2` cap support in every successor row, injective
-actual blocker centers, injective outside pairs, and strict cap straddling.
-Generic common-deletion/shared-pair/singleton outputs have been audited as
-loops. The adopted next theorem is direct `False` on this all-reverse leaf,
-retaining the original `L` in addition to
-`FrontierCoupledExactFivePhysicalCycleParentResidual H Flarge`. The missing
-fact is aggregate multirow geometric force, not another row packet. A
-`ShellCurvature` is useful only as prospective per-row infrastructure.  Its
-current chart interface is inconsistent with the periodic endpoint equality
-used by the live reverse-row wrapper; the sign law needs an open-window or
-distinct-endpoint repair.  Even after that repair it still needs a shared
-packing/overlap consumer and does not itself close a source `sorry`.
+classifier. The large-radius exact-five arm first reaches a total,
+source-exact physical omission transition and only then normalizes an eventual
+cycle. The former cycle-only occurrence interface had a provenance break:
+`K.start = continuation.first` does not put that source on the cycle when
+`K.entryTime > 0`, and `continuation.second` had no cycle-source connection at
+all. An exact fixed-point-free functional-graph regression exhibits both named
+sources in transient tails.
+
+The adopted correction is to split mutual omission versus all-reverse
+membership on the total transition, specialize the global arm at the two
+named continuation sources, and generalize the exact `2 + 2` outside-pair
+normal form from `(K,i)` to `(T,q)`. Direct `False` remains a theorem on the
+full `L` parent; the missing fact is aggregate multirow geometric force, not
+another row packet. `ShellCurvature` is useful only as prospective per-row
+infrastructure. An exact QF_LRA test satisfies all currently available
+per-shell turn budgets on the audited 25-role word, so those qualitative
+budgets still need a quantitative cross-row consumer and do not themselves
+close a source `sorry`.
 
 The fixed-anchor subroute has a decisive regression gate. The kernel-checked
 exact rational `DirectedCycleCountermodel` realizes period three with all
@@ -605,6 +612,15 @@ substitution-verified planar hits.  This remains numerical `NO-HIT`, not
 infeasibility.  Because the second word removes the first seed/order mismatch,
 the next compute escalation must change algorithm—interior-point/support-line
 or homotopy—not merely add SLSQP starts.
+
+The exact-row interior-point escalation has now run to completion.  The chart
+constructs all 19 shell equalities identically, tests all four radius-gap sign
+branches exactly 24 times, and writes fsynced heartbeats plus per-attempt
+records.  All 96 starts completed on 24 workers with zero verified hits; the
+best joint hard slack was about `-1.18e-3`, with strict convex orientation the
+limiting surface.  This is bounded numerical no-hit only.  It does not certify
+the fixed cell, much less the full parent, and no additional fixed-cell tuning
+is authorized as the primary lane.
 
 The latest prose backup supplies only a domain tightening.  Each reverse
 critical support omits the physical opposite apex and its two outside targets

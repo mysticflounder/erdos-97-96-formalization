@@ -864,10 +864,13 @@ consumed prescribed-pair row.
 
 The current production-and-scratch DAG refines the large-radius side of this
 statement to a finite, source-exact geometric leaf. The exact-five continuation
-constructs a physical actual-critical omission cycle. On its all-reverse arm,
-the cycle has period three through five, every actual successor row has two
-same-cap and two outside-cap support points, the same-cap pair straddles its
-blocker, and both blocker centers and outside pairs are injective. All generic
+constructs a total physical actual-critical omission transition and then an
+eventual cycle. The named continuation sources need not lie on that normalized
+cycle: `K.start` can be transient when `K.entryTime > 0`. Therefore the
+parent-facing mutual/all-reverse split must be made on the total transition.
+Its global all-reverse arm gives a source-exact row at every physical source,
+including both named continuation sources; the cycle remains available for
+period-three-through-five counting. All generic
 common-deletion, shared-pair, singleton, and bare fresh-robust outputs return to
 an already visited robust state unless a separate nonreturn theorem is added.
 The exact rational, kernel-checked `DirectedCycleCountermodel` shows why the
@@ -877,18 +880,17 @@ nonobtuse MEC carrier. What that model omits is each row's two outside targets,
 the total critical map, minimality, and the retained parent coupling.
 
 Accordingly the public proof is direct contradiction from the full-parent
-all-reverse cycle, and its immediate internal producer is one aggregate
-occurrence rather than another bare existential packet: some canonical reverse
-outside pair must be co-radial from `S.oppApex1` (or equal the retained
+all-reverse transition, and its immediate internal producer is one aggregate
+occurrence rather than another bare existential packet: some transition-level
+reverse outside pair must be co-radial from `S.oppApex1` (or equal the retained
 frontier pair). Production `outsidePair_unique_capCenter` then closes. The
 proof may instead aggregate the three-to-five cap-straddling rows into an
 equivalent complete named U5 incidence or common cap/curvature impossibility,
 but it must remain inside the full `L` parent. The active
-`ShellCurvature` analytic work may eventually supply the per-row inequality,
-but its current chart signature is inconsistent with the live periodic
-endpoint equality and needs an open-window/distinct-endpoint repair. Even then,
-one charted row is compatible with the leaf; the load-bearing step is the
-multirow packing collision. The mutual-omission cycle arm, unequal two-radius
+`ShellCurvature` analytic work may supply per-row inequalities, but an exact
+QF_LRA model already satisfies all current turn budgets on the audited 25-role
+word. The load-bearing step must therefore be a stronger quantitative
+cross-row or full-parent coupling. The mutual-omission transition arm, unequal two-radius
 core, localized nonreturn, and retained-parent branches remain after this
 leaf, so this checkpoint does not yet close the public theorem.
 
@@ -1073,6 +1075,15 @@ candidate passed the full row/convexity/separation/exact-support substitution
 gate.  This is bounded `NO-HIT`, not an infeasibility theorem.  Any further
 local attempt must change to an interior-point/support-line or homotopy
 instrument; repeating SLSQP starts has no proof status.
+
+The exact-row interior-point successor also completed without a verified
+point.  Its 27 parameters construct all 19 row equalities identically; 96
+starts cover all four radius-gap sign components and hard-test strict convex
+order and pair separation.  The durable ledger accounts for every start, but
+the best hard slack remains about `-1.18e-3` on the convex-orientation surface.
+This is bounded numerical `NO-HIT`, not infeasibility.  Further tuning of this
+fixed projection is retired; the load-bearing work is the full-parent
+co-radial reverse-pair occurrence.
 
 The latest prose pair-reuse handoff adds that every reverse critical support
 omits the physical opposite apex and places its outside pair in the union of
@@ -1626,9 +1637,13 @@ Conditionally: if the obligations of Part V are discharged, then
 Nothing stronger is claimed. The 12 current source declarations remain open;
 `FrontierCommonDeletionRefinedNormalForm` is proved as a reduction, but its
 joint consumer and the protected original unique arms have not yet been
-proved. The exact-five omission cycle is now the immediate source-exact
-consumer surface for the large-radius arm; its all-reverse leaf is open, and
-closing that leaf alone would not discharge the remaining robust residuals.
+proved. The exact-five total omission transition is now the immediate
+source-exact consumer surface for the large-radius arm. The eventual cycle
+remains useful for periodic counting, but its start may lie in a transient
+tail, so it cannot by itself transport the two named continuation sources into
+the all-reverse rows. The transition-global all-reverse leaf and its
+full-parent co-radial outside-pair producer are open; closing that leaf alone
+would not discharge the remaining robust residuals.
 
 ---
 

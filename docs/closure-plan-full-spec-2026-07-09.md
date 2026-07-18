@@ -140,26 +140,39 @@ false_of_largeOppositeCapsBiApexRobust
     (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : False
 ```
 
-### Exact-five ownership correction (2026-07-17)
+### Exact-five ownership and provenance correction (2026-07-17)
 
-On the exact-five all-reverse leaf, the immediate internal producer is again
-an **aggregate occurrence theorem**, but only at the complete `L` boundary.
-Its preferred conclusion is that one canonical `reverseOutsidePair` is
-co-radial from `S.oppApex1` (the stronger equality with the retained frontier
-pair is also sufficient).  The reverse-row blocker is a distinct center in
-the same ordered cap and the pair lies outside that cap, so production
-`CapSelectedRowCounting.outsidePair_unique_capCenter` then returns `False`.
-The exact checked chain is therefore
+On the exact-five all-reverse leaf, the immediate internal producer remains
+an **aggregate occurrence theorem** at the complete `L` boundary, but the
+reverse-membership split must occur on the total
+`PhysicalActualCriticalOmissionTransition` before cycle normalization.
+Production only proves `K.start = continuation.first`; since
+`K.base = successor^[K.entryTime] K.start`, a positive `entryTime` may leave
+both named continuation sources in transient tails.  Thus the former
+cycle-only `hcycleStart` surface did not connect either named source to
+`K.source`.
+
+The corrected interface first proves the routine transition-global
+mutual/all-reverse split, then generalizes the exact-two outside-pair normal
+form from `(K,i)` to `(T,q)`.  The global all-reverse arm can be specialized
+at both `continuation.first` and `continuation.second` using their existing
+physical-interior fields.  Its preferred conclusion is that one
+`transitionReverseOutsidePair` is co-radial from `S.oppApex1` (the stronger
+equality with the retained frontier pair is also sufficient).  The resulting
+reverse-row blocker and outside-cap pair feed production
+`CapSelectedRowCounting.outsidePair_unique_capCenter` and return `False`:
 
 ```text
-full R/B/L parent + same-H exact-five all-reverse cycle
-  -> co-radial reverse-outside-pair occurrence
+full R/B/L parent + same-H exact-five total transition
+  -> transition-global mutual/all-reverse split
+  -> co-radial transition reverse-outside-pair occurrence
   -> outsidePair_unique_capCenter
   -> False
 ```
 
-The source-to-consumer line map and the proposed quantifier order are pinned
-in `scratch/atail-force/all-reverse-occurrence-source-map/REPORT.md`.
+The original source-to-consumer map is corrected and superseded by
+`scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`, which
+also includes the exact transient-tail regression.
 
 This does not revive the refuted weak implication from bare `P`, `K`, fixed
 `T0/T1` marginals, or the linear Kalmanson quotient.  The earlier statement
@@ -179,12 +192,13 @@ occurrence/parent contradiction while retaining the full packet.  Importing
 `u1TwoLargeCapObstruction` is worthwhile plumbing but is not the priority
 closure lane because the live residues still lack its named equalities.
 
-The period-three common-cap-order draft should be elaborated once the
-user-owned `ShellCurvature` build gate releases.  Do not enlarge the linear
-Kalmanson quotient: a fully disjoint 25-role cell is exact-QF_LRA SAT.  Any
-decisive new input must be nonlinear Euclidean/MEC geometry, full-fiber
-provenance, or global minimality, and it must produce the aggregate terminal
-occurrence above rather than another local packet.
+The period-three common-cap-order draft remains optional plumbing.  Do not
+enlarge the linear Kalmanson quotient: a fully disjoint 25-role cell is
+exact-QF_LRA SAT, and a separate exact test satisfies all currently available
+per-shell curvature turn budgets on that word.  Any decisive new input must
+be quantitative/nonlinear Euclidean or MEC geometry, full-fiber provenance,
+or global minimality, and it must produce the aggregate terminal occurrence
+above rather than another local packet.
 
 The original and swapped unique arms remain protected dependencies. If the
 existing critical-fiber terminal is useful internally, the honest helper
@@ -542,7 +556,7 @@ theorem.
 
 Accordingly, neither cap six, two selected rows, the represented finite
 CSS/minimality marginals, nor union coverage alone is a live producer of the
-return occurrence.  The conditional terminal remains sound:
+return occurrence.  The cycle-indexed conditional terminal remains sound:
 
 ```text
 exists i,
@@ -550,11 +564,12 @@ exists i,
   reverseOutsidePair i ⊆ T1.support,
 ```
 
-because either arm feeds `outsidePair_unique_capCenter` immediately.  The
-occurrence is retired only as a consequence of this weak selected-row/linear
-surface; it is the active aggregate producer when stated from the complete
-`L` parent and proved using omitted Euclidean/MEC, full-fiber, or global
-minimality data.  One pinned auxiliary blocker map becomes strict-Kalmanson
+because either arm feeds `outsidePair_unique_capCenter` immediately.  It is a
+periodic-subgraph diagnostic, not the named-source producer: `K.start` need
+not occur among `K.source`, so this surface cannot consume the continuation's
+two named sources.  The active aggregate producer is transition-indexed at
+the complete `L` parent and must use omitted Euclidean/MEC, full-fiber, or
+global-minimality data.  One pinned auxiliary blocker map becomes strict-Kalmanson
 UNSAT even before target negation; because the live source does not fix that
 map, this is diagnostic rather than coverage.  The bounded period-three
 internal branch may still be expressed as
@@ -647,6 +662,18 @@ convexity violation.  More SLSQP starts are retired.  The only justified
 numerical continuation is a genuinely different interior-point/support-line
 or homotopy formulation, followed by exact checking; otherwise return to a
 source-backed global field rather than treating no-hit frequency as a proof.
+
+That different interior-point formulation has now also completed.  A
+27-parameter chart enforces all 19 row equalities identically, schedules each
+of the four radius-gap sign branches 24 times, and hard-constrains 575 cyclic
+orientation tests plus pair separation.  Its fsynced progress ledger accounts
+for all 96 starts on 24 workers; zero candidate passed the full 956-condition
+substitution gate.  The best hard slack remained negative at about
+`-1.18e-3`, limited by convex orientation.  This is another bounded numerical
+`NO-HIT`, not `UNSAT`, and closes no source theorem.  Retire further fixed-cell
+numerical tuning.  Any exact algebraic study of this cell is secondary to the
+full-`L` aggregate occurrence and must identify a reusable nonlinear field
+before it counts as closure progress.
 
 The 2026-07-18 prose backup adds one honest role-domain refinement but no such
 coupling.  Applying its two-owner alternation/localization result to each
@@ -4940,23 +4967,23 @@ outside-point bisection, invalid blocker-map regressions, generic
 common-deletion recursion, and plain selected-row connectivity are rejected
 as primary work.
 
-The exact-five physical omission cycle and its reverse/mutual reductions are
-the current primary exact-five dependency beneath the direct robust parent
-theorem. Reverse rows have injective blockers and outside pairs plus a strict
-cap-straddling bridge; the all-reverse leaf is the immediate direct-`False`
-target. The mutual arm reaches a same-cap common-deletion residual or
-equal-blocker exact shell and remains a separate later consumer. Neither
-marginal is independently false from the already-exposed local data.
+The total exact-five physical omission transition is the current primary
+exact-five dependency beneath the direct robust parent theorem. The eventual
+cycle and its reverse/mutual reductions remain valid periodic diagnostics, but
+they are not the named-source producer: `K.start` may be transient, so neither
+continuation source need occur among `K.source`. The immediate API repair is a
+global mutual/all-reverse split on the transition plus an exact-two
+transition reverse-pair normal form. Its all-reverse arm is the immediate
+direct-`False` target with the complete `L`; the mutual arm remains a separate
+consumer. Neither marginal is independently false from the already-exposed
+local data.
 
-The shell-curvature continuation is not currently a valid consumer for that
-reverse bridge.  The source-faithful cyclic-role adapter kernel-checks, but its
-audit also proves that the current `CounterclockwiseAngleChart` interface is
-inconsistent: the unrestricted orientation-sign field conflicts with the
-periodic endpoint equality required by the Lemma 30/37 wrappers.  Any use of
-that lane is blocked until the chart restricts the sign law to non-wrapping
-open-window triples (or adds the necessary endpoint-distinct premise) and the
-repaired interface is revalidated.  Do not use the existing vacuous chart
-wrapper as evidence for the parent contradiction.
+The shell-curvature continuation is not by itself a valid consumer for that
+reverse bridge. A source-faithful cyclic-role adapter is available, but an
+exact rational turn ledger satisfies every current per-shell curvature budget
+on the audited 25-role word. Any use of that lane now needs a quantitative
+cross-row relation or another full-parent input; do not use the qualitative
+per-shell budgets as evidence for the parent contradiction.
 
 This preserved checkpoint predated the final source-surface audit. Its claim
 that physical-apex ingress was not load-bearing is superseded: the current

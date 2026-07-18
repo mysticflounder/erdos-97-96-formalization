@@ -6,18 +6,24 @@ Status: **THE CHECKED DAG HAS CONVERGED TO TWO NONRECURRENT SECOND-APEX
 GEOMETRIC FRONTS, PLUS ONE INDEPENDENT RETAINED-PARENT FRONT.  GENERIC
 COMMON-DELETION, SHARED-PAIR, AND FRESH-ROBUST-CENTER OUTPUTS ARE RECURRENCE
 EDGES, NOT NEW RESIDUALS.  THE SMALLEST HONEST NEXT CLOSER IS A DIRECT
-THEOREM ON THE FULL-PARENT EXACT-FIVE ALL-REVERSE LEAF.  COMPLETING THE
-`ShellCurvature` ANGLE CHART HELPS THAT PROOF METHOD BUT DOES NOT BY ITSELF
-CLOSE OR CHANGE THE TARGET.  NO PRODUCTION `sorry` IS CLOSED.**
+THEOREM ON THE FULL-PARENT EXACT-FIVE ALL-REVERSE LEAF.  THE SPLIT MUST OCCUR
+ON THE TOTAL PHYSICAL TRANSITION BEFORE EVENTUAL-CYCLE NORMALIZATION.
+`ShellCurvature` TURN BUDGETS DO NOT BY THEMSELVES CLOSE OR CHANGE THE TARGET.
+NO PRODUCTION `sorry` IS CLOSED.**
 
 ## 2026-07-17 ownership correction
 
 The exact-five all-reverse branch is now owned as an aggregate occurrence
 proof from the complete
 `L : FrontierLargeOppositeCapsBiApexRobustResidual B`, followed immediately
-by an existing same-cap/Kalmanson/frontier-return consumer.  The preferred
-occurrence produces one canonical `reverseOutsidePair` co-radial from
-`S.oppApex1`; production `outsidePair_unique_capCenter` then closes the leaf.
+by an existing same-cap/Kalmanson/frontier-return consumer.  A source audit
+proved that `K.start = continuation.first` does not put the named source on
+the normalized cycle when `K.entryTime > 0`; neither named continuation source
+need be among `K.source`.  The corrected producer therefore splits on the
+total `PhysicalActualCriticalOmissionTransition`, specializes its global
+all-reverse arm at both named sources, and produces a transition-level outside
+pair co-radial from `S.oppApex1`. Production `outsidePair_unique_capCenter`
+then closes the leaf.
 
 The exact finite no-return models and the fully disjoint exact-QF_LRA-SAT
 25-role cell remain regression gates: they refute deriving this occurrence
@@ -27,7 +33,9 @@ original frontier, complete critical-fiber provenance, MEC geometry,
 `D.Minimal`, and `noM44`.  Consequently the occurrence is reactivated only at
 the full-parent boundary; the public endpoint remains direct
 `false_of_largeOppositeCapsBiApexRobust L`.  Bare-`B`, fixed-initial-`H`, and
-additional conditional consumers remain retired.
+additional conditional consumers remain retired. Exact QF_LRA also shows that
+the available per-shell curvature turn budgets are compatible with the
+audited 25-role word; they are not the missing aggregate consumer.
 
 This audit owns only
 `scratch/atail-force/robust-residual-convergence/`.  It does not edit or
@@ -465,7 +473,7 @@ deletion robustness at the first apex, but the checked finite metric interface
 still realizes the six-class, blocker-map, and deletion marginals without
 `False`.  The honest remaining gap is a same-model Euclidean/MEC/order and
 full-critical/minimality coupling proving the full-`L` aggregate occurrence
-and then applying an existing terminal consumer.  One pinned blocker map is
+on the total transition and then applying an existing terminal consumer.  One pinned blocker map is
 already strict-Kalmanson UNSAT even without target negation, but it is not
 map-independent coverage.  A bounded internal period-three lemma may be
 stated as `false_of_periodThree_allReverse_firstApexRows` from `P`, `K`,
@@ -485,8 +493,9 @@ The common-order producer is drafted source-faithfully as
 `nonempty_reverseCycleSharedCapOrder`.  From `K + allReverse` it chooses one
 physical-cap strict block, globally indexes the actual sources and blockers,
 and proves every straddle without identifying a blocker with a nonincident
-source or choosing one orientation.  The draft has no `sorry` but remains
-unelaborated under the active no-build gate.
+source or choosing one orientation.  This remains useful cycle-local
+diagnostic plumbing, but it cannot recover named sources lost in transient
+tails. The draft has no `sorry`; the user has stopped the build.
 
 The bounded fixed-cell run has completed: 1,728 forward boundary orders times
 six representatives, or 10,368 exact rational checks, are all UNSAT with no
@@ -529,6 +538,16 @@ source theorem.  More SLSQP starts are retired; only a different
 interior-point/support-line or homotopy instrument is a meaningful local
 continuation.
 
+The different exact-row interior-point continuation is now complete.  Its
+27-parameter chart enforces all 19 row equalities by construction and covers
+the four radius-gap sign branches with 24 starts each.  All 96 starts on 24
+workers are durably accounted for in `PROGRESS.jsonl`; none passed the full
+956-condition substitution checker, and the best hard slack was about
+`-1.18e-3` at the convex-orientation boundary.  This is bounded numerical
+`NO-HIT`, not `UNSAT`.  Further fixed-cell numerical tuning is retired; the
+next proof work is the full-`L` aggregate occurrence or an exact reusable
+nonlinear field which feeds it.
+
 The 2026-07-18 prose backup further shows, at the mathematical role level,
 that each reverse critical support omits `S.oppApex2` and its outside pair is
 contained in the union of the two complementary open blocks.  This is real
@@ -565,12 +584,14 @@ addition to constructing compatible unwrapped real edge/chord lifts.
 Completing that chart does **not change the theorem choice above**.  It changes
 the available proof method:
 
-- the all-reverse leaf already has the best current source-facing match:
-  every reverse row has two same-cap targets straddling its blocker and two
-  outside-cap targets;
+- after the transition-level normalization, the all-reverse leaf has the best
+  current source-facing match: every reverse row has two same-cap targets
+  straddling its blocker and two outside-cap targets, including rows attached
+  to both named continuation sources;
 - after the sign-window repair, a compatible cyclic lift can place those four targets into the
   shell-curvature interface and discharge the per-row analytic inequality;
-- but one per-row inequality is not contradictory, and the chart does not
+- but one per-row inequality is not contradictory—the audited 25-role word
+  satisfies every current turn budget exactly in QF_LRA—and the chart does not
   force two outside pairs to coincide or complete a named U5 packet.
 
 The remaining theorem after chart repair and construction is still an aggregate

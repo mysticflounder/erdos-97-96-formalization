@@ -2,14 +2,23 @@
 
 Date: 2026-07-17
 
-Status: **SOURCE-AUDITED. THE LIVE EXACT-FIVE ALL-REVERSE GAP IS ONE
-AGGREGATE PARENT-RETURN OCCURRENCE, NOT ANOTHER LOCAL CONTRADICTION OR
-CONDITIONAL CONSUMER.** The smallest currently identified occurrence says
+Status: **SUPERSEDED AT THE PRODUCER INTERFACE BY
+`full-l-all-reverse-occurrence-attack/REPORT.md`. THE LIVE EXACT-FIVE
+ALL-REVERSE GAP IS STILL ONE AGGREGATE PARENT-RETURN OCCURRENCE, BUT THE SPLIT
+MUST OCCUR ON THE TOTAL TRANSITION BEFORE CYCLE NORMALIZATION.** The smallest
+currently identified occurrence says
 that one exact two-point reverse residual is co-radial from the first physical
 apex while the complete large-opposite-caps bi-apex parent remains in scope.
 The existing ordered-cap terminal then gives `False`. This occurrence is
 **OPEN** and is known not to follow from the already-audited finite marginals.
 No production `sorry` is closed by this report.
+
+Correction: the former `hcycleStart : K.start.1 = continuation.first`
+signature below is not source-faithful enough for the named sources.
+`K.source` iterates from `K.base = successor^[K.entryTime] K.start`, so positive
+`entryTime` may leave both continuation sources in transient tails. Read all
+cycle-indexed occurrence statements in this report as historical diagnostics;
+the authoritative transition-level signature is in the successor report.
 
 This lane owns only
 `scratch/atail-force/all-reverse-occurrence-source-map/REPORT.md`. It did not
@@ -320,14 +329,13 @@ no proposed name is confused with source truth:
 (profile : LargeCapUniqueFiveSecondApexRadius D S)
 (continuation :
   LargeCapUniqueFiveTwoCommonDeletionSources D S H profile)
-(K : PhysicalActualCriticalOmissionCycle H profile)
-(hcycleStart : K.start.1 = continuation.first)
-(hreverse : forall i : Fin K.period,
-  (K.source i).1 in
-    (H.selectedAt (K.source (K.successorIndex i)).1 ...)
+(T : PhysicalActualCriticalOmissionTransition H profile)
+(hreverse : forall q : PhysicalVertex profile,
+  q.1 in
+    (H.selectedAt (T.successor q).1 ...)
       .toCriticalFourShell.support) :
-exists i : Fin K.period, exists a b : Real^2,
-  reverseOutsidePair K i = {a, b} /\
+exists q : PhysicalVertex profile, exists a b : Real^2,
+  transitionReverseOutsidePair T q = {a, b} /\
   dist S.oppApex1 a = dist S.oppApex1 b
 ```
 
@@ -335,17 +343,17 @@ Why these inputs are honest:
 
 - `L` retains both cap-six bounds through `B`, `R`, and `F`, hence also
   bi-apex robustness, the original frontier, `minimal`, and `noM44`;
-- `profile`, `continuation`, `K`, and `hcycleStart` retain the complete
-  source-faithful exact-five branch rather than passing a detached cycle;
-- `hreverse` is precisely one exhaustive arm of the production cycle split;
+- `profile`, `continuation`, and `T` retain the complete source-faithful
+  exact-five branch and apply to both named sources;
+- `hreverse` is the proposed global arm of the transition-level split;
   and
 - the conclusion is exactly the missing antecedent of an existing terminal.
 
 The stronger parent-directed conclusion
 
 ```lean
-exists i,
-  reverseOutsidePair K i = {F.pair.q, F.pair.w}
+exists q,
+  transitionReverseOutsidePair T q = {F.pair.q, F.pair.w}
 ```
 
 also closes immediately, because `F.pair.q` and `F.pair.w` are already
