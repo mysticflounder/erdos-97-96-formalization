@@ -187,19 +187,28 @@ full R/B/L parent + same-H exact-five total transition
   -> False
 ```
 
-On the all-reverse side, the source-directed occurrence target can be stated
-more concretely after extracting `P : FirstApexShellRolePacket F0 R`:
+On the all-reverse side, keep the producer contract choice-free:
 
 ```text
-exists q,
-  transitionReverseOutsidePair T q ⊆ P.retainedRow.support
-  or transitionReverseOutsidePair T q ⊆ P.doubleRow.support.
+exists q a b,
+  a != b
+  and a,b in transitionReverseOutsidePair T q
+  and dist S.oppApex1 a = dist S.oppApex1 b.
 ```
 
-Either containment makes that reverse pair co-radial from `S.oppApex1` and
-feeds the existing terminal.  The containment producer itself is open; its
-full-parent assembler and complete consumer are kernel-checked in
-`scratch/atail-force/parent-exactfive-assembler/`.
+Equivalently, the complete two-point reverse pair has two members in some
+complete first-apex `SelectedClass`.  Containment in either selected
+four-point row of `P : FirstApexShellRolePacket F0 R` remains a sufficient
+implementation path, and its adapter is production in
+`ATail/ParentExactFiveAssembler.lean`, but it is not the theorem target.
+The exact marginal audit exhibits a period-three all-reverse packet whose
+reverse pairs split one-and-one between the two named rows.  A second exact
+selector fixture shows that even a pair already contained in a six-point
+first-apex radius class may be absent from both preselected four-subrows.
+These fixtures are abstraction-level regressions, not full Euclidean
+countermodels; they nevertheless isolate a real choice/quantifier
+overstrength in the named-row statement.  The production exact-five
+dispatcher now accepts the invariant co-radial occurrence directly.
 
 The original source-to-consumer map is corrected and superseded by
 `scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`, which

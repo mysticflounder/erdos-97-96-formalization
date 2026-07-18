@@ -94,19 +94,26 @@ Equality with the retained frontier pair is a stronger acceptable producer;
 the checked Kalmanson and frontier-pair sinks are alternative consumers, not
 new proof obligations.
 
-With the production first-apex packet, the smallest source-directed producer
-is now
+The production first-apex packet remains available as evidence, but the
+producer contract must not quantify over its preselected four-point rows.
+The exact marginal audit admits
 
 ```text
-exists q,
-  transitionReverseOutsidePair T q ⊆ P.retainedRow.support
-  or transitionReverseOutsidePair T q ⊆ P.doubleRow.support.
+every reverse pair covered by
+  P.retainedRow.support ∪ P.doubleRow.support,
+while every pair splits one-and-one between the rows.
 ```
 
-The full-parent assembler and the containment-to-co-radial-to-`False` adapter
-are kernel-checked in `scratch/atail-force/parent-exactfive-assembler/`; only
-the displayed containment theorem is open on this all-reverse sibling.  The
-arbitrary mutual-omission sibling requires its own direct-False consumer.
+A second selector fixture permits a reverse pair to lie in a six-point
+first-apex radius class while both selected four-subrows omit part of it.
+Therefore named-row containment is a sufficient adapter, not the owned
+producer.  The smallest invariant producer is the displayed co-radial
+occurrence itself, equivalently two hits of one complete reverse pair in an
+arbitrary complete first-apex radius class.  The full-parent assembler and
+co-radial-to-`False` terminal are production in
+`ATail/ParentExactFiveAssembler.lean`, and its exact-five dispatcher consumes
+that invariant occurrence directly.  The arbitrary mutual-omission sibling
+still requires its own direct-False consumer.
 
 The corrected source/consumer map and exact transient-tail regression remain
 recorded in

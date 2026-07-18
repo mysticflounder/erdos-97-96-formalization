@@ -1095,6 +1095,22 @@ What remains open is exactly the coupling from that packet and the production
 period-three shared order to one reverse outside pair co-radial from
 `S.oppApex1`, or directly to `False`.
 
+`ATail/ParentExactFiveAssembler.lean` now packages the complete production
+trace from `L` through the exact-five relation split.  Its all-reverse packet
+retains the original first-apex roles, the total transition, exact period
+three, both continuation sources, and shared cap order; its checked adapter
+turns containment of one reverse outside pair in either first-apex row into
+the existing co-radial contradiction.  That containment is only sufficient,
+not the primary producer: an exact marginal packet splits every reverse pair
+across the two selected rows, and a separate selector fixture can omit a pair
+from both four-subrows even when the pair lies in a six-point first-apex
+radius class.  These are not full Euclidean countermodels, but they prove the
+named-row target has an artificial choice dependency.  The production
+dispatcher therefore asks directly for one reverse pair co-radial from
+`S.oppApex1`, equivalently two hits in one complete first-apex radius class.
+That invariant occurrence and the arbitrary mutual-pair consumer are the two
+open exact-five slots.
+
 The latest prose pair-reuse handoff adds that every reverse critical support
 omits the physical opposite apex and places its outside pair in the union of
 the two complementary open blocks.  It is a valid mathematical refinement,
@@ -1612,7 +1628,7 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | P97-O17 | Exact-five and strict-interior source library | proved reductions; historical dispatcher superseded | The exact-five low-hit, common-deletion, recurrence, and strict-interior modules remain source-clean inputs to the full-parent proof. They are not dispatched as seven separate final leaves. |
-| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; exact-five all-reverse reduced to period three | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. The exact-five transition now splits into an open arbitrary-pair mutual-omission sibling or global reverse-membership; the older cycle-edge mutual lane does not consume the arbitrary pair. The latter has exactly three physical vertices and a zero-entry all-reverse period-three cycle containing both continuation sources; periods four and five are retired there. Its sharp next producer places one reverse outside pair inside either production first-apex selected row, which feeds the existing co-radial terminal. `L` retains both cap-six bounds, both physical-apex blocker-image omissions, the frontier, minimality, and non-`IsM44`; bare-`B`, fixed-initial-`H`, linear-quotient, and alias-enumeration targets are insufficient. |
+| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; exact-five all-reverse reduced to period three | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. The exact-five transition now splits into an open arbitrary-pair mutual-omission sibling or global reverse-membership; the older cycle-edge mutual lane does not consume the arbitrary pair. The latter has exactly three physical vertices and a zero-entry all-reverse period-three cycle containing both continuation sources; periods four and five are retired there. Its sharp next producer is the choice-free occurrence that one complete reverse pair is co-radial from `S.oppApex1`; named selected-row containment is only sufficient and is not forced by the audited marginals. `L` retains both cap-six bounds, both physical-apex blocker-image omissions, the frontier, minimality, and non-`IsM44`; bare-`B`, fixed-initial-`H`, linear-quotient, and alias-enumeration targets are insufficient. |
 | P97-O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
 | P97-O20 | Parent direct-`False` assembler | blocked only on `P97-O18`–`P97-O19` | Run the three cap-first exits before frontier extraction. On the large-cap robust branch extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected original unique arm, or construct `R`, `B`, and `L` and apply `false_of_largeOppositeCapsBiApexRobust L`. Assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. Whole-carrier banks are regression evidence, not assembly dependencies. Then remove or trivialize O10–O13 by reference mining. |
 
