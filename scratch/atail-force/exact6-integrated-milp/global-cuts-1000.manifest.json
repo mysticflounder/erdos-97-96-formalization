@@ -1,0 +1,46 @@
+{
+  "duplicate_record_count": 109,
+  "epistemic_status": "EXACT_VECTOR_CANCELLATION_BANK_NOT_LIVE_LEAN_CLOSURE",
+  "input_record_count": 7000,
+  "inputs": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/continuationOrder/cuts.jsonl",
+      "records": 1000,
+      "sha256": "2a3e6afd34fbcdd5300bfab0282173c8010dbe1b6164e684e08455135a0d9c17"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/reverseContinuationOrder/cuts.jsonl",
+      "records": 1000,
+      "sha256": "03da5d4965a2db7edb3f41b2f67c727eff86dc771880b37a4fe79998f3adbd74"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesFirstAtSource/cuts.jsonl",
+      "records": 1000,
+      "sha256": "92bc7e5ccf3ee159ed6ec1472e07a56861caab6cce6ffbd3cffa3bdc5b168298"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesFirstAtTarget/cuts.jsonl",
+      "records": 1000,
+      "sha256": "13baa168dd8e04f6f48e87ac11aa4944f40ca8f793b7e010575445ff0c09f2b2"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesSecondAtSource/cuts.jsonl",
+      "records": 1000,
+      "sha256": "34c25423d21f50b58c04d7af7cc0d8fd88ea8e0155f6ecf41bb2912a198071c9"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesSecondAtTarget/cuts.jsonl",
+      "records": 1000,
+      "sha256": "747a0a5cf912edcfa5bec0786465a138b0bb412cc59e9f2424f2e27cf80d24c3"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/fourDistinct/cuts.jsonl",
+      "records": 1000,
+      "sha256": "71e47dfaad73efa5d68e6242359ea9f18b42472003139e268e55cf35d80085df"
+    }
+  ],
+  "output": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+  "output_sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d",
+  "schema": "p97-exact6-integrated-global-cut-bank-manifest-v1",
+  "unique_record_count": 6891
+}

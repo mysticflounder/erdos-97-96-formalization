@@ -1,0 +1,412 @@
+{
+  "certificate": {
+    "equality_marginals": [],
+    "inequality_marginals": [
+      [
+        70,
+        "-1"
+      ],
+      [
+        73,
+        "-1"
+      ],
+      [
+        1180,
+        "-1"
+      ],
+      [
+        1187,
+        "-1"
+      ],
+      [
+        1303,
+        "-1"
+      ],
+      [
+        1308,
+        "-1"
+      ],
+      [
+        120219,
+        "-1"
+      ]
+    ],
+    "lower_bound_marginals": [
+      [
+        4,
+        "2"
+      ],
+      [
+        7,
+        "1"
+      ],
+      [
+        8,
+        "1"
+      ],
+      [
+        102,
+        "2"
+      ],
+      [
+        106,
+        "1"
+      ],
+      [
+        109,
+        "1"
+      ],
+      [
+        114,
+        "2"
+      ],
+      [
+        119,
+        "1"
+      ],
+      [
+        123,
+        "1"
+      ]
+    ],
+    "upper_bound_marginals": []
+  },
+  "decoded_dual_support": {
+    "antecedent_is_true_boolean_support": true,
+    "antecedent_true_literals": [
+      {
+        "column": 4,
+        "multiplier": "2",
+        "name": "member_0_4"
+      },
+      {
+        "column": 7,
+        "multiplier": "1",
+        "name": "member_0_7"
+      },
+      {
+        "column": 8,
+        "multiplier": "1",
+        "name": "member_0_8"
+      },
+      {
+        "column": 102,
+        "multiplier": "2",
+        "name": "member_7_4"
+      },
+      {
+        "column": 106,
+        "multiplier": "1",
+        "name": "member_7_8"
+      },
+      {
+        "column": 109,
+        "multiplier": "1",
+        "name": "member_7_11"
+      },
+      {
+        "column": 114,
+        "multiplier": "2",
+        "name": "member_8_2"
+      },
+      {
+        "column": 119,
+        "multiplier": "1",
+        "name": "member_8_7"
+      },
+      {
+        "column": 123,
+        "multiplier": "1",
+        "name": "member_8_11"
+      }
+    ],
+    "inequalities": [
+      {
+        "converted_index": 70,
+        "multiplier": "-1",
+        "original_row": 119446,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_0_4",
+            1
+          ],
+          [
+            "member_0_7",
+            1
+          ],
+          [
+            "d_0_4",
+            1
+          ],
+          [
+            "d_0_7",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 73,
+        "multiplier": "-1",
+        "original_row": 119449,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_0_4",
+            1
+          ],
+          [
+            "member_0_8",
+            1
+          ],
+          [
+            "d_0_4",
+            -1
+          ],
+          [
+            "d_0_8",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1180,
+        "multiplier": "-1",
+        "original_row": 120556,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_7_4",
+            1
+          ],
+          [
+            "member_7_8",
+            1
+          ],
+          [
+            "d_4_7",
+            1
+          ],
+          [
+            "d_7_8",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1187,
+        "multiplier": "-1",
+        "original_row": 120563,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_7_4",
+            1
+          ],
+          [
+            "member_7_11",
+            1
+          ],
+          [
+            "d_4_7",
+            -1
+          ],
+          [
+            "d_7_11",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1303,
+        "multiplier": "-1",
+        "original_row": 120679,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_8_2",
+            1
+          ],
+          [
+            "member_8_7",
+            1
+          ],
+          [
+            "d_2_8",
+            -1
+          ],
+          [
+            "d_7_8",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1308,
+        "multiplier": "-1",
+        "original_row": 120684,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_8_2",
+            1
+          ],
+          [
+            "member_8_11",
+            1
+          ],
+          [
+            "d_2_8",
+            1
+          ],
+          [
+            "d_8_11",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 120219,
+        "multiplier": "-1",
+        "original_row": 117880,
+        "rhs": 0,
+        "sense": "negated_lower",
+        "terms": [
+          [
+            "d_0_7",
+            1
+          ],
+          [
+            "d_0_8",
+            -1
+          ],
+          [
+            "d_7_11",
+            -1
+          ],
+          [
+            "d_8_11",
+            1
+          ],
+          [
+            "epsilon",
+            1
+          ]
+        ]
+      }
+    ],
+    "nogood_clause": [
+      "not member_0_4",
+      "not member_0_7",
+      "not member_0_8",
+      "not member_7_4",
+      "not member_7_8",
+      "not member_7_11",
+      "not member_8_2",
+      "not member_8_7",
+      "not member_8_11"
+    ]
+  },
+  "epistemic_status": "EXACT_RATIONAL_FIXED_LEAF_DUAL_REPLAY_PASS",
+  "exact_replay_valid": true,
+  "fixed_boolean_true_columns": [
+    4,
+    7,
+    8,
+    9,
+    14,
+    17,
+    23,
+    26,
+    31,
+    35,
+    38,
+    39,
+    46,
+    52,
+    54,
+    55,
+    58,
+    61,
+    64,
+    69,
+    70,
+    76,
+    81,
+    83,
+    88,
+    89,
+    93,
+    97,
+    102,
+    106,
+    109,
+    110,
+    114,
+    119,
+    121,
+    123,
+    127,
+    128,
+    129,
+    130,
+    143,
+    145,
+    146,
+    151,
+    156,
+    160,
+    163,
+    166,
+    168,
+    170,
+    176,
+    178,
+    182,
+    183,
+    187,
+    193,
+    197,
+    198,
+    199,
+    200,
+    206,
+    211,
+    228,
+    241,
+    254,
+    266,
+    292,
+    307,
+    320,
+    323,
+    343,
+    354,
+    374,
+    378,
+    399,
+    414,
+    422,
+    444,
+    459,
+    466
+  ],
+  "max_denominator": 1000000,
+  "maximum_stationarity_residual": "0",
+  "metric_profile": "kalmanson-only",
+  "nonzero_equality_marginals": 0,
+  "nonzero_inequality_marginals": 7,
+  "nonzero_lower_bound_marginals": 9,
+  "nonzero_stationarity_residuals": 0,
+  "nonzero_upper_bound_marginals": 0,
+  "orbit": "fourDistinct",
+  "primal_objective": 0.0,
+  "rational_dual_objective": "0",
+  "schema": "p97-exact6-integrated-fixed-leaf-dual-probe-v1"
+}

@@ -1,0 +1,334 @@
+{
+  "certificate": {
+    "equality_marginals": [],
+    "inequality_marginals": [
+      [
+        9,
+        "-1"
+      ],
+      [
+        164,
+        "-1"
+      ],
+      [
+        169,
+        "-1"
+      ],
+      [
+        970,
+        "-1"
+      ],
+      [
+        119765,
+        "-1"
+      ]
+    ],
+    "lower_bound_marginals": [
+      [
+        1,
+        "1"
+      ],
+      [
+        6,
+        "1"
+      ],
+      [
+        14,
+        "2"
+      ],
+      [
+        20,
+        "1"
+      ],
+      [
+        22,
+        "1"
+      ],
+      [
+        85,
+        "1"
+      ],
+      [
+        92,
+        "1"
+      ]
+    ],
+    "upper_bound_marginals": []
+  },
+  "decoded_dual_support": {
+    "antecedent_is_true_boolean_support": true,
+    "antecedent_true_literals": [
+      {
+        "column": 1,
+        "multiplier": "1",
+        "name": "member_0_1"
+      },
+      {
+        "column": 6,
+        "multiplier": "1",
+        "name": "member_0_6"
+      },
+      {
+        "column": 14,
+        "multiplier": "2",
+        "name": "member_1_0"
+      },
+      {
+        "column": 20,
+        "multiplier": "1",
+        "name": "member_1_6"
+      },
+      {
+        "column": 22,
+        "multiplier": "1",
+        "name": "member_1_8"
+      },
+      {
+        "column": 85,
+        "multiplier": "1",
+        "name": "member_6_1"
+      },
+      {
+        "column": 92,
+        "multiplier": "1",
+        "name": "member_6_8"
+      }
+    ],
+    "inequalities": [
+      {
+        "converted_index": 9,
+        "multiplier": "-1",
+        "original_row": 119359,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_0_1",
+            1
+          ],
+          [
+            "member_0_6",
+            1
+          ],
+          [
+            "d_0_1",
+            -1
+          ],
+          [
+            "d_0_6",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 164,
+        "multiplier": "-1",
+        "original_row": 119514,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_1_0",
+            1
+          ],
+          [
+            "member_1_6",
+            1
+          ],
+          [
+            "d_0_1",
+            1
+          ],
+          [
+            "d_1_6",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 169,
+        "multiplier": "-1",
+        "original_row": 119519,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_1_0",
+            1
+          ],
+          [
+            "member_1_8",
+            1
+          ],
+          [
+            "d_0_1",
+            -1
+          ],
+          [
+            "d_1_8",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 970,
+        "multiplier": "-1",
+        "original_row": 120320,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_6_1",
+            1
+          ],
+          [
+            "member_6_8",
+            1
+          ],
+          [
+            "d_1_6",
+            1
+          ],
+          [
+            "d_6_8",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 119765,
+        "multiplier": "-1",
+        "original_row": 117426,
+        "rhs": 0,
+        "sense": "negated_lower",
+        "terms": [
+          [
+            "d_0_1",
+            1
+          ],
+          [
+            "d_0_6",
+            -1
+          ],
+          [
+            "d_1_8",
+            -1
+          ],
+          [
+            "d_6_8",
+            1
+          ],
+          [
+            "epsilon",
+            1
+          ]
+        ]
+      }
+    ],
+    "nogood_clause": [
+      "not member_0_1",
+      "not member_0_6",
+      "not member_1_0",
+      "not member_1_6",
+      "not member_1_8",
+      "not member_6_1",
+      "not member_6_8"
+    ]
+  },
+  "epistemic_status": "EXACT_RATIONAL_FIXED_LEAF_DUAL_REPLAY_PASS",
+  "exact_replay_valid": true,
+  "fixed_boolean_true_columns": [
+    1,
+    6,
+    7,
+    10,
+    14,
+    17,
+    20,
+    22,
+    31,
+    37,
+    40,
+    41,
+    43,
+    44,
+    48,
+    54,
+    57,
+    61,
+    66,
+    69,
+    70,
+    77,
+    81,
+    82,
+    85,
+    87,
+    92,
+    93,
+    102,
+    106,
+    109,
+    111,
+    116,
+    118,
+    121,
+    122,
+    126,
+    128,
+    130,
+    131,
+    144,
+    147,
+    149,
+    152,
+    159,
+    160,
+    163,
+    167,
+    170,
+    176,
+    178,
+    181,
+    183,
+    187,
+    190,
+    194,
+    196,
+    198,
+    199,
+    200,
+    201,
+    214,
+    226,
+    242,
+    254,
+    267,
+    281,
+    294,
+    311,
+    328,
+    344,
+    363,
+    375,
+    378,
+    393,
+    416,
+    420,
+    441,
+    461,
+    469
+  ],
+  "max_denominator": 1000000,
+  "maximum_stationarity_residual": "0",
+  "metric_profile": "kalmanson-only",
+  "nonzero_equality_marginals": 0,
+  "nonzero_inequality_marginals": 5,
+  "nonzero_lower_bound_marginals": 7,
+  "nonzero_stationarity_residuals": 0,
+  "nonzero_upper_bound_marginals": 0,
+  "orbit": "continuationOrder",
+  "primal_objective": 0.0,
+  "rational_dual_objective": "0",
+  "schema": "p97-exact6-integrated-fixed-leaf-dual-probe-v1"
+}

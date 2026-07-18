@@ -1,0 +1,302 @@
+{
+  "encoder_sha256": "1d31c875afa50ea03d825d6ddc34ea41928438dddd5f0b50918c4b448ef599d5",
+  "epistemic_status": "NEXT_REPLAYED_LEAF_EXACTLY_KALMANSON_UNSAT",
+  "global_bank": {
+    "cut_count": 6891,
+    "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+    "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+  },
+  "local_bank": {
+    "cut_count": 722,
+    "path": "scratch/atail-force/exact6-integrated-milp/cegar-global-1000/sharesFirstAtSource/cuts.jsonl",
+    "sha256": "2e25ec0c667e9fca6eca9bf8fe9ba0c0937daeb4138c85c941e800b5648288b4"
+  },
+  "metric": {
+    "cut": {
+      "conditioned_shell": null,
+      "constraints": [
+        {
+          "multiplier": 1,
+          "name": "kal2_1_2_10_11"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_1_2_8_9"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_1_2_9_10"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_2_3_10_11"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_2_3_7_8"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_2_3_8_9"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_2_3_9_10"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_3_4_10_11"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_3_4_7_8"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_3_4_8_9"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_3_4_9_10"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_4_5_10_11"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_4_5_7_8"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_4_5_8_9"
+        },
+        {
+          "multiplier": 1,
+          "name": "kal2_4_5_9_10"
+        },
+        {
+          "multiplier": 1,
+          "name": "row_1_2_11"
+        },
+        {
+          "multiplier": -1,
+          "name": "row_1_2_8"
+        },
+        {
+          "multiplier": -1,
+          "name": "row_2_1_7"
+        },
+        {
+          "multiplier": 1,
+          "name": "row_2_1_8"
+        },
+        {
+          "multiplier": -1,
+          "name": "row_5_0_11"
+        },
+        {
+          "multiplier": 1,
+          "name": "row_5_0_7"
+        }
+      ],
+      "exact_vector_cancellation": true,
+      "id": "sharesFirstAtSource-recovered-next",
+      "initial_unsat_core_size": 21,
+      "required_memberships": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          8
+        ],
+        [
+          1,
+          11
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          7
+        ],
+        [
+          2,
+          8
+        ],
+        [
+          5,
+          0
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          5,
+          11
+        ]
+      ],
+      "schema": "p97-exact6-integrated-exact-kalmanson-cut-v1",
+      "strict_weight_sum": 15
+    },
+    "status": "UNSAT"
+  },
+  "next_leaf": {
+    "blockers": {
+      "0": 6,
+      "1": 6,
+      "10": 13,
+      "11": 1,
+      "12": 11,
+      "13": 11,
+      "2": 10,
+      "3": 12,
+      "4": 7,
+      "5": 11,
+      "6": 0,
+      "7": 8,
+      "8": 0,
+      "9": 10
+    },
+    "roles": {
+      "first": 4,
+      "second": 1,
+      "source": 4,
+      "target": 2,
+      "unused": 5
+    },
+    "rows": {
+      "0": [
+        3,
+        6,
+        8,
+        12
+      ],
+      "1": [
+        2,
+        8,
+        11,
+        13
+      ],
+      "10": [
+        2,
+        5,
+        6,
+        9
+      ],
+      "11": [
+        5,
+        8,
+        12,
+        13
+      ],
+      "12": [
+        3,
+        4,
+        11,
+        13
+      ],
+      "13": [
+        1,
+        6,
+        10,
+        11
+      ],
+      "2": [
+        1,
+        7,
+        8,
+        10
+      ],
+      "3": [
+        2,
+        4,
+        9,
+        13
+      ],
+      "4": [
+        2,
+        5,
+        10,
+        12
+      ],
+      "5": [
+        0,
+        7,
+        11,
+        12
+      ],
+      "6": [
+        0,
+        1,
+        3,
+        5
+      ],
+      "7": [
+        4,
+        5,
+        9,
+        10
+      ],
+      "8": [
+        6,
+        7,
+        10,
+        13
+      ],
+      "9": [
+        2,
+        4,
+        7,
+        11
+      ]
+    },
+    "shell": [
+      1,
+      2,
+      4,
+      7,
+      11
+    ]
+  },
+  "orbit": "sharesFirstAtSource",
+  "recomputed_clause_matches": 721,
+  "recomputed_clause_mismatches": 1,
+  "recomputed_metric_each": true,
+  "schema": "p97-exact6-integrated-interrupted-sequence-recovery-v1",
+  "seeds": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/continuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "66218647bf33e2a5de87fd488c08f1f85629590af7c7ce3fc2c72f4400770a95"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "f605211ce723894472d1ffaac5dc025cb183ac72ebf17d817213690150d7568e"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "0b81b8a18400f9a18e632e3c31c99a010ef4d0b7e7ee0589fc7af075c12a27b1"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "1debdeda81b23fcf8fdfe57b8b41c3a34ff58fe0b9f1deb8bd8f6b09959e4e1b"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "86e591282f662760ff7795be7b1b51d16bf18c16b1151e2119006713b9812f40"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "ab35da65c8450839eec92799069fd468fc3fa337169a7a2678d7a55acdb66f08"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/fourDistinct.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "006f0adeb1c463592420c9b3fb00cfd49b072314102f54f4b43d4c938249bd6b"
+    }
+  ]
+}

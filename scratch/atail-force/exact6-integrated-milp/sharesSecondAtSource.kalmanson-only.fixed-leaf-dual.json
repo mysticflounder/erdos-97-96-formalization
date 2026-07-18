@@ -1,0 +1,373 @@
+{
+  "certificate": {
+    "equality_marginals": [],
+    "inequality_marginals": [
+      [
+        362,
+        "-1"
+      ],
+      [
+        367,
+        "-1"
+      ],
+      [
+        1008,
+        "-1"
+      ],
+      [
+        1011,
+        "-1"
+      ],
+      [
+        1364,
+        "-1"
+      ],
+      [
+        120929,
+        "-1"
+      ]
+    ],
+    "lower_bound_marginals": [
+      [
+        31,
+        "2"
+      ],
+      [
+        34,
+        "1"
+      ],
+      [
+        36,
+        "1"
+      ],
+      [
+        87,
+        "2"
+      ],
+      [
+        92,
+        "1"
+      ],
+      [
+        93,
+        "1"
+      ],
+      [
+        118,
+        "1"
+      ],
+      [
+        121,
+        "1"
+      ]
+    ],
+    "upper_bound_marginals": []
+  },
+  "decoded_dual_support": {
+    "antecedent_is_true_boolean_support": true,
+    "antecedent_true_literals": [
+      {
+        "column": 31,
+        "multiplier": "2",
+        "name": "member_2_3"
+      },
+      {
+        "column": 34,
+        "multiplier": "1",
+        "name": "member_2_6"
+      },
+      {
+        "column": 36,
+        "multiplier": "1",
+        "name": "member_2_8"
+      },
+      {
+        "column": 87,
+        "multiplier": "2",
+        "name": "member_6_3"
+      },
+      {
+        "column": 92,
+        "multiplier": "1",
+        "name": "member_6_8"
+      },
+      {
+        "column": 93,
+        "multiplier": "1",
+        "name": "member_6_9"
+      },
+      {
+        "column": 118,
+        "multiplier": "1",
+        "name": "member_8_6"
+      },
+      {
+        "column": 121,
+        "multiplier": "1",
+        "name": "member_8_9"
+      }
+    ],
+    "inequalities": [
+      {
+        "converted_index": 362,
+        "multiplier": "-1",
+        "original_row": 119712,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_2_3",
+            1
+          ],
+          [
+            "member_2_6",
+            1
+          ],
+          [
+            "d_2_3",
+            1
+          ],
+          [
+            "d_2_6",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 367,
+        "multiplier": "-1",
+        "original_row": 119717,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_2_3",
+            1
+          ],
+          [
+            "member_2_8",
+            1
+          ],
+          [
+            "d_2_3",
+            -1
+          ],
+          [
+            "d_2_8",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1008,
+        "multiplier": "-1",
+        "original_row": 120358,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_6_3",
+            1
+          ],
+          [
+            "member_6_8",
+            1
+          ],
+          [
+            "d_3_6",
+            1
+          ],
+          [
+            "d_6_8",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1011,
+        "multiplier": "-1",
+        "original_row": 120361,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_6_3",
+            1
+          ],
+          [
+            "member_6_9",
+            1
+          ],
+          [
+            "d_3_6",
+            -1
+          ],
+          [
+            "d_6_9",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1364,
+        "multiplier": "-1",
+        "original_row": 120714,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_8_6",
+            1
+          ],
+          [
+            "member_8_9",
+            1
+          ],
+          [
+            "d_6_8",
+            1
+          ],
+          [
+            "d_8_9",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 120929,
+        "multiplier": "-1",
+        "original_row": 118590,
+        "rhs": 0,
+        "sense": "negated_lower",
+        "terms": [
+          [
+            "d_2_6",
+            1
+          ],
+          [
+            "d_2_8",
+            -1
+          ],
+          [
+            "d_6_9",
+            -1
+          ],
+          [
+            "d_8_9",
+            1
+          ],
+          [
+            "epsilon",
+            1
+          ]
+        ]
+      }
+    ],
+    "nogood_clause": [
+      "not member_2_3",
+      "not member_2_6",
+      "not member_2_8",
+      "not member_6_3",
+      "not member_6_8",
+      "not member_6_9",
+      "not member_8_6",
+      "not member_8_9"
+    ]
+  },
+  "epistemic_status": "EXACT_RATIONAL_FIXED_LEAF_DUAL_REPLAY_PASS",
+  "exact_replay_valid": true,
+  "fixed_boolean_true_columns": [
+    4,
+    6,
+    7,
+    9,
+    19,
+    20,
+    26,
+    27,
+    31,
+    34,
+    36,
+    39,
+    43,
+    46,
+    52,
+    54,
+    57,
+    61,
+    65,
+    67,
+    72,
+    77,
+    81,
+    82,
+    87,
+    92,
+    93,
+    97,
+    104,
+    108,
+    109,
+    111,
+    112,
+    114,
+    118,
+    121,
+    128,
+    129,
+    131,
+    136,
+    140,
+    145,
+    148,
+    152,
+    155,
+    159,
+    164,
+    167,
+    168,
+    169,
+    172,
+    179,
+    182,
+    185,
+    189,
+    192,
+    198,
+    199,
+    200,
+    201,
+    206,
+    212,
+    227,
+    241,
+    256,
+    267,
+    290,
+    297,
+    316,
+    328,
+    339,
+    351,
+    365,
+    378,
+    394,
+    412,
+    427,
+    446,
+    451,
+    469
+  ],
+  "max_denominator": 1000000,
+  "maximum_stationarity_residual": "0",
+  "metric_profile": "kalmanson-only",
+  "nonzero_equality_marginals": 0,
+  "nonzero_inequality_marginals": 6,
+  "nonzero_lower_bound_marginals": 8,
+  "nonzero_stationarity_residuals": 0,
+  "nonzero_upper_bound_marginals": 0,
+  "orbit": "sharesSecondAtSource",
+  "primal_objective": 0.0,
+  "rational_dual_objective": "0",
+  "schema": "p97-exact6-integrated-fixed-leaf-dual-probe-v1"
+}

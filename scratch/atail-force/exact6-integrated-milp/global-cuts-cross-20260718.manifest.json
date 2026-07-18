@@ -1,0 +1,26 @@
+{
+  "duplicate_record_count": 20,
+  "epistemic_status": "EXACT_VECTOR_CANCELLATION_BANK_NOT_LIVE_LEAN_CLOSURE",
+  "input_record_count": 12529,
+  "inputs": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+      "records": 6891,
+      "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/nonnegative-faithful/sharesFirstAtSource/cuts.jsonl",
+      "records": 2816,
+      "sha256": "801044b6502a6a5d7e236cb85ecbb1708b0dfdbceb1e18788c8f92fe0404a23e"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/nonnegative-faithful/sharesFirstAtTarget/cuts.jsonl",
+      "records": 2822,
+      "sha256": "1acae57e65166085ef465d11b1353f7c765aa559e00828ae9afdccce3f258c6e"
+    }
+  ],
+  "output": "scratch/atail-force/exact6-integrated-milp/global-cuts-cross-20260718.jsonl",
+  "output_sha256": "92a88957465e7d9e3c47392e8748ad6a8da05089b75e14abb7b16181a17e7288",
+  "schema": "p97-exact6-integrated-global-cut-bank-manifest-v1",
+  "unique_record_count": 12509
+}

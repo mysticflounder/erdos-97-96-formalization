@@ -2177,12 +2177,27 @@ ended at their 1,000-cut limit without terminal CNF exhaustion.  Merging gives
 checked candidate clauses, still without immediate exhaustion in the first
 probe.  This is exact cut discovery, not a closure certificate.
 
+A later faithful Source/Target pass contributes 2,816 and 2,822 replayed cuts.
+After removing twenty duplicates, the merged cross-bank contains 12,509 exact
+cuts, including 302 exact-five-shell-conditioned cuts.  The independent
+checker replays all 12,509 with zero positive-distance constraints; the bank
+SHA-256 is
+`92a88957465e7d9e3c47392e8748ad6a8da05089b75e14abb7b16181a17e7288`.
+This larger bank is still cut evidence rather than orbit coverage.
+
 The independent event-stream audit found no exact SAT terminal.  Both old
 source/target streams were synchronously interrupted after cuts 721/719;
 faithful replay from immutable copies of those prefixes produced ordinary
 exact UNSAT metric cuts 722/720.  The historical crash-on-SAT bug was real,
 but these logs do not show that it was exercised.  The correct status is
 `INTERRUPTED / SAT NOT REPRODUCED`.
+
+The fail-closed D14 direct portfolio is also complete.  The initial Source
+orbit and six remaining role orbits all returned exact-Z3 `UNKNOWN` by timeout
+at roughly 654--657 seconds.  No member returned SAT or UNSAT, no `ALIVE`
+sidecar or lock remains, and the six-member portfolio summary has SHA-256
+`344e5c57fd1ab023217792ccbdbdf614e11ee3cf85ef855e2bee31a46d64f863`.
+This is a clean bounded no-verdict, not convergence or negative evidence.
 
 The linear surface is invariant under adding one constant to every abstract
 distance.  Hence any nonnegative SAT table would become strictly positive,
@@ -2260,6 +2275,12 @@ strict Kalmanson inequalities (105 distance variables, 4,365 assertions).
 This is positive evidence for convex-order geometry, not role coverage.  The
 shared variable-card dual proposal remains conjectural; common translation
 shows only that positivity and triangle rows cannot supply its missing force.
+The direct exact-Z3 all-row encoding is externally UNSAT through card ten,
+both with and without selected-witness strong connectivity at cards eight
+through ten.  Strong-connectivity runs at cards eleven through fourteen time
+out at 600 seconds and remain `UNKNOWN`.  These exact-arithmetic solver results
+have no independently checked UNSAT certificates and do not prove the uniform
+proposal.
 An exact-seven finite route must enumerate both first-apex same- and
 distinct-radius role cells, adding common planar rank-two constraints only if
 an abstract SAT cell survives.

@@ -1,0 +1,461 @@
+{
+  "certificate": {
+    "equality_marginals": [],
+    "inequality_marginals": [
+      [
+        841,
+        "-1"
+      ],
+      [
+        1462,
+        "-1"
+      ],
+      [
+        1569,
+        "-1"
+      ],
+      [
+        1578,
+        "-1"
+      ],
+      [
+        1746,
+        "-1"
+      ],
+      [
+        1761,
+        "-1"
+      ],
+      [
+        1868,
+        "-1"
+      ],
+      [
+        120883,
+        "-1"
+      ]
+    ],
+    "lower_bound_marginals": [
+      [
+        72,
+        "1"
+      ],
+      [
+        81,
+        "1"
+      ],
+      [
+        128,
+        "1"
+      ],
+      [
+        136,
+        "1"
+      ],
+      [
+        140,
+        "2"
+      ],
+      [
+        145,
+        "1"
+      ],
+      [
+        151,
+        "1"
+      ],
+      [
+        155,
+        "2"
+      ],
+      [
+        159,
+        "1"
+      ],
+      [
+        164,
+        "1"
+      ],
+      [
+        167,
+        "2"
+      ]
+    ],
+    "upper_bound_marginals": []
+  },
+  "decoded_dual_support": {
+    "antecedent_is_true_boolean_support": true,
+    "antecedent_true_literals": [
+      {
+        "column": 72,
+        "multiplier": "1",
+        "name": "member_5_2"
+      },
+      {
+        "column": 81,
+        "multiplier": "1",
+        "name": "member_5_11"
+      },
+      {
+        "column": 128,
+        "multiplier": "1",
+        "name": "member_9_2"
+      },
+      {
+        "column": 136,
+        "multiplier": "1",
+        "name": "member_9_10"
+      },
+      {
+        "column": 140,
+        "multiplier": "2",
+        "name": "member_10_0"
+      },
+      {
+        "column": 145,
+        "multiplier": "1",
+        "name": "member_10_5"
+      },
+      {
+        "column": 151,
+        "multiplier": "1",
+        "name": "member_10_11"
+      },
+      {
+        "column": 155,
+        "multiplier": "2",
+        "name": "member_11_1"
+      },
+      {
+        "column": 159,
+        "multiplier": "1",
+        "name": "member_11_5"
+      },
+      {
+        "column": 164,
+        "multiplier": "1",
+        "name": "member_11_10"
+      },
+      {
+        "column": 167,
+        "multiplier": "2",
+        "name": "member_11_13"
+      }
+    ],
+    "inequalities": [
+      {
+        "converted_index": 841,
+        "multiplier": "-1",
+        "original_row": 120177,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_5_2",
+            1
+          ],
+          [
+            "member_5_11",
+            1
+          ],
+          [
+            "d_2_5",
+            -1
+          ],
+          [
+            "d_5_11",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1462,
+        "multiplier": "-1",
+        "original_row": 120798,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_9_2",
+            1
+          ],
+          [
+            "member_9_10",
+            1
+          ],
+          [
+            "d_2_9",
+            1
+          ],
+          [
+            "d_9_10",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1569,
+        "multiplier": "-1",
+        "original_row": 120905,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_10_0",
+            1
+          ],
+          [
+            "member_10_5",
+            1
+          ],
+          [
+            "d_0_10",
+            -1
+          ],
+          [
+            "d_5_10",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1578,
+        "multiplier": "-1",
+        "original_row": 120914,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_10_0",
+            1
+          ],
+          [
+            "member_10_11",
+            1
+          ],
+          [
+            "d_0_10",
+            1
+          ],
+          [
+            "d_10_11",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1746,
+        "multiplier": "-1",
+        "original_row": 121082,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_11_1",
+            1
+          ],
+          [
+            "member_11_5",
+            1
+          ],
+          [
+            "d_1_11",
+            1
+          ],
+          [
+            "d_5_11",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1761,
+        "multiplier": "-1",
+        "original_row": 121097,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_11_1",
+            1
+          ],
+          [
+            "member_11_13",
+            1
+          ],
+          [
+            "d_1_11",
+            -1
+          ],
+          [
+            "d_11_13",
+            1
+          ]
+        ]
+      },
+      {
+        "converted_index": 1868,
+        "multiplier": "-1",
+        "original_row": 121204,
+        "rhs": 2,
+        "sense": "upper",
+        "terms": [
+          [
+            "member_11_10",
+            1
+          ],
+          [
+            "member_11_13",
+            1
+          ],
+          [
+            "d_10_11",
+            1
+          ],
+          [
+            "d_11_13",
+            -1
+          ]
+        ]
+      },
+      {
+        "converted_index": 120883,
+        "multiplier": "-1",
+        "original_row": 118544,
+        "rhs": 0,
+        "sense": "negated_lower",
+        "terms": [
+          [
+            "d_2_5",
+            1
+          ],
+          [
+            "d_2_9",
+            -1
+          ],
+          [
+            "d_5_10",
+            -1
+          ],
+          [
+            "d_9_10",
+            1
+          ],
+          [
+            "epsilon",
+            1
+          ]
+        ]
+      }
+    ],
+    "nogood_clause": [
+      "not member_5_2",
+      "not member_5_11",
+      "not member_9_2",
+      "not member_9_10",
+      "not member_10_0",
+      "not member_10_5",
+      "not member_10_11",
+      "not member_11_1",
+      "not member_11_5",
+      "not member_11_10",
+      "not member_11_13"
+    ]
+  },
+  "epistemic_status": "EXACT_RATIONAL_FIXED_LEAF_DUAL_REPLAY_PASS",
+  "exact_replay_valid": true,
+  "fixed_boolean_true_columns": [
+    4,
+    6,
+    7,
+    9,
+    19,
+    20,
+    26,
+    27,
+    31,
+    34,
+    36,
+    39,
+    43,
+    46,
+    52,
+    54,
+    57,
+    61,
+    65,
+    67,
+    72,
+    77,
+    81,
+    82,
+    87,
+    92,
+    93,
+    97,
+    104,
+    108,
+    109,
+    111,
+    112,
+    114,
+    118,
+    121,
+    128,
+    129,
+    131,
+    136,
+    140,
+    145,
+    147,
+    151,
+    155,
+    159,
+    164,
+    167,
+    168,
+    169,
+    172,
+    179,
+    183,
+    184,
+    189,
+    190,
+    198,
+    199,
+    200,
+    201,
+    206,
+    214,
+    226,
+    242,
+    255,
+    266,
+    290,
+    297,
+    316,
+    328,
+    339,
+    351,
+    365,
+    378,
+    394,
+    412,
+    427,
+    446,
+    449,
+    468
+  ],
+  "max_denominator": 1000000,
+  "maximum_stationarity_residual": "0",
+  "metric_profile": "kalmanson-only",
+  "nonzero_equality_marginals": 0,
+  "nonzero_inequality_marginals": 8,
+  "nonzero_lower_bound_marginals": 11,
+  "nonzero_stationarity_residuals": 0,
+  "nonzero_upper_bound_marginals": 0,
+  "orbit": "sharesFirstAtSource",
+  "primal_objective": 0.0,
+  "rational_dual_objective": "0",
+  "schema": "p97-exact6-integrated-fixed-leaf-dual-probe-v1"
+}

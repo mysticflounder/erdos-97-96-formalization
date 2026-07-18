@@ -169,6 +169,11 @@ def main() -> int:
     parser.add_argument("--timeout-ms", type=int, default=300_000)
     parser.add_argument("--triangle", action="store_true")
     parser.add_argument(
+        "--no-connectivity",
+        action="store_true",
+        help="omit selected-row strong connectivity to test the stronger bare claim",
+    )
+    parser.add_argument(
         "--mode", choices=("all-rows", "shared-pair-smoke"), default="all-rows"
     )
     parser.add_argument("--output", type=Path)
@@ -181,7 +186,8 @@ def main() -> int:
         if args.n < 5:
             raise ValueError("four-member non-self rows require n >= 5")
         decision.add_all_rows()
-        decision.add_strong_connectivity()
+        if not args.no_connectivity:
+            decision.add_strong_connectivity()
     else:
         decision.add_shared_pair_smoke()
     status = decision.solver.check()
@@ -191,6 +197,7 @@ def main() -> int:
         "n": args.n,
         "mode": args.mode,
         "triangle": args.triangle,
+        "strong_connectivity": not args.no_connectivity,
         "status": str(status).upper(),
         "elapsed_seconds": time.monotonic() - started,
         "solver_statistics": str(decision.solver.statistics()),

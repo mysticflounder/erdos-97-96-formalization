@@ -1,0 +1,17 @@
+# Regenerable solver streams and large derived cut closures.
+*.log
+__pycache__/
+/cegar/
+/cegar-global-1000/
+/alive-recovery/
+/boundary-recovery/
+/d14-probe/
+/direct-alive/*
+!/direct-alive/sharesFirstAtSource.kalmanson.d14.json
+/direct-portfolio-smoke/
+/nonnegative-faithful/
+/strict-positive-probe/
+/strict-positive-probe-fresh/
+/recovery-agent/source-next/
+/recovery-agent/target-next/
+/global-cuts-1000-d14.jsonl

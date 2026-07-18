@@ -1,0 +1,13 @@
+{
+  "duplicate_transport_count": 2618,
+  "epistemic_status": "EXACT_DIHEDRAL_VECTOR_TRANSPORT_NOT_LIVE_LEAN_CLOSURE",
+  "generated_transport_count": 189022,
+  "input": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+  "input_cut_count": 6891,
+  "input_sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d",
+  "input_shell_conditioned_count": 151,
+  "output": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+  "output_sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72",
+  "schema": "p97-exact6-integrated-d14-cut-bank-manifest-v1",
+  "unique_transport_count": 186404
+}

@@ -1,0 +1,166 @@
+{
+  "certificate": {
+    "equality_marginals": [],
+    "inequality_marginals": [
+      [
+        71,
+        "-1"
+      ],
+      [
+        78,
+        "-1"
+      ],
+      [
+        188,
+        "-1"
+      ],
+      [
+        353,
+        "-1"
+      ],
+      [
+        1740,
+        "-1"
+      ],
+      [
+        120967,
+        "-1"
+      ]
+    ],
+    "lower_bound_marginals": [
+      [
+        4,
+        "2"
+      ],
+      [
+        7,
+        "1"
+      ],
+      [
+        11,
+        "1"
+      ],
+      [
+        16,
+        "1"
+      ],
+      [
+        21,
+        "1"
+      ],
+      [
+        29,
+        "1"
+      ],
+      [
+        39,
+        "1"
+      ],
+      [
+        155,
+        "1"
+      ],
+      [
+        156,
+        "1"
+      ]
+    ],
+    "upper_bound_marginals": []
+  },
+  "epistemic_status": "EXACT_RATIONAL_FIXED_LEAF_DUAL_REPLAY_PASS",
+  "exact_replay_valid": true,
+  "fixed_boolean_true_columns": [
+    4,
+    6,
+    7,
+    11,
+    16,
+    21,
+    22,
+    26,
+    29,
+    31,
+    37,
+    39,
+    47,
+    49,
+    51,
+    55,
+    58,
+    67,
+    68,
+    69,
+    70,
+    78,
+    80,
+    81,
+    85,
+    87,
+    94,
+    96,
+    99,
+    103,
+    106,
+    111,
+    112,
+    119,
+    121,
+    124,
+    128,
+    129,
+    130,
+    131,
+    140,
+    146,
+    148,
+    153,
+    155,
+    156,
+    160,
+    164,
+    171,
+    175,
+    178,
+    181,
+    183,
+    186,
+    190,
+    191,
+    196,
+    198,
+    199,
+    200,
+    201,
+    214,
+    226,
+    242,
+    254,
+    267,
+    290,
+    296,
+    312,
+    328,
+    349,
+    353,
+    374,
+    381,
+    399,
+    409,
+    426,
+    436,
+    449,
+    472
+  ],
+  "max_denominator": 1000000,
+  "maximum_stationarity_residual": "0",
+  "metric_profile": "full",
+  "nonzero_equality_marginals": 0,
+  "nonzero_inequality_marginals": 6,
+  "nonzero_lower_bound_marginals": 9,
+  "nonzero_stationarity_residuals": 0,
+  "nonzero_upper_bound_marginals": 0,
+  "orbit": "continuationOrder",
+  "primal_objective": 0.0,
+  "rational_dual_objective": "0",
+  "schema": "p97-exact6-integrated-fixed-leaf-dual-probe-v1"
+}

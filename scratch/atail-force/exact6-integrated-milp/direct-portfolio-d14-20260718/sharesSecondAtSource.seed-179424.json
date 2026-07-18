@@ -1,0 +1,58 @@
+{
+  "encoder_sha256": "1d31c875afa50ea03d825d6ddc34ea41928438dddd5f0b50918c4b448ef599d5",
+  "epistemic_status": "EXACT_SMT_UNKNOWN",
+  "import_records": [
+    {
+      "cuts": 6891,
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+      "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+    },
+    {
+      "cuts": 186404,
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+      "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+    }
+  ],
+  "literal_metric_cut_banks": "OMITTED",
+  "orbit": "sharesSecondAtSource",
+  "profile": "kalmanson",
+  "run_manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtSource.seed-179424.json.manifest.json",
+  "run_manifest_sha256": "74e1704cf54dbc5ed0b44a82a4f0617d6d719a4d8b084edc9e5d913c8fcf7904",
+  "schema": "p97-exact6-integrated-direct-exact-smt-result-v1",
+  "seed_records": [
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/continuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "66218647bf33e2a5de87fd488c08f1f85629590af7c7ce3fc2c72f4400770a95"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "f605211ce723894472d1ffaac5dc025cb183ac72ebf17d817213690150d7568e"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "0b81b8a18400f9a18e632e3c31c99a010ef4d0b7e7ee0589fc7af075c12a27b1"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "1debdeda81b23fcf8fdfe57b8b41c3a34ff58fe0b9f1deb8bd8f6b09959e4e1b"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "86e591282f662760ff7795be7b1b51d16bf18c16b1151e2119006713b9812f40"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "ab35da65c8450839eec92799069fd468fc3fa337169a7a2678d7a55acdb66f08"
+    },
+    {
+      "path": "scratch/atail-force/exact6-integrated-milp/fourDistinct.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "006f0adeb1c463592420c9b3fb00cfd49b072314102f54f4b43d4c938249bd6b"
+    }
+  ],
+  "solver": {
+    "name": "Z3 exact QF_LRA+SAT",
+    "reason_unknown": "timeout",
+    "status": "unknown",
+    "wall_seconds": 656.6807329999865
+  }
+}

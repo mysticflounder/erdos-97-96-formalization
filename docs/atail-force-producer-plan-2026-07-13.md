@@ -1000,6 +1000,12 @@ UNSAT.  The merged 6,891 semantic cuts have 186,404 valid dihedral transports;
 the first transported-bank probe still returns further exact cuts.  This is a
 sound discovery/checking pipeline but not a terminal cover.
 
+The later faithful Source/Target passes contribute 2,816 and 2,822 replayed
+cuts.  After twenty duplicates are removed, the cross-bank contains 12,509
+exact cuts, 302 conditioned on the exact-five shell.  The independent checker
+accepts every cut and records zero positive-distance constraints.  The larger
+bank remains nonterminal because it has no orbit-coverage proof.
+
 The independent event-stream audit found no exact SAT terminal.  Both old
 source/target streams were synchronously interrupted after cuts 721/719;
 faithful replay of those immutable prefixes produced ordinary exact UNSAT
@@ -1007,12 +1013,24 @@ metric cuts 722/720.  The historical crash-on-SAT bug was real, but there is no
 evidence that these runs exercised it.  Classify them as `INTERRUPTED / SAT NOT
 REPRODUCED`, not transient `ALIVE`.
 
+The direct D14 checkpoint is now fail-closed and complete.  The initial Source
+run and all six remaining role-orbit portfolio members return exact-Z3
+`UNKNOWN` by timeout at roughly 654--657 seconds.  No result is SAT or UNSAT,
+and there is no `ALIVE` sidecar or remaining lock.  Do not interpret this
+bounded no-verdict as convergence.
+
 The translation invariant still proves one useful boundary: adding a common
 constant preserves every Kalmanson and row/shell equation, makes a
 nonnegative table strictly positive, and can make every triangle strict.
 Thus positivity and triangle inequalities add no force to this linear shadow.
 They do not, however, refute a cardinality-generic positive dual while no
 abstract SAT witness exists.
+
+The separate direct exact-Z3 all-row encoding is externally UNSAT through card
+ten, both with and without selected-witness strong connectivity at cards eight
+through ten.  Its strong-connectivity runs at cards eleven through fourteen
+time out after 600 seconds.  Those `UNKNOWN` records and the uncertified finite
+UNSAT prefix neither prove nor refute the uniform aggregate theorem.
 
 The finite route remains exact cut coverage or a uniform aggregate
 Kalmanson theorem.  Continue from immutable, hash-pinned prefixes and stop only

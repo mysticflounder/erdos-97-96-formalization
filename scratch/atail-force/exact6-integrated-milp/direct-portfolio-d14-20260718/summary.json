@@ -1,0 +1,211 @@
+{
+  "directory": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718",
+  "epistemic_status": "EXACT_DIRECT_PORTFOLIO_COMPLETE_NO_ALIVE_NO_UNSAT_PROOF",
+  "member_count": 6,
+  "members": [
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/continuationOrder.seed-104729.json.events.jsonl",
+      "events_sha256": "5f33c567d54266bd649773446a8b5dfe05e1eca95ac9c4e3a75bc68798ccd194",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/continuationOrder.seed-104729.json.manifest.json",
+      "manifest_sha256": "47f36e52b3cb7d26089c7ad0d20c94a867f4201f8b348b0f30fc06b8bf3993f8",
+      "orbit": "continuationOrder",
+      "random_seed": 104729,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/continuationOrder.seed-104729.json",
+      "result_sha256": "68fbc95a3ae3a6df2b0c44fd5685e4b920756b624994d7485b102ca80625a06a",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 656.1747952080332
+      },
+      "timeout_ms": 600000
+    },
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/fourDistinct.seed-228017.json.events.jsonl",
+      "events_sha256": "c70c3c3aecb0e3042dd69ea9914d3fec20350d5a0444791f37a2f0d07793b238",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/fourDistinct.seed-228017.json.manifest.json",
+      "manifest_sha256": "e59a32846c49208e3dcba0973a06912b2169807f613e9909cc371f9b5a7d3569",
+      "orbit": "fourDistinct",
+      "random_seed": 228017,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/fourDistinct.seed-228017.json",
+      "result_sha256": "fca9ad402ea4a75285d80dc9189327dd43fc85dcb37b0c89fceb9c6f9710f006",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 656.0638850840041
+      },
+      "timeout_ms": 600000
+    },
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/reverseContinuationOrder.seed-130363.json.events.jsonl",
+      "events_sha256": "0d9904ee10689fa1ef78843dedb715c839a69b8e6b64dab96a6b8f102f1eac26",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/reverseContinuationOrder.seed-130363.json.manifest.json",
+      "manifest_sha256": "d4414e74e9b88eb9757836a0716d7fd6f866451a7edb5b054a3a37c115da4fd8",
+      "orbit": "reverseContinuationOrder",
+      "random_seed": 130363,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/reverseContinuationOrder.seed-130363.json",
+      "result_sha256": "2ff560beebdaa652d8416d8d62bd1a824efe1dc2c25eddb84e3a8a13d0ebf49d",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 655.927152084012
+      },
+      "timeout_ms": 600000
+    },
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesFirstAtTarget.seed-155921.json.events.jsonl",
+      "events_sha256": "e99c96212f502692fa5fefa79f0e30d133141a7e7b4a8476b5eb6e3725d7da25",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesFirstAtTarget.seed-155921.json.manifest.json",
+      "manifest_sha256": "a5efa89311b8dfa023016f8660b8f05cc4a451700d568a3d88b226b1e6cc2e49",
+      "orbit": "sharesFirstAtTarget",
+      "random_seed": 155921,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesFirstAtTarget.seed-155921.json",
+      "result_sha256": "9389ddb21c94d970bc407cc57bb636bab6fbad99eca8b15b287bc35fa7db7328",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 656.43404504098
+      },
+      "timeout_ms": 600000
+    },
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtSource.seed-179424.json.events.jsonl",
+      "events_sha256": "a07d5acc0648839de61e6cb1eaea7025dd7f54ae43f773b475c22345dfb6c877",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtSource.seed-179424.json.manifest.json",
+      "manifest_sha256": "74e1704cf54dbc5ed0b44a82a4f0617d6d719a4d8b084edc9e5d913c8fcf7904",
+      "orbit": "sharesSecondAtSource",
+      "random_seed": 179424,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtSource.seed-179424.json",
+      "result_sha256": "028e027f3853249ea885072af929442ad476f386b56607344bab862d8e5f8c63",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 656.6807329999865
+      },
+      "timeout_ms": 600000
+    },
+    {
+      "alive_path": null,
+      "epistemic_status": "EXACT_SMT_UNKNOWN",
+      "events_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtTarget.seed-203807.json.events.jsonl",
+      "events_sha256": "a2d443df81af1a6d210694e1438351635e1665cf92919582ae58b16e7faf5af9",
+      "imports": [
+        {
+          "cuts": 6891,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000.jsonl",
+          "sha256": "8103b38a2fe17c65fdca216d75272e240e5341d721e91db5973ba21afb855b5d"
+        },
+        {
+          "cuts": 186404,
+          "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-1000-d14.jsonl",
+          "sha256": "0c5dea2ae02048e80e2ab8866bf7c023b329c89ced5e3d942055ffd4ef82fc72"
+        }
+      ],
+      "manifest_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtTarget.seed-203807.json.manifest.json",
+      "manifest_sha256": "089c6927e27ce1a48dc2702285f997cf3a82d974d9c326d4877f2009484b1fb4",
+      "orbit": "sharesSecondAtTarget",
+      "random_seed": 203807,
+      "result_path": "scratch/atail-force/exact6-integrated-milp/direct-portfolio-d14-20260718/sharesSecondAtTarget.seed-203807.json",
+      "result_sha256": "756225d4d03395af528ae146a26f5b089d928412ec8da13fc2753ab01bc95b61",
+      "seed_count": 7,
+      "solver": {
+        "name": "Z3 exact QF_LRA+SAT",
+        "reason_unknown": "timeout",
+        "status": "unknown",
+        "wall_seconds": 656.1153948339634
+      },
+      "timeout_ms": 600000
+    }
+  ],
+  "orbits": [
+    "continuationOrder",
+    "fourDistinct",
+    "reverseContinuationOrder",
+    "sharesFirstAtTarget",
+    "sharesSecondAtSource",
+    "sharesSecondAtTarget"
+  ],
+  "schema": "p97-exact6-integrated-direct-portfolio-summary-v1",
+  "statuses": [
+    "unknown"
+  ]
+}

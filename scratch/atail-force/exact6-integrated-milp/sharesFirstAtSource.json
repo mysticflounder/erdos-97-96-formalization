@@ -1,0 +1,222 @@
+{
+  "boolean_variables": 476,
+  "constraint_counts": {
+    "distance_normalization": 1,
+    "exact_five_shell_guarded_equality_neg": 78,
+    "exact_five_shell_guarded_equality_pos": 78,
+    "positive_distance": 91,
+    "selected_row_guarded_equality_neg": 1092,
+    "selected_row_guarded_equality_pos": 1092,
+    "strict_kalmanson_first": 1001,
+    "strict_kalmanson_second": 1001,
+    "strict_triangle": 1092,
+    "structural:adjacent_cap_shell_hit_bounds": 25,
+    "structural:all_source_critical_blocker_map": 1524,
+    "structural:cap_endpoint_row_hit_bounds": 80,
+    "structural:cap_local_row_hit_bounds": 290,
+    "structural:card_three_adjacent_cap_distribution": 8,
+    "structural:center_pair_intersection_le_two": 33124,
+    "structural:cross_cap_equal_pair_injectivity": 1200,
+    "structural:exact_five_shell": 2432,
+    "structural:exact_shell_selected_row_alternation": 572,
+    "structural:mutual_blockers_distinct": 168,
+    "structural:mutual_critical_row_omissions": 336,
+    "structural:named_physical_roles": 424,
+    "structural:perpendicular_bisector_alternation": 4004,
+    "structural:physical_apex_selected_row_in_shell": 14,
+    "structural:physical_shell_distribution": 6,
+    "structural:physical_source_critical_row_hit_le_two": 224,
+    "structural:role_orbit": 70,
+    "structural:row_cardinality": 22036,
+    "structural:selected_row_strong_connectivity": 16382,
+    "structural:target_pair_center_multiplicity_le_two": 33124,
+    "structural:unused_critical_row_omissions": 672,
+    "structural:unused_critical_row_physical_hit_le_one": 504,
+    "structural:unused_in_closed_physical_cap": 114
+  },
+  "distance_variables": 91,
+  "encoder_path": "scratch/atail-force/exact6-allcenter-coverage-certificate/encode.py",
+  "encoder_sha256": "1d31c875afa50ea03d825d6ddc34ea41928438dddd5f0b50918c4b448ef599d5",
+  "epistemic_status": "HIGHS_OPTIMAL_NONPOSITIVE_COMMON_SLACK_NO_EXACT_CERTIFICATE",
+  "incumbent": {
+    "blockers": {
+      "0": 13,
+      "1": 3,
+      "10": 3,
+      "11": 8,
+      "12": 11,
+      "13": 2,
+      "2": 11,
+      "3": 0,
+      "4": 13,
+      "5": 1,
+      "6": 12,
+      "7": 4,
+      "8": 0,
+      "9": 10
+    },
+    "epsilon": 0.0,
+    "exact_rational_replay": {
+      "component_count": 48,
+      "distances": null,
+      "max_denominator": 1000000000,
+      "minimum_distance": "0",
+      "minimum_kalmanson_slack": "0",
+      "minimum_triangle_slack": "0",
+      "valid": false
+    },
+    "float_replay": {
+      "distance_sum_error": 0.0,
+      "epsilon": 0.0,
+      "exact_five_shell_equality_error": 0.0,
+      "integrality_error": 0.0,
+      "maximum_selected_row_equality_error": 5.377642775528102e-17,
+      "minimum_distance": -0.0,
+      "minimum_kalmanson_slack": -4.5102810375396984e-17,
+      "minimum_triangle_slack": -2.42861286636753e-17,
+      "tolerance": 1e-07,
+      "unsatisfied_structural_clauses": 0,
+      "valid": true
+    },
+    "roles": {
+      "first": 3,
+      "second": 4,
+      "source": 3,
+      "target": 2,
+      "unused": 1
+    },
+    "rows": {
+      "0": [
+        3,
+        6,
+        8,
+        10
+      ],
+      "1": [
+        2,
+        5,
+        10,
+        11
+      ],
+      "10": [
+        1,
+        7,
+        9,
+        11
+      ],
+      "11": [
+        2,
+        8,
+        9,
+        12
+      ],
+      "12": [
+        1,
+        2,
+        6,
+        13
+      ],
+      "13": [
+        0,
+        4,
+        6,
+        9
+      ],
+      "2": [
+        4,
+        8,
+        11,
+        13
+      ],
+      "3": [
+        1,
+        9,
+        10,
+        12
+      ],
+      "4": [
+        1,
+        5,
+        6,
+        7
+      ],
+      "5": [
+        0,
+        6,
+        11,
+        12
+      ],
+      "6": [
+        1,
+        4,
+        5,
+        8
+      ],
+      "7": [
+        0,
+        5,
+        10,
+        13
+      ],
+      "8": [
+        3,
+        5,
+        9,
+        11
+      ],
+      "9": [
+        2,
+        4,
+        7,
+        10
+      ]
+    },
+    "shell": [
+      2,
+      3,
+      4,
+      7,
+      10
+    ]
+  },
+  "literal_metric_cut_banks": "OMITTED",
+  "normalization": {
+    "distance_bounds": "0 <= d_ij <= 1",
+    "guard_big_m": 1,
+    "justification": "The positivity, triangle, Kalmanson, and radius-equality system is homogeneous. Any strict feasible table scales to sum one; then every distance lies in [0,1], so M=1 rigorously deactivates a guarded difference. Positive epsilon is equivalent to strict feasibility.",
+    "objective": "maximize common strict slack epsilon",
+    "sum_distances": "sum d_ij = 1"
+  },
+  "orbit": "sharesFirstAtSource",
+  "outer_methods": [
+    "add_row_cardinality",
+    "add_finite_incidence_bounds",
+    "add_perpendicular_bisector_order",
+    "add_cap_bounds",
+    "add_exact_five_shell",
+    "add_exact_shell_selected_row_alternation",
+    "add_named_roles",
+    "add_blocker_map",
+    "add_named_critical_rows",
+    "add_strong_connectivity"
+  ],
+  "schema": "p97-exact6-integrated-milp-v1",
+  "solver": {
+    "fixed_epsilon": null,
+    "message": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "mip_dual_bound": 0.0,
+    "mip_gap": 0.0,
+    "mip_node_count": 245,
+    "mip_rel_gap": 0.0,
+    "name": "scipy.optimize.milp/HiGHS",
+    "node_limit": 1000000,
+    "relaxation": false,
+    "scipy_status": 0,
+    "scipy_success": true,
+    "threads_requested": 4,
+    "time_limit": 300.0,
+    "wall_seconds": 64.32098166603828
+  },
+  "total_constraints": 122859,
+  "total_variables": 568
+}

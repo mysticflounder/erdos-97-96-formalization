@@ -1,0 +1,11 @@
+{
+  "elapsed_seconds": 6.599370374984574,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_IF_UNSAT_OR_UNKNOWN",
+  "mode": "all-rows",
+  "n": 9,
+  "schema": "p97-bare-all-center-integrated-kalmanson-v1",
+  "solver_statistics": "(:added-eqs                   1099964\n :arith-eq-adapter            950\n :arith-bound-propagations-lp 1003490\n :arith-conflicts             3183\n :arith-diseq                 715382\n :arith-fixed-eqs             110839\n :arith-lower                 770878\n :arith-make-feasible         74226\n :arith-max-columns           485\n :arith-max-rows              445\n :arith-offset-eqs            41493\n :arith-upper                 583225\n :binary-propagations         1638622\n :conflicts                   29344\n :decisions                   41815\n :del-clause                  20630\n :max-memory                  24.74\n :memory                      18.48\n :minimized-lits              192257\n :mk-bool-var                 3257\n :mk-clause                   31143\n :mk-clause-binary            669\n :num-allocs                  632897707\n :num-checks                  1\n :pb-conflicts                276\n :pb-predicates               27\n :pb-propagations             19886\n :pb-resolves                 276\n :propagations                2603929\n :restarts                    163\n :rlimit-count                24133663\n :time                        6.58)",
+  "status": "UNSAT",
+  "strong_connectivity": false,
+  "triangle": false
+}

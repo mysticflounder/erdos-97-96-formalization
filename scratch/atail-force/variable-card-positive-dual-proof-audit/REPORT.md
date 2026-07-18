@@ -2,16 +2,17 @@
 
 Date: 2026-07-18
 
-Status: **ROUTE-STOPPING CARD-FOURTEEN ABSTRACT COUNTERMODEL REPORTED BY THE
-EXACT CEGAR LANE; PERSISTED STRICT-POSITIVE ALIVE ARTIFACT AND INDEPENDENT
-REPLAY ARE PENDING.  THE CARDINALITY-GENERIC POSITIVE-CONTOUR THEOREM MUST NOT
-BE USED.  THE FIRST MISSING FORCE IS NONLINEAR COMMON EUCLIDEAN/MEC GEOMETRY,
-FULL-FIBER PROVENANCE, OR GLOBAL MINIMALITY.**
+Status: **NO CARD-FOURTEEN ABSTRACT COUNTERMODEL IS PERSISTED OR LOGGED.  THE
+OLD SOURCE/TARGET STREAMS WERE SYNCHRONOUSLY INTERRUPTED AND THEIR IMMUTABLE
+PREFIXES REPLAY TO TWO FURTHER EXACT UNSAT CUTS.  THE CARDINALITY-GENERIC
+POSITIVE-CONTOUR THEOREM REMAINS CONJECTURAL.  DIRECT EXACT Z3 DECISIONS ARE
+UNSAT THROUGH CARD TEN AND TIME OUT AT CARDS ELEVEN THROUGH FOURTEEN; COMMON
+TRANSLATION PROVES ONLY THAT POSITIVITY AND TRIANGLE ROWS ADD NO FORCE.**
 
 This lane is scratch-only.  It does not edit production Lean, closure plans,
 or proof-blueprint state, and it closes no source `sorry` by itself.
 
-## Rejected candidate theorem
+## Candidate theorem and current status
 
 Let `V = Fin n` carry its cyclic order.  For every unordered pair `x,y`, let
 `e(x,y)` be the corresponding basis vector.  For every increasing
@@ -73,23 +74,25 @@ weighted Kalmanson consumer and checked cut-data soundness bridge are already
 the formal endpoint for such a certificate.
 
 The strong-connectivity version adds the hypothesis that the digraph
-`c -> S(c)` is strongly connected.  That addition does not repair the target:
-the reported card-fourteen survivor comes from an outer which already asserts
-selected-witness strong connectivity.
+`c -> S(c)` is strongly connected.  No persisted abstract-distance survivor
+currently refutes this version.  The corrected card-fourteen outer already
+asserts selected-witness strong connectivity, so a future `ALIVE` on that
+surface would be decisive negative evidence.
 
 Had the no-connectivity statement been true, it would have said directly:
 
 > A strict cyclic Kalmanson distance matrix has some row in which no distance
 > value occurs four times off the diagonal.
 
-That theorem would have bypassed A-TAIL entirely, because the original
-property already gives four equal off-diagonal distances at every carrier
-point.  The card-fourteen survivor blocks that bypass.
+That theorem would bypass A-TAIL entirely, because the original property gives
+four equal off-diagonal distances at every carrier point.  The present exact
+search decides only the finite prefix through card ten; it does not prove the
+cardinality-generic statement.
 
-## Route-stopping card-fourteen boundary
+## Interrupted card-fourteen boundary
 
-The exact CEGAR lane has reported a card-fourteen structural assignment whose
-abstract distance oracle is SAT with:
+The exact CEGAR lane has not reported a card-fourteen structural assignment
+whose abstract distance oracle is SAT.  The intended surface contains:
 
 - one selected four-member row at every center;
 - strict Kalmanson inequalities;
@@ -97,14 +100,17 @@ abstract distance oracle is SAT with:
 - the exact-five physical shell and its row equalities; and
 - selected-witness strong connectivity.
 
-At this checkpoint the corrected strict-positive `alive.json` has not yet been
-persisted, so this report does not quote a table or artifact hash and does not
-claim independent acceptance of that particular model.  The neighboring
-`exact6-integrated-cegar-audit/REPORT.md` independently proves the translation
-argument needed to understand its consequence.
+The independent event-stream audit shows that the old source/target runs were
+synchronously interrupted after cuts 721/719.  Faithful replay from immutable
+copies of those exact prefixes produces ordinary exact UNSAT metric cuts
+722/720.  There is no `exact_alive` event, SAT terminal, or `alive.json`.
+The historical driver did have a real crash-on-SAT bug, but the surviving logs
+do not show that these runs exercised it.  The neighboring
+`exact6-integrated-cegar-audit/REPORT.md` records the hashes and replay details.
 
 Every Kalmanson vector and every row/shell equality vector has coefficient sum
-zero.  Therefore, from any exact nonnegative SAT table `d`, define
+zero.  Therefore, **if** an exact nonnegative SAT table `d` is later found,
+define
 
 ```text
 d'(i,j) = d(i,j) + C                 for i != j.
@@ -120,16 +126,16 @@ d'(i,j) + d'(j,k) - d'(i,k)
 
 so one sufficiently large rational `C` makes every triangle inequality
 strict as well.  Positivity and abstract metric triangles therefore cannot
-restore the generic theorem.
+distinguish that hypothetical table from the strict metric shadow.  This
+invariant does not produce such a table or refute the generic theorem.
 
-The first genuinely new algebraic force is common planar Euclidean
-realizability: the same distance table must come from one family of points in
-`R^2`.  A persisted ALIVE table should first be tested by exact squared
-Cayley--Menger determinants (equivalently, a centered Gram matrix with
-positive-semidefinite rank at most two).  Failure of one four-point planar
-minor will explain that witness, though it will not by itself prove that every
-structural assignment fails.  If a Euclidean assignment survives, the next
-missing inputs are actual MEC/nonobtuse cap geometry, complete critical-fiber
+The current live routes are exact cut coverage and the aggregate positive
+contour theorem.  If a genuine `ALIVE` table appears, the first new algebraic
+force is common planar Euclidean realizability: exact squared Cayley--Menger
+determinants, or a centered positive-semidefinite Gram matrix of rank at most
+two.  Failure of one four-point planar minor will explain that witness, though
+it will not prove that every structural assignment fails.  A planar survivor
+would require actual MEC/nonobtuse cap geometry, complete critical-fiber
 provenance rather than selected representatives, and global minimality/no-M44.
 
 ## Why ordinary ordinal cycles are not enough
@@ -268,6 +274,25 @@ their dual bounds still permit positive normalized slack, while their
 incumbents are zero-slack floating solutions whose selected rows are exactly
 infeasible.  Their correct status is `UNKNOWN`.
 
+The independent direct Z3 encoding chooses the row incidences and the
+abstract Kalmanson distance table together over exact real arithmetic.  The
+files without `no-connectivity` in their names include the selected-witness
+strong-connectivity constraints.  Z3 currently reports:
+
+| `n` | with strong connectivity | without connectivity |
+|---:|:---:|:---:|
+| 8 | UNSAT | UNSAT |
+| 9 | UNSAT | UNSAT |
+| 10 | UNSAT | UNSAT |
+| 11 | 600 s `UNKNOWN` | not run |
+| 12 | 600 s `UNKNOWN` | not run |
+| 13 | 600 s `UNKNOWN` | not run |
+| 14 | 600 s `UNKNOWN` | not run |
+
+These are exact-arithmetic solver decisions, but the UNSAT results do not yet
+carry independently checked proof certificates.  They are therefore strong
+finite evidence, not kernel closure and not a proof for arbitrary card.
+
 At `n=8`, the optimum row table is the circulant pattern
 
 ```text
@@ -298,6 +323,10 @@ one-edge collision.
 - The random fixed-row falsifier found no exact Kalmanson SAT table in tens of
   thousands of strongly connected candidates for each `n=6..25`.  This is
   heuristic no-hit evidence only.
+- The direct integrated Z3 encoding is externally UNSAT with and without
+  strong connectivity for `n=8..10`.  Its strong-connectivity runs time out at
+  `n=11..14`; `UNKNOWN` is unresolved-under-budget, not evidence for either
+  satisfiability or infeasibility.
 - The integrated exact-six Z3/cvc5 Kalmanson-only decisions remain bounded
   `UNKNOWN`; their timeouts do not prove the generic theorem.
 - The no-connectivity integrated `n=10..12` MILPs likewise remain `UNKNOWN`
@@ -321,29 +350,30 @@ one-edge collision.
 
   while `K2(0,1,6,10) + K2(0,2,10,11)` has exactly those six
   terms with the contradictory strict orientation.  This is useful evidence
-  for the local contour rule, but the card-fourteen ALIVE shows it cannot be
-  promoted to a generic rule.
+  for the local contour rule, but it is not yet a uniform extraction theorem.
 - The order-three symplectic generalized-quadrangle test was deliberately
   canceled when the card-fourteen route correction arrived; its stored
   `UNKNOWN/canceled` record is not evidence in either direction.
-- The exact CEGAR lane now reports a card-fourteen abstract-linear survivor.
-  Its corrected persisted ALIVE table and independent replay remain the
-  acceptance gate for quoting the exact witness here.
+- The corrected exact CEGAR lane has no card-fourteen abstract-linear survivor.
+  The only durable terminals beyond the interrupted prefixes are two further
+  exact UNSAT cuts.  A future `ALIVE` must be persisted and independently
+  replayed before it changes this route assessment.
 
 Therefore the honest status is:
 
 ```text
-direct all-center Kalmanson theorem       REFUTED AS A ROUTE; ALIVE ARTIFACT PENDING
-positive-contour formulation             VALID DUAL FORM, FALSE GENERIC EXISTENCE CLAIM
+direct all-center Kalmanson theorem       CONJECTURAL; EXTERNALLY UNSAT THROUGH n=10
+positive-contour formulation             VALID DUAL FORM; GENERIC EXISTENCE OPEN
 ordinary strong-connectivity cycle proof INSUFFICIENT AS STATED
-first missing force                       NONLINEAR EUCLIDEAN/MEC OR GLOBAL DATA
+finite decision frontier                  n=11..14 UNKNOWN UNDER 600 s BUDGET
 ```
 
-Do not continue trying to prove the alternating-four-row positive-contour
-lemma.  The next action is to persist and independently replay the exact
-card-fourteen ALIVE table, then compute an exact planar Euclidean obstruction
-for that table.  Any restored closure theorem must visibly add the missing
-Euclidean/MEC, full-fiber, or global-minimality hypothesis.
+The two live continuations are: obtain checked finite cut coverage for the
+remaining exact-six/card-fourteen structural orbits, or prove the aggregate
+positive-contour theorem uniformly.  If a genuine `ALIVE` appears, persist and
+independently replay it before computing a planar Euclidean obstruction.  Only
+then would the route need additional Euclidean/MEC, full-fiber, or
+global-minimality force.
 
 ## Artifacts and reproduction
 
@@ -352,10 +382,16 @@ Euclidean/MEC, full-fiber, or global-minimality hypothesis.
 - `alternation_incidence_decision.py`: independent exact Boolean alternation
   cross-check;
 - `integrated_bare_kalmanson.py`: exact integrated Z3 reference encoding;
+- `exact-z3-allrows-n{8,9,10}-20260718.json`: direct Z3 UNSAT results with
+  strong connectivity;
+- `exact-z3-allrows-n{8,9,10}-no-connectivity-20260718.json`: the matching
+  stronger bare decisions without connectivity;
+- `exact-z3-allrows-n{11,12,13,14}-20260718.json`: 600-second
+  strong-connectivity `UNKNOWN` records;
 - `structured_design_falsifier.py`: exact fixed-design falsifier for
   `PG(2,3)` and `W(3,3)` incidence rows;
 - `audit_alive_planarity.py`: exact translation, strict-triangle replay, and
-  four-point Cayley--Menger audit for the pending card-fourteen ALIVE table;
+  four-point Cayley--Menger audit for any future card-fourteen ALIVE table;
 - `structured_pg23_seed0.json`: exact-UNSAT projective-plane row table;
 - `structured_w33_seed0.json`: deliberately canceled `UNKNOWN` run;
 - `search_n6.json` through `search_n9.json`: bounded local-search no-hit runs;

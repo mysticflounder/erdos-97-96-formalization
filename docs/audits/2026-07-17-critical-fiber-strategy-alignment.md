@@ -482,12 +482,24 @@ cuts.  Every orbit stopped at its 1,000-cut limit.  The merged 6,891 semantic
 cuts generate 186,404 valid dihedral transports, but the first transported-bank
 probe still finds new exact cuts rather than structural UNSAT.
 
+A later faithful Source/Target pass contributes 2,816 and 2,822 cuts.  Removing
+twenty duplicates gives a 12,509-cut merged cross-bank, with 302
+exact-five-shell-conditioned cuts.  Independent exact replay accepts all
+12,509 and finds zero positive-distance constraints.  This strengthens the
+checked cut bank, but still does not prove coverage.
+
 The independent event-stream audit found no exact SAT terminal.  Both old
 source/target streams were synchronously interrupted after cuts 721/719, and
 faithful replay of those immutable prefixes produced ordinary exact UNSAT
 metric cuts 722/720.  The historical crash-on-SAT bug was real, but the logs do
 not show that it was exercised.  The correct status is `INTERRUPTED / SAT NOT
 REPRODUCED`.
+
+The fail-closed direct D14 checkpoint is complete as well.  The initial Source
+run and the six remaining role-orbit portfolio members all return exact-Z3
+`UNKNOWN` by timeout at about 654--657 seconds.  There is no SAT, UNSAT,
+`ALIVE`, or lingering lock.  This is a bounded no-verdict and closes no finite
+orbit.
 
 The surface nevertheless has a decisive translation symmetry: replacing every
 distance `d` by `d+C` preserves all Kalmanson and selected-row/shell
@@ -1104,6 +1116,11 @@ interruption, and faithful prefix replay derives two further exact cuts.  A
 third broad literal-schema round is not authorized, but exact cut coverage and
 the cardinality-generic aggregate Kalmanson theorem remain live.  Common
 translation proves only that positivity and triangle rows add no force.
+The direct exact-Z3 all-row encoding is externally UNSAT through card ten,
+with the same result after removing strong connectivity at cards eight through
+ten.  Strong-connectivity runs at cards eleven through fourteen are 600-second
+`UNKNOWN`.  Without checked UNSAT certificates or a uniform lift, this is a
+finite prefix rather than proof closure.
 
 The nonlinear branch has one new finite reduction.  Two physical-class hits
 in an actual critical row force its actual blocker into the four-point strict

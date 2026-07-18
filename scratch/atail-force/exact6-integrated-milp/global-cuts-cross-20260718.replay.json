@@ -1,0 +1,24 @@
+{
+  "alive_witnesses": [],
+  "banks": [
+    {
+      "cut_count": 12509,
+      "path": "scratch/atail-force/exact6-integrated-milp/global-cuts-cross-20260718.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "92a88957465e7d9e3c47392e8748ad6a8da05089b75e14abb7b16181a17e7288",
+      "shell_conditioned_count": 302
+    }
+  ],
+  "n": 14,
+  "schema": "p97-exact6-integrated-cegar-independent-audit-v1",
+  "second_apex": 9,
+  "seeds": [],
+  "total_positive_constraints_in_cuts": 0,
+  "total_positive_weight_in_cuts": 0,
+  "total_shell_conditioned_cuts": 302,
+  "total_verified_alive_witnesses": 0,
+  "total_verified_cuts": 12509,
+  "total_verified_seeds": 0,
+  "verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS"
+}
