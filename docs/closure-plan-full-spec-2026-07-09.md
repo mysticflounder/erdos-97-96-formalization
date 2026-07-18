@@ -226,9 +226,18 @@ closer or diagnostic, not the public mining boundary.
 
 Do not produce bare-`B`, fixed-initial-`H`, or further conditional-consumer
 theorems.  If `CriticalFiberClosingCore` is used, choose a favorable critical
-system late and rebase the complete `R/B/L` packet.  The robust-minimality
-adapter is useful only when its fresh-center result feeds this same aggregate
-occurrence/parent contradiction while retaining the full packet.  Importing
+system late and rebase the complete `R/B/L` packet, but do not treat selector
+choice as force.  The checked favorable-choice audit shows that saturating the
+old common shell only stutters at the old blocker; an `overrideAt` row hits both
+fiber sources only after the missing co-radial equality is already supplied; a
+nontrivial `MinimalDeletionCore` is not installable by that API; and a singleton
+override at either fiber source destroys the old equal-blocker fiber.  The
+remaining critical-fiber implementation must therefore produce a genuinely
+third source `J`, distinct from both fiber sources, whose actual row contains
+the pair and whose new/common blockers have the same-cap placement consumed by
+`SameCapCollisionPairCore.false`.  The robust-minimality adapter is useful only
+when its fresh-center result feeds this same aggregate occurrence/parent
+contradiction while retaining the full packet.  Importing
 `u1TwoLargeCapObstruction` is worthwhile plumbing but is not the priority
 closure lane because the live residues still lack its named equalities.
 
@@ -559,16 +568,20 @@ This return occurrence is OPEN, source-faithful, nonrecursive, and has an
 immediate checked consumer, but two regressions prohibit a weak proof contract.
 An exact finite incidence model satisfies the current marginal critical-map,
 fiber, bi-apex robustness, cap-size, frontier, and reverse-row facts while every
-reverse pair crosses two first-apex radius colors. An exact rational convex/MEC
-model additionally realizes the cap bounds, retained pair marginal, and one
-complete reverse row without a return; it omits first-apex K4/double deletion,
-the total critical system, and the other complete rows. The finite model already
-contains first-apex K4/double deletion and a support-locked total CSS, but omits
-their Euclidean semantics. Therefore any proof must genuinely couple the
-Euclidean/MEC/all-row order to `R.frontierRadius_class_card_ge_four`,
-`R.common.firstApexDouble`, the total CSS/bi-apex data, or global minimality.
-Marginal counting, local cap geometry, and merely invoking either side without
-that cross-system coupling are refuted routes.
+reverse pair crosses two first-apex radius colors.  The stronger exact rational
+convex/MEC regression now has 17 points, cap profile `(8,6,6)`, the unique
+five-point physical-apex K4 radius, and all three complete period-three `2+2`
+reverse rows, while every reverse outside pair remains non-co-radial from both
+adjacent support apices.  Its independent `Fraction` replay is exact; the Lean
+Boolean replay is compiler-reduced with `Lean.ofReduceBool`/`Lean.trustCompiler`
+and is not a kernel-only certificate.  This model still omits the actual
+retained frontier/T0/T1 rows, the unused-source continuation critical row and
+total critical system, whole-carrier K4, `D.Minimal`, and `noM44`.  The finite
+model contains some of those data only as non-Euclidean marginals.  Therefore
+any proof must genuinely couple the omitted source-indexed parent fields to the
+Euclidean/MEC/all-row order.  Marginal counting, the complete local reverse-row
+geometry, and merely invoking either side without that cross-system coupling
+are refuted routes.
 
 The retained first-apex shell-role surface is now production in
 `ATail/FirstApexShellRole.lean` and

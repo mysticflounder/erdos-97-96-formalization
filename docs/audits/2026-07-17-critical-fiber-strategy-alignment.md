@@ -446,9 +446,11 @@ placements of the two outside targets have exact rational metric ledgers
 satisfying all triangle and strict Kalmanson inequalities, row equalities, and
 named-class exclusions. These ledgers are abstract distances, not planar/MEC
 models. The separate same-side coordinate construction supplies the missing
-Euclidean/MEC realization, so one complete row is fully retired. No ordinal
-comparison cycle or linear Farkas certificate can restore it; the first live
-local threshold is all three complete rows.
+Euclidean/MEC realization, so one complete row was fully retired. No ordinal
+comparison cycle or linear Farkas certificate can restore it. The later exact
+17-point `(8,6,6)` construction realizes all three complete rows, so the former
+all-three local threshold is retired too; the live threshold includes the
+retained T0/T1, continuation, or global parent fields.
 
 For that threshold, outside-pair injectivity must not be strengthened to six
 distinct targets. It excludes equality of two unordered pairs but permits a
@@ -511,14 +513,18 @@ the retained original frontier pair. That target immediately instantiates
 closes this actual branch if proved. It is OPEN, but it is not a marginal
 consequence: an exact 16-label incidence model satisfies the current
 critical-map/fiber/bi-apex robustness/frontier/reverse-row marginals with no
-first-apex return, and an exact rational convex/MEC model satisfies the cap
-bounds, retained pair marginal, and one complete reverse row without return.
-The latter deliberately omits first-apex K4/double deletion, the total CSS, and
-the other complete rows, while the finite model includes those data only as
-non-Euclidean marginals. A viable proof must cross-couple the global critical/
-deletion layer to Euclidean/MEC/all-row order or minimality; neither layer alone
-forces the return. The conditional orientation/Kalmanson/CAD route remains a
-fallback, not live coverage.
+first-apex return.  A stronger exact rational 17-point convex/MEC model now
+satisfies the full `(8,6,6)` cap profile, has a unique five-point physical-apex
+K4 radius, and realizes all three complete reverse `2+2` rows without return at
+either adjacent support apex.  Its exact `Fraction` replay is the primary
+audit; the Lean Boolean replay uses compiler-trusted reduction and is not a
+kernel-only certificate.  It deliberately omits the retained frontier/T0/T1
+rows, the unused-source continuation critical row and total CSS, whole-carrier
+K4, minimality, and `noM44`, while the finite model includes some of those data
+only as non-Euclidean marginals. A viable proof must cross-couple those omitted
+global critical/deletion fields to Euclidean/MEC/all-row order; the complete
+local reverse geometry alone does not force the return. The conditional
+orientation/Kalmanson/CAD route remains a fallback, not live coverage.
 
 The retained parent contributes one precise next role packet rather than fixed
 slots: a radius-`r` four-row `T0` containing `q,w`, and a double-deletion row
@@ -863,8 +869,14 @@ The fixed-fiber residual audits are negative but load-bearing for scoping.
 `BothOff` cap localization gives strong endpoint/interior shell counts with no
 matching consumer. Global minimal deletion can stutter at the old common
 blocker with either singleton collision source, even over the whole common
-shell. These routes also do not replace the direct physical-apex split or its
-one full bi-apex robust consumer.
+shell.  The checked late-choice audit sharpens this: saturating the old shell
+assigns its sources the old blocker, pointwise override hits both fiber sources
+only if the missing equality is already present, a nontrivial minimal-deletion
+core cannot satisfy the override blocker premise, and a singleton override at
+either fiber source destroys their old blocker equality.  A favorable-system
+implementation therefore still needs a third source whose actual row contains
+the pair and supplies the same-cap second center. These routes also do not
+replace the direct physical-apex split or its one full bi-apex robust consumer.
 
 ## Synchronized documents
 
