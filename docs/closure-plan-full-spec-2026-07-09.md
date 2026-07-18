@@ -2122,19 +2122,89 @@ returned 476-variable assignment has been regenerated and replayed against
 approximately 218,900 clauses, so the static 20-schema bank is not coverage of
 this finite abstraction.
 
-This negative also identifies the correct positive loop.  Pinning the first
-`continuationOrder` SAT assignment into the active all-center source and
-running its exact linear oracle gives UNSAT from ten second Kalmanson
-inequalities and three selected-row equalities.  Exact vector replay uses unit
-Kalmanson multipliers and row multipliers `+1,+1,-1`, and the resulting
-six-membership schema is not one of the old twenty.  The generic theorem
-`false_of_weighted_kalmanson_cancellation` already kernel-checks the arithmetic
-consumer.  The active card-fourteen route is therefore a certificate-producing
-CEGAR loop: canonicalize every new shell-free linear core, transport its
-membership cut, verify its rational cancellation independently, and seek a
-DRAT/LRAT-checked UNSAT cover of all seven corrected CNFs.  A finite SAT
-assignment, one new cut, or a long prefix of LRA refutations is not live
-coverage.
+Pinning the first `continuationOrder` SAT assignment into the active all-center
+source and running its exact linear oracle gives UNSAT from ten second
+Kalmanson inequalities and three selected-row equalities.  Exact vector replay
+uses unit Kalmanson multipliers and row multipliers `+1,+1,-1`, and the
+resulting six-membership schema is not one of the old twenty.  The generic
+theorem `false_of_weighted_kalmanson_cancellation` already kernel-checks the
+arithmetic consumer.
+
+Two exact mining rounds now show why this should not become an open-ended
+schema queue.  Across the baseline and first compact-bank rerun, all 671
+candidates reaching the linear oracle are exact-LRA UNSAT, but every role
+orbit remains bounded `UNKNOWN`.  Offline deletion minimization verifies 263
+canonical schemas.  Thirty have at most eight roles and contribute 111,758
+applications, but the compact frontier grows from eight first-round families
+to twenty-two new second-round families, with only 420 application overlaps.
+That is evidence of a real aggregate linear contradiction and against literal
+schema saturation.
+
+Do not launch a third broad membership-schema round.  The deterministic test
+with the combined 213,860 original-plus-compact application closure has now
+been run.  All seven strengthened CNFs remain SAT.  The first survivor exposed
+one genuinely missing source-valid family: a selected row and the complete
+physical-apex exact-five shell cannot share a target pair when their centers
+lie on the same boundary arc.  The complementary strict Kalmanson inequality
+proves this by direct cancellation, and the mixed selected-row/`SelectedClass`
+bridge is kernel-checked with only the three standard project axioms.  Adding
+all 572 instances removes that survivor, but every orbit remains SAT after
+independent assignment replay, at 331,193--331,233 clauses.
+
+The next continuation assignment is again exact-LRA UNSAT, now by a shell-free
+five-Kalmanson/four-row telescoped cut with eleven memberships.  This is
+evidence for aggregate linear pruning, not for another missing local clause or
+a third literal cut queue.  It does not imply a uniform positive dual once the
+later translation-invariant SAT observation is included.  The generic typed
+`WeightedKalmansonCutData` checker and its soundness theorem now also
+kernel-check in scratch, including exact replay of the first ten-Kalmanson
+bank cut.
+
+The integrated decision has now been run in three independent forms.  Direct
+Z3 and cvc5 Boolean-plus-QF_LRA encodings return no verdict at their bounded
+budgets.  A normalized mixed-integer formulation, however, proves a floating
+optimum of zero common strict slack for all seven role orbits on the weaker
+Kalmanson-only profile; six full-profile orbits also optimize to zero, while
+full-profile `fourDistinct` remains bounded no-verdict after 900 seconds.  The
+LP relaxation has positive slack, so integrality is load-bearing and there is
+no single root-LP dual.  For every Kalmanson-only orbit, one fixed integral
+leaf has already yielded an independently replayed exact rational dual whose
+antecedent is a small set of true row memberships.
+
+The exact CEGAR implementation has now independently replayed its first 7,000
+derived Farkas cuts, including 152 shell-conditioned cuts, but all seven runs
+ended at their 1,000-cut limit without terminal CNF exhaustion.  Merging gives
+6,891 semantic nogoods; their valid dihedral transports give 186,404 further
+checked candidate clauses, still without immediate exhaustion in the first
+probe.  This is exact cut discovery, not a closure certificate.
+
+More importantly, two incremental runs reached SAT in the exact
+Kalmanson/row/shell oracle before the original generator had an `ALIVE`
+publication path.  Durable exact-witness replay is still being recovered, so
+the observation is not yet a published countermodel artifact.  Its mathematical
+implication is nevertheless sharp: this entire linear surface is invariant
+under adding one constant to every abstract distance.  Hence any nonnegative
+SAT table becomes strictly positive, preserves all Kalmanson and row/shell
+equalities, and, after adding a sufficiently large constant, satisfies all
+strict triangle inequalities as well.  Strict positivity and triangle
+inequalities therefore cannot rescue the proposed cardinality-generic positive
+dual.  Stop the generic contour claim and broad linear CEGAR once the exact
+`ALIVE` witness is persisted and independently replayed.
+
+The next load-bearing finite gate is common planar Euclidean rank two: exact
+Cayley--Menger/Gram constraints on the recovered all-center assignment.  If
+that rejects every structural orbit, extract a verified planar certificate and
+then seek its variable-card theorem.  If a planar survivor remains, add the
+actual MEC/full-fiber/common-critical-system/minimality data.  Floating MILP
+optimality and a growing linear cut bank are not terminal.
+
+The LIVE-C `center_t2_rowFailure` fallback has also been adjudicated.  A
+kernel-checked exact rational planar projection realizes the fixed `p` circle,
+the original `t2` source row, the extra row centered at `t2`, and the displayed
+row-failure disjunction.  Thus that helper cannot close from its exposed local
+metric surface.  A proof must visibly use the omitted common critical-system,
+all-center K4, cap/MEC, `noM44`, or minimality data; the preferred route remains
+the parent direct contradiction before LIVE enumeration.
 
 There is also a genuine nonlinear reduction before any larger coordinate
 search.  Kernel-checked scratch proves that if one actual mutual critical row
@@ -2178,6 +2248,21 @@ pair.  Consequently this equality must come from the complete all-center
 critical map, retained frontier, global minimality, or equivalent parent force;
 another cap-local theorem cannot supply it.  At cap eight the strict interior
 has six positions, so the counting occurrence itself no longer follows.
+
+The global marginal audit further narrows the missing force.  A fifteen-label
+finite abstraction with cap profile `(5,6,7)` retains a total support-locked
+blocker map, both robust apex radius classes, the all-reverse transition,
+selected-row strong connectivity, and exhaustive abstract minimality over all
+32,766 nonempty proper subsets, yet every reverse outside pair has two
+different first-apex radius colors.  Thus incidence, blocker counting, and
+abstract radius minimality do not imply the co-radial producer.  The same one
+fixed source-faithful fixture is exact-QF_LRA UNSAT after all triangle and
+strict Kalmanson inequalities (105 distance variables, 4,365 assertions).
+This is positive evidence for convex-order geometry, not role coverage.  The
+shared variable-card dual proposal is retired by the common-translation
+invariant.  An exact-seven finite route must enumerate both first-apex same-
+and distinct-radius role cells while adding common planar rank-two constraints;
+linear Farkas coverage alone cannot wire the geometric producer.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson

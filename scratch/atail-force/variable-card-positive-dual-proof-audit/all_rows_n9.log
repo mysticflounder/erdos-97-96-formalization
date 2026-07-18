@@ -1,0 +1,99 @@
+{
+  "boolean_count": 72,
+  "constraint_count": 952,
+  "constraint_kinds": {
+    "distance_normalization": 1,
+    "guarded_row_equality_neg": 72,
+    "guarded_row_equality_pos": 72,
+    "positive_distance": 36,
+    "row_cardinality": 9,
+    "strict_kalmanson_k1": 126,
+    "strict_kalmanson_k2": 126,
+    "strong_connectivity_entering": 255,
+    "strong_connectivity_leaving": 255
+  },
+  "epistemic_status": "FLOATING_MILP_WITH_EXACT_FIXED_ROW_REPLAY",
+  "incumbent": {
+    "epsilon": 4.99469746607835e-14,
+    "exact_fixed_row_replay": {
+      "status": "UNSAT",
+      "unsat_core": [
+        "k1_0_1_2_8",
+        "k2_1_2_5_6",
+        "k2_1_2_6_7",
+        "k2_1_2_7_8",
+        "row_1_0_5",
+        "row_2_0_5"
+      ]
+    },
+    "rows": {
+      "0": [
+        1,
+        2,
+        4,
+        5
+      ],
+      "1": [
+        0,
+        5,
+        6,
+        8
+      ],
+      "2": [
+        0,
+        3,
+        5,
+        6
+      ],
+      "3": [
+        1,
+        4,
+        6,
+        7
+      ],
+      "4": [
+        3,
+        5,
+        6,
+        8
+      ],
+      "5": [
+        0,
+        3,
+        6,
+        7
+      ],
+      "6": [
+        0,
+        2,
+        3,
+        4
+      ],
+      "7": [
+        0,
+        3,
+        5,
+        6
+      ],
+      "8": [
+        1,
+        2,
+        3,
+        4
+      ]
+    }
+  },
+  "mode": "all-rows",
+  "n": 9,
+  "schema": "p97-bare-all-center-normalized-milp-v1",
+  "solver": {
+    "message": "Time limit reached. (HiGHS Status 13: Time limit reached)",
+    "mip_dual_bound": -0.004878048780487803,
+    "mip_gap": 97664549526.1181,
+    "mip_node_count": 242166,
+    "status": 1,
+    "success": false
+  },
+  "variable_count": 118,
+  "wall_seconds": 300.01475687499624
+}

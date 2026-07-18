@@ -1,0 +1,13 @@
+{
+  "all_canonical_transports_reconstructed": true,
+  "all_minimal_cores_exact_lra_unsat": true,
+  "all_single_deletions_exact_lra_sat": true,
+  "all_source_hashes_replayed": true,
+  "bank_sha256": "89961832d6a49d749c03be352541dd1223d1d76bf3416faad06fb5d4361c0a97",
+  "compact_schema_count_k_le_8": 8,
+  "minimal_core_count": 76,
+  "schema": "p97-exact6-allcenter-minimized-schema-independent-replay-v1",
+  "source_count": 1,
+  "status": "VERIFIED",
+  "unique_schema_count": 76
+}

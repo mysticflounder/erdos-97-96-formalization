@@ -1,0 +1,13 @@
+{
+  "all_rational_coefficients_cancel": true,
+  "all_row_memberships_replayed": true,
+  "all_schemas_reconstructed_and_canonical": true,
+  "certificate_count": 203,
+  "schema": "p97-transported-2k3-bank-independent-verification-v1",
+  "schema_count": 20,
+  "source_certificate_counts": {
+    "round3": 30,
+    "round4": 173
+  },
+  "status": "VERIFIED_EXACT_2K3_TRANSPORTED_BANK"
+}

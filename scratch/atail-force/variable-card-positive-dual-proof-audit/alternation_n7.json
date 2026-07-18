@@ -1,0 +1,11 @@
+{
+  "alternation_clause_count": 140,
+  "connectivity": false,
+  "connectivity_clause_count": 0,
+  "elapsed_seconds": 0.01296474999981001,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_SMT_IF_UNSAT",
+  "n": 7,
+  "schema": "p97-four-row-selected-pair-alternation-decision-v1",
+  "solver_statistics": "(:added-eqs           472\n :arith-make-feasible 1\n :arith-max-columns   4\n :binary-propagations 14\n :conflicts           68\n :decisions           77\n :del-clause          7\n :max-memory          18.08\n :memory              17.51\n :minimized-lits      27\n :mk-bool-var         63\n :mk-clause           208\n :mk-clause-binary    14\n :num-allocs          76653\n :num-checks          1\n :pb-conflicts        3\n :pb-predicates       21\n :pb-propagations     250\n :pb-resolves         3\n :propagations        178\n :rlimit-count        13618\n :time                0.00)",
+  "status": "UNSAT"
+}

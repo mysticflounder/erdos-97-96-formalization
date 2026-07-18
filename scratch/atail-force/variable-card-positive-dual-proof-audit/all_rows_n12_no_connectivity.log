@@ -1,0 +1,128 @@
+{
+  "boolean_count": 132,
+  "constraint_count": 3313,
+  "constraint_kinds": {
+    "distance_normalization": 1,
+    "guarded_row_equality_neg": 132,
+    "guarded_row_equality_pos": 132,
+    "positive_distance": 66,
+    "row_cardinality": 12,
+    "selected_pair_alternation": 1980,
+    "strict_kalmanson_k1": 495,
+    "strict_kalmanson_k2": 495
+  },
+  "epistemic_status": "FLOATING_MILP_WITH_EXACT_FIXED_ROW_REPLAY",
+  "incumbent": {
+    "epsilon": 4.9002444011803175e-15,
+    "exact_fixed_row_replay": {
+      "status": "UNSAT",
+      "unsat_core": [
+        "k2_0_1_2_3",
+        "k1_0_1_2_11",
+        "k1_0_2_3_11",
+        "k2_1_2_5_6",
+        "k2_1_2_6_7",
+        "k2_1_2_7_8",
+        "k2_1_2_8_9",
+        "k2_1_2_9_10",
+        "k2_1_2_10_11",
+        "k2_2_3_5_6",
+        "k2_2_3_6_7",
+        "k2_2_3_7_8",
+        "k2_2_3_8_9",
+        "k2_2_3_9_10",
+        "k2_2_3_10_11",
+        "row_0_1_2",
+        "row_1_2_5",
+        "row_3_1_5"
+      ]
+    },
+    "rows": {
+      "0": [
+        1,
+        2,
+        7,
+        11
+      ],
+      "1": [
+        2,
+        3,
+        5,
+        10
+      ],
+      "10": [
+        2,
+        4,
+        9,
+        11
+      ],
+      "11": [
+        0,
+        1,
+        6,
+        8
+      ],
+      "2": [
+        0,
+        3,
+        4,
+        8
+      ],
+      "3": [
+        1,
+        5,
+        8,
+        11
+      ],
+      "4": [
+        0,
+        2,
+        6,
+        10
+      ],
+      "5": [
+        3,
+        7,
+        8,
+        10
+      ],
+      "6": [
+        0,
+        4,
+        7,
+        9
+      ],
+      "7": [
+        2,
+        6,
+        8,
+        9
+      ],
+      "8": [
+        1,
+        4,
+        5,
+        10
+      ],
+      "9": [
+        3,
+        6,
+        7,
+        11
+      ]
+    }
+  },
+  "mode": "all-rows-no-connectivity",
+  "n": 12,
+  "schema": "p97-bare-all-center-normalized-milp-v1",
+  "solver": {
+    "message": "Time limit reached. (HiGHS Status 13: Time limit reached)",
+    "mip_dual_bound": -0.0017825311942958899,
+    "mip_gap": 363763732654.15765,
+    "mip_node_count": 46614,
+    "status": 1,
+    "success": false
+  },
+  "variable_count": 211,
+  "wall_seconds": 300.0113081659656
+}

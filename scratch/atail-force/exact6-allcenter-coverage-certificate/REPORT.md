@@ -3,8 +3,8 @@
 Date: 2026-07-18
 
 Scope: corrected card-fourteen exact-`(5,6,6)` mutual exact-six finite outer.
-This directory is scratch-only.  It does not edit the active gate, production
-Lean, closure documents, or proof-blueprint state.
+This directory is scratch-only.  Its encoder is kept synchronized with the
+active scratch gate, but it does not edit production Lean.
 
 ## Headline result
 
@@ -47,6 +47,76 @@ Euclidean, MEC, no-`M44`, minimal-counterexample, or live Lean models.
 
 The static 20-schema bank is therefore a sound cut family but not a complete
 coverage family for the corrected all-center outer.
+
+## Strengthened combined-bank checkpoint
+
+The later two-round exact minimization bank contributes 30 compact schemas
+with 111,758 applications not already present in the static bank.  Together
+with the original 102,102 applications, the deterministic combined CNF uses
+213,860 metric-cut applications.
+
+The first combined-bank SAT assignment exposed one missing **general
+source-valid clause family**, rather than another literal mined schema.  Its
+physical-apex exact-five shell and a selected row shared two middle vertices
+while their centers were the endpoints of an increasing boundary quadruple.
+The complementary strict Kalmanson inequality cancels immediately against the
+two radius equalities.  This bridge is independently kernel-checked in
+`exact5-shell-selected-row-alternation/` with only `propext`,
+`Classical.choice`, and `Quot.sound`.
+
+[`encode.py`](encode.py) now emits all 572 instances of this
+`exact_shell_selected_row_alternation` family, and the active scratch outer
+emits the same constraints.  After adding them, regenerating the combined
+bank still gives SAT in all seven role orbits:
+
+```text
+continuationOrder         331207 clauses
+reverseContinuationOrder  331207 clauses
+sharesFirstAtSource        331193 clauses
+sharesFirstAtTarget        331193 clauses
+sharesSecondAtSource       331207 clauses
+sharesSecondAtTarget       331207 clauses
+fourDistinct               331233 clauses
+```
+
+All seven complete assignments pass independent clause substitution.  Thus
+the new theorem is valid and removes the motivating survivor, but it does not
+provide finite coverage.
+
+The strengthened continuation assignment is accepted by the fully pinned
+active outer and is again exact-LRA UNSAT.  This time the core is shell-free:
+five `K2` inequalities and eleven memberships across four selected rows.  It
+is a telescoped weighted/ordinal cut, not evidence for another missing
+shell/order clause.  Broad literal schema mining therefore remains stopped.
+
+The integrated decision has since been attempted with direct Z3 and cvc5
+QF_LRA encodings; both remain bounded no-verdict.  A normalized MILP audit
+finds floating optimum zero common strict slack for all seven role orbits on
+the weaker Kalmanson-only profile.  Six full-profile orbits also optimize to
+zero; the full-profile `fourDistinct` case remains bounded no-verdict after
+900 seconds.  The LP relaxation has positive slack, so the branch integrality
+is essential.  One fixed integral leaf from each Kalmanson-only orbit has
+already yielded an independently replayed exact rational dual and a sound
+true-membership nogood.
+
+The exact CEGAR runner in `../exact6-integrated-milp/` has now replayed 7,000
+derived cuts, including 152 shell-conditioned cuts.  Every orbit reached its
+1,000-cut limit rather than structural exhaustion.  Merging leaves 6,891
+semantic cuts, and exact dihedral transport generates 186,404 distinct
+nogoods; the first transported-bank probe still exposes new cuts.  The
+pipeline is sound discovery infrastructure, not a terminal cover.
+
+Two incremental exact-oracle runs subsequently returned SAT before the old
+driver had an `ALIVE` persistence branch.  Reproduction and independent replay
+are in progress.  The relevant linear theory has a decisive translation
+invariant: adding one common constant to all abstract distances preserves the
+Kalmanson and row/shell equations.  It turns any nonnegative table into a
+strictly positive one and, with a sufficiently large constant, makes all
+triangle inequalities strict.  Consequently strict positivity/triangles do
+not repair this surface, and the proposed cardinality-generic positive dual
+must be withdrawn if the exact SAT witness replays.  The next load-bearing
+oracle is nonlinear planar Euclidean rank two, followed by MEC/full-fiber or
+global parent force if planarity alone admits survivors.
 
 ## Active linear-oracle handoff
 

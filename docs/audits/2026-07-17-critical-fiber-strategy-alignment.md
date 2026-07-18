@@ -465,6 +465,48 @@ the linear distance theory is a valid pruning consumer but not a proof of the
 all-three-row contradiction. Any universal closer must use planar Euclidean/
 MEC constraints or global critical-map/deletion/parent data on those survivors.
 
+The later all-center integrated audit changes the finite decision surface but
+not that local conclusion.  It retains one selected four-member row at every
+carrier center, the complete blocker map, cap/order clauses, strong
+connectivity, and the named parent roles.  Direct Z3 and cvc5 QF_LRA runs give
+no bounded verdict.  A normalized mixed-integer formulation does show floating
+optimum zero common strict slack for all seven role orbits even on the weaker
+Kalmanson-only profile.  Six full-profile orbits also optimize to zero; the
+full-profile `fourDistinct` run remains no-verdict after 900 seconds.  A
+positive LP-relaxation optimum shows that Boolean integrality is essential.
+
+The exact conversion did not yield the hoped-for finite cover.  Each
+Kalmanson-only orbit first yielded an independently replayed rational dual at
+one fixed integral leaf, and the active runner then checked 7,000 more Farkas
+cuts.  Every orbit stopped at its 1,000-cut limit.  The merged 6,891 semantic
+cuts generate 186,404 valid dihedral transports, but the first transported-bank
+probe still finds new exact cuts rather than structural UNSAT.
+
+Two incremental exact Kalmanson/row/shell checks then returned SAT before the
+old runner had a fail-closed `ALIVE` artifact path.  The witness must still be
+reproduced and independently replayed before citation.  The surface already
+has a decisive translation symmetry: replacing every distance `d` by `d+C`
+preserves all Kalmanson and selected-row/shell equalities.  Choosing `C>0`
+forces strict pair-distance positivity, and choosing it above the largest
+triangle deficit forces every triangle inequality strictly.  Therefore
+positivity and triangle closure cannot restore the linear route, and the
+cardinality-generic positive-dual proposal must be withdrawn once the observed
+SAT table is persisted.
+
+The next honest finite test is common rank-two Euclidean realizability.  Check
+the recovered table with exact Cayley--Menger/Gram constraints.  If rank two
+eliminates all structural orbits, extract a verified planar obstruction; if
+not, the next new information must be MEC, full fibers/common critical-system
+provenance, or global minimality.  Continuing the linear cut queue is not the
+primary closure lane.
+
+The LIVE-C `center_t2_rowFailure` leaf is not an alternative local shortcut.
+A kernel-checked rational Euclidean projection realizes its fixed-circle and
+two-row metric surface together with the negative disjunction.  Therefore any
+leaf-specific proof must visibly use the common critical system, total K4,
+cap/MEC, `noM44`, or minimality.  The parent direct-False producer remains the
+preferred way to remove that entire helper tree.
+
 The exact UNSAT cases prove a conditional finite local normal form within the
 audited fixed-order abstraction: the union of the three outside pairs has
 cardinality at least five, and at cardinality five only the anchored
@@ -1031,9 +1073,35 @@ refuted by its exact linear oracle.  The new core is a ten-Kalmanson/three-row
 weighted cancellation with six membership antecedents, unit strict weights,
 and row multipliers `+1,+1,-1`; exact coefficient replay passes and the schema
 is outside the old twenty.  Since the generic weighted consumer already
-kernel-checks, the viable coverage object is an append-only certified-cut
-CEGAR ledger followed by regenerated per-orbit CNF and checked DRAT/LRAT, not a
-larger static preload or an unrecorded stream of Z3 refinements.
+kernel-checks, the arithmetic side has a proof-facing consumer.
+
+The two-round convergence audit rejects broad continuation as the primary
+strategy.  All 671 baseline/compact-bank candidates reaching the exact linear
+oracle are UNSAT, yet no orbit exhausts.  Exact deletion minimization yields
+263 canonical schemas and 30 compact families; the compact frontier grows from
+eight first-round families to twenty-two new second-round families, with only
+420 application overlaps.
+
+The deterministic CNF with the combined 213,860 original-plus-compact
+application closure is SAT in all seven role orbits.  Its first assignment did
+expose one omitted source theorem: a selected row and the complete physical-
+apex exact-five radius class cannot share a pair when the two centers occupy
+the same boundary arc.  The mixed Kalmanson bridge is now kernel-checked, and
+all 572 corresponding clauses were added.  Every strengthened CNF nevertheless
+remains SAT after independent full-assignment replay, at
+331,193--331,233 clauses.  The next exact linear conflict is shell-free and
+telescoped across four rows, so it demonstrates aggregate linear pruning
+rather than another local structural clause.  It does not support a uniform
+positive dual once the later translation-invariant SAT observation is taken
+into account.
+
+A proof-free typed weighted-cut payload, exact coefficient checker, and
+soundness theorem now kernel-check in scratch.  The integrated
+Boolean-plus-distance QF_LRA decision has since produced a transient exact SAT
+observation that still requires durable replay.  Because common translation
+preserves the full linear surface, the cardinality-generic positive-dual route
+is retired.  A third broad schema round is not authorized by this evidence;
+the next gate is exact common planar rank two.
 
 The nonlinear branch has one new finite reduction.  Two physical-class hits
 in an actual critical row force its actual blocker into the four-point strict
@@ -1054,6 +1122,19 @@ cap-local field in this normal form, so the equality cannot come from cap order
 or MEC in isolation.  It must use the retained all-center critical map,
 frontier, or global minimality.  Cap eight can realize all six source/blocker
 roles as distinct, so the counting occurrence itself stops at exact seven.
+
+The full marginal audit refutes the same producer from incidence and abstract
+minimality alone.  A fifteen-label `(5,6,7)` finite radius system keeps the
+total support-locked blocker map, both robust apex classes, all reverse rows,
+selected-row strong connectivity, and exhaustive minimality over 32,766
+proper nonempty subsets, but every reverse outside pair has distinct first-
+apex radius colors.  Its one fixed source-faithful role lift is exact-QF_LRA
+UNSAT after 4,365 triangle/Kalmanson assertions on 105 distance variables.
+Thus convex-order geometry may close exact seven, but one fixture is not
+coverage.  The uniform positive-dual route is retired.  Any finite fallback
+must enumerate all source-faithful exact-seven role cells in both first-apex
+radius arms while adding common planar rank-two constraints; linear Farkas
+coverage by itself cannot close the live geometric parent.
 
 ## Synchronized documents
 

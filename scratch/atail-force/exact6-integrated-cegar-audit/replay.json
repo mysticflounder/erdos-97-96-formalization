@@ -1,0 +1,122 @@
+{
+  "alive_witnesses": [],
+  "banks": [
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/continuationOrder/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "2a3e6afd34fbcdd5300bfab0282173c8010dbe1b6164e684e08455135a0d9c17",
+      "shell_conditioned_count": 22
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/reverseContinuationOrder/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "03da5d4965a2db7edb3f41b2f67c727eff86dc771880b37a4fe79998f3adbd74",
+      "shell_conditioned_count": 18
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesFirstAtSource/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "92bc7e5ccf3ee159ed6ec1472e07a56861caab6cce6ffbd3cffa3bdc5b168298",
+      "shell_conditioned_count": 25
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesFirstAtTarget/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "13baa168dd8e04f6f48e87ac11aa4944f40ca8f793b7e010575445ff0c09f2b2",
+      "shell_conditioned_count": 21
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesSecondAtSource/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "34c25423d21f50b58c04d7af7cc0d8fd88ea8e0155f6ecf41bb2912a198071c9",
+      "shell_conditioned_count": 17
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/sharesSecondAtTarget/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "747a0a5cf912edcfa5bec0786465a138b0bb412cc59e9f2424f2e27cf80d24c3",
+      "shell_conditioned_count": 22
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/cegar/fourDistinct/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "71e47dfaad73efa5d68e6242359ea9f18b42472003139e268e55cf35d80085df",
+      "shell_conditioned_count": 27
+    }
+  ],
+  "n": 14,
+  "schema": "p97-exact6-integrated-cegar-independent-audit-v1",
+  "second_apex": 9,
+  "seeds": [
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "continuationOrder",
+      "path": "scratch/atail-force/exact6-integrated-milp/continuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "66218647bf33e2a5de87fd488c08f1f85629590af7c7ce3fc2c72f4400770a95"
+    },
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "reverseContinuationOrder",
+      "path": "scratch/atail-force/exact6-integrated-milp/reverseContinuationOrder.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "f605211ce723894472d1ffaac5dc025cb183ac72ebf17d817213690150d7568e"
+    },
+    {
+      "antecedent_count": 11,
+      "inequality_count": 8,
+      "orbit": "sharesFirstAtSource",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "0b81b8a18400f9a18e632e3c31c99a010ef4d0b7e7ee0589fc7af075c12a27b1"
+    },
+    {
+      "antecedent_count": 7,
+      "inequality_count": 5,
+      "orbit": "sharesFirstAtTarget",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesFirstAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "1debdeda81b23fcf8fdfe57b8b41c3a34ff58fe0b9f1deb8bd8f6b09959e4e1b"
+    },
+    {
+      "antecedent_count": 8,
+      "inequality_count": 6,
+      "orbit": "sharesSecondAtSource",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtSource.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "86e591282f662760ff7795be7b1b51d16bf18c16b1151e2119006713b9812f40"
+    },
+    {
+      "antecedent_count": 8,
+      "inequality_count": 6,
+      "orbit": "sharesSecondAtTarget",
+      "path": "scratch/atail-force/exact6-integrated-milp/sharesSecondAtTarget.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "ab35da65c8450839eec92799069fd468fc3fa337169a7a2678d7a55acdb66f08"
+    },
+    {
+      "antecedent_count": 9,
+      "inequality_count": 7,
+      "orbit": "fourDistinct",
+      "path": "scratch/atail-force/exact6-integrated-milp/fourDistinct.kalmanson-only.fixed-leaf-dual.json",
+      "sha256": "006f0adeb1c463592420c9b3fb00cfd49b072314102f54f4b43d4c938249bd6b"
+    }
+  ],
+  "total_positive_constraints_in_cuts": 0,
+  "total_positive_weight_in_cuts": 0,
+  "total_shell_conditioned_cuts": 152,
+  "total_verified_alive_witnesses": 0,
+  "total_verified_cuts": 7000,
+  "total_verified_seeds": 7,
+  "verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS"
+}

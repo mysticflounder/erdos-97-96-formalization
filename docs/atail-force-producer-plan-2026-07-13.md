@@ -957,11 +957,70 @@ Kalmanson inequalities with three row equalities using unit Kalmanson weights
 and row multipliers `+1,+1,-1`.  The six required memberships define a new
 transportable schema outside the original bank, and the existing kernel-checked
 `false_of_weighted_kalmanson_cancellation` theorem is already its generic
-consumer.  Continue only as a certified-cut CEGAR loop: minimize and
-canonicalize each new shell-free core, verify its exact rational cancellation,
-transport the cut over the corrected finite surface, and request a DRAT/LRAT
-coverage certificate only after all seven orbits become UNSAT.  A queue of
-literal assignments or unverified cores is not an accepted endpoint.
+consumer.
+
+The two-round convergence audit now blocks broad continuation of that loop.
+Every one of 464 baseline and 207 compact-bank candidates reaching the linear
+oracle is exact-LRA UNSAT, but all seven orbits remain `UNKNOWN`.  Exact
+deletion minimization finds 263 canonical schemas, including 30 compact
+families with 111,758 n14 applications.  The compact frontier grows from eight
+families in round one to twenty-two new families in round two, with only 420
+application overlaps.  Do not run a third broad membership-schema round.
+
+The deterministic combined 213,860-application decision has now been run and
+is SAT in all seven role orbits.  Its first survivor identified one omitted
+general theorem, not another mined schema: a complete physical-apex radius
+class and a selected row cannot share a target pair when their centers lie on
+the same boundary arc.  A kernel-checked mixed selected-row/`SelectedClass`
+Kalmanson bridge proves that exclusion.  After adding all 572 instances, every
+combined CNF still has an independently replayed SAT assignment
+(331,193--331,233 clauses).  The next pinned assignment is exact-LRA UNSAT by
+a shell-free telescoped weighted cut, so it does not expose another source
+clause.
+
+The first proof-facing infrastructure is now present in scratch: a typed
+`WeightedKalmansonCutData` payload, exact integral coefficient checker, and
+soundness theorem that consumes matching selected rows and derives the generic
+weighted Kalmanson contradiction.
+
+The integrated Boolean-plus-distance decision has now been attempted directly
+with Z3 and cvc5; both remain bounded no-verdict.  The normalized MILP audit is
+much sharper: all seven role orbits have floating optimum zero common slack on
+the Kalmanson-only profile, and six of seven do so on the full profile.  The
+full-profile `fourDistinct` orbit remains no-verdict after 900 seconds.  The LP
+relaxation has positive slack, so the Boolean branch structure is essential.
+Every Kalmanson-only orbit has nevertheless produced one independently
+replayed exact rational fixed-leaf dual and hence one sound membership
+nogood.
+
+The exact replayed CEGAR implementation in
+`scratch/atail-force/exact6-integrated-milp/` has validated the first 7,000
+derived cuts but reached the 1,000-cut limit in every orbit, not structural
+UNSAT.  The merged 6,891 semantic cuts have 186,404 valid dihedral transports;
+the first transported-bank probe still returns further exact cuts.  This is a
+sound discovery/checking pipeline but not a terminal cover.
+
+Two incremental oracle runs then reported exact Kalmanson/row/shell SAT before
+the original driver could persist a witness.  Reproduction and independent
+`ALIVE` replay are mandatory before publication.  The translation invariant
+already fixes the strategy: adding a common constant preserves every
+Kalmanson and row/shell equation, makes a nonnegative table strictly positive,
+and can make every triangle strict.  Therefore the cardinality-generic
+positive-dual theorem is false if that exact SAT observation replays, and
+neither positivity nor triangle inequalities are a new consumer.  Do not
+continue broad linear CEGAR after the witness is banked.
+
+The next finite action is an exact planar-rank gate on that assignment:
+Cayley--Menger/Gram rank-two constraints, followed only if necessary by MEC,
+full-fiber/common-critical-system, and global-minimality force.  A rejected
+abstract metric must be converted into a checked planar obstruction before it
+can support the live parent theorem.
+
+The helper-local LIVE-C fallback is not a competing closure route.  The exact
+rational Lean model in `live-c-t2-rowfailure-closure/` realizes the local
+`center_t2_rowFailure` metric surface.  Closing that leaf requires omitted
+global parent force, so keep the direct large-opposite-caps contradiction as
+the primary producer.
 
 For nonlinear follow-up, split actual mutual rows by their number of physical
 exact-five hits.  Checked geometry now localizes every two-hit row's blocker to
@@ -993,6 +1052,20 @@ be produced by the complete global critical map/frontier/minimality packet, not
 by another cap-local lemma.  Do not call this a card-at-least-seven result: at
 cap eight all six source/blocker roles may be distinct, so a different
 aggregate argument is required.
+
+Pure incidence/radius-color strengthening does not supply the equality.  An
+exact fifteen-label `(5,6,7)` abstraction retains total support locking, both
+robust apex classes, all-reverse rows, selected-row strong connectivity, and
+exhaustive abstract minimality over all 32,766 nonempty proper subsets while
+making every reverse outside pair non-co-radial.  The same fixed source-
+faithful fixture becomes exact-QF_LRA UNSAT after all triangle and strict
+Kalmanson inequalities, so convex-order geometry remains a viable consumer but
+one fixture is not coverage.  The shared variable-card positive-dual proposal
+is retired by the common-translation invariant on the linear surface.  The
+exact-seven fallback must therefore add common planar rank-two constraints to
+finite source-faithful role enumeration across both first-apex
+same/distinct-radius arms; exact linear Farkas certificates alone cannot be a
+coverage endpoint.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

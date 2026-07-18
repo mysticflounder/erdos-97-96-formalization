@@ -1,0 +1,127 @@
+{
+  "bank": "scratch/atail-force/generic-biapex-kalmanson-search/round2-core-normal-forms/transported_2k3_bank.json",
+  "bank_sha256": "dcc70ee44912c54ef9d9b369a06fa11dedd08c9bb2976fa8a5ffa80840d43bbe",
+  "results": [
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 39,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 45,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 20,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 20,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/reverseContinuationOrder_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 53,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 57,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesFirstAtSource_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 13,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 14,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesFirstAtTarget_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 17,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 18,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesSecondAtSource_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 30,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 36,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesSecondAtTarget_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    },
+    {
+      "all_raw_metric_cores_exact_lra_replayed": true,
+      "all_schema_applications_replayed": true,
+      "complete_application_count": 102102,
+      "full_closure_preloaded": true,
+      "generalized_metric_schema_count": 15,
+      "learned_metric_schema_bank": {
+        "application_count": 23078,
+        "max_vertex_count": 8,
+        "selected_schema_count": 8
+      },
+      "raw_metric_core_count": 17,
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/fourDistinct_compact8.json",
+      "scope": "EXACT_SIX_MUTUAL_COMPLETE_ROW_SURFACE",
+      "status": "UNKNOWN",
+      "transported_schema_cut_count": 0
+    }
+  ],
+  "schema": "p97-exact6-allcenter-capaware-gate-independent-replay-v1",
+  "status": "VERIFIED"
+}

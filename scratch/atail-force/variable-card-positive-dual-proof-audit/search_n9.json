@@ -1,0 +1,23 @@
+{
+  "attempts": 55451,
+  "core_size_histogram": {
+    "10": 2,
+    "2": 10071,
+    "3": 16291,
+    "4": 22714,
+    "5": 3154,
+    "6": 3008,
+    "7": 123,
+    "8": 82,
+    "9": 6
+  },
+  "elapsed_seconds": 20.000305207970086,
+  "epistemic_status": "EXACT_IF_SAT_OTHERWISE_BOUNDED_THEOREM_DISCOVERY",
+  "n": 9,
+  "reason": "no SAT hit",
+  "restarts": 221,
+  "schema": "p97-bare-all-center-kalmanson-local-falsifier-v1",
+  "seed": 9,
+  "status": "UNKNOWN_WALL_BUDGET",
+  "triangle": false
+}

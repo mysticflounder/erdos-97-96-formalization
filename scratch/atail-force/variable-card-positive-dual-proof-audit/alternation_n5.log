@@ -1,0 +1,11 @@
+{
+  "alternation_clause_count": 20,
+  "connectivity": false,
+  "connectivity_clause_count": 0,
+  "elapsed_seconds": 0.005014499998651445,
+  "epistemic_status": "EXACT_IF_SAT_EXTERNAL_SMT_IF_UNSAT",
+  "n": 5,
+  "schema": "p97-four-row-selected-pair-alternation-decision-v1",
+  "solver_statistics": "(:max-memory         17.65\n :memory             17.56\n :num-allocs         19168\n :rlimit-count       732\n :sat-mk-clause-2ary 8\n :sat-mk-clause-nary 12\n :sat-mk-var         22\n :sat-units          20\n :time               0.00)",
+  "status": "UNSAT"
+}

@@ -50,6 +50,11 @@ BANK = (
     / "round2-core-normal-forms"
     / "transported_2k3_bank.json"
 )
+DEFAULT_LEARNED_BANK = (
+    HERE.parent
+    / "exact6-allcenter-capaware-gate"
+    / "combined_round1_round2_minimized_schema_bank.json"
+)
 
 
 def file_sha256(path: Path) -> str:
@@ -169,6 +174,31 @@ def load_schema_bank() -> tuple[dict[str, object], list[tuple[int, tuple[tuple[i
     return payload, schemas
 
 
+def load_learned_schema_bank(
+    path: Path, max_vertices: int,
+) -> tuple[dict[str, object], list[tuple[int, tuple[tuple[int, int], ...]]]]:
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schema") != "p97-exact6-allcenter-minimized-metric-schema-bank-v1":
+        raise ValueError("unexpected learned metric schema bank")
+    schemas: list[tuple[int, tuple[tuple[int, int], ...]]] = []
+    for record in payload["schemas"]:
+        vertex_count = int(record["core_vertex_count"])
+        if vertex_count > max_vertices:
+            continue
+        schema = tuple(sorted(tuple(pair) for pair in record["order_schema"]))
+        if not schema:
+            raise ValueError("empty learned membership schema")
+        if any(not (0 <= center < vertex_count and 0 <= point < vertex_count)
+               for center, point in schema):
+            raise ValueError("learned schema role outside its carrier")
+        if len(set(schema)) != len(schema):
+            raise ValueError("duplicate learned schema membership")
+        schemas.append((vertex_count, schema))
+    if len(schemas) != int(payload.get("compact_schema_count_k_le_8", -1)):
+        raise ValueError("learned compact schema count drift")
+    return payload, schemas
+
+
 def transported_applications(
     n: int,
     schemas: Sequence[tuple[int, tuple[tuple[int, int], ...]]],
@@ -183,7 +213,7 @@ def transported_applications(
                     (embedding[center], embedding[point])
                     for center, point in oriented
                 ))
-                if len(set(required)) != 6:
+                if len(set(required)) != len(schema):
                     raise ValueError("transported schema membership collision")
                 unique.add(required)
     return sorted(unique)
@@ -219,12 +249,17 @@ class ExactSixOuterEncoder:
     def b(self, source: int, center: int) -> int:
         return self.blocker[source, center]
 
-    def build(self) -> tuple[Cnf, dict[str, object]]:
+    def build(
+        self,
+        learned_bank: Path | None = None,
+        learned_max_vertices: int = 8,
+    ) -> tuple[Cnf, dict[str, object]]:
         self.add_row_cardinality()
         self.add_finite_incidence_bounds()
         self.add_perpendicular_bisector_order()
         self.add_cap_bounds()
         self.add_exact_five_shell()
+        self.add_exact_shell_selected_row_alternation()
         self.add_named_roles()
         self.add_blocker_map()
         self.add_named_critical_rows()
@@ -242,6 +277,25 @@ class ExactSixOuterEncoder:
             "bank_schema_count": len(schemas),
             "transported_application_count": len(applications),
         }
+        if learned_bank is not None:
+            learned_payload, learned_schemas = load_learned_schema_bank(
+                learned_bank, learned_max_vertices
+            )
+            learned_applications = transported_applications(N, learned_schemas)
+            learned_only = sorted(set(learned_applications) - set(applications))
+            for required in learned_only:
+                self.cnf.add(
+                    "learned_weighted_kalmanson_schema_cuts",
+                    (-self.m(center, point) for center, point in required),
+                )
+            metadata["learned_schema_bank"] = {
+                "schema": learned_payload["schema"],
+                "sha256": file_sha256(learned_bank),
+                "max_vertices": learned_max_vertices,
+                "schema_count": len(learned_schemas),
+                "complete_application_count": len(learned_applications),
+                "new_application_count": len(learned_only),
+            }
         return self.cnf, metadata
 
     def add_row_cardinality(self) -> None:
@@ -338,6 +392,39 @@ class ExactSixOuterEncoder:
                 "physical_apex_selected_row_in_shell",
                 (-self.m(SECOND_APEX, point), self.shell[point]),
             )
+
+    def add_exact_shell_selected_row_alternation(self) -> None:
+        """Forbid a nonalternating common pair at one row and the apex shell.
+
+        If ``x`` and ``y`` belong to the complete exact-five shell centered at
+        ``SECOND_APEX``, and a selected row centered at ``center`` also
+        contains ``x`` and ``y``, then both centers lie on the perpendicular
+        bisector of ``x y``.  Strict convex boundary order forces the two
+        centers to alternate with ``x,y``.  Equivalently, after cutting the
+        cyclic order at the distinguished physical apex, the centers cannot
+        lie in the same component of the boundary with ``x,y`` removed.
+
+        The selected-row/selected-row version is already imposed by
+        ``add_perpendicular_bisector_order``.  This separate family is needed
+        because the physical apex's selected four-subset may omit a point of
+        its complete exact-five shell.
+        """
+        apex = SECOND_APEX
+        for center in VERTICES:
+            if center == apex:
+                continue
+            for point_left, point_right in itertools.combinations(VERTICES, 2):
+                if point_left in {center, apex} or point_right in {center, apex}:
+                    continue
+                center_inside = point_left < center < point_right
+                apex_inside = point_left < apex < point_right
+                if center_inside == apex_inside:
+                    self.cnf.add("exact_shell_selected_row_alternation", (
+                        -self.shell[point_left],
+                        -self.shell[point_right],
+                        -self.m(center, point_left),
+                        -self.m(center, point_right),
+                    ))
 
     def restrict_physical_role(self, role: str) -> None:
         variables = [self.r(role, point) for point in VERTICES]
@@ -537,14 +624,19 @@ def render_dimacs(cnf: Cnf, comments: Sequence[str]) -> bytes:
     return b"".join(lines)
 
 
-def build_payload(profile: str, orbit: str | None) -> tuple[bytes, dict[str, object]]:
+def build_payload(
+    profile: str,
+    orbit: str | None,
+    learned_bank: Path | None = None,
+    learned_max_vertices: int = 8,
+) -> tuple[bytes, dict[str, object]]:
     if profile == "smoke":
         cnf, bank_metadata, extra = smoke_encoder()
     else:
         if orbit is None:
             raise ValueError("n14 profile requires an orbit")
         encoder = ExactSixOuterEncoder(orbit)
-        cnf, bank_metadata = encoder.build()
+        cnf, bank_metadata = encoder.build(learned_bank, learned_max_vertices)
         extra = {"n": N, "profile": "n14", "orbit": orbit}
     comments = [
         "schema p97-exact6-allcenter-coverage-cnf-v1",
@@ -554,6 +646,9 @@ def build_payload(profile: str, orbit: str | None) -> tuple[bytes, dict[str, obj
     ]
     if profile == "n14":
         comments.append("source_audit_correction unused_in_closed_physical_cap 0,1,2,3,4,5")
+        learned = bank_metadata.get("learned_schema_bank")
+        if learned is not None:
+            comments.append(f"learned_bank_sha256 {learned['sha256']}")
     dimacs = render_dimacs(cnf, comments)
     category_counts = Counter(cnf.kinds)
     manifest: dict[str, object] = {
@@ -587,6 +682,10 @@ def build_payload(profile: str, orbit: str | None) -> tuple[bytes, dict[str, obj
                 "named unused/source/target row omissions",
                 "selected-row strong connectivity",
                 "all 20 transported 2K+3eq schema embeddings",
+                *(
+                    ["all selected compact learned weighted-Kalmanson schema embeddings"]
+                    if "learned_schema_bank" in bank_metadata else []
+                ),
             ]
             if profile == "n14" else [
                 "five forced complete four-member rows",
@@ -615,12 +714,18 @@ def main() -> int:
     parser.add_argument("--orbit", choices=ORBITS)
     parser.add_argument("--cnf", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--learned-bank", type=Path)
+    parser.add_argument("--learned-max-vertices", type=int, default=8)
     args = parser.parse_args()
     if args.profile == "smoke" and args.orbit is not None:
         parser.error("smoke profile has no orbit")
     if args.profile == "n14" and args.orbit is None:
         parser.error("n14 profile requires --orbit")
-    dimacs, manifest = build_payload(args.profile, args.orbit)
+    if args.profile == "smoke" and args.learned_bank is not None:
+        parser.error("smoke profile does not accept --learned-bank")
+    dimacs, manifest = build_payload(
+        args.profile, args.orbit, args.learned_bank, args.learned_max_vertices
+    )
     args.cnf.parent.mkdir(parents=True, exist_ok=True)
     args.manifest.parent.mkdir(parents=True, exist_ok=True)
     args.cnf.write_bytes(dimacs)

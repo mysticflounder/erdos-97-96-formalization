@@ -1,0 +1,30 @@
+{
+  "boolean_count": 42,
+  "constraint_count": 449,
+  "constraint_kinds": {
+    "distance_normalization": 1,
+    "guarded_row_equality_neg": 42,
+    "guarded_row_equality_pos": 42,
+    "positive_distance": 21,
+    "row_cardinality": 7,
+    "selected_pair_alternation": 140,
+    "strict_kalmanson_k1": 35,
+    "strict_kalmanson_k2": 35,
+    "strong_connectivity_entering": 63,
+    "strong_connectivity_leaving": 63
+  },
+  "epistemic_status": "FLOATING_MILP_WITH_EXACT_FIXED_ROW_REPLAY",
+  "mode": "all-rows",
+  "n": 7,
+  "schema": "p97-bare-all-center-normalized-milp-v1",
+  "solver": {
+    "message": "The problem is infeasible. (HiGHS Status 8: model_status is Infeasible; primal_status is None)",
+    "mip_dual_bound": null,
+    "mip_gap": null,
+    "mip_node_count": null,
+    "status": 2,
+    "success": false
+  },
+  "variable_count": 71,
+  "wall_seconds": 0.14682212501065806
+}

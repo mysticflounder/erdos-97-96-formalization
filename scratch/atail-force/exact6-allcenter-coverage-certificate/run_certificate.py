@@ -22,13 +22,19 @@ def main() -> int:
     parser.add_argument("--orbit", choices=ORBITS)
     parser.add_argument("--prefix", type=Path, required=True)
     parser.add_argument("--timeout-seconds", type=int, default=600)
+    parser.add_argument("--learned-bank", type=Path)
+    parser.add_argument("--learned-max-vertices", type=int, default=8)
     args = parser.parse_args()
     if args.profile == "smoke" and args.orbit is not None:
         parser.error("smoke profile has no orbit")
     if args.profile == "n14" and args.orbit is None:
         parser.error("n14 profile requires --orbit")
 
-    dimacs, manifest = build_payload(args.profile, args.orbit)
+    if args.profile == "smoke" and args.learned_bank is not None:
+        parser.error("smoke profile does not accept --learned-bank")
+    dimacs, manifest = build_payload(
+        args.profile, args.orbit, args.learned_bank, args.learned_max_vertices
+    )
     args.prefix.parent.mkdir(parents=True, exist_ok=True)
     cnf_path = args.prefix.with_suffix(".cnf")
     manifest_path = args.prefix.with_suffix(".manifest.json")

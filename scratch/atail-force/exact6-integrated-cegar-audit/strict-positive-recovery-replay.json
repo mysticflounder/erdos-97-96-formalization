@@ -1,0 +1,32 @@
+{
+  "alive_witnesses": [],
+  "banks": [
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtSource/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "719975b8320c73bc4c803ea33d0971b2437534a9d594c05df1ca532534c1511e",
+      "shell_conditioned_count": 38
+    },
+    {
+      "cut_count": 1000,
+      "path": "scratch/atail-force/exact6-integrated-milp/alive-recovery/sharesFirstAtTarget/cuts.jsonl",
+      "positive_constraint_count": 0,
+      "positive_weight_sum": 0,
+      "sha256": "5fbcfb8f91f488ae3bd50d1d68880a0cb7555ea50a852b4ae5aa6eff5cdce5ef",
+      "shell_conditioned_count": 25
+    }
+  ],
+  "n": 14,
+  "schema": "p97-exact6-integrated-cegar-independent-audit-v1",
+  "second_apex": 9,
+  "seeds": [],
+  "total_positive_constraints_in_cuts": 0,
+  "total_positive_weight_in_cuts": 0,
+  "total_shell_conditioned_cuts": 63,
+  "total_verified_alive_witnesses": 0,
+  "total_verified_cuts": 2000,
+  "total_verified_seeds": 0,
+  "verdict": "INDEPENDENT_EXACT_LOCAL_CUT_REPLAY_PASS"
+}

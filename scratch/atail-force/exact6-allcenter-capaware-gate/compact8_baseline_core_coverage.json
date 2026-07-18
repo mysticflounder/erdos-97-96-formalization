@@ -1,0 +1,738 @@
+{
+  "bank": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_minimized_schema_bank.json",
+  "bank_sha256": "89961832d6a49d749c03be352541dd1223d1d76bf3416faad06fb5d4361c0a97",
+  "concrete_application_count": 23078,
+  "directly_covered_core_count": 15,
+  "epistemic_status": "EXACT_MEMBERSHIP_SCHEMA_COVERAGE_OF_STORED_LRA_CORES",
+  "max_vertex_count": 8,
+  "metric_core_count": 464,
+  "per_orbit": [
+    {
+      "covered": [
+        {
+          "attempt": 6,
+          "core_index": 5,
+          "embedding": [
+            3,
+            4,
+            5,
+            8,
+            9,
+            10
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              5,
+              3
+            ],
+            [
+              5,
+              8
+            ],
+            [
+              5,
+              10
+            ],
+            [
+              8,
+              4
+            ],
+            [
+              8,
+              10
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              8
+            ]
+          ],
+          "schema_index": 1
+        },
+        {
+          "attempt": 19,
+          "core_index": 18,
+          "embedding": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            12,
+            13
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              3,
+              2
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              3
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              5,
+              13
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              3
+            ],
+            [
+              12,
+              5
+            ]
+          ],
+          "schema_index": 3
+        },
+        {
+          "attempt": 45,
+          "core_index": 44,
+          "embedding": [
+            2,
+            3,
+            7,
+            8,
+            10
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              2,
+              7
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              7,
+              3
+            ],
+            [
+              7,
+              10
+            ],
+            [
+              10,
+              3
+            ],
+            [
+              10,
+              7
+            ]
+          ],
+          "schema_index": 0
+        },
+        {
+          "attempt": 49,
+          "core_index": 48,
+          "embedding": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            12,
+            13
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              4,
+              12
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              12
+            ]
+          ],
+          "schema_index": 5
+        },
+        {
+          "attempt": 50,
+          "core_index": 49,
+          "embedding": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            13
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              13
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              3,
+              13
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              5
+            ],
+            [
+              6,
+              3
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "schema_index": 6
+        },
+        {
+          "attempt": 66,
+          "core_index": 65,
+          "embedding": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              8,
+              10
+            ],
+            [
+              8,
+              11
+            ],
+            [
+              10,
+              8
+            ],
+            [
+              10,
+              11
+            ],
+            [
+              12,
+              8
+            ],
+            [
+              12,
+              10
+            ]
+          ],
+          "schema_index": 0
+        },
+        {
+          "attempt": 77,
+          "core_index": 76,
+          "embedding": [
+            0,
+            1,
+            2,
+            8,
+            9,
+            10,
+            12,
+            13
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              8
+            ],
+            [
+              2,
+              12
+            ],
+            [
+              10,
+              2
+            ],
+            [
+              10,
+              12
+            ],
+            [
+              12,
+              2
+            ],
+            [
+              12,
+              8
+            ]
+          ],
+          "schema_index": 7
+        },
+        {
+          "attempt": 80,
+          "core_index": 79,
+          "embedding": [
+            0,
+            1,
+            4,
+            5,
+            6
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              0,
+              4
+            ],
+            [
+              0,
+              6
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "schema_index": 0
+        }
+      ],
+      "directly_covered_core_count": 8,
+      "metric_core_count": 82,
+      "orbit": "continuationOrder",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/continuationOrder_marco.json",
+      "result_sha256": "b1a93132dce16207261c895e482750d57adc1cc9f21d7fad373d888b26bd2eee"
+    },
+    {
+      "covered": [
+        {
+          "attempt": 7,
+          "core_index": 6,
+          "embedding": [
+            0,
+            1,
+            3,
+            4,
+            5,
+            6
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              3,
+              0
+            ],
+            [
+              3,
+              4
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              4,
+              1
+            ],
+            [
+              4,
+              6
+            ],
+            [
+              6,
+              1
+            ],
+            [
+              6,
+              4
+            ]
+          ],
+          "schema_index": 1
+        }
+      ],
+      "directly_covered_core_count": 1,
+      "metric_core_count": 74,
+      "orbit": "reverseContinuationOrder",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/reverseContinuationOrder_marco.json",
+      "result_sha256": "10b60c67000afe239012ad7e94bbe906bd6f9dc2d9d186252871468707f52cf4"
+    },
+    {
+      "covered": [
+        {
+          "attempt": 43,
+          "core_index": 42,
+          "embedding": [
+            2,
+            4,
+            6,
+            7,
+            10
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              2,
+              6
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              6,
+              4
+            ],
+            [
+              6,
+              10
+            ],
+            [
+              10,
+              4
+            ],
+            [
+              10,
+              6
+            ]
+          ],
+          "schema_index": 0
+        }
+      ],
+      "directly_covered_core_count": 1,
+      "metric_core_count": 56,
+      "orbit": "sharesFirstAtSource",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesFirstAtSource_marco.json",
+      "result_sha256": "1a480ec8e5428b6326d4e26fc7a393fa2af9a881c1e211d9768868f8fd7132bf"
+    },
+    {
+      "covered": [
+        {
+          "attempt": 89,
+          "core_index": 88,
+          "embedding": [
+            0,
+            1,
+            6,
+            11,
+            12
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              11
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              11
+            ],
+            [
+              12,
+              0
+            ],
+            [
+              12,
+              6
+            ]
+          ],
+          "schema_index": 0
+        },
+        {
+          "attempt": 95,
+          "core_index": 94,
+          "embedding": [
+            0,
+            1,
+            4,
+            9,
+            10,
+            11
+          ],
+          "orientation": "reverse",
+          "required_memberships": [
+            [
+              4,
+              0
+            ],
+            [
+              4,
+              9
+            ],
+            [
+              4,
+              11
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              11
+            ],
+            [
+              11,
+              1
+            ],
+            [
+              11,
+              9
+            ]
+          ],
+          "schema_index": 1
+        }
+      ],
+      "directly_covered_core_count": 2,
+      "metric_core_count": 106,
+      "orbit": "sharesFirstAtTarget",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesFirstAtTarget_marco.json",
+      "result_sha256": "ba76fb345be33edd461a50243a568eef6ce77385dba7588404e99f06ea581813"
+    },
+    {
+      "covered": [
+        {
+          "attempt": 12,
+          "core_index": 11,
+          "embedding": [
+            1,
+            2,
+            3,
+            6,
+            9
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              6
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              3,
+              6
+            ],
+            [
+              9,
+              1
+            ],
+            [
+              9,
+              3
+            ]
+          ],
+          "schema_index": 0
+        }
+      ],
+      "directly_covered_core_count": 1,
+      "metric_core_count": 42,
+      "orbit": "sharesSecondAtSource",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesSecondAtSource_marco.json",
+      "result_sha256": "cf66a186749195b8d2f30ed05c7b374c3f8960d543f14314d73dac4263a20d4e"
+    },
+    {
+      "covered": [
+        {
+          "attempt": 9,
+          "core_index": 8,
+          "embedding": [
+            2,
+            3,
+            4,
+            10,
+            11
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              2,
+              4
+            ],
+            [
+              2,
+              10
+            ],
+            [
+              4,
+              2
+            ],
+            [
+              4,
+              10
+            ],
+            [
+              11,
+              2
+            ],
+            [
+              11,
+              4
+            ]
+          ],
+          "schema_index": 0
+        },
+        {
+          "attempt": 44,
+          "core_index": 43,
+          "embedding": [
+            0,
+            1,
+            6,
+            8,
+            9
+          ],
+          "orientation": "forward",
+          "required_memberships": [
+            [
+              0,
+              6
+            ],
+            [
+              0,
+              8
+            ],
+            [
+              6,
+              0
+            ],
+            [
+              6,
+              8
+            ],
+            [
+              9,
+              0
+            ],
+            [
+              9,
+              6
+            ]
+          ],
+          "schema_index": 0
+        }
+      ],
+      "directly_covered_core_count": 2,
+      "metric_core_count": 53,
+      "orbit": "sharesSecondAtTarget",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/sharesSecondAtTarget_marco.json",
+      "result_sha256": "63ed329bc03f188888c9794f72becd39978912ecc6ae02a63090d3d3e76ac3a5"
+    },
+    {
+      "covered": [],
+      "directly_covered_core_count": 0,
+      "metric_core_count": 51,
+      "orbit": "fourDistinct",
+      "result": "scratch/atail-force/exact6-allcenter-capaware-gate/fourDistinct_marco.json",
+      "result_sha256": "88ffbcf587899ba4a438c41f70ebc8b5918d25c16e7a29ce0bffcae986bad6c1"
+    }
+  ],
+  "schema": "p97-exact6-compact-schema-baseline-core-coverage-v1",
+  "selected_schema_count": 8
+}
