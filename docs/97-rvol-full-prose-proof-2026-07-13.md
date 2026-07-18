@@ -1085,6 +1085,16 @@ This is bounded numerical `NO-HIT`, not infeasibility.  Further tuning of this
 fixed projection is retired; the load-bearing work is the full-parent
 co-radial reverse-pair occurrence.
 
+The first-apex side of that full-parent contract is now production.
+`ATail/FirstApexShellRole.lean` packages the retained and double-deletion rows,
+their cap-role domains, radius split, and deletion ledger, while
+`ATail/FirstApexShellRoleExtractor.lean` proves
+`nonempty_firstApexShellRolePacket F0 R` for the actual original frontier.
+The focused build passes and the extractor has only the three core axioms.
+What remains open is exactly the coupling from that packet and the production
+period-three shared order to one reverse outside pair co-radial from
+`S.oppApex1`, or directly to `False`.
+
 The latest prose pair-reuse handoff adds that every reverse critical support
 omits the physical opposite apex and places its outside pair in the union of
 the two complementary open blocks.  It is a valid mathematical refinement,
@@ -1602,7 +1612,7 @@ row must (or does) discharge.
 | O15 | Compiler-axiom boundary | proved | The certificate layers of O8 contribute exactly `Lean.ofReduceBool` and `Lean.trustCompiler` to the kernel closure, and nothing else does. |
 | O16 | Upstream library | proved | All library facts come from the pinned mathlib / formal-conjectures revisions. |
 | P97-O17 | Exact-five and strict-interior source library | proved reductions; historical dispatcher superseded | The exact-five low-hit, common-deletion, recurrence, and strict-interior modules remain source-clean inputs to the full-parent proof. They are not dispatched as seven separate final leaves. |
-| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; exact-five all-reverse reduced to period three | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. The exact-five transition now splits into an arbitrary mutual-omission pair, owned by the protected mutual lane, or global reverse-membership. The latter has exactly three physical vertices and a zero-entry all-reverse period-three cycle containing both continuation sources; periods four and five are retired there. The remaining producer is a nonlinear/full-parent co-radial occurrence or direct contradiction. `L` retains both cap-six bounds, both physical-apex blocker-image omissions, the frontier, minimality, and non-`IsM44`; bare-`B`, fixed-initial-`H`, linear-quotient, and alias-enumeration targets are insufficient. |
+| P97-O18 | Large-opposite-caps bi-apex direct contradiction | open primary mathematics; exact-five all-reverse reduced to period three | Prove `false_of_largeOppositeCapsBiApexRobust (L : FrontierLargeOppositeCapsBiApexRobustResidual B)` from the full parent geometry. The exact-five transition now splits into an open arbitrary-pair mutual-omission sibling or global reverse-membership; the older cycle-edge mutual lane does not consume the arbitrary pair. The latter has exactly three physical vertices and a zero-entry all-reverse period-three cycle containing both continuation sources; periods four and five are retired there. Its sharp next producer places one reverse outside pair inside either production first-apex selected row, which feeds the existing co-radial terminal. `L` retains both cap-six bounds, both physical-apex blocker-image omissions, the frontier, minimality, and non-`IsM44`; bare-`B`, fixed-initial-`H`, linear-quotient, and alias-enumeration targets are insufficient. |
 | P97-O19 | Protected unique arms | open external dependency | The original/swapped `FA-UNIQ4/FA-UNIQ5` residuals close through their protected consumers. |
 | P97-O20 | Parent direct-`False` assembler | blocked only on `P97-O18`–`P97-O19` | Run the three cap-first exits before frontier extraction. On the large-cap robust branch extract one production `CriticalPairFrontier`, apply `originalUnique_or_commonDeletionParent`, dispatch the protected original unique arm, or construct `R`, `B`, and `L` and apply `false_of_largeOppositeCapsBiApexRobust L`. Assemble `false_of_twoLargeCaps_commonCriticalMap` before LIVE row construction. Whole-carrier banks are regression evidence, not assembly dependencies. Then remove or trivialize O10–O13 by reference mining. |
 

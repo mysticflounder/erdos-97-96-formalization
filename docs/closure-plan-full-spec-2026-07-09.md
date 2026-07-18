@@ -152,8 +152,9 @@ every physical omission reverses to membership
 ```
 
 This is stronger than splitting only the edges of one chosen normalized
-cycle.  The first arm is assigned to the protected exact-five mutual-omission
-lane.  In the second arm, production proves
+cycle.  The first arm is an open arbitrary-pair mutual-omission sibling: the
+older cycle-edge mutual reductions neither accept its type nor reach a
+terminal contradiction.  In the second arm, production proves
 `physicalVertices.card = 3`.  It also constructs a zero-entry normalized
 cycle of period three that starts at `continuation.first`, contains
 `continuation.second`, and is all-reverse.  Consequently periods four and
@@ -180,11 +181,25 @@ outside-cap pair feed production
 ```text
 full R/B/L parent + same-H exact-five total transition
   -> arbitrary-pair mutual omission | global reverse-membership
-  -> protected mutual consumer | source-faithful period-three cycle
+  -> open mutual direct-False slot | source-faithful period-three cycle
   -> co-radial transition reverse-outside-pair occurrence
   -> outsidePair_unique_capCenter
   -> False
 ```
+
+On the all-reverse side, the source-directed occurrence target can be stated
+more concretely after extracting `P : FirstApexShellRolePacket F0 R`:
+
+```text
+exists q,
+  transitionReverseOutsidePair T q ⊆ P.retainedRow.support
+  or transitionReverseOutsidePair T q ⊆ P.doubleRow.support.
+```
+
+Either containment makes that reverse pair co-radial from `S.oppApex1` and
+feeds the existing terminal.  The containment producer itself is open; its
+full-parent assembler and complete consumer are kernel-checked in
+`scratch/atail-force/parent-exactfive-assembler/`.
 
 The original source-to-consumer map is corrected and superseded by
 `scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`, which
@@ -546,8 +561,13 @@ Euclidean/MEC/all-row order to `R.frontierRadius_class_card_ge_four`,
 Marginal counting, local cap geometry, and merely invoking either side without
 that cross-system coupling are refuted routes.
 
-The source-faithful next combined surface is the retained first-apex shell-role
-packet. At `right = S.oppApex1`, choose a retained-radius four-row `T0`
+The retained first-apex shell-role surface is now production in
+`ATail/FirstApexShellRole.lean` and
+`ATail/FirstApexShellRoleExtractor.lean`.  The theorem
+`nonempty_firstApexShellRolePacket F0 R` extracts it from the actual original
+frontier and common-deletion residual, without identifying that frontier with
+the independently constructed exact-five frontier.  At
+`right = S.oppApex1`, it chooses a retained-radius four-row `T0`
 containing `F0.pair.q,w` and a double-deletion four-row `T1` disjoint from
 `{q,w}`. Both rows preserve two strict-`oppCap1` witnesses. The exact split is:
 `rho = radius`, giving six distinct co-radial points `q,w ∪ T1`; or
@@ -555,7 +575,9 @@ containing `F0.pair.q,w` and a double-deletion four-row `T1` disjoint from
 three legal cap-role cases, and the completion points have no fixed within-cap
 order or identity with reverse targets. Any next finite/metric encoding must
 couple this entire role domain to the all-reverse rows; hard-coding the return
-would repeat the prior source bug.
+would repeat the prior source bug.  The focused production build passes and
+the extractor has only `propext`, `Classical.choice`, and `Quot.sound`; this
+repairs the packet-producer interface but does not close a source `sorry`.
 
 The radius split has now been decided at the strongest checked marginal
 surfaces.  `T0` and `T1` are `SelectedFourClass` rows, not exact critical
@@ -621,14 +643,15 @@ task, because the fully disjoint projected SAT cell below already refutes the
 linear shared-order implication.  Periods four and five and the other parent
 arms remain separate after this bounded branch.
 
-The common-order producer is now source-audited and drafted in scratch as
-`nonempty_reverseCycleSharedCapOrder`.  It chooses one strict block for the
-actual physical cap, indexes every cycle source and actual reverse blocker in
-that same block, and derives every straddle from cap-side distance
-injectivity.  The construction is period-parametric, preserves both
-orientations and blocker/nonincident-source identifications, and needs only
-`K + allReverse`.  It contains no `sorry`, but has not been elaborated because
-the user-owned `ShellCurvature` lane still owns the Lean/Lake build gate.
+The common-order producer is production as
+`PhysicalActualCriticalOmissionTransitionSharedCapOrder`, with global
+extractor
+`nonempty_transitionSharedCapOrder_of_all_omissions_reverseMembership`.
+It chooses one strict block for the actual physical cap, indexes every physical
+source and successor-row blocker in that block, and derives every straddle
+from cap-side distance injectivity while preserving both orientations and
+legal identifications.  The focused build and core-axiom audit pass; no public
+order hypothesis or scratch adapter remains in this interface.
 
 The complete run of that diagnostic checked 1,728 generated forward boundary
 orders against all six current representatives: 10,368 exact rational cells,

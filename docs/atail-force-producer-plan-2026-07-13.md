@@ -64,7 +64,8 @@ false_of_largeOppositeCapsBiApexRobust
 The exact-five transition now has a production global split before cycle
 normalization: either some arbitrary pair of physical sources mutually omit
 one another, or every physical omission reverses to membership.  The mutual
-arm belongs to the protected exact-five mutual lane.  The complementary arm
+arm is an open arbitrary-pair sibling: the older cycle-edge mutual packets do
+not consume this type and are nonterminal in any case.  The complementary arm
 is no longer a period-three-through-five problem: production proves that the
 physical interior has cardinality exactly three and supplies a zero-entry,
 all-reverse period-three cycle containing both continuation sources.
@@ -92,6 +93,20 @@ same outside-cap pair, so production
 Equality with the retained frontier pair is a stronger acceptable producer;
 the checked Kalmanson and frontier-pair sinks are alternative consumers, not
 new proof obligations.
+
+With the production first-apex packet, the smallest source-directed producer
+is now
+
+```text
+exists q,
+  transitionReverseOutsidePair T q ⊆ P.retainedRow.support
+  or transitionReverseOutsidePair T q ⊆ P.doubleRow.support.
+```
+
+The full-parent assembler and the containment-to-co-radial-to-`False` adapter
+are kernel-checked in `scratch/atail-force/parent-exactfive-assembler/`; only
+the displayed containment theorem is open on this all-reverse sibling.  The
+arbitrary mutual-omission sibling requires its own direct-False consumer.
 
 The corrected source/consumer map and exact transient-tail regression remain
 recorded in
@@ -551,14 +566,18 @@ cross-couple the Euclidean/MEC/all-row order with that global critical/deletion
 data or minimality. Do not mine it from marginal counts, one-row cap geometry,
 or an uncoupled invocation of either layer.
 
-The next source-valid cross-system packet adds two first-apex four-rows. `T0`
-has the retained radius and contains `F0.pair.q,w`; `T1` comes from first-apex
+The source-valid cross-system packet is now production as
+`ATailFirstApexShellRole.FirstApexShellRolePacket`, with source-faithful
+extractor `nonempty_firstApexShellRolePacket F0 R`.  It adds two first-apex
+four-rows. `T0` has the retained radius and contains `F0.pair.q,w`; `T1` comes from first-apex
 double deletion and is disjoint from `{q,w}`. If its radius `rho` equals the
 retained radius, the ambient class has at least six distinct points; otherwise
 `T0` and `T1` are disjoint four-shells. The frontier pair has three legal cap-
 role cases, while completion points have no fixed order or reverse-row identity.
 Couple this honest role domain to the all-reverse rows; do not collapse it to a
-guessed fixed-slot schema.
+guessed fixed-slot schema.  The focused build passes and the extractor uses
+only the three core axioms.  This closes the packet-producer gap, not the
+aggregate reverse-pair occurrence and not a source `sorry`.
 
 The existing `matchingSourceReturn` / `jointDeletion` leaf is a fallback test,
 not the primary route. It does make one named source deletable at four distinct
