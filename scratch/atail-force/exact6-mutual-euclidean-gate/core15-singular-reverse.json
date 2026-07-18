@@ -1,0 +1,40 @@
+{
+  "centers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "characteristic": 0,
+  "engine": "singular",
+  "epistemic_status": "EXACT_EQUALITY_IDEAL_NOT_UNIFORM_LEAN_PROOF",
+  "equation_count": 15,
+  "free_coordinate_count": 24,
+  "gauge": {
+    "point_0": [
+      0,
+      0
+    ],
+    "point_1": [
+      1,
+      0
+    ]
+  },
+  "oracle": {
+    "elapsed_seconds": 120.013309,
+    "status": "TIMEOUT",
+    "timeout_seconds": 120.0,
+    "variable_order": "reverse"
+  },
+  "schema": "p97-exact6-mutual-literal-equality-gate-v1"
+}

@@ -870,6 +870,49 @@ K4 forcing a repeated outside pair, nonlinear Euclidean/MEC/full-filter
 geometry, a source-valid second bisector through the equal-blocker fiber, or a
 new support triangle discharged by `noM44`.
 
+The exact-six mutual branch now has a kernel-checked source normal form rather
+than an anonymous outer model.  `ExactSixMutualCompleteRowManifest` retains the
+actual common critical system and exactly four initially exposed complete
+rows: the physical-apex exact-five filter, the unused-source row, and the two
+mutual-source rows.  `ExactSixMutualRoleOrbit` reduces all identities among the
+continuation pair and mutual pair to seven constructors.  A literal fourteen-
+row regression is equality-ideal `UNIT`, with a stable fifteen-equation msolve
+core in both variable orders and all thirty one-equation deletions `NONUNIT`,
+but no role constructor forces its
+eight row centers or positive incidence pattern.  Treat that core as a metric
+consumer candidate only; it is not the missing producer.
+The required bank replay found zero full injective equality-closure matches
+across all 231 retained 555/654 cores, 49 active kernels, 23 production
+equality cores, and 130 registered pure-metric contradictions.  The closest
+Lean consumer, `SevenPointCircleNetworkCollisionCore`, still needs three
+equalities absent from the manifest.  Do not schedule a wrapper around that
+consumer without first producing those exact fields from the full parent.
+
+Any successor CEGAR pass must therefore enumerate the seven role constructors
+and the four manifest rows first.  It must preserve complete-filter negative
+guards and may introduce a fifth row only with a concrete carrier source and
+its actual `H.centerAt`.  A cut is admissible only when it yields a complete
+on-spine consumer occurrence or a direct orbit contradiction.  This explicitly
+forbids returning to the fourteen preselected rows, anonymous centers, or a
+growing queue of literal equality cores.
+
+The prescribed first gate has now run.  Exact rational witnesses pass all 29
+four-row/finite-cap checks in every one of the seven role constructors.  These
+are projection witnesses, not `CounterexampleData` models: they omit strict
+convex cyclic order, MEC/nonobtuse geometry, global minimality, and `R.noM44`.
+The result is nevertheless terminal for the four-row projection.  Do not mine
+another equality core on it.  The next direct-`False` attempt must add and use
+one of the omitted global geometric fields while preserving the complete
+`M/L/H` telescope and actual source identities.
+
+Do not route the mutual branch through a supposed third robust center.  The
+minimal-deletion output may reuse the first physical apex, and even the stronger
+three-distinct finite projection with two disjoint fresh-center shells and
+maximal blocker multiplicity avoids both the repeated-outside-pair and
+two-center-through-core-pair terminals.  Reopen that route only after a
+source theorem adds nonlinear Euclidean/full-radius, MEC/`noM44`, or stronger
+global-minimality information.
+
 For exact cap seven, the next interface is now explicit.  Checked scratch
 proves that some physical source `q` satisfies
 `H.centerAt q = transition.successor q`, and its whole-carrier version retains

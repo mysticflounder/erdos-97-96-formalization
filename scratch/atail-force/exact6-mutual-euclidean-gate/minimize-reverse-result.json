@@ -1,0 +1,577 @@
+{
+  "centers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "characteristic": 0,
+  "engine": "msolve",
+  "epistemic_status": "EXACT_EQUALITY_IDEAL_NOT_UNIFORM_LEAN_PROOF",
+  "equation_count": 42,
+  "free_coordinate_count": 24,
+  "gauge": {
+    "point_0": [
+      0,
+      0
+    ],
+    "point_1": [
+      1,
+      0
+    ]
+  },
+  "minimized": {
+    "active_equation_indices": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13,
+      21,
+      22,
+      24,
+      27
+    ],
+    "active_equations": [
+      {
+        "center": 0,
+        "member": 2,
+        "reference": 1
+      },
+      {
+        "center": 0,
+        "member": 5,
+        "reference": 1
+      },
+      {
+        "center": 0,
+        "member": 7,
+        "reference": 1
+      },
+      {
+        "center": 1,
+        "member": 3,
+        "reference": 2
+      },
+      {
+        "center": 1,
+        "member": 8,
+        "reference": 2
+      },
+      {
+        "center": 2,
+        "member": 4,
+        "reference": 3
+      },
+      {
+        "center": 2,
+        "member": 7,
+        "reference": 3
+      },
+      {
+        "center": 2,
+        "member": 9,
+        "reference": 3
+      },
+      {
+        "center": 3,
+        "member": 5,
+        "reference": 4
+      },
+      {
+        "center": 3,
+        "member": 8,
+        "reference": 4
+      },
+      {
+        "center": 4,
+        "member": 9,
+        "reference": 5
+      },
+      {
+        "center": 7,
+        "member": 8,
+        "reference": 0
+      },
+      {
+        "center": 7,
+        "member": 9,
+        "reference": 0
+      },
+      {
+        "center": 8,
+        "member": 9,
+        "reference": 1
+      },
+      {
+        "center": 9,
+        "member": 2,
+        "reference": 0
+      }
+    ],
+    "msolve_forward": {
+      "elapsed_seconds": 0.253363,
+      "returncode": 0,
+      "status": "UNIT",
+      "stderr": "",
+      "variable_order": "forward"
+    },
+    "msolve_reverse": {
+      "elapsed_seconds": 0.253652,
+      "returncode": 0,
+      "status": "UNIT",
+      "stderr": "",
+      "variable_order": "reverse"
+    },
+    "mutation_checks": [
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 3.097576,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 3.156226,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 0,
+          "member": 2,
+          "reference": 1
+        },
+        "removed_equation_index": 0
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.286433,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.279054,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 0,
+          "member": 5,
+          "reference": 1
+        },
+        "removed_equation_index": 1
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 2.212227,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 2.137972,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 0,
+          "member": 7,
+          "reference": 1
+        },
+        "removed_equation_index": 2
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.511672,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.514197,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 1,
+          "member": 3,
+          "reference": 2
+        },
+        "removed_equation_index": 3
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.254924,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 1.195645,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 1,
+          "member": 8,
+          "reference": 2
+        },
+        "removed_equation_index": 5
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.253548,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.275733,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 2,
+          "member": 4,
+          "reference": 3
+        },
+        "removed_equation_index": 6
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.234982,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 1.339543,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 2,
+          "member": 7,
+          "reference": 3
+        },
+        "removed_equation_index": 7
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.861468,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 2.042662,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 2,
+          "member": 9,
+          "reference": 3
+        },
+        "removed_equation_index": 8
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.250324,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.270087,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 3,
+          "member": 5,
+          "reference": 4
+        },
+        "removed_equation_index": 9
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.33195,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.332015,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 3,
+          "member": 8,
+          "reference": 4
+        },
+        "removed_equation_index": 10
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 0.224782,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 0.217833,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 4,
+          "member": 9,
+          "reference": 5
+        },
+        "removed_equation_index": 13
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.086214,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 1.126703,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 7,
+          "member": 8,
+          "reference": 0
+        },
+        "removed_equation_index": 21
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 2.357675,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 2.313718,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 7,
+          "member": 9,
+          "reference": 0
+        },
+        "removed_equation_index": 22
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.179744,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 1.062884,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 8,
+          "member": 9,
+          "reference": 1
+        },
+        "removed_equation_index": 24
+      },
+      {
+        "msolve_forward": {
+          "elapsed_seconds": 1.19851,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "forward"
+        },
+        "msolve_reverse": {
+          "elapsed_seconds": 1.206126,
+          "returncode": 0,
+          "status": "NONUNIT",
+          "stderr": "",
+          "variable_order": "reverse"
+        },
+        "removed_equation": {
+          "center": 9,
+          "member": 2,
+          "reference": 0
+        },
+        "removed_equation_index": 27
+      }
+    ],
+    "mutation_gate": "PASS",
+    "removed_centers": [
+      13,
+      12,
+      11,
+      10,
+      6,
+      5
+    ],
+    "removed_equation_indices": [
+      29,
+      28,
+      26,
+      25,
+      23,
+      14,
+      12,
+      11,
+      4
+    ],
+    "singular_mod_32003": {
+      "basis_size": null,
+      "dimension": null,
+      "elapsed_seconds": 2.990637,
+      "returncode": 0,
+      "status": "UNIT",
+      "stderr": "",
+      "variable_order": "forward"
+    },
+    "singular_qq": {
+      "elapsed_seconds": 60.011564,
+      "status": "TIMEOUT",
+      "timeout_seconds": 60.0,
+      "variable_order": "forward"
+    }
+  },
+  "oracle": {
+    "elapsed_seconds": 1.734209,
+    "returncode": 0,
+    "status": "UNIT",
+    "stderr": "",
+    "variable_order": "forward"
+  },
+  "schema": "p97-exact6-mutual-literal-equality-gate-v1",
+  "smoke_gate": {
+    "checks": {
+      "msolve_nonunit_forward": {
+        "elapsed_seconds": 0.005921,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_nonunit_reverse": {
+        "elapsed_seconds": 0.006341,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "msolve_unit_forward": {
+        "elapsed_seconds": 0.007169,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_unit_reverse": {
+        "elapsed_seconds": 0.006606,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "singular_nonunit": {
+        "basis_size": 1,
+        "dimension": 23,
+        "elapsed_seconds": 0.008771,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "singular_unit": {
+        "basis_size": null,
+        "dimension": null,
+        "elapsed_seconds": 0.008902,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      }
+    },
+    "expected": {
+      "msolve_nonunit_forward": "NONUNIT",
+      "msolve_nonunit_reverse": "NONUNIT",
+      "msolve_unit_forward": "UNIT",
+      "msolve_unit_reverse": "UNIT",
+      "singular_nonunit": "NONUNIT",
+      "singular_unit": "UNIT"
+    },
+    "status": "PASS"
+  }
+}

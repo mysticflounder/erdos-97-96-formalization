@@ -1,0 +1,119 @@
+{
+  "active_ring": false,
+  "centers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "characteristic": 0,
+  "engine": "msolve",
+  "epistemic_status": "EXACT_EQUALITY_IDEAL_NOT_UNIFORM_LEAN_PROOF",
+  "equation_count": 15,
+  "free_coordinate_count": 24,
+  "gauge": {
+    "point_0": [
+      0,
+      0
+    ],
+    "point_1": [
+      1,
+      0
+    ]
+  },
+  "oracle": {
+    "elapsed_seconds": 0.199164,
+    "returncode": 0,
+    "status": "UNIT",
+    "stderr": "",
+    "variable_order": "forward"
+  },
+  "oracle_free_coordinate_count": 24,
+  "schema": "p97-exact6-mutual-literal-equality-gate-v1",
+  "selected_equation_indices": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    13,
+    21,
+    22,
+    24,
+    27
+  ],
+  "smoke_gate": {
+    "checks": {
+      "msolve_nonunit_forward": {
+        "elapsed_seconds": 0.006026,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_nonunit_reverse": {
+        "elapsed_seconds": 0.006155,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "msolve_unit_forward": {
+        "elapsed_seconds": 0.007161,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_unit_reverse": {
+        "elapsed_seconds": 0.006409,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "singular_nonunit": {
+        "basis_size": 1,
+        "dimension": 23,
+        "elapsed_seconds": 0.009684,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "singular_unit": {
+        "basis_size": null,
+        "dimension": null,
+        "elapsed_seconds": 0.009929,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      }
+    },
+    "expected": {
+      "msolve_nonunit_forward": "NONUNIT",
+      "msolve_nonunit_reverse": "NONUNIT",
+      "msolve_unit_forward": "UNIT",
+      "msolve_unit_reverse": "UNIT",
+      "singular_nonunit": "NONUNIT",
+      "singular_unit": "UNIT"
+    },
+    "status": "PASS"
+  }
+}

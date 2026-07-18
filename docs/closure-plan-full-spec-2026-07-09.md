@@ -2024,6 +2024,59 @@ A closing proof must add full Euclidean/MEC/full-filter force, a global repeated
 outside pair, a distinct bisector center through the equal-blocker fiber, or a
 new support triangle contradicting `R.noM44`.
 
+The source-faithful exact-six object is now smaller and explicit.  Checked
+scratch proves `ExactSixMutualCompleteRowManifest` and a seven-constructor
+`ExactSixMutualRoleOrbit` quotient directly from
+`FullParentExactFiveMutualData L profile` and `S.oppCap2.card = 6`.  The
+manifest retains the common `H`, the exact five-point physical-apex filter,
+the complete unused-source row, and the complete mutual source/target rows,
+including every forced positive membership, negative omission, intersection
+bound, and blocker inequality.  It does **not** force the literal fourteen-row
+table used by the finite regression.  That table's full equality ideal is
+`UNIT` in exact msolve arithmetic, and a stable fifteen-equality subsystem is
+`UNIT` in both msolve variable orders.  All thirty one-equation-deletion
+replays are `NONUNIT`; Singular is `UNIT` in three finite characteristics but
+has timed out over `QQ`.  None of the seven live
+role orbits forces that subsystem or an isomorphic quotient, so this remains
+literal CAS evidence rather than a producer or Lean closure.
+An exhaustive injective equality-closure replay also found no reusable full
+match in 231 retained 555/654 cores, 49 certificate-active kernels, 23 current
+production equality cores, or 130 registry metric contradictions.  The closest
+production theorem is `SevenPointCircleNetworkCollisionCore`, with eight of
+eleven equalities; its three missing equalities are not supplied by the live
+manifest.  Reusing the bank therefore does not remove the occurrence gap.
+
+This fixes the next mining object.  Begin with only the four complete rows
+actually supplied by the manifest: the physical-apex exact-five filter, the
+unused-source critical row, and the two mutual-source critical rows.  Quotient
+source identities by the seven role orbits, retain full-filter negative guards,
+and add another row only together with its actual source and `H.centerAt`
+provenance.  Accept a learned cut only when it constructs a complete occurrence
+of an existing metric consumer or proves one orbit directly false.  Do not
+resume anonymous fourteen-row, selected-representative, or literal-core mining.
+
+That first gate is now decided negatively at exactly the stated projection.
+`scratch/atail-force/exact6-manifest-first-gate/` gives an exact rational
+substitution witness for every one of the seven role orbits.  Each witness
+passes all 29 recorded checks for the four actual complete rows, exact cap
+identities, source/blocker inequalities, support cardinalities, physical-hit
+bounds, and two-circle overlap bound.  This is not a live geometric
+realization: strict convex cyclic order, MEC/nonobtuse support-triangle
+geometry, global minimality, and `R.noM44` are deliberately absent.  Therefore
+the four-row finite/Euclidean projection cannot close an orbit, while the full
+parent remains unresolved.  The next gate must consume one of those omitted
+global geometric hypotheses directly; it must not add anonymous rows.
+
+The global-minimal-deletion shortcut has also been corrected.  Its collision
+center may be the physical apex, and a nontrivial core excludes the second
+apex but not the first, so three distinct robust centers are not unconditional.
+Even after assuming three distinct omitted centers, a kernel-checked finite
+boundary retains two disjoint fresh-center four-shells, maximal blocker
+multiplicity, cap/two-circle bounds, and row-closure minimality while omitting
+both current terminal antecedents.  That adapter is therefore retired unless
+a later theorem visibly adds nonlinear Euclidean/full-radius, MEC/`noM44`, or
+strictly stronger global-minimality force.
+
 Exact cap seven has also been reduced honestly, but not closed.  The
 kernel-checked scratch theorem
 `exists_source_blocker_eq_transition_successor_of_secondCap_card_eq_seven`

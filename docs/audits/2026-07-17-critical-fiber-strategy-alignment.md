@@ -947,6 +947,42 @@ pair, a nonlinear MEC/full-filter contradiction, a distinct bisector center
 through the equal-blocker fiber, or a new support triangle contradicting
 `noM44`; another conditional row packet is not a closure step.
 
+The follow-up source audit now identifies the correct bounded object.  From
+the exact-six mutual parent, kernel-checked scratch extracts a complete-row
+manifest and seven source-role orbits.  The initial rows are the physical-apex
+exact-five filter, the unused-source actual row, and the two mutual-source
+actual rows; each remains tied to the same `H`.  The older fourteen-label
+finite fixture is algebraically inconsistent when all its displayed radius
+equalities are imposed: msolve returns `UNIT`, and a stable fifteen-equality
+subsystem is `UNIT` in both variable orders while all thirty one-equation
+deletions are `NONUNIT`.  This does not close the branch.  None of the seven
+role orbits forces the subsystem's eight row centers
+and fifteen positive memberships, and the characteristic-zero Singular replay
+has not completed.  The literal core is therefore discovery evidence only.
+
+An exhaustive injective equality-closure match against the registered and
+retained banks found no full hit: 231 stored 555/654 cores, 49 active kernels,
+23 production equality cores, and 130 pure-metric registry declarations were
+checked.  The closest production collision has eight of eleven equalities and
+therefore does not alter the missing-producer boundary.
+
+The corresponding route correction is to run any next finite gate on the
+seven role orbits and four actual complete rows, preserving the full-filter
+negative facts.  Additional rows require concrete source and blocker
+provenance, and learned cuts require a complete existing consumer occurrence
+or direct orbit contradiction.  Anonymous row expansion is not admissible.
+The same audit retires the three-robust-center shortcut: the minimal-deletion
+center can equal the first physical apex, and even the stronger distinct-center
+finite surface avoids both available terminals.
+
+That corrected first gate is complete.  All seven role orbits have exact
+rational witnesses satisfying 29 checks for the four actual complete rows and
+their finite cap identities.  The result is exact at the Euclidean-row/
+finite-cap projection, but it omits strict convex order, MEC/nonobtuse support-
+triangle geometry, global minimality, and `noM44`.  Hence it neither realizes
+the live full parent nor closes a source `sorry`; it proves that the next gate
+must make one of those omitted global geometric hypotheses load-bearing.
+
 The exact-card-seven successor is a checked occurrence, not a contradiction.
 Five strict-interior positions must contain the three distinct cycle sources
 and three pairwise-distinct blockers; because each blocker differs from its

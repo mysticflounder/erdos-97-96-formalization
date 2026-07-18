@@ -1,0 +1,99 @@
+{
+  "centers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "characteristic": 0,
+  "engine": "singular",
+  "epistemic_status": "EXACT_EQUALITY_IDEAL_NOT_UNIFORM_LEAN_PROOF",
+  "equation_count": 15,
+  "free_coordinate_count": 24,
+  "gauge": {
+    "point_0": [
+      0,
+      0
+    ],
+    "point_1": [
+      1,
+      0
+    ]
+  },
+  "oracle": {
+    "elapsed_seconds": 180.014111,
+    "status": "TIMEOUT",
+    "timeout_seconds": 180.0,
+    "variable_order": "forward"
+  },
+  "schema": "p97-exact6-mutual-literal-equality-gate-v1",
+  "smoke_gate": {
+    "checks": {
+      "msolve_nonunit_forward": {
+        "elapsed_seconds": 0.005594,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_nonunit_reverse": {
+        "elapsed_seconds": 0.005317,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "msolve_unit_forward": {
+        "elapsed_seconds": 0.007116,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "msolve_unit_reverse": {
+        "elapsed_seconds": 0.005325,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "reverse"
+      },
+      "singular_nonunit": {
+        "basis_size": 1,
+        "dimension": 1,
+        "elapsed_seconds": 0.008964,
+        "returncode": 0,
+        "status": "NONUNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      },
+      "singular_unit": {
+        "basis_size": null,
+        "dimension": null,
+        "elapsed_seconds": 0.009178,
+        "returncode": 0,
+        "status": "UNIT",
+        "stderr": "",
+        "variable_order": "forward"
+      }
+    },
+    "expected": {
+      "msolve_nonunit_forward": "NONUNIT",
+      "msolve_nonunit_reverse": "NONUNIT",
+      "msolve_unit_forward": "UNIT",
+      "msolve_unit_reverse": "UNIT",
+      "singular_nonunit": "NONUNIT",
+      "singular_unit": "UNIT"
+    },
+    "status": "PASS"
+  }
+}
