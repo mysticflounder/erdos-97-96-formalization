@@ -61,17 +61,23 @@ false_of_largeOppositeCapsBiApexRobust
     (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : False
 ```
 
-The exact-five all-reverse leaf now has one owned internal producer: prove an
-aggregate occurrence from this complete `L` packet.  A source audit found
-that the old cycle-only signature was disconnected from the named
-continuation sources: `K.start = continuation.first` does not imply that
-`continuation.first` is one of the normalized `K.source` values when
-`K.entryTime > 0`, and it says nothing about `continuation.second`.
+The exact-five transition now has a production global split before cycle
+normalization: either some arbitrary pair of physical sources mutually omit
+one another, or every physical omission reverses to membership.  The mutual
+arm belongs to the protected exact-five mutual lane.  The complementary arm
+is no longer a period-three-through-five problem: production proves that the
+physical interior has cardinality exactly three and supplies a zero-entry,
+all-reverse period-three cycle containing both continuation sources.
 
-The corrected first step is therefore a mutual/all-reverse split on the total
-`PhysicalActualCriticalOmissionTransition T` before cycle normalization,
-followed by a transition-level reverse-pair normal form.  Its preferred
-concrete shape is
+The checked endpoints are
+`nonempty_mutualOmissionPair_or_all_omissions_reverseMembership`,
+`physicalVertices_card_eq_three_of_all_omissions_reverseMembership`, and
+`exists_entryZeroPeriodThreeCycle_containing_continuationSources`.  Periods
+four and five are retired from this global all-reverse arm.
+
+The remaining owned internal producer is an aggregate occurrence from the
+complete `L` packet on that exact period-three arm.  Its preferred concrete
+shape is
 
 ```text
 exists q a b,
@@ -86,9 +92,11 @@ Equality with the retained frontier pair is a stronger acceptable producer;
 the checked Kalmanson and frontier-pair sinks are alternative consumers, not
 new proof obligations.
 
-The corrected source/consumer map and exact transient-tail regression are
+The corrected source/consumer map and exact transient-tail regression remain
 recorded in
-`scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`.
+`scratch/atail-force/full-l-all-reverse-occurrence-attack/REPORT.md`; the new
+zero-entry period-three construction repairs the named-source provenance gap
+rather than assuming it away.
 
 This is not the previously refuted bare occurrence claim.  The exact finite
 marginals and exact-QF_LRA-SAT 25-role cell prove only that `P + K + T0/T1 +
@@ -97,8 +105,10 @@ the producer must visibly consume additional data retained by `L`: nonlinear
 Euclidean/MEC geometry, full critical-fiber provenance, or global minimality,
 together with both cap bounds, the original frontier, and `noM44`.  The public
 target stays `false_of_largeOppositeCapsBiApexRobust L`; the period-three
-closer is internal and the common-order draft is plumbing to validate after
-the build gate lifts, not a reason to enlarge the linear quotient.
+closer is internal.  The checked common-order producer is now load-bearing
+plumbing to promote.  The named-source alias audit adds zero arithmetic atoms,
+so neither aliases nor an enlarged linear quotient can supply the missing
+force.
 
 Do not add a bare-`B`, fixed-initial-`H`, or one-more-conditional-consumer
 theorem.  A `CriticalFiberClosingCore` implementation must choose its useful

@@ -1,0 +1,2 @@
+{"alias_cells": 72, "event": "run_start", "solved_forward_cells": 6, "structural_cells_after_reflection_transport": 12, "workers": 6}
+{"alias_cells": 72, "elapsed_seconds": 660, "event": "run_stopped", "reason": "no structural cell returned under budget", "status": "UNRESOLVED_UNDER_BUDGET_NO_VERDICT_BANKED", "workers_stopped": 6}

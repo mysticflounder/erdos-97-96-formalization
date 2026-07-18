@@ -1,0 +1,41 @@
+{
+  "schema": "period-three-named-source-alias-metric-attempt-log-v1",
+  "epistemic_status": "UNRESOLVED_UNDER_BUDGET_NO_METRIC_VERDICT_BANKED",
+  "attempts": [
+    {
+      "encoding": "original independent disequality disjunctions",
+      "workers": 12,
+      "returned": {
+        "cell": "unequal-OI-forward",
+        "status": "unknown",
+        "reason": "timeout",
+        "elapsed_seconds": 350.631
+      },
+      "action": "stopped; no SAT or UNSAT banked"
+    },
+    {
+      "encoding": "global sign-fixed exact LRA subfamilies",
+      "workers": 6,
+      "returned": {
+        "cell": "unequal-OI-forward",
+        "status": "unknown",
+        "reason": "canceled",
+        "sign_cells_checked": 512,
+        "elapsed_seconds": 344.016
+      },
+      "action": "stopped; global-sign strengthening was not decisive"
+    },
+    {
+      "encoding": "incremental individual-disequality exact LRA extension",
+      "workers": 6,
+      "returned_cells": 0,
+      "elapsed_seconds_before_stop": 660,
+      "action": "stopped fail-closed; no metric verdict banked"
+    }
+  ],
+  "resource_cleanup": {
+    "orphaned_workers_detected": 4,
+    "orphaned_workers_stopped": 4,
+    "final_active_lane_workers": 0
+  }
+}

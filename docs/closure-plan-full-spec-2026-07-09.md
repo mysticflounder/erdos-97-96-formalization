@@ -142,29 +142,44 @@ false_of_largeOppositeCapsBiApexRobust
 
 ### Exact-five ownership and provenance correction (2026-07-17)
 
-On the exact-five all-reverse leaf, the immediate internal producer remains
-an **aggregate occurrence theorem** at the complete `L` boundary, but the
-reverse-membership split must occur on the total
-`PhysicalActualCriticalOmissionTransition` before cycle normalization.
-Production only proves `K.start = continuation.first`; since
-`K.base = successor^[K.entryTime] K.start`, a positive `entryTime` may leave
-both named continuation sources in transient tails.  Thus the former
-cycle-only `hcycleStart` surface did not connect either named source to
-`K.source`.
+The exact-five transition now has a kernel-checked **global relation split**
+before cycle normalization:
 
-The corrected interface first proves the routine transition-global
-mutual/all-reverse split, then generalizes the exact-two outside-pair normal
-form from `(K,i)` to `(T,q)`.  The global all-reverse arm can be specialized
-at both `continuation.first` and `continuation.second` using their existing
-physical-interior fields.  Its preferred conclusion is that one
-`transitionReverseOutsidePair` is co-radial from `S.oppApex1` (the stronger
-equality with the retained frontier pair is also sufficient).  The resulting
-reverse-row blocker and outside-cap pair feed production
+```text
+some two physical sources mutually omit one another
+  OR
+every physical omission reverses to membership
+```
+
+This is stronger than splitting only the edges of one chosen normalized
+cycle.  The first arm is assigned to the protected exact-five mutual-omission
+lane.  In the second arm, production proves
+`physicalVertices.card = 3`.  It also constructs a zero-entry normalized
+cycle of period three that starts at `continuation.first`, contains
+`continuation.second`, and is all-reverse.  Consequently periods four and
+five are impossible in the global all-reverse arm and must not be mined or
+readjudicated there.
+
+The production endpoints are:
+
+```lean
+nonempty_mutualOmissionPair_or_all_omissions_reverseMembership
+physicalVertices_card_eq_three_of_all_omissions_reverseMembership
+exists_entryZeroPeriodThreeCycle_containing_continuationSources
+```
+
+The immediate internal producer remains an **aggregate occurrence theorem**
+at the complete `L` boundary.  On the now-exact period-three all-reverse arm,
+its preferred conclusion is that one `transitionReverseOutsidePair` is
+co-radial from `S.oppApex1` (the stronger equality with the retained frontier
+pair is also sufficient).  The resulting reverse-row blocker and outside-cap
+pair feed production
 `CapSelectedRowCounting.outsidePair_unique_capCenter` and return `False`:
 
 ```text
 full R/B/L parent + same-H exact-five total transition
-  -> transition-global mutual/all-reverse split
+  -> arbitrary-pair mutual omission | global reverse-membership
+  -> protected mutual consumer | source-faithful period-three cycle
   -> co-radial transition reverse-outside-pair occurrence
   -> outsidePair_unique_capCenter
   -> False
@@ -192,13 +207,16 @@ occurrence/parent contradiction while retaining the full packet.  Importing
 `u1TwoLargeCapObstruction` is worthwhile plumbing but is not the priority
 closure lane because the live residues still lack its named equalities.
 
-The period-three common-cap-order draft remains optional plumbing.  Do not
-enlarge the linear Kalmanson quotient: a fully disjoint 25-role cell is
+The checked period-three common-cap-order producer is now load-bearing
+plumbing for the only remaining all-reverse period; promote it without
+touching the user-owned `ShellCurvature` file.  The named-source alias audit
+adds zero arithmetic atoms, so alias enumeration is not a mining lane.  Do
+not enlarge the linear Kalmanson quotient: a fully disjoint 25-role cell is
 exact-QF_LRA SAT, and a separate exact test satisfies all currently available
-per-shell curvature turn budgets on that word.  Any decisive new input must
-be quantitative/nonlinear Euclidean or MEC geometry, full-fiber provenance,
-or global minimality, and it must produce the aggregate terminal occurrence
-above rather than another local packet.
+per-shell curvature turn budgets on that word.  The remaining period-three
+consumer must use quantitative/nonlinear Euclidean or MEC geometry,
+full-fiber provenance, or global minimality from the complete parent, and it
+must produce the aggregate terminal occurrence above or direct `False`.
 
 The original and swapped unique arms remain protected dependencies. If the
 existing critical-fiber terminal is useful internally, the honest helper
