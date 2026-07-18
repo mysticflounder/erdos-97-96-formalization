@@ -170,10 +170,11 @@ exists_entryZeroPeriodThreeCycle_containing_continuationSources
 
 The immediate internal producer remains an **aggregate occurrence theorem**
 at the complete `L` boundary.  On the now-exact period-three all-reverse arm,
-its preferred conclusion is that one `transitionReverseOutsidePair` is
-co-radial from `S.oppApex1` (the stronger equality with the retained frontier
-pair is also sufficient).  The resulting reverse-row blocker and outside-cap
-pair feed production
+its invariant conclusion is that one `transitionReverseOutsidePair` has a
+second distinct equidistant center in the physical cap.  The named preferred
+specialization takes that center to be `S.oppApex1`; equality with the retained
+frontier pair is stronger and also sufficient.  The two cap centers and the
+outside-cap pair feed production
 `CapSelectedRowCounting.outsidePair_unique_capCenter` and return `False`:
 
 ```text
@@ -207,13 +208,18 @@ occurrence/parent contradiction while retaining the full packet.  Importing
 `u1TwoLargeCapObstruction` is worthwhile plumbing but is not the priority
 closure lane because the live residues still lack its named equalities.
 
-The checked period-three common-cap-order producer is now load-bearing
-plumbing for the only remaining all-reverse period; promote it without
-touching the user-owned `ShellCurvature` file.  The named-source alias audit
-adds zero arithmetic atoms, so alias enumeration is not a mining lane.  Do
-not enlarge the linear Kalmanson quotient: a fully disjoint 25-role cell is
+The period-three common-cap-order producer is now production.  The
+transition-facing packet chooses one actual strict physical-cap block and
+indexes every physical source and successor-row blocker in it; the global
+relation arm constructs the packet without a public order hypothesis or any
+scratch import.  Its focused build and core-axiom audit pass, and it does not
+touch the user-owned `ShellCurvature` file.  The named-source alias audit adds
+zero arithmetic atoms, so alias enumeration is not a mining lane.  Do not
+enlarge the linear Kalmanson quotient: a fully disjoint 25-role cell is
 exact-QF_LRA SAT, and a separate exact test satisfies all currently available
-per-shell curvature turn budgets on that word.  The remaining period-three
+per-shell curvature turn budgets on that word.  Common order can prune the
+three reverse pairs to five- or six-target residuals, but neither residual has
+a checked consumer; that pruning is not a closure lane by itself.  The remaining period-three
 consumer must use quantitative/nonlinear Euclidean or MEC geometry,
 full-fiber provenance, or global minimality from the complete parent, and it
 must produce the aggregate terminal occurrence above or direct `False`.

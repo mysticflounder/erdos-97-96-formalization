@@ -76,8 +76,9 @@ The checked endpoints are
 four and five are retired from this global all-reverse arm.
 
 The remaining owned internal producer is an aggregate occurrence from the
-complete `L` packet on that exact period-three arm.  Its preferred concrete
-shape is
+complete `L` packet on that exact period-three arm.  Its invariant shape is
+that some reverse outside pair has a second distinct equidistant center in
+the physical cap.  The preferred named specialization is
 
 ```text
 exists q a b,
@@ -105,10 +106,15 @@ the producer must visibly consume additional data retained by `L`: nonlinear
 Euclidean/MEC geometry, full critical-fiber provenance, or global minimality,
 together with both cap bounds, the original frontier, and `noM44`.  The public
 target stays `false_of_largeOppositeCapsBiApexRobust L`; the period-three
-closer is internal.  The checked common-order producer is now load-bearing
-plumbing to promote.  The named-source alias audit adds zero arithmetic atoms,
-so neither aliases nor an enlarged linear quotient can supply the missing
-force.
+closer is internal.  The common-order producer is now production as
+`PhysicalActualCriticalOmissionTransitionSharedCapOrder`, constructed from
+the global relation arm by
+`nonempty_transitionSharedCapOrder_of_all_omissions_reverseMembership`.
+The named-source alias audit adds zero arithmetic atoms, so neither aliases
+nor an enlarged linear quotient can supply the missing force.  The shared
+order can reduce the three reverse pairs to five- or six-target residuals,
+but neither residual currently feeds a terminal; do not promote that pruning
+as the parent contradiction.
 
 Do not add a bare-`B`, fixed-initial-`H`, or one-more-conditional-consumer
 theorem.  A `CriticalFiberClosingCore` implementation must choose its useful
