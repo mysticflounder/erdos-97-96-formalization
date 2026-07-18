@@ -40,10 +40,13 @@ equal-radius wrappers therefore consume actual metric equalities and the
 lifted chart rather than assuming those equations.  The chart's ordered-triple
 sign field supplies the positive apex orientations.
 
-The remaining source adapter is the construction of the compatible unwrapped
-real edge and chord lifts.  Lemma 30's separate cap-block conclusion also
-remains in the earlier combinatorial lane; this module formalizes its curvature
-conclusion without adding a project axiom or a new `sorry`.
+The finite-boundary adapter below constructs the periodic point window,
+chirality, and actual real direction representatives.  Its remaining input is
+the global integer-winding order certificate: strict edge order, proper-chord
+bracketing, and the principal chord-turn bound.  Lemma 30's separate cap-block
+conclusion also remains in the earlier combinatorial lane; this module
+formalizes its curvature conclusion without adding a project axiom or a new
+`sorry`.
 -/
 
 open scoped EuclideanGeometry Real
@@ -673,6 +676,130 @@ structure OpenFundamentalWindowAngleChart where
   chordTurn_le_pi :
     ∀ {i j k}, windowStart ≤ i → i < j → j < k → k ≤ windowEnd →
       chordArg j k - chordArg i j ≤ Real.pi
+
+/-- The canonical real representative of an angle, shifted by an integral
+number of full turns. -/
+noncomputable def liftedAngleWithWinding
+    (theta : Real.Angle) (winding : ℤ) : ℝ :=
+  theta.toReal + (winding : ℝ) * (2 * Real.pi)
+
+/-- Shifting the canonical real representative by full turns does not change
+the represented quotient angle. -/
+theorem coe_liftedAngleWithWinding
+    (theta : Real.Angle) (winding : ℤ) :
+    ((liftedAngleWithWinding theta winding : ℝ) : Real.Angle) = theta := by
+  simp [liftedAngleWithWinding]
+
+/-- Periodically repeat the reverse linear enumeration of a finite boundary.
+
+The reversal changes the upstream `IsCcwConvexPolygon` chirality into the
+standard counterclockwise chirality used by the shell-curvature chart. -/
+def reversedPeriodicBoundaryPoint {n : ℕ} (hn : 0 < n)
+    (point : Fin n → ℝ²) (i : ℕ) : ℝ² :=
+  point (Fin.rev ⟨i % n, Nat.mod_lt i hn⟩)
+
+theorem reversedPeriodicBoundaryPoint_of_lt {n i : ℕ} (hn : 0 < n)
+    (point : Fin n → ℝ²) (hi : i < n) :
+    reversedPeriodicBoundaryPoint hn point i = point (Fin.rev ⟨i, hi⟩) := by
+  unfold reversedPeriodicBoundaryPoint
+  apply congrArg point
+  apply congrArg Fin.rev
+  apply Fin.ext
+  exact Nat.mod_eq_of_lt hi
+
+theorem reversedPeriodicBoundaryPoint_period {n : ℕ} (hn : 0 < n)
+    (point : Fin n → ℝ²) :
+    reversedPeriodicBoundaryPoint hn point n =
+      reversedPeriodicBoundaryPoint hn point 0 := by
+  simp [reversedPeriodicBoundaryPoint]
+
+/-- The real direction assigned to an edge after choosing an integer winding. -/
+noncomputable def openWindowEdgeArg
+    (point : ℕ → ℝ²) (winding : ℕ → ℤ) (i : ℕ) : ℝ :=
+  liftedAngleWithWinding
+    (arcAngle (point i) (point (i + 1))) (winding i)
+
+/-- The real direction assigned to a chord after choosing an integer winding. -/
+noncomputable def openWindowChordArg
+    (point : ℕ → ℝ²) (winding : ℕ → ℕ → ℤ) (i j : ℕ) : ℝ :=
+  liftedAngleWithWinding (arcAngle (point i) (point j)) (winding i j)
+
+/-- The global angle-unwrapping certificate remaining after choosing canonical
+real representatives of all edge and proper-chord directions.
+
+Its three fields are exactly the global convex-direction order facts: strict
+edge order, proper-chord bracketing, and the principal chord-turn bound. -/
+structure OpenWindowDirectionOrderCertificate
+    (point : ℕ → ℝ²) (windowEnd : ℕ) where
+  edgeWinding : ℕ → ℤ
+  chordWinding : ℕ → ℕ → ℤ
+  edgeArg_strictMono :
+    ∀ {i j}, i < j → j < windowEnd →
+      openWindowEdgeArg point edgeWinding i <
+        openWindowEdgeArg point edgeWinding j
+  chordArg_bounds :
+    ∀ {i j}, IsProperFundamentalWindowChord 0 windowEnd i j →
+      openWindowEdgeArg point edgeWinding i ≤
+          openWindowChordArg point chordWinding i j ∧
+        openWindowChordArg point chordWinding i j ≤
+          openWindowEdgeArg point edgeWinding (j - 1)
+  chordTurn_le_pi :
+    ∀ {i j k}, i < j → j < k → k ≤ windowEnd →
+      openWindowChordArg point chordWinding j k -
+          openWindowChordArg point chordWinding i j ≤ Real.pi
+
+/-- Construct the production open-window chart from an actual finite injective
+convex boundary and the remaining global direction-order certificate.
+
+This discharges the endpoint period, open-window injectivity, chirality, and
+all quotient-angle lift fields.  The certificate retains the three genuine
+global unwrapping inequalities without weakening them. -/
+noncomputable def openFundamentalWindowAngleChartOfReversedCcwBoundary
+    {n : ℕ} (hn : 0 < n) (point : Fin n → ℝ²)
+    (hinj : Function.Injective point)
+    (hccw : EuclideanGeometry.IsCcwConvexPolygon point)
+    (certificate : OpenWindowDirectionOrderCertificate
+      (reversedPeriodicBoundaryPoint hn point) n) :
+    OpenFundamentalWindowAngleChart where
+  windowStart := 0
+  windowEnd := n
+  windowStart_lt_windowEnd := hn
+  point := reversedPeriodicBoundaryPoint hn point
+  edgeArg := openWindowEdgeArg
+    (reversedPeriodicBoundaryPoint hn point) certificate.edgeWinding
+  chordArg := openWindowChordArg
+    (reversedPeriodicBoundaryPoint hn point) certificate.chordWinding
+  point_period := reversedPeriodicBoundaryPoint_period hn point
+  point_injective_before_end := by
+    intro i j _hi0 hi _hj0 hj hp
+    have hrev : (Fin.rev ⟨i, hi⟩ : Fin n) = Fin.rev ⟨j, hj⟩ := by
+      apply hinj
+      simpa [reversedPeriodicBoundaryPoint_of_lt hn point hi,
+        reversedPeriodicBoundaryPoint_of_lt hn point hj] using hp
+    exact congrArg Fin.val (Fin.rev_injective hrev)
+  edgeArg_lifts := by
+    intro i _hi0 _hi
+    exact coe_liftedAngleWithWinding _ _
+  chordArg_lifts := by
+    intro i j _hproper
+    exact coe_liftedAngleWithWinding _ _
+  edgeArg_strictMono := by
+    intro i j _hi0 hij hj
+    exact certificate.edgeArg_strictMono hij hj
+  orderedTriple_sign_neg := by
+    intro i j k _hi0 hij hjk hk
+    have hi : i < n := hij.trans (hjk.trans hk)
+    have hj : j < n := hjk.trans hk
+    have hstandard :=
+      standardCounterclockwiseConvexPolygon_reverseLinear hccw
+    simpa [reversedPeriodicBoundaryPoint_of_lt hn point hi,
+      reversedPeriodicBoundaryPoint_of_lt hn point hj,
+      reversedPeriodicBoundaryPoint_of_lt hn point hk] using
+      (hstandard (i := ⟨i, hi⟩) (j := ⟨j, hj⟩) (k := ⟨k, hk⟩) hij hjk)
+  chordArg_bounds := certificate.chordArg_bounds
+  chordTurn_le_pi := by
+    intro i j k _hi0 hij hjk hk
+    exact certificate.chordTurn_le_pi hij hjk hk
 
 /-- Exterior-curvature spread inside one open fundamental window. -/
 def openWindowArcCurvature
