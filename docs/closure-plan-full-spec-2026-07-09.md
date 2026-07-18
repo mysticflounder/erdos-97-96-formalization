@@ -2067,6 +2067,35 @@ the four-row finite/Euclidean projection cannot close an orbit, while the full
 parent remains unresolved.  The next gate must consume one of those omitted
 global geometric hypotheses directly; it must not add anonymous rows.
 
+The cap/order and deletion-critical follow-up gates are now exact as well.
+Kernel-checked scratch first sharpens exact cap six into the source-level
+physical-apex distribution: the exact-five class has three or four strict-cap
+hits; in the three-hit arm its other two points hit the two adjacent caps once
+each, while in the four-hit arm its last point lies in their union.  Using
+that corrected split, all 456 enumerated six-point physical-cap order cells
+across the seven role orbits admit exact rational abstract-distance ledgers
+satisfying all 3,990 strict triangle inequalities, all 11,970 strict
+Kalmanson inequalities, the four complete row filters, the unique physical-
+apex K4 cell, and every applicable cap-local row-hit bound.  This is exhaustive
+for the displayed cap orders in one legal blocker/private-completion placement,
+not a planar Euclidean or MEC realization.  Thus linear Kalmanson/Farkas
+closure on the four-row object is definitively nonterminal.
+
+Restoring the full `H.no_qfree_at` semantic at the three named actual blockers
+also eliminates zero role orbits: exact rational replay gives a maximum
+post-deletion radius-class cardinality of three at every named blocker in all
+seven cases.  The current `noM44` shortcut is likewise normalized but
+nonterminal: any alternative M44 packet must differ from `S`, have surplus cap
+at least nine, and use a nonphysical support vertex, while neither blocker arm
+constructs the required alternate MEC triangle and two exact four-caps.
+Consequently the next honest decision object is the existing arbitrary-
+cardinality whole-carrier surface completed with one actual K4 row at every
+carrier center and one source-faithful blocker/no-`q`-free manifest at every
+source, plus the exact cap blocks and cyclic geometry.  Do not add a fifth
+anonymous row or resume literal-core mining.  At cardinality fourteen this is
+the exact `(5,6,6)` all-center gate; a SAT linear shadow must still be tested by
+the exact Euclidean equality oracle before it is treated as geometry evidence.
+
 The global-minimal-deletion shortcut has also been corrected.  Its collision
 center may be the physical apex, and a nontrivial core excludes the second
 apex but not the first, so three distinct robust centers are not unconditional.

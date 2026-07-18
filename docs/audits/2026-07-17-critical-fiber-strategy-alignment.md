@@ -983,6 +983,30 @@ triangle geometry, global minimality, and `noM44`.  Hence it neither realizes
 the live full parent nor closes a source `sorry`; it proves that the next gate
 must make one of those omitted global geometric hypotheses load-bearing.
 
+The strict-order gate has now been run on the corrected source object.  A new
+kernel theorem fixes the exact-six physical-apex distribution, including one
+adjacent-cap shell hit on each side in the physical-card-three arm.  Across all
+seven source-role orbits, all 456 enumerated physical-cap order cells have
+exact rational full-Kalmanson witnesses satisfying every strict triangle,
+complete-row exclusion, physical-apex uniqueness, and cap-local row-hit check.
+This is one legal blocker/private-completion placement and is therefore enough
+to refute the proposed four-row linear implication; it is not a planar/MEC
+model or blocker-placement coverage theorem.
+
+The semantic deletion-critical gate is equally conclusive at its stated
+scope.  `H.no_qfree_at` is kernel-extracted at the unused, mutual-source, and
+mutual-target blockers, and exhaustive exact rational radius partitioning
+leaves all seven orbits alive with maximum post-deletion class cardinality
+three.  The displayed four rows therefore cannot be repaired by strengthening
+their exactness.  The direct `noM44` audit also finds no alternate support
+triangle in either blocker arm.  The active strategy is now the total
+all-center K4/all-source critical-map completion, using the existing
+`WholeCarrierBiApexKalmansonSurface` and `BlockerRowManifest` rather than a new
+row-table abstraction.  At minimum cardinality fourteen it must retain the
+exact `(5,6,6)` cap blocks and seven-orbit packet; any structural/LRA survivor
+must pass an exact source-mapped Euclidean equality-ideal check before the lane
+claims geometric progress.
+
 The exact-card-seven successor is a checked occurrence, not a contradiction.
 Five strict-interior positions must contain the three distinct cycle sources
 and three pairwise-distinct blockers; because each blocker differs from its

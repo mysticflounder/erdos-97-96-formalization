@@ -1,0 +1,6913 @@
+{
+  "eliminated_orbit_count": 0,
+  "omitted": [
+    "critical rows and no-qfree manifests for unnamed carrier sources",
+    "global K4 selected rows at every carrier center",
+    "strict convexity and one cyclic boundary order",
+    "minimum-enclosing-circle containment and nonobtuse support triangle",
+    "global minimality and noM44"
+  ],
+  "orbit_count": 7,
+  "results": [
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "106"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "9378/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5194/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4682/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "52354/145"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "55922/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "1",
+            "0"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "25186/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "2402/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "52754/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "370",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "3/5",
+            "4/5"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "12874/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "842"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "11626/13"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "4514/5",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "47/13",
+              "-92/13"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "341/65",
+              "-652/65"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "241/29",
+              "-356/29"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1883/145",
+              "-2576/145"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "233/17",
+              "-258/17"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1839/85",
+              "-1858/85"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "continuationOrder",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "106"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "1970/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5066/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4570/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "10970/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "11570/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "3/5",
+            "4/5"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "4986/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "482"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "10634/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "1906/5",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "1",
+            "0"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "66826/85"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "4338/5"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "59434/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "890",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "191/65",
+              "-422/65"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "77/13",
+              "-138/13"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1083/145",
+              "-1736/145"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1089/85",
+              "-1288/85"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "401/29",
+              "-524/29"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "383/17",
+              "-372/17"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "reverseContinuationOrder",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "106"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "1972/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5194/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4682/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "10676/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "11348/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "1",
+            "0"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "5300/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "500"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "10900/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "370",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "0",
+            "1"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "233/17",
+                    "-258/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "12874/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "241/29",
+                    "-356/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "842"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "47/13",
+                    "-92/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "11626/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "936",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "47/13",
+              "-92/13"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "60/13",
+              "-131/13"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "241/29",
+              "-356/29"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "360/29",
+              "-523/29"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "233/17",
+              "-258/17"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "360/17",
+              "-379/17"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "sharesFirstAtSource",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "1970/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5364/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4772/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "10970/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "11570/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "0",
+            "1"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "4986/13"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "482"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "10634/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "404",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "1",
+            "0"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "13968/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "77/13",
+                    "-138/13"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "401/29",
+                    "-524/29"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "383/17",
+                    "-372/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "904"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "12352/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "890",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30/13",
+              "-85/13"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "77/13",
+              "-138/13"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "200/29",
+              "-355/29"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "210/17",
+              "-265/17"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "401/29",
+              "-524/29"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "383/17",
+              "-372/17"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "sharesFirstAtTarget",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "106"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "1972/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5066/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4570/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "10676/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "11348/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "3/5",
+            "4/5"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "5300/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "500"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "10900/17"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "1906/5",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "0",
+            "1"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1089/85",
+                    "-1288/85"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "66826/85"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1083/145",
+                    "-1736/145"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "4338/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "191/65",
+                    "-422/65"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "59434/65"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "60/13",
+                    "-131/13"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "360/29",
+                    "-523/29"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "360/17",
+                    "-379/17"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "936",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "191/65",
+              "-422/65"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "60/13",
+              "-131/13"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1083/145",
+              "-1736/145"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "360/29",
+              "-523/29"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1089/85",
+              "-1288/85"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "360/17",
+              "-379/17"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "sharesSecondAtSource",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "9378/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5364/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4772/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "52354/145"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "55922/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "0",
+            "1"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "25186/65"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "2402/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "52754/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "404",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "3/5",
+            "4/5"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "13968/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "341/65",
+                    "-652/65"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "1883/145",
+                    "-2576/145"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "1839/85",
+                    "-1858/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "904"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "12352/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "4514/5",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30/13",
+              "-85/13"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "341/65",
+              "-652/65"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "200/29",
+              "-355/29"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "210/17",
+              "-265/17"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1883/145",
+              "-2576/145"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1839/85",
+              "-1858/85"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "sharesSecondAtTarget",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    },
+    {
+      "checks": {
+        "every_named_blocker_deletion_forbids_all_K4_radii": true,
+        "exactly_three_actual_named_blocker_rows": true,
+        "predecessor_checks_all_pass": true
+      },
+      "named_blocker_ledgers": [
+        {
+          "actual_blocker": [
+            "10",
+            "1"
+          ],
+          "actual_source": [
+            "2",
+            "3"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "61"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                },
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                },
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "68"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "82"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "442/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "100"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "101"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "109"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "562/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "584/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "269/65",
+                    "-682/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "10818/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "5364/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "4772/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1757/145",
+                    "-2696/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "56314/145"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1791/85",
+                    "-1948/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "59042/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "68",
+          "row": "unused"
+        },
+        {
+          "actual_blocker": [
+            "20",
+            "3"
+          ],
+          "actual_source": [
+            "0",
+            "1"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "104"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30",
+                    "7"
+                  ],
+                  "label": "blocker_target"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "233"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "241"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "5220/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "324"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "9620/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "340"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "370"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "1906/5"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                },
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                },
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "404"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "409"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-3/5",
+                    "4/5"
+                  ],
+                  "label": "p3"
+                }
+              ],
+              "squared_radius": "2146/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "269/65",
+                    "-682/65"
+                  ],
+                  "label": "target_support_1"
+                }
+              ],
+              "squared_radius": "28186/65"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "2192/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1757/145",
+                    "-2696/145"
+                  ],
+                  "label": "target_support_2"
+                }
+              ],
+              "squared_radius": "2642/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1791/85",
+                    "-1948/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "57194/85"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "404",
+          "row": "source"
+        },
+        {
+          "actual_blocker": [
+            "30",
+            "7"
+          ],
+          "actual_source": [
+            "-3/5",
+            "4/5"
+          ],
+          "checks": {
+            "actual_source_in_represented_support": true,
+            "all_positive_radius_classes_card_lt_four": true,
+            "represented_class_after_deletion_card_eq_three": true,
+            "represented_class_after_deletion_is_complete": true
+          },
+          "maximum_positive_radius_class_cardinality": 3,
+          "positive_radius_class_count": 17,
+          "positive_radius_classes": [
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "20",
+                    "3"
+                  ],
+                  "label": "blocker_source"
+                }
+              ],
+              "squared_radius": "116"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "10",
+                    "1"
+                  ],
+                  "label": "blocker_unused"
+                }
+              ],
+              "squared_radius": "436"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "7",
+                    "11"
+                  ],
+                  "label": "endpoint1"
+                }
+              ],
+              "squared_radius": "545"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "5",
+                    "7"
+                  ],
+                  "label": "endpoint0"
+                }
+              ],
+              "squared_radius": "625"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "76/17",
+                    "-87/17"
+                  ],
+                  "label": "unused_support_3"
+                }
+              ],
+              "squared_radius": "13576/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "2",
+                    "3"
+                  ],
+                  "label": "unused"
+                }
+              ],
+              "squared_radius": "800"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "210/17",
+                    "-265/17"
+                  ],
+                  "label": "source_support_3"
+                }
+              ],
+              "squared_radius": "13968/17"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "82/29",
+                    "-89/29"
+                  ],
+                  "label": "unused_support_2"
+                }
+              ],
+              "squared_radius": "24352/29"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "24/13",
+                    "-3/13"
+                  ],
+                  "label": "unused_support_0"
+                }
+              ],
+              "squared_radius": "10984/13"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "1",
+                    "0"
+                  ],
+                  "label": "p0"
+                }
+              ],
+              "squared_radius": "890"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "3/5",
+                    "4/5"
+                  ],
+                  "label": "p1"
+                }
+              ],
+              "squared_radius": "4514/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "200/29",
+                    "-355/29"
+                  ],
+                  "label": "source_support_2"
+                }
+              ],
+              "squared_radius": "904"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "1"
+                  ],
+                  "label": "p2"
+                }
+              ],
+              "squared_radius": "936"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "0",
+                    "0"
+                  ],
+                  "label": "apex"
+                }
+              ],
+              "squared_radius": "949"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "30/13",
+                    "-85/13"
+                  ],
+                  "label": "source_support_1"
+                }
+              ],
+              "squared_radius": "12352/13"
+            },
+            {
+              "cardinality": 3,
+              "points": [
+                {
+                  "coordinates": [
+                    "269/65",
+                    "-682/65"
+                  ],
+                  "label": "target_support_1"
+                },
+                {
+                  "coordinates": [
+                    "1757/145",
+                    "-2696/145"
+                  ],
+                  "label": "target_support_2"
+                },
+                {
+                  "coordinates": [
+                    "1791/85",
+                    "-1948/85"
+                  ],
+                  "label": "target_support_3"
+                }
+              ],
+              "squared_radius": "4874/5"
+            },
+            {
+              "cardinality": 1,
+              "points": [
+                {
+                  "coordinates": [
+                    "-4/5",
+                    "3/5"
+                  ],
+                  "label": "p4"
+                }
+              ],
+              "squared_radius": "4948/5"
+            }
+          ],
+          "remaining_carrier_cardinality": 20,
+          "represented_squared_radius": "4874/5",
+          "row": "target"
+        }
+      ],
+      "omitted_global_K4_diagnostic": {
+        "carrier_cardinality": 21,
+        "center_maxima": [
+          {
+            "center": [
+              "-4/5",
+              "3/5"
+            ],
+            "has_K4": false,
+            "label": "p4",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "-3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "0",
+              "0"
+            ],
+            "has_K4": true,
+            "label": "apex",
+            "maximum_positive_radius_class_cardinality": 5
+          },
+          {
+            "center": [
+              "0",
+              "1"
+            ],
+            "has_K4": false,
+            "label": "p2",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "3/5",
+              "4/5"
+            ],
+            "has_K4": false,
+            "label": "p1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "1",
+              "0"
+            ],
+            "has_K4": false,
+            "label": "p0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "24/13",
+              "-3/13"
+            ],
+            "has_K4": false,
+            "label": "unused_support_0",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "2",
+              "3"
+            ],
+            "has_K4": false,
+            "label": "unused",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30/13",
+              "-85/13"
+            ],
+            "has_K4": false,
+            "label": "source_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "82/29",
+              "-89/29"
+            ],
+            "has_K4": false,
+            "label": "unused_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "269/65",
+              "-682/65"
+            ],
+            "has_K4": false,
+            "label": "target_support_1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "76/17",
+              "-87/17"
+            ],
+            "has_K4": false,
+            "label": "unused_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "5",
+              "7"
+            ],
+            "has_K4": false,
+            "label": "endpoint0",
+            "maximum_positive_radius_class_cardinality": 2
+          },
+          {
+            "center": [
+              "200/29",
+              "-355/29"
+            ],
+            "has_K4": false,
+            "label": "source_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "7",
+              "11"
+            ],
+            "has_K4": false,
+            "label": "endpoint1",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "10",
+              "1"
+            ],
+            "has_K4": true,
+            "label": "blocker_unused",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1757/145",
+              "-2696/145"
+            ],
+            "has_K4": false,
+            "label": "target_support_2",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "210/17",
+              "-265/17"
+            ],
+            "has_K4": false,
+            "label": "source_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "20",
+              "3"
+            ],
+            "has_K4": true,
+            "label": "blocker_source",
+            "maximum_positive_radius_class_cardinality": 4
+          },
+          {
+            "center": [
+              "1791/85",
+              "-1948/85"
+            ],
+            "has_K4": false,
+            "label": "target_support_3",
+            "maximum_positive_radius_class_cardinality": 1
+          },
+          {
+            "center": [
+              "30",
+              "7"
+            ],
+            "has_K4": true,
+            "label": "blocker_target",
+            "maximum_positive_radius_class_cardinality": 4
+          }
+        ],
+        "centers_with_K4": 4,
+        "centers_without_K4": 17,
+        "global_K4_holds": false,
+        "status": "DIAGNOSTIC_ONLY_NOT_A_GATE"
+      },
+      "orbit": "fourDistinct",
+      "verdict": "EXACT_NAMED_NO_QFREE_PROJECTION_WITNESS"
+    }
+  ],
+  "schema": "p97-exact6-mutual-named-no-qfree-semantic-gate-v1",
+  "scope": {
+    "actual_named_rows": [
+      "unused",
+      "mutual_source",
+      "mutual_target"
+    ],
+    "all_positive_radius_classes_enumerated": true,
+    "anonymous_rows_added": 0,
+    "literal_core_occurrence_assumptions_added": 0
+  },
+  "status": "EXACT_NAMED_NO_QFREE_GATE_COMPLETE",
+  "surviving_orbit_count": 7,
+  "upstream": {
+    "first_gate_results": "scratch/atail-force/exact6-manifest-first-gate/results.json",
+    "first_gate_results_sha256": "a49a6edc52ec0d90c35e2b844e7716a2ebc9c18fc3b5fb0c59758d21f36dc5f4",
+    "first_gate_script": "scratch/atail-force/exact6-manifest-first-gate/first_gate.py",
+    "first_gate_script_sha256": "6c385cdb44f6d093ed89a0ec60b6a58ff103d962244012366082497e093cba0d"
+  }
+}

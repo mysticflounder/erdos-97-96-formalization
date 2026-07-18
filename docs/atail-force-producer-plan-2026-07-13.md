@@ -905,6 +905,30 @@ another equality core on it.  The next direct-`False` attempt must add and use
 one of the omitted global geometric fields while preserving the complete
 `M/L/H` telescope and actual source identities.
 
+That next audit has now separated the omitted fields rather than conflating
+them.  Kernel-checked exact-six cap distribution forces three or four physical
+strict-cap vertices; the three-vertex arm has one remaining physical-apex
+shell point in each adjacent cap.  After imposing that correction, all 456
+source-role/physical-cap-order cells are exact QF_LRA SAT with every strict
+triangle and Kalmanson inequality, all four complete row filters, physical-
+apex uniqueness, and the cap-local row-hit bounds.  The seven banked rational
+ledgers replay independently.  This blocks the four-row linear-Kalmanson route,
+not the live Euclidean/MEC theorem.
+
+The complete all-positive-radius `no_qfree_at` condition at the three named
+actual blockers also leaves all seven role orbits alive; every post-deletion
+radius class has cardinality at most three in the exact rational projection.
+Meanwhile the direct `noM44` gate proves only necessary fields for a genuinely
+different support packet and shows that neither mutual-blocker arm constructs
+it.  Therefore the next CEGAR/theorem object must be the total
+`WholeCarrierBiApexKalmansonSurface` plus the all-source `BlockerRowManifest`,
+the exact contiguous cap blocks, and the named exact-six mutual packet.  It
+must carry an actual row at every carrier center and an actual `H.centerAt`
+blocker for every source.  A row-local extension, anonymous center, or literal
+equality core is no longer an admissible closure step.  For any LRA survivor,
+run the full source-mapped Euclidean equality ideal before escalating to MEC,
+minimality beyond strong connectivity, or `noM44`.
+
 Do not route the mutual branch through a supposed third robust center.  The
 minimal-deletion output may reuse the first physical apex, and even the stronger
 three-distinct finite projection with two disjoint fresh-center shells and
