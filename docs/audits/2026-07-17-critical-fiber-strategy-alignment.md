@@ -547,6 +547,15 @@ evidence, not a kernel proof or coverage theorem.  It rules out a one-new-row
 local obstruction and fixes complete deletion-critical manifests as mandatory
 inputs to any multi-row completion or MUS search.
 
+The first simultaneous two-manifest search has now run to its bounded honest
+endpoint.  Across 76 source-oriented second-row atoms it produced zero
+full-gate candidates and 76 `UNKNOWN_NO_HIT` results.  A six-DOF local solve
+found 66 equality solutions, but all failed the predecessor-cell or complete-
+manifest replay; the nearest manifest-preserving hit violated MEC and strict
+hull inequalities.  This is no UNSAT or coverage result.  The recurrence at
+the geometric boundary calls for a full-dimensional exact oracle or a hull/MEC
+boundary theorem, not more of the same local batch.
+
 The retained parent contributes one precise production input rather than fixed
 slots: a radius-`r` four-row `T0` containing `q,w`, and a double-deletion row
 `T1` at radius `rho` disjoint from `q,w`. Both preserve two strict-`oppCap1`
@@ -918,9 +927,35 @@ one exact branch closer.  A kernel-checked ordered-finset theorem proves that a
 period-three cycle of distinct sources with strict blockers on all three
 consecutive gaps needs at least five points in the shared strict-cap interior.
 This contradicts the four-point interior of an exact-six closed cap.  The
-source fields exist on `FullParentExactFiveAllReverseData`, but the production
-adapter is not yet kernel-checked; the theorem does not cover cap sizes at
-least seven and has not closed a source `sorry`.
+source fields have now been connected in production:
+`ATail/ParentExactFiveExactSix.lean` proves
+`false_of_fullParentExactFiveAllReverseData_of_secondCap_card_eq_six`, and its
+focused build passes with only the standard three axioms.  This eliminates the
+all-reverse half of the exact-six slice.  The arbitrary mutual-omission sibling,
+cap sizes at least seven, and every source `sorry` remain open.
+
+The follow-up exact-six mutual audit is negative at the current interface.
+Neither the distinct-blocker nor equal-blocker arm yields the positive
+shared-pair/cross-row incidence required by an existing terminal.  The former
+has a sharp `(5,6,6)` incidence model with canonical rows and both reciprocal
+source hits false; the latter has a kernel-checked finite boundary retaining
+exact-six order, exact-five support identities, total support locking, bi-apex
+robustness, and selected-row closure while excluding a distinct third-row
+completion.  These are deliberately not claimed as Euclidean realizations.
+They show that the remaining mutual theorem must use a global repeated outside
+pair, a nonlinear MEC/full-filter contradiction, a distinct bisector center
+through the equal-blocker fiber, or a new support triangle contradicting
+`noM44`; another conditional row packet is not a closure step.
+
+The exact-card-seven successor is a checked occurrence, not a contradiction.
+Five strict-interior positions must contain the three distinct cycle sources
+and three pairwise-distinct blockers; because each blocker differs from its
+two incident sources, one source's actual blocker is forced to equal its
+transition successor.  The whole-carrier scratch form retains q's exact shell
+and full deletion failure at that successor.  The indexed bank has no terminal
+for this source/blocker equality, and cap eight can realize all six roles as
+distinct.  The next theorem must couple the exact-seven occurrence back to the
+retained first-apex/frontier/MEC/minimality packet; cardinality alone stops here.
 
 ## Synchronized documents
 

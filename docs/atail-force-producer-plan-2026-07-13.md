@@ -603,6 +603,15 @@ single fully deletion-critical continuation row is still nonterminal.  Every
 successor scan must use the complete blocker manifests rather than row
 exactness flags.
 
+The bounded simultaneous second-manifest probe is now terminal as a discovery
+instrument, not as a proof.  It tested 76 source-oriented atoms with the cell
+and both complete manifests mandatory; no candidate passed, but all outcomes
+are `UNKNOWN_NO_HIT`.  A six-DOF follow-up reached 66 exact row equalities and
+rejected every one at the cell/manifest gate, with the closest case crossing
+both MEC and strict-hull boundaries.  Do not allocate another wider local
+batch.  Use a full-dimensional exact oracle or prove the recurring hull/MEC
+boundary obstruction.
+
 The source-valid cross-system packet is now production as
 `ATailFirstApexShellRole.FirstApexShellRolePacket`, with source-faithful
 extractor `nonempty_firstApexShellRolePacket F0 R`.  It adds two first-apex
@@ -842,10 +851,33 @@ decoded assignments, hence supplies no finite SAT/UNSAT evidence.  A smaller
 exact-six order theorem does kernel-check: three distinct period-three sources
 and strict blockers on the three consecutive source gaps require at least five
 members of the common strict-cap interior, contradicting the four-member
-interior of a six-point closed cap.  The production-facing adapter from the
-full exact-five all-reverse packet remains to be written.  Do that bounded
-adapter before extending the outer solver; it closes only the exact-six slice,
-not cap cardinality seven or above.
+interior of a six-point closed cap.  The production-facing adapter is now
+complete in `ATail/ParentExactFiveExactSix.lean`:
+`false_of_fullParentExactFiveAllReverseData_of_secondCap_card_eq_six` consumes
+the complete full-parent packet and kernel-checks with only the standard three
+axioms.  Do not extend the outer solver for this all-reverse slice.  The next
+targets are the exact-six arbitrary mutual-omission sibling and then a genuine
+cap-cardinality-at-least-seven aggregate theorem.
+
+The exact-six mutual sibling has now passed a terminal audit rather than a
+proof.  The current full-parent packet plus `S.oppCap2.card = 6` does not force
+the reciprocal cross hits, common-cap pair, or distinct third row consumed by
+the existing sinks.  Exact distinct- and equal-blocker finite boundaries retain
+the present local data while omitting those antecedents.  Therefore keep the
+target as direct `False`; do not introduce a bare blocker packet or another
+conditional consumer.  The only admissible next inputs are global all-center
+K4 forcing a repeated outside pair, nonlinear Euclidean/MEC/full-filter
+geometry, a source-valid second bisector through the equal-blocker fiber, or a
+new support triangle discharged by `noM44`.
+
+For exact cap seven, the next interface is now explicit.  Checked scratch
+proves that some physical source `q` satisfies
+`H.centerAt q = transition.successor q`, and its whole-carrier version retains
+the exact blocker row plus `H.no_qfree_at q`.  No current consumer refutes that
+configuration.  Target a full-parent direct consumer using first-apex return,
+MEC/minimality, or a forced repeated blocker/common outside pair.  Do not call
+this a card-at-least-seven result: at cap eight all six source/blocker roles may
+be distinct, so a different aggregate argument is required.
 Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
 and its consumer with core axioms only. The historical `Nonempty` producer
 above remains a propositionally sufficient theorem shape, but the constructor

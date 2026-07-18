@@ -1,0 +1,124 @@
+{
+  "budgets": {
+    "max_nfev": 700,
+    "max_tasks": 76,
+    "random_seed": 2026071802,
+    "restarts": 2,
+    "supports_per_center": 4,
+    "task_timeout_seconds": 30.0,
+    "workers": 12
+  },
+  "coverage_claim": false,
+  "elapsed_seconds": 210.89912883297075,
+  "epistemic_status": "BOUNDED_NUMERIC_SEARCH_NOT_COVERAGE",
+  "exact_certificate": null,
+  "mus": {
+    "certified_cores": 0,
+    "status": "NO_MUS_CLAIM_NUMERICAL_ORACLE_NOT_UNSAT_CAPABLE"
+  },
+  "results": {
+    "attempted": 76,
+    "numeric_sat_candidates": 0,
+    "timed_out": 74,
+    "unknown_no_hit": 76
+  },
+  "schema": "source-faithful-full-cell-k4-second-manifest-v1",
+  "smoke_test": {
+    "minimum_mathematical_cell_margin": 7.558148892663404e-08,
+    "minimum_x21_manifest_margin": 0.00029407111788482817,
+    "second_row_atom_count": 76,
+    "status": "ENCODING_SMOKE_PASS",
+    "x21_normalized_row_residual": 3.7210906648399475e-16
+  },
+  "status": "BOUNDED_SECOND_MANIFEST_SEARCH_COMPLETE",
+  "strongest_candidate": {
+    "atom": {
+      "center": "x00",
+      "critical_source": "t0s",
+      "key": "t0s->x00:uS1,t0s,t1s,o",
+      "seed_spread": 0.002156295491532359,
+      "support": [
+        "uS1",
+        "t0s",
+        "t1s",
+        "o"
+      ]
+    },
+    "coverage_claim": false,
+    "elapsed_seconds": 30.574322875007056,
+    "epistemic_status": "BOUNDED_NUMERIC_UNKNOWN_NO_HIT",
+    "oracle": {
+      "engine": "scipy.optimize.least_squares",
+      "max_nfev": 700,
+      "random_seed": 2026071810,
+      "restarts": 2,
+      "task_timeout_seconds": 30.0,
+      "unsat_capable": false
+    },
+    "result": {
+      "equality_max_normalized_residual": 0.0010373090064507023,
+      "minimum_by_group": {
+        "cell:cap_roles": 0.0006402963724670453,
+        "cell:critical_no_other_K4_audit": 8.177442053420668e-06,
+        "cell:first_row_exclusions": 0.006416692466229171,
+        "cell:fixed_cyclic_cell": 1.523243804801929e-12,
+        "cell:mec_containment": 0.00012554705490413215,
+        "cell:pairwise_distinct": 2.3731919803483793e-06,
+        "cell:physical_exact_five_exclusions": 0.033390586493804275,
+        "cell:radius_split": 0.004128283725021054,
+        "cell:reverse_nonreturn": 0.009194928683995405,
+        "cell:reverse_row_exclusions": 0.0019907984257840658,
+        "cell:strict_hull": 1.523243804801929e-12,
+        "cell:support_triangle_nonobtuse": 0.17068928725987798,
+        "cell:unused_row_exclusions": 0.002169525683315024,
+        "manifest:second:deleted_outside_pair_gaps": 0.0003913847099594466,
+        "manifest:second:row_exclusions": 0.002801879349463418,
+        "manifest:second:source_radius_positive": 0.8022799431633505,
+        "manifest:x21:deleted_outside_pair_gaps": 0.0002943471968796896,
+        "manifest:x21:row_exclusions": 0.0016594274175635386,
+        "manifest:x21:source_radius_positive": 0.894688376221196
+      },
+      "minimum_cell_margin": 1.523243804801929e-12,
+      "minimum_second_manifest_margin": 0.0003913847099594466,
+      "minimum_x21_manifest_margin": 0.0002943471968796896,
+      "nfev": 44,
+      "order_ok": true,
+      "parameters": [
+        1.4000070395350186,
+        0.01148612862660504,
+        0.7590484372516372,
+        1.388910085380012,
+        0.50352924901343,
+        0.5000843369009926,
+        0.6367097306146432,
+        -0.29421432310925416,
+        -0.4115900037865174,
+        -2.7488976172652757,
+        -2.9043318386539925,
+        1.8401764950529855,
+        2.414964626693315,
+        0.9916581565588398,
+        0.9967864402838609,
+        -1.5875971933256066,
+        -1.5995109121419175,
+        -0.7594476086416257,
+        -1.743047006839341,
+        -1.4791157972790276,
+        -1.7035260911723655,
+        -0.7618254452740051,
+        -1.742237560272886,
+        0.9927649434761111,
+        0.7687385301257718,
+        0.9065439108561211
+      ],
+      "second_row_max_normalized_residual": 0.0010373090064507023,
+      "solver_message": "restart 0: `xtol` termination condition is satisfied.",
+      "x21_row_max_normalized_residual": 0.0007230104673581603
+    },
+    "schema": "source-faithful-second-blocker-manifest-oracle-v1",
+    "status": "UNKNOWN_NO_HIT",
+    "timed_out": true,
+    "unsat_claim": false
+  },
+  "unsat_claim": false
+}

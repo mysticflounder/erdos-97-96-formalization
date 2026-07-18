@@ -1,0 +1,124 @@
+{
+  "budgets": {
+    "max_nfev": 1000,
+    "max_tasks": 76,
+    "supports_per_center": 4,
+    "workers": 12
+  },
+  "coverage_claim": false,
+  "elapsed_seconds": 1.6921008749632165,
+  "epistemic_status": "BOUNDED_NUMERIC_SEARCH_NOT_COVERAGE",
+  "results": {
+    "attempted": 76,
+    "numeric_sat_candidates": 0,
+    "relaxed_equality_hits_gate_failure": 66,
+    "unknown_no_hit": 10
+  },
+  "schema": "source-faithful-second-blocker-local-six-dof-v1",
+  "smoke_test": {
+    "minimum_mathematical_cell_margin": 7.558148892663404e-08,
+    "minimum_x21_manifest_margin": 0.00029407111788482817,
+    "second_row_atom_count": 76,
+    "status": "ENCODING_SMOKE_PASS",
+    "x21_normalized_row_residual": 3.7210906648399475e-16
+  },
+  "status": "BOUNDED_LOCAL_SIX_DOF_COMPLETE",
+  "strongest_candidate": {
+    "atom": {
+      "center": "x00",
+      "critical_source": "t0s",
+      "key": "t0s->x00:uS1,t0s,t1s,uI",
+      "seed_spread": 0.004952420545206445,
+      "support": [
+        "uS1",
+        "t0s",
+        "t1s",
+        "uI"
+      ]
+    },
+    "coverage_claim": false,
+    "elapsed_seconds": 0.14470845798496157,
+    "epistemic_status": "BOUNDED_NUMERIC_RELAXED_HIT_NOT_A_CANDIDATE",
+    "local_jacobian_rank": 6,
+    "local_jacobian_singular_values": [
+      6.489181147063931,
+      2.1318179358518576,
+      1.3500949500505752,
+      0.21342694654019223,
+      0.19795068549752798,
+      0.006619832354441607
+    ],
+    "result": {
+      "equality_max_normalized_residual": 1.3782020110333503e-16,
+      "minimum_by_group": {
+        "cell:cap_roles": -0.0005879650926674311,
+        "cell:critical_no_other_K4_audit": -9.99999996356132e-08,
+        "cell:first_row_exclusions": -9.999989075405437e-08,
+        "cell:fixed_cyclic_cell": -0.005038836421657498,
+        "cell:mec_containment": 0.0005044575589618267,
+        "cell:pairwise_distinct": -1e-07,
+        "cell:physical_exact_five_exclusions": 0.046026483417322794,
+        "cell:radius_split": -0.000999999999945155,
+        "cell:reverse_nonreturn": 0.008815728438741212,
+        "cell:reverse_row_exclusions": 0.003931210917549918,
+        "cell:strict_hull": -0.005038836421657498,
+        "cell:support_triangle_nonobtuse": 0.17149393413494707,
+        "cell:unused_row_exclusions": 4.9196985293959885e-06,
+        "manifest:second:deleted_outside_pair_gaps": 0.00046076737805374846,
+        "manifest:second:row_exclusions": 9.818172515671467e-06,
+        "manifest:second:source_radius_positive": 0.8055589933375251,
+        "manifest:x21:deleted_outside_pair_gaps": 4.272933815925023e-05,
+        "manifest:x21:row_exclusions": 8.256496703004604e-06,
+        "manifest:x21:source_radius_positive": 0.8642635757720155
+      },
+      "minimum_cell_margin": -0.005038836421657498,
+      "minimum_second_manifest_margin": 9.818172515671467e-06,
+      "minimum_x21_manifest_margin": 8.256496703004604e-06,
+      "nfev": 16,
+      "order_ok": false,
+      "parameters": [
+        1.3992023926599495,
+        0.028197122379910095,
+        0.7591734895915078,
+        1.3890529610131237,
+        0.5035105944938725,
+        0.5011588970690696,
+        0.6282716681374724,
+        -0.2942250079014195,
+        -0.4115900037865174,
+        -2.7488976172652757,
+        -2.9043318386539925,
+        1.8401764950529855,
+        2.4149963324915555,
+        0.996779977067139,
+        0.9967799770671938,
+        -1.5875971933256066,
+        -1.5995109121419175,
+        -0.7594476086416257,
+        -1.7429551101517697,
+        -1.4791157972790276,
+        -1.7035260911723655,
+        -0.7618254452740051,
+        -1.7429551101517602,
+        0.9927649434761111,
+        0.7687385301145656,
+        0.9065190685616155
+      ],
+      "second_row_max_normalized_residual": 1.3782020110333503e-16,
+      "solver_message": "`gtol` termination condition is satisfied.",
+      "x21_row_max_normalized_residual": 1.284588470169126e-16
+    },
+    "schema": "source-faithful-second-blocker-local-six-dof-v1",
+    "selected_parameter_indices": [
+      5,
+      22,
+      0,
+      1,
+      6,
+      13
+    ],
+    "status": "RELAXED_EQUALITY_HIT_GATE_FAILURE",
+    "unsat_claim": false
+  },
+  "unsat_claim": false
+}

@@ -1014,6 +1014,14 @@ whole-carrier completion.  It shows that one additional source-valid critical
 row does not supply the contradiction, so the unresolved proof must couple
 several such manifests globally or force the aggregate ordinal occurrence.
 
+The first bounded attempt to add a second complete manifest found no accepted
+candidate but did not prove infeasibility.  All 76 source-oriented atoms ended
+`UNKNOWN_NO_HIT`; a six-DOF local solve found 66 exact equalities, each rejected
+by the original cell or complete-manifest replay.  The nearest case preserving
+both manifests lay just across the MEC and strict-convex-hull boundary.  This
+is evidence about the next instrument, not about the theorem: a sound successor
+needs a full-dimensional exact oracle or a geometric boundary lemma.
+
 The parent supplies a source-faithful next packet with two first-apex rows.
 One radius-`r` row contains the retained pair `q,w`; a second row of radius
 `rho`, obtained after deleting both, avoids `q,w`. If `rho = r`, their union
@@ -1047,8 +1055,35 @@ no SAT/UNSAT conclusion.  One finite consequence is already a kernel theorem:
 three distinct period-three sources and three strictly interposed blockers in
 one common cap order force at least five strict-interior points.  Hence the
 all-reverse packet is impossible when that closed cap has exact cardinality
-six and thus only four interior points.  The live adapter remains to be
-formalized, and larger cap cardinalities need a separate argument.
+six and thus only four interior points.  Production
+`ATail/ParentExactFiveExactSix.lean` now implements the live adapter directly
+from `FullParentExactFiveAllReverseData`; the focused build passes with only
+the standard three axioms.  This closes the all-reverse half of the exact-six
+slice.  The arbitrary mutual-omission sibling and larger cap cardinalities
+need separate arguments, so no source `sorry` has yet closed.
+
+For the exact-six mutual sibling, the currently formalized local surface is
+insufficient.  In the distinct-blocker arm an exact `(5,6,6)` incidence model
+retains the canonical deletion-critical rows while both reciprocal source hits
+are absent.  In the equal-blocker arm a kernel-checked finite boundary retains
+exact-six cap order, exact-five support identities, total support locking,
+bi-apex robustness, and a selected-row minimality proxy, yet no distinct third
+row contains the blocker fiber.  Neither boundary is asserted to be a
+Euclidean counterexample.  Their role is narrower: they rule out deriving the
+missing terminal antecedent from selected supports and cardinality alone.  A
+proof must instead use a global repeated outside pair, nonlinear MEC/full-filter
+geometry, a genuinely new bisector center, or a new support triangle forbidden
+by `noM44`.
+
+At exact cap cardinality seven the same ordered packet forces a different
+normal form.  The five strict-interior positions contain three distinct cycle
+sources and three pairwise-distinct blockers; since every blocker differs from
+the two sources it straddles, one blocker equals the third source.  In
+transition-invariant form, some source's actual blocker equals its successor.
+This occurrence and its whole-carrier deletion-critical manifest are
+kernel-checked in scratch, but no current banked theorem makes it false.  At
+cap eight the six roles may all be distinct, so this counting argument cannot
+be advertised beyond exact seven.
 
 The radius split is now sharper.  The two rows are selected four-point classes,
 not exact CSS shells.  In the equal-radius arm the six named points imply K4

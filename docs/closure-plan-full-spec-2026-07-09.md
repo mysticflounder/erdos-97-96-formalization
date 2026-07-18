@@ -615,6 +615,17 @@ minimality claim.  It demonstrates that even one source-valid global
 deletion-critical row is compatible with the complete local regression; the
 next completion/search step must preserve these manifests simultaneously.
 
+The bounded second-manifest follow-up is fail-closed and does not justify a
+finite theorem.  It tested 76 source-oriented second-row atoms while retaining
+the predecessor cell and both complete deletion-critical manifests.  The first
+pass produced no gated candidate and 76 `UNKNOWN_NO_HIT` outcomes.  A
+six-degree-of-freedom follow-up found 66 exact-equality hits, but every hit
+failed the full-cell/manifests gate; ten cases remained unknown.  The closest
+manifest-preserving equality hit crossed both the MEC and strict-hull
+boundaries.  Do not widen the same local numerical batch.  The next sound
+instrument is a full-dimensional exact oracle or a theorem explaining that
+recurrent hull/MEC boundary.
+
 The retained first-apex shell-role surface is now production in
 `ATail/FirstApexShellRole.lean` and
 `ATail/FirstApexShellRoleExtractor.lean`.  The theorem
@@ -1986,14 +1997,44 @@ anonymous n=14 run.
 That source-indexed minimum-profile outer is now a bounded
 `UNKNOWN_FAIL_CLOSED`: its first Z3 check produced no decoded assignment, so
 there is no SAT, UNSAT, or coverage claim.  The same audit isolates a smaller
-kernel-checked exact-six closer.  Three distinct period-three sources with an
-actual blocker strictly between each consecutive pair in one common cap order
-force at least five points in the strict cap interior.  An exact six-point
-closed cap has only four interior points, so that slice is contradictory.  The
-generic ordered-finset theorem uses only the three standard axioms; the
-production adapter from `FullParentExactFiveAllReverseData` plus cap card six
-is still open.  This closes no source `sorry` yet and does not treat cap card
-at least seven.
+kernel-checked exact-six closer.  Production
+`ATail/ParentExactFiveExactSix.lean` now proves
+`false_of_fullParentExactFiveAllReverseData_of_secondCap_card_eq_six` directly
+from the complete `FullParentExactFiveAllReverseData` packet.  Three distinct
+period-three sources with an actual blocker strictly between each consecutive
+pair in one common cap order force at least five points in the strict cap
+interior, while an exact six-point closed cap has only four.  The focused
+`lake-build` passes and the endpoint has only the three standard axioms.  This
+closes the all-reverse half of the exact-six slice; the independent arbitrary
+mutual-omission sibling, cap cardinality at least seven, and the source
+`sorry` remain open.
+
+The exact-six mutual sibling has now been audited against the complete current
+interface.  Exact six does not supply the positive cross-row incidence needed
+by any existing same-cap or critical-fiber terminal.  Both blocker arms have
+sharp regression boundaries: the distinct-blocker `(5,6,6)` incidence model
+retains the canonical rows while the reciprocal source hits fail, and the
+equal-blocker Lean boundary retains exact-six cap order, exact-five identities,
+total support locking, bi-apex robustness, and the row-closure minimality proxy
+without producing a distinct third row.  These are finite abstractions, not
+Euclidean counterexamples, but they rule out another local counting or
+selected-support proof.  Keep the remaining target direct:
+`FullParentExactFiveMutualData L profile -> S.oppCap2.card = 6 -> False`.
+A closing proof must add full Euclidean/MEC/full-filter force, a global repeated
+outside pair, a distinct bisector center through the equal-blocker fiber, or a
+new support triangle contradicting `R.noM44`.
+
+Exact cap seven has also been reduced honestly, but not closed.  The
+kernel-checked scratch theorem
+`exists_source_blocker_eq_transition_successor_of_secondCap_card_eq_seven`
+shows that some physical source has its chosen critical blocker equal to its
+transition successor.  The whole-carrier form preserves the exact critical
+row and full `no_qfree_at` deletion failure at that successor.  No indexed
+consumer makes this equality contradictory: it needs a first-apex return,
+repeated blocker/common outside pair, or another positive row incidence from
+the retained full parent.  At cap eight the strict interior has six positions,
+so the six source/blocker roles may all be distinct; the counting route is
+therefore exhausted above exact seven.
 
 The first bounded consumer audit is now exact for the stored prefix.  After
 quotienting distance terms by selected-row equalities, ordinal Kalmanson
