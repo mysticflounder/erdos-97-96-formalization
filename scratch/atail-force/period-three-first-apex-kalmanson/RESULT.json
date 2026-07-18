@@ -1,0 +1,27 @@
+{
+  "status": "BOUNDED_UNSAT_NOT_SOURCE_COVERAGE",
+  "generated_forward_orders": 1728,
+  "representative_cells_per_order": 6,
+  "exact_checks": 10368,
+  "sat_cells": 0,
+  "unknown_cells": 0,
+  "uniform_unsat_cause": "unsupported fixed shared target pair between the first-apex selected rows and the independent physical exact-five row",
+  "reverse_rows_used_by_uniform_core": false,
+  "period_three_data_used_by_uniform_core": false,
+  "source_convergence_evidence": false,
+  "covered_rho_arms": ["eq", "neq"],
+  "covered_frontier_role_representatives": ["II", "IO", "OI"],
+  "omitted_for_source_coverage": [
+    "31 labelled same-radius row-role assignments",
+    "same-radius T0/T1 overlap sizes 0 and 1 plus fresh completions",
+    "distinct-radius labelled completion-role assignments",
+    "physical exact-five profiles with 4 or 5 strict-cap hits",
+    "cross-surface F0/exact-five/source/blocker identity partitions",
+    "fresh reverse outside targets and cross-row sharing partitions",
+    "legal reverse-center/nonincident-source identifications",
+    "reflected source orientation",
+    "Lean source extraction of the common shared-boundary packet",
+    "global CSS rows outside the three reverse blockers",
+    "global minimality, MEC, noM44, and planar Euclidean realizability"
+  ]
+}

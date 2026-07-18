@@ -1,0 +1,128 @@
+{
+  "schema": "period3-complete-row-compatible-word-qf-lra-v1",
+  "epistemic_status": "EXACT_PROJECTED_QF_LRA_SAT_NOT_EUCLIDEAN_NOT_MEC_NOT_CSS_NOT_LEAN",
+  "boundary": [
+    "first",
+    "t0s",
+    "nS",
+    "second",
+    "x0",
+    "y0",
+    "q",
+    "w",
+    "t0i",
+    "t1i0",
+    "t1i1",
+    "t1i2",
+    "nI",
+    "x1",
+    "y1",
+    "x2",
+    "y2",
+    "surplus",
+    "c0",
+    "b0",
+    "b2",
+    "c1",
+    "b1",
+    "c2",
+    "t1o"
+  ],
+  "complete_row_subsequence": [
+    "second",
+    "x0",
+    "y0",
+    "nI",
+    "c0",
+    "b0",
+    "b2",
+    "c1",
+    "b1",
+    "c2",
+    "nS"
+  ],
+  "result": {
+    "status": "sat",
+    "epistemic_status": "VERIFIED_RATIONAL_QF_LRA_LEDGER_NOT_EUCLIDEAN_NOT_MEC_NOT_CSS_NOT_LEAN",
+    "point_count": 25,
+    "boundary": [
+      "first",
+      "t0s",
+      "nS",
+      "second",
+      "x0",
+      "y0",
+      "q",
+      "w",
+      "t0i",
+      "t1i0",
+      "t1i1",
+      "t1i2",
+      "nI",
+      "x1",
+      "y1",
+      "x2",
+      "y2",
+      "surplus",
+      "c0",
+      "b0",
+      "b2",
+      "c1",
+      "b1",
+      "c2",
+      "t1o"
+    ],
+    "t0": [
+      "q",
+      "w",
+      "t0i",
+      "t0s"
+    ],
+    "t1": [
+      "t1i0",
+      "t1i1",
+      "t1i2",
+      "t1o"
+    ],
+    "physical_five": [
+      "c0",
+      "c1",
+      "c2",
+      "nS",
+      "nI"
+    ],
+    "blockers": [
+      "b0",
+      "b1",
+      "b2"
+    ],
+    "reverse_target_pairs": [
+      [
+        "x0",
+        "y0"
+      ],
+      [
+        "x1",
+        "y1"
+      ],
+      [
+        "x2",
+        "y2"
+      ]
+    ],
+    "ledger": {
+      "r0": "309",
+      "r1": "300",
+      "physical_radius": "197",
+      "reverse_radii": [
+        "213",
+        "191",
+        "213"
+      ],
+      "second_q": "198",
+      "second_w": "201",
+      "minimum_triangle_margin": "1",
+      "minimum_kalmanson_margin": "1"
+    }
+  }
+}

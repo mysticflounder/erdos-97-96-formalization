@@ -28,7 +28,591 @@ per-artifact permission. It does not transfer ownership of the separately
 worked Route-B/LIVE-T1 source and does not authorize destructive or unrelated
 external actions.
 
-### Authoritative strategy correction, 2026-07-17
+### Authoritative bi-apex strategy correction, 2026-07-17
+
+The parent theorem `false_of_twoLargeCaps_commonCriticalMap`, called before
+the LIVE-Q/C slot split, remains the final assembler. The source-verified
+dispatcher must preserve the order already used by physical ingress:
+
+1. run the cap-first classifier and dispatch
+   `OriginalFirstApexSmallCapResidual`, `PhysicalSecondCapSmallResidual`, and
+   `PhysicalSecondApexCriticalResidual`;
+2. only on the branch with `6 <= S.oppCap1.card`,
+   `6 <= S.oppCap2.card`, and physical-second-apex robustness, extract one
+   `CriticalPairFrontier`;
+3. apply `CriticalPairFrontier.originalUnique_or_commonDeletionParent` and
+   dispatch the protected original unique-radius arm; and
+4. only on common deletion construct `R`, then
+   `B : FrontierBiApexRobustResidual R`, while retaining the two cap bounds.
+
+Bare `B` is a valid generic common-deletion endpoint but is not the live
+large-cap boundary: it admits cap-four and cap-five cases already removed by
+step 1. Bundle the retained facts as
+
+```lean
+L : FrontierLargeOppositeCapsBiApexRobustResidual B
+```
+
+with fields `6 <= S.oppCap1.card` and `6 <= S.oppCap2.card`. The active
+public producer is
+
+```lean
+false_of_largeOppositeCapsBiApexRobust
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : False
+```
+
+The exact-five all-reverse leaf now has one owned internal producer: prove an
+aggregate occurrence from this complete `L` packet.  The preferred concrete
+shape is
+
+```text
+exists i a b,
+  reverseOutsidePair K i = {a,b} and
+  dist S.oppApex1 a = dist S.oppApex1 b.
+```
+
+The reverse row supplies a distinct cap-interior blocker equidistant from the
+same outside-cap pair, so production
+`CapSelectedRowCounting.outsidePair_unique_capCenter` closes immediately.
+Equality with the retained frontier pair is a stronger acceptable producer;
+the checked Kalmanson and frontier-pair sinks are alternative consumers, not
+new proof obligations.
+
+The complete source/consumer map is recorded in
+`scratch/atail-force/all-reverse-occurrence-source-map/REPORT.md`.
+
+This is not the previously refuted bare occurrence claim.  The exact finite
+marginals and exact-QF_LRA-SAT 25-role cell prove only that `P + K + T0/T1 +
+allReverse` and linear Kalmanson order do not force the occurrence.  Therefore
+the producer must visibly consume additional data retained by `L`: nonlinear
+Euclidean/MEC geometry, full critical-fiber provenance, or global minimality,
+together with both cap bounds, the original frontier, and `noM44`.  The public
+target stays `false_of_largeOppositeCapsBiApexRobust L`; the period-three
+closer is internal and the common-order draft is plumbing to validate after
+the build gate lifts, not a reason to enlarge the linear quotient.
+
+Do not add a bare-`B`, fixed-initial-`H`, or one-more-conditional-consumer
+theorem.  A `CriticalFiberClosingCore` implementation must choose its useful
+system late and rebase all of `R/B/L`.  The robust-minimality adapter is
+load-bearing only if its fresh-center arm plugs directly into this aggregate
+producer without dropping cap bounds, frontier, `D.Minimal`, or `noM44`.
+`u1TwoLargeCapObstruction` remains secondary plumbing because the live leaf
+does not yet produce its missing equalities.
+
+It must consume the original frontier pair and radius, minimality,
+non-`IsM44`, MEC/cap order, the common-deletion packet, both cap bounds, and
+both physical-apex image omissions. The formerly advertised bare-`B` and
+fixed-initial-`H` closing-core producers are explicitly superseded as
+operationally overconstrained public targets.
+
+`CriticalFiberClosingCore` remains an optional internal implementation. If
+that route wins, choose the critical system after the cap/frontier data:
+
+```lean
+exists_lateCriticalFiberClosingCore_of_largeOppositeCapsBiApexRobust L :
+  ∃ Hfav : CriticalShellSystem D.A,
+    Nonempty (CriticalFiberClosingCore
+      (rebaseFrontierCommonDeletionParentResidual R Hfav))
+```
+
+Production `ATail/CriticalSystemRebase.lean` already rebases the geometric
+frontier, and scratch has the common-deletion rebase. The `R`/`B`/`L` rebase
+ladder is still missing and must be promoted or proved if this internal route
+is used. The direct theorem from `L`, not any fixed-`H` core existence
+statement, is the public mining and closure boundary.
+
+#### First-apex radius split checkpoint, 2026-07-17
+
+On the exact-five all-reverse leaf, retain the original frontier and choose two
+named selected rows at `S.oppApex1`: `T0` contains the frontier pair at radius
+`r`, and the double-deletion row `T1` avoids that pair at radius `rho`.
+Neither row is an exact CSS shell.  The `rho = r` arm gives six named
+co-radial points and hence K4 after every two-point deletion at the first
+apex.  Global CSS and `D.Minimal` add only a nonterminal split: a singleton
+critical shell, a pair-minimal exact-five class, or pair-minimal disjoint
+exact-four shells.  An exact rational 25-point metric regression retains
+global K4, deletion minimality, a total support-locked CSS, and arbitrary
+double-deletion survival while keeping every critical support from containing
+two named class points.  It is not a Euclidean convex/MEC model.
+
+The original `rho != r` fixture violated the live distinct-circle intersection
+bound and is retired.  Its corrected dynamic successor supplies one exact SAT
+representative in each of the six coarse `rho =/!= r` and `II/IO/OI` role
+cells, with every reverse outside pair avoiding both named rows.  These six
+witnesses are not a source-exhaustive census of the 31 labelled same-radius
+role assignments or both boundary orientations.  Each representative encoding
+retains total CSS, global K4, source-by-source deletion failure, exact
+period-three reverse `2+2` rows, pair injectivity and straddling, common cap
+order, triangles, and the live two-circle intersection caps.  It deliberately
+omits the full strict Kalmanson/Euclidean crossing system, planar/MEC
+realization, and `noM44`.
+
+The conditional terminal is exact and unchanged:
+
+```text
+exists i,
+  reverseOutsidePair i ⊆ T0.support ∨
+  reverseOutsidePair i ⊆ T1.support
+```
+
+Either arm closes immediately through `outsidePair_unique_capCenter` using
+the reverse blocker and `S.oppApex1`.  The six-cell SAT result retires this
+occurrence only as a consequence of bare selected-row/finite marginals; it is
+the active aggregate producer from the complete `L` parent when the proof
+uses omitted Euclidean/MEC, full-fiber, or global-minimality data.  Do not
+count cap six, singleton robustness, two selected rows, or T0/T1 union
+coverage alone as closure progress.  One pinned auxiliary blocker map is
+strict-Kalmanson UNSAT even before target negation, but the source does not
+fix that map.  A bounded internal period-three branch may use
+`false_of_periodThree_allReverse_firstApexRows`, taking `P`, `K`,
+`K.period = 3`, and all-reverse membership and deriving its shared cap order;
+it is not the public endpoint.
+The linear version of that implication is now blocked by the fully disjoint
+SAT cell below.  Do not enlarge that quotient.  Fixed-cell planar rank-two
+decisions are diagnostics for the nonlinear aggregate producer; they become
+proof progress only when a resulting Euclidean/MEC or full-fiber fact is
+transported back to the complete `L` occurrence theorem.
+
+The staged schema has exact counts within its audited role normalization: 31
+labelled same-radius assignments, 415 equal-radius completion cells
+(57/172/186 by overlap), 273 unequal-radius cells, seven physical exact-five
+profiles, 140 blocker matchings, and 8,898,608 cross-front skeletons with both
+orientations before 53 reverse-target partitions and named boundary orders.
+This is not yet a source-coverage theorem because the distinguished cap-
+endpoint aliases still need extraction.  Do not materialize the remaining
+product now: one source-legal fully disjoint projected SAT cell already proves
+that more breadth cannot turn the current linear abstraction into a closer.
+
+The shared-order producer itself is now drafted rather than open mathematics.
+`nonempty_reverseCycleSharedCapOrder` chooses one physical-cap
+`StrictCapBlockData`, indexes all actual cycle sources and reverse blockers in
+it, and proves every straddle from `K + allReverse`.  It is period-parametric,
+preserves both orientations and blocker/nonincident-source identities, and
+adds no theorem premise.  The proof draft contains no `sorry`; elaborate it
+when the user-owned `ShellCurvature` build gate clears.
+
+The completed representative run checks all 1,728 generated forward orders
+times six fixed representatives (10,368 exact UNSAT cells, zero `unknown`),
+but its common core is an encoding artifact.  Every representative hard-wires
+one T0/T1 target pair into the independent physical exact-five row; the two
+apex centers and that target pair do not alternate, so one Kalmanson inequality
+plus two row equalities closes before any reverse row or period-three fact is
+used.  Do not mine Farkas certificates from this bank.  Start the repaired
+decision with disjoint and partially identified cross-surface cells.
+
+The fully disjoint starting cell has now been decided exactly and is
+QF_LRA SAT.  It uses 25 mutually distinct roles for T0/T1, the physical
+exact-five data, blockers, and all reverse outside targets, and it satisfies
+all strict triangle and Kalmanson inequalities, all row equalities, common
+order, and two-owner alternation.  Therefore the linear shared-order consumer
+is insufficient even after the identity bug is removed.  This SAT ledger is
+not a planar/MEC realization; use it as the regression gate for the next
+source-backed nonlinear Euclidean/MEC, full-fiber, or global-minimality
+producer.
+
+The direct Cartesian rank-two probe is now a recorded `UNKNOWN`.  The complete
+fixed-cell formula has 46 free reals, 19 shell equalities, 79 exact named
+exclusions, and 575 strict edge-side inequalities; both Z3 and cvc5 timed out
+at 120 seconds.  Removing the exclusions and redundant distinctness did not
+change the verdict, and even the T0/T1-only row prefix timed out at 20 seconds.
+This does not count against the theorem.  It means the instrument is too blunt
+to localize the nonlinear core.  Preserve the formula as a regression gate,
+use a convexity-preserving numerical or homotopy seed, verify any candidate
+against all 981 atoms, and run the prepared MEC extension only after planar
+coordinate feasibility is established.  Remember that this is a projected
+named cell: at least one additional surplus-cap vertex and all global parent
+fields remain outside it.
+
+The bounded numerical follow-up used the available 24 cores twice.  The first
+192-start campaign tested the original word from affine-regular and exact
+nine-point cycle-core seeds.  A second, independently source-audited word moves
+one reverse pair to contain the banked exact rational complete-`b0`-row model;
+its complete abstract-distance ledger is again exact QF_LRA SAT.  Another 192
+starts used affine-regular and exact complete-row seeds.  Both campaigns found
+zero substitution-verified planar hits.  Record this only as `NO-HIT`; do not
+infer UNSAT or closure.  Retire further SLSQP multistarts.  If continuing the
+local rank-two route, use a genuinely different interior-point/support-line or
+homotopy chart and require the same full post-check.
+
+The prose round-13 handoff tightens that next producer's domain: a reverse
+critical row omits `S.oppApex2`, and its two nonphysical-cap targets lie in the
+other two open blocks' union.  That statement is not yet a Lean-imported
+theorem, and it does not eliminate the recorded `rho = radius`, `IO` witness.
+Do not route through prose Lemma 202 without first producing a shared
+T0/T1/reverse target; do not route through Corollary 203 using a reverse row,
+because the new normal form proves that row omits the required opposite apex;
+and do not invoke Lemma 237 without producing the complete exact-transverse
+row population it assumes.
+
+For periods four and five, factor out the uniform local theorem before any
+further census: a source that is a strict local extremum in the shared cap
+order has disjoint incident reverse outside pairs.  The exact finite order
+audit leaves only 2 of 6 normalized period-four source orders and 6 of 24
+period-five source orders; including all source-faithful blocker placements
+leaves 34 and 228 cells.  These are finite-order residuals, not kernel-checked
+theorems or contradictions.  The remaining longer-cycle consumer must use a
+full shared-order metric, a return incidence, or additional MEC/exact-shell
+information.
+
+The 101-survivor robust-all-center run is a fixed fourteen-role
+`PROFILE = (8,4,5)` theorem-discovery surface. Retrospective replay with both
+omissions rejects those stored shadows, and a fresh query ended `UNKNOWN`, but
+neither is live coverage. There is no extraction from an arbitrary
+`FrontierBiApexRobustResidual`, and the fixed profile has physical
+`oppCap2.card = 4` whereas the live robust endpoint has already routed that
+case away and lies in the cap-at-least-six regime.
+
+Production `ATail/BiApexBlockerMultiplicity.lean` proves the sharp finite
+consequence of the corrected endpoint: either two distinct blocker values
+have nontrivial fibers or one blocker fiber has at least three sources. The
+initially advertised `Fin 12` regression is already Kalmanson-dead: rows 0 and
+1 share `{2,3}` after the order `0 < 1 < 2 < 3`, so equality quotienting makes
+the strict row-0 comparison a self-loop. Full linear MUS extraction returns
+exactly the two row equalities and that one Kalmanson inequality. Production
+`false_of_two_selected_rows_shared_late_pair` now proves the cancellation.
+This is a valid generic consumer, not evidence that the fixed profile is the
+right coverage object. The replacement decision test must range over the
+whole cyclic carrier and retain all selected rows, both blocker omissions,
+minimality connectivity, and the generic incidence/Kalmanson consequences.
+Finite UNSAT is useful only after a faithful Lean extraction and checked
+certificate; a verified SAT shadow identifies the next missing geometric
+field.
+
+The faithful extraction is now checked in scratch:
+`nonempty_wholeCarrierBiApexKalmansonSurface` constructs exactly this surface
+from every live `FrontierBiApexRobustResidual`, with arbitrary carrier
+cardinality and no fixed profile or role names. Thus the active unknown is
+uniform global equality-quotiented ordinal/Farkas coverage at card at least 11; the extraction itself
+is no longer an open adapter.
+
+Do not make `false_of_two_selected_rows_shared_late_pair` the sole coverage
+target. A verified whole-carrier card-11 structural model avoids every cyclic
+instance of that pattern while retaining connectivity, incidence bounds, and
+both blocker omissions. Its smaller pinned analogue is still killed by a
+three-row generic ordinal self-loop. Therefore the two-row theorem remains one
+bank consumer.
+
+The independent whole-carrier ordinal audit closes the next strategy question
+negatively: at card 11 there is a verified structural model retaining the two
+incidence bounds, cyclic shared-pair separation, strong connectivity, and both
+blocker omissions while satisfying every active one-row ordinal comparison.
+Local one-row cancellation coverage is therefore blocked. Exact replay rejects
+that table with one Kalmanson inequality plus a six-center equality chain. A
+second verified card-11 model survives every single inequality after global
+equality quotienting, so that coverage target is also too weak. Full LRA kills
+the survivor with four strict Kalmanson inequalities and three selected rows;
+the all-weights-one packet is kernel-checked as a size-independent terminal.
+Full multi-inequality Farkas coverage was therefore used as the next decision
+gate; the corrected audit below now provides its verified survivor.
+
+The coverage audit now has a fast exact bounded loop: a direct CaDiCaL outer
+encoding with independent structural replay, followed by exact rational full-
+LRA/Farkas verification. Its first runs exposed a bank-normalization defect.
+Saved cores retained unused ambient gap vertices, so raw counts `231 -> 262 ->
+435` included repeated active theorem shapes at different spacings. The cuts
+are sound, but those counts are not convergence evidence. Rank-normalizing to
+the roles actually used by each contradiction collapses the 262 checkpoint to
+215 transported types; the checked interlocking shared-pair additions give a
+217-type corrected bank. The redundant continuations were stopped.
+
+The corrected consumer alphabet is small. In the audited checkpoint, 87/88
+full-LRA schemas contain a Kalmanson-infeasible simple row-equality cycle of
+length at most seven; the residual is the coupled order
+`A < B < X < C < D < Y`. More strongly, full-row alternate-core search
+compresses all 203 independently verified card-11 models to one arithmetic
+shape: two strict Kalmanson inequalities plus three row equalities, with unit
+coefficients. Emit the rank-normalized smaller cuts and use one generic three-
+pair cancellation consumer; do not formalize the larger first-oracle cores as
+separate targets. The exact emission has 20 reflection-canonical six-
+membership cuts, 19 new relative to the raw 435 bank; they subsume 156/435 raw
+schemas and independently replay against all 203 source models.
+
+The corrected 217-type audit decides that conjecture negatively at card 11.
+Its independently verified structural survivor has no K1/K2 collision, no
+coupled interlocking pair, and no infeasible simple equality cycle of lengths
+three through seven across 64,753 normalized cycle types. The same row table
+has an independently checked exact rational metric satisfying all positivity,
+triangle, strict Kalmanson, and selected-row equality constraints. Therefore
+pure Kalmanson/Farkas production is blocked on the historical bare-`B`,
+card-11 structural surface. That result does not decide `L`: the cap-six
+bounds imply `14 <= D.A.card`, and the first live profile is `(5,6,6)` with
+the two physical apices at cyclic gap four, up to reversal. A targeted
+card-14 full-linear decision is therefore a valid regression for the corrected
+surface, but it must record that the generic encoder still omits the cap
+partition, third apex, MEC facts, and cap-local row bounds.
+
+The first cap-aware successor now fixes exactly the finite cap omission at
+the minimal profile. With apices `0,4,9` and cap sizes `(5,6,6)`, it adds the
+seventeen proved center-cap bounds and six valid endpoint sharpenings, loads
+no historical schemas, and passes independent semantic smoke gates. Its
+30-second and 60-second probes learn 73 and 169 distinct metric-dead order
+schemas respectively, but both remain `UNKNOWN` under their wall budgets.
+This neither supports SAT nor proves UNSAT. The continued anonymous schema
+stream is a stop signal for this object: the next extractor must retain the
+actual frontier sources, physical-apex deletion rows, and common critical-map
+provenance. The public theorem remains direct
+`false_of_largeOppositeCapsBiApexRobust L`; if a closing core is used, choose
+`Hfav` late, rebase `R`/`B`/`L`, and produce the core only for that rebased
+packet.
+
+The current 555/654 bank's strongest reusable sink is Lemma 81:
+`W < F < P < X < Z`, with `{F,X,Z}` in the `W`-row and `{P,X}` in the
+`Z`-row. The fixed bank does not produce this motif on `L`. The exact
+card-14 `(5,6,6)` incidence/order regression retains the physical classes,
+common-deletion rows, blocker omissions, source-locked critical rows, and
+sharp cap-local row bounds while avoiding every complete Lemma 81 placement.
+Therefore any Lemma 81 route must prove a genuinely positive actual-row
+overlap and the five-role order from omitted Euclidean/full-filter/MEC or
+minimality data; the consumer itself needs no further mining.
+
+Source normalization removes all but one of the apparent row-incidence gaps.
+For a repeated blocker fiber with common blocker `Z`, production gives both
+fiber sources `P,X` in the complete `Z`-row. The critical row sourced by `Z`,
+whose center is `W`, automatically contains `Z`. The first new incidence is
+therefore exactly `X` in that `W`-row; after it is obtained, the five-role
+order is still separately load-bearing. The card-14 regression contains one
+such return hit and two possible extra `W`-row roles but no Lemma 81 order.
+Neither `B.secondApex_robust` nor the two cap-six bounds proves either field.
+
+The frontier-deletion survival cover is already proved and consumed as far as
+it can go. The card-at-least-fourteen producer constructs a source-faithful
+common-deletion packet with `S.oppApex2` as one center, and the checked uniform
+consumer reduces it to swapped `FA-UNIQ4` or
+`FullyDeletionRobustAt D S.oppApex2`. Since `L` already contains the robust
+outcome, another survival-cover or common-deletion iteration is circular.
+
+The next source-faithful decision surface is the robust second-apex radius
+classification. It has exactly two arms: one positive radius class of
+cardinality at least five, or two distinct positive K4 radii with disjoint
+selected four-supports. Cap four is contradictory and cap five feeds protected
+swapped `FA-UNIQ5`; at cap at least six neither arm is excluded by present
+marginal cap/MEC bounds. Prove direct `False` from both arms while retaining
+the full `F`/`R`/`L` provenance, first-apex robustness, the global critical
+map, minimality, and `noM44`. Do not mine another selected-four marginal.
+
+The dependency-clean refinements below this classifier now determine the
+immediate proof object. Generic common-deletion, shared-pair, singleton, and
+fresh-robust-center outputs are recurrence edges unless they carry a genuine
+rank/nonreturn theorem. The large-radius exact-five output instead reaches a
+source-exact physical omission cycle, split exhaustively into mutual omission
+or all reverse membership. The all-reverse leaf has period three through five,
+exact `2 + 2` cap splits, source/blocker provenance, strict same-cap straddling,
+injective blocker centers, and injective two-point outside residuals. Attack
+that full-parent leaf directly:
+
+```text
+FrontierCoupledExactFivePhysicalCycleParentResidual H Flarge
++ all_reverseMembership
++ original FrontierLargeOppositeCapsBiApexRobustResidual B
+-> False.
+```
+
+Do not attempt a fixed-apex bisector-only proof. The already kernel-checked
+exact rational `DirectedCycleCountermodel` realizes a period-three common
+physical-apex source circle with the three distinct cap-straddling bisector
+centers in strict-convex nonobtuse MEC geometry. It omits the two outside
+targets per blocker row and the total critical map; those omitted fields, not
+the co-radial chord cycle, must carry the contradiction.
+
+Do not nominate a repeated outside pair as an intermediate packet: the
+existing same-cap outside-pair theorem consumes it immediately. The actual
+missing mathematics is an aggregate multirow cap/curvature packing collision
+or a complete named U5 antecedent. The user-owned `ShellCurvature` work can
+discharge a chart/lift adapter, but it does not replace that aggregate
+consumer. Closing this leaf is a real nonrecursive reduction, not complete
+parent closure; retain the mutual cycle arm, unequal two-radius core, localized
+nonreturn, and retained-parent coupling as separate downstream fronts.
+
+The marginal-curvature aggregation route has now been tested exactly and is
+negative. A single rational `2*pi` turn ledger supports three distinct nested
+outside intervals while satisfying every current per-row quarter-turn and
+middle-interval inequality, so no sum of those scalar outputs can close the
+cycle. The tempting one-point one-row statement is false, and the stronger
+cycle-core version is false too. An exact rational ten-point model retains the
+five-point physical-apex class, all three cap-straddling directed-cycle
+blockers, one outside-cap target on the first blocker circle, nonobtuse Moser-
+disk containment, and strict convexity. Thus the separate 30,000-core one-
+target no-hit was a sampling artifact, not a surviving theorem signal. The
+exact rational eleven-point extension now adds that second target and realizes
+one complete exact `2 + 2` row on the unchanged full period-three cycle core.
+Thus the next honest local theorem surface is simultaneous completion of the
+remaining two rows; periods four and five and the remaining parent arms still
+require their own reductions.
+
+The complete-one-row ordinal/Kalmanson relaxation is exactly SAT in both legal
+complementary-chain order types. Its rational ledgers satisfy every triangle,
+every strict Kalmanson inequality, the named row equalities, and exact class
+exclusions. The same-side order is also realized by the exact eleven-point
+Euclidean/MEC model, so one complete row is retired outright. The active local
+target is an exact decision of all three complete source-indexed rows
+simultaneously. If that surface is realizable, the route must escalate to
+global critical/deletion coupling.
+
+Do not encode the three complete rows as six pairwise-distinct outside points.
+Production proves that each pair has two members and that the three unordered
+pairs are distinct; it does not forbid two rows from sharing exactly one
+target. The simultaneous-row census must retain those overlap schemas and
+their cross-center circle equalities.
+
+Within its fixed anchored order, the exact all-three-row distance census does
+so. It enumerates 2,214 quotient cases over three through six actual outside
+targets. Ordinal/Kalmanson closure
+rejects 1,224, but all 990 survivors have exact rational full-LRA ledgers. The
+linear route is therefore exhausted as a universal closer. Reuse its UNSAT
+cases as pruning, but direct theorem discovery at the survivors toward planar
+Euclidean/MEC constraints or the retained global critical/deletion packet.
+
+Within the audit's fixed anchored chiral order, the exact UNSAT split gives a
+local normal form: at least five outside vertices are required, and at
+union-cardinality five the sole shared target is confined to the anchored
+row-`0`/row-`1` overlap. The 1,224 cores compress to the two conditional lemmas
+`Disjoint P0 P2` and `Disjoint P1 P2`, plus generic `Finset` arithmetic; no
+generated case table is needed. But this is not yet promotable from the live
+cycle alone: current source has three per-row `ReverseRowCyclicRoles` packets,
+not the shared boundary order assumed by the census. One common cap block can
+be extracted, but its honest order theorem has forward and reflected branches;
+the identity of the possible overlapping pair changes between them. The public
+`StrictCapBlockData` also omits the global CCW evidence expected by the current
+Kalmanson theorem. Prove the orientation disjunction and a pointwise
+`StrictCapOrder` consumer before treating the normal form as on-spine coverage.
+The pointwise consumer is now proved on paper for both orientations; its only
+missing Lean surface is a pointwise wrapper of the already-proved extreme-pair
+hull-line intersection lemma. It yields one outside pair disjoint from both
+others, not a contradiction.
+
+A bounded Euclidean follow-up covers every target-union graph type of
+cardinality `3`, `4`, `5`, and `6` with exact-equality parameterizations. Every
+branch returned `UNKNOWN_NO_HIT`; no SAT point reached rational reconstruction,
+and there is no UNSAT or continuous-coverage claim. The conditional fixed-order
+systems have generic dimensions `11` and `13`, and representative Z3/cvc5
+probes return `UNKNOWN`, so neither more blind numerical search nor equality-
+only Gröbner mining is justified. The fallback local route is: prove the shared
+boundary-order packet, derive the two overlap exclusions, then use interval/CAD
+on a complete five-target order without dropping antipodal chart cases.
+
+The direct first-apex return also fails throughout this linear abstraction.
+After correcting the apex map to `right = S.oppApex1`, all 990 stored LRA
+survivors make all three reverse outside pairs non-co-radial from `right`; all
+eight strict direction cells have independently replayed exact rational
+witnesses. Pure Kalmanson cannot produce the terminal antecedent.
+
+The terminal parent target is an original-frontier return occurrence:
+some reverse outside pair equals `{F0.pair.q, F0.pair.w}`, or is at least
+co-radial from `S.oppApex1`. The reverse blocker and first apex would then be two
+distinct centers in the same cap through the same outside pair, and
+`outsidePair_unique_capCenter` closes the all-reverse leaf immediately. No
+existing total-critical-map, K4, minimality, `noM44`, or period-4/5 theorem
+produces this occurrence. Exact finite marginal and rational local-geometry
+regressions both avoid the return. The former retains current CSS-support,
+fiber, robustness, cap-size, frontier, and reverse-row marginals; the latter
+retains convex/MEC geometry, both cap bounds, one complete row, and the retained
+pair marginal. The finite model already includes first-apex K4/double deletion
+and a support-locked total CSS abstractly. Hence the OPEN producer contract must
+cross-couple the Euclidean/MEC/all-row order with that global critical/deletion
+data or minimality. Do not mine it from marginal counts, one-row cap geometry,
+or an uncoupled invocation of either layer.
+
+The next source-valid cross-system packet adds two first-apex four-rows. `T0`
+has the retained radius and contains `F0.pair.q,w`; `T1` comes from first-apex
+double deletion and is disjoint from `{q,w}`. If its radius `rho` equals the
+retained radius, the ambient class has at least six distinct points; otherwise
+`T0` and `T1` are disjoint four-shells. The frontier pair has three legal cap-
+role cases, while completion points have no fixed order or reverse-row identity.
+Couple this honest role domain to the all-reverse rows; do not collapse it to a
+guessed fixed-slot schema.
+
+The existing `matchingSourceReturn` / `jointDeletion` leaf is a fallback test,
+not the primary route. It does make one named source deletable at four distinct
+centers, but none of those q-deleted rows is forced to contain a prescribed
+named pair. Likewise the endpoint cross-hit leaf still lacks its order. Use
+either only if a new global robust-radius argument supplies the missing
+incidence or placement with an immediate checked consumer.
+
+The next geometric audit is now complete for this survivor. It is not a
+planar Euclidean row cell. There are two independent theorem-bank explanations:
+
+- it contains three reflection-canonical outer embeddings of the five-role
+  front-before-isosceles pattern `WF = WX = WZ` and `PZ = XZ`; the generic contradiction is the
+  production theorem
+  `FivePointCircleIsoscelesOrderBridge.false_of_core_of_ccw`, already wired
+  into both alternatives in `GeneralCarrierBridge`; and
+- rows `0,2,4,8,9` instantiate the sibling-bank theorem
+  `u5_qcritical_aux_base_collision_metric_incompatibility`; a local exact-name
+  port also elaborates in scratch with only the standard three axioms.
+
+The first pattern matches all 230 stored 555/654 cores in the current general-
+theorem report. Therefore broad 555/654 witness mining remains stopped: it
+would mostly rediscover literal embeddings of an already identified theorem.
+The 218-schema card-11 outer problem is now exactly decided. Its 210 row-zero-
+support cubes form an independently replayed exhaustive/disjoint partition;
+all 210 raw DRATs check and all retained compact proofs independently recheck.
+This is a bounded card-11 coverage result and closes no source `sorry`.
+
+Coverage by the current 218 transported schemas is false on the outer
+surface: independently substitution-checked carriers at cards 12 and 13 avoid
+the bank. Both are nonetheless killed at the first geometric layer by
+distinct, previously omitted transports of production
+`ATailOrdinalKalmansonCycle.false_of_two_cycle`: eight roles at card 12 and six
+roles at card 13. Two exact QF_LRA encodings and an independent Farkas replay
+check each core, and neither schema embeds in the other carrier. These are
+sound missed-schema repairs, not uniform coverage. A theorem-faithful quotient
+audit identifies the omission: the 218/262 checkpoints were mined inventories,
+not closed under cyclic-cut transport of `false_of_two_cycle`; one six-role
+family contained five of six cuts. A scoped 292-schema repair adds 74 records
+and hits the saved carriers 4 and 14 times respectively. Because the literal
+schemas remain path-length- and carrier-dependent, this is per-carrier CEGAR,
+not a justified finite all-cardinality bank. More card-11 cubing is not
+load-bearing. The primary sufficient theorem is cap-strengthened and
+bi-apex-parent-scoped:
+`false_of_largeOppositeCapsBiApexRobust L`. It may choose useful rows or a
+favorable rebased critical system internally while retaining both opposite-
+cap-at-least-six facts and both physical-apex robustness facts. The card-12
+carrier is only a regression gate for overweak abstractions.
+
+The schema-to-geometry adapter is no longer open. Scratch
+`LiveFrontSchemaAdapter.lean` kernel-checks both the forward human-order and
+the exact reflection-canonical bank representation against the live whole-
+carrier row/indexing fields, with only the standard three axioms. The missing
+antecedent is no longer described as pure uniform schema coverage, because the
+cards 12 and 13 carriers refute coverage by the current bank. If the metric-core route is retained, the
+honest target is `∃ rows, ShellMetricCoreAlternative rows H`, not a statement
+about every arbitrary `FaithfulCarrierPattern`. The preferred direct target is
+`false_of_largeOppositeCapsBiApexRobust L`; both must use additional
+Euclidean, MEC/cap, exact-radius, deletion-critical, or common-critical-map
+information. A choice-late critical-system existential is admissible only as
+an internal implementation derived through the production rebase interface
+while retaining the same cap-strengthened branch boundary.
+
+The authoritative `/opt/nfs` geometry ledgers do not yet supply that theorem.
+Their O17--O19 matrix is explicitly open: size five is closed, the two
+remaining six-center `000111` systems are reduced to sixteen A/B words each,
+and arbitrary mixed/dense endpoint-deficit-at-least-three sinks remain. Use
+those results as candidate geometric restrictions and scope guards, not as a
+completed arbitrary-live producer.
+
+Checked branchwise scratch now gives the exact limit of the finite
+multiplicity theorem. In both disjuncts one can select an actual blocker row
+through two distinct sources and a source outside that exact four-shell whose
+actual blocker is different. In the larger-fiber arm the three same-blocker
+sources support-lock to one exact four-shell; cap classification forces either
+a strict surplus-cap source when the blocker is the remaining Moser vertex, or
+a source outside the blocker's strict cap when the blocker is interior. None
+of these reductions alone supplies the ambient-apex equality, cyclic order, or
+cross-row membership needed by the specialized Kalmanson terminal. Use them
+to interpret the verified higher-cardinality carriers, not to fork the primary
+geometric regression route.
+
+The original unique-radius arm remains a protected `FA-UNIQ4/5` dependency.
+The critical physical-second-apex arm remains a protected swapped
+`FA-UNIQ4` dependency. The retained-radius, strict-interior, collision,
+matching, endpoint, source-return, and cycle trees below are checked fallback
+libraries only; they are no longer the primary parent decomposition.
+
+### Superseded refined-common-deletion strategy record
+
+Any “active,” “current,” or “next theorem” wording inside this preserved
+record is local to the superseded checkpoint. The authoritative route is the
+bi-apex strategy immediately above.
 
 The parent theorem `false_of_twoLargeCaps_commonCriticalMap`, called before
 the LIVE-Q/C slot split, is the final assembler and wiring boundary.  It is no
@@ -112,8 +696,9 @@ the primary target. The producer must choose its fiber after seeing the full
 parent geometry:
 
 ```lean
-nonempty_criticalFiberClosingCore
-    (R : FrontierCommonDeletionParentResidual F) :
+nonempty_criticalFiberClosingCore_of_biApexRobust
+    {R : FrontierCommonDeletionParentResidual F}
+    (B : FrontierBiApexRobustResidual R) :
     Nonempty (CriticalFiberClosingCore R)
 ```
 
@@ -126,21 +711,52 @@ the collision pair `C,K` outside one ordered cap and two distinct cap centers,
 with the second center source-realized either as `O` or as `centerAt J` with an
 actual `J`-critical shell through `C,K`. The routine consumer
 `false_of_criticalFiberClosingCore` closes both constructors.
-Production `ATail/CriticalFiberClosingCore.lean` implements this contract and
-consumer with core axioms only. The `Nonempty` producer above remains a
-sufficient closing theorem, but the constructor audit does not by itself show
-that these two terminals exhaust the full parent geometry.
 
-The active intermediate theorem is now the adaptive retained-radius blocker
-selector. Restrict `H.blockerVertex` to sources in the retained first-apex
-radius class. The exact output is either a repeated blocker in that class or
-an injective blocker matching across the whole class. A retained collision
-already packages a complete source-faithful critical fiber and makes
-`S.oppApex1` a second equidistant center for its two sources. The matching arm
-retains at least four distinct actual blockers and must be consumed with full
-geometry. Production `ATail/CriticalFiberRetainedRadiusSelector.lean` now
-implements this exact dichotomy and proves the collision sources' mandatory
-boundary alternation.
+This displayed bare-`B`, fixed-system producer is a preserved historical
+checkpoint. It is propositionally sufficient but does not define the current
+mining object; the authoritative target is direct
+`false_of_largeOppositeCapsBiApexRobust L`, with late favorable-system choice
+allowed internally only after rebasing the full parent packet.
+Production `ATail/CriticalFiberClosingCore.lean` implements the core structure
+and its consumer with core axioms only. The historical `Nonempty` producer
+above remains a propositionally sufficient theorem shape, but the constructor
+audit does not show that these two terminals exhaust the full parent geometry
+or justify fixing the initial critical system.
+
+The B-indexed input is load-bearing, not cosmetic. An R-only producer cannot
+use `B.secondApex_robust` and therefore asks for a strictly stronger theorem
+than this strategy needs. The endpoint/PG136 fallback does not repair that
+loss: production lacks its coarse six-role order, both surviving nested tails
+have exact rational strict-convex local realizations, and pair-preserving row
+selection reaches only known nonterminals plus a two-companion double-hit
+residual.
+
+The current parent dispatcher is the stricter
+`ATail/RetainedStrictInteriorPairSelector.lean`.  It selects the two points
+guaranteed in the strict first-opposite-cap interior before comparing actual
+blockers. Equal blockers give a `RetainedInteriorBlockerCollision`: both
+sources and the blocker are in that strict cap, and the common exact shell
+meets the cap in exactly those two sources. The blocker is distinct from both
+sources, so those three strict-interior points force cap cardinality at least
+five and hence an unconditional origin-tagged fresh common deletion. Distinct blockers feed the existing
+directed-omission and large-cap consumer. This supersedes the adaptive
+whole-radius collision/injective split as the primary parent route; that older
+selector remains a reusable diagnostic and terminal library.
+
+Production `ATail/LocalizedCollisionMutualOmissionCycle.lean` now consumes
+the localized fresh deletion further. One collision source and the fresh
+source mutually omit one another's actual critical rows, have distinct actual
+blockers, and carry both source-exact common-deletion packets. This is the
+strong collision terminal; the anonymous packet is no longer the parent-facing
+object.
+
+The scratch cap-order audit now gives the exact next split without promoting
+another consumerless structure. The fresh actual blocker is either outside
+the first opposite cap or, if it lies in that cap, the two complete critical
+rows have disjoint outside-pair banks and contribute at least two distinct
+outside pairs. The off-cap arm needs cross-cap localization; the on-cap arm
+needs coverage/capacity or a strict Kalmanson cycle. Do not infer a same-pair
+collision: convex cap order proves the available pair banks are disjoint.
 
 Production `ATail/FirstApexCriticalFiberRow.lean` now supplies the mandatory
 Euclidean gate
@@ -156,9 +772,92 @@ triple violates cyclic shared-pair separation. The general injective arm is
 therefore unresolved. A repaired `Fin 12` regression does enforce the
 two-circle bound and every generated cyclic shared-pair separation while
 retaining an injective blocker map on the robust card-five class. It is exact
-within the finite abstraction, not Euclidean. Thus the corrected abstraction
-does realize the arm, and its next consumer must add cap/MEC, complete-filter,
-or no-`IsM44` force rather than another row-overlap or bare-order constraint.
+within the finite abstraction, not Euclidean, and it is now rejected by the
+existing formalized metric bank: transitive row equalities instantiate a
+`DuplicateCenterCore` on triple `0,1,3` with centers `2,8`. The checked Lean
+fixture proves `no_planar_realization`. Thus the corrected abstraction does
+not establish a live matching residual. The next matching audit must include
+the full metric and ordinal/Kalmanson bank before escalating to cap/MEC,
+complete-filter, or no-`IsM44` force.
+
+The general matching arm now has a production geometric reduction despite the
+fixture correction. `ATail/RetainedMatchingGeometricReduction.lean` proves
+that injectivity selects two distinct retained sources in the strict first
+opposite-cap interior with distinct actual blockers and one directed cross
+omission. The omitted partner survives deletion at the other source's blocker
+and, by first-apex robustness, at the first apex; this is packaged as an
+existing `CommonDeletionTwoCenterPacket`. The final packet also records that
+`noM44` forces one opposite cap to have cardinality at least five. Consume
+`RetainedMatchingGeometricReduction` directly; do not restart anonymous
+matching-graph mining.
+
+Production `ATail/RetainedMatchingLargeCapConsumer.lean` consumes that packet
+into three exact outcomes. Reverse omission yields paired source-faithful
+common deletions. Reverse hit localizes the reverse blocker and its exact
+two-point shell/cap intersection; if the first cap is large, a third strict-cap
+point outside that shell yields a fresh common deletion.
+
+Production `ATail/RetainedMatchingCommonDeletionNormalization.lean` also
+renews the localized reverse hit when the other opposite cap is large.  Its
+strict interior has at least three points, whereas the four-point reverse
+shell has exactly two points outside the first cap, so a fresh second-cap
+point lies outside that shell and yields another `CommonDeletionTwoCenterPacket`.
+All three intermediate outcomes therefore normalize to one source-valid
+common-deletion surface.  Do not assign a separate reverse-hit Kalmanson lane.
+Production `ATail/RetainedMatchingCommonDeletionCycle.lean` now retains two
+consecutive source-exact common-deletion edges and classifies their endpoint:
+source return; an origin-tagged critical fiber with forced `RowHit`; or three
+pairwise-distinct consecutive actual blockers. Production
+`ATail/RetainedMatchingSourceReturnRadiusSplit.lean` refines source return to
+joint three-center deletion or an exact-four radius partition and constructs
+concrete U5 ingress in either case. Production
+`ATail/RetainedMatchingEndpointContinuation.lean` refines the endpoint fiber
+to a genuinely fourth-source cross hit or fresh common deletion, and the
+three-distinct path to a closing cross hit or source-exact three-cycle. The
+middle-source cross hit is impossible because that row already omits the
+endpoint. `ATail/RetainedStrictInteriorParentNormalForm.lean` combines these
+with the localized mutual-omission cycle. The remaining theorem must close
+the resulting seven concrete leaves while retaining full parent geometry and
+the second-apex/original-frontier link; a generic cycle or packet alone admits
+the checked regressions. The source-return U5 bank audit proves there is no
+direct imported match: joint critical intersection has card at most one, and
+exact-four critical/deleted rows have singleton / pair / forced-absence
+incidence. U5 remains a bounded center/support-confinement fallback, not a
+current terminal.
+Production `ATail/FrontierCoupledStrictInteriorNormalForm.lean` now supplies
+the direct assembler's exact input.  From the same concrete parent residual,
+`nonempty_frontierCoupledStrictInteriorNormalForm` carries both the flat
+`RetainedStrictInteriorTerminalSurface` and
+`FrontierCommonDeletionRefinedNormalForm`.  Consumers must analyze the seven
+strict-interior leaves jointly with the retained original frontier pair,
+second-apex row, and refined off-radius/on-radius/companion escape arm.  Do
+not project to `nonempty_retainedStrictInteriorTerminalSurface` alone and then
+attempt to reconstruct that provenance later.
+
+The first coupled-leaf audits now determine the next exact objects.  The
+collision off-cap arm localizes the fresh blocker to strict surplus or strict
+second-opposite cap and constructs `FreshBlockerOffFirstCapU5Ingress`; the
+fresh actual row's intersection with `{q} ∪ T` is now exactly classified as
+empty, one dangerous point, or two distinct dangerous points, with `q`
+excluded. Global K4 supplies an exact q-deleted/q-critical row at the named
+other collision source, and both blockers have exact named-dangerous or
+selected-candidate role splits. The remaining U5 producer is `p` plus another
+dangerous membership in that named row, a second named directed row hit, or a
+direct cap/MEC contradiction in the three intersection branches. The collision
+on-cap arm has 72/84 linear orders UNSAT, but the twelve serial orders admit a
+kernel-checked exact metric satisfying all triangle, Kalmanson, cap-nonacute,
+and Ptolemy inequalities.  Its negative planar Gram determinant shows the next
+load-bearing target is row Ptolemy equality/planar rank/two-circle geometry,
+not another linear Kalmanson pass.  Source return now has an exact physical
+second-apex bridge with four outcomes (first critical, second critical, joint
+double deletion, disjoint exact shells), and
+`SourceReturnPhysicalResidual.lean` consumes all four.  Critical cases route
+to protected swapped FA-UNIQ4; disjoint shells give full second-apex
+robustness; joint double deletion splits on robustness, with its nonrobust
+side again routing to swapped FA-UNIQ4.  Its selected sources have unequal
+second-apex radii, so recovering K-A-PAIR from them is formally impossible.
+The source-return research surface is therefore only the existing robust
+second-apex consumer plus protected swapped FA-UNIQ4.
 
 That normal form is now production code in
 `ATail/FirstApexCriticalFiber.lean`.
@@ -201,27 +900,63 @@ source lies outside the blocker cap, its chosen blocker is pinned to the
 existing common blocker.  In the both-sources-inside arm, the two fresh
 complement points lead only to common-blocker pinning, a distinct
 cross-bisector forced outside the cap, or mutual omission.  None supplies the
-same-cap second center.  Consequently a same-cap terminal is admissible only
-when its repeated pair is the collision source pair `C,K` itself and its
-second center is source-realized.
+same-cap second center.  This originally left only the collision source pair
+`C,K` with a source-realized second center as a syntactically admissible
+same-cap packet; the corrected audit below shows that even this is not a
+producer target for the retained collision.
 
-The ordered and same-cap constructor audits make the remaining fields exact.
-For a `RowHit`, the ordered arm still needs `K` in the actual `J`-critical
-shell—equivalently deletion of `K` blocks K4 at `H.centerAt J`—and the cyclic
-subsequence `O,A,X,J,C,K`. The same-cap arm exists exactly when either `O`, or
-an actual `centerAt J`, is a distinct source-faithful second center in the
-same cap as the common blocker while both collision sources lie outside.
-`BothOff` cap localization proves neither alternative. Treat both constructors
-as optional immediate terminals; close the retained collision and injective
-matching arms directly if their exact producer fields are not forced.
+The corrected constructor audits make the remaining fields exact. Every
+retained collision has a production `RowHit`, but the ordered subsequence
+`O,A,X,J,C,K` is impossible for it: the two collision sources are equidistant
+from both `O` and `A`, so cyclic separation puts them on opposite `O,A` arcs,
+whereas that subsequence puts both after `A`. The ordered constructor remains
+a valid generic terminal but is not a producer target for this selector arm.
+The same-cap arm is not a natural retained-collision target either. If `O` and
+the common blocker lie in one cap, boundary alternation forces at least one
+source into it; if an actual `centerAt J` lies with the blocker while both
+sources lie outside, cap uniqueness forces that center to equal the blocker.
+Production `ATail/RetainedCollisionCapLocalization.lean` now contains those
+facts together with the strict first-opposite-cap localization of the common
+blocker and the exact two-source shell/cap intersection. Continue collision
+through an alternation-compatible cross-fiber consumer or direct `False`.
 
-If the Kalmanson route reappears, the corrected source-indexed coverage
-object must include a critical source `J`, put `X := H.centerAt J`, use the
-actual exact `J`-critical shell for `J,K`, retain the actual `C,K -> A` fiber,
-and establish the first-apex row plus cyclic `O < A < X < J < C < K` roles.
-A pinned replay finds some such embedding in 75 of the corrected 101
-witnesses and none of the accepted terminal shapes in 26.  This is evidence
-for theorem discovery, not coverage and not authorization for a broad scan.
+Production `RetainedCollisionCapLocalization` makes the cross-fiber
+requirement exact. Any actual critical row containing both collision sources
+reuses the common blocker; a distinct center is immediate `False`. The
+complete local two-shell/overlap/alternation marginal also has an exact
+rational convex eight-point realization. Thus another row through the same
+pair is exhausted. The next collision packet must carry a second fiber on a
+different equality pair for an ordinal/Kalmanson cycle, or a global
+MEC/filter/deletion/no-`IsM44` contradiction.
+
+Production `ATail/RetainedCollisionDifferentPairConsumer.lean` now contains
+the first exact different-pair packet and its terminal.  The retained collision
+automatically supplies a fresh first-apex pair `OJ = OC`; adding the actual
+cross incidence `K ∈ support(selectedAt J)` supplies `XJ = XK`, while the
+collision supplies `AC = AK`.  For the compatible order
+`O < J < C < A < X < K`, these equalities close by the strict Kalmanson cycle
+`AC < AJ < AC`.  The actual cross row also forces `J,K` to alternate across
+its centers `O,X`.  Enforcing that second alternation together with the
+original `C,K` alternation across `O,A` leaves seven live order types.  The
+ordinal closure handles two.  Five remain acyclic; exact rational strictly
+convex local models realize all five, and Lean independently kernel-checks
+the first, `O < J < X < C < A < K`, with all three local equality pairs.
+Hence do not
+promote the bare cross incidence as the producer.  The producer must also
+force a cyclic order, rule out all five acyclic placements from the full
+parent geometry, or supply another source-valid equality pair that kills
+them.
+
+For any further Kalmanson coverage work, the source-indexed object must include
+a critical source `J`, put `X := H.centerAt J`, use the actual exact
+`J`-critical shell for `J,K`, retain the actual `C,K -> A` fiber, and retain
+the actual first-apex row through `J,C`.  The old cyclic order
+`O < A < X < J < C < K` is incompatible with collision alternation and is
+retired.  The new order audit, rather than the older pinned replay, is the
+coverage boundary: both mandatory alternations leave seven live orders; two
+close and five do not.  This is
+theorem-discovery evidence, not full parent coverage and not authorization
+for a broad scan.
 Any future computation must first encode the complete source map above and
 prove an ablation gate: removing either collision-source criticality or the
 `J` critical provenance must invalidate the claimed coverage.
@@ -285,14 +1020,14 @@ robustness, restart minimality/descent, or claim an anonymous local rank: each
 erases or contradicts the load-bearing coupling.
 
 The frontier-coupled consumer
-`false_of_frontierCoupledExactFivePhysicalCycleParentResidual` is now a
-fallback refinement, not the primary parent dependency. Production
+`false_of_frontierCoupledExactFivePhysicalCycleParentResidual` is now the
+primary exact-five dependency beneath the robust parent theorem. Production
 `ATail/PhysicalOmissionCycleParentResidual.lean` retains the same
 concrete `H`, the full first-apex frontier, the origin-tagged two-source
 continuation, `minimal`, `noM44`, the six-point physical cap, the parent radius
 identity, and the production cycle. A bare
 `false_of_physicalActualCriticalOmissionCycle K` would be a sufficient stronger
-shortcut, but is no longer the plan interface. The production decomposition
+shortcut, but is not the plan interface. The production decomposition
 `nonempty_mutualOmissionEdge_or_all_reverseMembership` splits the proof into
 one mutually omitted edge or reverse-positive incidence on every edge. The
 cycle constructor is now source-anchored, and the residual starts its transition
@@ -782,7 +1517,7 @@ cards 13 and above. That uniform lift remains part of ATAIL-FORCE; it is not
 evidence that the threshold must be raised.
 
 At this checkpoint, session `019f5a3d` is durably anchored with `--no-sink`
-at `Problem97.u1_largeCap_routeB_tail_false`, the parent insertion point for
+at `Problem97.u1_largeCap_routeB_tail_liveData_false`, the parent insertion point for
 the pre-LIVE direct-`False` bypass;
 LIVE-T1 is source-closed and needs no further branch work.  Its public
 declarations inherit `sorryAx` only through K-A-PAIR. Anchor state is maintained with
@@ -793,53 +1528,61 @@ shared-radius K-A-PAIR residual, which is reachable from the umbrella through
 `false_of_center_p_t2_t20`. Neither adapter proves K-A-PAIR or introduces a
 new direct `sorry`.
 
-## Current execution plan
+## Current execution plan (authoritative)
 
 This lane is not waiting for a predetermined number of census rounds. Its
 current closure sequence is:
 
-1. **DONE-PRODUCTION FRONTIER EXTRACTION:** retain one concrete
-   `CriticalPairFrontier` with the same `Hcritical`, actual source pair,
-   first-apex radius, and unconditional second-apex double-deletion survival.
-2. **DONE-PRODUCTION DIRECT SPLIT:** call
-   `CriticalPairFrontier.originalUnique_or_commonDeletionParent`. The unique branch
-   is the canonical protected original `FA-UNIQ4/5` arm. The other branch is
-   `FrontierCommonDeletionParentResidual F`, with deletion `F.pair.q` and centers
-   exactly `S.oppApex1/S.oppApex2`; it also retains the full frontier-radius
-   class lower bound of four.
-3. **CURRENT MATHEMATICAL CONSUMER:** prove direct `False` from that full
-   frontier common-deletion packet under the retained parent
-   minimal/no-`IsM44`/convex-MEC surface. Do not project it to the known-weak
-   generic common-deletion packet. The checked reductions now produce
-   `FrontierCommonDeletionRefinedNormalForm`. Its outcome is exactly: an
-   original off-radius common deletion, two distinct on-radius
-   surplus/marginal common deletions at the same centers, or a distinct
-   companion off-radius common deletion. All arms are production-complete.
-   The same normal form keeps
-   the directed blocker split: either `w` is in `q`'s actual shell and the
-   blocker lies outside the surplus cap, or deleting `w` survives at the first
-   apex and that blocker. Consume each refined escape arm jointly with this
-   `directed` outcome and the full parent geometry. Do not target two marginal
-   hits, one-row confinement, another row producer, or generic
-   common-deletion recursion.
-4. **SEPARATE OWNER DEPENDENCY:** close the protected original unique-radius
-   arm. Swapped unique interfaces, oriented ingress, and exact-two-four routing
-   remain available but are not dependencies of the direct split.
-5. **FALLBACK ONLY:** if step 3 needs stronger origin data, use the production
-   exact-five three-source renewal and source-anchored omission cycle. Its
-   reverse branch has injective blockers/outside pairs and strict cap
-   straddling; its mutual branch reaches a same-cap common-deletion packet or
-   equal-blocker shell. The shell-curvature adapter is not an available
-   consumer yet: the current `CounterclockwiseAngleChart` sign axiom is
-   inconsistent with its periodic endpoint equality. Repair it to cover only
-   non-wrapping open-window triples (or require distinct endpoints), then
-   revalidate before using curvature. Do not resume anonymous cycle or
-   outside-pair mining.
-6. **PENDING PRODUCTION WIRING:** assemble
+1. **DONE-PRODUCTION CAP-FIRST DISPATCH:** run the physical-ingress cap split
+   before frontier extraction. Dispatch `OriginalFirstApexSmallCapResidual`,
+   `PhysicalSecondCapSmallResidual`, and
+   `PhysicalSecondApexCriticalResidual` through their existing protected
+   consumers. Continue only with both `6 <= S.oppCap1.card` and
+   `6 <= S.oppCap2.card` plus physical-second-apex deletion robustness.
+2. **DONE-PRODUCTION FRONTIER EXTRACTION:** on that large-cap robust branch,
+   retain one concrete `CriticalPairFrontier` with the same `Hcritical`, actual
+   source pair, first-apex radius, and unconditional second-apex double-
+   deletion survival.
+3. **DONE-PRODUCTION UNIQUE/COMMON-DELETION SPLIT:** call
+   `CriticalPairFrontier.originalUnique_or_commonDeletionParent`. Dispatch the
+   canonical protected original `FA-UNIQ4/5` arm. On the other branch retain
+   `R : FrontierCommonDeletionParentResidual F`, construct
+   `B : FrontierBiApexRobustResidual R` from the already known second-apex
+   robustness, and bundle the two cap bounds as
+   `L : FrontierLargeOppositeCapsBiApexRobustResidual B`.
+4. **CURRENT PUBLIC PRODUCER:** prove
+   `false_of_largeOppositeCapsBiApexRobust L`. The formerly advertised
+   bare-`B` and fixed-initial-`H` closing-core producers are overconstrained
+   because they respectively admit small-cap configurations or force a core
+   at an arbitrary critical system. Use the full L-indexed geometry and do
+   not assume the two core constructors are exhaustive.
+5. **OPTIONAL INTERNAL CORE ROUTE:** if production
+   `false_of_criticalFiberClosingCore` is used, complete the `R`/`B`/`L`
+   rebase ladder and prove a late-choice existential over a favorable
+   `Hfav`. The production frontier rebase and scratch common-deletion rebase
+   are predecessors. This implementation choice does not weaken or replace
+   `L`'s two cap-six fields.
+6. **REGRESSION/FALLBACK ONLY:** whole-carrier banks and cards 11--13 are
+   theorem-discovery gates. Card 11 is exactly covered by the current bank;
+   the saved card-12/card-13 carriers expose distinct missed production
+   two-cycle transports and are Euclidean-dead. Reuse retained-radius,
+   strict-interior, matching, endpoint, source-return, cycle, or curvature
+   lemmas only inside step 4; do not dispatch their historical leaves as
+   separate final obligations.
+7. **PENDING PRODUCTION WIRING:** assemble
    `false_of_twoLargeCaps_commonCriticalMap`, call it immediately after
    choosing `Hcritical`, reference-mine and delete or trivialize the obsolete
    K-A/LIVE-Q/C tree, then run the focused build, refreshed blueprint index,
    references, sorry inventory, and axiom gates.
+
+### Authority rule for later checkpoints
+
+The execution plan above is authoritative. All later dated checkpoints in
+this file are retained research history unless they explicitly supersede this
+2026-07-17 cap-strengthened critical-fiber plan. Their words “current,”
+“active,” and “next theorem,” including any preserved bare-`B` producer
+or fixed-`H` closing-core signature, do not create independent dispatch work
+or override `false_of_largeOppositeCapsBiApexRobust L`.
 
 The current direct source surface is 12 declarations / 32 textual holes: one
 K-A-PAIR hole plus four LIVE-Q helpers with 24 holes and seven one-hole LIVE-C
@@ -2420,20 +3163,30 @@ proves adaptive alignment without importing the downstream/circular
 adapted shell, identify the arbitrary live selector with the override, or
 consume the double-survival arm; those remain the exact coupling fields.
 
-### Final theorem boundary and active producer interfaces
+### Historical theorem-boundary checkpoint (superseded by the authoritative current plan)
 
-The final production boundary is no longer the existential shared-radius
-conclusion. It is a direct parent-level contradiction, provisionally named
+This section records the earlier refined-normal-form route. Its uses of
+“active” and “final” are historical. The current branch goal is the robust
+parent contradiction, and its primary missing producer is direct
+`false_of_largeOppositeCapsBiApexRobust L` as stated above. The former
+`R`-only, bare-`B`, and fixed-initial-`H` closing-core targets are sufficient
+but operationally overstrong. A choice-late critical-system existential is
+only an optional internal implementation after rebasing the full `R`/`B`/`L`
+packet.
+
+At that historical checkpoint, the final production boundary was no longer
+the existential shared-radius conclusion. It was a direct parent-level contradiction, provisionally named
 `false_of_twoLargeCaps_commonCriticalMap`, with the actual leaf inputs. The
-active proof target beneath it is `False` from
+then-active proof target beneath it was `False` from
 `FrontierCommonDeletionRefinedNormalForm R` for every source-faithful
 `FrontierCommonDeletionParentResidual R`, together with the protected original
 unique-radius consumer. The production frontier split reaches `R` with
 `hmin`, `hNoM44`, `9 < |A|`, and the four-point frontier-class lower bound;
 the refinement reaches the exact three-way common-deletion outcome coupled to
 `normal.directed`. This requires no oriented cap, cardinality threshold, or
-physical radius-class ingress. The exact-five physical cycle is fallback
-only, not the final theorem boundary.
+physical radius-class ingress. At that checkpoint the exact-five physical
+cycle was treated as fallback only; the authoritative current plan above now
+makes its full-parent all-reverse leaf the immediate exact-five target.
 
 This is a theorem-boundary correction, not merely a change of presentation.
 The shared-radius conclusion is already refuted by
@@ -3368,7 +4121,11 @@ The separate user-controlled 16-core search is allowed to finish independently;
 this lane does not duplicate its broad search or treat an unpublished result
 as proof evidence.
 
-### Content-bearing branch theorem
+### Historical content-bearing branch checkpoint (superseded)
+
+`ChosenLateCriticalSystemParentContent` remains a checked exploratory
+interface, not the current dispatcher. The authoritative plan now chooses a
+critical fiber from the full parent and produces `CriticalFiberClosingCore R`.
 
 The choice-explicit parent construction interface is
 `ChosenLateCriticalSystemParentContent`.  It may jointly choose the second

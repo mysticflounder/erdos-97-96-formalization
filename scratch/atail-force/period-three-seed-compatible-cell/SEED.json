@@ -1,0 +1,204 @@
+{
+  "schema": "period-three-seed-compatible-fully-disjoint-cell-v1",
+  "epistemic_status": "SOURCE_ROLE_ORDER_AUDITED_EXACT_QF_LRA_SAT_WITH_EXACT_ELEVEN_POINT_PARTIAL_EUCLIDEAN_SEED_NOT_FULL_EUCLIDEAN_NOT_MEC_NOT_CSS_NOT_LEAN",
+  "boundary": [
+    "first",
+    "t0s",
+    "nS",
+    "second",
+    "x0",
+    "y0",
+    "q",
+    "w",
+    "t0i",
+    "t1i0",
+    "t1i1",
+    "t1i2",
+    "nI",
+    "x1",
+    "y1",
+    "x2",
+    "y2",
+    "surplus",
+    "c0",
+    "b0",
+    "b2",
+    "c1",
+    "b1",
+    "c2",
+    "t1o"
+  ],
+  "cap_blocks": {
+    "surplus_open_block": [
+      "t0s",
+      "nS"
+    ],
+    "first_open_block": [
+      "x0",
+      "y0",
+      "q",
+      "w",
+      "t0i",
+      "t1i0",
+      "t1i1",
+      "t1i2",
+      "nI",
+      "x1",
+      "y1",
+      "x2",
+      "y2"
+    ],
+    "physical_open_block": [
+      "c0",
+      "b0",
+      "b2",
+      "c1",
+      "b1",
+      "c2",
+      "t1o"
+    ]
+  },
+  "profiles": {
+    "radius_arm": "unequal",
+    "frontier_roles": "II",
+    "T0": "3I+S",
+    "T1": "3I+O",
+    "physical_exact_five": "3O+I+S",
+    "blockers": "three fresh O roles",
+    "reverse_targets": "six fresh I roles in three disjoint pairs",
+    "cross_front_identity": "fully disjoint"
+  },
+  "common_order_straddles": {
+    "b0": true,
+    "b1": true,
+    "b2": true
+  },
+  "exact_seed_subsequence": [
+    "second",
+    "x0",
+    "y0",
+    "nI",
+    "c0",
+    "b0",
+    "b2",
+    "c1",
+    "b1",
+    "c2",
+    "nS"
+  ],
+  "exact_seed_coordinates": {
+    "second": [
+      "0",
+      "0"
+    ],
+    "x0": [
+      "187009890667248/274443853348235",
+      "-251837107723/6382415194145"
+    ],
+    "y0": [
+      "154822837633959/220566960876103",
+      "-8964706743664/220566960876103"
+    ],
+    "nI": [
+      "1",
+      "0"
+    ],
+    "c0": [
+      "53345/53377",
+      "1848/53377"
+    ],
+    "b0": [
+      "16257131568/22486182167",
+      "11279613636/22486182167"
+    ],
+    "b2": [
+      "115667136/166803125",
+      "89921052/166803125"
+    ],
+    "c1": [
+      "18727/48985",
+      "45264/48985"
+    ],
+    "b1": [
+      "20357857/61231250",
+      "28955862/30615625"
+    ],
+    "c2": [
+      "7/25",
+      "24/25"
+    ],
+    "nS": [
+      "10295/63433",
+      "62592/63433"
+    ]
+  },
+  "exact_seed_equalities": {
+    "physical_support": [
+      "nI",
+      "c0",
+      "c1",
+      "c2",
+      "nS"
+    ],
+    "physical_radius_sq": "1",
+    "complete_reverse0_support": [
+      "c0",
+      "c1",
+      "x0",
+      "y0"
+    ],
+    "complete_reverse0_radius_sq": "284751763277/966905833181",
+    "reverse1_cap_pair": [
+      "c1",
+      "c2"
+    ],
+    "reverse2_cap_pair": [
+      "c2",
+      "c0"
+    ]
+  },
+  "exact_seed_minimum_strict_hull_margin": "1715231162403/1193369583218474185",
+  "unassigned_roles": [
+    "first",
+    "t0s",
+    "q",
+    "w",
+    "t0i",
+    "t1i0",
+    "t1i1",
+    "t1i2",
+    "x1",
+    "y1",
+    "x2",
+    "y2",
+    "surplus",
+    "t1o"
+  ],
+  "qf_lra_replay": {
+    "status": "sat",
+    "point_count": 25,
+    "ledger": {
+      "r0": "309",
+      "r1": "300",
+      "physical_radius": "197",
+      "reverse_radii": [
+        "213",
+        "191",
+        "213"
+      ],
+      "second_q": "198",
+      "second_w": "201",
+      "minimum_triangle_margin": "1",
+      "minimum_kalmanson_margin": "1"
+    },
+    "scope": "all positive distances, all strict triangles, both strict Kalmanson inequalities for every cyclic quadruple, T0/T1 selected-row equalities and unequal radii, exact physical and reverse named-support exclusions, and second-q/w inequality"
+  },
+  "not_claimed": [
+    "coordinates for the fourteen unassigned roles",
+    "one planar Euclidean realization of all 25 roles",
+    "MEC/nonobtuse realization for the live distinguished triangle",
+    "global exactness beyond named roles",
+    "total CriticalShellSystem or minimality",
+    "Lean theorem or production closure"
+  ]
+}

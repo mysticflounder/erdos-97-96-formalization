@@ -1,0 +1,289 @@
+{
+  "checked_cells": 10368,
+  "generated_forward_orders": 1728,
+  "live_source_coverage": false,
+  "live_source_gap": "The fixed identities between T0/T1 roles and the independent physical exact-five roles are possible representatives, not source consequences or a proved symmetry quotient.",
+  "missing_cells": [],
+  "reflected_fixed_cells_checked": 10368,
+  "reflected_missing_cells": [],
+  "representatives_per_order": 6,
+  "schemas": [
+    {
+      "arm": "eq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "T0_T1_overlap_chain",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,11)",
+          "d(0,8)=d(0,11)",
+          "d(1,8)=d(1,11)"
+        ],
+        "targets": [
+          8,
+          11
+        ]
+      },
+      "first_path_kind": "T0_T1_overlap_chain",
+      "role": "II",
+      "targets": [
+        8,
+        11
+      ]
+    },
+    {
+      "arm": "eq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "single_T0",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,12)",
+          "d(0,8)=d(0,12)",
+          "d(1,8)=d(1,12)"
+        ],
+        "targets": [
+          8,
+          12
+        ]
+      },
+      "first_path_kind": "single_T0",
+      "role": "IO",
+      "targets": [
+        8,
+        12
+      ]
+    },
+    {
+      "arm": "eq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "single_T0",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,12)",
+          "d(0,8)=d(0,12)",
+          "d(1,8)=d(1,12)"
+        ],
+        "targets": [
+          8,
+          12
+        ]
+      },
+      "first_path_kind": "single_T0",
+      "role": "OI",
+      "targets": [
+        8,
+        12
+      ]
+    },
+    {
+      "arm": "neq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "single_T0",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,12)",
+          "d(0,8)=d(0,12)",
+          "d(1,8)=d(1,12)"
+        ],
+        "targets": [
+          8,
+          12
+        ]
+      },
+      "first_path_kind": "single_T0",
+      "role": "II",
+      "targets": [
+        8,
+        12
+      ]
+    },
+    {
+      "arm": "neq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "single_T0",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,12)",
+          "d(0,8)=d(0,12)",
+          "d(1,8)=d(1,12)"
+        ],
+        "targets": [
+          8,
+          12
+        ]
+      },
+      "first_path_kind": "single_T0",
+      "role": "IO",
+      "targets": [
+        8,
+        12
+      ]
+    },
+    {
+      "arm": "neq",
+      "cells": 1728,
+      "example": {
+        "boundary": [
+          0,
+          5,
+          6,
+          7,
+          1,
+          3,
+          8,
+          9,
+          10,
+          2,
+          11,
+          4,
+          13,
+          14,
+          15,
+          12
+        ],
+        "first_path_kind": "single_T0",
+        "late_pair_order": true,
+        "owners": [
+          0,
+          1
+        ],
+        "second_path_kind": "physical_exact_five",
+        "semantic_farkas_core": [
+          "K2(0,1,8,12)",
+          "d(0,8)=d(0,12)",
+          "d(1,8)=d(1,12)"
+        ],
+        "targets": [
+          8,
+          12
+        ]
+      },
+      "first_path_kind": "single_T0",
+      "role": "OI",
+      "targets": [
+        8,
+        12
+      ]
+    }
+  ],
+  "status": "ALL_CURRENT_FIXED_REPRESENTATIVES_HAVE_ONE_KALMANSON_CORE"
+}

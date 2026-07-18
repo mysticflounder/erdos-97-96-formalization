@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+HASH_CHECK*.json
+*_SMOKE.json

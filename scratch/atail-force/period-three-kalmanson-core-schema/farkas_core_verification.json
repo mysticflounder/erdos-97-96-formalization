@@ -1,0 +1,49 @@
+{
+  "records": [
+    {
+      "deletion_minimal": true,
+      "farkas_sum": {},
+      "name": "single_T0_physical_shared_late_pair",
+      "raw_constraints": [
+        "K2",
+        "T0:u",
+        "T0:v",
+        "physical:u",
+        "physical:v"
+      ],
+      "single_deletion_verdicts": {
+        "K2": "sat",
+        "T0:u": "sat",
+        "T0:v": "sat",
+        "physical:u": "sat",
+        "physical:v": "sat"
+      },
+      "z3_verdict": "unsat"
+    },
+    {
+      "deletion_minimal": true,
+      "farkas_sum": {},
+      "name": "T0_T1_overlap_chain_physical_shared_late_pair",
+      "raw_constraints": [
+        "K2",
+        "T0:u",
+        "T0:middle",
+        "T1:middle",
+        "T1:v",
+        "physical:u",
+        "physical:v"
+      ],
+      "single_deletion_verdicts": {
+        "K2": "sat",
+        "T0:middle": "sat",
+        "T0:u": "sat",
+        "T1:middle": "sat",
+        "T1:v": "sat",
+        "physical:u": "sat",
+        "physical:v": "sat"
+      },
+      "z3_verdict": "unsat"
+    }
+  ],
+  "status": "EXACT_INTEGER_FARKAS_REPLAY_AND_DELETION_MINIMALITY_PASS"
+}

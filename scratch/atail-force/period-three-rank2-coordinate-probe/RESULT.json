@@ -1,0 +1,114 @@
+{
+  "schema": "period-three-rank2-fixed-cell-coordinate-probe-summary-v1",
+  "epistemic_status": "BOUNDED_QF_NRA_UNKNOWN_NO_VERDICT_NOT_PROOF_NOT_COUNTERMODEL_NOT_LEAN",
+  "decision": "COORDINATE_REALIZABILITY_UNRESOLVED_BOTH_ENGINES_TIMED_OUT",
+  "source_cell": "period-three-full-role-identity-quotient fully-disjoint unequal-radius 25-role cell",
+  "full_coordinate_formula": {
+    "point_count": 25,
+    "free_real_variable_count_after_similarity_gauge": 46,
+    "named_atom_count": 981,
+    "generically_independent_named_row_equality_count": 19,
+    "atom_blocks": {
+      "fixed_strict_convex_edge_side": 575,
+      "explicit_pairwise_distinctness": 300,
+      "named_exact_support_exclusions": 79,
+      "row_radius_positivity_and_equalities": 25,
+      "unequal_first_apex_radii": 1,
+      "second_apex_q_w_inequality": 1
+    },
+    "normalization": {
+      "first": [0, 0],
+      "second": [1, 0]
+    },
+    "asserted_formula_smt2_sha256": "f61bf7b51c2cbc054a7fc871beef3b61c34a2b0825fdcdb1df1ab825123e655c",
+    "cvc5_formula_plus_get_value_sha256": "685e8a1e4dd169a05e5d9a77a8cf78d3a7aa54e1c28130058f8e4f6d492d662b",
+    "canonical_named_atom_manifest_sha256": "0efe2aa64d0a6bc18688cb2bf708acf8523106f8746808290fdfec29a70b25f8",
+    "digest_note": "the named-atom manifest is stable; whole-query SMT2 byte digests are run-local Z3 serializations and may change when unrelated ASTs are constructed first",
+    "z3": {
+      "budget_seconds": 120,
+      "status": "UNKNOWN",
+      "reason": "timeout",
+      "artifact": "Z3_COORDINATE.json"
+    },
+    "cvc5": {
+      "budget_seconds": 120,
+      "status": "UNKNOWN_NO_VERDICT",
+      "reason": "internal timeout; no sat/unsat line",
+      "artifact": "CVC5_COORDINATE.json"
+    }
+  },
+  "no_exact_exclusion_ladder": {
+    "named_atom_count": 602,
+    "changes_from_full": [
+      "remove all 79 exact-support disequalities",
+      "derive all pairwise distinctness from strict edge-side convexity instead of asserting 300 duplicate atoms"
+    ],
+    "asserted_formula_smt2_sha256": "802914e1949269b88a2d8a73d6f0e2290d60bb2fb2b39b6da3240e639c80394a",
+    "z3": {
+      "budget_seconds": 60,
+      "status": "UNKNOWN",
+      "reason": "timeout",
+      "artifact": "Z3_LADDER_NONE.json"
+    },
+    "cvc5": {
+      "budget_seconds": 60,
+      "status": "UNKNOWN_NO_VERDICT",
+      "reason": "internal timeout; no sat/unsat line",
+      "artifact": "CVC5_LADDER_NONE.json"
+    },
+    "conclusion": "the 79 exact-support disequality branches are not shown to be the compute bottleneck"
+  },
+  "row_prefix_ladder": [
+    {
+      "prefix": "T0+T1",
+      "named_atom_count": 584,
+      "row_equality_count": 6,
+      "asserted_formula_smt2_sha256": "545e0da978ed7afb14318d9612e6b608e3317fa17a5a4ea48fac4e561499acd4",
+      "z3_20s": "UNKNOWN_TIMEOUT",
+      "cvc5_20s": "UNKNOWN_TIMEOUT"
+    },
+    {
+      "prefix": "+physical",
+      "named_atom_count": 590,
+      "row_equality_count": 10,
+      "asserted_formula_smt2_sha256": "a901e5e48cfc63f2b287ef2e861b9ffbbf0e5549fce2a406a2a54300895c51cc",
+      "z3_20s": "UNKNOWN_TIMEOUT",
+      "cvc5_20s": "UNKNOWN_TIMEOUT"
+    },
+    {
+      "prefix": "+reverse0",
+      "named_atom_count": 594,
+      "row_equality_count": 13,
+      "asserted_formula_smt2_sha256": "a68eba57f135817a48cfd7598ebf6d2d454fd279c8d3046679ee7485eb960d1b",
+      "z3_20s": "UNKNOWN_TIMEOUT",
+      "cvc5_20s": "UNKNOWN_TIMEOUT"
+    },
+    {
+      "prefix": "+reverse1",
+      "named_atom_count": 598,
+      "row_equality_count": 16,
+      "asserted_formula_smt2_sha256": "64afc3d495ec521851786783113dcd4f9c5de2ce6629f83c9797ad4b123c0f25",
+      "z3_20s": "UNKNOWN_TIMEOUT",
+      "cvc5_20s": "UNKNOWN_TIMEOUT"
+    },
+    {
+      "prefix": "+reverse2 (all six rows)",
+      "named_atom_count": 602,
+      "row_equality_count": 19,
+      "asserted_formula_smt2_sha256": "802914e1949269b88a2d8a73d6f0e2290d60bb2fb2b39b6da3240e639c80394a",
+      "z3_20s": "UNKNOWN_TIMEOUT",
+      "cvc5_20s": "UNKNOWN_TIMEOUT"
+    }
+  ],
+  "smoke_gates": {
+    "z3": "passed known SAT and UNSAT convex-order and equal-shell instances",
+    "cvc5": "passed known SAT and UNSAT QF_NRA instances",
+    "identical_asserted_formula": true,
+    "note": "cvc5 additionally receives a get-value command after check-sat; its complete query therefore has a separate byte digest"
+  },
+  "mec_followup": {
+    "status": "NOT_RUN_BECAUSE_COORDINATE_ONLY_DID_NOT_RETURN_VERIFIED_SAT",
+    "construction_smoke": "49 variables and 1013 uniquely named atoms; no solver call"
+  },
+  "production_sorry_closed": 0
+}

@@ -1,0 +1,80 @@
+{
+  "schema": "period-three-full-role-identity-quotient-v1",
+  "epistemic_status": "EXACT_COMBINATORIAL_COUNTS_PLUS_VERIFIED_RATIONAL_QF_LRA_SAT_NOT_SOURCE_COVERAGE_NOT_EUCLIDEAN_NOT_MEC_NOT_CSS_NOT_LEAN",
+  "first_apex": {
+    "same_radius_named_six_labelled_assignments": 31,
+    "equal_radius_labelled_completion_cells": 415,
+    "equal_radius_by_overlap": {
+      "0": 57,
+      "1": 172,
+      "2": 186
+    },
+    "equal_radius_candidate_unnamed_slot_quotient": 402,
+    "unequal_radius_labelled_completion_cells": 273,
+    "unequal_radius_candidate_unnamed_slot_quotient": 32
+  },
+  "physical_exact_five": {
+    "labelled_role_profiles": 7,
+    "by_strict_physical_count": {
+      "3": 2,
+      "4": 4,
+      "5": 1
+    }
+  },
+  "blocker_exact_five_identities": {
+    "labelled_matchings_summed_over_physical_profiles": 140,
+    "by_physical_strict_count": {
+      "3": 16,
+      "4": 80,
+      "5": 44
+    }
+  },
+  "cross_front_identity_skeleton": {
+    "equal_radius_labelled_skeletons": 1146000,
+    "unequal_radius_labelled_skeletons": 3303304,
+    "both_orientations_before_reverse_target_matching_or_boundary_orders": 8898608
+  },
+  "reverse_outside_targets": {
+    "valid_pair_identity_partitions": 53,
+    "by_actual_target_count": {
+      "3": 8,
+      "4": 32,
+      "5": 12,
+      "6": 1
+    }
+  },
+  "sat_stop": {
+    "status": "SAT_VERIFIED_RATIONAL_QF_LRA_LEDGER",
+    "point_count": 25,
+    "radius_arm": "unequal",
+    "first_rows": [
+      "T0: 3I+S",
+      "T1: 3I+O"
+    ],
+    "cross_front_identity": "fully disjoint",
+    "physical_profile": "3 strict physical plus one hit in each adjacent cap",
+    "blockers": "three fresh blockers, distinct from all exact-five points",
+    "reverse_targets": "six fresh targets, one disjoint pair per reverse row",
+    "constraints": [
+      "all strict triangle inequalities",
+      "both strict Kalmanson inequalities for every cyclic quadruple",
+      "T0 and T1 selected-row equalities with unequal radii",
+      "physical exact-five shell equalities and exclusions for every other named point",
+      "second-apex q/w distance inequality",
+      "three exact reverse-row equalities and exclusions for every other named point",
+      "Lemma-223/230 owner-target alternation in the physical block"
+    ],
+    "ledger": {
+      "T0_radius": "323",
+      "T1_radius": "314",
+      "physical_radius": "205",
+      "reverse_radii": ["221", "199", "221"],
+      "second_q": "206",
+      "second_w": "209",
+      "minimum_triangle_margin": "1",
+      "minimum_kalmanson_margin": "1"
+    },
+    "round13_opposite_apex_exclusion": "encoded: the physical apex is unequal to every reverse radius"
+  },
+  "decision": "LINEAR_SHARED_ORDER_KALMANSON_ROUTE_BLOCKED_BY_FULLY_DISJOINT_PROJECTED_SAT"
+}

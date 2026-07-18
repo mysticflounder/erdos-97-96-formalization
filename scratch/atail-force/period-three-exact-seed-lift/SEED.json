@@ -1,0 +1,163 @@
+{
+  "schema": "period-three-fixed-25-role-partial-exact-seed-v1",
+  "epistemic_status": "EXACT_RATIONAL_PARTIAL_EUCLIDEAN_SEED_NOT_COMPLETE_ROW_NOT_FULL_25_ROLE_REALIZATION_NOT_MEC_PARENT_NOT_CSS_NOT_LEAN",
+  "sources": [
+    "scratch/atail-force/cycle-one-target-kalmanson/verify_two_target_exact.py",
+    "scratch/atail-force/one-row-extension-countermodel/verify_exact_cycle_core_extension.py",
+    "scratch/atail-force/strict-oppcap-cross-classifier/directed-cycle-geometry/DirectedCycleCountermodel.lean"
+  ],
+  "fixed_cell": "scratch/atail-force/period-three-full-role-identity-quotient/probe_fully_disjoint.py",
+  "fixed_boundary_positions": {
+    "first": 0,
+    "nS": 2,
+    "second": 3,
+    "nI": 10,
+    "x0": 11,
+    "y0": 12,
+    "x1": 13,
+    "y1": 14,
+    "x2": 15,
+    "y2": 16,
+    "surplus": 17,
+    "c0": 18,
+    "b0": 19,
+    "b2": 20,
+    "c1": 21,
+    "b1": 22,
+    "c2": 23
+  },
+  "mapped_boundary_cycle_starting_at_second": [
+    "second",
+    "nI",
+    "c0",
+    "b0",
+    "b2",
+    "c1",
+    "b1",
+    "c2",
+    "nS"
+  ],
+  "mapped_roles": {
+    "second": {
+      "source_label": "o",
+      "xy": ["0", "0"]
+    },
+    "nI": {
+      "source_label": "left",
+      "xy": ["1", "0"]
+    },
+    "c0": {
+      "source_label": "q0",
+      "xy": ["53345/53377", "1848/53377"]
+    },
+    "b0": {
+      "source_label": "c0",
+      "xy": ["16257131568/22486182167", "11279613636/22486182167"]
+    },
+    "b2": {
+      "source_label": "c2",
+      "xy": ["115667136/166803125", "89921052/166803125"]
+    },
+    "c1": {
+      "source_label": "q1",
+      "xy": ["18727/48985", "45264/48985"]
+    },
+    "b1": {
+      "source_label": "c1",
+      "xy": ["20357857/61231250", "28955862/30615625"]
+    },
+    "c2": {
+      "source_label": "q2",
+      "xy": ["7/25", "24/25"]
+    },
+    "nS": {
+      "source_label": "right",
+      "xy": ["10295/63433", "62592/63433"]
+    }
+  },
+  "exact_equalities_satisfied": {
+    "physical_radius_sq": "1",
+    "physical_five": ["nI", "c0", "c1", "c2", "nS"],
+    "reverse_cap_pairs": [
+      {
+        "center": "b0",
+        "targets": ["c0", "c1"],
+        "radius_sq": "284751763277/966905833181"
+      },
+      {
+        "center": "b1",
+        "targets": ["c1", "c2"],
+        "radius_sq": "9048841/3061562500"
+      },
+      {
+        "center": "b2",
+        "targets": ["c2", "c0"],
+        "radius_sq": "7257980209/20850390625"
+      }
+    ]
+  },
+  "exact_margins": {
+    "minimum_strict_hull_halfplane_margin_for_mapped_nine_point_core": "523615908/1942040940625",
+    "physical_chord_second_side_margin": "62592/63433",
+    "minimum_physical_cap_interior_side_margin": "96196080/3385863241",
+    "minimum_blocker_off_physical_radius_sq_margin": "15469341/3061562500",
+    "auxiliary_disk_center": ["1/2", "163/384"],
+    "auxiliary_disk_radius_sq": "63433/147456",
+    "minimum_strict_auxiliary_disk_margin_for_cycle_and_blockers": "12295/427016",
+    "auxiliary_triangle_nonobtuse_slacks": [
+      "20590/63433",
+      "106276/63433",
+      "106276/63433"
+    ]
+  },
+  "unmapped_complete_reverse0_targets": {
+    "center": "b0",
+    "radius_sq": "284751763277/966905833181",
+    "targets": {
+      "source_x": {
+        "xy": [
+          "187009890667248/274443853348235",
+          "-251837107723/6382415194145"
+        ]
+      },
+      "source_y": {
+        "xy": [
+          "154822837633959/220566960876103",
+          "-8964706743664/220566960876103"
+        ]
+      }
+    },
+    "source_boundary_location": "second,source_x,source_y,nI",
+    "fixed_cell_issue": "all six fixed reverse target slots x0,y0,x1,y1,x2,y2 occur after nI, so neither exact target can be assigned to a target role in the fully disjoint fixed word",
+    "reflection_issue": "reflection changes the source order to nS,source_y,source_x,second; the fixed target block is still the other side of nI, so reflection does not repair the mismatch",
+    "cycle_relabel_issue": "rotating the three cycle indices changes which reverse row is complete but does not move its two outside targets across nI, so cyclic relabeling does not repair the mismatch",
+    "repair_scope": "the coordinates can seed a different quotient cell only if reverse targets may be identified with pre-nI T0/T1 roles or the boundary word is changed"
+  },
+  "unmapped_fixed_roles": [
+    "first",
+    "t0s",
+    "q",
+    "w",
+    "t0i",
+    "t1i0",
+    "t1i1",
+    "t1i2",
+    "x0",
+    "y0",
+    "x1",
+    "y1",
+    "x2",
+    "y2",
+    "surplus",
+    "t1o"
+  ],
+  "mandatory_extra_role_not_in_fixed_25": "unnamed_surplus_cap_interior_point",
+  "remaining_equalities_not_satisfied_by_construction": [
+    "all four T0 first-apex equalities",
+    "all four T1 first-apex equalities",
+    "both outside-target equalities for every reverse row in the fixed word",
+    "all exact-support exclusions after the unmapped vertices are inserted",
+    "the parent support-triangle MEC and nonobtuse constraints",
+    "total CriticalShellSystem and deletion-criticality constraints"
+  ]
+}

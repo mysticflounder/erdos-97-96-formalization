@@ -1,0 +1,140 @@
+{
+  "classification": "UNKNOWN_NO_VERDICT",
+  "encoding_audit": {
+    "boundary": [
+      "first",
+      "t0s",
+      "nS",
+      "second",
+      "q",
+      "w",
+      "t0i",
+      "t1i0",
+      "t1i1",
+      "t1i2",
+      "nI",
+      "x0",
+      "y0",
+      "x1",
+      "y1",
+      "x2",
+      "y2",
+      "surplus",
+      "c0",
+      "b0",
+      "b2",
+      "c1",
+      "b1",
+      "c2",
+      "t1o"
+    ],
+    "family_counts": {
+      "T0": 4,
+      "T1": 4,
+      "first-apex-unequal-radii": 1,
+      "fixed-strict-convex-order": 575,
+      "pairwise-distinct": 300,
+      "physical": 5,
+      "physical-exact-named-exclusion": 19,
+      "reverse0": 4,
+      "reverse0-exact-named-exclusion": 20,
+      "reverse1": 4,
+      "reverse1-exact-named-exclusion": 20,
+      "reverse2": 4,
+      "reverse2-exact-named-exclusion": 20,
+      "second-apex-frontier": 1
+    },
+    "first_rows": {
+      "T0": [
+        "q",
+        "w",
+        "t0i",
+        "t0s"
+      ],
+      "T1": [
+        "t1i0",
+        "t1i1",
+        "t1i2",
+        "t1o"
+      ]
+    },
+    "free_real_variable_count": 46,
+    "named_atom_count": 981,
+    "normalization": {
+      "first": [
+        "0",
+        "0"
+      ],
+      "second": [
+        "1",
+        "0"
+      ]
+    },
+    "omitted_ledger": [
+      "MEC disk and nonobtuse support-triangle constraints",
+      "total critical-shell map outside the six named rows",
+      "source-by-source deletion failure beyond the named exact supports",
+      "parent minimality and noM44 hypotheses"
+    ],
+    "phase": "coordinate-only",
+    "physical_exact_five": [
+      "c0",
+      "c1",
+      "c2",
+      "nS",
+      "nI"
+    ],
+    "point_count": 25,
+    "reverse_rows": [
+      {
+        "center": "b0",
+        "support": [
+          "c0",
+          "c1",
+          "x0",
+          "y0"
+        ]
+      },
+      {
+        "center": "b1",
+        "support": [
+          "c1",
+          "c2",
+          "x1",
+          "y1"
+        ]
+      },
+      {
+        "center": "b2",
+        "support": [
+          "c2",
+          "c0",
+          "x2",
+          "y2"
+        ]
+      }
+    ]
+  },
+  "engine": "z3",
+  "epistemic_status": "BOUNDED_EXTERNAL_QF_NRA_DISCOVERY_NOT_LEAN_NOT_PROOF",
+  "phase": "coordinate",
+  "schema": "period-three-rank2-fixed-cell-qf-nra-v1",
+  "smoke_tests": {
+    "cvc5": null,
+    "local_encoding": {
+      "ccw_square": "sat",
+      "non_equidistant_shell": "unsat",
+      "passed": true,
+      "unit_shell": "sat",
+      "wrong_square_order": "unsat"
+    }
+  },
+  "smt2_sha256": "f61bf7b51c2cbc054a7fc871beef3b61c34a2b0825fdcdb1df1ab825123e655c",
+  "solver": {
+    "engine": "z3py 4.16.0 SolverFor(QF_NRA)",
+    "reason_unknown": "timeout",
+    "status": "UNKNOWN",
+    "timeout_seconds": 120.0
+  },
+  "timeout_seconds": 120.0
+}
