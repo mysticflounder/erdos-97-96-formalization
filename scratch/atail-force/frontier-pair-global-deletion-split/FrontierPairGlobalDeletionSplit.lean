@@ -9,6 +9,7 @@ parent or claim a terminal contradiction.
 
 import Erdos9796Proof.P97.ATail.ParentExactFiveAssembler
 import Erdos9796Proof.P97.ATail.GlobalMinimalDeletion
+import Erdos9796Proof.P97.ATail.SurvivalCoverParentBoundary
 
 /-!
 This file validates the first source-faithful global step after the retained
@@ -26,6 +27,10 @@ open ATailOrientedPhysicalApexIngress
 open ATailParentExactFiveAssembler
 open ATailPhysicalSecondApexCommonDeletion
 open ATailGlobalMinimalDeletion
+open ATailCommonDeletionTwoCenter
+open ATailDeletionRobustness
+open ATailFrontierCommonDeletionEscape
+open ATailSurvivalCoverParentBoundary
 
 attribute [local instance] Classical.propDecidable
 
@@ -99,7 +104,72 @@ theorem frontierPair_globalDeletion_split
         Finset.eq_of_subset_of_card_le hVsub (by omega)
       simpa [U] using hVeq
 
+/- The first-step coordinator keeps the raw directed cross split, the
+global deletion-critical core, and the already productionized physical
+second-apex endpoint in one source-faithful packet.  This is deliberately a
+normal form rather than a contradiction theorem: every field is an input to
+the next parent consumer. -/
+structure FrontierPairGlobalStep
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {firstRadius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S firstRadius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) : Type where
+  center : ℝ²
+  center_mem : center ∈ D.A \ ({F.pair.q, F.pair.w} : Finset ℝ²)
+  V : Finset ℝ²
+  V_nonempty : V.Nonempty
+  V_subset : V ⊆ ({F.pair.q, F.pair.w} : Finset ℝ²)
+  deletion_blocked :
+    ¬ HasNEquidistantPointsAt 4 (D.A \ V) center
+  prescribed_single_deletions_survive :
+    ∀ s ∈ V,
+      HasNEquidistantPointsAt 4
+        (D.A \ (V.erase s)) center
+  core_cardinality :
+    V.card = 1 ∨
+      (V.card = 2 ∧ V = ({F.pair.q, F.pair.w} : Finset ℝ²))
+  directed :
+    Nonempty (FrontierDirectedBlockerOutcome R.common)
+  endpoint :
+    (SelectedClass D.A S.oppApex1 firstRadius).card = 4 ∨
+      Nonempty (CommonDeletionTwoCenterPacket D H F.pair.w
+        S.oppApex1 (H.centerAt F.pair.q F.pair.q_mem_A)) ∨
+      (Nonempty (FullyDeletionRobustAt D S.oppApex2) ∨
+        Nonempty (PhysicalSecondApexCriticalResidual D S))
+
+/-- Combine the independently checked global-minimality and cross-deletion
+splits without discarding the original `L` parent packet. -/
+theorem nonempty_frontierPairGlobalStep
+    {D : CounterexampleData} {S : SurplusCapPacket D.A}
+    {firstRadius : ℝ} {H : CriticalShellSystem D.A}
+    {F : CriticalPairFrontier D S firstRadius H}
+    {R : FrontierCommonDeletionParentResidual F}
+    {B : FrontierBiApexRobustResidual R}
+    (L : FrontierLargeOppositeCapsBiApexRobustResidual B) :
+    Nonempty (FrontierPairGlobalStep L) := by
+  rcases frontierPair_globalDeletion_split L with
+    ⟨center, hcenter, V, hVne, hVsub, hblocked, hsurvives, hcard⟩
+  have hdirected :
+      Nonempty (FrontierDirectedBlockerOutcome R.common) :=
+    nonempty_parentFrontierDirectedBlockerOutcome R
+  have hendpoint :=
+    exactFour_or_companionCommonDeletion_or_physicalSecondApexEndpoint L
+  exact ⟨{
+    center := center
+    center_mem := hcenter
+    V := V
+    V_nonempty := hVne
+    V_subset := hVsub
+    deletion_blocked := hblocked
+    prescribed_single_deletions_survive := hsurvives
+    core_cardinality := hcard
+    directed := hdirected
+    endpoint := hendpoint }⟩
+
 end ATailFrontierPairGlobalDeletionSplit
 end Problem97
 
 #print axioms Problem97.ATailFrontierPairGlobalDeletionSplit.frontierPair_globalDeletion_split
+#print axioms Problem97.ATailFrontierPairGlobalDeletionSplit.nonempty_frontierPairGlobalStep

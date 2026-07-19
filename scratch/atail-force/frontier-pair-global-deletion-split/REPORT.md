@@ -66,6 +66,24 @@ source-faithful companion packet from cross survival; or the robust/critical
 physical-second-apex endpoint from cross membership.  This removes the
 interface gap around the branch split but remains a nonterminal reduction.
 
+## First-step coordinator
+
+The scratch file now also defines
+`nonempty_frontierPairGlobalStep`.  Its `FrontierPairGlobalStep` packet keeps,
+simultaneously:
+
+* the global-minimality deletion core `(center,V)` and its singleton/full-pair
+  cardinality split;
+* the raw source-faithful `FrontierDirectedBlockerOutcome` cross split; and
+* the parent-facing exact-card-four / companion-common-deletion /
+  physical-second-apex endpoint.
+
+The focused declaration compiles source-clean and its transitive axioms are
+`propext`, `Classical.choice`, and `Quot.sound`.  This is an interface
+checkpoint only: it closes no production `sorry`, and its next consumer must
+use the complete `L` packet to eliminate the singleton and full-pair deletion
+cores, with the exact-card-four endpoint kept explicit.
+
 Acceptance gate: `cd lean && lake env lean ../scratch/atail-force/frontier-pair-global-deletion-split/FrontierPairGlobalDeletionSplit.lean`
 must pass with no `sorry` and no `sorryAx` in the declaration’s transitive
 axioms.  The focused check passes; the declaration has axioms exactly
