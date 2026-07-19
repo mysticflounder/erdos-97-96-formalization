@@ -1,0 +1,20 @@
+{
+ "p0a,EA,s0": {
+  "base": "retro.L0.eS-W.r0S-S.r1S-S.r2S-S.mp0b=p1b",
+  "verdict": "unsat",
+  "expected": "unsat",
+  "pass": true
+ },
+ "p1b,W,s2": {
+  "base": "retro.L0.eEA-W.r0O1-O.r1O1-O1.r2O1-O1.mp0a=p1a",
+  "verdict": "unsat",
+  "expected": "unsat",
+  "pass": true
+ },
+ "e2,EA,s1": {
+  "base": "retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0b=p1b",
+  "verdict": "unsat",
+  "expected": "unsat",
+  "pass": true
+ }
+}
