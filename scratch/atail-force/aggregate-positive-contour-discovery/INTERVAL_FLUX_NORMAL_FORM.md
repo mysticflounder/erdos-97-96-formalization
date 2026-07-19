@@ -157,7 +157,7 @@ finite statement.
 > nonself selected targets, the selected digraph is strongly connected, and
 > every shared target pair alternates with its two centers, then its bipartite
 > incidence circulation space contains a nonzero `u` whose proper circular
-> interval fluxes are all nonpositive.
+> interval fluxes are all nonpositive and at least one is strictly negative.
 
 Pair alternation is a clean residual assumption: a nonalternating shared pair
 already gives a one-`K1` or one-`K2` contradiction.  Strong connectivity is
@@ -180,9 +180,16 @@ F : Z(S) -> Q^(circular intervals modulo complement)
 
 be the interval-flux map.  Stiemke--Gordan gives exactly one of:
 
-1. a nonzero `u in Z(S)` with every coordinate of `F(u)` nonpositive; or
+1. a `u in Z(S)` with every coordinate of `F(u)` nonpositive and at least one
+   coordinate strictly negative; or
 2. strictly positive rational interval weights `w_I` such that
    `sum_I w_I F_I(u)=0` for every `u in Z(S)`.
+
+The strict coordinate in item 1 is essential: `F` can have a nontrivial
+kernel.  For example, when every row on five cyclic vertices contains all four
+other vertices, the signed directed-cycle circulation with weights `+1`
+forward and `-1` backward is nonzero but has zero flux across every circular
+interval.  Such a circulation does not produce a nonempty strict contour.
 
 In the second alternative define the positive circular split metric
 

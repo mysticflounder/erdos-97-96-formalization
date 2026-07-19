@@ -1066,13 +1066,15 @@ unordered-distance space, indexed by proper circular intervals modulo
 complement.  Consequently a positive weighted Kalmanson cancellation exists
 exactly when the selected-incidence weights form a nonzero balanced
 circulation whose flux through every proper circular interval has one common
-sign.  After passing to a sink selected-witness SCC and disposing of a
+sign and is nonzero on at least one interval.  After passing to a sink
+selected-witness SCC and disposing of a
 nonalternating shared target pair with one local cell, the exact mathematical
 target is:
 
 > Every strongly connected, pair-alternating four-target row system admits a
 > nonzero balanced incidence circulation whose proper circular-interval
-> fluxes are all nonpositive after one global sign choice.
+> fluxes are all nonpositive after one global sign choice, with at least one
+> strict flux.
 
 This target must permit coupled cycles.  A deletion-minimal two-cell core has
 two simple alternating cycles whose interval fluxes are individually mixed,
@@ -1094,7 +1096,9 @@ not live coverage and not source-`sorry` closure.
 Use only the `n(n-3)/2` local-cell basis for further computational
 falsification; all global Kalmanson inequalities are nonnegative sums of
 these cells.  The local-basis exact solver reproduces external UNSAT at cards
-eight and nine, while 60-second card-ten and card-eleven probes are `UNKNOWN`.
+eight through ten, including no-connectivity runs at each size.  Six connected
+and six no-connectivity card-ten seeds finish in 227--320 seconds; eight
+card-eleven reachability seeds time out at 600 seconds and remain `UNKNOWN`.
 An exact replayed SAT table would refute the bare aggregate theorem and return
 priority to the parent-specific all-center/CSS/MEC coupling.  An external
 UNSAT result without a checked certificate is finite evidence only.  Do not

@@ -96,6 +96,68 @@ class LocalKalmansonDecision(BASE.BareKalmansonDecision):
             )
         )
 
+    def replay(
+        self, model: BASE.z3.ModelRef, *, require_connectivity: bool
+    ) -> dict[str, object]:
+        """Replay a SAT model without assuming an omitted connectivity gate."""
+
+        def value(left: int, right: int) -> BASE.z3.RatNumRef:
+            return model.eval(self.dist(left, right), model_completion=True)
+
+        rows = {
+            center: tuple(
+                point
+                for point in range(self.n)
+                if point != center
+                and BASE.z3.is_true(
+                    model.eval(self.member[center, point], model_completion=True)
+                )
+            )
+            for center in range(self.n)
+        }
+        assert all(value(left, right) >= 1 for left, right in self.distances)
+        assert all(len(row) == 4 for row in rows.values())
+        for center, row in rows.items():
+            radius = value(center, row[0])
+            assert all(value(center, point) == radius for point in row)
+        for a, b, c, d in itertools.combinations(range(self.n), 4):
+            diagonal = value(a, c) + value(b, d)
+            assert diagonal >= value(a, b) + value(c, d) + 1
+            assert diagonal >= value(a, d) + value(b, c) + 1
+        if self.triangle:
+            for a, b, c in itertools.combinations(range(self.n), 3):
+                assert value(a, b) + value(b, c) >= value(a, c)
+                assert value(a, b) + value(a, c) >= value(b, c)
+                assert value(a, c) + value(b, c) >= value(a, b)
+
+        if require_connectivity:
+
+            def reachable(reverse: bool) -> set[int]:
+                seen = {0}
+                stack = [0]
+                while stack:
+                    vertex = stack.pop()
+                    successors = (
+                        [source for source, targets in rows.items() if vertex in targets]
+                        if reverse
+                        else rows[vertex]
+                    )
+                    for successor in successors:
+                        if successor not in seen:
+                            seen.add(successor)
+                            stack.append(successor)
+                return seen
+
+            assert len(reachable(False)) == self.n
+            assert len(reachable(True)) == self.n
+        return {
+            "rows": {str(center): list(row) for center, row in rows.items()},
+            "distances": {
+                f"{left},{right}": str(value(left, right))
+                for left, right in self.distances
+            },
+        }
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
@@ -126,7 +188,9 @@ def main() -> int:
                     "random_seed": args.seed,
                     "timeout_ms": args.timeout_ms,
                     "strong_connectivity": not args.no_connectivity,
-                    "connectivity_encoding": args.connectivity_encoding,
+                    "connectivity_encoding": (
+                        "none" if args.no_connectivity else args.connectivity_encoding
+                    ),
                 },
                 sort_keys=True,
             )
@@ -149,7 +213,9 @@ def main() -> int:
         "n": args.n,
         "triangle": args.triangle,
         "strong_connectivity": not args.no_connectivity,
-        "connectivity_encoding": args.connectivity_encoding,
+        "connectivity_encoding": (
+            "none" if args.no_connectivity else args.connectivity_encoding
+        ),
         "random_seed": args.seed,
         "local_kalmanson_cell_count": args.n * (args.n - 3) // 2,
         "status": str(status).upper(),
@@ -157,7 +223,9 @@ def main() -> int:
         "solver_statistics": str(decision.solver.statistics()),
     }
     if status == BASE.z3.sat:
-        payload["verified_model"] = decision.replay(decision.solver.model())
+        payload["verified_model"] = decision.replay(
+            decision.solver.model(), require_connectivity=not args.no_connectivity
+        )
     elif status == BASE.z3.unknown:
         payload["reason"] = decision.solver.reason_unknown()
     rendered = json.dumps(payload, indent=2, sort_keys=True) + "\n"

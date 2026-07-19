@@ -2320,7 +2320,8 @@ already close with one cell.  The precise live theorem-discovery target is:
 
 > Every strongly connected, pair-alternating four-target row system admits a
 > nonzero balanced incidence circulation whose proper circular-interval
-> fluxes are all nonpositive after one global choice of sign.
+> fluxes are all nonpositive after one global choice of sign, with at least
+> one strict flux.
 
 This is not a renamed literal-core queue.  A minimized exact two-cell core
 shows that neither minimum-length nor minimum-crossing **single-cycle**
@@ -2347,8 +2348,10 @@ For computational falsification, use only the `n(n-3)/2` local cell basis;
 every global Kalmanson inequality is its nonnegative rectangle sum.  This
 replaces 2,002 global strict constraints by 77 equivalent local cells at card
 fourteen.  The local-basis exact decision reproduces external UNSAT at cards
-eight and nine; its 60-second card-ten and card-eleven probes remain
-`UNKNOWN`.  A future exact SAT table would refute the aggregate route and
+eight through ten, including no-connectivity runs at each size.  Six connected
+and six no-connectivity card-ten seeds finish in 227--320 seconds.  Eight
+card-eleven reachability seeds time out at 600 seconds and remain `UNKNOWN`.
+A future exact SAT table would refute the aggregate route and
 return priority to the parent-specific all-center/CSS/MEC coupling.  An UNSAT
 result without a checked certificate remains finite evidence only.
 

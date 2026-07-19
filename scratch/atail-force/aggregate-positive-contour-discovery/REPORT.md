@@ -195,6 +195,30 @@ The merged records and every displayed multiplier are in
 checks that the shards cover each source index exactly once before producing
 the census.
 
+## Local-basis finite decision audit
+
+[`integrated_local_kalmanson.py`](integrated_local_kalmanson.py) asserts only
+the `n(n-3)/2` adjacent `K2` and seam `K1` cells instead of every global
+Kalmanson inequality.  An independent enumeration at cards five through
+twelve verifies the exact basis identity: every global `K1`/`K2` vector has
+nonnegative integral local coordinates and reconstructs exactly.  A SAT model
+is replayed against every global inequality, all selected-row equalities, and
+distance positivity; connectivity is replayed exactly when it was asserted.
+
+The completed external exact-Z3 decisions are:
+
+| card | connectivity | result |
+|---:|---|---|
+| 8 | reachability, cuts, and omitted | `UNSAT` |
+| 9 | reachability, cuts, and omitted | `UNSAT` |
+| 10 | six reachability seeds and six omitted-connectivity seeds | `UNSAT` |
+| 11 | eight reachability seeds, 600 seconds each | `UNKNOWN` (timeout) |
+
+Card-ten runs finish in 227--320 seconds.  These are exact-arithmetic external
+solver decisions, but the UNSAT results have no imported proof certificate and
+remain finite theorem-discovery evidence.  A SAT model would be exact and
+independently replayed; none has been found.
+
 ## Reproduction
 
 Generate one adversarial table and its exact assumption core:
