@@ -297,14 +297,82 @@ exact-seven configuration projects to exactly one of:
    impossible role-side (same-row or e1~e2 fusions violate proven card
    facts).
 
+## Finding 7: one-hit region families — the L0 residual halves (2026-07-19)
+
+The L0 fact sweep missed four theorems outside the ATail directory
+(`U2NonSurplusOneHit.lean`): every exact-radius class at EA or O meets
+each ADJACENT closed cap in at most one point, and all four compose for
+the generic packet `S` via the `DS`/`withPacket` rebuild already used at
+three sites in the codebase (full provenance: DESIGN-L1.md,
+ENCODER_FACTS.md "L1 additions").  Encoded as pairwise `rad_ne`
+families over same-closed-cap pairs (`regions.py`), validated by 7 new
+smoke gates plus a 7/7 regression (`smoke_l1.py`; the previously-SAT
+named-forced smoke-B schema now dies exactly on its both-extras-in-
+surplus e-pattern, pinning the new teeth label-for-label).
+
+Retro census over the 1752 identification-layer survivors
+(`build_retro_l0.py`, retro ledgers): **876 SAT / 876 UNSAT**.  The
+kills are exactly the four e-landing patterns with both extras on one
+side — S-S, S-EA, O1-O1, O1-W (219 each; the L0 law "extras are
+irrelevant" is repealed by the new families).  Every core is the same
+3-label shape: two class(O) membership equalities + one one-hit
+disequality at O.  No p-pattern kills: the region and outside-pair
+disequalities are generically satisfiable in the all-fresh layer
+(witnessed).  Residual: 876 = 372 all-fresh + 504 single p0~p1, with
+e-patterns confined to {S-O1, S-W, EA-O1, EA-W}.
+
+## Finding 8: L1 first-apex rows are inert all-fresh
+
+L1a (39 retained-row site patterns on the named base, one-hit budgets
+discrete, `enumerate_l1a.py`): all SAT.  L1b (746 = L1a × double-row
+profiles × same/distinct radius arms with joint-budget accounting,
+`enumerate_l1b.py`): all SAT.  The SelectedFourClass rows are
+equality-only (4-subsets of ambient classes — `sameRadius_six` forbids
+completeness assertions), and with the discrete one-hit filters already
+applied at enumeration, nothing in the metric vocabulary closes an
+all-fresh row pattern.
+
+## Finding 9: the L1 teeth are identification types (terminal + tooth)
+
+`verify_l1_id_types.py`, 18/18 dead-type certificates PASS with uniform
+LOCAL cores (only fused roles + named points, so the merge-layer
+containment argument extends each kill to every pattern containing it):
+
+- **pp-ret / pp-dbl** (both outside points of any reverse row occupy two
+  slots of the retained/double row; 3 rows × 3 bag variants × 2 targets):
+  UNSAT, cores = outside-pair `rad_ne|EA` against 1-2 `row_eq` — the
+  censal image of the production terminal
+  `false_of_fullParentExactFiveAllReverseData_of_namedRowOccurrence`;
+  the Lean port of these kills is a direct citation.
+- **qw-classO** (both frontier sources in class(O): q~e & w~e, q~e &
+  w=s_j; both-sources-named already dead in the L1a filter): dead by
+  CITATION — `secondApexDouble` + `unique_K4_radius` +
+  `class_card_eq_five` force |class(O) ∖ {q,w}| ≥ 4 vs actual 3.  Not
+  solver-encoded (any encoding begs the discrete cardinality argument).
+
+Alive types (mini-schema SAT, inconclusive for refinements, recorded as
+residual): single outside point on a completion slot, outside point =
+frontier source, extra on a row slot, shared completion in the
+same-radius arm (`l1_id_type_cores.json`).
+
+Joint-crossing sample (`sample_l1c.py`, deterministic seed): retro
+survivors × L1b patterns as single full schemas — checks for cross-layer
+teeth the per-layer censuses missed.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
-2. ~~Encoder + smoke gates~~ DONE (Finding 4; smoke-B redefined to the
-   named-forced schema after the hinge-free variant proved UNSAT-by-
-   second-accident).
-3. Enumerator over identification patterns / arc sides / endpoint side /
-   first-apex radius arm / Round-152 endpoint-blocker choices, using the
-   Lean-pinned membership tables; full run modulo dihedral symmetry
-   (offload candidate: flux.local); census of verdicts; unsat-core audit
-   for named-role-only support on every UNSAT schema.
+2. ~~Encoder + smoke gates~~ DONE (Finding 4).
+3. ~~Identification-layer census~~ DONE (Findings 5-6).
+4. ~~One-hit families + retro census + L1 rows + id types~~ DONE
+   (Findings 7-9).
+5. Lean ports, in order of leverage: (a) the e-pattern split law
+   (Finding 7 cores: oppApex2 one-hits via withPacket + class(O) —
+   kills 876 of 1752 censal classes in one lemma); (b) the Finding 5
+   landing law (bisector-parity assembly over
+   `dist_add_dist_lt_diagonal_sum_of_ccw`); (c) record the Finding 9
+   dead types as citations of existing production theorems.
+6. Residual after ports: 876 censal classes × alive id types — closed
+   only by Round 166 geometry (rank+winding / cross-row occurrence) or
+   an L2 refinement (unused-critical-row dimension, W-centered one-hit
+   analogue if provable).

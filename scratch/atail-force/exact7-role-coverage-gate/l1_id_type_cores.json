@@ -1,0 +1,355 @@
+{
+ "pp-ret.b0.O1-O1": {
+  "schema_id": "pp-ret.b0.O1-O1",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2807,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.b0.O1-S": {
+  "schema_id": "pp-ret.b0.O1-S",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2406,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.b0.O1-O": {
+  "schema_id": "pp-ret.b0.O1-O",
+  "verdict": "unsat",
+  "points": 11,
+  "assertions": 1717,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|ret|O",
+   "row_eq|ret|m1"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.b1.O1-O1": {
+  "schema_id": "pp-ret.b1.O1-O1",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2807,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.b1.O1-S": {
+  "schema_id": "pp-ret.b1.O1-S",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2406,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.b1.O1-O": {
+  "schema_id": "pp-ret.b1.O1-O",
+  "verdict": "unsat",
+  "points": 11,
+  "assertions": 1717,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|ret|O",
+   "row_eq|ret|m1"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.s1.O1-O1": {
+  "schema_id": "pp-ret.s1.O1-O1",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2807,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.s1.O1-S": {
+  "schema_id": "pp-ret.s1.O1-S",
+  "verdict": "unsat",
+  "points": 12,
+  "assertions": 2406,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|ret|m1",
+   "row_eq|ret|m2"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-ret.s1.O1-O": {
+  "schema_id": "pp-ret.s1.O1-O",
+  "verdict": "unsat",
+  "points": 11,
+  "assertions": 1717,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|ret|O",
+   "row_eq|ret|m1"
+  ],
+  "core_size": 3,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 2
+  }
+ },
+ "pp-dbl.b0.O1-O1": {
+  "schema_id": "pp-dbl.b0.O1-O1",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 16196,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.b0.O1-S": {
+  "schema_id": "pp-dbl.b0.O1-S",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 13187,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.b0.O1-O": {
+  "schema_id": "pp-dbl.b0.O1-O",
+  "verdict": "unsat",
+  "points": 15,
+  "assertions": 10892,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|dbl|O"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.b1.O1-O1": {
+  "schema_id": "pp-dbl.b1.O1-O1",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 16196,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.b1.O1-S": {
+  "schema_id": "pp-dbl.b1.O1-S",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 13187,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.b1.O1-O": {
+  "schema_id": "pp-dbl.b1.O1-O",
+  "verdict": "unsat",
+  "points": 15,
+  "assertions": 10892,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|dbl|O"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.s1.O1-O1": {
+  "schema_id": "pp-dbl.s1.O1-O1",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 16196,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.s1.O1-S": {
+  "schema_id": "pp-dbl.s1.O1-S",
+  "verdict": "unsat",
+  "points": 16,
+  "assertions": 13187,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|m1,m2",
+   "row_eq|dbl|m2"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "pp-dbl.s1.O1-O": {
+  "schema_id": "pp-dbl.s1.O1-O",
+  "verdict": "unsat",
+  "points": 15,
+  "assertions": 10892,
+  "trivial_k4_centers": [],
+  "core": [
+   "rad_ne|EA|O,m1",
+   "row_eq|dbl|O"
+  ],
+  "core_size": 2,
+  "families": {
+   "rad_ne": 1,
+   "row_eq": 1
+  }
+ },
+ "p-single.b0": {
+  "schema_id": "p-single.b0",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4517,
+  "trivial_k4_centers": []
+ },
+ "p-eq-q.b0": {
+  "schema_id": "p-eq-q.b0",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4522,
+  "trivial_k4_centers": []
+ },
+ "p-single.b1": {
+  "schema_id": "p-single.b1",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4517,
+  "trivial_k4_centers": []
+ },
+ "p-eq-q.b1": {
+  "schema_id": "p-eq-q.b1",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4522,
+  "trivial_k4_centers": []
+ },
+ "p-single.s1": {
+  "schema_id": "p-single.s1",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4517,
+  "trivial_k4_centers": []
+ },
+ "p-eq-q.s1": {
+  "schema_id": "p-eq-q.s1",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 4522,
+  "trivial_k4_centers": []
+ },
+ "e-on-ret": {
+  "schema_id": "e-on-ret",
+  "verdict": "sat",
+  "points": 13,
+  "assertions": 3746,
+  "trivial_k4_centers": []
+ },
+ "c-eq-g": {
+  "schema_id": "c-eq-g",
+  "verdict": "sat",
+  "points": 14,
+  "assertions": 7106,
+  "trivial_k4_centers": []
+ }
+}
