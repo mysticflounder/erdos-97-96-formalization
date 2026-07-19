@@ -911,3 +911,20 @@ Branch-kill instruments only; the DoubleApex spine sorry is unchanged.
     hypothesis holds on the survivor class before encoding).  Needs the
     `SurvivorPairRelocationPacket` field map + a check that the L2u SAT
     survivors actually exhibit forced mutual cross-membership.
+13. **DIRECT closure path (verified at source 2026-07-19).**  This gate is a
+    DIAGNOSTIC (DESIGN.md contract: SAT ⇒ which non-encoded geometry to add);
+    the intended DIRECT closure of `DoubleApexOffSurplusSharedRadiusPair`
+    (`U1LargeCapRouteBTail.lean:2531`, sorry :2576) is the U2-squeeze
+    OVERFLOW.  Downstream is fully proven (the shared-radius pair fires
+    `oppCap2_escape_gen` + reflection kernel ⇒ leaf closes).  Open = does
+    `(≥5,≥5,4)` FORCE the pair.  Scaffold `U2SqueezePort.lean` (0 sorries):
+    `oppApex1_exactRadiusClass_cover` (:299) is UNCONDITIONAL;
+    `oppApex1_interior_card_eq_two_of_isM44` (:249) is M44-conditional
+    (caps 4 ⇒ apex interior 2, exactly covered).  TRANSFER GAP: in the
+    DoubleApex `hNoM44` two-large-cap regime the caps are ≥5, so the apex
+    interior OVERFLOWS (card ≥ 3) — the exact-radius classes cannot all be
+    covered, forcing the double-apex coincidence.  Concrete next: prove the
+    ≥5-regime apex-interior-overflow analog + assemble the coincidence via
+    the unconditional cover.  Same overflow as the exact-six period-3
+    straddle count and the card-≥5 cross-membership producer.  See memory
+    "Exact-seven DoubleApex CLOSURE PATH".
