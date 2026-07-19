@@ -75,9 +75,26 @@ endpoint < s0 < b0 < s1 < b1 < s2 < endpoint
 
 (up to reflection), with `s1` at the middle slot — matching the Round
 109-119 "successor is index 3" occurrence.  The two endpoints are the two
-Moser vertices of the physical cap.  {{NEEDS_PROOF}} as a single Lean
-normal-form theorem; every ingredient is individually kernel-checked in the
-round files, and the assembly is the first Lean deliverable of this lane.
+Moser vertices of the physical cap.  PROVEN as a single Lean normal-form
+theorem: `Problem97.Round188ExactSevenNamedInteriorNormalForm` in
+`/Users/adam/scratch/Round188ExactSevenNamedInteriorNormalForm.lean`
+(SHA-256 `6424bc903740a6a98ddaee2f951044722fb325ba47dfe8708fb81f33adeaaa33`,
+axiom closure `propext, Classical.choice, Quot.sound`, warnings-as-errors
+clean, independently recompiled at takeover session).  Main declarations:
+
+- `aligned_namedInterior_normalForm`: collision `H.centerAt s0 = s1`, the
+  ten pairwise inequalities, the five strict-interior memberships, the
+  Finset identity `capInterior = {s0, b0, s1, b1, s2}`, and the
+  two-orientation shared-order chain
+  `s0 < b0 < s1 < b1 < s2  ∨  s2 < b1 < s1 < b0 < s0`;
+- `exists_exactSeven_aligned_namedInterior_normalForm`: existential form
+  with the strictly-inside-MEC fact, aligned index from Round 124.
+
+No fresh placement fact was needed; sources localize by
+`PhysicalVertex.mem_capInterior`, reverse centers by
+`transition_successor_actualBlocker_mem_physicalCapInterior`.
+Closure doc:
+`~/scratch/docs/closure-round188-exact-seven-named-interior-2026-07-18.md`.
 
 Consequence: at exact-seven there are NO anonymous points in the physical
 cap.  A finite role-coverage gate over the named system is portable to a
