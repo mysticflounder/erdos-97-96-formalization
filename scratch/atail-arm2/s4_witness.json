@@ -1,0 +1,25 @@
+{
+  "object": "SI1-collision straddle survivor + opposite-apex (oppApex1) equidistance coupling",
+  "verdict": "SAT (exact rational witness, all constraints exact)",
+  "gauge": "b's own-cap oppCap1 frame: corners cL=v3=(0,0), cR=v1=(1,0); lens y<0; far apex Af=oppApex1=v2 above axis",
+  "witness": {
+    "cL": ["0", "0"],
+    "cR": ["1", "0"],
+    "s1": ["1/6", "-1/5"],
+    "s2": ["5/6", "-1/5"],
+    "b":  ["1/2", "-3/10"],
+    "Af": ["1/2", "3/5"],
+    "oy": "11/120",
+    "R2": "3721/14400",
+    "rho2": "109/900",
+    "rad2": "169/225"
+  },
+  "constraints_all_exact_true": [
+    "d2(b,s1)=d2(b,s2)=rho2>0  (common blocker equal radius)",
+    "d2(Af,s1)=d2(Af,s2)=rad2>0  (opposite-apex equal radius = frontier radius)",
+    "Af on MEC O=(1/2,oy) R2=1/4+oy^2, Af above axis, 0<=Afx<=1, non-obtuse at Af",
+    "b,s1,s2 strictly below axis and inside the MEC disk",
+    "straddle order (cL,s1,b,s2,cR): all 10 CCW triples signedArea2>0"
+  ],
+  "meaning": "SUB2-H reduces the localizedCollision case to the straddle sub-config; the straddle survives the opposite-apex coupling. Closing SI1 requires additional coupling (mutual-omission cycle / escape common-deletion / overlap<=2)."
+}
