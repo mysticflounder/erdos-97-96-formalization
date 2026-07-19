@@ -505,6 +505,44 @@ unconditional row through EVERY carrier point with center ≠ O —
 u ∈ {O, e1, e2, outside points} are valid new through-points (sources'
 rows are the reverse rows already encoded).
 
+## Finding 14: round-2 L2u — the p2-row laws (2026-07-19)
+
+Probe (6,652 runs, same 12 stratified bases; smoke 3/3 against recorded
+round-1 verdicts incl. member-order swap symmetry): 1,887 kills — 28%
+kill rate vs round 1's ~5%.  Regime differs from Finding 13: 1,825/1,857
+structural cores are Kalmanson-terminal (order-coupled, up to 36
+labels), and p-point centers — expected weak (one encoded class each) —
+are the dominant killers.
+
+Scale (22 candidate patterns × 876 survivors = 16,896 runs, 2,376
+build-skips for merges/citations; `l2u_round2_scale_ledger.jsonl.gz`):
+**15,088 branch kills**, per-pattern verdicts exact:
+
+- **16 universal p2-row laws** (kill/built): the unused row through
+  `p2a` at each of the eight named centers `EA, W, b0, b1, s0, s2`
+  (with the evidence-paired cap member m: (EA,s0), (W,s2), (b0,s2),
+  (b1,s0), (s0,s1), (s0,s2), (s2,s0), (s2,s1)) — **876/876 each**;
+  same eight through `p2b` — **660/660 each** (216 bases lack `p2b`).
+  All Kalmanson-cored: Lean shape = ordered terminals; NOT covered by
+  the equality-chain ports.
+- **Two conditional u=O pure-equality laws**: rows through `O` at `s0`
+  or `s2` carrying `s1` — **660/876 each**; minimal cores are the
+  three-center chain ALREADY PORTED
+  (`false_of_mutualClassPair_sharedMember_thirdClassExcludes`,
+  instantiations (P,C,M) = (O,s0,s1) / (O,s2,s1)).  The 216-base
+  conditioning is unmapped (deferred).
+- **Cross-validation**: (O,s0,b0) 408/876 and (O,s1,b0) 192/660 are
+  member-order swaps of round-1's (b0,s0,O)/(b0,s1,O) and reproduce
+  their kill counts exactly.
+- **(p2a,p2b,s1) / (p2b,p2a,s1)**: 440/660 each — conditional, unmapped.
+
+Honest scope: branch kills of the unused-row refinement, as in
+Finding 13; no base closes outright (1,808 SAT rows remain across the
+22 patterns).  The p2-row laws say: on every survivor base, the
+critical shell of an r2-outside point at any named center off its own
+row cannot carry the paired cap member — the strongest single
+refinement layer censused so far.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
@@ -537,6 +575,10 @@ rows are the reverse rows already encoded).
    all and are the hard core of the residual.
 8. ~~L2u probe + scale~~ DONE (Finding 13): Laws U1/U2 universal,
    O-coupling laws per carrier row; 2,952 branch kills.
+8b. ~~L2u round 2 (generalized through-points) probe + scale~~ DONE
+   (Finding 14): 15,088 branch kills; 16 universal p2-row laws; two
+   conditional u=O pure-equality laws (660/876) already covered by the
+   ported chain lemma.
 9. ~~Lean port of the Finding 13 laws~~ DONE
    (`MutualShellPairSharedMember.lean`): three kernel-clean lemmas
    covering all 2,952 structural cores —
@@ -546,6 +588,10 @@ rows are the reverse rows already encoded).
    `..._selectedClassBridge_thirdShellExcludes` (the two 216-kill
    r2-carrier O-cores; four-center chain through class(O)).  Axioms:
    `[propext, Classical.choice, Quot.sound]`.
-10. L2u round 2: generalized through-points u ∈ {O, e1, e2, p·} (m
-    restricted to cap points + O per the kill evidence), and |M| = 2
-    decorations of surviving branches if round 2 shows depth.
+10. ~~L2u round 2 probe + scale~~ DONE (Finding 14).  Follow-ups:
+    (a) map the 216-base conditioning of the u=O laws and the 440/660
+    (p2a,p2b,s1) split; (b) Lean shape of the p2-row kal cores
+    (ordered terminals — check whether the split/after/enclosed
+    arrangements suffice); (c) |M| = 2 decorations of surviving
+    branches; (d) e1/e2/p0/p1 non-universal probe patterns (probe
+    kills exist but none scaled yet).
