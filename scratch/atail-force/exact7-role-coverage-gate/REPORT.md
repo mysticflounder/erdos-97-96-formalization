@@ -899,6 +899,31 @@ it is Adam's pivot.  Neither arm is closeable now (both open hard
 combinatorics), so executing the wiring closes no sorry.  **BLOCKED ON ADAM:
 do not execute the target swap autonomously.**  Spine sorry unchanged.
 
+## Finding 18b: the blocker is airtight — no hmin-free route exists (2026-07-19)
+
+Independent second confirmation (read-only) that the DoubleApex sorry cannot
+be closed without `hmin`, ruling out any producer-only shortcut around the
+pivot.  The cap-agnostic producer `exists_criticalPairFrontier_of_K4`
+(`CriticalPairFrontier.lean:1281`) builds `Nonempty (CriticalPairFrontier D S
+r H)` with NO `hmin` — but the frontier structure (`:568`) does **not** carry
+the DoubleApex pair.  Its fields are `pair : SurvivorPairRelocationPacket`
+(two off-surplus points co-radial from **oppApex1 only**), `secondApexDouble :
+HasNEquidistantPointsAt 4 ((A.erase q).erase w) oppApex2` (a 4-class *after*
+deleting q,w), and the two apex splits.
+
+Decisive: `firstApex_marginal_inter_secondClass_card_le_one` (`:633`) proves
+the off-surplus oppApex1-marginal meets ANY fixed oppApex2 class in `≤ 1`
+point (via `oppCap2_escape_gen`, `:653`).  So the DoubleApex conclusion — two
+distinct points co-radial from BOTH apices — is genuinely **impossible over
+ℝ²**; the sorry is **ex-falso-only**.  The frontier is a genuine (satisfiable)
+structure, so it is not itself the contradiction; `False` emerges only via
+`false_of_parentResidualConsumers` (frontier + `hmin` + arm1 + arm2).  Every
+`hmin`-free contradiction source is falsified per `dead-ends.md` (single-
+center / pattern-level / `|A|≥12`-uniform levers), leaving the `hmin`-level
+two-center coupled residual (arm2) as the sole survivor.  Hence the pivot
+(thread `hmin` + target swap) is the ONLY viable closure; there is no
+producer-only shortcut.  Confirms Findings 17-18; spine sorry unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
