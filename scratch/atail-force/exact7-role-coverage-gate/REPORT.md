@@ -767,6 +767,49 @@ co-radial, all others off-radius) and `no_qfree` blocker, not more
 co-radiality layers.  Branch-kill instruments only; the DoubleApex spine
 sorry is unchanged.
 
+## Finding 16: full-row census — exclusion + no_qfree are inert (2026-07-19)
+
+Tests the two constraint families Finding 15c named as the remaining
+closure candidates, on top of the |M|=3 co-radiality.
+
+- **Stage A (`build_l2u_fc.py`)**: co-radiality (`row_eqs [u,m1,m2,m3]`)
+  + exclusion (`rad_ne`: every other named point off u's radius from uc)
+  — the full `support_eq` of `CriticalFourShell`.  Encoded via the
+  `rad_ne` namespace to avoid the base `exact_class` label collision.
+- **Stage B (`build_l2u_fcq.py`)**: Stage A + `no_qfree` (`no_k4`
+  `{center: uc, avoid: [u]}`) — the complete `CriticalSelectedFourClass`.
+
+Encoding validated (`smoke_l2u_fc.py`, `probe_l2u_stageb.py`):
+- **P0 (positive control)**: forcing one excluded point co-radial with u
+  flips 5/5 to UNSAT — `rad_ne` genuinely bites when the co-radiality is
+  present.
+- **N1 (soundness)**: all 15 |M|=3-UNSAT triples stay fc-UNSAT (tightening
+  cannot revive).  **N2 (monotonicity)**: fc-SAT ⇒ |M|=3-SAT, 40/40.
+
+**Finding — exclusion is generically free.**  N3 diagnostic: 0/40 |M|=3-SAT
+triples flip to fc-UNSAT.  P0 confirms this is geometric, not a dead
+encoding: unless the base *forces* an other-point onto u's circle at uc,
+exclusion is satisfiable by perturbing the unconstrained points off that
+circle.  **no_qfree is also inert** (already L2n Finding 12: 876/876 SAT;
+re-confirmed here — Stage B `fcq` is SAT at named center `uc=W` with named
+members on 3/3 tested triples).
+
+This **falsifies the Finding 15c / BGG3XM conjecture** that exclusion +
+no_qfree were the closure lever.  Combined with the all-fresh full-row SAT
+witness (Finding 13, lines 498–501), the full forced unused critical row
+(co-radiality + exclusion + no_qfree, named members, named center `uc=W`)
+admits a placement on the tested bases ⇒ **the L2u dimension cannot close a
+base outright.**  Scale run (Stage A over all 44,623 triangles, 28 shards,
+`analyze_l2u_fc.py`) launched to convert this from sample to complete map;
+per-group deadness + closed-base count {{UNVALIDATED — census running}}.
+
+Consequence for the branch: the L2u refinement dimension is exhausted as a
+base-closer (co-radiality, exclusion, no_qfree all censused inert for
+outright closure).  The hard-core 324 no-O-row survivors (E902M6) must
+close via **Round 166 geometry (rank+winding / cross-row occurrence)** — the
+one dimension the report (item 7) reserves as a closer — not this one.
+Branch-kill instruments only; the DoubleApex spine sorry is unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
