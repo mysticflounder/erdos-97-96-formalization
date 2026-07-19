@@ -57,3 +57,19 @@ theorem proving either the full-`L` first-apex co-radial occurrence or
 production snapshot: its only open input is still the aggregate occurrence
 or the arbitrary mutual-omission consumer.  Accordingly, no snapshot source
 was imported as if it were a terminal proof.
+
+## Imported occurrence normal form
+
+The companion `DistanceDifferenceInvariant.lean` is copied from the Round-98
+snapshot and compiles against current production with warnings-as-errors.  It
+proves, with core axioms only, that the missing first-apex equality is exactly
+
+```text
+<S.oppApex1 - transitionReverseRowCenter T q, b - a> = 0
+```
+
+for one actual reverse outside pair.  It also proves equivalence between the
+orthogonality existential and the production co-radial occurrence.  This does
+not close a sorry; it removes the metric ambiguity from the next producer and
+makes clear that the remaining theorem must force one zero across the full
+transition, not merely classify a row.
