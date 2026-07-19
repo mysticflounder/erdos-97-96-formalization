@@ -895,8 +895,8 @@ route (frontier; overflow is dead) = (a) mechanical `hmin`-thread `:9522`→
 `:2531` [autonomous-legal, no sorry reduction], then (b) a TARGET SWAP that
 replaces the one DoubleApex sorry with the two open frontier arms — arm2 =
 `dead-ends.md:743/786` sole survivor.  (b) relocates the on-spine residual;
-it is Adam's pivot.  Neither arm is closeable now (both open hard
-combinatorics), so executing the wiring closes no sorry.  **BLOCKED ON ADAM:
+it is Adam's pivot.  Neither arm is discharged now (both open), so executing
+the wiring closes no sorry.  **BLOCKED ON ADAM:
 do not execute the target swap autonomously.**  Spine sorry unchanged.
 
 ## Finding 18b: the blocker is airtight — no hmin-free route exists (2026-07-19)
@@ -937,7 +937,7 @@ uniqueness / multiplicity / two-radius-class) returns no discharge: the nearest
 hit `largePhysicalRadius_or_exactTwoFourRadii_of_robust` (`:506`) concerns the
 SECOND apex under robustness (yields two radius classes — the opposite of
 arm1), and is an assembler piece, not an arm1 refutation.  So BOTH arms of the
-only viable route are hard-open: arm1 (this rigidity) and arm2 (`dead-ends.md:
+only viable route are open: arm1 (this rigidity) and arm2 (`dead-ends.md:
 743/786` sole survivor).  No autonomous non-pivot closure exists.  Spine sorry
 unchanged.
 
