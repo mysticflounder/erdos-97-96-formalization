@@ -73,3 +73,16 @@ orthogonality existential and the production co-radial occurrence.  This does
 not close a sorry; it removes the metric ambiguity from the next producer and
 makes clear that the remaining theorem must force one zero across the full
 transition, not merely classify a row.
+
+## Imported critical-target coverage bridge
+
+`CriticalTargetCoverage.lean` is the source-clean Round-159 bridge copied from
+the newer snapshot and compiled against current production.  It gives a
+uniform faithful carrier pattern in which every carrier label occurs in a
+selected four-row owned by a distinct actual blocker.  The declarations use
+only `propext`, `Classical.choice`, and `Quot.sound`.
+
+This is a genuine global input for a future occurrence producer, but it is
+not yet wired to `FullParentExactFiveAllReverseData`: the remaining coupling
+must still identify the relevant faithful row with the source-faithful
+critical rows (or prove a contradiction from the coverage pattern).
