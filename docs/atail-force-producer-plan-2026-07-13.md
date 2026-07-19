@@ -5390,3 +5390,32 @@ the proof only if it either supplies the exact antecedent of an existing
 on-spine consumer, produces a substitution-checked full-parent witness that
 invalidates a conjectured implication, or supplies a checked certificate for
 a named branch slice.
+
+### External rounds 137--142 reconciliation (2026-07-19)
+
+The latest prose/search backup was audited against the current source.  It
+adds no production theorem or source-valid terminal producer.  Its durable
+results are nevertheless relevant to the active boundary:
+
+- the dual-unused common-deletion core and the unused-blocker
+  non-bisector lemma are source-faithful, kernel-clean progress surfaces, but
+  neither supplies the positive cross-row incidence required by the existing
+  same-cap/ordered consumers;
+- the saturated Kalmanson run is DRAT-verified only for its fixed
+  fifteen-label profile, not for the live arbitrary-cardinality `L` parent;
+  and
+- the critical-shell counting countermodel refutes the pure fiber/cap-count
+  route, even with abstract K4, minimality, total critical rows, two robust
+  apices, and both large-cap exclusions.
+
+Therefore these rounds are regression evidence, not new closure obligations.
+The active target remains an `L`-indexed global geometric/minimality coupling
+that closes the robust/critical physical-second-apex outputs or directly
+feeds an existing terminal.  Do not reopen literal CEGAR/Kalmanson rounds
+without a full-parent survivor and a named consumer.
+
+The import audit also confirms that the source-clean exact-five terminals in
+`ParentExactFiveAssembler.lean` and `ParentExactFiveExactSix.lean` are not
+reachable from `U1LargeCapRouteBTail.lean`; they remain reusable sinks, not
+closed spine obligations.  Wiring them requires the missing full-`L` packet
+and the mutual-arm `FullParentExactFiveMutualData L profile → False` consumer.

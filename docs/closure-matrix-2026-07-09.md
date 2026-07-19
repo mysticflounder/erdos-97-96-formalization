@@ -571,3 +571,26 @@ proof-blueprint verify-publish
 `proof-blueprint verify-publish` is the terminal acceptance criterion. Bank
 counts, successful SAT runs, generated source volume, and reduced textual
 `sorry` count are intermediate evidence only.
+
+## 2026-07-19 external-round reconciliation
+
+The latest Front-A backup (Rounds 137--142) was checked against the current
+repository.  It contributes no production import and closes no live sorry.
+Rounds 137 and 140 provide source-faithful unused-source/common-deletion
+cores; Round 141 proves the unused blocker is not an adjacent transition
+bisector; and Round 139 supplies a DRAT-verified UNSAT result only for a fixed
+fifteen-label Kalmanson profile.  Round 142 gives an exact finite rational
+countermodel to the pure critical-shell/fiber-counting argument.  These are
+useful regression boundaries, not live parent consumers.
+
+The matrix therefore keeps the active closure boundary unchanged: preserve
+the complete `F`/`R`/`B`/`L` parent and obtain a genuinely global
+Euclidean/MEC, full-critical-map, or metric-minimality coupling that feeds an
+existing terminal.  Literal CEGAR, anonymous row adapters, and uniform
+Kalmanson expansion remain retired unless a full-parent survivor and its
+named consumer are both present.
+
+The import audit further confirms that the source-clean exact-five assembler
+and exact-six terminals are not imported by `U1LargeCapRouteBTail`; they do
+not reduce the live spine until the missing full-`L` packet and mutual-arm
+consumer are wired.
