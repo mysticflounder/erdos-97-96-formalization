@@ -68,6 +68,24 @@ are cases the enumerator must allow (they are NOT constraints).
   (`selectedClass_capInteriorByIndex_card_ge_two`,
   CapInteriorRadiusCounting.lean:27-34); NO ≤ 2 there.
 
+## L1 additions (pinned 2026-07-19, exact statements read; see DESIGN-L1.md)
+
+| Constraint | Provenance | Status |
+|---|---|---|
+| one-hit at EA: exact-radius class ∩ closed surplus cap ≤ 1 | `U2NonSurplusSqueeze.oppApex1_surplusCap_one_hit` (U2NonSurplusOneHit.lean:213); generic-S composition CriticalPairFrontier.lean:1296-1306 | PROVEN |
+| one-hit at EA: exact-radius class ∩ closed physical cap ≤ 1 | `oppApex1_otherCap_one_hit` (:312); generic-S `selectedClass_inter_oppCap2_card_le_one` (FirstApexShellRoleExtractor.lean:111-117) | PROVEN |
+| one-hit at O: exact-radius class ∩ closed surplus ≤ 1, ∩ closed opp1 ≤ 1 | `oppApex2_surplusCap_one_hit` (:352), `oppApex2_otherCap_one_hit` (:392); same `withPacket`/DS rebuild (pattern also at FrontierCommonDeletionSurplusEscape.lean:93) | PROVEN-COMPOSABLE (5-line packet rebuild) |
+| ⇒ e-landing patterns restricted to S-O1, S-W, EA-O1, EA-W | one-hit at O applied to class(O) = exactly {s0,s1,s2,e1,e2} | PROVEN (solver cores: 2 cls_eq + 1 rad_ne) |
+| L1 rows are `SelectedFourClass D.A oppApex1`: card 4, equal radius, center ∉ support, 4-SUBSET of ambient class | U1CarrierInjection.lean:405-423; `sameRadius_six` shows ambient class can exceed the support → row_eqs ONLY, never exact_classes | PROVEN |
+| q,w ∉ closed surplus cap; dist(EA,q)=dist(EA,w)=retained radius | `SurvivorPairRelocationPacket.q/w_mem_marginal` (CriticalPairFrontier.lean:295-298) | PROVEN |
+| retained row = {q,w} + exactly 2 completions; role cover; ≥2 strict opp1 | FirstApexShellRole.lean:48-129 (subsumed by one-hit budgets + role cover) | PROVEN |
+| any EA-radius class ⊆ surplus ∪ physical ∪ O1-bag | `selectedClass_subset_roleCover` (FirstApexShellRoleExtractor.lean:95) | PROVEN |
+| at most one of q,w ∈ class(O) | `CriticalPairFrontier.secondApexDouble` (:573-575, unconditional field) + `unique_K4_radius` + `class_card_eq_five` | PROVEN-COMPOSABLE |
+| outside-pair rad_ne at EA (all-reverse arm): dist(EA,p·a) ≠ dist(EA,p·b) per reverse row | `false_of_fullParentExactFiveAllReverseData_of_firstApexOccurrence` (ParentExactFiveAssembler.lean:335) via `false_of_transitionReverseOutsidePair_coRadial_firstApex` | PROVEN (terminal) |
+| outside pair of one row ⊆ retainedRow ∨ ⊆ doubleRow ⇒ False | `false_of_fullParentExactFiveAllReverseData_of_namedRowOccurrence` (ParentExactFiveAssembler.lean) | PROVEN (citation kill for those identification patterns) |
+| `FirstApexSplit`/`SecondApexSplit` disjunctions | resolved by unconditional residual fields in the all-reverse context | REDUNDANT (nothing to encode) |
+| W-centered one-hit analogue | searched, does not exist | NOT-FOUND (families not asserted) |
+
 ## Unused critical row (not encoded; L2 candidate)
 
 `LargeCapUniqueFiveUnusedCriticalRow` (LargeCapUniqueFive.lean:204-223):

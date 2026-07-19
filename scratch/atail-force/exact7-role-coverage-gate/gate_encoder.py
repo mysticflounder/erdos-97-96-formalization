@@ -29,6 +29,9 @@ Schema fields:
 - ``row_eqs``       [{"name", "center", "members"}] — selected rows
                     (equalities only, no completeness);
 - ``rad_ne``        [{"center", "a", "b"}] — d(center,a) != d(center,b);
+- ``radius_rel``    [{"rows": [name1, name2], "relation": "eq"|"ne"}] —
+                    tie two ``row_eqs`` base radii (same/distinct-radius
+                    arms of the L1 split);
 - ``k4``            [{"center", "candidates", "escape"}] — existential K4:
                     Or over (4-escape)-subsets of candidates of the radius
                     equalities.  ``escape`` counts anonymous row slots; if
@@ -41,7 +44,7 @@ Schema fields:
 - ``no_kalmanson`` / ``no_triangle`` / ``no_lower``  opt-outs (relaxation).
 
 Tracked label families: ``pos`` (structural order), ``lower``, ``tri``,
-``cls_eq``, ``cls_ne``, ``row_eq``, ``rad_ne``, ``k4``, ``kal``.
+``cls_eq``, ``cls_ne``, ``row_eq``, ``rad_ne``, ``radrel``, ``k4``, ``kal``.
 """
 
 from __future__ import annotations
@@ -74,6 +77,7 @@ class GateEncoder:
             self._add_triangle()
         self._add_exact_classes()
         self._add_row_eqs()
+        self._add_radius_rel()
         self._add_rad_ne()
         self._add_k4()
         self._add_unique_class()
@@ -167,6 +171,19 @@ class GateEncoder:
                     f"row_eq|{row['name']}|{point}",
                     self.dist(center, point) == base,
                 )
+
+    def _add_radius_rel(self) -> None:
+        rows = {row["name"]: row for row in self.schema.get("row_eqs", [])}
+        for spec in self.schema.get("radius_rel", []):
+            name1, name2 = spec["rows"]
+            relation = spec["relation"]
+            assert relation in ("eq", "ne")
+            base1 = self.dist(rows[name1]["center"], rows[name1]["members"][0])
+            base2 = self.dist(rows[name2]["center"], rows[name2]["members"][0])
+            self.track(
+                f"radrel|{name1},{name2}|{relation}",
+                base1 == base2 if relation == "eq" else base1 != base2,
+            )
 
     def _add_rad_ne(self) -> None:
         for spec in self.schema.get("rad_ne", []):

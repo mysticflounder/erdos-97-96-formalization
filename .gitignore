@@ -124,3 +124,10 @@ scratch/atail-force/exact7-role-coverage-gate/merge_shard*.log
 scratch/atail-force/exact7-role-coverage-gate/merge_ledger_shard*.jsonl
 scratch/atail-force/exact7-role-coverage-gate/merge_ledger.jsonl
 scratch/atail-force/exact7-role-coverage-gate/merge_census_summary.json
+scratch/atail-force/exact7-role-coverage-gate/retro_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/retro_shard*.log
+scratch/atail-force/exact7-role-coverage-gate/retro_ledger_shard*.jsonl
+scratch/atail-force/exact7-role-coverage-gate/l1a_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/l1b_schemas.json
+scratch/atail-force/exact7-role-coverage-gate/l1b_shard*.log
+scratch/atail-force/exact7-role-coverage-gate/l1b_ledger_shard*.jsonl
