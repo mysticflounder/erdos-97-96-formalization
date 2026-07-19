@@ -501,7 +501,16 @@ rows are the reverse rows already encoded).
    (`SecondApexClassOneHit.lean`); (b) ~~Finding 5 landing law~~ DONE
    (`TwoCenterBisectorParity.lean`); (c) record the Finding 9 dead
    types as citations of existing production theorems; (d) Laws A/B
-   (Finding 10) as ordered terminals over the same Kalmanson kernels.
+   canonical terminals DONE —
+   `false_of_two_centers_equidistant_pair_split`
+   (TwoCenterBisectorParity.lean: the `c₂ < p₁ < p₂ < c₁` arrangement
+   of every small kal core, `kal|EA,O,m,c|ac+bd-ab-cd`) and
+   `false_of_mutualClassPair_sharedMember_thirdClassExcludes`
+   (MutualShellPairSharedMember.lean: the 108 pure-equality eO1-EA
+   cores).  OPEN residue of (d): the large-core kills (≥7 labels,
+   ~1,130 of 1,380 bare) chain extra cls_eq/kal transport steps down
+   to the same split terminal; those transport reductions are not
+   themselves Lean-proven.
 6. ~~Full L1c census~~ DONE factored (Finding 10): 11.6% of the joint
    product dead via Laws A/B; no survivor closes outright.
 7. Residual: 876 censal classes × (alive id types + non-coupling row

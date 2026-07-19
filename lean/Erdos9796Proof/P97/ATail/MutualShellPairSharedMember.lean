@@ -27,6 +27,11 @@ radius-class bookkeeping only.
 - `false_of_mutualShellPair_selectedClassBridge_thirdShellExcludes`: the
   four-center chain through an intermediate `SelectedClass` (covers the two
   216-kill r2-carrier cores, e.g. `u=b0 uc=s0 m=O` with `O ∈ r2`).
+- `false_of_mutualClassPair_sharedMember_thirdClassExcludes`: the same
+  three-center chain in bare `SelectedClass` terms throughout (covers the
+  108 pure-equality Finding 10 Law A cores on `eO1-EA` bases, where
+  `EA ∈ class(O)`: `(P, C, M) = (EA, O, s1)` with `P`'s class the
+  first-apex row, `C`'s class = class(O), `M`'s class = r2).
 
 Census instantiations (Round-188 aligned names): Law U1 is
 `(P, C, M) = (b0, s0, s1)` with `K0 = r0`, `K2 = r2`, and `Kb` the unused
@@ -112,5 +117,29 @@ theorem false_of_mutualShellPair_selectedClassBridge_thirdShellExcludes
       _ = dist M W := dist_comm W M
       _ = K2.radius := K2.support_eq_radius W hW2
   exact hP2 (K2.off_row_named_label_forbidden Kb.q_mem_A hMP)
+
+/-- The three-center chain in bare `SelectedClass` terms: `P`'s class
+contains `C` and `M`, `C`'s class contains `P` and `M`, and `M`'s class
+contains `C`.  Then `dist M P` is forced to `M`'s class radius, so that
+class cannot exclude `P`.  The shell versions above are instances of this
+shape with `support_eq` supplying the class equalities. -/
+theorem false_of_mutualClassPair_sharedMember_thirdClassExcludes
+    {A : Finset ℝ²} {P C M : ℝ²} {rP rC rM : ℝ}
+    (hCP : C ∈ SelectedClass A P rP)
+    (hMP : M ∈ SelectedClass A P rP)
+    (hPC : P ∈ SelectedClass A C rC)
+    (hMC : M ∈ SelectedClass A C rC)
+    (hCM : C ∈ SelectedClass A M rM)
+    (hP2 : P ∉ SelectedClass A M rM) : False := by
+  have hMPd : dist M P = rM := by
+    calc dist M P = dist P M := dist_comm M P
+      _ = rP := (mem_selectedClass.mp hMP).2
+      _ = dist P C := ((mem_selectedClass.mp hCP).2).symm
+      _ = dist C P := dist_comm P C
+      _ = rC := (mem_selectedClass.mp hPC).2
+      _ = dist C M := ((mem_selectedClass.mp hMC).2).symm
+      _ = dist M C := dist_comm C M
+      _ = rM := (mem_selectedClass.mp hCM).2
+  exact hP2 (mem_selectedClass.mpr ⟨(mem_selectedClass.mp hPC).1, hMPd⟩)
 
 end Problem97
