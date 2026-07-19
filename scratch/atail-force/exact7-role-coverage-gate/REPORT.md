@@ -853,6 +853,52 @@ falsified).  Not-yet-pinned: exact current `:9522→:2531` routing; whether
 arm 1 is partly available.  See memories "Exact-seven DoubleApex CLOSURE
 PATH" + "…overflow MECHANISM".  Spine sorry unchanged.
 
+## Finding 18: the two Finding-17 open items, pinned at source (2026-07-19)
+
+Read-only follow-up resolving Finding 17's two "not-yet-pinned" items.
+Authoritative spine path (`proof-blueprint spine`):
+`u1_largeCap_routeB_tail_false` (`:9522`) → `..._liveData_false` (`:8086`)
+→ `..._exactDangerousRow` (`:2671`) → `..._twoLargeCaps_pCentered_t2Source`
+(`:2647`) → `exists_removableVertex_of_twoLargeCaps` (`:2600`) →
+`DoubleApexOffSurplusSharedRadiusPair` [💧 sorry, `:2531`].
+
+1. **`:9522→:2531` routing = single unbroken caller chain, all in
+   `U1LargeCapRouteBTail.lean`.**  `hmin` is dropped precisely at the
+   `:9522→:8086` boundary — `liveData_false` (`:8086`) lacks `hmin`, and its
+   ONLY real invocation is `:9691` (inside `:9522`, which has `hmin`); every
+   other ~40 mentions are doc-comments ("orbit leaf of …"), incl.
+   `Continuation.lean:740`.  So threading `hmin` down the chain is a
+   MECHANICAL additive-hypothesis widening (Statement abbreviations
+   untouched — add `hmin` before the `:` conclusion), single-caller confirmed
+   at every link, no interface retirement.  **But it yields ZERO sorry
+   reduction on its own** — it only makes `hmin` available at `:2531`.
+
+2. **Arm 1 (`OriginalFrontierUniqueRadiusArm F → False`) is NOT available.**
+   It is never discharged in-tree: it occurs only as an INPUT hypothesis in
+   four assemblers (`OrientedPhysicalApexIngress.lean:458`,
+   `FrontierCommonDeletionSurplusEscape.lean:579`,
+   `FrontierCoupledStrictInteriorNormalForm.lean:65`,
+   `FrontierCommonDeletionEscape.lean:550`).  So the frontier route leaves
+   TWO open kills, not one.
+
+3. **The frontier assemblers are all sorry-free** (0 sorries in
+   `FrontierCoupledStrictInteriorNormalForm/CommonDeletionEscape/
+   CommonDeletionSurplusEscape.lean`) because they DEFER both arms as
+   hypotheses.  Tightest entry point:
+   `false_of_frontierCoupledStrictInteriorConsumers`
+   (`FrontierCoupledStrictInteriorNormalForm.lean:57`) — proves
+   `nonempty_frontierCoupledStrictInteriorNormalForm R` internally and
+   reduces the whole frontier to exactly `{arm1, arm2}`.
+
+**Net (fully-pinned blocker).**  Closing exact-seven via the only viable
+route (frontier; overflow is dead) = (a) mechanical `hmin`-thread `:9522`→
+`:2531` [autonomous-legal, no sorry reduction], then (b) a TARGET SWAP that
+replaces the one DoubleApex sorry with the two open frontier arms — arm2 =
+`dead-ends.md:743/786` sole survivor.  (b) relocates the on-spine residual;
+it is Adam's pivot.  Neither arm is closeable now (both open hard
+combinatorics), so executing the wiring closes no sorry.  **BLOCKED ON ADAM:
+do not execute the target swap autonomously.**  Spine sorry unchanged.
+
 ## Next steps
 
 1. ~~Lean normal-form theorem for Finding 2~~ DONE (Round 188).
