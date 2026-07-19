@@ -1,0 +1,23 @@
+{
+  "target": "FrontierCoupledStrictInteriorNormalForm R -> False, SI1 (localizedCollision) family",
+  "gauge": "b's own-cap oppCap1 frame: cL=v3=oppApex2=(0,0), cR=v1=(1,0); lens y<0; Af=v2=oppApex1 above axis; surplus cap beyond chord [Af,cL] from cR",
+  "verdicts": {
+    "SI1_sameside_x_FE1FE2FE3": "KILLED (PROVEN, SUB2-H): b is a non-Moser oppCap1-interior center; s1,s2 same-side in b's lens = SUB2-H core, UNSAT.",
+    "SI1_straddle_x_opposite_apex_only_S4": "PROVEN SAT (exact witness s4_witness.json).",
+    "SI1_straddle_x_FE2": "PROVEN SAT (exact witness below).",
+    "SI1_straddle_x_FE1": "SAT (off-radius escape is metrically looser than FE2; inferred).",
+    "SI1_straddle_x_FE3": "SAT (companion off-radius, metrically looser; inferred).",
+    "note": "All SAT verdicts are for the LOCAL METRIC system only. The FE2 counting constraints (B2 cap surplusCap = {e}, |B1 cap B2| <= 2) are NOT modelled locally; global counting in |A|=11 caps (5,5,4) may still kill SI1-straddle."
+  },
+  "SI1_straddle_x_FE2_exact_witness": {
+    "cL_v3_oppApex2": ["0","0"], "cR_v1": ["1","0"],
+    "s1": ["1/5","-1/20"], "s2": ["4/5","-1/20"],
+    "b_commonBlocker": ["1/2","-1/10"],
+    "Af_v2_oppApex1": ["1/2","4/5"],
+    "e_escape_in_surplusCap_on_frontierCircle": ["0","1/20"],
+    "oy": "39/160", "R2": "7921/25600", "rad2_frontier": "13/16",
+    "all_constraints_exact_true": "blocker equal-radius, opposite-apex equal-radius, e on frontier circle, e in surplus-cap half-plane, MEC/non-obtuse, disk containment, straddle order (all 10 CCW triples)"
+  },
+  "SI2_SI3_SI4_x_FE": "OPEN. Distinct-blocker matching walks (b1 != b2 in oppCap1 lens); SUB2-H inapplicable; not solver-tested this session.",
+  "closure_lever": "Global finite incidence/counting at |A|=11, caps (5,5,4): B2 cap surplusCap <= 1, |B1 cap B2| <= 2, frontier class >=4 at oppApex1, collision {b,s1,s2} in oppCap1 interior. This is a finite CSP + exact geometry, NOT local NRA."
+}
