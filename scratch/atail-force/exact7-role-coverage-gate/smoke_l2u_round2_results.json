@@ -1,0 +1,28 @@
+{
+ "N1_swap_matches_round1": {
+  "base": "retro.L0.eS-O1.r0S-S.r1S-S.r2S-S.mp0b=p1b",
+  "verdict": "sat",
+  "expected": "sat",
+  "pass": true
+ },
+ "N2_swap_lawU1_unsat": {
+  "verdict": "unsat",
+  "core": [
+   "cls_eq|b0|s1",
+   "cls_eq|s1|s0",
+   "cls_ne|s1|b0",
+   "row_eq|unu|b0"
+  ],
+  "pass": true
+ },
+ "N3_citation_u_O": {
+  "base": "retro.L0.eS-O1.r0S-O.r1S-O1.r2S-S",
+  "verdict": "unsat",
+  "core": [
+   "cls_eq|b0|O",
+   "cls_ne|b0|EA",
+   "row_eq|unu|EA"
+  ],
+  "pass": true
+ }
+}
